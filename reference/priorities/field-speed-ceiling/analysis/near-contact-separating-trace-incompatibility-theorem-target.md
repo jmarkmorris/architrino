@@ -174,7 +174,7 @@ The conclusion would not establish a universal continuation no-go, choose a term
 
 ## Dependencies and acceptance boundary
 
-FSC-005 now consumes FSC-006a's completed source-provenanced far-part theorem and exact endpoint residue. FSC-006b now supplies a proposed typed exact-event family, competing-stratum ownership rule, and right-trace restart in the [mathematics packet](../mathematics-geometry-dynamical-system.md). It also uses the [endpoint reanalysis](capped-collinear-endpoint-reanalysis.md) only for the prescribed straight-trace calculation and MEC-007 only for the conditional incoming threshold history.
+FSC-005 now consumes FSC-006a's completed source-provenanced far-part theorem and exact endpoint residue. FSC-006b now supplies a proposed typed exact-event family, competing-stratum ownership rule, and right-trace restart in the [mathematics packet](mathematics-geometry-dynamical-system.md). It also uses the [endpoint reanalysis](capped-collinear-endpoint-reanalysis.md) only for the prescribed straight-trace calculation and MEC-007 only for the conditional incoming threshold history.
 
 `Advanced` would require either:
 

@@ -22,6 +22,7 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 10. `full_ppn_completion` — Status: `Deferred / blocked`.
 11. `horizon_diagnostics_consumer` — Status: `Deferred / blocked`.
 12. `speed_symbol_consolidation` — Status: `Deferred / blocked`.
+13. `data_file_layout_completion` — Owner: this queue. Status: `In progress`.
 
 ## In progress
 
@@ -38,6 +39,13 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 - **Request / acceptance:** Close the causal wake update, finite coincident same-transmitter continuation, and all three conserved accounts on the same update.
 - **Evidence / blocker:** Master-Equation Closure owns the derivation and joint acceptance.
 - **Completion:** The owner queue records a jointly accepted update and accounts, or a decisive no-go.
+
+### AWT-015 — Data-file layout completion
+
+- **Status:** In progress
+- **Request / acceptance:** File the 32 machine-readable data files still at the top level of nine active lanes into their layout subdirectories, updating every consumer that references them by path. Scope, destinations, consumers, hazards, and validation are in [campaigns/data-file-layout-completion.md](campaigns/data-file-layout-completion.md).
+- **Evidence / blocker:** Stage A is complete: six files with no code consumer are filed. Stage B is the remaining 26, whose consumers span `scripts/`, `tests/`, and `src/`; three of them feed the content-integrity gate. Stage B is blocked on that gate being green, because `scripts/build-equation-mapping-corpus.mjs --build` currently fails for a pre-existing reason unrelated to this work, and a red gate cannot show whether a consumer edit broke something.
+- **Completion:** No data file remains at the top level of an active lane, no reference to a former path survives, and the content-integrity gate, the priority validator, and the Node and Python suites pass.
 
 ## Deferred / blocked
 

@@ -4,7 +4,7 @@
 
 ## Verified incoming input through first field-speed arrival
 
-Completed [MEC-007](../../master-equation-closure/mirror-close-approach-causal-root-boundary.md) verifies that the stationary incoming history's first field-speed event $T_\ast$ satisfies
+Completed [MEC-007](../../master-equation-closure/analysis/mirror-close-approach-causal-root-boundary.md) verifies that the stationary incoming history's first field-speed event $T_\ast$ satisfies
 
 $$
 u(T_\ast)=1,\qquad q(T_\ast)>0.

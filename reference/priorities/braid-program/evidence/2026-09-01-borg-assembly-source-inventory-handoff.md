@@ -6,7 +6,7 @@
 
 ## Accepted Handoff
 
-The Braid Program accepts the current [Configuration Display Catalog](../configuration-display-catalog.md) and its 145 exact `prescribed-braid-spec.v3` source files as the scientific-source handoff consumed by the verified [Borg assembly registry](../../app-borg/assembly-registry.v1.json). Every exact row is bound by `assemblyId + modelRevisionSha256`; every available sealed display record is additionally bound by `recordSha256`. The consuming registry groups those 145 exact configurations into 46 Borg braid entries without changing any exact scientific identity.
+The Braid Program accepts the current [Configuration Display Catalog](../configurations/configuration-display-catalog.md) and its 145 exact `prescribed-braid-spec.v3` source files as the scientific-source handoff consumed by the verified [Borg assembly registry](../../app-borg/assembly-registry.v1.json). Every exact row is bound by `assemblyId + modelRevisionSha256`; every available sealed display record is additionally bound by `recordSha256`. The consuming registry groups those 145 exact configurations into 46 Borg braid entries without changing any exact scientific identity.
 
 The source specifications retain persistent member order, polarity, worldline operators, complete declared component relations, source geometry, history and motion policy, and exact record routing. The registry exposes source-derived dimensionality, component-braid count, assembly span, motion and visual dispositions, and unavailable values through versioned facets. Borg remains a consumer: it does not reconstruct source coordinates, infer braid membership from member count or appearance, or calculate delayed acceleration.
 

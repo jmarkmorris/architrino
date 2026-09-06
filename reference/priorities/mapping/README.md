@@ -16,7 +16,7 @@ Plainly: work upward from the proposed physical ingredients and backward from wh
 
 ## How The Directories Are Organized
 
-The [shared architecture](mapping-method.md#mapping-program-routing) distinguishes equation-first work, benchmark-first work, and domain integration. Cross-domain assessment consumes those results without taking over their derivations.
+The [shared architecture](contracts/mapping-method.md#mapping-program-routing) distinguishes equation-first work, benchmark-first work, and domain integration. Cross-domain assessment consumes those results without taking over their derivations.
 
 | Directory | Starting question | Responsibility |
 | --- | --- | --- |
@@ -37,7 +37,7 @@ Plainly: equations specify mathematical requirements, benchmarks specify concret
 
 A benchmark is a specified case against which an explanation can be checked. Here it can be an experiment, an astronomical observation, or a solved mathematical comparison. A packet must distinguish which kind it uses: agreement with a solved formula is not itself a measurement of nature.
 
-For example, the directory contains [clock and gravitational-redshift tests](../mapping-benchmarks/gravitational-redshift-clock-tests.md), [interference](../mapping-benchmarks/double-slit-mach-zehnder.md), [Zeeman spectral splitting](../mapping-benchmarks/zeeman-effect.md), and [strong-field electromagnetic response](../mapping-benchmarks/strong-field-electromagnetic-response.md). These packets describe the comparison and its proof burden. Being listed there does not mean a benchmark has been run or passed. Its [work queue](../mapping-benchmarks/work-queue.md) owns accepted execution tasks; case-local draft steps do not create additional executable queues.
+For example, the directory contains [clock and gravitational-redshift tests](../mapping-benchmarks/benchmarks/gravitational-redshift-clock-tests.md), [interference](../mapping-benchmarks/benchmarks/double-slit-mach-zehnder.md), [Zeeman spectral splitting](../mapping-benchmarks/benchmarks/zeeman-effect.md), and [strong-field electromagnetic response](../mapping-benchmarks/benchmarks/strong-field-electromagnetic-response.md). These packets describe the comparison and its proof burden. Being listed there does not mean a benchmark has been run or passed. Its [work queue](../mapping-benchmarks/work-queue.md) owns accepted execution tasks; case-local draft steps do not create additional executable queues.
 
 One benchmark can test several equation rows, and one equation can be tested by several benchmarks. A domain owner joins those constraints while preserving each benchmark's provenance and each equation's disposition.
 
@@ -57,7 +57,7 @@ Plainly: mapping states and connects the requirements; the physical and computat
 
 ## Methodology In Practice
 
-This is an orientation to the existing [bidirectional method](mapping-method.md#bidirectional-mapping-and-mathematical-reframing), not a second method specification. That document remains the shared method and mathematical architecture owner. Its [admissible native record sets](mapping-method.md#admissible-native-record-sets) express the requirement that one declared construction survive all applicable comparisons.
+This is an orientation to the existing [bidirectional method](contracts/mapping-method.md#bidirectional-mapping-and-mathematical-reframing), not a second method specification. That document remains the shared method and mathematical architecture owner. Its [admissible native record sets](contracts/mapping-method.md#admissible-native-record-sets) express the requirement that one declared construction survive all applicable comparisons.
 
 1. **State the target and its level.** Identify the equation, observation, or solved case; separate measured data, its effective mathematical description, and the interpretation attached to that description. Declare the regime and the exact behavior to recover. Use tested physics and accepted constraints to choose required targets; keep optional frameworks at comparison or heuristic grade.
 2. **Work backward to explicit requirements.** Ask which assembly geometry, history dependence, source and receiver records, boundary conditions, or medium response would be needed. Record these as inferred constraints or conjectures unless they have been derived. Several underlying constructions may satisfy the same observation.
@@ -70,7 +70,7 @@ Plainly: specify what must be explained, infer what a mechanism needs, build tha
 
 ### Example: One Spectral Benchmark Across Several Owners
 
-The [Zeeman packet](../mapping-benchmarks/zeeman-effect.md) illustrates the ownership split. This is a routing example, not a claim that the recovery has been completed.
+The [Zeeman packet](../mapping-benchmarks/benchmarks/zeeman-effect.md) illustrates the ownership split. This is a routing example, not a claim that the recovery has been completed.
 
 - **Benchmark:** `mapping-benchmarks` specifies line splitting, viewing direction, polarization, comparison provenance, and failure conditions.
 - **Equations:** `mapping-equations` owns the exact atomic-spectrum and magnetic-moment/precession rows, `EQ-26` and `EQ-27`.
@@ -83,7 +83,7 @@ Plainly: one observed line pattern creates several connected questions. Each has
 
 Start with the relevant owner's `priorities.md`, then its `work-queue.md` and the named packet. Strategic state belongs in the tracker; accepted executable work belongs in the queue; provisional ideas belong in `brainstorming.md`; dated results belong in `work-log.md` or the owner's evidence packet. Do not create copies of another owner's task or evidence record here.
 
-Use this overview for orientation and directory navigation. Use the [shared architecture](mapping-method.md) for method, ownership contracts, and common mathematical components. Use [Inferring Braid Requirements](../mapping-equations/inferring-braid-requirements.md) for the general reverse-inference application and the Braid Program's [candidate adjudication](../braid-program/braid-candidate-requirement-adjudication.md) for applying those requirements to candidates.
+Use this overview for orientation and directory navigation. Use the [shared architecture](contracts/mapping-method.md) for method, ownership contracts, and common mathematical components. Use [Inferring Braid Requirements](../mapping-equations/analysis/inferring-braid-requirements.md) for the general reverse-inference application and the Braid Program's [candidate adjudication](../braid-program/analysis/braid-candidate-requirement-adjudication.md) for applying those requirements to candidates.
 
 Reader-facing explanations live in [Theory Bridges](../../../content/markdown/aaa/philosophy-history/theory-bridges.md), [Theory Mapping](../../../content/markdown/aaa/philosophy-history/theory-mapping.md), and [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md). Accepted content is promoted into its corpus owner; reader-facing chapters do not depend on this priority directory.
 

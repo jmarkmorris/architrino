@@ -5,7 +5,7 @@
 - Applied the [workstream directory layout](../README.md#workstream-directory-layout) to this lane as its pilot, reducing the top level from 49 files to 10 without removing or retiring anything.
 - Moved 21 files into `reviews/`: the fifteen named specialist reviews and review responses, the two independent Principal Proof Architect reviews, the inherited cap-family event-measure review, the geometry panel collation, the first-entourage review readiness record, and the no-escape audit, which self-describes as an assumption and ownership audit aligned to a review artifact.
 - Moved 18 files into `analysis/`: the theorem targets, certificates, lemma files, proof packets, and the coincidence continuation scratchpad. Classification followed each file's own declared status line rather than its filename, so the two-lobe return map and autonomous-trigger audit was filed as the theorem packet it declares itself to be rather than as an audit.
-- Kept ten files at the top level: the four control-surface documents, the [mathematics packet](mathematics-geometry-dynamical-system.md) that the reviews target, the [FSC-001 compatibility decision](field-speed-ceiling-compatibility-decision.md), the [continuation-selection operator decision](continuation-selection-operator-decision-2026-09-02.md), the [quarantined-hypotheses register](quarantined-hypotheses-and-prescribed-reference-cases.md), and the two mpmath receipts.
+- Kept ten files at the top level: the four control-surface documents, the [mathematics packet](analysis/mathematics-geometry-dynamical-system.md) that the reviews target, the [FSC-001 compatibility decision](decisions/field-speed-ceiling-compatibility-decision.md), the [continuation-selection operator decision](decisions/continuation-selection-operator-decision-2026-09-02.md), the [quarantined-hypotheses register](analysis/quarantined-hypotheses-and-prescribed-reference-cases.md), and the two mpmath receipts.
 - Left the two receipts in place deliberately. Each records a `declared_reproduction_command` naming its own output path, and `scripts/field-speed-ceiling/t0-six-path-oracle-input.v1.json` and `circular-binary-all-root-mpmath-oracle.py` hard-code those same paths. Relocating them would require editing a machine contract and a byte-preserved provenance string to gain two lines of directory listing.
 - Rewrote 205 relative links across 38 files in both directions. Three of those files are outside this lane: `aaa-work-threads/notation.md` and two `master-equation-closure` packets. All 347 relative links inside this lane resolve, verified by a full-tree relative-link scan whose only three failures are pre-existing TeX fragments and an application query link unrelated to this change.
 - Updated the 39 affected row paths in the [operator-document style conversion ledger](../operator-document-style-conversion-ledger.md#path-relocation-of-2026-09-05) and recorded there that its two baseline path-list hashes now describe a pre-relocation inventory and need re-measurement by that campaign.
@@ -15,7 +15,7 @@
 
 ## 2026-09-02 — Operator selected Option A for exact-mirror continuation
 
-- Added the [continuation-selection decision packet](continuation-selection-operator-decision-2026-09-02.md) using the completed quotient, event-adjacent no-cascade, and regular-chart results.
+- Added the [continuation-selection decision packet](decisions/continuation-selection-operator-decision-2026-09-02.md) using the completed quotient, event-adjacent no-cascade, and regular-chart results.
 - Compared retaining the exact-mirror continuation as a multivalued relation with straight-passage, positive-onset, approximation-limit, and future wake/action-derived selector laws.
 - Recorded the operator's selection of Option A: retain the multivalued relation at current FSC authority because no admitted quotient-compatible state functional derives one onset and the direct cap-duration reset has no positive fixed cycle in its proved regime.
 - Recorded the causal-implementation boundary: the delayed-braking theorem proves a continuation after a prescribed positive onset, but no current FSC theory or hypothesis supplies the state process, wake/action mechanism, perturbation, maturity guard, or event rule that causes the delayed onset to occur.
@@ -150,7 +150,7 @@
 
 ## 2026-07-30 — Coordinate-free mathematics framework started
 
-- Started [mathematics-geometry-dynamical-system.md](mathematics-geometry-dynamical-system.md) at the operator's request. It begins with the closed velocity ball, then constrained dynamics, then the still-required causal-wake boundary rule.
+- Started [mathematics-geometry-dynamical-system.md](analysis/mathematics-geometry-dynamical-system.md) at the operator's request. It begins with the closed velocity ball, then constrained dynamics, then the still-required causal-wake boundary rule.
 - The displayed tangent-cone projection is a candidate mathematical template, not an adopted law or a resolution of the cap-state root measure.
 
 ## 2026-07-30 — Cap-state geometry and plateau distinction captured
@@ -246,7 +246,7 @@
 
 ## 2026-07-30 — FSC-001 compatibility decision completed
 
-- Added [FSC-001 Field-Speed Ceiling Compatibility Decision](field-speed-ceiling-compatibility-decision.md) as the single evidence-bounded decision packet.
+- Added [FSC-001 Field-Speed Ceiling Compatibility Decision](decisions/field-speed-ceiling-compatibility-decision.md) as the single evidence-bounded decision packet.
 - Compared the canonical open, unbounded primitive velocity domain with the proposed closed ball and found that a ceiling is incompatible as a clamp or one-line amendment. A closed variant requires a successor model binding.
 - Integrated the collinear partner-contact obstruction, the half-open local-existence verdict, the exact thirty-root reference theorem, and the negative minimal-response vector-closure diagnostic.
 - Identified the minimum additional interface as a Typed Nonordinary Contact Event Postulate. Its `inactive`, `terminal`, or `active-boundary-measure` disposition remains unselected.
@@ -256,7 +256,7 @@
 
 ## 2026-07-30 — Independent document-architecture audit integrated
 
-- Repaired [mathematics-geometry-dynamical-system.md](mathematics-geometry-dynamical-system.md) so its postulate budget now separates the closed velocity domain, the finite-ordinary-ledger response, and nonordinary contact admission/event semantics.
+- Repaired [mathematics-geometry-dynamical-system.md](analysis/mathematics-geometry-dynamical-system.md) so its postulate budget now separates the closed velocity domain, the finite-ordinary-ledger response, and nonordinary contact admission/event semantics.
 - Marked the displayed constrained equations as a regular-chart partial model: the same-transmitter co-moving rule is only a proposed limited convention, and no general partner-contact or other nonordinary event disposition is selected.
 - Added a compact provenance/status map distinguishing canonical premises, proposed postulates, proposed admission conventions, missing event semantics, conditional hypotheses, derived conditional results, exact reference-path theorems, and diagnostics.
 - Corrected the Field-Speed lane's MEC-007 consumption boundary. MEC-007 is `Awaiting verification`; its first-field-speed event, incoming partner row, and sharp-law obstruction are conditional inputs here, not established results.

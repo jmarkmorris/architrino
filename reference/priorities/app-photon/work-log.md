@@ -29,7 +29,7 @@ The style dispositions are `inferred` against edition 1.0 of the academic style 
 
 ### 2026-09-02 PHO-001 Reusable Absolute-History Facade Closure
 
-Closed PHO-001 with [reusable-absolute-history-facade.md](reusable-absolute-history-facade.md). `solvePrescribedAbsoluteHistoryRun` now composes the existing linearly prescribed transmitter, moving-circular transmitter, and moving-circular same-transmitter root contracts without importing Photon state. It emits explicit receiver-phase records, circular phase-spread families grouped by layer, role, charge, root kind, and cycle, and separate rejected-root and unresolved-request reason counts.
+Closed PHO-001 with [reusable-absolute-history-facade.md](contracts/reusable-absolute-history-facade.md). `solvePrescribedAbsoluteHistoryRun` now composes the existing linearly prescribed transmitter, moving-circular transmitter, and moving-circular same-transmitter root contracts without importing Photon state. It emits explicit receiver-phase records, circular phase-spread families grouped by layer, role, charge, root kind, and cycle, and separate rejected-root and unresolved-request reason counts.
 
 Observer-field reconstruction now rejects incomplete causal factors, invalid/nonunit directions, invalid distance or charge records, and roots that fail admission. Rejected rows remain inspectable but contribute the zero vector. The existing Photon moving-circular entrypoint remains a compatibility wrapper, and arbitrary histories plus production authority remain with App Solver and the EOM solver bridge.
 
@@ -37,7 +37,7 @@ Independent focused fixtures at $c_f=1$ pin a stationary linear root and field t
 
 ### 2026-09-02 PHO-006 Deep Configuration Comparison Closure
 
-Closed PHO-006 with [configuration-search-deep-comparison.md](configuration-search-deep-comparison.md). The Photon configuration search now has a scheduled deep path over the full constructed candidate pool, with a pre-evaluation local-$c$ filter, a post-evaluation measured phase-family filter, progress updates, and event-loop yields between candidates. Both short and deep searches reuse the same candidate builder, prescribed-path analysis, scoring, and serializer.
+Closed PHO-006 with [configuration-search-deep-comparison.md](analysis/configuration-search-deep-comparison.md). The Photon configuration search now has a scheduled deep path over the full constructed candidate pool, with a pre-evaluation local-$c$ filter, a post-evaluation measured phase-family filter, progress updates, and event-loop yields between candidates. Both short and deep searches reuse the same candidate builder, prescribed-path analysis, scoring, and serializer.
 
 Every retained deep result records `photon-configuration-deep-comparison.v1` provenance: producing path, analysis identity, normalized-state snapshot, UI independence after dispatch, explicit lack of an independent scientific oracle, both evaluated history modes, and normalized filters. JSON export and import preserve this record alongside the existing diagnostics and mode comparisons.
 
@@ -45,7 +45,7 @@ Focused validation passed 62/62 tests. The result establishes workflow behavior 
 
 ### 2026-09-02 PHO-004 Self-Hit Admission Closure
 
-Closed PHO-004 with [absolute-source-history-self-hit-admission.md](absolute-source-history-self-hit-admission.md). Every numerical helical same-transmitter root now carries an ordered admission record with $D_t$, $|D_t|$, the $10^{-4}$ transversality floor, signed margin, and one of four dispositions: admitted regular root, singular root, Jacobian-floor failure, or uncertified transversality.
+Closed PHO-004 with [absolute-source-history-self-hit-admission.md](analysis/absolute-source-history-self-hit-admission.md). Every numerical helical same-transmitter root now carries an ordered admission record with $D_t$, $|D_t|$, the $10^{-4}$ transversality floor, signed margin, and one of four dispositions: admitted regular root, singular root, Jacobian-floor failure, or uncertified transversality.
 
 Runtime and sweep summaries now close candidate roots into admitted plus rejected counts and aggregate exact rejection reasons. The diagnostics panel distinguishes records with numerical candidates from regular roots and rejected roots. Singular candidates remain inspectable but cannot become phase-lock candidates or physical evidence.
 
@@ -53,7 +53,7 @@ No new transmitter-history family was added, so the existing provenance-bound 75
 
 ### 2026-09-02 PHO-003 Moving-Apparatus Delta-X Closure
 
-Closed PHO-003 with [moving-apparatus-delta-x-mapping.md](moving-apparatus-delta-x-mapping.md). `PhotonFormulaRuntime.js` now emits `photon-moving-apparatus-delta-x.v1`, labels absolute history as the authoritative $\Delta x$ diagnostic, labels co-moving output comparison-only, and records the normalized separation, reference radius, ratio, and braid-center offsets.
+Closed PHO-003 with [moving-apparatus-delta-x-mapping.md](analysis/moving-apparatus-delta-x-mapping.md). `PhotonFormulaRuntime.js` now emits `photon-moving-apparatus-delta-x.v1`, labels absolute history as the authoritative $\Delta x$ diagnostic, labels co-moving output comparison-only, and records the normalized separation, reference radius, ratio, and braid-center offsets.
 
 Every retained source root now carries an age in declared reference cycles: fresh through one cycle, aging above one through two, and stale above two. The diagnostics panel reports the three counts and oldest age while retaining `stale_history_window` and `no_catch_up_root` as separate bounded scan outcomes. The age bands are display-review thresholds rather than physical lifetimes.
 
@@ -61,7 +61,7 @@ Focused validation: `node --test tests/photon-runtime.test.js tests/photon-runti
 
 ### 2026-09-02 PHO-005 Source-Bound I/M/O Mapping Closure
 
-Closed PHO-005 with [substrate-mapping-refinement.md](substrate-mapping-refinement.md). Corrected the stale priority-level observer acceleration formula from a receiver-playback ratio to the canonical transmitter-side weight $c_{\mathrm{sig}}/|D_t|$, retained $D_r/D_t$ solely as signed root-playback data, and aligned the ideal plane-wave comparison with the selected $c_{\mathrm{sig}}$.
+Closed PHO-005 with [substrate-mapping-refinement.md](analysis/substrate-mapping-refinement.md). Corrected the stale priority-level observer acceleration formula from a receiver-playback ratio to the canonical transmitter-side weight $c_{\mathrm{sig}}/|D_t|$, retained $D_r/D_t$ solely as signed root-playback data, and aligned the ideal plane-wave comparison with the selected $c_{\mathrm{sig}}$.
 
 `PhotonFormulaRuntime.js` now emits `photon-substrate-mapping-refinement.v1`. The record declares co-moving versus absolute-history identity, speed and observer inputs, common-period fit inputs, and active I/M/O transmitter counts; partitions every sampled field into I/M/O contributions; fits the same reference harmonic per layer and in total; and reports branch-sum, harmonic-closure, total-fit, root-solve, and coverage diagnostics. Incomplete root coverage remains visibly partial and cannot be mistaken for algebraic closure.
 

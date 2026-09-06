@@ -16,7 +16,7 @@ The [Specialist charter](../specialist.md) and [geometry and dynamics packet](sy
 - Anchor absolute-time and Euclidean-void claims in `foundations/ontology.md`, `foundations/absolute-time-defense.md`, and `foundations/constructing-the-absolute-frame.md`.
 - Anchor relativity recovery in `spacetime/lorentz-kinematics.md`, `spacetime/proper-time-and-time-dilation.md`, `spacetime/emergent-metric.md`, `spacetime/general-relativity.md`, and `spacetime/ppn-parameters.md`.
 - Anchor quantum realism and measurement pressure in `quantum/measurement-ontology.md`, `quantum/wavefunction-ontology.md`, `philosophy-history/philosophy-of-science.md`, and the Bell/entanglement bridge material.
-- Before consuming a braid or solver result, read `reference/priorities/braid-program/priorities.md`, `reference/priorities/braid-program/method.md`, and the accepted EOM solver capability record. Prescribed screening, display-only output, and same-implementation replay cannot establish a retained assembly or independent correctness.
+- Before consuming a braid or solver result, read `reference/priorities/braid-program/priorities.md`, `reference/priorities/braid-program/contracts/method.md`, and the accepted EOM solver capability record. Prescribed screening, display-only output, and same-implementation replay cannot establish a retained assembly or independent correctness.
 - Treat preferred-frame suppression, gravitational tests, photon speed, quantum correlations, and metric recovery as hard benchmarks, not rhetorical options.
 
 ## Perspective Response Mandate

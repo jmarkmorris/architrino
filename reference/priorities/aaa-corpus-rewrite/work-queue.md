@@ -1,6 +1,6 @@
 # Corpus Explanation Rewrite Work Queue
 
-This is the canonical execution ledger for bringing `content/markdown/aaa` into line with edition 1.0 of the [academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md). Per-file conversion records live in [conversion-ledger.md](conversion-ledger.md).
+This is the canonical execution ledger for bringing `content/markdown/aaa` into line with edition 1.0 of the [academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md). Per-file conversion records live in [conversion-ledger.md](evidence/conversion-ledger.md).
 
 ## Done Criteria
 
@@ -28,7 +28,7 @@ Every conversion in this lane, in any phase, satisfies all of the following. An 
 
 13. `node scripts/validate-equation-mapping-links.mjs` passes.
 14. Generated artifacts that consume the file are regenerated or their drift is reported.
-15. A ledger row is added recording file, edition, date, and a note on what the conversion changed. Do not record word counts or growth percentages; size was removed from this campaign's concerns by operator decision on 2026-09-03, and [conversion-ledger.md](conversion-ledger.md) says why.
+15. A ledger row is added recording file, edition, date, and a note on what the conversion changed. Do not record word counts or growth percentages; size was removed from this campaign's concerns by operator decision on 2026-09-03, and [conversion-ledger.md](evidence/conversion-ledger.md) says why.
 
 Claim grade for a completed conversion: `measured` for the preservation checks, which are mechanically verifiable, and `inferred` for the style checks, which are a judgment against the guide. Falsifier for any conversion: a claim, grade, falsifier, equation, or link that differs from the pre-conversion document.
 
@@ -240,9 +240,9 @@ Deliverables 1 and 2 are independent of 3 and 4 and should not wait on them.
 
 All four deliverables are closed. The comparative glossary gained first-class `Wake`, `Causal Root`, `Complete State / Universe State`, `Polarity`, `Physical Observer`, and `Worldline` entries. The persistent document controls expose an accessible Glossary route in the UI-guideline slot after Search. The render-time decorator was declined after a 30-context ambiguity sample produced 10 false positives. The current-state corpus scan and manual audit identified two already-converted opening passages where the term carried the argument; both now contain a brief clue and an owning foundation link.
 
-The integrated evidence, scan specification, false-positive table, deferred existing-row audit, browser QA, validation receipts, and generated-drift boundary are recorded in [crw-002-term-lookup-result.md](crw-002-term-lookup-result.md).
+The integrated evidence, scan specification, false-positive table, deferred existing-row audit, browser QA, validation receipts, and generated-drift boundary are recorded in [crw-002-term-lookup-result.md](evidence/crw-002-term-lookup-result.md).
 
-The implementation prompt is [crw-002-dispatch.md](crw-002-dispatch.md). It carries the verified affordance findings, the ordering, the disambiguation traps for deliverable 3, and the report contract; dispatch an agent with that document rather than with this section.
+The implementation prompt is [crw-002-dispatch.md](campaigns/crw-002-dispatch.md). It carries the verified affordance findings, the ordering, the disambiguation traps for deliverable 3, and the report contract; dispatch an agent with that document rather than with this section.
 
 - **Blocked by:** nothing.
 - **Evidence / blocker:** The accepted UI path, glossary coverage, declined decorator, and selective clue edits are implemented and validated. The historical 70-document measurement could not be repeated exactly because its term list, parser, command, and file list were not retained; the result record replaces it with an explicit current 149-document scan and does not claim a before-and-after delta.
@@ -257,7 +257,7 @@ The implementation prompt is [crw-002-dispatch.md](crw-002-dispatch.md). It carr
 
 Foundations came first because everything else links into it. The 70 under-linked documents identified in [priorities.md](priorities.md) all point here, so converting a later chapter before its foundations were ready would have sent readers to prose about to change underneath them.
 
-All nine converted at edition 1.0 on 2026-09-03: `architrino.md`, `euclidean-void.md`, `constructing-the-absolute-frame.md`, `ontology.md`, `absolute-timespace.md`, `absolute-time-defense.md`, `absolute-time.md`, `detecting-the-absolute-frame.md`, and `emergence-of-structure.md`. Per-file rows are in [conversion-ledger.md](conversion-ledger.md).
+All nine converted at edition 1.0 on 2026-09-03: `architrino.md`, `euclidean-void.md`, `constructing-the-absolute-frame.md`, `ontology.md`, `absolute-timespace.md`, `absolute-time-defense.md`, `absolute-time.md`, `detecting-the-absolute-frame.md`, and `emergence-of-structure.md`. Per-file rows are in [conversion-ledger.md](evidence/conversion-ledger.md).
 
 #### Verification, 2026-09-03 20:28
 
@@ -268,7 +268,7 @@ Mechanical criteria 1 through 5, 12, and 13 verified across all nine documents:
 - The retired inline plain-language tag appears **zero** times.
 - `validate-equation-mapping-links.mjs` passes.
 
-Per-file rows are in [conversion-ledger.md](conversion-ledger.md).
+Per-file rows are in [conversion-ledger.md](evidence/conversion-ledger.md).
 
 #### How the acceptance condition was met
 
@@ -942,7 +942,7 @@ The operator's “do 1” requests examination of the actual framing-quadrupole 
 
 [Noether Braid Configuration Space](../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md#frame-orthogonality-and-framing-anisotropy), lines 637–696, supplies a finite three-frame representative and separates nonorthogonality from unequal weights. Its last paragraph repeats the proposed physical suppression and explicitly says no measured family comparison bears on these targets. The [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md), line 1352, calls $Q_A$ a schematic quadrupole leakage of the moving internal delay record. A quadrupole of a delay record is not automatically the same quantity as an average of framing normals: relating their measures and weights is itself part of the missing derivation.
 
-The [Lorentz residual handoff](../master-equation-closure/lorentz-test-residual-handoff.md), lines 5–11 and 47–65, is schema-complete but population-blocked. It requires histories, root data, clock and ruler records, and medium-response inputs in addition to framing quadrupoles. It supplies no populated three-channel sufficiency certificate. [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), lines 2048–2092, also labels the nearby hierarchy/averaging route a conditional lemma target whose averaging computation is open. Neither a repeated target nor a schema field is independent evidence that the reduction works.
+The [Lorentz residual handoff](../master-equation-closure/analysis/lorentz-test-residual-handoff.md), lines 5–11 and 47–65, is schema-complete but population-blocked. It requires histories, root data, clock and ruler records, and medium-response inputs in addition to framing quadrupoles. It supplies no populated three-channel sufficiency certificate. [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), lines 2048–2092, also labels the nearby hierarchy/averaging route a conditional lemma target whose averaging computation is open. Neither a repeated target nor a schema field is independent evidence that the reduction works.
 
 #### Definition: what can already be proved
 

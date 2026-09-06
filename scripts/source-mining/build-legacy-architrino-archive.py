@@ -1117,8 +1117,8 @@ def build_corpus_index() -> list[dict]:
             if rel.startswith("content/generated/"):
                 continue
             if rel in {
-                "reference/priorities/source-mining/legacy-architrino-wordpress-library-posts.md",
-                "reference/priorities/source-mining/source-mining-history.md",
+                "reference/priorities/source-mining/analysis/legacy-architrino-wordpress-library-posts.md",
+                "reference/priorities/source-mining/analysis/source-mining-history.md",
                 "reference/priorities/source-mining/priorities.md",
             }:
                 continue

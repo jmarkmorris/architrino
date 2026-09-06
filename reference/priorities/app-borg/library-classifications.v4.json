@@ -2,7 +2,7 @@
   "schema": "borg-library-classifications.v4",
   "revision": "2026-09-01.operator-spindle-2",
   "authority": "operator",
-  "source": "reference/priorities/app-borg/requirements-and-design.md#catalog-composition-classifications",
+  "source": "reference/priorities/app-borg/contracts/requirements-and-design.md#catalog-composition-classifications",
   "scope": "Operator-confirmed spindle assignments pinned to exact scientific configurations. Assembly-centered radii are source-derived. No scientific acceptance is asserted.",
   "spindle": [
     {

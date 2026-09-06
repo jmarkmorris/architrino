@@ -1627,7 +1627,7 @@ Plainly: the research has sharpened the proof burden. It has not selected the mi
 
 ### Batch A — owning priority corrections
 
-Target: `reference/priorities/master-equation-closure/analysis-independent-causal-wake-state.md` and its directly dependent priority summaries.
+Target: `reference/priorities/master-equation-closure/analysis/analysis-independent-causal-wake-state.md` and its directly dependent priority summaries.
 
 1. Replace the claimed implication from finite weighted impulse to $M(T)=O(T^{2+\delta})$ with the exact weighted-integrability condition. State that the pointwise bound is sufficient but not necessary and that, for nonnegative nondecreasing $M$, integrability implies $M=o(T^2)$ while that pointwise limit remains insufficient.
 2. Record the exact linear relation $z=(\alpha/c_f)T$ on the prescribed birth chart and preserve cubic order only as the first possible analytic order; for a general chart $z\sim aT^\beta$, retain the conditional criterion $\beta k>2$.

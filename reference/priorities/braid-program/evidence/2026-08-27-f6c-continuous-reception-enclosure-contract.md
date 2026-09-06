@@ -4,7 +4,7 @@ Status: conditional mathematical artifact, pending independent review, 2026-08-2
 
 ## Scope And Existing Consumer
 
-**Claim grade: derived, conditional.** This document proves a finite-history route from uniformly bounded, continuously differentiable member paths to complete causal-root coverage and outward acceleration bounds over a whole reception-time interval. Its direct consumer is the existing [asymmetric counter-breathing representative normalized member-acceleration predeclaration](2026-08-26-f6c-normalized-member-acceleration-predeclaration.md), which supplies `M05` and `M06` to the [frozen metric normalization](../candidate-weighted-score-packet.md#frozen-metric-normalization). It does not amend either metric, the refinement ladder, or the stopping rules.
+**Claim grade: derived, conditional.** This document proves a finite-history route from uniformly bounded, continuously differentiable member paths to complete causal-root coverage and outward acceleration bounds over a whole reception-time interval. Its direct consumer is the existing [asymmetric counter-breathing representative normalized member-acceleration predeclaration](2026-08-26-f6c-normalized-member-acceleration-predeclaration.md), which supplies `M05` and `M06` to the [frozen metric normalization](../analysis/candidate-weighted-score-packet.md#frozen-metric-normalization). It does not amend either metric, the refinement ladder, or the stopping rules.
 
 Plainly: the missing capability is to bound the law between evaluation times, not just at selected times. The theorem below describes sufficient conditions for that capability; it does not report that the selected asymmetric counter-breathing representative history meets them.
 

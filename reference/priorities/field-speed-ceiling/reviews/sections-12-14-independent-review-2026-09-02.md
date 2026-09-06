@@ -1,6 +1,6 @@
 # Independent Review of Sections 12--14
 
-**Review identifier:** `FSC-016-PPAI-2026-09-02` **Review date:** 2026-09-02 **Reviewer role:** Principal Proof Architect & Integrator **Review target:** [Field-Speed Ceiling: Mathematics, Geometry, and Dynamical System](../mathematics-geometry-dynamical-system.md), Sections 12--14 **Review disposition:** coherent next-step program with two required specification repairs, one required many-body convergence obligation, and one counting correction **Claim level:** independent review findings only; this review adopts no field-speed ceiling, response law, event law, braid, action unit, energy account, stability result, Noether-sea model, or physical claim.
+**Review identifier:** `FSC-016-PPAI-2026-09-02` **Review date:** 2026-09-02 **Reviewer role:** Principal Proof Architect & Integrator **Review target:** [Field-Speed Ceiling: Mathematics, Geometry, and Dynamical System](../analysis/mathematics-geometry-dynamical-system.md), Sections 12--14 **Review disposition:** coherent next-step program with two required specification repairs, one required many-body convergence obligation, and one counting correction **Claim level:** independent review findings only; this review adopts no field-speed ceiling, response law, event law, braid, action unit, energy account, stability result, Noether-sea model, or physical claim.
 
 ## Executive assessment
 
@@ -22,7 +22,7 @@ Plainly: the braid equations and their strongest claim boundaries are sound. The
 
 **Severity:** required specification repair.
 
-The endpoint interface places the speed ceiling inside the inequality vector $\mathfrak G(\mathbf z)\geq\mathbf0$ ([target lines 3066--3076](../mathematics-geometry-dynamical-system.md#endpoint-equations-for-a-one-unit-transfer)), while every branch under discussion also satisfies the exact field-speed equality $R_a|\omega_a|=c_f$. The tangent paragraph then refers to a point with “strict speed-ceiling margins” and later imposes $D\mathbf G_{\mathrm{act}}[\dot{\mathbf y}]\geq\mathbf0$ at an active speed-ceiling margin. A field-speed branch cannot have a strict margin for that same constraint.
+The endpoint interface places the speed ceiling inside the inequality vector $\mathfrak G(\mathbf z)\geq\mathbf0$ ([target lines 3066--3076](../analysis/mathematics-geometry-dynamical-system.md#endpoint-equations-for-a-one-unit-transfer)), while every branch under discussion also satisfies the exact field-speed equality $R_a|\omega_a|=c_f$. The tangent paragraph then refers to a point with “strict speed-ceiling margins” and later imposes $D\mathbf G_{\mathrm{act}}[\dot{\mathbf y}]\geq\mathbf0$ at an active speed-ceiling margin. A field-speed branch cannot have a strict margin for that same constraint.
 
 The one-sided tangent inequality is correct only after the direction of the continuation parameter is declared. If a differentiable feasible family is defined for both signs of the parameter through an active constraint, its first derivative must be tangent to the active boundary, so the corresponding derivative is zero rather than merely nonnegative. Calling the condition a complementarity problem also requires a declared multiplier or complementarity pair; tangent-cone feasibility alone is not yet such a system.
 

@@ -40,13 +40,13 @@ The exact equation rows and scores remain with Equation Mapping. The integrated 
 
 Neutrality does not imply zero response. A neutral assembly can translate as a whole, deform internally, polarize, or expose circulation depending on its retained geometry. These common and differential motions must be measured separately before they are called gravitational, electric, or magnetic response.
 
-For a fine-grained matter–sea record, weak response, strong geometric departure, and pair assembly must use one fixed microscopic law. The focused [fixed-law continuation](fixed-law-source-continuation.md) owns the present score-neutral candidate evaluator; [E0–E4](e0-e4-multi-receiver-electric-response.md) owns the matched receiver experiment; and [fine-structure.md](fine-structure.md) owns the coupling application. None presently supplies an accepted retained source–sea–receiver branch.
+For a fine-grained matter–sea record, weak response, strong geometric departure, and pair assembly must use one fixed microscopic law. The focused [fixed-law continuation](analysis/fixed-law-source-continuation.md) owns the present score-neutral candidate evaluator; [E0–E4](analysis/e0-e4-multi-receiver-electric-response.md) owns the matched receiver experiment; and [fine-structure.md](analysis/fine-structure.md) owns the coupling application. None presently supplies an accepted retained source–sea–receiver branch.
 
 ## Inverse Requirements on Candidate Braids
 
 Observed electromagnetic behavior can constrain candidate geometry only after claim levels are separated. Effective requirements are deduced from measured behavior; native requirements are inferred consequences for an assembly map; a particular asymmetric counter-breathing representative, three-binary, or other realization remains a candidate until fixed-law retained-history evidence exists.
 
-The general method and requirement taxonomy belong in Equation Mapping's [inferring-braid-requirements.md](../mapping-equations/inferring-braid-requirements.md). Candidate-by-candidate dispositions belong in the Braid Program's [braid-candidate-requirement-adjudication.md](../braid-program/braid-candidate-requirement-adjudication.md). [asymmetric counter-breathing representative geometry](../braid-program/f6c-geometry.md), [three-binary comparisons](../braid-program/three-binary-orbiting-endpoint-comparison.md), and [coordinate matching](../braid-program/three-binary-five-coordinate-initialization-ledger.md) also belong in the Braid Program and do not need a second large treatment here.
+The general method and requirement taxonomy belong in Equation Mapping's [inferring-braid-requirements.md](../mapping-equations/analysis/inferring-braid-requirements.md). Candidate-by-candidate dispositions belong in the Braid Program's [braid-candidate-requirement-adjudication.md](../braid-program/analysis/braid-candidate-requirement-adjudication.md). [asymmetric counter-breathing representative geometry](../braid-program/configurations/f6c-geometry.md), [three-binary comparisons](../braid-program/analysis/three-binary-orbiting-endpoint-comparison.md), and [coordinate matching](../braid-program/evidence/three-binary-five-coordinate-initialization-ledger.md) also belong in the Braid Program and do not need a second large treatment here.
 
 ## Adaptive Cubic Noether Sea Candidate
 
@@ -54,7 +54,7 @@ An alternating cubic population distinguishes common motion of the two polarity 
 
 Static checkerboard cancellation does not establish constitutive stiffness. Uniform affine deformation can remain a zero-release-acceleration family, so spring-like response must arise from nonuniform delayed histories, internal orbit coordinates, defects, or assembly coupling. A persistent cubic order may also expose higher-order directional anisotropy even when its leading second-rank response is isotropic.
 
-The focused [asymmetric counter-breathing representative cubic lattice](f6c-cubic-lattice.md) and [adaptive-medium contract](adaptive-cubic-medium-kinematics-and-ledger-contract.md) own the current candidate and its failed circular seed. Their negative release residual rejects that prescribed background without rejecting every locally deformable medium.
+The focused [asymmetric counter-breathing representative cubic lattice](analysis/f6c-cubic-lattice.md) and [adaptive-medium contract](contracts/adaptive-cubic-medium-kinematics-and-ledger-contract.md) own the current candidate and its failed circular seed. Their negative release residual rejects that prescribed background without rejecting every locally deformable medium.
 
 Plainly: allowing every site to bend differently repaired a representational restriction, but it did not make the proposed histories satisfy the delayed equations.
 
@@ -86,7 +86,7 @@ Electromagnetism and effective geometry are required observer-level recovery sec
 
 ## Assessment and Promotion Boundary
 
-The session-derived material now has focused priority-stage owners: source/moment/field tasks in [work-queue.md](work-queue.md), fine-structure coupling in [fine-structure.md](fine-structure.md), inverse requirements in [inferring-braid-requirements.md](../mapping-equations/inferring-braid-requirements.md), candidate judgments in [braid-candidate-requirement-adjudication.md](../braid-program/braid-candidate-requirement-adjudication.md), fixed-law response in [fixed-law-source-continuation.md](fixed-law-source-continuation.md), asymmetric counter-breathing representative and three-binary geometry in their named packets, and adaptive-medium kinematics in its contract. Later corpus promotion requires accepted retained records and independent electromagnetic benchmarks; priority-stage coherence alone changes no score or claim.
+The session-derived material now has focused priority-stage owners: source/moment/field tasks in [work-queue.md](work-queue.md), fine-structure coupling in [fine-structure.md](analysis/fine-structure.md), inverse requirements in [inferring-braid-requirements.md](../mapping-equations/analysis/inferring-braid-requirements.md), candidate judgments in [braid-candidate-requirement-adjudication.md](../braid-program/analysis/braid-candidate-requirement-adjudication.md), fixed-law response in [fixed-law-source-continuation.md](analysis/fixed-law-source-continuation.md), asymmetric counter-breathing representative and three-binary geometry in their named packets, and adaptive-medium kinematics in its contract. Later corpus promotion requires accepted retained records and independent electromagnetic benchmarks; priority-stage coherence alone changes no score or claim.
 
 ## Unresolved Ideas
 

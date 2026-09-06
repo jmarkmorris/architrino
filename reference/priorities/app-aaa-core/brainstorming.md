@@ -1,6 +1,6 @@
 # AAA Core Concept Synthesis
 
-This document retains suite-wide concepts that have not become accepted AAA Core tasks. The focused [architecture draft](architecture-v0.md) owns the shared path, identity, codec, query, compute, provenance, and application-service model. Accepted implementation objects live in [work-queue.md](work-queue.md).
+This document retains suite-wide concepts that have not become accepted AAA Core tasks. The focused [architecture draft](contracts/architecture-v0.md) owns the shared path, identity, codec, query, compute, provenance, and application-service model. Accepted implementation objects live in [work-queue.md](work-queue.md).
 
 ## Architectural Boundary
 
@@ -12,7 +12,7 @@ An application may compose histories, ledgers, maps, searches, optimization reco
 
 ## Promotion Boundary
 
-The developed interchange, codec, filtering, experimental-import, and client concepts are already owned by [architecture-v0.md](architecture-v0.md) and accepted or deferred queue objects CORE-003, CORE-005, CORE-007, and CORE-008. They are not duplicated here.
+The developed interchange, codec, filtering, experimental-import, and client concepts are already owned by [architecture-v0.md](contracts/architecture-v0.md) and accepted or deferred queue objects CORE-003, CORE-005, CORE-007, and CORE-008. They are not duplicated here.
 
 ## Unresolved Ideas
 

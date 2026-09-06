@@ -20,7 +20,7 @@ Plainly: the operator stopped the broad campaign. Its completed phase-varying di
 | Normalization | `c_f=1` for every new numerical row |
 | Long-job heartbeat | at most 60 seconds between flushed records containing wall time, simulated time or step, accepted/rejected counts, candidate, output path, and checkpoint |
 
-The working tree already contained an in-scope completed phase-varying display representative operator batch when this campaign began: `src/prescribed-geometry/PrescribedWorldlineOperators.mjs`, `tests/f5-phase-varying-worldline-operator.test.js`, `tests/prescribed-worldline-independent-conformance.test.js`, `reference/priorities/braid-program/prescribed-worldline-readiness-matrix.md`, and `reference/research-office/research-history/exploration-reports/20260826-202310-f5-phase-varying-path-operator.md`. Those edits are preserved and audited as inherited live state; this campaign does not claim their authorship.
+The working tree already contained an in-scope completed phase-varying display representative operator batch when this campaign began: `src/prescribed-geometry/PrescribedWorldlineOperators.mjs`, `tests/f5-phase-varying-worldline-operator.test.js`, `tests/prescribed-worldline-independent-conformance.test.js`, `reference/priorities/braid-program/analysis/prescribed-worldline-readiness-matrix.md`, and `reference/research-office/research-history/exploration-reports/20260826-202310-f5-phase-varying-path-operator.md`. Those edits are preserved and audited as inherited live state; this campaign does not claim their authorship.
 
 ### Frozen owner hashes
 

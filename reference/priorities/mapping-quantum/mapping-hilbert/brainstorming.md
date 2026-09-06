@@ -136,7 +136,7 @@ Plainly: quantum theory specifies how descriptions combine, change, and respond 
 
 ## What the Architrino Description Starts With
 
-The [current ontology](../../../../content/markdown/aaa/foundations/ontology.md) places architrinos in the Euclidean void with absolute time. A position record is not automatically enough to predict future acceleration: the Master Equation uses causal source events along earlier trajectories. The [transfer-operator packet](../transfer-operator-basin-measure.md#state-space-and-coarse-graining) requires retained histories, root data, provenance, and apparatus context before reducing the state.
+The [current ontology](../../../../content/markdown/aaa/foundations/ontology.md) places architrinos in the Euclidean void with absolute time. A position record is not automatically enough to predict future acceleration: the Master Equation uses causal source events along earlier trajectories. The [transfer-operator packet](../analysis/transfer-operator-basin-measure.md#state-space-and-coarse-graining) requires retained histories, root data, provenance, and apparatus context before reducing the state.
 
 Let $\omega_T$ denote one admissible record at absolute time $T$, and $\Omega$ the domain of these records. Schematically its content includes
 
@@ -182,7 +182,7 @@ One history $\omega$ is an input to these functions, not itself a vector $F$. A 
 
 Plainly: we are vectorizing functions that ask questions about histories, not automatically individual architrinos or exact histories.
 
-This construction also applies to ordinary deterministic systems. It supplies analysis tools, not the Born rule or a physical preparation measure. The source of $\mu$ belongs with QC-003/QC-004 and the [measure-source discipline](../transfer-operator-basin-measure.md#measures-and-basin-partitions).
+This construction also applies to ordinary deterministic systems. It supplies analysis tools, not the Born rule or a physical preparation measure. The source of $\mu$ belongs with QC-003/QC-004 and the [measure-source discipline](../analysis/transfer-operator-basin-measure.md#measures-and-basin-partitions).
 
 ### Nonlinear Motion and Linear Function Evolution
 
@@ -285,7 +285,7 @@ $$
 
 Plainly: $p$ is the predicted record frequency. For each source history $\omega$, $K_o^C$ describes the apparatus response, and $\mu_P$ supplies the preparation weights. With all outcome-relevant variables retained, the response can be a zero-or-one indicator. Any averaging over omitted apparatus variables needs a physical source. Include loss or no-record outcomes when relevant.
 
-This is the existing [measure and detector-response program](../transfer-operator-basin-measure.md), not a license to choose weights to fit a target. A joint apparatus channel must satisfy the existing Bell and no-go constraints; no product of independent local response rules is presumed.
+This is the existing [measure and detector-response program](../analysis/transfer-operator-basin-measure.md), not a license to choose weights to fit a target. A joint apparatus channel must satisfy the existing Bell and no-go constraints; no product of independent local response rules is presumed.
 
 ### Statistical Equivalence Is Not Identical Microscopic Evolution
 
@@ -359,6 +359,6 @@ The strongest current result is conditional mathematics: Hilbert spaces can be c
 - [Kasper Peeters, The Hilbert Space](https://www.maths.dur.ac.uk/users/kasper.peeters/mathphys/hilbert_space.html): inspected function-space and basis treatment.
 - [MIT, Basics of Quantum Mechanics](https://www.ocw.mit.edu/courses/18-435j-quantum-computation-fall-2003/c1095b496b364b56aaa0cbb2d725234a_qc_lec02.pdf): standard state and measurement postulates, inspected during the introductory explanation.
 - [Das and Giannakis, Koopman spectra in reproducing kernel Hilbert spaces, version 8, Section 2](https://arxiv.org/html/1801.07799v8#S2): inspected the function-space construction and invertible measure-preserving assumptions. The elementary identities above are shown explicitly; no numerical spectral result is transferred to the braid.
-- The live [Wavefunction Ontology](../../../../content/markdown/aaa/quantum/wavefunction-ontology.md), [Quantum Summary](../../../../content/markdown/aaa/quantum/quantum-summary.md), and [transfer-operator packet](../transfer-operator-basin-measure.md) supply current native ownership and open proof boundaries.
+- The live [Wavefunction Ontology](../../../../content/markdown/aaa/quantum/wavefunction-ontology.md), [Quantum Summary](../../../../content/markdown/aaa/quantum/quantum-summary.md), and [transfer-operator packet](../analysis/transfer-operator-basin-measure.md) supply current native ownership and open proof boundaries.
 
 Sources support comparison mathematics, not the physical correspondences proposed here. No EOM calculation, retained braid, detector dataset, or physical quantum-recovery result was produced for this draft. Dialogue should revise this synthesis in place while preserving claim levels and counterexamples; task history and validation receipts belong in the parent work log.

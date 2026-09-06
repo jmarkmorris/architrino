@@ -146,32 +146,27 @@ Apply these rules before issuing routine commands:
 7. When a new host approval is unavoidable, request one narrow reusable prefix, record the interaction, and continue the authorized lifecycle. Do not replace it with repeated one-off approvals.
 8. Never request a broad `git`, shell, interpreter, or repository-local-wrapper approval as a shortcut around this discipline.
 
-A host permission prompt does not revoke the standing lifecycle authorization, but it makes that handoff nonqualifying for unattended-verification purposes. Report the event instead of silently claiming the no-prompt objective passed.
+A host permission prompt does not revoke the standing lifecycle authorization. Report the event instead of silently claiming the no-prompt objective passed.
 
-#### Three-run closed-loop acceptance
+#### Standing of the unattended-execution correction
 
-The unattended-execution correction is verified only after three consecutive healthy, fully completed two-handoff lifecycles satisfy all of the following:
+The unattended-execution correction closed on 2026-09-05 by operator disposition, recorded in [codex-pr-unattended-verification.md](codex-pr-unattended-verification.md). Its former three-run acceptance rule no longer applies, no consecutive-run count is maintained, and an `unknown` host prompt count no longer disqualifies a handoff.
 
-- both handoffs meet the zero/zero healthy-path prompt budget;
-- both handoff receipts include all four permission counters;
-- PR identity, validation, merge, cleanup, and successor rollover satisfy this procedure; and
-- the observation is recorded in [codex-pr-unattended-verification.md](codex-pr-unattended-verification.md).
-
-A lifecycle stopped by a mandatory safety boundary does not count as a qualifying run. An operator decision prompt, host permission prompt, unknown host prompt count, missing permission counter, or false unattended claim breaks the consecutive sequence and resets the qualifying count to zero. Do not mark the corrective action closed before the ledger contains three consecutive qualifying runs.
+The counters above remain live diagnostics rather than an acceptance gate: they stay in both handoff receipts so a regression is legible when it happens. If a routine invocation again produces interactive prompts on the healthy path, report it plainly and treat the correction as reopened rather than absorbing the prompts silently.
 
 ### Mandatory pause boundary
 
-Standing authorization ends and the agent must stop with an exact blocker map if any of the following occurs:
+Standing authorization ends and the agent must stop with an exact blocker map if any of the following occurs. These nine conditions are named here once; [Stop Conditions](#stop-conditions) refers to them by name rather than restating them.
 
-- intended scope cannot be identified from the branch-tip diff and active operator directions, or ambient edits overlap the files, staging area, validation result, or branch checkout needed by this procedure. Several coordinated workstreams or interleaved commits alone are not ambiguity;
-- a merge conflict appears or local `main` cannot fast-forward;
-- a branch has post-merge commits or its local, remote, and PR identities do not agree;
-- a required repair needs theory, EOM solver, evidence-authority, canon-policy, architecture, or product-design judgment;
-- a required check remains failing after deterministic branch-scoped mechanical repair;
-- the next registry token is ambiguous or the active branch series is exhausted without a configured successor;
-- authentication, connectivity, or GitHub state prevents verification;
-- completing the path would require force push, rebase, reset, stash, restoration or discarding of work, broad deletion, or deletion of any branch other than the exact verified merged PR branch; or
-- any action would exceed the explicit publication or post-merge scope above.
+- **Scope ambiguity** — intended scope cannot be identified from the branch-tip diff and active operator directions, or ambient edits overlap the files, staging area, validation result, or branch checkout needed by this procedure. Several coordinated workstreams or interleaved commits alone are not ambiguity.
+- **Base divergence** — a merge conflict appears, or local `main` cannot fast-forward to `origin/main`.
+- **Branch identity mismatch** — a branch has post-merge commits, or its local, remote, and PR identities do not agree, including a local `HEAD` that differs from the reviewed `headRefOid` with the divergent commits not yet recovered.
+- **Judgment-bearing repair** — a required repair needs theory, EOM solver, evidence-authority, canon-policy, architecture, or product-design judgment.
+- **Persistent check failure** — a required check remains failing after deterministic branch-scoped mechanical repair.
+- **Registry ambiguity** — the next registry token is ambiguous, the next branch name would break the active sequence without an explicit reason, or the active branch series is exhausted without a configured successor.
+- **Verification unavailable** — authentication, connectivity, or GitHub state prevents verification.
+- **Destructive requirement** — completing the path would require force push, rebase, reset, stash, restoration or discarding of work, broad deletion, or deletion of any branch other than the exact verified merged PR branch.
+- **Scope exceeded** — any action would exceed the explicit publication or post-merge scope above.
 
 ## Standard End-of-Session Process
 
@@ -755,22 +750,20 @@ Any missing evidence leaves the process in its current state and activates the a
 
 ## Stop Conditions
 
-Stop and resolve deliberately rather than pushing ahead if any of these are true:
+This section covers sequence errors: proceeding to a step whose precondition has not actually been checked. It is a pre-flight checklist, not a second authority. The [mandatory pause boundary](#mandatory-pause-boundary) separately defines the nine conditions that end standing authorization, and every one of those also stops the process here; they are not repeated in this list.
 
-- unrelated worktree edits overlap the intended scope, occupy the staging area, affect required validation, or would be endangered by branch switching,
-- the required validation commands fail,
+Stop and check the missing precondition rather than pushing ahead if any of these are true:
+
 - you are about to open or update a PR but have not yet verified that the branch is clean and that local `HEAD` matches `origin/<current-branch>`,
 - you are about to open or update a PR from `main`,
 - you are about to open or update a PR for a branch but have not yet checked whether that branch already has a PR and whether that PR already merged,
 - the branch already has a merged PR and you have not yet compared the merged PR head commit with the current local branch tip,
-- the PR has not actually merged yet,
+- the PR has not actually merged yet and you are treating it as merged,
 - the branch PR is already merged but you have not yet checked for post-merge local commits on that branch,
-- local branch `HEAD` differs from the reviewed `headRefOid` and the divergent or post-review commits have not yet been recovered onto a safe branch,
-- `git fetch origin` succeeded but local `main` was not actually fast-forwarded and verified,
-- local `main` cannot fast-forward to `origin/main`,
-- the next branch name breaks the active branch sequence without an explicit reason,
-- a branch series is exhausted and the next configured series has not been selected or frozen as required,
+- `git fetch origin` succeeded and you are treating that as synchronization, without having fast-forwarded and verified local `main`,
 - or the next branch would depend on unmerged work that is not meant to stay coupled.
+
+A check that comes back bad usually names a pause-boundary condition: an unclean branch is `Scope ambiguity`, an unsynchronized `main` is `Base divergence`, a tip that differs from the reviewed `headRefOid` is `Branch identity mismatch`. Resolve it under that condition's rule.
 
 ## Final Response Requirements
 

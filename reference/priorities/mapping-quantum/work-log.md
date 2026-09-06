@@ -8,7 +8,7 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 - 2026-08-28: The operator selected a dedicated Hilbert-space learning and braid-mapping home; see the [scope decision](#2026-08-28--hilbert-space-learning-and-braid-mapping).
 
-- 2026-07-12: The operator accepted option (a) for `provenance_compliance_bridge`. The [scope decision](pair-provenance-local-compliance-scope-decision.md) rejects ER=EPR as substrate ontology or evidence and retains only a local, setting-independent provenance statistic whose constitutive value must be derived against matched medium-response controls. No implementation or corpus promotion was authorized. `DF-06` was removed from the Operator Discussion Queue.
+- 2026-07-12: The operator accepted option (a) for `provenance_compliance_bridge`. The [scope decision](decisions/pair-provenance-local-compliance-scope-decision.md) rejects ER=EPR as substrate ontology or evidence and retains only a local, setting-independent provenance statistic whose constitutive value must be derived against matched medium-response controls. No implementation or corpus promotion was authorized. `DF-06` was removed from the Operator Discussion Queue.
 
 ### 2026-08-28 — Hilbert-space learning and braid mapping
 

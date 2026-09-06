@@ -1,6 +1,6 @@
 # Braid Program — Instrument Gate
 
-Status: RATIFIED; G3/G4 REACCEPTED FOR BOUNDED CAMPAIGN USE (2026-07-27). First campaign-independent spec in this directory, per [../method.md](../method.md) Instrument Requirements. Forward-only: rewritten when acceptance status changes; history lives in the work log.
+Status: RATIFIED; G3/G4 REACCEPTED FOR BOUNDED CAMPAIGN USE (2026-07-27). First campaign-independent spec in this directory, per [../method.md](../contracts/method.md) Instrument Requirements. Forward-only: rewritten when acceptance status changes; history lives in the work log.
 
 This gate answers three questions for every campaign: which instruments may be relied on, what a campaign must show before its results are booked, and what record every run must emit so its output is viewable evidence from day one.
 
@@ -44,7 +44,7 @@ Restating method.md's acceptance gates as the operational checklist, plus the em
 
 ## 4. Assembly View Record v0 (adopted schema)
 
-Finalizes the sketch in [assembly-viewer-requirements.md](../../app-borg/assembly-viewer-requirements.md); this section is now the schema's source of truth. Records are plain JSON files; the viewer never talks to a live engine. The viewer-not-instrument rule governs all consumers: records are drawn, never re-evolved, and a display adapter may evaluate only the record's own declared interpolation.
+Finalizes the sketch in [assembly-viewer-requirements.md](../../app-borg/contracts/assembly-viewer-requirements.md); this section is now the schema's source of truth. Records are plain JSON files; the viewer never talks to a live engine. The viewer-not-instrument rule governs all consumers: records are drawn, never re-evolved, and a display adapter may evaluate only the record's own declared interpolation.
 
 Top-level fields:
 

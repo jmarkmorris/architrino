@@ -1240,7 +1240,7 @@ test("equation mapping settings control uses a gear icon", () => {
 
 test("equation mapping settings omit the global section-line control", () => {
   const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
-  const requirements = readRepoFile("reference/priorities/app-equation-mapping/requirements-and-design.md");
+  const requirements = readRepoFile("reference/priorities/app-equation-mapping/contracts/requirements-and-design.md");
   assert.equal(runtime.includes('this.renderSegmentedSetting("Section line"'), false);
   assert.equal(runtime.includes("this.sectionLinePlacement ="), false);
   assert.equal(runtime.includes("sectionLinePlacement: this.sectionLinePlacement"), false);

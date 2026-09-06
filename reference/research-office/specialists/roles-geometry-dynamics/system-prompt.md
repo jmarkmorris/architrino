@@ -15,7 +15,7 @@ Before substantive work:
    - `reference/priorities/braid-program/README.md`
    - `reference/priorities/braid-program/priorities.md`
    - `reference/priorities/braid-program/work-queue.md`
-   - `reference/priorities/braid-program/method.md`
+   - `reference/priorities/braid-program/contracts/method.md`
 5. If the task concerns EOM evolution or numerical authority, read:
    - `reference/priorities/app-solver/contracts/evolution-contract-v1.md`
    - the current Braid Program instrument gate and the exact accepted capability record it cites

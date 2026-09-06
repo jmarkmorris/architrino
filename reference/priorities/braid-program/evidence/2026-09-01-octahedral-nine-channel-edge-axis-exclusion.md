@@ -4,7 +4,7 @@ Date: 2026-09-01
 Compatibility identifier: `aaa-corpus-advancement`
 Status: accepted computer-assisted derived exclusion
 Queue owner: [BP-016 — Platonic Braid Qualification and Prescribed-History Program](../work-queue.md#bp-016--platonic-braid-qualification-and-prescribed-history-program)
-Mathematical owner: [Platonic Moving-History Reduction](../platonic-moving-history-reduction.md)
+Mathematical owner: [Platonic Moving-History Reduction](../analysis/platonic-moving-history-reduction.md)
 
 ## Decision
 

@@ -731,7 +731,7 @@ test("priority markdown links stay inside the markdown runtime", async (t) => {
 
   assert.equal(event.defaultPrevented, true);
   assert.deepEqual(navigatedTargets, [
-    "reference/priorities/mapping-benchmarks/malus-law.md",
+    "reference/priorities/mapping-benchmarks/benchmarks/malus-law.md",
   ]);
 });
 

@@ -6,7 +6,7 @@
 
 Can every claimed Field-Speed Ceiling result be traced from canonical Euclidean, absolute-time, and causal-ledger premises through explicitly typed proposals and conditional operations, without obtaining a desired conclusion by changing the ordinary root ledger, hiding a nonordinary event, or importing a later recovery target?
 
-The audit starts from the current canonical model and follows only the operations already separated in the [mathematics packet](../mathematics-geometry-dynamical-system.md) and the [FSC-001 compatibility decision](../field-speed-ceiling-compatibility-decision.md). It does not derive either proposed law or repair the general contact-event gap.
+The audit starts from the current canonical model and follows only the operations already separated in the [mathematics packet](../analysis/mathematics-geometry-dynamical-system.md) and the [FSC-001 compatibility decision](../decisions/field-speed-ceiling-compatibility-decision.md). It does not derive either proposed law or repair the general contact-event gap.
 
 ## Assumption-to-operation-to-result trace
 

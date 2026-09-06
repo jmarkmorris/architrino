@@ -34,7 +34,7 @@ Plainly: first learn what the mathematical tools do. Then ask what physical info
 
 ## Ownership and Destinations
 
-The [Effective State-Vector Contract](../../../../content/markdown/aaa/quantum/wavefunction-ontology.md#effective-state-vector-contract) is the existing corpus destination for a justified state-space construction. QC-003 and QC-004 in the [parent queue](../work-queue.md) and the [transfer-operator and basin-measure packet](../transfer-operator-basin-measure.md) own physical distributions and outcome weights. The [Braid Program](../../braid-program/priorities.md) owns candidate geometry and dynamical evidence. This exploration can clarify requirements and expose missing information without claiming those upstream objects already exist.
+The [Effective State-Vector Contract](../../../../content/markdown/aaa/quantum/wavefunction-ontology.md#effective-state-vector-contract) is the existing corpus destination for a justified state-space construction. QC-003 and QC-004 in the [parent queue](../work-queue.md) and the [transfer-operator and basin-measure packet](../analysis/transfer-operator-basin-measure.md) own physical distributions and outcome weights. The [Braid Program](../../braid-program/priorities.md) owns candidate geometry and dynamical evidence. This exploration can clarify requirements and expose missing information without claiming those upstream objects already exist.
 
 Plainly: learning can begin now. A successful lesson does not certify a braid, a detector law, or quantum recovery, and it does not reactivate the deferred physical program.
 

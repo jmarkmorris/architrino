@@ -13,7 +13,7 @@
       "status": "accepted",
       "rowId": "ordered-frame-loop-accepted-looking-negative-0001",
       "sameRecordId": "assigned-spin-g2-negative-control-record",
-      "sourcePath": "reference/priorities/mapping-equations/eq-15-27-ordered-frame-loop-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-15-27-ordered-frame-loop-source-field-map.md",
       "loopKind": "retained_ordered_frame_loop",
       "holonomyClass": "nontrivial_z2",
       "nonGaugeHolonomy": true
@@ -25,21 +25,21 @@
       "etaSpin": 1,
       "doubledPathRestores": true,
       "liftWitnessKind": "spin3_su2_double_cover",
-      "sourcePath": "reference/priorities/mapping-equations/eq-15-27-ordered-frame-loop-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-15-27-ordered-frame-loop-source-field-map.md"
     },
     "gauge_control": {
       "status": "accepted",
       "rowId": "gauge-control-negative-0001",
       "sameRecordId": "assigned-spin-g2-negative-control-record",
       "deltaGauge": 0,
-      "sourcePath": "reference/priorities/mapping-equations/eq-15-27-ordered-frame-loop-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-15-27-ordered-frame-loop-source-field-map.md"
     },
     "angular_momentum_ledger": {
       "status": "accepted",
       "rowId": "angular-momentum-negative-0001",
       "sameRecordId": "assigned-spin-g2-negative-control-record",
       "deltaJ": 0,
-      "sourcePath": "reference/priorities/mapping-equations/eq-15-27-ordered-frame-loop-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-15-27-ordered-frame-loop-source-field-map.md"
     },
     "moment_map_magnetic": {
       "status": "accepted",
@@ -53,7 +53,7 @@
       "momentMapKind": "assigned_spin_formula",
       "formula": "g(q/2m)S",
       "exposureCurrentIntegral": false,
-      "sourcePath": "reference/priorities/mapping-equations/eq-15-27-ordered-frame-loop-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-15-27-ordered-frame-loop-source-field-map.md"
     },
     "covering_degree_g2": {
       "status": "accepted",
@@ -62,14 +62,14 @@
       "gLead": 2,
       "g2Derivation": "assigned_spin_formula",
       "coveringDegreeWitness": false,
-      "sourcePath": "reference/priorities/mapping-equations/eq-15-27-ordered-frame-loop-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-15-27-ordered-frame-loop-source-field-map.md"
     },
     "exposure_fiber_residual": {
       "status": "accepted",
       "rowId": "fitted-zero-fiber-negative-0001",
       "sameRecordId": "assigned-spin-g2-negative-control-record",
       "R_fib": 0,
-      "sourcePath": "reference/priorities/mapping-equations/eq-15-27-ordered-frame-loop-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-15-27-ordered-frame-loop-source-field-map.md"
     }
   }
 }

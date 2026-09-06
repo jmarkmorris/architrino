@@ -6,7 +6,7 @@ Use it for live workstream priority lists and for supporting guidance on priorit
 
 Current priority staging should favor core geometrical theory closure: master-equation work, potential/action proof programs, certified branch geometry, simulations that discipline the equations, $A_0$ continuation, mass-map derivation, nested shell braid causal closure, Lorentz/effective-metric recovery, photon closure, and Noether sea constitutive response. Stage broad prose, app, presentation, or coordination items here only when they directly serve that theory stack or the operator/developer explicitly selects them.
 
-For top-six workstream sessions, begin from the current minimum evidence-object table in [aaa-work-threads/closure-join-matrix.md](aaa-work-threads/closure-join-matrix.md#top-six-minimum-evidence-objects-2026-07-26), then use the owning packet for the actual pass/fail fields.
+For top-six workstream sessions, begin from the current minimum evidence-object table in [aaa-work-threads/closure-join-matrix.md](aaa-work-threads/analysis/closure-join-matrix.md#top-six-minimum-evidence-objects-2026-07-26), then use the owning packet for the actual pass/fail fields.
 
 
 Use `aaa-operations/` for repo-wide deployment, hosting, release, cost, reliability, browser performance, and user-growth operations that are not specific to one app or solver proof lane.
@@ -25,9 +25,9 @@ Start with the [Mapping overview](mapping/README.md) for the program's purpose, 
 
 Use the `mapping-` directory prefix for equation mapping, benchmark mapping, domain recovery, and cross-domain theory-bridge assessment. Keep these directories as siblings directly under `reference/priorities/`; the prefix groups related work without creating a parent queue or merging ownership. Directory names have no `.md` extension; the standard tracker, queue, brainstorming, and log filenames remain unchanged.
 
-The [directory map](mapping/README.md#how-the-directories-are-organized) identifies the equation, benchmark, domain, and cross-domain assessment owners. Their responsibilities remain distinct under the [Shared Equation And Mapping Architecture](mapping/mapping-method.md#mapping-program-routing).
+The [directory map](mapping/README.md#how-the-directories-are-organized) identifies the equation, benchmark, domain, and cross-domain assessment owners. Their responsibilities remain distinct under the [Shared Equation And Mapping Architecture](mapping/contracts/mapping-method.md#mapping-program-routing).
 
-The [shared bidirectional mapping method](mapping/mapping-method.md#bidirectional-mapping-and-mathematical-reframing) develops native derivations toward established physics and uses established results as reverse constraints on the native construction. Its goal is to make the two ends meet and develop a mathematical language grounded in the derived structures that can reframe mapped domains while recovering their tested behavior.
+The [shared bidirectional mapping method](mapping/contracts/mapping-method.md#bidirectional-mapping-and-mathematical-reframing) develops native derivations toward established physics and uses established results as reverse constraints on the native construction. Its goal is to make the two ends meet and develop a mathematical language grounded in the derived structures that can reframe mapped domains while recovering their tested behavior.
 
 The prefix changes neither rank, evidence grade, nor active or deferred status. Foundational law and braid programs, cross-workstream mathematical support, speculative assembly candidates, source acquisition, editorial programs, and `app-*` implementation owners remain separate. Parked work remains under `dormant-deferred/` until an explicit reactivation decision.
 
@@ -74,6 +74,8 @@ Everything else is **supporting material**, and it is filed into a subdirectory:
 | `contracts/` | Versioned contract and policy artifacts, typically `.v1.json` |
 | `campaigns/` | Campaign definitions, protocols, and predeclarations |
 | `configurations/` | Enumerated configuration and candidate records |
+| `benchmarks/` | Observation-facing benchmark documents, where recovering a named external result is itself the lane's subject |
+| `decisions/` | Recorded operator dispositions, once a lane accumulates more than one |
 | `archive/` | Superseded material retained for auditability |
 
 Use only the subdirectories a workstream actually needs; an empty category is not created in advance. [`app-solver/`](app-solver/README.md) is the reference implementation of this layout, and [`braid-program/`](braid-program/README.md) applies it to a larger evidence body.

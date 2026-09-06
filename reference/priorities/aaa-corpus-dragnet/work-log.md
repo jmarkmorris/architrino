@@ -1,6 +1,6 @@
 # Corpus Dragnet Work Log
 
-This file records dated pass receipts, scan boundaries, tool versions when material, and handoffs. Keep candidate findings in [recommendations.md](recommendations.md), not here.
+This file records dated pass receipts, scan boundaries, tool versions when material, and handoffs. Keep candidate findings in [recommendations.md](analysis/recommendations.md), not here.
 
 ## Log Entries
 
@@ -23,7 +23,7 @@ This file records dated pass receipts, scan boundaries, tool versions when mater
 
 ### 2026-09-03 — DRG-001 deprecated-term residue pass
 
-DRG-001 completed the accepted read-only terminology-residue pass and retained [CD-2026-002](recommendations.md#cd-2026-002--acceleration-first-terminology-is-unresolved-in-active-per-hit-rows) and [CD-2026-003](recommendations.md#cd-2026-003--undefined-organizational-lane-metaphor-appears-in-reader-facing-prose). The pass edited no inspected corpus, priority-owner, or historical file. It routed every retained occurrence to an existing owner or to deliberate retention and closed the only executable Corpus Dragnet item; the recommendations remain untriaged and authorize no downstream edit.
+DRG-001 completed the accepted read-only terminology-residue pass and retained [CD-2026-002](analysis/recommendations.md#cd-2026-002--acceleration-first-terminology-is-unresolved-in-active-per-hit-rows) and [CD-2026-003](analysis/recommendations.md#cd-2026-003--undefined-organizational-lane-metaphor-appears-in-reader-facing-prose). The pass edited no inspected corpus, priority-owner, or historical file. It routed every retained occurrence to an existing owner or to deliberate retention and closed the only executable Corpus Dragnet item; the recommendations remain untriaged and authorize no downstream edit.
 
 #### Snapshot and scope
 
@@ -58,7 +58,7 @@ No mathematical object was attempted because DRG-001 is a terminology-routing au
 
 ### 2026-09-01 — CD-002 first cross-corpus correlation pass
 
-CD-002 ran one bounded, read-only correlation pass and retained [CD-2026-001](recommendations.md#cd-2026-001--disallowed-delayed-interaction-term-remains-in-two-active-technical-packets). The pass did not edit any inspected corpus, priority-owner, implementation, or generated file. It closed the only executable Dragnet item; the finding remains untriaged and creates no task or claim change.
+CD-002 ran one bounded, read-only correlation pass and retained [CD-2026-001](analysis/recommendations.md#cd-2026-001--disallowed-delayed-interaction-term-remains-in-two-active-technical-packets). The pass did not edit any inspected corpus, priority-owner, implementation, or generated file. It closed the only executable Dragnet item; the finding remains untriaged and creates no task or claim change.
 
 #### Snapshot and resolved scope
 
@@ -114,7 +114,7 @@ CD-001 established the input and evidence contract below. This was boundary and 
 
 #### First-pass exclusions
 
-- Generated and derived surfaces: `content/generated/`, `content/graph/`, `reference/op/agent-startup-orientation.generated.md`, `reference/priorities/source-mining/legacy-architrino-wordpress-library-posts.md`, and `reference/priorities/source-mining/legacy-architrino-wordpress-mining-queue.txt`.
+- Generated and derived surfaces: `content/generated/`, `content/graph/`, `reference/op/agent-startup-orientation.generated.md`, `reference/priorities/source-mining/analysis/legacy-architrino-wordpress-library-posts.md`, and `reference/priorities/source-mining/legacy-architrino-wordpress-mining-queue.txt`.
 - Historical or parked surfaces: `content/archive/`, `reference/priorities/dormant-deferred/`, `reference/research-office/research-history/`, `reference/priorities/app-solver/archive/`, `reference/priorities/master-equation-closure/history/`, `reference/priorities/source-mining/archive-analysis/`, and `reference/design/banners/history/`.
 - Dragnet control and output files: `reference/priorities/aaa-corpus-dragnet/`; these define and record the pass rather than supply correlation candidates.
 - Implementation and validation surfaces: `apps/`, `scripts/`, `src/`, `tests/`, root web shells, and `.github/`. A pass may open an exact file from these paths only as secondary evidence for a candidate already found in the primary roots, and must label it `implementation evidence`, not a corpus owner.
@@ -122,6 +122,6 @@ CD-001 established the input and evidence contract below. This was boundary and 
 
 #### Finding threshold and pass receipt
 
-The execution-ready finding schema is in [recommendations.md](recommendations.md). `High` confidence requires a directly observable, path-specific relationship plus a confirmed source-role classification. `Medium` confidence requires path-specific evidence and an explicit uncertainty about ownership, consequence, or destination. Low-confidence similarity, thematic resemblance without a concrete relationship, and unsupported model inference are omitted.
+The execution-ready finding schema is in [recommendations.md](analysis/recommendations.md). `High` confidence requires a directly observable, path-specific relationship plus a confirmed source-role classification. `Medium` confidence requires path-specific evidence and an explicit uncertainty about ownership, consequence, or destination. Low-confidence similarity, thematic resemblance without a concrete relationship, and unsupported model inference are omitted.
 
 Every pass receipt must record the snapshot, resolved roots, exclusions, scan families and commands, candidates examined, retained finding identifiers, and the confidence threshold used. A zero-result pass must say `no qualifying findings within the declared boundary`; it must not claim that the corpus has no duplication, drift, routing gaps, or organization debt.

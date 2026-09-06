@@ -1,7 +1,7 @@
 {
   "schema": "borg-scientific-status-projection.v1",
   "revision": "braid-candidate-adjudication-projection.2026-09-02.v2",
-  "source": "reference/priorities/braid-program/braid-candidate-requirement-adjudication.md",
+  "source": "reference/priorities/braid-program/analysis/braid-candidate-requirement-adjudication.md",
   "sourceSha256": "d0590fcb01336724dd35dfa1a40c73fb58cd163b34412077a81418fadee166db",
   "relations": [
     {
@@ -172,7 +172,7 @@
       "evidenceLinks": [
         {
           "label": "Braid candidate requirement adjudication",
-          "url": "reference/priorities/braid-program/braid-candidate-requirement-adjudication.md"
+          "url": "reference/priorities/braid-program/analysis/braid-candidate-requirement-adjudication.md"
         }
       ],
       "establishes": "A closed exact coincident-axis chart at H1 derived grade.",
@@ -1009,7 +1009,7 @@
       },
       "candidate": "centered five-coordinate representative",
       "sourceAnchor": "#universal-hard-gate-adjudication",
-      "sourceRow": "| `centered five-coordinate representative` | `P[D]` | `P[M]` | `P[M]` | `P[M]` | `U` | The metric-matched five-coordinate row completed the [guarded $T=0.15$ release](three-binary-five-coordinate-bounded-eom-comparison.md) and preserved its cyclic slice, but did not return. |",
+      "sourceRow": "| `centered five-coordinate representative` | `P[D]` | `P[M]` | `P[M]` | `P[M]` | `U` | The metric-matched five-coordinate row completed the [guarded $T=0.15$ release](evidence/three-binary-five-coordinate-bounded-eom-comparison.md) and preserved its cyclic slice, but did not return. |",
       "requirements": {
         "H1": "P[D]",
         "H2": "P[M]",
@@ -1029,7 +1029,7 @@
       "evidenceLinks": [
         {
           "label": "Bounded five-coordinate EOM comparison",
-          "url": "reference/priorities/braid-program/three-binary-five-coordinate-bounded-eom-comparison.md"
+          "url": "reference/priorities/braid-program/evidence/three-binary-five-coordinate-bounded-eom-comparison.md"
         }
       ],
       "establishes": "This exact realization completed bounded ordinary release through T=0.15 with the source-stated guards.",
@@ -1092,7 +1092,7 @@
       },
       "candidate": "scoped-negative circular control — demoted realization",
       "sourceAnchor": "#universal-hard-gate-adjudication",
-      "sourceRow": "| `scoped-negative circular control` (demoted realization) | `P[D]` | `P[D]` | `P[D]` | `F[M]` | `U` | Exact continuous noncoincidence and complete simple roots pass on the prescribed circular history, but its [measured member-acceleration residual](../mapping-equations/inferring-braid-requirements.md#scoped-negative-circular-control-root-ledger-and-member-acceleration-screen) rejects that isolated history as an EOM realization. |",
+      "sourceRow": "| `scoped-negative circular control` (demoted realization) | `P[D]` | `P[D]` | `P[D]` | `F[M]` | `U` | Exact continuous noncoincidence and complete simple roots pass on the prescribed circular history, but its [measured member-acceleration residual](../mapping-equations/analysis/inferring-braid-requirements.md#scoped-negative-circular-control-root-ledger-and-member-acceleration-screen) rejects that isolated history as an EOM realization. |",
       "requirements": {
         "H1": "P[D]",
         "H2": "P[D]",
@@ -1112,7 +1112,7 @@
       "evidenceLinks": [
         {
           "label": "Scoped-negative circular-control screen",
-          "url": "reference/priorities/mapping-equations/inferring-braid-requirements.md#scoped-negative-circular-control-root-ledger-and-member-acceleration-screen"
+          "url": "reference/priorities/mapping-equations/analysis/inferring-braid-requirements.md#scoped-negative-circular-control-root-ledger-and-member-acceleration-screen"
         }
       ],
       "establishes": "This exact prescribed realization fails bounded ordinary-EOM compatibility at H4 measured grade.",
@@ -1132,7 +1132,7 @@
       },
       "candidate": "asymmetric counter-breathing representative",
       "sourceAnchor": "#universal-hard-gate-adjudication",
-      "sourceRow": "| `asymmetric counter-breathing representative` | `P[D]` | `P[M]` | `P[M]` | `P[M]` | `U` | Bounded releases in the [asymmetric counter-breathing representative geometry program](f6c-geometry.md) preserve the exact symmetry surface and achieve partial turns, but no root-valid nondegenerate complete return exists. |",
+      "sourceRow": "| `asymmetric counter-breathing representative` | `P[D]` | `P[M]` | `P[M]` | `P[M]` | `U` | Bounded releases in the [asymmetric counter-breathing representative geometry program](configurations/f6c-geometry.md) preserve the exact symmetry surface and achieve partial turns, but no root-valid nondegenerate complete return exists. |",
       "requirements": {
         "H1": "P[D]",
         "H2": "P[M]",
@@ -1152,7 +1152,7 @@
       "evidenceLinks": [
         {
           "label": "Asymmetric counter-breathing geometry",
-          "url": "reference/priorities/braid-program/f6c-geometry.md"
+          "url": "reference/priorities/braid-program/configurations/f6c-geometry.md"
         },
         {
           "label": "Independent conditional root cover and release evidence",
@@ -1176,7 +1176,7 @@
       },
       "candidate": "axially separated orthogonal-axis three-binary configuration — measured five-coordinate slice",
       "sourceAnchor": "#universal-hard-gate-adjudication",
-      "sourceRow": "| `axially separated orthogonal-axis three-binary configuration`, measured five-coordinate slice | `P[D]` | `P[M]` | `P[M]` | `P[M]` | `U` | One pair-conjugate five-coordinate slice completed the [guarded release](three-binary-five-coordinate-bounded-eom-comparison.md) through $T=0.15$ with certified noncoincidence, complete roots, and speed margin; the pass does not cover the full axially separated configuration chart. |",
+      "sourceRow": "| `axially separated orthogonal-axis three-binary configuration`, measured five-coordinate slice | `P[D]` | `P[M]` | `P[M]` | `P[M]` | `U` | One pair-conjugate five-coordinate slice completed the [guarded release](evidence/three-binary-five-coordinate-bounded-eom-comparison.md) through $T=0.15$ with certified noncoincidence, complete roots, and speed margin; the pass does not cover the full axially separated configuration chart. |",
       "requirements": {
         "H1": "P[D]",
         "H2": "P[M]",
@@ -1196,7 +1196,7 @@
       "evidenceLinks": [
         {
           "label": "Bounded five-coordinate EOM comparison",
-          "url": "reference/priorities/braid-program/three-binary-five-coordinate-bounded-eom-comparison.md"
+          "url": "reference/priorities/braid-program/evidence/three-binary-five-coordinate-bounded-eom-comparison.md"
         }
       ],
       "establishes": "One pair-conjugate five-coordinate slice completed guarded bounded release through T=0.15.",
@@ -1216,7 +1216,7 @@
       },
       "candidate": "phase-varying display representative — common-cadence circular realization",
       "sourceAnchor": "#universal-hard-gate-adjudication",
-      "sourceRow": "| `phase-varying display representative` common-cadence circular realization | `P[D]` | `F[D]` | `U` | `U` | `U` | The declared ordinary two-ring circular realization has an [exact incompatibility](../mapping-equations/inferring-braid-requirements.md#joint-projection-audit-and-a-two-ring-no-go) among everywhere-noncoincident member geometry, stationary centroid, and instantaneous dipole null; the revised row is materially different and does not erase this scoped negative. |",
+      "sourceRow": "| `phase-varying display representative` common-cadence circular realization | `P[D]` | `F[D]` | `U` | `U` | `U` | The declared ordinary two-ring circular realization has an [exact incompatibility](../mapping-equations/analysis/inferring-braid-requirements.md#joint-projection-audit-and-a-two-ring-no-go) among everywhere-noncoincident member geometry, stationary centroid, and instantaneous dipole null; the revised row is materially different and does not erase this scoped negative. |",
       "requirements": {
         "H1": "P[D]",
         "H2": "F[D]",
@@ -1235,7 +1235,7 @@
       "evidenceLinks": [
         {
           "label": "Two-ring joint-projection no-go",
-          "url": "reference/priorities/mapping-equations/inferring-braid-requirements.md#joint-projection-audit-and-a-two-ring-no-go"
+          "url": "reference/priorities/mapping-equations/analysis/inferring-braid-requirements.md#joint-projection-audit-and-a-two-ring-no-go"
         }
       ],
       "establishes": "The materially different common-cadence circular realization fails H2 under its declared joint constraints.",

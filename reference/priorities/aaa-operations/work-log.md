@@ -8,7 +8,7 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ### 2026-09-05 — Technical-brief verification and definitions refined
 
-Applied both accepted focused-review findings to the [technical brief](../../research-office/cto/technical-brief-master-equation.md). The proposed test now checks full vector dynamics with explicit interval and sampling scope, and the text defines the retained-branch and evidence terminology in place. The [review record](office-document-standards-review.md#authorized-refinements-completed) records resolution; the priority tracker no longer lists these as open refinements. Existing equations and historical material retain their prior scope.
+Applied both accepted focused-review findings to the [technical brief](../../research-office/cto/technical-brief-master-equation.md). The proposed test now checks full vector dynamics with explicit interval and sampling scope, and the text defines the retained-branch and evidence terminology in place. The [review record](evidence/office-document-standards-review.md#authorized-refinements-completed) records resolution; the priority tracker no longer lists these as open refinements. Existing equations and historical material retain their prior scope.
 
 ### 2026-09-05 — Optional feedback diagnostics
 
@@ -16,7 +16,7 @@ Renamed the diagnostic section to “Optional: include diagnostic details” and
 
 ### 2026-09-05 — Technical brief and all legacy roles reconciled
 
-Completed the operator-authorized correction of the Master Equation technical brief and sequential reconciliation of all ten legacy role documents. The brief now derives canonical transmitter-side acceleration weighting and separate signed playback with consistent integral normalization. Independent affine-path symbolic and local quadrature checks support this representation correction within their stated scope. All role briefs now use live scientific and operational owners, preserve distinct research questions and attributed notes, and remove obsolete active laws, fixed mechanism assignments, and unsupported acceptance authority. The [existing review record](office-document-standards-review.md#2026-09-05--technical-brief-and-legacy-role-reconciliation) contains the derivation explanation, reproducible check parameters, and all ten dispositions. The [priority tracker](priorities.md#office-document-standards-review) records completion and keeps only the separate story and play-surface recommendations for future selection.
+Completed the operator-authorized correction of the Master Equation technical brief and sequential reconciliation of all ten legacy role documents. The brief now derives canonical transmitter-side acceleration weighting and separate signed playback with consistent integral normalization. Independent affine-path symbolic and local quadrature checks support this representation correction within their stated scope. All role briefs now use live scientific and operational owners, preserve distinct research questions and attributed notes, and remove obsolete active laws, fixed mechanism assignments, and unsupported acceptance authority. The [existing review record](evidence/office-document-standards-review.md#2026-09-05--technical-brief-and-legacy-role-reconciliation) contains the derivation explanation, reproducible check parameters, and all ten dispositions. The [priority tracker](priorities.md#office-document-standards-review) records completion and keeps only the separate story and play-surface recommendations for future selection.
 
 Validation: all ten role files passed relative-link, heading-fragment, and KaTeX checks; preserved attributed lines and historical blocks match their saved baselines. Priority ranking and whitespace checks passed. Strict content validation found zero authored errors but reports the separate feedback-scene index drift; its exact generation and recheck commands remain in the linked review record. No generated write was performed.
 
@@ -28,7 +28,7 @@ Added the Webapp Feedback sphere, its scene descriptor, and the scene-ID/path ma
 
 Replaced the Applications text link with the canonical standalone controls: table of contents, Back, Forward, Home, and scene search. Home explicitly resolves to the site root. Scoped form CSS preserves the shared control styling, and narrow headers reserve space above the title. Nine focused feedback and shared-navigation tests passed. A local headless Edge check at widths 1440, 390, and 320 CSS pixels exercised Home, table of contents, Forward, and search, found all five controls and no horizontal overflow or page errors, and checked title/control separation. Desktop and phone-width captures were visually inspected.
 
-The release checker reports a dependency-set mismatch, and the performance checker reports changed source bytes. The shared dependency set also exceeds the old release size ceiling and uses the canonical 32-pixel controls rather than the former 42-pixel feedback floor. These are recorded in the [navigation account](privacy-safe-feedback-intake.md#navigation) and [tracker](priorities.md#webapp-release-gate-baseline) for profile review and fresh measurement before publication. Historical evidence and accepted thresholds were preserved; this change is not a release receipt.
+The release checker reports a dependency-set mismatch, and the performance checker reports changed source bytes. The shared dependency set also exceeds the old release size ceiling and uses the canonical 32-pixel controls rather than the former 42-pixel feedback floor. These are recorded in the [navigation account](contracts/privacy-safe-feedback-intake.md#navigation) and [tracker](priorities.md#webapp-release-gate-baseline) for profile review and fresh measurement before publication. Historical evidence and accepted thresholds were preserved; this change is not a release receipt.
 
 ### 2026-09-05 — Workflow and skill organization accepted
 
@@ -64,7 +64,7 @@ The operator approved the complete response standard and authorized regeneration
 
 ### 2026-09-04 — OPS-018 sequential office document standards review
 
-Completed the operator-authorized one-document-at-a-time review of all 135 Research Office and 157 Learning Office Markdown documents. The [ledger](office-document-standards-review.md) records one disposition for each of the 458 inventoried files. Updated 49 Markdown documents: 39 ordinary guidance updates, 8 role updates with theory review deferred, 1 product-guidance update with product review deferred, and 1 technical-brief warning preserving its mathematics pending current-law correction. Baseline SHA-256 comparison verified that the other 243 Markdown documents and all 166 assets retained identical bytes; all paths reconciled with no additions or removals.
+Completed the operator-authorized one-document-at-a-time review of all 135 Research Office and 157 Learning Office Markdown documents. The [ledger](evidence/office-document-standards-review.md) records one disposition for each of the 458 inventoried files. Updated 49 Markdown documents: 39 ordinary guidance updates, 8 role updates with theory review deferred, 1 product-guidance update with product review deferred, and 1 technical-brief warning preserving its mathematics pending current-law correction. Baseline SHA-256 comparison verified that the other 243 Markdown documents and all 166 assets retained identical bytes; all paths reconciled with no additions or removals.
 
 Current guidance now routes writing style and response mechanics to their canonical owners while retaining task-specific evidence obligations, authorization boundaries, and production protections. Historical records and all 111 production QA receipts were read and preserved, including 15 recorded approvals and 96 pending decisions. Strict content validation, priority-ranking validation, and the whitespace check passed. Those checks do not validate scientific claims or artwork. The [tracker](priorities.md#office-document-standards-review) retains four separately scoped recommendations concerning the technical brief, older roles, protected stories, and product assumptions. Removed OPS-018 from the active queue under its stated completion condition. No generator writes, scientific-law changes, artwork regeneration, commits, or pushes were performed by this review agent.
 
@@ -142,7 +142,7 @@ Plainly: the deployment budget now has live numbers and an app consumer. It repo
 
 - Removed OPS-009, its standing Pages reversal procedure, rehearsal receipt, and release-gate dependency at operator direction. If an earlier source state is needed, recovery now starts by inspecting repository branches and commits, selecting the source explicitly, validating it through the ordinary branch and PR process, and publishing only through the verified `main` workflow.
 - Reduced the general webapp release gate from eight categories to seven: content, graph, size, visual, browser, accessibility, and preview. No automatic target or special replay path remains in the contract or checker.
-- Reclassified the earlier 91-byte observation through a live [published Borg record byte-identity audit](pages-borg-record-byte-identity-audit-2026-09-02.md). Of 145 deployed records, 143 disagree with their deployed registry SHA-256 identities; the two static records match.
+- Reclassified the earlier 91-byte observation through a live [published Borg record byte-identity audit](evidence/pages-borg-record-byte-identity-audit-2026-09-02.md). Of 145 deployed records, 143 disagree with their deployed registry SHA-256 identities; the two static records match.
 - Isolated one representative mismatch to 66 tiny numeric differences and no non-numeric differences. The deployed file and same-source macOS reconstruction had equal byte counts, showing that the earlier 91-byte total was incidental decimal-length drift rather than truncation or missing data.
 - Queued OPS-013 because the Borg loader rejects a record whose bytes do not match the registry. No deployment, Pages setting, DNS record, or public byte was changed.
 - Implemented a duration-scaled $2\times10^{-11}$ position quantum with conservatively enlarged position/velocity residual bounds. The first grid version collapsed all 145 historical macOS/Ubuntu record pairs despite 51,051 numeric differences and zero non-numeric differences, but a fresh GitHub run correctly falsified it when runtime-dependent exponentiation produced 59 mismatches.
@@ -173,7 +173,7 @@ Plainly: the deployment budget now has live numbers and an app consumer. It repo
 
 ### 2026-09-01 — OPS-012 privacy-safe public feedback intake
 
-- Closed OPS-012 with the [privacy-safe feedback intake](privacy-safe-feedback-intake.md), [versioned policy](feedback-intake-policy.v1.json), public `feedback.html` generator, and dedicated GitHub public-webapp issue form.
+- Closed OPS-012 with the [privacy-safe feedback intake](contracts/privacy-safe-feedback-intake.md), [versioned policy](feedback-intake-policy.v1.json), public `feedback.html` generator, and dedicated GitHub public-webapp issue form.
 - Added `architrino.public-feedback-manifest.v1`, which records only a same-origin public pathname, browser family and major version, operating-system family, coarse device/viewport/pixel-ratio categories, browser language, and availability, last-modified headers, and entry counts for the public scene index, markdown index, and scene graph.
 - Excluded the raw user-agent string, query and fragment, cookies, local and session storage, clipboard contents, local file names and contents, WebGL renderer, and account identifiers. The page only writes the visible manifest after the Copy action and never reads clipboard contents.
 - Kept submission explicit: opening the local generator sends nothing to GitHub; the external issue form opens only after user selection and still requires review and submission. The form warns that issues are public and requires confirmation that private workflow and identifying material were removed.
@@ -184,7 +184,7 @@ Plainly: the deployment budget now has live numbers and an app consumer. It repo
 
 ### 2026-09-01 — OPS-011 dependency and public-security review
 
-- Closed OPS-011 with the [dependency and public-security review](dependency-and-public-security-review-2026-09-01.md) and machine-checkable [public-security policy](public-security-policy.v1.json).
+- Closed OPS-011 with the [dependency and public-security review](evidence/dependency-and-public-security-review-2026-09-01.md) and machine-checkable [public-security policy](public-security-policy.v1.json).
 - Audited the one exact npm dependency and 111-entry locked production graph. The first lockfile audit reported one moderate Mermaid vulnerability group covering five advisories in 11.16.0; after moving the manifest, lockfile, vendored runtime, provenance, and attribution to 11.16.1, the audit returned zero known vulnerabilities.
 - Added a moderate-or-higher npm audit to every content-integrity workflow run and weekly Dependabot review for npm and GitHub Actions. Replaced every movable external Action tag with its verified full 40-character commit identifier.
 - Found the Support Architrino Research renderer dynamically loading a Liberapay widget script, which the earlier HTML-only remote-resource scan did not cover. Removed the automatic executable load, retained the ordinary user-selected donation link, widened the source scan to shared runtimes, and prohibited dynamic script construction and remote executable JavaScript URLs.
@@ -195,7 +195,7 @@ Plainly: the deployment budget now has live numbers and an app consumer. It repo
 
 ### 2026-09-01 — OPS-008 observability and analytics policy
 
-- Closed OPS-008 with the accepted [observability and analytics policy](observability-and-analytics-policy.md) and machine-checkable [versioned contract](observability-policy.v1.json).
+- Closed OPS-008 with the accepted [observability and analytics policy](contracts/observability-and-analytics-policy.md) and machine-checkable [versioned contract](observability-policy.v1.json).
 - Set the current client-analytics mode to disabled with no collector and zero raw or aggregate retention. Explicit future opt-in, bounded retention, provider/privacy/security review, revocation, deletion, and browser-network negatives are required before any event can be sent.
 - Audited 219 authored HTML, JavaScript, JavaScript-module, and Swift app sources. The negative controls found no known collector domain, beacon, cookie access, XHR, WebSocket, EventSource, or remote executable/media tag.
 - Confirmed Website Statistics is an unconnected zero-data display. Changed its dormant send decision from permissive-by-default to policy-bound and fail-closed; the existing browser opt-out remains an additional veto and unavailable storage cannot authorize sending.
@@ -205,7 +205,7 @@ Plainly: the deployment budget now has live numbers and an app consumer. It repo
 
 ### 2026-09-01 — OPS-005 hosting alternatives survey
 
-- Closed OPS-005 with the dated [hosting alternatives survey](hosting-alternatives-survey-2026-09-01.md), using official Cloudflare, Netlify, and Vercel limits and prices accessed on 2026-09-01.
+- Closed OPS-005 with the dated [hosting alternatives survey](evidence/hosting-alternatives-survey-2026-09-01.md), using official Cloudflare, Netlify, and Vercel limits and prices accessed on 2026-09-01.
 - Rebuilt the active-checkout Pages payload in an empty external temporary directory: 4,284 payload files totaling 482,203,515 bytes, with two files above Cloudflare Pages' 25 MiB asset limit and three files above Netlify's 10 MB large-file guidance.
 - Established that Cloudflare Pages alone and Vercel Hobby do not accept the unchanged payload; Cloudflare Pages plus R2 and Vercel Pro are technically plausible but add object-routing or paid-platform complexity without relieving a measured current constraint. Netlify introduces both large-file risk and credit metering.
 - Kept GitHub Pages as the current host and defined evidence-bearing review and migration triggers for payload size, measured monthly transfer, deployment reliability, large-object lifecycle, service-backed product requirements, and measured total operating cost.
@@ -214,7 +214,7 @@ Plainly: the deployment budget now has live numbers and an app consumer. It repo
 
 ### 2026-09-01 — OPS-010 domain, DNS, and certificate inventory
 
-- Closed OPS-010 with the dated [domain, DNS, and certificate inventory](domain-dns-and-certificate-inventory-2026-09-01.md), measured from the public network and cross-checked against the repository `CNAME`, Pages workflow, GitHub Pages API, authoritative DNS servers, Verisign RDAP, HTTP responses, and the served TLS chain.
+- Closed OPS-010 with the dated [domain, DNS, and certificate inventory](evidence/domain-dns-and-certificate-inventory-2026-09-01.md), measured from the public network and cross-checked against the repository `CNAME`, Pages workflow, GitHub Pages API, authoritative DNS servers, Verisign RDAP, HTTP responses, and the served TLS chain.
 - Confirmed one operational canonical origin, `https://www.architrino.com`. The apex, both HTTP variants, and `jmarkmorris.github.io/architrino` redirected to it with tested path preservation; the root and Equation Mapping route returned `200`, and a deliberate missing route returned `404`.
 - Confirmed the four documented GitHub Pages IPv4 addresses, four IPv6 addresses, `www` CNAME, IONOS registrar, four authoritative `ui-dns` servers, transfer lock, and current `2027-02-16` domain expiration.
 - Verified one Let's Encrypt certificate covering both hostnames, valid through `2026-11-15`, with a trusted TLS 1.3 negotiation and successful 30-day and 60-day expiry thresholds. GitHub reported the certificate approved and HTTPS enforcement enabled.
@@ -223,7 +223,7 @@ Plainly: the deployment budget now has live numbers and an app consumer. It repo
 
 ### 2026-09-01 — OPS-007 GitHub Actions artifact policy
 
-- Closed OPS-007 with the [GitHub Actions artifact policy](github-actions-artifact-policy.md), defining required upload fields and explicit retention/size classes for Pages handoffs, failure diagnostics, visual captures, benchmarks, review bundles, raw scientific output, and sensitive material.
+- Closed OPS-007 with the [GitHub Actions artifact policy](contracts/github-actions-artifact-policy.md), defining required upload fields and explicit retention/size classes for Pages handoffs, failure diagnostics, visual captures, benchmarks, review bundles, raw scientific output, and sensitive material.
 - Audited both current workflows. Content Integrity uploads no artifacts; Pages is the sole producer and retains its deployment handoff for one day after the static builder enforces the existing 1,000,000,000-byte uncompressed ceiling.
 - Queried 30 historical Pages artifacts. Stored size fell from a listed maximum of 1,261,964,485 bytes to 197,078,868 bytes after the recent reduction, an 84.38% decrease.
 - Recorded the aggregate-storage boundary: seven artifacts overlapped at `2026-08-31T16:46:29Z` for 2,887,292,067 stored bytes, proving that one-day retention does not imply one-artifact storage. The account allowance and shared Packages use remain unresolved, so the policy uses 500 MB as a conservative planning boundary until verified.
@@ -233,7 +233,7 @@ Plainly: the deployment budget now has live numbers and an app consumer. It repo
 
 ### 2026-09-01 — OPS-006 static asset inventory
 
-- Closed OPS-006 with the dated [static asset inventory](static-asset-inventory-2026-09-01.md), reconstructed through the canonical Pages builder from local HEAD `16e78cc1fc8939e788f0d539735a0b98e7d68377` plus the active working tree.
+- Closed OPS-006 with the dated [static asset inventory](evidence/static-asset-inventory-2026-09-01.md), reconstructed through the canonical Pages builder from local HEAD `16e78cc1fc8939e788f0d539735a0b98e7d68377` plus the active working tree.
 - Measured 4,248 public payload files totaling 481,498,766 bytes uncompressed and 207,763,495 bytes under a reproducible per-file gzip-level-9 proxy; the proxy is not a measured browser transfer or Actions artifact.
 - Classified 146 declared runtime files totaling 179,521,026 bytes as ignored build-generated data that is intentionally published, and 503 tracked files totaling 958,248,972 bytes as Git-only under the existing deployment exclusions.
 - Kept ignored local output separate: 65,681 files totaling 126,858,498,087 bytes are local analytical, build, capture, review, and generated output, not Pages or Git storage.
@@ -243,7 +243,7 @@ Plainly: the deployment budget now has live numbers and an app consumer. It repo
 
 ### 2026-09-01 — OPS-002 GitHub Pages and Actions limits baseline
 
-- Closed OPS-002 with the dated [GitHub Pages and Actions limits record](github-pages-and-actions-limits-2026-09-01.md), using official GitHub documentation for Pages, Actions, billing, artifact retention, concurrency, and general repository limits.
+- Closed OPS-002 with the dated [GitHub Pages and Actions limits record](evidence/github-pages-and-actions-limits-2026-09-01.md), using official GitHub documentation for Pages, Actions, billing, artifact retention, concurrency, and general repository limits.
 - Measured the accepted live deployment at 415,238,878 bytes across 4,011 files, or 41.52% of the builder's 1,000,000,000-byte ceiling, with a 4-minute-42-second build job and 16-second deploy job.
 - Rebuilt the site from the active checkout after the recent storage reductions: 481,493,486 published bytes, with 333 unused images totaling 515,647,205 bytes excluded from the candidate payload. This working-tree measurement is a planning snapshot, not a commit-bound release receipt.
 - Confirmed the repository is public, Pages uses Actions with the custom domain and enforced HTTPS, the workflow retains its Pages artifact for one day, and the artifact API reported zero currently active artifacts.

@@ -5,7 +5,7 @@
 - Keep this packet focused on the equation-mapping app. Do not move equation-row scoring, source evidence, or theorem-closure material out of [../mapping-equations/priorities.md](../mapping-equations/priorities.md).
 - Treat app output as an explanatory working surface, not as accepted equation-mapping evidence or score movement.
 - Keep user-facing app language plain. Use `equation`, `comment`, `pointer line`, `section of the formula`, `subject`, and `background`; do not expose animation-engine or scene-language terminology.
-- Keep [requirements-and-design.md](requirements-and-design.md) stable and descriptive. Move task-shaped implementation work into [work-queue.md](work-queue.md).
+- Keep [requirements-and-design.md](contracts/requirements-and-design.md) stable and descriptive. Move task-shaped implementation work into [work-queue.md](work-queue.md).
 
 ## Workstream Metadata
 
@@ -36,7 +36,7 @@ A future carousel addition must begin as a new operator-accepted task tied to a 
 - The generated registry/API is the structured authority for equation-page discovery, normalized document retrieval, canonical links, source bindings, search text, and symbol records. Markdown remains the equation and context authority; the generated registry does not create a second authoring surface.
 - Every equation receives the same baseline: formula rendering, search, direct addressing, source context, hover/focus symbol help, and a click/tap-accessible scrollable symbols-and-source panel. Promotion changes only carousel placement and additional curated callouts/editorial mapping.
 - Equation registration is author-owned but mechanically light. Authors add or revise the equation and define symbols in local prose; the generator preserves or assigns the stable ID, inserts the ordinary link for a new occurrence, creates the basic app record, and rejects incomplete or stale coverage.
-- The operational and API details live in [registry-and-authoring-contract.md](registry-and-authoring-contract.md).
+- The operational and API details live in [registry-and-authoring-contract.md](contracts/registry-and-authoring-contract.md).
 
 ## Objective
 
@@ -83,8 +83,8 @@ The first useful version should let the operator:
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
 | [work-queue.md](work-queue.md) | Ranked executable app tasks, lifecycle state, acceptance boundary, and completion conditions. | Equation Mapping API, runtime, data, tests, and review artifacts. |
-| [requirements-and-design.md](requirements-and-design.md) | Stable v1 requirements, layer model, visual language, subject index, settings, and implementation boundaries. | `equation-mapping.html`, `src/apps/equation-mapping/`, and selected equation-mapping review fixtures. |
-| [registry-and-authoring-contract.md](registry-and-authoring-contract.md) | Stable link/registry contract, read-only API usage, and author registration procedure. | Corpus equation links, Equation Mapping registry, focused validators, and contributor guidance. |
+| [requirements-and-design.md](contracts/requirements-and-design.md) | Stable v1 requirements, layer model, visual language, subject index, settings, and implementation boundaries. | `equation-mapping.html`, `src/apps/equation-mapping/`, and selected equation-mapping review fixtures. |
+| [registry-and-authoring-contract.md](contracts/registry-and-authoring-contract.md) | Stable link/registry contract, read-only API usage, and author registration procedure. | Corpus equation links, Equation Mapping registry, focused validators, and contributor guidance. |
 
 ## Related Priority Notes
 

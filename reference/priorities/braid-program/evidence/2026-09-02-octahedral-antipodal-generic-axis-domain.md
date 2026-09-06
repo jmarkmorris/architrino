@@ -4,7 +4,7 @@ Date: 2026-09-02
 Compatibility identifier: `aaa-corpus-advancement`
 Status: exact compact domain frozen; complete boundary excluded; continuous interior cover remains open
 Queue owner: [BP-016 — Platonic Braid Qualification and Prescribed-History Program](../work-queue.md#bp-016--platonic-braid-qualification-and-prescribed-history-program)
-Mathematical owner: [Platonic Moving-History Reduction](../platonic-moving-history-reduction.md)
+Mathematical owner: [Platonic Moving-History Reduction](../analysis/platonic-moving-history-reduction.md)
 
 ## Exact Quotient
 

@@ -8,6 +8,6 @@ The workstream is model-neutral. An economical model such as Codex Luna is an ap
 
 - [priorities.md](priorities.md) — strategy, scope, and non-authority rules.
 - [work-queue.md](work-queue.md) — accepted execution objects.
-- [recommendations.md](recommendations.md) — durable, evidence-backed findings awaiting human triage.
+- [recommendations.md](analysis/recommendations.md) — durable, evidence-backed findings awaiting human triage.
 - [brainstorming.md](brainstorming.md) — possible future passes and formats.
 - [work-log.md](work-log.md) — chronological execution record.

@@ -12,7 +12,7 @@ Plainly: anomaly arithmetic can check a derived inventory. It cannot explain why
 
 ## One Nature, Many Theories Routing
 
-The broader gauge-agreement-versus-gauge-origin synthesis has moved to the dedicated [One Nature, Many Theories brainstorming file](../mapping-one-nature-many-theories/brainstorming.md#gauge-agreement-and-gauge-origin) and [working draft](../mapping-one-nature-many-theories/one-nature-many-theories.md#gauge-agreement-versus-gauge-origin). This lane continues to own the concrete Standard Model gauge-recovery burden; the new lane owns the historical and cross-domain criticism.
+The broader gauge-agreement-versus-gauge-origin synthesis has moved to the dedicated [One Nature, Many Theories brainstorming file](../mapping-one-nature-many-theories/brainstorming.md#gauge-agreement-and-gauge-origin) and [working draft](../mapping-one-nature-many-theories/analysis/one-nature-many-theories.md#gauge-agreement-versus-gauge-origin). This lane continues to own the concrete Standard Model gauge-recovery burden; the new lane owns the historical and cross-domain criticism.
 
 ## Bottom Forward–Backward Asymmetry Comparator
 
@@ -36,7 +36,7 @@ $$
 
 Plainly: the comparison separates a rate-like norm from a left–right asymmetry, but it does not derive the rotation or identify its assembly carrier.
 
-The observer covariance screen belongs in [bottom-axial-frame-exposure-rotation-covariance.md](bottom-axial-frame-exposure-rotation-covariance.md). A positive mechanism requires a predeclared Generation-III exposure record that predicts $\phi_b$ without consuming the asymmetry data.
+The observer covariance screen belongs in [bottom-axial-frame-exposure-rotation-covariance.md](analysis/bottom-axial-frame-exposure-rotation-covariance.md). A positive mechanism requires a predeclared Generation-III exposure record that predicts $\phi_b$ without consuming the asymmetry data.
 
 ## Semileptonic Flavor Comparator
 

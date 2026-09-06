@@ -21,7 +21,7 @@
       "status": "attempt",
       "rowId": "Phi-star-loop-source-attempt-0001",
       "sameRecordId": "spin-to-mu-retained-record-source-attempt-0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-15-27-ordered-frame-loop-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-15-27-ordered-frame-loop-source-field-map.md",
       "retainedBranchId": "retained-noncoplanar-branch-source-attempt-0001",
       "domainId": "D_spin_mu_source_attempt_0001",
       "loopMap": "Phi_star:S^1->SO(3)",
@@ -36,21 +36,21 @@
       "etaSpin": 1,
       "doubledPathRestores": true,
       "liftWitnessKind": "spin3_su2_double_cover_source_attempt",
-      "sourcePath": "reference/priorities/mapping-equations/eq-15-27-ordered-frame-loop-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-15-27-ordered-frame-loop-source-field-map.md"
     },
     "gauge_control": {
       "status": "attempt",
       "rowId": "gauge-control-source-attempt-0001",
       "sameRecordId": "spin-to-mu-retained-record-source-attempt-0001",
       "deltaGauge": 0,
-      "sourcePath": "reference/priorities/mapping-equations/eq-15-27-ordered-frame-loop-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-15-27-ordered-frame-loop-source-field-map.md"
     },
     "angular_momentum_ledger": {
       "status": "attempt",
       "rowId": "angular-momentum-ledger-source-attempt-0001",
       "sameRecordId": "spin-to-mu-retained-record-source-attempt-0001",
       "deltaJ": 0,
-      "sourcePath": "reference/priorities/mapping-equations/eq-15-27-ordered-frame-loop-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-15-27-ordered-frame-loop-source-field-map.md"
     },
     "moment_map_magnetic": {
       "status": "attempt",
@@ -63,7 +63,7 @@
       ],
       "momentMapKind": "exposure_current_integral_source_attempt",
       "exposureCurrentIntegral": true,
-      "sourcePath": "reference/priorities/mapping-equations/eq-15-27-ordered-frame-loop-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-15-27-ordered-frame-loop-source-field-map.md"
     },
     "covering_degree_g2": {
       "status": "attempt",
@@ -72,14 +72,14 @@
       "gLead": 2,
       "g2Derivation": "covering_degree_source_attempt",
       "coveringDegreeWitness": true,
-      "sourcePath": "reference/priorities/mapping-equations/eq-15-27-ordered-frame-loop-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-15-27-ordered-frame-loop-source-field-map.md"
     },
     "exposure_fiber_residual": {
       "status": "attempt",
       "rowId": "exposure-fiber-residual-source-attempt-0001",
       "sameRecordId": "spin-to-mu-retained-record-source-attempt-0001",
       "R_fib": 0.003,
-      "sourcePath": "reference/priorities/mapping-equations/eq-15-27-ordered-frame-loop-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-15-27-ordered-frame-loop-source-field-map.md"
     }
   }
 }

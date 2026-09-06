@@ -8,13 +8,13 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ### 2026-09-05 — Effective-spacetime-structure experiment suite
 
-Added [Experimental Probes Of Effective Spacetime Structure](spacetime-structure-experiment-suite.md) to separate what GQuEST, the Fermilab Holometer, gravitational-wave propagation, high-energy photon timing, EHT imaging, cosmic-topology searches, gravity-mediated entanglement proposals, and magnetar polarization can and cannot determine. The packet defines an experiment-relative identifiability class, a correlated-interferometer cross-spectrum residual, and a shared weak/strong propagation operator, then routes each projection through existing benchmark and corpus owners.
+Added [Experimental Probes Of Effective Spacetime Structure](benchmarks/spacetime-structure-experiment-suite.md) to separate what GQuEST, the Fermilab Holometer, gravitational-wave propagation, high-energy photon timing, EHT imaging, cosmic-topology searches, gravity-mediated entanglement proposals, and magnetar polarization can and cannot determine. The packet defines an experiment-relative identifiability class, a correlated-interferometer cross-spectrum residual, and a shared weak/strong propagation operator, then routes each projection through existing benchmark and corpus owners.
 
 The packet is comparison- and specification-grade. It creates no executable queue row, changes no benchmark status, and reports no native prediction. The first calculation remains blocked on an accepted EOM-evolved retained Noether-sea state with correlation-, propagation-, and polarization-resolved constitutive exports.
 
 ### 2026-09-02 — XTM-001 NIST finite-height optical-clock benchmark
 
-Completed XTM-001 in [Gravitational Redshift And Clock Tests](gravitational-redshift-clock-tests.md) with the source-bound 2010 Chou et al. NIST optical-clock record. The packet records the 33 cm apparatus displacement, $(4.1\pm1.6)\times10^{-17}$ measured fractional-frequency change, 75 m phase-stabilized link, measurement windows, and independently surveyed height comparison.
+Completed XTM-001 in [Gravitational Redshift And Clock Tests](benchmarks/gravitational-redshift-clock-tests.md) with the source-bound 2010 Chou et al. NIST optical-clock record. The packet records the 33 cm apparatus displacement, $(4.1\pm1.6)\times10^{-17}$ measured fractional-frequency change, 75 m phase-stabilized link, measurement windows, and independently surveyed height comparison.
 
 The benchmark now names one required source/clock/path/receiver/Noether-sea record, defines the difference-in-differences prediction and normalized acceptance residual, freezes sign, zero-height, configuration-swap, and transport-control predicates, and fails closed as `blocked_missing_native_clock_transport_record`. No native clock carrier, gravitational-redshift recovery, effective-metric result, score change, generated artifact, or reader-facing corpus claim follows from completing the specification.
 

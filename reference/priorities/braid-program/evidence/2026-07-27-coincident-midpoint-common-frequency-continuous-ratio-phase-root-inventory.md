@@ -6,7 +6,7 @@ Status: `drawn-not-evaluated`, `null-score`, `diagnostic-only`, and `priority-on
 
 ## Scope
 
-This receipt records the first execution of the prescribed-path-only coincident-midpoint common-frequency three-axis circular configuration continuous ratio–phase interval certifier authorized by the [coincident-midpoint common-frequency three-axis circular configuration static-level packet](../coincident-midpoint-common-frequency-step-action-ledger.md). The instrument does not evolve a path, call the EOM solver, use EOM interval machinery, calculate energy or action, or select a physical candidate.
+This receipt records the first execution of the prescribed-path-only coincident-midpoint common-frequency three-axis circular configuration continuous ratio–phase interval certifier authorized by the [coincident-midpoint common-frequency three-axis circular configuration static-level packet](coincident-midpoint-common-frequency-step-action-ledger.md). The instrument does not evolve a path, call the EOM solver, use EOM interval machinery, calculate energy or action, or select a physical candidate.
 
 The exact executable declarations are owned by the [protocol](../../../../src/prescribed-path-analysis/protocols/coincident-midpoint-common-frequency-continuous-ratio-phase-root-inventory-protocol.v1.json). They bind:
 

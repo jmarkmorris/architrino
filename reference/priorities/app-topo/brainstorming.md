@@ -18,7 +18,7 @@ Canvas balance, motion arrows, contour emphasis, contour count, and playback are
 
 ## Unresolved Ideas
 
-- **[inferred] Prescribed-versus-evolved provenance matrix.** Define visible copy, inputs, allowed controls, evidence badge, failure behavior, record identity, and tests for separate What-if path and EOM-evolved modes; likely destination: [requirements-and-design.md](requirements-and-design.md) if accepted.
+- **[inferred] Prescribed-versus-evolved provenance matrix.** Define visible copy, inputs, allowed controls, evidence badge, failure behavior, record identity, and tests for separate What-if path and EOM-evolved modes; likely destination: [requirements-and-design.md](contracts/requirements-and-design.md) if accepted.
 - **[inferred] Receiver-selected partner-wake contract.** Define the three view states, source-ledger filtering, emitter-only masking, $\beta=1$ behavior, provenance, cache identity, and CPU/GPU parity; promotion is blocked until the scenario contracts verify the root-status claims.
 - **[display idea] Translation arrow and canvas balance.** Visually test source position, aspect ratio, and a restrained positive-$x$ arrow; no theory claim follows from the chosen layout.
 - **[display idea] Contour controls.** Evaluate zero-contour emphasis only where a genuine zero exists and test a paired slider/numeric input for contour count; defaults remain tunable display choices.

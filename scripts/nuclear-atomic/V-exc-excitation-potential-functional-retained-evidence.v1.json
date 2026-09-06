@@ -19,7 +19,7 @@
     "excitationPotentialId": "V_exc_0001",
     "sourceTargetId": "V_exc_source_target_0001",
     "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
-    "priorityContextPath": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+    "priorityContextPath": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
   },
   "excitationPotentialFunctional": {
     "rowId": "V_exc_0001",

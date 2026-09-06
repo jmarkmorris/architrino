@@ -14,7 +14,7 @@ $$
 
 Plainly: observer probabilities can arise from the measure of initial or driven histories that enter each persistent record basin, without postulating primitive randomness.
 
-The [transfer-operator and basin-measure packet](transfer-operator-basin-measure.md) owns this developed framework. It must derive the apparatus kernel, record window, invariant or metastable measure, and same-flow detector response before any Born-rule claim is made. $P\propto|\psi|^2$ remains a recovery target rather than an input.
+The [transfer-operator and basin-measure packet](analysis/transfer-operator-basin-measure.md) owns this developed framework. It must derive the apparatus kernel, record window, invariant or metastable measure, and same-flow detector response before any Born-rule claim is made. $P\propto|\psi|^2$ remains a recovery target rather than an input.
 
 ## Local Pair Provenance
 
@@ -40,7 +40,7 @@ $$
 
 Plainly: provenance may summarize a locally available shared preparation history. It may not depend on a distant future setting or turn information into substrate ontology.
 
-The scope decision and [dynamic pair-provenance packet](dynamic-pair-provenance-source-measure.md) own the developed treatment and Bell-family obligations.
+The scope decision and [dynamic pair-provenance packet](analysis/dynamic-pair-provenance-source-measure.md) own the developed treatment and Bell-family obligations.
 
 ## Spinors as a Conceptual Exploration
 
