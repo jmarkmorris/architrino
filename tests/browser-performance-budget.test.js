@@ -8,7 +8,7 @@ import { checkBrowserPerformanceBudget } from "../scripts/check-browser-performa
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const CONTRACT_PATH = "reference/priorities/aaa-operations/contracts/browser-performance-budget.v1.json";
-const EVIDENCE_PATH = "reference/priorities/aaa-operations/evidence/browser-performance-baseline-2026-09-01.json";
+const EVIDENCE_PATH = "reference/priorities/aaa-operations/evidence/browser-performance-baseline-2026-09-06.json";
 const contract = JSON.parse(fs.readFileSync(path.join(ROOT, CONTRACT_PATH), "utf8"));
 const evidence = JSON.parse(fs.readFileSync(path.join(ROOT, EVIDENCE_PATH), "utf8"));
 const copy = (value) => structuredClone(value);

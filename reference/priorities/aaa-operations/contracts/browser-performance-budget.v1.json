@@ -13,13 +13,14 @@
   },
   "gpu": {
     "surfaceProxyMethod": "canvas backing-store lower bound; excludes textures, geometry, driver allocation, compositor copies, and shared GPU-process memory",
-    "processMethod": "macOS ps RSS samples of the identified Codex GPU process before and during the foreground 4K profile",
+    "processMethod": "macOS ps RSS samples of the measuring browser's identified GPU process before and during the foreground 4K profile",
+    "processMethodNote": "Reworded on 2026-09-06 from 'the identified Codex GPU process' because the 2026-09-06 capture measured Google Chrome's GPU process; the instrument and its budgets are unchanged, and the receipt names the browser and process id measured.",
     "minimumSamples": 2,
     "maximumPeakResidentBytes": 268435456,
     "maximumPeakGrowthBytes": 134217728,
     "claimBoundary": "The surface proxy is a per-page lower bound. GPU-process RSS is a measured shared-process envelope. Neither is exact per-page physical GPU memory."
   },
-  "evidencePath": "reference/priorities/aaa-operations/evidence/browser-performance-baseline-2026-09-01.json",
+  "evidencePath": "reference/priorities/aaa-operations/evidence/browser-performance-baseline-2026-09-06.json",
   "profiles": [
     {
       "id": "public-feedback-interaction",
