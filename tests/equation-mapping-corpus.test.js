@@ -242,7 +242,7 @@ test("every Equation Mapping link shipped in the iOS package has a public app ro
       .map((target) => decodeURIComponent(target.split("#")[1]))
   );
 
-  assert.equal(equationIds.size, 4543);
+  assert.equal(equationIds.size, 4606);
   assert.equal(publicEquationIds.size, equationIds.size);
   assert.deepEqual([...equationIds].filter((id) => !publicEquationIds.has(id)), []);
 });

@@ -171,6 +171,9 @@ textarea {
 
 .feedback-diagnostics summary {
   cursor: pointer;
+  box-sizing: border-box;
+  min-height: 42px;
+  padding: 9px 0;
   font-size: 19px;
   font-weight: 700;
 }

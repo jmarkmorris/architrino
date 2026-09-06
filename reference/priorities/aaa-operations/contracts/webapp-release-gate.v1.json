@@ -109,9 +109,10 @@
       "accessibility": {
         "maxUnnamedControls": 0,
         "maxDuplicateIds": 0,
-        "minControlHeightCssPx": 42
+        "minControlHeightCssPx": 32,
+        "rationale": "Lowered from 42 on 2026-09-06 by operator decision. The 42 floor was accepted for the four-file page, whose only controls were its own 42 px actions. The page now carries the shared control strip, whose five icon buttons are 32 px by design under the UI guidelines' hit-target sizing row; the strip is uniform across standalone pages and is not resized for one profile. The page-owned controls keep their 42 px minimum; the diagnostics summary was raised to 42 px the same day."
       },
-      "evidencePath": "reference/priorities/aaa-operations/evidence/feedback-webapp-release-gate-2026-09-01.json"
+      "evidencePath": "reference/priorities/aaa-operations/evidence/feedback-webapp-release-gate-2026-09-06.json"
     }
   ]
 }

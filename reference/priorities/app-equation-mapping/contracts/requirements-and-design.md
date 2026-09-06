@@ -68,6 +68,12 @@ Opening an equation from a textbook link selects All equations and reveals its c
 
 Every canonical post-equation link uses the compact `View →` label in portable Markdown readers, including VS Code preview. The web reader renders the same link as a styled action beside the display equation, and returning from Equation Mapping restores the exact source route and focuses the originating action.
 
+## Compact Layout
+
+Below 760 CSS px neither rail is a grid column. Each becomes an overlay pinned to its own edge, and the stage reserves clearance for whichever rails are collapsed, so the equation stays clear of the strips that are always on screen. An expanded rail covers content, which is intended: at that width the reader is using the rail rather than reading the equation.
+
+Both collapsed strips stay 72 px wide, matching the desktop collapsed width. Operator decision, 2026-09-06. The consequence is accepted rather than overlooked: with both rails collapsed on a 390 px viewport the equation has 216 px of stage between them. Narrowing the strips in the compact layout would buy width at the cost of a second collapsed-rail size to reason about, and consistency was preferred.
+
 ## Visual Language
 
 The visual direction is Edward Tufte-like economy: maximize the amount of equation meaning carried by each line, label, and mark.

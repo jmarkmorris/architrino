@@ -2,13 +2,11 @@
 
 ## Atomic Structure
 
-This chapter sketches the assembly-level picture of atomic structure inside a dense Noether sea. The standard atom is familiar as a nucleus plus electron orbitals. The $\mathbb{A}\mathbb{A}\mathbb{A}$ question is what physical assemblies, causal wakes, exclusion envelopes, and local Noether sea response make that familiar picture appear.
+An observer-level atom consists of a nucleus and electron orbitals. This chapter asks what physical assemblies, causal wakes, exclusion envelopes, and local Noether sea response recover that familiar structure inside a dense Noether sea.
 
-The chapter is therefore a bridge. It connects nucleons, residual nuclear binding, electron resonance envelopes, and medium response into one substrate-level frame before the quantitative closure work is finished.
+The account connects nucleons, residual nuclear binding, electron resonance envelopes, and medium response in one substrate-level frame. It remains a provisional architecture rather than a completed quantitative derivation: quarks close into nucleons, nucleons close into nuclei, electrons occupy atomic resonance envelopes, and the Noether sea supplies the local medium record from which effective clocks, spectra, and binding descriptions are reconstructed.
 
-Its natural companion notes are [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md), [Nuclear Binding](../../../../markdown/aaa/nuclear-atomic/nuclear-binding.md), [Electron](../../../../markdown/aaa/assemblies/fermions/electron.md), [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), and [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md).
-
-The note remains provisional. It should be read as a compact orientation to the intended architecture of atomic structure rather than as a theorem-backed final chapter. Its value is to keep the levels separated: quarks close into nucleons, nucleons close into nuclei, electrons occupy atomic resonance envelopes, and the Noether sea supplies the local medium record through which effective clocks, spectra, and binding descriptions are reconstructed.
+The component treatments are [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md), [Nuclear Binding](../../../../markdown/aaa/nuclear-atomic/nuclear-binding.md), [Electron](../../../../markdown/aaa/assemblies/fermions/electron.md), [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), and [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md).
 
 Angular momentum and spin enter this chapter only through downstream closure targets. Atomic orbital labels, spin-orbit coupling, hyperfine structure, Pauli filling, and exclusion-volume packing should inherit the single-assembly angular-momentum ledger and ordered-frame spinor proof from [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), together with the exchange-statistics program in [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md). They should not be used here as independent explanations of angular momentum, spin, or Pauli behavior.
 
@@ -22,7 +20,7 @@ Atomic structure sits on three coupled layers. Each layer is real at its own res
 
 The Noether sea enters this picture as ambient substrate contents, not as the fixed spatial container. Binding and spectral calculations should therefore use the canonical local density $\rho_{\text{NS}}(\mathbf X,T)$ and normalized density $n(\mathbf X,T)=\rho_{\text{NS}}(\mathbf X,T)/\rho_{\text{NS},0}$ on $\Sigma_T$, evaluated against the $\mathbb{U}_{\text{now}}$ state record.
 
-In plainer terms, an atom is not a tiny solar system placed in empty space. It is a multi-assembly system embedded in a local medium record. The electron resonance, the proton source envelope, the nuclear binding corridors, and the surrounding Noether sea response all have to be read together.
+An atom is therefore not a tiny solar system placed in empty space. It is a multi-assembly system embedded in a local medium record. The electron resonance, the proton source envelope, the nuclear binding corridors, and the surrounding Noether sea response all have to be read together.
 
 The Noether sea transport picture is useful for separating reversible medium response from dissipative resistance. Inertial response must come from medium-dressed causal-ledger skew and shielding; ordinary resistance remains a separate breakdown channel involving excitation, action shedding, or branch transition.
 
@@ -893,9 +891,7 @@ This chapter fixes the proton and neutron picture used by the nuclear branch. A 
 
 This is the baryon-side bridge between [Quarks](../../../../markdown/aaa/assemblies/fermions/quarks.md), [Color Charge and SU(3)](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md), and [Mesons](../../../../markdown/aaa/assemblies/mesons/mesons.md). Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time.
 
-### Purpose
-
-This chapter fixes the canonical proton and neutron picture used by the nuclear branch of $\mathbb{A}\mathbb{A}\mathbb{A}$. It is the coarse-grained baryon chapter: not a full QCD replacement, but a precise statement of what a nucleon is in assembly language and which geometric features matter most for nuclear physics.
+### Claim Boundary
 
 The guiding rule is level discipline. Quark branch structure matters inside the proton or neutron, but atomic and nuclear calculations should see one nucleon envelope that is stable at the observer level as a declared coarse-grained input unless the calculation is explicitly resolving the strong-sector interior. Here `stable` names the observer-level nucleon record to be recovered by the interface; it is not a certification of a retained architrino branch. Color-singlet occupancy is necessary bookkeeping, while retained-branch existence and strong-sector residual closure remain separate theorem targets.
 
@@ -937,6 +933,7 @@ Q_d=-\frac{1}{3}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-89f41ebbbbfbe6ac)
+
 one immediately gets
 $$
 Q_p = 2Q_u+Q_d = +1,
@@ -956,6 +953,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-30014fffc3ef5a2f)
+
 or equivalently Red, Green, Blue. A baryon singlet uses each exceptional-axis sector once, so the net color flux closes.
 
 This is the nucleon-level meaning of
@@ -1176,6 +1174,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2fb0c1ee7e228847)
+
 with the realized proton spin axis defined as $\hat{\mathbf J}_p=\mathbf J_p(Q)/\lVert\mathbf J_p(Q)\rVert$; alignment of that axis with an external quantization direction is a measurement-layer question, not part of this residual. This is the $\mathbb{A}\mathbb{A}\mathbb{A}$ reading of the proton-spin puzzle. Standard quark-spin, gluon-spin, sea, and orbital fractions are useful resolution-dependent comparison data, but "gluon spin" should map to color-corridor and flux-tube angular-momentum rows rather than to a standalone point-particle spin inserted into the proton.
 
 ### Proton and Neutron as Color-Singlet Baryon Assemblies
@@ -1195,6 +1194,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f1acf7d0d19927d4)
+
 which gives net charge
 $$
 \frac{12-6}{6}e=+e
@@ -1212,6 +1212,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-13e321745905b9db)
+
 so the net charge is
 $$
 \frac{9-9}{6}e=0
@@ -1235,6 +1236,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a4fe2acddb657279)
+
 The second condition is the neutron's neutral axial inventory $(9\epsilon_+ + 9\epsilon_-)$; it cancels net charge but does not by itself prove that the first moment vanishes. For a declared neutron envelope scale $R_n$ and spin direction $\hat{\mathbf{J}}_n$, define the dimensionless CP-odd axial imbalance
 $$
 \vartheta_n
@@ -1339,6 +1341,7 @@ J=\frac{1}{2}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8f500787531a71d1)
+
 for the coupled color-singlet baryon assembly. Here $J$ names the total hadronic angular-momentum channel, not the spin of one isolated constituent. A useful standard-physics comparison is the proton-spin decomposition: the measured spin-$\tfrac{1}{2}$ nucleon is not explained by simply adding three valence-quark spin arrows.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the same bookkeeping pressure appears as three coupled contributions:
@@ -1374,6 +1377,7 @@ m_n-m_p
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-994ce4a6ba086d9e)
+
 where:
 
 - $\Delta E_{\text{down-up}}$ is the core/axial-layer energy shift from replacing one up-type branch with one down-type branch,
@@ -1426,11 +1430,7 @@ Those are now downstream derivations, not missing definitions.
 
 This chapter gives the first effective-level nuclear-binding picture for the nuclear branch. The reader should keep one distinction in view from the start: nuclear binding is not the same thing as opening the internal structure of a proton or neutron. Ordinary nuclear energy comes from rearranging a multi-nucleon assembly ledger, not from exposing the deeply shielded branch energy of the surviving nucleons.
 
-The purpose is to say what the binding ingredients are, what level of coarse-graining is being used, and what kinds of nuclear questions the shared language is meant to support before any precision model exists.
-
-### Purpose
-
-This chapter states the first effective-level nuclear-binding picture for $\mathbb{A}\mathbb{A}\mathbb{A}$. The aim is not yet a precision nuclear model. The aim is to define the binding ingredients clearly enough that deuteron-scale, alpha-scale, fission, fusion, and saturation questions can be posed in one shared language.
+The account is not yet a precision nuclear model. It defines the binding ingredients and coarse-graining level clearly enough that deuteron-scale, alpha-scale, fission, fusion, and saturation questions can be posed in one shared language.
 
 ### Binding-Energy Intuition
 
@@ -1438,7 +1438,7 @@ The traditional nuclear-binding curve compares how much energy is missing from a
 
 The core intuition is this: nature releases exposed nuclear energy when a reaction moves the nucleon inventory toward a cheaper assembly ledger. Light nuclei can release energy by joining into better-packed states. Very heavy nuclei can release energy by splitting into less overburdened daughter states. Both paths move toward the same total-energy basin.
 
-The plain-language picture is that a nucleus is not only a list of protons and neutrons. It is a packed nuclear assembly whose nucleons share short-range residual-strong corridors and polarize the surrounding Noether sea. Good packing lowers the total energy because the shared corridor and sea-polarization state is cheaper than the same nucleons held in less favorable arrangements. Bad packing raises the total energy because Coulomb repulsion, short-range exclusion, deformation, and shell mismatch leave energy in a stressed nuclear configuration.
+A nucleus is not only a list of protons and neutrons. It is a packed nuclear assembly whose nucleons share short-range residual-strong corridors and polarize the surrounding Noether sea. Good packing lowers the total energy because the shared corridor and sea-polarization state is cheaper than the same nucleons held in less favorable arrangements. Bad packing raises the total energy because Coulomb repulsion, short-range exclusion, deformation, and shell mismatch leave energy in a stressed nuclear configuration.
 
 Fusion releases energy on the light side of the curve because very light nuclei are under-bound. Bringing them together can create more favorable proton-neutron corridor sharing and a cheaper shared Noether sea polarization record, while Coulomb and exclusion costs are still manageable. The final nucleus has lower total energy than the separated reactants, so the difference must leave through reaction products, recoil, radiation, neutrinos when weak channels participate, or heating of the surrounding medium.
 
@@ -1535,6 +1535,7 @@ E_{\text{nuc}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3cd4f815f3736a71)
+
 with $A=Z+N$.
 
 Here:
@@ -1589,6 +1590,7 @@ V_{\text{res-strong}}(r)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6c62adeb884f6273)
+
 for separations in the nuclear window, with the attraction strongest where meson-like exchange is cheap but direct core overlap is still avoided.
 
 #### Short-range exclusion
@@ -1612,6 +1614,7 @@ V_{\text{Coul}}(r)\approx +\frac{e^2}{4\pi\epsilon_{\text{eff}}\,r}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9a4ce224fa6d1c9f)
+
 at effective level. Here $\epsilon_{\text{eff}}$ is an in-medium dressing of the observer-level $\epsilon_0$ response described in [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md), not the polarity unit $\epsilon=|e|/6$. Nuclear binding must therefore come from the residual strong and sea-polarization channels, not from any cancellation trick in the electric sector.
 
 #### Sea polarization
@@ -1637,12 +1640,14 @@ V_{\text{excl}}(r)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8eaaf6a3deb8ae12)
+
 where $c \in \{pp, pn, nn\}$ labels the two-nucleon channel and $V_{\text{Coul}}$ is present only in the $pp$ channel, with
 $$
 V_{\pi/\text{corr}}(r)+V_{\text{sea-pol}}(r)<0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d5ff97bc4d848a7b)
+
 through the binding window.
 
 This is enough structure to explain why nuclei are finite-sized bound objects rather than collapsed lumps or diffuse neutral gases.
@@ -1763,6 +1768,7 @@ n \to p + e^- + \bar\nu_e
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-53d27094f56b1c47)
+
 or by the proton-side channels, positron emission $p \to n + e^+ + \nu_e$ and electron capture $p + e^- \to n + \nu_e$, inside the bound environment.
 
 So a realistic nuclear theory here must eventually combine:
@@ -1809,11 +1815,11 @@ The division of labor is:
 
 ## Atomic Spectra
 
-This chapter records the working $\mathbb{A}\mathbb{A}\mathbb{A}$ picture of atomic spectra as resonance structure in the Noether sea rather than as a purely abstract orbital postulate. A spectral line is treated as a record of an assembly transition, a photon-channel event, and a local clock/rate conversion. The immediate goal is to identify which spectral constants and redshift effects should be read as medium-sensitive resonance data.
+This chapter treats atomic spectra as resonance structure in the Noether sea rather than as a purely abstract orbital postulate. A spectral line is a candidate record of an assembly transition, a photon-channel event, and a local clock/rate conversion. The central question is which spectral constants and redshift effects can be recovered as medium-sensitive resonance data.
 
-It should be read alongside [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Electron](../../../../markdown/aaa/assemblies/fermions/electron.md), [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Atomic Transition Radiation](../../../../markdown/aaa/reactions/atomic-transition-radiation.md), since the spectral shifts proposed here depend on local assembly structure, the effective clock/rate layer, and the photon-channel event record.
+The required components are developed in [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Electron](../../../../markdown/aaa/assemblies/fermions/electron.md), [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Atomic Transition Radiation](../../../../markdown/aaa/reactions/atomic-transition-radiation.md), because the proposed spectral shifts depend on local assembly structure, the effective clock/rate layer, and the photon-channel event record.
 
-The note is still exploratory, so the opening should be read as a compact program statement rather than as a closed derivation. The discipline is to keep the direction of explanation straight: recover the familiar orbital and spectral labels from the assembly and Noether sea record, rather than using those labels as if they were already the substrate mechanism.
+This account remains exploratory rather than a closed derivation. Familiar orbital and spectral labels must be recovered from the assembly and Noether sea record; they cannot be used as though they already supplied the substrate mechanism.
 
 Spin-sensitive spectral structure is downstream of the angular-momentum proof program. This chapter may use observer-level labels such as fine structure, spin-orbit structure, Zeeman splitting, and hyperfine splitting as recovery targets, but those labels must inherit the single-assembly angular-momentum ledger, ordered-frame spinor closure, and measurement-response model in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md). They are not independent derivations of spin.
 
@@ -2457,7 +2463,7 @@ In technical reading, the Hyde linework can be interpreted as layered semantic s
 
 ---
 
-### $\mathbb{A}\mathbb{A}\mathbb{A}$ Working Hypothesis Collection (Draft)
+### $\mathbb{A}\mathbb{A}\mathbb{A}$ Geometric-Periodicity Hypotheses
 
 The points below are collected as a framework-internal research program, not as established consensus chemistry.
 
@@ -2487,7 +2493,7 @@ The points below are collected as a framework-internal research program, not as 
 #### Predictions and Observables
 
 - If shell structure is a packing phenomenon, fixed-electron-count isoelectronic sequences should expose any systematic high-$Z$ residual after the declared relativistic, radiative, correlation, recoil, and finite-nuclear-size comparison terms are removed. Holding electron count fixed makes the proposed geometric contribution more discriminating than a raw walk through neutral-element ionization energies.
-- Candidate mechanism for the deviation: increasing nuclear mass steepens the local Noether sea density gradient, geometrically compressing core-region candidate braids and driving a declared indexed internal binary toward the field-speed threshold $v=c_f$. [A1 Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics) supplies the causal-root and stability meaning of that threshold. The taxonomy assigns no permanent binary to the role, so the candidate branch must declare the index and retained root ledger.
+- Candidate mechanism for the deviation: increasing nuclear mass steepens the local Noether sea density gradient, geometrically compressing core-region candidate braids and driving a declared indexed internal binary toward the field-speed threshold $v=c_f$. [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation) supplies the causal-root and stability meaning of that threshold. The taxonomy assigns no permanent binary to the role, so the candidate branch must declare the index and retained root ledger.
 - This proposed core-region geometric strain changes the effective shielding potential seen by candidate valence braids, producing measurable departures from standard relativistic-correction-only trends.
 
 #### Failure Modes and Falsification Criteria
@@ -2519,19 +2525,19 @@ Only after Neon stability and node discreteness are established should the progr
 
 ## Molecular Geometry
 
-This chapter states the molecular-geometry closure target within the assembly framework. Its purpose is to identify what molecular shape depends on in this ontology so the eventual detailed derivation has a stable launch point.
+This chapter states the molecular-geometry closure target within the assembly framework: a molecular shape must arise from atomic assemblies, directional bonding corridors, exclusion geometry, phase compatibility, and local Noether sea response.
 
 Start with the ordinary fact: molecules have repeatable shapes. Water is bent, carbon dioxide is linear, methane is tetrahedral, and those shapes come with repeatable bond lengths, bond angles, and vibration spectra. In $\mathbb{A}\mathbb{A}\mathbb{A}$, those patterns are not imported as orbital pictures that already explain themselves. They are targets that the assembly, corridor, exclusion, phase, and Noether sea response story has to recover.
 
-The simple version is that a molecule finds a stable arrangement only when its bonding corridors can share wake structure, avoid incompatible exclusion, keep phase-compatible resonances, and sit in a local Noether sea response that does not tear the arrangement apart.
+A molecule finds a stable arrangement only when its bonding corridors can share wake structure, avoid incompatible exclusion, keep phase-compatible resonances, and sit in a local Noether sea response that does not tear the arrangement apart.
 
-It should be connected to [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), and [Molecular Exclusion and Noether Sea Response](../../../../markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md), which together supply the atomic constituents, resonance behavior, medium response, and exclusion geometry that molecular shapes must reconcile.
+The required atomic constituents, resonance behavior, medium response, and exclusion geometry are developed in [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), and [Molecular Exclusion and Noether Sea Response](../../../../markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md).
 
 Spin and Pauli language in this chapter is downstream of [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) and [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md). Molecular singlet/triplet labels, bonding selection rules, electron-pair exclusion, and orbital-hybridization language should be treated as validation targets for those lower proofs, not as separate explanations.
 
-### Purpose
+### Derivation Boundary
 
-This chapter states the first working closure target for molecular geometry in $\mathbb{A}\mathbb{A}\mathbb{A}$. It does not yet derive molecular shape from the master equation. It fixes the ingredients that a later derivation must combine.
+The master equation has not yet been shown to produce molecular shape. A successful derivation must combine the ingredients below without importing orbital templates as substrate causes.
 
 ### Framing
 
@@ -2632,11 +2638,11 @@ For spin-sensitive chemistry, the later derivation should recover singlet/triple
 
 ## Condensed Matter
 
-This chapter states the condensed-matter closure target for medium-level behavior in the Noether sea. Its current focus is Noether sea transport: the distinction between reversible inertial response, true resistance, and threshold behavior when matter moves through a densely coupled background of neutral Noether braids.
+This chapter states the condensed-matter closure target for medium-level behavior in the Noether sea. It focuses on Noether sea transport: the distinction between reversible inertial response, true resistance, and threshold behavior when matter moves through a densely coupled background of neutral Noether braids.
 
 This note bridges [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), and [Molecular Exclusion and Noether Sea Response](../../../../markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md), since all four depend on how the Noether sea stores stress and permits transport.
 
-At present this is a closure target rather than a finished derivation. The residual and its critical value must still be extracted from stable assembly dynamics, Noether sea constitutive response, and the relevant stability diagnostics.
+The transport account is a closure target rather than a finished derivation. Its residual and critical value must still be extracted from stable assembly dynamics, Noether sea constitutive response, and the relevant stability diagnostics.
 
 ### Noether Sea Transport
 
@@ -3044,6 +3050,7 @@ Q:\Omega\setminus D\longrightarrow\mathcal{Q}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f28384fbdf809f56)
+
 be an observer-level order-parameter map for a material region with defect set $D$ and target space $\mathcal{Q}$. A loop $\gamma$ around a line defect may then carry a homotopy label
 $$
 \mathcal{I}_\gamma
@@ -3062,6 +3069,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-91e5a7da1acb8027)
+
 These are recovery or comparison objects. They do not replace the architrino, causal-wake, or Noether sea branch records that must generate the effective material description.
 
 The transport consequence is a gap rule. A stable branch may deform, strain, or retune without changing its defect label while the relevant stability gap remains open:
@@ -3072,6 +3080,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5a29e240f1fbea66)
+
 for branch-preserving perturbations. If a material event changes the topological label, creates a vortex or dislocation, unbinds a defect pair, or opens an edge mode, the event has crossed a branch threshold. In the condensed-matter closure target that means
 $$
 \Delta\mathcal{I}_\gamma\ne0
@@ -3082,6 +3091,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-47b7f6e464fe79fc)
+
 Below that threshold the response remains reversible retuning or coherent transport. Above it, the energy and momentum ledger must route the event through lattice excitation, surface transport, heating, radiation-like shedding, boundary exchange, or structural transition.
 
 ### Hall and Topological Response Benchmarks
@@ -3488,6 +3498,6 @@ The source term enforces the no-new-iron guardrail, the segregation and phase te
 
 #### Threshold Crossing and Failure Modes
 
-Crossing $\mathcal{R}_{\text{tr},*}$ is the point at which reversible transport stops being the adequate description. Above threshold, some transported energy or action must route into an explicit channel: medium excitation, radiation-like transport, local heating, action shedding, or branch transition. For the dynamical bookkeeping of those channels, see [Energy](../../../../markdown/aaa/dynamics/energy.md) and [A1 Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics).
+Crossing $\mathcal{R}_{\text{tr},*}$ is the point at which reversible transport stops being the adequate description. Above threshold, some transported energy or action must route into an explicit channel: medium excitation, radiation-like transport, local heating, action shedding, or branch transition. For the dynamical bookkeeping of those channels, see [Energy](../../../../markdown/aaa/dynamics/energy.md) and [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation).
 
 The main failure modes are therefore sharp. If $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$ still produces ordinary dissipative drag in stable atoms, the framework loses chemical stability. If $\mathcal{R}_{\text{tr}} > \mathcal{R}_{\text{tr},*}$ occurs without a logged excitation, radiation, heating, or branch-transition channel, the energy ledger is incomplete. If the threshold cannot be expressed in terms of assembly motion, local Noether sea state, medium response, and stability gap data, the medium-transport picture has not matured into a usable transport closure.
