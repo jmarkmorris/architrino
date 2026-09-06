@@ -42,6 +42,16 @@ function sha256(parts) {
   return hash.digest("hex");
 }
 
+// Environment for child checks. Git exports GIT_DIR, GIT_WORK_TREE, and
+// GIT_INDEX_FILE to hooks; a child that runs `git init` or `git config` in a
+// temporary directory would otherwise act on this repository.
+const REPO_SCOPED_GIT_VARIABLES = ["GIT_DIR", "GIT_WORK_TREE", "GIT_INDEX_FILE", "GIT_PREFIX", "GIT_COMMON_DIR", "GIT_OBJECT_DIRECTORY", "GIT_ALTERNATE_OBJECT_DIRECTORIES", "GIT_NAMESPACE"];
+function childEnvironment(env = process.env) {
+  const child = { ...env };
+  for (const name of REPO_SCOPED_GIT_VARIABLES) delete child[name];
+  return child;
+}
+
 function runGit(args, { cwd, encoding = "utf8" }) {
   const result = spawnSync("git", args, {
     cwd,
@@ -253,7 +263,7 @@ export function runValidationCommands({
     console.log(`[pr-validation] running ${command.name}...`);
     const result = spawnSync(process.execPath, command.args, {
       cwd,
-      env: process.env,
+      env: childEnvironment(),
       stdio: "inherit",
     });
     if (result.error) {

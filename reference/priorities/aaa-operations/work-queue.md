@@ -4,13 +4,13 @@ This is the canonical execution ledger for repo-wide deployment, hosting, cost, 
 
 ## Ranked Next Objects
 
-1. `layout_pass_digest_pin_attribution` — [OPS-018](#ops-018--layout-pass-digest-pin-attribution). Status: `Queued`.
-2. `layout_pass_digest_pin_repair` — [OPS-019](#ops-019--layout-pass-digest-pin-repair). Status: `Queued`, blocked by OPS-018.
-3. `agent_guidance_surface_consolidation` — [OPS-014](#ops-014--agent-guidance-surface-consolidation). Status: `Queued`.
-4. `reference_equation_mapping_surface` — [OPS-016](#ops-016--reference-equation-mapping-surface). Status: `Queued`.
-5. `release_gate_profile_coverage` — [OPS-020](#ops-020--release-gate-profile-coverage). Status: `Queued`, all three questions decided; closes when OPS-017's receipt capture and the two implementation rows below land.
-6. `content_integrity_runner_report_and_continue` — [OPS-021](#ops-021--content-integrity-runner-report-and-continue). Status: `Awaiting verification`; implemented, needs one full aggregate run on the operator's machine.
-7. `pr_gate_test_sweep_duration_split` — [OPS-022](#ops-022--pr-gate-test-sweep-by-duration-split). Status: `In progress`; installed as reporting, needs the Mac wall time and a green sweep before promotion.
+1. `content_integrity_runner_report_and_continue` — [OPS-021](#ops-021--content-integrity-runner-report-and-continue). Status: `In progress`.
+2. `pr_gate_test_sweep_duration_split` — [OPS-022](#ops-022--pr-gate-test-sweep-by-duration-split). Status: `In progress`; installed as reporting.
+3. `layout_pass_digest_pin_attribution` — [OPS-018](#ops-018--layout-pass-digest-pin-attribution). Status: `Queued`; demoted 2026-09-06, scope now nine digest files and the gate reports rather than halts on them.
+4. `layout_pass_digest_pin_repair` — [OPS-019](#ops-019--layout-pass-digest-pin-repair). Status: `Queued`, blocked by OPS-018.
+5. `release_gate_profile_coverage` — [OPS-020](#ops-020--release-gate-profile-coverage). Status: `Queued`, all three questions decided.
+6. `agent_guidance_surface_consolidation` — [OPS-014](#ops-014--agent-guidance-surface-consolidation). Status: `Queued`.
+7. `reference_equation_mapping_surface` — [OPS-016](#ops-016--reference-equation-mapping-surface). Status: `Queued`.
 
 ## Queued task records
 
@@ -45,7 +45,26 @@ What remains is therefore narrower than the row above describes: the digest-rela
 
 One caution earned on 2026-09-06: an attempt to enumerate pins by scanning JSON for a path field beside a 64-hex field produced 393 false positives, because `assembly-registry.v1.json` pairs a path with `modelRevisionSha256`, which hashes a model revision rather than the file at that path. Do not enumerate pins by shape. Enumerate them from assertions that actually fail, which is the only ground truth available.
 
-- **Evidence / blocker:** The rewrite counts, modified-file counts, partial sweep results, and the three traced attributions are `measured` on 2026-09-05 and 2026-09-06. That the remaining digest failures are caused by the layout pass is `guessed`; the traced sample is three, split two-to-one, and does not generalize. No blocker remains for attribution itself; running the Python suites and the owned-compute test still needs the operator's machine.
+#### Full sweep run and classified, 2026-09-06
+
+`node scripts/run-test-sweep.mjs` completed in a sandbox: 2,267 assertions, 2,091 passing, 168 failing across **55 distinct test files**. Classifying every failure block by its error text gives:
+
+| Cause | Files |
+| --- | ---: |
+| Other, including the routed module-resolution failures | 37 |
+| Digest mismatch | 9 |
+| Missing shared venv or Python module | 5 |
+| Analytical methodology coverage gate | 4 |
+
+The four methodology-gate files all fail on the **same** pin, `methodology hash 611b89ce…`, which is the already-traced pre-existing failure from `c973402b9`. They are one defect, not four.
+
+So the true remaining scope of this row is **nine digest files**: `archie-service-contracts`, `archie-service-source-index-snapshot`, `borg-eom-migration`, `f5-enclosed-root-prefix`, `f5-independent-interpolation-enclosure`, `f5-phase-varying-campaign-spec`, `f6c-parent-emission-refinement-pilot`, `prescribed-response-pilot-entry`, and `subfield-circular-root-rung`. Every one is a braid, EOM, or Archie-service test; none is in a lane the layout pass filed.
+
+That last observation is the reason to expect this row to close small. Two of the nine name their pinned inputs as quoted paths, and both were last modified by `f6954f91d` and `897fe1aa7`, neither of which is a layout-pass commit. Grade: `inferred`, on a sample of two. The remaining seven construct their inputs and need the `git show` walk per pin.
+
+Method note, twice earned on 2026-09-06. A TAP extraction keyed on `not ok … - tests/…` found only 19 files, because most failures are reported as subtests whose file appears in a `location:` field; and a parser that stopped at `location:` classified all 55 as "other", because `error:` follows `location:` in the YAML block. Validate any such extractor against a failure whose text you already know before trusting its totals.
+
+- **Evidence / blocker:** The sweep totals, the 55-file classification, and the two attributed inputs are `measured` on 2026-09-06 by the commands named above. That the nine digest failures are pre-existing rather than caused by the layout pass is `inferred` from a sample of two and the observation that none sits in a filed lane; it is not established. Falsifier: a `git show` walk showing any of the nine pins last matched at a layout-pass commit. No blocker remains for attribution; running the Python suites and the owned-compute test still needs the operator's machine.
 - **Completion:** Every failing digest assertion in the full suites carries a verdict supported by a run at both commits, and the list is recorded here or in the AAA work threads log.
 
 ### OPS-019 — Layout-pass digest-pin repair

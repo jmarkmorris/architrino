@@ -165,13 +165,23 @@ const suiteStartedAt = performance.now();
 const failures = [];
 const reportingFailures = [];
 
+// Environment for child checks. Git exports GIT_DIR, GIT_WORK_TREE, and
+// GIT_INDEX_FILE to hooks; a child that runs `git init` or `git config` in a
+// temporary directory would otherwise act on this repository.
+const REPO_SCOPED_GIT_VARIABLES = ["GIT_DIR", "GIT_WORK_TREE", "GIT_INDEX_FILE", "GIT_PREFIX", "GIT_COMMON_DIR", "GIT_OBJECT_DIRECTORY", "GIT_ALTERNATE_OBJECT_DIRECTORIES", "GIT_NAMESPACE"];
+function childEnvironment(env = process.env) {
+  const child = { ...env };
+  for (const name of REPO_SCOPED_GIT_VARIABLES) delete child[name];
+  return child;
+}
+
 for (const [index, check] of CHECKS.entries()) {
   const label = `${index + 1}/${CHECKS.length} ${check.name}`;
   console.log(`[content-integrity] ${label}`);
   const checkStartedAt = performance.now();
   const result = spawnSync(process.execPath, check.args, {
     cwd: ROOT_DIR,
-    env: process.env,
+    env: childEnvironment(),
     stdio: "inherit",
   });
   const duration = formatDuration(performance.now() - checkStartedAt);

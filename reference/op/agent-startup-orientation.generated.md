@@ -79,9 +79,9 @@ A source hash change means this target should be regenerated and then skimmed fo
 | --- | ---: | --- |
 | [AGENTS.md](../../AGENTS.md) | 155 | `b00f529efd0b6874` |
 | [README.md](../../README.md) | 220 | `81b723567a77aae0` |
-| [.githooks/pre-commit](../../.githooks/pre-commit) | 18 | `5b7d5ce00a0dd374` |
-| [.githooks/pre-push](../../.githooks/pre-push) | 32 | `503be17940e797bd` |
-| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 175 | `f2c36f33972d8d74` |
+| [.githooks/pre-commit](../../.githooks/pre-commit) | 24 | `ea8da8bb87d4206f` |
+| [.githooks/pre-push](../../.githooks/pre-push) | 38 | `3666ac9286628a8e` |
+| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 229 | `c37d06f38b894abc` |
 | [reference/op/brainstorming.md](brainstorming.md) | 372 | `68538b0ae0daabdd` |
 | [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 188 | `8d7d70ef5b1b6ab3` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 190 | `2c685c5e25ca8643` |
