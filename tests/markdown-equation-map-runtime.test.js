@@ -59,7 +59,7 @@ test("Equation Mapping renders the standard Back icon as a return link only for 
   }
 });
 
-test("return navigation belongs at the start of the subject header, not in the right-hand controls", () => {
+test("return navigation belongs at the start of the subject header, and a collapsed rail hides the search body", () => {
   const context = {
     document: { createElement: element },
     window: { location: { href: createEquationMappingLaunchHref({ currentHref, semanticId, sourcePath }) } },
@@ -68,13 +68,13 @@ test("return navigation belongs at the start of the subject header, not in the r
     navigationView: "key",
     getVisibleDocumentList: () => [],
     renderReturnLink() { return EquationMappingRuntime.prototype.renderReturnLink.call(this); },
-    renderIconButton: () => element("button"),
     activeDocument: { promoted: false },
   };
   const index = EquationMappingRuntime.prototype.renderSubjectIndex.call(context);
   assert.ok(index.children[0].children[0].className.includes("equation-mapping-return-link"));
-  const controls = EquationMappingRuntime.prototype.renderControls.call(context);
-  assert.equal(controls.children.some(child => child.tagName === "A"), false);
+  // The equation search field lives in the index body, so a collapsed rail must
+  // not expose it.
+  assert.equal(index.children[1].hidden, true);
 });
 
 test("Master Equation is the first sidebar item without removing or duplicating its normal record", () => {

@@ -9,20 +9,10 @@ import {
   getCanvasColorById,
   normalizeBackgroundId,
   normalizeCommentFontSize,
-  normalizeEquationMapDocument,
   normalizeEquationMapDocuments,
   normalizeEquationScale,
 } from "./EquationMappingData.js";
 import { renderEquationSidebar, revealEquationInSidebar } from "./EquationMappingSidebar.js";
-import {
-  createEditableEquationMapDocument,
-  createEquationAnchor,
-  createEquationOverlay,
-  getFormulaPartTeXForAnchor,
-  getOverlayContentDraft,
-  updateEquationAnchor,
-  updateEquationOverlay,
-} from "./EquationMappingEditor.js";
 import {
   createEquationMapSemanticId,
   resolveEquationMapDocumentId,
@@ -34,7 +24,9 @@ import { createEquationMappingSymbolTooltip } from "./EquationMappingSymbolToolt
 
 const SETTINGS_STORAGE_KEY = "architrino.equationMapping.settings.v7";
 const SIZE_CALIBRATION_VERSION = 3;
-const DOCUMENTS_STORAGE_KEY = "architrino.equationMapping.documents.v1";
+const CONTROL_STRIP_TITLE_GAP_PX = 16;
+const SETTINGS_ACTION_ID = "equation-mapping-settings-toggle";
+const SETTINGS_PANEL_ID = "equation-mapping-settings-panel";
 const SVG_NS = "http://www.w3.org/2000/svg";
 const EQUATION_AUTO_FIT_MIN_FONT_SIZE = Object.freeze({
   small: 11,
@@ -758,60 +750,18 @@ function replaceLocationHashForDocument(windowLike, document) {
   windowLike.location.hash = nextHash;
 }
 
+// Only the carousel chevrons and the return link draw their own icons. Every
+// top-right control icon belongs to the canonical top control bar; duplicating
+// its markup here is what produced two identical, differently behaving
+// magnifiers in the corner.
 function createIconSvg(name) {
   switch (name) {
-    case "search":
-      return '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="15.5" y1="15.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
-    case "settings":
-      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.2 2h-.4a2 2 0 0 0-2 2v.2a2 2 0 0 1-1 1.7l-.4.2a2 2 0 0 1-2 0l-.2-.1a2 2 0 0 0-2.7.7l-.2.4A2 2 0 0 0 4 9.8l.2.1a2 2 0 0 1 1 1.7v.6a2 2 0 0 1-1 1.7l-.2.1a2 2 0 0 0-.7 2.7l.2.4a2 2 0 0 0 2.7.7l.2-.1a2 2 0 0 1 2 0l.4.2a2 2 0 0 1 1 1.7v.4a2 2 0 0 0 2 2h.4a2 2 0 0 0 2-2v-.2a2 2 0 0 1 1-1.7l.4-.2a2 2 0 0 1 2 0l.2.1a2 2 0 0 0 2.7-.7l.2-.4a2 2 0 0 0-.7-2.7l-.2-.1a2 2 0 0 1-1-1.7v-.6a2 2 0 0 1 1-1.7l.2-.1a2 2 0 0 0 .7-2.7l-.2-.4a2 2 0 0 0-2.7-.7l-.2.1a2 2 0 0 1-2 0l-.4-.2a2 2 0 0 1-1-1.7V4a2 2 0 0 0-2-2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
-    case "edit":
-      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4.5L19 9.5 14.5 5 4 15.5V20Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m13.5 6 4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
     case "previous":
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 5 8 12 15 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     case "next":
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 5 16 12 9 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     default:
       return "";
-  }
-}
-
-function readSavedDocuments(windowLike) {
-  try {
-    const value = windowLike?.localStorage?.getItem?.(DOCUMENTS_STORAGE_KEY);
-    return value ? normalizeEquationMapDocuments(JSON.parse(value)) : null;
-  } catch {
-    return null;
-  }
-}
-
-function mergeSeedAndSavedDocuments(seedDocuments, savedDocuments) {
-  if (!Array.isArray(savedDocuments) || savedDocuments.length === 0) {
-    return seedDocuments;
-  }
-  const savedById = new Map(savedDocuments.map((document) => [document.id, document]));
-  const mergedDocuments = seedDocuments.map((seedDocument) => savedById.get(seedDocument.id) ?? seedDocument);
-  const seedIds = new Set(seedDocuments.map((document) => document.id));
-  savedDocuments.forEach((document) => {
-    if (!seedIds.has(document.id)) {
-      mergedDocuments.push(document);
-    }
-  });
-  return mergedDocuments;
-}
-
-function saveDocuments(windowLike, documents) {
-  try {
-    windowLike?.localStorage?.setItem?.(DOCUMENTS_STORAGE_KEY, JSON.stringify(documents));
-  } catch {
-    // Browser-local draft documents are optional for file and test contexts.
-  }
-}
-
-function clearSavedDocuments(windowLike) {
-  try {
-    windowLike?.localStorage?.removeItem?.(DOCUMENTS_STORAGE_KEY);
-  } catch {
-    // Browser-local draft documents are optional for file and test contexts.
   }
 }
 
@@ -823,11 +773,9 @@ export class EquationMappingRuntime {
   constructor(options = {}) {
     this.document = options.document ?? globalThis.document;
     this.window = options.window ?? globalThis.window;
-    const seedDocuments = createSeedEquationMapDocuments();
-    const savedDocuments = options.documents == null ? readSavedDocuments(this.window) : null;
-    this.documents = normalizeEquationMapDocuments(
-      options.documents ?? mergeSeedAndSavedDocuments(seedDocuments, savedDocuments)
-    );
+    // The corpus is the only authority for equation-map content. The app reads it
+    // and never writes it back, so there is no browser-local document draft.
+    this.documents = normalizeEquationMapDocuments(options.documents ?? createSeedEquationMapDocuments());
     const savedSettings = readSavedSettings(this.window);
     const requestedDocumentId =
       options.initialDocumentId ||
@@ -873,8 +821,12 @@ export class EquationMappingRuntime {
       this.revealSidebarSelection = true;
     }
     this.settingsOpen = false;
-    this.editorOpen = false;
-    this.referencePanelOpen = false;
+    // The symbols and source rail mirrors the equations rail on the left: it is
+    // always present and collapses to an icon-width strip, so source context
+    // stays reachable on an equation that defines no symbols.
+    this.referenceCollapsed = Boolean(
+      options.referenceCollapsed ?? savedSettings.referenceCollapsed ?? true
+    );
     this.globalSearchOpen = false;
     this.activeSymbolId = this.activeDocument.symbols[0]?.id ?? "";
     this.searchQuery = "";
@@ -911,6 +863,9 @@ export class EquationMappingRuntime {
     if (!navigationHost) {
       throw new Error("Missing #scene-hud-tools");
     }
+    // Canvas settings joins the canonical strip as an extension action, in the
+    // accepted shared order, so the page presents one row of controls instead
+    // of a private second row beneath it.
     this.navigationRuntime = createStandaloneAppNavigationRuntime({
       host: navigationHost,
       document: this.document,
@@ -920,11 +875,24 @@ export class EquationMappingRuntime {
           this.globalSearchOpen = isOpen;
           if (isOpen) {
             this.settingsOpen = false;
-            this.editorOpen = false;
           }
           this.render();
         },
       },
+      extensionActions: [
+        {
+          kind: "settings",
+          id: SETTINGS_ACTION_ID,
+          label: "Canvas settings",
+          title: "Canvas settings",
+          controls: SETTINGS_PANEL_ID,
+          pressed: false,
+          onActivate: () => {
+            this.settingsOpen = !this.settingsOpen;
+            this.render();
+          },
+        },
+      ],
     }).init();
     this.handleResize = () => {
       this.symbolTooltip?.hide();
@@ -958,51 +926,9 @@ export class EquationMappingRuntime {
       commentFontSize: this.commentFontSize,
       sizeCalibrationVersion: SIZE_CALIBRATION_VERSION,
       indexCollapsed: this.indexCollapsed,
+      referenceCollapsed: this.referenceCollapsed,
       expandedSubjectIds: [...this.expandedSubjectIds],
     });
-  }
-
-  persistDocuments() {
-    saveDocuments(this.window, this.documents);
-  }
-
-  replaceActiveDocument(nextDocument, nextState = {}) {
-    const currentIndex = Math.max(
-      this.documents.findIndex((document) => document.id === this.activeDocument.id),
-      0
-    );
-    const normalizedDocument = normalizeEquationMapDocument(nextDocument, currentIndex);
-    this.documents = this.documents.map((document, index) => (index === currentIndex ? normalizedDocument : document));
-    this.activeDocumentId = normalizedDocument.id;
-    this.activeAnchorId =
-      nextState.activeAnchorId && normalizedDocument.anchors.some((anchor) => anchor.id === nextState.activeAnchorId)
-        ? nextState.activeAnchorId
-        : normalizedDocument.anchors.find((anchor) => anchor.id === this.activeAnchorId)?.id ?? normalizedDocument.anchors[0]?.id ?? "";
-    this.activeOverlayId =
-      nextState.activeOverlayId && normalizedDocument.overlays.some((overlay) => overlay.id === nextState.activeOverlayId)
-        ? nextState.activeOverlayId
-        : normalizedDocument.overlays.find((overlay) => overlay.id === this.activeOverlayId)?.id ??
-          normalizedDocument.overlays[0]?.id ??
-          "";
-    this.persistDocuments();
-    this.persistSettings();
-    this.render();
-  }
-
-  resetDocumentDrafts() {
-    clearSavedDocuments(this.window);
-    this.documents = createSeedEquationMapDocuments();
-    this.activeDocumentId =
-      this.documents.find((document) => document.id === DEFAULT_EQUATION_MAP_DOCUMENT_ID)?.id ?? this.documents[0].id;
-    this.activeAnchorId = this.activeDocument.anchors[0]?.id ?? "";
-    this.activeOverlayId = this.activeDocument.overlays[0]?.id ?? "";
-    this.expandedSubjectIds = new Set();
-    this.expandedChapterIds = new Set();
-    this.expandedSectionIds = new Set();
-    this.navigationView = "key";
-    this.searchQuery = "";
-    this.persistSettings();
-    this.render();
   }
 
   setActiveDocument(documentId) {
@@ -1014,7 +940,6 @@ export class EquationMappingRuntime {
     this.activeAnchorId = nextDocument.anchors[0]?.id ?? "";
     this.activeOverlayId = nextDocument.overlays[0]?.id ?? "";
     this.activeSymbolId = nextDocument.symbols[0]?.id ?? "";
-    if (!nextDocument.promoted) this.editorOpen = false;
     revealEquationInSidebar(this, nextDocument);
     this.revealSidebarSelection = true;
     replaceLocationHashForDocument(this.window, nextDocument);
@@ -1032,7 +957,6 @@ export class EquationMappingRuntime {
     this.activeAnchorId = nextDocument.anchors[0]?.id ?? "";
     this.activeOverlayId = nextDocument.overlays[0]?.id ?? "";
     this.activeSymbolId = nextDocument.symbols[0]?.id ?? "";
-    if (!nextDocument.promoted) this.editorOpen = false;
     revealEquationInSidebar(this, nextDocument, { all: true });
     this.indexCollapsed = false;
     this.searchQuery = "";
@@ -1110,64 +1034,6 @@ export class EquationMappingRuntime {
     this.render();
   }
 
-  setActiveAnchor(anchorId) {
-    if (!this.activeDocument.anchors.some((anchor) => anchor.id === anchorId)) {
-      return;
-    }
-    this.activeAnchorId = anchorId;
-    this.persistSettings();
-    this.render();
-  }
-
-  addAnchor() {
-    const nextDocument = createEquationAnchor(this.activeDocument);
-    const activeAnchorId = nextDocument.anchors[nextDocument.anchors.length - 1]?.id ?? "";
-    this.replaceActiveDocument(nextDocument, { activeAnchorId });
-  }
-
-  applyAnchorEdit(sectionElement) {
-    const activeAnchor = this.activeAnchor;
-    if (!activeAnchor) {
-      return;
-    }
-    const nextDocument = updateEquationAnchor(this.activeDocument, activeAnchor.id, {
-      label: sectionElement.querySelector('[name="anchor-label"]')?.value,
-      searchText: sectionElement.querySelector('[name="anchor-search-text"]')?.value,
-      tex: sectionElement.querySelector('[name="anchor-tex"]')?.value,
-    });
-    this.replaceActiveDocument(nextDocument, { activeAnchorId: activeAnchor.id });
-  }
-
-  addOverlay() {
-    const nextDocument = createEquationOverlay(this.activeDocument, {
-      targetAnchorId: this.activeAnchor?.id,
-    });
-    const activeOverlayId = nextDocument.overlays[nextDocument.overlays.length - 1]?.id ?? "";
-    this.replaceActiveDocument(nextDocument, { activeOverlayId });
-  }
-
-  applyOverlayEdit(sectionElement) {
-    const activeOverlay = this.activeOverlay;
-    if (!activeOverlay) {
-      return;
-    }
-    const nextDocument = updateEquationOverlay(this.activeDocument, activeOverlay.id, {
-      title: sectionElement.querySelector('[name="overlay-title"]')?.value,
-      targetAnchorId: sectionElement.querySelector('[name="overlay-target"]')?.value,
-      text: sectionElement.querySelector('[name="overlay-text"]')?.value,
-      mathTex: sectionElement.querySelector('[name="overlay-math"]')?.value,
-      position: {
-        x: sectionElement.querySelector('[name="overlay-x"]')?.value,
-        y: sectionElement.querySelector('[name="overlay-y"]')?.value,
-        width: sectionElement.querySelector('[name="overlay-width"]')?.value,
-      },
-    });
-    this.replaceActiveDocument(nextDocument, {
-      activeAnchorId: sectionElement.querySelector('[name="overlay-target"]')?.value,
-      activeOverlayId: activeOverlay.id,
-    });
-  }
-
   render() {
     this.symbolTooltip?.hide();
     this.symbolTooltip = null;
@@ -1175,10 +1041,17 @@ export class EquationMappingRuntime {
     this.overlayElements = new Map();
     this.root.textContent = "";
     this.root.append(this.renderShell());
+    this.navigationRuntime?.update?.({ settings: { pressed: this.settingsOpen && !this.globalSearchOpen } });
     this.scheduleEquationLayout();
     if (this.revealSidebarSelection) {
       this.revealSidebarSelection = false;
       this.root.querySelector?.(".equation-mapping-index-groups .is-active")?.scrollIntoView?.({ block: "nearest" });
+    }
+    if (this.revealReferenceSelection) {
+      this.revealReferenceSelection = false;
+      this.root
+        .querySelector?.(".equation-mapping-reference-body .equation-mapping-symbol-definition.is-active")
+        ?.scrollIntoView?.({ block: "nearest" });
     }
   }
 
@@ -1186,10 +1059,11 @@ export class EquationMappingRuntime {
     const shell = createElement(this.document, "div", "equation-mapping-shell");
     shell.dataset.background = this.backgroundId;
     shell.dataset.indexCollapsed = this.indexCollapsed ? "true" : "false";
+    shell.dataset.referenceCollapsed = this.referenceCollapsed ? "true" : "false";
     shell.dataset.equationScale = this.equationScale;
     shell.dataset.commentFontSize = this.commentFontSize;
     shell.style.setProperty("--equation-mapping-background", getCanvasColorById(this.backgroundId).color);
-    shell.append(this.renderSubjectIndex(), this.renderCanvas());
+    shell.append(this.renderSubjectIndex(), this.renderCanvas(), this.renderReferenceRail());
     return shell;
   }
 
@@ -1224,6 +1098,10 @@ export class EquationMappingRuntime {
       },
       onChange: () => this.persistSettings(),
     });
+    // The equation search field lives in this body. A collapsed rail must not
+    // present it, so hide the body from the accessibility tree and the focus
+    // order rather than relying on a stylesheet rule alone.
+    body.hidden = this.indexCollapsed;
     index.append(header, body);
     return index;
   }
@@ -1240,7 +1118,7 @@ export class EquationMappingRuntime {
 
   renderCanvas() {
     const canvas = createElement(this.document, "main", "equation-mapping-canvas");
-    canvas.append(this.renderControls(), this.renderEquationCarousel(), this.renderStage());
+    canvas.append(this.renderPanelLayer(), this.renderEquationCarousel(), this.renderStage());
     return canvas;
   }
 
@@ -1286,175 +1164,22 @@ export class EquationMappingRuntime {
     return link;
   }
 
-  renderControls() {
-    const controls = createElement(this.document, "div", "equation-mapping-controls");
-    controls.hidden = this.globalSearchOpen;
-    controls.append(
-      this.renderIconButton("search", "Search equations", () => {
-        this.indexCollapsed = false;
-        this.settingsOpen = false;
-        this.editorOpen = false;
-        this.render();
-        this.root.querySelector(".equation-mapping-search-input")?.focus();
-      }),
-      this.renderIconButton("settings", "Canvas settings", () => {
-        this.settingsOpen = !this.settingsOpen;
-        this.editorOpen = false;
-        this.render();
-      }, this.settingsOpen)
-    );
-    if (this.activeDocument.promoted) {
-      const settingsButton = controls.lastChild;
-      controls.insertBefore(
-        this.renderIconButton("edit", "Edit map", () => {
-          this.editorOpen = !this.editorOpen;
-          this.settingsOpen = false;
-          this.render();
-        }, this.editorOpen),
-        settingsButton
-      );
+  // The canonical top control bar owns every top-right button on this page,
+  // including Canvas settings. This layer only positions the panel that the
+  // shared settings action opens, so the app never renders a second icon row.
+  renderPanelLayer() {
+    const layer = createElement(this.document, "div", "equation-mapping-panel-layer");
+    const panelOpen = this.settingsOpen && !this.globalSearchOpen;
+    layer.hidden = !panelOpen;
+    if (panelOpen) {
+      layer.append(this.renderSettingsPanel());
     }
-    if (this.editorOpen) {
-      controls.append(this.renderEditorPanel());
-    }
-    if (this.settingsOpen) {
-      controls.append(this.renderSettingsPanel());
-    }
-    return controls;
-  }
-
-  renderIconButton(iconName, label, onClick, active = false) {
-    const button = createElement(this.document, "button", "equation-mapping-icon-button");
-    button.type = "button";
-    button.title = label;
-    button.setAttribute("aria-label", label);
-    button.setAttribute("aria-pressed", active ? "true" : "false");
-    button.classList.toggle("is-active", active);
-    button.innerHTML = createIconSvg(iconName);
-    button.addEventListener("click", onClick);
-    return button;
-  }
-
-  renderEditorPanel() {
-    const panel = createElement(this.document, "section", "equation-mapping-popover equation-mapping-editor-panel");
-    panel.setAttribute("aria-label", "Edit equation map");
-    const header = createElement(this.document, "header", "equation-mapping-editor-panel-header");
-    header.append(createElement(this.document, "strong", "", "Edit map"));
-    const resetButton = this.renderEditorAction("Reset draft", () => this.resetDocumentDrafts(), "secondary");
-    header.append(resetButton);
-    panel.append(header, this.renderAnchorEditor(), this.renderOverlayEditor());
-    return panel;
-  }
-
-  renderAnchorEditor() {
-    const section = createElement(this.document, "section", "equation-mapping-editor-section");
-    const header = createElement(this.document, "header", "equation-mapping-editor-section-header");
-    header.append(createElement(this.document, "strong", "", "Formula sections"));
-    header.append(this.renderEditorAction("Add section", () => this.addAnchor()));
-    const activeAnchor = this.activeAnchor;
-    const selector = this.renderEditorSelect(
-      "Section",
-      "anchor-select",
-      activeAnchor?.id ?? "",
-      this.activeDocument.anchors.map((anchor) => ({ value: anchor.id, label: anchor.label }))
-    );
-    selector.querySelector("select")?.addEventListener("change", (event) => this.setActiveAnchor(event.target.value));
-    const fields = createElement(this.document, "div", "equation-mapping-editor-grid");
-    fields.append(
-      this.renderEditorInput("Label", "anchor-label", activeAnchor?.label ?? ""),
-      this.renderEditorInput("Formula", "anchor-tex", getFormulaPartTeXForAnchor(this.activeDocument, activeAnchor?.id)),
-      this.renderEditorInput("Search text", "anchor-search-text", activeAnchor?.searchText ?? "")
-    );
-    const actions = createElement(this.document, "div", "equation-mapping-editor-actions");
-    actions.append(this.renderEditorAction("Apply section", () => this.applyAnchorEdit(section)));
-    section.append(header, selector, fields, actions);
-    return section;
-  }
-
-  renderOverlayEditor() {
-    const section = createElement(this.document, "section", "equation-mapping-editor-section");
-    const header = createElement(this.document, "header", "equation-mapping-editor-section-header");
-    header.append(createElement(this.document, "strong", "", "Comments"));
-    header.append(this.renderEditorAction("Add comment", () => this.addOverlay()));
-    const activeOverlay = this.activeOverlay;
-    const contentDraft = getOverlayContentDraft(activeOverlay ?? {});
-    const selector = this.renderEditorSelect(
-      "Comment",
-      "overlay-select",
-      activeOverlay?.id ?? "",
-      this.activeDocument.overlays.map((overlay) => ({ value: overlay.id, label: overlay.title }))
-    );
-    selector.querySelector("select")?.addEventListener("change", (event) => this.setActiveOverlay(event.target.value));
-    const fields = createElement(this.document, "div", "equation-mapping-editor-grid");
-    fields.append(
-      this.renderEditorInput("Title", "overlay-title", activeOverlay?.title ?? ""),
-      this.renderEditorSelect(
-        "Target",
-        "overlay-target",
-        activeOverlay?.targetAnchorId ?? "",
-        this.activeDocument.anchors.map((anchor) => ({ value: anchor.id, label: anchor.label }))
-      ),
-      this.renderEditorInput("Left", "overlay-x", activeOverlay?.position?.x ?? 18, "number"),
-      this.renderEditorInput("Top", "overlay-y", activeOverlay?.position?.y ?? 32, "number"),
-      this.renderEditorInput("Width", "overlay-width", activeOverlay?.position?.width ?? 26, "number"),
-      this.renderEditorTextarea("Text", "overlay-text", contentDraft.text),
-      this.renderEditorTextarea("Equation", "overlay-math", contentDraft.mathTex)
-    );
-    const actions = createElement(this.document, "div", "equation-mapping-editor-actions");
-    actions.append(this.renderEditorAction("Apply comment", () => this.applyOverlayEdit(section)));
-    section.append(header, selector, fields, actions);
-    return section;
-  }
-
-  renderEditorInput(labelText, name, value, type = "text") {
-    const label = createElement(this.document, "label", "equation-mapping-editor-field");
-    label.append(createElement(this.document, "span", "", labelText));
-    const input = createElement(this.document, "input", "equation-mapping-editor-input");
-    input.name = name;
-    input.type = type;
-    input.value = String(value ?? "");
-    if (type === "number") {
-      input.step = "1";
-    }
-    label.append(input);
-    return label;
-  }
-
-  renderEditorTextarea(labelText, name, value) {
-    const label = createElement(this.document, "label", "equation-mapping-editor-field equation-mapping-editor-field-wide");
-    label.append(createElement(this.document, "span", "", labelText));
-    const textarea = createElement(this.document, "textarea", "equation-mapping-editor-textarea");
-    textarea.name = name;
-    textarea.rows = 3;
-    textarea.value = String(value ?? "");
-    label.append(textarea);
-    return label;
-  }
-
-  renderEditorSelect(labelText, name, value, options) {
-    const label = createElement(this.document, "label", "equation-mapping-editor-field");
-    label.append(createElement(this.document, "span", "", labelText));
-    const select = createElement(this.document, "select", "equation-mapping-editor-select");
-    select.name = name;
-    options.forEach((option) => {
-      const element = createElement(this.document, "option", "", option.label);
-      element.value = option.value;
-      element.selected = option.value === value;
-      select.append(element);
-    });
-    label.append(select);
-    return label;
-  }
-
-  renderEditorAction(label, onClick, tone = "primary") {
-    const button = createElement(this.document, "button", `equation-mapping-editor-action is-${tone}`, label);
-    button.type = "button";
-    button.addEventListener("click", onClick);
-    return button;
+    return layer;
   }
 
   renderSettingsPanel() {
     const panel = createElement(this.document, "section", "equation-mapping-popover equation-mapping-settings-panel");
+    panel.id = SETTINGS_PANEL_ID;
     panel.setAttribute("aria-label", "Canvas settings");
     const colorRow = createElement(this.document, "div", "equation-mapping-settings-row");
     colorRow.append(createElement(this.document, "span", "equation-mapping-settings-label", "Background"));
@@ -1523,27 +1248,16 @@ export class EquationMappingRuntime {
       this.renderEquation(),
       this.renderOverlayLayer()
     );
-    if (this.referencePanelOpen) stage.append(this.renderReferencePanel());
     return stage;
   }
 
+  // The title carries the title only. Symbols and source are reached from the
+  // right rail's own control or by pressing a symbol beneath the equation, so
+  // no control sits beside the title pushing it off centre.
   renderEquationTitle() {
     const title = createElement(this.document, "div", "equation-mapping-equation-title");
     this.equationTitleElement = title;
     title.append(createElement(this.document, "strong", "", this.activeDocument.title));
-    const referenceButton = createElement(
-      this.document,
-      "button",
-      "equation-mapping-reference-toggle",
-      "ⓘ Symbols & source"
-    );
-    referenceButton.type = "button";
-    referenceButton.setAttribute("aria-expanded", String(this.referencePanelOpen));
-    referenceButton.addEventListener("click", () => {
-      this.referencePanelOpen = !this.referencePanelOpen;
-      this.render();
-    });
-    title.append(referenceButton);
     return title;
   }
 
@@ -1564,12 +1278,14 @@ export class EquationMappingRuntime {
       const button = createElement(this.document, "button", "equation-mapping-symbol-chip");
       button.type = "button";
       button.setAttribute("aria-label", symbol.tex);
-      button.classList.toggle("is-active", symbol.id === this.activeSymbolId && this.referencePanelOpen);
+      button.classList.toggle("is-active", symbol.id === this.activeSymbolId && !this.referenceCollapsed);
       renderMath(this.window, button, symbol.tex, { displayMode: false });
       this.symbolTooltip.bind(button, symbol.definition);
       button.addEventListener("click", () => {
         this.activeSymbolId = symbol.id;
-        this.referencePanelOpen = true;
+        this.referenceCollapsed = false;
+        this.revealReferenceSelection = true;
+        this.persistSettings();
         this.render();
       });
       strip.append(button);
@@ -1577,21 +1293,35 @@ export class EquationMappingRuntime {
     return strip;
   }
 
-  renderReferencePanel() {
-    const panel = createElement(this.document, "aside", "equation-mapping-reference-panel");
-    panel.setAttribute("aria-label", "Equation symbols and source context");
-    const header = createElement(this.document, "header", "equation-mapping-reference-panel-header");
-    header.append(createElement(this.document, "strong", "", "Symbols & source"));
-    const close = createElement(this.document, "button", "equation-mapping-reference-close", "×");
-    close.type = "button";
-    close.title = "Close symbols and source";
-    close.setAttribute("aria-label", close.title);
-    close.addEventListener("click", () => {
-      this.referencePanelOpen = false;
+  renderReferenceRail() {
+    const rail = createElement(this.document, "aside", "equation-mapping-reference");
+    rail.setAttribute("aria-label", "Equation symbols and source context");
+    const header = createElement(this.document, "div", "equation-mapping-reference-header");
+    const collapse = createElement(this.document, "button", "equation-mapping-icon-button equation-mapping-reference-collapse");
+    collapse.type = "button";
+    collapse.title = this.referenceCollapsed ? "Open symbols and source" : "Collapse symbols and source";
+    collapse.setAttribute("aria-label", collapse.title);
+    collapse.setAttribute("aria-expanded", String(!this.referenceCollapsed));
+    collapse.innerHTML = createPanelCollapseIconSvg(this.referenceCollapsed);
+    collapse.addEventListener("click", () => {
+      this.referenceCollapsed = !this.referenceCollapsed;
+      this.persistSettings();
       this.render();
     });
-    header.append(close);
+    // The collapse control leads on this side so it stays adjacent to the
+    // canvas edge, mirroring the equations rail whose control sits on its own
+    // canvas-facing edge.
+    header.append(collapse, createElement(this.document, "strong", "", "Symbols & source"));
+    const body = createElement(this.document, "div", "equation-mapping-reference-body");
+    body.hidden = this.referenceCollapsed;
+    this.referenceBodyElement = body;
+    rail.append(header, body);
+    body.append(this.renderReferenceSections());
+    return rail;
+  }
 
+  renderReferenceSections() {
+    const panel = createElement(this.document, "div", "equation-mapping-reference-sections");
     const source = this.activeDocument.source;
     const sourceSection = createElement(this.document, "section", "equation-mapping-reference-section");
     sourceSection.append(createElement(this.document, "h2", "", "Source context"));
@@ -1656,7 +1386,7 @@ export class EquationMappingRuntime {
       symbolsSection.append(item);
     });
 
-    panel.append(header, sourceSection, symbolsSection);
+    panel.append(sourceSection, symbolsSection);
     return panel;
   }
 
@@ -1668,7 +1398,6 @@ export class EquationMappingRuntime {
     this.equationElement = equation;
     equation.setAttribute("role", "img");
     equation.setAttribute("aria-label", document.formulaTeX);
-    const activeTargetId = this.activeOverlay?.targetAnchorId ?? "";
     const placementByOverlayId = resolveCalloutPlacements(document);
     const targetPlacementByAnchor = new Map(
       document.overlays.map((overlay) => [
@@ -1707,12 +1436,6 @@ export class EquationMappingRuntime {
           partElement.classList.add("is-targeted");
           partElement.dataset.sectionLine = targetPlacementByAnchor.get(part.anchorId);
           partElement.dataset.sectionTone = targetToneByAnchor.get(part.anchorId) ?? "standard";
-        }
-        if (part.anchorId === activeTargetId) {
-          partElement.classList.add("is-active-target");
-        }
-        if (part.anchorId === this.activeAnchor?.id) {
-          partElement.classList.add("is-editor-selected-anchor");
         }
       }
       if (part.kind === "text") {
@@ -1761,10 +1484,30 @@ export class EquationMappingRuntime {
     return layer;
   }
 
+  // The equation title sits in the same band as the top control strip, so its
+  // right inset must clear whatever that strip currently occupies. Measure the
+  // strip rather than restating its width here: it gains and loses controls,
+  // and a hard-coded inset silently starts overlapping the title when it grows.
+  applyControlStripClearance() {
+    const shell = this.root?.querySelector?.(".equation-mapping-shell");
+    const bar = this.document?.getElementById?.("scene-hud-tools");
+    if (!shell || !bar) {
+      return;
+    }
+    const barRect = bar.getBoundingClientRect?.();
+    const viewportWidth = this.window?.innerWidth ?? 0;
+    if (!barRect?.width || !viewportWidth) {
+      return;
+    }
+    const clearance = Math.max(0, Math.ceil(viewportWidth - barRect.left) + CONTROL_STRIP_TITLE_GAP_PX);
+    shell.style.setProperty("--control-strip-clearance", `${clearance}px`);
+  }
+
   scheduleEquationLayout() {
     const run = () => {
       const scrollTop = this.stageElement?.scrollTop ?? 0;
       if (this.stageElement) this.stageElement.scrollTop = 0;
+      this.applyControlStripClearance();
       this.resetEquationVerticalLayout();
       this.applyEquationAutoFit();
       this.symbolTooltipClearance = this.activeDocument.overlays.length && this.symbolTooltip

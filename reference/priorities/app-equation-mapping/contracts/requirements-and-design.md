@@ -13,8 +13,8 @@ The first version should make a single equation easy to read, mark up, and discu
 3. Overlay comments may include equations.
 4. Each overlay can point to a specific term or section of the formula with a thin pointer line.
 5. The pointed-to section of the formula can show a thin horizontal line above or below that section.
-6. The side subject index is collapsible.
-7. The app uses a top-right home button and search menu consistent with the standalone app shell.
+6. Both side rails are collapsible: the subject index on the left and the symbols-and-source rail on the right. Each takes its width from the canvas rather than covering it, so the equation re-centres in what is left. The equation title carries the title alone; no control sits beside it competing for the centre.
+7. The app presents exactly one top-right control strip, the canonical standalone bar, and contributes its own controls to that bar rather than rendering a second row.
 8. The settings panel exposes four background colors, reusing the known app palette: Purple, Light, Warm, and Dark.
 9. Text outside equations uses `"Helvetica Neue", Arial, sans-serif`.
 10. Equation rendering targets KaTeX.
@@ -32,8 +32,9 @@ The first app model has these visible layers:
 | Formula section line | Marks a selected formula term or section with a thin horizontal line above or below the formula. | Must align to the measured rendered formula section, not just to a rough hand-placed coordinate. |
 | Pointer line | Connects a comment rectangle to the selected formula section line. | Must be thin, restrained, and attached after resize. |
 | Comment rectangle | Holds explanatory prose and optional equation snippets. | Must use Helvetica Neue for prose and KaTeX for math. |
-| Subject index | Lists equations by subject area. | Must collapse to preserve canvas focus. |
-| Top-right controls | Holds home, search, and settings. | Must stay compact and avoid overlapping the equation. |
+| Subject index | Lists equations by subject area on the left. | Must collapse to preserve canvas focus. |
+| Symbols and source rail | Holds symbol definitions and source context on the right. | A collapsible rail mirroring the subject index, not a panel floating over the canvas. Must carry its own collapse control so source context stays reachable on an equation that defines no symbols, and must expand and reveal the matching definition when a symbol beneath the equation is pressed. |
+| Top control strip | The single canonical bar: table of contents, back, forward, home, scene search, and canvas settings, in that left-to-right order. | One row only. The app contributes settings to the shared bar and never renders a private icon cluster beside or beneath it. |
 
 ## Equation Document Shape
 
@@ -114,13 +115,15 @@ V1 settings:
 - background color: Purple, Light, Warm, Dark;
 - comment font size: small, medium, large;
 - equation scale: small, medium, large;
-- index collapsed state.
+- collapsed state of each rail.
 
 The app should remember settings in browser-local state once the first implementation exists. It should not require account or server state.
 
 ## Search Menu
 
-Search stays visible in the expanded sidebar. The standard top-right search control opens the sidebar and focuses this same field.
+Equation search is the field in the expanded sidebar, and it is the only equation search the app offers. A collapsed rail hides that field along with the rest of the index body, so the rail must be expanded before equation search is available.
+
+The magnifier in the top control strip is the shared scene search, not equation search. The app must not add a second magnifier of its own: the two glyphs are indistinguishable, so a private duplicate reads as a broken copy of the shared control while searching a different corpus.
 
 Search requirements:
 
@@ -149,7 +152,7 @@ No visual state in this app should imply equation-mapping score movement unless 
 - Put runtime logic under `src/apps/equation-mapping/`.
 - Do not add new behavior to root `app.js`.
 - Keep rendering, document normalization, subject-index state, search, settings, and pointer measurement in separate focused modules when implementation begins.
-- Keep editor behavior focused on app-owned equation-map document state: formula sections, comments, pointer targets, line placement, and local draft persistence.
+- The app reads equation-map content and never writes it. Formula sections, comments, pointer targets, and line placement are changed in the repository, so the app carries no in-page editor and no browser-local document draft. Browser-local state is limited to the display settings listed above.
 - Use the shared app-home convention, with home navigation returning to `index.html`.
 - Reuse the known four-background setting from existing app code where practical.
 - Do not introduce a production solver path or equation-proof checker for this app.
@@ -159,8 +162,10 @@ No visual state in this app should imply equation-mapping score movement unless 
 V1 is not complete until screenshots prove:
 
 - desktop and mobile layouts keep the main equation centered;
-- the subject index opens and collapses without covering the equation;
-- top-right home, search, and settings controls remain reachable;
+- both rails open and collapse without covering the equation, and the equation re-centres each time;
+- pressing a symbol beneath the equation expands the right rail and reveals that symbol's definition;
+- exactly one top control strip is present, and its table-of-contents, back, forward, home, search, and settings controls remain reachable;
+- the open settings panel shows no label overlapping its swatches or segments;
 - comment rectangles stay readable;
 - pointer lines remain attached to the intended formula section;
 - the four background colors render with sufficient contrast;
@@ -171,4 +176,4 @@ Current v1 proof-artifact filenames (captures are not retained in this checkout)
 
 - `equation-mapping-desktop-1280x720.png`
 - `equation-mapping-mobile-390x844.png`
-- `equation-mapping-editor-desktop-1280x720.png`
+- `equation-mapping-settings-desktop-1280x720.png`

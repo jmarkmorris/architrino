@@ -9,6 +9,7 @@ This is the canonical execution ledger for repo-wide deployment, hosting, cost, 
 3. `feedback_app_resource_closure_adjudication` — [OPS-017](#ops-017--feedback-app-resource-closure-adjudication). Status: `Queued`.
 4. `agent_guidance_surface_consolidation` — [OPS-014](#ops-014--agent-guidance-surface-consolidation). Status: `Queued`.
 5. `reference_equation_mapping_surface` — [OPS-016](#ops-016--reference-equation-mapping-surface). Status: `Queued`.
+6. `release_gate_profile_coverage` — [OPS-020](#ops-020--release-gate-profile-coverage). Status: `Queued`.
 
 ## Queued task records
 
@@ -112,7 +113,15 @@ The contract half is done and the evidence half is not, because the two are sepa
 
 Neither evidence receipt was touched. Both require a browser session against a local preview build: visual inspection at two viewports, console state, interaction verification, accessibility measurement, and the preview build for the release gate; cold and warm load timings, interaction-to-next-paint, frame timing, heap, and origin storage for the performance baseline. A session whose browser cannot reach a local server cannot produce either, and no part of them should be reconstructed from the previous capture.
 
-- **Evidence / blocker:** The byte counts, file counts, import chain, and capability defaults are `measured` by direct reading of the named source files and by `wc -c` on 2026-09-05. The receipt requirements are `measured` by reading the two checker scripts. That the expanded closure is intended is `measured` by operator statement on 2026-09-05, superseding the earlier inference that it was a regression. That the raised size ceiling is appropriate is `guessed`: 81,920 is a round value above the current measurement, not a figure derived from a transfer or latency requirement. Blocker: both checks need re-captured evidence from a browser session with access to a local preview build. Falsifier: either check passing without a re-captured receipt would mean its evidence binding is weaker than read here.
+#### Status confirmed and blocker lifted, 2026-09-06
+
+Both checks still fail, at the points the 2026-09-05 progress note predicted. `check-webapp-release-gate.mjs` fails at `public-feedback: evidence source closure mismatch`, reporting the receipt's four sources against the contract's decided fifteen. `check-browser-performance-budget.mjs` fails earlier still, at `public-feedback-interaction: source byte count changed`, before it reaches any timing comparison. Grade: measured, by running both scripts on 2026-09-06.
+
+The decided fifteen-file closure was re-derived independently rather than read from the contract, by walking the relative `import` graph from `src/apps/feedback/main.js`. It reaches eleven JavaScript modules; with `feedback.html`, `feedback.css`, `top-dynamic-control-bar.css`, and `ui-tokens.css` that is exactly the fifteen the profile lists, and the eleven match the profile's named additions one for one. The contract half of this task therefore needs no revision. Grade: measured, by a static import walk on 2026-09-06.
+
+The recorded blocker — that a session whose browser cannot reach a local server cannot produce either receipt — no longer holds in every session. A Cowork session's in-app browser can reach the operator's local dev server at `http://localhost:5173`, and both viewports this receipt requires, 1440x900 and 390x844, can be emulated and measured there. Two cautions for whoever takes this up. That pane reports `document.hidden = true`, so `requestAnimationFrame` never fires in it and any layout or animation pass gated on a frame callback must be invoked directly; a frame-timing or `medianFps` capture taken there would be measuring the harness, not the page. And the release gate additionally requires an isolated clean-checkout preview build returning HTTP 200, which is a separate step from pointing a browser at the working tree's dev server. The release-gate receipt looks capturable this way; the performance baseline's frame and timing budgets do not.
+
+- **Evidence / blocker:** The byte counts, file counts, import chain, and capability defaults are `measured` by direct reading of the named source files and by `wc -c` on 2026-09-05. The receipt requirements are `measured` by reading the two checker scripts. That the expanded closure is intended is `measured` by operator statement on 2026-09-05, superseding the earlier inference that it was a regression. That the raised size ceiling is appropriate is `guessed`: 81,920 is a round value above the current measurement, not a figure derived from a transfer or latency requirement. Blocker: both checks need re-captured evidence. The release-gate receipt is now capturable in a session whose browser reaches a local dev server, plus a separate clean-checkout preview build; the performance baseline's frame and timing budgets still need a capture surface that renders frames normally. Falsifier: either check passing without a re-captured receipt would mean its evidence binding is weaker than read here.
 - **Completion:** `resourceClosure` lists the decided fifteen resources; `maxUncompressedBytes` and `resourceCount` carry decided values above the measured closure; both evidence receipts are re-captured against the current sources with their own dates; and both checks pass without any recorded measurement having been hand-edited.
 
 #### Capability default, settled 2026-09-05
@@ -120,6 +129,28 @@ Neither evidence receipt was touched. Both require a browser session against a l
 The operator confirmed that the default-on capabilities are wanted: every standalone page should present the same control strip, and a page asking for one button receiving the full strip is the intended behavior rather than a defect. The opt-out design in `normalizeCapability` stays as it is.
 
 To stop this being rediscovered and re-raised, [`StandaloneAppNavigationRuntime.js`](../../../src/apps/navigator/StandaloneAppNavigationRuntime.js) now documents the choice at the definition: the strip is deliberately opt-out so navigation is uniform across pages, a page suppresses a capability by passing `false` and should justify doing so, and the resulting load-time closure is an expected consequence rather than accidental growth. That note also records the correct response when a release profile disagrees with the measured closure, which is to re-accept the profile rather than strip the navigation. No behavior changed.
+
+### OPS-020 — Release gate profile coverage
+
+- **Status:** Queued
+- **Priority object:** `release_gate_profile_coverage`
+- **Request / acceptance:** Decide which standalone pages warrant an accepted release profile, and record the reason for every page that does not get one. Acceptance requires a per-page verdict with its reason, not a blanket rule, and any page selected for a profile to receive one with a captured receipt rather than a declared closure alone.
+- **Origin:** Raised 2026-09-06 while investigating why the content-integrity suite halts, and separated from [OPS-017](#ops-017--feedback-app-resource-closure-adjudication) because that task is about one page's stale receipt while this is about which pages are watched at all.
+
+Fourteen applications call `createStandaloneAppNavigationRuntime` and therefore carry the shared control strip and the scene-search stack in their load-time closure: borg, borg library, braid search, causal delay feedback, equation mapping, feedback, greek letter match, ideal braid, lattice lab, molecule, pdgedit, photon, reference, and topo. `webapp-release-gate.v1.json` declares one profile, `public-feedback`. `browser-performance-budget.v1.json` declares two, `public-feedback-interaction` and `photon-4k-visual`. Grade: measured, on 2026-09-06, by searching `src` for the constructor and by reading both contracts.
+
+Two readings of that ratio are available and they point opposite ways, which is why this is a decision rather than a defect.
+
+The first is that coverage is thin. The condition that made `public-feedback` fail — a page adopting the shared strip, its closure growing by the eleven modules that arrive with it, and its accepted evidence not being refreshed — is a property of adopting the strip, not a property of the feedback page. Thirteen other pages did the same thing and no gate would notice if any of them regressed, because none has a profile to disagree with.
+
+The second is that a gate covering one page in fourteen is already expensive. When its receipt ages, `check-content-integrity.mjs` halts at step six of roughly thirty, so every later check stops running for every agent in the checkout. Multiplying that by fourteen multiplies the halt surface, and each profile needs a manual browser capture to stay current. A profile per page may cost more attention than it protects.
+
+The decision is therefore not how many profiles to add but which pages have a release risk worth a manual capture. A public form that vectors users to GitHub and a 4K visual surface are plausibly different from an internal analysis tool. Recording why a page is unwatched is as much a part of the answer as recording why one is watched, because an unexplained absence is indistinguishable from an oversight and will be rediscovered.
+
+Worth settling alongside it: whether a failing profile should halt the whole integrity suite or report and continue. The present behaviour means one stale receipt hides the result of every check after it, which is how the corpus-count drift and the iOS package staleness both went unreported until a run reached past this gate.
+
+- **Evidence / blocker:** The fourteen-application count, the one release profile, and the two performance profiles are `measured` on 2026-09-06. That the thirteen unwatched pages carry equivalent release risk is `guessed`; no page-by-page assessment has been made, and that assessment is the task. That a stale profile halts the suite is `measured`, by observing `check-content-integrity.mjs` stop at its sixth step. No blocker; this needs an operator decision rather than a capability.
+- **Completion:** Every standalone page carries a recorded verdict, watched or unwatched, with its reason; any page selected for a profile has one with a captured receipt; and the halt-versus-continue behaviour of a failing profile is decided and recorded.
 
 ### OPS-014 — Agent guidance surface consolidation
 

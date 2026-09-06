@@ -41,8 +41,14 @@
 
       .equation-mapping-shell {
         --index-width: 276px;
-        --control-top: max(62px, calc(env(safe-area-inset-top) + 48px));
-        --control-right: max(18px, env(safe-area-inset-right));
+        --reference-width: 340px;
+        /* Both rails take space from the canvas, so the equation and every
+           panel sized against the canvas must subtract both. */
+        --rail-width: calc(var(--index-width) + var(--reference-width));
+        /* Clears the single canonical control bar, which sits at
+           top: max(16px, safe-area-top) and is 32px tall. */
+        --panel-top: max(56px, calc(env(safe-area-inset-top) + 40px));
+        --panel-right: max(16px, env(safe-area-inset-right));
         --equation-ink: #4b0082;
         --line-ink: #4b0082;
         --marker-ink: rgba(75, 0, 130, 0.44);
@@ -55,7 +61,7 @@
         --accent: var(--equation-ink);
         --accent-soft: rgba(75, 0, 130, 0.12);
         display: grid;
-        grid-template-columns: var(--index-width) minmax(0, 1fr);
+        grid-template-columns: var(--index-width) minmax(0, 1fr) var(--reference-width);
         width: 100%;
         height: 100%;
         background: var(--equation-mapping-background, #fdfdfd);
@@ -108,6 +114,10 @@
         --index-width: 72px;
       }
 
+      .equation-mapping-shell[data-reference-collapsed="true"] {
+        --reference-width: 72px;
+      }
+
       .equation-mapping-index {
         position: relative;
         display: flex;
@@ -145,7 +155,8 @@
       }
 
       .equation-mapping-shell[data-index-collapsed="true"] .equation-mapping-index-header strong,
-      .equation-mapping-shell[data-index-collapsed="true"] .equation-mapping-index-body {
+      .equation-mapping-shell[data-index-collapsed="true"] .equation-mapping-index-body,
+      .equation-mapping-index-body[hidden] {
         display: none;
       }
 
@@ -344,14 +355,17 @@
         pointer-events: none;
       }
 
-      .equation-mapping-controls {
-        position: absolute;
-        top: var(--control-top);
-        right: var(--control-right);
-        z-index: 5;
-        display: flex;
-        align-items: flex-start;
-        gap: 8px;
+      /* Anchored to the viewport, not to the canvas column, so the panel stays
+         under the control that opens it however wide the rails are. */
+      .equation-mapping-panel-layer {
+        position: fixed;
+        top: var(--panel-top);
+        right: var(--panel-right);
+        z-index: 12;
+      }
+
+      .equation-mapping-panel-layer[hidden] {
+        display: none;
       }
 
       .equation-mapping-carousel {
@@ -471,122 +485,19 @@
       }
 
       .equation-mapping-popover {
-        position: absolute;
-        top: 44px;
-        right: 0;
-        width: min(340px, calc(100vw - var(--index-width) - 30px));
+        width: min(340px, calc(100vw - 30px));
         border: 1px solid var(--rule);
         border-radius: 8px;
         background: var(--panel-strong);
         box-shadow: 0 18px 34px rgba(0, 0, 0, 0.16);
       }
 
-      .equation-mapping-settings-panel,
-      .equation-mapping-editor-panel {
-        padding: 10px;
-      }
-
-      .equation-mapping-editor-panel {
+      .equation-mapping-settings-panel {
         display: grid;
-        gap: 10px;
-        width: min(430px, calc(100vw - var(--index-width) - 30px));
-        max-height: calc(100vh - 86px);
-        overflow: auto;
-      }
-
-      .equation-mapping-editor-panel-header,
-      .equation-mapping-editor-section-header,
-      .equation-mapping-editor-actions {
-        display: flex;
+        grid-template-columns: minmax(92px, auto) minmax(0, 1fr);
         align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-      }
-
-      .equation-mapping-editor-panel-header strong,
-      .equation-mapping-editor-section-header strong {
-        font-size: 12px;
-      }
-
-      .equation-mapping-editor-section {
-        display: grid;
-        gap: 8px;
-        padding-top: 10px;
-        border-top: 1px solid var(--rule);
-      }
-
-      .equation-mapping-editor-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 8px;
-      }
-
-      .equation-mapping-editor-field {
-        display: grid;
-        gap: 4px;
-        min-width: 0;
-        color: var(--muted);
-        font-size: 11px;
-        font-weight: 700;
-      }
-
-      .equation-mapping-editor-field-wide {
-        grid-column: 1 / -1;
-      }
-
-      .equation-mapping-editor-input,
-      .equation-mapping-editor-select,
-      .equation-mapping-editor-textarea {
-        width: 100%;
-        min-width: 0;
-        border: 1px solid var(--rule);
-        border-radius: 6px;
-        background: transparent;
-        color: var(--text);
-        outline: none;
-      }
-
-      .equation-mapping-editor-input,
-      .equation-mapping-editor-select {
-        height: 32px;
-        padding: 0 8px;
-      }
-
-      .equation-mapping-editor-textarea {
-        resize: vertical;
-        min-height: 68px;
-        padding: 7px 8px;
-        line-height: 1.35;
-      }
-
-      .equation-mapping-editor-input:focus,
-      .equation-mapping-editor-select:focus,
-      .equation-mapping-editor-textarea:focus {
-        border-color: var(--strong-rule);
-      }
-
-      .equation-mapping-editor-action {
-        min-height: 28px;
-        padding: 0 9px;
-        border: 1px solid var(--rule);
-        border-radius: 6px;
-        background: var(--accent-soft);
-        color: var(--text);
-        cursor: pointer;
-        font-size: 11px;
-        font-weight: 720;
-      }
-
-      .equation-mapping-editor-action.is-secondary {
-        background: transparent;
-        color: var(--muted);
-      }
-
-      .equation-mapping-editor-action:hover,
-      .equation-mapping-editor-action:focus-visible {
-        border-color: var(--strong-rule);
-        color: var(--text);
-        outline: none;
+        gap: 4px 12px;
+        padding: 10px;
       }
 
       .equation-mapping-search-input {
@@ -609,15 +520,20 @@
         font-size: 12px;
       }
 
+      /* The label column is intrinsic, not a fixed 92px track, and it is owned
+         by the panel rather than by each row so all three labels still align.
+         A fixed track overlaps its neighbour as soon as the rendered text is
+         wider than the track, and a single word such as "Background" cannot
+         avoid that by wrapping, so any browser or platform text-size floor
+         pushed it across the swatches. An intrinsic column widens instead. */
       .equation-mapping-settings-row {
-        display: grid;
-        grid-template-columns: 92px minmax(0, 1fr);
-        align-items: center;
-        gap: 8px;
-        min-height: 38px;
+        display: contents;
       }
 
       .equation-mapping-settings-label {
+        display: flex;
+        align-items: center;
+        min-height: 38px;
         color: var(--muted);
         font-size: 11px;
         font-weight: 720;
@@ -627,6 +543,8 @@
       .equation-mapping-segmented {
         display: flex;
         flex-wrap: wrap;
+        align-items: center;
+        min-height: 38px;
         gap: 6px;
       }
 
@@ -666,7 +584,7 @@
         left: 50%;
         z-index: 4;
         width: min(96vw, 1320px);
-        max-width: calc(100vw - var(--index-width) - 24px);
+        max-width: calc(100vw - var(--rail-width) - 24px);
         transform: translate(-50%, -50%);
       }
 
@@ -682,10 +600,14 @@
         height: clamp(56px, 5vw, 88px);
       }
 
+      /* The right inset must clear the top control strip, whose width depends
+         on how many controls the page contributes. The runtime measures the
+         strip and publishes --control-strip-clearance; the clamp is the floor
+         used before that measurement lands. */
       .equation-mapping-equation-title {
         position: absolute;
         top: max(22px, env(safe-area-inset-top));
-        right: clamp(116px, 16vw, 204px);
+        right: max(clamp(116px, 16vw, 204px), var(--control-strip-clearance, 0px));
         left: clamp(116px, 16vw, 204px);
         z-index: 4;
         display: flex;
@@ -706,28 +628,6 @@
         font-size: 22px;
         min-width: 0;
         overflow-wrap: anywhere;
-      }
-
-      .equation-mapping-reference-toggle {
-        display: inline-flex;
-        align-items: center;
-        min-height: 30px;
-        padding: 3px 9px;
-        border: 1px solid var(--rule);
-        border-radius: 999px;
-        background: var(--panel-strong);
-        color: var(--text);
-        cursor: pointer;
-        font: inherit;
-        font-size: 12px;
-        pointer-events: auto;
-      }
-
-      .equation-mapping-reference-toggle:hover,
-      .equation-mapping-reference-toggle:focus-visible {
-        border-color: var(--strong-rule);
-        background: var(--accent-soft);
-        outline: none;
       }
 
       .equation-mapping-equation {
@@ -819,46 +719,65 @@
         font-size: 12px;
       }
 
-      .equation-mapping-reference-panel {
-        position: absolute;
-        top: 76px;
-        right: 16px;
-        bottom: 16px;
-        z-index: 11;
-        width: min(390px, calc(100vw - var(--index-width) - 32px));
-        overflow: auto;
-        padding: 14px;
-        border: 1px solid var(--strong-rule);
-        border-radius: 10px;
+      /* Mirrors .equation-mapping-index on the opposite edge: a grid column
+         that collapses to icon width rather than a panel floating over the
+         canvas, so the equation always re-centres in the space that is left.
+
+         It starts below the top control strip. The strip is positioned against
+         the viewport's top-right, which is this rail's corner, so a rail run to
+         the top would put its own surface behind the strip's buttons. Hanging
+         the rail under the strip keeps the strip on the canvas, where it sits
+         on every other page, instead of moving shared chrome for one app. */
+      .equation-mapping-reference {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        z-index: 3;
+        min-width: 0;
+        min-height: 0;
+        margin-top: var(--panel-top);
+        height: calc(100dvh - var(--panel-top));
+        overflow: hidden;
+        border-left: 1px solid var(--rule);
+        border-top: 1px solid var(--rule);
         background: var(--panel);
-        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.3);
         color: var(--text);
       }
 
-      .equation-mapping-reference-panel-header {
-        position: sticky;
-        top: -14px;
-        z-index: 2;
+      .equation-mapping-reference-header {
+        flex: 0 0 auto;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        margin: -14px -14px 12px;
-        padding: 12px 14px;
+        gap: 8px;
+        min-height: 66px;
+        padding: 12px 16px;
         border-bottom: 1px solid var(--rule);
-        background: var(--panel);
       }
 
-      .equation-mapping-reference-close {
-        width: 30px;
-        height: 30px;
-        border: 1px solid var(--rule);
-        border-radius: 50%;
-        background: transparent;
-        color: var(--text);
-        cursor: pointer;
-        font-size: 20px;
-        line-height: 1;
+      .equation-mapping-reference-header strong {
+        flex: 1;
+        font-size: 16px;
+        line-height: 1.2;
+      }
+
+      .equation-mapping-shell[data-reference-collapsed="true"] .equation-mapping-reference-header {
+        justify-content: center;
+        padding: 12px 0;
+      }
+
+      .equation-mapping-shell[data-reference-collapsed="true"] .equation-mapping-reference-header strong,
+      .equation-mapping-shell[data-reference-collapsed="true"] .equation-mapping-reference-body,
+      .equation-mapping-reference-body[hidden] {
+        display: none;
+      }
+
+      .equation-mapping-reference-body {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        overflow: auto;
+        overscroll-behavior: contain;
+        padding: 14px;
       }
 
       .equation-mapping-reference-section + .equation-mapping-reference-section {
@@ -960,10 +879,6 @@
 
       .equation-mapping-formula-part.is-targeted[data-section-line="below"]::after {
         bottom: -14px;
-      }
-
-      .equation-mapping-formula-part.is-editor-selected-anchor {
-        color: var(--equation-ink);
       }
 
       .equation-mapping-overlay-layer {
@@ -1078,8 +993,10 @@
           min-height: 100%;
         }
 
+        /* Neither rail is a column here, so neither reserves canvas width. */
         .equation-mapping-shell {
           --index-width: 0px;
+          --reference-width: 0px;
           display: block;
           height: auto;
           min-height: 100%;
@@ -1095,6 +1012,20 @@
         }
 
         .equation-mapping-shell[data-index-collapsed="true"] .equation-mapping-index {
+          width: 72px;
+        }
+
+        .equation-mapping-reference {
+          position: absolute;
+          right: 0;
+          top: var(--panel-top);
+          margin-top: 0;
+          width: min(82vw, 320px);
+          height: calc(100dvh - var(--panel-top));
+          border-left: 1px solid var(--rule);
+        }
+
+        .equation-mapping-shell[data-reference-collapsed="true"] .equation-mapping-reference {
           width: 72px;
         }
 
@@ -1120,6 +1051,17 @@
           display: none;
         }
 
+        /* Both rails overlay the canvas here. An expanded rail covers content
+           by design, but a collapsed strip is always on screen, so keep the
+           equation clear of whichever strips are showing. */
+        .equation-mapping-shell[data-index-collapsed="true"] .equation-mapping-stage {
+          padding-left: 87px;
+        }
+
+        .equation-mapping-shell[data-reference-collapsed="true"] .equation-mapping-stage {
+          padding-right: 87px;
+        }
+
         .equation-mapping-carousel {
           bottom: max(12px, env(safe-area-inset-bottom));
           gap: 8px;
@@ -1141,11 +1083,12 @@
           display: none;
         }
 
+        /* Sized against the stage's content box rather than the viewport, so
+           the stage padding that clears the collapsed rails is respected. */
         .equation-mapping-equation-shell {
           position: static;
           transform: none;
-          width: min(96vw, 760px);
-          max-width: calc(100vw - 30px);
+          width: min(100%, 760px);
           margin: 0 auto;
         }
 
@@ -1158,18 +1101,11 @@
           flex-basis: 100%;
         }
 
-        .equation-mapping-reference-panel {
-          position: static;
-          width: min(96vw, 760px);
-          max-height: 72vh;
-          margin: 0 auto;
-        }
-
         .equation-mapping-overlay-layer {
           position: static;
           display: grid;
           gap: 12px;
-          width: min(76vw, 300px);
+          width: min(100%, 300px);
           margin: 0 auto;
           margin-top: var(--symbol-tooltip-clearance, 0px);
           pointer-events: auto;
@@ -1187,14 +1123,6 @@
 
         .equation-mapping-popover {
           width: min(320px, calc(100vw - 30px));
-        }
-
-        .equation-mapping-editor-panel {
-          width: min(336px, calc(100vw - 30px));
-        }
-
-        .equation-mapping-editor-grid {
-          grid-template-columns: minmax(0, 1fr);
         }
       }
     </style>
