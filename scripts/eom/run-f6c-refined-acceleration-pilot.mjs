@@ -24,7 +24,7 @@ export const CHECKER='scripts/eom/verify-f6c-refined-acceleration.py';
 export const CHECKER_TESTS='tests/test_f6c_refined_acceleration.py';
 // Separately authored checker and controls, independently accepted before this
 // operational generation. No subject or mathematical reference is altered.
-export const CHECKER_SHA='7a985c836f9f68d16e37b056192c6be69505f3ed3de62c6d6401beea1e4bacfc';
+export const CHECKER_SHA='545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421';
 export const CHECKER_TESTS_SHA='4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a';
 export const LANE='.local-data/braid-analysis/f6c-refined-acceleration-20260827';
 export const SHARED_LOCK_LANE='.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827';
@@ -92,8 +92,8 @@ export const PINS=Object.freeze({...Object.fromEntries([...FIXED,...REFINED,...P
  [NAMED.comparisonCoreControls]:'147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921',
  [NAMED.rangeComparison]:'23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d',
  [NAMED.rangeComparisonControls]:'13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed',
- [OUTER]:'dcd4bb58b83489fe66093fa61104245aae7dbf914c6e756a2e7e0b5349908289',
- [HELPERS]:'116eb8eee6a7d9ba9a98641d836d9c4e540449279bab1e55cdce92b12e90a26c',
+ [OUTER]:'3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a',
+ [HELPERS]:'7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7',
  [CHECKER]:CHECKER_SHA,[CHECKER_TESTS]:CHECKER_TESTS_SHA,
  '/usr/bin/memory_pressure':'a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56'});
 export const PRIOR_CLOSURE=Object.freeze({authority:'externally-reviewed-caller-observation',ownerSha256:PINS[DECLARATION],admissionSha256:REFINED.find(([k])=>k==='admission')[2],matchingFreshCompletionObserved:true,exitCode:0,elapsedSeconds:'238.116677375',processesClosed:true,independentAuditAccepted:true});

@@ -33,7 +33,7 @@ PINS = {
     'comparisonControls': ('tests/test_f6c_parent_emission_refinement_conformance.py', '2eafcd7551a6d64c5f6c7bc6923507da8d27084af74bc5742583d63eb708aebb'),
     'geometry': ('scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py', '3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'),
     'proof': ('reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-reference.md', 'c9f0924cd24745bd10e2b51ee5b60a09c0c0576b5dec3bc14f647c9c7ee6fc47'),
-    'oldSubject': ('scripts/eom/prepare-f6c-emission-refinement.py', 'c6ab795f8d4446cc0ad9051a40b5edbb822b30061d183af073cb7e00d1314159'),
+    'oldSubject': ('scripts/eom/prepare-f6c-emission-refinement.py', '8ff88b47a6783ca8151b643f84e184cfb22b8ee53381fd2915b0f41fab9aaa42'),
 }
 
 

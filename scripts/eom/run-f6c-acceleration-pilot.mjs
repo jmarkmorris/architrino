@@ -65,8 +65,8 @@ export const PINS=Object.freeze({...Object.fromEntries(FIXED.map(([,p,h])=>[p,h]
   [CONSUMER]:'8fa7a73487a2658814dc130f3f6d0827bd4066bad23ab95bf88935b264efc618',
   [CONSUMER_TESTS]:'45f40e2c6580fa09a614a471e7375615c8d54e3fc295a68dbdb8ad2167b7690b',
   [DECLARATION]:'3ef8fb9020bae71833b1e06a119672b49a4beb5395f697dcb3d037d088e7891e',
-  [OUTER]:'dcd4bb58b83489fe66093fa61104245aae7dbf914c6e756a2e7e0b5349908289',
-  [HELPERS]:'116eb8eee6a7d9ba9a98641d836d9c4e540449279bab1e55cdce92b12e90a26c',
+  [OUTER]:'3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a',
+  [HELPERS]:'7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7',
   [CHECKER]:CHECKER_SHA,[CHECKER_TESTS]:CHECKER_TESTS_SHA,
   '/usr/bin/memory_pressure':'a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56'});
 export const check=(ok,message)=>{if(!ok)throw new Error(message);};

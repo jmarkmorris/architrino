@@ -9,7 +9,7 @@ import { Worker } from "node:worker_threads";
 export const PREFIX_SCHEMA = "braid-program/f5-enclosed-root-prefix-reduction.v1";
 export const BRIDGE_PATH = "scripts/eom/verify-f5-enclosed-root-prefix.mjs";
 export const REDUCER_PATH = "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs";
-export const REDUCER_SHA256 = "c41857a81ab0ba4e1f9a4f53e6608f097dea83a99f4a0fa002f5ed9590004fb6";
+export const REDUCER_SHA256 = "1b5051928406482ffa3fecfaa60b1e94d3f1372ed87ea2ea5e7442523ddc8fd0";
 export const EXPORT_APPENDIX = "\nexport { validateConfigAndPilot, validateEnclosureReport, expectedMembersFromConfig, validateHistoryManifest, validateRungPacket, validateRepeatedReceptionRoots, repositoryReader };\n";
 export const APPENDIX_SHA256 = "1399ee788e554642ac53a31635c2e91cc51de966089fa5a6e8ce85aaf458d786";
 const HEARTBEAT_MS = 15000;

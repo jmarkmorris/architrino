@@ -23,7 +23,7 @@ const FROZEN = Object.freeze({
   "scripts/eom/oracle/decimal_interval.py": "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a",
   "scripts/eom/oracle/f5_actual_cubic_conformance.py": "4a90227cd79a4acfe319c723a05b711df1947953cc229f87114c4bc7babf6e09",
   "scripts/eom/oracle/f5_history_manifest_conformance.py": "c34cd3f368398fd1ecd3a227c8026508efd319e9219b0ae8819eb4dfab646c74",
-  "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs": "c41857a81ab0ba4e1f9a4f53e6608f097dea83a99f4a0fa002f5ed9590004fb6",
+  "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs": "1b5051928406482ffa3fecfaa60b1e94d3f1372ed87ea2ea5e7442523ddc8fd0",
   "scripts/eom/reduce-f5-enclosed-root-ledger.mjs": "9c4d5730613597d7931b59c37d77c405bcf928de2421d55d3c76f78b7228a73a",
 });
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");

@@ -15,7 +15,7 @@ export const RESOURCE_PLAN = "reference/priorities/braid-program/evidence/2026-0
 export const LANE = ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827";
 export const LIMIT_MS = 1800000, LOG_LIMIT = 16*1024**2, FILE_LIMIT = 64*1024**2;
 export const PINS = Object.freeze({
-  [OUTER]: "dcd4bb58b83489fe66093fa61104245aae7dbf914c6e756a2e7e0b5349908289",
+  [OUTER]: "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
   [CONSUMER]: "7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5",
   [COMPARISON]: "3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7",
   [RESOURCE_PLAN]: "8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378",
