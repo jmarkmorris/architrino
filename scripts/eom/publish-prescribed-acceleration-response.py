@@ -24,7 +24,7 @@ import types
 _EXECUTING_CODE = sys._getframe().f_code
 SELF = 'scripts/eom/publish-prescribed-acceleration-response.py'
 CONSUMER = 'scripts/eom/reduce-prescribed-acceleration-response.py'
-CONSUMER_SHA = 'af7884573f834994dd18803e345d052de7f09d7ca87b543eea22214e6ef8d02f'
+CONSUMER_SHA = '59a6d76ced17e4bca564ab1491b17ea85e50b24de6722cd91fa315a2f805a9b3'
 JOB_SCHEMA = 'braid-program/prescribed-response-publication-job.v1'
 EXECUTION_SCOPE = 'completed-compute-stage-through-private-candidate-publication-and-process-closure'
 HASH = re.compile(r'[0-9a-f]{64}\Z')

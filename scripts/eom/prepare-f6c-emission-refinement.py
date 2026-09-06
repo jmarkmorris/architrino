@@ -118,8 +118,8 @@ OPERATIONS = (
     "/bin/ps", "/usr/bin/memory_pressure",
 )
 OP_PINS = {
-    OPERATIONS[4]: "9eb1afb84a175b143020610c153f9fef6dabb50efce9f956991feca3fbc0d5c2",
-    OPERATIONS[5]: "cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48",
+    OPERATIONS[4]: "116eb8eee6a7d9ba9a98641d836d9c4e540449279bab1e55cdce92b12e90a26c",
+    OPERATIONS[5]: "dcd4bb58b83489fe66093fa61104245aae7dbf914c6e756a2e7e0b5349908289",
     "/usr/bin/memory_pressure": "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56",
 }
 

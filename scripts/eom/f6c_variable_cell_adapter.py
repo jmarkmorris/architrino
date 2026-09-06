@@ -156,7 +156,7 @@ PARENT_FIXED=(
  ('comparisonReferenceControls','tests/test_f6c_parent_emission_refinement_conformance.py','2eafcd7551a6d64c5f6c7bc6923507da8d27084af74bc5742583d63eb708aebb'),
 )
 SOURCES = (
- ('transport','scripts/eom/verify-f6c-refined-acceleration.py','9f010ddf5a4484e0e004ac3b367fd08b4abddb2319edb3821468b3a7de87e51a'),
+ ('transport','scripts/eom/verify-f6c-refined-acceleration.py','7a985c836f9f68d16e37b056192c6be69505f3ed3de62c6d6401beea1e4bacfc'),
  ('transportControls','tests/test_f6c_refined_acceleration.py','4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a'),
  ('mapping','scripts/eom/verify-f6c-continuous-reception-acceleration.py','23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d'),
  ('mappingControls','tests/test_f6c_continuous_reception_acceleration.py','13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed'),
@@ -177,7 +177,7 @@ SOURCES = (
  ('gkControls','tests/test_f6c_gk13_protocol.py','4b53d57f19de401348830b809600f01a9ae0c0c88d19d406a6a85e5ac8c5a241'),
  ('gkProof',PREFIX+'2026-08-27-f6c-gk13-execution-protocol.md','66ec97315dd8caf08d0628e2b23326044ac0a2f5b86b29d7c2f5542dc879cc85'),
  ('refinedClosure',PREFIX+'2026-08-27-f6c-refined-cover-acceleration-projection.md','c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d'),
- ('fullEntry','scripts/eom/run-f6c-cached-root-cover-full.mjs','e9381a6564087c681bbf8a1ae12ca257aa3d2314ab6ca14ab91897bdc8630a9d'),
+ ('fullEntry','scripts/eom/run-f6c-cached-root-cover-full.mjs','d46ca542216c3554b2cbf4475a18149ac78f6d0c9ccd35897e1280b7632d7ea0'),
  ('geometry','scripts/eom/f6c_reception_geometry_restriction.py','e4bc1ff8bd23346f58a934ace429dbf65b11d0b2bb71ebc55dc34036ab9c51e7'),
  ('geometryControls','tests/test_f6c_reception_geometry_restriction.py','b6c4b4e6a82a11b4ee84c782bf208df4b141860bb8d01f1ad2b2a1ca749a6c7b'),
  ('captureHelper','scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5'),

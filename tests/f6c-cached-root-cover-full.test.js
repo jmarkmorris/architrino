@@ -588,15 +588,15 @@ const FULL_EXTRA_PIN_LINES="  \"reference/priorities/braid-program/evidence/2026
 const retarget=(s,pairs)=>{for(const[a,b]of pairs)s=s.replaceAll(a,b);return s;};
 const frozen=(p,h)=>{const raw=readFileSync(p);assert.equal(digest(raw),h,p);return raw.toString("utf8");};
 test("full composition differs from frozen pilot only by declared addresses scope census and resource bindings",()=>{
-  const entry=frozen("scripts/eom/run-f6c-cached-root-cover-pilot.mjs","ed3263cc36ce10c44566cf899596c868685cecd415b50d50a58446ebc1ed20cf");
+  const entry=frozen("scripts/eom/run-f6c-cached-root-cover-pilot.mjs","d39d8b2b4b649cfc71d2511d74f2a32c46b8c0dc0758836c10daedd163e92d92");
   let expected=retarget(retarget(entry,FULL_COMMON_REPLACEMENTS),FULL_ENTRY_REPLACEMENTS);
   expected=expected.replace('});\nexport const check',FULL_EXTRA_PIN_LINES+'});\nexport const check');
   assert.equal(readFileSync(R.ENTRY,"utf8"),expected);
-  const launcher=frozen("scripts/eom/launch-f6c-cached-root-cover-pilot.mjs","b89aaaf336c2969115d3549a086bee334d398c85f2748c9fdc53dac9d56acdba");
+  const launcher=frozen("scripts/eom/launch-f6c-cached-root-cover-pilot.mjs","c5016991108ef8e5ee8501e5ac00434b1b66f182d305e85d4438d37c0c730673");
   assert.equal(readFileSync(R.LAUNCHER,"utf8"),retarget(retarget(launcher,FULL_COMMON_REPLACEMENTS),FULL_LAUNCHER_REPLACEMENTS));
 });
 test("all32 original operational obligations survive full scope retargeting unchanged",()=>{
-  const prior=frozen("tests/f6c-cached-root-cover-pilot-launcher.test.js","0518387ae1f40241de096265162357f15aa796326bddaedb1952544119fdc5ca").split("\n// Cached successor binding controls;")[0];
+  const prior=frozen("tests/f6c-cached-root-cover-pilot-launcher.test.js","54a0584769e24dbbc7b96f018a1d416f60efe164652b5fe5a3ae6704b6f17676").split("\n// Cached successor binding controls;")[0];
   assert.equal(prior.match(/^test\(/gmu)?.length,26);
   const actual=readFileSync("tests/f6c-cached-root-cover-full.test.js","utf8").split("\n// Full-scope binding/census controls;")[0];
   assert.equal(actual,retarget(prior,FULL_TEST_REPLACEMENTS));

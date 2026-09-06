@@ -61,7 +61,7 @@ export const ORIGINALS = Object.freeze([
   ['predeclaration','reference/priorities/braid-program/evidence/2026-08-27-prescribed-acceleration-response-predeclaration.md','c08d7f53616fc2843b3a192f7e3c10229f9a9fe7abc1a8670ddb1706d95756ef'],
   ['reference','scripts/eom/oracle/prescribed_acceleration_response.py','e630c2f4c48c9fcfc56866166e8b5977d70ab83c6ca3f2b08ad9ea4f3f5e910c'],
   ['referenceTests','tests/test_prescribed_acceleration_response.py','4b0e66feb308544aa6294b126a05f6a3c9fbb403580e8193d3140a7b52c370f1'],
-  ['consumer',CONSUMER,'af7884573f834994dd18803e345d052de7f09d7ca87b543eea22214e6ef8d02f'],
+  ['consumer',CONSUMER,'59a6d76ced17e4bca564ab1491b17ea85e50b24de6722cd91fa315a2f805a9b3'],
   ['consumerTests','tests/test_prescribed_acceleration_response_consumer.py','2d97ad74c5a4ad1c33bf587ea4050cf4f028179e55ba1c817404714346cdb6d1'],
   ['pythonExecutable',null,null],
   ['scripts/eom/oracle/decimal_interval.py','scripts/eom/oracle/decimal_interval.py','fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'],
@@ -71,8 +71,8 @@ export const ORIGINALS = Object.freeze([
   ['scripts/eom/oracle/certified_acceleration.py','scripts/eom/oracle/certified_acceleration.py','62787f1bb0d14329c0ad1f3586ef1f1cbeb666fe8c11f8831f7ad761d7c42b83'],
 ].map(row=>Object.freeze(row)));
 export const PINS = Object.freeze({...Object.fromEntries(ORIGINALS.filter(r=>r[1]).map(r=>[r[1],r[2]])),
-  [OUTER]:'cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48',
-  [PUBLISHER]:'4d67564c4ddc56ac616c334aeb43c2005028727bc97423d2ce35545497c30556',
+  [OUTER]:'dcd4bb58b83489fe66093fa61104245aae7dbf914c6e756a2e7e0b5349908289',
+  [PUBLISHER]:'b661f3e022c463f8380985252e47d3e5bda906f21bb11b80de1f99099f2b5896',
   'tests/test_prescribed_acceleration_response_publication.py':'c5805819a7e54f68b4ad63757752afd48efba8c2d01f7caed7ace3b048bb7dd1'});
 export const check = (ok,message)=>{if(!ok)throw new Error(message);};
 export const sha = bytes=>createHash('sha256').update(bytes).digest('hex');

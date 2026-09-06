@@ -8,7 +8,7 @@ import { Worker } from "node:worker_threads";
 
 const SELF = "scripts/eom/dispatch-subfield-circular-root-ladder.mjs", RUNG = "scripts/eom/run-subfield-circular-root-rung.mjs";
 const BASE = ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/";
-const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs", OUTER_SHA = "df1b7e1d800450afb4221db88e0aedf55d62de256f302e448caab05149badc18";
+const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs", OUTER_SHA = "dcd4bb58b83489fe66093fa61104245aae7dbf914c6e756a2e7e0b5349908289";
 export const SUBFIELD_CIRCULAR_MEMORY_COMMAND_SHA = "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56";
 const sha = bytes => createHash("sha256").update(bytes).digest("hex");
 const check = (ok, message, code = "SHARED_INPUT_REJECTED") => { if (!ok) throw Object.assign(new Error(message), { failureCode: code }); };

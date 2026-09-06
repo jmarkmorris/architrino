@@ -12,7 +12,7 @@ import { Worker } from "node:worker_threads";
 
 const SELF = "scripts/eom/launch-subfield-circular-root-pilot.mjs";
 const RUNNER = "scripts/eom/run-subfield-circular-root-pilot.mjs";
-const RUNNER_SHA = "63c88911d2b117dfc908d93359c55ee5dcca973e15f4111fa598264a74718b31";
+const RUNNER_SHA = "f35054fe1c2113427f4abd69fe8daca260a7478d6698f9d2dc140e9a7428d137";
 const BASE = ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/";
 const sha = bytes => createHash("sha256").update(bytes).digest("hex");
 const requireThat = (condition, message) => { if (!condition) throw new Error(message); };

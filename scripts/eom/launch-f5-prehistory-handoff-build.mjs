@@ -12,10 +12,10 @@ const SELF = "scripts/eom/launch-f5-prehistory-handoff-build.mjs";
 const ENTRY = "scripts/eom/prepare-f5-prehistory-handoff-build.mjs";
 const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs";
 const PINS = Object.freeze({
-  [ENTRY]: "12e2a3827fb849b02fe06fc3dd65498f10224b006be6ed497d8d443d7858d175",
-  "scripts/eom/prepare-subfield-circular-root.mjs": "73fb903d1c5ac8df2337e75b7fed3044c1c5641177284c8a352b423872bab033",
+  [ENTRY]: "a22e0e13430b8a8c5a3512ba1b0b93f0814a28c6fd06e1e2c63d269e0a341d22",
+  "scripts/eom/prepare-subfield-circular-root.mjs": "c012621240e0513d464d6e46ba52d6f670bad6ca9fdff1b3db144e2e4c2ec53e",
   "scripts/eom/prepare-f5-enclosed-root.mjs": "ba154c0a8c63bd390ae1e16de005fd5d52000fedec352619b60b9465a2f813f5",
-  [OUTER]: "cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48",
+  [OUTER]: "dcd4bb58b83489fe66093fa61104245aae7dbf914c6e756a2e7e0b5349908289",
   "/usr/bin/memory_pressure": "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56",
 });
 const absolute = value => path.resolve(ROOT, value);

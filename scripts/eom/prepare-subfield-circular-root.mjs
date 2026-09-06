@@ -15,7 +15,7 @@ const BASE = ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v
 const PINNED = Object.freeze({
   [SUBJECT]: "42dc7eaa74a36f019ff126215754785f9b8418dd998d9850c2c70dc5cb03bd41",
   "src/eom/CMakeLists.txt": "e4b3a8bdfc91c756eb00e4c37e872bcbebfe1f7b406a551e3aa630f8818d2bdd",
-  [SUPERVISOR]: "357b6725ad9a60a67c7a7fc07e8f3c9b9bc05201642706a66aec9b1411c22db1",
+  [SUPERVISOR]: "8e32e1d289b46a7aa287a57602202046d99715daef92a291e1d353a741066d79",
 });
 const CANDIDATES = ["coincident-midpoint-common-frequency", "coincident-midpoint-equal-radius-common-frequency", "coincident-midpoint-3-2-1-frequency", "phase-compensated-equal-geometry", "axially-separated-common-frequency", "axially-separated-equal-radius-common-frequency", "axially-separated-3-2-1-frequency", "axial-transverse-coincident-axis-interior", "high-axial-coincident-axis-interior", "planar-common-center-three-binary", "coincident-center-two-component-circular-co-rotating", "coincident-center-two-component-circular-counter-rotating", "coaxial-separated-two-component-circular-co-rotating", "coaxial-separated-two-component-circular-counter-rotating", "coaxial-separated-two-planar-braid-co-rotating", "coaxial-separated-two-planar-braid-counter-rotating"];
 const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");

@@ -9,7 +9,7 @@ import { Worker } from "node:worker_threads";
 
 const SELF="scripts/eom/launch-f6c-root-cover-pilot.mjs",ENTRY="scripts/eom/run-f6c-root-cover-pilot.mjs";
 const OUTER="scripts/eom/launch-subfield-circular-root-pilot.mjs";
-const OUTER_SHA="cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48";
+const OUTER_SHA="dcd4bb58b83489fe66093fa61104245aae7dbf914c6e756a2e7e0b5349908289";
 const LIMIT_MS=1800000,LOG_LIMIT=16*1024**2,FILE_LIMIT=64*1024**2,RSS_LIMIT=2*1024**3;
 const check=(yes,message)=>{if(!yes)throw new Error(message);};
 const sha=b=>createHash("sha256").update(b).digest("hex");
