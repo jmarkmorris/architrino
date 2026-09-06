@@ -4,10 +4,84 @@ This is the canonical execution ledger for repo-wide deployment, hosting, cost, 
 
 ## Ranked Next Objects
 
-1. `agent_guidance_surface_consolidation` — [OPS-014](#ops-014--agent-guidance-surface-consolidation). Status: `Queued`.
-2. `reference_equation_mapping_surface` — [OPS-016](#ops-016--reference-equation-mapping-surface). Status: `Queued`.
+1. `feedback_app_resource_closure_adjudication` — [OPS-017](#ops-017--feedback-app-resource-closure-adjudication). Status: `Queued`.
+2. `agent_guidance_surface_consolidation` — [OPS-014](#ops-014--agent-guidance-surface-consolidation). Status: `Queued`.
+3. `reference_equation_mapping_surface` — [OPS-016](#ops-016--reference-equation-mapping-surface). Status: `Queued`.
 
 ## Queued task records
+
+### OPS-017 — Feedback app resource closure adjudication
+
+- **Status:** Queued
+- **Priority object:** `feedback_app_resource_closure_adjudication`
+- **Request / acceptance:** Re-accept the public feedback page's release profile and performance budget against its decided dependency set, by re-capturing both evidence receipts rather than editing recorded measurements. Acceptance requires `node scripts/check-webapp-release-gate.mjs` and `node scripts/check-browser-performance-budget.mjs` to pass against receipts measured on the current sources.
+- **Origin:** Both checks failed during a full content-integrity run on 2026-09-05. They had been masked by an earlier failure in the same gate, so the run that surfaced them is the first to reach them.
+
+The accepted `public-feedback` release profile declares four local resources: `feedback.html`, `src/apps/feedback/FeedbackManifestRuntime.js`, `src/apps/feedback/feedback.css`, and `src/apps/feedback/main.js`. The measured closure is fifteen. The eleven additions are `src/apps/navigator/StandaloneAppHomeRuntime.js`, `StandaloneAppLaunchRuntime.js`, `StandaloneAppNavigationRuntime.js`, `StandaloneAppSceneSearchRuntime.js`, `src/runtime/SceneSearchRuntime.js`, `SceneSearchUiRuntime.js`, `TopDynamicControlBarRuntime.js`, `top-dynamic-control-bar.css`, `src/services/SceneIndexService.js`, `SceneSearchCoordinatorService.js`, and `ui-tokens.css`. Separately, `check-browser-performance-budget.mjs` reports that the `public-feedback-interaction` profile's source byte count changed.
+
+Plainly: a page that once loaded four files now loads fifteen, because it picked up the navigator, the scene-search stack, and the shared control bar.
+
+The question to answer first is whether that growth was intended. A feedback page that now pulls the navigation and search runtimes may have acquired them deliberately, when the shared top control bar was adopted, or incidentally through an import that was convenient at the time. The profile exists to force that question, and re-accepting it without answering would discard the only signal that raised it. Do not regenerate either artifact to make the gate green: [AGENTS.md](../../../AGENTS.md) bars changing product design or accepted evidence merely to pass a check, and both of these are accepted evidence.
+
+#### Root cause, investigated 2026-09-05
+
+The feedback application's own code is 19,622 bytes across the four accepted files, and it imports nothing beyond itself: [`FeedbackManifestRuntime.js`](../../../src/apps/feedback/FeedbackManifestRuntime.js) has no imports at all. The entire excess enters through six lines of [`main.js`](../../../src/apps/feedback/main.js), which imports `createStandaloneAppNavigationRuntime` from the navigator in order to render one "Go to home page" button in the page header.
+
+Two properties of that runtime turn one button into eleven files.
+
+**Capabilities are opt-out, not opt-in.** In [`StandaloneAppNavigationRuntime.js`](../../../src/apps/navigator/StandaloneAppNavigationRuntime.js), `toc`, `back`, `forward`, `home`, and `search` each default to `{}` in the parameter list, and `normalizeCapability` returns `null` only when a value is literally `false`. An omitted capability is therefore enabled with its default label. The feedback page passes only `host`, `label`, and `home`, so it also builds Table of Contents, Back, Forward, and Search actions, and because `searchCapability` is truthy it constructs and initializes the scene-search runtime. The page presents five navigation controls where its author asked for one.
+
+**Configuration alone cannot remove the code.** `StandaloneAppNavigationRuntime.js` imports `StandaloneAppSceneSearchRuntime.js` statically at module scope, which in turn statically imports `SceneSearchRuntime`, `SceneSearchUiRuntime`, `SceneIndexService`, `SceneSearchCoordinatorService`, and `StandaloneAppLaunchRuntime`. Passing `search: false` would stop the runtime being constructed and remove the button, but every one of those modules would still load, because an ES module's static imports resolve regardless of use. Reducing the closure requires a code change, not a configuration change.
+
+Measured on 2026-09-05:
+
+| Quantity | Value |
+| --- | ---: |
+| Accepted closure | 4 files, 19,622 bytes |
+| Actual closure | 15 files, 68,455 bytes |
+| Profile size budget | 32,768 bytes |
+| Overage | 35,687 bytes, or 2.09× the budget |
+| The eleven additions | 48,833 bytes, 2.5× the whole accepted application |
+| Largest single addition | `TopDynamicControlBarRuntime.js`, 14,183 bytes |
+
+`TopDynamicControlBarRuntime.js` alone is larger than the feedback application's own runtime. The `public-feedback-interaction` budget separately caps `resourceCount` at 8; the load-time closure is 15. No eager network cost was found: `StandaloneAppSceneSearchRuntime.init()` only closes the panel and wires listeners, and the scene index is fetched lazily when search is first expanded.
+
+All 14 applications that use `createStandaloneAppNavigationRuntime` currently pass no capability as `false`, so every standalone page carries the full control bar. For the large applications that is plausibly intended; for a static form that vectors users to GitHub it is not.
+
+#### Operator decision, 2026-09-05
+
+The standard icon control strip belongs at the top right of the feedback page, search included, because a person may need to look something up before vectoring to GitHub. The dependency set is therefore intended and the eleven additional modules stay. This is stale bookkeeping, not a regression: the profile and budget were accepted before the control strip reached this page and have not been refreshed since.
+
+That closes the adjudication and leaves re-acceptance. The remaining work is not a JSON edit.
+
+#### What re-acceptance actually requires
+
+Neither failing check compares source against a declared list alone. Both compare it against a captured evidence receipt, and both receipts are now stale.
+
+`check-webapp-release-gate.mjs` requires [`feedback-webapp-release-gate-2026-09-01.json`](feedback-webapp-release-gate-2026-09-01.json) to carry a `sourceFiles` entry for every member of the closure with matching byte count and SHA-256, and to record seven passed categories: content, graph, size, visual, browser, accessibility, preview. Within those it requires visual inspection at 1440×900 and 390×844 with zero horizontal overflow and `visuallyInspected: true`, a browser console with zero messages, the four required interactions passed, measured accessibility counts, and an isolated clean-checkout preview build returning HTTP 200 on the route. Updating `resourceClosure` and raising `maxUncompressedBytes` above the measured 68,455 bytes is necessary but not sufficient; without a re-captured receipt the check fails on evidence mismatch instead of closure mismatch.
+
+`check-browser-performance-budget.mjs` pins a source-closure fingerprint over seven paths, four of them the feedback sources and three of them shared content indexes: `content/scenes/scenes_index.json`, `content/markdown/markdown_index.json`, and `content/graph/scene_graph.json`. It requires the current file count, total byte count, and SHA-256 to equal the recorded 7 files and 824,432 bytes, and it validates measured cold and warm load timings, interaction-to-next-paint, frame timing, heap, and origin storage against the budgets. Two of those three shared indexes were regenerated on 2026-09-05, so this fingerprint would require a fresh capture even if the feedback page had not changed at all. No script in the repository produces this baseline; only the checker and [`tests/browser-performance-budget.test.js`](../../../tests/browser-performance-budget.test.js) read it. It is a manual browser capture.
+
+Do not reconcile either receipt by editing its recorded bytes, hashes, or timings to match the current tree. A timing measured against a four-file page is not evidence about a fifteen-file page, and rewriting the fingerprint while keeping the old measurements would manufacture evidence rather than record it. The `resourceCount` budget of 8 in the performance profile also needs a decided value against a load-time closure of 15.
+
+#### Progress, 2026-09-05
+
+The contract half is done and the evidence half is not, because the two are separable and only one of them can be produced without a browser.
+
+`webapp-release-gate.v1.json` now lists the decided fifteen-resource closure for `public-feedback` and raises `maxUncompressedBytes` from 32,768 to 81,920, recording the reason inline: the measured closure is 68,455 bytes, the new ceiling leaves roughly 16% headroom, and 48,833 of those bytes belong to the shared control strip rather than to the feedback application. `check-webapp-release-gate.mjs` now passes its local-resource-closure and size gates and fails only at `evidence source closure mismatch`, which confirms the remaining blocker is the receipt rather than the contract.
+
+`browser-performance-budget.v1.json` is unchanged. Its `resourceCount` budget of 8 needs a decided value, but the correct one is a measured load-time resource count, not a number derivable from the source closure, so it is left for the capture that will produce it.
+
+Neither evidence receipt was touched. Both require a browser session against a local preview build: visual inspection at two viewports, console state, interaction verification, accessibility measurement, and the preview build for the release gate; cold and warm load timings, interaction-to-next-paint, frame timing, heap, and origin storage for the performance baseline. A session whose browser cannot reach a local server cannot produce either, and no part of them should be reconstructed from the previous capture.
+
+- **Evidence / blocker:** The byte counts, file counts, import chain, and capability defaults are `measured` by direct reading of the named source files and by `wc -c` on 2026-09-05. The receipt requirements are `measured` by reading the two checker scripts. That the expanded closure is intended is `measured` by operator statement on 2026-09-05, superseding the earlier inference that it was a regression. That the raised size ceiling is appropriate is `guessed`: 81,920 is a round value above the current measurement, not a figure derived from a transfer or latency requirement. Blocker: both checks need re-captured evidence from a browser session with access to a local preview build. Falsifier: either check passing without a re-captured receipt would mean its evidence binding is weaker than read here.
+- **Completion:** `resourceClosure` lists the decided fifteen resources; `maxUncompressedBytes` and `resourceCount` carry decided values above the measured closure; both evidence receipts are re-captured against the current sources with their own dates; and both checks pass without any recorded measurement having been hand-edited.
+
+#### Capability default, settled 2026-09-05
+
+The operator confirmed that the default-on capabilities are wanted: every standalone page should present the same control strip, and a page asking for one button receiving the full strip is the intended behavior rather than a defect. The opt-out design in `normalizeCapability` stays as it is.
+
+To stop this being rediscovered and re-raised, [`StandaloneAppNavigationRuntime.js`](../../../src/apps/navigator/StandaloneAppNavigationRuntime.js) now documents the choice at the definition: the strip is deliberately opt-out so navigation is uniform across pages, a page suppresses a capability by passing `false` and should justify doing so, and the resulting load-time closure is an expected consequence rather than accidental growth. That note also records the correct response when a release profile disagrees with the measured closure, which is to re-accept the profile rather than strip the navigation. No behavior changed.
 
 ### OPS-014 — Agent guidance surface consolidation
 

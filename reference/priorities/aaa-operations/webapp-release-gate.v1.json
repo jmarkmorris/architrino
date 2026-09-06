@@ -64,13 +64,25 @@
         "feedback.html",
         "src/apps/feedback/FeedbackManifestRuntime.js",
         "src/apps/feedback/feedback.css",
-        "src/apps/feedback/main.js"
+        "src/apps/feedback/main.js",
+        "src/apps/navigator/StandaloneAppHomeRuntime.js",
+        "src/apps/navigator/StandaloneAppLaunchRuntime.js",
+        "src/apps/navigator/StandaloneAppNavigationRuntime.js",
+        "src/apps/navigator/StandaloneAppSceneSearchRuntime.js",
+        "src/runtime/SceneSearchRuntime.js",
+        "src/runtime/SceneSearchUiRuntime.js",
+        "src/runtime/TopDynamicControlBarRuntime.js",
+        "src/runtime/top-dynamic-control-bar.css",
+        "src/services/SceneIndexService.js",
+        "src/services/SceneSearchCoordinatorService.js",
+        "ui-tokens.css"
       ],
       "allowedRemoteLoadResources": [],
       "size": {
-        "maxUncompressedBytes": 32768,
-        "scope": "entrypoint plus recursively discovered load-time CSS and JavaScript only",
-        "exclusions": "User-selected GitHub issue navigation and the three shared public JSON manifests are recorded as interactions or public data dependencies, not code in this source-byte envelope."
+        "maxUncompressedBytes": 81920,
+        "scope": "entrypoint plus recursively discovered load-time CSS and JavaScript only, including the shared standard control strip",
+        "exclusions": "User-selected GitHub issue navigation and the three shared public JSON manifests are recorded as interactions or public data dependencies, not code in this source-byte envelope.",
+        "rationale": "Raised from 32768 on 2026-09-05 after the operator confirmed the standard icon control strip belongs on this page. Measured closure is 68455 bytes; 81920 leaves roughly 16% headroom. The strip's shared modules, not the feedback application, account for 48833 of those bytes."
       },
       "browser": {
         "viewports": [

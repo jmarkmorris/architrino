@@ -6,6 +6,22 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-05 — Content-integrity gate recovered through check 5; four pre-existing failures cleared
+
+The full gate had not run to completion for some time. Its first check aborted the run, so every later check was unreached and its failures invisible. Clearing each one exposed the next, which is why four separate pre-existing defects surfaced in a single session rather than one at a time.
+
+- **Equation corpus.** `scripts/build-equation-mapping-corpus.mjs --build` rejected `corpus-equation-bec62a39745a7416` for a missing canonical source link. Exactly one display equation corpus-wide lacked its `[View →]` chip, the mean phase-rate limit in `content/markdown/aaa/foundations/absolute-time-defense.md`, added by `19e094359` without running the generator's source-repair mode. Repaired with `--write` under operator approval: one link, one file, zero errors.
+- **Scene index and scene graph.** `content/scenes/archie/feedback.json` existed on disk and was linked from `user_interface.json` but was absent from `scenes_index.json`, added by `e445ecc60` without regeneration. `validate-content.mjs --write` and `build-scene-graph.mjs --write --strict` regenerated both under operator approval.
+- **Textbook reading copies.** Two reading copies drifted as a direct consequence of the equation-link repair. Regenerated under the same approval.
+- **`tests/standalone-app-launch.test.js`.** Two stale assertions, both from `c973402b9`. The UI Guidelines scene entry moved from the User Interface scene to the Documentation scene, and the test still read the old parent; its entry is otherwise unchanged, and the Documentation scene is the more accurate home for shared standards material. Separately, the guide's claim was recopy-edited from `It governs applications` to `The guide governs applications`, and the assertion pinned the pronoun rather than the claim. Both fixed with intent preserved: the test now reads the current parent scene and matches the substance of the sentence. 24 of 24 pass.
+- **`tests/pr-branch-process-conformance.test.js`.** Updated in the same session for the closed unattended-execution correction, recorded in [the AAA work threads log](../aaa-work-threads/work-log.md).
+
+Checks 1 through 5 now pass in sequence, and the run reaches check 6 for the first time. Checks 6 and 7 remain red on the feedback page's release profile and performance budget, tracked as [OPS-017](work-queue.md#ops-017--feedback-app-resource-closure-adjudication), whose remaining work is a browser evidence capture rather than a repository edit.
+
+Claim grade: `measured` for every failure text, file identification, and pass count, all produced by the named commands on 2026-09-05. The attribution of each defect to its commit is `measured` from `git log`. That no further failure lies beyond check 6 is `inferred`: checks 7 through 32 were run individually and all passed except 6, 7, and `tests/owned-compute-stop-hook.test.js`, which fails only under a sandbox that cannot unlink files under `.local-data/` and is expected to pass on the operator's machine. Falsifier: a full uninterrupted gate run reaching a failure not listed here.
+
+Plainly: one broken check was hiding four others, and the run now gets far enough to see the real remaining problem.
+
 ### 2026-09-05 — Technical-brief verification and definitions refined
 
 Applied both accepted focused-review findings to the [technical brief](../../research-office/cto/technical-brief-master-equation.md). The proposed test now checks full vector dynamics with explicit interval and sampling scope, and the text defines the retained-branch and evidence terminology in place. The [review record](evidence/office-document-standards-review.md#authorized-refinements-completed) records resolution; the priority tracker no longer lists these as open refinements. Existing equations and historical material retain their prior scope.

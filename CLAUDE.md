@@ -6,7 +6,14 @@ This file exists only to route a new session into repository policy. [AGENTS.md]
 
 Claude may read any file in this repository at any time without asking.
 
-Claude must ask the operator for write permission before every file-modifying action (create, edit, delete, move/rename) and wait for an explicit yes before proceeding. This applies per action, not per session: an earlier grant does not carry forward. Write permission does not persist — ask again for the next write, even within the same conversation.
+Claude has standing authorization to create, edit, delete, move, and rename files anywhere in this repository without asking per action, with one exception.
+
+- **`content/` — ask first.** Claude must ask the operator and wait for an explicit yes before every file-modifying action in this tree, including a change a generator's source-repair mode would make. This is the reader-facing corpus, and the restriction reflects operator experience rather than a property of any particular file in it.
+- **Everywhere else**, including `reference/`, repository-root policy files, `scripts/`, `tests/`, `src/`, and `apps/`, Claude may write without asking.
+
+The `content/` permission does not persist: ask again for the next write there, even within the same conversation, and keep the granted write to the scope the operator described. Standing authorization elsewhere is not licence to widen a task; write the files the current task owns and leave concurrent agents' files alone.
+
+This rule binds file writes only. Repository-changing Git remains Codex's under [AGENTS.md](AGENTS.md), and a standing write authorization never implies permission to stage, commit, push, or publish.
 
 This rule binds Claude's own conduct in chat/Cowork sessions. It is a standing operator instruction, not a technical lock — it does not change what the Cowork app's own permission settings allow; it only obligates Claude to ask first.
 
@@ -23,12 +30,12 @@ First determine whether this session can read the local checkout.
 
 This is a compact pre-read safety projection, not an independent policy source. It applies only until the required reads above are complete; [AGENTS.md](AGENTS.md) and its named owners govern every detail and any tension. A changed source fingerprint makes the repository check fail so the projection must be reviewed before regeneration.
 
-- **Repository safety.** Read-only git commands and reads of `.git` are permitted; git writes belong exclusively to Codex, so run nothing that changes refs, the index, the object store, the working tree, or remote state. Publication is operator-invoked and never part of ordinary development. Treat unrelated dirty state as normal and report it only when it blocks the task or creates overwrite risk.
+- **Repository safety.** Git inspection is permitted, including `git status` and reads of `.git`; prefer `git --no-optional-locks status`, with the option before the subcommand, where the environment may not clean up `.git/index.lock`. Repository-changing git belongs exclusively to Codex, so run nothing that changes refs, the object store, the working tree, or remote state. Publication is operator-invoked and never part of ordinary development. Treat unrelated dirty state as normal and report it only when it blocks the task or creates overwrite risk.
 - **Theory and evidence.** Standard physics is a recovery target or observer-level constraint, never an architrino-level premise. At that level use only $\mathbb{A}\mathbb{A}\mathbb{A}$ primitives; architrinos have no physical mass, and the master equation gives acceleration rather than force. Use causal-delay terminology, set $c_f=1$ in every new numerical instantiation, grade claims as derived, measured, inferred, or guessed, name the instrument and domain for measurements, state checkable falsifiers, and never treat shared-code or replay agreement as independent evidence.
 - **Operator communication.** [The operator explanation standard](reference/op/operator-explanation-standard.md) is the sole authority. Until it is read, in chat assume the operator knows $\mathbb{A}\mathbb{A}\mathbb{A}$, define imported apparatus in place, write plainly, and do not compress away necessary explanation. Present the result and necessary reasoning in chat; maintain the full academic treatment in its subject owner for an eventual reader independently of the thread. Capture substantive discussion as it develops and index it in the relevant priorities, respecting explicit read-only boundaries. Ready material may go directly to an authorized reader-facing destination. End substantive final responses with numbered next possible actions and a recommendation and reason for each.
 - **Python.** Use the shared venv at `$AAA_VENV`, falling back to `../.venv`, rather than system Python.
 
-<!-- Source fingerprints: AGENTS.md=d4d3d28b96d05611; reference/op/operator-explanation-standard.md=8d7d70ef5b1b6ab3; content/markdown/aaa/archie/academic-style-guide.md=f7e80e2b9436568f -->
+<!-- Source fingerprints: AGENTS.md=4560ad00156f2a20; reference/op/operator-explanation-standard.md=8d7d70ef5b1b6ab3; content/markdown/aaa/archie/academic-style-guide.md=f7e80e2b9436568f -->
 
 ## Scope note
 

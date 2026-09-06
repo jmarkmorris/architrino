@@ -151,6 +151,8 @@ $$
 \overline\Omega_{\mathcal A}=2\pi\overline\nu_{\mathcal A}.
 $$
 
+[View →](../../../../equation-mapping.html#corpus-equation-bec62a39745a7416)
+
 Here $\overline\nu_{\mathcal A}$ is measured in cycles per effective-time unit and $\overline\Omega_{\mathcal A}$ is the mean angular phase rate. If the real mean advance per return converges and the mean return duration converges to a finite positive value, this ratio exists and equals the quotient of those two limits. A frequency shared across the branch also requires the quotient to be independent of the initial phase. Doubling all return durations leaves the circle map unchanged and halves the frequency. Rates per substrate time $T$ require the corresponding time conversion; they cannot be identified with rates per $t_{\mathrm{eff}}$ by notation alone.
 
 The delayed trajectory supplies the physical turn counts and return times when these can be extracted consistently. A unique mean frequency alone does not establish small timing fluctuations or a positive instantaneous phase rate. Those remain part of phase coherence. For a periodic orbit with one counted phase cycle per period, the frequency is the reciprocal of that period in the declared time parameter.
