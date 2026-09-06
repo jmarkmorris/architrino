@@ -110,10 +110,10 @@ LIMITS=dict(inclusiveSeconds=1800,maximumAggregateRssBytes=2*1024**3,maximumRssS
 OPERATIONS=('scripts/eom/run-f6c-refined-acceleration-pilot.mjs',
  'scripts/eom/launch-f6c-refined-acceleration-pilot.mjs',
  'tests/f6c-refined-acceleration-pilot.test.js','tests/f6c-refined-acceleration-pilot-process.test.js',
- 'scripts/eom/launch-prescribed-response-pilot.mjs','scripts/eom/launch-abc-enclosed-root-pilot.mjs',
+ 'scripts/eom/launch-prescribed-response-pilot.mjs','scripts/eom/launch-subfield-circular-root-pilot.mjs',
  '/bin/ps','/usr/bin/memory_pressure')
 OP_PINS={'scripts/eom/launch-prescribed-response-pilot.mjs':'a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9',
- 'scripts/eom/launch-abc-enclosed-root-pilot.mjs':'5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa',
+ 'scripts/eom/launch-subfield-circular-root-pilot.mjs':'cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48',
  '/usr/bin/memory_pressure':'a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56'}
 PLAN_KEYS=('schema','scope',*NAMED,'runtimeBindings','operationalBindings','limits','priorRefinementClosure')
 CANDIDATE_KEYS=tuple('schema scope status accepted launchPlan consumer declaration verifier sourceBindings ancestryBindings refinementBindings runtimeBindings operationalBindings priorRefinementClosure projection ranges census claims publicationRequires'.split())
@@ -400,7 +400,7 @@ def authenticate_observations(admission,logs,decode):
     launcher=stream(logs['launcherLog'],49);rss=stream(logs['resourceLog'],955)
     host=[x for x in launcher if x.get('kind')=='host-resource']
     pilots=[x for x in launcher if x.get('kind')=='f6c-emission-refinement-pilot-heartbeat']
-    gates=[x for x in launcher if x.get('schema')=='braid-program/abc-pilot-outer-heartbeat.v1']
+    gates=[x for x in launcher if x.get('schema')=='braid-program/subfield-circular-pilot-outer-heartbeat.v1']
     require((len(host),len(pilots),len(gates))==(20,15,14),'prior operational observation kinds')
     require(equal(host[:-1],admission['hostObservationsBeforePublication']),'prior host prefix differs')
     whole=Fraction(closure_premise()['elapsedSeconds']);prepub=number(admission['elapsedSecondsBeforePublication'])

@@ -16,7 +16,7 @@ export const LAUNCHER='scripts/eom/launch-f6c-acceleration-pilot.mjs';
 export const TESTS='tests/f6c-acceleration-pilot.test.js';
 export const PROCESS_TESTS='tests/f6c-acceleration-pilot-process.test.js';
 export const HELPERS='scripts/eom/launch-prescribed-response-pilot.mjs';
-export const OUTER='scripts/eom/launch-abc-enclosed-root-pilot.mjs';
+export const OUTER='scripts/eom/launch-subfield-circular-root-pilot.mjs';
 export const CONSUMER='scripts/eom/prepare-f6c-continuous-reception-acceleration.py';
 export const CONSUMER_TESTS='tests/test_f6c_continuous_reception_acceleration_preparation.py';
 export const DECLARATION='reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md';
@@ -65,7 +65,7 @@ export const PINS=Object.freeze({...Object.fromEntries(FIXED.map(([,p,h])=>[p,h]
   [CONSUMER]:'dca5f5b3b42b42347b0b6b49a8974663169171e2293c1eca9c4b4a8c7646a53e',
   [CONSUMER_TESTS]:'616a4e9c464e95607140dd90b47a8288ae73183f74faa0cc5078b81b8c8767c8',
   [DECLARATION]:'3ef8fb9020bae71833b1e06a119672b49a4beb5395f697dcb3d037d088e7891e',
-  [OUTER]:'5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa',
+  [OUTER]:'cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48',
   [HELPERS]:'a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9',
   [CHECKER]:CHECKER_SHA,[CHECKER_TESTS]:CHECKER_TESTS_SHA,
   '/usr/bin/memory_pressure':'a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56'});

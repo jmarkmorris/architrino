@@ -21,7 +21,7 @@ export const ENTRY_TESTS = 'tests/prescribed-response-pilot-entry.test.js';
 export const LAUNCH_TESTS = 'tests/prescribed-response-pilot-launch.test.js';
 export const PROCESS_TESTS = 'tests/prescribed-response-pilot-process.test.js';
 export const LAUNCHER = 'scripts/eom/launch-prescribed-response-pilot.mjs';
-export const OUTER = 'scripts/eom/launch-abc-enclosed-root-pilot.mjs';
+export const OUTER = 'scripts/eom/launch-subfield-circular-root-pilot.mjs';
 export const CONSUMER = 'scripts/eom/reduce-prescribed-acceleration-response.py';
 export const PUBLISHER = 'scripts/eom/publish-prescribed-acceleration-response.py';
 export const LANE = '.local-data/braid-analysis';
@@ -71,7 +71,7 @@ export const ORIGINALS = Object.freeze([
   ['scripts/eom/oracle/certified_acceleration.py','scripts/eom/oracle/certified_acceleration.py','62787f1bb0d14329c0ad1f3586ef1f1cbeb666fe8c11f8831f7ad761d7c42b83'],
 ].map(row=>Object.freeze(row)));
 export const PINS = Object.freeze({...Object.fromEntries(ORIGINALS.filter(r=>r[1]).map(r=>[r[1],r[2]])),
-  [OUTER]:'5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa',
+  [OUTER]:'cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48',
   [PUBLISHER]:'4d67564c4ddc56ac616c334aeb43c2005028727bc97423d2ce35545497c30556',
   'tests/test_prescribed_acceleration_response_publication.py':'c5805819a7e54f68b4ad63757752afd48efba8c2d01f7caed7ace3b048bb7dd1'});
 export const check = (ok,message)=>{if(!ok)throw new Error(message);};

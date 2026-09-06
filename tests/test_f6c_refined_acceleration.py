@@ -79,7 +79,7 @@ def observations_fixture(admission):
     """Independent fictional monitoring values; no historical cost claim."""
     hosts=[dict(kind='host-resource',stage='producer',elapsedSeconds=n*12,freePercent=60,availableDiskBytes=str(100*1024**3),atLaunch=n==0)for n in range(19)]
     hosts.append(dict(kind='host-resource',stage='final-admission',elapsedSeconds=238,freePercent=60,availableDiskBytes=str(100*1024**3),atLaunch=False))
-    launcher=hosts+[dict(kind='f6c-emission-refinement-pilot-heartbeat',accepted=False)for _ in range(15)]+[dict(schema='braid-program/abc-pilot-outer-heartbeat.v1',stopping=False,h3EvidenceEligible=False)for _ in range(14)]
+    launcher=hosts+[dict(kind='f6c-emission-refinement-pilot-heartbeat',accepted=False)for _ in range(15)]+[dict(schema='braid-program/subfield-circular-pilot-outer-heartbeat.v1',stopping=False,h3EvidenceEligible=False)for _ in range(14)]
     rss=[dict(kind='aggregate-rss',stage='producer',elapsedSeconds=n/5,aggregateResidentBytes=100,sampleGapMs=200,processes=[dict(pid=123,pgid=123,rssBytes=100)])for n in range(954)]
     rss.append(dict(kind='aggregate-rss',stage='final-admission',elapsedSeconds=238,aggregateResidentBytes=100,sampleGapMs=200,processes=[dict(pid=123,pgid=123,rssBytes=100)]))
     admission['hostObservationsBeforePublication']=hosts[:-1]

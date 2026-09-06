@@ -175,14 +175,14 @@ test('metadata admission string class is explicit and other bounded structures n
  assert.throws(()=>E.decode(Buffer.from('['.repeat(25)+'0'+']'.repeat(25))));
 });
 test('captured current-entry provenance command fits the fixed admission class without a launch',async t=>{
- const outer=await import('../scripts/eom/launch-abc-enclosed-root-pilot.mjs'),entry=readFileSync(E.ENTRY),lengths=[];
+ const outer=await import('../scripts/eom/launch-subfield-circular-root-pilot.mjs'),entry=readFileSync(E.ENTRY),lengths=[];
  for(const stage of ['consumer','comparison']){
   const output=path.join(root,E.LANE,'synthetic-command-length'),planPath=path.join(root,'reference/priorities/braid-program/evidence/synthetic-refined-range-launch.v1.json');
   const args=['--plan',planPath,'--plan-sha256',H,'--entry-sha256',hash(entry),'--launcher-sha256',H,'--stage',stage,'--out',output,'--deadline-ns','99999999999999999999','--candidate-sha256',stage==='consumer'?'none':H,'--python',python,'--git-binary',realpathSync('/usr/bin/git')];
   // Literal serialization of frozen outer412–414: bounded placeholders stand
   // for port/secret and prospective paths, never an executed operation.
-  const payload={root,entry:E.ENTRY,args,sources:[{path:E.ENTRY,sha256:hash(entry),bytes:entry.toString('base64')}],port:65535,secret:'a'.repeat(64),gateSource:outer.ABC_GATE_SOURCE,gateSha256:hash(outer.ABC_GATE_SOURCE),limitMs:E.LIMIT_MS};
-  const command=[process.execPath,'-e',outer.ABC_BOOTSTRAP_SOURCE,Buffer.from(JSON.stringify(payload)).toString('base64')].join(' ');lengths.push(command.length);
+  const payload={root,entry:E.ENTRY,args,sources:[{path:E.ENTRY,sha256:hash(entry),bytes:entry.toString('base64')}],port:65535,secret:'a'.repeat(64),gateSource:outer.SUBFIELD_CIRCULAR_GATE_SOURCE,gateSha256:hash(outer.SUBFIELD_CIRCULAR_GATE_SOURCE),limitMs:E.LIMIT_MS};
+  const command=[process.execPath,'-e',outer.SUBFIELD_CIRCULAR_BOOTSTRAP_SOURCE,Buffer.from(JSON.stringify(payload)).toString('base64')].join(' ');lengths.push(command.length);
   assert.ok(command.length<=131072);assert.equal(E.decode(Buffer.from(JSON.stringify({command})),E.FILE_LIMIT,'operational-receipt').command,command);
   assert.throws(()=>E.decode(Buffer.from(JSON.stringify({command}))));
  }

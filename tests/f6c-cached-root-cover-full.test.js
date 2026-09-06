@@ -10,7 +10,7 @@ import { PassThrough, Writable } from "node:stream";
 import { execFileSync } from "node:child_process";
 import * as R from "../scripts/eom/run-f6c-cached-root-cover-full.mjs";
 import * as L from "../scripts/eom/launch-f6c-cached-root-cover-full.mjs";
-import { currentOwnedGroup, descendantRecords } from "../scripts/eom/launch-abc-enclosed-root-pilot.mjs";
+import { currentOwnedGroup, descendantRecords } from "../scripts/eom/launch-subfield-circular-root-pilot.mjs";
 const root=process.cwd(),digest=x=>createHash("sha256").update(x).digest("hex");
 const temp=()=>mkdtempSync(path.join(tmpdir(),"f6c-pilot-control-"));
 const binding=(p,h="1".repeat(64))=>({path:p,sha256:h,bytes:1});

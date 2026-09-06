@@ -8,14 +8,14 @@ import { fileURLToPath } from "node:url";
 
 export const ENTRY = "scripts/eom/run-f6c-root-cover-pilot.mjs";
 export const LAUNCHER = "scripts/eom/launch-f6c-root-cover-pilot.mjs";
-export const OUTER = "scripts/eom/launch-abc-enclosed-root-pilot.mjs";
+export const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs";
 export const CONSUMER = "scripts/eom/prepare-f6c-continuous-reception-root-cover.py";
 export const COMPARISON = "scripts/eom/verify-f6c-continuous-reception-root-cover.py";
 export const RESOURCE_PLAN = "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md";
 export const LANE = ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827";
 export const LIMIT_MS = 1800000, LOG_LIMIT = 16*1024**2, FILE_LIMIT = 64*1024**2;
 export const PINS = Object.freeze({
-  [OUTER]: "5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa",
+  [OUTER]: "cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48",
   [CONSUMER]: "4ce6436c09c445030192aeb5b894239b7fa04cee578e6067f1088151695a5e9e",
   [COMPARISON]: "2d25103e0fb6ab584485b7954465afe0fa5de556b3a7e111c56d20156b7011fd",
   [RESOURCE_PLAN]: "36b72681c116cedf1803cc89ead8b48a7d9604bae7f9bffd7b0f95b33c3bb9b4",

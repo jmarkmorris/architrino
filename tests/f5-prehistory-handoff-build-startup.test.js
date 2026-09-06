@@ -5,7 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { startupAbortInspection } from "../scripts/eom/launch-f5-prehistory-handoff-build.mjs";
-import { processTable, superviseRegisteredPilot } from "../scripts/eom/launch-abc-enclosed-root-pilot.mjs";
+import { processTable, superviseRegisteredPilot } from "../scripts/eom/launch-subfield-circular-root-pilot.mjs";
 
 // Independently authored startup controls. The only possible executable target
 // is a synthetic Node marker writer; no build, F5 data, or EOM is invoked.

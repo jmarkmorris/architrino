@@ -10,7 +10,7 @@ import { PassThrough, Writable } from "node:stream";
 import { execFileSync } from "node:child_process";
 import * as R from "../scripts/eom/run-f6c-cached-root-cover-pilot.mjs";
 import * as L from "../scripts/eom/launch-f6c-cached-root-cover-pilot.mjs";
-import { currentOwnedGroup, descendantRecords } from "../scripts/eom/launch-abc-enclosed-root-pilot.mjs";
+import { currentOwnedGroup, descendantRecords } from "../scripts/eom/launch-subfield-circular-root-pilot.mjs";
 const root=process.cwd(),digest=x=>createHash("sha256").update(x).digest("hex");
 const temp=()=>mkdtempSync(path.join(tmpdir(),"f6c-pilot-control-"));
 const binding=(p,h="1".repeat(64))=>({path:p,sha256:h,bytes:1});
@@ -303,7 +303,7 @@ const CACHED_HASH_REPLACEMENTS=[
 ];
 const CACHED_EXTRA_PINS="  \"tests/test_eom_continuous_reception_roots_cached.py\": \"a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md\": \"765e6663cdd60323f84b9e1af52ba1399345322eb747727f2a0898b4dd0fd079\",\n  \"scripts/eom/oracle/continuous_reception_roots.py\": \"f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c\",\n  \"scripts/eom/verify-f6c-continuous-reception-root-cover.py\": \"2d25103e0fb6ab584485b7954465afe0fa5de556b3a7e111c56d20156b7011fd\",\n  \"tests/test_f6c_continuous_reception_root_cover.py\": \"5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md\": \"798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md\": \"46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef\",\n";
 const CACHED_EXPECTED_PINS={
-  "scripts/eom/launch-abc-enclosed-root-pilot.mjs": "5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa",
+  "scripts/eom/launch-subfield-circular-root-pilot.mjs": "cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48",
   "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py": "af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386",
   "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py": "19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132",
   "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md": "36b72681c116cedf1803cc89ead8b48a7d9604bae7f9bffd7b0f95b33c3bb9b4",

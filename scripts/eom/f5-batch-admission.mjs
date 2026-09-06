@@ -5,7 +5,7 @@ import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
 import { parseObservation, parseHostResource, acceptRSS } from './launch-prescribed-response-pilot.mjs';
-import { descendantRecords, currentOwnedGroup } from './launch-abc-enclosed-root-pilot.mjs';
+import { descendantRecords, currentOwnedGroup } from './launch-subfield-circular-root-pilot.mjs';
 
 export { parseHostResource, acceptRSS, descendantRecords, currentOwnedGroup };
 export const BATCH_ROOT = fileURLToPath(new URL('../../', import.meta.url));

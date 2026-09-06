@@ -37,3 +37,6 @@ node_modules/
 # Local CTO corpus-exploration coordination cards
 reference/research-office/cto/reports/corpus-exploration-claims/
 .fuse_hidden*
+
+# Local Python virtual environment (symlinked from ../.venv; never tracked)
+.venv/

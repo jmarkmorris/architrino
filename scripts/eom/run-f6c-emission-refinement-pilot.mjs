@@ -16,7 +16,7 @@ export const LAUNCHER='scripts/eom/launch-f6c-emission-refinement-pilot.mjs';
 export const TESTS='tests/f6c-emission-refinement-pilot.test.js';
 export const PROCESS_TESTS='tests/f6c-emission-refinement-pilot-process.test.js';
 export const HELPERS='scripts/eom/launch-prescribed-response-pilot.mjs';
-export const OUTER='scripts/eom/launch-abc-enclosed-root-pilot.mjs';
+export const OUTER='scripts/eom/launch-subfield-circular-root-pilot.mjs';
 export const PRODUCER='scripts/eom/prepare-f6c-emission-refinement.py';
 export const PRODUCER_TESTS='tests/test_f6c_emission_refinement_preparation.py';
 export const CHECKER='scripts/eom/verify-f6c-emission-refinement.py';
@@ -76,7 +76,7 @@ export const PINS=Object.freeze({...Object.fromEntries(FIXED.map(([,p,h])=>[p,h]
  [COMPARISON]:'ec0eaaeae3da4ffb597ac92ff3ac1a5700a8cf88916144a7d994912270c4157a',
  [COMPARISON_TESTS]:'bac7357186fb05c5b7ea35154c5564e7527075a9a94177a8b600f9a02119adb5',
  [HELPERS]:'a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9',
- [OUTER]:'5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa',
+ [OUTER]:'cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48',
  'scripts/eom/oracle/continuous_reception_roots_cached.py':'daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf',
  'tests/test_eom_continuous_reception_roots_cached.py':'a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb',
  'scripts/eom/oracle/certified_history.py':'ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7',

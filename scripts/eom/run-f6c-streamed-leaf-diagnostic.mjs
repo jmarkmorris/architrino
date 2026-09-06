@@ -107,8 +107,8 @@ export const PINS=Object.freeze({
   "a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9"
  ],
  "outer": [
-  "scripts/eom/launch-abc-enclosed-root-pilot.mjs",
-  "18cc7d6a646d1bad55fbc02e3b8eb09223f7098c9940360998ad6a6a04e1d2c8"
+  "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+  "cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48"
  ],
  "diagnostics": [
   "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",

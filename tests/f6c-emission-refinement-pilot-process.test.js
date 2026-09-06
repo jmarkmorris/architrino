@@ -11,7 +11,7 @@ import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
 const root=realpathSync(process.cwd()),hash=b=>createHash('sha256').update(b).digest('hex');
-const outer=readFileSync('scripts/eom/launch-abc-enclosed-root-pilot.mjs');
+const outer=readFileSync('scripts/eom/launch-subfield-circular-root-pilot.mjs');
 const helper=readFileSync('scripts/eom/launch-prescribed-response-pilot.mjs');
 const self=readFileSync('scripts/eom/launch-f6c-emission-refinement-pilot.mjs');
 const entryPath='scripts/eom/run-f6c-emission-refinement-pilot.mjs';
@@ -161,7 +161,7 @@ test('real active-target diagnostic EPIPE cancels owned group releases lock and 
   "import{createHash}from'node:crypto';import{existsSync,mkdirSync,mkdtempSync,readFileSync,realpathSync,writeFileSync}from'node:fs';",
   "import{syncBuiltinESMExports}from'node:module';import{tmpdir}from'node:os';import path from'node:path';import{pathToFileURL}from'node:url';",
   'const root='+JSON.stringify(root)+',hash=b=>createHash("sha256").update(b).digest("hex");',
-  'const outer=readFileSync('+JSON.stringify(path.join(root,'scripts/eom/launch-abc-enclosed-root-pilot.mjs'))+');',
+  'const outer=readFileSync('+JSON.stringify(path.join(root,'scripts/eom/launch-subfield-circular-root-pilot.mjs'))+');',
   'const helper=readFileSync('+JSON.stringify(path.join(root,'scripts/eom/launch-prescribed-response-pilot.mjs'))+');',
   'const self=readFileSync('+JSON.stringify(path.join(root,'scripts/eom/launch-f6c-emission-refinement-pilot.mjs'))+');',
   'const entryPath='+JSON.stringify(entryPath)+',lane='+JSON.stringify(lane)+',lockLane='+JSON.stringify(lockLane)+',python='+JSON.stringify(python)+';',

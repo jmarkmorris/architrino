@@ -40,7 +40,7 @@ export const LIMITS=Object.freeze({inclusiveMilliseconds:1800000,aggregateRSSByt
   stopFreePercent:20,stopDiskBytes:17179869184});
 export const PINS=Object.freeze({
   helpers:['scripts/eom/launch-prescribed-response-pilot.mjs','a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9'],
-  outer:['scripts/eom/launch-abc-enclosed-root-pilot.mjs','18cc7d6a646d1bad55fbc02e3b8eb09223f7098c9940360998ad6a6a04e1d2c8'],
+  outer:['scripts/eom/launch-subfield-circular-root-pilot.mjs','cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48'],
   diagnostics:['scripts/eom/launch-f6c-emission-refinement-pilot.mjs','89b23af09f57aa50e3ebfc0780189f2f0d1a409a7e13004af0cb48167894b944'],
 });
 const check=(ok,message)=>{if(!ok)throw Error(message);};

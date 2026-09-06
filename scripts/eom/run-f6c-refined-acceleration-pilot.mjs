@@ -16,7 +16,7 @@ export const LAUNCHER='scripts/eom/launch-f6c-refined-acceleration-pilot.mjs';
 export const TESTS='tests/f6c-refined-acceleration-pilot.test.js';
 export const PROCESS_TESTS='tests/f6c-refined-acceleration-pilot-process.test.js';
 export const HELPERS='scripts/eom/launch-prescribed-response-pilot.mjs';
-export const OUTER='scripts/eom/launch-abc-enclosed-root-pilot.mjs';
+export const OUTER='scripts/eom/launch-subfield-circular-root-pilot.mjs';
 export const CONSUMER='scripts/eom/prepare-f6c-refined-acceleration.py';
 export const CONSUMER_TESTS='tests/test_f6c_refined_acceleration_preparation.py';
 export const DECLARATION='reference/priorities/braid-program/evidence/2026-08-27-f6c-refined-cover-acceleration-projection.md';
@@ -92,7 +92,7 @@ export const PINS=Object.freeze({...Object.fromEntries([...FIXED,...REFINED,...P
  [NAMED.comparisonCoreControls]:'3fb6eabd03a56b982f2601f11b535c60208f03df519e41ea29d4ba018a0e531e',
  [NAMED.rangeComparison]:'cc26f5a45d0e09a472e3066d0d62ae8192492a7c3e0ab18a3658781a0274b299',
  [NAMED.rangeComparisonControls]:'be741dccccd90c349849b19dc15df1acd4ea5752ec6f8a9e98e7ae14013c52c6',
- [OUTER]:'5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa',
+ [OUTER]:'cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48',
  [HELPERS]:'a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9',
  [CHECKER]:CHECKER_SHA,[CHECKER_TESTS]:CHECKER_TESTS_SHA,
  '/usr/bin/memory_pressure':'a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56'});

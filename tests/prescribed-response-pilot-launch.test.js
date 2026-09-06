@@ -7,7 +7,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { Writable } from 'node:stream';
 import * as L from '../scripts/eom/launch-prescribed-response-pilot.mjs';
-import { currentOwnedGroup, descendantRecords } from '../scripts/eom/launch-abc-enclosed-root-pilot.mjs';
+import { currentOwnedGroup, descendantRecords } from '../scripts/eom/launch-subfield-circular-root-pilot.mjs';
 const temp=()=>mkdtempSync(path.join(tmpdir(),'prescribed-response-launch-control-'));
 const digest=x=>createHash('sha256').update(x).digest('hex');
 
