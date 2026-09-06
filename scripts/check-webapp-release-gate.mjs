@@ -6,7 +6,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const DEFAULT_CONTRACT_PATH = "reference/priorities/aaa-operations/webapp-release-gate.v1.json";
+const DEFAULT_CONTRACT_PATH = "reference/priorities/aaa-operations/contracts/webapp-release-gate.v1.json";
 const CONTRACT_SCHEMA = "architrino.webapp-release-gate.v1";
 const EVIDENCE_SCHEMA = "architrino.webapp-release-gate-evidence.v1";
 

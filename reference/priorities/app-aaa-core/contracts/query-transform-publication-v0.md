@@ -59,7 +59,7 @@ Plainly: the fixtures cover both the normal exchange and each named way the cont
 
 ## Artifacts
 
-- Machine control record: [`aaa-core-query-transform-publication.v0.json`](../aaa-core-query-transform-publication.v0.json)
+- Machine control record: [`aaa-core-query-transform-publication.v0.json`](aaa-core-query-transform-publication.v0.json)
 - Structural schema: [`src/contracts/aaa-core-query-transform-publication/v0/schema.json`](../../../../src/contracts/aaa-core-query-transform-publication/v0/schema.json)
 - Executable validator and builder: [`src/aaa-core/query-transform-publication-v0.mjs`](../../../../src/aaa-core/query-transform-publication-v0.mjs)
 - Positive fixtures: [`tests/fixtures/aaa-core-query-transform-publication/v0/positive-suite.json`](../../../../tests/fixtures/aaa-core-query-transform-publication/v0/positive-suite.json)

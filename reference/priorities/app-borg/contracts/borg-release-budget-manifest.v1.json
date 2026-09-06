@@ -6,7 +6,7 @@
   "status": "release-ceilings-decided",
   "sourceSweepArtifactId": "borg-preset-calibration-sweep-2026-07-01-iab-v1",
   "sourceSweepSchema": "borg-preset-calibration-sweep.v1",
-  "sourceSweepPath": "reference/priorities/app-borg/borg-preset-calibration-sweep.v1.json",
+  "sourceSweepPath": "reference/priorities/app-borg/evidence/borg-preset-calibration-sweep.v1.json",
   "browserSurface": "Codex in-app browser",
   "nativeSolverContract": {
     "appId": "borg",

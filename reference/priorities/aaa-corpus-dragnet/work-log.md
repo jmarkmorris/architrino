@@ -114,7 +114,7 @@ CD-001 established the input and evidence contract below. This was boundary and 
 
 #### First-pass exclusions
 
-- Generated and derived surfaces: `content/generated/`, `content/graph/`, `reference/op/agent-startup-orientation.generated.md`, `reference/priorities/source-mining/analysis/legacy-architrino-wordpress-library-posts.md`, and `reference/priorities/source-mining/legacy-architrino-wordpress-mining-queue.txt`.
+- Generated and derived surfaces: `content/generated/`, `content/graph/`, `reference/op/agent-startup-orientation.generated.md`, `reference/priorities/source-mining/analysis/legacy-architrino-wordpress-library-posts.md`, and `reference/priorities/source-mining/archive-analysis/legacy-architrino-wordpress-mining-queue.txt`.
 - Historical or parked surfaces: `content/archive/`, `reference/priorities/dormant-deferred/`, `reference/research-office/research-history/`, `reference/priorities/app-solver/archive/`, `reference/priorities/master-equation-closure/history/`, `reference/priorities/source-mining/archive-analysis/`, and `reference/design/banners/history/`.
 - Dragnet control and output files: `reference/priorities/aaa-corpus-dragnet/`; these define and record the pass rather than supply correlation candidates.
 - Implementation and validation surfaces: `apps/`, `scripts/`, `src/`, `tests/`, root web shells, and `.github/`. A pass may open an exact file from these paths only as secondary evidence for a candidate already found in the primary roots, and must label it `implementation evidence`, not a corpus owner.

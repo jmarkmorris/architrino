@@ -73,7 +73,7 @@ async function sha256Text(value, cryptoLike) {
 }
 
 export async function loadBorgPlatonicRelationships({ fetchLike, identity,
-  assignmentsUrl = "./reference/priorities/braid-program/borg-platonic-relationship-assignments.v1.json",
+  assignmentsUrl = "./reference/priorities/braid-program/configurations/borg-platonic-relationship-assignments.v1.json",
   cryptoLike = globalThis.crypto } = {}) {
   try {
     if (typeof fetchLike !== "function") throw new Error("Platonic relationship loading requires fetch().");

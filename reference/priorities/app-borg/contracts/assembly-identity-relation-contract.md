@@ -28,7 +28,7 @@ Thus the current 145 exact configurations form 46 Borg braid entries: 45 singlet
 
 Plainly: the one 100-member card means “one source-declared braid relation with 100 calculated configurations,” not “one record copied 100 times.”
 
-The canonical [assembly registry](../assembly-registry.v1.json) assigns each of the 45 entries one permanent opaque `braidId`. The identifier survives presentation renames and does not encode a mutable label, taxonomy placement, representative model revision, geometry, evidence grade, or component-braid count. Exact members retain independent `assemblyId + modelRevisionSha256` identities beneath that entry.
+The canonical [assembly registry](assembly-registry.v1.json) assigns each of the 45 entries one permanent opaque `braidId`. The identifier survives presentation renames and does not encode a mutable label, taxonomy placement, representative model revision, geometry, evidence grade, or component-braid count. Exact members retain independent `assemblyId + modelRevisionSha256` identities beneath that entry.
 
 Plainly: the card identity and each exact configuration identity now answer different questions and remain independently copyable.
 

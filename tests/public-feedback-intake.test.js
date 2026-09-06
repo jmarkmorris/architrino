@@ -142,7 +142,7 @@ test("feedback page and issue form preserve explicit public submission", () => {
   );
   const policy = JSON.parse(
     fs.readFileSync(
-      path.join(ROOT, "reference/priorities/aaa-operations/feedback-intake-policy.v1.json"),
+      path.join(ROOT, "reference/priorities/aaa-operations/contracts/feedback-intake-policy.v1.json"),
       "utf8"
     )
   );

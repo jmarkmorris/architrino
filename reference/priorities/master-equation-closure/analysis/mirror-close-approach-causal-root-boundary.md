@@ -132,7 +132,7 @@ Plainly: every admitted row is pointwise defined at positive delay, but the new 
 
 ## Completed Verification
 
-The [independent incoming ledger](../evidence/mec-007-stationary-mirror-incoming-ledger-2026-09-02.md) and its [machine receipt](../mec-007-stationary-mirror-incoming-oracle.v1.json) discharge the bounded pre-boundary program. The separately authored `mpmath` oracle preserves both persistent labels and proves the complete one-partner, zero-self census by retained-history sign bracketing and strict monotonicity. Four refinements vary step size, delayed-history representation, decimal precision, root-isolation tolerance, quadrature, and the six-section speed ladder.
+The [independent incoming ledger](../evidence/mec-007-stationary-mirror-incoming-ledger-2026-09-02.md) and its [machine receipt](../evidence/mec-007-stationary-mirror-incoming-oracle.v1.json) discharge the bounded pre-boundary program. The separately authored `mpmath` oracle preserves both persistent labels and proves the complete one-partner, zero-self census by retained-history sign bracketing and strict monotonicity. Four refinements vary step size, delayed-history representation, decimal precision, root-isolation tolerance, quadrature, and the six-section speed ladder.
 
 The finest run reaches $u(T_\ast)=1$ at $T_\ast=1.57263966427542494723320$ with $q(T_\ast)=0.0515067031419049260433244$, delayed range $R_\ast=0.291264614512075967194770$, and transmitter factor $D_t=0.528042415793909316213859$. The coordinate separation remains positive, the minimum retained-history margin is $19$, the signed relative-acceleration integral and total variation are both $2$, and the maximum reported root residual is $7.723\times10^{-67}$.
 

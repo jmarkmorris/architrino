@@ -144,7 +144,7 @@ Plainly: the gate now watches every file the current Photon route actually loads
 
 ### 2026-09-02 — OPS-001 deployment budget contract
 
-- Accepted [deployment-budget.v1](deployment-budget.v1.json) with Borg as the first consumer, added a source-bound browser probe, wired the checker into Content Integrity, and exposed the measured classes in Borg's deployment drawer.
+- Accepted [deployment-budget.v1](contracts/deployment-budget.v1.json) with Borg as the first consumer, added a source-bound browser probe, wired the checker into Content Integrity, and exposed the measured classes in Borg's deployment drawer.
 - Rebuilt the public site in an empty temporary directory: 4,347 files and 453,526,774 bytes, 27,971,992 bytes (5.81%) below the 2026-09-01 OPS-006 reconstruction. Generated equation, corpus-index, and Borg-record outputs totaled 177,611,810 bytes; the 145 Borg records accounted for 116,873,582 bytes.
 - Measured Borg's fresh 3840-by-2160 first screen at 2,513,867 encoded shell bytes, 42,712 encoded static-asset bytes, 12,138,288 used browser-heap bytes, a 26,429,760-byte canvas color-surface lower bound, and zero origin-storage use. The canvas value excludes depth, textures, geometry, driver allocation, compositor copies, and shared-process memory.
 - Estimated 2,556,579,000 monthly Pages bytes for an inferred scenario of 1,000 uncached first-screen visits. This is not observed traffic and excludes selected records and repeat-visit cache behavior.
@@ -168,7 +168,7 @@ Plainly: the deployment budget now has live numbers and an app consumer. It repo
 
 ### 2026-09-02 — OPS-004 browser performance budget
 
-- Closed OPS-004 with the accepted [browser-performance budget](browser-performance-budget.v1.json), the source-bound [dated evidence receipt](browser-performance-baseline-2026-09-01.json), the repo-native development probe, and `scripts/check-browser-performance-budget.mjs`. The checker is wired into the full content-integrity runner.
+- Closed OPS-004 with the accepted [browser-performance budget](contracts/browser-performance-budget.v1.json), the source-bound [dated evidence receipt](evidence/browser-performance-baseline-2026-09-01.json), the repo-native development probe, and `scripts/check-browser-performance-budget.mjs`. The checker is wired into the full content-integrity runner.
 - Used two representative non-Borg, non-Braid profiles. Public Feedback owns an explicit refresh-to-next-paint interaction; Photon owns the animated 4K profile. Each cold launch used the first app load on a fresh loopback origin, and each warm launch used an identical same-origin reload with HTTP validation behavior retained.
 - Public Feedback measured 831,413 cold-transfer bytes, 813,202 warm-transfer bytes, 12.9- and 16.5-millisecond load events, a 31.7-millisecond interaction-to-next-paint result, 39,974,550 post-frame heap bytes, and zero origin-storage use.
 - Photon measured 4,504,805 cold-transfer bytes and 10,800 warm-transfer bytes. At 3840 by 2160 CSS pixels, 360 consecutive animation intervals produced 59.88 median frames per second, an 18.2-millisecond 95th-percentile interval, and zero intervals above 33.34 milliseconds. The measured post-frame heap was 150,088,154 bytes with 17,129,304 bytes of positive growth over that repeated frame window; the accepted thresholds allow 268,435,456 used bytes and 67,108,864 bytes of positive growth.
@@ -179,7 +179,7 @@ Plainly: the deployment budget now has live numbers and an app consumer. It repo
 
 ### 2026-09-01 — OPS-003 webapp release gate
 
-- Closed OPS-003 with the accepted [webapp release-gate contract](webapp-release-gate.v1.json), executable `scripts/check-webapp-release-gate.mjs` checker, and source-bound [public-feedback evidence receipt](feedback-webapp-release-gate-2026-09-01.json). The gate is wired into the full content-integrity runner rather than remaining a standalone advisory.
+- Closed OPS-003 with the accepted [webapp release-gate contract](contracts/webapp-release-gate.v1.json), executable `scripts/check-webapp-release-gate.mjs` checker, and source-bound [public-feedback evidence receipt](evidence/feedback-webapp-release-gate-2026-09-01.json). The gate is wired into the full content-integrity runner rather than remaining a standalone advisory.
 - Defined seven mandatory categories with explicit failure behavior: content, graph, size, visual, browser, accessibility, and preview. The checker recursively discovers the load-time HTML, CSS, and JavaScript closure, rejects undeclared local or remote resources, enforces the source-byte ceiling, and rejects stale byte counts or SHA-256 identities.
 - Passed the first consumer with four public-feedback source files totaling 18,211 uncompressed bytes against a 32,768-byte ceiling. Focused positive and negative tests cover the accepted baseline, undeclared resources, over-budget growth, stale hashes, and failed browser, accessibility, or preview evidence.
 - Used the in-app browser workflow at 1440 by 900 and 390 by 844 pixels. Both viewports had zero horizontal overflow; the mobile check found zero unnamed controls, zero duplicate identifiers, six focusable controls, and a 42-CSS-pixel minimum control height. The copy interaction and all three same-origin public-manifest reads passed with a clean console.
@@ -189,7 +189,7 @@ Plainly: the deployment budget now has live numbers and an app consumer. It repo
 
 ### 2026-09-01 — OPS-012 privacy-safe public feedback intake
 
-- Closed OPS-012 with the [privacy-safe feedback intake](contracts/privacy-safe-feedback-intake.md), [versioned policy](feedback-intake-policy.v1.json), public `feedback.html` generator, and dedicated GitHub public-webapp issue form.
+- Closed OPS-012 with the [privacy-safe feedback intake](contracts/privacy-safe-feedback-intake.md), [versioned policy](contracts/feedback-intake-policy.v1.json), public `feedback.html` generator, and dedicated GitHub public-webapp issue form.
 - Added `architrino.public-feedback-manifest.v1`, which records only a same-origin public pathname, browser family and major version, operating-system family, coarse device/viewport/pixel-ratio categories, browser language, and availability, last-modified headers, and entry counts for the public scene index, markdown index, and scene graph.
 - Excluded the raw user-agent string, query and fragment, cookies, local and session storage, clipboard contents, local file names and contents, WebGL renderer, and account identifiers. The page only writes the visible manifest after the Copy action and never reads clipboard contents.
 - Kept submission explicit: opening the local generator sends nothing to GitHub; the external issue form opens only after user selection and still requires review and submission. The form warns that issues are public and requires confirmation that private workflow and identifying material were removed.
@@ -200,7 +200,7 @@ Plainly: the deployment budget now has live numbers and an app consumer. It repo
 
 ### 2026-09-01 — OPS-011 dependency and public-security review
 
-- Closed OPS-011 with the [dependency and public-security review](evidence/dependency-and-public-security-review-2026-09-01.md) and machine-checkable [public-security policy](public-security-policy.v1.json).
+- Closed OPS-011 with the [dependency and public-security review](evidence/dependency-and-public-security-review-2026-09-01.md) and machine-checkable [public-security policy](contracts/public-security-policy.v1.json).
 - Audited the one exact npm dependency and 111-entry locked production graph. The first lockfile audit reported one moderate Mermaid vulnerability group covering five advisories in 11.16.0; after moving the manifest, lockfile, vendored runtime, provenance, and attribution to 11.16.1, the audit returned zero known vulnerabilities.
 - Added a moderate-or-higher npm audit to every content-integrity workflow run and weekly Dependabot review for npm and GitHub Actions. Replaced every movable external Action tag with its verified full 40-character commit identifier.
 - Found the Support Architrino Research renderer dynamically loading a Liberapay widget script, which the earlier HTML-only remote-resource scan did not cover. Removed the automatic executable load, retained the ordinary user-selected donation link, widened the source scan to shared runtimes, and prohibited dynamic script construction and remote executable JavaScript URLs.
@@ -211,7 +211,7 @@ Plainly: the deployment budget now has live numbers and an app consumer. It repo
 
 ### 2026-09-01 — OPS-008 observability and analytics policy
 
-- Closed OPS-008 with the accepted [observability and analytics policy](contracts/observability-and-analytics-policy.md) and machine-checkable [versioned contract](observability-policy.v1.json).
+- Closed OPS-008 with the accepted [observability and analytics policy](contracts/observability-and-analytics-policy.md) and machine-checkable [versioned contract](contracts/observability-policy.v1.json).
 - Set the current client-analytics mode to disabled with no collector and zero raw or aggregate retention. Explicit future opt-in, bounded retention, provider/privacy/security review, revocation, deletion, and browser-network negatives are required before any event can be sent.
 - Audited 219 authored HTML, JavaScript, JavaScript-module, and Swift app sources. The negative controls found no known collector domain, beacon, cookie access, XHR, WebSocket, EventSource, or remote executable/media tag.
 - Confirmed Website Statistics is an unconnected zero-data display. Changed its dormant send decision from permissive-by-default to policy-bound and fail-closed; the existing browser opt-out remains an additional veto and unavailable storage cannot authorize sending.

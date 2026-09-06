@@ -5,7 +5,7 @@
   "registryAuthority": "AAA Core",
   "logicalContract": {
     "schema": "aaa_core_path_interchange/v0",
-    "controlRecord": "reference/priorities/app-aaa-core/aaa-core-path-interchange.v0.json"
+    "controlRecord": "reference/priorities/app-aaa-core/contracts/aaa-core-path-interchange.v0.json"
   },
   "profiles": [
     {

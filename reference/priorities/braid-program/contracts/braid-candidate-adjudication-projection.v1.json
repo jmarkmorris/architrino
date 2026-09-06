@@ -2,7 +2,7 @@
   "schema": "borg-scientific-status-projection.v1",
   "revision": "braid-candidate-adjudication-projection.2026-09-02.v2",
   "source": "reference/priorities/braid-program/analysis/braid-candidate-requirement-adjudication.md",
-  "sourceSha256": "d0590fcb01336724dd35dfa1a40c73fb58cd163b34412077a81418fadee166db",
+  "sourceSha256": "c3addb7debd0a35b593cdb7a0a59c08945af65603e0f734e2ddc72ac0fa758da",
   "relations": [
     {
       "relationId": "adj-stella-octangula-catalog-endpoint-balance-2026-09-02",
@@ -18,7 +18,7 @@
       },
       "candidate": "static stella-octangula catalog history",
       "sourceAnchor": "#universal-hard-gate-adjudication",
-      "sourceRow": "| `static stella-octangula catalog history` | `P[D]` | `P[D]` | `P[D/M]` | `F[D/M]` | `N/A` | The [exact catalog-endpoint root and acceleration packet](evidence/2026-09-02-stella-octangula-catalog-endpoint-balance.md) certifies all $56$ retained roots at $T=1$ and matches an unchanged independent pair-sum oracle, while every member has nonzero inward acceleration. This excludes only the exact prescribed static $[0,1]$ history. |",
+      "sourceRow": "| `static stella-octangula catalog history` | `P[D]` | `P[D]` | `P[D/M]` | `F[D/M]` | `N/A` | The [exact catalog-endpoint root and acceleration packet](../evidence/2026-09-02-stella-octangula-catalog-endpoint-balance.md) certifies all $56$ retained roots at $T=1$ and matches an unchanged independent pair-sum oracle, while every member has nonzero inward acceleration. This excludes only the exact prescribed static $[0,1]$ history. |",
       "requirements": {
         "H1": "P[D]",
         "H2": "P[D]",
@@ -218,7 +218,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "Ordinary release or retained-branch evidence remains absent where H4 or H5 is unknown.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -261,7 +261,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "Ordinary release or retained-branch evidence remains absent where H4 or H5 is unknown.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -304,7 +304,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "Ordinary release or retained-branch evidence remains absent where H4 or H5 is unknown.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -329,7 +329,7 @@
         "H4": "U",
         "H5": "U"
       },
-      "testedRealization": "Coincident-center two-component circular chart — co-rotating",
+      "testedRealization": "Coincident-center two-component circular chart \u2014 co-rotating",
       "parameterDomain": "The exact frozen prescribed history named by the source row and its declared finite reception grids.",
       "assumptions": [
         "The exact assemblyId and modelRevisionSha256 remain current.",
@@ -347,7 +347,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "Ordinary release or retained-branch evidence remains absent where H4 or H5 is unknown.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -372,7 +372,7 @@
         "H4": "U",
         "H5": "U"
       },
-      "testedRealization": "Coincident-center two-component circular chart — counter-rotating",
+      "testedRealization": "Coincident-center two-component circular chart \u2014 counter-rotating",
       "parameterDomain": "The exact frozen prescribed history named by the source row and its declared finite reception grids.",
       "assumptions": [
         "The exact assemblyId and modelRevisionSha256 remain current.",
@@ -390,7 +390,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "Ordinary release or retained-branch evidence remains absent where H4 or H5 is unknown.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -415,7 +415,7 @@
         "H4": "U",
         "H5": "U"
       },
-      "testedRealization": "Coaxial separated two-component circular chart — co-rotating",
+      "testedRealization": "Coaxial separated two-component circular chart \u2014 co-rotating",
       "parameterDomain": "The exact frozen prescribed history named by the source row and its declared finite reception grids.",
       "assumptions": [
         "The exact assemblyId and modelRevisionSha256 remain current.",
@@ -433,7 +433,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "Ordinary release or retained-branch evidence remains absent where H4 or H5 is unknown.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -458,7 +458,7 @@
         "H4": "U",
         "H5": "U"
       },
-      "testedRealization": "Coaxial separated two-component circular chart — counter-rotating",
+      "testedRealization": "Coaxial separated two-component circular chart \u2014 counter-rotating",
       "parameterDomain": "The exact frozen prescribed history named by the source row and its declared finite reception grids.",
       "assumptions": [
         "The exact assemblyId and modelRevisionSha256 remain current.",
@@ -476,7 +476,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "Ordinary release or retained-branch evidence remains absent where H4 or H5 is unknown.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -501,7 +501,7 @@
         "H4": "U",
         "H5": "U"
       },
-      "testedRealization": "Coaxial separated two-planar-braid chart — co-rotating",
+      "testedRealization": "Coaxial separated two-planar-braid chart \u2014 co-rotating",
       "parameterDomain": "The exact frozen prescribed history named by the source row and its declared finite reception grids.",
       "assumptions": [
         "The exact assemblyId and modelRevisionSha256 remain current.",
@@ -519,7 +519,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "Ordinary release or retained-branch evidence remains absent where H4 or H5 is unknown.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -544,7 +544,7 @@
         "H4": "U",
         "H5": "U"
       },
-      "testedRealization": "Coaxial separated two-planar-braid chart — counter-rotating",
+      "testedRealization": "Coaxial separated two-planar-braid chart \u2014 counter-rotating",
       "parameterDomain": "The exact frozen prescribed history named by the source row and its declared finite reception grids.",
       "assumptions": [
         "The exact assemblyId and modelRevisionSha256 remain current.",
@@ -562,7 +562,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "Ordinary release or retained-branch evidence remains absent where H4 or H5 is unknown.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -587,7 +587,7 @@
         "H4": "U",
         "H5": "U"
       },
-      "testedRealization": "Three-axis circular chart — coincident pair midpoints",
+      "testedRealization": "Three-axis circular chart \u2014 coincident pair midpoints",
       "parameterDomain": "The exact frozen prescribed history named by the source row and its declared finite reception grids.",
       "assumptions": [
         "The exact assemblyId and modelRevisionSha256 remain current.",
@@ -605,7 +605,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "The current sub-field root method does not cover this history; H3 remains unknown, not failed.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -630,7 +630,7 @@
         "H4": "U",
         "H5": "U"
       },
-      "testedRealization": "Three-axis circular chart — coincident pair midpoints, common frequency",
+      "testedRealization": "Three-axis circular chart \u2014 coincident pair midpoints, common frequency",
       "parameterDomain": "The exact frozen prescribed history named by the source row and its declared finite reception grids.",
       "assumptions": [
         "The exact assemblyId and modelRevisionSha256 remain current.",
@@ -648,7 +648,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "No ordinary release or retained-branch row follows from the prescribed-root pass.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -673,7 +673,7 @@
         "H4": "U",
         "H5": "U"
       },
-      "testedRealization": "Three-axis circular chart — coincident pair midpoints, equal radius and common frequency",
+      "testedRealization": "Three-axis circular chart \u2014 coincident pair midpoints, equal radius and common frequency",
       "parameterDomain": "The exact frozen prescribed history named by the source row and its declared finite reception grids.",
       "assumptions": [
         "The exact assemblyId and modelRevisionSha256 remain current.",
@@ -691,7 +691,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "No ordinary release or retained-branch row follows from the prescribed-root pass.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -716,7 +716,7 @@
         "H4": "U",
         "H5": "U"
       },
-      "testedRealization": "Three-axis circular chart — coincident pair midpoints, 4:2:1 frequency ratio",
+      "testedRealization": "Three-axis circular chart \u2014 coincident pair midpoints, 4:2:1 frequency ratio",
       "parameterDomain": "The exact frozen prescribed history named by the source row and its declared finite reception grids.",
       "assumptions": [
         "The exact assemblyId and modelRevisionSha256 remain current.",
@@ -734,7 +734,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "The current sub-field root method does not cover this history; H3 remains unknown, not failed.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -759,7 +759,7 @@
         "H4": "U",
         "H5": "U"
       },
-      "testedRealization": "Three-axis circular chart — coincident pair midpoints, 3:2:1 frequency ratio",
+      "testedRealization": "Three-axis circular chart \u2014 coincident pair midpoints, 3:2:1 frequency ratio",
       "parameterDomain": "The exact frozen prescribed history named by the source row and its declared finite reception grids.",
       "assumptions": [
         "The exact assemblyId and modelRevisionSha256 remain current.",
@@ -777,7 +777,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "No ordinary release or retained-branch row follows from the prescribed-root pass.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -802,7 +802,7 @@
         "H4": "U",
         "H5": "U"
       },
-      "testedRealization": "Three-axis circular chart — phase-compensated equal geometry",
+      "testedRealization": "Three-axis circular chart \u2014 phase-compensated equal geometry",
       "parameterDomain": "The exact frozen prescribed history named by the source row and its declared finite reception grids.",
       "assumptions": [
         "The exact assemblyId and modelRevisionSha256 remain current.",
@@ -820,7 +820,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "No ordinary release or retained-branch row follows from the prescribed-root pass.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -845,7 +845,7 @@
         "H4": "U",
         "H5": "U"
       },
-      "testedRealization": "Three-axis circular chart — axially separated endpoint circles, common frequency",
+      "testedRealization": "Three-axis circular chart \u2014 axially separated endpoint circles, common frequency",
       "parameterDomain": "The exact frozen prescribed history named by the source row and its declared finite reception grids.",
       "assumptions": [
         "The exact assemblyId and modelRevisionSha256 remain current.",
@@ -863,7 +863,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "No ordinary release or retained-branch row follows from the prescribed-root pass.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -888,7 +888,7 @@
         "H4": "U",
         "H5": "U"
       },
-      "testedRealization": "Three-axis circular chart — axially separated endpoint circles, equal radius and common frequency",
+      "testedRealization": "Three-axis circular chart \u2014 axially separated endpoint circles, equal radius and common frequency",
       "parameterDomain": "The exact frozen prescribed history named by the source row and its declared finite reception grids.",
       "assumptions": [
         "The exact assemblyId and modelRevisionSha256 remain current.",
@@ -906,7 +906,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "No ordinary release or retained-branch row follows from the prescribed-root pass.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -931,7 +931,7 @@
         "H4": "U",
         "H5": "U"
       },
-      "testedRealization": "Three-axis circular chart — axially separated endpoint circles, 4:2:1 frequency ratio",
+      "testedRealization": "Three-axis circular chart \u2014 axially separated endpoint circles, 4:2:1 frequency ratio",
       "parameterDomain": "The exact frozen prescribed history named by the source row and its declared finite reception grids.",
       "assumptions": [
         "The exact assemblyId and modelRevisionSha256 remain current.",
@@ -949,7 +949,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "The current sub-field root method does not cover this history; H3 remains unknown, not failed.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -974,7 +974,7 @@
         "H4": "U",
         "H5": "U"
       },
-      "testedRealization": "Three-axis circular chart — axially separated endpoint circles, 3:2:1 frequency ratio",
+      "testedRealization": "Three-axis circular chart \u2014 axially separated endpoint circles, 3:2:1 frequency ratio",
       "parameterDomain": "The exact frozen prescribed history named by the source row and its declared finite reception grids.",
       "assumptions": [
         "The exact assemblyId and modelRevisionSha256 remain current.",
@@ -992,7 +992,7 @@
           "url": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md#parallel-abc-scope"
         }
       ],
-      "establishes": "The requirement passes and unknowns shown in H1–H5 at the source grades and scope.",
+      "establishes": "The requirement passes and unknowns shown in H1\u2013H5 at the source grades and scope.",
       "doesNotEstablish": "The source owner records no accepted H5 retained-branch row. Prescribed replay, bounded release, and visual persistence are not retention or stability.",
       "currentBlocker": "No ordinary release or retained-branch row follows from the prescribed-root pass.",
       "falsifier": "Invalidate this relation if the exact identity, source/build binding, required history, pair coverage, or independently checked enclosure no longer matches the controlling evidence."
@@ -1009,7 +1009,7 @@
       },
       "candidate": "centered five-coordinate representative",
       "sourceAnchor": "#universal-hard-gate-adjudication",
-      "sourceRow": "| `centered five-coordinate representative` | `P[D]` | `P[M]` | `P[M]` | `P[M]` | `U` | The metric-matched five-coordinate row completed the [guarded $T=0.15$ release](evidence/three-binary-five-coordinate-bounded-eom-comparison.md) and preserved its cyclic slice, but did not return. |",
+      "sourceRow": "| `centered five-coordinate representative` | `P[D]` | `P[M]` | `P[M]` | `P[M]` | `U` | The metric-matched five-coordinate row completed the [guarded $T=0.15$ release](../evidence/three-binary-five-coordinate-bounded-eom-comparison.md) and preserved its cyclic slice, but did not return. |",
       "requirements": {
         "H1": "P[D]",
         "H2": "P[M]",
@@ -1047,9 +1047,9 @@
         "assemblyId": "asm-5221daa4bd010d9a791e208c08fe20e8",
         "modelRevisionSha256": "5221daa4bd010d9a791e208c08fe20e88604aebe6163d01f38de832df86b1e7f"
       },
-      "candidate": "phase-varying display representative — revised phase-varying campaign realization",
+      "candidate": "phase-varying display representative \u2014 revised phase-varying campaign realization",
       "sourceAnchor": "#universal-hard-gate-adjudication",
-      "sourceRow": "| `phase-varying display representative` revised phase-varying campaign realization | `P[D/M]` | `P[D/M]` | `P[M]` | `U` | `U` | The [executable and guard certificate](evidence/2026-08-26-f5-phase-varying-executable-guard-certificate.md) preserves the approved twelve-member history and continuous guards. The independently accepted [enclosed-root restart](evidence/2026-08-27-f5-enclosed-root-closure.md) adds scoped prescribed H3 on its finite `8/32/128` reception ladder, with actual-history enclosure and all 24,192 pair certificates. |",
+      "sourceRow": "| `phase-varying display representative` revised phase-varying campaign realization | `P[D/M]` | `P[D/M]` | `P[M]` | `U` | `U` | The [executable and guard certificate](../evidence/2026-08-26-f5-phase-varying-executable-guard-certificate.md) preserves the approved twelve-member history and continuous guards. The independently accepted [enclosed-root restart](../evidence/2026-08-27-f5-enclosed-root-closure.md) adds scoped prescribed H3 on its finite `8/32/128` reception ladder, with actual-history enclosure and all 24,192 pair certificates. |",
       "requirements": {
         "H1": "P[D/M]",
         "H2": "P[D/M]",
@@ -1090,9 +1090,9 @@
         "assemblyId": "asm-0b8ebf36be00b06978c8a58dee6604fb",
         "modelRevisionSha256": "0b8ebf36be00b06978c8a58dee6604fb280200374047fae2734d82623e7f2ffe"
       },
-      "candidate": "scoped-negative circular control — demoted realization",
+      "candidate": "scoped-negative circular control \u2014 demoted realization",
       "sourceAnchor": "#universal-hard-gate-adjudication",
-      "sourceRow": "| `scoped-negative circular control` (demoted realization) | `P[D]` | `P[D]` | `P[D]` | `F[M]` | `U` | Exact continuous noncoincidence and complete simple roots pass on the prescribed circular history, but its [measured member-acceleration residual](../mapping-equations/analysis/inferring-braid-requirements.md#scoped-negative-circular-control-root-ledger-and-member-acceleration-screen) rejects that isolated history as an EOM realization. |",
+      "sourceRow": "| `scoped-negative circular control` (demoted realization) | `P[D]` | `P[D]` | `P[D]` | `F[M]` | `U` | Exact continuous noncoincidence and complete simple roots pass on the prescribed circular history, but its [measured member-acceleration residual](../../mapping-equations/analysis/inferring-braid-requirements.md#scoped-negative-circular-control-root-ledger-and-member-acceleration-screen) rejects that isolated history as an EOM realization. |",
       "requirements": {
         "H1": "P[D]",
         "H2": "P[D]",
@@ -1132,7 +1132,7 @@
       },
       "candidate": "asymmetric counter-breathing representative",
       "sourceAnchor": "#universal-hard-gate-adjudication",
-      "sourceRow": "| `asymmetric counter-breathing representative` | `P[D]` | `P[M]` | `P[M]` | `P[M]` | `U` | Bounded releases in the [asymmetric counter-breathing representative geometry program](configurations/f6c-geometry.md) preserve the exact symmetry surface and achieve partial turns, but no root-valid nondegenerate complete return exists. |",
+      "sourceRow": "| `asymmetric counter-breathing representative` | `P[D]` | `P[M]` | `P[M]` | `P[M]` | `U` | Bounded releases in the [asymmetric counter-breathing representative geometry program](../configurations/f6c-geometry.md) preserve the exact symmetry surface and achieve partial turns, but no root-valid nondegenerate complete return exists. |",
       "requirements": {
         "H1": "P[D]",
         "H2": "P[M]",
@@ -1174,9 +1174,9 @@
         "assemblyId": "asm-cf2ac3be564112ff1347867d04593bc6",
         "modelRevisionSha256": "cf2ac3be564112ff1347867d04593bc6af77233fffb5754c0bc0f7220e496966"
       },
-      "candidate": "axially separated orthogonal-axis three-binary configuration — measured five-coordinate slice",
+      "candidate": "axially separated orthogonal-axis three-binary configuration \u2014 measured five-coordinate slice",
       "sourceAnchor": "#universal-hard-gate-adjudication",
-      "sourceRow": "| `axially separated orthogonal-axis three-binary configuration`, measured five-coordinate slice | `P[D]` | `P[M]` | `P[M]` | `P[M]` | `U` | One pair-conjugate five-coordinate slice completed the [guarded release](evidence/three-binary-five-coordinate-bounded-eom-comparison.md) through $T=0.15$ with certified noncoincidence, complete roots, and speed margin; the pass does not cover the full axially separated configuration chart. |",
+      "sourceRow": "| `axially separated orthogonal-axis three-binary configuration`, measured five-coordinate slice | `P[D]` | `P[M]` | `P[M]` | `P[M]` | `U` | One pair-conjugate five-coordinate slice completed the [guarded release](../evidence/three-binary-five-coordinate-bounded-eom-comparison.md) through $T=0.15$ with certified noncoincidence, complete roots, and speed margin; the pass does not cover the full axially separated configuration chart. |",
       "requirements": {
         "H1": "P[D]",
         "H2": "P[M]",
@@ -1184,7 +1184,7 @@
         "H4": "P[M]",
         "H5": "U"
       },
-      "testedRealization": "Three-axis circular chart — axially separated endpoint circles",
+      "testedRealization": "Three-axis circular chart \u2014 axially separated endpoint circles",
       "parameterDomain": "The exact frozen prescribed history named by the source row and its declared finite reception grids.",
       "assumptions": [
         "The exact assemblyId and modelRevisionSha256 remain current.",
@@ -1214,9 +1214,9 @@
         "assemblyId": "asm-5221daa4bd010d9a791e208c08fe20e8",
         "modelRevisionSha256": "5221daa4bd010d9a791e208c08fe20e88604aebe6163d01f38de832df86b1e7f"
       },
-      "candidate": "phase-varying display representative — common-cadence circular realization",
+      "candidate": "phase-varying display representative \u2014 common-cadence circular realization",
       "sourceAnchor": "#universal-hard-gate-adjudication",
-      "sourceRow": "| `phase-varying display representative` common-cadence circular realization | `P[D]` | `F[D]` | `U` | `U` | `U` | The declared ordinary two-ring circular realization has an [exact incompatibility](../mapping-equations/analysis/inferring-braid-requirements.md#joint-projection-audit-and-a-two-ring-no-go) among everywhere-noncoincident member geometry, stationary centroid, and instantaneous dipole null; the revised row is materially different and does not erase this scoped negative. |",
+      "sourceRow": "| `phase-varying display representative` common-cadence circular realization | `P[D]` | `F[D]` | `U` | `U` | `U` | The declared ordinary two-ring circular realization has an [exact incompatibility](../../mapping-equations/analysis/inferring-braid-requirements.md#joint-projection-audit-and-a-two-ring-no-go) among everywhere-noncoincident member geometry, stationary centroid, and instantaneous dipole null; the revised row is materially different and does not erase this scoped negative. |",
       "requirements": {
         "H1": "P[D]",
         "H2": "F[D]",
@@ -1304,7 +1304,7 @@
       "parameterDomain": "Only the domain declared by the controlling evidence.",
       "assumptions": [
         "The source-owned match carrier and evidence link remain current.",
-        "This contextual finding is not an H1–H5 adjudication for the inspected exact leaf."
+        "This contextual finding is not an H1\u2013H5 adjudication for the inspected exact leaf."
       ],
       "instrument": "Accepted prescribed acceleration-balance row in the bounded regular alternating circular landscape.",
       "evidenceLinks": [
@@ -1314,7 +1314,7 @@
         }
       ],
       "establishes": "Accepted prescribed acceleration-balance row in the bounded regular alternating circular landscape.",
-      "doesNotEstablish": "This broader finding does not become an exact H1–H5 verdict, retention result, stability result, binding result, or physical identity claim.",
+      "doesNotEstablish": "This broader finding does not become an exact H1\u2013H5 verdict, retention result, stability result, binding result, or physical identity claim.",
       "currentBlocker": "Each of the 11 exact catalog leaves requires its own identity-bound H1-H5 row and accepted protocol; the structured-set balance result cannot supply an exact leaf adjudication.",
       "falsifier": "Remove or supersede this context if its source-owned matcher, evidence link, or scientific owner no longer supports the stated scope."
     },
@@ -1335,7 +1335,7 @@
       "parameterDomain": "Only the domain declared by the controlling evidence.",
       "assumptions": [
         "The source-owned match carrier and evidence link remain current.",
-        "This contextual finding is not an H1–H5 adjudication for the inspected exact leaf."
+        "This contextual finding is not an H1\u2013H5 adjudication for the inspected exact leaf."
       ],
       "instrument": "Accepted equal-radius planar three-binary prescribed acceleration-balance row in the exact topology ladder.",
       "evidenceLinks": [
@@ -1345,7 +1345,7 @@
         }
       ],
       "establishes": "Accepted equal-radius planar three-binary prescribed acceleration-balance row in the exact topology ladder.",
-      "doesNotEstablish": "This broader finding does not become an exact H1–H5 verdict, retention result, stability result, binding result, or physical identity claim.",
+      "doesNotEstablish": "This broader finding does not become an exact H1\u2013H5 verdict, retention result, stability result, binding result, or physical identity claim.",
       "currentBlocker": "Each of the 100 exact ladder variants requires its own identity-bound H1-H5 evidence chain; the broader prescribed acceleration-balance source establishes neither an exact leaf adjudication nor ordinary evolution or retention.",
       "falsifier": "Remove or supersede this context if its source-owned matcher, evidence link, or scientific owner no longer supports the stated scope."
     },
@@ -1366,7 +1366,7 @@
       "parameterDomain": "Only the domain declared by the controlling evidence.",
       "assumptions": [
         "The source-owned match carrier and evidence link remain current.",
-        "This contextual finding is not an H1–H5 adjudication for the inspected exact leaf."
+        "This contextual finding is not an H1\u2013H5 adjudication for the inspected exact leaf."
       ],
       "instrument": "The fixed orthogonal-plane weave locus has no prescribed acceleration balance on the declared speed interval.",
       "evidenceLinks": [
@@ -1376,7 +1376,7 @@
         }
       ],
       "establishes": "The fixed orthogonal-plane weave locus has no prescribed acceleration balance on the declared speed interval.",
-      "doesNotEstablish": "This broader finding does not become an exact H1–H5 verdict, retention result, stability result, binding result, or physical identity claim.",
+      "doesNotEstablish": "This broader finding does not become an exact H1\u2013H5 verdict, retention result, stability result, binding result, or physical identity claim.",
       "currentBlocker": "An exact source-and-domain equivalence proof must bind the broader locus theorem to this catalog identity before it can support an exact H1-H5 adjudication.",
       "falsifier": "Remove or supersede this context if its source-owned matcher, evidence link, or scientific owner no longer supports the stated scope."
     },
@@ -1397,7 +1397,7 @@
       "parameterDomain": "Only the domain declared by the controlling evidence.",
       "assumptions": [
         "The source-owned match carrier and evidence link remain current.",
-        "This contextual finding is not an H1–H5 adjudication for the inspected exact leaf."
+        "This contextual finding is not an H1\u2013H5 adjudication for the inspected exact leaf."
       ],
       "instrument": "Scoped enclosed-root completeness is accepted on the declared phase-varying reception ladder.",
       "evidenceLinks": [
@@ -1407,8 +1407,8 @@
         }
       ],
       "establishes": "Scoped enclosed-root completeness is accepted on the declared phase-varying reception ladder.",
-      "doesNotEstablish": "This broader finding does not become an exact H1–H5 verdict, retention result, stability result, binding result, or physical identity claim.",
-      "currentBlocker": "Use the exact Braid Program adjudication row, when one exists, for H1–H5 status.",
+      "doesNotEstablish": "This broader finding does not become an exact H1\u2013H5 verdict, retention result, stability result, binding result, or physical identity claim.",
+      "currentBlocker": "Use the exact Braid Program adjudication row, when one exists, for H1\u2013H5 status.",
       "falsifier": "Remove or supersede this context if its source-owned matcher, evidence link, or scientific owner no longer supports the stated scope."
     },
     {
@@ -1428,7 +1428,7 @@
       "parameterDomain": "Only the domain declared by the controlling evidence.",
       "assumptions": [
         "The source-owned match carrier and evidence link remain current.",
-        "This contextual finding is not an H1–H5 adjudication for the inspected exact leaf."
+        "This contextual finding is not an H1\u2013H5 adjudication for the inspected exact leaf."
       ],
       "instrument": "The declared asymmetric counter-breathing history has an independently accepted conditional root cover and scoped acceleration-range findings.",
       "evidenceLinks": [
@@ -1438,8 +1438,8 @@
         }
       ],
       "establishes": "The declared asymmetric counter-breathing history has an independently accepted conditional root cover and scoped acceleration-range findings.",
-      "doesNotEstablish": "This broader finding does not become an exact H1–H5 verdict, retention result, stability result, binding result, or physical identity claim.",
-      "currentBlocker": "Use the exact Braid Program adjudication row, when one exists, for H1–H5 status.",
+      "doesNotEstablish": "This broader finding does not become an exact H1\u2013H5 verdict, retention result, stability result, binding result, or physical identity claim.",
+      "currentBlocker": "Use the exact Braid Program adjudication row, when one exists, for H1\u2013H5 status.",
       "falsifier": "Remove or supersede this context if its source-owned matcher, evidence link, or scientific owner no longer supports the stated scope."
     },
     {

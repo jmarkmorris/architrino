@@ -5,7 +5,7 @@
 - **Registry:** `aaa_core_codec_registry/v0`
 - **Lifecycle:** accepted at registry-contract and synthetic-conformance grade
 - **Logical dependency:** [`aaa_core_path_interchange/v0`](path-interchange-v0.md)
-- **Machine control record:** [`aaa-core-codec-registry.v0.json`](../aaa-core-codec-registry.v0.json)
+- **Machine control record:** [`aaa-core-codec-registry.v0.json`](aaa-core-codec-registry.v0.json)
 - **Registry schema:** [`src/contracts/aaa-core-codec-registry/v0/schema.json`](../../../../src/contracts/aaa-core-codec-registry/v0/schema.json)
 - **Executable conformance:** [`src/aaa-core/codec-registry-v0.mjs`](../../../../src/aaa-core/codec-registry-v0.mjs)
 - **Focused tests:** [`tests/aaa-core-codec-registry-v0.test.js`](../../../../tests/aaa-core-codec-registry-v0.test.js)

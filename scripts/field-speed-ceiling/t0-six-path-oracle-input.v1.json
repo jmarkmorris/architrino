@@ -109,5 +109,5 @@
       }
     ]
   },
-  "declared_reproduction_command": "VIRTUAL_ENV=\"${AAA_VENV:-../.venv}\" \"${AAA_VENV:-../.venv}/bin/python\" scripts/field-speed-ceiling/t0-six-path-mpmath-oracle.py --input scripts/field-speed-ceiling/t0-six-path-oracle-input.v1.json --write-receipt reference/priorities/field-speed-ceiling/fsc-004-t0-six-path-mpmath-receipt.v1.json"
+  "declared_reproduction_command": "VIRTUAL_ENV=\"${AAA_VENV:-../.venv}\" \"${AAA_VENV:-../.venv}/bin/python\" scripts/field-speed-ceiling/t0-six-path-mpmath-oracle.py --input scripts/field-speed-ceiling/t0-six-path-oracle-input.v1.json --write-receipt reference/priorities/field-speed-ceiling/evidence/fsc-004-t0-six-path-mpmath-receipt.v1.json"
 }

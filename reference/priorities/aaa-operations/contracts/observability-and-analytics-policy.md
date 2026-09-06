@@ -2,7 +2,7 @@
 
 ## Purpose And Claim Boundary
 
-This policy closes OPS-008 by defining the accepted telemetry, consent, retention, and sensitive-work boundaries for public applications and deployment operations. Its machine-checkable state is [`observability-policy.v1.json`](../observability-policy.v1.json). The policy governs application-controlled collection; it does not claim that hosting, network, browser, operating-system, or external-data providers retain no request metadata under their own terms.
+This policy closes OPS-008 by defining the accepted telemetry, consent, retention, and sensitive-work boundaries for public applications and deployment operations. Its machine-checkable state is [`observability-policy.v1.json`](observability-policy.v1.json). The policy governs application-controlled collection; it does not claim that hosting, network, browser, operating-system, or external-data providers retain no request metadata under their own terms.
 
 Website Statistics is a public static operations utility under Archie Operations. It is not a product application, it is excluded from product-application discovery, and its direct route provides no access control. The route must never be described as private unless an actual authenticated service boundary is introduced and separately accepted.
 

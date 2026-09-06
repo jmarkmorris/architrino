@@ -78,7 +78,7 @@ export const BORG_DATASET_MANIFEST_V1 = deepFreeze({
   },
   "deploymentBudget": {
     "contractId": "deployment-budget.v1",
-    "contractPath": "reference/priorities/aaa-operations/deployment-budget.v1.json",
+    "contractPath": "reference/priorities/aaa-operations/contracts/deployment-budget.v1.json",
     "bundleSizeBytes": {
       "measuredBytes": 2513867,
       "maximumBytes": 4194304,

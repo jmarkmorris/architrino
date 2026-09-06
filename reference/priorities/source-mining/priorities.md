@@ -64,9 +64,9 @@ The completed target list lives in [source-mining-history](analysis/source-minin
 ## Completed Searchable Source Archives
 
 - Legacy Architrino WordPress original-blog archive-level mining is complete as of June 28, 2026. The bonus retained artifact is a reusable searchable archive, not an open priority item.
-- [Legacy Architrino WordPress post registry](legacy-architrino-wordpress-posts.jsonl) preserves the durable normalized post inventory for future post mining and topic sweeps.
+- [Legacy Architrino WordPress post registry](archive-analysis/legacy-architrino-wordpress-posts.jsonl) preserves the durable normalized post inventory for future post mining and topic sweeps.
 - [Legacy Architrino WordPress library posts](analysis/legacy-architrino-wordpress-library-posts.md) is the generated human-readable title/date/topic/keyword table from the registry.
-- [Legacy Architrino WordPress mining queue](legacy-architrino-wordpress-mining-queue.txt) is the generated all-post URL view from the registry; it is not completion state.
+- [Legacy Architrino WordPress mining queue](archive-analysis/legacy-architrino-wordpress-mining-queue.txt) is the generated all-post URL view from the registry; it is not completion state.
 - [Legacy Architrino archive mining report](archive-analysis/legacy-architrino-archive-mining-report.md), [candidate gaps](archive-analysis/legacy-architrino-candidate-gaps.md), and [idea clusters](archive-analysis/legacy-architrino-idea-clusters.md) preserve the archive-level source map for future lookup.
 
 ## Legacy Architrino WordPress Library Stats

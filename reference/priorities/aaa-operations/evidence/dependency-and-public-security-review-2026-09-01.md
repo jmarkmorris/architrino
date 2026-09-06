@@ -2,7 +2,7 @@
 
 ## Status And Boundary
 
-OPS-011 is complete at the repository-policy boundary. The review covers the locked npm graph, browser-vendored assets, GitHub Actions references, automatic third-party executable loading, the live public response headers, and the DNS and mail-security controls routed from OPS-010. The machine-checkable source of truth is [public-security-policy.v1.json](../public-security-policy.v1.json).
+OPS-011 is complete at the repository-policy boundary. The review covers the locked npm graph, browser-vendored assets, GitHub Actions references, automatic third-party executable loading, the live public response headers, and the DNS and mail-security controls routed from OPS-010. The machine-checkable source of truth is [public-security-policy.v1.json](../contracts/public-security-policy.v1.json).
 
 This review did not change a GitHub account setting, DNS record, certificate, mail setting, hosting provider, deployment, or production response. Account-only and provider-only controls have explicit operator dispositions below.
 
@@ -34,7 +34,7 @@ Plainly: the older vendored libraries are not being called freshly sourced just 
 
 The source audit found that the Support Architrino Research page dynamically created a script element for `liberapay.com/Architrino/widgets/button.js`. That path was outside the earlier HTML-tag-only negative control. The widget was removed; the existing ordinary Liberapay link remains and contacts Liberapay only after the reader selects it. The source test now includes shared runtime code and rejects dynamic script construction and remote executable JavaScript URLs in addition to remote executable or media HTML tags.
 
-PubChem remains the one explicit external data lookup: the Molecule form sends an unlisted formula only after the disclosed Add action. It is not executable code and remains governed by [observability-policy.v1.json](../observability-policy.v1.json).
+PubChem remains the one explicit external data lookup: the Molecule form sends an unlisted formula only after the disclosed Add action. It is not executable code and remains governed by [observability-policy.v1.json](../contracts/observability-policy.v1.json).
 
 Plainly: merely reading the site no longer downloads donation-provider code. A reader can still follow the donation link, and the molecule lookup remains an intentional button-driven data request.
 

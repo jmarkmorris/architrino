@@ -42,7 +42,7 @@ Plainly: the two apps share code and records, but they keep their own applicatio
 
 ## Artifacts
 
-- Machine control record: [`aaa-core-client.v0.json`](../aaa-core-client.v0.json)
+- Machine control record: [`aaa-core-client.v0.json`](aaa-core-client.v0.json)
 - Structural schema: [`src/contracts/aaa-core-client/v0/schema.json`](../../../../src/contracts/aaa-core-client/v0/schema.json)
 - Thin client: [`src/aaa-core/client-v0.mjs`](../../../../src/aaa-core/client-v0.mjs)
 - Consumer fixture: [`tests/fixtures/aaa-core-client/v0/consumer-suite.json`](../../../../tests/fixtures/aaa-core-client/v0/consumer-suite.json)

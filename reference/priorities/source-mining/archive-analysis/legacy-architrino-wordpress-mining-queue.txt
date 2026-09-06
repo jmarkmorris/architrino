@@ -1,6 +1,6 @@
 # Legacy Architrino WordPress Mining Queue
 # Generated: 2026-07-04
-# Source registry: reference/priorities/source-mining/legacy-architrino-wordpress-posts.jsonl
+# Source registry: reference/priorities/source-mining/archive-analysis/legacy-architrino-wordpress-posts.jsonl
 # This is an all-post archive URL view. Completion is topic/pass-specific and belongs in source-mining-history.md.
 
 # 2026-06-27 Unfinished Notes on Temperature

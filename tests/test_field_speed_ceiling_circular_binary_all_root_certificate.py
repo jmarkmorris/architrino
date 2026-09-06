@@ -12,7 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 ORACLE = ROOT / "scripts/field-speed-ceiling/circular-binary-all-root-mpmath-oracle.py"
 INPUT = ROOT / "scripts/field-speed-ceiling/circular-binary-all-root-certificate-input.v1.json"
-RECEIPT = ROOT / "reference/priorities/field-speed-ceiling/fsc-010-circular-binary-all-root-mpmath-receipt.v1.json"
+RECEIPT = ROOT / "reference/priorities/field-speed-ceiling/evidence/fsc-010-circular-binary-all-root-mpmath-receipt.v1.json"
 
 
 def sha256_bytes(value: bytes) -> str:

@@ -4,7 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const CONTRACT_PATH = "reference/priorities/app-aaa-core/aaa-core-path-interchange.v0.json";
+const CONTRACT_PATH = "reference/priorities/app-aaa-core/contracts/aaa-core-path-interchange.v0.json";
 
 export class PathInterchangeError extends Error {
   constructor(code, message) {

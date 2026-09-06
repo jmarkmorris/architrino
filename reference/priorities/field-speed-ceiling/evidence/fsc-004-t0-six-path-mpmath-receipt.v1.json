@@ -4,14 +4,14 @@
   "scope": "T=0 prescribed six-path equal-radius geometry only",
   "provenance": {
     "input_path": "scripts/field-speed-ceiling/t0-six-path-oracle-input.v1.json",
-    "input_sha256": "a5a113a69783f2de2abf97f9d526ca4a03617d90510af4624b525967c5a00257",
+    "input_sha256": "3cdca3dc663b70580fc873c2bfcf5a85bd645716e1cd4603407a2c2b61efffa0",
     "specification_sha256": "8f3552814d0f89e4a45c57bf9cacc267521b2d55f900b0703d883f37f991df0a",
     "oracle_path": "scripts/field-speed-ceiling/t0-six-path-mpmath-oracle.py",
     "oracle_sha256": "b95b4d7d3c355e2d6562a1895b9e7c36b3340c33486f5a166436e917945a5b45",
     "mpmath_version": "1.3.0",
     "decimal_digits": 100,
     "bisection_steps": 420,
-    "declared_reproduction_command": "VIRTUAL_ENV=\"${AAA_VENV:-../.venv}\" \"${AAA_VENV:-../.venv}/bin/python\" scripts/field-speed-ceiling/t0-six-path-mpmath-oracle.py --input scripts/field-speed-ceiling/t0-six-path-oracle-input.v1.json --write-receipt reference/priorities/field-speed-ceiling/fsc-004-t0-six-path-mpmath-receipt.v1.json"
+    "declared_reproduction_command": "VIRTUAL_ENV=\"${AAA_VENV:-../.venv}\" \"${AAA_VENV:-../.venv}/bin/python\" scripts/field-speed-ceiling/t0-six-path-mpmath-oracle.py --input scripts/field-speed-ceiling/t0-six-path-oracle-input.v1.json --write-receipt reference/priorities/field-speed-ceiling/evidence/fsc-004-t0-six-path-mpmath-receipt.v1.json"
   },
   "ordinary_root_inventory": {
     "reception_time": "0",

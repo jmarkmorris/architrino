@@ -10,7 +10,7 @@ import {
 } from "../../src/apps/shared/AssemblyViewRecordCarriers.mjs";
 
 const repoRoot = resolve(fileURLToPath(new URL("../../", import.meta.url)));
-const registryPath = resolve(repoRoot, "reference/priorities/app-borg/assembly-registry.v1.json");
+const registryPath = resolve(repoRoot, "reference/priorities/app-borg/contracts/assembly-registry.v1.json");
 const outputPath = resolve(repoRoot, "content/assets/borg/assembly-view-collection.v1.json");
 const sha256 = (value) => createHash("sha256").update(value).digest("hex");
 

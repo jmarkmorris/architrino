@@ -47,7 +47,7 @@ Plainly: a repeated phase pattern near a singularity can be interesting, but it 
 
 ## Sweep Extension Rule
 
-The existing [756-case sweep receipt](../helical-self-hit-phase-lock-sweep.receipt.v1.json) is a provenance-bound historical diagnostic. It found no stable phase-lock family and already reported 422 singular-candidate families. This change introduces no new transmitter-history family, so the sweep was not expanded or regenerated. Future sweeps automatically aggregate admitted and rejected root counts and exact rejection reasons; a new sweep is warranted only when the app adds a new transmitter-history family or changes the declared root-admission mathematics.
+The existing [756-case sweep receipt](../evidence/helical-self-hit-phase-lock-sweep.receipt.v1.json) is a provenance-bound historical diagnostic. It found no stable phase-lock family and already reported 422 singular-candidate families. This change introduces no new transmitter-history family, so the sweep was not expanded or regenerated. Future sweeps automatically aggregate admitted and rejected root counts and exact rejection reasons; a new sweep is warranted only when the app adds a new transmitter-history family or changes the declared root-admission mathematics.
 
 Plainly: repeating the same 756 cases would only remeasure the same prescribed histories. The useful change here is better classification, not a larger pile of equivalent cases.
 

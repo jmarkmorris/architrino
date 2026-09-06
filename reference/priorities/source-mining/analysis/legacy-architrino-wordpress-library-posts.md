@@ -3,7 +3,7 @@
 - Sources: [Architrino home archive](https://architrino.wordpress.com/), [Posts History](https://architrino.wordpress.com/library/), [2026 archive](https://architrino.wordpress.com/2026/), and the public WordPress API.
 - Crawled: 2026-07-04
 - Total published posts discovered: 379
-- Durable registry: [legacy-architrino-wordpress-posts.jsonl](../legacy-architrino-wordpress-posts.jsonl)
+- Durable registry: [legacy-architrino-wordpress-posts.jsonl](../archive-analysis/legacy-architrino-wordpress-posts.jsonl)
 - Clean-text cache root: `${TMPDIR:-/tmp}/architrino-archive-mining/clean-text`
 - Completion authority: topic and batch mining events are recorded in source-mining history; this table is a generated archive inventory.
 

@@ -10,8 +10,8 @@ import {
 } from "./path-interchange-v0.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const REGISTRY_PATH = "reference/priorities/app-aaa-core/aaa-core-codec-registry.v0.json";
-const PATH_CONTRACT_PATH = "reference/priorities/app-aaa-core/aaa-core-path-interchange.v0.json";
+const REGISTRY_PATH = "reference/priorities/app-aaa-core/contracts/aaa-core-codec-registry.v0.json";
+const PATH_CONTRACT_PATH = "reference/priorities/app-aaa-core/contracts/aaa-core-path-interchange.v0.json";
 
 export class CodecRegistryError extends Error {
   constructor(code, message) {

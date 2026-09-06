@@ -10,7 +10,7 @@ Plainly: the incoming encounter is now checked all the way to the first regular 
 
 ## Independent instrument
 
-The separately authored [stationary-mirror incoming oracle](../../../../scripts/eom/stationary-mirror-incoming-oracle.py) imports only the Python standard library and `mpmath`. It does not import `src/eom`, read an EOM fixture, or consume an EOM trajectory. Its complete machine record is [mec-007-stationary-mirror-incoming-oracle.v1.json](../mec-007-stationary-mirror-incoming-oracle.v1.json), and [three focused tests](../../../../tests/test_mec007_stationary_mirror_incoming_oracle.py) bind that record to the current oracle, enforce the incoming census and terminal margins, check refinement, and compare the independent $T=1.395$ checkpoint with the EOM solver's certified intervals.
+The separately authored [stationary-mirror incoming oracle](../../../../scripts/eom/stationary-mirror-incoming-oracle.py) imports only the Python standard library and `mpmath`. It does not import `src/eom`, read an EOM fixture, or consume an EOM trajectory. Its complete machine record is [mec-007-stationary-mirror-incoming-oracle.v1.json](mec-007-stationary-mirror-incoming-oracle.v1.json), and [three focused tests](../../../../tests/test_mec007_stationary_mirror_incoming_oracle.py) bind that record to the current oracle, enforce the incoming census and terminal margins, check refinement, and compare the independent $T=1.395$ checkpoint with the EOM solver's certified intervals.
 
 For half-position $q$, inward speed $u=-\dot q$, reception time $T$, and partner emission time $s<T$, the oracle independently restates
 

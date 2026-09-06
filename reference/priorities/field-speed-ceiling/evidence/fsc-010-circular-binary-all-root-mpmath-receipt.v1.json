@@ -7,11 +7,11 @@
     "input_sha256": "1bafec36bd46a06e7713654b76e754652c1069fbde086cd631648966286fd3df",
     "specification_sha256": "580245f41eca0d2749b2cf1c7eb6ea984560b1338fe708f444e543cc96fd6ce7",
     "oracle_path": "scripts/field-speed-ceiling/circular-binary-all-root-mpmath-oracle.py",
-    "oracle_sha256": "8e81bc1bc58c5cb37df7423baf903a809a9d5ba35cb9f119470a8b7ca42849c8",
+    "oracle_sha256": "6cccbbf18b898a1902c532a9ce20c9dc5107708071c46cac74a0169d520bf593",
     "mpmath_version": "1.3.0",
     "decimal_digits": 100,
     "bisection_steps": 420,
-    "declared_reproduction_command": "VIRTUAL_ENV=\"${AAA_VENV:-../.venv}\" \"${AAA_VENV:-../.venv}/bin/python\" scripts/field-speed-ceiling/circular-binary-all-root-mpmath-oracle.py --input scripts/field-speed-ceiling/circular-binary-all-root-certificate-input.v1.json --write-receipt reference/priorities/field-speed-ceiling/fsc-010-circular-binary-all-root-mpmath-receipt.v1.json"
+    "declared_reproduction_command": "VIRTUAL_ENV=\"${AAA_VENV:-../.venv}\" \"${AAA_VENV:-../.venv}/bin/python\" scripts/field-speed-ceiling/circular-binary-all-root-mpmath-oracle.py --input scripts/field-speed-ceiling/circular-binary-all-root-certificate-input.v1.json --write-receipt reference/priorities/field-speed-ceiling/evidence/fsc-010-circular-binary-all-root-mpmath-receipt.v1.json"
   },
   "dottie_root_bracket": {
     "equation": "xi - cos(xi) = 0",

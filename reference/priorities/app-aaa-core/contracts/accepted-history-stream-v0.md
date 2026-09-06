@@ -6,7 +6,7 @@
 - **Lifecycle:** accepted at synthetic in-process broker and consumer-conformance grade
 - **Logical dependency:** [`aaa_core_path_interchange/v0`](path-interchange-v0.md)
 - **Codec dependency:** [`aaa_core_codec_registry/v0`](codec-registry-v0.md)
-- **Machine control record:** [`aaa-core-accepted-history-stream.v0.json`](../aaa-core-accepted-history-stream.v0.json)
+- **Machine control record:** [`aaa-core-accepted-history-stream.v0.json`](aaa-core-accepted-history-stream.v0.json)
 - **Contract schema:** [`src/contracts/aaa-core-accepted-history-stream/v0/schema.json`](../../../../src/contracts/aaa-core-accepted-history-stream/v0/schema.json)
 - **Executable broker and harness:** [`src/aaa-core/accepted-history-stream-v0.mjs`](../../../../src/aaa-core/accepted-history-stream-v0.mjs)
 - **Focused tests:** [`tests/aaa-core-accepted-history-stream-v0.test.js`](../../../../tests/aaa-core-accepted-history-stream-v0.test.js)

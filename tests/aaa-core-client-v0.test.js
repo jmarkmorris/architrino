@@ -8,11 +8,11 @@ import {AAAClient, AAAClientService} from "../src/aaa-core/client-v0.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), "utf8"));
-const CLIENT_CONTRACT = readJson("reference/priorities/app-aaa-core/aaa-core-client.v0.json");
-const PATH_CONTRACT = readJson("reference/priorities/app-aaa-core/aaa-core-path-interchange.v0.json");
-const CODECS = readJson("reference/priorities/app-aaa-core/aaa-core-codec-registry.v0.json");
-const STREAM_CONTRACT = readJson("reference/priorities/app-aaa-core/aaa-core-accepted-history-stream.v0.json");
-const QUERY_CONTRACT = readJson("reference/priorities/app-aaa-core/aaa-core-query-transform-publication.v0.json");
+const CLIENT_CONTRACT = readJson("reference/priorities/app-aaa-core/contracts/aaa-core-client.v0.json");
+const PATH_CONTRACT = readJson("reference/priorities/app-aaa-core/contracts/aaa-core-path-interchange.v0.json");
+const CODECS = readJson("reference/priorities/app-aaa-core/contracts/aaa-core-codec-registry.v0.json");
+const STREAM_CONTRACT = readJson("reference/priorities/app-aaa-core/contracts/aaa-core-accepted-history-stream.v0.json");
+const QUERY_CONTRACT = readJson("reference/priorities/app-aaa-core/contracts/aaa-core-query-transform-publication.v0.json");
 const FIXTURE = readJson(CLIENT_CONTRACT.conformance.fixtures);
 const PATH_FIXTURES = readJson(FIXTURE.pathFixtureSuite);
 const STREAM_FIXTURES = readJson(FIXTURE.streamFixtureSuite);

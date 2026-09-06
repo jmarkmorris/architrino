@@ -19,7 +19,7 @@
     "maximumPeakGrowthBytes": 134217728,
     "claimBoundary": "The surface proxy is a per-page lower bound. GPU-process RSS is a measured shared-process envelope. Neither is exact per-page physical GPU memory."
   },
-  "evidencePath": "reference/priorities/aaa-operations/browser-performance-baseline-2026-09-01.json",
+  "evidencePath": "reference/priorities/aaa-operations/evidence/browser-performance-baseline-2026-09-01.json",
   "profiles": [
     {
       "id": "public-feedback-interaction",

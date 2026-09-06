@@ -7,8 +7,8 @@ import { fileURLToPath } from "node:url";
 import { checkWebappReleaseGate } from "../scripts/check-webapp-release-gate.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const CONTRACT_PATH = "reference/priorities/aaa-operations/webapp-release-gate.v1.json";
-const EVIDENCE_PATH = "reference/priorities/aaa-operations/feedback-webapp-release-gate-2026-09-01.json";
+const CONTRACT_PATH = "reference/priorities/aaa-operations/contracts/webapp-release-gate.v1.json";
+const EVIDENCE_PATH = "reference/priorities/aaa-operations/evidence/feedback-webapp-release-gate-2026-09-01.json";
 const contract = JSON.parse(fs.readFileSync(path.join(ROOT, CONTRACT_PATH), "utf8"));
 const evidence = JSON.parse(fs.readFileSync(path.join(ROOT, EVIDENCE_PATH), "utf8"));
 const copy = (value) => structuredClone(value);

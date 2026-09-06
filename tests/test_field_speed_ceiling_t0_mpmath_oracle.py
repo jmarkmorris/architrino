@@ -20,7 +20,7 @@ INPUT = (
 )
 RECEIPT = (
     ROOT
-    / "reference/priorities/field-speed-ceiling/"
+    / "reference/priorities/field-speed-ceiling/evidence/"
     "fsc-004-t0-six-path-mpmath-receipt.v1.json"
 )
 PYTHON = Path(sys.executable)

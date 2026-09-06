@@ -12,7 +12,7 @@ import {
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const POLICY_PATH = path.join(
   ROOT,
-  "reference/priorities/aaa-operations/observability-policy.v1.json"
+  "reference/priorities/aaa-operations/contracts/observability-policy.v1.json"
 );
 const WEBSITE_STATS_DATA_PATH = path.join(ROOT, "content/analytics/website-stats.json");
 const TEXT_EXTENSIONS = new Set([".html", ".js", ".mjs", ".swift"]);

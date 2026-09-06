@@ -4,7 +4,7 @@
 
 - **Contract:** `aaa_core_path_interchange/v0`
 - **Lifecycle:** accepted at logical interchange and fixture-conformance grade
-- **Machine control record:** [`aaa-core-path-interchange.v0.json`](../aaa-core-path-interchange.v0.json)
+- **Machine control record:** [`aaa-core-path-interchange.v0.json`](aaa-core-path-interchange.v0.json)
 - **Record schema:** [`src/contracts/aaa-core-path-interchange/v0/schema.json`](../../../../src/contracts/aaa-core-path-interchange/v0/schema.json)
 - **Validator:** [`src/aaa-core/path-interchange-v0.mjs`](../../../../src/aaa-core/path-interchange-v0.mjs)
 - **Focused tests:** [`tests/aaa-core-path-interchange-v0.test.js`](../../../../tests/aaa-core-path-interchange-v0.test.js)

@@ -2523,9 +2523,9 @@ export async function renderBraidSearchApp({
   historicalCompactPath =
     "./.local-data/braid-analysis/compact-monte-carlo/family-sweep-v1/compact-sweep-dashboard.v1.json",
   borgRegistryPath =
-    "./reference/priorities/app-borg/assembly-registry.v1.json",
+    "./reference/priorities/app-borg/contracts/assembly-registry.v1.json",
   scientificProjectionPath =
-    "./reference/priorities/braid-program/braid-candidate-adjudication-projection.v1.json",
+    "./reference/priorities/braid-program/contracts/braid-candidate-adjudication-projection.v1.json",
   campaignRegistryPath =
     "./src/prescribed-path-analysis/campaigns/all-candidate-analytical-campaign.registry.v2.json",
   fetchImpl = globalThis.fetch,

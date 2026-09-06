@@ -111,7 +111,7 @@
         "maxDuplicateIds": 0,
         "minControlHeightCssPx": 42
       },
-      "evidencePath": "reference/priorities/aaa-operations/feedback-webapp-release-gate-2026-09-01.json"
+      "evidencePath": "reference/priorities/aaa-operations/evidence/feedback-webapp-release-gate-2026-09-01.json"
     }
   ]
 }

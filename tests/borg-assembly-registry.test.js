@@ -5,7 +5,7 @@ import { createBorgAssemblyRegistryDatabase } from "../src/apps/borg/registry/Bo
 import { compareBorgIdentity, validateBorgAssemblyRegistry } from "../src/apps/borg/registry/BorgAssemblyRegistryContract.mjs";
 import { createSpherePreview } from "../src/apps/borg/library/BorgSpherePreview.js";
 
-const registryUrl = new URL("../reference/priorities/app-borg/assembly-registry.v1.json", import.meta.url);
+const registryUrl = new URL("../reference/priorities/app-borg/contracts/assembly-registry.v1.json", import.meta.url);
 const loadRegistry = async () => validateBorgAssemblyRegistry(JSON.parse(await readFile(registryUrl)));
 
 test("registry migration has complete exact, braid, taxonomy, facet, and visual coverage", async () => {
