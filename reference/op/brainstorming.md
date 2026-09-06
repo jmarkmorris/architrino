@@ -337,6 +337,7 @@ That file is a routing aid, not an authority. If it conflicts with the live sour
 ## Issue Resolution and Publication
 
 - Git lifecycle routing, including the branch-series registries: [git/README.md](git/README.md).
+- Fresh-session bootstrap check when the session root, project, or mounts change: [session-root-self-test.md](session-root-self-test.md).
 - Branch, commit, push, and PR mechanics: [codex-pr-branch.md](git/codex-pr-branch.md).
 - GitHub issue resolution: [issue-resolution.md](git/issue-resolution.md), then [codex-pr-branch.md](git/codex-pr-branch.md) if the work needs a branch, commit, push, or PR.
 
