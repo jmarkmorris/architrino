@@ -40,7 +40,7 @@ export const FALSE_FLAGS='accepted source_bytes_authenticated frame_identity_aut
 export const PINS=Object.freeze({
  "operationCoordinator": [
   "scripts/eom/f6c-bounded-operation.mjs",
-  "0e0f728b79f32c3a8c03021748902dca3b450fac6b450d73ce1868b32ae61228"
+  "d89bc20d6026ec5893047490a75aabe6f441a88a44b2a4e04c2baf2ae51678c4"
  ],
  "operationCoordinatorControls": [
   "tests/f6c-bounded-operation.test.js",
@@ -48,7 +48,7 @@ export const PINS=Object.freeze({
  ],
  "adapter": [
   "scripts/eom/f6c_variable_cell_adapter.py",
-  "d3a6ff0f9203935bd2bd6ecec9907b04efc141f40dc61c9b7e149841fd7973c7"
+  "2235c59d7efc29c607f4bab6b39452ef3007f9b1cf9acb1d682901fb91dd382a"
  ],
  "adapterControls": [
   "tests/test_f6c_variable_cell_adapter.py",
@@ -100,11 +100,11 @@ export const PINS=Object.freeze({
  ],
  "transport": [
   "scripts/eom/verify-f6c-refined-acceleration.py",
-  "3f49831a2e63d2526125c1585c1250330079fa423986ec1b36901bb3cecde6ae"
+  "b5ac487c1004976c346bce9dfe451ae82def1087c79102c5e4894ea69eac11e2"
  ],
  "helpers": [
   "scripts/eom/launch-prescribed-response-pilot.mjs",
-  "a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9"
+  "9eb1afb84a175b143020610c153f9fef6dabb50efce9f956991feca3fbc0d5c2"
  ],
  "outer": [
   "scripts/eom/launch-subfield-circular-root-pilot.mjs",
@@ -112,7 +112,7 @@ export const PINS=Object.freeze({
  ],
  "diagnostics": [
   "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
-  "89b23af09f57aa50e3ebfc0780189f2f0d1a409a7e13004af0cb48167894b944"
+  "7a1f5571827225d1529f73a3f0b905be75e81e2f7d11c2670b697e0599d65e71"
  ]
 });
 // Readiness alone is selected by the reviewed invocation. Historical wrapper

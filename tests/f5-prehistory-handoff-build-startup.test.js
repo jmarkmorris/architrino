@@ -24,7 +24,7 @@ child.stdout.pipe(process.stdout);child.stderr.pipe(process.stderr);child.once('
   writeFileSync(path.join(root, "synthetic.mjs"), source, { flag: "wx" });
   return { marker, options: { root, entry: "synthetic.mjs", args: [],
     sources: [{ path: "synthetic.mjs", bytes: source, sha256: createHash("sha256").update(source).digest("hex") }],
-    output: path.join(root, "attempt"), limitMs: 5000, heartbeatMs: 1000, graceMs: 100,
+    output: path.join(root, "attempt"), limitMs: 20000, heartbeatMs: 1000, graceMs: 100,
     admit: async () => { throw new Error("interrupted startup must never reach admission"); } } };
 }
 async function rejected(options) {

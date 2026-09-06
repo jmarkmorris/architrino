@@ -39,9 +39,9 @@ export const LIMITS=Object.freeze({inclusiveMilliseconds:1800000,aggregateRSSByt
   outputFiles:512,serialWorkers:1,startFreePercent:40,startDiskBytes:68719476736,
   stopFreePercent:20,stopDiskBytes:17179869184});
 export const PINS=Object.freeze({
-  helpers:['scripts/eom/launch-prescribed-response-pilot.mjs','a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9'],
+  helpers:['scripts/eom/launch-prescribed-response-pilot.mjs','9eb1afb84a175b143020610c153f9fef6dabb50efce9f956991feca3fbc0d5c2'],
   outer:['scripts/eom/launch-subfield-circular-root-pilot.mjs','cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48'],
-  diagnostics:['scripts/eom/launch-f6c-emission-refinement-pilot.mjs','89b23af09f57aa50e3ebfc0780189f2f0d1a409a7e13004af0cb48167894b944'],
+  diagnostics:['scripts/eom/launch-f6c-emission-refinement-pilot.mjs','7a1f5571827225d1529f73a3f0b905be75e81e2f7d11c2670b697e0599d65e71'],
 });
 const check=(ok,message)=>{if(!ok)throw Error(message);};
 const sha=raw=>createHash('sha256').update(raw).digest('hex');

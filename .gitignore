@@ -38,5 +38,5 @@ node_modules/
 reference/research-office/cto/reports/corpus-exploration-claims/
 .fuse_hidden*
 
-# Local Python virtual environment (symlinked from ../.venv; never tracked)
+# Local Python virtual environment, if one is ever created in-repo; never tracked
 .venv/

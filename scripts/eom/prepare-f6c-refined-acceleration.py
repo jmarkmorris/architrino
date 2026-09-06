@@ -83,7 +83,7 @@ CORE='scripts/eom/oracle/f6c_refined_acceleration_conformance.py'
 CORE_SHA='63db48f604d0b1abdf61f0efcb3894feac9d30a25af26a4d96f01bda6522e2a2'
 NAMED={
  'consumer':(SELF,None),'consumerControls':(CONTROLS,None),
- 'verifier':('scripts/eom/verify-f6c-refined-acceleration.py','3f49831a2e63d2526125c1585c1250330079fa423986ec1b36901bb3cecde6ae'),'verifierControls':('tests/test_f6c_refined_acceleration.py','4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a'),
+ 'verifier':('scripts/eom/verify-f6c-refined-acceleration.py','b5ac487c1004976c346bce9dfe451ae82def1087c79102c5e4894ea69eac11e2'),'verifierControls':('tests/test_f6c_refined_acceleration.py','4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a'),
  'declaration':(DECLARATION,DECLARATION_SHA),
  'comparisonCore':(CORE,CORE_SHA),
  'comparisonCoreControls':('tests/test_f6c_refined_acceleration_conformance.py','3fb6eabd03a56b982f2601f11b535c60208f03df519e41ea29d4ba018a0e531e'),
@@ -120,7 +120,7 @@ OPERATIONS=('scripts/eom/run-f6c-refined-acceleration-pilot.mjs',
  'tests/f6c-refined-acceleration-pilot.test.js','tests/f6c-refined-acceleration-pilot-process.test.js',
  'scripts/eom/launch-prescribed-response-pilot.mjs','scripts/eom/launch-subfield-circular-root-pilot.mjs',
  '/bin/ps','/usr/bin/memory_pressure')
-OP_PINS={'scripts/eom/launch-prescribed-response-pilot.mjs':'a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9',
+OP_PINS={'scripts/eom/launch-prescribed-response-pilot.mjs':'9eb1afb84a175b143020610c153f9fef6dabb50efce9f956991feca3fbc0d5c2',
  'scripts/eom/launch-subfield-circular-root-pilot.mjs':'cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48',
  '/usr/bin/memory_pressure':'a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56'}
 PLAN_KEYS=('schema','scope',*NAMED,'runtimeBindings','operationalBindings','limits','priorRefinementClosure')

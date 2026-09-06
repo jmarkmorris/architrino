@@ -12,7 +12,7 @@ const SELF = "scripts/eom/launch-f5-prehistory-handoff-build.mjs";
 const ENTRY = "scripts/eom/prepare-f5-prehistory-handoff-build.mjs";
 const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs";
 const PINS = Object.freeze({
-  [ENTRY]: "5caae83e0f48ba1bba762613e7083a7f7181aefafeba278d75e1add910b3f460",
+  [ENTRY]: "12e2a3827fb849b02fe06fc3dd65498f10224b006be6ed497d8d443d7858d175",
   "scripts/eom/prepare-subfield-circular-root.mjs": "73fb903d1c5ac8df2337e75b7fed3044c1c5641177284c8a352b423872bab033",
   "scripts/eom/prepare-f5-enclosed-root.mjs": "ba154c0a8c63bd390ae1e16de005fd5d52000fedec352619b60b9465a2f813f5",
   [OUTER]: "cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48",

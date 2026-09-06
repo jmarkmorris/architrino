@@ -334,13 +334,13 @@ const CACHED_REGEX_REPLACEMENT=["/reduce-prescribed-acceleration-response\\.py|(
 const replacePaths=source=>{for(const[a,b]of CACHED_PATH_REPLACEMENTS)source=source.split(a).join(b);return source;};
 const frozen=(p,h)=>{const bytes=readFileSync(p);assert.equal(digest(bytes),h,p);return bytes.toString("utf8");};
 test("cached composition exact source delta is binding/address-only, not operational logic",()=>{
-  const oldEntry=frozen("scripts/eom/run-f6c-root-cover-pilot.mjs","6b9c1b6489214039e8de485eb5bfdbbc1e896c0433bb8cdebb12acf629fcf00a");
+  const oldEntry=frozen("scripts/eom/run-f6c-root-cover-pilot.mjs","55d8432f1dba556558a634e164ad1560abc8d4c598d6ac3ea547176744fbb734");
   let expected=replacePaths(oldEntry);
   for(const[a,b]of CACHED_HASH_REPLACEMENTS){assert.equal(expected.split(a).length,2);expected=expected.replace(a,b);}
   const marker='  "/usr/bin/memory_pressure": "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56",\n';
   assert.equal(expected.split(marker).length,2);expected=expected.replace(marker,marker+CACHED_EXTRA_PINS);
   assert.equal(readFileSync(R.ENTRY,"utf8"),expected);
-  const oldLauncher=frozen("scripts/eom/launch-f6c-root-cover-pilot.mjs","a0ce2d3eeeb248b43cda5bb8ebcca4b0c6544af8093d28bae1c233c53236d705");
+  const oldLauncher=frozen("scripts/eom/launch-f6c-root-cover-pilot.mjs","7486264bd4fb8d1be8afbc320476f6295a21dbe4bf713456e2c3f6be2de16a08");
   expected=replacePaths(oldLauncher);
   const[a,b]=CACHED_REGEX_REPLACEMENT;assert.equal(expected.split(a).length,2);expected=expected.replace(a,b);
   assert.equal(readFileSync(R.LAUNCHER,"utf8"),expected);

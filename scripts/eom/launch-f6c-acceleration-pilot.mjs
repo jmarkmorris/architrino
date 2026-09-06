@@ -9,7 +9,7 @@ import {fileURLToPath} from 'node:url';
 
 const SELF='scripts/eom/launch-f6c-acceleration-pilot.mjs',ENTRY='scripts/eom/run-f6c-acceleration-pilot.mjs';
 const HELPERS='scripts/eom/launch-prescribed-response-pilot.mjs',OUTER='scripts/eom/launch-subfield-circular-root-pilot.mjs';
-const HELPER_SHA='a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9';
+const HELPER_SHA='9eb1afb84a175b143020610c153f9fef6dabb50efce9f956991feca3fbc0d5c2';
 const OUTER_SHA='cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48';
 const LIMIT_MS=1800000,FILE_LIMIT=64*1024**2,LOG_LIMIT=16*1024**2;
 const check=(yes,message)=>{if(!yes)throw Error(message);};

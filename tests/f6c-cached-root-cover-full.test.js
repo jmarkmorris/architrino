@@ -588,11 +588,11 @@ const FULL_EXTRA_PIN_LINES="  \"reference/priorities/braid-program/evidence/2026
 const retarget=(s,pairs)=>{for(const[a,b]of pairs)s=s.replaceAll(a,b);return s;};
 const frozen=(p,h)=>{const raw=readFileSync(p);assert.equal(digest(raw),h,p);return raw.toString("utf8");};
 test("full composition differs from frozen pilot only by declared addresses scope census and resource bindings",()=>{
-  const entry=frozen("scripts/eom/run-f6c-cached-root-cover-pilot.mjs","51cd543f9f28d87299a59614805cdbf949dceabcabad1a64a701b0b2b8ea6c57");
+  const entry=frozen("scripts/eom/run-f6c-cached-root-cover-pilot.mjs","a218845bdd25b16a71dc247315a5fc06d158bc1a0c793e0a299621025ca32541");
   let expected=retarget(retarget(entry,FULL_COMMON_REPLACEMENTS),FULL_ENTRY_REPLACEMENTS);
   expected=expected.replace('});\nexport const check',FULL_EXTRA_PIN_LINES+'});\nexport const check');
   assert.equal(readFileSync(R.ENTRY,"utf8"),expected);
-  const launcher=frozen("scripts/eom/launch-f6c-cached-root-cover-pilot.mjs","03ef68dbdc9e578402771490c274ab246f02688c443f8ecba8d3006f3d35a5ec");
+  const launcher=frozen("scripts/eom/launch-f6c-cached-root-cover-pilot.mjs","b89aaaf336c2969115d3549a086bee334d398c85f2748c9fdc53dac9d56acdba");
   assert.equal(readFileSync(R.LAUNCHER,"utf8"),retarget(retarget(launcher,FULL_COMMON_REPLACEMENTS),FULL_LAUNCHER_REPLACEMENTS));
 });
 test("all32 original operational obligations survive full scope retargeting unchanged",()=>{

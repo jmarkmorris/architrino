@@ -24,7 +24,7 @@ export const CHECKER='scripts/eom/verify-f6c-refined-acceleration.py';
 export const CHECKER_TESTS='tests/test_f6c_refined_acceleration.py';
 // Separately authored checker and controls, independently accepted before this
 // operational generation. No subject or mathematical reference is altered.
-export const CHECKER_SHA='3f49831a2e63d2526125c1585c1250330079fa423986ec1b36901bb3cecde6ae';
+export const CHECKER_SHA='b5ac487c1004976c346bce9dfe451ae82def1087c79102c5e4894ea69eac11e2';
 export const CHECKER_TESTS_SHA='4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a';
 export const LANE='.local-data/braid-analysis/f6c-refined-acceleration-20260827';
 export const SHARED_LOCK_LANE='.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827';
@@ -85,7 +85,7 @@ export const PRIOR_OPERATIONS=Object.freeze([
  ['resourceLog',refinedBase+'-outer/resource-observations.ndjson','e8af4c71f7cd0278b8df5c831738bd5d3f0f4cfd872ebf887a6cbd3396dc4313',471433]
 ].map(Object.freeze));
 export const PINS=Object.freeze({...Object.fromEntries([...FIXED,...REFINED,...PRIOR_OPERATIONS].map(([,p,h])=>[p,h])),
- [CONSUMER]:'fdd07944609ebf8a2651999626edb607a4c8b136d906a59e638aa8c43351f6c0',
+ [CONSUMER]:'738c716f95c419d49c14ffd533ba3bde4b6bfe666521f363db15c6212a52842c',
  [CONSUMER_TESTS]:'33e90600fccf602a63bcdda14dffa143e2b869e6557365958c5b9951a268c922',
  [DECLARATION]:'c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d',
  [NAMED.comparisonCore]:'63db48f604d0b1abdf61f0efcb3894feac9d30a25af26a4d96f01bda6522e2a2',
@@ -93,7 +93,7 @@ export const PINS=Object.freeze({...Object.fromEntries([...FIXED,...REFINED,...P
  [NAMED.rangeComparison]:'cc26f5a45d0e09a472e3066d0d62ae8192492a7c3e0ab18a3658781a0274b299',
  [NAMED.rangeComparisonControls]:'be741dccccd90c349849b19dc15df1acd4ea5752ec6f8a9e98e7ae14013c52c6',
  [OUTER]:'cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48',
- [HELPERS]:'a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9',
+ [HELPERS]:'9eb1afb84a175b143020610c153f9fef6dabb50efce9f956991feca3fbc0d5c2',
  [CHECKER]:CHECKER_SHA,[CHECKER_TESTS]:CHECKER_TESTS_SHA,
  '/usr/bin/memory_pressure':'a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56'});
 export const PRIOR_CLOSURE=Object.freeze({authority:'externally-reviewed-caller-observation',ownerSha256:PINS[DECLARATION],admissionSha256:REFINED.find(([k])=>k==='admission')[2],matchingFreshCompletionObserved:true,exitCode:0,elapsedSeconds:'238.116677375',processesClosed:true,independentAuditAccepted:true});
