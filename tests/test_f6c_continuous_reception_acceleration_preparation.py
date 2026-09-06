@@ -128,7 +128,7 @@ def plan_fixture(own_sha=H):
 
 def receipt_fixture(bindings):
     export,manifest,rows,pieces=fixture()
-    contract={'verifierSha256':'19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132',
+    contract={'verifierSha256':'e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9',
         'declarationSha256':'7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4',
         'subjectSourceBindings':[bound('/fixture/source')],'runtimeBindings':[bound('/fixture/runtime')]}
     prior_plan={'schema':'braid-program/f6c-cached-root-cover-pilot-launch.v1',

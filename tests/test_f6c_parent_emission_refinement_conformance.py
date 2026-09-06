@@ -24,7 +24,7 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT/'scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py'
 REFERENCE = ROOT/'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py'
-REFERENCE_SHA = '19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132'
+REFERENCE_SHA = 'e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9'
 PROOF = ROOT/'reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-reference.md'
 PROOF_SHA = '652d77241f9b5c082e7d15e2bb62328f346760548f9f13e4ffe7562c4cad0733'
 

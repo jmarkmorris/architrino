@@ -318,8 +318,8 @@ test("full machine plan refuses pilot scope and prior resource plan without rela
   assert.equal(R.LIMIT_MS,1800000);assert.equal(R.LOG_LIMIT,16*1024**2);assert.equal(R.FILE_LIMIT,64*1024**2);
   assert.equal(R.PINS["reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md"],
     "36b72681c116cedf1803cc89ead8b48a7d9604bae7f9bffd7b0f95b33c3bb9b4");
-  assert.equal(R.PINS[R.CONSUMER],"af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386");
-  assert.equal(R.PINS[R.COMPARISON],"19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132");
+  assert.equal(R.PINS[R.CONSUMER],"5d7c18363df966d1c9beae506875ce079f9a735f06e36e43e20157c22f30ace5");
+  assert.equal(R.PINS[R.COMPARISON],"e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9");
 });
 
 const FULL_COMMON_REPLACEMENTS=[
@@ -588,7 +588,7 @@ const FULL_EXTRA_PIN_LINES="  \"reference/priorities/braid-program/evidence/2026
 const retarget=(s,pairs)=>{for(const[a,b]of pairs)s=s.replaceAll(a,b);return s;};
 const frozen=(p,h)=>{const raw=readFileSync(p);assert.equal(digest(raw),h,p);return raw.toString("utf8");};
 test("full composition differs from frozen pilot only by declared addresses scope census and resource bindings",()=>{
-  const entry=frozen("scripts/eom/run-f6c-cached-root-cover-pilot.mjs","a218845bdd25b16a71dc247315a5fc06d158bc1a0c793e0a299621025ca32541");
+  const entry=frozen("scripts/eom/run-f6c-cached-root-cover-pilot.mjs","aeced2e106e73b48618c7ec94fb0aad5f17496ac29240d2e18922545e317d709");
   let expected=retarget(retarget(entry,FULL_COMMON_REPLACEMENTS),FULL_ENTRY_REPLACEMENTS);
   expected=expected.replace('});\nexport const check',FULL_EXTRA_PIN_LINES+'});\nexport const check');
   assert.equal(readFileSync(R.ENTRY,"utf8"),expected);

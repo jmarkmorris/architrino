@@ -39,11 +39,11 @@ VERIFIER_CONTROLS = "tests/test_f6c_emission_refinement.py"
 DECLARATION = "reference/priorities/braid-program/evidence/2026-08-27-f6c-emission-refinement-predeclaration.md"
 DECLARATION_SHA = "53f3398ba083218948c9efd93f10db09cbf5d617bc0270988f5adea24c48f037"
 COMPARISON = "scripts/eom/oracle/f6c_emission_refinement_conformance.py"
-COMPARISON_SHA = "ec0eaaeae3da4ffb597ac92ff3ac1a5700a8cf88916144a7d994912270c4157a"
+COMPARISON_SHA = "d54a1372c5f61ed94110eee8a8483ffec9cf76bc2354b61a7e314cbd4f477126"
 COMPARISON_CONTROLS = "tests/test_f6c_emission_refinement_conformance.py"
 COMPARISON_CONTROLS_SHA = "bac7357186fb05c5b7ea35154c5564e7527075a9a94177a8b600f9a02119adb5"
 HELPER = "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py"
-HELPER_SHA = "af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386"
+HELPER_SHA = "5d7c18363df966d1c9beae506875ce079f9a735f06e36e43e20157c22f30ace5"
 BASE = ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/"
 FIXED = (
     ('export', '.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json', 'f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1'),
@@ -60,21 +60,21 @@ FIXED = (
     ('referenceControls', 'tests/test_eom_continuous_reception_acceleration.py', '26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'),
     ('referenceProof', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md', 'c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f'),
     ('memberPredeclaration', 'reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md', 'c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'),
-    ('rootTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md', 'f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68'),
+    ('rootTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md', 'db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc'),
     ('reconstructionTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md', '6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936'),
 )
 
 # Source/control closure is explicit even for bound but unexecuted references.
 EXTRA = (
     (HELPER, HELPER_SHA),
-    ("tests/test_f6c_cached_continuous_reception_root_cover_preparation.py", "9abc7c3a80ad670e7bc7ad9f94a95f1fcd8924de425991032d6d26bba3372427"),
+    ("tests/test_f6c_cached_continuous_reception_root_cover_preparation.py", "a44ae057220b5c447aa05d93e6ce055a309e9467de2fa7c8f1e7b6426f659409"),
     ("scripts/eom/oracle/continuous_reception_roots_cached.py", "daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf"),
     ("tests/test_eom_continuous_reception_roots_cached.py", "a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb"),
     ("scripts/eom/oracle/certified_history.py", "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7"),
     ("scripts/eom/oracle/decimal_interval.py", "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a"),
     ("tests/test_eom_decimal_interval.py", "22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44"),
-    ("scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py", "19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132"),
-    ("tests/test_f6c_cached_continuous_reception_root_cover.py", "2fd2080b3b4facdc80b85cdc65610c2bfeefdd8eab5f7234e207d3d4908bc117"),
+    ("scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py", "e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9"),
+    ("tests/test_f6c_cached_continuous_reception_root_cover.py", "ba2af569d4f9b1822b6cd6f70e840a8865a4fea8779f2cfa2afe8ebf31745f74"),
     ("reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md", "798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3"),
     (DECLARATION, DECLARATION_SHA), (COMPARISON, COMPARISON_SHA),
     (COMPARISON_CONTROLS, COMPARISON_CONTROLS_SHA),

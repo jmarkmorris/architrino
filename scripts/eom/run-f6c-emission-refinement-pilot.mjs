@@ -56,7 +56,7 @@ export const FIXED=Object.freeze([
   ['referenceControls','tests/test_eom_continuous_reception_acceleration.py','26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'],
   ['referenceProof','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md','c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f'],
   ['memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'],
-  ['rootTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md','f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68'],
+  ['rootTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md','db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc'],
   ['reconstructionTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md','6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936'],
 ].map(Object.freeze));
 
@@ -68,12 +68,12 @@ export const SUBJECT_PATHS=Object.freeze([PRODUCER,PRODUCER_TESTS,DECLARATION,
  'scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','tests/test_f6c_cached_continuous_reception_root_cover_preparation.py']);
 export const PINS=Object.freeze({...Object.fromEntries(FIXED.map(([,p,h])=>[p,h])),
  // Separately authored frozen generations; actual launch requires independent review.
- [PRODUCER]:'587e74df2848a3ee1b70fad640ae454f3731b0974ee601e9784a1caa98339c55',
+ [PRODUCER]:'c7a12452d7bb7bcbc7d469d5106d24893bb3209474820fb87cbc28660038b7c2',
  [PRODUCER_TESTS]:'c238f49b3316e43244ee0db3fdf3263b2390b4f6f91a67f6a6b7133ccfff000b',
- [CHECKER]:'1b3e39eea14c2a21be76ab2a3fe2bdbcc055b5a73325d03de9734c79a8017c33',
- [CHECKER_TESTS]:'1d3af80d89834b31968cfe5dd7fb016bb0ac4eee6ce77fbabaeea21a9a905bc7',
+ [CHECKER]:'45159b12ccd52fdde19b7c18542db6d832156aae332911da25a0636c75fd21a9',
+ [CHECKER_TESTS]:'1040e5d82152c37f53a45c42eceb30ee907a66700706f2a365ee16f883d0357d',
  [DECLARATION]:'53f3398ba083218948c9efd93f10db09cbf5d617bc0270988f5adea24c48f037',
- [COMPARISON]:'ec0eaaeae3da4ffb597ac92ff3ac1a5700a8cf88916144a7d994912270c4157a',
+ [COMPARISON]:'d54a1372c5f61ed94110eee8a8483ffec9cf76bc2354b61a7e314cbd4f477126',
  [COMPARISON_TESTS]:'bac7357186fb05c5b7ea35154c5564e7527075a9a94177a8b600f9a02119adb5',
  [HELPERS]:'9eb1afb84a175b143020610c153f9fef6dabb50efce9f956991feca3fbc0d5c2',
  [OUTER]:'cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48',
@@ -82,11 +82,11 @@ export const PINS=Object.freeze({...Object.fromEntries(FIXED.map(([,p,h])=>[p,h]
  'scripts/eom/oracle/certified_history.py':'ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7',
  'scripts/eom/oracle/decimal_interval.py':'fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a',
  'tests/test_eom_decimal_interval.py':'22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44',
- 'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py':'19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132',
- 'tests/test_f6c_cached_continuous_reception_root_cover.py':'2fd2080b3b4facdc80b85cdc65610c2bfeefdd8eab5f7234e207d3d4908bc117',
+ 'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py':'e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9',
+ 'tests/test_f6c_cached_continuous_reception_root_cover.py':'ba2af569d4f9b1822b6cd6f70e840a8865a4fea8779f2cfa2afe8ebf31745f74',
  'reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md':'798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3',
- 'scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py':'af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386',
- 'tests/test_f6c_cached_continuous_reception_root_cover_preparation.py':'9abc7c3a80ad670e7bc7ad9f94a95f1fcd8924de425991032d6d26bba3372427',
+ 'scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py':'5d7c18363df966d1c9beae506875ce079f9a735f06e36e43e20157c22f30ace5',
+ 'tests/test_f6c_cached_continuous_reception_root_cover_preparation.py':'a44ae057220b5c447aa05d93e6ce055a309e9467de2fa7c8f1e7b6426f659409',
  '/usr/bin/memory_pressure':'a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56'});
 export const check=(ok,message)=>{if(!ok)throw new Error(message);};
 export const sha=b=>createHash('sha256').update(b).digest('hex');

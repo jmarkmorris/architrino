@@ -127,8 +127,8 @@ ANCESTRY_ARCHIVE_SOURCES=(
 # taken from a package's index. This initial inventory covers parents1/2 only.
 PACKAGE_SOURCES=(
  ('reader','scripts/eom/f6c_evidence_package.py','9d888682514f23652b39bfaa53fdfb3ceab66e6ba88cf34222c156d226764ad6'),
- ('readerControls','tests/test_f6c_evidence_package.py','df81708fb1877ce549c4eacfd66c7d7f47f192d57d716a65f184039adb075cbf'),
- ('inventory','tests/fixtures/f6c-lossless-packaging-expectations.v1.json','79a91daedff0fdb712b5b76ff0a4d8c345711eb2c4b69c0731a509da701e48fc'),
+ ('readerControls','tests/test_f6c_evidence_package.py','36fff6d7113a1df53d84a914c255a59b268d9707e26b917d08d1d05b274dc4ac'),
+ ('inventory','tests/fixtures/f6c-lossless-packaging-expectations.v1.json','811885700af0c25da4c03464aaf30617964ed66555e5cb14fd10700a14c8fd12'),
 )
 # The pure v2 parser has independently frozen semantic expectations. Fresh
 # operation authority is a separate, explicitly pinned captured instrument.
@@ -150,20 +150,20 @@ FRESH_NUMERICAL_SETTINGS=(
 )
 PARENT_FIXED=(
  ('declaration',PREFIX+'2026-08-27-f6c-parent-emission-refinement-reference.md','652d77241f9b5c082e7d15e2bb62328f346760548f9f13e4ffe7562c4cad0733'),
- ('proposalReference','scripts/eom/f6c_parent_emission_refinement.py','1517575f3df783af36d2bf2b758d19427e8ec85247efec892783716c263b7c27'),
+ ('proposalReference','scripts/eom/f6c_parent_emission_refinement.py','92ba0edf94b9e009a6169286f5d2c0f58928c51c98eeea1e2f5956a45e94087d'),
  ('proposalReferenceControls','tests/test_f6c_parent_emission_refinement.py','f1650b5e73a06ecd7ed05bff10ba97949b42aa5330e84fb3514c2f868eff0fc2'),
- ('comparisonReference','scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py','ffe91ad7cbfe4e41bf92203fe73b4195e0ad1437176dace9d12751e68aa2cbec'),
- ('comparisonReferenceControls','tests/test_f6c_parent_emission_refinement_conformance.py','18c21d6e84d0d6ae7e3b4ea35861a75b38d362d8aad1e0cc14715cea167a5a04'),
+ ('comparisonReference','scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py','2b3686df8557a54cdd082e6f8767ceb8007e78e570e9be92b33cd4a4b6a86d18'),
+ ('comparisonReferenceControls','tests/test_f6c_parent_emission_refinement_conformance.py','bcec5abc8798551bcebecaf707853ed216c3f49f1da23f089a48d8a71aacd8d5'),
 )
 SOURCES = (
- ('transport','scripts/eom/verify-f6c-refined-acceleration.py','b5ac487c1004976c346bce9dfe451ae82def1087c79102c5e4894ea69eac11e2'),
+ ('transport','scripts/eom/verify-f6c-refined-acceleration.py','99faec36ec8c0837d14b96eb77e92aecc90e933a7d9da09b9b4c0996c1bdf537'),
  ('transportControls','tests/test_f6c_refined_acceleration.py','4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a'),
- ('mapping','scripts/eom/verify-f6c-continuous-reception-acceleration.py','cc26f5a45d0e09a472e3066d0d62ae8192492a7c3e0ab18a3658781a0274b299'),
- ('mappingControls','tests/test_f6c_continuous_reception_acceleration.py','be741dccccd90c349849b19dc15df1acd4ea5752ec6f8a9e98e7ae14013c52c6'),
- ('decoder','scripts/eom/oracle/f6c_refined_acceleration_conformance.py','63db48f604d0b1abdf61f0efcb3894feac9d30a25af26a4d96f01bda6522e2a2'),
- ('decoderControls','tests/test_f6c_refined_acceleration_conformance.py','3fb6eabd03a56b982f2601f11b535c60208f03df519e41ea29d4ba018a0e531e'),
- ('rootComparison','scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py','19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132'),
- ('rootControls','tests/test_f6c_cached_continuous_reception_root_cover.py','2fd2080b3b4facdc80b85cdc65610c2bfeefdd8eab5f7234e207d3d4908bc117'),
+ ('mapping','scripts/eom/verify-f6c-continuous-reception-acceleration.py','32fd13cfffb66265d783fee7b870c40c6caf0293587b7397751e08ae0371d1f2'),
+ ('mappingControls','tests/test_f6c_continuous_reception_acceleration.py','ba7f65d4b9259d0bbb84e07a58456a59eb904be1e7c1e46cc900c5460f6cc553'),
+ ('decoder','scripts/eom/oracle/f6c_refined_acceleration_conformance.py','196c6b987580082ed6b1cc07afdbcdd04d1368d11e2bb8655bb49d05a74a87dd'),
+ ('decoderControls','tests/test_f6c_refined_acceleration_conformance.py','7d304d7bed988bebc1546f17ff4182bb3701d89a868b89dd2a7dd9eee73d2b37'),
+ ('rootComparison','scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py','e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9'),
+ ('rootControls','tests/test_f6c_cached_continuous_reception_root_cover.py','ba2af569d4f9b1822b6cd6f70e840a8865a4fea8779f2cfa2afe8ebf31745f74'),
  ('acceleration','scripts/eom/oracle/continuous_reception_acceleration.py','abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8'),
  ('accelerationControls','tests/test_eom_continuous_reception_acceleration.py','26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'),
  ('accelerationProof',PREFIX+'2026-08-27-f6c-continuous-reception-acceleration-reference.md','c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f'),
@@ -177,11 +177,11 @@ SOURCES = (
  ('gkControls','tests/test_f6c_gk13_protocol.py','4b53d57f19de401348830b809600f01a9ae0c0c88d19d406a6a85e5ac8c5a241'),
  ('gkProof',PREFIX+'2026-08-27-f6c-gk13-execution-protocol.md','66ec97315dd8caf08d0628e2b23326044ac0a2f5b86b29d7c2f5542dc879cc85'),
  ('refinedClosure',PREFIX+'2026-08-27-f6c-refined-cover-acceleration-projection.md','c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d'),
- ('fullEntry','scripts/eom/run-f6c-cached-root-cover-full.mjs','373930ca36ca50067b0df37a48ed96cd34527d912af2f6696d6c4d4992a99bb0'),
+ ('fullEntry','scripts/eom/run-f6c-cached-root-cover-full.mjs','6dbf89315553b027335e3ca29094514e4ef663dadb2c98a8ad0f51fcf922de21'),
  ('geometry','scripts/eom/f6c_reception_geometry_restriction.py','e4bc1ff8bd23346f58a934ace429dbf65b11d0b2bb71ebc55dc34036ab9c51e7'),
  ('geometryControls','tests/test_f6c_reception_geometry_restriction.py','b6c4b4e6a82a11b4ee84c782bf208df4b141860bb8d01f1ad2b2a1ca749a6c7b'),
- ('captureHelper','scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386'),
- ('captureHelperControls','tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','9abc7c3a80ad670e7bc7ad9f94a95f1fcd8924de425991032d6d26bba3372427'),
+ ('captureHelper','scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','5d7c18363df966d1c9beae506875ce079f9a735f06e36e43e20157c22f30ace5'),
+ ('captureHelperControls','tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','a44ae057220b5c447aa05d93e6ce055a309e9467de2fa7c8f1e7b6426f659409'),
  ('geometryHistory','scripts/eom/oracle/certified_history.py','ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'),
  ('geometryRoots','scripts/eom/oracle/continuous_reception_roots_cached.py','daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf'),
  ('geometryRootsControls','tests/test_eom_continuous_reception_roots_cached.py','a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb'),

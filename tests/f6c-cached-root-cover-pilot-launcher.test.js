@@ -277,20 +277,20 @@ const CACHED_PATH_REPLACEMENTS=[
 ];
 const CACHED_HASH_REPLACEMENTS=[
   [
-    "4ce6436c09c445030192aeb5b894239b7fa04cee578e6067f1088151695a5e9e",
-    "af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386"
+    "49bd22cb0d4454782c037cff3c29998e10c1dae812d212b506b95d1f6d6a73f6",
+    "5d7c18363df966d1c9beae506875ce079f9a735f06e36e43e20157c22f30ace5"
   ],
   [
-    "2d25103e0fb6ab584485b7954465afe0fa5de556b3a7e111c56d20156b7011fd",
-    "19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132"
+    "c0a9a9467f68ceed8b8d73fc12bf604bce64a3dc8f68e60f8cbc71b67ddc3987",
+    "e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9"
   ],
   [
     "68a940c40b2e3b463555b95858031f96796e2ac94963a86b3a9ae6fd74dc3742",
-    "9abc7c3a80ad670e7bc7ad9f94a95f1fcd8924de425991032d6d26bba3372427"
+    "a44ae057220b5c447aa05d93e6ce055a309e9467de2fa7c8f1e7b6426f659409"
   ],
   [
     "5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5",
-    "2fd2080b3b4facdc80b85cdc65610c2bfeefdd8eab5f7234e207d3d4908bc117"
+    "ba2af569d4f9b1822b6cd6f70e840a8865a4fea8779f2cfa2afe8ebf31745f74"
   ],
   [
     "f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c",
@@ -301,23 +301,23 @@ const CACHED_HASH_REPLACEMENTS=[
     "7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4"
   ]
 ];
-const CACHED_EXTRA_PINS="  \"tests/test_eom_continuous_reception_roots_cached.py\": \"a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md\": \"765e6663cdd60323f84b9e1af52ba1399345322eb747727f2a0898b4dd0fd079\",\n  \"scripts/eom/oracle/continuous_reception_roots.py\": \"f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c\",\n  \"scripts/eom/verify-f6c-continuous-reception-root-cover.py\": \"2d25103e0fb6ab584485b7954465afe0fa5de556b3a7e111c56d20156b7011fd\",\n  \"tests/test_f6c_continuous_reception_root_cover.py\": \"5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md\": \"798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md\": \"46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef\",\n";
+const CACHED_EXTRA_PINS="  \"tests/test_eom_continuous_reception_roots_cached.py\": \"a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md\": \"765e6663cdd60323f84b9e1af52ba1399345322eb747727f2a0898b4dd0fd079\",\n  \"scripts/eom/oracle/continuous_reception_roots.py\": \"f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c\",\n  \"scripts/eom/verify-f6c-continuous-reception-root-cover.py\": \"c0a9a9467f68ceed8b8d73fc12bf604bce64a3dc8f68e60f8cbc71b67ddc3987\",\n  \"tests/test_f6c_continuous_reception_root_cover.py\": \"5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md\": \"798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md\": \"46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef\",\n";
 const CACHED_EXPECTED_PINS={
   "scripts/eom/launch-subfield-circular-root-pilot.mjs": "cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48",
-  "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py": "af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386",
-  "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py": "19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132",
+  "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py": "5d7c18363df966d1c9beae506875ce079f9a735f06e36e43e20157c22f30ace5",
+  "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py": "e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9",
   "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md": "36b72681c116cedf1803cc89ead8b48a7d9604bae7f9bffd7b0f95b33c3bb9b4",
-  "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py": "9abc7c3a80ad670e7bc7ad9f94a95f1fcd8924de425991032d6d26bba3372427",
-  "tests/test_f6c_cached_continuous_reception_root_cover.py": "2fd2080b3b4facdc80b85cdc65610c2bfeefdd8eab5f7234e207d3d4908bc117",
+  "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py": "a44ae057220b5c447aa05d93e6ce055a309e9467de2fa7c8f1e7b6426f659409",
+  "tests/test_f6c_cached_continuous_reception_root_cover.py": "ba2af569d4f9b1822b6cd6f70e840a8865a4fea8779f2cfa2afe8ebf31745f74",
   "scripts/eom/oracle/continuous_reception_roots_cached.py": "daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf",
   "scripts/eom/oracle/certified_history.py": "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7",
   "scripts/eom/oracle/decimal_interval.py": "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a",
   "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md": "7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md": "f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",
+  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md": "db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc",
   "reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md": "6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936",
-  "tests/test_eom_continuous_reception_roots.py": "473cba3b039027879eeea6987515261faaadcf0833f3e4d2864fc610f5b7a144",
-  "scripts/eom/verify-f6c-accepted-frame-reconstruction.py": "80a96ebd0b306148b3eb96cb12e797c5cf80942e52ea457a8c6a72d58e8618a0",
-  "scripts/eom/verify-f6c-retained-history-guards.py": "efaed33a6d6e55be5788ffb7e4e6f596fbc0381466a8308154dbd550743896b9",
+  "tests/test_eom_continuous_reception_roots.py": "81de0ebc74a6e2e2a6c66e96cd3a7856806b7e41f775e3e2f184caf5bd1158ac",
+  "scripts/eom/verify-f6c-accepted-frame-reconstruction.py": "7a55d70ebb8f2ae8c490f812a0a5d0a8b1a1f369a91cb5eb2b6ad1eae66a3e7a",
+  "scripts/eom/verify-f6c-retained-history-guards.py": "b8480f3652fd7254bdfe998bbe0f6d092500c6451d692c1ab225d3405295897d",
   ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json": "f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1",
   ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json": "7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43",
   ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json": "86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880",
@@ -325,7 +325,7 @@ const CACHED_EXPECTED_PINS={
   "tests/test_eom_continuous_reception_roots_cached.py": "a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb",
   "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md": "765e6663cdd60323f84b9e1af52ba1399345322eb747727f2a0898b4dd0fd079",
   "scripts/eom/oracle/continuous_reception_roots.py": "f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c",
-  "scripts/eom/verify-f6c-continuous-reception-root-cover.py": "2d25103e0fb6ab584485b7954465afe0fa5de556b3a7e111c56d20156b7011fd",
+  "scripts/eom/verify-f6c-continuous-reception-root-cover.py": "c0a9a9467f68ceed8b8d73fc12bf604bce64a3dc8f68e60f8cbc71b67ddc3987",
   "tests/test_f6c_continuous_reception_root_cover.py": "5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5",
   "reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md": "798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3",
   "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md": "46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef"
@@ -334,7 +334,7 @@ const CACHED_REGEX_REPLACEMENT=["/reduce-prescribed-acceleration-response\\.py|(
 const replacePaths=source=>{for(const[a,b]of CACHED_PATH_REPLACEMENTS)source=source.split(a).join(b);return source;};
 const frozen=(p,h)=>{const bytes=readFileSync(p);assert.equal(digest(bytes),h,p);return bytes.toString("utf8");};
 test("cached composition exact source delta is binding/address-only, not operational logic",()=>{
-  const oldEntry=frozen("scripts/eom/run-f6c-root-cover-pilot.mjs","55d8432f1dba556558a634e164ad1560abc8d4c598d6ac3ea547176744fbb734");
+  const oldEntry=frozen("scripts/eom/run-f6c-root-cover-pilot.mjs","a4ddc50da9d39e08186b605338e7426ad23ab8ca37821cb88bfb1d4750c97f4e");
   let expected=replacePaths(oldEntry);
   for(const[a,b]of CACHED_HASH_REPLACEMENTS){assert.equal(expected.split(a).length,2);expected=expected.replace(a,b);}
   const marker='  "/usr/bin/memory_pressure": "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56",\n';
@@ -359,7 +359,7 @@ test("old or mixed launch bindings cannot select the cached composition",()=>{
   for(const mutate of [
     p=>p.schema="braid-program/f6c-root-cover-pilot-launch.v1",
     p=>p.comparisonContract.declarationSha256="765e6663cdd60323f84b9e1af52ba1399345322eb747727f2a0898b4dd0fd079",
-    p=>p.comparisonContract.verifierSha256="2d25103e0fb6ab584485b7954465afe0fa5de556b3a7e111c56d20156b7011fd",
+    p=>p.comparisonContract.verifierSha256="c0a9a9467f68ceed8b8d73fc12bf604bce64a3dc8f68e60f8cbc71b67ddc3987",
     p=>p.comparisonContract.subjectSourceBindings[0].path="scripts/eom/prepare-f6c-continuous-reception-root-cover.py",
     p=>p.comparisonContract.subjectSourceBindings[1].path="scripts/eom/oracle/continuous_reception_roots.py",
     p=>p.controlBindings[0].path="tests/test_f6c_continuous_reception_root_cover_preparation.py",

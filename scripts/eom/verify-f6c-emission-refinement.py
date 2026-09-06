@@ -32,13 +32,13 @@ PRODUCER_CONTROLS='tests/test_f6c_emission_refinement_preparation.py'
 DECLARATION='reference/priorities/braid-program/evidence/2026-08-27-f6c-emission-refinement-predeclaration.md'
 DECLARATION_SHA='53f3398ba083218948c9efd93f10db09cbf5d617bc0270988f5adea24c48f037'
 PURE='scripts/eom/oracle/f6c_emission_refinement_conformance.py'
-PURE_SHA='ec0eaaeae3da4ffb597ac92ff3ac1a5700a8cf88916144a7d994912270c4157a'
+PURE_SHA='d54a1372c5f61ed94110eee8a8483ffec9cf76bc2354b61a7e314cbd4f477126'
 PURE_CONTROLS='tests/test_f6c_emission_refinement_conformance.py'
 PURE_CONTROLS_SHA='bac7357186fb05c5b7ea35154c5564e7527075a9a94177a8b600f9a02119adb5'
 HELPER='scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py'
-HELPER_SHA='19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132'
+HELPER_SHA='e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9'
 HELPER_CONTROLS='tests/test_f6c_cached_continuous_reception_root_cover.py'
-HELPER_CONTROLS_SHA='2fd2080b3b4facdc80b85cdc65610c2bfeefdd8eab5f7234e207d3d4908bc117'
+HELPER_CONTROLS_SHA='ba2af569d4f9b1822b6cd6f70e840a8865a4fea8779f2cfa2afe8ebf31745f74'
 BASE = '.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/'
 # Independently transcribed original-byte contract, never imported from subject.
 FIXED = (
@@ -56,7 +56,7 @@ FIXED = (
     ('referenceControls', 'tests/test_eom_continuous_reception_acceleration.py', '26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'),
     ('referenceProof', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md', 'c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f'),
     ('memberPredeclaration', 'reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md', 'c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'),
-    ('rootTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md', 'f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68'),
+    ('rootTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md', 'db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc'),
     ('reconstructionTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md', '6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936'),
 )
 
@@ -95,8 +95,8 @@ FROZEN_SUBJECT=(
  ('tests/test_eom_decimal_interval.py','22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44'),
  (HELPER,HELPER_SHA),(HELPER_CONTROLS,HELPER_CONTROLS_SHA),(PURE,PURE_SHA),(PURE_CONTROLS,PURE_CONTROLS_SHA),
  ('reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md','798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3'),
- ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386'),
- ('tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','9abc7c3a80ad670e7bc7ad9f94a95f1fcd8924de425991032d6d26bba3372427'))
+ ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','5d7c18363df966d1c9beae506875ce079f9a735f06e36e43e20157c22f30ace5'),
+ ('tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','a44ae057220b5c447aa05d93e6ce055a309e9467de2fa7c8f1e7b6426f659409'))
 SOURCE_PLAN_KEYS=('declaration','producer','producerControls','verifier','verifierControls','comparisonReference','comparisonReferenceControls')
 
 def prior_closure():
@@ -350,7 +350,7 @@ def authenticate_prior(docs, fixed):
     flags(c['libraryFlags'],ROOT_FLAGS)
     require(p['schema']=='braid-program/f6c-cached-root-cover-pilot-launch.v1' and p['scope']=='pilot-cell-0', 'prior plan scope differs')
     contract=p['comparisonContract']
-    require(contract['verifierSha256']=='19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132' and
+    require(contract['verifierSha256']=='e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9' and
         contract['declarationSha256']=='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4' and
         c['verifier']['sha256']==contract['verifierSha256'], 'prior oracle generation differs')
     require(equal(m['subjectSourceBindings'],contract['subjectSourceBindings']) and equal(m['runtimeBindings'],contract['runtimeBindings']), 'prior source/runtime chain differs')

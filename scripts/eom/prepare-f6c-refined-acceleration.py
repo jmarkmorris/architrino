@@ -50,7 +50,7 @@ FIXED = (
     ('referenceControls', 'tests/test_eom_continuous_reception_acceleration.py', '26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'),
     ('referenceProof', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md', 'c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f'),
     ('memberPredeclaration', 'reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md', 'c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'),
-    ('rootTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md', 'f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68'),
+    ('rootTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md', 'db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc'),
     ('reconstructionTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md', '6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936'),
 )
 IDS = ('0+', '0-', '1+', '1-', '2+', '2-', '3+', '3-')
@@ -80,17 +80,17 @@ HEX = re.compile(r'[0-9a-f]{64}\Z')
 # Shared protocol literals only; no checker implementation is imported.
 DECLARATION_SHA='c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d'
 CORE='scripts/eom/oracle/f6c_refined_acceleration_conformance.py'
-CORE_SHA='63db48f604d0b1abdf61f0efcb3894feac9d30a25af26a4d96f01bda6522e2a2'
+CORE_SHA='196c6b987580082ed6b1cc07afdbcdd04d1368d11e2bb8655bb49d05a74a87dd'
 NAMED={
  'consumer':(SELF,None),'consumerControls':(CONTROLS,None),
- 'verifier':('scripts/eom/verify-f6c-refined-acceleration.py','b5ac487c1004976c346bce9dfe451ae82def1087c79102c5e4894ea69eac11e2'),'verifierControls':('tests/test_f6c_refined_acceleration.py','4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a'),
+ 'verifier':('scripts/eom/verify-f6c-refined-acceleration.py','99faec36ec8c0837d14b96eb77e92aecc90e933a7d9da09b9b4c0996c1bdf537'),'verifierControls':('tests/test_f6c_refined_acceleration.py','4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a'),
  'declaration':(DECLARATION,DECLARATION_SHA),
  'comparisonCore':(CORE,CORE_SHA),
- 'comparisonCoreControls':('tests/test_f6c_refined_acceleration_conformance.py','3fb6eabd03a56b982f2601f11b535c60208f03df519e41ea29d4ba018a0e531e'),
+ 'comparisonCoreControls':('tests/test_f6c_refined_acceleration_conformance.py','7d304d7bed988bebc1546f17ff4182bb3701d89a868b89dd2a7dd9eee73d2b37'),
  'rangeReference':('scripts/eom/oracle/continuous_reception_acceleration.py','abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8'),
  'rangeReferenceControls':('tests/test_eom_continuous_reception_acceleration.py','26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'),
- 'rangeComparison':('scripts/eom/verify-f6c-continuous-reception-acceleration.py','cc26f5a45d0e09a472e3066d0d62ae8192492a7c3e0ab18a3658781a0274b299'),
- 'rangeComparisonControls':('tests/test_f6c_continuous_reception_acceleration.py','be741dccccd90c349849b19dc15df1acd4ea5752ec6f8a9e98e7ae14013c52c6')}
+ 'rangeComparison':('scripts/eom/verify-f6c-continuous-reception-acceleration.py','32fd13cfffb66265d783fee7b870c40c6caf0293587b7397751e08ae0371d1f2'),
+ 'rangeComparisonControls':('tests/test_f6c_continuous_reception_acceleration.py','ba7f65d4b9259d0bbb84e07a58456a59eb904be1e7c1e46cc900c5460f6cc553')}
 PRIOR_BASE='.local-data/braid-analysis/f6c-emission-refinement-20260827/pilot-cell-0-v2'
 REFINED=(
  ('queries',PRIOR_BASE+'/queries.ndjson','44d59ae62f8d7d9a9e7afd1d684e8ee15b8aeadf4dc92d489a787e5e224029fa'),
@@ -571,7 +571,7 @@ def authenticate_receipts(export,manifest,comparison,admission,reconstruction,gu
     require(prior_plan['schema']=='braid-program/f6c-cached-root-cover-pilot-launch.v1'
             and prior_plan['scope']=='pilot-cell-0','wrong prior plan generation')
     contract=prior_plan['comparisonContract']
-    require(contract['verifierSha256']=='19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132'
+    require(contract['verifierSha256']=='e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9'
             and contract['declarationSha256']=='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4', 'cached prior reference contract differs')
     require(manifest['subjectSourceBindings']==contract['subjectSourceBindings'] and manifest['runtimeBindings']==contract['runtimeBindings'], 'prior execution binding chain differs')
     require(comparison['verifier']['sha256']==contract['verifierSha256'],'wrong actual comparison implementation')

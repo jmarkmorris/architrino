@@ -42,14 +42,14 @@ FIXED = (
     ("export", ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json", "f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1"),
     ("reconstruction", ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json", "7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43"),
     ("guards", ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json", "86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880"),
-    ("rootTheorem", "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md", "f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68"),
+    ("rootTheorem", "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md", "db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc"),
     ("reconstructionTheorem", "reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md", "6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936"),
     ("rootLibrary", "scripts/eom/oracle/continuous_reception_roots.py", "f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c"),
-    ("rootControls", "tests/test_eom_continuous_reception_roots.py", "473cba3b039027879eeea6987515261faaadcf0833f3e4d2864fc610f5b7a144"),
+    ("rootControls", "tests/test_eom_continuous_reception_roots.py", "81de0ebc74a6e2e2a6c66e96cd3a7856806b7e41f775e3e2f184caf5bd1158ac"),
     ("historyReference", "scripts/eom/oracle/certified_history.py", "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7"),
     ("decimalReference", "scripts/eom/oracle/decimal_interval.py", "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a"),
-    ("reconstructionAuthor", "scripts/eom/verify-f6c-accepted-frame-reconstruction.py", "80a96ebd0b306148b3eb96cb12e797c5cf80942e52ea457a8c6a72d58e8618a0"),
-    ("guardAuthor", "scripts/eom/verify-f6c-retained-history-guards.py", "efaed33a6d6e55be5788ffb7e4e6f596fbc0381466a8308154dbd550743896b9"),
+    ("reconstructionAuthor", "scripts/eom/verify-f6c-accepted-frame-reconstruction.py", "7a55d70ebb8f2ae8c490f812a0a5d0a8b1a1f369a91cb5eb2b6ad1eae66a3e7a"),
+    ("guardAuthor", "scripts/eom/verify-f6c-retained-history-guards.py", "b8480f3652fd7254bdfe998bbe0f6d092500c6451d692c1ab225d3405295897d"),
     ("declaration", DECLARATION, DECLARATION_SHA),
 )
 KNOT_SHA = "11acd09b692fe175861d0f9478b5d1763c18e088682a0c6a16fc29d65453075c"

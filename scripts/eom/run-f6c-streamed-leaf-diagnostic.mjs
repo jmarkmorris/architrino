@@ -48,7 +48,7 @@ export const PINS=Object.freeze({
  ],
  "adapter": [
   "scripts/eom/f6c_variable_cell_adapter.py",
-  "2235c59d7efc29c607f4bab6b39452ef3007f9b1cf9acb1d682901fb91dd382a"
+  "3ac5d1bfba780e41954ddda02120581a2ed4e6f17e3a07cdd058eed5063cec14"
  ],
  "adapterControls": [
   "tests/test_f6c_variable_cell_adapter.py",
@@ -100,7 +100,7 @@ export const PINS=Object.freeze({
  ],
  "transport": [
   "scripts/eom/verify-f6c-refined-acceleration.py",
-  "b5ac487c1004976c346bce9dfe451ae82def1087c79102c5e4894ea69eac11e2"
+  "99faec36ec8c0837d14b96eb77e92aecc90e933a7d9da09b9b4c0996c1bdf537"
  ],
  "helpers": [
   "scripts/eom/launch-prescribed-response-pilot.mjs",
@@ -146,8 +146,8 @@ export const ANCESTRY_ARCHIVE_SOURCES=Object.freeze({
 });
 export const PACKAGE_PINS=Object.freeze({
  reader:['scripts/eom/f6c_evidence_package.py','9d888682514f23652b39bfaa53fdfb3ceab66e6ba88cf34222c156d226764ad6'],
- readerControls:['tests/test_f6c_evidence_package.py','df81708fb1877ce549c4eacfd66c7d7f47f192d57d716a65f184039adb075cbf'],
- inventory:['tests/fixtures/f6c-lossless-packaging-expectations.v1.json','79a91daedff0fdb712b5b76ff0a4d8c345711eb2c4b69c0731a509da701e48fc']
+ readerControls:['tests/test_f6c_evidence_package.py','36fff6d7113a1df53d84a914c255a59b268d9707e26b917d08d1d05b274dc4ac'],
+ inventory:['tests/fixtures/f6c-lossless-packaging-expectations.v1.json','811885700af0c25da4c03464aaf30617964ed66555e5cb14fd10700a14c8fd12']
 });
 export const FRESH_EVIDENCE_PINS=Object.freeze({
  reader:PACKAGE_PINS.reader,readerControls:PACKAGE_PINS.readerControls,
@@ -163,8 +163,8 @@ export const FRESH_CLOSURE_PINS=Object.freeze({
  contract:['.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/fresh-parent-batch-closure-validator-expectations.md','7132bcf6db99bef0b2255418f656e3fb5900eb23fac9d1400d294d5ba8fd2eed'],
 });
 export const CONTINUATION_MATH=Object.freeze([
- ['scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py','19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132',41336],
- ['scripts/eom/verify-f6c-continuous-reception-acceleration.py','cc26f5a45d0e09a472e3066d0d62ae8192492a7c3e0ab18a3658781a0274b299',42580],
+ ['scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py','e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9',41336],
+ ['scripts/eom/verify-f6c-continuous-reception-acceleration.py','32fd13cfffb66265d783fee7b870c40c6caf0293587b7397751e08ae0371d1f2',42580],
  ['scripts/eom/oracle/f6c_residual_integral_supremum.py','fc170a91b2747923bda89ef00b58d529c98bf96b01cc7b2c05c035042fc79c5a',20129],
  ['scripts/eom/oracle/f6c_gk13_protocol.py','a70a15481f793e913440628068f9c53bab611fe9d92f36206a401c01e91478eb',24388],
  ['scripts/eom/oracle/f6c_correlated_residual_enclosure.py','b86907236e849124f3fa9c6bcad0f65492ecc6fbeb1b51a27438655c45b037b1',7830],

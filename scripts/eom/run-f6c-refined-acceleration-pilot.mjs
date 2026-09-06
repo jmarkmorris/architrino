@@ -24,7 +24,7 @@ export const CHECKER='scripts/eom/verify-f6c-refined-acceleration.py';
 export const CHECKER_TESTS='tests/test_f6c_refined_acceleration.py';
 // Separately authored checker and controls, independently accepted before this
 // operational generation. No subject or mathematical reference is altered.
-export const CHECKER_SHA='b5ac487c1004976c346bce9dfe451ae82def1087c79102c5e4894ea69eac11e2';
+export const CHECKER_SHA='99faec36ec8c0837d14b96eb77e92aecc90e933a7d9da09b9b4c0996c1bdf537';
 export const CHECKER_TESTS_SHA='4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a';
 export const LANE='.local-data/braid-analysis/f6c-refined-acceleration-20260827';
 export const SHARED_LOCK_LANE='.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827';
@@ -59,7 +59,7 @@ export const FIXED=Object.freeze([
   ['referenceControls','tests/test_eom_continuous_reception_acceleration.py','26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'],
   ['referenceProof','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md','c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f'],
   ['memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'],
-  ['rootTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md','f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68'],
+  ['rootTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md','db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc'],
   ['reconstructionTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md','6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936'],
 ].map(Object.freeze));
 export const NAMED=Object.freeze({
@@ -86,12 +86,12 @@ export const PRIOR_OPERATIONS=Object.freeze([
 ].map(Object.freeze));
 export const PINS=Object.freeze({...Object.fromEntries([...FIXED,...REFINED,...PRIOR_OPERATIONS].map(([,p,h])=>[p,h])),
  [CONSUMER]:'738c716f95c419d49c14ffd533ba3bde4b6bfe666521f363db15c6212a52842c',
- [CONSUMER_TESTS]:'33e90600fccf602a63bcdda14dffa143e2b869e6557365958c5b9951a268c922',
+ [CONSUMER_TESTS]:'d1ee4c826ed04dcfad6db87482ac77fc7bd8442498524338c6c20d9efe10ad01',
  [DECLARATION]:'c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d',
- [NAMED.comparisonCore]:'63db48f604d0b1abdf61f0efcb3894feac9d30a25af26a4d96f01bda6522e2a2',
- [NAMED.comparisonCoreControls]:'3fb6eabd03a56b982f2601f11b535c60208f03df519e41ea29d4ba018a0e531e',
- [NAMED.rangeComparison]:'cc26f5a45d0e09a472e3066d0d62ae8192492a7c3e0ab18a3658781a0274b299',
- [NAMED.rangeComparisonControls]:'be741dccccd90c349849b19dc15df1acd4ea5752ec6f8a9e98e7ae14013c52c6',
+ [NAMED.comparisonCore]:'196c6b987580082ed6b1cc07afdbcdd04d1368d11e2bb8655bb49d05a74a87dd',
+ [NAMED.comparisonCoreControls]:'7d304d7bed988bebc1546f17ff4182bb3701d89a868b89dd2a7dd9eee73d2b37',
+ [NAMED.rangeComparison]:'32fd13cfffb66265d783fee7b870c40c6caf0293587b7397751e08ae0371d1f2',
+ [NAMED.rangeComparisonControls]:'ba7f65d4b9259d0bbb84e07a58456a59eb904be1e7c1e46cc900c5460f6cc553',
  [OUTER]:'cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48',
  [HELPERS]:'9eb1afb84a175b143020610c153f9fef6dabb50efce9f956991feca3fbc0d5c2',
  [CHECKER]:CHECKER_SHA,[CHECKER_TESTS]:CHECKER_TESTS_SHA,

@@ -28,7 +28,7 @@ import json
 import re
 from types import MappingProxyType
 
-REQUIRED_REFERENCE_SHA = '19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132'
+REQUIRED_REFERENCE_SHA = 'e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9'
 PROOF_REQUIRED_SHA256 = '652d77241f9b5c082e7d15e2bb62328f346760548f9f13e4ffe7562c4cad0733'
 PARENT_SCHEMA = 'braid-program/f6c-original-parent-refinement-input.v1'
 IDS = ('0+', '0-', '1+', '1-', '2+', '2-', '3+', '3-')

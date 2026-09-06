@@ -30,9 +30,9 @@ _EXECUTING_CODE = sys._getframe().f_code
 SELF = 'scripts/eom/verify-f6c-continuous-reception-acceleration.py'
 CONTROLS = 'tests/test_f6c_continuous_reception_acceleration.py'
 CONSUMER = 'scripts/eom/prepare-f6c-continuous-reception-acceleration.py'
-CONSUMER_SHA = 'dca5f5b3b42b42347b0b6b49a8974663169171e2293c1eca9c4b4a8c7646a53e'
+CONSUMER_SHA = '43f2af53e848a2a7c81bd53dffd4aa0ebb73fb361ee55c60bd5d73a8e7fd85fb'
 CONSUMER_TEST = 'tests/test_f6c_continuous_reception_acceleration_preparation.py'
-CONSUMER_TEST_SHA = '616a4e9c464e95607140dd90b47a8288ae73183f74faa0cc5078b81b8c8767c8'
+CONSUMER_TEST_SHA = 'cf05168f67c09c3349e0bec699411862e47b2c7982ede13cdc25143d45072326'
 DECLARATION = 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md'
 DECLARATION_SHA = '3ef8fb9020bae71833b1e06a119672b49a4beb5395f697dcb3d037d088e7891e'
 BASE = '.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/'
@@ -52,7 +52,7 @@ FIXED = (
     ('referenceControls', 'tests/test_eom_continuous_reception_acceleration.py', '26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'),
     ('referenceProof', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md', 'c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f'),
     ('memberPredeclaration', 'reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md', 'c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'),
-    ('rootTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md', 'f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68'),
+    ('rootTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md', 'db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc'),
     ('reconstructionTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md', '6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936'),
 )
 SCOPE = 'cached-pilot-cell-0-range'
@@ -410,7 +410,7 @@ def authenticate_prior(docs, fixed):
     flags(c['libraryFlags'],ROOT_FLAGS)
     require(p['schema']=='braid-program/f6c-cached-root-cover-pilot-launch.v1' and p['scope']=='pilot-cell-0', 'prior plan scope differs')
     contract=p['comparisonContract']
-    require(contract['verifierSha256']=='19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132' and
+    require(contract['verifierSha256']=='e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9' and
         contract['declarationSha256']=='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4' and
         c['verifier']['sha256']==contract['verifierSha256'], 'prior oracle generation differs')
     require(equal(m['subjectSourceBindings'],contract['subjectSourceBindings']) and equal(m['runtimeBindings'],contract['runtimeBindings']), 'prior source/runtime chain differs')

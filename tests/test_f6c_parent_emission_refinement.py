@@ -25,15 +25,15 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 SUBJECT = ROOT/'scripts/eom/f6c_parent_emission_refinement.py'
 PINS = {
-    'helper': ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py', 'af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386'),
+    'helper': ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py', '5d7c18363df966d1c9beae506875ce079f9a735f06e36e43e20157c22f30ace5'),
     'certified_history': ('scripts/eom/oracle/certified_history.py', 'ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'),
     'decimal_interval': ('scripts/eom/oracle/decimal_interval.py', 'fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'),
     'continuous_reception_roots': ('scripts/eom/oracle/continuous_reception_roots_cached.py', 'daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf'),
-    'comparison': ('scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py', 'ffe91ad7cbfe4e41bf92203fe73b4195e0ad1437176dace9d12751e68aa2cbec'),
-    'comparisonControls': ('tests/test_f6c_parent_emission_refinement_conformance.py', '18c21d6e84d0d6ae7e3b4ea35861a75b38d362d8aad1e0cc14715cea167a5a04'),
-    'geometry': ('scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py', '19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132'),
+    'comparison': ('scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py', '2b3686df8557a54cdd082e6f8767ceb8007e78e570e9be92b33cd4a4b6a86d18'),
+    'comparisonControls': ('tests/test_f6c_parent_emission_refinement_conformance.py', 'bcec5abc8798551bcebecaf707853ed216c3f49f1da23f089a48d8a71aacd8d5'),
+    'geometry': ('scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py', 'e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9'),
     'proof': ('reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-reference.md', '652d77241f9b5c082e7d15e2bb62328f346760548f9f13e4ffe7562c4cad0733'),
-    'oldSubject': ('scripts/eom/prepare-f6c-emission-refinement.py', '587e74df2848a3ee1b70fad640ae454f3731b0974ee601e9784a1caa98339c55'),
+    'oldSubject': ('scripts/eom/prepare-f6c-emission-refinement.py', 'c7a12452d7bb7bcbc7d469d5106d24893bb3209474820fb87cbc28660038b7c2'),
 }
 
 
