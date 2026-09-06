@@ -68,15 +68,21 @@ Everything else is **supporting material**, and it is filed into a subdirectory:
 
 | Subdirectory | Holds |
 | --- | --- |
-| `reviews/` | Dated specialist reviews, review responses, adjudications, and collations |
-| `analysis/` | Theorem targets, proof packets, certificates, and lemma files |
+| `analysis/` | **All theory-bearing material.** Theorem targets, proof packets, certificates, lemmas, derivations, benchmark recoveries, specialist theory reviews and responses, insights, and anything that may eventually contribute reader-facing content to the corpus |
 | `evidence/` | Receipts, oracle outputs, measured records, and dated audits |
-| `contracts/` | Versioned contract and policy artifacts, typically `.v1.json` |
+| `contracts/` | Versioned contract and policy artifacts, application requirements, and interface specifications |
 | `campaigns/` | Campaign definitions, protocols, and predeclarations |
-| `configurations/` | Enumerated configuration and candidate records |
-| `benchmarks/` | Observation-facing benchmark documents, where recovering a named external result is itself the lane's subject |
+| `configurations/` | Enumerated configuration and candidate registries, indexes, and catalogs |
 | `decisions/` | Recorded operator dispositions, once a lane accumulates more than one |
 | `archive/` | Superseded material retained for auditability |
+
+`analysis/` is the only subdirectory an operator should have to open to find theory. If a document carries theory work, an insight, an advance in $\mathbb{A}\mathbb{A}\mathbb{A}$, or material that could become reader-facing corpus content, it belongs there whatever else it also is. A benchmark recovery is theory even though it is also a benchmark; a specialist review of a proof is theory even though it is also a review.
+
+The test is what the document *carries*, not what it is about. A record of what a run measured, a dated audit of a claim's status, a receipt, a source-acquisition manifest, or a staging area of unassessed leads remains operational even when its subject is deep theory, because its content is the state of the work rather than the theory itself. Those stay in `evidence/`, `campaigns/`, `configurations/`, and their existing homes. Filing them under `analysis/` would refill the one place the operator relies on with material they were trying to separate out, which defeats the purpose of having a single theory location.
+
+The other categories exist for exactly that internal material: what a run measured, what an interface promises, what a campaign will execute, what the operator decided, and what has been superseded.
+
+Do not create `reviews/`, `benchmarks/`, `history/`, `proofs/`, or `packets/`. Each of those was tried and folded back into `analysis/` on 2026-09-05, because splitting theory across several subdirectory names is exactly what makes a lane's theory content impossible to survey from one place.
 
 Use only the subdirectories a workstream actually needs; an empty category is not created in advance. [`app-solver/`](app-solver/README.md) is the reference implementation of this layout, and [`braid-program/`](braid-program/README.md) applies it to a larger evidence body.
 

@@ -1,6 +1,6 @@
 # Capped Collinear Endpoint Reanalysis
 
-**Date:** 2026-07-30 **Status:** conditional bounded analytic recheck complete; proposed outgoing contact one-jet added; open post-contact continuation `Not advanced` **Scope:** stationary mirror-symmetric collinear release under the proposed closed primitive domain $\|\mathbf V\|\le c_f=1$. **Reviewed by:** [Jack K. Hale read-only review, captured 2026-07-31](../reviews/jack-k-hale-review-response-2026-07-31.md); [Lars Hörmander read-only review, captured 2026-07-31](../reviews/lars-hormander-review-response-2026-07-31.md); [Albert Einstein second read-only review, captured 2026-08-01](../reviews/albert-einstein-second-review-response-2026-08-01.md).
+**Date:** 2026-07-30 **Status:** conditional bounded analytic recheck complete; proposed outgoing contact one-jet added; open post-contact continuation `Not advanced` **Scope:** stationary mirror-symmetric collinear release under the proposed closed primitive domain $\|\mathbf V\|\le c_f=1$. **Reviewed by:** [Jack K. Hale read-only review, captured 2026-07-31](jack-k-hale-review-response-2026-07-31.md); [Lars Hörmander read-only review, captured 2026-07-31](lars-hormander-review-response-2026-07-31.md); [Albert Einstein second read-only review, captured 2026-08-01](albert-einstein-second-review-response-2026-08-01.md).
 
 ## Verified incoming input through first field-speed arrival
 

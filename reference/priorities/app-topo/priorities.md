@@ -12,7 +12,7 @@
 - Observable contract: [TOPO-001 observable and reference geometry v1](contracts/topo-observable-and-reference-geometry-v1.md)
 - Interaction contract: [TOPO-002 interaction and color contract v1](contracts/topo-interaction-and-color-contract-v1.md)
 - Circular-binary contract: [prescribed circular binary v1](contracts/topo-circular-binary-prescribed-history-v1.md)
-- Dynamic-contour recommendation: [canonical sampled-field path](analysis/dynamic-contour-rendering-recommendation.md)
+- Dynamic-contour recommendation: [canonical sampled-field path](brainstorming.md)
 - Exploratory notes: [brainstorming](brainstorming.md)
 - Chronological record: [work log](work-log.md)
 - Potential-product owner: [AAA Core Potential](../app-aaa-core/contracts/potential-v1.md)

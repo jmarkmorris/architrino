@@ -210,7 +210,7 @@ $$
 
 The neutrino benchmark is a mixing and mass-difference target. Absolute-mass rows remain separate limits: $m_{\nu_e}^{\mathrm{eff}}<0.8\,\mathrm{eV}$ at $90\%$ CL, $m_{\nu_\mu}^{\mathrm{eff}}<0.19\,\mathrm{MeV}$ at $90\%$ CL, and $m_{\nu_\tau}^{\mathrm{eff}}<18.2\,\mathrm{MeV}$ at $95\%$ CL in the current PDG rows.
 
-Use [Weak Flavor Event-Ledger Benchmark Packet](../benchmarks/weak-flavor-event-ledger-benchmark-packet.md) as the current scoped source-mining packet for 2026 beta, muon, pion, kaon, CKM, PMNS, LHCb flavor, and missing-transverse-momentum event-ledger rows. It keeps measured charged or hadronic products separate from inferred neutrino, flavor, and invisible rows, and it preserves the same status boundary as this packet: the rows are benchmark pressure only until the retained weak-visible and neutral-lepton carriers exist.
+Use [Weak Flavor Event-Ledger Benchmark Packet](weak-flavor-event-ledger-benchmark-packet.md) as the current scoped source-mining packet for 2026 beta, muon, pion, kaon, CKM, PMNS, LHCb flavor, and missing-transverse-momentum event-ledger rows. It keeps measured charged or hadronic products separate from inferred neutrino, flavor, and invisible rows, and it preserves the same status boundary as this packet: the rows are benchmark pressure only until the retained weak-visible and neutral-lepton carriers exist.
 
 Source-mining intake 2026-06-28 from the December 2020 neutrino notes adds a weak-exposure consistency row. The PMNS map should consume the same exposed fraction that the near-photon neutrino chapter assigns to the weak channel:
 $$
@@ -272,7 +272,7 @@ where $\ell$ is a reconstructed charged lepton, $\mathbf{p}_T^{\mathrm{miss}}$ i
 | Heavy-flavor jets are inferred through displaced secondary vertices, impact parameters, hadron mass, and semileptonic signatures. | The flavor branch must survive detector tagging as a calibrated inference from lifetime and vertex geometry. | A heavy quark branch is declared observed without the tag-efficiency and mistag ledger. |
 | Neutrino lectures frame oscillation data as mass, mixing, flavor projection, and matter-effect phenomenology. | PMNS recovery must couple source reaction, propagation phase, detector flavor projection, and weak exposure in the same domain. | PMNS rows are imported as fit parameters without source and detector weak-reaction ledgers. |
 
-The first concrete channel template for this table is [VBF Photon Missing-Transverse-Momentum Event Ledger](../benchmarks/vbf-photon-missing-transverse-momentum-event-ledger.md). It specializes the weak/scalar observer record to one $\gamma+jj+\mathbf{p}_T^{\mathrm{miss}}$ event shape before interpreting the hidden row as $Z(\nu\nu)$, invisible Higgs decay, or a dark-photon benchmark.
+The first concrete channel template for this table is [VBF Photon Missing-Transverse-Momentum Event Ledger](vbf-photon-missing-transverse-momentum-event-ledger.md). It specializes the weak/scalar observer record to one $\gamma+jj+\mathbf{p}_T^{\mathrm{miss}}$ event shape before interpreting the hidden row as $Z(\nu\nu)$, invisible Higgs decay, or a dark-photon benchmark.
 
 The heavy-flavor tag should be modeled as an observer inference functional
 

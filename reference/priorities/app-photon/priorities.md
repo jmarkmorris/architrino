@@ -509,7 +509,7 @@ The search should flag a configuration as interesting when one or more of these 
 
 Suspect numerical cases should be labeled as suspect, not good. Missed roots, very small Jacobian values, large delay-solve gaps, or unstable diagnostics can still be useful clues, but they should not be presented as clean polarization evidence.
 
-The detailed execution and export boundary is recorded in [configuration-search-deep-comparison.md](analysis/configuration-search-deep-comparison.md). Deep comparison is independently scheduled from later UI mutation, but it reuses the same prescribed-path analysis and therefore is not an independent numerical oracle or physical certificate.
+The detailed execution and export boundary is recorded in [configuration-search-deep-comparison.md](brainstorming.md). Deep comparison is independently scheduled from later UI mutation, but it reuses the same prescribed-path analysis and therefore is not an independent numerical oracle or physical certificate.
 
 ## Work Queue
 
@@ -552,4 +552,4 @@ The photon app is an exploratory diagnostic. It may visualize candidate planar-p
 - Photon planar-pair ledger substrate packet
 - Planar-pair symbolic substrate instance
 - Photon event ledger balance diagnostic
-- [Malus' law](../mapping-benchmarks/benchmarks/malus-law.md)
+- [Malus' law](../mapping-benchmarks/analysis/malus-law.md)

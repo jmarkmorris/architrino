@@ -41,7 +41,7 @@ Tested effective behavior can constrain native geometry before a microscopic bra
 The required external constraint surfaces are owned by:
 
 - [Equation Mapping](../priorities.md) owns equations such as `EQ-13` Maxwell and wave recovery, `EQ-26A` fine-structure coupling and running, and `EQ-27` magnetic moment and precession.
-- [Mapping Benchmarks](../../mapping-benchmarks/priorities.md) owns independent comparison situations such as the [Zeeman effect](../../mapping-benchmarks/benchmarks/zeeman-effect.md), [Aharonov--Bohm effect](../../mapping-benchmarks/benchmarks/aharonov-bohm-effect.md), [quantum Hall effect](../../mapping-benchmarks/benchmarks/quantum-hall-effect.md), and magnetic-response and polarization tests.
+- [Mapping Benchmarks](../../mapping-benchmarks/priorities.md) owns independent comparison situations such as the [Zeeman effect](../../mapping-benchmarks/analysis/zeeman-effect.md), [Aharonov--Bohm effect](../../mapping-benchmarks/analysis/aharonov-bohm-effect.md), [quantum Hall effect](../../mapping-benchmarks/analysis/quantum-hall-effect.md), and magnetic-response and polarization tests.
 - [Fine-Structure Coupling Map](../../mapping-electromagnetism/analysis/fine-structure.md) develops one detailed same-record coupling application involving matter geometry, near-to-far sea state, action-period, photon-channel, exposure, and effective-field rows.
 - [Fine-Grained Braid Maxwell Exploration](../../mapping-electromagnetism/campaigns/fine-grained-braid-maxwell-exploration-prompt.md) defines a finite-braid, equation-first residual protocol.
 - [Mapping Electromagnetism Brainstorming](../../mapping-electromagnetism/brainstorming.md) supplies provisional field-ontology, response-state, and behavior-to-geometry hypotheses for testing here.
@@ -449,7 +449,7 @@ Claim grade: the coexistence of scalar-facing isotropy and a nonzero axial respo
 
 ### Magnetic Moment Must Co-Locate Charge Current And Angular History
 
-The EQ-15/EQ-27 and [Zeeman](../../mapping-benchmarks/benchmarks/zeeman-effect.md) owners require the effective magnetic moment, spinor return, precession, spectral response, leading charged-lepton ratio, and anomalous residual to arise on one retained history. The geometry must therefore relate a charge-facing current moment to an independently closed angular-momentum record.
+The EQ-15/EQ-27 and [Zeeman](../../mapping-benchmarks/analysis/zeeman-effect.md) owners require the effective magnetic moment, spinor return, precession, spectral response, leading charged-lepton ratio, and anomalous residual to arise on one retained history. The geometry must therefore relate a charge-facing current moment to an independently closed angular-momentum record.
 
 For a prepared charged branch $A$, define the effective moment $\boldsymbol\mu_A[W]$ from its derived exposed current and let $\mathbf J_A[W]$ be the observer angular record recovered from matter, relative motion, corridor, wake, and sea rows. On the nonzero spin subspace, a comparison map has the form
 
@@ -1031,7 +1031,7 @@ The smallest high-discrimination comparison basis is:
 
 Plainly: this small set separates energy gaps from corridor geometry. A single retained atomic architecture would have to explain why one route is strong, another is suppressed, and another needs two carriers or a different response rank.
 
-The [atomic precision packet](eq-26-31-observation-first-precision-packet.md) and [Zeeman benchmark](../../mapping-benchmarks/benchmarks/zeeman-effect.md) own the currently mapped gross hydrogen, transition-event, two-photon, fine/Lamb/hyperfine, Zeeman, and general basin-measure grammar. The corpus does not yet contain an explicit atomic E1/M1/E2 comparison matrix, a dedicated Stark benchmark, or a source-backed atomic quadrupole case. Those are coverage gaps, not permission to import an orbital picture. The quadrupole slot should remain unpopulated until a primary comparison source and a retained carrier consumer are selected.
+The [atomic precision packet](eq-26-31-observation-first-precision-packet.md) and [Zeeman benchmark](../../mapping-benchmarks/analysis/zeeman-effect.md) own the currently mapped gross hydrogen, transition-event, two-photon, fine/Lamb/hyperfine, Zeeman, and general basin-measure grammar. The corpus does not yet contain an explicit atomic E1/M1/E2 comparison matrix, a dedicated Stark benchmark, or a source-backed atomic quadrupole case. Those are coverage gaps, not permission to import an orbital picture. The quadrupole slot should remain unpopulated until a primary comparison source and a retained carrier consumer are selected.
 
 This comparison supplies several compact contradiction cores:
 
@@ -5818,7 +5818,7 @@ The following rows begin the reverse-engineering work. They are requirements fro
 | `BR-EB-06` | Electric and magnetic readouts are compatible components of one common causal-history carrier. | Inferred native requirement from `EQ-13` and the finite-braid Maxwell map | The candidate carrier must place both readouts on one smoothing, normalization, record-identity, and boundary domain; the [Candidate Common Carrier](#candidate-common-carrier) section states the two-chain realization without making it compulsory. | Separate carriers with no same-record induction, observer mixing, or adjacency map fail this candidate unification. |
 | `BR-EB-07` | The sourced Maxwell rows, impedance, propagation, screening, and boundary response arise from one constitutive map over direct history plus any derived sea response. | Deduced common-consumer burden; carrier form inferred | One map must accept exposed density/current, direct causal history, boundary state, and a declared sea state with one coefficient family and explicit weak-regime spectrum. A resolved changing sea state is required only if sea-essential or mixed dispositions survive the direct/sea controls. | Case-specific coefficients or a sea transition inserted despite a passing direct-wake null fail; so does a sea-essential or mixed claim with no resolved changing sea state. |
 
-Rows `BR-E-04` through `BR-E-06` are instantiated together in the [Strong-Field Electromagnetic Response](../../mapping-benchmarks/benchmarks/strong-field-electromagnetic-response.md) benchmark. That packet also binds photon--photon scattering and birefringence to the same source, sea, photon, pair, and provenance history; it changes none of the requirement grades recorded here.
+Rows `BR-E-04` through `BR-E-06` are instantiated together in the [Strong-Field Electromagnetic Response](../../mapping-benchmarks/analysis/strong-field-electromagnetic-response.md) benchmark. That packet also binds photon--photon scattering and birefringence to the same source, sea, photon, pair, and provenance history; it changes none of the requirement grades recorded here.
 
 Plainly: the table records what any successful geometry must accomplish. It does not yet decide whether electric behavior is polar sea displacement, whether magnetic behavior is axial circulation, or whether both are projections of one deeper causal response.
 

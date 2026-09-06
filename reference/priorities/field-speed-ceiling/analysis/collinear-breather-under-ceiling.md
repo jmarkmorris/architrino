@@ -1,6 +1,6 @@
 # Collinear Breather Under the Ceiling: Feasibility Note
 
-**Date:** 2026-08-02; reconciled with the delayed-ignition and complete-lobe theorems on 2026-09-02 **Status:** exploratory FSC-local scratchpad; a sufficient complete returning-lobe theorem and a prescribed-onset spatial two-cycle are derived, but autonomous braking and full retained-state periodicity are not established; no law adopted and no continuation selected **Origin:** operator question following [FSC-001-EC1](../reviews/elie-cartan-review-2026-08-02.md); extends the [coincidence continuation scratchpad](coincidence-continuation-scratchpad.md) and revisits the pre-ceiling collinear-breather obstruction ("head-on breather does not close; needs a folded history") inside the proposed closed domain $c_a=c_f=1$.
+**Date:** 2026-08-02; reconciled with the delayed-ignition and complete-lobe theorems on 2026-09-02 **Status:** exploratory FSC-local scratchpad; a sufficient complete returning-lobe theorem and a prescribed-onset spatial two-cycle are derived, but autonomous braking and full retained-state periodicity are not established; no law adopted and no continuation selected **Origin:** operator question following [FSC-001-EC1](elie-cartan-review-2026-08-02.md); extends the [coincidence continuation scratchpad](coincidence-continuation-scratchpad.md) and revisits the pre-ceiling collinear-breather obstruction ("head-on breather does not close; needs a folded history") inside the proposed closed domain $c_a=c_f=1$.
 
 ## Question
 

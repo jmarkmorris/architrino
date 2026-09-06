@@ -118,3 +118,253 @@ No rows.
 ## Superseded / withdrawn
 
 No rows.
+
+
+## Recursive Block Exclusion Accelerating-Population Ladder
+
+Folded on 2026-09-05 from `app-solver/analysis/recursive-block-exclusion-accelerating-population-ladder.md`, which was a separate file that had no reader and no promotion route. Content is unchanged apart from heading depth.
+
+#### Status
+
+- Packet id: `eom_recursive_block_exclusion_accelerating_population_ladder/v0`
+- Date opened: 2026-07-16
+- Claim level: `derived-and-measured-bounded-cpu-evidence`
+- Implementation status: `complete-for-declared-accelerating-population-ladder`
+- Production authority: none
+- Parent packet: [Recursive Block Exclusion Moving-Population Ladder](#recursive-block-exclusion-moving-population-ladder)
+- Evidence: [eom-recursive-block-exclusion-accelerating-population-apple-m3-2026-07-16.md](evidence/eom-recursive-block-exclusion-accelerating-population-apple-m3-2026-07-16.md)
+
+#### Closure Target
+
+Measure the unchanged deterministic recursive causal index on accepted accelerating piecewise-cubic retained histories. The round succeeds only if the joined histories retain complete pair accounting, independent exclusion correctness, deterministic membership, full-interval exact fallback, and a measured sparse wall-time advantage over exhaustive exact certification where the control fits the declared envelope.
+
+#### Accelerating-History Fixture Contract
+
+Every receiver and source path contains two contiguous cubic segments over $[0,1]$ and $[1,2]$. Position and velocity agree exactly at the join. Every segment has a nonzero quadratic or cubic position coefficient, so no path is stationary or merely linear. Receiver and source coefficients vary by path, and the second segment changes the acceleration polynomial rather than repeating the first segment.
+
+The sparse fixture contains a small causally active accelerating source band and a far accelerating root-free population. Its root node must remain inconclusive and force deterministic receiver, source, and emission subdivision. The dense fixture must remain noncompressible through the leaf policy and route every admitted relationship to exact fallback or reject the population at resource preflight.
+
+#### Unchanged Correctness And Approximation Boundary
+
+- Build authoritative bounds only from histories explicitly marked accepted.
+- Account for every ordered receiver-transmitter relationship, including self-pairs when receiver and source membership share an identity.
+- Preserve `logical = excluded + exact + enclosed + unresolved`, with `enclosed = 0` for this path and `unresolved = 0` before acceptance.
+- If any emission cell survives exclusion, search that pair's complete retained interval, including both sides of the segment join, exactly.
+- Preserve causal ordering and the canonical coincident-endpoint convention.
+- Treat every inconclusive block by subdivision, exact fallback, or unresolved rejection.
+- Do not add a distance cutoff, sampled-residual decision, neighbor rule, density assumption, active aggregation, multipole, or other approximation.
+
+#### Independent Validation
+
+Use the independently authored decimal interval and exact-pair oracle without modifying it. On a nested small accelerating population:
+
+- expand every `excluded` node into its ordered pairs and emission interval;
+- require the decimal oracle to certify zero roots for every expanded row;
+- require at least one independently certified active root among exact- fallback pairs over the complete $[0,2]$ interval;
+- require at least one excluded or exact search interval to cross the segment join at $S=1$;
+- retain coincident geometry and accelerating same-history self-pair controls;
+- require identical membership and accounting under repeated runs and the permitted exact-batch thread counts.
+
+#### Performance Ladder
+
+Rebuild before measurement and record source, library, and binary times. Run accelerating sparse populations at $N=128$, $512$, $2{,}048$, and $10{,}000$. The final stage has a declared 120-second wall and 2 GiB resident-memory ceiling. Time traversal plus complete exact certification of every fallback pair.
+
+Run matched one-thread exhaustive controls at $N=128$ and $512$, then stop exhaustive evaluation above its declared one-million-pair ceiling. Report wall seconds, logical pairs, visited blocks, excluded pairs, exact fallback pairs, exclusion ratio, exact-search reduction, peak resident memory, seconds per logical pair, membership fingerprint, and complete-path speedup.
+
+Run the accelerating dense control at $N=128$ and $512$, then apply the same one-million-pair preflight at $N=2{,}048$. Stop the dense ladder at the first resource rejection. Long runs emit heartbeats and remain observed. Cost claims come only from matched end-to-end wall timing.
+
+#### Stop Conditions And Falsifiers
+
+Stop without weakening the certificate if an independently detected root lies in an excluded accelerating block, accounting overlaps or omits membership, an accepted result has nonzero unresolved membership, a retained-history join is not continuous, the sparse complete path fails to outperform matched exhaustive certification, or the declared wall or memory ceiling is exceeded.
+
+Correctness is overturned by any such observation or by any permitted- schedule membership difference. Performance is overturned if the matched sparse advantage disappears under the declared repeat protocol. This packet cannot establish arbitrary evolved-history, million-path, GPU, distributed, active-aggregation, or production-evolution performance.
+
+#### Deliverables
+
+- scoped accelerating benchmark fixtures and tests;
+- a focused evidence record under `evidence/`;
+- a concise dated [work-log.md](work-log.md) entry;
+- measured sparse and dense accelerating-population ladders;
+- claim grades and explicit falsifiers.
+
+
+## Deterministic Recursive Block-Exclusion First Path
+
+Folded on 2026-09-05 from `app-solver/analysis/recursive-block-exclusion-first-path.md`, which was a separate file that had no reader and no promotion route. Content is unchanged apart from heading depth.
+
+#### Status
+
+- Packet id: `eom_recursive_block_exclusion_first_path/v0`
+- Date opened: 2026-07-16
+- Claim level: `priority-design`
+- Implementation status: `complete-for-declared-first-path-round`
+- Production authority: none
+- Governing contracts: [evolution-contract-v1-amendment-1-million-path-scale.md](contracts/evolution-contract-v1-amendment-1-million-path-scale.md) and [million-path-certified-execution-architecture.md](contracts/million-path-certified-execution-architecture.md)
+
+#### Closure Target
+
+Implement and measure the first deterministic recursive large-population block-exclusion path over accepted retained histories. The path must prove complete ordered-pair accounting and measure the exact pair searches avoided on a staged population ladder. This round ends at CPU recursive exclusion, complete exact surviving-pair fallback, independent correctness controls, and matched performance evidence. It does not include GPU, distributed execution, active-contribution aggregation, or million-path production integration.
+
+#### Required Traversal Contract
+
+The causal index is bounded by a declared node, exact-pair, wall-time, and memory envelope. Each visited receiver-membership, source-membership, and emission-interval block returns exactly one route:
+
+1. `excluded`: an outward-rounded residual enclosure proves the complete block root free;
+2. `subdivide`: the enclosure is inconclusive and deterministic child blocks remain;
+3. `exact_tile`: the declared leaf policy has been reached, so every covered ordered pair is promoted to complete retained-interval exact certification;
+4. `unresolved`: certification or the resource envelope fails, rejecting the candidate window.
+
+Splits are deterministic and may divide receiver membership, source membership, or emission interval. Traversal preserves causal ordering and the canonical coincident-endpoint convention. Authoritative bounds use only accepted retained histories; predictor or rejected candidate histories cannot enter the index.
+
+#### Complete Pair Accounting
+
+Every ordered receiver-transmitter relationship is present, including self-pairs. The disjoint relationship ledger obeys
+
+$$
+P_{\mathrm{logical}}
+=
+P_{\mathrm{excluded}}
++P_{\mathrm{exact}}
++P_{\mathrm{enclosed}}
++P_{\mathrm{unresolved}}.
+$$
+
+This first path has no active-contribution enclosure, so $P_{\mathrm{enclosed}}=0$. Acceptance requires $P_{\mathrm{unresolved}}=0$. Time-cell decisions collapse to one complete relationship outcome: if any time cell for a pair survives exclusion, that pair's complete retained interval enters exact certification and the pair is counted only in $P_{\mathrm{exact}}$.
+
+Membership records must be deterministic, complete, and nonoverlapping. An inconclusive block subdivides or falls back to exact evaluation; it is never classified as inactive.
+
+#### Exclusion Implication To Prove
+
+For receiver membership $R$, source membership $B$, emission interval $I$, positive field speed $c_f$, separation enclosure $\mathcal D_{RB}(I)=[d^-_{RB},d^+_{RB}]$, and causal-delay enclosure $\Delta_{RB}(I)=[\Delta^-_{RB},\Delta^+_{RB}]$, the outward residual enclosure is
+
+$$
+\mathcal G_{RB}(I)
+=
+\left[
+d^-_{RB}-c_f\Delta^+_{RB},
+d^+_{RB}-c_f\Delta^-_{RB}
+\right].
+$$
+
+The implementation evidence must state the inclusion proof: every covered pair-time residual lies in $\mathcal G_{RB}(I)$; therefore, if $0\notin\mathcal G_{RB}(I)$, no covered pair-time point satisfies the causal root equation. The proof must identify the outward-rounding implementation and the accepted-history inputs that support the bounds.
+
+#### Prohibited Approximations
+
+This path cannot use distance cutoffs, sampled-residual decisions, neighbor heuristics, average-density assumptions, active-force aggregation, multipoles, or another approximation. It cannot silently drop a retained-history contribution. A resource or certification failure produces `unresolved` and rejects the candidate result.
+
+#### Independent Validation Matrix
+
+Do not modify an independent oracle in the same change as the EOM solver implementation. Compare the block results against the existing independently authored decimal-interval and exact-pair oracles and against analytically known constant-history cases.
+
+Required adversarial controls are:
+
+- a root-free block;
+- an active-root block;
+- interval overlap near zero;
+- coincident geometry;
+- self-pairs;
+- a dense noncompressible population.
+
+The controls must show that no independently detected active root lies inside an `excluded` block. Repeated runs and every permitted thread count must emit byte-identical membership and accounting.
+
+#### Performance Ladder
+
+Rebuild before measurement and record source, static-library, and executable timestamps. Run staged populations such as $N=128$, $512$, $2{,}048$, and $10{,}000$, stopping safely when the declared wall-time or memory ceiling is reached. Use both sparse/root-free and dense/inconclusive populations.
+
+Where exhaustive exact-pair evaluation is feasible, compare it with recursive block traversal under matched histories, reception time, emission interval, numeric policy, thread count, and host load. Report:
+
+- wall seconds;
+- logical pairs;
+- visited blocks;
+- excluded pairs;
+- exact fallback pairs;
+- exclusion ratio;
+- exact-search reduction;
+- peak memory;
+- seconds per logical pair.
+
+Cost conclusions come only from matched wall timing, not from block or cell counts. Long runs emit a heartbeat and remain observed until completion or a declared stop.
+
+#### Stop Conditions
+
+Stop and report without weakening the certificate if:
+
+- an independently detected root lies in an `excluded` block;
+- membership accounting is incomplete or overlapping;
+- the dense workload does not fit the declared resource envelope; or
+- recursive traversal does not outperform exhaustive evaluation on the intended sparse case.
+
+#### Deliverables And Falsifiers
+
+The round delivers a scoped EOM solver implementation and tests, a focused record under `evidence/`, a concise dated entry in [work-log.md](work-log.md), measured compression and performance results, and claim grades on every conclusion.
+
+Correctness is overturned by any independently detected root inside an `excluded` membership, any duplicate or missing ordered pair, any accepted result with nonzero unresolved membership, any nonaccepted history used to build an authoritative bound, or any permitted schedule that changes the membership ledger. Performance is overturned when a matched sparse control does not reduce wall time relative to exhaustive exact-pair certification, or when the reported advantage disappears under the declared repeat protocol.
+
+
+## Recursive Block Exclusion Moving-Population Ladder
+
+Folded on 2026-09-05 from `app-solver/analysis/recursive-block-exclusion-moving-population-ladder.md`, which was a separate file that had no reader and no promotion route. Content is unchanged apart from heading depth.
+
+#### Status
+
+- Packet id: `eom_recursive_block_exclusion_moving_population_ladder/v0`
+- Date opened: 2026-07-16
+- Claim level: `derived-and-measured-bounded-cpu-evidence`
+- Implementation status: `complete-for-declared-moving-population-ladder`
+- Production authority: none
+- Parent packet: [Deterministic Recursive Block-Exclusion First Path](#deterministic-recursive-block-exclusion-first-path)
+- Evidence: [eom-recursive-block-exclusion-moving-population-apple-m3-2026-07-16.md](evidence/eom-recursive-block-exclusion-moving-population-apple-m3-2026-07-16.md)
+
+#### Closure Target
+
+Measure the existing deterministic recursive causal index on accepted nonstationary retained histories without changing its exclusion implication, relationship accounting, exact-fallback rule, or prohibited-approximation boundary. The round succeeds only if moving sparse populations retain complete pair accounting, independent exclusion correctness, deterministic membership, and a measured wall-time advantage over exhaustive exact certification where that control fits the declared envelope.
+
+#### Moving-History Fixture Contract
+
+Every receiver and source path has a continuous accepted retained history with nonzero velocity over the searched interval. The primary ladder uses distinct linear histories, which are exact degree-one members of the existing piecewise-cubic representation. Receiver and source velocities vary by path so the block position hulls and exact causal residuals genuinely depend on emission time; a translated stationary population does not satisfy this packet.
+
+The sparse fixture contains a small causally active moving source band and a far moving root-free population. Its root block must be inconclusive, forcing recursive receiver, source, and emission subdivision before the index can separate exclusions from complete exact fallback. The dense fixture keeps the declared leaf population inconclusive and must either send all relationships to exact fallback or reject the population at resource preflight.
+
+#### Unchanged Correctness Boundary
+
+- Build authoritative bounds only from histories explicitly marked accepted.
+- Account for every ordered receiver-transmitter relationship, including self-pairs when receiver and source membership share an identity.
+- Preserve `logical = excluded + exact + enclosed + unresolved`, with `enclosed = 0` for this path and `unresolved = 0` before acceptance.
+- If any emission cell survives exclusion, search that pair's complete declared retained interval exactly.
+- Preserve causal ordering and the canonical coincident-endpoint convention.
+- Treat every inconclusive block by subdivision, exact fallback, or unresolved rejection.
+- Do not add a distance cutoff, sampled-residual decision, neighbor rule, density assumption, active aggregation, multipole, or other approximation.
+
+#### Independent Validation
+
+Use the independently authored decimal-interval and exact-pair oracle without modifying it. On a nested small moving population:
+
+- expand every `excluded` block into its covered ordered pairs and emission interval;
+- require the decimal oracle to certify zero roots for every expanded row;
+- require at least one independently certified active root among the pairs promoted to exact fallback;
+- include moving coincident geometry and a moving same-history self-pair in the retained regression set;
+- require byte-identical membership and accounting across repeated runs and the permitted exact-batch thread counts.
+
+#### Performance Ladder
+
+Rebuild before measurement and record source, library, and binary times. Run moving sparse populations at $N=128$, $512$, $2{,}048$, and $10{,}000$, with a declared 90-second wall and 2 GiB resident-memory ceiling for the final stage. Time the complete path: recursive traversal plus complete exact certification of every fallback pair.
+
+Run matched one-thread exhaustive exact-pair controls at $N=128$ and $512$, then stop exhaustive evaluation when its declared one-million-pair ceiling is exceeded. Report wall seconds, logical pairs, visited blocks, excluded pairs, exact fallback pairs, exclusion ratio, exact-search reduction, peak resident memory, seconds per logical pair, membership fingerprint, and complete-path speedup.
+
+Run the moving dense control at $N=128$ and $512$, then apply the same one-million-pair preflight at $N=2{,}048$. Stop the dense ladder at the first resource rejection and do not launch a later dense stage.
+
+Long runs emit a heartbeat and remain observed. Cost conclusions come only from matched end-to-end wall timing.
+
+#### Stop Conditions And Falsifiers
+
+Stop without weakening the certificate if an independently detected root lies in an excluded moving block, pair accounting overlaps or omits membership, an accepted result has nonzero unresolved membership, the moving sparse complete path fails to outperform matched exhaustive certification, or the declared wall or memory ceiling is exceeded.
+
+Correctness is overturned by any such observation or by any difference in membership under a repeated permitted schedule. Performance is overturned if the matched moving sparse advantage disappears under the declared repeat protocol. No result from this packet establishes arbitrary accelerating- history, million-path, GPU, distributed, or production-evolution performance.
+
+#### Deliverables
+
+- scoped moving-population benchmark fixtures and tests;
+- a focused evidence record under `evidence/`;
+- a concise dated [work-log.md](work-log.md) entry;
+- measured sparse and dense moving-population ladders;
+- claim grades and explicit falsifiers.

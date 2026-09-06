@@ -18,7 +18,7 @@
 - Execution ledger: [work queue](work-queue.md)
 - Exploratory notes: [brainstorming](brainstorming.md)
 - Chronological record: [work log](work-log.md)
-- Representative workload contract: [path workload matrix](analysis/representative-path-workload-matrix.md)
+- Representative workload contract: [path workload matrix](contracts/representative-path-workload-matrix.md)
 - Ranking: pending measured representative workload estimates and external dataset or accelerator access
 
 ## Objective
@@ -64,7 +64,7 @@ Plainly: Core computes and packages Potential results; applications decide how t
 
 No executable Core queue row remains. CORE-006 and CORE-009 require measured local and rented-accelerator workloads, while CORE-007 requires a selected public experimental dataset and scientific comparison mapping. Production transport, persistence, authentication, and retention choices remain open but are not independently accepted queue objects.
 
-The [representative path workload matrix](analysis/representative-path-workload-matrix.md) is accepted as the shared benchmark definition for EOM continuation, Potential live maps, reaction studies, optimization sweeps, and collider imports. All five workloads remain unmeasured; the matrix selects no representation, deployment, or accelerator posture.
+The [representative path workload matrix](contracts/representative-path-workload-matrix.md) is accepted as the shared benchmark definition for EOM continuation, Potential live maps, reaction studies, optimization sweeps, and collider imports. All five workloads remain unmeasured; the matrix selects no representation, deployment, or accelerator posture.
 
 ## Promotion Boundary
 

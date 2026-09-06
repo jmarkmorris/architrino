@@ -11,7 +11,7 @@
 - Promotion status: not promoted
 - Normalization: $c_f=1$ throughout; symbolic $c_f$ is retained only where its dependence is the point of the identity.
 - Separate mathematical owner: [MEC-007 mirror close-approach causal-root boundary](mirror-close-approach-causal-root-boundary.md) owns the persistent-label mirror-symmetric collinear encounter. This packet does not reopen, re-derive, or contradict it.
-- Consumed as settled prior: MEC-007's first-boundary ordering and unchanged-law divergence; [MEC-006 receiver wake-gradient closure](receiver-wake-gradient-closure.md) for the regular fixed-reception gradient; [GD-5 vanishing-delay hazard](../../field-speed-ceiling/reviews/germund-dahlquist-review-2026-08-02.md); and the [conditional speed-bound rigidity and self-root exclusion theorem](../../field-speed-ceiling/reviews/jack-k-hale-second-review-2026-08-02.md), without importing a global velocity ceiling.
+- Consumed as settled prior: MEC-007's first-boundary ordering and unchanged-law divergence; [MEC-006 receiver wake-gradient closure](receiver-wake-gradient-closure.md) for the regular fixed-reception gradient; [GD-5 vanishing-delay hazard](../../field-speed-ceiling/analysis/germund-dahlquist-review-2026-08-02.md); and the [conditional speed-bound rigidity and self-root exclusion theorem](../../field-speed-ceiling/analysis/jack-k-hale-second-review-2026-08-02.md), without importing a global velocity ceiling.
 
 ## Scope
 

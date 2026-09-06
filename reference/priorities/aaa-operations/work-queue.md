@@ -4,11 +4,49 @@ This is the canonical execution ledger for repo-wide deployment, hosting, cost, 
 
 ## Ranked Next Objects
 
-1. `feedback_app_resource_closure_adjudication` — [OPS-017](#ops-017--feedback-app-resource-closure-adjudication). Status: `Queued`.
-2. `agent_guidance_surface_consolidation` — [OPS-014](#ops-014--agent-guidance-surface-consolidation). Status: `Queued`.
-3. `reference_equation_mapping_surface` — [OPS-016](#ops-016--reference-equation-mapping-surface). Status: `Queued`.
+1. `layout_pass_digest_pin_attribution` — [OPS-018](#ops-018--layout-pass-digest-pin-attribution). Status: `Queued`.
+2. `layout_pass_digest_pin_repair` — [OPS-019](#ops-019--layout-pass-digest-pin-repair). Status: `Queued`, blocked by OPS-018.
+3. `feedback_app_resource_closure_adjudication` — [OPS-017](#ops-017--feedback-app-resource-closure-adjudication). Status: `Queued`.
+4. `agent_guidance_surface_consolidation` — [OPS-014](#ops-014--agent-guidance-surface-consolidation). Status: `Queued`.
+5. `reference_equation_mapping_surface` — [OPS-016](#ops-016--reference-equation-mapping-surface). Status: `Queued`.
 
 ## Queued task records
+
+### OPS-018 — Layout-pass digest-pin attribution
+
+- **Status:** Queued
+- **Priority object:** `layout_pass_digest_pin_attribution`
+- **Request / acceptance:** Determine, for every currently failing content-digest assertion, whether the workstream directory layout pass caused it or whether it was already failing. Acceptance requires a per-failure verdict of `caused-by-layout-pass` or `pre-existing`, each supported by a run rather than by inference, and a complete failure list from the full Node and Python suites rather than a partial sweep.
+- **Origin:** The layout pass rewrote 4,478 links, which changed the bytes of 361 files in commit `51ee4b84f` and 81 more in `965c1a3b4`. Several evidence and methodology documents are bound elsewhere by a pinned SHA-256, and a content hash cannot distinguish a link rewrite from a substantive edit. Recorded in [the AAA work threads log](../aaa-work-threads/work-log.md) under 2026-09-05.
+
+Plainly: filing the documents changed their bytes, and other files record those bytes as a fingerprint, so the fingerprints now disagree. The question is which disagreements this campaign caused.
+
+A partial sweep on 2026-09-05 covered 120 of 318 Node test files and found fourteen failures: three belong to [OPS-017](#ops-017--feedback-app-resource-closure-adjudication), two fail only because that session's sandbox lacked the shared venv at `$AAA_VENV`, one fails on a sandbox `EPERM` under `.local-data/`, and eight are content-digest pins. The remaining 198 files are unswept.
+
+Three pins were traced individually. Two were attributed to this campaign and repaired under [OPS-019](#ops-019--layout-pass-digest-pin-repair). One, the analytical methodology coverage contract in [`analytical-measure-coverage.v2.json`](../../../src/prescribed-path-analysis/analytical-measure-coverage.v2.json), pins `content/markdown/aaa/noether-braid/braid-analysis-methodology.md`, which was last changed by `c973402b9` and is therefore pre-existing.
+
+The decisive method is direct: run the affected suites at the parent of `51ee4b84f` on a machine with the shared venv, then at `HEAD`, and compare. Do not attribute by reasoning about which files a commit touched; a pin can be bound to a document that a later commit also edited, and the traced sample of three already produced one mistaken attribution before it was checked against history.
+
+Note for whoever runs this: the commit message of `51ee4b84f` reads "Converge corpus documents to canonical academic style", but that commit carries 237 renames and is the layout pass. Its message does not describe its content.
+
+- **Evidence / blocker:** The rewrite counts, modified-file counts, partial sweep result, and the three traced attributions are `measured` on 2026-09-05. That the eight unresolved pin failures are caused by the layout pass is `guessed`; the traced sample is three, split two-to-one, and does not generalize. Blocker: needs a machine with the shared venv, which the originating session lacked.
+- **Completion:** Every failing digest assertion in the full suites carries a verdict supported by a run at both commits, and the list is recorded here or in the AAA work threads log.
+
+### OPS-019 — Layout-pass digest-pin repair
+
+- **Status:** Queued, blocked by [OPS-018](#ops-018--layout-pass-digest-pin-attribution)
+- **Priority object:** `layout_pass_digest_pin_repair`
+- **Request / acceptance:** Repair each pin that OPS-018 attributes to the layout pass, by verifying the bound document's substance and only then refreshing its digest. Acceptance requires, per pin, a recorded statement of what was checked and what the check found, before any digest is written.
+- **Origin:** Follows OPS-018. Two pins were already repaired this way on 2026-09-05 and stand as the worked pattern.
+
+The order matters and is not negotiable: verify, then refresh. A pin exists to force a human to re-read the bound document when it changes. Refreshing first and reasoning afterwards converts that gate into a formality and would leave a genuine content regression indistinguishable from a link rewrite.
+
+The two completed repairs show the shape. For the Borg scientific-status projection, all 28 adjudication relations were confirmed present in the current owner text before the digest was updated. For the Borg Platonic relationship assignments, the owner document was diffed and found to differ by exactly one link path, with no substantive change, before the digest was updated.
+
+Two exclusions. The analytical methodology coverage contract is out of scope here: its gate demands an explicit analytical coverage impact review, which is a scientific judgment about whether the methodology change affects measure coverage, not a digest refresh. Route it to its owning theory lane. Any pin that OPS-018 marks `pre-existing` is also out of scope; it belongs to whichever change actually broke it.
+
+- **Evidence / blocker:** The two completed repairs and their verification steps are `measured` on 2026-09-05. The size of the remaining set is unknown until OPS-018 completes. Blocker: OPS-018.
+- **Completion:** Every pin attributed to the layout pass is repaired with its verification recorded, the excluded items are routed to named owners, and the full Node and Python suites pass apart from separately tracked items.
 
 ### OPS-017 — Feedback app resource closure adjudication
 

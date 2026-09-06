@@ -190,7 +190,7 @@ The routed next actions now live in [work-queue.md](work-queue.md). Each impleme
 - No `dormant-deferred` child appears in the numeric table or active discussion queue.
 - Legacy braid directories stay archived; Braid Program owns scientific search campaigns, EOM owns reusable execution capability, and the former attractor-search packet is distributed between those two canonical owners.
 - The former [`app-simulation`](../app-simulation/priorities.md) directory is a compatibility location outside the owner inventory. Its canonical [Simulation Protocol Routing Index](../../op/simulation-protocol-routing-index.md) is operations documentation, and preserved protocol detail advances only through the named scientific or proof owner.
-- [closure-join-matrix.md](analysis/closure-join-matrix.md) remains the shared-object dependency view, and [inventory.md](analysis/inventory.md) remains the detailed file map.
+- [closure-join-matrix.md](analysis/closure-join-matrix.md) remains the shared-object dependency view, and [inventory.md](evidence/inventory.md) remains the detailed file map.
 - Workstream metadata mirrors this table. Shared theorem packets do not require separate workstream metadata.
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes

@@ -8,7 +8,7 @@ Use [priorities.md](priorities.md) for strategy, claim boundaries, ownership, bl
 
 ### 2026-09-02 — EMAP-001 common-axis source/moment/field matrix
 
-Completed the report-only [Common-Axis Source, Moment, and Field Matrix](analysis/common-axis-source-moment-field-matrix.md). The packet defines separate exposed-charge, polarity-weighted circulation, group-translation, and raw exposed-current-moment rows; binds `EQ-13` and `EQ-27` projections to one source, wake, sea, boundary, and observation record; and gives the six required axis-null, circulation-reversal, polarity-conjugation, translation-reversal, proper-rotation, and neutral-far-field comparisons.
+Completed the report-only [Common-Axis Source, Moment, and Field Matrix](evidence/common-axis-source-moment-field-matrix.md). The packet defines separate exposed-charge, polarity-weighted circulation, group-translation, and raw exposed-current-moment rows; binds `EQ-13` and `EQ-27` projections to one source, wake, sea, boundary, and observation record; and gives the six required axis-null, circulation-reversal, polarity-conjugation, translation-reversal, proper-rotation, and neutral-far-field comparisons.
 
 Each row now has an observer-level parity prediction, an independent analytic Maxwell comparison, and an exact falsifier. Direct, sea-mediated, and mixed diagnostic shares remain separate so total-field cancellation cannot hide a failed carrier. The packet is constraint design only: it changes no retained-braid claim, magnetic-moment claim, Maxwell recovery, equation score, simulation, generated artifact, or reader-facing corpus.
 
@@ -20,7 +20,7 @@ Moved the general inference packet to Equation Mapping and the candidate-adjudic
 | --- | --- |
 | `inferring-braid-requirements.md` | [Equation Mapping requirement inference](../mapping-equations/analysis/inferring-braid-requirements.md) |
 | `braid-candidate-requirement-adjudication.md` | [Braid Program candidate adjudication](../braid-program/analysis/braid-candidate-requirement-adjudication.md) |
-| `f6c-geometry.md` | [Braid Program asymmetric counter-breathing representative geometry](../braid-program/configurations/f6c-geometry.md) |
+| `f6c-geometry.md` | [Braid Program asymmetric counter-breathing representative geometry](../braid-program/analysis/f6c-geometry.md) |
 | `three-binary-orbiting-endpoint-comparison.md` | [Braid Program three-binary geometry](../braid-program/analysis/three-binary-orbiting-endpoint-comparison.md) |
 | `three-binary-five-coordinate-initialization-ledger.md` | [Braid Program five-coordinate initialization](../braid-program/evidence/three-binary-five-coordinate-initialization-ledger.md) |
 | `three-binary-five-coordinate-bounded-eom-comparison.md` | [Braid Program bounded EOM comparison](../braid-program/evidence/three-binary-five-coordinate-bounded-eom-comparison.md) |

@@ -46,7 +46,7 @@ This lane owns:
 - the comparison map among passive shared record, live coordination, measurement dependence, retrocausality, global nonseparability, and apparatus/trial effects;
 - reconstruction of Bell-route decisions, contradictions, alternatives, and falsifiers across the live corpus.
 
-This lane does not own the substrate derivations needed to calculate a Bell table. [Quantum Closure](../../mapping-quantum/priorities.md) retains ownership of the transfer operator, invariant measure, detector-response kernels, pair-provenance source measure, correlation calculation, no-signaling check, Tsirelson check, and Bell rewrite handoff. The [Bell-test comparison packet](../../mapping-benchmarks/benchmarks/bell-test-violations.md) remains an observer-level benchmark map, not the route-decision owner.
+This lane does not own the substrate derivations needed to calculate a Bell table. [Quantum Closure](../../mapping-quantum/priorities.md) retains ownership of the transfer operator, invariant measure, detector-response kernels, pair-provenance source measure, correlation calculation, no-signaling check, Tsirelson check, and Bell rewrite handoff. The [Bell-test comparison packet](../../mapping-benchmarks/analysis/bell-test-violations.md) remains an observer-level benchmark map, not the route-decision owner.
 
 ## Canonical Corpus Surfaces Under Audit
 

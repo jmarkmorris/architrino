@@ -37,7 +37,7 @@ Independent focused fixtures at $c_f=1$ pin a stationary linear root and field t
 
 ### 2026-09-02 PHO-006 Deep Configuration Comparison Closure
 
-Closed PHO-006 with [configuration-search-deep-comparison.md](analysis/configuration-search-deep-comparison.md). The Photon configuration search now has a scheduled deep path over the full constructed candidate pool, with a pre-evaluation local-$c$ filter, a post-evaluation measured phase-family filter, progress updates, and event-loop yields between candidates. Both short and deep searches reuse the same candidate builder, prescribed-path analysis, scoring, and serializer.
+Closed PHO-006 with [configuration-search-deep-comparison.md](brainstorming.md). The Photon configuration search now has a scheduled deep path over the full constructed candidate pool, with a pre-evaluation local-$c$ filter, a post-evaluation measured phase-family filter, progress updates, and event-loop yields between candidates. Both short and deep searches reuse the same candidate builder, prescribed-path analysis, scoring, and serializer.
 
 Every retained deep result records `photon-configuration-deep-comparison.v1` provenance: producing path, analysis identity, normalized-state snapshot, UI independence after dispatch, explicit lack of an independent scientific oracle, both evaluated history modes, and normalized filters. JSON export and import preserve this record alongside the existing diagnostics and mode comparisons.
 
@@ -45,7 +45,7 @@ Focused validation passed 62/62 tests. The result establishes workflow behavior 
 
 ### 2026-09-02 PHO-004 Self-Hit Admission Closure
 
-Closed PHO-004 with [absolute-source-history-self-hit-admission.md](analysis/absolute-source-history-self-hit-admission.md). Every numerical helical same-transmitter root now carries an ordered admission record with $D_t$, $|D_t|$, the $10^{-4}$ transversality floor, signed margin, and one of four dispositions: admitted regular root, singular root, Jacobian-floor failure, or uncertified transversality.
+Closed PHO-004 with [absolute-source-history-self-hit-admission.md](contracts/absolute-source-history-self-hit-admission.md). Every numerical helical same-transmitter root now carries an ordered admission record with $D_t$, $|D_t|$, the $10^{-4}$ transversality floor, signed margin, and one of four dispositions: admitted regular root, singular root, Jacobian-floor failure, or uncertified transversality.
 
 Runtime and sweep summaries now close candidate roots into admitted plus rejected counts and aggregate exact rejection reasons. The diagnostics panel distinguishes records with numerical candidates from regular roots and rejected roots. Singular candidates remain inspectable but cannot become phase-lock candidates or physical evidence.
 
@@ -53,7 +53,7 @@ No new transmitter-history family was added, so the existing provenance-bound 75
 
 ### 2026-09-02 PHO-003 Moving-Apparatus Delta-X Closure
 
-Closed PHO-003 with [moving-apparatus-delta-x-mapping.md](analysis/moving-apparatus-delta-x-mapping.md). `PhotonFormulaRuntime.js` now emits `photon-moving-apparatus-delta-x.v1`, labels absolute history as the authoritative $\Delta x$ diagnostic, labels co-moving output comparison-only, and records the normalized separation, reference radius, ratio, and braid-center offsets.
+Closed PHO-003 with [moving-apparatus-delta-x-mapping.md](contracts/moving-apparatus-delta-x-mapping.md). `PhotonFormulaRuntime.js` now emits `photon-moving-apparatus-delta-x.v1`, labels absolute history as the authoritative $\Delta x$ diagnostic, labels co-moving output comparison-only, and records the normalized separation, reference radius, ratio, and braid-center offsets.
 
 Every retained source root now carries an age in declared reference cycles: fresh through one cycle, aging above one through two, and stale above two. The diagnostics panel reports the three counts and oldest age while retaining `stale_history_window` and `no_catch_up_root` as separate bounded scan outcomes. The age bands are display-review thresholds rather than physical lifetimes.
 

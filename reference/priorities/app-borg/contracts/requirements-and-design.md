@@ -441,7 +441,7 @@ Forbidden silent truncation means:
 
 The app should support a candidate unbounded-window boundary experiment: characterize architrino and wake activity crossing the six boundary-shell patches of the simulation-window sphere, then introduce statistically similar inbound architrinos and wake-background histories through the boundary-shell patches. This is an approximation policy for unresolved external influence, not a replacement for retained path-history rows, retained wake rows, or same-record evidence inside the active window.
 
-The first schema and validation fixture for this experiment lives in [boundary-shell-replay](../analysis/boundary-shell-replay.md). That packet defines `borg-boundary-shell-summary.v1`, `borg-boundary-shell-replay-source.v1`, boundary-shell patch-summary extraction, statistical replay, and the $R_{\mathrm{shell\ replay}}$ pass/fail threshold.
+The first schema and validation fixture for this experiment lives in [boundary-shell-replay](boundary-shell-replay.md). That packet defines `borg-boundary-shell-summary.v1`, `borg-boundary-shell-replay-source.v1`, boundary-shell patch-summary extraction, statistical replay, and the $R_{\mathrm{shell\ replay}}$ pass/fail threshold.
 
 Policy ladder:
 

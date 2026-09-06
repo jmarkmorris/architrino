@@ -8,8 +8,8 @@ The working goal is twofold: determine whether category theory provides unique l
 
 ## Routing and Ownership
 
-- The accepted minimum extracted from this synthesis is [CT-001 — Minimal Categorical Contract and Ownership Map](contracts/categorical-contract-and-ownership-map.md). That packet, rather than this brainstorming document, now owns the complete boundary-history type, three-interval associativity obligation, snapshot-factorization lemma, ownership map, and categorical stop conditions.
-- The bounded realization and first continue-or-pause decision are owned by [CT-004 — Worldline-History Morphism Contract](contracts/worldline_history_morphism_contract.md). It proves the append-only record algebra and a manufactured delay-functional separating control, while leaving physical history sufficiency and a lawful Master-Equation witness unclaimed.
+- The accepted minimum extracted from this synthesis is [CT-001 — Minimal Categorical Contract and Ownership Map](analysis/categorical-contract-and-ownership-map.md). That packet, rather than this brainstorming document, now owns the complete boundary-history type, three-interval associativity obligation, snapshot-factorization lemma, ownership map, and categorical stop conditions.
+- The bounded realization and first continue-or-pause decision are owned by [CT-004 — Worldline-History Morphism Contract](analysis/worldline_history_morphism_contract.md). It proves the append-only record algebra and a manufactured delay-functional separating control, while leaving physical history sufficiency and a lawful Master-Equation witness unclaimed.
 - Provisional definitions, comparisons, and organizing hypotheses remain in this synthesis until a physical carrier and claim boundary are sufficiently clear.
 - Accepted executable obligations belong in [work-queue.md](work-queue.md), while strategy, ownership, and promotion routing belong in [priorities.md](priorities.md).
 - Dated decisions, recovered discussion provenance, failed routes, and validation results belong in [work-log.md](work-log.md).
@@ -652,7 +652,7 @@ Interest-driven work remains welcome when it produces one of four reusable outpu
 
 **Promotion target:** physical results, if any, go to their scientific owners; source-backed methodological synthesis may support the philosophy-history owners after a separate promotion review. Category theory itself is not promoted as substrate ontology.
 
-**Completed artifact and decision:** the bounded [CT-004 worldline-history morphism contract](contracts/worldline_history_morphism_contract.md) found that the factorization obstruction is not stronger than the ordinary delay-system fiber-constancy test. Its retained payoff is a reusable factorization square plus an explicit boundary-typing rule for cross-owner record composition. Category-specific physical expansion is paused; interest-driven philosophy-history and bridge applications remain welcome when they use that vocabulary to expose preserved or discarded information.
+**Completed artifact and decision:** the bounded [CT-004 worldline-history morphism contract](analysis/worldline_history_morphism_contract.md) found that the factorization obstruction is not stronger than the ordinary delay-system fiber-constancy test. Its retained payoff is a reusable factorization square plus an explicit boundary-typing rule for cross-owner record composition. Category-specific physical expansion is paused; interest-driven philosophy-history and bridge applications remain welcome when they use that vocabulary to expose preserved or discarded information.
 
 ### Why CT-004 remains significant as a tool
 

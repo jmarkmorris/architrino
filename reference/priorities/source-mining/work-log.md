@@ -26,7 +26,7 @@ No source was re-promoted and no reader-facing corpus changed. Existing incorpor
 
 ### 2026-09-02 — PIRSA fakeon causal-support screen
 
-PIRSA seminar `19090010` and Anselmi's equation-bearing arXiv paper `1809.05037v2` were mined as one bounded PIRSA source batch. The focused [causal-support screen](analysis/pirsa-fakeon-causal-support-screen.md) retains the explicit even averaging kernel from equations (4.3)–(4.5) and derives its functional-support failure: the response at $t$ is generally sensitive to source data at $s>t$.
+PIRSA seminar `19090010` and Anselmi's equation-bearing arXiv paper `1809.05037v2` were mined as one bounded PIRSA source batch. The focused [causal-support screen](brainstorming.md) retains the explicit even averaging kernel from equations (4.3)–(4.5) and derives its functional-support failure: the response at $t$ is generally sensitive to source data at $s>t$.
 
 The result is a negative comparison, not a theory import. It rules the finite-width kernel out as an $\mathbb{A}\mathbb{A}\mathbb{A}$ causal wake update, future-term cancellation, or singular self-diagonal prescription. The source's fakeon ontology, higher-derivative dynamics, standard-model inputs, and quantum-gravity claims were rejected; no reader-facing corpus or generated artifact changed. SM-001 is complete because the declared batch produced both a concrete mathematical artifact and a traceable mining-history entry.
 

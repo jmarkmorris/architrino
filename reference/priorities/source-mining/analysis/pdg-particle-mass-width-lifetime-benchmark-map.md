@@ -99,7 +99,7 @@ This packet does not advance a retained geometry by itself. It supplies benchmar
 | Light-hadron masses | Retained hadron carrier, admitted constituent rows, binding/shielding record, and response convention. |
 | Width and lifetime rows | Same parent carrier, decay-channel rows, daughter rows, and finite-window clock convention. The current finite-window blocker remains [EQ-31](../../mapping-equations/analysis/eq-14-30-31-finite-window-w-source-field-map.md). |
 | Branching-ratio rows | Same parent carrier, all declared channel windows, exposure convention, and detector/reconstruction provenance for collider products. |
-| $W/Z/H$ collider rows | Production mode, line shape, calibration, recoil/object reconstruction, uncertainty/correlation, and detector-provenance rows. Use [Collider Detector Provenance And Event Reconstruction](collider-detector-provenance-event-reconstruction.md) as the companion boundary. |
+| $W/Z/H$ collider rows | Production mode, line shape, calibration, recoil/object reconstruction, uncertainty/correlation, and detector-provenance rows. Use [Collider Detector Provenance And Event Reconstruction](../brainstorming.md) as the companion boundary. |
 | Top mass rows | Explicit separation of direct reconstruction mass, cross-section fit mass, and pole extraction, plus generator, perturbative, detector, flavor-tag, and uncertainty provenance. |
 | Quark running masses | Declared renormalization scheme, scale, running convention, and consumer equation. |
 

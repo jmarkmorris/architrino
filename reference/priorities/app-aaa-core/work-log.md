@@ -94,7 +94,7 @@ Closure goal: close codec-provider conformance on top of the accepted logical mo
 
 ### 2026-09-02 — CORE-002 Representative Workload Matrix Closed
 
-- Added the human-readable [Representative Path Workload Matrix](analysis/representative-path-workload-matrix.md) and machine-readable [`aaa_core_representative_path_workload_matrix/v1`](contracts/aaa-core-representative-path-workload-matrix.v1.json).
+- Added the human-readable [Representative Path Workload Matrix](contracts/representative-path-workload-matrix.md) and machine-readable [`aaa_core_representative_path_workload_matrix/v1`](contracts/aaa-core-representative-path-workload-matrix.v1.json).
 - Froze one EOM continuation, Potential live-map, reaction-keyhole, optimization-sweep, and collider-import workload across path count, history depth, scale span, smoothness, event density, random access, observable, latency, precision, storage, source authority, coverage, and accelerator posture.
 - Required independent-reference correctness gates before resource comparison and made deterministic replay a separate reproducibility metric rather than evidence for correctness.
 - Required wall time, throughput, latency, CPU time, host/device memory, I/O, transfer, storage, fallback, failure, energy, and cost measurements; unavailable resource values remain `null` with a reason rather than zero.

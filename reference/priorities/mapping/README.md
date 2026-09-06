@@ -37,7 +37,7 @@ Plainly: equations specify mathematical requirements, benchmarks specify concret
 
 A benchmark is a specified case against which an explanation can be checked. Here it can be an experiment, an astronomical observation, or a solved mathematical comparison. A packet must distinguish which kind it uses: agreement with a solved formula is not itself a measurement of nature.
 
-For example, the directory contains [clock and gravitational-redshift tests](../mapping-benchmarks/benchmarks/gravitational-redshift-clock-tests.md), [interference](../mapping-benchmarks/benchmarks/double-slit-mach-zehnder.md), [Zeeman spectral splitting](../mapping-benchmarks/benchmarks/zeeman-effect.md), and [strong-field electromagnetic response](../mapping-benchmarks/benchmarks/strong-field-electromagnetic-response.md). These packets describe the comparison and its proof burden. Being listed there does not mean a benchmark has been run or passed. Its [work queue](../mapping-benchmarks/work-queue.md) owns accepted execution tasks; case-local draft steps do not create additional executable queues.
+For example, the directory contains [clock and gravitational-redshift tests](../mapping-benchmarks/analysis/gravitational-redshift-clock-tests.md), [interference](../mapping-benchmarks/analysis/double-slit-mach-zehnder.md), [Zeeman spectral splitting](../mapping-benchmarks/analysis/zeeman-effect.md), and [strong-field electromagnetic response](../mapping-benchmarks/analysis/strong-field-electromagnetic-response.md). These packets describe the comparison and its proof burden. Being listed there does not mean a benchmark has been run or passed. Its [work queue](../mapping-benchmarks/work-queue.md) owns accepted execution tasks; case-local draft steps do not create additional executable queues.
 
 One benchmark can test several equation rows, and one equation can be tested by several benchmarks. A domain owner joins those constraints while preserving each benchmark's provenance and each equation's disposition.
 
@@ -70,7 +70,7 @@ Plainly: specify what must be explained, infer what a mechanism needs, build tha
 
 ### Example: One Spectral Benchmark Across Several Owners
 
-The [Zeeman packet](../mapping-benchmarks/benchmarks/zeeman-effect.md) illustrates the ownership split. This is a routing example, not a claim that the recovery has been completed.
+The [Zeeman packet](../mapping-benchmarks/analysis/zeeman-effect.md) illustrates the ownership split. This is a routing example, not a claim that the recovery has been completed.
 
 - **Benchmark:** `mapping-benchmarks` specifies line splitting, viewing direction, polarization, comparison provenance, and failure conditions.
 - **Equations:** `mapping-equations` owns the exact atomic-spectrum and magnetic-moment/precession rows, `EQ-26` and `EQ-27`.

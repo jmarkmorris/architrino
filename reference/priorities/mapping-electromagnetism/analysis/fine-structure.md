@@ -6,7 +6,7 @@
 - Owner: [Mapping Electromagnetism](../priorities.md), under `EMAP-004`
 - Equation-row authority: [EQ-26A Theta-Alpha Source-Field Map](../../mapping-equations/analysis/eq-26a-theta-alpha-source-field-map.md)
 - Score authority: [Equation Mapping Detail](../../mapping-equations/analysis/equation.md#eq-26a-fine-structure-constant-electromagnetic-coupling-and-energy-running)
-- Benchmark authority: [Precision Electroweak Gauge-Running Benchmark Packet](../../mapping-standard-model/benchmarks/precision-electroweak-gauge-running-benchmark-packet.md)
+- Benchmark authority: [Precision Electroweak Gauge-Running Benchmark Packet](../../mapping-standard-model/analysis/precision-electroweak-gauge-running-benchmark-packet.md)
 - Review synthesis: [Planck Action Period, Blackbody, and Fine-Structure Coupling](../../../research-office/research-history/review-packets/planck-action-period-blackbody-alpha-reconciliation-2026-07-29.md)
 - Claim level: derivation/closure target with observer-level comparison equations
 - Status: draft; priority-only; no accepted retained evidence or score change

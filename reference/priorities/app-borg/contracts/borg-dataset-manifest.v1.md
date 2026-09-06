@@ -7,7 +7,7 @@
 - Claim level: `priority-design`
 - Schema id: `borg-dataset-manifest.v1`
 - Primary requirements: [requirements-and-design](requirements-and-design.md)
-- Boundary shell source packet: [boundary-shell-replay](../analysis/boundary-shell-replay.md)
+- Boundary shell source packet: [boundary-shell-replay](boundary-shell-replay.md)
 - Execution ledger: [work queue](../work-queue.md)
 
 ## Purpose

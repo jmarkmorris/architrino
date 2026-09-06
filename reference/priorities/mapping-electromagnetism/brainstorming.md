@@ -46,7 +46,7 @@ For a fine-grained matter–sea record, weak response, strong geometric departur
 
 Observed electromagnetic behavior can constrain candidate geometry only after claim levels are separated. Effective requirements are deduced from measured behavior; native requirements are inferred consequences for an assembly map; a particular asymmetric counter-breathing representative, three-binary, or other realization remains a candidate until fixed-law retained-history evidence exists.
 
-The general method and requirement taxonomy belong in Equation Mapping's [inferring-braid-requirements.md](../mapping-equations/analysis/inferring-braid-requirements.md). Candidate-by-candidate dispositions belong in the Braid Program's [braid-candidate-requirement-adjudication.md](../braid-program/analysis/braid-candidate-requirement-adjudication.md). [asymmetric counter-breathing representative geometry](../braid-program/configurations/f6c-geometry.md), [three-binary comparisons](../braid-program/analysis/three-binary-orbiting-endpoint-comparison.md), and [coordinate matching](../braid-program/evidence/three-binary-five-coordinate-initialization-ledger.md) also belong in the Braid Program and do not need a second large treatment here.
+The general method and requirement taxonomy belong in Equation Mapping's [inferring-braid-requirements.md](../mapping-equations/analysis/inferring-braid-requirements.md). Candidate-by-candidate dispositions belong in the Braid Program's [braid-candidate-requirement-adjudication.md](../braid-program/analysis/braid-candidate-requirement-adjudication.md). [asymmetric counter-breathing representative geometry](../braid-program/analysis/f6c-geometry.md), [three-binary comparisons](../braid-program/analysis/three-binary-orbiting-endpoint-comparison.md), and [coordinate matching](../braid-program/evidence/three-binary-five-coordinate-initialization-ledger.md) also belong in the Braid Program and do not need a second large treatment here.
 
 ## Adaptive Cubic Noether Sea Candidate
 
@@ -54,7 +54,7 @@ An alternating cubic population distinguishes common motion of the two polarity 
 
 Static checkerboard cancellation does not establish constitutive stiffness. Uniform affine deformation can remain a zero-release-acceleration family, so spring-like response must arise from nonuniform delayed histories, internal orbit coordinates, defects, or assembly coupling. A persistent cubic order may also expose higher-order directional anisotropy even when its leading second-rank response is isotropic.
 
-The focused [asymmetric counter-breathing representative cubic lattice](analysis/f6c-cubic-lattice.md) and [adaptive-medium contract](contracts/adaptive-cubic-medium-kinematics-and-ledger-contract.md) own the current candidate and its failed circular seed. Their negative release residual rejects that prescribed background without rejecting every locally deformable medium.
+The focused [asymmetric counter-breathing representative cubic lattice](analysis/f6c-cubic-lattice.md) and [adaptive-medium contract](analysis/adaptive-cubic-medium-kinematics-and-ledger-contract.md) own the current candidate and its failed circular seed. Their negative release residual rejects that prescribed background without rejecting every locally deformable medium.
 
 Plainly: allowing every site to bend differently repaired a representational restriction, but it did not make the proposed histories satisfy the delayed equations.
 

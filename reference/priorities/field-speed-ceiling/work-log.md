@@ -53,7 +53,7 @@
 
 ## 2026-09-02 — FSC-006b/FSC-005 independent complete-lobe review incorporated
 
-- Incorporated the [independent complete-lobe and returning-event review](reviews/independent-complete-lobe-returning-event-review-2026-09-02.md) without editing the independent artifact. The sufficient complete-lobe theorem, returning-event measure typing, prescribed-onset spatial two-cycle, and narrow selector exclusion survive.
+- Incorporated the [independent complete-lobe and returning-event review](analysis/independent-complete-lobe-returning-event-review-2026-09-02.md) without editing the independent artifact. The sufficient complete-lobe theorem, returning-event measure typing, prescribed-onset spatial two-cycle, and narrow selector exclusion survive.
 - Repaired the inward-cap partner-root proof, added the inactive same-transmitter cap family to the complete census, stated the post-turn continuation criterion, assigned the cap-start endpoint to the event carrier, and connected local integrability to the no-remainder-atom event guard.
 - Resolved the ceiling-exit self-family conflict in favor of the existing inactive-family rule. The earlier atom-delivery and atomic-projection account was withdrawn because no such event is declared.
 - Corrected the cap-duration reset to $u_{n+1}=L_{n+1}=G(K,u_n)$ and the two malformed $L_{\mathrm{out}}$ macros. Added the exact lobe period $P=2Ku/(K-2u)$ and proved that the shrinking reset sequence approaches zero over infinite absolute time rather than accumulating in finite time.
@@ -118,7 +118,7 @@
 
 ## 2026-09-02 — FSC-016 Sections 12--14 independent review completed
 
-- Added [Independent Review of Sections 12--14](reviews/sections-12-14-independent-review-2026-09-02.md) under identifier `FSC-016-PPAI-2026-09-02`; the reviewed mathematics manuscript was not edited.
+- Added [Independent Review of Sections 12--14](analysis/sections-12-14-independent-review-2026-09-02.md) under identifier `FSC-016-PPAI-2026-09-02`; the reviewed mathematics manuscript was not edited.
 - Independently verified the proposed-response braid criterion, winding/radius and phase arithmetic, homothetic scale selection, normalized Dottie-derived binary values, raw cycle diagnostic, and the conditional action/energy boundary.
 - Recorded two required specification repairs: separate the exact field-speed equality from inequality margins and state one- versus two-sided tangents; state the nonlinear-return-map hypotheses and correct the local-stability consequence of a reduced spectral radius below one.
 - Recorded the first mandatory infinite-sea obligation: local finiteness does not control an inverse-square three-dimensional tail, so a Noether-sea construction needs a declared exhaustion, far-field cancellation estimate, convergence mode, and boundary/order-independence proof.
@@ -273,7 +273,7 @@
 
 ## 2026-07-30 — Bounded no-escape audit completed
 
-- Added the [Field-Speed Ceiling No-Escape Audit](reviews/no-escape-audit.md), beginning at canonical Euclidean void, absolute time, causal propagation, and ordinary finite-ledger premises.
+- Added the [Field-Speed Ceiling No-Escape Audit](analysis/no-escape-audit.md), beginning at canonical Euclidean void, absolute time, causal propagation, and ordinary finite-ledger premises.
 - Traced each proposed, conditional, derived, and diagnostic step through its operation, new rule or parameter, ordinary-chart reduction, root or event ownership, and exact status.
 - Recorded negative guards that the strict-interior equation is unchanged, ordinary roots are not silently deleted or reweighted, projection does not classify equality or nonisolated contact, and no continuation, retention, $H$, conservation, Planck-scale, or Lorentz result is assumed.
 - The artifact closes bookkeeping shortcuts only. It adds no law, selects no event disposition, proves no continuation, and moves no closure score.
@@ -293,12 +293,12 @@
 - Recorded the then-stated contact consequence as event-local pass-through. Hale’s later review corrected that wording: zero impulse licenses only a velocity-preserving outgoing contact one-jet, not a right-hand path.
 - Preserved the prescribed unaccelerated straight separating-trace negative. The first ordinary post-contact slowing row still scales as $\delta^{-2}$, so a finite, unique solution on an open post-contact interval remains unproved.
 - Reconciled the mathematics packet, endpoint reanalysis, FSC-001 compatibility decision, no-escape audit, priorities, and queue. FSC-002 remains blocked because the narrow collinear postulate supplies no noncollinear or braid event law and adopts no ceiling.
-- Added the [First Entourage Review Readiness Check](reviews/first-entourage-review-readiness.md). The packet is ready for a narrow foundational-mathematics critique and is not ready for broader theory validation.
+- Added the [First Entourage Review Readiness Check](analysis/first-entourage-review-readiness.md). The packet is ready for a narrow foundational-mathematics critique and is not ready for broader theory validation.
 - No Entourage reviewer was contacted and nothing was published. No canonical prose, EOM solver contract, conservation or stability result, physical conclusion, MEC status, or closure score was changed.
 
 ## 2026-07-31 — Jack K. Hale read-only review integrated
 
-- Captured the completed review in the [Jack K. Hale Review and Response](reviews/jack-k-hale-review-response-2026-07-31.md) under identifier `FSC-001-JKH-2026-07-31`. All nine substantive findings are present and each has one explicit disposition.
+- Captured the completed review in the [Jack K. Hale Review and Response](analysis/jack-k-hale-review-response-2026-07-31.md) under identifier `FSC-001-JKH-2026-07-31`. All nine substantive findings are present and each has one explicit disposition.
 - Accepted and implemented Hale’s authority correction: tangent-cone and projection algebra is derived only from the proposed Complete Constrained-Response Axiom.
 - Made forward invariance conditional on an existing sufficiently regular projected state-dependent-delay solution with complete finite ordinary ledgers.
 - Preserved the no-ordinary-contact-row, source-delta-bookkeeping, and zero-impulse statements as a proposed event postulate rather than a derivation.
@@ -312,7 +312,7 @@
 
 ## 2026-07-31 — Lars Hörmander read-only review integrated
 
-- Captured the operator-supplied review text and complete response matrix in the [Lars Hörmander Review and Response](reviews/lars-hormander-review-response-2026-07-31.md) under identifier `FSC-001-LH-2026-07-31`. All eight substantive findings are present and each has one explicit disposition.
+- Captured the operator-supplied review text and complete response matrix in the [Lars Hörmander Review and Response](analysis/lars-hormander-review-response-2026-07-31.md) under identifier `FSC-001-LH-2026-07-31`. All eight substantive findings are present and each has one explicit disposition.
 - Preserved the derived classification that the nonisolated positive-delay contact strata in both ordered channels lie outside ordinary isolated-root coarea rows. This classification supplies no contact response measure.
 - Typed three separate objects: labeled spatial source point measures, source-time ordinary receiver acceleration measures, and receiver-time atomic velocity-update measures.
 - Recorded the zero atomic impulse only as the coefficient of the proposed event-update measure. Both contact-time source records remain nonzero; no cancellation, principal value, finite part, or regulator-independent limit is claimed.
@@ -325,7 +325,7 @@
 
 ## 2026-08-01 — Bill Thurston read-only review integrated
 
-- Captured the complete substantive finding record and response matrix in the [Bill Thurston Review and Response](reviews/bill-thurston-review-response-2026-08-01.md) under identifier `FSC-001-BT-2026-08-01`. All fourteen findings have one explicit disposition, including three partial acceptances.
+- Captured the complete substantive finding record and response matrix in the [Bill Thurston Review and Response](analysis/bill-thurston-review-response-2026-08-01.md) under identifier `FSC-001-BT-2026-08-01`. All fourteen findings have one explicit disposition, including three partial acceptances.
 - Sharpened the proposed regular response with its normal-cone packaging, minimum-reaction selection boundary, formal admit-evaluate-sum-respond operation order, common-receiver-event wording, and ledger partition invariance falsifier.
 - Added the cap-state curvature formula and preserved the distinction between instantaneous tangency, continuous boundary response, and an actual circular solution.
 - Added a typed event-stratum catalogue separating regular roots, folds, characteristic intervals, the zero-delay diagonal, multiple-branch coincidences, and root accumulations. Rejected a separate positive-delay zero-separation stratum because the causal equality makes it empty.
@@ -338,7 +338,7 @@
 
 ## 2026-08-01 — Albert Einstein read-only review integrated
 
-- Preserved the complete source review and recorded every finding and disposition in the [Albert Einstein Review Response](reviews/albert-einstein-review-response-2026-08-01.md) under identifier `FSC-001-AE-2026-08-01`.
+- Preserved the complete source review and recorded every finding and disposition in the [Albert Einstein Review Response](analysis/albert-einstein-review-response-2026-08-01.md) under identifier `FSC-001-AE-2026-08-01`.
 - Accepted the minimal-selection theorem with its exact authority boundary: the closed ball, absolutely continuous regular velocity, radial normal-cone reaction, and ledger-first order remain proposed; the least-change projection follows a.e. under those clauses.
 - Accepted the frozen-ledger maximal-monotone reduction. The supplied-ledger constrained velocity layer is unique and nonexpansive; FSC-007 still owns the history-to-ledger regularity, position coupling, and fixed-point proof.
 - Proved per-channel root monotonicity for cap-admissible histories. One ordered channel has an empty, singleton, or characteristic-interval root set, so its two-root folds and separated roots are unavailable. Multiple ordered channels may still coincide, and characteristic reception remains undefined.
@@ -350,7 +350,7 @@
 
 ## 2026-08-01 — Albert Einstein second read-only review integrated
 
-- Preserved the complete source review unchanged and recorded every theorem, program reformulation, and structural finding with an independent disposition in the [Albert Einstein Second Review Response](reviews/albert-einstein-second-review-response-2026-08-01.md) under identifier `FSC-001-AE2-2026-08-01`.
+- Preserved the complete source review unchanged and recorded every theorem, program reformulation, and structural finding with an independent disposition in the [Albert Einstein Second Review Response](analysis/albert-einstein-second-review-response-2026-08-01.md) under identifier `FSC-001-AE2-2026-08-01`.
 - Accepted the exact finite-ledger response factorization and $1$-Lipschitz estimate. Recorded that $\mathcal P_{\mathbf V}(\mathbf b)=\mathbf0$ exactly on the closed forward ray, while correcting the proposed FSC-005 corollary: leading $\delta^{-2}$ cancellation alone does not prove the projected remainder is a finite Radon measure.
 - Strengthened root monotonicity from differentiable to Lipschitz cap- admissible paths using the reverse triangle inequality. Added the rigid characteristic-interval theorem and the complete positive-delay geometry catalogue for one ordered channel: empty, simple singleton, degenerate singleton, or exact-aim straight characteristic interval.
 - Removed the quadratic fold from the closed-domain event catalogue and kept it only as an open-domain negative control. A cap-admissible degenerate isolated root is not called grazing; cubic order requires an additional nonzero-third-derivative hypothesis, and higher odd or flat crossings remain possible.

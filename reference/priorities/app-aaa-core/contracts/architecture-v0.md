@@ -377,7 +377,7 @@ This is a proposed architecture, not a performance result. Its falsifier is an e
 
 Plainly: GPUs do the large regular batches; unusual rows leave the fast lane rather than forcing the GPU either to guess or to stall every row.
 
-The dated hardware and cloud-cost alternatives are recorded in [Root GPU and operations options](../analysis/root-gpu-and-operations-options-2026-08-02.md). No backend is promoted until an end-to-end root workload establishes correctness, difficult-row rate, data-movement cost, memory residency, latency, and total spend.
+The dated hardware and cloud-cost alternatives are recorded in [Root GPU and operations options](../evidence/root-gpu-and-operations-options-2026-08-02.md). No backend is promoted until an end-to-end root workload establishes correctness, difficult-row rate, data-movement cost, memory residency, latency, and total spend.
 
 ## Deployment Postures
 

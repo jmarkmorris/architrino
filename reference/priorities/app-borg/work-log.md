@@ -52,7 +52,7 @@ Closure goal: Retire or redirect the redundant Assembly Explorer only after conf
 
 ### 2026-09-01 - BORG-004 Assembly Explorer Retired And Redirected
 
-- Accepted the [Assembly Explorer disposition](analysis/assembly-explorer-disposition.md): the standalone demo runtime and its `assembly-configuration-explorer.dataset.v2` contract are retired. Both legacy scene identifiers now route directly to the Borg Assembly Library, while `assembly-explorer.html` remains only as an accessible redirect for old direct URLs.
+- Accepted the [Assembly Explorer disposition](work-log.md): the standalone demo runtime and its `assembly-configuration-explorer.dataset.v2` contract are retired. Both legacy scene identifiers now route directly to the Borg Assembly Library, while `assembly-explorer.html` remains only as an accessible redirect for old direct URLs.
 - The disposition follows BORG-002 parity: the canonical manifest preserves source order and exact hashes; Borg retains each raw record, stable source/worldline identities, source-only filters, optional source-carried $S_3$ grouping without raw-selection replacement, declared comparison transforms, source-carried field speed, and source-owned vector rows. The Assembly Library supplies scalable search and exact-record handoff.
 - Removed the demo-only runtime, schema, and tests rather than migrating its app-local energy, momentum, angular-momentum, speed fallback, or computed permutation facts into Borg. Those illustrative calculations were not sealed-record evidence and have no replacement authority.
 - Thirty-three focused navigation, manifest, replay-session, and app-routing tests pass. The terminology checker scans 360 migrated-scope files with no stragglers, and `git diff --check` passes. Live browser QA confirms that `assembly-explorer.html` finishes at `borg-library.html` and displays the current Assembly Library.
@@ -568,3 +568,40 @@ Plainly: certified runs keep the past they need, evidence labels are checked by 
 - The operator-set startup maximum for each velocity component is `0.01`. The manifest validator, initial-settings form, seeded-position controls, and current design packet consume that one default; explicit nondefault fixtures retain their own test values. On the seed-0 3:3 display control with `h_max = 0.025`, changing only this bound from `0.03` to `0.01` moved the terminal coupled-correction boundary from `T = 0.683203125` to `T = 0.55390625`; therefore the lower speed is a configuration decision, not a demonstrated cure for the correction boundary. Claim grade: derived wiring and measured paired control on 2026-07-17. Falsifier: a fresh initial-settings pane starts at any value other than `0.01`, a seeded component exceeds it, or the paired profiler does not reproduce the stated boundaries.
 - The coupling control now occupies half of its former full-width row. Its other half contains `Step height` and `Adaptive minimum`: the applied height supplies both `initialStep` and `maximumStep`, while the applied minimum supplies `minimumStep`. The panel rejects values outside `0 < minimum <= height <= 0.05` rather than exposing an unreachable height above the chunk length. Claim grade: derived from the runner-option mapping and measured by the Borg runtime controls. Falsifier: an applied edit does not appear in the next run request, adaptive growth exceeds the applied height, or the controller attempts a height below the applied minimum.
 - Operator visual decision removed all three great-circle guides from the envelope. The viewport retains exactly one light-gray dotted outer boundary shell and no central-ball guide. Claim grade: derived from the scene graph and measured in the live Borg viewport on 2026-07-17. Falsifier: the runtime constructs a `LineLoop`, the viewport shows a continuous spherical guide, or more than one envelope shell is rendered.
+
+
+## Assembly Explorer Disposition
+
+Folded on 2026-09-05 from `app-borg/analysis/assembly-explorer-disposition.md`, which was a separate file that had no reader and no promotion route. Content is unchanged apart from heading depth.
+
+Closure goal: Retire the redundant Assembly Explorer runtime while preserving direct and scene-based navigation into Borg's canonical source-owned assembly discovery and exact-record replay surfaces.
+
+
+
+Status: `accepted and verified` on 2026-09-01.
+
+#### Decision
+
+Retire the standalone Assembly Explorer runtime and its `assembly-configuration-explorer.dataset.v2` contract. Route the legacy `assembly-explorer` scene token and scene path directly to `borg-library.html`; retain `assembly-explorer.html` only as a non-indexed user-facing redirect for old direct URLs. The redirect preserves the incoming query and fragment so exact-record links are not silently weakened.
+
+#### Basis
+
+Borg now preserves the obligations that formerly justified the separate runtime:
+
+- `assembly-view-collection.v1` preserves external source order and exact record identities;
+- the replay session preserves every raw record and stable source/worldline identity;
+- optional $S_3$ navigation grouping advances only when every grouped record carries a permutation-canonical key and never replaces the selected raw record;
+- filters consume only source-carried values;
+- synchronized comparison consumes declared time and unit transforms rather than assuming an identity map;
+- field speed and kinematic vector rows are source-owned carriers; and
+- Borg Library provides scalable source search, exact identity inspection, record-hash lookup, and exact Borg Workbench handoff.
+
+The retired demo runtime also contained app-local fallbacks and derived energy, momentum, angular-momentum, speed, and $S_3$ quantities over illustrative rows. Those calculations were neither sealed-record replay nor source-owned Borg evidence. They are not migrated into Borg.
+
+Plainly: Borg keeps the trustworthy navigation and inspection behavior. The old page's demo calculations are removed rather than being treated as facts about an assembly.
+
+#### Verification
+
+The navigator maps both legacy scene identifiers to `borg-library.html`, but the retired Assembly Explorer scene is absent from public scene search. The compatibility URL preserves its query and fragment while redirecting to Borg Library. Focused navigation, manifest, replay-session, and terminology tests pass; live browser QA confirms that requesting `assembly-explorer.html` finishes at Borg Library. No Assembly Explorer runtime, runtime test, or standalone dataset schema remains.
+
+Claim grade: implemented and measured routing and software behavior. This disposition establishes no geometry, acceleration balance, evolution, retention, stability, binding, physical identity, or scientific acceptance. Falsifier: either legacy route opens a separate runtime, any retired demo contract remains an active consumer, Borg loses raw source order or exact identity, optional grouping replaces a raw record, or the compatibility URL does not land in Borg Library.

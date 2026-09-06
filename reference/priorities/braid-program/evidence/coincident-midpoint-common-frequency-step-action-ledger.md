@@ -1583,4 +1583,4 @@ Plainly: the bounded prescribed-path root fields are complete. The remaining bla
 - [General Relativity](../../../../content/markdown/aaa/spacetime/general-relativity.md)
 - [Proper Time and Time Dilation](../../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md)
 - [Black Holes](../../../../content/markdown/aaa/spacetime/black-holes.md)
-- [Ellipsoidal Deformation and Effective Metric Source Packet](../../mapping-benchmarks/benchmarks/effective-metric-deformation.md)
+- [Ellipsoidal Deformation and Effective Metric Source Packet](../../mapping-benchmarks/analysis/effective-metric-deformation.md)
