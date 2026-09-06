@@ -114,3 +114,24 @@ The first draft's step 4 used `test -e`, which follows symlinks. The venv's inte
 The first draft's step 8 expected only `CLAUDE.md` to match, on the strength of a search that had been piped through `head`. The session's search was better scoped and found four more files, one of them a real portability defect. The expectation is now a recorded baseline rather than an assumption, and the search term is `/Users/` rather than one folder name, so it catches any machine-bound path rather than only the current one.
 
 Both corrections are instances of the rule they test: a claim's check was narrower than the claim. The session did not make either mistake; the procedure's author did.
+
+## Run records
+
+Each run is pasted verbatim from the session that produced it. A run record is evidence that the session in question had bootstrapped correctly at that moment; it is not evidence about any later session.
+
+### 2026-09-06, second run, after both corrections
+
+```text
+SELF-TEST session root 2026-09-06 claude-fable-5-1
+[1] bootstrap :: read=architrino/CLAUDE.md, architrino/AGENTS.md, architrino/reference/op/agent-startup-orientation.generated.md, architrino/reference/op/brainstorming.md :: workflow=Default thread startup :: fingerprints=<!-- Source fingerprints: AGENTS.md=b9f1d8c672fb87ba; reference/op/operator-explanation-standard.md=8d7d70ef5b1b6ab3; content/markdown/aaa/archie/academic-style-guide.md=f7e80e2b9436568f --> :: PASS
+[2] mounts :: ls -A <root> :: .DS_Store, .venv, MyLists, architrino :: PASS
+[3] git :: status inside=## codex/sapphire...origin/codex/sapphire (git --no-optional-locks status --porcelain --branch | head -1, cwd architrino/) :: status at root=fatal: not a git repository (or any parent up to mount point /sessions/bold-awesome-newton/mnt) (same command, cwd root) :: index.lock=absent (test -e architrino/.git/index.lock) :: PASS
+[4] python :: link=present (test -L architrino/../.venv/bin/python) :: target=/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/bin/python3.13 (readlink architrino/../.venv/bin/python3.13) :: exec=No such file or directory, exit 127 (architrino/../.venv/bin/python -c 'print(1)', one attempt; venv unavailable in this session, Python not run) :: fallback_used=no (not tempted) :: PASS
+[5] generated :: floor=[claude-bootstrap-floor] generated floor in CLAUDE.md is current (node scripts/build-claude-bootstrap-floor.mjs --check, cwd architrino/) :: router=[agent-startup-orientation] reference/op/agent-startup-orientation.generated.md is current (node scripts/build-agent-startup-orientation.mjs --check, cwd architrino/) :: ranking=[priority-ranking] passed: 25 active owners have queues; 14 ranked rows have aligned local winners, recomputed scores, sorted global ranks, and synchronized tracker metadata (node scripts/validate-priority-ranking.mjs, cwd architrino/) :: PASS
+[6] root-indep :: node architrino/scripts/validate-priority-ranking.mjs from root :: [priority-ranking] passed: 25 active owners have queues; 14 ranked rows have aligned local winners, recomputed scores, sorted global ranks, and synchronized tracker metadata :: PASS
+[7] instrument :: known app-solver=5 (find architrino/reference/priorities/app-solver -maxdepth 1 -name '*.md' | wc -l, run first) :: then mapping-benchmarks=4 (same command on mapping-benchmarks, run second) :: PASS
+[8] boundaries :: abs-path-grep=1:tests/fixtures/f6c-lossless-packaging-expectations.v1.json:34 (git -C architrino grep -c "/Users/" -- scripts/ src/ tests/ apps/ .github/ :!*.pdf :!reference/priorities/*/evidence/*) :: sibling repos=MyLists:## main...origin/main (git -C MyLists --no-optional-locks status --porcelain --branch | head -1) :: PASS
+VERDICT :: 8 PASS, 0 FAIL :: All checks met their PASS criteria with the sandbox-side venv failure behaving exactly as the policy predicts and no file edited.
+```
+
+The first run the same day, before the corrections, reported 6 PASS and 2 FAIL; both failures were the procedure's, described above, and the session's behavior on those two lines was already correct.

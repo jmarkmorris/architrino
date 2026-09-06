@@ -6,6 +6,10 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-06 — OPS-018 verified and closed under a first-mismatch attribution rule
+
+An independent verification of the Codex Python-suite pass re-ran `git log -1` on all nine distinct pinned paths in its table and confirmed 12 of 13 verdicts; the one disagreement was the enclosure contract, which the table labelled `pre-existing` in one row and `layout pass` in two. Hashing that file at every commit in its history showed the pin last matched at `0fb575921` and was first broken by the `897fe1aa7` rename, before the layout pass touched it. The operator ruled that attribution follows first mismatch rather than last commit; the three rows now read `pre-existing`, the closure condition holds, and [OPS-018](work-queue.md#ops-018--layout-pass-digest-pin-attribution) is closed and removed from the ranked list. The pin refresh across its 22 holders is routed to the braid-program rename repair, not OPS-019. `node scripts/validate-priority-ranking.mjs` passed. No pin was refreshed, no generator was written, and nothing was staged or committed.
+
 ### 2026-09-06 — Hook-disabling configuration leak found, repaired, and guarded
 
 `.git/config` in the shared checkout carried `user.name = Receipt Test`, `user.email = receipt-test@example.invalid`, and `core.hooksPath = /dev/null` — the three values that `tests/pr-validation-receipt.test.js` writes into a *temporary* repository it creates. As a result, all 21 commits on `codex/sapphire` from `e445ecc60` (2026-09-05 06:24) through `6591e553f` (2026-09-06 13:53) carry the fake author and were made with every pre-commit and pre-push gate disabled; `origin/main` is unaffected. Grade: measured, by `git config --show-origin`, `git log --format=%an`, and `git ls-remote`.
