@@ -10,7 +10,7 @@ The objective is to keep every issue lifecycle explicit: identify the right issu
 
 ## Authority and Communication
 
-This procedure operates within the current task authority. A request to inspect or fix an issue does not by itself invoke the publication lifecycle. Run branch and PR operations only under the explicit invocation contract in [codex-pr-branch.md](git/codex-pr-branch.md). Post issue comments or other messages only when the operator has explicitly authorized that communication; otherwise prepare the proposed text in the local working record. Apply these boundaries to every mode below. Responses and live capture follow the [operator explanation standard](operator-explanation-standard.md), and explanatory prose follows the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md).
+This procedure operates within the current task authority. A request to inspect or fix an issue does not by itself invoke the publication lifecycle. Run branch and PR operations only under the explicit invocation contract in [codex-pr-branch.md](codex-pr-branch.md). Post issue comments or other messages only when the operator has explicitly authorized that communication; otherwise prepare the proposed text in the local working record. Apply these boundaries to every mode below. Responses and live capture follow the [operator explanation standard](../operator-explanation-standard.md), and explanatory prose follows the [academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md).
 
 ## Operating Principles
 
@@ -154,9 +154,9 @@ node scripts/build-scene-graph.mjs --check --strict
 node scripts/build-textbook-md-pdf.mjs --check
 ```
 
-Use [codex-pr-branch.md](git/codex-pr-branch.md) for the full branch, commit, push, and PR validation set.
+Use [codex-pr-branch.md](codex-pr-branch.md) for the full branch, commit, push, and PR validation set.
 
-The iOS textbook package is on-demand; ordinary corpus and PR work does not require its regeneration or freshness validation. For explicitly requested iOS Reader package work, follow the [on-demand packaging procedure](../../apps/ios/ArchitrinoReader/README.md#on-demand-textbook-packaging). Typical checks for that scope are:
+The iOS textbook package is on-demand; ordinary corpus and PR work does not require its regeneration or freshness validation. For explicitly requested iOS Reader package work, follow the [on-demand packaging procedure](../../../apps/ios/ArchitrinoReader/README.md#on-demand-textbook-packaging). Typical checks for that scope are:
 
 ```bash
 node scripts/export-ios-textbook-package.mjs --check --strict
@@ -175,7 +175,7 @@ If a command cannot run, record:
 
 ## Pull Request Process
 
-Follow [codex-pr-branch.md](git/codex-pr-branch.md) for branch, commit, push, and PR mechanics.
+Follow [codex-pr-branch.md](codex-pr-branch.md) for branch, commit, push, and PR mechanics.
 
 The PR body for an issue fix should include:
 
@@ -274,7 +274,7 @@ For multiple PRs fixing one issue:
 
 ## Handoff Template
 
-Use these evidence fields as needed under the [operator explanation standard](operator-explanation-standard.md); record durable issue state in the owning priority material:
+Use these evidence fields as needed under the [operator explanation standard](../operator-explanation-standard.md); record durable issue state in the owning priority material:
 
 ```markdown
 Issue: #<issue> <title>

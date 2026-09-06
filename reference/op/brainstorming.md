@@ -211,7 +211,7 @@ Each row below has one final disposition. Prior office review is reused for its 
 | [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md) | Updated; source and workflow conformance reviewed | Purpose, standard ownership, evidence, and execution authority |
 | [reference/op/git/codex-pr-unattended-verification.md](git/codex-pr-unattended-verification.md) | Reviewed; source and workflow conformance retained | Purpose, standard ownership, evidence, and execution authority |
 | [reference/op/git/continuous-development-during-pr-review.md](git/continuous-development-during-pr-review.md) | Reviewed; source and workflow conformance retained | Purpose, standard ownership, evidence, and execution authority |
-| [reference/op/issue-resolution.md](issue-resolution.md) | Updated; source and workflow conformance reviewed | Purpose, standard ownership, evidence, and execution authority |
+| [reference/op/git/issue-resolution.md](git/issue-resolution.md) | Updated; source and workflow conformance reviewed | Purpose, standard ownership, evidence, and execution authority |
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | Updated; source and workflow conformance reviewed | Purpose, standard ownership, evidence, and execution authority |
 | [reference/op/machine-artifact-retention-registry.v1.json](machine-artifact-retention-registry.v1.json) | Support asset parsed; unchanged | Outside prose conversion; owner and numerical settings preserved |
 | [reference/op/machine-artifact-retention.md](machine-artifact-retention.md) | Updated; source and workflow conformance reviewed | Purpose, standard ownership, evidence, and execution authority |
@@ -336,7 +336,7 @@ That file is a routing aid, not an authority. If it conflicts with the live sour
 
 ## Issue Resolution and Publication
 
-- GitHub issue resolution: [issue-resolution.md](issue-resolution.md), then [codex-pr-branch.md](git/codex-pr-branch.md) if the work needs a branch, commit, push, or PR.
+- GitHub issue resolution: [issue-resolution.md](git/issue-resolution.md), then [codex-pr-branch.md](git/codex-pr-branch.md) if the work needs a branch, commit, push, or PR.
 - Branch, commit, push, and PR mechanics: [codex-pr-branch.md](git/codex-pr-branch.md).
 - Unattended PR lifecycle verification: [codex-pr-unattended-verification.md](git/codex-pr-unattended-verification.md).
 
