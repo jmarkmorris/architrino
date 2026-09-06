@@ -11,12 +11,7 @@ This ledger measures the closed-loop acceptance requirement defined by [codex-pr
 
 ## Counter Contract
 
-Each handoff records:
-
-- `operatorDecisionPromptCount`;
-- `hostPermissionPromptCount`;
-- `escalationInvocationCount`; and
-- `reusedApprovalCount`.
+Each handoff records all four counters defined under [Permission measurement](codex-pr-branch.md#permission-measurement), which owns their names and meanings. This ledger owns only how they are entered and read here.
 
 `hostPermissionPromptCount: unknown` requires verification for advancement and does not qualify as zero. The count may come from host telemetry or an operator observation retained with the handoff receipt; do not ask for a separate third handoff only to collect it. A mandatory safety stop is excluded rather than passed. Any interactive operator decision prompt, interactive host permission prompt, unknown prompt count, missing counter, or false unattended claim resets the consecutive qualifying count to zero.
 

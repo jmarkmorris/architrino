@@ -1,6 +1,6 @@
 # Lars Hörmander Second Review: Field-Speed Ceiling Mathematics Packet, Sections 1–11
 
-**Review identifier:** `FSC-001-LH2-2026-08-02` **Reviewer lens:** [Lars Hörmander — Distributional Causal-Root Measure Analyst](../../research-office/specialists/roles-geometry-dynamics/lars-hormander.md) **Review date:** 2026-08-02 **Review target:** [mathematics-geometry-dynamical-system.md](mathematics-geometry-dynamical-system.md), Sections 1–11 only; Sections 12 and later are out of scope. **Prior review:** [FSC-001-LH-2026-07-31](lars-hormander-review-response-2026-07-31.md). Findings disposed there are not re-raised; this review addresses the substantially revised current text, especially Sections 10 and 11. **Claim level:** review findings only — nothing is adopted or advanced for the theory by this document.
+**Review identifier:** `FSC-001-LH2-2026-08-02` **Reviewer lens:** [Lars Hörmander — Distributional Causal-Root Measure Analyst](../../../research-office/specialists/roles-geometry-dynamics/lars-hormander.md) **Review date:** 2026-08-02 **Review target:** [mathematics-geometry-dynamical-system.md](../mathematics-geometry-dynamical-system.md), Sections 1–11 only; Sections 12 and later are out of scope. **Prior review:** [FSC-001-LH-2026-07-31](lars-hormander-review-response-2026-07-31.md). Findings disposed there are not re-raised; this review addresses the substantially revised current text, especially Sections 10 and 11. **Claim level:** review findings only — nothing is adopted or advanced for the theory by this document.
 
 ## Scope and method
 

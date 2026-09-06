@@ -98,6 +98,8 @@ After the operator/developer merges the PR, either explicit instruction `merged,
 - publish the successor branch without force and establish its upstream; and
 - return the final cleanup, synchronization, and rollover state.
 
+The registry token for this rollover may already be consumed. When a successor was created and published ahead of the merge under [continuous-development-during-pr-review.md](continuous-development-during-pr-review.md), that branch is this rollover's successor: verify its identity, alignment, and upstream, and record it as the rollover result. Do not select a further token, and do not create a second successor. Selecting a new token in that case skips a registry item and leaves two live branches claiming one rollover.
+
 The conditional `git branch -D` fallback is included in this standing authorization only when GitHub confirms that the exact branch PR is merged, the post-merge commit scan is clean, local `main` equals `origin/main`, and ordinary `git branch -d` refused solely because the merge strategy did not preserve ancestry. No other local or remote branch deletion is authorized.
 
 ### No intermediate permission prompts on the healthy path
@@ -314,50 +316,15 @@ git push origin <branch>
 
 ### 7. Open or update a pull request
 
-- Default to a ready PR when the branch is coherent enough for real review.
-- Use draft only when the branch is intentionally incomplete and not yet ready for review.
-- If a PR for the branch already exists, pushing the branch updates that PR automatically.
-- Do not rely on `gh pr create --fill` alone to produce an acceptable title or body.
-- Before creating a ready PR, decide the exact PR title and ensure the body explicitly covers the items below.
-- The PR body should explain:
-  - what changed,
-  - why it changed,
-  - the user or developer impact,
-  - the root cause when the branch fixes a bug,
-  - and the checks used to validate it.
+[Standard PR Process](#standard-pr-process) steps 3 through 6 own the publish-integrity gate, the mergeability gate, the existing-PR check, and the create, draft, and ready commands. Follow those steps rather than a second copy of them here.
 
-Commands:
+Decide the PR title and body before running those steps. The title should be a clear reviewable statement rather than `gh pr create --fill` autofill, and the body should explain:
 
-```bash
-git branch --show-current
-gh pr list --head "<current-branch>" --state all --json state,isDraft,url
-```
-
-Resolve and verify the exact branch token with the first command, then use that literal token in later commands. Do not embed command substitution in a mutating or remote command.
-
-Interpretation:
-
-- if this returns an empty array, no PR exists yet for the current branch;
-- if this returns an open PR, pushing the branch updates that PR automatically;
-- if this returns a draft PR that is now reviewable, use `gh pr ready`.
-
-If no PR exists yet, create one:
-
-```bash
-gh pr create --title "<clear reviewable title>" --body-file <path-to-pr-body>
-```
-
-If the branch is intentionally incomplete, create a draft instead:
-
-```bash
-gh pr create --draft --title "<clear reviewable title>" --body-file <path-to-pr-body>
-```
-
-If an existing PR is draft and is now ready for review:
-
-```bash
-gh pr ready
-```
+- what changed,
+- why it changed,
+- the user or developer impact,
+- the root cause when the branch fixes a bug,
+- and the checks used to validate it.
 
 ### 8. End the session in a scoped clean state
 
@@ -473,6 +440,8 @@ git rev-list --count origin/main..HEAD
 gh pr list --head "<current-branch>" --state all --json number,state,mergedAt,headRefOid,headRefName,url
 ```
 
+Resolve and verify the exact branch token with `git branch --show-current`, then use that literal token in later commands. Do not embed command substitution in a mutating or remote command.
+
 Interpretation:
 
 - if `gh pr list` returns an empty array and `git rev-list --count origin/main..HEAD` is greater than `0`, create a new PR;
@@ -547,12 +516,9 @@ Before returning the ready PR for operator/developer review, record:
 - `headRefName` and `headRefOid`;
 - base branch name and the current `origin/main` SHA;
 - ready/draft state and `mergeStateStatus`;
-- local validation commands and their final pass state; and
+- local validation commands and their final pass state;
 - remote check state;
-- `operatorDecisionPromptCount`;
-- `hostPermissionPromptCount`;
-- `escalationInvocationCount`;
-- `reusedApprovalCount`; and
+- all four counters defined under [Permission measurement](#permission-measurement); and
 - whether the first handoff qualifies under the zero/zero prompt budget.
 
 The second handoff should use the exact PR number from this receipt. A later thread may fall back to branch-name discovery only when the receipt is unavailable, and it must stop if that discovery is not unique.
@@ -714,7 +680,7 @@ After the previous PR is merged and the previous branch is retired, start the ne
 - Use the next item in the active branch series.
 - The active series is currently the minerals/gemstones sequence; advance to the first unused item from the committed mineral/gemstone registry.
 - An optional `-<topic>` suffix is allowed when it materially improves clarity, but the series item prefix should still advance in order.
-- Create the branch only after local `main` has been fast-forwarded and verified against `origin/main`.
+- Create the branch only after local `main` has been fast-forwarded and verified against `origin/main`. The one accepted exception is the experimental pre-merge path in [continuous-development-during-pr-review.md](continuous-development-during-pr-review.md), which creates the successor from the reviewed parent head and then aligns it onto `main` after the squash merge. That path applies only when the operator explicitly asks for it; if a successor already exists under it, this rollover verifies that branch rather than creating one.
 - Create the branch first, then publish it. Do not try to create and push it in parallel.
 - Stay on `main` for the synchronization commands, then cut the branch immediately from that checked-out `main`.
 - If branch creation fails, stop before attempting any push.
@@ -767,10 +733,7 @@ Before returning the completed rollover state, record:
 - the synchronized local and remote `main` SHA;
 - confirmation that the completed branch is absent locally and remotely;
 - the successor branch name, remote publication state, upstream, and tip SHA;
-- `operatorDecisionPromptCount`;
-- `hostPermissionPromptCount`;
-- `escalationInvocationCount`;
-- `reusedApprovalCount`; and
+- all four counters defined under [Permission measurement](#permission-measurement); and
 - whether the second handoff and the full lifecycle qualify under the zero/zero prompt budget.
 
 Update the unattended-verification ledger only from exact retained receipts and operator- or host-observed prompt counts. Never infer an unobserved interactive prompt count as zero merely to make a run qualify.

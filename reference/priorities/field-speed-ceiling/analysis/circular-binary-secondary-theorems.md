@@ -1,6 +1,6 @@
 # Circular-Binary Secondary Theorems
 
-**Packet identifier:** `fsc_circular_binary_secondary_theorems/v1` **Priority object:** FSC-015 **Status:** completed conditional theorem bundle **Claim level:** derived statements inside the proposed closed path-speed-domain model **Source chart:** [Field-Speed Ceiling: Mathematics, Geometry, and Dynamical System](mathematics-geometry-dynamical-system.md) **Primary certificate:** [Circular Binary All-Root Certificate](circular-binary-all-root-certificate.md)
+**Packet identifier:** `fsc_circular_binary_secondary_theorems/v1` **Priority object:** FSC-015 **Status:** completed conditional theorem bundle **Claim level:** derived statements inside the proposed closed path-speed-domain model **Source chart:** [Field-Speed Ceiling: Mathematics, Geometry, and Dynamical System](../mathematics-geometry-dynamical-system.md) **Primary certificate:** [Circular Binary All-Root Certificate](circular-binary-all-root-certificate.md)
 
 This packet proves or disposes five secondary questions about the prescribed two-label circular family. Every native numerical illustration uses $c_f=1$. The theorems are conditional on the proposed constrained-response law and the declared all-past prescribed histories. They establish no coupled delayed-history solution, capture, retention, perturbation stability, conservation law, action unit, physical binary, or adoption of a path-speed ceiling.
 

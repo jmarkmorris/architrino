@@ -1,6 +1,6 @@
 # Albert Einstein Field-Speed Ceiling Review
 
-**Review identifier:** `FSC-001-AE-2026-08-01` **Reviewer:** Albert Einstein, using the existing [Albert Einstein specialist lens](../../research-office/specialists/roles-geometry-dynamics/albert-einstein.md) **Review mode:** completed read-only relativity, invariance, and unification review of [mathematics-geometry-dynamical-system.md](mathematics-geometry-dynamical-system.md) **Captured:** 2026-08-01 **Response authority:** review findings only; no packet edit performed **Theory status:** no ceiling, event law, continuation, contact measure, retained assembly, or canonical change adopted or advanced
+**Review identifier:** `FSC-001-AE-2026-08-01` **Reviewer:** Albert Einstein, using the existing [Albert Einstein specialist lens](../../../research-office/specialists/roles-geometry-dynamics/albert-einstein.md) **Review mode:** completed read-only relativity, invariance, and unification review of [mathematics-geometry-dynamical-system.md](../mathematics-geometry-dynamical-system.md) **Captured:** 2026-08-01 **Response authority:** review findings only; no packet edit performed **Theory status:** no ceiling, event law, continuation, contact measure, retained assembly, or canonical change adopted or advanced
 
 ## Review scope and boundary
 

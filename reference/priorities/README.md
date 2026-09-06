@@ -46,13 +46,43 @@ The current preferred style for live priority docs is:
 - every immediate priority workstream directory should carry a `work-log.md`, even when it only contains the standard purpose note;
 - let `priorities.md` reference `work-queue.md`, `brainstorming.md`, `work-log.md`, and focused support files instead of embedding task execution, explanation-first material, long status logs, or detailed proof packets;
 - promote a brainstorming item into `work-queue.md` only when it has become an accepted, testable task, and remove the promoted task from `brainstorming.md` in the same edit;
-- keep detailed proof packets, certificates, app specs, and requirement notes in focused sibling files when their structure deserves more than a dated log entry;
+- keep detailed proof packets, certificates, app specs, and requirement notes in focused supporting files when their structure deserves more than a dated log entry, filed under the [workstream directory layout](#workstream-directory-layout) rather than accumulating at the top level;
 - score each live queue item as its own next unresolved object against remaining value and remaining cost, then sort the bucket so local item `1` has the highest current marginal ROI;
 - use the bucket's local item `1` as its scored row in `aaa-work-threads/priorities.md`, then sort those bucket winners globally so global rank `1` has the highest current marginal ROI;
 - after any score change, rerank and renumber both the affected bucket and the unified table; validate the unified arithmetic, sort order, and mirrored tracker metadata with `node scripts/validate-priority-ranking.mjs`;
 - rerank based on real code state, not stale historical intent;
 - if a task is done, record any durable result in the work log or focused evidence packet, remove it from the live queue, and renumber the list.
 - keep history only when it supports active triage, auditability, or a current proof/certificate decision; otherwise rely on GitHub and git history.
+
+## Workstream Directory Layout
+
+The maintenance pattern above governs which document owns which material. This section governs where those documents sit, because a workstream that files every supporting document as a top-level sibling eventually presents the operator with a directory listing in which the live control surface is indistinguishable from years of superseded process records.
+
+A workstream directory holds three tiers of material, and they are not interchangeable.
+
+The **control surface** is `priorities.md`, `work-queue.md`, `brainstorming.md`, and `work-log.md`, plus a `README.md` where the lane needs orientation beyond its tracker. These always sit at the top level. They are what the operator and an arriving agent read first, and nothing else competes with them for that position.
+
+**Durable subject owners** are the small number of documents that a reader returns to because they own a standing subject rather than a moment: a master registry, a settled decision, a live mathematics packet. These may sit at the top level, and `priorities.md` links them. Keep them few. A document earns this position by being the current answer to a question, not by being important when it was written.
+
+Everything else is **supporting material**, and it is filed into a subdirectory:
+
+| Subdirectory | Holds |
+| --- | --- |
+| `reviews/` | Dated specialist reviews, review responses, adjudications, and collations |
+| `analysis/` | Theorem targets, proof packets, certificates, and lemma files |
+| `evidence/` | Receipts, oracle outputs, measured records, and dated audits |
+| `contracts/` | Versioned contract and policy artifacts, typically `.v1.json` |
+| `campaigns/` | Campaign definitions, protocols, and predeclarations |
+| `configurations/` | Enumerated configuration and candidate records |
+| `archive/` | Superseded material retained for auditability |
+
+Use only the subdirectories a workstream actually needs; an empty category is not created in advance. [`app-solver/`](app-solver/README.md) is the reference implementation of this layout, and [`braid-program/`](braid-program/README.md) applies it to a larger evidence body.
+
+Filing a document into a subdirectory changes its location only. It does not change its claim grade, evidence status, lifecycle state, or authority, and it does not retire it. In particular, `archive/` means superseded, and moving a live document there is a disposition that belongs to the workstream owner, not to a filing pass.
+
+When a workstream directory exceeds roughly twelve top-level files, treat that as the signal to file its supporting material rather than as a threshold to argue with. `node scripts/validate-priority-ranking.mjs` reports directories over that count.
+
+Moving files has two consequences that a filing pass must handle in the same change. Relative links break, both the links inside the moved documents and the links pointing at them from elsewhere, so audit both directions and repair them before reporting the move complete. And the generated reference surface enumerates these paths, so a move leaves `content/generated/reference/reference-surface.v1.json` stale; report that drift with the regeneration command under the [generated-artifact rules](../../AGENTS.md#generated-artifacts) rather than running a generator write outside an authorized regeneration.
 
 ## Live Discussion Capture
 

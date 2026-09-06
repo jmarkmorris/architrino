@@ -1,6 +1,6 @@
 # Trailing-front delayed-ignition local-existence theorem
 
-**Status:** derived local existence and continuation nonuniqueness inside the proposed exact-mirror restart; independent review complete; operator selected Option A and retained the multivalued relation. **Owner:** FSC-006b/FSC-005. **Primary precursor:** [Jack K. Hale third review](jack-k-hale-third-review-2026-08-02.md), finding JKH3-6. **Decision record:** [Continuation-selection operator decision](continuation-selection-operator-decision-2026-09-02.md). **Claim boundary:** this theorem is conditional on the proposed field-speed response and proposed exact-mirror event completion. It adopts neither law canonically and supplies no selector.
+**Status:** derived local existence and continuation nonuniqueness inside the proposed exact-mirror restart; independent review complete; operator selected Option A and retained the multivalued relation. **Owner:** FSC-006b/FSC-005. **Primary precursor:** [Jack K. Hale third review](../reviews/jack-k-hale-third-review-2026-08-02.md), finding JKH3-6. **Decision record:** [Continuation-selection operator decision](../continuation-selection-operator-decision-2026-09-02.md). **Claim boundary:** this theorem is conditional on the proposed field-speed response and proposed exact-mirror event completion. It adopts neither law canonically and supplies no selector.
 
 ## Purpose and verdict
 

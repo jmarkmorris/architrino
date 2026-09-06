@@ -336,9 +336,9 @@ That file is a routing aid, not an authority. If it conflicts with the live sour
 
 ## Issue Resolution and Publication
 
-- GitHub issue resolution: [issue-resolution.md](git/issue-resolution.md), then [codex-pr-branch.md](git/codex-pr-branch.md) if the work needs a branch, commit, push, or PR.
+- Git lifecycle routing, including the branch-series registries: [git/README.md](git/README.md).
 - Branch, commit, push, and PR mechanics: [codex-pr-branch.md](git/codex-pr-branch.md).
-- Unattended PR lifecycle verification: [codex-pr-unattended-verification.md](git/codex-pr-unattended-verification.md).
+- GitHub issue resolution: [issue-resolution.md](git/issue-resolution.md), then [codex-pr-branch.md](git/codex-pr-branch.md) if the work needs a branch, commit, push, or PR.
 
 ## Research, Corpus Convergence, and Sources
 

@@ -1,6 +1,6 @@
 # Hassler Whitney Field-Speed Ceiling Review: Sections 1--11
 
-**Review identifier:** `FSC-001-HW1-2026-08-02` **Reviewer lens:** [Hassler Whitney — root-map singularity and stratification analyst](../../research-office/specialists/roles-geometry-dynamics/hassler-whitney.md) **Review date:** 2026-08-02 **Review target:** [mathematics-geometry-dynamical-system.md](mathematics-geometry-dynamical-system.md), Sections 1--11 only; Sections 12+ were not reviewed. **Claim level:** review findings only — nothing in this file is adopted or advanced; no ceiling, event law, continuation rule, or canonical change is endorsed here.
+**Review identifier:** `FSC-001-HW1-2026-08-02` **Reviewer lens:** [Hassler Whitney — root-map singularity and stratification analyst](../../../research-office/specialists/roles-geometry-dynamics/hassler-whitney.md) **Review date:** 2026-08-02 **Review target:** [mathematics-geometry-dynamical-system.md](../mathematics-geometry-dynamical-system.md), Sections 1--11 only; Sections 12+ were not reviewed. **Claim level:** review findings only — nothing in this file is adopted or advanced; no ceiling, event law, continuation rule, or canonical change is endorsed here.
 
 ## Scope and method
 

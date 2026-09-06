@@ -1,6 +1,6 @@
 # Albert Einstein Field-Speed Ceiling Review Response
 
-**Review identifier:** `FSC-001-AE-2026-08-01` **Review source:** [complete Albert Einstein review](albert-einstein-review-2026-08-01.md) **Reviewer lens:** [Albert Einstein specialist role](../../research-office/specialists/roles-geometry-dynamics/albert-einstein.md) **Response date:** 2026-08-01 **Response authority:** independent mathematical disposition and scoped packet integration **Theory status:** no ceiling, contact law, continuation, contact measure, Lorentz result, retained assembly, or canonical change adopted or advanced
+**Review identifier:** `FSC-001-AE-2026-08-01` **Review source:** [complete Albert Einstein review](albert-einstein-review-2026-08-01.md) **Reviewer lens:** [Albert Einstein specialist role](../../../research-office/specialists/roles-geometry-dynamics/albert-einstein.md) **Response date:** 2026-08-01 **Response authority:** independent mathematical disposition and scoped packet integration **Theory status:** no ceiling, contact law, continuation, contact measure, Lorentz result, retained assembly, or canonical change adopted or advanced
 
 ## Response method
 

@@ -1,6 +1,6 @@
 # Geometry Panel Collation: Six Specialist Reviews of Sections 1–11
 
-**Collation identifier:** `FSC-001-PANEL-2026-08-02` **Date:** 2026-08-02 **Scope reviewed:** [mathematics packet](mathematics-geometry-dynamical-system.md), Sections 1–11 only **Claim level:** collation of review findings; nothing adopted or advanced **Panel (each review captured in its own file):**
+**Collation identifier:** `FSC-001-PANEL-2026-08-02` **Date:** 2026-08-02 **Scope reviewed:** [mathematics packet](../mathematics-geometry-dynamical-system.md), Sections 1–11 only **Claim level:** collation of review findings; nothing adopted or advanced **Panel (each review captured in its own file):**
 
 | Reviewer | File | Findings |
 | --- | --- | --- |

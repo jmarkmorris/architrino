@@ -11,7 +11,7 @@
 - Promotion status: not promoted
 - Normalization: $c_f=1$ throughout; symbolic $c_f$ is retained only where its dependence is the point of the identity.
 - Separate mathematical owner: [MEC-007 mirror close-approach causal-root boundary](mirror-close-approach-causal-root-boundary.md) owns the persistent-label mirror-symmetric collinear encounter. This packet does not reopen, re-derive, or contradict it.
-- Consumed as settled prior: MEC-007's first-boundary ordering and unchanged-law divergence; [MEC-006 receiver wake-gradient closure](receiver-wake-gradient-closure.md) for the regular fixed-reception gradient; [GD-5 vanishing-delay hazard](../field-speed-ceiling/germund-dahlquist-review-2026-08-02.md); and the [conditional speed-bound rigidity and self-root exclusion theorem](../field-speed-ceiling/jack-k-hale-second-review-2026-08-02.md), without importing a global velocity ceiling.
+- Consumed as settled prior: MEC-007's first-boundary ordering and unchanged-law divergence; [MEC-006 receiver wake-gradient closure](receiver-wake-gradient-closure.md) for the regular fixed-reception gradient; [GD-5 vanishing-delay hazard](../field-speed-ceiling/reviews/germund-dahlquist-review-2026-08-02.md); and the [conditional speed-bound rigidity and self-root exclusion theorem](../field-speed-ceiling/reviews/jack-k-hale-second-review-2026-08-02.md), without importing a global velocity ceiling.
 
 ## Scope
 
@@ -283,7 +283,7 @@ There is a specific structural reason to doubt removability here, and it is nati
 
 Plainly: the usual trick for surviving a singularity is to change clocks until the motion looks smooth. Here the clock is not a convenience — it is what decides who hears whom. You cannot change it without changing the physics.
 
-Claim grade: the universal reparameterization result is `derived` below: with fixed $c_f$, only absolute-time translations preserve the canonical admission equation over the declared history class, and a translation cannot regularize vanishing delay. Existing corroborating evidence sits on the same side: the straight-through mirror trial in [the continuation scratchpad](../field-speed-ceiling/coincidence-continuation-scratchpad.md) yields a $\delta^{-2}$ obstruction rather than a clean passage, and [the endpoint-residue result](../field-speed-ceiling/coincidence-open-interval-convergence-and-endpoint-residue.md) establishes that ordinary receiver measures cannot converge to a finite vector-Radon measure on any neighborhood containing the endpoint.
+Claim grade: the universal reparameterization result is `derived` below: with fixed $c_f$, only absolute-time translations preserve the canonical admission equation over the declared history class, and a translation cannot regularize vanishing delay. Existing corroborating evidence sits on the same side: the straight-through mirror trial in [the continuation scratchpad](../field-speed-ceiling/analysis/coincidence-continuation-scratchpad.md) yields a $\delta^{-2}$ obstruction rather than a clean passage, and [the endpoint-residue result](../field-speed-ceiling/analysis/coincidence-open-interval-convergence-and-endpoint-residue.md) establishes that ordinary receiver measures cannot converge to a finite vector-Radon measure on any neighborhood containing the endpoint.
 
 ### Framework 4 — Codimension and transversality, with its limits
 

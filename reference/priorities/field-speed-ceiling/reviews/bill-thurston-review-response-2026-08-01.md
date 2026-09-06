@@ -1,6 +1,6 @@
 # Bill Thurston Field-Speed Ceiling Review and Response
 
-**Review identifier:** `FSC-001-BT-2026-08-01` **Reviewer:** Bill Thurston, using the existing [William Thurston specialist lens](../../research-office/specialists/roles-geometry-dynamics/bill-thurston.md) **Review mode:** completed read-only geometry, topology, and dynamical-system review **Captured:** 2026-08-01 from the operator-supplied review **Response authority:** Field-Speed priority packet only **Theory status:** no ceiling, event law, continuation, contact measure, retained assembly, or canonical change adopted
+**Review identifier:** `FSC-001-BT-2026-08-01` **Reviewer:** Bill Thurston, using the existing [William Thurston specialist lens](../../../research-office/specialists/roles-geometry-dynamics/bill-thurston.md) **Review mode:** completed read-only geometry, topology, and dynamical-system review **Captured:** 2026-08-01 from the operator-supplied review **Response authority:** Field-Speed priority packet only **Theory status:** no ceiling, event law, continuation, contact measure, retained assembly, or canonical change adopted
 
 ## Review scope and provenance boundary
 
@@ -29,7 +29,7 @@ Thurston could not inspect the live repository through his review interface. His
 
 | # | Disposition | Response and durable implementation |
 | ---: | --- | --- |
-| 1 | **Accepted; already satisfied and sharpened** | The [mathematics packet](mathematics-geometry-dynamical-system.md) already labels the least-change response as a clause of one proposed foundational law. The response now also displays the normal-cone inclusion and states why the bare inclusion does not select the minimum reaction. |
+| 1 | **Accepted; already satisfied and sharpened** | The [mathematics packet](../mathematics-geometry-dynamical-system.md) already labels the least-change response as a clause of one proposed foundational law. The response now also displays the normal-cone inclusion and states why the bare inclusion does not select the minimum reaction. |
 | 2 | **Accepted; already satisfied** | The packet consistently removes only the completed net positive radial component and retains transverse and inward components. No whole wake or whole net acceleration is suppressed. |
 | 3 | **Accepted and implemented** | The formal admit-evaluate-sum-respond order, common-receiver-event wording, and ordering/batching/partition falsifier are now explicit. The existing two-contribution example remains the negative control. |
 | 4 | **Accepted and implemented** | The packet now derives $c_f\,d\mathbf n/dT=\mathbf A_\perp$ and $\kappa_{\mathrm{path}}=\|\mathbf A_\perp\|/c_f^2$, states the extra circularity conditions, and preserves the continuous-reapplication and solution-existence boundary. |

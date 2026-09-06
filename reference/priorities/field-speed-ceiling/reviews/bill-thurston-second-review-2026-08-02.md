@@ -1,6 +1,6 @@
 # Bill Thurston Second Review: Field-Speed Ceiling Mathematics, Sections 1--11
 
-**Review identifier:** `FSC-001-BT2-2026-08-02` **Reviewer lens:** [William Thurston specialist lens](../../research-office/specialists/roles-geometry-dynamics/bill-thurston.md) **Review date:** 2026-08-02 **Review target:** [mathematics-geometry-dynamical-system.md](mathematics-geometry-dynamical-system.md), Sections 1--11 only; Sections 12+ are out of scope. **Prior review:** [first Thurston review and response, 2026-08-01](bill-thurston-review-response-2026-08-01.md). Findings disposed there are not re-raised. **Claim level:** review findings only --- nothing is adopted or advanced by this document.
+**Review identifier:** `FSC-001-BT2-2026-08-02` **Reviewer lens:** [William Thurston specialist lens](../../../research-office/specialists/roles-geometry-dynamics/bill-thurston.md) **Review date:** 2026-08-02 **Review target:** [mathematics-geometry-dynamical-system.md](../mathematics-geometry-dynamical-system.md), Sections 1--11 only; Sections 12+ are out of scope. **Prior review:** [first Thurston review and response, 2026-08-01](bill-thurston-review-response-2026-08-01.md). Findings disposed there are not re-raised. **Claim level:** review findings only --- nothing is adopted or advanced by this document.
 
 ## Scope and method
 
