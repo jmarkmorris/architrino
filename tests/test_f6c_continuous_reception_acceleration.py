@@ -146,8 +146,8 @@ def plan_fixture():
 def prior_fixture(fixed,manifest):
     """Hand-authored closed execution/evidence chain; no saved receipt replay."""
     docs={'manifest':deepcopy(manifest)}
-    contract=dict(verifierSha256='e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9',
-        declarationSha256='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4',
+    contract=dict(verifierSha256='3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7',
+        declarationSha256='520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba',
         subjectSourceBindings=[bind('/fictional/source')],runtimeBindings=[bind('/fictional/runtime')])
     docs['priorPlan']=dict(schema='braid-program/f6c-cached-root-cover-pilot-launch.v1',scope='pilot-cell-0',comparisonContract=contract)
     docs['manifest'].update(rows=fixed['rows'],pieces=fixed['pieces'],launchPlan=fixed['priorPlan'],

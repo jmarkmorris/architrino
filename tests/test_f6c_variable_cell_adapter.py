@@ -1066,7 +1066,7 @@ class CaptureTests(unittest.TestCase):
         resource=next(b for b in pinned if b['path'].endswith('2026-08-27-f6c-cached-root-cover-full-resource-plan.md'))
         bound={role:record(p,h,n)for role,p,h,n in subject.FULL}
         contract=dict(scope='full',verifierSha256=dict((r,h)for r,_,h in subject.SOURCES)['rootComparison'],
-            declarationSha256='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4',
+            declarationSha256='520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba',
             subjectSourceBindings=pinned[:4],runtimeBindings=runtime)
         plan=dict(schema='braid-program/f6c-cached-root-cover-full-launch.v1',scope='full',resourcePlan=resource,
             comparisonContract=contract,operationalBindings=ops,controlBindings=pinned[4:6],python='synthetic',pythonRealPath='synthetic',git='synthetic',node='synthetic')
@@ -1548,7 +1548,7 @@ class GenericParentTests(unittest.TestCase):
             productionHelper='captureHelper',productionHelperControls='captureHelperControls',historyReference='geometryHistory',decimalReference='geometryIntervals',
             decimalControls='geometryIntervalControls',rootLibrary='geometryRoots',rootControls='geometryRootsControls',independentRootReference='rootComparison',independentRootControls='rootControls')
         deps={role:record(*next((p,h)for r,p,h in subject.SOURCES if r==alias))for role,alias in aliases.items()}
-        deps['cacheEquivalence']=record(subject.PREFIX+'2026-08-27-f6c-call-local-state-cache-equivalence.md','798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3')
+        deps['cacheEquivalence']=record(subject.PREFIX+'2026-08-27-f6c-call-local-state-cache-equivalence.md','a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d')
         closure=dict(authority='versioned-acceptance-owner-declaration-not-fresh-observation',originalCallerSession='13512',finalCompletionChunk='c21aa7',exitCode=0,
             elapsedSeconds='862.951823625',processesClosed=True,independentAuditAccepted=True)
         scope=f'original-parent-{index}-emission-refinement'
@@ -1664,8 +1664,8 @@ class ExactParentTwoArchiveTests(unittest.TestCase):
         old=subject.SourceBinding(str(ROOT/subject.OWNER),'b'*64,10)
         extra=[subject.ArchivedSource('acceptanceOwner',old,replace(old,path=str(ROOT/'synthetic-parent2-archives/owner')))]
         for role,path,digest,size in (
-            ('memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853',16985),
-            ('fullResourcePlan','reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md','46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021)):
+            ('memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc',16985),
+            ('fullResourcePlan','reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md','2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40',13021)):
             old=subject.SourceBinding(str(ROOT/path),digest,size)
             extra.append(subject.ArchivedSource(role,old,replace(old,path=str(ROOT/'synthetic-parent2-archives'/role))))
         value=replace(value,archived_sources=value.archived_sources+tuple(extra))

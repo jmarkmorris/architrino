@@ -16,9 +16,9 @@ ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT/"scripts/eom/verify-f6c-continuous-reception-root-cover.py"
 BASE_TESTS = ROOT/"tests/test_f6c_continuous_reception_root_cover.py"
 SOURCE = ROOT/"scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py"
-BASE_SHA = "c0a9a9467f68ceed8b8d73fc12bf604bce64a3dc8f68e60f8cbc71b67ddc3987"
+BASE_SHA = "1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36"
 BASE_TESTS_SHA = "5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5"
-DECLARATION_SHA = "7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4"
+DECLARATION_SHA = "520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba"
 ALLOWED_ASSIGNMENTS = {"SELF", "DECLARATION", "DECLARATION_SHA", "FIXED"}
 REPLACEMENTS = [
     [
@@ -30,8 +30,8 @@ REPLACEMENTS = [
         "DECLARATION = \"reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md\""
     ],
     [
-        "DECLARATION_SHA = \"765e6663cdd60323f84b9e1af52ba1399345322eb747727f2a0898b4dd0fd079\"",
-        "DECLARATION_SHA = \"7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4\""
+        "DECLARATION_SHA = \"3b20e5d7bce4b57dfd41c0d1efcc34f9242dcd41a02b35676f45ba0984499578\"",
+        "DECLARATION_SHA = \"520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba\""
     ],
     [
         "(\"rootLibrary\", \"scripts/eom/oracle/continuous_reception_roots.py\", \"f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c\")",
@@ -42,14 +42,14 @@ REPLACEMENTS = [
         "(\"rootControls\", \"tests/test_eom_continuous_reception_roots_cached.py\", \"a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb\")"
     ]
 ]
-EXTRA_FIXED_LINES = """    ("governingDeclaration", "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md", "765e6663cdd60323f84b9e1af52ba1399345322eb747727f2a0898b4dd0fd079"),
+EXTRA_FIXED_LINES = """    ("governingDeclaration", "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md", "3b20e5d7bce4b57dfd41c0d1efcc34f9242dcd41a02b35676f45ba0984499578"),
     ("baselineRootLibrary", "scripts/eom/oracle/continuous_reception_roots.py", "f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c"),
     ("baselineRootControls", "tests/test_eom_continuous_reception_roots.py", "81de0ebc74a6e2e2a6c66e96cd3a7856806b7e41f775e3e2f184caf5bd1158ac"),
-    ("baselineComparator", "scripts/eom/verify-f6c-continuous-reception-root-cover.py", "c0a9a9467f68ceed8b8d73fc12bf604bce64a3dc8f68e60f8cbc71b67ddc3987"),
+    ("baselineComparator", "scripts/eom/verify-f6c-continuous-reception-root-cover.py", "1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36"),
     ("baselineComparatorControls", "tests/test_f6c_continuous_reception_root_cover.py", "5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5"),
-    ("cacheEquivalence", "reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md", "798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3"),
-    ("governingResourcePlan", "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md", "36b72681c116cedf1803cc89ead8b48a7d9604bae7f9bffd7b0f95b33c3bb9b4"),
-    ("priorResourceReturn", "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md", "46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef"),
+    ("cacheEquivalence", "reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md", "a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d"),
+    ("governingResourcePlan", "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md", "1a6327933b0060905aec97022e87c243b54f353af8c7aec83712967b285b010d"),
+    ("priorResourceReturn", "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md", "2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40"),
 """
 
 def digest(raw):

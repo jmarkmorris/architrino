@@ -32,13 +32,13 @@ PRODUCER_CONTROLS='tests/test_f6c_emission_refinement_preparation.py'
 DECLARATION='reference/priorities/braid-program/evidence/2026-08-27-f6c-emission-refinement-predeclaration.md'
 DECLARATION_SHA='53f3398ba083218948c9efd93f10db09cbf5d617bc0270988f5adea24c48f037'
 PURE='scripts/eom/oracle/f6c_emission_refinement_conformance.py'
-PURE_SHA='d54a1372c5f61ed94110eee8a8483ffec9cf76bc2354b61a7e314cbd4f477126'
+PURE_SHA='0f21d676f4f50702e8375f7ba9c1f362cca82ad3d636316e7121ab819a2dbc7b'
 PURE_CONTROLS='tests/test_f6c_emission_refinement_conformance.py'
 PURE_CONTROLS_SHA='bac7357186fb05c5b7ea35154c5564e7527075a9a94177a8b600f9a02119adb5'
 HELPER='scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py'
-HELPER_SHA='e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9'
+HELPER_SHA='3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'
 HELPER_CONTROLS='tests/test_f6c_cached_continuous_reception_root_cover.py'
-HELPER_CONTROLS_SHA='ba2af569d4f9b1822b6cd6f70e840a8865a4fea8779f2cfa2afe8ebf31745f74'
+HELPER_CONTROLS_SHA='09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3'
 BASE = '.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/'
 # Independently transcribed original-byte contract, never imported from subject.
 FIXED = (
@@ -51,13 +51,13 @@ FIXED = (
     ('rows', BASE+'subject/rows.ndjson', '786785b2597bcdf024e350ba89c129fb32115afed693169a6db3137c6bdca383'),
     ('pieces', BASE+'subject/pieces.ndjson', '2c064a5956e7684868cbda7aa7e312ac609e07760bf67f1cf121c934d6d4c411'),
     ('priorPlan', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json', '5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86'),
-    ('priorClosureOwner', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md', 'daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b'),
+    ('priorClosureOwner', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md', '8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378'),
     ('reference', 'scripts/eom/oracle/continuous_reception_acceleration.py', 'abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8'),
     ('referenceControls', 'tests/test_eom_continuous_reception_acceleration.py', '26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'),
-    ('referenceProof', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md', 'c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f'),
-    ('memberPredeclaration', 'reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md', 'c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'),
+    ('referenceProof', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md', '8d2c7819962db6bac0e1ea0939292992145dbe342a28b51928efb81e74478179'),
+    ('memberPredeclaration', 'reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md', '7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc'),
     ('rootTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md', 'db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc'),
-    ('reconstructionTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md', '6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936'),
+    ('reconstructionTheorem', 'reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md', '710279f5c348a81fd36d58c6ca704730b3fa70da729ca30b9c92ae4e1cc6734b'),
 )
 
 SCOPE='pilot-cell-0-emission-refinement'
@@ -94,9 +94,9 @@ FROZEN_SUBJECT=(
  ('scripts/eom/oracle/decimal_interval.py','fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'),
  ('tests/test_eom_decimal_interval.py','22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44'),
  (HELPER,HELPER_SHA),(HELPER_CONTROLS,HELPER_CONTROLS_SHA),(PURE,PURE_SHA),(PURE_CONTROLS,PURE_CONTROLS_SHA),
- ('reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md','798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3'),
- ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','5d7c18363df966d1c9beae506875ce079f9a735f06e36e43e20157c22f30ace5'),
- ('tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','a44ae057220b5c447aa05d93e6ce055a309e9467de2fa7c8f1e7b6426f659409'))
+ ('reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md','a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d'),
+ ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5'),
+ ('tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','3bee7599b03f2500ede6eeeea31c46e1aac82410f456e967102c13e820b93221'))
 SOURCE_PLAN_KEYS=('declaration','producer','producerControls','verifier','verifierControls','comparisonReference','comparisonReferenceControls')
 
 def prior_closure():
@@ -350,8 +350,8 @@ def authenticate_prior(docs, fixed):
     flags(c['libraryFlags'],ROOT_FLAGS)
     require(p['schema']=='braid-program/f6c-cached-root-cover-pilot-launch.v1' and p['scope']=='pilot-cell-0', 'prior plan scope differs')
     contract=p['comparisonContract']
-    require(contract['verifierSha256']=='e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9' and
-        contract['declarationSha256']=='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4' and
+    require(contract['verifierSha256']=='3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7' and
+        contract['declarationSha256']=='520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba' and
         c['verifier']['sha256']==contract['verifierSha256'], 'prior oracle generation differs')
     require(equal(m['subjectSourceBindings'],contract['subjectSourceBindings']) and equal(m['runtimeBindings'],contract['runtimeBindings']), 'prior source/runtime chain differs')
     for role in ('export','reconstruction','guards','rootTheorem','reconstructionTheorem'):

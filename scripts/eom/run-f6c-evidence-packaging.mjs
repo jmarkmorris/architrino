@@ -21,10 +21,10 @@ import {pathToFileURL} from 'node:url';
 export const SELF='scripts/eom/run-f6c-evidence-packaging.mjs';
 export const CONTROL='tests/f6c-evidence-packaging.test.js';
 export const PINS=Object.freeze({
-  inventory:['tests/fixtures/f6c-lossless-packaging-expectations.v1.json','811885700af0c25da4c03464aaf30617964ed66555e5cb14fd10700a14c8fd12'],
+  inventory:['tests/fixtures/f6c-lossless-packaging-expectations.v1.json','901687bd92fdc686dc26b8634d8f58ecd46bd9f81208ca68563ad4cff983b09b'],
   contract:['reference/priorities/braid-program/evidence/2026-08-28-f6c-lossless-packaging-expectations.md','75177ad5b16b34fd1f387689ec7ef2db77ed7196c5995c5621a54799539460cf'],
   packageModule:['scripts/eom/f6c_evidence_package.py','9d888682514f23652b39bfaa53fdfb3ceab66e6ba88cf34222c156d226764ad6'],
-  packageControls:['tests/test_f6c_evidence_package.py','36fff6d7113a1df53d84a914c255a59b268d9707e26b917d08d1d05b274dc4ac'],
+  packageControls:['tests/test_f6c_evidence_package.py','f2c52fd510cad3da99f65ab2497dde754f8842d18004c3e1ae98d1bbdcb6d3d8'],
   independentDecoder:['.local-data/braid-analysis/f6c-whole-history-20260828/packaging-review/independent-package-review.mjs','328120d4f0c0716d78d38362cfb2f1c27b5a33382c6a3870fb10ca501f9d0273'],
 });
 export const GENERIC_PINS=Object.freeze({

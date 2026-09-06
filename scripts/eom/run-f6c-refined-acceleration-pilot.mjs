@@ -24,7 +24,7 @@ export const CHECKER='scripts/eom/verify-f6c-refined-acceleration.py';
 export const CHECKER_TESTS='tests/test_f6c_refined_acceleration.py';
 // Separately authored checker and controls, independently accepted before this
 // operational generation. No subject or mathematical reference is altered.
-export const CHECKER_SHA='99faec36ec8c0837d14b96eb77e92aecc90e933a7d9da09b9b4c0996c1bdf537';
+export const CHECKER_SHA='9f010ddf5a4484e0e004ac3b367fd08b4abddb2319edb3821468b3a7de87e51a';
 export const CHECKER_TESTS_SHA='4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a';
 export const LANE='.local-data/braid-analysis/f6c-refined-acceleration-20260827';
 export const SHARED_LOCK_LANE='.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827';
@@ -54,13 +54,13 @@ export const FIXED=Object.freeze([
   ['rows',base+'subject/rows.ndjson','786785b2597bcdf024e350ba89c129fb32115afed693169a6db3137c6bdca383'],
   ['pieces',base+'subject/pieces.ndjson','2c064a5956e7684868cbda7aa7e312ac609e07760bf67f1cf121c934d6d4c411'],
   ['priorPlan','reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json','5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86'],
-  ['priorClosureOwner','reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md','daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b'],
+  ['priorClosureOwner','reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md','8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378'],
   ['reference','scripts/eom/oracle/continuous_reception_acceleration.py','abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8'],
   ['referenceControls','tests/test_eom_continuous_reception_acceleration.py','26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'],
-  ['referenceProof','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md','c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f'],
-  ['memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'],
+  ['referenceProof','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md','8d2c7819962db6bac0e1ea0939292992145dbe342a28b51928efb81e74478179'],
+  ['memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc'],
   ['rootTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md','db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc'],
-  ['reconstructionTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md','6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936'],
+  ['reconstructionTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md','710279f5c348a81fd36d58c6ca704730b3fa70da729ca30b9c92ae4e1cc6734b'],
 ].map(Object.freeze));
 export const NAMED=Object.freeze({
  consumer:CONSUMER,consumerControls:CONSUMER_TESTS,verifier:CHECKER,verifierControls:CHECKER_TESTS,declaration:DECLARATION,
@@ -86,12 +86,12 @@ export const PRIOR_OPERATIONS=Object.freeze([
 ].map(Object.freeze));
 export const PINS=Object.freeze({...Object.fromEntries([...FIXED,...REFINED,...PRIOR_OPERATIONS].map(([,p,h])=>[p,h])),
  [CONSUMER]:'738c716f95c419d49c14ffd533ba3bde4b6bfe666521f363db15c6212a52842c',
- [CONSUMER_TESTS]:'d1ee4c826ed04dcfad6db87482ac77fc7bd8442498524338c6c20d9efe10ad01',
+ [CONSUMER_TESTS]:'28ac5b67e594f52ea151fa00ddb04dabbbe8a522108a7421ec56550b70e87252',
  [DECLARATION]:'c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d',
- [NAMED.comparisonCore]:'196c6b987580082ed6b1cc07afdbcdd04d1368d11e2bb8655bb49d05a74a87dd',
- [NAMED.comparisonCoreControls]:'7d304d7bed988bebc1546f17ff4182bb3701d89a868b89dd2a7dd9eee73d2b37',
- [NAMED.rangeComparison]:'32fd13cfffb66265d783fee7b870c40c6caf0293587b7397751e08ae0371d1f2',
- [NAMED.rangeComparisonControls]:'ba7f65d4b9259d0bbb84e07a58456a59eb904be1e7c1e46cc900c5460f6cc553',
+ [NAMED.comparisonCore]:'7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e',
+ [NAMED.comparisonCoreControls]:'147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921',
+ [NAMED.rangeComparison]:'23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d',
+ [NAMED.rangeComparisonControls]:'13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed',
  [OUTER]:'cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48',
  [HELPERS]:'9eb1afb84a175b143020610c153f9fef6dabb50efce9f956991feca3fbc0d5c2',
  [CHECKER]:CHECKER_SHA,[CHECKER_TESTS]:CHECKER_TESTS_SHA,

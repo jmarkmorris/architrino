@@ -48,11 +48,11 @@ export const PINS=Object.freeze({
  ],
  "adapter": [
   "scripts/eom/f6c_variable_cell_adapter.py",
-  "3ac5d1bfba780e41954ddda02120581a2ed4e6f17e3a07cdd058eed5063cec14"
+  "b551960ea665eec9a1427afe92e984ec2c5e347bfa5207a6649990c5ede2dd87"
  ],
  "adapterControls": [
   "tests/test_f6c_variable_cell_adapter.py",
-  "9cf5aae2bcfd5fecd1e3a73855eee86b0c16b19164056f5ce745a4b4b1973a7c"
+  "e6b9d0343dc026926b0974b7de20ce092d7b4b1f088cdc6acfc7c1d058a9faaa"
  ],
  "diagnostic": [
   "scripts/eom/f6c_single_leaf_diagnostic.py",
@@ -100,7 +100,7 @@ export const PINS=Object.freeze({
  ],
  "transport": [
   "scripts/eom/verify-f6c-refined-acceleration.py",
-  "99faec36ec8c0837d14b96eb77e92aecc90e933a7d9da09b9b4c0996c1bdf537"
+  "9f010ddf5a4484e0e004ac3b367fd08b4abddb2319edb3821468b3a7de87e51a"
  ],
  "helpers": [
   "scripts/eom/launch-prescribed-response-pilot.mjs",
@@ -141,13 +141,13 @@ function historicalArchiveSources(d,root){
  return d.parent_index===2&&d.plan.path===path.join(root,p)&&d.plan.sha256===h&&d.plan.bytes===n?PARENT_TWO_ARCHIVE_SOURCES:ARCHIVE_SOURCES;
 }
 export const ANCESTRY_ARCHIVE_SOURCES=Object.freeze({
- memberPredeclaration:['reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853',16985],
- fullResourcePlan:['reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md','46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021]
+ memberPredeclaration:['reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc',16985],
+ fullResourcePlan:['reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md','2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40',13021]
 });
 export const PACKAGE_PINS=Object.freeze({
  reader:['scripts/eom/f6c_evidence_package.py','9d888682514f23652b39bfaa53fdfb3ceab66e6ba88cf34222c156d226764ad6'],
- readerControls:['tests/test_f6c_evidence_package.py','36fff6d7113a1df53d84a914c255a59b268d9707e26b917d08d1d05b274dc4ac'],
- inventory:['tests/fixtures/f6c-lossless-packaging-expectations.v1.json','811885700af0c25da4c03464aaf30617964ed66555e5cb14fd10700a14c8fd12']
+ readerControls:['tests/test_f6c_evidence_package.py','f2c52fd510cad3da99f65ab2497dde754f8842d18004c3e1ae98d1bbdcb6d3d8'],
+ inventory:['tests/fixtures/f6c-lossless-packaging-expectations.v1.json','901687bd92fdc686dc26b8634d8f58ecd46bd9f81208ca68563ad4cff983b09b']
 });
 export const FRESH_EVIDENCE_PINS=Object.freeze({
  reader:PACKAGE_PINS.reader,readerControls:PACKAGE_PINS.readerControls,
@@ -163,8 +163,8 @@ export const FRESH_CLOSURE_PINS=Object.freeze({
  contract:['.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/fresh-parent-batch-closure-validator-expectations.md','7132bcf6db99bef0b2255418f656e3fb5900eb23fac9d1400d294d5ba8fd2eed'],
 });
 export const CONTINUATION_MATH=Object.freeze([
- ['scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py','e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9',41336],
- ['scripts/eom/verify-f6c-continuous-reception-acceleration.py','32fd13cfffb66265d783fee7b870c40c6caf0293587b7397751e08ae0371d1f2',42580],
+ ['scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py','3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7',41336],
+ ['scripts/eom/verify-f6c-continuous-reception-acceleration.py','23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d',42580],
  ['scripts/eom/oracle/f6c_residual_integral_supremum.py','fc170a91b2747923bda89ef00b58d529c98bf96b01cc7b2c05c035042fc79c5a',20129],
  ['scripts/eom/oracle/f6c_gk13_protocol.py','a70a15481f793e913440628068f9c53bab611fe9d92f36206a401c01e91478eb',24388],
  ['scripts/eom/oracle/f6c_correlated_residual_enclosure.py','b86907236e849124f3fa9c6bcad0f65492ecc6fbeb1b51a27438655c45b037b1',7830],

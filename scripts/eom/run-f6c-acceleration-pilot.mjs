@@ -24,8 +24,8 @@ export const CHECKER='scripts/eom/verify-f6c-continuous-reception-acceleration.p
 export const CHECKER_TESTS='tests/test_f6c_continuous_reception_acceleration.py';
 // Separately authored checker and controls, independently accepted before this
 // operational generation. No subject or mathematical reference is altered.
-export const CHECKER_SHA='32fd13cfffb66265d783fee7b870c40c6caf0293587b7397751e08ae0371d1f2';
-export const CHECKER_TESTS_SHA='ba7f65d4b9259d0bbb84e07a58456a59eb904be1e7c1e46cc900c5460f6cc553';
+export const CHECKER_SHA='23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d';
+export const CHECKER_TESTS_SHA='13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed';
 export const LANE='.local-data/braid-analysis/f6c-continuous-reception-acceleration-20260827';
 export const SHARED_LOCK_LANE='.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827';
 export const SCOPE='cached-pilot-cell-0-range';
@@ -53,17 +53,17 @@ export const FIXED=Object.freeze([
   ['rows',base+'subject/rows.ndjson','786785b2597bcdf024e350ba89c129fb32115afed693169a6db3137c6bdca383'],
   ['pieces',base+'subject/pieces.ndjson','2c064a5956e7684868cbda7aa7e312ac609e07760bf67f1cf121c934d6d4c411'],
   ['priorPlan','reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json','5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86'],
-  ['priorClosureOwner','reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md','daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b'],
+  ['priorClosureOwner','reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md','8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378'],
   ['reference','scripts/eom/oracle/continuous_reception_acceleration.py','abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8'],
   ['referenceControls','tests/test_eom_continuous_reception_acceleration.py','26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'],
-  ['referenceProof','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md','c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f'],
-  ['memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'],
+  ['referenceProof','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md','8d2c7819962db6bac0e1ea0939292992145dbe342a28b51928efb81e74478179'],
+  ['memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc'],
   ['rootTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md','db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc'],
-  ['reconstructionTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md','6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936'],
+  ['reconstructionTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md','710279f5c348a81fd36d58c6ca704730b3fa70da729ca30b9c92ae4e1cc6734b'],
 ].map(Object.freeze));
 export const PINS=Object.freeze({...Object.fromEntries(FIXED.map(([,p,h])=>[p,h])),
-  [CONSUMER]:'43f2af53e848a2a7c81bd53dffd4aa0ebb73fb361ee55c60bd5d73a8e7fd85fb',
-  [CONSUMER_TESTS]:'cf05168f67c09c3349e0bec699411862e47b2c7982ede13cdc25143d45072326',
+  [CONSUMER]:'8fa7a73487a2658814dc130f3f6d0827bd4066bad23ab95bf88935b264efc618',
+  [CONSUMER_TESTS]:'45f40e2c6580fa09a614a471e7375615c8d54e3fc295a68dbdb8ad2167b7690b',
   [DECLARATION]:'3ef8fb9020bae71833b1e06a119672b49a4beb5395f697dcb3d037d088e7891e',
   [OUTER]:'cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48',
   [HELPERS]:'9eb1afb84a175b143020610c153f9fef6dabb50efce9f956991feca3fbc0d5c2',

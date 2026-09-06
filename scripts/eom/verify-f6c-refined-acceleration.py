@@ -58,19 +58,19 @@ CONSUMER_CONTROLS='tests/test_f6c_refined_acceleration_preparation.py'
 DECLARATION='reference/priorities/braid-program/evidence/2026-08-27-f6c-refined-cover-acceleration-projection.md'
 DECLARATION_SHA='c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d'
 CORE='scripts/eom/oracle/f6c_refined_acceleration_conformance.py'
-CORE_SHA='196c6b987580082ed6b1cc07afdbcdd04d1368d11e2bb8655bb49d05a74a87dd'
+CORE_SHA='7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e'
 REFERENCE='scripts/eom/verify-f6c-continuous-reception-acceleration.py'
-REFERENCE_SHA='32fd13cfffb66265d783fee7b870c40c6caf0293587b7397751e08ae0371d1f2'
+REFERENCE_SHA='23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d'
 NAMED={
  'consumer':(CONSUMER,None),'consumerControls':(CONSUMER_CONTROLS,None),
  'verifier':(SELF,None),'verifierControls':(CONTROLS,None),
  'declaration':(DECLARATION,DECLARATION_SHA),
  'comparisonCore':(CORE,CORE_SHA),
- 'comparisonCoreControls':('tests/test_f6c_refined_acceleration_conformance.py','7d304d7bed988bebc1546f17ff4182bb3701d89a868b89dd2a7dd9eee73d2b37'),
+ 'comparisonCoreControls':('tests/test_f6c_refined_acceleration_conformance.py','147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921'),
  'rangeReference':('scripts/eom/oracle/continuous_reception_acceleration.py','abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8'),
  'rangeReferenceControls':('tests/test_eom_continuous_reception_acceleration.py','26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'),
  'rangeComparison':(REFERENCE,REFERENCE_SHA),
- 'rangeComparisonControls':('tests/test_f6c_continuous_reception_acceleration.py','ba7f65d4b9259d0bbb84e07a58456a59eb904be1e7c1e46cc900c5460f6cc553')}
+ 'rangeComparisonControls':('tests/test_f6c_continuous_reception_acceleration.py','13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed')}
 PRIOR_BASE='.local-data/braid-analysis/f6c-emission-refinement-20260827/pilot-cell-0-v2'
 REFINED=(
  ('queries',PRIOR_BASE+'/queries.ndjson','44d59ae62f8d7d9a9e7afd1d684e8ee15b8aeadf4dc92d489a787e5e224029fa'),

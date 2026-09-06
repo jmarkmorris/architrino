@@ -28,7 +28,7 @@ function planFixture(){return {schema:'braid-program/f6c-continuous-reception-ac
 test('all scientific implementation/control pins remain the separately accepted source generation',()=>{
   for(const p of [E.CONSUMER,E.CONSUMER_TESTS,E.DECLARATION,E.CHECKER,E.CHECKER_TESTS,E.HELPERS,E.OUTER,...E.FIXED.filter(([,p])=>!p.startsWith('.local-data')).map(([,p])=>p)])
     assert.equal(hash(readFileSync(p)),E.PINS[p],p);
-  assert.equal(E.FIXED.length,16);assert.equal(E.CHECKER_SHA,'32fd13cfffb66265d783fee7b870c40c6caf0293587b7397751e08ae0371d1f2');
+  assert.equal(E.FIXED.length,16);assert.equal(E.CHECKER_SHA,'23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d');
 });
 test('closed plan has no invented runtime/default fields and exact operational closure',()=>{
   const plan=planFixture();

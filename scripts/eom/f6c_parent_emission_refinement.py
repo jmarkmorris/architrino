@@ -32,9 +32,9 @@ from types import MappingProxyType
 
 
 PARENT_SCHEMA = 'braid-program/f6c-original-parent-refinement-input.v1'
-PROOF_SHA256 = '652d77241f9b5c082e7d15e2bb62328f346760548f9f13e4ffe7562c4cad0733'
+PROOF_SHA256 = 'c9f0924cd24745bd10e2b51ee5b60a09c0c0576b5dec3bc14f647c9c7ee6fc47'
 REQUIRED_SOURCES = (
-    ('helper', '5d7c18363df966d1c9beae506875ce079f9a735f06e36e43e20157c22f30ace5'),
+    ('helper', '7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5'),
     ('history', 'ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'),
     ('intervals', 'fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'),
     ('roots', 'daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf'),

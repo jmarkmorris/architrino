@@ -20,11 +20,11 @@ BASE = ROOT/"scripts/eom/prepare-f6c-continuous-reception-root-cover.py"
 BASE_TESTS = ROOT/"tests/test_f6c_continuous_reception_root_cover_preparation.py"
 SOURCE = ROOT/"scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py"
 REFERENCE = ROOT/"scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py"
-BASE_SHA = "49bd22cb0d4454782c037cff3c29998e10c1dae812d212b506b95d1f6d6a73f6"
+BASE_SHA = "6229e8227d26abdb1acc415ae10f0456d325ced5649ad68eb261790c585ae0a3"
 BASE_TESTS_SHA = "68a940c40b2e3b463555b95858031f96796e2ac94963a86b3a9ae6fd74dc3742"
-REFERENCE_SHA = "e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9"
-REFERENCE_TESTS_SHA = "ba2af569d4f9b1822b6cd6f70e840a8865a4fea8779f2cfa2afe8ebf31745f74"
-DECLARATION_SHA = "7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4"
+REFERENCE_SHA = "3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7"
+REFERENCE_TESTS_SHA = "09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3"
+DECLARATION_SHA = "520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba"
 CACHED_SHA = "daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf"
 ALLOWED = {"SELF", "REFERENCE", "REFERENCE_SHA", "DECLARATION", "DECLARATION_SHA", "FIXED"}
 
@@ -52,7 +52,7 @@ REFERENCE_BYTES = pinned(REFERENCE, REFERENCE_SHA)
 pinned(ROOT/"tests/test_f6c_cached_continuous_reception_root_cover.py", REFERENCE_TESTS_SHA)
 pinned(ROOT/"scripts/eom/oracle/continuous_reception_roots_cached.py", CACHED_SHA)
 pinned(ROOT/"tests/test_eom_continuous_reception_roots_cached.py", "a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb")
-pinned(ROOT/"scripts/eom/verify-f6c-continuous-reception-root-cover.py", "c0a9a9467f68ceed8b8d73fc12bf604bce64a3dc8f68e60f8cbc71b67ddc3987")
+pinned(ROOT/"scripts/eom/verify-f6c-continuous-reception-root-cover.py", "1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36")
 pinned(ROOT/"reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md", DECLARATION_SHA)
 S = captured_module("synthetic_cached_f6c_cover_subject", SOURCE, SOURCE.read_bytes())
 V = captured_module("frozen_cached_f6c_cover_reference", REFERENCE, REFERENCE_BYTES)

@@ -25,15 +25,15 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 SUBJECT = ROOT/'scripts/eom/f6c_parent_emission_refinement.py'
 PINS = {
-    'helper': ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py', '5d7c18363df966d1c9beae506875ce079f9a735f06e36e43e20157c22f30ace5'),
+    'helper': ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py', '7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5'),
     'certified_history': ('scripts/eom/oracle/certified_history.py', 'ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'),
     'decimal_interval': ('scripts/eom/oracle/decimal_interval.py', 'fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'),
     'continuous_reception_roots': ('scripts/eom/oracle/continuous_reception_roots_cached.py', 'daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf'),
-    'comparison': ('scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py', '2b3686df8557a54cdd082e6f8767ceb8007e78e570e9be92b33cd4a4b6a86d18'),
-    'comparisonControls': ('tests/test_f6c_parent_emission_refinement_conformance.py', 'bcec5abc8798551bcebecaf707853ed216c3f49f1da23f089a48d8a71aacd8d5'),
-    'geometry': ('scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py', 'e0e063ce268cfd54e8a9ce618fb7da3caca0a9756000d7602ed9ae2abc6b0fd9'),
-    'proof': ('reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-reference.md', '652d77241f9b5c082e7d15e2bb62328f346760548f9f13e4ffe7562c4cad0733'),
-    'oldSubject': ('scripts/eom/prepare-f6c-emission-refinement.py', 'c7a12452d7bb7bcbc7d469d5106d24893bb3209474820fb87cbc28660038b7c2'),
+    'comparison': ('scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py', '9bca879b94386d033597bb9d1e3a4ceeb9943925615c916299feb91e482391ad'),
+    'comparisonControls': ('tests/test_f6c_parent_emission_refinement_conformance.py', '2eafcd7551a6d64c5f6c7bc6923507da8d27084af74bc5742583d63eb708aebb'),
+    'geometry': ('scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py', '3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'),
+    'proof': ('reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-reference.md', 'c9f0924cd24745bd10e2b51ee5b60a09c0c0576b5dec3bc14f647c9c7ee6fc47'),
+    'oldSubject': ('scripts/eom/prepare-f6c-emission-refinement.py', 'd21291d7620f51f4bc894a04166ffc50670666b82c35bad128584caeb00357e9'),
 }
 
 

@@ -29,7 +29,7 @@ def load(name,relative):
     return module
 s=load('refined_range_core','scripts/eom/oracle/f6c_refined_acceleration_conformance.py')
 r=load('frozen_independent_range_helpers','scripts/eom/verify-f6c-continuous-reception-acceleration.py')
-SHA='32fd13cfffb66265d783fee7b870c40c6caf0293587b7397751e08ae0371d1f2'
+SHA='23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d'
 assert hashlib.sha256((ROOT/'scripts/eom/verify-f6c-continuous-reception-acceleration.py').read_bytes()).hexdigest()==SHA
 IDS=('0+','0-','1+','1-','2+','2-','3+','3-')
 Q='0.1666666666666666666666666666666667';K='10.304229970992187';RULER='0.5320012303229503'

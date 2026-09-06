@@ -104,7 +104,7 @@ class EvidencePackageTests(unittest.TestCase):
     def test_frozen_inventory_decodes_only_28_allowed_members(self):
         path = ROOT / 'tests/fixtures/f6c-lossless-packaging-expectations.v1.json'
         raw = path.read_bytes()
-        members = PACKAGE.inventory_members(raw, expected_sha256='811885700af0c25da4c03464aaf30617964ed66555e5cb14fd10700a14c8fd12', root=ROOT)
+        members = PACKAGE.inventory_members(raw, expected_sha256='901687bd92fdc686dc26b8634d8f58ecd46bd9f81208ca68563ad4cff983b09b', root=ROOT)
         self.assertEqual(len(members), 28)
         self.assertEqual(sum(m.original.bytes for m in members), 8_083_912)
         self.assertEqual(sum(m.role == 'acceptanceOwner' for m in members), 2)
