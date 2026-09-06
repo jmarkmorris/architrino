@@ -20,6 +20,13 @@ The detailed planar common-center three-binary constraint investigation is maint
 
 ## Shared search prerequisites
 
+### Routed test breakage from OPS-020
+
+- **Status:** Queued; routed here on 2026-09-06 from [OPS-020](../aaa-operations/work-queue.md#ops-020--release-gate-profile-coverage), which found it while measuring the PR gate's test reach. It is a repository-state defect, not a scientific finding, and grants no run or claim.
+- **Defect:** Thirteen tracked, unmodified test files fail at module resolution on `main` because they import `scripts/eom/launch-abc-enclosed-root-pilot.mjs` or `scripts/eom/prepare-abc-enclosed-root.mjs`, which commit `897fe1aa7` (2026-09-01) renamed to `launch-subfield-circular-root-pilot.mjs` and `prepare-subfield-circular-root.mjs`. The files are `f5-prehistory-handoff-build-startup`, `f6c-acceleration-pilot-process`, `f6c-cached-root-cover-full-process`, `f6c-cached-root-cover-full`, `f6c-cached-root-cover-pilot-launcher`, `f6c-cached-root-cover-pilot-process`, `f6c-emission-refinement-pilot-process`, `f6c-refined-acceleration-pilot-process`, `f6c-refined-acceleration-pilot`, `f6c-root-cover-pilot-process`, `f6c-root-cover-pilot`, `prescribed-response-pilot-launch`, and `prescribed-response-pilot-process`, all under `tests/`. Grade: measured on 2026-09-06 by `grep -l` over `tests/*.js`, `git show --name-status 897fe1aa7`, and `git ls-files`. None of the thirteen is reached by the PR gate, which is why the rename passed.
+- **Decision needed:** Whether each test follows the rename (repoint the import and re-verify what it asserts against the renamed script's current contract) or is retired with the ABC-era pilot it exercised. That is a lane judgment about which pilots remain live; do not repoint an import mechanically if the renamed script's behaviour or arguments changed with it.
+- **Completion:** Each of the thirteen files either passes against the renamed script with its assertions re-read, or is removed with the retirement recorded here, and no file under `tests/` imports either old path.
+
 ### Sixteen-row factual-configuration H3 pilot
 
 - **Status:** Complete. Two-phase pilot, all sixteen complete ladders, and final dispatcher independently accepted at scoped prescribed H3.

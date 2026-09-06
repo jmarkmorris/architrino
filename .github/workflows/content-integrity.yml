@@ -29,3 +29,10 @@ jobs:
 
       - name: Run Content Integrity gate
         run: node scripts/check-content-integrity.mjs
+
+      # OPS-022: the slow-list test files run here rather than in the local
+      # gate. Reporting only until the swept set is green; see
+      # scripts/config/test-sweep-slow-list.json gateStatus.
+      - name: Run slow-list test sweep (reporting until promoted)
+        continue-on-error: true
+        run: node scripts/run-test-sweep.mjs --slow

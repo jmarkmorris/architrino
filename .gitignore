@@ -14,14 +14,9 @@ node_modules/
 /content/generated/source-index/local-full-corpus-snapshot.v1.json
 /content/generated/reference/
 
-# Children's-book pilot: reproducible local exports and retained migration copies
-/.local-data/childrens-books/
-
-# Local analytical-campaign SQLite runtime data
-/.local-data/braid-analysis/
-
-# Local Braid Program EOM run artifacts
-/.local-data/braid-program/
+# Local runtime state: children's-book exports, analytical-campaign SQLite data, Braid Program EOM run artifacts,
+# owned-compute plans and logs, and raw browser-performance capture records. Never tracked; 2026-09-06.
+/.local-data/
 
 # Local exact-state PR validation receipts
 /.local-data/pr-validation/

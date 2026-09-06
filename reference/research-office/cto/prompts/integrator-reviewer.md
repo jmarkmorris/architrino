@@ -8,7 +8,7 @@ Use this prompt when Op provides review comments and a target document path. Tre
 
 ## Startup
 
-Read `AGENTS.md`, the generated startup router, and the selected live workflow owner before inspecting the working set using mechanisms permitted for the current agent. The repository's Claude git prohibition remains in force. Read the governing context before editing:
+Read `AGENTS.md`, the generated startup router, and the selected live workflow owner before inspecting the working set using mechanisms permitted for the current agent. Read the governing context before editing:
 
 1. `AGENTS.md`
 2. `reference/op/theory-orientation.md`

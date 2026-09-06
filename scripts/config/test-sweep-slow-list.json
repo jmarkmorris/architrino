@@ -1,0 +1,24 @@
+{
+  "schema": "architrino.test-sweep-slow-list.v1",
+  "owner": "reference/priorities/aaa-operations/work-queue.md#ops-022--pr-gate-test-sweep-by-duration-split",
+  "rule": "A test file may be listed here only with a measured wall time above thresholdMs, recorded with its date and instrument. The list excludes files from the aggregate sweep in check-content-integrity.mjs; the excluded files run in .github/workflows/content-integrity.yml instead. The list is not a place to park a failing test.",
+  "thresholdMs": 10000,
+  "gateStatus": {
+    "mode": "reporting",
+    "since": "2026-09-06",
+    "promotionCondition": "First clean pass of the swept set on the operator's machine; record the date and the measured wall time here when it changes."
+  },
+  "instrument": "node --test <file>, one file per process, wall time measured around the process; 2026-09-06 figures are from a four-core Linux sandbox without the shared Python venv and are upper bounds for the operator's machine.",
+  "entries": [
+    { "path": "tests/eq21-halo-cluster-transfer-child-residual.test.js", "measuredMs": 100008, "note": "hit a 100 s cap; true duration unmeasured", "measuredOn": "2026-09-06" },
+    { "path": "tests/eq21-nonlinear-transfer-child-residual.test.js", "measuredMs": 100007, "note": "hit a 100 s cap; true duration unmeasured", "measuredOn": "2026-09-06" },
+    { "path": "tests/coincident-axis-three-binary-streaming-reductions.test.js", "measuredMs": 84259, "measuredOn": "2026-09-06" },
+    { "path": "tests/runtime-asset-fresh-checkout.test.js", "measuredMs": 72850, "measuredOn": "2026-09-06" },
+    { "path": "tests/prescribed-braid-record.test.js", "measuredMs": 42950, "measuredOn": "2026-09-06" },
+    { "path": "tests/archie-service-full-corpus-source-index.test.js", "measuredMs": 32985, "measuredOn": "2026-09-06" },
+    { "path": "tests/eq21-shear-rsd-transfer-child-residual.test.js", "measuredMs": 26331, "measuredOn": "2026-09-06" },
+    { "path": "tests/subfield-circular-root-launcher.test.js", "measuredMs": 18902, "measuredOn": "2026-09-06" },
+    { "path": "tests/topo-sampled-field-contours.test.js", "measuredMs": 15580, "measuredOn": "2026-09-06" },
+    { "path": "tests/coincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js", "measuredMs": 11696, "measuredOn": "2026-09-06" }
+  ]
+}
