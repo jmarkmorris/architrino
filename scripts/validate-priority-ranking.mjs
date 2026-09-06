@@ -2,8 +2,11 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const ROOT_DIR = process.cwd();
+// Repository root from this file's location, not the working directory, so the
+// script behaves the same when a session is rooted above the repository.
+const ROOT_DIR = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 const RANKING_PATH = path.join(
   ROOT_DIR,
   "reference/priorities/aaa-work-threads/priorities.md"
