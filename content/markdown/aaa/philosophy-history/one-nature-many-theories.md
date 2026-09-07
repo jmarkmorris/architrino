@@ -6,7 +6,7 @@ Physics studies one natural world through many frameworks, specific theories, ef
 
 The familiar statement that foundational physics must unify general relativity and quantum theory identifies a real and important incompatibility, especially where quantum fields and dynamical spacetime meet. It does not state the full unification burden. Reconciling those formalisms would be framework unification; a unified theory of nature must also derive the effective variables, domain boundaries, parameters, state spaces, and bridge maps used throughout physics.
 
-physics does not consist of two seamless theories with one missing joint. It consists of many successful regional descriptions connected by bridges of different kinds and strengths. Joining the two largest frameworks would be a major achievement, but it would not by itself show that the entire structure comes from one physical foundation.
+Physics does not consist of two seamless theories with one missing joint. It consists of many successful regional descriptions connected by bridges of different kinds and strengths. Joining the two largest frameworks would be a major achievement, but it would not by itself show that the entire structure comes from one physical foundation.
 
 This chapter complements the compact inventory in [Theory Mapping](theory-mapping.md), the rules for inherited concepts in [Theory Inheritance Discipline](theory-inheritance-discipline.md), and the historical cases in [Historical Context and Missed Opportunities](historical-context-and-missed-opportunities.md). It audits the network among theories; it does not take scientific ownership of the mechanisms inside the theories being compared.
 
@@ -46,7 +46,7 @@ A useful audit begins with edges rather than merely naming theory islands. The f
 | Relativistic cosmology and matter inputs | Cosmic microwave background (CMB) spectra and parameter posterior | Numerical transfer plus model-conditional statistical inference | Priors and degeneracies prevent unique source-history reconstruction | [Lewis, Challinor, and Lasenby](https://arxiv.org/abs/astro-ph/9911177) and [Planck Collaboration](https://doi.org/10.1051/0004-6361/201833910) |
 | Quantum fields on curved spacetime plus classical gravity | Semiclassical or stochastic gravity and the quantum-gravity interface | Controlled semiclassical approximation in restricted regimes; full handoff unresolved | Mean and noise records do not reconstruct quantum geometry | [Hu and Verdaguer](https://link.springer.com/article/10.12942/lrr-2008-3) |
 
-these islands have real and powerful connections. The unresolved point is narrower: a reliable forward bridge can coexist with a non-unique reverse reconstruction, and an intermediate bridge can succeed without reaching a common microscopic account.
+These islands have real and powerful connections. The unresolved point is narrower: a reliable forward bridge can coexist with a non-unique reverse reconstruction, and an intermediate bridge can succeed without reaching a common microscopic account.
 
 Fermi's beta theory is the cleanest first example. At energies far below the $W$-boson scale, the four-fermion coefficient $G_F$ compresses the mediator structure into one low-energy parameter. At tree level in the electroweak theory,
 
@@ -105,7 +105,7 @@ $$
 
 where $\mathcal{D}_i$ and $\mathcal{D}_j$ are the source and target state domains, $M_{j\leftarrow i}$ is the bridge map, $\mathcal{R}_{ij}$ is its validity regime, $\epsilon_{ij}$ is its declared error or residual bound, $\mathcal{I}_{ij}$ is the information preserved, $\mathcal{L}_{ij}$ is the information discarded or left unresolved, and $\mathcal{F}_{ij}$ is an independently checkable failure condition.
 
-a line between two theories is not enough. The bridge must state what is translated, where the translation works, how accurately it works, what survives, what disappears, and what result would show that the bridge has failed.
+A line between two theories is not enough. The bridge must state what is translated, where the translation works, how accurately it works, what survives, what disappears, and what result would show that the bridge has failed.
 
 The reverse direction is generally a compatibility fiber rather than an inverse function. For an effective record $y\in\mathcal D_j$, define
 
@@ -147,7 +147,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-00f9558afc861775)
 
-one history should be readable in several scientific languages. Translating its fine description into a coarse description should agree with reading the coarse record directly from the same history, and an intermediate route should not silently change the answer.
+One history should be readable in several scientific languages. Translating its fine description into a coarse description should agree with reading the coarse record directly from the same history, and an intermediate route should not silently change the answer.
 
 Scale change adds a constituent-continuity obligation. Let $C_{\ell_2\leftarrow\ell_1}$ be a declared coarse-graining map, let $H$ be a retained physical history on a window $W$, let $\Pi_I$ extract constituent identity and provenance, and let $\Phi_I(\partial W)$ record actual constituent flow through the window boundary. The candidate minimum condition is
 
@@ -163,7 +163,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8b30dc678926f3e6)
 
-changing resolution in two steps must agree with changing it directly. Coarse-graining may discard descriptive detail, but it may not create a different constituent inventory merely because the language changed; any actual gain or loss must be accounted for at the physical boundary.
+Changing resolution in two steps must agree with changing it directly. Coarse-graining may discard descriptive detail, but it may not create a different constituent inventory merely because the language changed; any actual gain or loss must be accounted for at the physical boundary.
 
 > **Claim grade: guessed.** These composition and inventory equations are a candidate minimum closure target, not an achieved result. **Falsifier:** a declared common-history and coarse-graining construction for which direct and staged projection disagree beyond tolerance, or for which the inventory mismatch cannot be accounted for by the boundary-flow record.
 
@@ -187,7 +187,7 @@ $$
 
 for every admissible history in the declared domain, where $\overline I_{a,\ell}$ reads the protected quantity from the scale-$\ell$ effective record.
 
-all fine histories that look identical at one resolution must agree on a genuinely protected quantity. The invariant narrows the possible histories; it does not normally reconstruct one history uniquely.
+All fine histories that look identical at one resolution must agree on a genuinely protected quantity. The invariant narrows the possible histories; it does not normally reconstruct one history uniquely.
 
 ## What Survives Coarse-Graining
 
@@ -195,7 +195,7 @@ Information loss is not uniform. Anomaly matching, topology, symmetry-breaking p
 
 The correct foundational requirement is therefore not that every coarse observation have one inverse. It is that one retained history reproduce all mandatory coarse records, shared coefficients, protected invariants, and boundary ledgers without changing ontology or privately retuning each domain.
 
-most microscopic distinctions disappear when physics zooms out, but some leave non-negotiable marks. Those marks can rule out candidate histories even when they cannot identify one history by themselves.
+Most microscopic distinctions disappear when physics zooms out, but some leave non-negotiable marks. Those marks can rule out candidate histories even when they cannot identify one history by themselves.
 
 ## Gauge Agreement Versus Gauge Origin
 
@@ -203,7 +203,7 @@ Gauge covariance provides a particularly clear distinction between descriptive a
 
 Gauge theory rigorously prevents arbitrary local bookkeeping from changing a prediction. It does not by that achievement alone derive why nature supplies this gauge group, these representations, these couplings, this topology, or one physical history behind every admissible representative. The mechanism burden belongs to [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md#gauge-covariance-recovery-target), while [Gauge Symmetries](../assemblies/gauge-symmetries.md#gauge-redundancy-and-anomaly-ledger) owns the formal Standard Model recovery gates.
 
-mathematical consistency among descriptions is indispensable. A unified substrate account must additionally generate the invariant physical record those descriptions share.
+Mathematical consistency among descriptions is indispensable. A unified substrate account must additionally generate the invariant physical record those descriptions share.
 
 ## Logarithmic Chutes and Ladders
 
@@ -215,7 +215,7 @@ Zooming does not move the physical event. It changes which distinctions an obser
 
 The metaphor must not replace the mathematics. Each ladder requires a bridge certificate, and each chute requires an account of what changed physically, what changed only descriptively, what information survived, and what became inaccessible. Gauge covariance is a different operation: it changes descriptive basis at a fixed physical state, whereas logarithmic chutes and ladders concerns a succession of effective descriptions in which the active degrees of freedom may change.
 
-physics has learned how to move reliably around much of the board. The unfinished unification problem is whether every landing and transition can be shown to be a view of the same pieces and the same continuous physical history.
+Physics has learned how to move reliably around much of the board. The unfinished unification problem is whether every landing and transition can be shown to be a view of the same pieces and the same continuous physical history.
 
 The relevant historical sequence does not show that effective field theory is wrong or incomplete within its domain. It identifies a stronger burden for any substrate program that claims one persistent ontology across domains. Renormalization-group flow among couplings is not, by itself, transport of a constituent inventory.
 

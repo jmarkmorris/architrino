@@ -14,18 +14,18 @@
     "neutral_lepton_retained_branch": {
       "id": "B_3B_nu_neutrino_common_clock_phase_priority_source_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-16a-neutrino-common-clock-phase-packet.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-16a-neutrino-common-clock-phase-packet.md"
     },
     "s_eq": {
       "id": "S_eq_nu_neutrino_common_clock_phase_priority_source_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-16a-neutrino-common-clock-phase-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-16a-neutrino-common-clock-phase-packet.md",
       "nextBlocker": "missing_accepted_raw_labeled_rows_preserved_on_retained_history"
     },
     "common_clock": {
       "id": "omega_f_C0_identity_neutrino_common_clock_phase_priority_source_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-16a-neutrino-common-clock-phase-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-16a-neutrino-common-clock-phase-packet.md",
       "frequencies": {
         "I": 1,
         "M": 1,
@@ -37,7 +37,7 @@
     "residual_operator": {
       "id": "H_nu_res_traceless_neutrino_common_clock_phase_priority_source_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-16a-neutrino-common-clock-phase-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-16a-neutrino-common-clock-phase-packet.md",
       "tracelessEigenvalues": [
         -11.5,
         -10.5,
@@ -48,7 +48,7 @@
     "phase_gaps": {
       "id": "Delta_lambda_nu_neutrino_common_clock_phase_priority_source_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-16a-neutrino-common-clock-phase-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-16a-neutrino-common-clock-phase-packet.md",
       "delta21": 1,
       "delta32": 32.5,
       "delta31": 33.5,
@@ -59,7 +59,7 @@
     "spectrum_shape": {
       "id": "lambda_hat_nu_neutrino_common_clock_phase_priority_source_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-16a-neutrino-common-clock-phase-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-16a-neutrino-common-clock-phase-packet.md",
       "ordering": "normal",
       "expectedShape": "doublet_plus_singlet",
       "equalSpacingRejected": true,
@@ -77,12 +77,12 @@
     "pmns_readout": {
       "id": "U_read_PMNS_neutrino_common_clock_phase_priority_source_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-16a-neutrino-common-clock-phase-packet.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-16a-neutrino-common-clock-phase-packet.md"
     },
     "weak_domain": {
       "id": "weak_domain_nu_neutrino_common_clock_phase_priority_source_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-16a-neutrino-common-clock-phase-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-16a-neutrino-common-clock-phase-packet.md",
       "pmnsReadoutFromWeakDomain": true,
       "importedMatrixRejected": true,
       "sameWeakDomainForVA": true
@@ -90,21 +90,21 @@
     "matter_correction": {
       "id": "V_sea_nu_neutrino_common_clock_phase_priority_source_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-16a-neutrino-common-clock-phase-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-16a-neutrino-common-clock-phase-packet.md",
       "sameWeakDomain": true,
       "sameUnitsAsVacuumResidual": true
     },
     "cancellation": {
       "id": "R_nu_cancel_neutrino_common_clock_phase_priority_source_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-16a-neutrino-common-clock-phase-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-16a-neutrino-common-clock-phase-packet.md",
       "R_nu_cancel": 0,
       "residualOperatorErased": false
     },
     "event_ledger": {
       "id": "L_EpJ_nu_neutrino_common_clock_phase_priority_source_negative_control_0001",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-16a-neutrino-common-clock-phase-packet.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-16a-neutrino-common-clock-phase-packet.md"
     }
   }
 }

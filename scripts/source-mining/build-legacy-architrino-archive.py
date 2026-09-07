@@ -31,9 +31,9 @@ from typing import Iterable
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE_MINING_DIR = ROOT / "reference" / "priorities" / "source-mining"
-REGISTRY_JSONL_PATH = SOURCE_MINING_DIR / "legacy-architrino-wordpress-posts.jsonl"
-LIBRARY_TABLE_PATH = SOURCE_MINING_DIR / "legacy-architrino-wordpress-library-posts.md"
-QUEUE_PATH = SOURCE_MINING_DIR / "legacy-architrino-wordpress-mining-queue.txt"
+REGISTRY_JSONL_PATH = SOURCE_MINING_DIR / "archive-analysis" / "legacy-architrino-wordpress-posts.jsonl"
+LIBRARY_TABLE_PATH = SOURCE_MINING_DIR / "analysis" / "legacy-architrino-wordpress-library-posts.md"
+QUEUE_PATH = SOURCE_MINING_DIR / "archive-analysis" / "legacy-architrino-wordpress-mining-queue.txt"
 REPORT_DIR = SOURCE_MINING_DIR / "archive-analysis"
 TMP_ROOT = Path(tempfile.gettempdir()) / "architrino-archive-mining"
 TMP_TEXT_DIR = TMP_ROOT / "clean-text"
@@ -45,7 +45,7 @@ TMP_TEXT_DIR_DISPLAY = f"{TMP_ROOT_DISPLAY}/clean-text"
 POSTS_JSONL_DISPLAY = f"{TMP_ROOT_DISPLAY}/legacy-architrino-posts.jsonl"
 CARDS_JSONL_DISPLAY = f"{TMP_ROOT_DISPLAY}/legacy-architrino-idea-cards.jsonl"
 CLUSTERS_JSON_DISPLAY = f"{TMP_ROOT_DISPLAY}/legacy-architrino-clusters.json"
-REGISTRY_JSONL_DISPLAY = "reference/priorities/source-mining/legacy-architrino-wordpress-posts.jsonl"
+REGISTRY_JSONL_DISPLAY = "reference/priorities/source-mining/archive-analysis/legacy-architrino-wordpress-posts.jsonl"
 
 WP_API = "https://public-api.wordpress.com/wp/v2/sites/architrino.wordpress.com/posts"
 
@@ -1117,8 +1117,8 @@ def build_corpus_index() -> list[dict]:
             if rel.startswith("content/generated/"):
                 continue
             if rel in {
-                "reference/priorities/source-mining/legacy-architrino-wordpress-library-posts.md",
-                "reference/priorities/source-mining/source-mining-history.md",
+                "reference/priorities/source-mining/analysis/legacy-architrino-wordpress-library-posts.md",
+                "reference/priorities/source-mining/analysis/source-mining-history.md",
                 "reference/priorities/source-mining/priorities.md",
             }:
                 continue

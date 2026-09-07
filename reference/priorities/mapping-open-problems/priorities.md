@@ -11,7 +11,7 @@
 
 ## Work Queue
 
-The completed chapter audit is recorded in [claim-level-audit-2026-09-01.md](claim-level-audit-2026-09-01.md), the architecture-ready test contracts are recorded in [test-contract-audit-2026-09-01.md](test-contract-audit-2026-09-01.md), and the closed execution record lives in [work-queue.md](work-queue.md). No executable paper-control object remains.
+The completed chapter audit is recorded in [claim-level-audit-2026-09-01.md](evidence/claim-level-audit-2026-09-01.md), the architecture-ready test contracts are recorded in [test-contract-audit-2026-09-01.md](evidence/test-contract-audit-2026-09-01.md), and the closed execution record lives in [work-queue.md](work-queue.md). No executable paper-control object remains.
 
 ## Scope
 
@@ -58,8 +58,8 @@ If any item is missing, the chapter should be marked `direction-ready`, `appendi
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
 | [solving-the-crisis.md](../../../content/markdown/aaa/philosophy-history/solving-the-crisis.md) | Deployed working paper draft with major sections, chapter candidates, $\mathbb{A}\mathbb{A}\mathbb{A}$ architectural answers, test advice, and claim levels. | Solving the Crisis scene, later paper manuscript, plus selected promotions into existing corpus and priority workstreams after claim-level audit. |
-| [claim-level-audit-2026-09-01.md](claim-level-audit-2026-09-01.md) | Complete 46-chapter claim-level and primary-owner ledger with one classification per chapter. | OP-002 test-contract review and continuing paper maintenance. |
-| [test-contract-audit-2026-09-01.md](test-contract-audit-2026-09-01.md) | Complete test-contract ledger for all 16 architecture-ready chapters, with recovery targets, evidence families, compared records, and failure conditions. | Scientific execution by the named owners and continuing paper maintenance. |
+| [claim-level-audit-2026-09-01.md](evidence/claim-level-audit-2026-09-01.md) | Complete 46-chapter claim-level and primary-owner ledger with one classification per chapter. | OP-002 test-contract review and continuing paper maintenance. |
+| [test-contract-audit-2026-09-01.md](evidence/test-contract-audit-2026-09-01.md) | Complete test-contract ledger for all 16 architecture-ready chapters, with recovery targets, evidence families, compared records, and failure conditions. | Scientific execution by the named owners and continuing paper maintenance. |
 
 ## Promotion Map
 

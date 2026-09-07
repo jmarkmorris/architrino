@@ -1,8 +1,8 @@
 # One Nature, Many Theories: Provisional Synthesis
 
-This document isolates the provisional conceptual insights that remain after the focused [One Nature, Many Theories](one-nature-many-theories.md) draft, evidence audit, ownership split, and reader-facing treatment have received distinct owners. The lane studies how one natural world can support many successful domain theories and how a foundational account must distinguish controlled translation among descriptions from derivation from one common physical history.
+This document isolates the provisional conceptual insights that remain after the focused [One Nature, Many Theories](analysis/one-nature-many-theories.md) draft, evidence audit, ownership split, and reader-facing treatment have received distinct owners. The lane studies how one natural world can support many successful domain theories and how a foundational account must distinguish controlled translation among descriptions from derivation from one common physical history.
 
-The developed thesis, mathematical bridge contract, gauge and scale examples, fairness boundaries, and promotion provenance belong to the focused draft. The completed [evidence-backed bridge matrix](evidence-backed-bridge-matrix.md) owns the eight source-backed bridge certificates, while the [ONMT-003 work-log receipt](work-log.md#2026-08-26--onmt-003-reader-facing-promotion-completed) records the paragraph, equation, and source relocation. The reader-facing [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) chapter owns the promoted explanatory treatment. This synthesis does not duplicate those artifacts or authorize additional reader-facing promotion.
+The developed thesis, mathematical bridge contract, gauge and scale examples, fairness boundaries, and promotion provenance belong to the focused draft. The completed [evidence-backed bridge matrix](analysis/evidence-backed-bridge-matrix.md) owns the eight source-backed bridge certificates, while the [ONMT-003 work-log receipt](work-log.md#2026-08-26--onmt-003-reader-facing-promotion-completed) records the paragraph, equation, and source relocation. The reader-facing [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) chapter owns the promoted explanatory treatment. This synthesis does not duplicate those artifacts or authorize additional reader-facing promotion.
 
 ## Routing and Claim Boundary
 
@@ -26,7 +26,7 @@ Plainly: joining general relativity and quantum theory would resolve a major fra
 
 A bridge from a more resolved description to an effective description may be exact, asymptotic, statistically controlled, constitutive, calibrated, or heuristic. Its forward predictive authority does not determine how much of the source can be reconstructed from the target. Coarse-graining and effective matching are commonly many-to-one, so a successful target record usually identifies a compatibility family rather than a unique antecedent.
 
-The completed [bridge matrix](evidence-backed-bridge-matrix.md) expresses this distinction through a forward map $M_{j\leftarrow i}:\mathcal D_i\to\mathcal D_j$ and a reverse compatibility fiber
+The completed [bridge matrix](analysis/evidence-backed-bridge-matrix.md) expresses this distinction through a forward map $M_{j\leftarrow i}:\mathcal D_i\to\mathcal D_j$ and a reverse compatibility fiber
 
 $$
 \mathfrak F_{i\mid y}^{(\epsilon)}

@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const POLICY_PATH = path.join(
   ROOT,
-  "reference/priorities/aaa-operations/public-security-policy.v1.json"
+  "reference/priorities/aaa-operations/contracts/public-security-policy.v1.json"
 );
 
 function readJson(relativePath) {
@@ -23,7 +23,7 @@ function sha256(relativePath) {
 }
 
 test("accepted public-security policy matches the exact npm dependency graph", () => {
-  const policy = readJson("reference/priorities/aaa-operations/public-security-policy.v1.json");
+  const policy = readJson("reference/priorities/aaa-operations/contracts/public-security-policy.v1.json");
   const packageJson = readJson("package.json");
   const packageLock = readJson("package-lock.json");
 
@@ -48,7 +48,7 @@ test("accepted public-security policy matches the exact npm dependency graph", (
 });
 
 test("reviewed vendored bytes remain bound to their accepted hashes", () => {
-  const policy = readJson("reference/priorities/aaa-operations/public-security-policy.v1.json");
+  const policy = readJson("reference/priorities/aaa-operations/contracts/public-security-policy.v1.json");
   for (const asset of policy.vendoredAssets) {
     assert.equal(sha256(asset.path), asset.sha256, asset.path);
     assert.ok(asset.license);
@@ -57,7 +57,7 @@ test("reviewed vendored bytes remain bound to their accepted hashes", () => {
 });
 
 test("every external GitHub Action is pinned to the accepted full commit SHA", () => {
-  const policy = readJson("reference/priorities/aaa-operations/public-security-policy.v1.json");
+  const policy = readJson("reference/priorities/aaa-operations/contracts/public-security-policy.v1.json");
   const workflowDirectory = path.join(ROOT, ".github/workflows");
   const uses = fs
     .readdirSync(workflowDirectory)
@@ -87,7 +87,7 @@ test("weekly dependency review covers npm and GitHub Actions", () => {
 
 test("every OPS-010 public-domain security boundary has an explicit disposition", () => {
   const controls = readJson(
-    "reference/priorities/aaa-operations/public-security-policy.v1.json"
+    "reference/priorities/aaa-operations/contracts/public-security-policy.v1.json"
   ).publicControls;
   for (const name of [
     "contentSecurityPolicy",

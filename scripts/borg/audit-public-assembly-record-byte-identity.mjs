@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 import { validateBorgAssemblyRegistry } from "../../src/apps/borg/registry/BorgAssemblyRegistryContract.mjs";
 
 const DEFAULT_ORIGIN = "https://www.architrino.com";
-const REGISTRY_PATH = "reference/priorities/app-borg/assembly-registry.v1.json";
+const REGISTRY_PATH = "reference/priorities/app-borg/contracts/assembly-registry.v1.json";
 const DEFAULT_CONCURRENCY = 8;
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 

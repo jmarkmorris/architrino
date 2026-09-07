@@ -102,7 +102,7 @@ def build_receipt(input_path: Path, input_bytes: bytes, packet: dict[str, Any]) 
                 "mpmath_version": mp.__version__,
                 "decimal_digits": digits,
                 "bisection_steps": steps,
-                "declared_reproduction_command": "VIRTUAL_ENV=\"${AAA_VENV:-../.venv}\" \"${AAA_VENV:-../.venv}/bin/python\" scripts/field-speed-ceiling/circular-binary-all-root-mpmath-oracle.py --input scripts/field-speed-ceiling/circular-binary-all-root-certificate-input.v1.json --write-receipt reference/priorities/field-speed-ceiling/fsc-010-circular-binary-all-root-mpmath-receipt.v1.json",
+                "declared_reproduction_command": "VIRTUAL_ENV=\"${AAA_VENV:-../.venv}\" \"${AAA_VENV:-../.venv}/bin/python\" scripts/field-speed-ceiling/circular-binary-all-root-mpmath-oracle.py --input scripts/field-speed-ceiling/circular-binary-all-root-certificate-input.v1.json --write-receipt reference/priorities/field-speed-ceiling/evidence/fsc-010-circular-binary-all-root-mpmath-receipt.v1.json",
             },
             "dottie_root_bracket": {
                 "equation": "xi - cos(xi) = 0",

@@ -398,7 +398,7 @@ def certify(initial_t_boxes=INITIAL_T_BOXES, initial_beta_boxes=INITIAL_BETA_BOX
     source = Path(__file__).resolve()
     root = Path.cwd()
     references = (
-        root / "reference/priorities/braid-program/platonic-moving-history-reduction.md",
+        root / "reference/priorities/braid-program/analysis/platonic-moving-history-reduction.md",
         root / "reference/priorities/braid-program/evidence/2026-09-02-octahedral-antipodal-generic-axis-domain.md",
     )
     return {

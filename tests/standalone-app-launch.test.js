@@ -211,8 +211,11 @@ test("UI Guidelines remains shared standards documentation, not a product applic
     assert.doesNotMatch(readRepoFile(scenePath), /ui[_-]?guidelines/iu);
   }
 
-  const userInterfaceScene = JSON.parse(
-    readRepoFile("content/scenes/archie/user_interface.json"),
+  // UI Guidelines moved from the User Interface scene to the Documentation scene in
+  // c973402b9 (#258). Its entry is unchanged; only its parent differs, and the
+  // Documentation scene is the more accurate home for shared standards material.
+  const documentationScene = JSON.parse(
+    readRepoFile("content/scenes/archie/documentation.json"),
   );
   const guidelinesScene = JSON.parse(
     readRepoFile("content/scenes/archie/ui_guidelines.json"),
@@ -225,14 +228,14 @@ test("UI Guidelines remains shared standards documentation, not a product applic
   );
   const sharedTokens = readRepoFile("ui-tokens.css");
   assert.deepEqual(
-    userInterfaceScene.scene.children.find((child) => child.nodeId === "ui_guidelines"),
+    documentationScene.scene.children.find((child) => child.nodeId === "ui_guidelines"),
     {
       nodeId: "ui_guidelines",
       scenePath: "content/scenes/archie/ui_guidelines.json",
     },
   );
   assert.deepEqual(
-    userInterfaceScene.objects
+    documentationScene.objects
       .filter((object) => object.id === "ui_guidelines")
       .map(({ labelSubtitle, labelBadge }) => ({ labelSubtitle, labelBadge })),
     [{ labelSubtitle: "Shared application standards", labelBadge: "doc" }],
@@ -242,7 +245,9 @@ test("UI Guidelines remains shared standards documentation, not a product applic
     guidelinesScene.scene.source.path,
     "content/markdown/aaa/archie/ui-guidelines.md",
   );
-  assert.match(guidelinesGuide, /It governs applications; it is not itself a product application/u);
+  // Match the claim, not its subject noun: c973402b9 recopy-edited "It governs" to
+  // "The guide governs" without changing what is asserted.
+  assert.match(guidelinesGuide, /governs applications; it is not itself a product application/u);
   assert.match(guidelinesGuide, /Reusable implementation values belong in `ui-tokens\.css`/u);
   assert.match(navigationGuide, /UI Guidelines.*own the shared interface standards/iu);
   assert.match(sharedTokens, /--ui-font-family:\s*"Helvetica Neue", Arial, sans-serif;/u);

@@ -77,7 +77,7 @@ test('hook leaves completion binding ownership to frozen coordinator',()=>{
  const source=readFileSync(path.join(root,B.SELF),'utf8');assert.ok(source.includes('return coordinatorAdmission(result,job.stdoutLog)'));
 });
 test('exact historical tuples are separate logical/physical bindings',()=>{
- const rows=[['c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853',16985],['46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021]].map(([h,n],i)=>({original:b(path.join(root,'reference/priorities/braid-program/evidence','old-'+i+'.json'),h,n),physical:b('/synthetic/archives/'+h+'.json',h,n)}));
+ const rows=[['7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc',16985],['2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40',13021]].map(([h,n],i)=>({original:b(path.join(root,'reference/priorities/braid-program/evidence','old-'+i+'.json'),h,n),physical:b('/synthetic/archives/'+h+'.json',h,n)}));
  const routes=B.historicalRoutes(rows,root);assert.deepEqual(B.physicalSource(rows[0].original,{historicalDocumentRoutes:routes}),rows[0].physical);
  assert.deepEqual(B.historicalRoutes([],root),[]);assert.deepEqual(B.historicalRoutes([rows[1]],root),[rows[1]]);
  for(const mutate of [v=>v.push(v[0]),v=>v[0].physical.sha256='0'.repeat(64),v=>v[0].original.bytes++,v=>v[0].physical.path=v[0].original.path,v=>v[0].original.path='/scripts/executable.py']){const v=structuredClone(rows);mutate(v);assert.throws(()=>B.historicalRoutes(v,root));}

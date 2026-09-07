@@ -11,8 +11,8 @@ import {
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), "utf8"));
-const CONTRACT = readJson("reference/priorities/app-aaa-core/aaa-core-accepted-history-stream.v0.json");
-const PATH_CONTRACT = readJson("reference/priorities/app-aaa-core/aaa-core-path-interchange.v0.json");
+const CONTRACT = readJson("reference/priorities/app-aaa-core/contracts/aaa-core-accepted-history-stream.v0.json");
+const PATH_CONTRACT = readJson("reference/priorities/app-aaa-core/contracts/aaa-core-path-interchange.v0.json");
 const POSITIVE = readJson(CONTRACT.conformance.positiveFixtures);
 const NEGATIVE = readJson(CONTRACT.conformance.negativeFixtures);
 

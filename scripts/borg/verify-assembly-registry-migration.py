@@ -16,7 +16,7 @@ import pathlib
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-REGISTRY = ROOT / "reference/priorities/app-borg/assembly-registry.v1.json"
+REGISTRY = ROOT / "reference/priorities/app-borg/contracts/assembly-registry.v1.json"
 
 PRESENTATION = {
     "alias", "aliases", "candidateId", "canonSource", "date", "description",

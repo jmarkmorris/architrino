@@ -15,7 +15,7 @@
 - Align probability and measurement discussions with `quantum/reality-quantum-causality.md`, `quantum/measurement-ontology.md`, and `quantum/wavefunction-ontology.md`.
 - Align thermodynamic and transport language with Noether sea variables in `spacetime/noether-sea.md`, `cosmology/cosmology-ontology.md`, and the density/delay conventions in `content/markdown/aaa/archie/mathematics-terminology.md`.
 - Treat Born-rule-like claims, entropy claims, and equilibrium claims as theorem targets until measures, basins, mixing, and coarse-graining maps are declared.
-- Use `reference/priorities/braid-program/method.md` and the accepted EOM solver evolution contract before treating an evolved history as an ensemble member; prescribed screening and unresolved-root rows are not persistence evidence.
+- Use `reference/priorities/braid-program/contracts/method.md` and the accepted EOM solver evolution contract before treating an evolved history as an ensemble member; prescribed screening and unresolved-root rows are not persistence evidence.
 
 ## Perspective Response Mandate
 

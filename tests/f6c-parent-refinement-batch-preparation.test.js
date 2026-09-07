@@ -47,10 +47,10 @@ test('closed source/configuration/identity/schema/census mutations reject',()=>{
  for(const mutate of mutations){const f=fixture();mutate(f);assert.throws(()=>P.derivePlans(f));}
 });
 test('only actually consumed exact historical document routes admit',()=>{
- const f=fixture(),original=bind(path.join(root,'reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md'),'46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021),physical={...original,path:'/synthetic/archived-resource.md'};
+ const f=fixture(),original=bind(path.join(root,'reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md'),'2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40',13021),physical={...original,path:'/synthetic/archived-resource.md'};
  const prior=f.admission.sourceBindings[0];f.admission.sourceBindings[0]=original;f.configuration.sources=f.configuration.sources.filter(b=>b.path!==prior.path);delete f.configuration.sourceIdentities[prior.path];f.configuration.sources.push(physical);f.configuration.sourceIdentities[physical.path]='1:999:13021:3:4';f.configuration.historicalDocumentRoutes=[{original,physical}];
  assert.equal(P.derivePlans(f).batch.configuration.parents.length,3);
- const unused={original:bind(path.join(root,'reference/priorities/braid-program/evidence/unused.md'),'c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853',16985),physical:bind('/synthetic/unused.md','c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853',16985)};
+ const unused={original:bind(path.join(root,'reference/priorities/braid-program/evidence/unused.md'),'7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc',16985),physical:bind('/synthetic/unused.md','7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc',16985)};
  f.configuration.historicalDocumentRoutes.push(unused);f.configuration.sources.push(unused.physical);f.configuration.sourceIdentities[unused.physical.path]='1:998:16985:3:4';assert.throws(()=>P.derivePlans(f));
 });
 test('expanded runtime cannot exceed downstream one-MiB plan consumer bound',()=>{

@@ -9,9 +9,9 @@ import {
 } from "./path-interchange-v0.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
-const CONTRACT_PATH = "reference/priorities/app-aaa-core/aaa-core-query-transform-publication.v0.json";
-const PATH_CONTRACT_PATH = "reference/priorities/app-aaa-core/aaa-core-path-interchange.v0.json";
-const CODEC_REGISTRY_PATH = "reference/priorities/app-aaa-core/aaa-core-codec-registry.v0.json";
+const CONTRACT_PATH = "reference/priorities/app-aaa-core/contracts/aaa-core-query-transform-publication.v0.json";
+const PATH_CONTRACT_PATH = "reference/priorities/app-aaa-core/contracts/aaa-core-path-interchange.v0.json";
+const CODEC_REGISTRY_PATH = "reference/priorities/app-aaa-core/contracts/aaa-core-codec-registry.v0.json";
 
 const REQUEST_KEYS = ["numericPolicy", "output", "query", "requestId", "schema", "sourceBindings", "transforms"];
 const QUERY_KEYS = ["eventKinds", "minimumAuthority", "pathIds", "timeRange"];

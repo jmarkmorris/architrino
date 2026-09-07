@@ -196,7 +196,7 @@ export function renderPublicFeedbackApp(options = {}) {
 
   let currentManifest = null;
   async function refresh() {
-    status.textContent = "Building a local, sanitized manifest…";
+    status.textContent = "Preparing diagnostic details…";
     refreshButton.disabled = true;
     currentManifest = await buildPrivacySafeFeedbackManifest({
       windowLike,
@@ -207,7 +207,7 @@ export function renderPublicFeedbackApp(options = {}) {
     });
     manifestOutput.value = serializeFeedbackManifest(currentManifest);
     refreshButton.disabled = false;
-    status.textContent = "Manifest ready. Review it before copying or opening a public issue.";
+    status.textContent = "Diagnostic details ready. Review them before copying.";
     return currentManifest;
   }
 
@@ -215,14 +215,24 @@ export function renderPublicFeedbackApp(options = {}) {
   pathInput.addEventListener("change", refresh);
   copyButton.addEventListener("click", async () => {
     if (!currentManifest) await refresh();
-    if (typeof windowLike.navigator?.clipboard?.writeText !== "function") {
+    // A browser can expose writeText and still reject it (permission denied,
+    // hidden document). Treat a rejection like an absent clipboard.
+    let copied = false;
+    if (typeof windowLike.navigator?.clipboard?.writeText === "function") {
+      try {
+        await windowLike.navigator.clipboard.writeText(manifestOutput.value);
+        copied = true;
+      } catch {
+        copied = false;
+      }
+    }
+    if (!copied) {
       manifestOutput.focus();
       manifestOutput.select();
-      status.textContent = "Clipboard writing is unavailable. The manifest is selected for manual copy.";
+      status.textContent = "Clipboard writing is unavailable. The diagnostic details are selected for manual copy.";
       return;
     }
-    await windowLike.navigator.clipboard.writeText(manifestOutput.value);
-    status.textContent = "Sanitized manifest copied. Paste it into the required issue field.";
+    status.textContent = "Diagnostic details copied. Paste them into the optional diagnostic details field on GitHub.";
   });
 
   refresh();

@@ -9,6 +9,22 @@ import {
   TEXTBOOK_TOC_SCENE_PATH,
 } from "./StandaloneAppSceneSearchRuntime.js";
 
+// The standard icon control strip is deliberately opt-out, not opt-in.
+//
+// A caller that omits `toc`, `back`, `forward`, `home`, or `search` receives that
+// capability with its default label. This is the intended design: every standalone
+// page presents the same control strip in the same place, so a reader arriving on
+// any page can navigate, reach the table of contents, and search scenes without
+// learning a per-page vocabulary. A page that genuinely should not offer one of
+// them passes `false` for it; that is the exception and should be justified where
+// it appears.
+//
+// The consequence for release profiles is expected rather than accidental. Because
+// the strip's modules are statically imported below, any page using this runtime
+// carries the control bar and the scene-search stack in its load-time closure, and
+// its accepted resource closure and size budget must reflect that. A profile that
+// lists only a page's own files has not been refreshed since the page adopted the
+// strip; the fix is to re-accept the profile, not to strip the navigation.
 function normalizeCapability(value, defaults) {
   if (value === false) {
     return null;

@@ -1,33 +1,73 @@
 # Academic Style Guide
 
-This guide defines the prose standard for reader-facing textbook material in the webapp. Its purpose is to make voice, structure, tone, and editorial discipline consistent enough that chapters read like parts of one coherent corpus rather than isolated notes with incompatible habits.
+This guide defines the prose standard for authored Markdown that carries technical, mathematical, scientific, or theory information anywhere in the repository. It governs reader-facing books and webapp material as well as operator-facing priority packets, analyses, proof and evidence records, requirements, designs, and other working documents, so the repository explains difficult material with one coherent academic discipline rather than a different prose standard in each directory.
 
 The core writing rule is simple: make the claim easy to locate, the mechanism easy to follow, and the claim level impossible to confuse. A reader should not have to guess whether a sentence is ontology, effective recovery, comparison, open proof work, or historical explanation.
 
-The sections below move from scope and core aims to concrete rules for headings, tone, explanation, and editorial review.
-
-## Purpose
-
-This guide defines the default prose standard for textbook-facing content in the webapp. It is intended for chapters, scene notes, comparative essays, and explanatory reference documents that are part of the public reading surface.
-
 This guide complements, rather than replaces, the mathematical guide in [mathematics-style-guide.md](mathematics-style-guide.md). The mathematical guide governs notation and formal dialect. This guide governs prose, structure, tone, and editorial discipline.
+
+**Edition 1.1**, settled 2026-09-04. Edition 1.1 extends the same academic standard from reader-facing corpus prose to every authored Markdown artifact whose purpose includes technical or theory information. The edition identifies the substantive standard against which a document is assessed. A later substantive standard changes the edition number; a typographical fix does not.
 
 ## Scope
 
-Apply this guide to the following content classes unless a more specific local template overrides it:
+Apply this guide to every authored Markdown artifact whose purpose includes explaining, evaluating, preserving, routing, or specifying technical, mathematical, scientific, or theory information. Repository location, publication status, lifecycle state, and audience do not create exemptions. The covered classes include:
 
-- chapter overviews
-- section leaves derived from markdown trees or splits
-- comparative essays
-- historical and philosophical analysis
-- explanatory theory summaries
-- methodology and meta-reference documents intended for readers
+- books, chapters, chapter overviews, and section leaves derived from Markdown trees or splits
+- comparative, historical, philosophical, and explanatory theory writing
+- working analyses, findings, proof packets, calculations, evidence records, and scientific audits
+- priority trackers, work queues, brainstorming documents, and work logs wherever their entries carry technical or theory content
+- requirements, designs, contracts, protocols, source-mining records, methodology documents, and technical meta-reference documents
+- operator-facing standards, prompts, handoffs, and reports that explain technical or theory material
 
-Do not apply this guide mechanically to interface help text or ultra-short glossary entries where brevity is the dominant requirement.
+The standard is uniform, but document form is not. A work queue remains an executable queue, brainstorming remains provisional, a work log remains chronological, a requirements document distinguishes accepted requirements from proposed design, and a proof or evidence packet retains its exact mathematical and evidentiary boundaries. Academic rewriting clarifies those functions; it does not turn every artifact into a textbook chapter, reactivate dormant work, promote speculation, reorder history, or change queue state.
+
+Historical evidence, exact quotations, append-only records, generated artifacts, code blocks, commands, schemas, identifiers, and machine-readable data retain their preservation and generation rules. Do not rewrite provenance-bearing historical bytes merely to modernize their voice; use academically written framing or a companion synthesis when current explanation is needed. New explanatory prose and new append-only entries follow this guide.
+
+Do not apply the guide mechanically to interface chrome such as button labels, tooltips, and ultra-short glossary entries, where a hard size constraint makes full explanation impossible. Longer in-application guides, help pages, and explanatory panels are explanatory prose and do follow this guide.
+
+## Audience
+
+The rule is one sentence:
+
+> **Define what the reader of this artifact plausibly lacks.**
+
+This is a test rather than an answer, and that distinction is the point. A rule that named one audience would be right on one surface and wrong on the others, because a published chapter and a working analysis note are read by different people. The test produces the correct behavior on each surface without anyone having to hold two standards in mind.
+
+An author does not decide who the reader is. They identify what they are writing, and the table says:
+
+| Artifact class | Reader | May assume | Must define |
+| --- | --- | --- | --- |
+| Chapter, essay, explanatory reference | Unknown; may hold nothing | nothing | every $\mathbb{A}\mathbb{A}\mathbb{A}$ concept, all established physics, all imported apparatus |
+| Working analysis, findings, proof, evidence, requirements, or design record | Someone already working on the project | $\mathbb{A}\mathbb{A}\mathbb{A}$ and project vocabulary | imported apparatus, material from another line of work, and any term or symbol carrying the local argument |
+| Priority tracker, work queue, brainstorming document, or work log | Operator and repository agents | $\mathbb{A}\mathbb{A}\mathbb{A}$, repository vocabulary, and the artifact's declared lifecycle | technical mechanism, evidence or blocker, claim boundary, and any imported or load-bearing apparatus needed to interpret an entry |
+| Historical or provenance-bearing record | Reader of the preserved record | vocabulary supplied by the record and its historical context | current framing outside preserved bytes; do not retroactively rewrite the evidentiary record |
+| Interface chrome | Application user, with no room to explain | nothing | nothing; route the reader to the explanation instead |
+
+Every covered artifact uses academic prose: clear claims, explained mechanisms, explicit assumptions, stable terminology, and visible evidence limits. The audience row determines what may be assumed and how much local explanation is necessary; it does not determine whether the standard applies.
+
+Three refinements carry most of the judgment.
+
+**The load-bearing override.** Whatever the artifact class, if a term is decisive for the claim being made at that moment, restate its meaning in a clause even for a reader who already knows it. When an argument turns on a central acceleration being directed along the line joining two objects, one clause saying so prevents a misreading of precisely the sentence that matters. This is cheap everywhere and worth doing everywhere.
+
+**Never define a term the reader has just supplied.** If a reader arrives asking about wake structure, they hold the word. Definition serves comprehension, not ceremony.
+
+**Redundancy costs scale with the artifact, not the reader.** In a short note an unneeded definition costs one skipped line. Across a large corpus the same habit compounds into a longer book that is worse to read. So "when in doubt, explain" is the right default where the reader is unknown, and a weaker default where the reader is known and the material is dense.
+
+### What the rule yields for the corpus
+
+Applied to a chapter, essay, or explanatory reference, the test gives one answer: **write for a reader who knows neither $\mathbb{A}\mathbb{A}\mathbb{A}$ nor the established physics it must eventually recover.**
+
+$\mathbb{A}\mathbb{A}\mathbb{A}$ is a new field and the corpus exists to bring people into it. A reader who already held both bodies of knowledge would not need the book. Two consequences deserve stating plainly, because each is easy to miss.
+
+**Every $\mathbb{A}\mathbb{A}\mathbb{A}$ concept is defined where it is used.** Architrino, causal root, path history, wake, polarity, absolute time, the Euclidean void, the master equation: none of these may be assumed. They are the subject matter, not the shared background.
+
+**Established physics is explained, not merely named.** This is the consequence most often missed. Phrases such as "Lorentz behavior is a recovery target," "this recovers the inverse-square law," or "the effective metric reproduces the parameterized post-Newtonian limit" carry no meaning for a reader who has not studied special relativity, electrostatics, or general relativity. Wherever an appeal to established physics is doing real work in an argument, say in plain terms what that established result claims and why it matters here. Naming it is not explaining it.
+
+The corpus does not assume that a reader started at page one. It is published as a website, and readers arrive from a search result, an external link, or the application on an arbitrary page. The scoping rule in Explanation Standard below follows from that.
 
 ## Core Aim
 
-The target voice is that of an academic textbook: clear, orderly, explicit, and serious without becoming inflated, evasive, or bureaucratic.
+The target voice is academic: clear, orderly, explicit, and serious without becoming inflated, evasive, or bureaucratic. Books and explanatory references should read like academic textbooks; working documents should carry the same rigor and explanatory clarity in the structure required by their operational purpose.
 
 The prose should do three things at once:
 
@@ -36,6 +76,18 @@ The prose should do three things at once:
 3. Distinguish what is established, what is inferred, and what remains open.
 
 For central theory passages, the strongest pattern combines explanatory prose, formal precision, and a small equation. Begin by naming what is happening in the substrate or effective layer. Then give a compact map, table, or list that separates the moving parts. Then introduce the equation that binds those parts together, followed immediately by plain-language meanings for the symbols and the closure question that remains. The equation should clarify the prose rather than replace it, and the prose should make the equation's conceptual burden visible.
+
+The prose must also do a fourth thing that is easy to leave out: **say why the claim is true, not only what it says and why it matters.** A passage that states a result, then explains its significance, has skipped the mechanism. "The approach reverses because the sideways requirement grows faster than the inward pull, one over distance cubed against one over distance squared" is an explanation. "The approach reverses, which rules out contact" is a summary wearing an explanation's clothes. Give the reader the reason, in words, before or alongside the formal statement.
+
+## Plain by Default
+
+Write technical prose plainly in the first instance. Do not write a dense passage and then repair it with a plainer restatement afterwards.
+
+This matters more than it may appear. A convention that promises a translation later removes the pressure on the technical prose to be readable, and quietly licenses density everywhere outside the translation. What it produces is a hard version followed by a repair, when what serves the reader is prose that never needed repairing.
+
+Some objects are irreducible: an equation, a results table, a data ledger, a measurement block. Their precision is the point and they cannot be written plainly. Follow each immediately with prose that names every symbol in words and says what the object is and why it holds. That prose carries no label; it is simply the next sentence.
+
+Plainness is not informality. The tone remains formal and exact, as the Tone Standard below requires. What plainness rules out is unnecessary density, not seriousness.
 
 ## Style Principles
 
@@ -111,6 +163,42 @@ Avoid transitions such as:
 - "This changes everything..."
 - "The obvious conclusion is..."
 
+## Explanation Standard
+
+### Define at or before first use
+
+Define a term where it first appears, never several paragraphs later. A term defined after its first use has already cost the reader everything in between.
+
+### Clarity, and the cost of repetition
+
+Clarity is the objective. Repetition is neither required nor forbidden: it is a cost worth paying when it buys clarity, and a defect when it does not.
+
+The asymmetry justifies erring toward explanation. A reader who already knows a term loses one skipped line. A reader who does not know it loses the passage. Omission costs comprehension; redundancy costs a scan. Once a reader has internalized a term they read straight past its definition, and that skipping is cheap and automatic. So when the judgment is close, explain.
+
+**Symbols are a solved case.** Corpus prose carries `View →` links into the equation viewer, which holds each symbol's full definition. A symbol therefore needs only to be named in words where it is used; re-glossing every symbol at every recurrence is padding.
+
+**Concepts are reintroduced twice over: at first use in a document, and again wherever the argument turns on them.**
+
+At first use in a document, always. Later in the same document, restate the meaning wherever the term becomes load-bearing — where a step depends on what it actually means rather than merely mentioning it. A chapter of eleven thousand words that uses `wake` twenty-nine times does not gloss it twenty-nine times; it glosses it at the first use and again where a derivation turns on what a wake is, because by then the reader is ten pages downstream and rereading is more expensive than a clause.
+
+The test is not a counter. It is whether a reader who half-remembers the term could follow the next sentence without it.
+
+What is bounded in every case is re-derivation rather than re-definition. The full development of a concept happens once; later recurrences say what the object is and what it is doing here without rebuilding it.
+
+### Scope of assumed knowledge
+
+**Cumulative within a document. At document boundaries, a brief clue plus a link.**
+
+Within one document a defined concept stays defined, and later sections build on earlier ones.
+
+Across documents, a chapter does not assume its reader has read any other chapter, and it does not reproduce that chapter either. When it uses a concept developed elsewhere, it gives **a brief clue in place and links to the full treatment**. A clue is a clause or a sentence carrying enough meaning that the next paragraph makes sense — not a paragraph, and not a definition deferred to the link.
+
+So rather than "the substrate has absolute time, a Euclidean void, and finite wake speed," which tells an arriving reader nothing, write: "the substrate has absolute time, a Euclidean void, and a finite speed at which a [wake](../foundations/architrino.md) — the expanding disturbance an architrino leaves behind it — travels outward." The reader can continue immediately, and follow the link when they want the full development.
+
+The reason is the delivery surface rather than a preference about prose. The corpus is published as a website, and a reader may arrive at any document first, most often from a search result. A fully cumulative corpus, where each chapter assumes all earlier ones, loses that reader in its opening lines. Reproducing the foundations in every chapter that draws on them loses them a different way, by burying the chapter's own subject.
+
+This rule is currently unmet across much of the corpus. Several chapters use foundational vocabulary heavily while linking to `foundations/` not at all, and bringing them into line is a known outstanding task rather than an oversight.
+
 ## Paragraphing Standard
 
 Default paragraph pattern:
@@ -122,6 +210,20 @@ Default paragraph pattern:
 Prefer medium-length paragraphs. Avoid both one-sentence fragment chains and extremely long blocks unless the material genuinely requires them.
 
 In Markdown source, keep each prose paragraph and each prose-bearing list item on one physical line. Do not manually hard-wrap prose to a fixed column. Retain separate physical lines only where Markdown structure, display mathematics, code, tables, quotations, or an intentional explicit hard break requires them.
+
+## Expected Tools
+
+These tools are expected when they materially improve comprehension. They are not quota requirements: a queue row, chronology entry, requirement, or short proof obligation should not acquire an analogy or numerical example that does no explanatory work.
+
+**Analogy that carries the mechanism.** A concrete comparison conveying how something works is worth more than a careful restatement of what it does. Always say where the analogy stops, because an unbounded analogy quietly becomes a claim. Choose comparisons from everyday experience or from geometry rather than from an observer-level physical theory the framework must derive.
+
+This is distinct from the prohibition in What To Avoid below. Metaphor used *in place of* mechanism is a defect; analogy used to *carry* mechanism is the tool. The difference is whether the reader could reconstruct the reasoning after reading it.
+
+**Worked numbers.** One instantiated example with actual values does more than a paragraph of qualitative description. Set $c_f = 1$.
+
+**Signposting the surprise.** Say explicitly when a step is counterintuitive or a result unexpected. This tells the reader where to spend attention and where coasting is safe.
+
+**Picture before symbol.** Establish the physical or geometric situation in words, then introduce notation for it. Do not open with an equation and describe it afterwards.
 
 ## Heading Standard
 
@@ -161,6 +263,8 @@ The tone should not be:
 
 Where a strong claim is made, the prose should earn it through distinctions and reasons rather than through emphasis alone.
 
+Plain and formal are not opposites, and the target is both. Plainness is the formality here: a sentence a reader understands on first pass is more exact than a dense one they must decode, because the decoding introduces error the author never sees. What the tone rules out is chattiness, not clarity. Avoid filler, jokes, and conversational drift; do not avoid short words, direct sentences, or ordinary vocabulary.
+
 ## Preferred Sentence Patterns
 
 Good sentence patterns for this project include:
@@ -197,17 +301,20 @@ Avoid the following unless there is a specific reason to retain them:
 
 - colloquialisms
 - chatty asides
-- second-person address in textbook chapters
 - hype phrases
 - empty intensifiers
 - process-history filler, such as "previously," "now redesigned," "obsolete plan," or "we used to"
 - unresolved pronouns such as "this" or "that" when the referent is unclear
-- metaphor used in place of mechanism
+- metaphor used in place of mechanism, as distinguished from analogy that carries mechanism in Expected Tools above
 - rhetorical questions used as ornament rather than structure
+
+Second-person address is permitted where it does pedagogical work. "Picture two architrinos and draw the line between them" instructs the reader to perform a step, and the second person is the natural way to say so. It remains out of place in ordinary exposition, where it becomes chatty, and it is never a substitute for a claim: "you can see that the barrier holds" asserts nothing the reader can check.
+
+Labelled plain-language restatements, such as a passage introduced by a fixed tag announcing a simpler version, are not used. Explanation is interleaved with the material it explains, as Plain by Default requires, rather than appended to it under a marker.
 
 ## Forward-Only Documentation
 
-Reader-facing prose should state the architecture, claim, rule, or curriculum directly. It should not preserve drafting history, migration story, abandoned counts, old names, or "what changed from the last version" unless that history is the subject of the document.
+Current explanatory prose should state the architecture, claim, rule, curriculum, requirement, or queue state directly. It should not preserve drafting history, migration story, abandoned counts, old names, or "what changed from the last version" unless history or provenance is the document's declared function.
 
 Use present-tense, source-of-truth wording:
 
@@ -223,7 +330,7 @@ Avoid process-history wording:
 - "This is now obsolete..."
 - "The old version used to..."
 
-Historical context belongs where it helps explain the subject, such as a history of an idea or a comparison in which an earlier formulation is relevant evidence. Ordinary textbook and reference prose should present the current explanation without narrating its drafting or revision history.
+Historical context belongs where it helps explain the subject, such as a history of an idea or a comparison in which an earlier formulation is relevant evidence. Work logs, audit trails, source-mining records, and other provenance-bearing artifacts preserve their chronology and recorded facts while making each new entry academically clear. Ordinary textbook, reference, requirements, design, queue, and current-state prose should present the current explanation without narrating unrelated drafting or revision history.
 
 ## Project-Specific Rules
 
@@ -335,19 +442,13 @@ Organize each explanation in the order a reader needs to understand it: definiti
 
 Identify published computational evidence by a comprehensible title and stable public identifier, and explain what it establishes. Technical reproduction details belong in the accompanying methods or data-availability record. Raw content hashes do not belong in explanatory prose or visible link labels; hashes within URLs and functional link anchors may be retained.
 
-## Section-Length Standard
+## Explanatory Sufficiency
 
-For substantial conceptual leaves, the default target is at least one page of meaningful prose, and often more.
+No page count, word count, or minimum section length establishes explanatory quality. A passage is long enough when its intended reader can locate the claim, follow the mechanism or reasoning, understand the necessary definitions and assumptions, identify the supporting derivation or evidence, distinguish the claim level, and see where the result's authority stops.
 
-Length is justified when it adds one or more of the following:
+Add length when it supplies a missing derivation step, definition, assumption, mechanism, historical fact needed for the argument, distinction between levels, assessment criterion, worked example, recovery target, or falsifier. Remove length when it repeats a thesis, narrates irrelevant process history, or adds examples and analogies that do not improve comprehension.
 
-- clearer derivation
-- stronger historical context
-- better distinction of levels
-- more explicit assessment criteria
-- concrete recovery or falsification targets
-
-Length is not justified when it only repeats the same thesis in slightly different words.
+The correct length therefore follows the artifact's purpose and evidentiary burden. A conceptual chapter may require sustained exposition; a queue row, dated log entry, requirement, or narrowly bounded proof obligation may be complete in a few precise sentences. Neither brevity nor length is evidence of rigor.
 
 ## Comparison Standard
 
@@ -387,23 +488,28 @@ Published source notes and contribution statements support transparency, but the
 
 ## Editorial Checklist
 
-Before finalizing a reader-facing chapter or section, check the following:
+Before finalizing any authored technical or theory-bearing Markdown artifact, identify its artifact class and check the following:
 
 1. Does the opening identify the subject and its significance?
-2. Are ontology, effective description, and inference kept distinct where needed?
-3. Does the section preserve real strengths before stating criticism?
-4. Are transitions explicit enough for textbook reading?
-5. Is the tone formal and explanatory rather than conversational?
-6. Are all project-specific notation and terminology rules respected?
-7. Does the final paragraph clarify what survives, what changes, or what remains open?
-8. Are factual, legal, and scientific assertions supported by explicit derivations, independently checkable sources, or declared validation records as appropriate, with references selected under the About Architrino policy?
-9. Does any material AI assistance use clear contribution language without implying independent AI authorship or accountability?
+2. Could the intended reader identified by the Audience table follow it, with every concept outside that reader's allowed knowledge defined and every load-bearing term restated where needed?
+3. Does the document establish its purpose, current authority, and assumptions without requiring the reader to reconstruct them from another artifact?
+4. Does the prose say why each claim is true, not only what it says and why it matters?
+5. Is every symbol named in words where it appears, and is each irreducible object followed immediately by prose explaining it?
+6. Is the technical prose plain on its own, rather than dense followed by a simpler restatement?
+7. Are ontology, effective description, and inference kept distinct where needed?
+8. Where the artifact compares or criticizes another account, does it preserve real strengths before stating limitations?
+9. Are transitions explicit enough for the artifact's reader and operational purpose?
+10. Is the tone formal and explanatory rather than conversational?
+11. Are all project-specific notation and terminology rules respected?
+12. Does the conclusion, completion condition, final entry, or current-state section clarify what is established, what remains open, and where the artifact's authority stops?
+13. Are factual, legal, and scientific assertions supported by explicit derivations, independently checkable sources, or declared validation records as appropriate, with references selected under the About Architrino policy?
+14. Does any material AI assistance use clear contribution language without implying independent AI authorship or accountability?
 
 ## Relation to Local Templates
 
-Many major documents in the project define their own local coverage templates in their overview sections. Those local templates remain authoritative for document-specific structure.
+Many documents in the project define local coverage templates for their particular functions. Those templates remain authoritative for document-specific structure, lifecycle fields, and required records.
 
-This guide supplies the higher-level prose standard that those templates should be written in.
+This guide supplies the higher-level prose standard in which those templates and their technical contents are written. A local template may require concise rows, chronology, fixed metadata, or a specialized proof form; it may not exempt technical or theory prose from academic clarity, claim discipline, or evidence boundaries.
 
 In short:
 

@@ -18,7 +18,7 @@ function plan(){
 test('driver pins remain independently frozen, separate from its own subject',()=>{
   assert.equal(D.PINS.packageModule[1],'9d888682514f23652b39bfaa53fdfb3ceab66e6ba88cf34222c156d226764ad6');
   assert.equal(D.PINS.independentDecoder[1],'328120d4f0c0716d78d38362cfb2f1c27b5a33382c6a3870fb10ca501f9d0273');
-  assert.equal(D.PINS.inventory[1],'79a91daedff0fdb712b5b76ff0a4d8c345711eb2c4b69c0731a509da701e48fc');
+  assert.equal(D.PINS.inventory[1],'901687bd92fdc686dc26b8634d8f58ecd46bd9f81208ca68563ad4cff983b09b');
   D.validateConfiguration(plan(),C);
 });
 

@@ -24,15 +24,16 @@ No rows. Completed records are retained in [work-log.md](work-log.md) and focuse
 
 ## Deferred / blocked
 
-### AEM-005 — Review packet export
-
-- **Status:** Deferred
-- **Priority object:** `review_packet_export`
-- **Request / acceptance:** Export a static equation-map packet for review, including document JSON and a screenshot.
-- **Evidence / blocker:** No operator-selected local editor draft is available to export. The task becomes executable only when such a draft exists and the operator requests its review packet.
-- **Completion:** The exported packet contains the normalized document data and a readable screenshot with enough provenance to identify its source equation and claim level.
+No rows.
 
 ## Superseded / withdrawn
+
+### AEM-005 — Review packet export
+
+- **Status:** Withdrawn
+- **Priority object:** `review_packet_export`
+- **Reason:** Withdrawn on 2026-09-06. The task existed to export an operator-selected local editor draft for review, and the live local editor and its browser-local draft store were removed on operator direction that equation-map content is changed in the repository. The blocking condition can no longer be satisfied, so the row is retired rather than left deferred against an unreachable trigger.
+- **Re-entry condition:** A review-packet export must be proposed as a new task naming what is exported, the repository-held source it is exported from, and the review decision the packet supports.
 
 ### AEM-004 — Curated carousel promotion review
 

@@ -21,7 +21,7 @@
       "borg.html",
       "borg-library.html"
     ],
-    "design": "reference/priorities/app-ui-guidelines/top-dynamic-control-bar-runtime-design-v1.md"
+    "design": "reference/priorities/app-ui-guidelines/contracts/top-dynamic-control-bar-runtime-design-v1.md"
   },
   "storage": {
     "tracked": false,

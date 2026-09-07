@@ -9,7 +9,7 @@ const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf
 test("Borg launches into visual assembly discovery", () => {
   assert.equal(getStandaloneAppPathForScene("borg"), "borg-library.html");
   assert.equal(getStandaloneAppPathForScene("content/scenes/archie/borg.json"), "borg-library.html");
-  assert.match(read("reference/priorities/app-borg/requirements-and-design.md"), /Borg Library is the discoverable product entry/);
+  assert.match(read("reference/priorities/app-borg/contracts/requirements-and-design.md"), /Borg Library is the discoverable product entry/);
 });
 
 test("Borg discovery keeps random simulation separate from exact assemblies", () => {

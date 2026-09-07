@@ -150,7 +150,9 @@ async function measureFeedbackRefresh(targetWindow) {
   const startedAt = targetWindow.performance.now();
   button.click();
   while (targetWindow.performance.now() - startedAt < 10000) {
-    if (/manifest ready/iu.test(status.textContent ?? "")) {
+    // The page's ready wording changed from "Manifest ready" to
+    // "Diagnostic details ready" on 2026-09-05; accept either.
+    if (/(?:manifest|diagnostic details) ready/iu.test(status.textContent ?? "")) {
       await new Promise((resolve) => targetWindow.requestAnimationFrame(() => resolve()));
       return {
         id: "refresh-public-manifest",

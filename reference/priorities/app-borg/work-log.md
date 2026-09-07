@@ -52,7 +52,7 @@ Closure goal: Retire or redirect the redundant Assembly Explorer only after conf
 
 ### 2026-09-01 - BORG-004 Assembly Explorer Retired And Redirected
 
-- Accepted the [Assembly Explorer disposition](assembly-explorer-disposition.md): the standalone demo runtime and its `assembly-configuration-explorer.dataset.v2` contract are retired. Both legacy scene identifiers now route directly to the Borg Assembly Library, while `assembly-explorer.html` remains only as an accessible redirect for old direct URLs.
+- Accepted the [Assembly Explorer disposition](work-log.md): the standalone demo runtime and its `assembly-configuration-explorer.dataset.v2` contract are retired. Both legacy scene identifiers now route directly to the Borg Assembly Library, while `assembly-explorer.html` remains only as an accessible redirect for old direct URLs.
 - The disposition follows BORG-002 parity: the canonical manifest preserves source order and exact hashes; Borg retains each raw record, stable source/worldline identities, source-only filters, optional source-carried $S_3$ grouping without raw-selection replacement, declared comparison transforms, source-carried field speed, and source-owned vector rows. The Assembly Library supplies scalable search and exact-record handoff.
 - Removed the demo-only runtime, schema, and tests rather than migrating its app-local energy, momentum, angular-momentum, speed fallback, or computed permutation facts into Borg. Those illustrative calculations were not sealed-record evidence and have no replacement authority.
 - Thirty-three focused navigation, manifest, replay-session, and app-routing tests pass. The terminology checker scans 360 migrated-scope files with no stragglers, and `git diff --check` passes. Live browser QA confirms that `assembly-explorer.html` finishes at `borg-library.html` and displays the current Assembly Library.
@@ -184,7 +184,7 @@ Closure goal: Keep the inspector synchronized with future Braid Program adjudica
 
 ### 2026-09-01 - Forty-Five Braid Entries And Active-Finding Configuration Counts
 
-- Froze the [seed identity-relation contract](assembly-identity-relation-contract.md): the 144 exact `assemblyId + modelRevisionSha256` configurations form 45 Borg braid entries, comprising 44 singletons and one source-declared 100-configuration equal-radius planar three-binary balance entry. A Borg braid entry remains separate from source-declared component-braid count, exact record identity, occurrence or lineage identity, morphology similarity, and taxonomy membership.
+- Froze the [seed identity-relation contract](contracts/assembly-identity-relation-contract.md): the 144 exact `assemblyId + modelRevisionSha256` configurations form 45 Borg braid entries, comprising 44 singletons and one source-declared 100-configuration equal-radius planar three-binary balance entry. A Borg braid entry remains separate from source-declared component-braid count, exact record identity, occurrence or lineage identity, morphology similarity, and taxonomy membership.
 - Added `borg-library-finding-relations.2026-09-01.v1` and a fail-closed relation evaluator. Five current source-owned relations link 114 exact configurations across 15 braid entries. Each exact configuration contributes at most one to its braid's finding-bearing configuration count even when multiple active findings match. A configuration without a matching relation displays `No active findings indexed yet`, which is not a scientific negative.
 
 Plainly: Borg now says “45 braids,” “144 exact configurations,” and “114 configurations with indexed active findings” as separate facts.
@@ -209,7 +209,7 @@ Plainly: the sidebar no longer counts the same parameter family one hundred time
 
 ### 2026-08-30 - Circular-Path, Co-Spherical, and Platonic Display Examples
 
-- Added twelve alternating circular-path examples, two co-spherical two-planar-braid displays, and five rotating Platonic vertex-set displays as nineteen explicit source specifications and generated sealed records. The [source inventory](../braid-program/configuration-display-catalog.md) records coordinate choices, polarity words, circulation, composition, and claim limits. The flat catalog contains 43 entries. The starting-geometry radio picker uses two columns.
+- Added twelve alternating circular-path examples, two co-spherical two-planar-braid displays, and five rotating Platonic vertex-set displays as nineteen explicit source specifications and generated sealed records. The [source inventory](../braid-program/configurations/configuration-display-catalog.md) records coordinate choices, polarity words, circulation, composition, and claim limits. The flat catalog contains 43 entries. The starting-geometry radio picker uses two columns.
 - Generalized the trail policy for three or more distinct co-rotating occupants: each gets the preceding phase-gap arc in its own polarity color. Equal signed angular rates are required; duplicate phases, unequal rates, and counter-rotation on one track remain unavailable. Antipodal two-member half-turns and one-occupant full turns use the same source rule. Facet v8 invalidates stale library previews and cursors. The library and workbench use the same renderer policy.
 
 Plainly: the new rings show alternating red/blue arcs, while the Platonic examples retain the existing full-orbit drawing style. All new examples replay declared paths; no EOM simulation is presented as having run.
@@ -220,7 +220,7 @@ Plainly: the new rings show alternating red/blue arcs, while the Platonic exampl
 
 ### 2026-08-30 - Circle Occupancy Selector and Assignment Audit
 
-- Accepted and implemented `Circle occupancy = {One per circle, Multiple per circle, Both occupancy types}` as a source-derived browse dimension independent of assembly-radius equality and trail duration. The [audit](selector-assignment-audit.md) covers seven geometry/composition dimensions; the live Assembly Library has eight selectors including the independent speed-policy constraint. BORG-014 and BORG-015 retain their broader open registry and coverage work. [The source-track contract](requirements-and-design.md#circle-occupancy) owns the definition.
+- Accepted and implemented `Circle occupancy = {One per circle, Multiple per circle, Both occupancy types}` as a source-derived browse dimension independent of assembly-radius equality and trail duration. The [audit](evidence/selector-assignment-audit.md) covers seven geometry/composition dimensions; the live Assembly Library has eight selectors including the independent speed-policy constraint. BORG-014 and BORG-015 retain their broader open registry and coverage work. [The source-track contract](contracts/requirements-and-design.md#circle-occupancy) owns the definition.
 - [BorgOrbitGeometry.mjs](../../../src/apps/borg/BorgOrbitGeometry.mjs) validates complete source membership, compares circular carriers at a common epoch without individually recentering them, and groups occupants only when every pair agrees. Regular phase-varying display representative reconstruction supplies its actual circles. Supported asymmetric counter-breathing representative breathing tracks require source-point witnesses outside another track's full axial range; sampled agreement never establishes equality. Unsupported, ambiguous, relatively drifting, or non-orbital sources remain unassigned with explanatory reasons. Existing circle comparison is shared with the trail renderer; phase, neutral-pair, and antipodal half-turn eligibility remain separate presentation checks. No scientific evaluator, sealed source record, recorded motion, source hash, or generated artifact was changed.
 
 Plainly: an assembly can contain several distinct multiply occupied circles. Both occupancy types means that one-occupant and multiply occupied circles occur together. Neither duplicates the question of equal distance from the assembly center.
@@ -256,12 +256,12 @@ Plainly: purple and per-binary orbit palettes are gone. This does not recolor un
 
 ### 2026-08-30 - Assembly-Centered Iso-Radii and Hetero-Radii
 
-- Applied the operator's clarified center definition across the Assembly Library: compare every architrino's distance from the source-declared center of the whole assembly at equal times throughout the recorded window. The axial-transverse and high-axial three-binary interior references are Hetero-radii. This supersedes earlier nesting labels, including the four coincident-center and coaxial-separated two-component circular negatives below, without altering prescribed motion. [The contract](requirements-and-design.md#catalog-composition-classifications) derives the squared-radius formulas and states the numerical screening boundary.
+- Applied the operator's clarified center definition across the Assembly Library: compare every architrino's distance from the source-declared center of the whole assembly at equal times throughout the recorded window. The axial-transverse and high-axial three-binary interior references are Hetero-radii. This supersedes earlier nesting labels, including the four coincident-center and coaxial-separated two-component circular negatives below, without altering prescribed motion. [The contract](contracts/requirements-and-design.md#catalog-composition-classifications) derives the squared-radius formulas and states the numerical screening boundary.
 - Facet revision `borg-record-facets.v5` derives radii from supported circular, linear, phase-varying display representative, and asymmetric counter-breathing representative source formulas. Four current records are Iso-radii: the three-axis circular coincident-midpoints equal-radius common-frequency configuration, the three-axis circular phase-compensated symmetric configuration, the three-axis circular axially-separated equal-radius common-frequency configuration, and the scoped-negative circular control. The other twenty are Hetero-radii, including all six two-component circular configurations, the centered five-coordinate representative, the phase-varying display representative, and the asymmetric counter-breathing representative. The phase-varying display representative repeats two different centered radii; the asymmetric counter-breathing representative's initially equal polarity sectors develop different radii during breathing. Common breathing and radius equality remain independent.
 
 Plainly: the reference center matters. Equal orbit sizes or matching repeated modules need not put every architrino the same distance from the assembly center.
 
-- Replaced the nesting assignment data with [spindle-only classification v3](library-classifications.v4.json), retaining all six exact spindle pins. Radius assignments cannot be manually overridden through this file. Unsupported nesting queries are rejected. Updated the six-dimension audit, BORG-014/BORG-015, requirements, and library guidance.
+- Replaced the nesting assignment data with [spindle-only classification v3](contracts/library-classifications.v4.json), retaining all six exact spindle pins. Radius assignments cannot be manually overridden through this file. Unsupported nesting queries are rejected. Updated the six-dimension audit, BORG-014/BORG-015, requirements, and library guidance.
 - Verification: 41 focused library, radius, preview, catalog, assembly-view, and history-evaluation tests pass. Independent expected controls use Euclidean/trigonometric identities, translated centers, different epochs, common breathing, unequal later slices, and a sampling counterexample that must remain unassigned. The worldline evaluator and source records were not modified. A read-only comparison matches every cell in all 24 audit rows to current provider output; edited document links resolve. Priority-ranking validation and `git diff --check` pass.
 - Browser verification: Iso-radii returns exactly the four named examples; a hetero-radii example reports Hetero-radii; two braids plus Hetero-radii returns the six qualifying records. Unsupported nesting queries fail rather than being translated. The no-solver preview service was refreshed. Layout and source playback behavior were not redesigned.
 - Claim grade: derived source-formula geometry with floating-point browse thresholds, plus measured software behavior; not scientific acceptance, independently regenerated trajectories, or certified interval arithmetic. Falsifier: an Iso-radii source violates its common-radius identity, a Hetero-radii witness has equal centered radii, or an orbit/component center replaces the declared assembly center. No source geometry, sealed record, solver, generated corpus output, or priority score changed. Million-entry indexing remains open.
@@ -284,7 +284,7 @@ Plainly: the phase-compensated symmetric configuration can have circular paths o
 ### 2026-08-30 - Coincident-Midpoint Three-Axis Circular Nesting Assignments
 
 - Applied the operator's exact-record assignments: the general three-axis circular coincident-midpoints configuration is nested; the equal-radius common-frequency configuration is not nested. Updated the selector audit, composition contract, library guidance, and BORG-014/BORG-015 status. Ten records are now nested, one is explicitly not nested, and thirteen remain unassigned. Other examples are not reclassified by analogy.
-- Replaced the positive-only assignment format with classification v2 (now superseded by [spindle-only v3](library-classifications.v4.json)), carrying an explicit boolean per exact record pin. The shared lookup distinguishes true, false, and absent; validators reject missing/nonboolean values and conflicting duplicate pins. The descriptor revision advances to v4, retaining classification-change cache invalidation and unchanged sealed records.
+- Replaced the positive-only assignment format with classification v2 (now superseded by [spindle-only v3](contracts/library-classifications.v4.json)), carrying an explicit boolean per exact record pin. The shared lookup distinguishes true, false, and absent; validators reject missing/nonboolean values and conflicting duplicate pins. The descriptor revision advances to v4, retaining classification-change cache invalidation and unchanged sealed records.
 
 Plainly: “not nested” now means an explicit answer, not a missing answer.
 
@@ -323,7 +323,7 @@ Plainly: all three examples remain the same assemblies with the same motion. The
 
 ### 2026-08-30 - Selector Audit Expanded to Complete Catalog
 
-- Added centered five-coordinate representative, phase-varying display representative, asymmetric counter-breathing representative, and scoped-negative circular control to [the seven-dimension assignment table](selector-assignment-audit.md), bringing coverage to all twenty-four current Borg catalog records. asymmetric counter-breathing representative is assigned Breather; scoped-negative circular control is assigned Non-breather and Circular paths. Missing assignments remain explicit: two breathing, fifteen nesting, three shape, and twenty-four speed-policy cells. The earlier spherical-coordinate finding remains scoped to the twenty A/B/C sources.
+- Added centered five-coordinate representative, phase-varying display representative, asymmetric counter-breathing representative, and scoped-negative circular control to [the seven-dimension assignment table](evidence/selector-assignment-audit.md), bringing coverage to all twenty-four current Borg catalog records. asymmetric counter-breathing representative is assigned Breather; scoped-negative circular control is assigned Non-breather and Circular paths. Missing assignments remain explicit: two breathing, fifteen nesting, three shape, and twenty-four speed-policy cells. The earlier spherical-coordinate finding remains scoped to the twenty A/B/C sources.
 - Updated BORG-014 and the library documentation link. No app logic, source geometry, sealed record, or operator classification changed.
 - Verification: a read-only Node comparison matched all twenty-four table labels and every selector column against the current catalog, descriptor, and hash-pinned assignments; priority-ranking validation and `git diff --check` pass. Claim grade: measured documentation coverage and software-output agreement, not independent scientific validation. Falsifier: a catalog record is absent from the table or any cell differs from its current descriptor assignment.
 
@@ -332,7 +332,7 @@ Plainly: the table now includes every record already available in Borg, while re
 ### 2026-08-30 - Selector Menu Cleanup and Individual-Geometry Audit
 
 - Applied the operator's menu changes: `1D` labels the line/point bucket; `Unavailable` options are removed; shape retains `Unclassified`. `Any` still includes unassigned records, and selected-record details render `Not assigned`. The internal descriptor values remain unchanged and never become false. Saved browse links drop withdrawn choices without retargeting their selected record/hash; unassigned group previews remain counted but cannot recreate a removed menu option.
-- Captured [all twenty prescribed three-binary and two-component circular representatives across the seven selector dimensions](selector-assignment-audit.md). A one-off comparison verified every table row against current descriptor/assignment output. Eleven nesting cells and twenty speed-policy cells lack assignments. Source equal-radius data supports non-nesting for the coincident-midpoints equal-radius common-frequency, phase-compensated symmetric, and axially-separated equal-radius common-frequency configurations under the operator's stated radius criterion; the other eight unassigned nesting cases await the broader predicate decision. Source `preserve-and-report` speed guards are migration-bound checks, not sufficient model/run speed-policy declarations.
+- Captured [all twenty prescribed three-binary and two-component circular representatives across the seven selector dimensions](evidence/selector-assignment-audit.md). A one-off comparison verified every table row against current descriptor/assignment output. Eleven nesting cells and twenty speed-policy cells lack assignments. Source equal-radius data supports non-nesting for the coincident-midpoints equal-radius common-frequency, phase-compensated symmetric, and axially-separated equal-radius common-frequency configurations under the operator's stated radius criterion; the other eight unassigned nesting cases await the broader predicate decision. Source `preserve-and-report` speed guards are migration-bound checks, not sufficient model/run speed-policy declarations.
 
 Plainly: removing an unknown menu choice does not remove the underlying uncertainty or invent an answer for the table.
 
@@ -347,7 +347,7 @@ Plainly: removing an unknown menu choice does not remove the underlying uncertai
 
 ### 2026-08-30 - Nested, Spindle, and Braid-Count Filters
 
-- Added the operator's nine positive nesting classifications and six positive spindle classifications to the Assembly Library. [The composition contract](requirements-and-design.md#catalog-composition-classifications) defines the scope; [the authored assignment file](library-classifications.v4.json) pins exact records. No geometry, sealed record, EOM solver, or generated artifact changed. Claim grade: operator-assigned browse properties, not scientific acceptance or a derived general shape test.
+- Added the operator's nine positive nesting classifications and six positive spindle classifications to the Assembly Library. [The composition contract](contracts/requirements-and-design.md#catalog-composition-classifications) defines the scope; [the authored assignment file](contracts/library-classifications.v4.json) pins exact records. No geometry, sealed record, EOM solver, or generated artifact changed. Claim grade: operator-assigned browse properties, not scientific acceptance or a derived general shape test.
 - Added `Braids in assembly` with 1, 2, and 3 always offered, plus unavailable. Complete source component memberships yield eighteen one-braid records and six two-braid records (all two-component circular configurations); three has no current seed representative. The descriptor rejects missing, duplicate, overlapping, and incomplete membership. The coincident-center co-rotating and counter-rotating source component index subsets count as two for this browse selector without asserting separately bound braids or changing scientific top-level taxonomy. The phase-varying display representative remains one declared group despite having twelve architrinos.
 
 Plainly: a group count is not particle arithmetic, and a classification change does not mean that the assembly's recorded motion changed.
@@ -387,9 +387,9 @@ Plainly: the operator can now try the visual workflow on the real seed catalog. 
 
 ### 2026-07-26 - Borg Documentation Consolidation
 
-- Consolidated the first-screen requirements into [requirements-and-design](requirements-and-design.md), while retaining `BORG_APP_SURFACE_DESIGN_V1` in [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js) as the executable screen-contract authority.
-- Reconciled the former bridge capability audit against live code and queue ownership. At that time, the unresolved EOM products were the wake/history, shell, conservation, residual, and acceleration-contribution rows owned by [BORG-001](work-queue.md#borg-001--native-wake-history-and-boundary-residuals), followed by the now-completed [velocity-scale sampling campaign](velocity-sampling-protocol.md). Implemented or display-only rows no longer remain in a separate audit packet.
-- Consolidated the live-run browser-retention explanation into [requirements-and-design](requirements-and-design.md), while retaining [BorgLiveRunRetentionPolicy.js](../../../src/apps/borg/BorgLiveRunRetentionPolicy.js) as the executable authority for numeric limits, compaction, snapshots, and runtime status.
+- Consolidated the first-screen requirements into [requirements-and-design](contracts/requirements-and-design.md), while retaining `BORG_APP_SURFACE_DESIGN_V1` in [BorgAppManifest.js](../../../src/apps/borg/BorgAppManifest.js) as the executable screen-contract authority.
+- Reconciled the former bridge capability audit against live code and queue ownership. At that time, the unresolved EOM products were the wake/history, shell, conservation, residual, and acceleration-contribution rows owned by [BORG-001](work-queue.md#borg-001--native-wake-history-and-boundary-residuals), followed by the now-completed [velocity-scale sampling campaign](contracts/velocity-sampling-protocol.md). Implemented or display-only rows no longer remain in a separate audit packet.
+- Consolidated the live-run browser-retention explanation into [requirements-and-design](contracts/requirements-and-design.md), while retaining [BorgLiveRunRetentionPolicy.js](../../../src/apps/borg/BorgLiveRunRetentionPolicy.js) as the executable authority for numeric limits, compaction, snapshots, and runtime status.
 
 Plainly: one requirements packet now explains the screen and browser-retention boundaries, the queue owns the remaining EOM work, and executable constants stay in source.
 
@@ -401,7 +401,7 @@ Plainly: one requirements packet now explains the screen and browser-retention b
 
 Plainly: the ruling rejects only browser Claim continuations that could have lost required history, keeps independent work intact, and leaves the old budget files available for audit without allowing them to control the app.
 
-Artifact: [browser Claim-grade history invalidation](browser-claim-history-invalidation-2026-07-24.md).
+Artifact: [browser Claim-grade history invalidation](evidence/browser-claim-history-invalidation-2026-07-24.md).
 
 ### 2026-07-24 - Borg Code-Review Repair
 
@@ -541,13 +541,13 @@ Plainly: certified runs keep the past they need, evidence labels are checked by 
 
 - Resumed the paused Borg app work after reading the current priority partition policy in [../README.md](../README.md), then the live tracker, brainstorming file, and this work log before writing.
 - Confirmed the active priority directory is `reference/priorities/app-borg/`; the old `reference/priorities/borg-app/` path is absent in the current branch state.
-- Confirmed focused artifacts held the release/runtime decisions: [borg-release-budget-manifest.v1](borg-release-budget-manifest.v1.json) records measured browser runtime budget ceilings, while the live-run browser-retention policy records forever-mode display retention with compacted display-only path history. The retention explanation now lives in [requirements-and-design](requirements-and-design.md), and its executable authority remains [BorgLiveRunRetentionPolicy.js](../../../src/apps/borg/BorgLiveRunRetentionPolicy.js).
+- Confirmed focused artifacts held the release/runtime decisions: [borg-release-budget-manifest.v1](contracts/borg-release-budget-manifest.v1.json) records measured browser runtime budget ceilings, while the live-run browser-retention policy records forever-mode display retention with compacted display-only path history. The retention explanation now lives in [requirements-and-design](contracts/requirements-and-design.md), and its executable authority remains [BorgLiveRunRetentionPolicy.js](../../../src/apps/borg/BorgLiveRunRetentionPolicy.js).
 - No loose conceptual notes were migrated into [brainstorming](brainstorming.md) during this audit. The live tracker remains compact because the current queue and next action are already stated there.
 - Current tracker next build burden remains `build-native-wake-history-and-boundary-residual-fixture`: extend the EOM contracts and native implementation for retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and acceleration-contribution diagnostics without app-local physics.
 
 ### 2026-07-16 - Assembly Viewer Consolidation
 
-- Moved the operator-ratified assembly-viewer requirements from the Braid Program campaign directory into [assembly-viewer-requirements](assembly-viewer-requirements.md), because `app-borg` owns Borg design, requirements, and build handoffs while the Braid Program retains schema acceptance and campaign booking in its instrument gate.
+- Moved the operator-ratified assembly-viewer requirements from the Braid Program campaign directory into [assembly-viewer-requirements](contracts/assembly-viewer-requirements.md), because `app-borg` owns Borg design, requirements, and build handoffs while the Braid Program retains schema acceptance and campaign booking in its instrument gate.
 - Mined the older Assembly Configuration Explorer priority packet and live runtime. Retained requirements: raw source-order preservation, `unquotiented-labeled` tri-binary rows, optional source-carried $S_3$ grouping without evidence deletion, local/manifest collection intake, stable-sector navigation, and source-carried branch/capture filters.
 - Did not import the older runtime's app-computed speed regimes, $D_{\mathrm{plane}}$, energy differentials, permutation fingerprints, or demo rows into replay authority. Borg may display those values only when a source record or packet carries them with provenance.
 - Recorded two distinct Borg modes: the simulation workspace may invoke the EOM solver after explicit Start; assembly-view replay consumes sealed `assembly-view-record.v0` files only. The old explorer priority directory was retired after its useful requirements were captured; its standalone implementation remains until a separate parity-based disposition task.
@@ -568,3 +568,40 @@ Plainly: certified runs keep the past they need, evidence labels are checked by 
 - The operator-set startup maximum for each velocity component is `0.01`. The manifest validator, initial-settings form, seeded-position controls, and current design packet consume that one default; explicit nondefault fixtures retain their own test values. On the seed-0 3:3 display control with `h_max = 0.025`, changing only this bound from `0.03` to `0.01` moved the terminal coupled-correction boundary from `T = 0.683203125` to `T = 0.55390625`; therefore the lower speed is a configuration decision, not a demonstrated cure for the correction boundary. Claim grade: derived wiring and measured paired control on 2026-07-17. Falsifier: a fresh initial-settings pane starts at any value other than `0.01`, a seeded component exceeds it, or the paired profiler does not reproduce the stated boundaries.
 - The coupling control now occupies half of its former full-width row. Its other half contains `Step height` and `Adaptive minimum`: the applied height supplies both `initialStep` and `maximumStep`, while the applied minimum supplies `minimumStep`. The panel rejects values outside `0 < minimum <= height <= 0.05` rather than exposing an unreachable height above the chunk length. Claim grade: derived from the runner-option mapping and measured by the Borg runtime controls. Falsifier: an applied edit does not appear in the next run request, adaptive growth exceeds the applied height, or the controller attempts a height below the applied minimum.
 - Operator visual decision removed all three great-circle guides from the envelope. The viewport retains exactly one light-gray dotted outer boundary shell and no central-ball guide. Claim grade: derived from the scene graph and measured in the live Borg viewport on 2026-07-17. Falsifier: the runtime constructs a `LineLoop`, the viewport shows a continuous spherical guide, or more than one envelope shell is rendered.
+
+
+## Assembly Explorer Disposition
+
+Folded on 2026-09-05 from `app-borg/analysis/assembly-explorer-disposition.md`, which was a separate file that had no reader and no promotion route. Content is unchanged apart from heading depth.
+
+Closure goal: Retire the redundant Assembly Explorer runtime while preserving direct and scene-based navigation into Borg's canonical source-owned assembly discovery and exact-record replay surfaces.
+
+
+
+Status: `accepted and verified` on 2026-09-01.
+
+#### Decision
+
+Retire the standalone Assembly Explorer runtime and its `assembly-configuration-explorer.dataset.v2` contract. Route the legacy `assembly-explorer` scene token and scene path directly to `borg-library.html`; retain `assembly-explorer.html` only as a non-indexed user-facing redirect for old direct URLs. The redirect preserves the incoming query and fragment so exact-record links are not silently weakened.
+
+#### Basis
+
+Borg now preserves the obligations that formerly justified the separate runtime:
+
+- `assembly-view-collection.v1` preserves external source order and exact record identities;
+- the replay session preserves every raw record and stable source/worldline identity;
+- optional $S_3$ navigation grouping advances only when every grouped record carries a permutation-canonical key and never replaces the selected raw record;
+- filters consume only source-carried values;
+- synchronized comparison consumes declared time and unit transforms rather than assuming an identity map;
+- field speed and kinematic vector rows are source-owned carriers; and
+- Borg Library provides scalable source search, exact identity inspection, record-hash lookup, and exact Borg Workbench handoff.
+
+The retired demo runtime also contained app-local fallbacks and derived energy, momentum, angular-momentum, speed, and $S_3$ quantities over illustrative rows. Those calculations were neither sealed-record replay nor source-owned Borg evidence. They are not migrated into Borg.
+
+Plainly: Borg keeps the trustworthy navigation and inspection behavior. The old page's demo calculations are removed rather than being treated as facts about an assembly.
+
+#### Verification
+
+The navigator maps both legacy scene identifiers to `borg-library.html`, but the retired Assembly Explorer scene is absent from public scene search. The compatibility URL preserves its query and fragment while redirecting to Borg Library. Focused navigation, manifest, replay-session, and terminology tests pass; live browser QA confirms that requesting `assembly-explorer.html` finishes at Borg Library. No Assembly Explorer runtime, runtime test, or standalone dataset schema remains.
+
+Claim grade: implemented and measured routing and software behavior. This disposition establishes no geometry, acceleration balance, evolution, retention, stability, binding, physical identity, or scientific acceptance. Falsifier: either legacy route opens a separate runtime, any retired demo contract remains an active consumer, Borg loses raw source order or exact identity, optional grouping replaces a raw record, or the compatibility URL does not land in Borg Library.

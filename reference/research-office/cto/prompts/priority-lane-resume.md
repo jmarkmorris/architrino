@@ -6,7 +6,7 @@ Use this prompt when Op names a priority workstream and wants the next practical
 
 ## Startup
 
-Read `AGENTS.md`, the generated startup router, and the selected live workflow owner before inspecting the working set using mechanisms permitted for the current agent. The repository's Claude git prohibition remains in force. Read the following workstream sources:
+Read `AGENTS.md`, the generated startup router, and the selected live workflow owner before inspecting the working set using mechanisms permitted for the current agent. Read the following workstream sources:
 
 1. `AGENTS.md`
 2. `reference/priorities/README.md`
@@ -51,7 +51,7 @@ Run focused validation appropriate to the files touched. Codex checks whitespace
 git diff --check
 ```
 
-Agents prohibited from using git use the applicable non-git validators and report the scope of verification actually performed.
+An agent whose environment lacks git uses the applicable non-git validators and reports the scope of verification actually performed.
 
 For ordinary priority or corpus edits, do not run generator `--write` commands unless Op explicitly asks for regeneration or the task is in final PR flow.
 

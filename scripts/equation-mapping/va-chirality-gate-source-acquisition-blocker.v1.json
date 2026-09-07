@@ -50,7 +50,7 @@
       "boundary": "The exposure row records the retained weak-exposure boundary; it does not prove the chirality selector or weak event ledger."
     },
     "weakFlavorBenchmarkPacket": {
-      "candidatePath": "reference/priorities/mapping-standard-model/weak-flavor-event-ledger-benchmark-packet.md#benchmark-table",
+      "candidatePath": "reference/priorities/mapping-standard-model/analysis/weak-flavor-event-ledger-benchmark-packet.md#benchmark-table",
       "usableFor": [
         "PDG muon V-A spectrum benchmark pressure",
         "Michel-parameter comparison target",
@@ -63,7 +63,7 @@
       "boundary": "The packet is priority-only benchmark material; the Standard Model V-A point is a target to recover, not a retained source row by itself."
     },
     "weakSectorGaugeClosure": {
-      "candidatePath": "reference/priorities/mapping-standard-model/weak-sector-gauge-closure.md#weak-exposure-operator",
+      "candidatePath": "reference/priorities/mapping-standard-model/analysis/weak-sector-gauge-closure.md#weak-exposure-operator",
       "usableFor": [
         "native weak-exposure functional target",
         "left-channel selection and right-channel suppression burden",

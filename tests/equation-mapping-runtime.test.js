@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 
 import {
   CANVAS_COLORS,
@@ -12,14 +12,6 @@ import {
   normalizeCommentFontSize,
   normalizeEquationMapDocument,
 } from "../src/apps/equation-mapping/EquationMappingData.js";
-import {
-  createEquationAnchor,
-  createEquationOverlay,
-  getFormulaPartTeXForAnchor,
-  getOverlayContentDraft,
-  updateEquationAnchor,
-  updateEquationOverlay,
-} from "../src/apps/equation-mapping/EquationMappingEditor.js";
 import {
   calculateEquationAutoFit,
   createPointerLineGeometry,
@@ -38,8 +30,12 @@ import {
   createEquationMappingRegistryApi,
 } from "../src/apps/equation-mapping/EquationMappingRegistry.js";
 
+function repoPath(relativePath) {
+  return new URL(`../${relativePath}`, import.meta.url);
+}
+
 function readRepoFile(relativePath) {
-  return readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
+  return readFileSync(repoPath(relativePath), "utf8");
 }
 
 function collectVisibleEquationMapText(document) {
@@ -1222,45 +1218,237 @@ test("equation mapping uses one foreground ink color per background family", () 
     html,
     /\.equation-mapping-shell\[data-background="dark"\] \{[\s\S]*?--line-ink: #ffffff;/u
   );
-  assert.equal(
-    html.includes(".equation-mapping-formula-part.is-editor-selected-anchor {\n        color: var(--accent);"),
-    false
-  );
   assert.match(html, /border: 1px solid var\(--line-ink\);/u);
   assert.match(html, /--marker-ink: rgba\(232, 226, 236, 0\.58\);/u);
   assert.equal(html.includes(".equation-mapping-pointer-line.is-active"), false);
 });
 
-test("equation mapping settings control uses a gear icon", () => {
+test("formula parts carry no inert anchor state classes", () => {
   const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
-  assert.equal(runtime.includes('case "settings":'), true);
-  assert.equal(runtime.includes("M12.2 2h-.4"), true);
-  assert.equal(runtime.includes("M12 3v3M12 18v3"), false);
+  const html = readRepoFile("equation-mapping.html");
+  // `is-editor-selected-anchor` set `color: var(--equation-ink)`, and every
+  // background block defines `--text: var(--equation-ink)`, which the part
+  // already inherits, so the rule painted the colour the part already had.
+  // `is-active-target` never had a rule at all. Both named an editor selection
+  // that no longer exists.
+  assert.equal(runtime.includes("is-editor-selected-anchor"), false);
+  assert.equal(runtime.includes("is-active-target"), false);
+  assert.equal(runtime.includes("activeTargetId"), false);
+  assert.equal(html.includes("is-editor-selected-anchor"), false);
+  assert.equal(html.includes("is-active-target"), false);
+  // The state classes that do carry rendered meaning stay.
+  assert.equal(runtime.includes('partElement.classList.add("is-targeted")'), true);
+  assert.match(html, /\.equation-mapping-formula-part\.is-targeted\[data-section-line="above"\]::before/u);
+});
+
+test("equation mapping settings control uses the shared gear icon", () => {
+  const controlBar = readRepoFile("src/runtime/TopDynamicControlBarRuntime.js");
+  const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  // The gear belongs to the canonical bar's icon table. The app must not carry
+  // a second copy of it.
+  assert.match(controlBar, /settings: '<circle cx="12" cy="12" r="3"><\/circle>/u);
+  assert.equal(runtime.includes("M12.2 2h-.4"), false);
 });
 
 test("equation mapping settings omit the global section-line control", () => {
   const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
-  const requirements = readRepoFile("reference/priorities/app-equation-mapping/requirements-and-design.md");
+  const requirements = readRepoFile("reference/priorities/app-equation-mapping/contracts/requirements-and-design.md");
   assert.equal(runtime.includes('this.renderSegmentedSetting("Section line"'), false);
   assert.equal(runtime.includes("this.sectionLinePlacement ="), false);
   assert.equal(runtime.includes("sectionLinePlacement: this.sectionLinePlacement"), false);
   assert.equal(runtime.includes("normalizeSectionLinePlacement"), false);
-  assert.equal(runtime.includes('this.renderEditorSelect("Line"'), false);
-  assert.equal(runtime.includes('name="overlay-line"'), false);
   assert.equal(requirements.includes("section-line placement: above or below formula section"), false);
 });
 
-test("equation mapping delegates global navigation to the canonical bar and keeps equation tools local", () => {
+test("equation mapping presents one control strip owned by the canonical bar", () => {
   const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  const html = readRepoFile("equation-mapping.html");
+
+  // Canvas settings is contributed to the shared strip, in the accepted shared
+  // order, rather than rendered as a private second row beneath it.
   assert.equal(runtime.includes("createStandaloneAppNavigationRuntime"), true);
   assert.equal(runtime.includes("onOpenChange: (isOpen)"), true);
-  assert.equal(runtime.includes("controls.hidden = this.globalSearchOpen"), true);
+  assert.equal(runtime.includes("extensionActions: ["), true);
+  assert.equal(runtime.includes('kind: "settings"'), true);
+  assert.equal(runtime.includes('label: "Canvas settings"'), true);
   assert.equal(runtime.includes("navigateStandaloneAppHome"), false);
   assert.equal(runtime.includes('case "home":'), false);
-  assert.equal(runtime.includes('this.renderIconButton("home"'), false);
-  assert.equal(runtime.includes('this.renderIconButton("search", "Search equations"'), true);
-  assert.equal(runtime.includes('this.renderIconButton("settings", "Canvas settings"'), true);
-  assert.equal(runtime.includes('this.renderIconButton("edit", "Edit map"'), true);
+
+  // No app-private icon row, and no second magnifier duplicating scene search.
+  assert.equal(runtime.includes("renderIconButton"), false);
+  assert.equal(runtime.includes("renderControls"), false);
+  assert.equal(runtime.includes('"Search equations"'), false);
+  assert.equal(runtime.includes("equation-mapping-controls"), false);
+  assert.equal(html.includes("equation-mapping-controls"), false);
+  assert.equal(html.includes("--control-top"), false);
+
+  // The settings panel is anchored to the canvas below the single strip.
+  assert.equal(runtime.includes("renderPanelLayer()"), true);
+  assert.equal(runtime.includes("this.settingsOpen && !this.globalSearchOpen"), true);
+  // Anchored to the viewport so it stays under the button that opens it,
+  // whatever width the two rails currently take from the canvas.
+  assert.match(
+    html,
+    /\.equation-mapping-panel-layer \{\s*position: fixed;\s*top: var\(--panel-top\);\s*right: var\(--panel-right\);/u
+  );
+});
+
+test("equation mapping title clearance is measured from the control strip", () => {
+  const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  const html = readRepoFile("equation-mapping.html");
+  // The strip gains and loses controls, so the title's right inset is measured
+  // from it rather than restated as a second hard-coded width.
+  assert.equal(runtime.includes("applyControlStripClearance()"), true);
+  assert.equal(runtime.includes('shell.style.setProperty("--control-strip-clearance"'), true);
+  assert.match(
+    html,
+    /\.equation-mapping-equation-title \{[\s\S]*?right: max\(clamp\(116px, 16vw, 204px\), var\(--control-strip-clearance, 0px\)\);/u
+  );
+
+  const shellStyle = new Map();
+  const context = {
+    root: {
+      querySelector: () => ({ style: { setProperty: (name, value) => shellStyle.set(name, value) } }),
+    },
+    document: {
+      getElementById: () => ({ getBoundingClientRect: () => ({ left: 1012, width: 252 }) }),
+    },
+    window: { innerWidth: 1280 },
+  };
+  EquationMappingRuntime.prototype.applyControlStripClearance.call(context);
+  assert.equal(shellStyle.get("--control-strip-clearance"), "284px");
+});
+
+test("equation mapping keeps only the carousel icons in its private icon map", () => {
+  const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  assert.equal(runtime.includes('case "previous":'), true);
+  assert.equal(runtime.includes('case "next":'), true);
+  assert.equal(runtime.includes('case "search":'), false);
+  assert.equal(runtime.includes('case "settings":'), false);
+  assert.equal(runtime.includes('case "edit":'), false);
+});
+
+test("equation mapping has no browser-local document editor or draft storage", () => {
+  const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  // Equation-map content is owned by the corpus. The app reads it and never
+  // writes a browser-local draft, so no editing surface may exist here.
+  assert.equal(existsSync(repoPath("src/apps/equation-mapping/EquationMappingEditor.js")), false);
+  assert.equal(runtime.includes("EquationMappingEditor"), false);
+  assert.equal(runtime.includes("architrino.equationMapping.documents"), false);
+  assert.equal(runtime.includes("editorOpen"), false);
+  assert.equal(runtime.includes("Edit map"), false);
+  assert.equal(runtime.includes("renderEditorPanel"), false);
+  assert.equal(runtime.includes("resetDocumentDrafts"), false);
+  assert.equal(runtime.includes("replaceActiveDocument"), false);
+});
+
+test("symbols and source is a collapsible right rail, not a panel over the canvas", () => {
+  const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  const html = readRepoFile("equation-mapping.html");
+
+  // A third grid column, so the equation re-centres in what is left instead of
+  // sitting behind a floating panel.
+  assert.match(
+    html,
+    /\.equation-mapping-shell \{[\s\S]*?grid-template-columns: var\(--index-width\) minmax\(0, 1fr\) var\(--reference-width\);/u
+  );
+  assert.match(
+    html,
+    /\.equation-mapping-shell\[data-reference-collapsed="true"\] \{\s*--reference-width: 72px;\s*\}/u
+  );
+  // Anything sized against the canvas subtracts both rails, not just the left.
+  assert.match(html, /--rail-width: calc\(var\(--index-width\) \+ var\(--reference-width\)\);/u);
+  assert.equal(html.includes("calc(100vw - var(--index-width) -"), false);
+
+  // The rail hangs below the control strip rather than running up behind it,
+  // so the strip keeps the position it holds on every other page.
+  assert.match(
+    html,
+    /\.equation-mapping-reference \{[\s\S]*?margin-top: var\(--panel-top\);\s*height: calc\(100dvh - var\(--panel-top\)\);/u
+  );
+
+  // The rail owns its own collapse control, so source context stays reachable
+  // on an equation that defines no symbols.
+  assert.equal(runtime.includes("renderReferenceRail()"), true);
+  assert.equal(runtime.includes("equation-mapping-reference-collapse"), true);
+  assert.equal(runtime.includes("this.referenceCollapsed = !this.referenceCollapsed"), true);
+  assert.equal(runtime.includes("referenceCollapsed: this.referenceCollapsed"), true);
+
+  // Pressing a symbol chip expands the rail and reveals that definition.
+  assert.equal(runtime.includes("this.referenceCollapsed = false;"), true);
+  assert.equal(runtime.includes("this.revealReferenceSelection = true;"), true);
+
+  // The floating lozenge beside the title is gone, and so is the overlay panel.
+  assert.equal(runtime.includes("Symbols & source\""), true);
+  assert.equal(runtime.includes("equation-mapping-reference-toggle"), false);
+  assert.equal(runtime.includes("renderReferencePanel"), false);
+  assert.equal(runtime.includes("referencePanelOpen"), false);
+  assert.equal(html.includes("equation-mapping-reference-toggle"), false);
+  assert.equal(html.includes("equation-mapping-reference-panel"), false);
+});
+
+test("compact layout keeps the equation clear of both collapsed rails", () => {
+  const html = readRepoFile("equation-mapping.html");
+  const compact = html.slice(html.indexOf("@media (max-width: 760px)"));
+  // Neither rail is a grid column here, so neither may reserve canvas width.
+  assert.match(compact, /--index-width: 0px;\s*--reference-width: 0px;/u);
+  // Each collapsed strip still sits over the canvas, so the stage pads for it.
+  assert.match(
+    compact,
+    /\[data-index-collapsed="true"\] \.equation-mapping-stage \{\s*padding-left: 87px;\s*\}/u
+  );
+  assert.match(
+    compact,
+    /\[data-reference-collapsed="true"\] \.equation-mapping-stage \{\s*padding-right: 87px;\s*\}/u
+  );
+  // The equation is sized against the stage's content box, so that padding is
+  // respected instead of being overrun by a viewport-relative width.
+  assert.match(
+    compact,
+    /\.equation-mapping-equation-shell \{[\s\S]*?width: min\(100%, 760px\);/u
+  );
+  assert.equal(compact.includes("width: min(96vw, 760px)"), false);
+  assert.equal(compact.includes("width: min(76vw, 300px)"), false);
+});
+
+test("equation mapping title carries the title alone", () => {
+  const element = (tagName) => ({
+    tagName,
+    className: "",
+    children: [],
+    dataset: {},
+    style: { setProperty() {} },
+    setAttribute() {},
+    append(...nodes) {
+      this.children.push(...nodes);
+    },
+  });
+  const context = {
+    document: { createElement: element },
+    activeDocument: { title: "Causal Wake Master Equation" },
+  };
+  const title = EquationMappingRuntime.prototype.renderEquationTitle.call(context);
+  assert.equal(title.children.length, 1);
+  assert.equal(title.children[0].tagName, "strong");
+});
+
+test("equation mapping hides the sidebar search field while the index is collapsed", () => {
+  const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  const html = readRepoFile("equation-mapping.html");
+  assert.equal(runtime.includes("body.hidden = this.indexCollapsed;"), true);
+  assert.equal(html.includes(".equation-mapping-index-body[hidden]"), true);
+});
+
+test("equation mapping settings labels cannot overlap their controls", () => {
+  const html = readRepoFile("equation-mapping.html");
+  // A fixed label track overlaps the swatches whenever the rendered label is
+  // wider than the track, which a single word cannot avoid by wrapping.
+  assert.equal(html.includes("grid-template-columns: 92px minmax(0, 1fr);"), false);
+  assert.match(
+    html,
+    /\.equation-mapping-settings-panel \{[\s\S]*?grid-template-columns: minmax\(92px, auto\) minmax\(0, 1fr\);/u
+  );
+  assert.match(html, /\.equation-mapping-settings-row \{\s*display: contents;\s*\}/u);
 });
 
 test("equation mapping arrow keys navigate through the visible equation list", () => {
@@ -1480,11 +1668,15 @@ test("equation mapping resets stale saved sizing into the new medium defaults", 
   assert.equal(runtime.includes("sizeCalibrationVersion: SIZE_CALIBRATION_VERSION"), true);
 });
 
-test("equation mapping merges built-in seed maps with saved draft maps", () => {
+test("equation mapping builds its document list from the corpus seed alone", () => {
   const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
-  assert.equal(runtime.includes("function mergeSeedAndSavedDocuments"), true);
-  assert.equal(runtime.includes("savedById.get(seedDocument.id) ?? seedDocument"), true);
-  assert.equal(runtime.includes("mergedDocuments.push(document)"), true);
+  // There is no browser-local draft to merge, so the seed is the whole list.
+  assert.equal(runtime.includes("mergeSeedAndSavedDocuments"), false);
+  assert.equal(runtime.includes("readSavedDocuments"), false);
+  assert.equal(
+    runtime.includes("normalizeEquationMapDocuments(options.documents ?? createSeedEquationMapDocuments())"),
+    true
+  );
 });
 
 test("equation mapping defaults to medium equation scale", () => {
@@ -1516,7 +1708,7 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
   const html = readRepoFile("equation-mapping.html");
   assert.match(
     html,
-    /\.equation-mapping-equation-shell \{[\s\S]*?width: min\(96vw, 1320px\);[\s\S]*?max-width: calc\(100vw - var\(--index-width\) - 24px\);/u
+    /\.equation-mapping-equation-shell \{[\s\S]*?width: min\(96vw, 1320px\);[\s\S]*?max-width: calc\(100vw - var\(--rail-width\) - 24px\);/u
   );
   assert.match(
     html,
@@ -1610,12 +1802,8 @@ test("equation mapping keeps claim level out of visible document labels", () => 
 test("equation mapping keeps overlay status out of visible comment labels", () => {
   const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
   const data = readRepoFile("src/apps/equation-mapping/EquationMappingData.js");
-  const editor = readRepoFile("src/apps/equation-mapping/EquationMappingEditor.js");
   assert.equal(runtime.includes("overlay.status"), false);
-  assert.equal(runtime.includes('name="overlay-status"'), false);
-  assert.equal(runtime.includes('"Status", "overlay-status"'), false);
   assert.equal(data.includes("overlay.title} ${overlay.status}"), false);
-  assert.equal(editor.includes('normalizePlainText(draft.status, "candidate")'), false);
 });
 
 test("user-facing equation mapping and scene sources use TeX for stylized AAA", () => {
@@ -1662,78 +1850,4 @@ test("equation mapping defaults to medium comment font size", () => {
   assert.equal(DEFAULT_COMMENT_FONT_SIZE, "medium");
   assert.equal(normalizeCommentFontSize("large"), "large");
   assert.equal(normalizeCommentFontSize("compact"), "medium");
-});
-
-test("equation mapping editor creates a formula section anchor without mutating seed data", () => {
-  const document = createSeedEquationMapDocuments().find(
-    (entry) => entry.id === "eq-01-causal-wake-master-equation"
-  );
-  const nextDocument = normalizeEquationMapDocument(
-    createEquationAnchor(document, {
-      label: "retained carrier",
-      tex: "\\Theta_W",
-      searchText: "accepted carrier target",
-    })
-  );
-
-  assert.equal(document.anchors.some((anchor) => anchor.id === "retained-carrier"), false);
-  assert.equal(nextDocument.anchors.some((anchor) => anchor.id === "retained-carrier"), true);
-  assert.equal(getFormulaPartTeXForAnchor(nextDocument, "retained-carrier"), "\\Theta_W");
-  assert.equal(nextDocument.formulaTeX.includes("\\Theta_W"), true);
-});
-
-test("equation mapping editor updates anchor labels and formula TeX", () => {
-  const document = createSeedEquationMapDocuments().find(
-    (entry) => entry.id === "eq-01-causal-wake-master-equation"
-  );
-  const nextDocument = normalizeEquationMapDocument(
-    updateEquationAnchor(document, "branchStrength", {
-      label: "transmitter-side acceleration factor",
-      tex: "W^{\\mathrm{acc}}",
-      searchText: "retained branch ledger",
-    })
-  );
-  const sourceAnchor = nextDocument.anchors.find((anchor) => anchor.id === "branchStrength");
-
-  assert.equal(sourceAnchor.label, "transmitter-side acceleration factor");
-  assert.equal(sourceAnchor.searchText, "retained branch ledger");
-  assert.equal(getFormulaPartTeXForAnchor(nextDocument, "branchStrength"), "W^{\\mathrm{acc}}");
-  assert.equal(nextDocument.formulaTeX.includes("W^{\\mathrm{acc}}"), true);
-});
-
-test("equation mapping editor creates and retargets overlay comments", () => {
-  const document = createSeedEquationMapDocuments().find(
-    (entry) => entry.id === "eq-01-causal-wake-master-equation"
-  );
-  const withOverlay = normalizeEquationMapDocument(
-    createEquationOverlay(document, {
-      title: "Polarity note",
-      targetAnchorId: "polarity",
-      text: "Compare the polarity term before accepting a map.",
-      mathTex: "\\kappa\\sigma",
-      sectionLinePlacement: "above",
-    })
-  );
-  const createdOverlay = withOverlay.overlays.find((overlay) => overlay.id === "polarity-note");
-
-  assert.equal(createdOverlay.targetAnchorId, "polarity");
-  assert.equal(createdOverlay.sectionLinePlacement, "above");
-  assert.equal(getOverlayContentDraft(createdOverlay).mathTex, "\\kappa\\sigma");
-
-  const retargeted = normalizeEquationMapDocument(
-    updateEquationOverlay(withOverlay, createdOverlay.id, {
-      targetAnchorId: "direction",
-      sectionLinePlacement: "below",
-      text: "Retarget the pointer to the line-of-action side.",
-      mathTex: "\\hat{\\mathbf r}",
-      position: { x: 30, y: 44, width: 28 },
-    })
-  );
-  const overlay = retargeted.overlays.find((entry) => entry.id === createdOverlay.id);
-
-  assert.equal(overlay.targetAnchorId, "direction");
-  assert.equal(overlay.sectionLinePlacement, "below");
-  assert.deepEqual(overlay.position, { x: 30, y: 44, width: 28 });
-  assert.equal(getOverlayContentDraft(overlay).text, "Retarget the pointer to the line-of-action side.");
-  assert.equal(getOverlayContentDraft(overlay).mathTex, "\\hat{\\mathbf r}");
 });

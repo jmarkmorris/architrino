@@ -29,98 +29,98 @@
         "rowId": "retained_orbit_reduction_coordination_source_negative_control_row",
         "status": "accepted",
         "carrierId": "theta_constant_delay_retained_orbit_coordination_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12a-retained-action-period-source-field-map.md"
       },
       "constant_delay_self_hit_model_row": {
         "id": "constant_delay_self_hit_model_coordination_source_negative_control_0001",
         "rowId": "constant_delay_self_hit_model_coordination_source_negative_control_row",
         "status": "accepted",
         "carrierId": "theta_constant_delay_retained_orbit_coordination_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12a-retained-action-period-source-field-map.md"
       },
       "hopf_retained_orbit_birth_row": {
         "id": "hopf_retained_orbit_birth_coordination_source_negative_control_0001",
         "rowId": "hopf_retained_orbit_birth_coordination_source_negative_control_row",
         "status": "accepted",
         "carrierId": "theta_constant_delay_retained_orbit_coordination_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12a-retained-action-period-source-field-map.md"
       },
       "first_lyapunov_coefficient_row": {
         "id": "first_lyapunov_coefficient_coordination_source_negative_control_0001",
         "rowId": "first_lyapunov_coefficient_coordination_source_negative_control_row",
         "status": "accepted",
         "carrierId": "theta_constant_delay_retained_orbit_coordination_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12a-retained-action-period-source-field-map.md"
       },
       "monodromy_floquet_certificate": {
         "id": "monodromy_floquet_certificate_coordination_source_negative_control_0001",
         "rowId": "monodromy_floquet_certificate_coordination_source_negative_control_row",
         "status": "accepted",
         "carrierId": "theta_constant_delay_retained_orbit_coordination_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12a-retained-action-period-source-field-map.md"
       },
       "poincare_section_reduction_row": {
         "id": "poincare_section_reduction_coordination_source_negative_control_0001",
         "rowId": "poincare_section_reduction_coordination_source_negative_control_row",
         "status": "accepted",
         "carrierId": "theta_constant_delay_retained_orbit_coordination_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12a-retained-action-period-source-field-map.md"
       },
       "poincare_cartan_orbit_integral_row": {
         "id": "poincare_cartan_orbit_integral_coordination_source_negative_control_0001",
         "rowId": "poincare_cartan_orbit_integral_coordination_source_negative_control_row",
         "status": "accepted",
         "carrierId": "theta_constant_delay_retained_orbit_coordination_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12a-retained-action-period-source-field-map.md"
       },
       "energy_clock_readout_row": {
         "id": "energy_clock_readout_coordination_source_negative_control_0001",
         "rowId": "energy_clock_readout_coordination_source_negative_control_row",
         "status": "accepted",
         "carrierId": "theta_constant_delay_retained_orbit_coordination_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12a-retained-action-period-source-field-map.md"
       },
       "phase_loop_area_readout_row": {
         "id": "phase_loop_area_readout_coordination_source_negative_control_0001",
         "rowId": "phase_loop_area_readout_coordination_source_negative_control_row",
         "status": "accepted",
         "carrierId": "theta_constant_delay_retained_orbit_coordination_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12a-retained-action-period-source-field-map.md"
       },
       "readout_refinement_independence_row": {
         "id": "readout_refinement_independence_coordination_source_negative_control_0001",
         "rowId": "readout_refinement_independence_coordination_source_negative_control_row",
         "status": "accepted",
         "carrierId": "theta_constant_delay_retained_orbit_coordination_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12a-retained-action-period-source-field-map.md"
       },
       "parameter_sweep_action_invariance_row": {
         "id": "parameter_sweep_action_invariance_coordination_source_negative_control_0001",
         "rowId": "parameter_sweep_action_invariance_coordination_source_negative_control_row",
         "status": "accepted",
         "carrierId": "theta_constant_delay_retained_orbit_coordination_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12a-retained-action-period-source-field-map.md"
       },
       "history_energy_throughput_row": {
         "id": "history_energy_throughput_coordination_source_negative_control_0001",
         "rowId": "history_energy_throughput_coordination_source_negative_control_row",
         "status": "accepted",
         "carrierId": "theta_constant_delay_retained_orbit_coordination_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12a-retained-action-period-source-field-map.md"
       },
       "non_resonance_certificate": {
         "id": "non_resonance_certificate_coordination_source_negative_control_0001",
         "rowId": "non_resonance_certificate_coordination_source_negative_control_row",
         "status": "accepted",
         "carrierId": "theta_constant_delay_retained_orbit_coordination_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12a-retained-action-period-source-field-map.md"
       },
       "geometry_derived_action_period_row": {
         "id": "geometry_derived_action_period_coordination_source_negative_control_0001",
         "rowId": "geometry_derived_action_period_coordination_source_negative_control_row",
         "status": "accepted",
         "carrierId": "theta_constant_delay_retained_orbit_coordination_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12a-retained-action-period-source-field-map.md"
       }
     },
     "certificate": {

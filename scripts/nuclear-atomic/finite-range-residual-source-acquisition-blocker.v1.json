@@ -188,7 +188,7 @@
       "boundary": "The priority sample can motivate the finite-tail audit, but it is not durable accepted evidence that the residual tends to zero at large separation."
     },
     "qcdBenchmarkConstraint": {
-      "candidatePath": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "candidatePath": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
       "usableFor": [
         "static confinement and residual-potential recovery pressure",
         "same sigma_eff domain requirement"

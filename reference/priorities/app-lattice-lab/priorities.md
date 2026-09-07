@@ -14,7 +14,7 @@ This active folder owns the complete planning, requirements, certificates, rando
 
 The app distinguishes periodic repeating-pattern certificates from the Random 50/50 finite nonperiodic calculation. Its displayed crop and presentation-only visibility filters do not define the deterministic calculation scope. No result implies motion, stability, conservation, energy, or a physical void-filling medium.
 
-[work-queue.md](work-queue.md) is the active execution ledger. Its four queued rows are executable in ranked order; its two explicitly deferred rows remain non-executable until their own reopening conditions are met. The product brief lives in [requirements-design.md](requirements-design.md), focused mathematical and provenance authorities remain sibling files, and [work-log.md](work-log.md) records the accepted implementation history.
+[work-queue.md](work-queue.md) is the active execution ledger. Its four queued rows are executable in ranked order; its two explicitly deferred rows remain non-executable until their own reopening conditions are met. The product brief lives in [requirements-design.md](contracts/requirements-design.md), focused mathematical and provenance authorities remain sibling files, and [work-log.md](work-log.md) records the accepted implementation history.
 
 ## Objective
 

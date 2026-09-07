@@ -13,6 +13,9 @@ concurrency:
 jobs:
   validate-content:
     runs-on: ubuntu-latest
+    # Measured 2m16s on PR #259 (2026-09-05); the bound catches a hung step
+    # rather than waiting for the six-hour runner limit.
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -27,5 +30,8 @@ jobs:
       - name: Audit locked production dependencies
         run: npm audit --package-lock-only --audit-level=moderate --omit=dev
 
+      # OPS-022: the test sweep is opt-in (AAA_TEST_SWEEP=run) until promoted
+      # and is not requested here; the pilot-process tests stall without
+      # bound on this runner (PR #260, 2026-09-07).
       - name: Run Content Integrity gate
         run: node scripts/check-content-integrity.mjs

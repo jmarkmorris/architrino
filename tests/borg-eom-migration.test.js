@@ -248,8 +248,8 @@ test("Borg mounts EOM idle by default and reserves automatic compute for explici
   assert.equal(recordResult, "record-replay-mounted");
   assert.deepEqual(fetchCalls, [
     catalogEntry.recordUrl,
-    "./reference/priorities/braid-program/braid-candidate-adjudication-projection.v1.json",
-    "./reference/priorities/braid-program/borg-platonic-relationship-assignments.v1.json",
+    "./reference/priorities/braid-program/contracts/braid-candidate-adjudication-projection.v1.json",
+    "./reference/priorities/braid-program/configurations/borg-platonic-relationship-assignments.v1.json",
   ]);
   assert.equal(recordMounts.length, 1);
   assert.equal(recordMounts[0].eomRecordReplay.record, record);

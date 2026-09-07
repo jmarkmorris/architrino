@@ -1,6 +1,6 @@
 # Simulation Concept Synthesis
 
-This document synthesizes provisional simulation questions that are not accepted tasks or validation standards. Detailed executable protocols and campaign objects belong in [simulations.md](simulations.md); accepted work belongs in [work-queue.md](work-queue.md).
+This document synthesizes provisional simulation questions that are not accepted tasks or validation standards. Detailed executable protocols and campaign objects belong in [simulations.md](analysis/simulations.md); accepted work belongs in [work-queue.md](work-queue.md).
 
 ## Diagnostic Claim Boundary
 

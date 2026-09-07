@@ -177,7 +177,7 @@
       "boundary": "The retained no-free-color evidence accepts only no_free_color_asymptotic_state by joining accepted local color-singlet support, asymptotic_field_audit, and finite_range_residual in the same support domain. It does not accept top envelope, color-singlet closure, same-record branch-interface, no-open-color, or promotion rows."
     },
     "qcdBenchmarkConstraint": {
-      "candidatePath": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
+      "candidatePath": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
       "usableFor": [
         "hard no-free-color recovery burden",
         "static confinement benchmark pressure"

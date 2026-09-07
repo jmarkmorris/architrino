@@ -38,7 +38,7 @@ After this receipt, do not add ordinary new work directly to the parent branch. 
 
 ### 2. Create and publish the successor
 
-1. Reserve the next branch-series token and record the parent PR/head from which it is created.
+1. Reserve the next branch-series token and record the parent PR/head from which it is created. This consumes the token from the live registry at reservation time, ahead of the parent merge. Record the reservation in the active series registry when it is made, and note in the parent PR receipt that this rollover's successor already exists, so the post-merge second handoff in [codex-pr-branch.md](codex-pr-branch.md#second-handoff-verify-clean-up-and-roll-over) adopts this branch instead of selecting another token.
 2. Create the successor at the literal parent head and publish it with an upstream before switching the shared checkout to it.
 3. Verify that the parent branch, remote parent head, and successor's initial commit all identify the same commit.
 4. Switch the shared checkout to the successor only after the coordination pause is clear.

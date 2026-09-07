@@ -11,7 +11,9 @@ const policyPath = "reference/op/machine-artifact-retention-registry.v1.json";
 const manifestPath = "scripts/config/generated-runtime-assets.json";
 const registry = JSON.parse(fs.readFileSync(path.join(root, policyPath)));
 const families = JSON.parse(fs.readFileSync(path.join(root, manifestPath))).families;
-const git = (cwd, ...args) => execFileSync("git", args, { cwd, encoding: "utf8", stdio: ["pipe", "pipe", "pipe"] });
+// Strip repository-scoped Git variables so a fixture never acts on the real checkout when this test runs inside a hook.
+const GIT_FIXTURE_ENV = Object.fromEntries(Object.entries(process.env).filter(([name]) => !/^GIT_(DIR|WORK_TREE|INDEX_FILE|PREFIX|COMMON_DIR|OBJECT_DIRECTORY|ALTERNATE_OBJECT_DIRECTORIES|NAMESPACE)$/u.test(name)));
+const git = (cwd, ...args) => execFileSync("git", args, { cwd, encoding: "utf8", stdio: ["pipe", "pipe", "pipe"], env: GIT_FIXTURE_ENV });
 
 function repository(t, { limit = 100 } = {}) {
   const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "machine-retention-"));

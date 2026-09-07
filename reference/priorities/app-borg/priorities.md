@@ -10,11 +10,11 @@
 - Status: `deferred`
 - Claim level: `priority-design`
 - Execution ledger: [work queue](work-queue.md)
-- Design packet: [requirements-and-design](requirements-and-design.md)
-- Assembly-view replay packet: [assembly-viewer-requirements](assembly-viewer-requirements.md)
-- Prescribed-translation packet: [prescribed-translation](prescribed-translation.md)
-- Boundary-shell replay packet: [boundary-shell-replay](boundary-shell-replay.md)
-- Dataset manifest: [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md)
+- Design packet: [requirements-and-design](contracts/requirements-and-design.md)
+- Assembly-view replay packet: [assembly-viewer-requirements](contracts/assembly-viewer-requirements.md)
+- Prescribed-translation packet: [prescribed-translation](contracts/prescribed-translation.md)
+- Boundary-shell replay packet: [boundary-shell-replay](contracts/boundary-shell-replay.md)
+- Dataset manifest: [borg-dataset-manifest.v1](contracts/borg-dataset-manifest.v1.md)
 
 ## Objective
 

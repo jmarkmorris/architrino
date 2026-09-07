@@ -5,7 +5,7 @@
   "date": "2026-09-02",
   "subject": "accepted lightweight project and Applications actions on Brand Visual Identity and Solver GPU Harness",
   "source_identity": {
-    "policy": "reference/priorities/app-ui-guidelines/top-dynamic-control-bar.md",
+    "policy": "reference/priorities/app-ui-guidelines/contracts/top-dynamic-control-bar.md",
     "brand_page": "brand-visual-identity.html",
     "brand_stylesheet": "src/apps/brand-visual-identity/brand-visual-identity.css",
     "solver_page": "solver-gpu-harness.html"

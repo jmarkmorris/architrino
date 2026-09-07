@@ -25,7 +25,7 @@ The first does not imply the second, and neither supplies the third without a de
 **Current theory alignment**:
 - Phase-space and attractor work should be derived from `dynamics/master-equation.md`.
 - Bifurcation and regime-transition claims should stay synchronized with `noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md`, `noether-braid/noether-braid-configuration-space.md`, `dynamics/binary-dynamics.md`, and `reference/priorities/braid-program/priorities.md`.
-- Use the current evolution-first N-ladder, `reference/priorities/braid-program/work-queue.md`, and `reference/priorities/braid-program/method.md`; legacy `$A_0$` certificate routing is not current program authority.
+- Use the current evolution-first N-ladder, `reference/priorities/braid-program/work-queue.md`, and `reference/priorities/braid-program/contracts/method.md`; legacy `$A_0$` certificate routing is not current program authority.
 - Numerical diagnostics should map to `validation/simulations/convergence-tests.md` and `validation/simulations/run-protocols.md`.
 
 ## Perspective Response Mandate

@@ -13,7 +13,7 @@
 **Current theory alignment**:
 - Structural objects must map to canonical dynamics in `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, and `noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md`.
 - Geometry objects and their claim grades must follow `noether-braid/braid-taxonomy.md`, `noether-braid/braid-analysis-methodology.md`, and `noether-braid/braid-recovery-requirements.md`.
-- Candidate and certified objects should carry declared causal-root ledgers, retained-history coverage, Jacobian floors, inactive-root gaps, stability gaps, event ledgers, and observer-export entries; use `reference/priorities/braid-program/priorities.md`, `reference/priorities/braid-program/work-queue.md`, and `reference/priorities/braid-program/method.md` as the live program-state and evidence map.
+- Candidate and certified objects should carry declared causal-root ledgers, retained-history coverage, Jacobian floors, inactive-root gaps, stability gaps, event ledgers, and observer-export entries; use `reference/priorities/braid-program/priorities.md`, `reference/priorities/braid-program/work-queue.md`, and `reference/priorities/braid-program/contracts/method.md` as the live program-state and evidence map.
 - Mass-facing classification must route through `reference/priorities/braid-program/priorities.md`: $E_{\text{internal}}(A)$, $\zeta(A)$, exposure quotients, and $\mathcal{M}_{\text{sea}}^{ab}$ are structured outputs, not fitted labels.
 - Photon and gauge classifications should respect the `assemblies/bosons/electroweak-bosons.md` gate split: kinematics/optics, polarization/spin, and vertices/transitions.
 

@@ -28,7 +28,7 @@ Maintain a durable, reviewable inventory of possible corpus connections, duplica
 
 ## Triage Route
 
-Record findings in [recommendations.md](recommendations.md). A human or authorized integrator may set the finding's disposition and route an accepted action to its owning priority workstream; an accepted queue item may also authorize bounded implementation and disposition directly. The detailed execution order and edit authority live in [work-queue.md](work-queue.md).
+Record findings in [recommendations.md](analysis/recommendations.md). A human or authorized integrator may set the finding's disposition and route an accepted action to its owning priority workstream; an accepted queue item may also authorize bounded implementation and disposition directly. The detailed execution order and edit authority live in [work-queue.md](work-queue.md).
 
 ## Current
 

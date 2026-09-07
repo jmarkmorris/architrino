@@ -3,7 +3,7 @@
 Date: 2026-09-01
 Compatibility identifier: `aaa-corpus-advancement`
 Status: accepted computer-assisted finite-chart result
-Queue owner: [Planar Common-Center Three-Binary Investigation Work Queue](../planar-three-binary-work-queue.md)
+Queue owner: [Planar Common-Center Three-Binary Investigation Work Queue](../campaigns/planar-three-binary-work-queue.md)
 Prerequisite: [Fixed Axial-Translation Interval Certificate](2026-08-29-planar-three-binary-fixed-axial-translation-certificate.md)
 
 ## Decision

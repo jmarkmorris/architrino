@@ -6,7 +6,7 @@
     "id": "theta_expl_source_window_attempt_0001",
     "rowId": "explosive_source_window_carrier_attempt_0001",
     "status": "attempt",
-    "sourcePath": "reference/priorities/mapping-equations/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md",
+    "sourcePath": "reference/priorities/mapping-equations/analysis/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md",
     "sourceKind": "priority_identity_shell",
     "sourceFamily": "EQ-23A explosive source window",
     "sourceRole": "carrier"
@@ -43,7 +43,7 @@
       "sourceWindowId": "W_expl_attempt_0001",
       "supportId": "Omega_expl_attempt_0001",
       "eventLedgerId": "L_EpJ_expl_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
     },
     "neutrino_heating_row": {
       "status": "attempt",
@@ -54,7 +54,7 @@
       "sourceWindowId": "W_expl_attempt_0001",
       "supportId": "Omega_expl_attempt_0001",
       "eventLedgerId": "L_EpJ_expl_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
     },
     "reaction_yield_row": {
       "status": "attempt",
@@ -65,7 +65,7 @@
       "sourceWindowId": "W_expl_attempt_0001",
       "supportId": "Omega_expl_attempt_0001",
       "eventLedgerId": "L_EpJ_expl_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
     },
     "radioactive_heating_row": {
       "status": "attempt",
@@ -76,7 +76,7 @@
       "sourceWindowId": "W_expl_attempt_0001",
       "supportId": "Omega_expl_attempt_0001",
       "eventLedgerId": "L_EpJ_expl_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
     },
     "photon_output_row": {
       "status": "attempt",
@@ -87,7 +87,7 @@
       "sourceWindowId": "W_expl_attempt_0001",
       "supportId": "Omega_expl_attempt_0001",
       "eventLedgerId": "L_EpJ_expl_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
     },
     "remnant_medium_heating_row": {
       "status": "attempt",
@@ -99,7 +99,7 @@
       "supportId": "Omega_expl_attempt_0001",
       "eventLedgerId": "L_EpJ_expl_attempt_0001",
       "noetherSeaUpdateId": "N_sea_expl_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
     },
     "event_ledger_row": {
       "status": "attempt",
@@ -133,7 +133,7 @@
       "supportId": "Omega_expl_attempt_0001",
       "eventLedgerId": "L_EpJ_expl_attempt_0001",
       "retuneWitnessId": "S_retune_expl_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md"
     }
   },
   "negativeControls": [

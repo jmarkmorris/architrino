@@ -1,6 +1,6 @@
 # AAA Core Work Log
 
-This file is the chronological work log for `app-aaa-core`. Use [priorities.md](priorities.md) for strategy, [work-queue.md](work-queue.md) for accepted work, [architecture-v0.md](architecture-v0.md) for the current architecture draft, and [brainstorming.md](brainstorming.md) for loose ideas.
+This file is the chronological work log for `app-aaa-core`. Use [priorities.md](priorities.md) for strategy, [work-queue.md](work-queue.md) for accepted work, [architecture-v0.md](contracts/architecture-v0.md) for the current architecture draft, and [brainstorming.md](brainstorming.md) for loose ideas.
 
 ## Log Entries
 
@@ -19,7 +19,7 @@ Closure goal: preserve this headless boundary as production services and real ap
 
 ### 2026-09-02 — CORE-008 AAA Core Client v0 Closed
 
-- Accepted [`aaa_core_client/v0`](client-v0.md) as a thin defensive-copy client over the path, codec, accepted-history stream, and query/publication contracts.
+- Accepted [`aaa_core_client/v0`](contracts/client-v0.md) as a thin defensive-copy client over the path, codec, accepted-history stream, and query/publication contracts.
 - Exposed manifest validation, codec negotiation, query preparation, explicit stream opening and actions, stream progress, sealed publication caching, exact retrieval, and operation inspection without defining another path or product schema.
 - Drove Topo and Equation Mapping through the same `AAAClient` class. Both validate the same source, normalize equivalent requests, subscribe to one shared stream session, and inspect the same producer and consumer progress.
 - Published one sealed Potential fixture, returned the same immutable publication as a cache hit for its equivalent request, and retrieved it through Equation Mapping's exact receipt permission.
@@ -33,7 +33,7 @@ Closure goal: measure representative workloads and retain exact correctness, fai
 
 ### 2026-09-02 — CORE-005 Query, Transform, And Publication v0 Closed
 
-- Accepted [`aaa_core_query_transform_publication/v0`](query-transform-publication-v0.md) above the accepted path-interchange, codec-registry, and accepted-history stream contracts.
+- Accepted [`aaa_core_query_transform_publication/v0`](contracts/query-transform-publication-v0.md) above the accepted path-interchange, codec-registry, and accepted-history stream contracts.
 - Defined canonical query normalization in which source bindings, path ids, event kinds, and object keys are order-insensitive, request ids are trace-only, and transform order remains semantic.
 - Bound query, transform-pipeline, cache, view, product, and publication-receipt identities to exact versioned inputs, numeric policy, output contract, records, and source manifests.
 - Built a sealed Potential fixture over a complete prescribed path and proved that an equivalent request shares its cache key while reversed translate/scale order does not. Equation Mapping retrieves the exact immutable product as a permitted second consumer.
@@ -49,7 +49,7 @@ Closure goal: expose the accepted contracts through one thin client used unchang
 
 ### 2026-09-02 — CORE-004 AAA Core Accepted-History Stream v0 Closed
 
-- Accepted [`aaa_core_accepted_history_stream/v0`](accepted-history-stream-v0.md) above the path-interchange and codec-registry contracts.
+- Accepted [`aaa_core_accepted_history_stream/v0`](contracts/accepted-history-stream-v0.md) above the path-interchange and codec-registry contracts.
 - Added a hash-valid three-chunk EOM-accepted fixture over $T=0$ through $T=3$ in normalized $c_f=1$ units, with exact manifest membership, sequence, predecessor, coverage, identity, and authority checks.
 - Added bounded subscription queues with separate producer, delivered, and acknowledged watermarks; idempotent duplicate handling; pressure entry and release; ordered acknowledgement; disconnect; cursor-bound reconnect; retained replay; exact seal; and immutable terminal behavior.
 - Drove the same stream through a Potential-style watermark observer and a separately implemented ordered-digest audit observer. They agree on prefix coverage and terminal state but form distinct consumer-specific receipts.
@@ -65,7 +65,7 @@ Closure goal: define stable query, transform, cache, and publication identities 
 
 ### 2026-09-02 — CORE-003 AAA Core Codec Registry v0 Closed
 
-- Accepted [`aaa_core_codec_registry/v0`](codec-registry-v0.md) as the single capability-negotiation surface above the accepted logical path model.
+- Accepted [`aaa_core_codec_registry/v0`](contracts/codec-registry-v0.md) as the single capability-negotiation surface above the accepted logical path model.
 - Defined authoritative-history, precision-bounded-analysis, and display-stream profiles with exact numeric, error, event, branch, authority, consumer, access, chunking, device-layout, version, compatibility, and refusal behavior.
 - Registered two Core capabilities: canonical logical-record JSON for exact authoritative and analysis round trips, and a little-endian quantized path-display layout with an explicit $5\times10^{-4}$ maximum added error and `display_only` effective-authority cap.
 - Registered Potential's existing `potential_fixture_map_json/v1` as an application-owned fixture capability and aligned its profile identifiers to the Core registry.
@@ -80,7 +80,7 @@ Closure goal: close duplicate-tolerant, replayable, bounded accepted-history str
 
 ### 2026-09-02 — CORE-001 AAA Core Path Interchange v0 Closed
 
-- Accepted [`aaa_core_path_interchange/v0`](path-interchange-v0.md) as the single logical record family for path-set manifests, immutable chunks, stream envelopes, query/transform views, and derived-product manifests.
+- Accepted [`aaa_core_path_interchange/v0`](contracts/path-interchange-v0.md) as the single logical record family for path-set manifests, immutable chunks, stream envelopes, query/transform views, and derived-product manifests.
 - Added a machine control record, JSON Schema, and executable validator with canonical SHA-256 identities, normalized $c_f=1$ units, three numeric profiles, path-kind authority rules, predecessor closure, stream watermarks and sealing, source-bound transformations, and experimental uncertainty provenance.
 - Added five positive fixture bundles for EOM-produced history, prescribed paths, a live accepted stream, a Potential map product, and an observer-level experimental import.
 - Added ten negative controls for missing coverage, incompatible scales, broken predecessors, unsupported precision, unknown versions, authority escalation, missing source binding, incomplete sealing, experimental uncertainty loss, and stale identity.
@@ -94,7 +94,7 @@ Closure goal: close codec-provider conformance on top of the accepted logical mo
 
 ### 2026-09-02 — CORE-002 Representative Workload Matrix Closed
 
-- Added the human-readable [Representative Path Workload Matrix](representative-path-workload-matrix.md) and machine-readable [`aaa_core_representative_path_workload_matrix/v1`](aaa-core-representative-path-workload-matrix.v1.json).
+- Added the human-readable [Representative Path Workload Matrix](contracts/representative-path-workload-matrix.md) and machine-readable [`aaa_core_representative_path_workload_matrix/v1`](contracts/aaa-core-representative-path-workload-matrix.v1.json).
 - Froze one EOM continuation, Potential live-map, reaction-keyhole, optimization-sweep, and collider-import workload across path count, history depth, scale span, smoothness, event density, random access, observable, latency, precision, storage, source authority, coverage, and accelerator posture.
 - Required independent-reference correctness gates before resource comparison and made deterministic replay a separate reproducibility metric rather than evidence for correctness.
 - Required wall time, throughput, latency, CPU time, host/device memory, I/O, transfer, storage, fallback, failure, energy, and cost measurements; unavailable resource values remain `null` with a reason rather than zero.

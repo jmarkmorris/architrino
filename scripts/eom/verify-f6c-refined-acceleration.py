@@ -58,19 +58,19 @@ CONSUMER_CONTROLS='tests/test_f6c_refined_acceleration_preparation.py'
 DECLARATION='reference/priorities/braid-program/evidence/2026-08-27-f6c-refined-cover-acceleration-projection.md'
 DECLARATION_SHA='c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d'
 CORE='scripts/eom/oracle/f6c_refined_acceleration_conformance.py'
-CORE_SHA='63db48f604d0b1abdf61f0efcb3894feac9d30a25af26a4d96f01bda6522e2a2'
+CORE_SHA='7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e'
 REFERENCE='scripts/eom/verify-f6c-continuous-reception-acceleration.py'
-REFERENCE_SHA='cc26f5a45d0e09a472e3066d0d62ae8192492a7c3e0ab18a3658781a0274b299'
+REFERENCE_SHA='23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d'
 NAMED={
  'consumer':(CONSUMER,None),'consumerControls':(CONSUMER_CONTROLS,None),
  'verifier':(SELF,None),'verifierControls':(CONTROLS,None),
  'declaration':(DECLARATION,DECLARATION_SHA),
  'comparisonCore':(CORE,CORE_SHA),
- 'comparisonCoreControls':('tests/test_f6c_refined_acceleration_conformance.py','3fb6eabd03a56b982f2601f11b535c60208f03df519e41ea29d4ba018a0e531e'),
+ 'comparisonCoreControls':('tests/test_f6c_refined_acceleration_conformance.py','147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921'),
  'rangeReference':('scripts/eom/oracle/continuous_reception_acceleration.py','abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8'),
  'rangeReferenceControls':('tests/test_eom_continuous_reception_acceleration.py','26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'),
  'rangeComparison':(REFERENCE,REFERENCE_SHA),
- 'rangeComparisonControls':('tests/test_f6c_continuous_reception_acceleration.py','be741dccccd90c349849b19dc15df1acd4ea5752ec6f8a9e98e7ae14013c52c6')}
+ 'rangeComparisonControls':('tests/test_f6c_continuous_reception_acceleration.py','13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed')}
 PRIOR_BASE='.local-data/braid-analysis/f6c-emission-refinement-20260827/pilot-cell-0-v2'
 REFINED=(
  ('queries',PRIOR_BASE+'/queries.ndjson','44d59ae62f8d7d9a9e7afd1d684e8ee15b8aeadf4dc92d489a787e5e224029fa'),
@@ -110,10 +110,10 @@ LIMITS=dict(inclusiveSeconds=1800,maximumAggregateRssBytes=2*1024**3,maximumRssS
 OPERATIONS=('scripts/eom/run-f6c-refined-acceleration-pilot.mjs',
  'scripts/eom/launch-f6c-refined-acceleration-pilot.mjs',
  'tests/f6c-refined-acceleration-pilot.test.js','tests/f6c-refined-acceleration-pilot-process.test.js',
- 'scripts/eom/launch-prescribed-response-pilot.mjs','scripts/eom/launch-abc-enclosed-root-pilot.mjs',
+ 'scripts/eom/launch-prescribed-response-pilot.mjs','scripts/eom/launch-subfield-circular-root-pilot.mjs',
  '/bin/ps','/usr/bin/memory_pressure')
-OP_PINS={'scripts/eom/launch-prescribed-response-pilot.mjs':'a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9',
- 'scripts/eom/launch-abc-enclosed-root-pilot.mjs':'5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa',
+OP_PINS={'scripts/eom/launch-prescribed-response-pilot.mjs':'7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7',
+ 'scripts/eom/launch-subfield-circular-root-pilot.mjs':'3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a',
  '/usr/bin/memory_pressure':'a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56'}
 PLAN_KEYS=('schema','scope',*NAMED,'runtimeBindings','operationalBindings','limits','priorRefinementClosure')
 CANDIDATE_KEYS=tuple('schema scope status accepted launchPlan consumer declaration verifier sourceBindings ancestryBindings refinementBindings runtimeBindings operationalBindings priorRefinementClosure projection ranges census claims publicationRequires'.split())
@@ -400,7 +400,7 @@ def authenticate_observations(admission,logs,decode):
     launcher=stream(logs['launcherLog'],49);rss=stream(logs['resourceLog'],955)
     host=[x for x in launcher if x.get('kind')=='host-resource']
     pilots=[x for x in launcher if x.get('kind')=='f6c-emission-refinement-pilot-heartbeat']
-    gates=[x for x in launcher if x.get('schema')=='braid-program/abc-pilot-outer-heartbeat.v1']
+    gates=[x for x in launcher if x.get('schema')=='braid-program/subfield-circular-pilot-outer-heartbeat.v1']
     require((len(host),len(pilots),len(gates))==(20,15,14),'prior operational observation kinds')
     require(equal(host[:-1],admission['hostObservationsBeforePublication']),'prior host prefix differs')
     whole=Fraction(closure_premise()['elapsedSeconds']);prepub=number(admission['elapsedSecondsBeforePublication'])

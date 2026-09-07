@@ -101,7 +101,7 @@ IMPLEMENTATION = (
     ('exact-pair-header', 'src/eom/include/architrino/eom/ExactPairBatch.hpp', 'bc4e09892c01f6b855bd4b1378c90999aefda0a747fdd5a816d86283a0e8d751'),
     ('exact-pair-source', 'src/eom/src/ExactPairBatch.cpp', 'c82b71c8335bd02a98941439d26a17ba3fc452318adb91cb5f42a015933e23c1'),
     ('eom-library', '.tmp/f5-enclosed-root-preparation-20260827-v1/libeom_native.a', '922c131381bb514d48fe0fb2bb704db340b51c64db024edf6cfec3ec77b59bcf'),
-    ('reducer-source', 'src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs', 'c41857a81ab0ba4e1f9a4f53e6608f097dea83a99f4a0fa002f5ed9590004fb6'),
+    ('reducer-source', 'src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs', '1b5051928406482ffa3fecfaa60b1e94d3f1372ed87ea2ea5e7442523ddc8fd0'),
     ('compiler', LADDER+'resolved-compiler.json', '29c78ad3a57db9f674130f847022c8fcd03730b667eca8850bf0f174f350634f'),
     ('toolchain', SCIENCE[5][1], SCIENCE[5][2]),
 )

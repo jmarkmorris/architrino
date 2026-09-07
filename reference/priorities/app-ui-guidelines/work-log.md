@@ -165,7 +165,7 @@ Plainly: document operations now stay with the document, while the global toolba
 
 ### 2026-09-02 — UI-002 shared bar runtime design accepted
 
-- Closed UI-002 with the accepted [runtime design v1](top-dynamic-control-bar-runtime-design-v1.md).
+- Closed UI-002 with the accepted [runtime design v1](contracts/top-dynamic-control-bar-runtime-design-v1.md).
 - Selected `src/runtime/TopDynamicControlBarRuntime.js` and `src/runtime/top-dynamic-control-bar.css` as the single future markup, icon, order, state, focus, and responsive-style owners; selected a thin `src/apps/navigator/StandaloneAppNavigationRuntime.js` adapter for Applications Home, history, TOC, global scene search, and permitted app-mode extensions.
 - Preserved the focused Home and scene-search services while prohibiting a second shared markup or stylesheet owner. The existing standalone stylesheet becomes a migration source that is deleted after the last adopting page, not a permanent compatibility layer.
 - Defined app-mode extension eligibility, rejected domain controls and local searches from global chrome, required one open popover with focus restoration, and required atomic per-page migration with old markup and rules removed.
@@ -187,7 +187,7 @@ Plainly: the rulebook is settled and the current exceptions are named. The next 
 
 ### 2026-09-01 — Page exception policy accepted
 
-- Closed UI-006 by assigning one disposition to every current non-full-standard surface class in [top-dynamic-control-bar.md](top-dynamic-control-bar.md).
+- Closed UI-006 by assigning one disposition to every current non-full-standard surface class in [top-dynamic-control-bar.md](contracts/top-dynamic-control-bar.md).
 - Classified `website-stats.html` as a lightweight public-utility header and `solver-gpu-harness.html` as a lightweight developer-harness header. Both retain compact Home navigation while utility, benchmark, and diagnostic controls remain local.
 - Classified `pdgedit-review.html` and children's-book review outputs as exempt review artifacts, generated textbook reading copies as exempt generated content, and the iOS `ReaderShell.html` and `SearchSnippetShell.html` mounts as native-shell parity surfaces owned by SwiftUI navigation.
 - Recorded explicit promotion triggers so an exception cannot silently become public product chrome. All other public interactive apps and workbenches in the current surface audit remain full-standard migration targets.
@@ -199,6 +199,6 @@ Plainly: the rulebook is settled and the current exceptions are named. The next 
 - Accepted `Play`, `Pause`, `First frame`, `Rewind`, `Reset`, and `Stop` as the canonical transport-control set.
 - Added one shared SVG/presentation runtime and migrated Borg, Animator, Causal Delay Feedback, Lorentz Geometry, and Photon away from local paths, CSS drawings, and text glyphs.
 - Preserved the distinction between transport Reset and camera, preset, or parameter resets.
-- Promoted the durable visual and interaction rule into the reader-facing UI guide; retained the implementation contract and migration inventory in [transport-controls.md](transport-controls.md).
+- Promoted the durable visual and interaction rule into the reader-facing UI guide; retained the implementation contract and migration inventory in [transport-controls.md](contracts/transport-controls.md).
 - Focused app/runtime validation passed 230 tests. Browser checks exercised Play/Pause state changes in all five migrated apps and found no console errors; Borg's new two-stroke Pause presentation was visually inspected.
 - Scene-graph and textbook reading-copy checks passed. Strict content validation reached one unrelated generated-index warning for the concurrently added `content/markdown/aaa/noether-braid/braid-taxonomy.md`; this batch did not regenerate another agent's index work.

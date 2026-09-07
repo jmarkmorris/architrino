@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 import { BORG_DATASET_MANIFEST_V1 } from "../src/apps/borg/BorgAppManifest.js";
 
 const ROOT = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
-const DEFAULT_CONTRACT_PATH = "reference/priorities/aaa-operations/deployment-budget.v1.json";
+const DEFAULT_CONTRACT_PATH = "reference/priorities/aaa-operations/contracts/deployment-budget.v1.json";
 
 function requireCondition(condition, message) {
   if (!condition) throw new Error(message);

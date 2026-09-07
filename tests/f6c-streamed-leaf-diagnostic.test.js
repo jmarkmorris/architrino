@@ -291,7 +291,7 @@ function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64
  }
  const specPath=path.join(dir,'invocation.json');writeFileSync(specPath,JSON.stringify(spec)+'\n');
  // check-ignore needs only a portable ignored synthetic checkout, never repo outputs.
- for(const args of [['init','-q',dir],['-C',dir,'config','core.hooksPath','/dev/null']])assert.equal(spawnSync('/usr/bin/git',args,{encoding:'utf8'}).status,0);
+ for(const args of [['init','-q',dir],['-C',dir,'config','core.hooksPath','/dev/null']])assert.equal(spawnSync('/usr/bin/git',args,{encoding:'utf8',env:Object.fromEntries(Object.entries(process.env).filter(([n])=>!/^GIT_(DIR|WORK_TREE|INDEX_FILE|PREFIX|COMMON_DIR)$/u.test(n)))}).status,0);
  writeFileSync(path.join(dir,'.gitignore'),'.local-data/\n');
  return{dir,output,entry,wholeEntry,wholeSource,wholeSha:bindings.operationCoordinator.sha256,events,pidfile,spec,specPath,specSha:bind(specPath).sha256,selfSha:bindings.coordinator.sha256,source};
 }

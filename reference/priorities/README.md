@@ -6,7 +6,7 @@ Use it for live workstream priority lists and for supporting guidance on priorit
 
 Current priority staging should favor core geometrical theory closure: master-equation work, potential/action proof programs, certified branch geometry, simulations that discipline the equations, $A_0$ continuation, mass-map derivation, nested shell braid causal closure, Lorentz/effective-metric recovery, photon closure, and Noether sea constitutive response. Stage broad prose, app, presentation, or coordination items here only when they directly serve that theory stack or the operator/developer explicitly selects them.
 
-For top-six workstream sessions, begin from the current minimum evidence-object table in [aaa-work-threads/closure-join-matrix.md](aaa-work-threads/closure-join-matrix.md#top-six-minimum-evidence-objects-2026-07-26), then use the owning packet for the actual pass/fail fields.
+For top-six workstream sessions, begin from the current minimum evidence-object table in [aaa-work-threads/closure-join-matrix.md](aaa-work-threads/analysis/closure-join-matrix.md#top-six-minimum-evidence-objects-2026-07-26), then use the owning packet for the actual pass/fail fields.
 
 
 Use `aaa-operations/` for repo-wide deployment, hosting, release, cost, reliability, browser performance, and user-growth operations that are not specific to one app or solver proof lane.
@@ -25,9 +25,9 @@ Start with the [Mapping overview](mapping/README.md) for the program's purpose, 
 
 Use the `mapping-` directory prefix for equation mapping, benchmark mapping, domain recovery, and cross-domain theory-bridge assessment. Keep these directories as siblings directly under `reference/priorities/`; the prefix groups related work without creating a parent queue or merging ownership. Directory names have no `.md` extension; the standard tracker, queue, brainstorming, and log filenames remain unchanged.
 
-The [directory map](mapping/README.md#how-the-directories-are-organized) identifies the equation, benchmark, domain, and cross-domain assessment owners. Their responsibilities remain distinct under the [Shared Equation And Mapping Architecture](mapping/mapping-method.md#mapping-program-routing).
+The [directory map](mapping/README.md#how-the-directories-are-organized) identifies the equation, benchmark, domain, and cross-domain assessment owners. Their responsibilities remain distinct under the [Shared Equation And Mapping Architecture](mapping/contracts/mapping-method.md#mapping-program-routing).
 
-The [shared bidirectional mapping method](mapping/mapping-method.md#bidirectional-mapping-and-mathematical-reframing) develops native derivations toward established physics and uses established results as reverse constraints on the native construction. Its goal is to make the two ends meet and develop a mathematical language grounded in the derived structures that can reframe mapped domains while recovering their tested behavior.
+The [shared bidirectional mapping method](mapping/contracts/mapping-method.md#bidirectional-mapping-and-mathematical-reframing) develops native derivations toward established physics and uses established results as reverse constraints on the native construction. Its goal is to make the two ends meet and develop a mathematical language grounded in the derived structures that can reframe mapped domains while recovering their tested behavior.
 
 The prefix changes neither rank, evidence grade, nor active or deferred status. Foundational law and braid programs, cross-workstream mathematical support, speculative assembly candidates, source acquisition, editorial programs, and `app-*` implementation owners remain separate. Parked work remains under `dormant-deferred/` until an explicit reactivation decision.
 
@@ -46,13 +46,67 @@ The current preferred style for live priority docs is:
 - every immediate priority workstream directory should carry a `work-log.md`, even when it only contains the standard purpose note;
 - let `priorities.md` reference `work-queue.md`, `brainstorming.md`, `work-log.md`, and focused support files instead of embedding task execution, explanation-first material, long status logs, or detailed proof packets;
 - promote a brainstorming item into `work-queue.md` only when it has become an accepted, testable task, and remove the promoted task from `brainstorming.md` in the same edit;
-- keep detailed proof packets, certificates, app specs, and requirement notes in focused sibling files when their structure deserves more than a dated log entry;
+- keep detailed proof packets, certificates, app specs, and requirement notes in focused supporting files when their structure deserves more than a dated log entry, filed under the [workstream directory layout](#workstream-directory-layout) rather than accumulating at the top level;
 - score each live queue item as its own next unresolved object against remaining value and remaining cost, then sort the bucket so local item `1` has the highest current marginal ROI;
 - use the bucket's local item `1` as its scored row in `aaa-work-threads/priorities.md`, then sort those bucket winners globally so global rank `1` has the highest current marginal ROI;
 - after any score change, rerank and renumber both the affected bucket and the unified table; validate the unified arithmetic, sort order, and mirrored tracker metadata with `node scripts/validate-priority-ranking.mjs`;
 - rerank based on real code state, not stale historical intent;
 - if a task is done, record any durable result in the work log or focused evidence packet, remove it from the live queue, and renumber the list.
 - keep history only when it supports active triage, auditability, or a current proof/certificate decision; otherwise rely on GitHub and git history.
+
+## Workstream Directory Layout
+
+The maintenance pattern above governs which document owns which material. This section governs where those documents sit, because a workstream that files every supporting document as a top-level sibling eventually presents the operator with a directory listing in which the live control surface is indistinguishable from years of superseded process records.
+
+A workstream directory holds three tiers of material, and they are not interchangeable.
+
+The **control surface** is `priorities.md`, `work-queue.md`, `brainstorming.md`, and `work-log.md`, plus a `README.md` where the lane needs orientation beyond its tracker. These always sit at the top level. They are what the operator and an arriving agent read first, and nothing else competes with them for that position.
+
+**Durable subject owners** are the small number of documents that a reader returns to because they own a standing subject rather than a moment: a master registry, a settled decision, a live mathematics packet. These may sit at the top level, and `priorities.md` links them. Keep them few. A document earns this position by being the current answer to a question, not by being important when it was written.
+
+Everything else is **supporting material**, and it is filed into a subdirectory:
+
+| Subdirectory | Holds |
+| --- | --- |
+| `analysis/` | **All theory-bearing material.** Theorem targets, proof packets, certificates, lemmas, derivations, benchmark recoveries, specialist theory reviews and responses, insights, and anything that may eventually contribute reader-facing content to the corpus |
+| `evidence/` | Receipts, oracle outputs, measured records, and dated audits |
+| `contracts/` | Versioned contract and policy artifacts, application requirements, and interface specifications |
+| `campaigns/` | Campaign definitions, protocols, and predeclarations |
+| `configurations/` | Enumerated configuration and candidate registries, indexes, and catalogs |
+| `decisions/` | Recorded operator dispositions, once a lane accumulates more than one |
+| `archive/` | Superseded material retained for auditability |
+
+`analysis/` is the only subdirectory an operator should have to open to find theory. If a document carries theory work, an insight, an advance in $\mathbb{A}\mathbb{A}\mathbb{A}$, or material that could become reader-facing corpus content, it belongs there whatever else it also is. A benchmark recovery is theory even though it is also a benchmark; a specialist review of a proof is theory even though it is also a review.
+
+The test is what the document *carries*, not what it is about. A record of what a run measured, a dated audit of a claim's status, a receipt, a source-acquisition manifest, or a staging area of unassessed leads remains operational even when its subject is deep theory, because its content is the state of the work rather than the theory itself. Those stay in `evidence/`, `campaigns/`, `configurations/`, and their existing homes. Filing them under `analysis/` would refill the one place the operator relies on with material they were trying to separate out, which defeats the purpose of having a single theory location.
+
+The other categories exist for exactly that internal material: what a run measured, what an interface promises, what a campaign will execute, what the operator decided, and what has been superseded.
+
+Do not create `reviews/`, `benchmarks/`, `history/`, `proofs/`, or `packets/`. Each of those was tried and folded back into `analysis/` on 2026-09-05, because splitting theory across several subdirectory names is exactly what makes a lane's theory content impossible to survey from one place.
+
+Use only the subdirectories a workstream actually needs; an empty category is not created in advance. [`app-solver/`](app-solver/README.md) is the reference implementation of this layout, and [`braid-program/`](braid-program/README.md) applies it to a larger evidence body.
+
+Filing a document into a subdirectory changes its location only. It does not change its claim grade, evidence status, lifecycle state, or authority, and it does not retire it. In particular, `archive/` means superseded, and moving a live document there is a disposition that belongs to the workstream owner, not to a filing pass.
+
+When a workstream directory exceeds roughly twelve top-level files, treat that as the signal to file its supporting material rather than as a threshold to argue with. `node scripts/validate-priority-ranking.mjs` reports directories over that count.
+
+Moving files has two consequences that a filing pass must handle in the same change. Relative links break, both the links inside the moved documents and the links pointing at them from elsewhere, so audit both directions and repair them before reporting the move complete. And the generated reference surface enumerates these paths, so a move leaves `content/generated/reference/reference-surface.v1.json` stale; report that drift with the regeneration command under the [generated-artifact rules](../../AGENTS.md#generated-artifacts) rather than running a generator write outside an authorized regeneration.
+
+## Promotion Test
+
+`analysis/` is where theory waits, and promotion is what moves it into the reader-facing corpus. The webapp's navigation is a graph of scenes, of which 183 are backed one-to-one by a document under `content/markdown/aaa`. Promoting a document therefore mints it a sphere a reader can navigate to, and the test is that simple:
+
+**Would a reader ever set out to visit this?**
+
+A sphere is a destination with a subject. `Sagnac Effect`, `Absolute Time Defense`, and `Noether Braid` are places someone arrives on purpose. A proof design, a cancellation certificate, a specialist review, a readiness matrix, and a recommendations ledger are apparatus: they can be complete, carry a `derived` claim grade, state a falsifier, and still name nothing a reader would look up. Apparatus stays in `analysis/` and is cited by the documents that do become scenes.
+
+Two corollaries, both learned by getting this wrong.
+
+**Scene-worthiness and readiness are independent, and a candidate must pass both.** A scan for completeness markers — a derived grade, a stated falsifier, no open-work label — selects apparatus, because apparatus is what gets finished. A scan for subject-shaped titles selects drafts, because the reader-facing subjects are the ones still being written. On 2026-09-05 the first scan returned twelve documents and the sphere question eliminated eleven of them, while all 27 benchmark recoveries were perfectly scene-shaped and every one was `Status: draft`. Neither scan alone is worth running.
+
+**A subject that already has a corpus document is a supplement, not a new sphere.** Check `content/markdown/aaa` for an existing owner before proposing promotion. Merging material into `bell-theorem.md` and creating a Bell sphere are different editorial acts, and getting them the wrong way round produces a duplicate scene for a subject the corpus already covers.
+
+A document that passes both tests is a candidate, not a promotion. [AGENTS.md](../../AGENTS.md) owns what reader-ready then requires: complete mathematics, evidence, assumptions, claim grading, and academic exposition, prepared before the move rather than after it.
 
 ## Live Discussion Capture
 

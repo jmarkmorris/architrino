@@ -26,7 +26,7 @@
     "medium": {
       "status": "attempt",
       "rowId": "medium-ledger-zero-attempt",
-      "sourcePath": "reference/priorities/mapping-equations/eq-26-31-observation-first-precision-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-26-31-observation-first-precision-packet.md",
       "eventId": "e_gamma_e_0",
       "delta_E": 0,
       "delta_p": [0, 0, 0]
@@ -34,7 +34,7 @@
     "remnant": {
       "status": "attempt",
       "rowId": "remnant-ledger-zero-attempt",
-      "sourcePath": "reference/priorities/mapping-equations/eq-26-31-observation-first-precision-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-26-31-observation-first-precision-packet.md",
       "eventId": "e_gamma_e_0",
       "delta_E": 0,
       "delta_p": [0, 0, 0]
@@ -43,43 +43,43 @@
       "photon_gate_A_input_output": {
         "status": "attempt",
         "rowId": "photon-gate-A-input-output-attempt",
-        "sourcePath": "reference/priorities/mapping-equations/eq-26-31-observation-first-precision-packet.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-26-31-observation-first-precision-packet.md",
         "eventId": "e_gamma_e_0"
       },
       "photon_gate_B_transverse_handoff": {
         "status": "attempt",
         "rowId": "photon-gate-B-transverse-handoff-attempt",
-        "sourcePath": "reference/priorities/mapping-equations/eq-26-31-observation-first-precision-packet.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-26-31-observation-first-precision-packet.md",
         "eventId": "e_gamma_e_0"
       },
       "target_retained_branch": {
         "status": "attempt",
         "rowId": "target-retained-branch-attempt",
-        "sourcePath": "reference/priorities/mapping-equations/eq-26-31-observation-first-precision-packet.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-26-31-observation-first-precision-packet.md",
         "eventId": "e_gamma_e_0"
       },
       "recoil_branch": {
         "status": "attempt",
         "rowId": "recoil-branch-attempt",
-        "sourcePath": "reference/priorities/mapping-equations/eq-26-31-observation-first-precision-packet.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-26-31-observation-first-precision-packet.md",
         "eventId": "e_gamma_e_0"
       },
       "angular_momentum_ledger_delta_J": {
         "status": "attempt",
         "rowId": "angular-momentum-ledger-delta-J-attempt",
-        "sourcePath": "reference/priorities/mapping-equations/eq-26-31-observation-first-precision-packet.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-26-31-observation-first-precision-packet.md",
         "eventId": "e_gamma_e_0"
       },
       "noether_sea_state_row": {
         "status": "attempt",
         "rowId": "noether-sea-state-row-attempt",
-        "sourcePath": "reference/priorities/mapping-equations/eq-26-31-observation-first-precision-packet.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-26-31-observation-first-precision-packet.md",
         "eventId": "e_gamma_e_0"
       },
       "energy_momentum_event_ledger": {
         "status": "attempt",
         "rowId": "energy-momentum-event-ledger-attempt",
-        "sourcePath": "reference/priorities/mapping-equations/eq-26-31-observation-first-precision-packet.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-26-31-observation-first-precision-packet.md",
         "eventId": "e_gamma_e_0"
       }
     },
@@ -87,25 +87,25 @@
       "effective_charge_current_continuity": {
         "status": "attempt",
         "rowId": "effective-charge-current-continuity-attempt",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
         "eventId": "e_gamma_e_0"
       },
       "em_stress_poynting_control_volume": {
         "status": "attempt",
         "rowId": "em-stress-poynting-control-volume-attempt",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
         "eventId": "e_gamma_e_0"
       },
       "effective_gauge_chart_witness": {
         "status": "attempt",
         "rowId": "effective-gauge-chart-witness-attempt",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
         "eventId": "e_gamma_e_0"
       },
       "photon_gate_C_compton_vertex_handoff": {
         "status": "attempt",
         "rowId": "photon-gate-C-compton-vertex-handoff-attempt",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-16a-photon-quantum-gauge-neutrino-packet.md",
         "eventId": "e_gamma_e_0"
       }
     },

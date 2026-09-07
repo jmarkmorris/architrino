@@ -24,121 +24,121 @@
         "id": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "cosmology_carrier": {
         "id": "C_07-10_17-19_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "noether_sea_window": {
         "id": "W_NS_cos_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "assembly_provenance_record": {
         "id": "S_eff_prov_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "metric_projection": {
         "id": "Pi_metric_cos_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "redshift_transfer_handoff": {
         "id": "Z_handoff_cos_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "pi_frw": {
         "id": "Pi_FRW_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "theta_read": {
         "id": "Theta_read_FRW_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "scale_factor_row": {
         "id": "a_eff_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "hubble_row": {
         "id": "H_eff_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "effective_density_row": {
         "id": "rho_eff_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "effective_pressure_row": {
         "id": "P_eff_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "effective_coupling_row": {
         "id": "G_eff_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "effective_lambda_row": {
         "id": "Lambda_eff_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "curvature_row": {
         "id": "k_eff_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "source_term_row": {
         "id": "S_eff_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "friedmann_residual": {
         "id": "R_H_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "continuity_residual": {
         "id": "R_rho_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "source_provenance": {
         "id": "S_eff_source_provenance_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       },
       "no_hidden_retune_witness": {
         "id": "S_retune_FRW_effective_frw_handoff_priority_source_negative_control_0001",
         "status": "accepted",
         "carrierId": "theta_cos_effective_frw_handoff_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md"
       }
     },
     "frwProjection": {
@@ -191,7 +191,7 @@
       {
         "key": "theta_cos_id",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md",
         "projectionValues": {
           "metric": 1,
           "redshift": 1,
@@ -204,7 +204,7 @@
       {
         "key": "a_eff",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md",
         "projectionValues": {
           "frw": 1,
           "friedmann": 1,
@@ -214,7 +214,7 @@
       {
         "key": "H_eff",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md",
         "projectionValues": {
           "frw": 0.1,
           "friedmann": 0.1,
@@ -225,7 +225,7 @@
       {
         "key": "rho_eff",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md",
         "projectionValues": {
           "friedmann": 0.001193662073189215,
           "continuity": 0.001193662073189215,
@@ -235,7 +235,7 @@
       {
         "key": "P_eff",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md",
         "projectionValues": {
           "continuity": 0,
           "readout": 0
@@ -244,7 +244,7 @@
       {
         "key": "G_eff",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md",
         "projectionValues": {
           "friedmann": 1,
           "readout": 1
@@ -253,7 +253,7 @@
       {
         "key": "Lambda_eff",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md",
         "projectionValues": {
           "friedmann": 0,
           "readout": 0
@@ -262,7 +262,7 @@
       {
         "key": "k",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md",
         "projectionValues": {
           "frw": 0,
           "friedmann": 0,
@@ -272,7 +272,7 @@
       {
         "key": "S_eff",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-18-19-theta-cos-source-field-map.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-18-19-theta-cos-source-field-map.md",
         "projectionValues": {
           "continuity": 0,
           "source_provenance": 0,

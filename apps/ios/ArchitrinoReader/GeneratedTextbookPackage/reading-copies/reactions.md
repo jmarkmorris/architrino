@@ -10,7 +10,7 @@ For concrete channel applications of this vocabulary, see [Radiation](../../../.
 
 The goal is consistency, not new phenomenology. Standard observer-level reaction equations remain unchanged unless a chapter explicitly derives a deviation.
 
-This taxonomy records which channel family a reaction uses; it does not derive the angular-momentum or spin rule for that family. Photon Gate B, weak-corridor vector spin, Pauli/statistics closure, and spin-sensitive measurement outcomes inherit [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) and should remain marked as closure targets in reaction prose.
+This taxonomy records the reaction channel grouping; it does not derive the angular-momentum or spin rule for that grouping. Photon Gate B, weak-corridor vector spin, Pauli/statistics closure, and spin-sensitive measurement outcomes inherit [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) and should remain marked as closure targets in reaction prose.
 
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ Assembly-Level Interpretation
 
@@ -23,7 +23,7 @@ At assembly level, these terms refer to substrate dynamics in absolute time:
 - **Corridor-mode nucleation (weak channels):** lock-in to corridor-type interaction modes used for $W^\pm/Z$ channel bookkeeping.
 - **Pair nucleation:** local substrate recruitment/reconfiguration into $e^+e^-$ assemblies under threshold-satisfying two-photon forcing, constrained to recover standard kinematic and rate limits in validated regimes. The incoming photon ledgers close at the vertex; the outgoing charged-assembly identities require identity-routed substrate content rather than relabeling the photon constituents.
 
-Carrier-grade note: the coaxial contra-rotating polarity-conjugate planar pair is a proposed photon carrier whose acceleration-balance closure remains open, so `lock-in` and `stable planar-pair mode` vocabulary throughout this taxonomy is referent-pending (see Photon Referent Status in [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md)).
+The coaxial contra-rotating polarity-conjugate planar pair is a proposed photon carrier whose acceleration-balance closure remains open. Consequently, `lock-in` and `stable planar-pair mode` vocabulary throughout this taxonomy is referent-pending; see Photon Referent Status in [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md).
 
 Observer-level equations remain the operational layer. Assembly-level language is accepted only when it preserves threshold, cross-section, timing, and conservation closure against standard phenomenology.
 
@@ -39,16 +39,16 @@ This section is the canonical stepwise map for low-energy Standard Model channel
 
 #### Hybrid Standard Model Routing
 
-A Standard Model comparison row must name which effective layer supplies the observer-level prediction. $\mathbb{A}\mathbb{A}\mathbb{A}$ reaction language may then map the provenance and assembly changes, but it may not replace the validated Standard Model source lane with an unmarked substrate story.
+A Standard Model comparison row must name which effective layer supplies the observer-level prediction. $\mathbb{A}\mathbb{A}\mathbb{A}$ reaction language may then map the provenance and assembly changes, but it may not replace the validated Standard Model prediction source with an unmarked substrate story.
 
-| Channel use | Observer-level source lane | Required matching record |
+| Channel use | Observer-level prediction source | Required matching record |
 | --- | --- | --- |
 | Short-distance electroweak or collider channel | Renormalized perturbative chiral-gauge chart, with declared input scheme | Gauge-invariant amplitude or detector-level observable, scheme, order, expansion parameter, and systematic remainder |
 | Low-energy weak or nuclear channel | Matched weak effective theory plus QCD or nuclear matrix elements | Operator basis, normalization, CKM/PMNS factor when applicable, matrix-element source, and uncertainty class |
 | Hadronic strong channel | QCD calculation, lattice-QCD matrix element, factorization theorem, or validated phenomenological input | Color-singlet operator or infrared-safe observable, scale, scheme, and truncation or lattice-continuum record |
 | Pure QED or transport channel | Validated QED, kinetic, or material-response model | Observable definition, medium assumptions, boundary conditions, and error budget |
 
-The reaction row therefore records a Standard Model prediction as a structured object: energy regime, operator or detector functional, matching map, expansion or scaling parameter, remainder estimate, and consistency statements such as gauge invariance, unitarity, positivity, or infrared safety when those are part of the source lane. A finite regulator or fit trend is evidence only after this record states how the regulator is removed, matched, or bounded.
+The reaction row therefore records a Standard Model prediction as a structured object: energy regime, operator or detector functional, matching map, expansion or scaling parameter, remainder estimate, and consistency statements such as gauge invariance, unitarity, positivity, or infrared safety when the selected prediction source requires them. A finite regulator or fit trend is evidence only after this record states how the regulator is removed, matched, or bounded.
 
 #### Canonical Stepwise Workflow
 
@@ -366,6 +366,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-411cbec73e234e62)
+
 with $G_F$ supplied by the electroweak corridor scale rather than by an independent contact parameter. This keeps corridor-mode bookkeeping tied to measured beta-reaction and muon-reaction limits (SM labels: `beta decay`, `muon decay`) while leaving the finite $W^\pm$ channel as the higher-energy provenance record.
 
 $$
@@ -438,13 +439,11 @@ Every architrino emits its wake at all times. The causal-isochron record that ca
 
 The always-on wake is therefore the emission of the potential, and it should keep the name **wake**. The word `transmission` is reserved in this chapter for the material row where a photon passes through a medium (reflection, transmission, absorption); it must not be reused for the substrate wake, or the two meanings collide.
 
-A steady bound assembly makes the distinction sharp. A stable Noether braid emits its wake on every cycle, yet a certified non-radiative return map must carry no routed residual: over a cycle the far-zone transport of energy, momentum, and angular momentum must net to zero. That zero-flux statement is a closure target, not a consequence of the inverse-square per-hit acceleration alone. The canonical fixed-hit multiplier reads transmitter position and velocity but no separate transmitter acceleration or higher derivative. Acceleration can still be represented across a sequence of changing roots and velocities, while any irreversible radiative share must appear in a derived wake-energy current or as nucleated photon assemblies with source-depletion, recoil, medium, wake, and remnant rows. The substrate statement is therefore not that acceleration creates a primitive $1/r$ acceleration term; it is that a driven event may leave a closure residual that the channel ledger routes into outgoing transport. Recovering the Larmor/Liénard and synchrotron far-zone laws from those event records remains a derivation target.
-
-Plainly: the Master Equation is acceleration-blind only at one fixed hit. That does not prove that accelerated histories cannot radiate, and the $1/r^2$ acceleration falloff does not by itself determine the energy reaching a distant boundary.
+A steady bound assembly makes the distinction sharp. A stable Noether braid emits its wake on every cycle, yet a certified non-radiative return map must carry no routed residual: over a cycle the far-zone transport of energy, momentum, and angular momentum must net to zero. That zero-flux statement is a closure target, not a consequence of the inverse-square per-hit acceleration alone. The canonical fixed-hit multiplier reads transmitter position and velocity but no separate transmitter acceleration or higher derivative. Acceleration can still be represented across a sequence of changing roots and velocities, while any irreversible radiative share must appear in a derived wake-energy current or as nucleated photon assemblies with source-depletion, recoil, medium, wake, and remnant rows. The substrate statement is therefore not that acceleration creates a primitive $1/r$ acceleration term; it is that a driven event may leave a closure residual that the channel ledger routes into outgoing transport. Recovering the Larmor/Liénard and synchrotron far-zone laws from those event records remains a derivation target. The Master Equation is acceleration-blind only at one fixed hit. That fact does not prove that accelerated histories cannot radiate, and the $1/r^2$ acceleration falloff does not by itself determine the energy reaching a distant boundary.
 
 ### Radiation as the Cost of an Unprepared Path
 
-Claim level: candidate mechanism and derivation target for the accelerated sector; it sharpens the routed-residual reading above without adding a new primitive.
+The unprepared-path account is a candidate mechanism and derivation target for the accelerated sector. It sharpens the routed-residual reading above without adding a new primitive.
 
 The primary statement is the event-ledger rule above. The unprepared-path picture is a sea-dependent candidate for how a residual can arise: at constant sub-field-speed group velocity, forward causal influence and the local Noether sea response can settle into a phase-matched channel, whereas acceleration, an abrupt material boundary, or transport faster than a medium's phase speed can make arrival geometry differ from the prepared response. The resulting mismatch is a candidate contribution to $\mathcal R_{\Theta}$, not a replacement for its Master Equation derivation. In a sea-free idealization this preparation picture has no medium response to invoke; the prediction must then come entirely from the causal-root density, return map, and photon event ledger. This separation makes Cherenkov and transition radiation decisive recovery tests rather than exceptions hidden by the word “acceleration.”
 
@@ -470,7 +469,7 @@ $$
 
 This is a kinematic candidate, not a power law. At fixed path curvature, the radiation-zone target is the standard $P_{\perp}\propto\gamma^4\|\mathbf a_\perp\|^2$ limit; at fixed $B$, the trajectory response changes with $\gamma$ and the target becomes $P_{\mathrm{syn}}\propto U_B\gamma^2$. A completed derivation must decide whether routed power is linear or nonlinear in $\delta_\perp$ and whether the probe distance $d$ is state dependent. A quadratic fixed-$d$ rule would overproduce a $\gamma^8$ factor and falsify this simplest preparation map.
 
-At assembly level, a resolved action-quantum transfer accompanies a transport-state change and must name its counterparty: photon output or capture, medium excitation, or a causal-wake ledger update. This statement does not apply to each primitive causal-root hit, because bound assemblies undergo continuous substrate acceleration without emitting a photon on every hit. It also does not require a photon in an elastic deflection; recoil, medium, and wake rows may close the transfer. Claim level: closure principle for resolved assembly events, not a postulate equating all acceleration with photon emission.
+At assembly level, a resolved action-quantum transfer accompanies a transport-state change and must name its counterparty: photon output or capture, medium excitation, or a causal-wake ledger update. This statement does not apply to each primitive causal-root hit, because bound assemblies undergo continuous substrate acceleration without emitting a photon on every hit. It also does not require a photon in an elastic deflection; recoil, medium, and wake rows may close the transfer. This is a closure principle for resolved assembly events, not a postulate equating all acceleration with photon emission.
 
 ### Forms At A Glance
 
@@ -694,6 +693,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1f60966cc39e9463)
+
 with $\rho_f$ the density of accepted final records. For scattering channels, cross sections must be the same transition probability divided by incoming flux and integrated over the outgoing phase-space ledger. Thus amplitudes, decay widths, and cross sections are comparison-layer summaries of one provenance record, not independent event ontologies.
 
 Momentum and angular momentum must close at the same vertex:
@@ -742,7 +742,7 @@ The signs of the $\Delta E$ terms are ledger signs. A frequency boost has $h(\nu
 
 This distinction is cosmologically important. A redshift or blueshift accumulated along a path is not an unexplained energy loss or gain if the path-frequency exchange ledger closes. It is also not automatically evidence of geometric expansion. The corresponding cosmology pages must consume this radiation record before promoting redshift-distance, CMB temperature, or SZ/kSZ data products into expansion, dark-energy, or growth claims.
 
-The strong-field version of the same rule occurs near a black-hole horizon interface. A photon-channel packet, or a photon-channel-adjacent mode, may be processed close to the three-axis circular-chart symmetry-breaking point, where planar lock and high local energy exchange are part of the strong-field record. Interior segments can blueshift the packet; exterior or transport segments can redshift it; either case remains a frequency-exchange row only while the packet keeps its photon Gate A and Gate B handoffs. If the handoffs fail, the event must be reclassified as capture, re-emission, pair production, medium excitation, or another release-channel reaction.
+The strong-field version of the same rule occurs near a black-hole horizon interface. A photon-channel packet, or a photon-channel-adjacent mode, may be processed close to the orthogonal-axis three-binary symmetry-breaking point, where planar lock and high local energy exchange are part of the strong-field record. Interior segments can blueshift the packet; exterior or transport segments can redshift it; either case remains a frequency-exchange row only while the packet keeps its photon Gate A and Gate B handoffs. If the handoffs fail, the event must be reclassified as capture, re-emission, pair production, medium excitation, or another release-channel reaction.
 
 Curved photon transport adds a transverse version of the same discipline. In ordinary weak lensing, the outgoing path direction changes coherently through the Noether sea response while the photon remains one Gate A/B packet. Let $\hat{\mathbf{k}}(\ell)$ be the path tangent and
 $$
@@ -754,6 +754,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-efaeee5116926cc9)
+
 the Euclidean path-curvature proxy along the transported packet; during coherent transport the path tangent $\hat{\mathbf{k}}(\ell)$ coincides at each point with the Gate A propagation axis $\hat{\mathbf k}$ of the packet. The coherent-lensing branch requires
 $$
 E_{\gamma}^{+}
@@ -769,6 +770,7 @@ E_{\gamma}^{-}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3767dd0c9810d99c)
+
 with no free-photon identity change. A high-gradient or strong-field candidate may instead open a transverse residual
 $$
 \mathcal R_{\perp}^{\gamma}
@@ -789,6 +791,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-47a8993ebc3f74b2)
+
 This is not a claim that lensing normally emits radiation. It is a branch-selection target: weak lensing should remain coherent photon transport, while any proposed strong transverse acceleration emission must declare the source of the residual, the recoil or medium uptake, and the threshold at which the packet leaves the ordinary lensing class.
 
 **Effective electromagnetic energy-momentum gate.** Standard electromagnetic energy and momentum bookkeeping supplies a useful recovery ledger for radiation, but only at the observer/channel level. The fields $\mathbf{E}_{\mathrm{eff}}$ and $\mathbf{B}_{\mathrm{eff}}$ in this subsection are effective comparison variables reconstructed from the channel map. They are not substrate objects added to the Euclidean void or to the Noether sea.
@@ -1277,6 +1280,7 @@ E_{\gamma,b}^{\mathrm{in}}+\varepsilon_E
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-36c52d182bec59e9)
+
 The cavity loss residual over $N$ bounces is
 $$
 \mathcal R_{\mathrm{cav}}
@@ -1288,6 +1292,7 @@ w_b\ge0.
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b48b7fce650d8573)
+
 Apparent lossless reflection means $\mathcal R_{\mathrm{mir}}(b)$ and the accumulated absorption, recoil, phase, and heating rows remain below the declared tolerance. It does not mean the photon bounced from a passive wall with zero material update.
 
 The worked surface case is still a derivation target. It fails if reflection is modeled as a hard geometric bounce with no electron-envelope response, if absorption becomes annihilation or untracked heat, if the same material requires separate Noether sea variables for reflection and absorption, if a hidden longitudinal free-photon channel is used, or if ordinary optical events change nuclear inventory without a separate reaction provenance ledger.
@@ -1981,6 +1986,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-542b0eccb2bd0902)
+
 The important closure is not the symbol $\mathcal{M}$ itself; it is that the same event window, source basin, accepted photon branch, recoil row, and residual row generate both the discrete line rate and the continuum final-state density used by the comparison formula.
 
 Selection rules should be carried as Gate C closure targets. In this framing, an allowed line corresponds to a nonzero basin measure for the accepted photon channel after energy, momentum, transverse angular momentum, parity-like geometry, and local Noether sea constraints are applied. A forbidden or suppressed line corresponds to zero or small basin measure in the leading channel, with possible recovery through higher-order routing, medium coupling, or multi-photon channels only when the event ledger closes.
@@ -2103,9 +2109,7 @@ $$
 
 Here $\Gamma_e(T)$ is the electron-assembly microstate, $\mathcal{C}_{o'j}(T)$ and $J_{o'j}$ are the active causal-root and Jacobian data during the target encounter, $Z$ and $b$ summarize the observer-level target charge and impact-parameter geometry, and $\left\| d\mathbf{V}_e/dT\right\|$ is the deceleration magnitude in absolute time. This equation does not derive the QED bremsstrahlung cross-section. It names the closure functional that must later recover the validated cross-section and emissivity limits.
 
-The explicit deceleration argument is a path-derived assembly diagnostic, not an input to the canonical fixed-hit acceleration multiplier and not a derived radiation amplitude. At one hit the Master Equation reads transmitter position and velocity; a retained encounter record may estimate deceleration from the changing path and then test whether that history predicts the routed assembly transition.
-
-Plainly: this provisional channel model summarizes a changing trajectory. It must not be read as adding an acceleration-dependent field term to each architrino hit.
+The explicit deceleration argument is a path-derived assembly diagnostic, not an input to the canonical fixed-hit acceleration multiplier and not a derived radiation amplitude. At one hit the Master Equation reads transmitter position and velocity; a retained encounter record may estimate deceleration from the changing path and then test whether that history predicts the routed assembly transition. This provisional channel model summarizes a changing trajectory; it does not add an acceleration-dependent field term to each architrino hit.
 
 The corresponding excitation energy is inherited from the radiation basin definition:
 
@@ -2848,6 +2852,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-76c8e0c9627088f2)
+
 where $\psi_{\mathrm{syn}}$ is the synthetic linear-polarization angle and $\psi_{B,\mathrm{eff}}^{\perp}$ is the projected field-compression basis expected for the observer-level shock model. The target is not a new free-photon polarization proof; it is a source-scale Gate B consumer. Persistent knot-scale misalignment, after accounting for Faraday rotation, beam averaging, and turbulent depolarization, would falsify the directional $B_{\mathrm{eff}}\leftrightarrow\mathcal{V}_{\mathrm{NS}}$ map in that regime.
 - Radiation-zone closure: for the local transverse-acceleration segment with $\mathbf{v}\cdot\mathbf{a}_\perp=0$, axes chosen so $\mathbf{v}$ lies along $z$ and $\mathbf{a}_\perp$ along $x$, and $\beta=\|\mathbf{v}\|/c$, recover the angular target
 
@@ -2941,7 +2946,7 @@ This source packet also disciplines composition claims. The observed synchrotron
 
 Standard high-energy source models treat synchrotron cascades as local plasma-radiation processes governed by magnetic structure, injection spectra, and transport. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ program, the same radiative microphysics is retained while interpretation shifts to mapping cascade outputs onto assembly transport and SMBH-local recycling histories.
 
-### $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Mapping (Provisional)
+### Provisional $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Map
 
 Status convention used below:
 
@@ -2949,7 +2954,7 @@ Status convention used below:
 - **Provisional map:** ontology-level working hypothesis pending deeper derivation.
 - **Requirement:** compatibility condition for known observables.
 
-#### Provisional Architrino-Level Mapping
+#### Architrino-Level Hypotheses
 
 This file uses the following provisional mapping targets.
 
@@ -2961,6 +2966,7 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-275707859b37a0e9)
+
 (where $\beta = \sqrt{1-4m_e^2c^4/s}$) to within factor-of-2 accuracy across the range $4m_e^2c^4 < s < 100m_e^2c^4$ used in cascade modeling. Deviations larger than this bound would constitute observable new physics and require dedicated experimental tests beyond astrophysical inference.
 
 These mapping targets are ontology-level and must reduce to standard synchrotron/pair-production observables in validated limits.
@@ -3112,11 +3118,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2997ff94cf43b4c7)
 
-Here $\Gamma_{\mathrm{eff}}\approx\gamma$ is a placeholder SR-limit surrogate for dimensional illustration only, not a derived $\mathbb{A}\mathbb{A}\mathbb{A}$ relation. In all validated astrophysical regimes (AGN jets, pulsar wind nebulae, GRB afterglows), $\Gamma_{\mathrm{eff}}$ must reproduce the standard Lorentz factor $\gamma_{\mathrm{SR}}$ to within observational uncertainties on cooling breaks ($\lesssim 10\%$ for well-sampled SEDs). Any deviation is confined to untested extreme environments (for example, within $r \lesssim 3r_g$ of supermassive black holes, or $\rho_{\text{NS}} \gg \rho_{\mathrm{nuclear}}$) and requires explicit simulation bounds showing no conflict with validated-regime data.
+Here $\Gamma_{\mathrm{eff}}\approx\gamma$ is a placeholder SR-limit surrogate for dimensional illustration only, not a derived $\mathbb{A}\mathbb{A}\mathbb{A}$ relation. In all validated astrophysical regimes (AGN jets, pulsar wind nebulae, GRB afterglows), $\Gamma_{\mathrm{eff}}$ must reproduce the standard Lorentz factor $\gamma_{\mathrm{SR}}$ to within observational uncertainties on cooling breaks ($\lesssim 10\%$ for well-sampled SEDs). Any proposed deviation must be confined to untested extreme environments (for example, within $r \lesssim 3r_g$ of supermassive black holes, or $\rho_{\text{NS}} \gg \rho_{\mathrm{nuclear}}$) and requires explicit simulation bounds showing no conflict with validated-regime data.
 
 Propagation and timing conventions must remain explicit in cosmology-facing use.
 
-### Anticipated Mapping Targets
+### Open Mapping Targets
 
 - Recover observed cascade-like spectral slopes and break structures in limits where synchrotron cooling dominates.
 - Recover synchrotron self-absorption from the same event family as emissivity, including the optically thick source function and its separation from plasma-dispersion suppression.
@@ -3125,7 +3131,7 @@ Propagation and timing conventions must remain explicit in cosmology-facing use.
 - Quantify joint regimes where synchrotron cascades and bremsstrahlung together set the photon bath relevant to nucleation-era mapping.
 - Bound acceptable parameter freedom in provisional mapping variables so parsimony does not degrade relative to standard transport models.
 
-### Explanatory Gain (Provisional)
+### Possible Explanatory Gain
 
 This mapping aims at mechanistic compression across channels:
 
@@ -3135,7 +3141,7 @@ This mapping aims at mechanistic compression across channels:
 
 If future derivations show no measurable deviations in tested regimes, the remaining claim is ontological unification rather than new phenomenology.
 
-### Why Reinterpret (Theory Payoff)
+### Conditions for a Useful Reinterpretation
 
 The reinterpretation is justified only if it improves theory structure, not vocabulary. In this chapter the intended payoff is:
 

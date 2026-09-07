@@ -18,11 +18,11 @@ export const SUBFIELD_CIRCULAR_RUNTIME_PATHS = Object.freeze({
   cli: "scripts/eom/reduce-subfield-circular-root-ledger.mjs", proof: "scripts/eom/verify-subfield-circular-history.mjs",
 });
 export const SUBFIELD_CIRCULAR_RUNTIME_HASHES = Object.freeze({
-  pilot: "63c88911d2b117dfc908d93359c55ee5dcca973e15f4111fa598264a74718b31",
-  outer: "df1b7e1d800450afb4221db88e0aedf55d62de256f302e448caab05149badc18",
+  pilot: "e6d6fb08d6e33b8ada60e36b7552fadc97bb4e6f8907bab6273bebdd8109b1fc",
+  outer: "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
   helper: "1b96160ceee1d9a98374d84e9f15b1823572486a6b53546d922294a51cd3d982",
   bridge: "00cd8290a9929e0e099c91aeff03c52cf06ec5d9cad329ffad00092c61815e02",
-  watch: "357b6725ad9a60a67c7a7fc07e8f3c9b9bc05201642706a66aec9b1411c22db1",
+  watch: "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9",
   reducer: "1b146e7efbc05f000f37d313f8e5ee353e802ddf00738dbcdaa543165f001bb8",
   cli: "2b3eb236b561c1901e6dfc58603f97f1104fc045e79d2d7a10d8879da02fd60a",
   proof: "b2fc83aa828ac9f175d7c3ae7bf43b66fcda54a702de6f2f80812852aebd5f38",

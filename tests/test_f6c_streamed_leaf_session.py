@@ -459,7 +459,7 @@ class LifecycleTests(unittest.TestCase):
 class GenuineBridgeTests(unittest.TestCase):
     def test_four_actual_synthetic_requests_roundtrip_without_retaining_provisions(self):
         f = load('streamed_leaf_frozen_driver_controls', 'tests/test_f6c_single_leaf_diagnostic.py',
-                 '7a665b6ca9bb3bea918732f3a5aea7aba1afda71d3c87b0805a90c96e7719697')
+                 'a830ef66bd44292a8b2f35940ca739f35f696377b51659988198e8e268aed2e2')
         adapter, _ = f.genuine_session_adapter()
         lines = []
         s = S.StreamedLeafSession(adapter, f.D, C, metadata(), lines.append)

@@ -20,26 +20,26 @@
   "packet": {
     "id": "eq21-lensing-transfer-child-priority-source-negative-control-0001",
     "rows": {
-      "lensing_transfer_child": { "status": "accepted", "rowId": "eq21-lensing-transfer-child-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      "lensing_kernel_row": { "status": "accepted", "rowId": "eq21-lensing-kernel-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      "matter_power_parent_row": { "status": "accepted", "rowId": "eq21-lensing-matter-power-parent-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      "cmb_lensing_grid": { "status": "accepted", "rowId": "eq21-cmb-lensing-grid-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      "source_provenance": { "status": "accepted", "rowId": "eq21-lensing-source-provenance-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      "no_hidden_retune_witness": { "status": "accepted", "rowId": "eq21-lensing-no-hidden-retune-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" }
+      "lensing_transfer_child": { "status": "accepted", "rowId": "eq21-lensing-transfer-child-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      "lensing_kernel_row": { "status": "accepted", "rowId": "eq21-lensing-kernel-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      "matter_power_parent_row": { "status": "accepted", "rowId": "eq21-lensing-matter-power-parent-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      "cmb_lensing_grid": { "status": "accepted", "rowId": "eq21-cmb-lensing-grid-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      "source_provenance": { "status": "accepted", "rowId": "eq21-lensing-source-provenance-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      "no_hidden_retune_witness": { "status": "accepted", "rowId": "eq21-lensing-no-hidden-retune-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" }
     },
     "sharedKeys": [
-      { "key": "rho_NS", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      { "key": "n", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      { "key": "chi_sea", "status": "accepted", "value": 1.002, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      { "key": "Gamma_N", "status": "accepted", "value": 1.0000010100010202, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      { "key": "M_sea_ab", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      { "key": "rho_bar", "status": "accepted", "value": 0.05, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      { "key": "rho_A", "status": "accepted", "value": 0.25, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      { "key": "H_eff", "status": "accepted", "value": 3.424706202494149, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      { "key": "a_eff", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" }
+      { "key": "rho_NS", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "n", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "chi_sea", "status": "accepted", "value": 1.002, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "Gamma_N", "status": "accepted", "value": 1.0000010100010202, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "M_sea_ab", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "rho_bar", "status": "accepted", "value": 0.05, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "rho_A", "status": "accepted", "value": 0.25, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "H_eff", "status": "accepted", "value": 3.424706202494149, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "a_eff", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" }
     ],
     "model": {
-      "lensingKernel": { "status": "accepted", "A_lens": 10000, "z_source": 2, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
+      "lensingKernel": { "status": "accepted", "A_lens": 10000, "z_source": 2, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
       "samples": [
         { "sampleId": "L40_z1_k0p02", "ell": 40, "matterSampleId": "k0p02_z1", "benchmark": { "C_phi_phi_observed": 0.000016904375640702608, "sigma": 0.0000016904375640702608 } },
         { "sampleId": "L200_z1_k0p1", "ell": 200, "matterSampleId": "k0p1_z1", "benchmark": { "C_phi_phi_observed": 1.3183340887463533e-7, "sigma": 1.3183340887463533e-8 } },

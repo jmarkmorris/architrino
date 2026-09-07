@@ -62,7 +62,7 @@
       "id": "S_retune_eq30_elastic_S_retune_coordination_source_control_0001",
       "residual": 0,
       "retainedStatus": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-14-30-31-finite-window-w-source-field-map.md"
     },
     "refinementCompatibility": {
       "parentWindowId": "W_eq30_elastic_S_retune_coordination_source_control_parent",

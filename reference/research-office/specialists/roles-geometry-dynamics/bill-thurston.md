@@ -13,7 +13,7 @@
 **Current theory alignment**:
 - Topological classification should track the canonical Noether braid framing in `noether-braid/noether-braid.md`, `noether-braid/braid-envelope-geometry.md`, `noether-braid/braid-taxonomy.md`, and `noether-braid/braid-recovery-requirements.md`.
 - Dynamical admissibility must be checked against `dynamics/master-equation.md` and `dynamics/causal-action-functional.md`.
-- Certification targets should track `reference/priorities/braid-program/priorities.md`, `reference/priorities/braid-program/work-queue.md`, and `reference/priorities/braid-program/method.md`; prescribed analytical screening and topology do not establish persistence.
+- Certification targets should track `reference/priorities/braid-program/priorities.md`, `reference/priorities/braid-program/work-queue.md`, and `reference/priorities/braid-program/contracts/method.md`; prescribed analytical screening and topology do not establish persistence.
 - Stability claims should be wired to `validation/constraint-ledger.md`, `validation/failure-criteria.md`, and the finite certificate protocols.
 
 **Core responsibilities**:

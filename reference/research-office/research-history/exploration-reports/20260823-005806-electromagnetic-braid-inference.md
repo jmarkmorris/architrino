@@ -17,6 +17,6 @@ The campaign treats every standard equation and experiment as an effective recov
 
 - Completed read-only specialist passes over the electric program, magnetic program, all 39 substantive equation packets, and all 26 substantive benchmark cases.
 - Dispositioned the six residual electric recommendations and integrated the active or conditional parts into the existing field-identity, $E0$--$E4$, and fixed-law continuation packets.
-- Expanded [Inferring Braid Requirements](../../../priorities/mapping-equations/inferring-braid-requirements.md) with magnetic and cross-sector requirements, a weak-response skew lemma, a framed causal-history bundle, and a 22-row source-backed ranking.
+- Expanded [Inferring Braid Requirements](../../../priorities/mapping-equations/analysis/inferring-braid-requirements.md) with magnetic and cross-sector requirements, a weak-response skew lemma, a framed causal-history bundle, and a 22-row source-backed ranking.
 - Preserved the claim boundary: the new material is requirement inference and candidate certificate design. It supplies no retained braid, electromagnetic constitutive law, equation-score advancement, or benchmark closure.
 - Current blocker: one accepted EOM-evolved retained common-history source--sea--receiver family that can populate the direct/sea field-identity, translation/deformation, skew-kernel, and history-closure rows without retuning.

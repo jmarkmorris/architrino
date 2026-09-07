@@ -10,7 +10,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 const root=process.cwd(),digest=b=>createHash("sha256").update(b).digest("hex");
-const outer=readFileSync("scripts/eom/launch-abc-enclosed-root-pilot.mjs");
+const outer=readFileSync("scripts/eom/launch-subfield-circular-root-pilot.mjs");
 const self=readFileSync("scripts/eom/launch-f6c-cached-root-cover-pilot.mjs");
 const entryPath="scripts/eom/run-f6c-cached-root-cover-pilot.mjs";
 const lane=".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827";

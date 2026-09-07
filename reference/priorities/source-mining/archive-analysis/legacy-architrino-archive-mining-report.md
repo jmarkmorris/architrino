@@ -12,7 +12,7 @@ This is an archive-level source-mining triage report. It does not mark individua
 | Posts retrieved | `379` |
 | Idea cards | `1030` |
 | Idea clusters | `840` |
-| Durable post registry JSONL | `reference/priorities/source-mining/legacy-architrino-wordpress-posts.jsonl` |
+| Durable post registry JSONL | `reference/priorities/source-mining/archive-analysis/legacy-architrino-wordpress-posts.jsonl` |
 | Local post cache JSONL | `${TMPDIR:-/tmp}/architrino-archive-mining/legacy-architrino-posts.jsonl` |
 | Local idea-card JSONL | `${TMPDIR:-/tmp}/architrino-archive-mining/legacy-architrino-idea-cards.jsonl` |
 | Local cluster JSON | `${TMPDIR:-/tmp}/architrino-archive-mining/legacy-architrino-clusters.json` |

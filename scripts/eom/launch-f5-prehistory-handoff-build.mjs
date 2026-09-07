@@ -10,12 +10,12 @@ import { Worker } from "node:worker_threads";
 const ROOT = process.cwd();
 const SELF = "scripts/eom/launch-f5-prehistory-handoff-build.mjs";
 const ENTRY = "scripts/eom/prepare-f5-prehistory-handoff-build.mjs";
-const OUTER = "scripts/eom/launch-abc-enclosed-root-pilot.mjs";
+const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs";
 const PINS = Object.freeze({
-  [ENTRY]: "5caae83e0f48ba1bba762613e7083a7f7181aefafeba278d75e1add910b3f460",
-  "scripts/eom/prepare-abc-enclosed-root.mjs": "bbe06d12742578ba8cce6f8f55751d4d9e6a8b83404ee998fd48b6f6dbc27905",
+  [ENTRY]: "8bc5b2964920073e1e6c3e8ae9f013c63514e8a8cfe40c7e800e282402331ac3",
+  "scripts/eom/prepare-subfield-circular-root.mjs": "59b579f4aa32b56210a9853d51313c48f732f0512bcde1c5eded8de067dad9bc",
   "scripts/eom/prepare-f5-enclosed-root.mjs": "ba154c0a8c63bd390ae1e16de005fd5d52000fedec352619b60b9465a2f813f5",
-  [OUTER]: "5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa",
+  [OUTER]: "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
   "/usr/bin/memory_pressure": "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56",
 });
 const absolute = value => path.resolve(ROOT, value);
@@ -150,7 +150,7 @@ export async function launch(argv) {
   const outerBytes = captures.find(x => x.path === absolute(OUTER)).data;
   const outer = await import("data:text/javascript;base64,"+outerBytes.toString("base64"));
   const table = await outer.processTable();
-  check(table.filter(x => path.basename(x.command) === "eom_abc_enclosed_root_cli").length <= 2, "wait for at most two ABC EOM workers");
+  check(table.filter(x => path.basename(x.command) === "eom_subfield_circular_root_cli").length <= 2, "wait for at most two subfield-circular EOM workers");
   let resourceFailure, timer, inFlight, receipt, finalizing = false;
   const finalAbort = new AbortController();
   const interrupt = () => finalAbort.abort(new Error("build launch interrupted"));
@@ -168,7 +168,7 @@ export async function launch(argv) {
     finally { observations.push(stamp); console.error(JSON.stringify({ stage: "f5-handoff-build-resources", ...stamp })); }
   };
   await observe(true);
-  const sources = captures.filter(x => [ENTRY, "scripts/eom/prepare-abc-enclosed-root.mjs", "scripts/eom/prepare-f5-enclosed-root.mjs"].some(p => absolute(p) === x.path))
+  const sources = captures.filter(x => [ENTRY, "scripts/eom/prepare-subfield-circular-root.mjs", "scripts/eom/prepare-f5-enclosed-root.mjs"].some(p => absolute(p) === x.path))
     .map(x => ({ path: path.relative(ROOT, x.path), sha256: x.sha256, bytes: x.data }));
   process.on("SIGINT", interrupt); process.on("SIGTERM", interrupt);
   try {

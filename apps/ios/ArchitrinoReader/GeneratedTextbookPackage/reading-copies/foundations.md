@@ -2,26 +2,28 @@
 
 ## Ontology
 
-Ontology asks a simple question: what is actually there before an observer names it, measures it, or compresses it into a model?
+**Ontology** is the study of what exists. Not what we can measure, not what our equations track, but what is actually there before anyone names it, observes it, or compresses it into a model.
 
-For $\mathbb{A}\mathbb{A}\mathbb{A}$, the answer has layers. At the bottom are absolute time, the Euclidean void, and architrinos. Above that are assemblies, causal wakes, and the Noether sea. Above that are effective fields, particles, clocks, rulers, metrics, and observer records. The main rule of this chapter is that those layers must not be mixed.
+That distinction sounds abstract and is intensely practical. Physics routinely uses quantities that work beautifully without anyone claiming they are fundamental — temperature is real and useful, yet no single molecule has one. Confusing "this description works" with "this is what exists" is the most common way a theory ends up explaining something in terms of itself.
 
-This chapter is the bedrock map. It says what exists at the substrate level, what emerges from assembly and medium behavior, and which terms must stay level-aware for the rest of the corpus to remain coherent.
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ the answer comes in layers. At the bottom sit absolute time, the Euclidean void, architrinos, and the source-dependent causal-wake support fixed by architrino histories. Above them sit assemblies and the Noether sea. Above those lie effective fields, particles, clocks, rulers, metrics, and finally the records observers actually collect. The governing rule of this chapter is that these layers must never be mixed.
+
+This is the bedrock map. It says what exists at the substrate level, what emerges from assembly and medium behavior, and which terms must stay level-aware for everything downstream to remain coherent.
 
 ---
 
 ### Purpose and Scope
 
-This document establishes the ontological bedrock of $\mathbb{A}\mathbb{A}\mathbb{A}$: what fundamentally exists, what is emergent, and what Physical Observers reconstruct from inside the system.
+This document establishes what fundamentally exists in $\mathbb{A}\mathbb{A}\mathbb{A}$, what is emergent, and what observers reconstruct from inside the system.
 
 It defines six foundation routes:
 
 1. **The Substrate**: [absolute time](../../../../markdown/aaa/foundations/absolute-time.md), [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md), and [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md).
-2. **The Fundamental Entity**: [architrino](../../../../markdown/aaa/foundations/architrino.md), the point transceiver of potential-bearing causal wakes.
-3. **The Physical Medium**: [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), the emergent physical medium formed by coupled neutral Noether braid assemblies.
-4. **The Observer Framework**: [complete-state versus Physical Observer access](../../../../markdown/aaa/spacetime/observer-framework.md).
-5. **Terminology Discipline**: [canonical level-aware terminology](../../../../markdown/aaa/archie/terminology-usage.md).
-6. **Parameter Ledger**: [fundamental postulates versus derived quantities](../../../../markdown/aaa/validation/parameter-ledger.md).
+2. **The Fundamental Entity**: the [architrino](../../../../markdown/aaa/foundations/architrino.md), a point entity that continuously emits an expanding record of its own motion and receives the causal-root contributions that reach it.
+3. **The Physical Medium**: the [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), content filling the void, built from coupled neutral assemblies.
+4. **The Observer Framework**: [complete state versus what an observer can reach](../../../../markdown/aaa/spacetime/observer-framework.md).
+5. **Terminology Discipline**: [level-aware vocabulary](../../../../markdown/aaa/archie/terminology-usage.md).
+6. **Parameter Ledger**: [which numbers are postulated and which are derived](../../../../markdown/aaa/validation/parameter-ledger.md).
 
 The nine foundation chapters have distinct ownership:
 
@@ -37,7 +39,7 @@ The nine foundation chapters have distinct ownership:
 | [Detecting the Absolute Frame](../../../../markdown/aaa/foundations/detecting-the-absolute-frame.md) | Owner of the complete-state rest diagnostic and tagged-wake center reconstruction. |
 | [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md) | Owner of coordinate-frame reconstruction from nondegenerate complete-state data. |
 
-Read the substrate owners first, then Architrino and Emergence. The preferred-frame sequence is Detecting, Constructing, and Absolute Time Defense; it moves from complete-state identifiability to coordinates and then to the observer-level hiding burden.
+The textbook sequence continues from this chapter to Architrino, Absolute Time, Euclidean Void, Absolute Timespace, Absolute Time Defense, Detecting the Absolute Frame, Constructing the Absolute Frame, and Emergence of Structure. It introduces the primitive entity and substrate before examining preferred-frame arguments, reconstruction, and assembly formation. The ownership links above also support returning directly to a particular definition.
 
 #### Canonical Postulate Ownership
 
@@ -50,31 +52,34 @@ The Summary Postulate in each owning chapter is the single canonical wording. Th
 | Postulate 3: Absolute Timespace | [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md#summary-postulate) |
 | Postulate 4: Architrino | [Architrino](../../../../markdown/aaa/foundations/architrino.md#summary-postulate) |
 
-The point is not to make every later result true by definition. The point is to keep the starting inventory clean. Dynamics, assembly mappings, particle families, effective spacetime, and cosmology all depend on these foundations. If the level assignment is wrong here, the error propagates everywhere else.
+The purpose is not to make later results true by definition. It is to keep the starting inventory clean. Dynamics, assembly mappings, particle families, effective spacetime, and cosmology all rest on these foundations, so a wrong level assignment here propagates into everything.
 
-The teaching order uses four levels:
+#### Four levels
 
 | Level | Plain meaning | Typical examples |
 |:---|:---|:---|
-| Substrate ontology | What exists before observer reconstruction. | Absolute time, Euclidean void, architrino identities, intrinsic polarity, causal-wake support. |
-| Assembly and medium behavior | What organized architrino configurations do. | Noether braids, stable branches, Noether sea density, stress, flow, and response. |
-| Effective description | What observers can summarize as familiar physics. | Metric, field, particle, mass, charge, clock, ruler, and potential language. |
-| Observer inference | What embedded Physical Observers can actually record. | Detector records, clock readings, coincidence windows, spectra, quantum states, and coarse histories. |
+| Substrate ontology | What exists before any observer reconstruction. | Absolute time, Euclidean void, architrino identities, polarity, causal-wake support. |
+| Assembly and medium behavior | What organized groups of architrinos do. | Noether braids, stable branches, sea density, stress, flow, response. |
+| Effective description | What observers can summarize as familiar physics. | Metric, field, particle, mass, charge, clock, ruler, potential. |
+| Observer inference | What an embedded observer can actually record. | Detector records, clock readings, coincidence windows, spectra, quantum states. |
 
-This ontology also has a boundary. It states the internal bedrock of $\mathbb{A}\mathbb{A}\mathbb{A}$. It does not claim to explain why absolute time, the Euclidean void, the architrino identity set, $c_f$, or $\kappa$ exist rather than not exist. Those are primitive postulates inside the present theory unless a separate meta-ontological account is supplied.
+This ontology also has an honest boundary. It states the internal bedrock of $\mathbb{A}\mathbb{A}\mathbb{A}$. It does not claim to explain *why* absolute time, the Euclidean void, the set of architrinos, the wake speed $c_f$, or the coupling $\kappa$ exist rather than not. Those remain primitive postulates unless some separate account is supplied.
 
-That distinction matters. Deriving particles, fields, clock behavior, and effective spacetime from architrino dynamics is one kind of explanation. Explaining why the substrate itself exists is a different kind of claim.
+That distinction is worth holding onto. Deriving particles, fields, clock behavior, and effective spacetime from architrino dynamics is one kind of explanation. Explaining why the substrate exists at all is a different kind of claim, and this theory does not make it.
 
-The same level discipline can be read through the canonical symbol map:
+The same discipline reads through the canonical symbol map:
 
 | Level | Canonical variables or records | Owning chapters |
 |:---|:---|:---|
-| Substrate ontology | $T$, $\Sigma_T$, $h_{ij}$, $\mathbf X_a(T)$, $q_a$, causal-wake support | [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md), [Architrino](../../../../markdown/aaa/foundations/architrino.md) |
-| Assembly and medium behavior | assembly closure labels, including the current concrete $\Lambda_{A1}$ instance, plus $\rho_{\text{NS}}(\mathbf X,T)$, $\Sigma_{\text{sea}}(\mathbf X,T)$, $\mathbf u_{\text{sea}}(\mathbf X,T)$ | [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [A1 Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) |
-| Effective description | $A(\mathcal{N}_{\mathrm{sea}})$, $B_{ij}(\mathcal{N}_{\mathrm{sea}})$, $u^i_{\mathrm{sea,eff}}$, $g^{\text{eff}}_{\mu\nu}$, $\Phi_{\text{eff}}$ | [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) |
-| Observer inference | $\Pi_{\mathrm{obs}}:S(T)\to\bar S(T)$, Physical Observer records $\Theta_A^{(O,W)}$, detector and measurement records | [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md), [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md) |
+| Substrate ontology | absolute time $T$, its simultaneous spatial slice $\Sigma_T$, Euclidean spatial metric $h_{ij}$, architrino position $\mathbf X_a(T)$, polarity $q_a$, and causal-wake support | [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md), [Architrino](../../../../markdown/aaa/foundations/architrino.md) |
+| Assembly and medium behavior | assembly closure labels, including the configuration label $\Lambda_{\mathrm{cm}}$ for the coincident-midpoint three-binary chart; Noether braid number density $\rho_{\text{NS}}(\mathbf X,T)$, sea stress $\Sigma_{\text{sea}}(\mathbf X,T)$, and sea flow velocity $\mathbf u_{\text{sea}}(\mathbf X,T)$ | [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation), [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) |
+| Effective description | clock-rate response $A(\mathcal{N}_{\mathrm{sea}})$ and spatial ruler response $B_{ij}(\mathcal{N}_{\mathrm{sea}})$ to the retained sea state $\mathcal{N}_{\mathrm{sea}}$; effective drift $u^i_{\mathrm{sea,eff}}$, metric $g^{\text{eff}}_{\mu\nu}$, and clock-channel constitutive potential $\Phi_{\text{eff}}$ | [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) |
+| Observer inference | projection $\Pi_{\mathrm{obs}}:S(T)\to\bar S(T)$ from complete state to accessible record; $\Theta_A^{(O,W)}$, the record of channel $A$ for observer $O$ over window $W$, including readout, apparatus response, calibration, nuisance model, and accessible boundary histories | [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md), [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md) |
 
-Equivalently, the four levels form a tower of forgetting maps:
+#### The tower of forgetting
+
+A proposed hierarchy connects the four levels by maps that discard information. For a selected family of records, the following composition is valid only when each intermediate description retains enough information to determine the next output:
+
 $$
 S(T)
 \xrightarrow{\Pi_{\mathrm{assembly}}}
@@ -86,140 +91,160 @@ S(T)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-32735fe8bdc4051a)
-Here $\mathfrak B(T)$ denotes the retained assembly and branch records and $\Pi_{\mathrm{record}}$ is the final record-extraction arrow. The canonical observer projection is the composite $\Pi_{\mathrm{obs}}=\Pi_{\mathrm{record}}\circ\Pi_{\mathrm{eff}}\circ\Pi_{\mathrm{assembly}}:S(T)\to\bar S(T)$, refining the monolithic definition in [Architrino](../../../../markdown/aaa/foundations/architrino.md#provenance-and-persistence). Pullback of retained information along the tower induces a decreasing filtration on $S(T)$. Each arrow keeps some information and discards some information. Individual provenance labels, path-history depth, inactive branch alternatives, fine assembly coordinates, medium microstate, and apparatus-inaccessible records may be lost at different stages.
 
-A quantity is well-defined at a level only if it survives the corresponding forgetting map. A residual measures failure to survive that quotient. Examples include provenance leakage $\epsilon_{\mathrm{prov}}$, branch or record residuals $\mathcal R_{\mathcal Q}$, clock-composition residuals $\Delta^{\mathrm{comp}}$, and clock-universality residuals $\epsilon_{\mathrm{univ}}$. This is why level discipline is not only vocabulary discipline. It decides which invariants remain meaningful after a projection.
+Read it left to right as a sequence of deliberate losses. $S(T)$ is the complete state: every architrino, every identity, every path history. The first arrow keeps only what assemblies and branches are present, giving $\mathfrak B(T)$. The second keeps only the smooth effective quantities. The third keeps only what a detector actually records, giving $\bar S(T)$.
 
-Many projections also need regularity. A reconstruction or projection map is locally usable only where its active inverse has a declared non-degeneracy floor:
+The identity $\Pi_{\mathrm{obs}}=\Pi_{\mathrm{record}}\circ\Pi_{\mathrm{eff}}\circ\Pi_{\mathrm{assembly}}$ is therefore a conditional factorization of the single-step projection in [Architrino](../../../../markdown/aaa/foundations/architrino.md#provenance-and-persistence). The displayed smooth tuple alone has not been shown to determine every detector record. A proposed factorization must specify its observable family, apparatus settings, calibration, retained history, and boundary data, as in the [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md). These data must either be retained by the intermediate description or fixed as declared conditions of the map.
+
+Each arrow keeps some information and discards some. Individual provenance labels, depth of path history, fine assembly coordinates, medium microstate, and any inactive branch-chart labels actually retained in the complete state may be lost at different stages. The map does not turn unrealized possible futures into ontic data.
+
+Here is why that matters rather than being bookkeeping. A lower-level quantity descends to a coarser level only if it is constant, within the declared tolerance, on every fiber of the projection: all detailed states mapped to one coarse state must assign it the same value. Coarse levels may also define new collective quantities, such as temperature, that have no one-particle counterpart. Asking for the "position of the electron" at the observer level is meaningful only after the observer map defines such a position or a lower-level position descends through it.
+
+For exact factorization, let $C=\Pi_{\mathrm{eff}}\circ\Pi_{\mathrm{assembly}}$ denote the retained coarse state and $R$ the selected record. A map $f$ with $R=f\circ C$ exists precisely when $C(S_1)=C(S_2)$ implies $R(S_1)=R(S_2)$. Necessity follows because a function gives equal outputs on equal inputs; sufficiency follows by defining $f(C(S))=R(S)$, which the implication makes independent of the chosen representative. For example, suppose two detailed apparatus states retain the same smooth medium description but encode different recorded bits, 0 and 1. Discarding that bit prevents the final map from recovering the record. Retaining the bit repairs this particular loss, but does not prove that every other required variable was retained. This is an illustration of map sufficiency, not a constructed dynamical solution.
+
+Approximate descriptions replace exact agreement with a declared record metric and tolerance. Their owners use residuals to quantify particular losses: provenance leakage $\epsilon_{\mathrm{prov}}$ tests dependence on discarded identity or history information; branch or record residuals $\mathcal R_{\mathcal Q}$ test the declared coarse description and its balance or record consistency; clock-composition residuals $\Delta^{\mathrm{comp}}$ compare composed clock maps with a direct map; clock-universality residuals $\epsilon_{\mathrm{univ}}$ compare responses across clock families. Each residual needs its own map, comparison, and normalization. These labels do not by themselves certify the hierarchy.
+
+#### Where projections break
+
+The foundations use several nondegeneracy floors, but they guard different mathematical obligations. A projection is intentionally many-to-one and need not be locally invertible. A causal-root chart needs an implicit-function condition; a reconstructed frame or wake center needs an identifiable inverse; a basin separator needs a regular boundary; and a clock/ruler export needs a stable forward map.
 
 | Floor | Guarded map | Failure meaning | Owner |
 |:---|:---|:---|:---|
-| $\kappa_{\mathrm{hit}}>0$ | causal-root chart | fold, caustic, or root-count transition | [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#causal-time-map-and-root-topology) |
+| $\kappa_{\mathrm{hit}}>0$ | causal-root chart | loss of the declared simple-root margin; an actual singularity requires separate diagnosis | [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#causal-time-map-and-root-topology) |
 | $\sin\theta_{\min}>0$ | ordered-tuple frame construction | collinear or ill-conditioned basis | [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#reconstruction-existence-lemma) |
 | positive framing-conditioning floor | framed self-linking and chirality projection | framing slip, unresolved fold contact, or suspended chirality label | [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#parity-convention-and-dynamical-chirality) |
 | $\omega_{\min}>0$ or $\lambda_{\min}(G_a)\ge\lambda_{\min}^{\mathrm{ctr}}>0$ | wake-center inverse | insufficient aperture or rank-deficient center fit | [Detecting the Absolute Frame](../../../../markdown/aaa/foundations/detecting-the-absolute-frame.md#detecting-absolute-rest-the-causal-wake-diagnostic) |
 | $\kappa_{\mathrm{sep}}>0$ | basin separator | unstable, riddled, or unresolved branch partition | [Emergence of Structure](../../../../markdown/aaa/foundations/emergence-of-structure.md#context-as-constraint-on-basin-selection) |
 | $\sigma_{\mathrm{cr}}>0$ | clock/ruler handoff | rank loss or locally multivalued metric export | [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md#absolute-time-global-foliation-and-proper-time) |
 
-The shared theorem target is a reconstruction-regularity lemma: away from the generically codimension-1 floor-failure locus, the relevant map has controlled local inverse behavior. At the floor failure, the theory must report a residual, branch jump, or reconfiguration event rather than silently reusing a smooth chart.
+Each floor prevents a named chart or inference from becoming ill-conditioned. Their failures are related by loss of regularity, not by one universal inverse-map theorem.
 
-Two distinctions govern the rest of this hub.
+The safe common rule is local and typed: state the map, state the rank or transversality condition it actually needs, and fail closed when that condition is lost. A generic scalar fold is codimension one, but rank-deficient matrix varieties and basin-boundary pathologies can have other codimensions. No dimension claim transfers from one row to another without a theorem for that row.
 
-First, primitive substance is not the same as emergent matter. The architrino is primitive substance. Matter begins only when assemblies acquire mass, exclusion, persistence, and organized branch behavior.
+#### Two distinctions that govern the rest
 
-Second, physical reality is not the same as independent material inventory. Causal wakes are physically real, finite-speed, potential-bearing causal records. They are not an extra material ingredient floating in the void. Their content is fixed by transmitter identity, polarity, and path history.
+**Primitive substance is not emergent matter.** The architrino is primitive substance. Matter begins only when assemblies acquire mass, exclusion, persistence, and organized branch behavior.
 
-A conservative entry criterion for emergent matter status is therefore two-part. A stable assembly $A$ must carry a nonzero closed internal causal-history energy ledger $E_{\text{internal}}(A) > 0$ as defined in [Energy](../../../../markdown/aaa/dynamics/energy.md), and it must carry an assembly-level exclusion record protected by retained curve-configuration topology plus a branch-preserving action or energy barrier. The Euclidean void supplies no ambient topological superselection. The protected data must be carried by the assembly itself, for example by an oblate spheroidal exclusion envelope together with the ordered-frame, framed linking, or causal-writhe data needed for fermionic matter, and by a nonzero barrier $\Delta E_{\mathrm{excl}}>0$ against deformation through the forbidden branch. This is an entry criterion for the mass-map and exclusion programs, not a completed derivation of particle masses or spin-statistics.
+**Physical reality is not independent material inventory.** Causal wakes are physically real, finite-speed, potential-bearing records. They are not an extra material ingredient floating in the void; their content is fixed entirely by transmitter identity, polarity, and path history.
+
+A conservative entry criterion for emergent matter status therefore has two parts. A stable assembly $A$ must carry a nonzero closed internal energy ledger $E_{\text{internal}}(A) > 0$ as defined in [Energy](../../../../markdown/aaa/dynamics/energy.md), and it must carry an exclusion record — the property that makes two of them unable to occupy the same place — protected by retained configuration topology together with a barrier that preserves the branch.
+
+The second part is the harder one, and the reason is geometric. As [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md) establishes, the container $\mathbb{R}^3$ is contractible and supplies no nontrivial topology by itself. Collision-excluded multi-assembly configuration spaces can nevertheless carry nontrivial loop classes. The protecting structure must therefore be realized and retained by the assembly dynamics: an exclusion envelope, ordered-frame, framed-linking, or causal-writhe record, together with a nonzero barrier $\Delta E_{\mathrm{excl}}>0$ against leaving the protected branch. This is an entry criterion for the mass-map and exclusion programs, not a completed derivation of particle masses or spin-statistics.
 
 ### The Substrate
 
-The substrate is what $\mathbb{A}\mathbb{A}\mathbb{A}$ treats as fundamental. It is not what a local observer necessarily sees. It is the underlying stage and primitive inventory from which observer-level physics must be reconstructed.
+The substrate is what $\mathbb{A}\mathbb{A}\mathbb{A}$ treats as fundamental. It is not necessarily what a local observer sees. It is the underlying stage and primitive inventory from which observer-level physics has to be reconstructed.
 
 #### Absolute Time
 
-[Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md) is the canonical substrate-level specification of the universal time parameter $T$. It defines time as a one-dimensional, continuous, oriented, non-dynamical continuum $\mathbb{R}$ with absolute event ordering, no kinematic time dilation, no relativity of simultaneity, and no reparametrization freedom beyond unit choice and origin choice: constancy of $c_f$ and form-invariance of the receiving law pin $T$ to its affine class.
-
-The abridged routing statement is:
+[Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md) owns the universal time parameter $T$. Time is a one-dimensional, continuous, oriented, non-dynamical continuum $\mathbb{R}$, with absolute ordering of events, no time dilation at the substrate level, no relativity of simultaneity, and no freedom to reparametrize beyond choosing a unit and an origin. Constancy of $c_f$ and the form of the receiving law together pin $T$ down to that much freedom and no more.
 
 > **Abridged Postulate 1 (Absolute Time):** Time is an absolute, universal, one-dimensional continuum $\mathbb{R}$ with fixed orientation, a scale anchored by the constant primitive wake speed $c_f$ and the receiving law, frame-independent duration, non-dynamical status, and no substrate-level time dilation or relativity of simultaneity. Dynamics occur through finite-speed causal-wake propagation ($c_f$) in absolute time, with all interactions routed through path history rather than instantaneous action-at-a-distance or advanced effects; worldlines are parametrized directly by $T$, with no reparametrization freedom beyond unit choice and origin choice.
 
-This postulate is not a claim that embedded clocks all read the same rate. Clock slowing, synchronization offsets, and proper-time readings belong to assembly and Noether sea dynamics at the observer-accessible level.
+This is emphatically not a claim that every clock reads the same rate. Clocks are assemblies, and clock slowing, synchronization offsets, and proper-time readings are things assemblies and the medium do. The postulate concerns the background parameter, not the instruments.
 
-For the argumentative case, see [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md). For observer-level clocks and dilation, see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
+For the argument, see [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md). For observer clocks, see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
 
 #### Euclidean Void
 
-[Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md) is the canonical substrate-level specification of the fixed spatial container. It defines three-dimensional space as flat, homogeneous, isotropic, non-dynamical $\mathbb{R}^3$ with metric $h_{ij}=\delta_{ij}$, fixed coordinate identity, Euclidean distance, spatial operators, and Euclidean symmetry group $E(3)$.
-
-The abridged routing statement is:
+[Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md) owns the fixed spatial container: flat, homogeneous, isotropic, non-dynamical $\mathbb{R}^3$ with metric $h_{ij}=\delta_{ij}$, fixed coordinate identity, ordinary distance, and the Euclidean symmetry group $E(3)$.
 
 > **Abridged Postulate 2 (Euclidean Void):** Space is an absolute, static, flat, homogeneous, isotropic container $\mathbb{R}^3$ with fixed Euclidean metric $h_{ij}=\delta_{ij}$. Curvature-like observations arise from contents, wakes, and dynamics inside the void, not from curvature of the void itself.
 
-This is a container claim. It does not deny that observers can reconstruct curved effective geometry. The Noether sea is physical content within the void, not the void itself. For the Noether sea branch, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), and [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
+This is a claim about the container and nothing else. Established observer physics successfully uses curved metric geometry; $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover that description from clocks, rulers, signals, and medium response at its effective layer. The Noether sea is content within the void, never the void. See [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), and [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 
 #### Absolute Timespace
 
-[Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md) is the canonical product-structure specification for the background arena $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$. It owns the foliation into simultaneous Euclidean slices, the separated clock-form/spatial-metric data $(dT,h)$, Galilean kinematic structure, product measures and spatial operators, and causal wake geometry.
+[Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md) owns the background arena $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$: one time dimension multiplied by three of space, kept as separate factors. It owns the **foliation** — the slicing of that arena into stacked sheets of constant time, each one a complete snapshot of space at one instant — along with the separated clock form and spatial metric, the compatible flat product connection $(dT,h,\nabla)$, Galilean kinematics, and causal-wake geometry.
 
-The abridged routing statement is:
+> **Abridged Postulate 3 (Absolute Timespace):** The background arena is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dT$, Euclidean spatial metric $h_{ij}=\delta_{ij}$, and a compatible flat torsion-free product connection $\nabla$, foliated by absolute-time slices $\Sigma_T$. The background is non-dynamical and non-curved; causality is ordered by $T$ and constrained by finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law, by fixing the wake speed $c_f$ relative to the void, structurally distinguishes the void rest frame within that structure.
 
-> **Abridged Postulate 3 (Absolute Timespace):** The background arena is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dT$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$, foliated by absolute-time slices $\Sigma_T$. The background is non-dynamical and non-curved; causality is ordered by $T$ and constrained by finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law, by fixing the wake speed $c_f$ relative to the void, structurally distinguishes the void rest frame.
+The product notation packages a clock and a container. It deliberately does not introduce a four-dimensional metric mixing space and time as primitive ontology — the difference between a product and a genuinely woven spacetime is the difference between this theory and established relativity at the substrate level. Relativistic language enters only after medium response, clock and ruler behavior, and signal reconstruction have been derived.
 
-The product notation packages the substrate clock and the spatial container. It does not introduce a non-degenerate four-dimensional metric as primitive ontology. Relativistic spacetime language enters only after medium response, clock/ruler behavior, and signal reconstruction have been derived or modeled.
-
-For the factor-level specifications, see [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md) and [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md). For the observer-level metric bridge, see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
+For the factors, see [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md) and [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md). For the bridge to observer geometry, see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 
 ---
 
 ### The Fundamental Entity
 
-[Architrino](../../../../markdown/aaa/foundations/architrino.md) is the canonical primitive-entity specification for $\mathbb{A}\mathbb{A}\mathbb{A}$. It defines the architrino as a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level.
+[Architrino](../../../../markdown/aaa/foundations/architrino.md) owns the primitive entity: a point transceiver in absolute timespace with definite polarity, persistent identity, continuous wake emission, universal wake reception, and neither creation nor destruction.
 
-The architrino is the sole primitive material substance of the theory. That does not make an isolated architrino a matter particle. Rest mass, spatial exclusion, fermionic behavior, and particle species are downstream assembly properties.
+The architrino is the sole primitive substance of the theory. That does not make an isolated one a matter particle. Rest mass, spatial exclusion, fermionic behavior, and particle species are all downstream assembly properties.
 
-The same caution applies to exchange behavior. Fermion and boson exchange labels are assembly-level recovery targets, not inserted projector postulates. Any effective antisymmetric or symmetric exchange label must be routed through a retained assembly closure label and the ordered-frame spinor program. The current concrete braid instance is $\Lambda_{A1}$; no separate generic `NS` taxonomy is introduced.
+The same caution governs exchange behavior. In established quantum theory, identical fermion states are antisymmetric under exchange and obey Pauli exclusion, while identical boson states are symmetric and may occupy the same one-particle state. Those exchange rules are recovery targets here, not postulates to insert. Any effective exchange label must be routed through a retained assembly closure label and the ordered-frame program. The current concrete braid instance is $\Lambda_{\mathrm{cm}}$; no separate generic taxonomy is introduced.
 
-The hard wall is the two-assembly exchange loop. An exchange of two identical braids is a loop in the configuration space of retained assembly configurations, not in the topology of the ambient void. The ambient quotient does supply a candidate loop class: for two identical centers in $\mathbb{R}^3$, the unordered coincidence-free configuration space has fundamental group $\mathbb{Z}_2$ generated by the exchange loop, the Leinaas-Myrheim/Laidlaw-DeWitt class. What the void does not supply is superselection: nothing forces a recovered effective state to transform nontrivially around that loop. The fermionic route must therefore establish two facts about the retained dynamics. The dynamically retained framed two-assembly component must not trivialize the exchange class after the allowed quotient, and the recovered effective state bundle must carry holonomy $-1$ around it. If either fails, whether the class dies in the retained component or the holonomy is trivial, the antisymmetric projector has not been recovered from assembly dynamics and would have to be inserted at the effective level. The generic failure mode is trivial holonomy, not a missing loop class.
+#### The hard wall: the two-assembly exchange loop
 
-The architrino's intrinsic polarity is also not the full observer-level charge record. Electric, weak, color, and particle labels are effective bookkeeping to be recovered from assembly geometry and medium response.
+Swapping two identical objects and returning is a closed loop in the space of configurations. The question is what the theory does around that loop.
 
-The emitted causal wake is not another primitive substance, but it is real. It is the source-dependent, potential-bearing causal record by which path history becomes delayed interaction.
+The collision-excluded configuration space supplies a candidate loop. For two identical centers in $\mathbb{R}^3$ with coincidence removed, the space of unordered configurations has **fundamental group** $\mathbb{Z}_2$ — meaning there are exactly two classes of closed path, the trivial one and the exchange, and doing the exchange twice returns you to the trivial class. Laidlaw and DeWitt's [configuration-space treatment](https://doi.org/10.1103/PhysRevD.3.1375) is a primary source for the connection between these homotopy classes and bosonic or fermionic propagators.
 
-The load-bearing ontology claim is a dependency claim: once transmitter identity, polarity, and path history are fixed, no additional freely specifiable wake substance remains. The schematic transmitter-history functional and its point-transceiver regularity boundary are owned by [Architrino](../../../../markdown/aaa/foundations/architrino.md#point-transceiver-status); the causal-root sum, Jacobian, transversality floor, and acceleration weight are owned by [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). Effective field language may summarize many wake contributions, but the substrate account remains source-provenanced causal-wake history.
+What the void does *not* supply is **superselection**: nothing about the container forces a recovered effective state to change at all when carried around that loop. A loop existing is not the same as a loop mattering.
 
-The abridged routing statement is:
+So the fermionic route must establish two separate facts about the retained dynamics. First, the dynamically retained two-assembly component must not trivialize the exchange class after the allowed quotient — the loop must survive in the configurations the theory actually keeps. Second, the recovered effective state must pick up a factor of $-1$ around it, which is the **holonomy**: what a quantity becomes after being carried around a loop and brought back.
+
+If either fails, the antisymmetric behavior of fermions has not been recovered from assembly dynamics and would have to be inserted at the effective level. Trivial holonomy is one possible failure even when the exchange loop survives; loss of the loop class under the retained quotient is another. The dynamics must determine which occurs.
+
+#### Polarity and wake
+
+The architrino's polarity is not the full observer-level charge record. Electric, weak, color, and particle labels are effective bookkeeping to be recovered from assembly geometry and medium response.
+
+The emitted wake is not another primitive substance, but it is real: the source-dependent, potential-bearing causal record through which path history becomes delayed interaction.
+
+The load-bearing claim is one of dependency. Once transmitter identity, polarity, and path history are fixed, no additional freely specifiable wake substance remains — there is nothing left to choose. The transmitter-history functional and its regularity boundary belong to [Architrino](../../../../markdown/aaa/foundations/architrino.md#point-transceiver-status); the causal-root sum, Jacobian, transversality floor, and acceleration weight belong to [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). Effective field language may summarize many wake contributions, but the substrate account remains source-provenanced wake history.
 
 > **Abridged Postulate 4 (Architrino):** The architrino is the sole primitive entity of $\mathbb{A}\mathbb{A}\mathbb{A}$: a point transceiver in absolute timespace with definite polarity, persistent identity, continuous causal-wake emission, universal wake reception, and non-creation/non-destruction at the ontological level. The set of architrino identities is fixed. Particles, effective fields, clock behavior, and emergent spacetime phenomena arise from architrino configurations, wake intersections, and assembly dynamics rather than from additional fundamental substances.
 
-For the full primitive-entity page, see [Architrino](../../../../markdown/aaa/foundations/architrino.md). For the receiving-law derivation, see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). For assembly emergence, see [Emergence](../../../../markdown/aaa/foundations/emergence-of-structure.md) and [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md).
+For the full page, see [Architrino](../../../../markdown/aaa/foundations/architrino.md). For the receiving law, see [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). For assembly emergence, see [Emergence](../../../../markdown/aaa/foundations/emergence-of-structure.md) and [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md).
 
 ---
 
 ### The Physical Medium
 
-[Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the canonical medium-ontology page. It defines the Noether sea as the emergent physical medium formed by coupled neutral Noether braid assemblies occupying the Euclidean void.
+[Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) owns the medium: physical content formed by coupled neutral braid assemblies occupying the Euclidean void.
 
-This is the first step away from primitive ontology. The Noether sea is physically real content, but its variables are medium and assembly variables rather than new container geometry.
+This is the first step away from primitive ontology. The sea is physically real content, but its variables are medium and assembly variables rather than new container geometry.
 
-In this ontology hub, the key commitment is:
+> **Medium Commitment (Noether sea):** The Noether sea is physical content inside the Euclidean void, not the void itself. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock and ruler behavior, signal delay and refraction, inertia, and cosmological behavior are reconstructed from Noether sea dynamics and assembly coupling, not from curvature or expansion of the void.
 
-> **Medium Commitment (Noether sea):** The Noether sea is physical content inside the Euclidean void, not the void itself. It carries density, stress, energy, orientation, flow, and response properties. Effective gravity, clock and ruler behavior, signal delay/refraction, inertia, and cosmological behavior are reconstructed from Noether sea dynamics and assembly coupling, not from curvature or expansion of the void.
-
-The routing boundary is:
+Routing:
 
 - [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) owns medium ontology, state variables, and terminology.
-- [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md) owns pro/anti coupling hypotheses and medium assembly motifs.
+- [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md) owns coupling hypotheses and medium motifs.
 - [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) owns the map from medium variables to effective metric language.
 - [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) owns clock and ruler behavior.
-- [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md) owns the cosmology-level interpretation of Noether sea evolution.
+- [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md) owns cosmological interpretation of sea evolution.
 
 ### The Observer Framework
 
-[Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md) is the canonical page for the $\mathbb{U}_{\text{now}}$ universe-state perspective, Physical Observers, the ontic/epistemic distinction, and absolute-versus-operational simultaneity.
+[Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md) owns the complete-state perspective $\mathbb{U}_{\text{now}}$, observers, the distinction between what is and what is known, and absolute versus operational simultaneity.
 
-The complete ontic state is the absolute-time slice $\mathbb{U}_{\text{now}}\equiv S(T)$. A Physical Observer samples only a constrained record inside that state, using clocks, rulers, and signals whose behavior is itself produced by assembly and Noether sea dynamics.
+The complete state $\mathbb{U}_{\text{now}}\equiv S(T)$ is indexed by an absolute-time slice $\Sigma_T$; it is not the geometric slice itself. An observer samples only a constrained record from that state, using clocks, rulers, and signals whose behavior is itself produced by assembly and medium dynamics.
 
-In this ontology hub, the key commitment is:
+> **Observer Commitment:** $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes the complete state on an absolute-time slice from the measurements available to embedded observers. Observers are assemblies inside the Noether sea, so their clocks, rulers, synchronization procedures, and records are dynamical outputs. Effective relativity and quantum state descriptions belong to this observer-accessible layer, not to the primitive substrate.
 
-> **Observer Commitment:** $\mathbb{A}\mathbb{A}\mathbb{A}$ distinguishes the complete ontic state on an absolute-time slice from the measurements available to embedded Physical Observers. Physical Observers are assemblies inside the Noether sea, so their clocks, rulers, synchronization procedures, and records are dynamical outputs. Effective relativity and quantum state descriptions belong to this observer-accessible layer, not to the primitive substrate itself.
+There is no observer standing outside the ledger. An observer's records are themselves entries inside $S(T)$. Inference is a subsystem reconstructing a coarse description from its own accessible records — not a spectator on a balcony reading the complete state without constraint.
 
-There is no observer outside the ledger. A Physical Observer's records are themselves entries inside $S(T)$. Inference is therefore an internal subsystem reconstructing a coarse description from its own accessible records, not a second-level spectator reading the complete state without constraint.
-
-Observer descriptions can be indispensable without being final ontology. Effective metric reconstruction, wave function transition, and particle records are inferential summaries of accessible interactions. They do not replace the substrate and assembly account.
+Observer descriptions can be indispensable without being final ontology. Effective metric reconstruction, wavefunction transition, and particle records are inferential summaries of accessible interactions. They do not replace the substrate account, and they are not made false by it.
 
 #### Bell Nonlocality Placement
 
-Bell-family experiments are treated as a hard observer-level correlation constraint on any deterministic completion. They are not treated as evidence by themselves for ontological randomness, backward causation, or faster-than-$c_f$ signal transfer.
+Some background, because this section is unintelligible without it.
 
-The complete state on $\Sigma_T$ remains definite in the $\mathbb{U}_{\text{now}}$ universe-state perspective. A Physical Observer has access only to pair records, detector settings, coincidence windows, and statistical summaries.
+**Bell's theorem** constrains a specific conjunction of assumptions. For settings chosen independently of a complete hidden state $\lambda$, Bell-local causality requires each outcome probability to depend only on the local setting and $\lambda$. That factorization implies Bell inequalities. Loophole-free experiments violate those inequalities, so no model satisfying the full conjunction can reproduce the observed correlations. Hensen and collaborators' [2015 experiment](https://doi.org/10.1038/nature15759), for example, reported a Bell-inequality violation while closing the principal locality and detection loopholes.
 
-The no-go guardrail is strict. If measurement independence, no advanced influence, finite-speed local response, and local factorization over a complete past-state variable $\lambda$ are all retained, then the Bell-local factorization is restored and Bell violations cannot be recovered. The Bell bridge must choose and declare which Bell assumption fails. A foundation page may route that burden, but it must not imply that shared provenance alone solves Bell.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ is deterministic, so it owes an answer. Bell-family experiments are treated here as a hard observer-level constraint on any deterministic completion. They are not treated as evidence for ontological randomness, backward causation, or faster-than-$c_f$ signalling.
 
-The placement is therefore level-specific. If $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves measurement independence and no-signaling at the observer level, then Bell violation must come from an explicitly nonseparable substrate response, such as a $c_f$-mediated coordination channel outside effective light cones with no-signaling shielding, or another declared nonseparable mechanism.
+The complete state on a slice $\Sigma_T$ remains definite. An observer has access only to pair records, detector settings, coincidence windows, and statistics.
 
-A $c_f$-mediated option is a substantive hierarchy claim. The primitive coordination channel must lie outside the observer photon cone, so $c_f > c_0$ after the low-energy photon speed $c_0$ is calibrated. Any stronger hierarchy such as $c_f \gg c_0$ must be reconciled with photon dressing, moving-assembly Lorentz closure, and clock/ruler universality. It must also evade the finite-speed hidden-influence obstruction: finite superluminal influences with $c_0 < v < \infty$ can become operationally signaling in multipartite Bell scenarios.
+The guardrail is strict and worth stating as an obligation rather than a reassurance. If **measurement independence** (the settings are statistically independent of $\lambda$), local factorization, and the ordinary treatment of the settings and outcomes are all retained, then the observed violations cannot be recovered. A finite propagation speed by itself does not evade the theorem. The theory must therefore state exactly which Bell assumption fails and how observer no-signalling survives. A foundation page may route that burden; it must not imply that shared provenance alone dissolves it.
 
-The observer-level compression must fail the factorizable local-response form
+If $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves measurement independence and no-signalling at the observer level, then the violation must come from an explicitly nonseparable substrate response — for instance a $c_f$-mediated coordination channel operating outside effective light cones while remaining unable to transmit a controllable signal.
+
+That option is a substantive claim about a hierarchy of speeds, not a free move. The coordination channel must lie outside the observer's photon cone, which requires $c_f > c_0$ once the low-energy photon speed $c_0$ is calibrated. Any stronger separation such as $c_f \gg c_0$ must then be reconciled with photon dressing, Lorentz closure for moving assemblies, and clock universality. It must also evade a known conditional obstruction: Bancal and collaborators proved that models reproducing the target correlations with hidden influences of finite speed $c_0<v<\infty$ permit operational faster-than-light signalling in suitable multipartite arrangements, under their stated causal and correlation assumptions; see [*Quantum non-locality based on finite-speed causal influences leads to superluminal signalling*](https://doi.org/10.1038/nphys2460).
+
+Concretely, the observer-level description must fail the factorizable form
+
 $$
 P(a,b\mid \hat{m}_A,\hat{m}_B,\lambda)
 =
@@ -228,56 +253,59 @@ P(b\mid \hat{m}_B,\lambda)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7d4586f544b65b38)
-without adding instantaneous causal influence between detectors. If instead measurement independence is relaxed, that relaxation must be stated quantitatively, and the text must not also claim exact measurement independence.
 
-These options are mutually exclusive at the bridge level:
+which says the joint probability of outcomes $a$ and $b$, conditional on settings $\hat m_A,\hat m_B$ and the complete hidden state $\lambda$, factors into local response probabilities. Reproducing Bell violation requires rejecting this factorization or another premise used to derive the tested inequality, and the chosen route must preserve the observed no-signalling marginals. If measurement independence is relaxed instead, the relaxation must be quantified, and the text must not simultaneously claim exact measurement independence.
 
-- **Substrate nonseparability:** retain strict measurement independence and no-signaling; Bell violation is recovered through nonfactorizable pair-provenance and apparatus-response coupling.
-- **Controlled relaxation of measurement independence:** relax measurement independence in the declared substrate response variables; the relaxation must be bounded to prevent macroscopic backward causation or signaling claims.
+The chapter keeps two clean routes separate for accounting. A hybrid is logically possible, but it must declare both departures and cannot use one to obscure the other:
 
-Working selection, still provisional until the Bell derivation closes: $\mathbb{A}\mathbb{A}\mathbb{A}$ follows the substrate-nonseparability route. That means measurement independence and observer no-signaling are retained, while Bell nonfactorizability is carried by a live substrate-causal $c_f$ coordination channel, gated by pair provenance. Controlled measurement-independence relaxation remains a comparison or failure route, not the active ontology-hub selection.
+- **Substrate nonseparability:** retain strict measurement independence and no-signalling; the violation is carried by nonfactorizable pair provenance and apparatus-response coupling.
+- **Controlled relaxation of measurement independence:** relax it in declared substrate response variables, bounded to prevent macroscopic backward causation or signalling.
 
-A mere shared-source story is not enough. If the retained provenance screens the two detector wings into independent local laws, the account has fallen back into the Bell-local class. Any shared record, including a framed pair-braid or linking invariant, is part of the complete past-state variable $\lambda$; if each wing's response remains a local function of its own setting and that record, Bell factorization returns and the correlation stays inside the Bell-local bound. The active route therefore assigns the two roles explicitly: pair provenance gates the live $c_f$-mediated apparatus-response coupling, and the live channel carries the nonfactorizability. During the measurement window the coupled response law must fail the product form while leaving each one-wing marginal setting-independent. Coordination outside the effective photon cone is allowed when $c_f > c_0$; faster-than-$c_f$ influence and controllable observer signaling remain forbidden. This makes the finite-speed hidden-influence obstruction a real closure burden rather than a footnote: the route predicts either measurable degradation toward the Bell-local bound when the $c_f$ channel cannot connect the wings during the measurement window, or an $\mathbb{A}\mathbb{A}\mathbb{A}$-specific derivation showing why that obstruction is evaded while preserving no-signaling. The detailed derivation and residual tests belong to [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md).
+Working selection, provisional until the Bell derivation closes: $\mathbb{A}\mathbb{A}\mathbb{A}$ takes the substrate-nonseparability route. Measurement independence and observer no-signalling are retained, and nonfactorizability is carried by a live $c_f$-mediated coordination channel gated by pair provenance. Controlled relaxation remains a comparison route, not the active selection.
 
-The routing boundary is:
+A shared-source story on its own is not enough, and this is the trap the route must avoid. If retained provenance screens the two wings into independent local laws, the account has simply fallen back into the Bell-local class and reproduces nothing. Any shared record — a framed pair-braid, a linking invariant — is part of $\lambda$; if each wing's response is a local function of its own setting and that record, factorization returns and the correlation stays inside the bound.
 
-- [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md) owns complete-state versus Physical Observer access.
-- [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) owns observer clocks, clock slowing, and $t\mapsto\tau$ extraction.
-- [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) owns moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and preferred-frame leakage bounds.
-- [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) owns metric reconstruction from observer clocks, rulers, and signals.
-- [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md) and [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md) own quantum-state and measurement descriptions at the observer-accessible layer.
-- [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md) own Bell-family correlation recovery, no-signaling, measurement-independence, pair-provenance closure tests, and the Bancal finite-speed-influence no-signaling obstruction.
+So the route assigns two distinct roles: pair provenance *gates* the proposed live channel, and the channel would have to *carry* the nonfactorizability. During the measurement window the coupled response must fail the product form while each single-wing marginal stays independent of the far setting. A candidate coordination route outside the effective photon cone requires $c_f>c_0$; it is not thereby established, and it must still survive the finite-speed obstruction. Influence faster than $c_f$, and any controllable observer signalling, remain forbidden by the proposed route.
+
+The finite-speed obstruction therefore remains a substantive proof burden. Measurable degradation toward the Bell-local bound when the $c_f$ channel cannot span the wings is a candidate prediction, but it does not by itself resolve that obstruction. The Bancal argument already allows disconnected parties to become local; it tests whether this fallback can coexist with the required connected marginals and observer no-signalling in a multipartite experiment, involving more than two parties. A proposed response must supply one consistent multipartite probability law and identify which premise of the obstruction it changes, with the resulting observable consequences. Degradation and a premise audit are complementary requirements for that proposal, rather than sufficient alternatives. Detail belongs to [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md).
+
+Routing:
+
+- [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md) owns complete-state versus observer access.
+- [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) owns observer clocks and $t\mapsto\tau$ extraction.
+- [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) owns moving-assembly deformation, clock and ruler retuning, two-way synchronization, and preferred-frame leakage bounds.
+- [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) owns metric reconstruction.
+- [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md) and [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md) own quantum-state and measurement descriptions.
+- [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md) and [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md) own correlation recovery, no-signalling, measurement independence, pair-provenance closure tests, and the finite-speed-influence obstruction.
 
 ### Terminology Discipline
 
-Terminology discipline is controlled by the style and terminology canon, not by this hub. The relevant references are:
+Terminology is controlled by the style and terminology canon, not by this hub:
 
-- [Terminology Usage](../../../../markdown/aaa/archie/terminology-usage.md) for level-aware usage rules and examples.
-- [Comparative Glossary](../../../../markdown/aaa/archie/comparative-glossary.md) for standard-framework to $\mathbb{A}\mathbb{A}\mathbb{A}$ translation.
+- [Terminology Usage](../../../../markdown/aaa/archie/terminology-usage.md) for level-aware usage rules.
+- [Comparative Glossary](../../../../markdown/aaa/archie/comparative-glossary.md) for translation between established frameworks and $\mathbb{A}\mathbb{A}\mathbb{A}$.
 - [Mathematics Terminology](../../../../markdown/aaa/archie/mathematics-terminology.md) for formal notation.
 - [Academic Style Guide](../../../../markdown/aaa/archie/academic-style-guide.md) for prose discipline.
 
-This ontology hub keeps only the global rule:
+This hub keeps only the global rule:
 
-> Use substrate-native terms for substrate ontology, medium terms for Noether sea contents, and effective/observer terms for emergent descriptions. Do not let `spacetime`, `field`, `charge`, `vacuum`, or `particle` silently cross levels without saying which level is being described.
+> Use substrate-native terms for substrate ontology, medium terms for Noether sea contents, and effective or observer terms for emergent descriptions. Do not let `spacetime`, `field`, `charge`, `vacuum`, or `particle` silently cross levels without saying which level is meant.
 
 ### Parameter Ledger
 
-The canonical parameter accounting lives in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md). This ontology hub does not own tables of numerical inputs, closure targets, naturalness tests, or simulation regulators.
+Numerical accounting lives in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md). This hub owns no tables of inputs, closure targets, naturalness tests, or regulators.
 
-The ontology-level distinction is a level assignment, not a numerical claim:
+The ontology-level distinction is an assignment of level, not a numerical claim:
 
-- substrate commitments belong to [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md), and [Architrino](../../../../markdown/aaa/foundations/architrino.md);
-- acceleration-law parameters and regulators belong to [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) and the validation ledger;
-- assembly radii, shielding factors, metric coefficients, and observer-level constants are closure targets, not primitive ontology.
+- Substrate commitments belong to [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md), and [Architrino](../../../../markdown/aaa/foundations/architrino.md).
+- Acceleration-law parameters and regulators belong to [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) and the validation ledger.
+- Assembly radii, shielding factors, metric coefficients, and observer-level constants are closure targets, not primitive ontology.
 
-For current open parameter status, see [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md) and [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md).
+For current status, see [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md) and [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md).
 
 ### Open Questions and Validation Routing
 
-Open questions and closure burdens belong in [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md), [Closure Scorecard](../../../../markdown/aaa/validation/closure-scorecard.md), and the relevant branch chapters. This ontology hub keeps only stable commitments.
-
-For the current pressure ledger, see:
+Open questions and closure burdens belong in [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md), [Closure Scorecard](../../../../markdown/aaa/validation/closure-scorecard.md), and the relevant branch chapters. This hub keeps only stable commitments.
 
 - [Known Tensions](../../../../markdown/aaa/validation/known-tensions.md) for unresolved closure burdens.
 - [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md) for open symbols and closure targets.
@@ -288,28 +316,50 @@ For the current pressure ledger, see:
 
 ### Summary
 
-This ontology hub establishes six commitments:
+Six commitments:
 
-1. **Substrate:** absolute time and Euclidean void form the fixed non-dynamical product background called absolute timespace.
-2. **Primitive entity:** the architrino is the fixed-identity primitive point transceiver with polarity and persistent identity.
-3. **Causal record:** causal wakes are real source-provenanced path-history records, not extra substances in the void.
-4. **Medium:** the Noether sea is emergent physical content formed by coupled neutral Noether braid assemblies inside the Euclidean void.
-5. **Observer framework:** complete-state bookkeeping is distinct from Physical Observer access.
-6. **Routing discipline:** terminology, parameters, closure burdens, and open validation questions belong to their owning chapters once the topic moves beyond ontology.
+1. **Substrate:** absolute time and the Euclidean void form the fixed, non-dynamical product background called absolute timespace.
+2. **Primitive entity:** the architrino is the fixed-identity point transceiver with polarity and persistent identity.
+3. **Causal record:** wakes are real, source-provenanced path-history records, not extra substances in the void.
+4. **Medium:** the Noether sea is emergent physical content formed by coupled neutral braid assemblies inside the void.
+5. **Observer framework:** complete-state bookkeeping is distinct from what an observer can reach.
+6. **Routing discipline:** terminology, parameters, closure burdens, and open validation questions belong to their owning chapters once a topic moves beyond ontology.
 
-All subsequent chapters build on these foundations. This hub intentionally points outward once a topic becomes dynamics, assembly structure, observer-clock extraction, terminology canon, parameter closure, or validation pressure.
+Everything downstream builds on these. This hub deliberately points outward the moment a topic becomes dynamics, assembly structure, clock extraction, terminology, parameter closure, or validation pressure.
 
 ## Architrino
 
-Start with the entity, not the familiar particle. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the **architrino** is the primitive point transceiver. It continuously emits transmitter-provenanced causal wake history, receives wake intersections from the universe's wake history, including its own emitted wakes when self-hit roots exist, and responds through receiver-local acceleration. Effective equilibration appears only later, as a collective assembly response built from those received wakes.
+An **architrino** is a point in space that carries a sign, remembers where it has been, continuously broadcasts a record of its own motion outward in every direction, and continuously receives the causal-root contributions that reach it from other architrinos or, where a same-transmitter root exists, from its own earlier wake. That is the entire object. It is the sole primitive material entity in $\mathbb{A}\mathbb{A}\mathbb{A}$; absolute time and the Euclidean void are the non-material substrate in which architrinos exist and move.
 
-The primitive definition also includes definite polarity, persistent identity, complete path history, and non-creation/non-destruction at the substrate level.
+Three words in that sentence carry the weight, so take them one at a time.
 
-Architrinos live in [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md): absolute time $T$ together with the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md). They are not particles in the Standard Model sense. Standard particles, effective fields, clocks, rulers, and observer-level spacetime behavior are downstream assembly phenomena built from architrino configurations and wake dynamics.
+**Point** means its spatial support has no size. Not "very small" — genuinely zero extent. It has no radius, no inside, no surface, and no volume. That geometric statement does not erase its other primitive data: identity, polarity, velocity, and path history.
 
-That distinction does most of the work. A point transceiver is not a tiny electron, quark, or field quantum with familiar particle properties already attached. It is the minimal entity whose location, polarity, wake emission, wake reception, and path history can later assemble into the objects that Physical Observers call particles.
+**Sign** means it is one of exactly two kinds, which this theory calls **polarity**. One kind is positive, the other negative. Two architrinos of the same sign push apart; two of opposite signs pull together. That is all polarity does at this level, and it is the seed from which electric charge is later assembled.
 
-The teaching order is deliberately narrow. First fix the primitive ontology. Then separate polarity from observer-level charge bookkeeping. Then mark the boundary with dynamics and effective reconstruction. This chapter does not derive particle phenomenology; it states what must already exist before any assembly-level derivation can begin.
+**Broadcast** means that as an architrino moves, it leaves behind an expanding record of where it was. That record is called a **wake**. Drop a stone in a pond and a ring spreads outward from the point of impact; drag the stone along and you get a train of rings, each centered where the stone was at the moment it made that ring. An architrino's wake is the three-dimensional version of that picture: at every emission time it emits an expanding spherical wake surface centered on its position at that instant, and the continuous sequence of those surfaces records its path history. The later **Noether braid** construction gets its name from coupled architrino worldlines, not from the spherical wake surfaces themselves.
+
+The analogy stops at the water. A pond ripple is a disturbance *in* something — the water is a material medium, and the ripple is water moving. An architrino's wake is not a disturbance in any material. There is no ether, no fluid, and nothing being displaced. The wake is a source-dependent physical causal record supported on an expanding geometric surface. It carries the information "an architrino of this sign was at this place at this time," but it is not an independently specifiable substance.
+
+The word **transceiver** covers both halves at once: an architrino continuously transmits its own wake and admits every other architrino's contribution whenever a causal root reaches it, without tuning or an off state.
+
+### Why the delay is the whole idea
+
+A wake travels outward at a finite speed, written $c_f$, and it never travels faster. So when an architrino is affected by another one, it is not responding to where that other architrino *is*. It is responding to where that other architrino *was*, at whatever earlier moment emitted the particular wake sphere that is arriving right now.
+
+This is worth pausing on, because almost everything distinctive about $\mathbb{A}\mathbb{A}\mathbb{A}$ follows from it. In elementary instantaneous-force models, objects respond according to how far apart they are *now*. Here, the receiver's current event is paired with a transmitter's earlier event. No distant transmitter contributes through its simultaneous position. The moment of emission is called the **emission time**, and the geometric condition picking out which past moment is currently being heard — the moment whose expanding sphere has grown exactly large enough to reach the receiver — is called a **causal root**.
+
+A single receiver may be hearing many past moments of the same transmitter at once, if that transmitter's motion arranged it so. Working out which past moments those are, and what each contributes, is the business of the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). This chapter states only what must exist before that calculation can begin.
+
+### What an architrino is not
+
+An architrino is not a particle in the sense used by the **Standard Model** — the well-tested catalogue of established physics listing electrons, quarks, photons, and the rest, each with its own mass, charge, and spin already attached as basic properties.
+
+This distinction does most of the work in the theory, so it is worth stating sharply. A point transceiver is not a tiny electron with familiar particle properties built in. It is a much barer object, and the familiar properties are not present in it at all: an architrino has no mass, no spin in the classical sense, no particle type, and no field state. Those appear later, as descriptions of what large coordinated groups of architrinos do, in the same way that "pressure" describes what many air molecules do without any single molecule having a pressure.
+
+The teaching order here is deliberately narrow. First fix what the primitive object is. Then separate polarity from the observer-level charge bookkeeping built on top of it. Then mark the boundaries where this chapter stops and the dynamics take over. This chapter derives no particle physics; it states what must already exist before any such derivation can start.
+
+The reason for the restraint is practical rather than stylistic. If mass, spin, or particle type were written into the primitive definition, then any later derivation of mass, spin, or particle type would be circular — the conclusion would already be sitting in the premise.
 
 ### Core Definition
 
@@ -317,17 +367,26 @@ An **architrino** is the sole fundamental entity in $\mathbb{A}\mathbb{A}\mathbb
 
 Its primitive commitments are:
 
-- A point transceiver located at position $\mathbf X_a(T)$ in the Euclidean void.
-- Always active: it continuously emits a causal wake and continuously receives wakes according to the dynamics branch.
-- Polarity-bearing: it has definite positive or negative polarity, represented in electric bookkeeping by $q_a=\pm\epsilon$.
-- Persistent: it has a continuous identity-bearing worldline through absolute timespace.
-- Deterministic: its detailed motion is specified by the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), with deterministic multistability possible near dynamical branch thresholds.
+- A point transceiver located at position $\mathbf X_a(T)$ in the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md), the fixed, featureless three-dimensional space that everything happens in.
+- Always active: it continuously emits a causal wake and continuously receives wakes.
+- Polarity-bearing: it has a definite positive or negative sign, written in electric bookkeeping as $q_a=\pm\epsilon$.
+- Persistent: it has a continuous, identity-bearing path through space and time. This particular architrino stays this particular architrino forever.
+- Deterministic: on a branch chart where the delayed initial-history problem is well posed, its motion is fixed by the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). Distinct stable outcomes may coexist only where their stability has separately been established.
 
-The architrino has no internal structure, no volume, no intrinsic spin in the classical sense, and no primitive particle-specific inertial mass. Its primitive state is its identity, position, velocity, polarity, and path-history ledger.
+Architrinos live in [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md): a universal time $T$ that ticks the same everywhere, together with the Euclidean void. Both are fixed background, not participants. Clocks that run at different rates, rulers that contract, and curved spacetime are all downstream effects that the theory must eventually reproduce from architrino behavior — they are targets, not ingredients.
 
-All larger structures arise from coordinated configurations and interactions of many architrinos. That is why the primitive definition must stay lean: if mass, spin, particle type, or field state is imported here, the later assembly derivation has already been smuggled into the premise.
+The architrino has no internal structure, no volume, no intrinsic spin in the classical sense, and no particle-specific inertial mass. Its complete primitive state is its identity, position, velocity, polarity, and path-history record.
 
-Because no primitive mass is assigned to a single architrino, the primitive dynamical law is an acceleration law rather than a force law of the form $\mathbf{F}=m\mathbf{a}$. The universal coupling scale in that acceleration law is $\kappa>0$:
+#### No mass means no force
+
+Here is a consequence that surprises most readers, and it changes the shape of every equation that follows.
+
+In familiar mechanics, you predict motion with $\mathbf F = m\mathbf a$: a force acts on a mass and produces an acceleration. That statement needs a mass. An architrino has none — not zero mass as a special case, but no such property at all.
+
+So the primitive law cannot be a force law. It is an **acceleration law**: the interaction delivers an acceleration directly, with no mass standing between cause and effect. Force may be introduced later as effective assembly bookkeeping once an assembly response coefficient has been derived or declared. It has no primitive meaning for one architrino.
+
+The universal coupling strength in that acceleration law is $\kappa>0$:
+
 $$
 \mathbf{a}_{i\leftarrow j}
 \sim
@@ -340,46 +399,74 @@ W_{ij}^{\mathrm{acc}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-328843ac57852422)
-Here $\sigma_{ij}=\mathrm{sign}(q_iq_j)$ is the polarity sign factor: $+1$ for like-polarity pairs, which repel, and $-1$ for unlike-polarity pairs, which attract; $r_{ij}=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$ is the delayed separation evaluated at a retained causal root, where it equals $c_f(T_r-T_t)$, not the simultaneous distance; and $\hat{\mathbf{r}}_{ij}$ points from the transmitter's emission point $\mathbf X_j(T_t)$ toward the receiver's reception point $\mathbf X_i(T_r)$. $D_{t,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_j(T_t)$ is the transmitter-side factor and $D_{r,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_i(T_r)$ is the receiver-side factor. The acceleration weight depends only on $D_t$; the signed root-playback derivative $m_{ij}=D_{r,ij}/D_{t,ij}$ and root-degree data remain dynamics-level branch data in the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form). The constraint conventions are: the causal constraint is length-valued, written $g_{ij}=r_{ij}-c_f(T_r-T_t)$ in the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form) and $F_{ij}$ in the foundations pages, and it carries the velocity-unit transversality floor $\lvert\partial_{T_t}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$; when a dimensionless floor is needed, the time-normalized object is $\tilde F_{ij}=F_{ij}/c_f$. Then $J_{ij}^{t}=\partial_{T_t} \tilde F_{ij}$ is the transmitter-side causal-root transversality Jacobian, and $c_fJ_{ij}^{t}=\partial_{T_t}g_{ij}=D_{t,ij}$. It is the density-of-states factor of the causal-root map, and $W_{ij}^{\mathrm{acc}}=c_f/|D_{t,ij}|$ is the active acceleration weight. The ordinary simple-root acceleration contribution is valid away from the Whitney-fold set
+
+Read left to right, that says: the acceleration architrino $i$ receives from architrino $j$ points along a direction, has a strength that falls off as the square of a distance, and carries two correction factors. Each symbol in turn:
+
+$\sigma_{ij}=\mathrm{sign}(q_iq_j)$ is the **polarity sign factor**. It is $+1$ when both architrinos carry the same sign, and the pair repels; it is $-1$ when the signs differ, and the pair attracts.
+
+$r_{ij}=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$ is the **delayed separation**, and it is not what you might expect. It is not how far apart the two architrinos are now. It is the distance from where the transmitter *was* when it emitted, at time $T_t$, to where the receiver *is* when it hears, at time $T_r$. At a causal root that distance equals exactly $c_f(T_r-T_t)$ — the wake speed multiplied by how long the message was in flight — because that is what it means for the sphere to have just arrived.
+
+$\hat{\mathbf{r}}_{ij}$ is the direction, pointing from the transmitter's emission point $\mathbf X_j(T_t)$ toward the receiver's position $\mathbf X_i(T_r)$. Again: from where it *was*, not from where it is.
+
+$D_{t,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_j(T_t)$ is the **transmitter-side factor**, and it measures how the root condition changes when the emission time is varied. Transmitter motion compresses or stretches the geometric spacing of successive emitted supports along the receiver direction. A companion quantity $D_{r,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf V_i(T_r)$ describes how receiver motion changes the same root map from the reception side.
+
+The strength of the acceleration depends on $D_t$ only. The receiver-side factor does not set how hard the receiver is pushed; it appears in the separate question of how the root moves as time advances, through the signed playback derivative $m_{ij}=D_{r,ij}/D_{t,ij}$, which along with root-counting data is dynamics-level material owned by the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form).
+
+#### The condition that picks out a causal root
+
+The requirement "the wake sphere has just now reached the receiver" can be written as an equation that must equal zero. In length units it is $g_{ij}=r_{ij}-c_f(T_r-T_t)$, written this way in the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form) and as $F_{ij}$ in these foundations pages. It carries a floor, $\lvert\partial_{T_t}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$, whose purpose is explained below. For a time-valued version, divide through by the wake speed: $\tilde F_{ij}=F_{ij}/c_f$.
+
+Its dimensionless rate of change with emission time is $J_{ij}^{t}=\partial_{T_t} \tilde F_{ij}$, called the transmitter-side **transversality Jacobian** — "transversality" meaning the condition crosses zero cleanly rather than grazing it, and "Jacobian" being the standard name for a derivative that measures how a change of variable stretches or compresses. Multiplying by the wake speed recovers the transmitter-side factor exactly: $c_fJ_{ij}^{t}=\partial_{T_t}g_{ij}=D_{t,ij}$.
+
+That identity is why $D_t$ appears in the acceleration weight $W_{ij}^{\mathrm{acc}}=c_f/|D_{t,ij}|$. The weight is not an extra physical ingredient. It is the transmitter-side Jacobian induced by uniform emission in $T$. The rate at which the selected emission time advances with reception time is the separate ratio $D_r/D_t$, so arrival playback cannot be attributed to $D_t$ alone.
+
+This form is valid away from a special set where the condition does not cross zero cleanly:
+
 $$
 \Sigma_{ij}=\{F_{ij}=0,\ \partial_{T_t} F_{ij}=0\},
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-756246cb5822ff4b)
-while approaching $\Sigma_{ij}$ moves the calculation into the caustic or fold-resolution chart. Using this branch denominator therefore requires the simple-root floor stated above before the schematic acceleration law is treated as an ordinary simple-root contribution rather than a catastrophe-theoretic transition.
+
+On this **singular causal-root set**, the condition and its first emission-time derivative vanish together. Its nondegenerate **Whitney-fold stratum** consists of ordinary double roots: the second emission-time derivative is nonzero, and the chosen control crosses the singular set transversely. Crossing such a fold creates or destroys a pair of simple roots. Higher degeneracies need not have this behavior and require their own classification. The denominator $|D_t|$ tends to zero at a singular root, so the simple-root acceleration formula no longer applies there. A fold-resolution treatment is appropriate only on the fold stratum; other singularities require the corresponding analysis in the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse). Using the simple-root denominator requires the transversality floor $\kappa_{\mathrm{hit}} > 0$ stated above.
+
+#### The coupling constant
 
 In dimensional form $\kappa$ has units
+
 $$
 [\kappa]=\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-445f2c45b9f4defc)
-where $\mathrm{Q}$ denotes the polarity unit. The coupling is recorded in the [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md#layer-i-substrate-and-kernel-parameters) and defined by the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md); any later force-like variable is effective bookkeeping after an assembly response coefficient has been introduced, not primitive architrino inertia.
 
-This supplies a substrate universality seed: no individual architrino carries a separate inertial coefficient, so same-branch primitive response is governed by the same acceleration normalization. The mass-map and Noether sea programs must still show that assembly inertia and gravitational response preserve weak-equivalence bounds; see [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md) and [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md).
+reading as length cubed per time squared per polarity-unit squared, where $\mathrm{Q}$ is the polarity unit. It is recorded in the [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md#layer-i-substrate-and-kernel-parameters) and defined by the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). Any force-like quantity introduced later is bookkeeping that arrives with an assembly response coefficient; it is never primitive architrino inertia.
 
-This definition is ontological, not effective. It does not assign an individual architrino a rest mass, a Standard Model particle type, or a field degree of freedom. Those descriptions enter only after architrinos form assemblies whose collective wake closure can be read by observers.
+This gives the primitive law a common acceleration normalization: no architrino carries a separate inertial coefficient or a per-object coupling dial. That is a substrate definition, not a derivation of observer-level universality. Whether assembly inertia and gravitational response remain composition-independent after coarse-graining is a separate mass-map and Noether sea closure target; see [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md) and [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md).
+
+This definition is ontological rather than effective. It assigns an individual architrino no rest mass, no Standard Model particle type, and no field degree of freedom. Those descriptions become available only after architrinos form assemblies whose collective wake behavior can be read by an observer.
 
 ### Ontological Status
 
-Architrinos are primitive substances in this framework. They are not made of anything more basic inside $\mathbb{A}\mathbb{A}\mathbb{A}$.
+Architrinos are primitive substances in this framework. Inside $\mathbb{A}\mathbb{A}\mathbb{A}$ they are not made of anything more basic, and asking what an architrino is composed of has no answer within the theory.
 
-This makes the architrino the primitive substance of the theory without making it matter in the emergent sense. In this corpus, **matter** names stable assembly-level behavior with rest mass, spatial exclusion, and fermionic organization. An individual architrino has no radius, no primitive rest mass, and no exclusion volume. It is therefore material as substrate substance, but it is not matter. Matter begins only after architrinos organize into persistent, shielded assemblies whose collective behavior exposes mass and exclusion to observers.
+This makes the architrino the fundamental *stuff* of the theory without making it **matter** in the everyday sense. In this corpus, matter names stable assembly-level behavior with rest mass, spatial exclusion, and fermionic organization — the three properties that let ordinary objects weigh something, resist being pushed through one another, and stack up rather than collapsing together. A single architrino has none of them: no radius, no rest mass, no exclusion volume. It is material as substrate substance, but it is not matter. Matter begins only when architrinos organize into persistent assemblies whose collective behavior exposes mass and exclusion to observers.
 
-They are:
+Architrinos are:
 
-- **Discrete:** there is a definite ontic set of architrino identities.
-- **Identifiable:** each architrino has a unique worldline.
-- **Persistent:** each architrino remains the same entity through time.
-- **Non-created and non-destroyed:** no fundamental process adds or removes architrinos from the ontic inventory.
+- **Discrete:** there is a definite set of architrino identities, and it can in principle be counted.
+- **Identifiable:** each one has a unique path through space and time.
+- **Persistent:** each one remains the same entity throughout.
+- **Non-created and non-destroyed:** no fundamental process adds or removes any from that set.
 
-Apparent association, dissociation, annihilation, production, or transmutation at the assembly level is therefore not ontic creation or destruction. It is reorganization of a fixed architrino identity set. This distinction is essential: ontology tracks the persistent inventory, while effective reaction language tracks how that inventory is repartitioned into observable assemblies.
+So when assemblies appear to be created, destroyed, annihilated, or transmuted — the language used throughout established particle physics — none of that is creation or destruction at the substrate level. It is rearrangement of a fixed set of architrinos into different groupings. Ontology tracks the permanent inventory; effective reaction language tracks how that inventory gets repartitioned into things an observer can see.
 
 ### Polarity and Electric Bookkeeping
 
-At the architrino level, the primitive sign is **polarity**. Electric charge is the observer-facing bookkeeping that becomes useful after architrino signs are counted inside assemblies.
+At the architrino level the primitive sign is **polarity**. Electric charge is not primitive; it is the observer-facing bookkeeping that becomes useful once architrino signs are counted inside assemblies.
 
-For calculations that need continuity with electric-charge bookkeeping, each architrino carries an effective signed unit
+For calculations needing continuity with electric-charge bookkeeping, each architrino carries an effective signed unit
+
 $$
 q_a=\sigma_a\epsilon,
 \qquad
@@ -387,37 +474,51 @@ q_a=\sigma_a\epsilon,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-550a901c0cd4cbe3)
-The observer-level electron-charge benchmark is then
+
+where $\epsilon$ is one polarity unit and $\sigma_a$ is which of the two signs this architrino has. The measured electron charge then sits at
+
 $$
 |e|=6\epsilon
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-34db20aed0b8ea56)
 
-The two polarity names are:
+The two polarities have names:
 
-- **Electrino:** negative-polarity architrino, with bookkeeping label $q_a=-\epsilon$.
-- **Positrino:** positive-polarity architrino, with bookkeeping label $q_a=+\epsilon$.
+- **Electrino:** a negative-polarity architrino, bookkeeping label $q_a=-\epsilon$.
+- **Positrino:** a positive-polarity architrino, bookkeeping label $q_a=+\epsilon$.
 
-Like polarities repel; unlike polarities attract in the universal interaction law. At the assembly level, electric charge is the coarse bookkeeping summary of the signed architrino inventory. For example, quark and lepton electric charges are built from integer counts of $\epsilon$ units in stable assembly patterns rather than from a separate primitive charge substance.
+Like polarities repel and unlike polarities attract, exactly as the sign factor $\sigma_{ij}$ in the acceleration law encodes. At the assembly level, electric charge is the proposed coarse summary of the signed inventory. Under the convention $|e|=6\epsilon$, the familiar quark charge ratios correspond to whole-number polarity counts: $+2e/3=+4\epsilon$ and $-e/3=-2\epsilon$. This arithmetic does not derive quark assemblies or show that a retained branch carries those inventories.
 
-This relocation keeps both sides of the inherited word `charge`. The effective charge table remains real at the observer level, but its substrate basis is polarity inventory, not a separate charge substance attached to a miniature Standard Model particle.
+This relocation proposes a substrate basis for the inherited word *charge*. The convention reproduces the observed charge-unit ratios algebraically; matching the measured particle table still requires stable assembly maps, reaction bookkeeping, and conservation closure.
 
-The normalization $|e|=6\epsilon$ is currently an input parameter and a high-priority explanatory target. In this convention, the architrino polarity unit is primitive for bookkeeping, and the observed electron or positron charge is a six-unit assembly-level multiple. The general structural target is a protected six-unit polarity inventory: six sign-carrying architrinos or six retained polarity slots whose signed sum supplies observer-level charge bookkeeping. This parent target does not yet decide whether the six units are internal to the Noether braid, externally coupled to it, embedded in its retained path-history, or realized by a non-axial coupled branch.
+#### The factor of six is an input, not yet a result
 
-The axial-layer model is one charged-fermion realization of that parent target. In that model, the six-unit inventory appears as a closed six-polar-site branch record: three polar dyads in a branch-defined axial frame, with each polar site occupied by one axial architrino of sign $\pm\epsilon$. The dyads use persistent indices $a\in\{1,2,3\}$; those identities do not impose an ordering by radius or another derived property. The protected-site version of the axial target asks for a finite site-stabilizer action $G_{\mathrm{ax}}$ on the Noether braid framing such that
+Take the numbers seriously for a moment. If $|e|=6\epsilon$, then an electron's charge is six polarity units, and the up quark's $+2/3$ and down quark's $-1/3$ come out as $+4\epsilon$ and $-2\epsilon$ — whole numbers, which is the point of the convention.
+
+But **the six is put in by hand.** It is an input parameter and an unresolved explanatory target, not a derived result. Stating that plainly matters, because a convention that produces tidy integers can easily look like an explanation when it is really a placeholder.
+
+What the theory is reaching for is a *protected six-unit polarity inventory*: six sign-carrying architrinos, or six retained polarity slots, whose signed total supplies observer-level charge. That parent target does not yet decide whether the six units sit inside the Noether braid — the candidate neutral scaffold used in charged-particle assemblies — or couple to it externally, or live in its retained path history, or arrive through some other branch.
+
+One candidate realization is the axial-layer model, in which the six-unit inventory appears as a closed six-site record: three pairs of sites in a frame defined by the assembly's own axis, each site holding one architrino of sign $\pm\epsilon$. The pairs carry persistent labels $a\in\{1,2,3\}$, which are identity tags only and imply no ordering by radius or anything else. The protected-site version of this target asks for a finite symmetry action $G_{\mathrm{ax}}$ on the braid framing whose orbit has exactly six members:
+
 $$
 \lvert G_{\mathrm{ax}}\text{-orbit}\rvert=6,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c4f0c84bfd575224)
-with each orbit site carrying a fixed polarity sign. If assembly closure retains exactly that six-unit inventory, the allowed observer-level charge table follows as a finite signed inventory result. Deriving why a charged-fermion Noether braid supplies six protected axial polar sites, or whether a more general non-axial six-unit carrier is required, belongs to [Quantum Number Mapping](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md#the-axial-layer) and [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#quantization-from-stability-selection-rules), not to the primitive definition of an architrino.
+
+with each site carrying a fixed polarity sign. An **orbit** here is the set of positions the symmetry can move a given site to; requiring it to have six members is requiring the structure to have exactly six equivalent sites and no more. If assembly closure retains precisely that inventory, the allowed charge table follows as a counting result.
+
+Showing why a charged-fermion braid should supply six protected sites, or whether some non-axial six-unit carrier is needed instead, belongs to [Quantum Number Mapping](../../../../markdown/aaa/assemblies/fermions/quantum-number-mapping.md#the-axial-layer) and [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#quantization-from-stability-selection-rules). It is not part of the primitive definition of an architrino.
 
 ### Wake Response and Effective Electromagnetic Fields
 
-An individual architrino does not receive an electric or magnetic field as an additional substrate input. It receives the causal-root acceleration contributions defined by the Master Equation. Effective field language becomes available only after those source-provenanced contributions and any derived assembly, Noether sea, and boundary response have been projected into a receiver-independent continuum record.
+An individual architrino never receives an electric or magnetic field. There is no field arriving as a separate input. What arrives is the set of causal-root acceleration contributions defined by the Master Equation, each one traceable to a particular transmitter at a particular past moment. Field language becomes available only after those contributions, together with any assembly, Noether sea, and boundary response, have been projected into a smooth continuum description that no longer mentions which architrino sent what.
 
-There is nevertheless a useful bridge to electric response. For one declared source history, evaluate the source-driven acceleration on matched hypothetical receiver states that differ only by polarity. Define
+There is nevertheless a clean bridge to electric behavior, and it is worth following because it shows where the electric sign comes from without importing anything.
+
+Fix an external transmitter's history, with the transmitter distinct from either hypothetical receiver. Evaluate its direct acceleration on two hypothetical receivers at the same reception time and position, with the same velocity and equal polarity magnitudes but opposite signs. Use the same complete admitted simple-root set for both evaluations. Split the result into the part they share and the part that flips:
 
 $$
 \mathbf A_{\mathrm{even}}^{\mathrm{src}}
@@ -447,7 +548,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3865d67991bd26a9)
 
-so that
+so that either receiver's acceleration is the shared part plus its own sign times the flipping part:
 
 $$
 \mathbf A_{\sigma}^{\mathrm{src}}
@@ -461,36 +562,51 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-54f4896f741bb5ca)
 
-The labels `even` and `odd` refer to receiver-polarity reversal. They do not refer to spatial parity. One actual architrino has one fixed polarity; the matched pair is a comparison instrument, not a co-located physical pair. If the even term vanishes in an isolated electric regime, the two receiver polarities acquire equal-and-opposite source-driven accelerations. This is the native electric-sign analogue, but it remains a decomposition of the causal-hit ledger rather than an imported $q\mathbf E/m$ law.
+The labels *even* and *odd* refer to reversing the receiver's polarity, and nothing else. They are not about spatial parity, which is a different symmetry entirely.
 
-There is no corresponding primitive magnetic vector in one radial hit. A magnetic readout must be recovered from organized multi-source and multi-root history, moving or circulating assembly geometry, any derived Noether sea and boundary response, and an observer-level projection. Whether the sea is essential, modifies a direct source-history response, or remains within its balanced reference tolerance is a constitutive closure target rather than a definition of either field.
+Be careful about what the matched pair is. Any real architrino has one fixed sign. The two hypothetical receivers are a measuring instrument made of arithmetic, not two objects sitting in the same place.
 
-Plainly: the electric-like sign difference is already visible when the same source history is evaluated against the two architrino polarities. The smooth electric field is the later common map of that response. Magnetic behavior requires additional organized geometry; neither field is a new substance or an extra term in the architrino equation of motion.
+For this fixed external history, the shared part vanishes exactly under the canonical law: $\mathbf A_-^{\mathrm{src}}=-\mathbf A_+^{\mathrm{src}}$ and $\mathbf A_{\mathrm{even}}^{\mathrm{src}}=\mathbf0$. The reason is algebraic. The polarity factor is $\operatorname{sign}(q_iq_j)|q_iq_j|=q_iq_j$, while the causal roots, delayed separations, directions, and transmitter weights are unchanged by reversing only $q_i$. Each admitted contribution reverses sign, and so does their sum. The result also holds for several fixed external transmitters when the sum is finite or converges under a fixed summation prescription.
+
+For example, use $c_f=1$, $\kappa=1$, an external transmitter of polarity $+1$ stationary at the origin, and matched receivers of polarity $\pm1$ at $(2,0,0)$ at reception time 3. The unique emission root is time 1, the delayed distance is 2, and the transmitter weight is 1. The two direct accelerations are $(1/4,0,0)$ and $(-1/4,0,0)$. This prescribed-history example checks the sign and inverse-square factors; it is not a coupled solution.
+
+Self-response has a different comparison rule. Reversing an architrino's polarity also reverses its own transmitter polarity, so a self-hit carries $q_i^2$ and is unchanged at fixed history. Recomputing a coupled evolution can change the histories and root sets themselves. The exact external identity therefore does not establish vanishing total even response, assembly response, or electromagnetic recovery. It supplies a necessary sign property of an electric-like response without importing a primitive $q\mathbf E/m$ law.
+
+Magnetic behavior does not appear this way. A single radial hit contains no primitive magnetic vector at all. Magnetic readouts must be recovered from organized structure: many sources, many roots, moving or circulating assembly geometry, whatever the Noether sea and boundary contribute, and finally an observer-level projection. Whether the sea is essential to that recovery, merely modifies it, or stays within its balanced reference tolerance is an open constitutive question rather than a definition.
+
+The summary worth carrying forward: the electric sign difference is visible immediately, the smooth electric field is a later common map of that response, magnetic behavior needs additional organized geometry, and neither field is a new substance or an extra term in an architrino's equation of motion.
 
 ### Provenance and Persistence
 
-The stronger ontological claim is not merely that architrinos move through time. It is that each architrino persists as the same entity through time.
+The strong claim here is not merely that architrinos move through time. It is that each one persists as *the same entity* through time, and that this fact is part of the physics rather than a convenient way of talking.
 
-Let $\mathcal{A}$ denote the ontic set of architrino identities. The foundational claim is that $\mathcal{A}$ is fixed. Architrinos may move, bind, unbind, exchange partners, enter a subsystem, or leave a subsystem, but they are not fundamentally created or destroyed by the dynamics. This is a primitive inventory postulate, not an inference from observer-level conservation laws.
+Let $\mathcal{A}$ denote the set of architrino identities. The foundational claim is that $\mathcal{A}$ is fixed. Architrinos may move, bind, unbind, swap partners, enter a subsystem or leave one — but they are never created or destroyed by the dynamics. This is a postulate about the inventory, not something inferred from observed conservation laws.
 
-This gives $\mathbb{A}\mathbb{A}\mathbb{A}$ a built-in provenance ledger. At the substrate level, it is not enough to say that an equivalent unit appears later. The sharper question is which architrino appears later, where it came from, and through which path history it arrived.
+That gives $\mathbb{A}\mathbb{A}\mathbb{A}$ a built-in **provenance** record. Provenance means knowing not just that something is preserved, but *which specific thing* it is and where it came from. At the substrate level it is not enough to say an equivalent unit turns up later. The sharper question is which architrino turned up, where it came from, and along what path.
 
-Provenance is therefore stronger than coarse conservation:
+The distinction is worth stating twice because it is easy to blur:
 
-- Conservation says that an inventory is preserved.
-- Provenance says which exact entities realize that preserved inventory.
+- **Conservation** says an inventory is preserved.
+- **Provenance** says which exact entities realize that preserved inventory.
 
-Many effective conservation rules can be read as summaries of this deeper identity continuity. Signed electric-charge conservation, for example, is preservation of the signed architrino inventory under rearrangement. The effective law is what an observer can track; provenance is the substrate claim about which persistent architrinos make that tracking possible.
+Many effective conservation rules may descend from this deeper identity continuity. The signed substrate polarity inventory is preserved under rearrangement by postulate. Observer-level electric-charge conservation follows only after the charge map is shown to depend solely on that preserved inventory and all reaction and boundary channels close. Provenance is the sharper substrate claim about which persistent entities realize the inventory.
 
-Provenance does not replace Noether reasoning. Energy conservation still depends on time-translation invariance and on the interaction law. Momentum and angular momentum still depend on spatial translation and rotation symmetry. Provenance is the ontological basis that makes microscopic conservation statements sharp; symmetry supplies the dynamical conservation theorems.
+Provenance does not replace **Noether's theorem**. For a differentiable action, each continuous variational symmetry yields a conserved current or charge, subject here to the delayed action's boundary and history terms. Energy conservation therefore requires time-translation invariance of the complete action, while momentum and angular momentum require spatial-translation and rotation invariance. Provenance makes the microscopic accounting sharp; symmetry plus a closed delayed action supplies the theorem.
 
-Observer-level indistinguishability is therefore a quotient, not erasure of substrate identity. Let
+#### Why identical particles are still identical
+
+If every architrino has a permanent identity, why can nobody tell two electrons apart? The answer is that observer-level indistinguishability is a *quotient* — the mathematical operation of deliberately treating distinguishable things as the same by declaring a whole family of them equivalent. It is not erasure of the underlying identity.
+
+Write
+
 $$
 \Pi_{\mathrm{obs}}:S(T)\to\bar S(T)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0367eed81efc7a54)
-denote the projection from the complete provenance-bearing state to the variables exposed to Physical Observers. For any permutation $\pi$ of same-polarity architrinos inside an observationally unresolved class, observer-accessible quantities must satisfy
+
+for the projection from the complete provenance-bearing state $S(T)$ down to the variables $\bar S(T)$ that an observer can actually reach. Take any permutation $\pi$ that shuffles same-polarity architrinos within a class the observer cannot resolve. Observable quantities must then satisfy
+
 $$
 \left\lVert
 \mathcal{O}(S)
@@ -502,7 +618,14 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4dc7c3b0f711d259)
-This is only the provenance-leakage closure. It says that inaccessible architrino labels do not leak into observer-accessible quantities beyond the residual $\epsilon_{\mathrm{prov}}$. Fermionic and bosonic exchange statistics require the stronger projector residuals owned by [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md). The coarse leakage residual and the fine exchange-sign carrier are different objects: $\epsilon_{\mathrm{prov}}$ bounds label leakage through $\Pi_{\mathrm{obs}}$, while the substrate carrier for an exchange sign must live in the joint framed-braid class, including protected rows such as $Lk=\operatorname{Wr}+\operatorname{Tw}$ when those rows are part of the branch certificate; see [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#provenance-and-identity-through-time). Exact architrino identities remain present in $\mathbb{U}_{\text{now}}$; ordinary particle indistinguishability begins with the leakage bound and then depends on the separate exchange-statistics closure after the Physical Observer projection and effective assembly-state extraction are specified.
+
+meaning that shuffling the hidden labels changes nothing an observer can measure, beyond a residual $\epsilon_{\mathrm{prov}}$.
+
+This is only the leakage bound, and claiming more from it would be a mistake. It says hidden labels do not leak out into visible quantities. It does not deliver the exchange statistics of established quantum mechanics — the rule that swapping two identical particles multiplies the state by $+1$ for bosons and $-1$ for fermions, which is what forces electrons to stack into shells instead of piling into one state. That stronger result needs the projector residuals owned by [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md).
+
+The two objects are genuinely different. The coarse residual $\epsilon_{\mathrm{prov}}$ bounds label leakage through $\Pi_{\mathrm{obs}}$; the carrier of an exchange sign must live in the joint framed-braid class, including protected quantities such as the relation $Lk=\operatorname{Wr}+\operatorname{Tw}$ between a braid's linking, writhe, and twist when those are part of the branch certificate. See [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#provenance-and-identity-through-time).
+
+Exact architrino identities remain present in the complete state $\mathbb{U}_{\text{now}}$ throughout. Ordinary particle indistinguishability starts with the leakage bound and then requires the separate exchange-statistics closure.
 
 ### Non-Creation and Non-Destruction
 
@@ -510,19 +633,20 @@ This is only the provenance-leakage closure. It says that inaccessible architrin
 
 > No architrino enters or leaves the ontic inventory of $\mathbb{A}\mathbb{A}\mathbb{A}$ through a fundamental creation or destruction event. Every assembly-level change is a repartitioning or reorganization of persistent architrinos.
 
-This statement is narrower and more precise than saying architrinos are "eternal." Non-creation and non-destruction states the internal ontology of the theory. It does not need the broader metaphysical claim that the modeled world has no external initialization, no outer boundary condition, or no implementation substrate.
+This is narrower and more careful than saying architrinos are "eternal." It states the internal ontology of the theory and nothing more. It does not assert the broader metaphysical claim that the modeled world has no external initialization, no outer boundary condition, and no implementing substrate.
 
-If a discussion becomes meta-theoretic, the careful wording is that architrinos have no known beginning or ending within the modeled dynamics.
+If a discussion turns meta-theoretic, the careful wording is that architrinos have no known beginning or ending *within the modeled dynamics*.
 
 ### Point-Transceiver Status
 
-An architrino is a point transceiver: it emits and receives continuously.
+An architrino emits and receives continuously.
 
-The emitted structure is a potential-bearing **causal wake**. The wake is physically real: it propagates at the primitive causal-wake speed $c_f$, the field propagation speed relative to the Euclidean-void rest frame; carries transmitter provenance; and is received through later causal intersections.
+What it emits is a **causal wake** that carries potential. The wake is physically real: it propagates at the primitive wake speed $c_f$, measured relative to the rest frame of the Euclidean void; it carries the identity of the transmitter that made it; and it acts on other architrinos when they later intersect it.
 
-The wake is not an independent substance. It has no freely specifiable state apart from the transmitter architrino's path history. At the effective level, many such wake contributions may be summarized as a field, but the substrate term remains causal wake.
+The wake is not an independent substance. It has no state of its own that could be specified separately — fix the transmitter's identity, polarity, and path history, and the wake is completely determined. At the effective level many wake contributions get summarized as a field, but the substrate object remains the wake.
 
-Schematically, if the transmitter history has time domain $I_a$, the wake emitted by architrino $a$ is a transmitter-history functional
+Schematically, if the transmitter's history spans a time interval $I_a$, the wake emitted by architrino $a$ is a functional of that history:
+
 $$
 \mathcal{W}_a(\mathbf X,T)
 =
@@ -537,38 +661,58 @@ K\!\left(\mathbf X,T;\mathbf X_a(T_t),T_t\right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1812cedf5e03f747)
-The kernel $K$ is only a schematic placeholder here; the exact causal-root sets, transmitter-side factors, transmitter-side acceleration weights, kernels, and regularization belong to the dynamics chapter. The ontology claim is the dependency claim: after the transmitter identity, polarity, and path history are fixed, there is no second material inventory or autonomous field state left to specify.
 
-Point-transceiver causal-delay theories carry a known pathology class. Classical point-charge electrodynamics develops divergent self-energy at zero radius, runaway solution branches, and pre-acceleration in Abraham-Lorentz-Dirac-type reductions. This chapter does not solve those issues by naming the architrino primitive. It routes them to the dynamics layer: coincidence handling, self-hit admissibility, regularized or weak-limit kernels, Jacobian/transversality floors, and energy-momentum accounting must remove or quarantine those pathology channels in the branch being used.
+The integral runs over every past emission moment $T_t$, weighting each by the transmitter's polarity $q_a$ and a kernel $K$. The condition on the right restricts where that kernel can be nonzero: only on the sphere that left position $\mathbf X_a(T_t)$ at time $T_t$ and has been expanding at $c_f$ ever since. In other words, the wake exists only where a message emitted at some past moment has arrived exactly now.
 
-A retained point-transceiver branch is admissible as an ordinary ontology branch only if its regularized self-energy and self-acceleration contributions remain finite under the declared regulator removal $\eta\to0$ or weak limit, with the active causal roots still protected by a transversality floor such as $\kappa_{\mathrm{hit}} > 0$. The two singular loci are not the same: the coincidence stratum $\{r_{ij}=0\}$ is a spatial point-kernel problem, while the caustic stratum $\{\partial_{T_t} F_{ij}=0\}$ is a causal-root fold problem. The former requires the declared spatial or weak-limit regularization; the latter requires a fold-resolution chart and the active-root floor. If finite self-response or simple-root transversality fails, the branch is not an ordinary point-transceiver case; it must be rejected, moved to a caustic or regularized chart, or quarantined as a pathology channel in the dynamics chapter.
+The kernel $K$ is a placeholder here. The actual causal-root sets, transmitter-side factors, acceleration weights, and regularization belong to the dynamics chapter. The ontological claim is a dependency claim: once transmitter identity, polarity, and path history are fixed, there is no second inventory of stuff and no independent field state left to specify.
 
-Ontologically, the causal wake is a **dynamical geometry**: a transmitter-provenanced interaction structure generated by the path history of the transmitter architrino. It is not a material ether or hidden fluid in the Euclidean void. Distinct wakes superpose perfectly and do not scatter, bind, fragment, or interact with one another as substances.
+#### The pathology this inherits, and what is done about it
 
-This linearity is a statement about wake superposition, not about the receiver worldline. A wake can act on any architrino, including its own transmitter, and that receiver response makes the dynamics nonlinear. The entire substrate-level content of a wake is therefore computable from the historical trajectory of the transmitter architrino that emitted it.
+Point objects that interact through delayed signals carry a well-known family of problems, and it would be dishonest to introduce one without naming them.
+
+Classical electrodynamics — the established, highly successful theory of electric and magnetic behavior — runs into trouble when it treats a charged particle as a true point. The particle's self-field is singular at its own location, and the classical radiation-reaction equation admits runaway and pre-response solutions. These are comparison warnings, not premises imported into the architrino law; see Dirac's original [*Classical theory of radiating electrons* (1938)](https://doi.org/10.1098/rspa.1938.0124).
+
+Naming the architrino a primitive does not make any of that go away. This chapter does not solve those problems; it routes them to the dynamics layer, where coincidence handling, self-hit admissibility, regularized or weak-limit kernels, transversality floors, and energy-momentum accounting must either remove or quarantine each channel in whatever branch is being used.
+
+A point-transceiver branch counts as an ordinary, admissible branch only if its regularized self-energy and self-acceleration stay finite as the regulator is removed, written $\eta\to0$, with the active causal roots still protected by a transversality floor such as $\kappa_{\mathrm{hit}} > 0$.
+
+Two singular situations get confused with each other, so keep them apart. The **coincidence stratum** $\{r_{ij}=0\}$ is two architrinos at zero separation — a problem about the kernel blowing up at a point in space, needing spatial or weak-limit regularization. The **caustic stratum** $\{\partial_{T_t} F_{ij}=0\}$ is understood on the causal-root set $F_{ij}=0$: it contains singular roots, including ordinary folds and higher degeneracies. This is a problem about root structure, requiring the appropriate singularity chart; the active-root floor applies on the neighboring simple-root branches. Different problems, different remedies.
+
+If either finite self-response or simple-root transversality fails, the branch is not an ordinary point-transceiver case. It must be rejected, moved to a caustic or regularized chart, or quarantined as a pathology channel in the dynamics chapter.
+
+#### The wake is geometry, not fluid
+
+Ontologically, the causal wake is a **dynamical geometry**: an interaction structure carrying transmitter provenance, generated by the transmitter's path history. It is not a material ether and not a hidden fluid filling the Euclidean void.
+
+At fixed transmitter histories, the declared wake representation is additive: distinct wake contributions superpose and do not directly scatter, bind, or fragment as independent substances. The full dynamics is nevertheless nonlinear because receivers change the later histories that generate subsequent wakes.
+
+That linearity is a statement about wakes among themselves, not about the theory as a whole. A wake can act on any architrino, including the very one that emitted it, and that receiver response is what makes the dynamics nonlinear. The entire substrate content of a wake remains computable from the path history of the architrino that emitted it.
 
 #### Constant-Time Emission Measure (postulate)
 
-The emission is uniform in absolute time. Each architrino deposits its causal wake at a constant rate in $T$, with constant per-wavefront amplitude, independent of the transmitter's state of motion: successive causal surfaces leave the transmitter at equal increments of absolute time, and no wavefront is preferentially weighted by the transmitter's velocity or acceleration.
+Emission is uniform in absolute time. Each architrino lays down its wake at a constant rate in $T$, with the same amplitude on every wavefront, regardless of how it happens to be moving. Successive causal surfaces leave at equal increments of absolute time, and no wavefront gets extra weight because the transmitter was moving fast or accelerating.
 
-> **Constant-time emission measure.** The emission measure along a transmitter worldline is $dT_t$ — Lebesgue measure in absolute time — with a motion-independent per-wavefront amplitude. This is a postulate of the transceiver, not a derived result.
+> **Constant-time emission measure.** The emission measure along a transmitter worldline is $dT_t$ — ordinary uniform measure in absolute time — with a motion-independent per-wavefront amplitude. This is a postulate about the transceiver, not a derived result.
 
-This postulate is the canonical home of the emission rule used throughout the theory. It is what makes moving-transmitter effects purely *geometric*: because emission cadence is constant in $T$, all velocity dependence in the received pattern comes from the transmitter changing position between equally spaced emission instants, which is what produces the transmitter-side factor $D_t=c_f-\hat{\mathbf r}\cdot\mathbf V_t$ and the acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$ in the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). It is also one of the two declared conditionalities of the narrowed master-equation proposal (the other being the assumed $K_0$ kernel scaffold); the master-equation chapter consumes this measure by reference rather than restating it as an independent rule.
+This postulate is the canonical home of the emission rule used throughout the theory. Within the declared kernel scaffold, it makes the moving-transmitter dependence of the emission cadence geometric: none comes from changing per-wavefront amplitude with speed. The transmitter's changing position between equally spaced emission instants produces the factor $D_t=c_f-\hat{\mathbf r}\cdot\mathbf V_t$ and the acceleration weight $W^{\mathrm{acc}}=c_f/|D_t|$. Additional receiver, assembly, medium, or boundary dependence remains separate and must be derived where used.
 
-This page fixes the ontological commitments:
+It is also one of the two declared conditions of the narrowed master-equation proposal, the other being an assumed kernel scaffold. The master-equation chapter uses this measure by reference rather than restating it.
+
+The ontological commitments fixed here are:
 
 - Emission is continuous, not pulse-like.
-- Emission is uniform in absolute time (constant-time emission measure $dT_t$, motion-independent amplitude).
-- Emission has transmitter provenance tied to architrino identity and emission time.
-- Wake propagation is finite-speed in absolute time.
-- Reception is universal across architrinos.
-- Emitted wake history supplies provenance for later dynamics.
+- Emission is uniform in absolute time, with motion-independent amplitude.
+- Emission carries transmitter provenance tied to identity and emission time.
+- Wake propagation is at finite speed in absolute time.
+- Reception is universal across all architrinos.
+- Emitted wake history supplies the provenance later dynamics depends on.
 
-This chapter stops before the exact acceleration law. Exact causal wake surfaces, density representations, causal emission-time roots, transmitter-side factors, transmitter-side acceleration weights, inverse-square kernels, and regularization belong in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
+This chapter stops before the exact acceleration law. Exact wake surfaces, density representations, emission-time roots, transmitter-side factors and weights, inverse-square kernels, and regularization all belong to the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
 
 ### Worldlines and Path History
 
-Each architrino traces a worldline
+Each architrino traces a **worldline** — its complete path through space as time advances:
+
 $$
 \mathbf X_a:I_a\subseteq\mathbb{R}\to\mathbb{R}^3,
 \qquad
@@ -576,67 +720,78 @@ T\mapsto\mathbf X_a(T)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-442568aaf97724bf)
-where $I_a$ is an interval of absolute time. It may equal $\mathbb{R}$, or it may be bounded by the domain of a realized cosmological solution. The worldline lies inside the product background
+
+reading as: for each absolute time $T$ in the interval $I_a$, the function $\mathbf X_a$ gives a position in three-dimensional space. The interval may be all of time, or bounded by the domain of whatever cosmological solution is being considered. The worldline lives inside the product background
+
 $$
 \mathcal{M}=\mathbb{R}\times\mathbb{R}^3
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-39bfce941c4e965e)
 
-The worldline is at least absolutely continuous so that
+which is one time dimension alongside three space dimensions, kept as separate factors. That separation is deliberate and is what distinguishes this background from the woven spacetime of established relativity.
+
+The worldline is at least absolutely continuous — smooth enough to have no jumps — so that the velocity
+
 $$
 \mathbf V_a(T)=\frac{d\mathbf X_a}{dT}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f73ec1b1ba468c78)
-exists almost everywhere and is piecewise continuous in regular regimes.
 
-Because architrinos are point entities, multiple architrinos may occupy the same spatial coordinate at the same absolute time without volume exclusion. Collision regularization and received-hit kernels belong to the dynamics layer.
+exists almost everywhere and is piecewise continuous in well-behaved regimes.
 
-The complete path history of an architrino matters to its identity ledger. This is stronger than an observer reconstruction of a trajectory: the path history is part of the substrate bookkeeping required by delayed causal dynamics. The law that converts path history into acceleration belongs in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
+An architrino has no postulated hard core or primitive excluded volume. Equal coordinates are therefore not excluded by size alone. Point support does not, however, establish that a lawful history can reach and continue through coincidence: the domain and singular behavior of the acceleration law must decide that question. Coordinate coincidence remains a boundary, regularized, or quarantined condition until an admissible continuation is established in the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#auxiliary-dual-mollified-regulator-for-proof-and-computation). Assembly-level exclusion likewise requires an account of organized dynamics rather than a primitive geometric radius.
+
+The complete path history matters to an architrino's identity record. This is stronger than an observer's reconstruction of where something went: the path history is substrate bookkeeping that the delayed dynamics genuinely requires, because a receiver may be responding to any past moment of a transmitter's motion. The law converting path history into acceleration belongs to the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
 
 ### Wake History Boundary
 
-An architrino has an emitted-wake history: the record of causal wakes sourced by that same persistent entity at earlier emission times.
+An architrino has an emitted-wake history: the record of every causal wake it sourced at earlier emission times.
 
-This is an ontology statement about transmitter identity and path-history provenance. It is not the delay-root law. When a calculation needs wake-surface notation, causal emission-time sets, branch counts, or received acceleration, use [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
+This is an ontology statement about transmitter identity and provenance. It is not the delay-root law. When a calculation needs wake-surface notation, emission-time sets, branch counts, or received acceleration, use the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
 
 ### Reception Rule Boundary
 
-The ontology only states that every architrino receives wake contributions according to one universal law. This is a universality claim about the primitive receiver, not a claim that all effective assemblies respond in the same coarse-grained way.
+The ontology states only that every architrino receives wake contributions according to one universal law. That is a claim about the primitive receiver being uniform, not a claim that every assembly responds the same way once coarse-grained.
 
-It does not define the acceleration kernel, causal emission-time set, transmitter-side factor, transmitter-side acceleration weight, root topology, or branch-resolved acceleration. Those are dynamical commitments, not primitive-entity ontology. The canonical dynamics are in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
+It does not define the acceleration kernel, the emission-time set, the transmitter-side factor or weight, the root topology, or the branch-resolved acceleration. Those are dynamical commitments rather than primitive ontology, and their canonical home is the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
 
 ### Dynamics and Regime Boundary
 
-This page does not own wake regimes, self-hit activation, maximum-curvature binaries, or Noether braid stability mechanisms. Those are behavioral and assembly-level dynamics, not primitive-entity definitions. The chapter names those topics only to keep the reader from importing them back into the definition of a single architrino.
+This page does not own wake regimes, self-hit activation, maximum-curvature binaries, or braid stability. Those are behavioral and assembly-level dynamics. They are named here only to keep them from being imported back into the definition of a single architrino.
 
-The canonical homes are:
+Their canonical homes are:
 
-- [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) for causal hits, delay roots, transmitter-side factors, transmitter-side acceleration weights, received acceleration, and branch topology.
-- [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md) for wake-speed regimes, partner hit versus self-hit behavior, spiral contraction, and maximum-curvature binary analysis.
-- [A1 Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics) for coupled indexed-binary speed regimes, alignment behavior, and assembly-stability mechanisms.
-- [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md) for the assembly-level Noether braid architecture built from those dynamics.
+- [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) for causal hits, delay roots, transmitter-side factors and weights, received acceleration, and branch topology.
+- [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md) for wake-speed regimes, partner versus self-hit behavior, spiral contraction, and maximum-curvature analysis.
+- [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation) for coupled indexed-binary speed regimes, alignment, and stability mechanisms.
+- [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md) for the assembly-level braid architecture built from those dynamics.
 
 ### Determinism and Multistability
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ is deterministic in its laws. Given the complete architrino identity set, positions, velocities, polarities, and relevant path-history ledger on a slice, subsequent evolution is fixed by the dynamical law stated in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
+$\mathbb{A}\mathbb{A}\mathbb{A}$ is deterministic in its laws. On a declared branch chart for which the delayed initial-history problem is well posed, the complete set of architrino identities, positions, velocities, polarities, relevant path history, and branch data fixes subsequent evolution through the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
 
-Determinism does not imply practical predictability. The dynamics are nonlinear and non-Markovian. Near threshold regimes, multiple stable attractors can coexist; the realized branch is selected by the exact microstate. This is deterministic multistability, not ontic randomness and not a probability postulate added at the primitive level.
+Determinism is not the same as predictability, and conflating them causes trouble. The dynamics are **nonlinear**, meaning the response of the complete evolving state is not a linear superposition of complete-state solutions; sensitive dependence, where small differences grow, is a separate property that must be established for the branch in question. They are also **non-Markovian** in an instantaneous-state description, because the next motion depends on the retained path history rather than on current positions and velocities alone. Where distinct stable branches and their basins have been established, one microscopic history may select a different outcome from a nearby one.
+
+That is deterministic multistability. It is not randomness in the ontology, and it is not a probability postulate slipped in at the primitive level.
 
 ### Absolute Rest Case
 
-The preferred rest frame is defined first by the propagation law: primitive causal wakes expand isotropically at speed $c_f$ in the Euclidean-void rest frame. A stationary architrino is a sufficient diagnostic exposer of that frame, not the definition of the frame itself.
+The preferred rest frame is defined first by the propagation law: primitive wakes expand as perfect spheres at speed $c_f$ in the rest frame of the Euclidean void. A stationary architrino is a useful way of *exposing* that frame, not the thing that defines it.
 
 A stationary architrino, with
+
 $$
 \mathbf V_a=\mathbf{0}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-49449cb9e308e424)
-emits a concentric wake stream centered on one fixed point of the Euclidean void. This state is physically distinct from nonzero motion, where wake centers trace a path and the wake stream becomes non-concentric.
 
-Over a diagnostic interval $I$, the relevant complete-state object is the transmitter-tagged center curve
+emits a stream of wake spheres all sharing one center, fixed in the void. That state is physically different from any motion at all, because a moving architrino's wake centers trace out a path and the spheres stop being concentric.
+
+Over a diagnostic interval $I$, the object to look at is the transmitter-tagged center curve
+
 $$
 Z_a(I)=\{\mathbf Z_a(s):s\in I\},
 \qquad
@@ -644,24 +799,27 @@ Z_a(I)=\{\mathbf Z_a(s):s\in I\},
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4cade1897de0abb9)
-where $\mathbf Z_a(s)$ is the center of the wake isochron emitted at time $s$. Rest is the zero-diameter case, $\operatorname{diam} Z_a(I)=0$, so the center record is effectively a single point. Self-hit is a different condition: the same worldline must re-enter one of its own forward causal isochrons. That is a root-existence condition on the curved center history, not a rest diagnostic and not a speed test by itself.
 
-The existence of a stationary architrino is sufficient for choosing a material origin and for exposing concentric stationary-transmitter wakes, but it is not necessary for defining the preferred rest frame. If no architrino is stationary over a diagnostic interval, complete-state reconstruction may still recover the rest-frame structure from transmitter-tagged wake centers. This is a substrate-level diagnostic, not by itself an operational measurement procedure. Whether physical observers can detect that frame is a separate emergent-observer question addressed by [Detecting the Absolute Frame](../../../../markdown/aaa/foundations/detecting-the-absolute-frame.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), and [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
+where $\mathbf Z_a(s)$ is the center of the wake sphere emitted at time $s$ — which is simply where the architrino was at that moment. Rest is the case where that curve has zero extent, $\operatorname{diam} Z_a(I)=0$, collapsing the whole record to a single point.
+
+Self-hit is a different condition and should not be confused with this one. Self-hit requires the worldline to re-enter one of its own expanding spheres, which is a question about whether a root exists on a curved center history. It is neither a rest diagnostic nor a speed test.
+
+A stationary architrino is sufficient for picking a material origin and exposing concentric wakes, but it is not necessary for defining the preferred frame. If nothing is stationary over the interval, the frame structure can still be recovered from the transmitter-tagged wake centers. That is a substrate-level diagnostic and not by itself a measurement an observer could perform. Whether physical observers can detect the frame at all is a separate question, taken up in [Detecting the Absolute Frame](../../../../markdown/aaa/foundations/detecting-the-absolute-frame.md), [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md), and [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
 
 ### Boundary With Assemblies and Effective Particles
 
-An architrino is not a Standard Model particle. It is the primitive constituent from which particle-like assemblies are built. The distinction is a level distinction, not a competing particle classification.
+An architrino is not a Standard Model particle. It is the primitive constituent from which particle-like assemblies get built. This is a distinction of level, not a competing catalogue of particles.
 
-The boundary is:
+The levels are:
 
 - **Architrino:** primitive point transceiver with polarity and persistent identity.
-- **Wake:** causal interaction structure emitted by architrino motion.
-- **Dynamics regime:** behavior of wake intersections, self-history, root multiplicity, and delay-geometry stability.
-- **Assembly:** localized bound configuration of architrinos and their wake closure.
-- **Effective particle:** observer-level particle description of a stable or transient assembly.
-- **Effective field:** coarse-grained continuum description of many wake contributions.
+- **Wake:** the causal interaction structure emitted by architrino motion.
+- **Dynamics regime:** the behavior of wake intersections, self-history, root multiplicity, and delay-geometry stability.
+- **Assembly:** a localized bound configuration of architrinos together with its wake closure.
+- **Effective particle:** the observer-level description of a stable or transient assembly.
+- **Effective field:** the coarse-grained continuum description of many wake contributions.
 
-This boundary prevents a point-charge ontology from being imported prematurely. The primitive object is the architrino as a polarity-bearing transceiver. Electric charge, particle type, inertial mass, spin, and field behavior are downstream descriptions of assembly and wake organization. Inference runs from stable observer records back toward this substrate account; it does not make the observer-level categories fundamental.
+Keeping these apart prevents a point-charge ontology from being imported before it has been earned. The primitive object is a polarity-bearing transceiver, full stop. Electric charge, particle type, inertial mass, spin, and field behavior are all downstream descriptions of how assemblies and wakes organize. Inference runs from stable observer records back toward this substrate account; it does not make the observer-level categories fundamental.
 
 ### Summary Postulate
 
@@ -669,90 +827,108 @@ This boundary prevents a point-charge ontology from being imported prematurely. 
 
 ## Absolute Time
 
-This chapter defines absolute time in $\mathbb{A}\mathbb{A}\mathbb{A}$ at the substrate level. It says what the time parameter $T$ is, how it orders events, how causal wakes use it, and why observer proper time is a derived clock readout rather than a second fundamental time.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ there is one universal ordering parameter, written $T$. It supplies a common duration scale everywhere, but it is not a physical clock and no apparatus reads it directly.
 
-The companion chapter [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md) gives the argumentative case for this choice. This chapter does the more basic job: it states the postulate and the mathematical structure used by the later dynamics.
+This chapter says what $T$ is, how it orders events, how the [wakes](../../../../markdown/aaa/foundations/architrino.md) that carry every interaction use it, and why the time a physical clock displays is a *derived* quantity rather than a second fundamental one.
 
-The safest way to read the chapter is to keep three uses of time separate. Absolute time is the substrate ordering parameter. Causal-wake timing is how that ordering becomes active in interactions. Clock time is a physical assembly readout extracted from repeatable cycles. The later spacetime chapters can compare those readouts with relativistic proper time, but they do not add a second ontological clock.
+That last distinction is the one to hold onto, because it is where almost every objection to absolute time comes from. Established relativity predicts and experiments confirm that moving clocks accumulate less proper time, and that inertial observers can assign opposite time order to spacelike-separated events. $\mathbb{A}\mathbb{A}\mathbb{A}$ accepts those observer-level targets but assigns their explanation to clock, ruler, signal, and medium dynamics. Deriving that recovery is an obligation; it is not supplied by postulating $T$.
+
+The companion chapter [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md) argues the case. This chapter does the more basic job of stating the structure the later dynamics use.
+
+Keep three uses of the word "time" separate throughout. **Absolute time** is the substrate ordering parameter. **Causal-wake timing** is how that ordering becomes active in interactions. **Clock time** is a physical readout extracted from something that cycles repeatably. The spacetime chapters later compare those readouts against relativistic proper time; they never add a second fundamental clock.
 
 ### Core Concept
 
-Absolute time is the one universal ordering parameter. It is **one-dimensional, continuous, and oriented**, and it advances uniformly and independently of space, matter, energy, or any physical process. In substrate ontology, it is **non-dynamical**: time does not curve, dilate, accelerate, or respond to forces.
+Absolute time is one universal ordering parameter: **one-dimensional, continuous, and oriented**, advancing uniformly and independently of space, matter, energy, or any process. In the substrate ontology it is **non-dynamical** — it does not curve, dilate, accelerate, or respond to anything.
 
-Physical clocks are different. A clock is an assembly with repeatable internal cycles. The clock can speed up or slow down as an assembly, but the cycles are compared against the absolute parameter; they do not generate it.
+Physical clocks are a different kind of object. A clock is an assembly with repeatable internal cycles. It can run fast or slow as an assembly does, and its cycles are compared against the absolute parameter. They do not generate it.
 
-The word **uniformly** is a dynamical normalization statement, not an extra clock substance on the bare line. Before units and laws are declared, the oriented time line admits affine relabelings $T\mapsto aT+b$ with $a>0$. The origin $b$ remains conventional. The scale $a$ is fixed only after the dynamics are declared: the primitive wake speed $c_f$ is constant in the Euclidean-void rest frame, all worldlines use the same parameter $T$, and the master equation keeps its receiving law form.
+#### What "uniformly" is actually claiming
 
-A rescaling of $T$ is therefore a unit change involving $T_0$, $L_0$, $c_f$, and the coupling normalizations. It is not a second physical freedom to choose a different flow of time. Constancy of $c_f$ together with form-invariance of the receiving law pins $T$ to its affine class; a smooth nonlinear reclock $T\mapsto\phi(T)$ would introduce time-dependent propagation and derivative factors, so $\operatorname{Diff}^+(\mathbb{R})$ is not a substrate symmetry.
+The word **uniformly** needs care, because on a bare line it means almost nothing.
 
-The [constant-time emission measure](../../../../markdown/aaa/foundations/architrino.md#constant-time-emission-measure-postulate), $dT_t$ with motion-independent per-wavefront amplitude, supplies a second consistency condition on that same affine parameter. Under a nonlinear reclocking, the emission density would acquire a time-dependent Jacobian. This condition does not furnish another primitive clock or remove the remaining overall unit rescaling.
+Before any units or laws are declared, an oriented time line admits relabelings $T\mapsto aT+b$ with $a>0$ — stretch the scale, shift the origin. Nothing about the line itself distinguishes one such labeling from another, so "advances uniformly" would be empty.
 
-After that scale fixing, the remaining freedom is only translation by $b$. The background time line is therefore best understood as a principal homogeneous space for $(\mathbb{R},+)$: it has a global orientation and duration scale, but no marked origin. This makes the conventional status of $T=0$ precise without weakening the physical status of the affine scale chosen by the receiving law.
+The dynamics do the fixing. The origin $b$ stays conventional, but the scale $a$ is pinned once three things are declared: the wake speed $c_f$ is constant in the void's rest frame, every worldline uses the same $T$, and the master equation keeps its form.
+
+So rescaling $T$ is a change of units involving $T_0$, $L_0$, $c_f$, and the coupling normalizations together. It is not a second freedom to choose how fast time flows.
+
+The stronger statement is that *nonlinear* reclockings are excluded outright. A smooth relabeling $T\mapsto\phi(T)$ that is not affine would make propagation speed and derivative factors vary with time, which the constancy of $c_f$ forbids. So the group of all smooth orientation-preserving relabelings is not a symmetry here; only the affine ones are.
+
+The [constant-time emission measure](../../../../markdown/aaa/foundations/architrino.md#constant-time-emission-measure-postulate) gives a compatible second condition on the same parameter. Because emission is uniform in $T$ with motion-independent amplitude, a nonlinear reclocking would make the emission density acquire a time-varying factor. The wake-speed postulate and emission measure therefore select the same affine class, but they are coordinated parts of one model rather than independent evidence for it.
+
+After the scale is fixed, only translation by $b$ remains. The background time line is therefore a set with a global orientation and duration scale but **no marked origin** — a torsor, or principal homogeneous space, for $(\mathbb{R},+)$. Differences and temporal order are defined, but no instant is intrinsically labeled zero. That makes the conventional status of $T=0$ precise without weakening the absolute ordering.
 
 ### Time Implementation Ladder
 
-Ordinary language uses the word "time" for several different things. $\mathbb{A}\mathbb{A}\mathbb{A}$ separates those things so the reader does not confuse the substrate parameter with clocks or observations:
+Ordinary language uses "time" for several different things, and $\mathbb{A}\mathbb{A}\mathbb{A}$ separates them deliberately.
 
-1. **Substrate ordering:** Absolute time $T$ orders universe states. It is not directly measured by a physical clock and has no natural origin; its affine scale is fixed only after the causal-wake law and unit convention are declared.
-2. **Causal-wake implementation:** Architrino worldlines and emissions make the ordering physically operative. A transmitter event at emission time $T_t$ contributes at a receiver time $T_r$ only when the causal wake support satisfies
+**1. Substrate ordering.** Absolute time $T$ orders universe states. No physical clock reads it directly, it has no natural origin, and its scale is fixed only once the wake law and unit convention are declared.
 
-   $$
-   r_{ij}(T_r,T_t)=c_f(T_r-T_t),
-   $$
+**2. Causal-wake implementation.** Worldlines and their emissions make that ordering physically operative. A transmitter event at emission time $T_t$ contributes at reception time $T_r$ only when the wake has just arrived:
 
-   [View →](../../../../../equation-mapping.html#corpus-equation-079f15c58f4fd603)
+$$
+r_{ij}(T_r,T_t)=c_f(T_r-T_t),
+$$
 
-   where $r_{ij}(T_r,T_t)=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$ is the receiver-transmitter separation. In this layer, temporal separation and Euclidean distance become a receiver-local interaction condition.
-3. **Assembly clock readout:** Physical clock time is an assembly-level phase extraction. A stable binary or Noether braid branch supplies repeatable internal cycles, and observer clock time is the count of those cycles relative to a reference branch, not another substrate parameter. In the notation of [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), with $\varphi_{\mathcal A}$ the counted clock phase and $\Omega_{\mathcal A}^{(0)}$ its rest-branch reference rate,
+[View →](../../../../../equation-mapping.html#corpus-equation-079f15c58f4fd603)
 
-   $$
-   d\tau_{\mathcal A}
-   =
-   \frac{d\varphi_{\mathcal A}}{\Omega_{\mathcal A}^{(0)}}.
-   $$
+where $r_{ij}(T_r,T_t)=\|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|$ is the distance from where the transmitter was to where the receiver is. This is where temporal separation and spatial distance become a single local condition: neither alone determines whether an interaction happens, only the two together.
 
-   [View →](../../../../../equation-mapping.html#corpus-equation-6554a68e5088fcba)
+**3. Assembly clock readout.** Clock time is a phase count. A stable binary or braid supplies repeatable internal cycles, and clock time is the number of those cycles measured against a reference. Writing $\varphi_{\mathcal A}$ for the counted phase and $\Omega_{\mathcal A}^{(0)}$ for the rest-branch reference rate,
 
-   Motion through the Euclidean void and coupling to the Noether sea can retune the internal cycle, so derived clock time changes even though absolute time does not.
+$$
+d\tau_{\mathcal A}
+=
+\frac{d\varphi_{\mathcal A}}{\Omega_{\mathcal A}^{(0)}}.
+$$
 
-This ladder preserves the useful intuition that cycles make clocks while preventing cycles from being confused with time itself. A moving assembly may trace a helical history through absolute timespace, and its internal cycle may slow or speed relative to $T$; the substrate ordering parameter remains the same line.
+[View →](../../../../../equation-mapping.html#corpus-equation-6554a68e5088fcba)
 
-It also prevents a second confusion. Absolute simultaneity does not mean an observer can read the whole simultaneous universe state. It means there is a fact of the matter about the ordering parameter. What an observer can reconstruct is limited by assembly clocks, causal wakes, signal transport, and Noether sea coupling.
+This equation defines the candidate clock readout: divide phase advance by the declared rest-branch rate. It becomes observer proper time only after the clock certificate and universality tests show that different admitted clocks recover the same map. Motion through the void and coupling to the medium can retune the internal cycle, so the readout may change even though $T$ does not.
+
+The ladder keeps the useful intuition that cycles make clocks while preventing cycles from being mistaken for time itself. A moving periodic assembly may trace a helical history in a suitable product of translation and phase coordinates, but that geometry is branch-specific. The ordering parameter is the same line throughout.
+
+It also blocks a second confusion. Absolute simultaneity does not mean an observer can *read* the simultaneous state of the universe. It means there is a fact of the matter about the ordering. What can be reconstructed is limited by clocks, wakes, signal transport, and medium coupling — which is a great deal less.
 
 ### Mathematical Description
 
-Mathematically, time is the real number line:
+Time is the real line:
+
 $$
 \mathbb{R}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c2b8df32454a4ae6)
 
-A specific instant is a point $T \in \mathbb{R}$.
+and an instant is a point $T\in\mathbb{R}$.
 
-The same orientation can be encoded by the exact **clock 1-form**:
+The orientation can equivalently be carried by the **clock 1-form**:
+
 $$
 dT
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c6696fbaf71b269c)
-on the oriented time line. This 1-form is closed and exact, and its level sets define simultaneity slices when combined with space in the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$.
 
-The notation keeps the levels apart. The symbol $\tau$ is reserved for derived observer proper time. Emission times use $T_t$, and causal delay is written $\Delta_{ij}=T-T_t$ rather than by reusing the proper-time symbol.
+A 1-form is an object that takes a displacement and returns a number; this one returns elapsed time. It is *closed* and *exact*, which together mean it is the derivative of a genuine global function — there really is a single universal $T$, not merely a local sense of duration that might fail to piece together consistently. Combined with space in the product background $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, its level sets are the simultaneity slices.
 
-The substrate structure is absolute time together with the Euclidean void, formally the absolute timespace $\mathcal{M}$. Effective spacetime geometry and proper time are later observer-level reconstructions from assembly dynamics, clock behavior, and Noether sea response. They are not additional time coordinates at the ontological level.
+Notation keeps the levels apart: $\tau$ is reserved for derived proper time, emission times are $T_t$, and causal delay is $\Delta_{ij}=T-T_t$ rather than reusing the proper-time symbol.
+
+The substrate structure is absolute time together with the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md), formally [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md). Effective spacetime geometry and proper time are later observer-level reconstructions. They are not additional time coordinates.
 
 ### Dimensionalization
 
-The equations are usually written in nondimensional form. Choose a reference timescale $T_0 > 0$ such that physical time $\hat T$ is given by:
+Equations are usually written without units. Choose a reference timescale $T_0>0$ so that physical time $\hat T$ is
+
 $$
 \hat T = T_0 \, T
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1bd41191b2ccab82)
-where $T$ is dimensionless.
 
-Positions require the corresponding length scale. Choose $L_0>0$ and write
+with $T$ a pure number. Positions need a matching length scale $L_0>0$:
+
 $$
 \hat{\mathbf X}=L_0\mathbf X,
 \qquad
@@ -762,7 +938,11 @@ c_f=\frac{\hat c_f T_0}{L_0}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-68c0b410d718ed52)
-Here hatted quantities are dimensional and unhatted quantities are nondimensional. With this convention, the nondimensional causal-root condition keeps the same form,
+
+Hatted quantities carry units; unhatted ones are pure numbers. The wake speed becomes a pure number by measuring how many length units the wake crosses per time unit.
+
+With this convention the root condition keeps its form without units,
+
 $$
 \|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|
 =
@@ -770,7 +950,9 @@ c_f(T_r-T_t)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6b9d1a38632179a2)
-while the dimensional condition is
+
+and with them,
+
 $$
 \|\hat{\mathbf X}_i(\hat T_r)-\hat{\mathbf X}_j(\hat T_t)\|
 =
@@ -779,152 +961,156 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9efbea1f31e04dd6)
 
-Choosing $T_0$ fixes the affine scale of $T$ for the declared model. Setting $c_f=1$ is the special unit convention $L_0/T_0=\hat c_f$; keeping $c_f$ explicit leaves the physical anchor visible.
+The two say the same thing.
 
-Symbolic derivations may retain $c_f$ when its dependence matters, but every new numerical instantiation, fixture, simulation, tolerance, and worked numerical example uses normalized wake-speed units with $c_f=1$. A provenance-bound legacy artifact recorded with another value must be rerun at $c_f=1$ before it supports a current conclusion.
+Choosing $T_0$ fixes the affine scale for a declared model. Setting $c_f=1$ is the particular convention $L_0/T_0=\hat c_f$ — measuring distance in units the wake crosses in one time unit — which makes the wake speed disappear from the equations. Keeping $c_f$ explicit leaves the physical anchor visible instead.
 
-> **Plain language:** We pick a standard unit of duration, such as one second or one maximum-curvature binary orbit time, and measure all times as pure numbers of that unit, keeping equations dimensionally clean.
+Symbolic derivations may retain $c_f$ where its dependence matters, but every new numerical instantiation, fixture, simulation, tolerance, and worked example uses $c_f=1$. A legacy artifact recorded at another value must be rerun before it supports a current conclusion.
+
+In short: pick a standard unit of duration — a second, or one maximum-curvature orbit — and measure everything as a pure multiple of it.
 
 ### Duration and Linear Advancement
 
-Once the affine scale is fixed by the declared dynamical normalization, duration is simple. The **duration** between two instants $T_1$ and $T_2$ is the absolute difference:
+Once the scale is fixed, duration is subtraction:
+
 $$
 \Delta T = |T_2 - T_1|
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f5d569750586df42)
 
-The corresponding physical duration is:
+and in physical units
+
 $$
 \Delta \hat T = T_0 \, \Delta T
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9cff1d4d836b911c)
 
-This duration rule is **invariant under time translation**. It is the same for all observers, regardless of their position or state of motion.
-
-> **Plain language:** The gap between any two moments is always given by subtraction; there is no acceleration or deceleration of time itself.
+This is unchanged by shifting the origin and is one substrate interval for the two events. Different physical clocks or coordinate reconstructions may assign different readouts to paths connecting those events; that is an observer-level dynamical effect. The substrate parameter itself neither speeds up nor slows down.
 
 ### Time Orientation and Causal Ordering
 
-We endow $\mathbb{R}$ with a **global orientation**:
+The line carries a **global orientation**: future is increasing $T$, past is decreasing $T$.
 
-- **Future** corresponds to increasing $T$.
-- **Past** corresponds to decreasing $T$.
+The instants are **totally ordered** — for any two, exactly one of
 
-The set of all instants is **totally ordered**: for any two instants $T_1$ and $T_2$, exactly one of the following holds:
 $$
 T_1 < T_2, \quad T_1 = T_2, \quad \text{or} \quad T_1 > T_2
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-73a406ffea6fd85b)
 
-**Temporal ordering:** Event A temporally precedes event B if and only if $T_A < T_B$. This ordering is absolute and observer-independent.
+holds, with no ambiguity and no observer-dependence. Event A temporally precedes B if and only if $T_A<T_B$.
 
-Causal influence is stricter than temporal precedence. Event A can influence event B only when $T_A<T_B$ and event B lies on the finite-speed causal wake support emitted from A. Being earlier is necessary; being on the received wake support is the additional physical condition.
+Causal influence is stricter than temporal precedence. An emission event A can contribute directly at B through that emitted wake only when $T_A<T_B$ **and** B lies on its arriving wake support. Being earlier is necessary; the support condition selects the direct contribution from that particular emission.
 
-**Remark on the Thermodynamic Arrow of Time:** The background time manifold $\mathbb{R}$ is symmetric under time reversal $T \mapsto -T$ as a bare oriented line. The declared interaction law is not time-symmetric in that same sense: causal wakes contribute only from emission times $T_t<T$, and the theory excludes advanced or instantaneous interaction terms.
+Indirect influence can pass through intervening histories. A wake received by another architrino contributes to its acceleration and can change its subsequent trajectory. That architrino emits continuously, so its later emissions carry the changed source history and can affect a later receiver. At B, the directly contributing wake then comes from the intermediate architrino; A's original wake need not pass through B at that reception time. The original sphere is not redirected, and reception does not switch emission on. Each wake reception still obeys its own causal-root condition. Establishing a nonzero effect along a particular chain requires the intervening dynamical response, not merely a sequence of geometrically possible receptions.
 
-The causal arrow is therefore a law-level feature of the master-equation support convention. Thermodynamic, biological, and cosmological arrows are emergent finite-window properties built on that oriented dynamics, initial and boundary conditions, and the records retained by a finite observer. This differs from time-symmetric absorber formulations, where past- and future-supported solutions are treated as part of one law. The law-level asymmetry also carries a recovery burden of the same family as preferred-frame leakage: effective observer-level dynamics must recover microreversibility and detailed-balance behavior in the validated equilibrium and weak-interaction regimes up to known $T$-violation bounds, with the derivation owned by the theory-bridge layer.
+#### The arrow of time
 
-The entropy arrow is therefore a finite-window statement, not a definition of time itself. A valid entropy claim must declare its preparation measure, coarse-graining, observer-accessible window, boundary flux, and any record-change residual. Projection can discard path-history, boundary-wake, or apparatus information and thereby create an increasing retained entropy even when the complete dynamics remain deterministic. The full definitions, data-processing argument, boundary-flux balance, and chart-change residual $\mathcal{R}_{\mathcal Q}$ are owned by [Entropy](../../../../markdown/aaa/dynamics/entropy.md#mapping-out-to-effective-physics). Their load-bearing conclusion here is simple: entropy diagnoses an emergent arrow inside a stated physical and inferential window; it does not supply the absolute ordering parameter $T$.
+The bare line $\mathbb{R}$ is symmetric under reversal $T\mapsto-T$. The interaction law is not. Wakes contribute only from emission times $T_t<T$, and the theory admits no advanced or instantaneous terms.
+
+So the causal arrow is a feature of the *law*, specifically of which emission times the master equation is allowed to sum over. Thermodynamic, biological, and cosmological arrows are emergent properties built on that oriented dynamics together with initial conditions and the records a finite observer retains.
+
+This differs from time-symmetric direct-action formulations of electrodynamics, in which both past- and future-supported terms may appear and boundary conditions select the realized arrow; Wheeler and Feynman's [absorber formulation](https://doi.org/10.1103/RevModPhys.17.157) is the canonical comparison. Here the delayed-only asymmetry is placed in the substrate law itself.
+
+That choice carries a recovery burden of the same family as preferred-frame leakage. Where an effective equilibrium description requires microscopic reversibility or detailed balance, the theory must derive those approximate relations and state their regime; known time-reversal-violating channels must remain outside that approximation. The derivation is owned by the theory-bridge layer.
+
+The entropy arrow is a finite-window statement rather than a definition of time. A valid entropy claim must declare its preparation measure, its coarse-graining, the observer-accessible window, boundary flux, and any record-change residual. Projection can make a retained entropy increase by discarding path history, boundary wakes, and apparatus information, but monotonic increase still requires a theorem or measurement for the declared dynamics, preparation, coarse-graining, and boundary conditions. The definitions and residual $\mathcal{R}_{\mathcal Q}$ are owned by [Entropy](../../../../markdown/aaa/dynamics/entropy.md#mapping-out-to-effective-physics). The conclusion needed here is narrow: entropy diagnoses an arrow inside a stated window; it does not supply the ordering parameter.
 
 ### Absolute and Universal Nature
 
-The time coordinate $T$ is **absolute and universal**:
+The parameter $T$ is absolute and universal:
 
-- The duration $\Delta T$ between any two events is **the same for all observers**, regardless of their position, velocity, or state of motion.
-- **No relativity of simultaneity:** Two events with equal $T$-coordinates are simultaneous for all observers in an objective, frame-independent sense.
-- **No time dilation at the kinematic level:** The advancement of the background parameter is not affected by motion or observer-level gravitational conditions.
+- Duration $\Delta T$ between two events is one **frame-independent substrate interval**, whether or not an observer can read it directly.
+- **No relativity of simultaneity.** Two events with equal $T$ are simultaneous in an objective sense.
+- **No kinematic time dilation.** The background parameter is unaffected by motion or by gravitational conditions.
 
-Any observed slowing of clocks for moving or bound assemblies is not a change in the background time flow. It is a change in how those assemblies' internal dynamics map onto the absolute time parameter. Proper time is therefore an inferred clock readout in the observer sector, not a second substrate time. See [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
+Observed slowing of clocks on moving or bound assemblies is not a change in the background. It is a change in how those assemblies' internal dynamics map onto $T$. Proper time is an inferred readout in the observer sector, not a second substrate time. See [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
 
-> **Implication:** In contrast to special relativity, simultaneity is an **objective, frame-independent property** in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+The contrast with special relativity is sharp and deliberate: simultaneity here is an objective, frame-independent property.
 
 ### No Absolute Origin and Completeness
 
-The choice of $T = 0$ is **arbitrary and purely conventional**. It serves only as a reference point. The timeline extends infinitely into:
+The choice of $T=0$ is arbitrary. The line runs to $T\to-\infty$ and $T\to+\infty$.
 
-- The **past**: $T \to -\infty$
-- The **future**: $T \to +\infty$
+As a manifold $\mathbb{R}$ is **connected** with no gaps, **complete** under the duration distance $|T_2-T_1|$ so that no sequence of instants converges to a missing one, and **without endpoints**.
 
-As a manifold, $\mathbb{R}$ is:
-
-- **Connected**: no gaps.
-- **Complete**: complete as a metric space under the duration distance $|T_2-T_1|$, with no edges or boundaries.
-- **Without endpoints**.
-
-This is a statement about the background time manifold used by the fundamental dynamics. It is not by itself a solved cosmological boundary condition. A particular cosmological solution may occupy all of $\mathbb{R}$ or a dynamically selected interval, depending on its boundary data. Modeling the time factor as $\mathbb{R}$ prevents artificial endpoints in the substrate parameter; it does not prove that every realized universe history has no initialization, cutoff, or external selection condition.
+This describes the background used by the fundamental dynamics, and it is not a solved cosmological boundary condition. A particular cosmological solution may occupy all of $\mathbb{R}$ or only a dynamically selected interval. Modeling the time factor as the full line avoids inventing artificial endpoints in the parameter; it does not prove that any realized history lacks an initialization or cutoff.
 
 ### Symmetries of Absolute Time
 
-The fundamental kinematic symmetry of absolute time is the **additive group**:
+The kinematic symmetry is the additive group
+
 $$
 (\mathbb{R}, +)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6ecdce42168d70f9)
-of **time translations**. This acts on time via:
+
+of time translations, acting by
+
 $$
 T \mapsto T + T_{\mathrm{shift}}, \quad T_{\mathrm{shift}} \in \mathbb{R}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-42a6f1d16fa05d72)
 
-This symmetry expresses the principle that **the laws of physics are time-translation invariant**: the same admissible state and path-history data, translated by a constant amount in $T$, obey the same dynamical law.
+expressing that the laws do not care when you start the clock: the same state and history, shifted by a constant, obey the same law.
 
-The larger group of smooth orientation-preserving time relabelings is not a symmetry of the substrate law. Once the constant wake speed and receiving-law normalization are fixed, nonlinear time reparametrizations change the causal-root spacing, transmitter-side factors, and receiver-side factors rather than merely changing units.
+Smooth nonlinear relabelings are not symmetries. Once the constant wake speed and the receiving law are fixed, a nonlinear reclocking changes the spacing of causal roots and the transmitter- and receiver-side factors. That is a change of physics, not of units.
 
-**Connection to Conservation Laws:** Time-translation invariance is the kinematic basis for **energy conservation** when the relevant dynamics admit an energy or action formulation. In this chapter, the point is structural: the background clock supplies a fixed parameter against which such conservation statements can be formulated.
+Time-translation invariance is necessary for the proposed **energy conservation** route, but background symmetry alone is insufficient. Noether's theorem applies to a differentiable action invariant under the translation, and the delayed theory must include and close its history and boundary terms. The background supplies the parameter against which that theorem can be formulated; the complete action must still earn the conserved charge.
 
-At the level of the background structure, time is symmetric under **time reversal**:
+At the level of the bare background, time is symmetric under reversal:
+
 $$
 T \mapsto -T
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ccb6a1eab7aab2a3)
 
-This is a **mathematical symmetry** of the manifold $\mathbb{R}$, not automatically a symmetry of the declared dynamics. The master equation chooses future as increasing $T$ by summing only over causal-root rows with $T_t<T$. A reflected history would solve a different future-supported law unless the causal-support convention were changed. The **causal orientation** is therefore part of the dynamics' support rule; it is not curvature, force, or internal structure of the time background itself.
+This is a symmetry of the manifold, not automatically of the dynamics. The master equation picks the future by summing only over rows with $T_t<T$. A reflected history would solve a *different*, future-supported law unless the support convention were changed too. The causal orientation therefore lives in the law's support rule, not in curvature, force, or structure of the time background.
 
 ### Role of Time in Dynamics
 
-Time serves as a **universal, non-dynamical parameter** for all worldlines, causal wakes, and observer-level effective laws. It is:
+Time is a universal, non-dynamical parameter for all worldlines, wakes, and effective laws. It is the independent variable in every equation of motion, the basis for velocity $d\mathbf X/dT$ and acceleration $d^2\mathbf X/dT^2$, and a passive parameter rather than a participant.
 
-- The independent variable in all equations of motion.
-- The basis for defining velocities ($d\mathbf X/dT$) and accelerations ($d^2\mathbf X/dT^2$).
-- A passive parameter, not an active participant in forces or curvature.
+**There is no freedom to choose an alternative fundamental time parameter along a worldline.** There is no proper time at the substrate level; every worldline is parametrized directly by $T$. This is what lets all evolution be tracked against a single clock.
 
-**Crucial constraint:** There is **no freedom to choose alternative fundamental time parameters** along a worldline. There is no proper time at the substrate level; all worldlines are parametrized directly by the absolute $T$. This ensures that all dynamical evolution can be tracked consistently against a single, universal clock.
+A worldline is a map
 
-A **worldline** of an architrino or assembly is a map:
 $$
 \mathbf X: I \subset \mathbb{R} \to \mathbb{R}^3, \quad T \mapsto \mathbf X(T)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c985db7235edb3a7)
-where $I$ is an interval and $T$ is **strictly increasing** with respect to the time orientation.
 
-**Key property:** Worldlines are **graphs over $T$**: each worldline is a map $T\mapsto\mathbf X(T)$ on its interval, so there is no admissible parametrization in which $T$ decreases, and closed timelike curves and backward segments are excluded by construction. Branching, when it occurs, is **deterministic multistability in the dynamics**: the complete history state selects among dynamically admitted branches, while an attractor description is reserved for a declared retained subsystem with established contraction and exported-flux accounting. This is not a splitting of the time parameter itself.
+on an interval $I$, with $T$ strictly increasing.
+
+Worldlines are **graphs over $T$**: one position per instant. Physical evolution is admitted only toward increasing $T$. An auxiliary parameter could retrace the same graph in reverse, but that re-description is not an advanced physical trajectory; a closed or backward segment in substrate time would cease to be a single-valued graph over $T$.
+
+Branching, where it occurs, is **deterministic multistability**: the complete history state selects among admitted branches. An attractor description is reserved for a declared retained subsystem with established contraction and flux accounting. Neither is a splitting of the time parameter.
 
 ### Causality and Finite Propagation Speed
 
-**Causal Ordering:** Event A can influence event B **only if** $T_B > T_A$. This is a necessary condition, not a sufficient one.
+Event A can influence B only if $T_B>T_A$ — necessary, not sufficient. All interactions are carried by wakes propagating at the finite speed $c_f$.
 
-**Finite Propagation Speed:** All physical interactions are mediated by causal wakes that propagate at a **finite speed** $c_f$, the wake speed used by the master equation.
-
-The foundation stack keeps the relevant speed symbols distinct:
+The foundation stack keeps the speeds distinct:
 
 | Symbol | Meaning | Status |
 | --- | --- | --- |
 | $c_f$ | Primitive causal-wake propagation speed relative to the Euclidean void | fundamental |
-| $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether sea state and direction | derived |
-| $c_{\text{eff}}$ | Effective signal or clock-channel speed for a specified dressed branch | derived/contextual |
-| $c_\star$ | Local comparison speed used in a declared clock, ruler, or signal branch | branch-dependent |
-| $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration and dressing-flow fixed-point target |
+| $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a medium state and direction | derived |
+| $c_{\text{eff}}$ | Effective signal or clock-channel speed for a dressed branch | derived/contextual |
+| $c_\star$ | Local comparison speed in a declared clock, ruler, or signal branch | branch-dependent |
+| $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration target |
 
-These symbols must not be identified unless the local regime and derivation have been stated.
+None may be identified with another until the regime and derivation are stated.
 
-**Path-History Interactions:** If transmitter $j$ emits from $\mathbf X_j(T_t)$ and receiver $i$ is at $\mathbf X_i(T_r)$, the contributing emission times are the delayed roots
+If transmitter $j$ emits from $\mathbf X_j(T_t)$ and receiver $i$ sits at $\mathbf X_i(T_r)$, the contributing emission times are
+
 $$
 \mathcal{C}_{ij}(T_r)
 =
@@ -933,9 +1119,10 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-dee62fd344eab043)
 
-Only emission times in $\mathcal{C}_{ij}(T_r)$ contribute to the receiver at reception time $T_r$. Earlier events that miss this root condition do not contribute through this channel. In dimensional variables, the same condition is written with hatted times and positions using the corresponding dimensional value of $c_f$.
+every past moment whose expanding wake reaches the receiver exactly now. Only these contribute. Earlier events that miss the condition contribute nothing through this channel — which is most of them.
 
-Equivalently, define the root function
+Equivalently, define
+
 $$
 F_{ij}(T_r,T_t)
 =
@@ -945,7 +1132,11 @@ T_t<T_r
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6cfd6895bac76596)
-Then $\mathcal{C}_{ij}(T_r)=\{\,T_t<T_r:F_{ij}(T_r,T_t)=0\,\}$. The same set covers ordinary partner hits when $i\ne j$ and self-hits when $i=j$; no separate self-hit law is needed. A simple-root branch chart requires
+
+the gap between how far apart they were and how far the wake has travelled, so that $\mathcal{C}_{ij}(T_r)$ is where it vanishes. The same set covers partner hits when $i\ne j$ and self-hits when $i=j$; no separate self-hit law is needed, which is worth noting because it means self-interaction is not a special case bolted on.
+
+A usable branch chart requires the crossing to be clean:
+
 $$
 \left|
 \partial_{T_t}F_{ij}(T_r,T_t)
@@ -959,7 +1150,9 @@ c_f-\hat{\mathbf{r}}_{ij}(T_r,T_t)\cdot\mathbf V_j(T_t)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b36170ce274c583a)
+
 where
+
 $$
 \mathbf{r}_{ij}(T_r,T_t)=\mathbf X_i(T_r)-\mathbf X_j(T_t),
 \qquad
@@ -967,15 +1160,19 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5cbd1d920a3685bc)
-Failure of this transversality floor marks a caustic-like or degenerate wake-root regime. It must be routed to branch-chart or regularization analysis rather than treated as an ordinary force perturbation.
 
-For self-hits, the shared root function does not erase the additional geometry carried by transmitter identity. When $i=j$, a root means the same worldline $\gamma_i$ re-enters its own forward causal isochron. In general this is a curvature, torsion, and return-geometry condition on $\gamma_i$, not a speed test by itself. A super-field-speed segment is a regime warning for possible self-hit roots, but the accepted branch is still defined by same-transmitter root existence together with the transversality floor and the retained transmitter-side acceleration weight.
+The derivative compares neighboring candidate emission times while holding the reception event fixed. Requiring its magnitude to stay above a positive floor makes $F_{ij}$ cross zero at a definite rate rather than graze it. Every candidate still satisfies $T_t<T_r$; this crossing compares past emissions and uses no future support. Falling below the declared floor means that the chart has lost its certified margin. It requires reassessment, but does not by itself establish a caustic: the derivative may remain nonzero.
 
-The symbol $\kappa_{\mathrm{hit}}>0$ is not a universal coupling constant and not the regularization width $\eta$. It denotes a declared positive lower bound for one retained branch chart, certificate, or regularized model after the units, root labels, endpoint convention, and memory window have been fixed. Concrete branch packets may report the same condition as a certified Jacobian floor such as $J_0$ or $\nu_J$. The existence of a positive floor is part of simple-root admissibility; its numerical value belongs to the branch-chart or validation record, not to the universal parameter ledger. It is not a coordinate parameter and cannot be removed by relabeling the same history.
+For self-hits the shared root function hides extra geometry. When $i=j$, a root means the worldline has re-entered its own expanding wake. In general that is a condition on the curvature, torsion, and return geometry of the path, not a speed test. A segment faster than the wake speed is a warning that self-hit roots may exist, but the accepted branch is still defined by root existence together with the transversality floor and the retained transmitter-side weight.
 
-Topologically, a generic loss of this floor is a codimension-one fold of the causal-root manifold: two simple roots can merge into one degenerate root, or a simple root can be born at a caustic boundary. The floor is therefore not merely an analytic small-denominator guard. It certifies that the branch count and causal-root topology are stable on the retained chart; when it fails, the event must be treated as a root bifurcation, reconnection, or chart transition.
+#### What the floor is, and is not
 
-The corresponding root caustic set for a pair of histories is
+$\kappa_{\mathrm{hit}}$ is not a universal coupling constant and not the regularization width $\eta$. It is a declared positive lower bound for one retained branch chart, certificate, or regularized model, after units, root labels, endpoint convention, and memory window have been fixed. Branch packets may report the same condition as a certified Jacobian floor such as $J_0$ or $\nu_J$. Having a positive floor is part of admissibility; its numerical value belongs to the branch record rather than the universal parameter ledger. It cannot be removed by relabeling.
+
+The floor protects local continuation of admitted simple roots under smooth changes of the histories and reception event. Stability of the complete root count requires more: a complete root inventory on the retained interval and control preventing roots from crossing its endpoints. On a compact interval, simplicity prevents roots from merging in the interior, while endpoint separation prevents them from entering or leaving through the boundary. Together these conditions keep the count fixed along a smooth connected family. A root can otherwise leave a selected history window while remaining perfectly simple; that changes the retained count without creating a physical singularity. The separate boundary and simple-root conditions are stated in the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#delay-map-theorem-pack-formalized).
+
+The caustic set for a pair of histories is
+
 $$
 \Sigma_{ij}
 =
@@ -983,29 +1180,30 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-177db29a2a4a5a62)
-On a generic one-parameter branch this is a Whitney fold, or $A_2$ singularity, of the root map $T_t\mapsto F_{ij}(T,T_t)$. Higher events such as a cusp, where $\partial_{T_t}^2F_{ij}=0$ also holds, are codimension-two alarms for branch-pair creation, annihilation, or merger of fold events. In simulation language, fold contact is the first warning that the Jacobian floor has failed; cusp contact is a stronger warning that the local branch-count catalogue itself is changing.
 
-This is one instance of a broader foundation-stack discipline: **non-degeneracy floors** convert exact failure sets into graded admissibility certificates. The root Jacobian floor here, the basin-separatrix floor in [Emergence](../../../../markdown/aaa/foundations/emergence-of-structure.md#context-as-constraint-on-basin-selection), and the basis-conditioning floor in [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#reconstruction-existence-lemma) serve the same role for different objects. They are certificate margins attached to declared charts, not universal constants.
+where the root condition holds and its derivative actually vanishes. An ordinary **Whitney fold** additionally has a nonzero second emission-time derivative and a control that crosses the singular set transversely. It has one double root at contact; crossing it creates or destroys a pair of simple roots. Such folds are codimension one in generic families, so a single control can encounter them. A cusp also requires a vanishing second derivative and further nondegeneracy and unfolding conditions; ordinary cusps are codimension two in generic families. Higher singularities require their own analysis. These are statements about actual singular roots, not diagnoses obtained merely by crossing a chosen positive numerical floor.
 
-The interaction law is built entirely from path-history contributions at emission times $T_t < T_r$ that satisfy the causal-root condition; $\mathbb{A}\mathbb{A}\mathbb{A}$ contains no advanced or instantaneous interaction terms. This delayed-only support condition is a law-level causal asymmetry, not merely an initial-condition effect.
+This is one instance of a discipline running through the foundations: **non-degeneracy floors turn exact failure sets into graded admissibility certificates.** The root Jacobian floor here, the basin-separatrix floor in [Emergence](../../../../markdown/aaa/foundations/emergence-of-structure.md#context-as-constraint-on-basin-selection), and the basis-conditioning floor in [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md#reconstruction-existence-lemma) all do the same job for different objects. They are margins attached to declared charts, not universal constants.
 
-There are **no instantaneous actions-at-a-distance** and **no advanced potentials**.
+The interaction law is built entirely from emission times $T_t<T_r$ satisfying the root condition. There are no advanced terms and no instantaneous action at a distance. This delayed-only support is a law-level asymmetry, not an artifact of initial conditions.
 
-This gives the postulate a hard failure wall. Postulate 1 fails if any accepted substrate-level interaction requires support from $T_t > T$, instantaneous coupling at spatial separation, or a clock-rate field that enters the receiving law as an independent substrate variable rather than as a derived assembly readout. Observer-level proper time, clock dilation, and effective metric lapse may still be recovered, but they cannot be promoted into a second fundamental time parameter without replacing the postulate.
+That gives the postulate a hard failure wall. **Postulate 1 fails** if any accepted substrate interaction requires support from $T_t>T$, instantaneous coupling across separation, or a clock-rate field entering the receiving law as an independent substrate variable rather than a derived readout. Observer-level proper time, clock dilation, and effective lapse may all be recovered, but none may be promoted into a second fundamental time without replacing the postulate.
 
 ### Path History and Non-Markovian Memory
 
-A critical feature of $\mathbb{A}\mathbb{A}\mathbb{A}$ is that **all interactions are mediated by path history**. The present receiver does not respond to an instantaneous distant object. It responds to the cumulative causal wake surfaces that reach it from prior emission events.
+All interactions are mediated by path history. A receiver does not respond to an instantaneous distant object. It responds to the wake surfaces reaching it from prior emissions.
 
-At time $T$, an architrino at position $\mathbf X(T)$ receives wake contributions where its worldline intersects **causal wake surfaces** emitted at all past times $T_t < T$; through the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), those received wakes determine receiver-local acceleration rather than a primitive force. This gives rise to **non-Markovian memory effects**, including the self-hit regime where an architrino interacts with its own past emissions.
+At time $T$, an architrino receives contributions wherever its worldline meets wake surfaces emitted at past times $T_t<T$; through the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) those receptions determine acceleration directly, with no primitive force involved.
 
-Because $T$ is universal and absolute, the past (all $T_t < T$) is unambiguous, and the theory can sum or integrate over admissible delayed contributions. This allows for a mechanistic model of interaction without invoking action-at-a-distance, while still permitting **deterministic multistability** at self-hit thresholds.
+This makes the dynamics **non-Markovian** in an instantaneous-state description: the future depends on the retained history required by the admitted root domain rather than on the present state alone. The canonical unbounded-history model may retain roots from arbitrarily early emissions; any finite-memory approximation must declare its cutoff. The same statement includes the self-hit regime, where an architrino interacts with its own past emissions.
+
+Because $T$ is universal, the past is unambiguous, and contributions can be summed over it without needing to say whose past is meant. That is what allows a mechanistic model of interaction without action at a distance, while still permitting deterministic multistability at self-hit thresholds.
 
 ### Provenance and Identity Through Time
 
-Each architrino carries a unique **provenance** record tied to its worldline history. That provenance is strictly monotone in $T$: exchanging records is not a mere relabeling but an operation that changes the physical history of the participating entities. Any bookkeeping, conservation statement, or coarse-graining must explicitly state when provenance has been suppressed or when identical-looking exchanges are being treated at the effective level.
+Each architrino carries a **provenance** record tied to its worldline, strictly monotone in $T$. Exchanging two records is not relabeling; it changes the physical history of the participants. Any bookkeeping, conservation statement, or coarse-graining must say explicitly when provenance has been suppressed.
 
-Consequently, an exact global flip or permutation of architrinos is not a substrate symmetry unless it preserves the full path-history and causal-wake record. Schematically, if a universe state is written as
+So an exact permutation of architrinos is not a substrate symmetry unless it preserves the full history record. Writing a universe state as
 
 $$
 \mathbb{U}_{\text{now}}\equiv S(T)
@@ -1015,36 +1213,33 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-791f39811d866128)
 
-where $H_i(T)$ denotes the path-history and provenance record carried by architrino $i$, then a proposed exchange is exact only when it preserves the instantaneous data and the corresponding $H_i(T)$ records. Generic architrinos are therefore not interchangeable at the ontic level even when finite observers can treat their exposed properties as effectively identical.
+with position, velocity, polarity, and history record $H_i(T)$ for each architrino, a proposed exchange is exact only if it preserves both the instantaneous data *and* the histories. Generic architrinos are not interchangeable at the substrate level, even where observers can treat their exposed properties as identical.
 
-For same-polarity exchange and downstream fermionic-statistics claims, the history record must be read jointly, not as a set of independent single-worldline ledgers. A braid can preserve endpoint data while changing the relative framing or linking class of the exchanged worldlines. Exact exchange therefore requires preservation of the joint path-history record, including relative framing, linking, and any protected framed self-linking row such as $Lk=\operatorname{Wr}+\operatorname{Tw}$ when that row is part of the branch certificate. If the joint framed or linking class changes, the exchange is a different substrate branch, not a hidden exact permutation symmetry.
+For same-polarity exchange and any downstream claim about fermionic statistics, the histories must be read **jointly** rather than as independent single-worldline ledgers. This matters because a braid can preserve every endpoint while changing how the strands wind around each other. Exact exchange therefore requires preserving the joint record, including relative framing, linking, and any protected row such as $Lk=\operatorname{Wr}+\operatorname{Tw}$ when it is part of the branch certificate. If the joint class changes, the exchange is a different branch, not a hidden symmetry.
 
-Equivalently, exact exchange acts on connected components of the configuration space of framed worldline strands, not merely on the symmetric group of endpoint labels. A same-polarity permutation is exact only in the identity-component stabilizer of the joint framed-braid data. Provenance leakage is therefore expected whenever an exchange path crosses between components of framed-braid space, even if a finite observer cannot resolve the endpoint-preserving difference.
+Equivalently, exact exchange acts on connected components of the configuration space of framed strands, not merely on permutations of endpoint labels. A same-polarity permutation is continuously connected to doing nothing only when an allowed path stays in the same component. Crossing to another component invalidates that continuity argument; whether an observer sees leakage is a separate quantitative question about the projection map.
 
-The architrino-specific identity claim is developed further in [Architrino](../../../../markdown/aaa/foundations/architrino.md).
+The identity claim is developed further in [Architrino](../../../../markdown/aaa/foundations/architrino.md).
 
 ### Geodesics and the Absence of Temporal Dynamics
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, time itself has no internal structure or dynamics. It does not encode forces, curvature, or acceleration of any kind.
+Time carries fixed ordering and duration structure, with no independent temporal dynamics. The interval rule $|T_2-T_1|$ measures separation along the time line; the corresponding squared-duration form is $dT\otimes dT$. This is a fixed mathematical structure, not a field that responds to matter or changes the rate of a physical clock.
 
-- The **flow of time** is trivial: the parameter advances uniformly, and there is no geodesic equation to solve because no metric or connection is declared on the bare time line.
-- All **accelerations** (and any assembly-level effective forces) arise from:
-  - **Causal wakes** acting within the fixed Euclidean void.
-  - **Self-interaction** of extended assemblies, such as the self-hit regime of binaries.
+On the one-dimensional time factor, the flat affine connection preserving $dT$ has zero connection coefficient in the $T$ coordinate. Its geodesic equation, $d^2T/ds^2=0$ for an auxiliary affine parameter $s$, simply describes constant-rate parametrizations of the same line. It supplies no independent evolution law for time itself. The full product connection that also compares spatial vectors across time slices is additional substrate data, as explained in [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md#the-connection-is-additional-substrate-data).
 
-They do **not** arise from any curvature or dynamics of the time coordinate itself.
+Every substrate acceleration arises from admitted causal-root contributions, including same-transmitter self-hits of an individual architrino and the combined self- and partner-hit ledgers of assemblies. None arises from curvature or dynamics of the time coordinate. The absence of temporal dynamics means there is no independent dynamical temporal metric or connection to solve for; it does not remove the fixed duration structure.
 
-**Comparison to General Relativity:** In GR, time is part of a dynamical spacetime manifold that curves in response to stress-energy. Here, time is **fixed and non-dynamical**. Any observer-level clock dilation, lapse effect, or effective metric curvature observed in experiments must emerge from assembly dynamics, causal wakes, and Noether sea response within this fixed temporal framework. The comparison does not deny relativistic phenomenology; it assigns that phenomenology to an effective recovery layer rather than to fundamental time.
+**Comparison with general relativity.** There, time is part of a dynamical spacetime that curves in response to energy and momentum. Here it is fixed and non-dynamical. Every observed clock dilation, lapse effect, and curvature must emerge from assembly dynamics, wakes, and medium response inside this fixed framework. The comparison does not deny relativistic phenomenology; it assigns it to a recovery layer rather than to fundamental time.
 
 ### Distinction from Relativistic Time
 
 | **Feature** | **Absolute Time ($\mathbb{A}\mathbb{A}\mathbb{A}$)** | **Relativistic Time** |
 |:---|:---|:---|
 | **Manifold** | $\mathbb{R}$ (1D, separate from space) | Part of 4D spacetime with Lorentzian metric |
-| **Universality** | Universal, frame-independent clock | Relative; different observers measure different intervals |
+| **Universality** | Universal ordering parameter and duration scale | Coordinate-time assignments depend on frame; proper time depends on the path |
 | **Simultaneity** | Absolute and global | Relative; depends on observer's frame |
-| **Duration** | Frame-independent | Frame-dependent; proper time varies with velocity and gravity |
-| **Dilation** | None at kinematic level | Yes; $d\tau = \sqrt{1 - v^2/c^2} \, dt_{\mathrm{eff}}$ |
+| **Duration** | One substrate interval for two events | Coordinate-time separation is frame-dependent; proper time along a fixed worldline is invariant |
+| **Dilation** | None at kinematic level | Yes; in flat inertial coordinates, $d\tau = \sqrt{1 - v^2/c^2} \, dt_{\mathrm{eff}}$ |
 | **Mixing with Space** | No; time and space strictly separate | Yes; Lorentz boosts mix $t_{\mathrm{eff}}$ and $x_{\mathrm{eff}}^i$ |
 | **Causal Structure** | Defined by temporal ordering plus finite propagation speed $c_f$ | Encoded in the metric via lightcones |
 | **Background Dynamics** | Non-dynamical | Dynamical; Einstein's equations |
@@ -1055,62 +1250,83 @@ They do **not** arise from any curvature or dynamics of the time coordinate itse
 
 ## Euclidean Void
 
-Start with the thing that does not change. The Euclidean void is the fixed spatial container in $\mathbb{A}\mathbb{A}\mathbb{A}$. It supplies location, distance, volume, and spatial derivatives. It does not supply matter, curvature, expansion, memory, or dynamical response.
+Start with the thing that does not change.
 
-The main separation is the whole point of this chapter. The Euclidean void is the container. The Noether sea is physical content inside the container. Effective spacetime is the observer-level geometry reconstructed from assemblies, wakes, clocks, rulers, and signals. This chapter defines the first layer and keeps it from being confused with the other two.
+The **Euclidean void** is the fixed space that everything in $\mathbb{A}\mathbb{A}\mathbb{A}$ happens inside. It is ordinary three-dimensional Euclidean geometry — straight lines, fixed angles, and the familiar distance formula. It supplies location, distance, volume, and directions. It supplies nothing else: no matter, no curvature, no expansion, no memory, and no response of any kind to what happens in it. Physical rulers belong to the effective observer layer and need not reproduce that geometry until their response has been derived.
 
-The order is deliberately simple. First fix the geometry. Then explain how coordinates and event identity work in that geometry. Then mark the boundary where the story leaves the void and becomes medium dynamics, effective metric closure, or observational inference.
+The void is a stage, and it is a stage that never moves.
 
-This page is also a guardrail for cosmology and gravity language. If a later chapter speaks about expansion, curvature, lensing, or clock redshift, the first question is not "what did space do?" The first question is which contents, transport histories, clocks, rulers, or observer reconstructions changed inside the fixed Euclidean void.
+### Three layers that get confused
+
+Almost every mistake in this area comes from collapsing three different things into one word. Keeping them apart is the whole point of this chapter.
+
+**The Euclidean void** is the container. Fixed, flat, featureless, permanent.
+
+**The [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md)** is physical content sitting inside the container — a population of neutral bound structures that fills space and responds to what passes through it. It is stuff *in* the void, never the void itself.
+
+**Effective spacetime** is the geometry an observer reconstructs from how clocks, rulers, and signals actually behave. It is a description built from measurements, and it can be curved even though the container underneath is not.
+
+So when a later chapter discusses expansion, curvature, gravitational lensing, or redshift, the first question is never "what did space do?" Space did nothing. The question is which contents moved, which transport histories changed, and which clocks and rulers responded differently — all inside a container that stayed exactly as it was.
+
+The order below is deliberate. First fix the geometry. Then explain how coordinates and the identity of a place work in that geometry. Then mark the boundary where the story stops being about the container and becomes medium dynamics, effective geometry, or observational inference.
 
 ### Core Concept
 
-The Euclidean void is three-dimensional, continuous, flat, and non-dynamical. It is the arena in which architrinos move and interact. It does not curve, expand, contract, or respond to matter.
+The Euclidean void is three-dimensional, continuous, flat, and non-dynamical. It is the arena in which [architrinos](../../../../markdown/aaa/foundations/architrino.md) — the point entities that are the sole fundamental objects of the theory — move and interact. The void does not curve, expand, contract, or respond to matter.
 
-That statement is stronger than a coordinate convenience. Curvature-like behavior in $\mathbb{A}\mathbb{A}\mathbb{A}$ is recovered from assembly and medium dynamics inside the fixed background. It is not assigned to the background itself.
+That is stronger than a convenient choice of coordinates. Curvature-like behavior in $\mathbb{A}\mathbb{A}\mathbb{A}$ is recovered from the dynamics of assemblies and the medium *inside* a fixed background. It is never assigned to the background.
 
 Space is **homogeneous** and **isotropic**:
 
-- Homogeneous: every location is equivalent.
-- Isotropic: every direction is equivalent.
+- Homogeneous: every location is equivalent. Nowhere is special.
+- Isotropic: every direction is equivalent. No direction is special.
 
-These are claims about the container only. They are not claims that the material contents are evenly distributed. A dense region, a galaxy, or a disturbed Noether sea cell can break the symmetry locally as content. The void underneath it remains homogeneous and isotropic.
+These are claims about the container only, and the distinction matters. They do not say the *contents* are evenly spread. A dense region, a galaxy, or a disturbed patch of Noether sea breaks the symmetry locally — but it breaks it as content. The void underneath remains homogeneous and isotropic, exactly as an empty stage remains flat regardless of where the actors stand.
 
-This is why cosmological expansion, light bending, orbital precession, and other curvature-like observations must be recovered as dynamics of the Noether sea and assemblies within the void. They are not metric expansion or curvature of the void itself.
+This is why cosmological expansion, the bending of starlight, the precession of orbits, and every other curvature-like observation must be recovered here as the behavior of the Noether sea and of assemblies within the void. They are not expansion or curvature of the void itself.
 
 ### Manifold and Metric
 
 The mathematical model is ordinary three-dimensional Euclidean space:
+
 $$
 \mathbb{R}^3
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2a1f8accd97364ee)
 
-A location is represented by a point
+meaning the set of all triples of real numbers, which is to say every point you can reach by specifying three coordinates.
+
+A location is a point
+
 $$
 \mathbf X=(X,Y,Z)\in\mathbb{R}^3
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7b33e6104d1b8fa5)
-or in index notation by $X^i$ where $i\in\{1,2,3\}$.
 
-The metric is fixed:
+or, in index notation, $X^i$ where $i$ runs over $\{1,2,3\}$ and simply selects which of the three coordinates you mean.
+
+A **metric** is the rule that turns coordinate differences into a distance. Here it is fixed:
+
 $$
 h_{ij}=\delta_{ij}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-eb347191b1cc582e)
-where $\delta_{ij}$ is the Kronecker delta.
 
-The spatial line element is therefore
+where $\delta_{ij}$ is the **Kronecker delta** — a bookkeeping symbol equal to $1$ when its two indices match and $0$ when they differ. Setting the metric equal to it is the compact way of saying "measure distance the ordinary way, with no stretching, no shearing, and no mixing between directions."
+
+Written out, the distance across an infinitesimal step is
+
 $$
 d\ell^2=h_{ij}\,dX^i dX^j=dX^2+dY^2+dZ^2
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-46e34d3a62d1491e)
 
-The distance between two points $\mathbf{p}$ and $\mathbf{q}$ is
+which is Pythagoras in three dimensions, and the distance between two points $\mathbf{p}$ and $\mathbf{q}$ is
+
 $$
 d(\mathbf{p},\mathbf{q})=
 \sqrt{(X_p-X_q)^2+(Y_p-Y_q)^2+(Z_p-Z_q)^2}
@@ -1118,7 +1334,10 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f321b89253b61c9a)
 
-For fixed void points, this distance does not change with time. Equivalently, with
+the same formula, applied across a finite gap.
+
+For two fixed points of the void, that distance never changes. Writing the metric-based distance as
+
 $$
 D_h(\mathbf{p},\mathbf{q})
 =
@@ -1126,7 +1345,9 @@ D_h(\mathbf{p},\mathbf{q})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-210385bea416c949)
-the substrate condition is
+
+the substrate commitment is three statements at once:
+
 $$
 \partial_T h_{ij}=0,
 \qquad
@@ -1136,9 +1357,13 @@ R^i{}_{jkl}(h)=0,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-850d59a011af5621)
-The consequence is immediate: a cosmological scale variable cannot be a time-dependent scale factor multiplying the void metric. It must be an effective summary of medium state, transport history, or observer records.
 
-This gives a clean accounting identity for later effective geometry:
+The first says the metric does not change with absolute time. The second says the **Riemann curvature tensor** vanishes — that object measures the local failure of parallel transport to return a vector unchanged around an infinitesimal loop. Its vanishing makes the metric locally flat; together with the declared global space $\mathbb{R}^3$ and its Euclidean metric, it gives the global flat geometry used here. The third says the distance between any two fixed points is constant forever.
+
+One consequence follows immediately and matters enormously for cosmology. A cosmological scale variable cannot be a time-dependent factor multiplying this metric, because the metric has no time dependence at all. Whatever a scale factor turns out to be here, it must be a summary of the medium's state, of transport history, or of what observers recorded — never a property of the container.
+
+That gives a schematic dependency map for effective geometry:
+
 $$
 \mathcal{R}^{\mathrm{eff}}[g^{\mathrm{eff}}]
 =
@@ -1152,98 +1377,121 @@ O,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c16f849710508169)
-The void contribution is exactly zero. Effective curvature, effective expansion, and effective anisotropy may still be recovered from Noether sea state, assembly clock/ruler response, signal transport, and observer reconstruction. They just cannot be charged to the Euclidean container.
 
-The zero term is also a topology-and-bundle statement. Because the void is $\mathbb{R}^3$, it is contractible and parallelizable; its oriented orthonormal frame bundle is globally trivial,
+Read it as a budget. Whatever effective curvature an observer measures is accounted for by the Noether sea state $\mathcal{N}_{\mathrm{sea}}$, by the observer's own records $O$, and by how clocks, rulers, and signals responded. The container's contribution is the last term, and it is exactly zero. Effective curvature, expansion, and anisotropy may all be recovered — they simply cannot be charged to the void.
+
+#### Why the void cannot hide curvature in its topology
+
+There is a subtler way a background could smuggle in geometry, and it is worth closing off explicitly.
+
+Because the void is $\mathbb{R}^3$, it is **contractible** — it can be continuously shrunk to a single point, so it has no holes, handles, or loops that cannot be undone. It is also **parallelizable**, meaning you can lay down a consistent set of reference directions everywhere at once without them tangling. After choosing a reference spatial orientation, its oriented orthonormal frame bundle — the collection of ordered perpendicular unit axes at each point with the chosen handedness — is therefore globally trivial:
+
 $$
 F(\mathbb{R}^3)\cong \mathbb{R}^3\times SO(3),
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9c718bbca3ed6ab9)
-and the unoriented orthonormal bundle (fiber $O(3)$) and full frame bundle (fiber $GL(3)$) are likewise trivial over $\mathbb{R}^3$. The flat Levi-Civita connection therefore has trivial holonomy. The container has no ambient bundle curvature, monodromy, or topological obstruction that can secretly supply effective curvature or an assembly label.
 
-> **Plain language:** The void is the ordinary three-dimensional space of rulers and straight-line distance. What changes is the content moving through it, not the space itself.
+which says that structure is just space paired with rotations, with no twisting between the two. The orientation choice is conventional and assigns no physically preferred handedness to the void. The full orthonormal frame bundle includes both handedness classes and has $O(3)$ in place of $SO(3)$. The same triviality holds for that full bundle and the general frame bundle.
+
+The payoff is that the flat connection has trivial **holonomy**: carry a direction around any closed loop in the void and it comes back unrotated. There is no ambient twisting, no path-dependence, and no topological feature the container could use to secretly supply curvature or to label an assembly. If topological protection appears anywhere in this theory, it comes from the configurations inside the void, never from the void.
 
 ### Flat Geometry and Topology
 
-Formally, the Euclidean void is the Riemannian manifold $(\mathbb{R}^3,h)$ with flat metric $h_{ij}=\delta_{ij}$.
+Formally, the Euclidean void is the Riemannian manifold $(\mathbb{R}^3,h)$ with flat metric $h_{ij}=\delta_{ij}$ — "manifold" meaning a space that looks like ordinary flat space in any small neighborhood, "Riemannian" meaning it comes equipped with a rule for measuring distance.
 
-Its curvature tensors vanish identically:
+Every measure of curvature vanishes identically:
 
-- Riemann curvature tensor: $R^i{}_{jkl}=0$.
-- Ricci tensor: $R_{ij}=0$.
-- Scalar curvature: $R=0$.
+- The Riemann curvature tensor, which detects rotation around a loop: $R^i{}_{jkl}=0$.
+- The Ricci tensor, a contraction of it that governs how volumes converge: $R_{ij}=0$.
+- The scalar curvature, a single number summarizing the whole: $R=0$.
 
-The Levi-Civita connection $\nabla$ is compatible with the metric,
+The **Levi-Civita connection** $\nabla$ — the rule for comparing vectors at different points, which is what "parallel" means in a curved setting — is compatible with the metric,
+
 $$
 \nabla h=0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-574414a3aaaead6d)
-and is torsion-free. In Cartesian coordinates, all Christoffel symbols vanish:
+
+meaning lengths and angles do not change under parallel transport. It is also torsion-free: infinitesimal displacement directions close without the antisymmetric defect measured by torsion. In Cartesian coordinates all its **Christoffel symbols** — the correction terms that appear when coordinates themselves curve — vanish:
+
 $$
 \Gamma^i{}_{jk}=0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-598cf92bc0cace33)
 
-For the declared flat Levi-Civita connection, the geodesic equation in Cartesian coordinates becomes
+A **geodesic** is the straightest available path. With no correction terms, its equation collapses to
+
 $$
 \frac{d^2X^i}{ds^2}=0,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2af01472cd367095)
-with $s$ Euclidean arclength, so its solutions are straight lines.
 
-Topologically, the void stays $\mathbb{R}^3$: contractible, simply connected, and without substrate-level topology change. The interesting topology is not in the container. It is in architrino worldlines and assembly configurations inside the container.
+with $s$ measuring arclength along the path. Zero second derivative means constant direction, so the solutions are straight lines — which is the expected answer, and its arriving without effort is the point.
 
-Consequently, topological protection in $\mathbb{A}\mathbb{A}\mathbb{A}$ is not supplied by nontrivial cycles or torsion in the ambient container. Linking, framing, and assembly topological charge labels are invariants of worldline and braid configurations inside a trivial ambient space. Their protection must come from branch-preserving deformation barriers, causal-root folds, collision or transversality floors, and finite action or energy gaps.
+Topologically the void stays $\mathbb{R}^3$ throughout: contractible, simply connected, with no substrate-level topology change ever. The interesting topology in this theory is not in the container. It is in the paths architrinos trace and the configurations assemblies adopt inside it.
+
+That has a consequence for how stability works. The ambient void contains many closed loops, but every such loop can be contracted to a point; the void itself supplies no nontrivial loop class or twist. Linking, framing, and topological charge labels instead belong to collision-excluded worldline and braid configuration spaces embedded in that trivial container. Their dynamical protection requires branch-preserving deformation barriers, collision and transversality floors, and finite gaps in action or energy.
 
 ### Canonical Coordinates and Event Identity
 
-Coordinates are names for fixed substrate locations. The void itself does not come with painted axes or a built-in origin. Once a chart is chosen for calculation, the canonical spatial chart is a fixed Cartesian coordinate system
+Coordinates are names for fixed locations. The void does not arrive with painted axes or a built-in origin — you choose a chart, and the choice is yours. Once chosen for a calculation, the canonical spatial chart is a fixed Cartesian system
+
 $$
 \mathcal{C}=\{X,Y,Z\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-05df58e99bd76a4a)
-on the Euclidean void.
 
-This differs from General Relativity. In GR, coordinates may function as gauge labels under diffeomorphism invariance. In $\mathbb{A}\mathbb{A}\mathbb{A}$, once a Cartesian chart has been declared, it names fixed spatial locations in the substrate. The chart is still just a representation for components and simulation addresses; it is not an extra ontological ingredient. Coordinate points do not move, curve, or stretch.
+laid over the void.
 
-This gives a plain rule for spatial identity:
+Here is a sharp difference from **General Relativity**, the established theory in which gravity is represented by a dynamical spacetime metric. In both frameworks coordinate labels are conventional: a smooth relabeling does not change the physical point. $\mathbb{A}\mathbb{A}\mathbb{A}$ adds a fixed substrate identity of place, represented by the canonical product structure and its rest connection. Once a Cartesian chart is declared, one label names one fixed void point throughout the calculation, but the physical identity belongs to that point, not to the written coordinates.
 
-- The point $(X_0,Y_0,Z_0)$ is the same spatial location at every absolute time $T$.
-- The events $(T_1,X_0,Y_0,Z_0)$ and $(T_2,X_0,Y_0,Z_0)$ occur at the same spatial location at two different instants.
-- Local Noether sea density, architrino occupancy, and assembly configuration may change there without changing the identity of the underlying void point.
+That gives a plain rule for what it means to be the same place:
 
-Fixed identity matters whenever a calculation needs provenance. Self-hit diagnostics, path-history bookkeeping, and simulations must know where a wake was emitted and where it is later received.
+- The point $(X_0,Y_0,Z_0)$ is the same location at every absolute time $T$.
+- The events $(T_1,X_0,Y_0,Z_0)$ and $(T_2,X_0,Y_0,Z_0)$ happen at the same place, at two different instants.
+- What occupies that place — Noether sea density, an architrino, an assembly — may change completely without changing the identity of the underlying point.
 
-For a received wake contribution, the provenance record keeps the transmitter identity, emission time, emission location, receiver identity, reception time, and reception location:
+Fixed identity of place matters whenever a calculation needs to know where something came from. Because architrinos interact through delayed signals, every calculation must track where a [wake](../../../../markdown/aaa/foundations/architrino.md) — the expanding record an architrino leaves behind as it moves — was emitted, and where it was later received.
+
+For one received contribution, the provenance record keeps six things: transmitter identity, emission time, emission location, receiver identity, reception time, reception location.
+
 $$
 (j,T_t,\mathbf X_j(T_t),i,T_r,\mathbf X_i(T_r))
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c484874c67d67d6b)
-The causal-root condition is then
+
+and the condition tying them together — the **causal root** condition, stating that the expanding wake has grown exactly large enough to reach the receiver right now — is
+
 $$
 \|\mathbf X_i(T_r)-\mathbf X_j(T_t)\|_h=c_f(T_r-T_t)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4b138a54485d4700)
-This condition is invariant under Euclidean translations and rotations of the chosen chart. The chart may be changed for calculation, but relabeling does not move the underlying void point where the emission occurred.
+
+reading as: the distance from where the transmitter was to where the receiver is equals the wake speed $c_f$ multiplied by the time in flight.
+
+That condition is unchanged if you translate or rotate your chart, because both operations preserve distance. You may relabel freely; relabeling does not move the point where the emission actually happened.
 
 ### Curvilinear Coordinates
 
-Cartesian coordinates are the natural default, but flat Euclidean geometry can be written in other coordinates when a problem calls for them.
+Cartesian coordinates are the natural default, but the same flat geometry can be written in other coordinate systems when a problem has a symmetry worth exploiting.
 
-In spherical coordinates $(r,\theta,\phi)$ with $r\geq0$, $\theta\in[0,\pi]$, and $\phi\in[0,2\pi)$,
+Spherical coordinates $(r,\theta,\phi)$ label a point by distance from the origin, polar angle, and azimuth. The usual parameter ranges $r\geq0$, $\theta\in[0,\pi]$, and $\phi\in[0,2\pi)$ cover space with repeated angular labels at the origin and polar axis. For a regular coordinate chart, restrict to $r>0$, $0<\theta<\pi$, and an open azimuth interval such as $0<\phi<2\pi$. This also removes a chosen angular seam. On that chart,
+
 $$
 h=dr^2+r^2d\theta^2+r^2\sin^2\theta\,d\phi^2
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e44e96583aa67435)
+
 with components
+
 $$
 h_{ij}=
 \begin{pmatrix}
@@ -1255,7 +1503,8 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-30c4fd8263c17e84)
 
-In cylindrical coordinates $(\rho,\phi,z)$,
+In cylindrical coordinates $(\rho,\phi,z)$, a regular chart similarly requires $\rho>0$, $z\in\mathbb R$, and an open azimuth interval such as $0<\phi<2\pi$. On that chart,
+
 $$
 h=d\rho^2+\rho^2d\phi^2+dz^2,
 \qquad
@@ -1269,24 +1518,30 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-468ca128cc62b125)
 
-The metric components look different in these coordinates, but the geometry has not changed. Curvature is coordinate-invariant, and
+The spherical matrix has determinant $r^4\sin^2\theta$, and the cylindrical matrix has determinant $\rho^2$. Their vanishing at the excluded origin or axes records a failure of the coordinate labels: at a spherical pole, for example, every azimuth names the same point. The Euclidean metric itself remains nondegenerate there. Use Cartesian coordinates or an overlapping regular chart at those locations and across the chosen angular seam; formulas requiring an inverse metric apply only where the chart is regular.
+
+The components look different, and that is worth being unbothered by. The $r^2$ appears because a step in angle covers more distance when you are further out — a fact about the labelling, not about the space. The geometry is untouched, and curvature is independent of the labels used to describe it, so
+
 $$
 R^i{}_{jkl}=0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2eb51da7a56c1da7)
-in every coordinate system.
+
+on every regular coordinate chart, including Cartesian charts through the locations excluded by these spherical or cylindrical coordinates.
 
 ### Index Notation and Tensor Operations
 
-Use Cartesian core indices $i,j,k\in\{1,2,3\}$ for spatial components. In these coordinates, the Euclidean metric and its inverse are
+Use Cartesian indices $i,j,k\in\{1,2,3\}$ for spatial components. In these coordinates the metric and its inverse are both the Kronecker delta:
+
 $$
 h_{ij}=\delta_{ij},\qquad h^{ij}=\delta^{ij}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d0b2005a6df8c8df)
 
-Raising and lowering indices then changes notation but not the component value:
+Raising and lowering an index — moving it between the upper and lower position, which in a general geometry mixes components together — therefore changes only the notation:
+
 $$
 v_i=h_{ij}v^j=\delta_{ij}v^j=v^i,
 \qquad
@@ -1295,7 +1550,10 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-71dc410249cdad23)
 
-The dot product and norm are
+The numbers are identical either way. This is a convenience specific to a flat metric in Cartesian coordinates, and it is why the distinction between upper and lower indices can look pedantic here while mattering a great deal elsewhere.
+
+The dot product and norm come out as expected:
+
 $$
 \mathbf{u}\cdot\mathbf{v}
 =h_{ij}u^i v^j
@@ -1303,27 +1561,31 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-abd08a67822fb8bb)
+
 and
+
 $$
 \|\mathbf{v}\|^2=h_{ij}v^i v^j=(v^1)^2+(v^2)^2+(v^3)^2
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5e93be160258d5eb)
 
-The spatial volume element in Cartesian coordinates is
+The volume element in Cartesian coordinates is
+
 $$
 dV=\sqrt{\det h}\,d^3X=dX\,dY\,dZ
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5f60583bc4888534)
 
-Surface elements pick up the usual Jacobian factors when parametrized, for example $dA=r^2\sin\theta\,d\theta\,d\phi$ on a constant-$r$ sphere.
+where $\sqrt{\det h}$ is the factor correcting for coordinates that stretch space unevenly. In Cartesian coordinates it equals one, so the correction disappears. Surface elements pick up the usual factors when parametrized — on a sphere of constant radius, $dA=r^2\sin\theta\,d\theta\,d\phi$.
 
 ### Spatial Differential Operators
 
-Because the metric is Euclidean, the tensor formulas specialize to the familiar vector-calculus operators.
+Because the metric is Euclidean, the general tensor formulas collapse into the vector calculus operators of ordinary three-dimensional analysis.
 
-The gradient of a scalar field is
+The gradient of a scalar field, pointing in the direction of steepest increase, is
+
 $$
 \nabla f=
 \left(
@@ -1336,7 +1598,8 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0c325814536b5ba3)
 
-The divergence of a vector field is given by the invariant formula
+The divergence of a vector field, measuring how much it spreads outward from a point, has the general invariant form
+
 $$
 \nabla\cdot\mathbf{v}
 =\frac{1}{\sqrt{\det h}}\partial_i\left(\sqrt{\det h}\,v^i\right)
@@ -1344,7 +1607,8 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7c557c9deebfbdb2)
 
-In Cartesian coordinates $\sqrt{\det h}=1$, so this reduces to
+In Cartesian coordinates $\sqrt{\det h}=1$, so the correction factors cancel and it reduces to a plain sum of derivatives:
+
 $$
 \nabla\cdot\mathbf{v}
 =\partial_i v^i
@@ -1353,7 +1617,8 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4a03ae6e0da85106)
 
-The scalar Laplacian in Cartesian coordinates is
+The scalar Laplacian, which compares a value at a point with its average nearby, is
+
 $$
 \Delta f=\nabla^2 f=h^{ij}\partial_i\partial_j f
 =\partial_{X^1}^2f+\partial_{X^2}^2f+\partial_{X^3}^2f
@@ -1361,7 +1626,8 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b7c27fb402defd01)
 
-In curvilinear coordinates on the same flat geometry, the invariant scalar Laplacian is
+and on the same flat geometry written in curvilinear coordinates it keeps its invariant form
+
 $$
 \Delta f
 =
@@ -1370,113 +1636,134 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a0c3372a6954c172)
 
-The tensor expressions are the invariant statements. The component formulas change with the chosen chart.
+The tensor expressions are the invariant statements; the component formulas change with the chart. When the two seem to disagree, the chart changed and the geometry did not.
 
 ### Homogeneity, Isotropy, and the Euclidean Group
 
-The symmetry group of the Euclidean void is the full Euclidean group:
+The symmetry group of the void — the complete set of transformations that leave distances unchanged — is the Euclidean group:
+
 $$
 E(3)=\mathbb{R}^3\rtimes O(3)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9bf150987f7a71fc)
 
-This combines:
+The symbol $\rtimes$ is a semidirect product, which here encodes the fact that translating and then rotating is not the same as rotating and then translating. The group combines:
 
-- Spatial translations: $\mathbf X\mapsto\mathbf X+\mathbf a$.
-- Spatial rotations: $\mathbf X\mapsto R\mathbf X$, with $R\in SO(3)$.
-- Spatial reflections: $\mathbf X\mapsto M\mathbf X$, with $M\in O(3)\setminus SO(3)$.
+- Translations, sliding everything: $\mathbf X\mapsto\mathbf X+\mathbf a$.
+- Rotations, turning everything about a point: $\mathbf X\mapsto R\mathbf X$, with $R\in SO(3)$.
+- Reflections, mirroring: $\mathbf X\mapsto M\mathbf X$, with $M\in O(3)\setminus SO(3)$.
 
-Any element $g=(R,\mathbf a)\in E(3)$ with $R\in O(3)$ acts on a point $\mathbf X$ as
+A general element $g=(R,\mathbf a)$ acts as
+
 $$
 g\cdot\mathbf X=R\mathbf X+\mathbf a
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4889d5efc0407266)
 
-The metric is invariant under all such transformations:
+rotate first, then translate, and the metric is unchanged by every one of them:
+
 $$
 g^*h=h
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f803c90ed11a7db3)
 
-Homogeneity and isotropy give the container-level consequences:
+which is what makes each an **isometry**, a transformation preserving distance.
 
-- Laws of physics are identical at any two void locations.
-- There is no center or edge of space.
+The container-level consequences follow directly:
+
+- The container geometry is identical at any two locations. The laws share that translation symmetry only when their own dynamical terms do.
+- Space has no center and no edge.
 - No direction is preferred by the substrate.
-- Translation symmetry supplies the kinematic basis for momentum conservation when the delayed action and wake-ledger channels preserve the same symmetry.
-- Rotation symmetry supplies the kinematic basis for angular momentum conservation when the delayed action and wake-ledger channels preserve the same symmetry.
+- Translation symmetry supplies the kinematic basis for momentum conservation, provided the delayed action and wake-ledger channels preserve the same symmetry.
+- Rotation symmetry supplies the same basis for angular momentum conservation, under the same proviso.
 
-Reflections are container symmetries, and the primitive wake law is parity-even: causal isochrons are spheres and the received acceleration follows $\hat{\mathbf{r}}_{ij}/r_{ij}^2$. This parity-evenness is proved for the declared causal kernel in [B1 Symmetry](../../../../markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md#discrete-symmetry-structure). Chirality bookkeeping such as writhe and linking signs is therefore conventional at the container level, and physical parity violation must be recovered as assembly and branch-level selection; see [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md).
+Those last two are deliberately conditional. Symmetry of the container is necessary for a conservation law but not sufficient — the interaction must respect it too, which for a delayed interaction is a real question rather than a formality.
 
-Any preferred-frame effect, anisotropy, or effective Lorentz behavior must therefore come from dynamics, Noether sea response, or observer construction. It cannot come from an anisotropy of the Euclidean void.
+Reflections are container symmetries, and the primitive wake law is parity-even: the expanding surfaces are spheres, and the received acceleration follows $\hat{\mathbf{r}}_{ij}/r_{ij}^2$, which transforms equivariantly under mirroring so that the law keeps the same form. That evenness is proved for the declared causal kernel in [Coincident-Axis Three-Binary Symmetry](../../../../markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md#discrete-symmetry-structure).
+
+So chirality bookkeeping — the signs attached to writhe and linking, which record handedness — is conventional at the container level. Which means the observed parity violation of established weak-interaction physics cannot come from the void being handed. It must be recovered as selection at the assembly and branch level; see [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md).
+
+The same reasoning closes off a broader class of explanations. Any preferred-frame effect, any anisotropy, and any effective Lorentz behavior must come from dynamics, medium response, or observer construction. None of it can come from an anisotropy of the Euclidean void, because there is none to draw on.
 
 ### Geodesics and Dynamics
 
-Here the important separation is between a straight path in the container and a curved path caused by dynamics. A geodesic of the Euclidean void is a straight spatial path in the fixed metric. It is not an observer-level spacetime geodesic.
+The separation that matters here is between a straight path in the container and a curved path produced by dynamics. A geodesic of the Euclidean void is a straight spatial path in the fixed metric. It is not an observer-level spacetime geodesic, and the two should never be equated.
 
-In the absence of causal-root hits, motion in the Euclidean void follows straight-line, constant-velocity paths:
+With no causal-root hits arriving, motion is straight-line and constant-velocity:
+
 $$
 \mathbf X(T)=\mathbf X_0+\mathbf V_0 T
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2c33b5002c814ba3)
 
-Only physical interactions can bend a trajectory. A curved path in the void is not the same thing as curvature of the void:
+starting position plus velocity times elapsed time. Only a physical interaction bends that.
 
-- A circular orbit is a curved path in flat space.
-- A forced trajectory is a dynamical effect.
-- The void remains flat even when trajectories curve within it.
+A curved path in the void is not curvature of the void:
 
-Thus deviations from straight-line motion arise from causal wakes, self-interaction, assembly structure, and medium response. They do not arise from spatial curvature.
+- A circular orbit is a curved path in perfectly flat space.
+- An accelerated trajectory is a dynamical effect, not a curvature of the container.
+- The void stays flat no matter how trajectories bend within it.
 
-Substrate acceleration terms must also carry provenance. A deviation from straight motion is admissible only when it is sourced by a causal-wake contribution, a self-hit contribution, an assembly interaction, or Noether sea response. A transverse or velocity-dependent term with no wake or medium provenance is either a coordinate artifact of a non-inertial chart or not a substrate acceleration in the ontology.
+Every deviation from straight-line motion therefore arises from causal wakes, self-interaction, assembly structure, or medium response. None of it arises from spatial curvature, because there is none.
+
+Acceleration also has to carry provenance, and this is a real constraint rather than bookkeeping. A deviation from straight motion is admissible only when something sourced it: a causal-wake contribution, a self-hit, an assembly interaction, or a Noether sea response. A transverse or velocity-dependent term with no such source is one of two things — an artifact of describing the motion in a rotating or accelerating chart, or not a substrate acceleration at all.
 
 ### Forbidden Transformations
 
-Allowed spatial isometries are exactly the transformations that preserve the Euclidean spatial metric:
+The allowed spatial isometries are exactly those preserving the metric:
 
-- Spatial translations.
-- Spatial rotations.
-- Spatial reflections.
+- Translations.
+- Rotations.
+- Reflections.
 
-At the product-background level, absolute timespace may also be described in coordinate systems related by time translations or Galilean boosts that preserve the foliation by constant-$T$ slices. Those transformations describe the product structure. They are not spatial isometries of one void slice. On a fixed slice $\Sigma_{T_\ast}$, a Galilean boost reduces to the translation $\mathbf X\mapsto\mathbf X+\mathbf V_0T_\ast$; its boost content appears only when different slices are compared. The wake equation still selects the preferred rest frame in which $c_f$ is isotropic, and [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md) carries the corresponding dynamical non-invariance under boosted coordinates.
+At the level of the full background, [absolute timespace](../../../../markdown/aaa/foundations/absolute-timespace.md) may also be described in coordinates related by time translations or **Galilean boosts** — the everyday change of viewpoint to an observer moving at constant velocity, in which velocities simply add. Those preserve the slicing of the background into surfaces of constant $T$.
 
-Forbidden as substrate symmetries:
+But they describe the product structure, not the geometry of one slice. Restricted to a fixed slice $\Sigma_{T_\ast}$, a Galilean boost is just the translation $\mathbf X\mapsto\mathbf X+\mathbf V_0T_\ast$; its boost character only shows up when different slices are compared. The wake equation still picks out the frame in which $c_f$ is the same in all directions, and [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md) carries the resulting non-invariance under boosted coordinates.
 
-- Non-isometric scalings or shears that change distances or angles.
-- Lorentz boosts as fundamental transformations of the void.
-- Transformations that mix spatial coordinates with absolute time as though the product background were a single relativistic metric.
-- Any operation that introduces a preferred direction at the substrate level.
+Forbidden as substrate symmetries, although some remain legitimate coordinate rewritings:
 
-Galilean coordinate behavior belongs to the absolute-timespace product structure. Lorentz behavior remains a closure target for moving assemblies, clocks, rulers, and signals. Neither Lorentz boosts nor effective metric transformations are fundamental symmetries of the Euclidean void itself.
+- Scalings or shears are not isometries of $h_{ij}$; they may be used as coordinate changes only with the transformed metric written explicitly.
+- **Lorentz boosts** as fundamental transformations of the void. These are the transformations of established special relativity, which mix space and time and make simultaneity depend on the observer. Here they are a target to recover, not a starting assumption.
+- Any transformation mixing spatial coordinates with absolute time as though the background were a single relativistic geometry.
+- Anything introducing a preferred direction at the substrate level.
+
+Galilean coordinate behavior belongs to the product structure of absolute timespace. Lorentz behavior remains a closure target for moving assemblies, clocks, rulers, and signals. Neither Lorentz boosts nor effective metric transformations are fundamental symmetries of the void.
 
 ### Boundary With the Noether Sea
 
-The boundary with the Noether sea is an ontology boundary. The Euclidean void is not the Noether sea. Neither one is effective spacetime.
+This is an ontology boundary and it is worth restating in full, because collapsing it is the most common error in this part of the theory. The Euclidean void is not the Noether sea. Neither one is effective spacetime.
 
-Keep the layers separate:
+Four distinct layers:
 
-1. **Euclidean void:** fixed spatial container $\mathbb{R}^3$ with metric $h_{ij}=\delta_{ij}$.
+1. **Euclidean void:** the fixed container $\mathbb{R}^3$ with metric $h_{ij}=\delta_{ij}$.
 2. **Noether sea:** physical content occupying the void, built from coupled neutral braids.
-3. **Architrino occupancy:** local presence or absence of point entities and assemblies at a given coordinate location.
-4. **Effective spacetime:** observer-level geometry reconstructed from how clocks, rulers, and signals behave in the Noether sea.
+3. **Architrino occupancy:** whether point entities and assemblies are present at a given location.
+4. **Effective spacetime:** the geometry an observer reconstructs from how clocks, rulers, and signals behave in the sea.
 
-At any time $T$, a coordinate point may be occupied by an architrino, traversed by a wake, located inside a Noether sea cell, or empty of local architrino content. Those are different content states at the same location. None changes the identity or metric of the underlying void point.
+At any time $T$ a coordinate point may be occupied by an architrino, crossed by a wake, sitting inside a Noether sea cell, or empty. Those are four different content states at the same place, and none of them changes the identity or the metric of the underlying point.
 
-This gives a direct no-expanding-void criterion for cosmology. After an observer chart is declared, effective cosmology variables such as $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, redshift, and CMB temperature summaries are admissible only as functions of Noether sea state, transport history, and observer clock comparison:
+#### No expanding void, and the burden that creates
+
+This yields a direct criterion for cosmology. Once an observer chart is declared, effective cosmological variables — the scale factor $a_{\mathrm{eff}}$, the expansion rate $H_{\mathrm{eff}}$, redshift, the cosmic microwave background temperature — are admissible only as functions of the medium's state, transport history, and observer clock comparison:
+
 $$
 a_{\mathrm{eff}}(t_{\mathrm{eff}})=\mathcal{A}[\mathcal{N}_{\mathrm{sea}}(T),O(t_{\mathrm{eff}})]
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f776a93cc8715c61)
-Here $\mathcal{N}_{\mathrm{sea}}(T)$ denotes the relevant Noether sea state variables, and $O(t_{\mathrm{eff}})$ denotes observer records and calibration data in the effective chart. The formula is a schematic inference map into the observer-level metric, not a new substrate law.
 
-It yields a scalar global scale factor only when the retained Noether sea record and observer family are statistically homogeneous and isotropic over the declared averaging cell. Without that condition, the honest output is a local or tensorial effective metric summary such as $g^{\mathrm{eff}}_{\mu\nu}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$, or an anisotropic scale response $a_{\mathrm{eff},ij}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$, not a single FRW-style $a_{\mathrm{eff}}(t_{\mathrm{eff}})$.
+where $\mathcal{N}_{\mathrm{sea}}(T)$ is the relevant sea state and $O(t_{\mathrm{eff}})$ the observer's records and calibration. This is a schematic map from substrate to observer-level metric, not a new substrate law.
 
-When a tensorial scale response is retained, the scalar FRW projection is the trace
+It produces a single global scale factor only under a condition that is easy to assume without noticing. The retained sea record and the observer family must be statistically homogeneous and isotropic across the averaging cell. Without that, the honest output is a local or tensorial summary — a full $g^{\mathrm{eff}}_{\mu\nu}$, or a direction-dependent response $a_{\mathrm{eff},ij}$ — rather than one number per time.
+
+A directional response can be summarized by its average and its variation with direction, once the measured quantity and its calibration have been specified. For the decomposition below, suppose a selected dimensionless response admits the symmetric quadratic representation $R(\mathbf n)=a_{\mathrm{eff},ij}n^in^j$, where $\mathbf n$ is a direction with $h_{ij}n^in^j=1$. The tensor $a_{\mathrm{eff},ij}$ contains the coefficients of this retained response; it is not assigned a universal clock, ruler, or metric meaning. The response and reference metric must be expressed in the same spatial chart. In the displayed effective coordinates, $h_{ij}$ therefore means the fixed Euclidean reference metric carried into that chart, and $h^{ij}$ is its inverse. This representation is conditional on a derived response having the stated directional form; it supplies no constitutive law for the sea.
+
+The directional average and the trace-free remainder are
+
 $$
 a_0(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})=\frac{1}{3}h^{ij}a_{\mathrm{eff},ij}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}}),
 \qquad
@@ -1484,29 +1771,45 @@ a_{\langle ij\rangle}=a_{\mathrm{eff},ij}-a_0 h_{ij}.
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9f412c51252b80d8)
-The scalar scale-factor summary is admissible only in a sector where the trace-free obstruction $a_{\langle ij\rangle}$ is below the declared isotropy tolerance. The same obstruction appears as ruler anisotropy in response tensors such as $B_{ij}$ and in Hughes-Drever-style orientational residuals; it is a medium-and-assembly response question, not a hidden anisotropy of the void.
 
-These effective variables must not be interpreted as
+The first equation averages $R(\mathbf n)$ uniformly over the reference unit sphere, since the directional average of $n^in^j$ is $h^{ij}/3$. The second collects the directional dependence discarded by that average. Replacing the retained response by one scalar is justified only when $a_{\langle ij\rangle}n^in^j$ stays within the declared response tolerance over the directions of interest. Directional structure outside the assumed quadratic representation also requires a separate error bound. These are conditions for summarizing a specified response, not a derivation of a global cosmological scale.
+
+The distinction between lengths and squared lengths illustrates why the response definition matters. An isotropic linear stretch by a positive factor $a$ has tensor $a h_{ij}$ and trace mean $a$; the corresponding squared-length metric has tensor $a^2h_{ij}$ and trace mean $a^2$. The same effective length change therefore gives different trace means in the two descriptions. Identifying $a_0$ with the scale factor in [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md#effective-frw-variable-ledger) requires a derived response definition, reference normalization, and a consistent clock, ruler, and signal reconstruction. Homogeneity and isotropy alone do not provide those identifications.
+
+Laboratory comparison requires another explicit map. A directional medium response affects a clock record through the assembly and apparatus dynamics; it cannot be equated directly with a measured frequency residual. Connecting $a_{\langle ij\rangle}$ to the Hughes–Drever and clock-comparison constraints discussed in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) requires deriving that apparatus response and its normalization. The cosmological and laboratory connections remain recovery obligations. They concern medium and assembly behavior within the fixed void.
+
+None of this may be read as
+
 $$
 h_{ij}(T)=a_{\mathrm{eff}}^2(t_{\mathrm{eff}})\delta_{ij}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4bca2a40c7b7f545)
-for the Euclidean void. The substrate spatial metric remains $h_{ij}=\delta_{ij}$, flat and unchanging. Any effective cosmological expansion factor belongs to observer-level metric reconstruction.
 
-The no-expanding-void commitment creates a specific observational burden. Any medium-and-observer redshift mechanism must still recover the tested expansion signatures normally carried by an FRW scale factor: the Tolman surface-brightness scaling $B_{\mathrm{obs}}\propto(1+z)^{-4}$ after the declared distance map is applied, supernova light-curve time dilation $\Delta t_{\mathrm{obs}}\approx(1+z)\Delta t_{\mathrm{emit}}$, CMB temperature-redshift scaling $T_{\mathrm{CMB}}(z)\approx T_0(1+z)$ in the appropriate thermal record, frequency-independent fractional redshift across declared clean spectral-line families, and photon-channel group-delay dispersion below the admitted time-of-flight tolerance.
+which would be an expanding void. The substrate metric remains $h_{ij}=\delta_{ij}$, flat and unchanging. Any effective expansion factor belongs to the observer's reconstruction.
 
-The mechanism filter is transport rather than loss. Redshift must retune the signal clock rate through Noether sea transport, clock/ruler response, or both. Operationally, an admissible transport redshift is a phase-clock reparametrization of the received signal together with the matching distance and intensity bookkeeping. It is not merely attenuation of amplitude or untracked energy loss. Pure propagation loss can lower received energy, but it does not supply the observed time-dilation or thermal scaling rows. A fixed-void model that supplies redshift only by generic scattering loss, phase degradation, or photon fatigue falls into the excluded tired-light class.
+Refusing an expanding void creates a specific and heavy observational burden, and stating it honestly is more useful than asserting the commitment. Established cosmology explains a family of measurements with a scale factor, and any medium-and-observer mechanism here must recover every one of them:
 
-The cosmology branch owns the positive recovery: [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md) defines the shared fixed-void variables, [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md) carries the redshift and distance tests, and [CMB](../../../../markdown/aaa/cosmology/CMB.md) carries the temperature and spectrum tests.
+- **Tolman surface-brightness scaling.** In an expanding metric, bolometric surface brightness has the theoretical factor $(1+z)^{-4}$. Data comparisons require distance, bandpass, population, and luminosity-evolution corrections; the measured result is consistency with the expansion scaling, not an exact raw power law.
+- **Supernova light-curve time dilation.** Type Ia supernova light curves show the expected approximate stretching $\Delta t_{\mathrm{obs}}\approx(1+z)\Delta t_{\mathrm{emit}}$, within population and fitting uncertainties.
+- **Microwave background temperature scaling.** Measurements at nonzero redshift test the standard relation $T_{\mathrm{CMB}}(z)=T_0(1+z)$ and constrain deviations from it.
+- **Spectral consistency.** A candidate transport law must not introduce line-dependent redshift residuals inconsistent with multi-line source fits.
+- **Photon-channel dispersion.** Any energy-dependent propagation delay must stay below the bound for the declared signal and source model.
+
+The filter that most candidate mechanisms fail is transport versus loss. An admissible redshift must retune the signal's clock rate, through medium transport or clock and ruler response, and it must come with matching distance and intensity bookkeeping. It cannot be mere attenuation. Propagation loss can dim a signal, but dimming supplies neither the time dilation nor the thermal scaling above. Simple **tired-light** mechanisms based only on scattering, phase degradation, or photon energy loss fail this joint benchmark; excluding every possible fixed-void transport law would require testing the law's complete predictions rather than its label.
+
+Sources for these comparison benchmarks: Lubin and Sandage, [*The Tolman Surface Brightness Test for the Reality of the Expansion. IV* (2001)](https://arxiv.org/abs/astro-ph/0106566), reports consistency with expansion after luminosity-evolution modeling; Goldhaber and collaborators, [*Observation of cosmological time dilation using Type Ia supernovae as clocks* (1996)](https://doi.org/10.1016/S0920-5632(96)00493-8), reports the supernova stretching test; de Martino and collaborators’ [*Measuring the Redshift Dependence of the Cosmic Microwave Background Monopole Temperature with Planck Data* (2012)](https://doi.org/10.1088/0004-637X/757/2/144) presents the $T(z)$ benchmark and deviation parameterization in a method and sensitivity study forecasting Planck measurement accuracy using simulated clusters and measured X-ray cluster properties; and the Fermi collaboration's [GRB 090510 analysis](https://doi.org/10.1038/nature08574) bounds a linear energy dependence of photon speed under its stated emission assumptions. These are observer-level constraints, not premises of the substrate theory.
+
+Positive recovery is owned by the cosmology branch: [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md) defines the shared fixed-void variables, [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md) carries the redshift and distance tests, and [CMB](../../../../markdown/aaa/cosmology/CMB.md) carries the temperature and spectrum tests.
 
 #### Plenum of Potential
 
-The Euclidean void is strictly empty of material substance. It is not a material ether, not a quantum foam, and not a hidden continuum with internal state variables. Its points do not store energy, density, curvature, stress, or memory.
+The Euclidean void is strictly empty of material substance. It is not an ether, not a quantum foam, and not a hidden continuum with internal variables. Its points store nothing: no energy, density, curvature, stress, or memory.
 
-Still, a coordinate location in the full universe should not be treated as relationally empty. Architrinos continuously emit expanding causal isochrons, so a location may lie on many geometrical wakes from historical architrino motion. These wakes do not fill the void as material contents. They form the delayed relational ledger through which later architrino intersections can be computed.
+And yet a location should not be thought of as relationally empty. Architrinos emit expanding wake surfaces continuously, so any given point may lie on a great many such surfaces from the past motion of a great many architrinos. Those surfaces do not fill the void as material. They form the delayed relational record through which later intersections are computed.
 
-For a point $(\mathbf X,T)$, define the wake-support index set
+For a point $(\mathbf X,T)$, define the set of wakes passing through it:
+
 $$
 \mathcal{P}(\mathbf X,T)
 =
@@ -1514,17 +1817,18 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5fcc7c89d3a27577)
-This set records source identities and emission times whose causal isochrons pass through the point. It is a provenance index set, not a field. It has no independent state variables, stress, density, energy, or equation of motion.
 
-Equivalently, $\mathcal{P}(\mathbf X,T)$ is the receiver-side fiber of the tagged-emission map before the received wake terms are summed into an untagged potential. The receiver-centered exhaustion problem is therefore a summability question over this fiber: the weighted counting measure on $\mathcal{P}(\mathbf X,T)$ must converge after the transmitter-side acceleration weights, inverse-square distance factors, and transmitter-side transversality floors are applied. Convergence of the Noether sea background is not a new property of the void. It is a condition on the population of provenance labels and their wake weights.
+Each member is a pair: which architrino $a$, and at what emission time $T_t$. The condition selects exactly those emissions whose expanding surface reaches this point at this moment. It is an index of sources, not a field — it has no state variables, no stress, no energy, and no equation of motion of its own.
 
-In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase is explanatory rather than ontological. It does not add a new substance between the Euclidean void and the Noether sea, and it does not create a fourth layer alongside void, medium, and effective spacetime. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population. Noether sea density and response variables belong to $\mathcal{N}_{\mathrm{sea}}$; $\mathcal{P}(\mathbf X,T)$ names only the wake-history provenance labels available at that point.
+There is a real question hiding in it. An admissible many-source branch must make the weighted sum over that set converge. Transmitter-side weights, inverse-square dilution, and transversality floors do not guarantee this by themselves; the source population also needs cancellation, screening, a finite horizon, or a declared subtraction rule. That convergence is not a property of the void. It is a condition on the provenance-bearing source record and its summation prescription.
 
-For the Noether sea ontology, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). For Noether braid assembly hypotheses, see [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md). For the metric bridge, see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md).
+In this precise sense the void is a **Plenum of Potential**: materially empty, relationally available to the whole causal history around it. The phrase is explanatory rather than ontological. It adds no substance between the void and the Noether sea and creates no fourth layer. It names one fact: an empty location can still lie within the superposed wake history of the architrino population. Sea density and response variables belong to $\mathcal{N}_{\mathrm{sea}}$; the set $\mathcal{P}(\mathbf X,T)$ names only which wake histories are available at that point.
+
+For the sea ontology, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). For assembly hypotheses, see [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md). For the metric bridge, see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md). For cosmological translation, see [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md).
 
 ### Distinction From Curved Space
 
-The comparison with curved space preserves the operational success of curved-spacetime descriptions while relocating their status. In $\mathbb{A}\mathbb{A}\mathbb{A}$, curvature-like behavior is an effective metric or refractive-gravity reconstruction. It is not a property of the Euclidean void.
+The comparison with curved space preserves everything that works about curved-spacetime description while relocating its status. Curvature-like behavior here is an effective metric or refractive-gravity reconstruction, not a property of the container.
 
 | **Feature** | **Euclidean Void ($\mathbb{A}\mathbb{A}\mathbb{A}$)** | **Curved Space / GR Geometry** |
 |:---|:---|:---|
@@ -1535,71 +1839,83 @@ The comparison with curved space preserves the operational success of curved-spa
 | **Expansion** | No expansion of the void | Metric scale factor may expand |
 | **Gravity** | Emergent from assembly and Noether sea dynamics | Geometric curvature of spacetime |
 
-The phrase `curved space` should not be used for the fundamental ontology. Use `effective metric`, `effective spacetime`, or `refractive gravity` when describing observer-level curvature-like behavior.
+The phrase `curved space` should not be used for the fundamental ontology. Use `effective metric`, `effective spacetime`, or `refractive gravity` when describing curvature-like behavior at the observer level.
 
 ### Summary Postulate
 
-Postulate 2 fails if an accepted result requires the substrate container itself to carry a dynamical curvature, expansion, contraction, or anisotropy row after contributions from matter content, wake transport, Noether sea response, and observer reconstruction have been exhausted. An effective curved metric may remain a valid observer description; promoting that metric response to the Euclidean void would replace this postulate.
+Postulate 2 fails if an accepted result requires the container itself to carry a dynamical curvature, expansion, contraction, or anisotropy term after the contributions from matter content, wake transport, Noether sea response, and observer reconstruction have all been exhausted. An effective curved metric may remain a perfectly valid observer description; promoting that response to the Euclidean void would replace this postulate.
 
 > **Postulate 2 (Euclidean Void):** Three-dimensional space is the Euclidean void: an absolute, static, flat container $\mathbb{R}^3$ equipped with fixed metric $h_{ij}=\delta_{ij}$. It is homogeneous, isotropic, non-dynamical, and does not curve, expand, contract, or respond to matter and energy. All spatial displacements, distances, volumes, and spatial differential operators are defined by the fixed Euclidean metric. Curvature-like observations, effective scale histories, and observer-level redshift summaries arise from trajectories, assemblies, wakes, and Noether sea response within the void, not from curvature or expansion of the void itself.
 
 ## Absolute Timespace
 
-This chapter specifies the fixed background in which the microscopic dynamics run. In $\mathbb{A}\mathbb{A}\mathbb{A}$, **absolute timespace** means the product of one universal time line and one fixed Euclidean 3-space. The chapter defines that product background $\mathbb{R}\times\mathbb{R}^3$, its global foliation into simultaneous Euclidean slices, the Newton-Cartan data used to keep time and space separate, and the causal wake geometry used by the microscopic dynamics.
+This chapter specifies the fixed stage on which everything else happens.
 
-Absolute timespace is not relativistic spacetime. It is the formal product of [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md) and the [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md). Effective spacetime geometry is reconstructed later from assembly and Noether sea dynamics; it is not the substrate itself.
+**Absolute timespace** is one universal time line multiplied by one fixed three-dimensional space. Not woven together — multiplied, kept as two separate factors. A point in it is an event: somewhere, at some instant.
+
+That word "multiplied" is doing real work, and it is where this theory parts company with established relativity at the deepest level. In relativity, space and time are components of a single four-dimensional geometry, and which parts of an event are "when" and which are "where" depends on who is looking. Here they never mix. Time is time, space is space, and no change of viewpoint trades one for the other.
+
+The chapter defines that product background $\mathbb{R}\times\mathbb{R}^3$, the way it slices into instants, the mathematical data used to keep the two factors apart, and the geometry of the wakes that carry every interaction.
+
+Absolute timespace is not relativistic spacetime. It is the formal product of [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md) and the [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md). Effective spacetime geometry, the curved thing observers reconstruct, is recovered later from assembly and medium dynamics. It is not the substrate.
 
 ### Core Concept
 
-Absolute timespace is the formal, non-dynamical product background for all physical phenomena. It is the direct product of absolute time and the Euclidean void. That product forms a **foliated structure**: each leaf is a complete instantaneous Euclidean 3-space indexed by the universal time parameter $T$.
+Absolute timespace is the non-dynamical background for all physical phenomena: the direct product of absolute time and the Euclidean void.
+
+That product is a **foliated structure** — think of a deck of cards, where each card is all of space at one instant and the deck is stacked in time order. Each such card is called a *leaf* or a *slice*, and the universal time parameter $T$ says which one you are on. The physical state is indexed on a slice; it is not identical to the geometric slice.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
-- Time and space are logically and mathematically separate at the kinematic level.
-- There is absolute simultaneity: all events with the same $T$ belong to the same simultaneity slice.
-- There is no fundamental 4D Lorentzian metric mixing temporal and spatial dimensions.
-- The background is non-dynamical: it does not respond to matter, energy, assemblies, or the Noether sea.
+- Time and space are logically and mathematically separate.
+- Simultaneity is absolute: all events sharing a value of $T$ are on the same slice, for everyone, always.
+- There is no fundamental four-dimensional metric mixing time and space.
+- The background is non-dynamical: it does not respond to matter, energy, assemblies, or the medium.
 
-This separation fixes the chapter's sequence: first name the substrate datum, then identify the effective or inferential layer that reads it. The Euclidean void and absolute time are ontology. Clocks, rulers, metric tensors, and relativistic symmetries are treated as recovered behavior of assemblies and the Noether sea; their detailed laws are closure targets when the derivation is not supplied locally.
+That separation sets the chapter's sequence. First name the substrate datum, then identify the effective layer that reads it. The void and absolute time are ontology. Clocks, rulers, metric tensors, and relativistic symmetries are behavior of assemblies and the medium — recovered, not assumed, and treated as closure targets wherever the derivation is not yet supplied.
 
-All curvature, expansion, clock dilation, and relativistic behavior must be recovered as effective descriptions of assemblies and Noether sea response within this fixed background.
+Every instance of curvature, expansion, clock dilation, and relativistic behavior must be recovered as an effective description of what happens *inside* this fixed background.
 
 ### Product Manifold
 
-The absolute timespace background is the Cartesian product
+The background is the Cartesian product
+
 $$
 \mathcal{M}=\mathbb{R}\times\mathbb{R}^3
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c17d24f0e7ad8f22)
-with coordinates
+
+meaning: pick any real number for time, and independently pick any point in three-dimensional space. Coordinates are
+
 $$
 (T,\mathbf X)=(T,X,Y,Z)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e5f04fb02ab4af94)
 
-Each point in $\mathcal{M}$ represents an event: a fixed location $\mathbf X$ in the Euclidean void at a definite instant $T$.
+and each such point is an **event**: a fixed location in the void at a definite instant.
 
-The two factors have different ontological roles:
+The two factors have different jobs. The $\mathbb{R}$ supplies universal time and a total ordering of instants, hence of simultaneity slices. Two events on different slices have an unambiguous temporal order; distinct events on the same slice are simultaneous. The $\mathbb{R}^3$ supplies the fixed spatial container and its distance rule.
 
-- $\mathbb{R}$ supplies the universal time parameter and total event ordering.
-- $\mathbb{R}^3$ supplies the fixed Euclidean spatial container and spatial metric.
-
-The product structure is fundamental. It is not an approximation to a deeper 4D curved metric.
+The product structure is fundamental. It is not an approximation to some deeper curved four-dimensional geometry waiting to be discovered.
 
 ### Foliation and Simultaneity Slices
 
-Each instant $T=T_\ast$ defines a global simultaneity slice
+Each instant $T=T_\ast$ defines a global slice
+
 $$
 \Sigma_{T_\ast}=\{T_\ast\}\times\mathbb{R}^3\cong\mathbb{R}^3
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7c8132d11e3e8cd2)
 
-Every event $(T,\mathbf X)$ belongs to exactly one slice $\Sigma_T$. This foliation is absolute and frame-independent at the substrate level.
+which is all of space at that one moment, and which is itself just a copy of ordinary three-dimensional space.
 
-An object or assembly traces a worldline through the product background:
+Every event belongs to exactly one slice. This slicing is absolute and does not depend on any frame.
+
+Anything that persists traces a **worldline** through the background:
+
 $$
 \gamma:I\subset\mathbb{R}\to\mathcal{M},
 \qquad
@@ -1608,22 +1924,30 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e40c37105a39c7cc)
 
-Worldlines are graphs over $T$: there is no admissible parametrization in which $T$ decreases, so closed timelike curves and backward-time propagation are excluded by construction, and there is no fundamental reparametrization freedom that replaces the absolute time parameter.
+Worldlines are graphs over $T$: for each instant there is exactly one position. Admissible physical evolution is future-directed, so it is followed toward increasing $T$. Reversing an auxiliary curve parameter would merely retrace the same geometric curve and would not define a second physical evolution.
 
-> **Plain language:** Absolute timespace is a stack of Euclidean 3-spaces, one for each value of $T$. A worldline passes through one slice at each instant.
+The future-directed admissibility rule and the wake law's support condition $T_t<T_r$ exclude causal loops: every link of an admissible causal chain increases $T$, so the chain cannot return to its starting event. This excludes the paths returning to their own past that occur as closed timelike curves in some relativistic geometries. The product manifold supplies a global time parameter; the admissibility and support rules select the physical direction of evolution. Being a graph over $T$ alone does not select that direction.
 
-On a fixed slice, the canonical universe-now notation is
+Absolute timespace is a stack of Euclidean spaces, one for each value of $T$, and a worldline pierces exactly one slice at each instant.
+
+#### The complete state on a slice
+
+On a fixed slice the complete state is written
+
 $$
 \mathbb{U}_{\text{now}} \equiv S(T)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-905ffb69b4d67db6)
 
-This denotes the complete ontic universe state on $\Sigma_T$: architrino positions, velocities, polarities, path-history and provenance bookkeeping, and self-hit history needed for deterministic evolution. It is not an observer's measurement record. Observer reconstructions sample or coarse-grain this state through assemblies and Noether sea coupling, which prevents absolute simultaneity from being confused with operationally synchronized clocks.
+covering every architrino position, velocity, and polarity, plus the path-history and provenance records and the self-hit history that deterministic evolution requires.
 
-The same distinction blocks a common relativity confusion. A substrate slice $\Sigma_T$ is a real element of the ontology, but it is not an observer-readable global present. Physical Observers recover simultaneity through clock phases, ruler records, photon channels, and local Noether sea state; those channels may hide the preferred frame well enough to reproduce special-relativistic no-global-present behavior. Cosmological records such as the CMB rest frame can supply an approximate effective foliation, but that foliation is an inferred observer chart, not the substrate slice itself.
+This is emphatically not an observer's measurement record. Observers sample or coarse-grain this state through assemblies and their coupling to the medium, and that distinction is what keeps absolute simultaneity from being confused with clocks that have been synchronized by some procedure.
 
-Because the master equation is path-history dependent, this complete state is not merely an instantaneous Markov list of positions and velocities. A precise slice-state schematic is
+The same distinction blocks a common objection from relativity. A slice $\Sigma_T$ is a real element of the ontology, but it is not a readable global present. Observers recover simultaneity through clock phases, ruler records, photon channels, and local medium state. The closure target is that those channels reproduce the special-relativistic absence of an invariant observer-accessible global "now" within measured precision. Cosmological records such as the rest frame of the microwave background supply an approximate effective slicing, but that is an inferred chart, not the substrate slice.
+
+Because the master equation depends on path history, the complete state is not merely a list of current positions and velocities. In established mechanics a system is called **Markovian** when the present state alone determines the future; this one is not in an instantaneous-state description, because a receiver may respond to earlier transmitter events retained by the admitted causal-root domain. So the slice state carries more:
+
 $$
 S(T)
 =
@@ -1636,37 +1960,49 @@ H_T,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b8f87e751d9129e0)
-Here $X(T)$ contains instantaneous architrino and assembly data, $H_T$ is the required path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local Noether sea state record, and $\mathcal{B}_T$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free instantaneous projection.
+
+where $X(T)$ holds the instantaneous architrino and assembly data, $H_T$ is the retained path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the local medium state, and $\mathcal{B}_T$ records the dynamically occupied branch and active root labels. A numerical regularization may accompany this state in a calculation, but it is not thereby promoted into ontology. Determinism applies to the complete physical state on a chart where the initial-history problem is well posed, not to a history-free snapshot.
 
 ### Newton-Cartan Data
 
-The background geometry is encoded by a pair of structures rather than by a single non-degenerate 4D metric. One structure keeps time ordered; the other measures distances inside each slice.
+The background geometry is encoded by a *pair* of structures rather than a single metric, and the reason is worth stating before the formalism.
 
-The substrate clock 1-form is the exact form
+A four-dimensional metric of the relativistic kind assigns a length to any displacement, including displacements that mix time and space. That is exactly what this theory refuses to do. So instead of one object measuring everything, there are two: one that keeps time ordered, and one that measures distance within a slice. This arrangement is called **Newton-Cartan** geometry, after the mathematical framework developed to give Newtonian physics the same geometric language relativity uses.
+
+The clock structure is the **1-form** $dT$:
+
 $$
 dT
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0fe7adc347436e7a)
 
-This 1-form is closed, exact, and nowhere vanishing on $\mathcal{M}$. Its level sets are the simultaneity slices $\Sigma_T$. The symbol $\tau$ is reserved for derived observer proper time; emission times use $T_t$, and causal delay is written $\Delta_{ij}=T-T_t$.
+A 1-form is a machine that eats a displacement and returns a number; this one returns how much time the displacement covers. It is **closed** and **exact**, technical conditions that together mean it is the derivative of a genuine global function — there really is a universal time $T$, not merely a local notion of elapsed time that might fail to fit together globally. It never vanishes, and its level sets are the slices $\Sigma_T$.
+
+Notation discipline: $\tau$ is reserved for derived observer proper time, emission times are $T_t$, and causal delay is $\Delta_{ij}=T-T_t$.
 
 The spatial metric on each slice is
+
 $$
 h=dX^2+dY^2+dZ^2
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-15c89c7543c55597)
-with Cartesian components
+
+with components
+
 $$
 h_{ij}=\delta_{ij}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5bc8229205e63bfc)
 
-The metric $h$ acts only on spatial vectors tangent to $\Sigma_T$. Time and space are therefore encoded separately by $(dT,h)$.
+and it acts only on displacements lying within a slice. Time and space are therefore carried separately by the pair $(dT,h)$, which is the whole point of the arrangement.
 
-A flat, torsion-free connection $\nabla$ satisfies
+#### The connection is additional substrate data
+
+A **connection** $\nabla$ is the rule for comparing vectors at different points — what "parallel" and "unaccelerated" mean. The substrate connection is required to be flat and torsion-free and to satisfy the compatibility conditions
+
 $$
 \nabla dT=0,
 \qquad
@@ -1675,26 +2011,36 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5e8d2d2a37022aee)
 
-These compatibility equations do not determine $\nabla$ by themselves in ordinary Newton-Cartan geometry. The same $(dT,h)$ admits torsion-free compatible connections whose coefficients represent rotating-frame or accelerating-frame inertial terms. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the connection is therefore a dynamically completed piece of substrate data: $(dT,h)$ supply the foliation and spatial metric, and the interaction law selects the rest frame in which the finite causal-wake speed $c_f$ is isotropic. In the corresponding global Cartesian rest coordinates, the selected connection has
+meaning it preserves both the time structure and spatial distances. "Torsion-free" means that the connection has no antisymmetric displacement defect; infinitesimal parallelograms close under parallel transport. Flatness is the separate condition that its curvature vanishes.
+
+Unlike the nondegenerate metric case, these compatibility conditions **do not pin down a unique connection**. The same degenerate time-and-space data admit many compatible torsion-free connections, with their difference commonly encoded by Newton–Coriolis two-form data. Those alternatives need not all be flat, and they are not all coordinate descriptions of one connection.
+
+The theory therefore supplies a flat connection as an additional substrate commitment. In Cartesian coordinates adapted to that connection,
+
 $$
 \Gamma^\lambda_{\mu\nu}=0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ced9e1e9a19afbc8)
 
-Covariant derivatives then reduce to ordinary partial derivatives, and spatial geodesics within each slice are straight lines. Nonzero coefficients introduced by rotating or accelerating coordinates are non-inertial descriptions of the same fixed substrate, not background curvature.
+so covariant derivatives reduce to ordinary partial derivatives and straight constant-velocity worldlines are unaccelerated. The wake law then selects a preferred inertial rest frame within this flat affine structure: the frame in which $c_f$ is isotropic. It does not derive the connection from $(dT,h)$ alone.
 
-More geometrically, the compatible-connection freedom is an affine gauge freedom. Relative to a chosen flat rest connection, the rotational part of the Newton-Cartan freedom is modeled by rotation-valued 1-forms,
+Time-dependent rotating or accelerating coordinates can describe this same flat connection with nonzero Christoffel symbols. For a rotating orthonormal frame, the local rotational chart data are represented by a connection 1-form valued in infinitesimal rotations,
+
 $$
+\omega_{\mathrm{rot}}
+\in
 \Omega^1(\mathcal{M})\otimes\mathfrak{so}(3)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-92b456bc0c19791a)
-with the corresponding boost or acceleration terms supplying the usual non-inertial chart data. Thus the family of compatible descriptions is a torsor over the inertial-gauge data, while the wake law selects the unique flat representative in the $c_f$-isotropic frame. Rotating-frame Christoffel symbols are therefore pure-gauge representatives of that same flat $\nabla$; their Riemann curvature remains zero.
+
+where $\mathfrak{so}(3)$ is the space of infinitesimal rotations. These coordinate-induced coefficients are descriptive and leave the curvature zero. They must not be conflated with the full family of Newton–Cartan-compatible connections, whose members can encode different inertial or gravitational structure rather than a mere change of chart.
 
 #### Non-Inertial Coordinate Terms
 
-A rotating coordinate chart can make ordinary motion acquire extra coordinate terms. If $\mathbf X=R(T)\mathbf X'$ with angular velocity $\boldsymbol{\Omega}$, then the Cartesian-rest-frame acceleration decomposes as
+Describing motion in a rotating chart makes extra terms appear. With $\mathbf X=R(T)\mathbf X'$ at angular velocity $\boldsymbol{\Omega}$, the acceleration decomposes as
+
 $$
 \mathbf A
 =
@@ -1708,34 +2054,39 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-99a7e5771cb12c88)
 
-The terms proportional to $2\boldsymbol{\Omega}\times\mathbf V'$, $\boldsymbol{\Omega}\times(\boldsymbol{\Omega}\times\mathbf X')$, and $(d\boldsymbol{\Omega}/dT)\times\mathbf X'$ are coordinate descriptions on absolute timespace. They do not add curvature to the Euclidean void, and they do not introduce a substrate magnetic field. Their value is diagnostic: they show how transverse-looking observer equations can arise from a choice of non-inertial chart while the underlying substrate remains $\mathbb{R}\times\mathbb{R}^3$ with the selected flat connection in the Euclidean-void rest frame.
+The three extra terms are familiar from established mechanics. In the displayed expression for inertial-frame acceleration, $2\boldsymbol{\Omega}\times\mathbf V'$ is the Coriolis kinematic term, $\boldsymbol{\Omega}\times(\boldsymbol{\Omega}\times\mathbf X')$ points inward toward the rotation axis, and the last term is the Euler contribution from changing rotation rate. When the equation is solved for $\mathbf A'$, their negatives are the familiar fictitious Coriolis, outward centrifugal, and Euler accelerations. None adds curvature to the void or introduces a substrate magnetic field.
 
-The provenance no-go is strict. A transverse velocity-dependent term produced only by a rotating or accelerating coordinate chart carries no transmitter identity, emission time, causal-root label, or wake-energy ledger entry. It therefore cannot source a physical wake-mediated interaction or an emergent magnetic channel. A genuine transverse interaction must be traced to causal-wake provenance in the Master Equation or to an explicitly derived observer-level reduction of such provenance, not to inertial-coordinate algebra alone.
+Their value here is diagnostic. They show how equations full of transverse, velocity-dependent terms can arise purely from a choice of chart, while the substrate stays $\mathbb{R}\times\mathbb{R}^3$ with its flat connection.
 
-Equivalently, let $\mathcal{P}[\mathcal{T}]$ denote the provenance payload of a candidate acceleration term $\mathcal{T}$: transmitter identity, emission time, causal-root label, and energy or wake-history row when those data exist. Pure inertial-coordinate terms satisfy
+That matters because it sets up a strict rule against a tempting error. A transverse velocity-dependent term produced only by a rotating or accelerating chart carries **no transmitter identity, no emission time, no causal-root label, and no energy ledger entry.** It cannot source a physical interaction or an emergent magnetic channel, because there is nothing behind it. A genuine transverse interaction has to be traced back to wake provenance in the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), or to an explicitly derived reduction of such provenance — never to inertial-coordinate algebra.
+
+Stated formally, let $\mathcal{P}[\mathcal{T}]$ be the provenance payload of a candidate term: transmitter identity, emission time, root label, and energy row. Pure inertial terms satisfy
+
 $$
 \mathcal{P}[\mathcal{T}_{\mathrm{inertial}}]=\varnothing
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fbcfc376e5f01a61)
-A physical wake-mediated transverse term must instead satisfy $\mathcal{P}[\mathcal{T}]\ne\varnothing$ after reduction to the retained branch record. This separates connection-gauge content from the image of the causal-wake provenance map.
+
+their payload is the empty set, while a physical wake-mediated term must have a nonempty one after reduction to the retained branch record. The test separates gauge artifacts from real interactions, and it is mechanical rather than a matter of judgment.
 
 ### No Fundamental 4D Metric
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ does **not** define a fundamental non-degenerate 4D metric $g_{\mu\nu}$ on $\mathcal{M}$.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ does **not** define a fundamental four-dimensional metric $g_{\mu\nu}$ on $\mathcal{M}$.
 
-This means:
+Consequently:
 
-- There is no fundamental 4D interval mixing $dT$ and $d\mathbf X$.
-- There are no fundamental Lorentz boosts that rotate time into space.
-- Proper time is not a substrate interval.
-- Effective metric language belongs to observer-level spacetime reconstruction.
+- There is no fundamental interval mixing $dT$ and $d\mathbf X$.
+- There are no fundamental Lorentz boosts rotating time into space.
+- Proper time is not a substrate quantity.
+- Effective metric language belongs to observer-level reconstruction.
 
-The specified Newton-Cartan substrate data $(dT,h,\nabla)$ encode the substrate kinematics: absolute temporal ordering, Euclidean spatial geometry, and the selected Euclidean-void rest-frame connection. Effective metric language enters only after clocks, rulers, and signal channels are reconstructed from assemblies and Noether sea response.
+The declared data $(dT,h,\nabla)$ encode the substrate kinematics: absolute ordering, Euclidean geometry, and the additional flat affine connection. The wake law selects the preferred rest frame within that structure. Relativistic metric language enters only after clocks, rulers, and signal channels have been reconstructed.
 
 ### Measurement and Geometry
 
-Spatial distance within a simultaneity slice is
+Spatial distance within a slice is
+
 $$
 d_{\text{spatial}}(\mathbf X_1,\mathbf X_2)
 =
@@ -1744,14 +2095,16 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4ed111c880d463cf)
 
-Temporal duration between events is
+ordinary Pythagoras. Temporal duration between events is
+
 $$
 \Delta T=|T_2-T_1|
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-102dc50f1575f4b3)
 
-Spatial arc length along a path $\mathbf X(T)$ from $T_1$ to $T_2$ is
+with no dependence on who is measuring. Spatial arc length along a path is
+
 $$
 L[\mathbf X;T_1,T_2]
 =
@@ -1767,31 +2120,38 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5517bcd09102947b)
 
-A relativistic 4D arc length such as
+speed integrated over time, which is distance travelled.
+
+A four-dimensional relativistic arc length such as
+
 $$
 s=\int\sqrt{\left|g_{\mu\nu}\,dx^\mu dx^\nu\right|}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b3f429e785a987e8)
-with the sign of the integrand fixed by the declared signature convention, is a standard comparison form, not a substrate-level object in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+is a comparison form only. It is what established relativity computes, included here so the two can be set side by side, and it is not a substrate object.
 
 ### Velocity, Acceleration, and Momentum
 
-Spatial velocity is the 3-vector
+Velocity is
+
 $$
 \mathbf V(T)=\frac{d\mathbf X}{dT}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-03592408a97d58ff)
 
-Speed is
+speed is its magnitude
+
 $$
 \|\mathbf V\|
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1d4a67bf31ec688e)
 
-Acceleration is
+and acceleration is the rate of change of velocity
+
 $$
 \mathbf A(T)=\frac{d\mathbf V}{dT}
 =
@@ -1800,7 +2160,8 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b022bab9465b2ae3)
 
-At the observer level, the usual low-velocity bookkeeping forms are
+At the observer level the familiar low-speed forms are
+
 $$
 \mathbf p=m\mathbf V,
 \qquad
@@ -1808,15 +2169,17 @@ K=\frac{1}{2}m\|\mathbf V\|^2
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-672b055f139227e2)
-Here $m$ is an effective assembly-response coefficient, not substrate data; its derivation and possible anisotropy are stated below.
 
-Causal-root hits produce accelerations in the Euclidean void. Time supplies the universal evolution parameter; it does not supply curvature, acceleration, or clock dilation by itself.
+momentum and kinetic energy. But $m$ here is an effective assembly-response coefficient, not substrate data — no architrino has one.
 
-The same distinction applies to momentum and inertia: the kinematic variables live on the substrate, while the coefficients that make them measurable are effective assembly responses.
+Causal-root hits produce accelerations directly. Time supplies the evolution parameter and nothing else: it contributes no curvature, no acceleration, and no clock dilation by itself.
 
-The scalar $m$ in the low-velocity observer formula is not a primitive rigid-body constant of the substrate. A rigid-body inertia tensor is a useful foil: in ordinary mechanics it maps a fixed body's angular velocity to angular momentum after a mass distribution has already been supplied. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding observer-level inertial response must be derived from the assembly's closed internal causal-history ledger, shielding state, coupling to the Noether sea, and orientation.
+#### Mass is a response, not a constant
 
-For a coarse-grained assembly $A$, the local linear response may be written as a pair of response maps
+The scalar $m$ is not a primitive constant. A useful contrast is the rigid-body inertia tensor of ordinary mechanics, which converts angular velocity into angular momentum — but only *after* someone has supplied a mass distribution. Here there is no mass distribution to supply. The inertial response has to be derived from the assembly's own internal ledger, its shielding, its coupling to the medium, and its orientation.
+
+For a coarse-grained assembly $A$, the linear response is a pair of maps:
+
 $$
 \delta p_i
 =
@@ -1833,9 +2196,12 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-03b78cbf7ecefc3c)
 
-Here $\mathcal{H}_A$ denotes the closed internal path-history and causal-root ledger of the assembly, $\mathcal{S}_A$ its shielding state, $\left.\mathcal{N}_{\mathrm{sea}}\right|_A$ the local Noether sea state sampled by the assembly, and $R_A\in SO(3)$ its orientation relative to the Euclidean-void rest frame. The ordinary scalar mass relation is recovered only in an isotropic observer branch where $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$ over the probed directions.
+reading as: a small change in velocity produces a change in momentum through a response matrix, and a small change in rotation rate produces a change in angular momentum through another. The arguments are the assembly's closed internal history $\mathcal{H}_A$, its shielding $\mathcal{S}_A$, the local medium state it samples, and its orientation $R_A$ relative to the rest frame.
 
-The isotropy of $\mathcal{M}^{\mathrm{resp}}_{ij}$ is an assembly-geometry claim, not an unexplained smallness assumption. If the symmetry group of the retained trajectory bundle and closed causal-history ledger has no preferred axis on the probed scale, the tensor response can reduce to $m\delta_{ij}$. If the branch retains an axial layer, six-site axial frame, or other framed orientation data, the leading correction is a quadrupole-like orientational residual in $\mathcal{M}^{\mathrm{resp}}_{ij}$ unless shielding and averaging cancel it. The branch-level carrier can be represented by a symmetric trace-free framing tensor
+Ordinary scalar mass is recovered only where the response matrix becomes proportional to the identity, $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$, across the directions probed — that is, only where the assembly responds identically however you push it.
+
+That isotropy is an assembly-geometry claim, not a convenient assumption. If the retained trajectory bundle and internal ledger have no preferred axis at the probed scale, the response can reduce to $m\delta_{ij}$. If the branch keeps an axial layer or other framed orientation, the leading correction is a direction-dependent residual unless shielding and averaging cancel it. A candidate diagnostic of this directional structure is the symmetric trace-free framing tensor
+
 $$
 Q_A^{ij}
 =
@@ -1845,19 +2211,25 @@ Q_A^{ij}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e2f115e364e4de37)
-where the average is taken over the retained framed trajectory bundle or declared axial frame of the assembly. The Hughes-Drever row below is therefore a direct constraint on residual orientational symmetry breaking in the assembly framing.
+
+where $\hat{\mathbf n}$ is a unit framing direction and the average is normalized so that $\langle1\rangle_A^{\mathrm{frame}}=1$. A branch calculation must declare how it extracts the framing directions, which history interval it averages, and how it assigns and normalizes their weights. Weights derived from action, energy, or angular-momentum data are distinct prescriptions unless their equivalence is established. The prescription is fixed before comparing the response channels.
+
+Subtracting the isotropic part makes $Q_A$ trace-free. Its vanishing means there is no **quadrupolar** preferred-axis moment in this statistic; higher directional moments, phase relations, and delayed-history information can remain. Consequently, $Q_A=0$ alone establishes neither full framing isotropy nor isotropy of the physical response.
 
 #### Framing-Quadrupole Economy Theorem Target
 
-One branch certificate bounding $\|Q_A\|$ should control all three leading $\ell=2$ preferred-axis projections:
+The quadrupole economy target is to identify a branch regime in which a bound on $\|Q_A\|$, with the averaging prescription fixed, controls all three leading preferred-axis effects:
 
-1. the matter-sector Hughes-Drever residual $\epsilon_M^{\mathrm{HD}}$;
+1. the matter-sector orientation residual $\epsilon_M^{\mathrm{HD}}$;
 2. the clock-orientation residual $\Delta^{\mathrm{ori}}$;
-3. the ruler or metric-handoff anisotropy carried by the trace-free part of $B_{ij}$.
+3. the ruler anisotropy carried by the trace-free part of $B_{ij}$.
 
-This target does not prove that any row vanishes. It requires the three projections to descend from the same retained framing tensor rather than from independently fitted anisotropies. The limit $Q_A=0$ marks a retained framed trajectory bundle with no preferred quadrupole axis at the tested scale.
+Establishing this target requires deriving each response from the assembly's delayed dynamics and medium coupling. The matter calculation must relate framing to the directional inertial response; the clock calculation must relate it to the counted cycle frequency; the ruler calculation must relate it to the measured spatial response. Each derivation must identify its dependence on $Q_A$ and bound the effect of information discarded by that average. A leading-order claim also needs a declared expansion parameter and a bound on the omitted terms, uniform over the stated branch regime and probe orientations. Small $Q_A$ does not by itself supply either a small omitted contribution or a bounded response gain.
 
-The isotropic limit is not merely a simplifying convention. Hughes-Drever-type clock-comparison tests constrain orientation-dependent matter-sector response, so the residual attached to $\mathcal{M}^{\mathrm{resp}}_{ij}$ must be declared alongside clock and photon anisotropy bounds. A representative matter-anisotropy row should track a projected residual such as
+The common physical history must account consistently for all three channels. The sufficiency of this particular tensor is an additional, unestablished reduction claim. If a channel depends materially on omitted information, that information must be retained or its effect controlled within a narrower approximation. Failure of quadrupole economy alone does not establish failure of the underlying physical account.
+
+The isotropic limit is not a simplifying convention but an experimental constraint. **Hughes–Drever experiments** compare atomic clocks as the Earth rotates, testing whether physics depends on which way an apparatus points; they are among the most precise null results in physics. So the residual attached to $\mathcal{M}^{\mathrm{resp}}_{ij}$ has to be declared against them:
+
 $$
 \epsilon_M^{\mathrm{HD}}
 =
@@ -1870,13 +2242,17 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a5215f9ae9b96d4e)
-after mapping the assembly response onto the tested matter-sector coefficients. The benchmark is not a single universal number: SME translations are species- and coefficient-dependent, with Hughes-Drever and clock-comparison rows reaching roughly the $10^{-27}$-class matter-anisotropy scale or stronger in several spin-coupling channels. Passing the scalar-mass limit therefore means driving the projected matter response below the declared Hughes-Drever/clock-comparison row, not only asserting isotropy in prose.
+
+taking the worst direction, measuring how far the response departs from pure scalar mass, and dividing by $m$ to make it a fractional figure.
+
+The benchmark is not one universal number, because translations into the standard catalogue of Lorentz-violation coefficients are species- and channel-dependent and often dimensionful. Some proton-sector clock-comparison coefficients are bounded near $10^{-27}\,\mathrm{GeV}$; that number is not a dimensionless ceiling on $\epsilon_M^{\mathrm{HD}}$. Passing requires an explicit projection from the assembly response to the experimental coefficient being compared. The maintained [Data Tables for Lorentz and CPT Violation](https://arxiv.org/abs/0801.0287) provide the channel-by-channel limits.
 
 ### Galilean Kinematic Structure
 
-The product background admits the usual Galilean kinematic transformations that preserve the absolute foliation and the spatial metric on each slice.
+The background admits the kinematic transformations that preserve both the slicing and the spatial metric.
 
 Time translation:
+
 $$
 T'=T+T_0,
 \qquad
@@ -1886,6 +2262,7 @@ $$
 [View →](../../../../../equation-mapping.html#corpus-equation-8987a5718e9a16e3)
 
 Spatial translation:
+
 $$
 T'=T,
 \qquad
@@ -1895,6 +2272,7 @@ $$
 [View →](../../../../../equation-mapping.html#corpus-equation-382eb44a0069c60c)
 
 Rotation:
+
 $$
 T'=T,
 \qquad
@@ -1905,7 +2283,8 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-255b2a33ef41d60e)
 
-Galilean boost:
+**Galilean boost** — the everyday change to a viewpoint moving at constant velocity, in which velocities simply add:
+
 $$
 T'=T,
 \qquad
@@ -1914,15 +2293,16 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2b31d19894e289a8)
 
-The transformation preserves simultaneity slices because $T'=T$ up to a constant shift.
+Every one keeps $T'=T$ up to a constant shift, so simultaneity survives — which is precisely what a Lorentz boost fails to do.
 
-The Galilean group may be summarized as a semidirect product combining time translations, spatial Euclidean transformations, and velocity boosts. This is a kinematic statement about the product background.
+Together these form the Galilean group, combining time translations, spatial Euclidean transformations, and boosts. This is a statement about the background's kinematics, not about the dynamics.
 
 ### Preferred Rest Frame from the Wake Law
 
-Although Galilean boosts preserve the product foliation kinematically, the interaction law selects a preferred rest frame: the frame in which the wake speed $c_f$ is isotropic. This selects the rest structure for the dynamics, not a pre-labeled spatial origin or built-in axis orientation.
+Galilean boosts preserve the slicing, but the *interaction law* does not treat them equally. It selects a preferred frame: the one in which the wake speed $c_f$ is the same in all directions.
 
-The distinction is visible directly in the root equation. Under a Galilean coordinate change $\mathbf X'=\mathbf X-\mathbf U T$, the same primitive wake condition becomes
+The asymmetry is visible directly in the root condition. Under a boost $\mathbf X'=\mathbf X-\mathbf U T$, the same primitive condition becomes
+
 $$
 \left\|
 \mathbf X'_i(T)-\mathbf X'_j(T_t)+\mathbf U(T-T_t)
@@ -1934,33 +2314,35 @@ T_t<T
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-87cc85fb442bdb06)
-Thus boosts preserve the product foliation and are allowed coordinate descriptions, but they do not preserve the same isotropic wake-law form unless $\mathbf U=\mathbf{0}$ relative to the Euclidean-void rest frame. Galilean boosts are therefore kinematic coordinate transformations of the background, not dynamical symmetries of the primitive wake law.
 
-This preferred frame is not curvature of the background. It is a structural consequence of the wake law: finite-speed causal wake propagation fixes $c_f$ relative to the void, and Noether sea and assembly dynamics build on that distinguished frame.
+and the extra $\mathbf U(T-T_t)$ term does not go away. The wake is no longer a sphere centered where it was emitted; it is a sphere drifting sideways. The isotropic form is recovered only when $\mathbf U=\mathbf{0}$ relative to the void's rest frame.
 
-The observer-level task is therefore not to remove the absolute frame from the ontology. The task is to derive how physical clocks, rulers, and signals hide preferred-frame leakage to the required experimental precision. See [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) and [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
+So boosts are legitimate coordinate descriptions of the background but are not symmetries of the wake law. This selects a rest *structure* for the dynamics — not a preferred origin, and not a built-in axis.
+
+This is not curvature. It is a structural consequence of finite-speed propagation: the wake speed is fixed relative to the void, and everything else builds on that.
+
+The observer-level task is therefore not to remove the absolute frame from the ontology. It is to derive how clocks, rulers, and signals conceal it to the precision experiments have reached. See [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) and [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
 
 ### Speed Convention
 
-The foundation stack keeps primitive, channel, branch, and calibrated speeds distinct:
+The foundation stack keeps several speeds distinct, and collapsing them is a recurring source of error:
 
 | Symbol | Meaning | Status |
 | --- | --- | --- |
 | $c_f$ | Primitive causal-wake propagation speed relative to the Euclidean void | fundamental |
-| $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether sea state and direction | derived |
+| $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a given medium state and direction | derived |
 | $c_{\text{eff}}$ | Effective signal or clock-channel speed for a specified dressed branch | derived/contextual |
-| $c_\star$ | Local comparison speed used in a declared clock, ruler, or signal branch | branch-dependent |
-| $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration and dressing-flow fixed-point target |
+| $c_\star$ | Local comparison speed in a declared clock, ruler, or signal branch | branch-dependent |
+| $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration target |
 
-The symbols $c_f$, $c_\gamma$, $c_{\text{eff}}$, $c_\star$, and $c_0$ must not be identified unless the local document states the regime and derivation. In particular, $c_f$ belongs to primitive causal-root equations, while $c_0$ belongs to weak homogeneous observer calibration.
+None of these may be identified with another unless a document states the regime and the derivation. In particular $c_f$ belongs to the primitive root equations, while $c_0$ is what a laboratory measures.
 
 ### Causal Wake Geometry
 
-Causality is defined by absolute temporal ordering plus finite wake propagation speed.
-
-Three related objects must be kept separate: temporal order, the filled reachability region, and actual causal-wake support. The Master Equation uses the last of these, not the whole filled region.
+Causal-wake propagation respects absolute temporal order and the finite speed $c_f$. Temporal order, direct wake support, and the locations a wake has passed by a given time describe different aspects of that propagation. The master equation selects direct contributions by the support equality.
 
 For two events
+
 $$
 A=(T_A,\mathbf X_A),
 \qquad
@@ -1968,14 +2350,19 @@ B=(T_B,\mathbf X_B)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5284a40dafc30538)
-event $A$ can causally precede $B$ only if
+
+$A$ can causally precede $B$ only if
+
 $$
 T_A<T_B
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e37ea6c0628046e5)
 
-A wake emitted at $(T_t,\mathbf X_{\mathrm{em}})$ reaches points on the causal wake surface
+That is **temporal order**, and it is necessary but not sufficient.
+
+A wake emitted at $(T_t,\mathbf X_{\mathrm{em}})$ occupies the surface
+
 $$
 \|\mathbf X-\mathbf X_{\mathrm{em}}\|=c_f(T-T_t),
 \qquad
@@ -1984,16 +2371,24 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e07376a5400d1530)
 
-The filled causal future of that emission is
+an expanding sphere. That is the **actual wake support**.
+
+Including every fixed spatial location reached no later than a given time produces the filled set
+
 $$
 \{(T,\mathbf X):T\geq T_t,\ \|\mathbf X-\mathbf X_{\mathrm{em}}\|\leq c_f(T-T_t)\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1d76ea7bd73813c1)
 
-The equality surface is an expanding causal isochron: at each later $T$ it appears as a spatial sphere in the Euclidean void, not as a fundamental light cone of a Lorentzian metric. The filled region records causal order and finite-speed reachability, but it is not the support of a single emitted wake. In the exact Master Equation, a receiver is acted on only at boundary roots satisfying the equality condition above. With a mollifier, support is a narrow neighborhood of that boundary and is interpreted in the weak limit.
+which records passage by time $T$, with the emission point included as the boundary case $T=T_t$.
 
-For transmitter $j$ and receiver $i$, the canonical root function is
+The sphere gives the direct support of that emission at the current time. An interior event in the filled set is not an additional direct hit: the wake passed that fixed location earlier. With $c_f=1$, a wake emitted at the origin at $T_t=0$ reaches a location one unit away at $T=1$; the event at that location at $T=2$ lies inside the filled set but receives no second contribution from that emission. A moving receiver can meet the same surface again only if its worldline intersects it again. With a mollifier, direct support is represented by a narrow shell around the surface, interpreted in the limit.
+
+Indirect influence also includes changes carried forward in affected worldlines and later emissions. The filled set has not been proved to bound all such influence: individual architrinos are not kinematically restricted to speeds below $c_f$. A reachability theorem for a specified signaling procedure must account for its admitted transport and relay mechanisms. This distinction adds no observer-level faster-than-light signaling claim.
+
+For transmitter $j$ and receiver $i$ the root function is
+
 $$
 F_{ij}(T_r,T_t)
 =
@@ -2003,7 +2398,9 @@ T_t<T_r
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-24ab0b04a66ba894)
-with active causal-root set
+
+the difference between how far apart they were and how far the wake has travelled, zero exactly when the sphere arrives. The active roots are
+
 $$
 \mathcal{C}_{ij}(T_r)
 =
@@ -2011,7 +2408,11 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e9bc8f92cc4493ea)
-The same notation covers partner hits ($i\ne j$) and self-hits ($i=j$). Simple-root branch charts require the transversality floor
+
+every past emission moment currently being heard. The same notation covers partner hits ($i\ne j$) and self-hits ($i=j$).
+
+On a regular root chart, a nonzero emission-time derivative permits local continuation of a root. A declared positive margin supplies a quantitative conditioning bound:
+
 $$
 \left|
 \partial_{T_t}F_{ij}(T_r,T_t)
@@ -2025,7 +2426,9 @@ c_f-\hat{\mathbf{r}}_{ij}(T_r,T_t)\cdot\mathbf V_j(T_t)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-66377babb203934c)
+
 where
+
 $$
 \mathbf{r}_{ij}(T_r,T_t)=\mathbf X_i(T_r)-\mathbf X_j(T_t),
 \qquad
@@ -2033,9 +2436,11 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0beea2d96374e0e7)
-Failure of this floor marks a caustic-like or degenerate wake-root regime; it is a branch-chart failure condition, not an ordinary small perturbation.
 
-On a smooth retained branch $T_t=T_{t,\ell}(T_r)$, differentiating $F_{ij}(T_r,T_{t,\ell}(T_r))=0$ gives the receiver-side factor
+The middle expression is the transmitter-side factor met in [Architrino](../../../../markdown/aaa/foundations/architrino.md). Falling below a chosen margin can leave the derivative nonzero and the root simple; it does not by itself establish a caustic. Actual derivative zero requires a singular-root analysis. Preserving the root inventory also requires that no root enter or leave the retained history boundaries and that the admitted transmitter-receiver pair set remain fixed. A regular root can leave a memory window without any derivative degeneration.
+
+On a smooth branch $T_t=T_{t,\ell}(T_r)$, differentiating the root condition gives
+
 $$
 \frac{dT_{t,\ell}}{dT_r}
 =
@@ -2044,33 +2449,51 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-44c0a4132a111eae)
-This identity is not a new coupling constant. It distinguishes the transmitter-side causal-root Jacobian from the rate at which a moving receiver path samples the same emitted causal wake sequence. A stationary receiver in the Euclidean-void rest frame sets the numerator to $c_f$; radial receiver motion changes the receiver-side action or wake-history rate and must be recorded when a proof uses accumulated action rather than only an event-local acceleration contribution.
 
-The status of $\kappa_{\mathrm{hit}}$ is fixed in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#causality-and-finite-propagation-speed): it is a declared branch-chart or certificate lower bound, not a universal coupling constant, coordinate parameter, or regularization width.
+the rate at which the emission time being heard advances as the reception time advances. This is not a new coupling constant. It separates the transmitter-side factor from the rate at which a moving receiver sweeps through the emitted sequence — a receiver rushing toward a transmitter samples its past faster than one standing still. A stationary receiver in the rest frame makes the numerator exactly $c_f$. Radial receiver motion changes the accumulated action and must be recorded whenever a proof integrates over history rather than evaluating one event.
 
-The causal wake geometry does not forbid a point architrino from having $\|\mathbf{v}\|>c_f$. It forbids backward-time influence. This separates kinematic freedom from dynamical stability: the Euclidean substrate places no kinematic speed limit on a point architrino, but that freedom does not imply that an assembly can be carried through the same regime intact.
+The status of $\kappa_{\mathrm{hit}}$ is fixed in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#causality-and-finite-propagation-speed): a declared branch-chart bound, not a universal constant, coordinate parameter, or regulator width.
 
-In observer-level wave language, causality is often diagnosed by front velocity rather than group or phase velocity. The substrate statement is sharper: the causal front is the first nonzero causal-wake support in absolute time. Observer-level group-speed, phase-speed, or packet-reshaping effects cannot override the support condition above; they are summaries of how an already causal wake record is sampled by assemblies.
+#### Exceeding the wake speed is permitted; backward influence is not
 
-For standard-matter assemblies, the observer-level relativistic speed limit is a closure result of assembly structure and channel dressing, usually expressed with the declared local comparison speed $c_\star$ and with $c_0$ in the weak homogeneous observer branch. This statement is effective, not ontological: it constrains the recovered observer branch rather than the admissible velocities of individual architrinos.
+The product geometry does not forbid a point architrino from exceeding $c_f$. Backward influence is excluded by future-directed evolution and the wake law's $T_t<T_r$ support rule. A constituent speed and the temporal orientation of an interaction are separate questions.
 
-At the primitive branch level, as constituent architrino speeds approach the wake-speed threshold $c_f$, the constituents increasingly outrun the potential interactions that normally maintain internal closure. The leading side of the assembly encounters a strongly asymmetric wake ledger while trailing structure remains tied to older path-history contributions. The result is severe mechanical deformation rather than a substrate-level prohibition.
+This separates kinematic freedom from dynamical stability. The substrate imposes no speed limit on a point. It does not follow that an assembly can be carried through that regime intact, and the rest of this section is about why.
 
-A useful theorem-target diagnostic for this deformation is the sign-resolved active-root ledger of an assembly branch over a return cycle. Split the retained simple roots by Jacobian sign into counts $N_+(A)$ and $N_-(A)$, and record the pair together with the active-root Euler characteristic
+In observer-level wave language causality is usually diagnosed by front velocity rather than group or phase velocity. The substrate statement is sharper: the causal front is the first nonzero wake support in absolute time, full stop. Group-speed and phase-speed effects are summaries of how an already-causal record is sampled, and cannot override the support condition.
+
+For ordinary matter the relativistic speed limit is a closure *target* for assembly structure and channel dressing, expressed with $c_\star$ or with $c_0$ in the weak homogeneous branch. Once derived, it constrains the recovered observer branch, not the admissible velocities of individual architrinos.
+
+At the primitive level, approaching $c_f$ can make the leading and trailing constituents sample increasingly asymmetric delayed ledgers. The theorem target is to show, for each retained assembly class, whether that asymmetry produces severe deformation, phase loss, or dissociation. The background itself supplies no speed prohibition, and the qualitative ledger asymmetry is not yet a proof of structural failure.
+
+#### A diagnostic for that failure
+
+A useful theorem-target diagnostic follows the instantaneous root inventory through one declared return cycle. At each reception time $T_r$, fix the assembly pair set and retained history domain, then split its finite set of simple roots by the sign of their emission-time derivative into counts $N_+(A;T_r)$ and $N_-(A;T_r)$. The signed count is
+
 $$
-\chi_{\mathrm{root}}(A)
+\chi_{\mathrm{root}}(A;T_r)
 =
-N_+(A)-N_-(A)
+N_+(A;T_r)-N_-(A;T_r)
 =
 \sum_{i,j\in A}
-\sum_{T_t\in\mathcal{C}_{ij}}
-\operatorname{sgn}\!\left(\partial_{T_t}F_{ij}\right)
+\sum_{T_t\in\mathcal{C}_{ij}(T_r)}
+\operatorname{sgn}\!\left(\partial_{T_t}F_{ij}(T_r,T_t)\right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-085c6e60abf7246e)
-with the sums taken over the retained self-hit and partner-hit rows on the branch chart. The two components detect different failure channels. Generic fold events create or annihilate root pairs of opposite Jacobian sign, so they change the unsigned count $N=N_++N_-$ by $\pm 2$ while leaving $\chi_{\mathrm{root}}$ invariant; this is the fold-pair surgery conservation recorded in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex) and [Noether Braid Topological Charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md). A near-threshold fold cascade therefore appears as jumps in $(N_+,N_-)$, while a jump in $\chi_{\mathrm{root}}(A)$ signals a root crossing the chart or memory boundary, a pair-set change, or a degeneracy outside the generic fold class. A structural-integrity failure near the wake-speed threshold should appear in this sign-resolved ledger rather than as a smooth kinematic slowing of the substrate background. This is a diagnostic target for Theorem G, not a proof that every branch fails at the same value of $\|\mathbf{v}\|$.
 
-This structural-integrity claim is the central Lorentz-closure theorem target for this chapter and is restated as Theorem G in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure). It must prove more than the qualitative statement that assemblies fail mechanically near $c_f$. A successful recovered observer branch must show that the matter-assembly limiting speed, Noether sea dressed clock/ruler speed, photon-channel speed, and weak-homogeneous calibration speed collapse to one common limit:
+where the root sets are restricted to that retained domain. These are counts at $T_r$ followed as functions of reception time, not totals of sampled rows accumulated over the cycle. Sampling the same smooth root branch more often does not create additional roots.
+
+The two components detect different failures, which is why both are kept. Generic fold events create or destroy roots in pairs of *opposite* sign, so they change the unsigned total $N=N_++N_-$ by $\pm2$ while leaving the signed total $\chi_{\mathrm{root}}$ untouched — the conservation recorded in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex) and [Noether Braid Topological Charge](../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md).
+
+So a near-threshold fold cascade shows up as jumps in $(N_+,N_-)$ with $\chi_{\mathrm{root}}$ steady, while a jump in $\chi_{\mathrm{root}}$ itself signals something else: a root leaving the chart or memory window, a change in the pair set, or a degeneracy outside the generic fold class. A structural-integrity failure near $c_f$ should appear here rather than as some smooth slowing of the background. This is a diagnostic target for Theorem G, not a proof that every branch fails at the same speed.
+
+#### The Lorentz-closure burden
+
+That structural-integrity claim is the central Lorentz-closure target for this chapter, restated as Theorem G in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure). It has to prove considerably more than "assemblies break near $c_f$."
+
+A successful recovered branch must show that four separately-defined limiting speeds collapse to one:
+
 $$
 c_{\mathrm{mat}}^{\mathrm{lim}}
 =
@@ -2083,9 +2506,16 @@ c_0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-526d35d9d534becb)
-The same weak-field constitutive record must also keep the gravitational-wave tensor-channel speed tied to the photon channel within the multi-messenger residual recorded in the constraint ledger. It must also recover the three effective boost generators missing from the substrate dynamical symmetry group, so the seven proved substrate generators participate in a ten-generator observer-level Lorentz structure within the same $\epsilon_{\mathrm{LV}}$ budget. The associated effective energy, momentum, angular-momentum, and boost charges remain closure targets of the same action and history ledger; generator counting alone does not establish their conservation. It must also show that approach to this limit yields Lorentzian kinematics rather than an arbitrary deformation law:
+
+the matter limit, the dressed clock and ruler speed, the photon speed, and the calibrated laboratory speed, agreeing to within the Lorentz-violation budget $\epsilon_{\mathrm{LV}}$. The same constitutive record must keep the gravitational-wave speed tied to the photon channel within the multi-messenger residual.
+
+It must also recover the three boost generators the substrate dynamics lacks, so that the seven proved substrate symmetries participate in the ten-generator Poincare structure within the same budget. The Lorentz subgroup has six generators, comprising three rotations and three boosts; the four time and space translations complete the Poincare group. Counting generators is not the same as conserving the associated charges, and those remain separate closure targets.
+
+The approach to the limit must recover the Lorentzian changes relative to a declared rest branch. Let $R_\parallel(v_{\mathrm{eff}})$ and $R_\perp(v_{\mathrm{eff}})$ be positive longitudinal and transverse envelope radii measured by the same prescription, with internal excitation, medium state, and reference orientation held fixed in the branch comparison. Normalize each radius to its rest value. In a weak homogeneous observer chart calibrated so that the reference clock has $d\tau/dt_{\mathrm{eff}}=1$ at rest, the targets are
+
 $$
-\frac{R_{\parallel}}{R_{\perp}}
+\frac{R_\parallel(v_{\mathrm{eff}})/R_\parallel(0)}
+{R_\perp(v_{\mathrm{eff}})/R_\perp(0)}
 =
 \frac{1}{\gamma_0(v_{\mathrm{eff}})}
 +O(\epsilon_{\mathrm{LV}}),
@@ -2101,7 +2531,13 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c2c28880e4a680bb)
-The proposed mechanism is one structural claim, not four independent coincidences. Matter transport, clock/ruler retiming, photon transport, and weak-homogeneous calibration must all be projections of the same causal-root ledger through the same Noether sea dressing map in the tested branch. The Lorentz shape is the same claim expressed in deformation variables: near the wake-speed threshold, the leading longitudinal-versus-transverse asymmetry of a closed return cycle must generate the same $\gamma_0(v_{\mathrm{eff}})$ in envelope shape and phase rate. A sharper formulation is that the translating branch's closed-cycle geometry should factor through one deformation family on its orbit moduli,
+
+The first compares longitudinal and transverse deformation factors; it does not require equal radii at rest. In normalized units $c_f=1$, a rest aspect ratio of two gives the target moving aspect ratio $2/\gamma_0$, not $1/\gamma_0$. The second compares the moving clock rate with its calibrated rest rate. Both statements apply for $0\le v_{\mathrm{eff}}<c_0$ in the declared branch regime. The residual estimates require an explicit velocity interval and uniform bounds on that interval; extending them arbitrarily close to $c_0$ is an additional limit estimate, not a consequence of the displayed $O(\epsilon_{\mathrm{LV}})$ notation.
+
+Matter transport, clock retiming, photon transport, and laboratory calibration must be derived consistently from the same retained physical record and medium response. Their observable maps can differ: a clock counts cycles, a ruler compares spatial extents, and a signal measurement compares emission and reception records. Agreement obtained by independently fitting those channels does not establish the common dynamical origin.
+
+A group representation describes a different mathematical object from any one of those measured ratios. In the recovered homogeneous observer geometry, fix a boost axis and let $\mathcal D$ act on the four event coordinates $x_{\mathrm{eff}}^\mu=(c_0t_{\mathrm{eff}},x_{\mathrm{eff}}^1,x_{\mathrm{eff}}^2,x_{\mathrm{eff}}^3)$. Its standard Lorentz representation is
+
 $$
 \mathcal{D}(v_{\mathrm{eff}})=\exp\!\left(\varphi_{\text{eff}}K\right),
 \qquad
@@ -2109,28 +2545,34 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d47aad562c4e8ad1)
-with a single generator $K$ producing both the envelope ratio and the clock-phase rate at the tested order; the rapidity parameter $\varphi_{\text{eff}}$ matches the observer-level convention in [Special Relativity and the Noether Braid](../../../../markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md) and makes the one-parameter family additive if the branch composes boosts. If the longitudinal envelope response and the phase-rate response require independent generators, the branch has not recovered Lorentzian shape even if one scalar speed limit happens to match. The proof burden is to derive these relations from that shared ledger, dressing, and assembly deformation law. The theorem target fails if stable matter classes acquire composition-dependent limiting speeds, if $c_\gamma$ remains independently dressed from matter transport in the weak homogeneous branch, or if the leading deformation is non-Lorentzian after the $c_0$ calibration is fixed. The observer "speed of light" limit for macroscopic assemblies is therefore a structural integrity barrier only after this common-limit and Lorentz-shape closure is satisfied.
+
+where **rapidity** $\varphi_{\text{eff}}$ adds under composition of collinear boosts, and $K$ is the dimensionless linear generator for the chosen axis in this event-coordinate representation. This is an observer-level recovery target, not an imposed action on native assembly histories. Non-collinear boosts also include a rotation and cannot be summarized by scalar rapidity addition.
+
+Clock readings and simultaneous length comparisons require their own extraction maps from transformed event records. Their reduced factors need not obey the composition law of $\mathcal D$: the contraction factor $\operatorname{sech}\varphi_{\mathrm{eff}}$ does not multiply under rapidity addition. Different observable spaces may also represent the same abstract symmetry with different matrices. Lorentz recovery requires a consistent action and observation maps derived from the common physical record; different reduced maps alone do not demonstrate failure.
+
+The target fails if stable matter classes acquire composition-dependent limiting speeds, if the photon channel stays independently dressed from matter transport, or if the leading deformation is non-Lorentzian once $c_0$ is calibrated. The observer speed limit is a structural barrier only after all of this closes.
 
 ### Coordinates and Forbidden Transformations
 
 Allowed substrate coordinates preserve the product structure:
 
 - $T$ remains the absolute time parameter.
-- Spatial coordinates may be Cartesian or curvilinear coordinates on $\Sigma_T$.
-- Spatial coordinate changes may rewrite $h_{ij}$ but do not curve the Euclidean void.
+- Spatial coordinates may be Cartesian or curvilinear on $\Sigma_T$.
+- Spatial coordinate changes may rewrite $h_{ij}$ without curving the void.
 
 Forbidden at the substrate level:
 
 - Lorentz boosts as fundamental time-space rotations.
-- Transformations of the form $T'=T+f(\mathbf X)$ with nonconstant $f$.
-- Any operation that destroys the foliation into constant-$T$ slices.
-- Any transformation that treats effective metric behavior as the fundamental background.
+- Transformations $T'=T+f(\mathbf X)$ with nonconstant $f$, which would make simultaneity position-dependent and destroy the slicing.
+- Anything else that destroys the constant-$T$ foliation.
+- Treating effective metric behavior as the fundamental background.
 
-These exclusions preserve the distinction between absolute timespace and emergent spacetime.
+These exclusions are what keep absolute timespace distinct from emergent spacetime.
 
 ### Measures and Operators
 
-The absolute time measure is
+The time measure is
+
 $$
 dT
 $$
@@ -2138,20 +2580,25 @@ $$
 [View →](../../../../../equation-mapping.html#corpus-equation-0fe7adc347436e7a-2)
 
 The spatial volume element on a slice is
+
 $$
 dV=dX\,dY\,dZ
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fdb88434d089d358)
 
-The product measure is
+and the product measure is
+
 $$
 d\mathcal{V}=dT\,dX\,dY\,dZ=dT\,dV
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-37d05577c7335e04)
 
+which factorizes cleanly because the background does.
+
 The spatial gradient is
+
 $$
 \nabla f=
 \left(
@@ -2163,7 +2610,8 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-03dd2099e7af4a10)
 
-The spatial Laplacian is
+the spatial Laplacian is
+
 $$
 \Delta f
 =
@@ -2174,28 +2622,32 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fbae59b43cba1665)
 
-The temporal derivative is
+and the temporal derivative is
+
 $$
 \frac{\partial}{\partial T}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-625579eac01c110e)
 
-All dynamical equations should make clear which derivatives are temporal, which are spatial, and when a calculation is using an effective metric approximation rather than substrate geometry.
+Every dynamical equation should make plain which derivatives are temporal, which are spatial, and when a calculation has moved into an effective-metric approximation rather than substrate geometry.
 
 ### Regularity and Boundary Conditions
 
-For well-posed dynamics on absolute timespace:
+For well-posed dynamics:
 
 - Worldlines are absolutely continuous with piecewise continuous velocities.
 - Any alternate parametrization $T(s)$ is strictly increasing.
 - Source configurations are locally finite or represented by integrable measures.
-- Regularized wake surfaces should preserve total polarity and converge to the intended causal-wake limit as the regulator is removed.
-- Solutions should decay suitably at spatial infinity unless an incoming condition is explicitly imposed.
+- Regularized wake surfaces preserve total polarity and converge to the intended limit as the regulator is removed.
+- Solutions decay suitably at spatial infinity unless an incoming condition is imposed.
 
 #### Receiver-Centered Exhaustion Lemma
 
-Infinite source families must supply a declared summation or continuum prescription under which the many-source wake sum converges. For each receiver event $(i,T_r)$, choose an increasing receiver-centered exhaustion of retained transmitter events and take the limit in that order. In the simplest radial form the condition is
+An infinite population of sources raises a real question: does the total acceleration at a point even have a value?
+
+For each receiver event $(i,T_r)$, choose an increasing sequence of retained transmitter events centered on the receiver and take the limit in that order. In radial form:
+
 $$
 \lim_{R\to\infty}
 \sum_{\substack{j,\ T_t\in\mathcal{C}_{ij}(T_r)\\
@@ -2204,47 +2656,65 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-58b42e746cbf75dd)
-with any neutrality, screening, principal-value, or mean-field subtraction rule stated before the limit is used. The exhaustion is over retained emission events, that is $(j,T_t)$ root pairs, not over sources: a super-wake-speed transmitter history can contribute several active roots entering the ball at different $R$, and the refinement-independence requirement applies to that event-level ordering.
 
-This is an admissibility lemma for branches and continuum reductions: the branch is well-defined only when the receiver-centered limit exists under the declared subtraction or screening rule, and allowed refinements of the exhaustion do not change the resulting local acceleration. Inverse-square surface dilution alone is not enough in three spatial dimensions because the number of sources in a radial layer grows like $r^2\,dr$. The lemma supplies the convergence condition used by emergence arguments to justify effective locality and metastable assembly behavior.
+summing contributions from everything within distance $R$ and letting $R$ grow, with any neutrality, screening, or subtraction rule declared *before* the limit is taken.
 
-There is one important homogeneous case where the lemma becomes a theorem rather than a bare admissibility requirement. Its scope is a background-sea result: it guarantees convergence for a statistically neutral far population under the stated mixing assumptions, not for every coherent assembly embedded in that population. Suppose the far population is statistically homogeneous, isotropic, locally neutral, and vector-mixing, with correlation length $\ell$ for the cell acceleration fluctuations. The required mixing is a condition on the vector sum, not only on scalar polarity neutrality; schematically, after subtracting the local neutral mean,
+The sum runs over retained emission events — $(j,T_t)$ pairs — not over sources. A transmitter faster than the wake speed can contribute several active roots entering the ball at different $R$, so the ordering must be at event level.
+
+This is an admissibility condition: a branch is well-defined only when the limit exists under the declared exhaustion and subtraction rule. Subdividing a fixed finite region while retaining all its events must preserve its sum. Independence from arbitrary rearrangements of an infinite series requires a separate proof. Inverse-square dilution alone is not enough in three dimensions: a homogeneous population supplies $O(r^2\,dr)$ sources in a shell, offsetting a per-contribution magnitude of $O(r^{-2})$ before any cancellation. A convergence argument must therefore control the full weighted vector sum.
+
+#### When the lemma becomes a theorem
+
+There is one important case where convergence can be proved rather than assumed. Its scope is a background result: it covers a statistically neutral far population, not every coherent assembly embedded in one.
+
+Fix a receiver event and suppose the far population is statistically homogeneous, isotropic, and locally neutral. Partition the retained emission events outside a local ball into cells of diameter $O(\ell)$, with a uniformly bounded number of cell centers per volume $\ell^3$. Each cell contribution must be well-defined before taking the far-population limit. Let $\delta\mathbf a_k$ be cell $k$'s complete received acceleration minus its ensemble mean, including every admitted root and its transmitter-side weight. Write $r_k$ for the distance of its center from the receiver and $d_{kl}$ for the distance between two cell centers. One sufficient weighted covariance hypothesis is
+
 $$
 \left|
-\mathbb{E}\!\left[
-\delta\mathbf{a}_{\mathrm{cell}}(\mathbf{r})
-\cdot
-\delta\mathbf{a}_{\mathrm{cell}}(\mathbf{r}')
-\right]
+\mathbb{E}\!\left[\delta\mathbf a_k\cdot\delta\mathbf a_l\right]
 \right|
 \le
-C\,e^{-\|\mathbf{r}-\mathbf{r}'\|/\ell}
+C\,r_k^{-2}r_l^{-2}e^{-d_{kl}/\ell}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7e63fec8490556b9)
-or a comparable summable vector-correlation bound. Partition space outside a fixed local ball into receiver-centered shells of thickness comparable to $\ell$, and group sources into neutral cells of diameter $O(\ell)$. Let $S_n$ be the vector acceleration contribution from shell $n$ after subtracting the local neutral mean. A shell at radius $r_n\sim n\ell$ contains $N_n=O(n^2)$ effectively independent cells, so signed fluctuations scale like $\sqrt{N_n}=O(n)$ while each cell contribution carries the inverse-square factor $O(r_n^{-2})=O(n^{-2})$. Hence
+
+The constant $C$ is uniform over the cells at this receiver event and carries the units required by the bound. The radial factors control the size of received fluctuations; the exponential controls correlations between separated cells. At $k=l$, the same inequality bounds each cell's second moment by $C r_k^{-4}$. Per-hit inverse-square dilution alone does not supply this complete-cell bound: admitted root multiplicities, source populations, and transmitter weights must satisfy the stated moment condition too. Statistical neutrality alone proves none of those conditions.
+
+Group these cells into successive receiver-centered shells of thickness $\ell$, and let $I_n$ contain the cells in shell $n$, with radii comparable to $n\ell$. The packing bound gives $|I_n|=O(n^2)$ and a uniform bound on $\sum_l e^{-d_{kl}/\ell}$: the number of nearby cells grows polynomially with separation, while the exponential decays faster. For the centered shell sum $S_n=\sum_{k\in I_n}\delta\mathbf a_k$, the covariance expansion therefore gives
+
 $$
-\mathbb{E}\|S_n\|^2=O(n^{-2})
+\mathbb E\|S_n\|^2
+\le C_1 n^{-4}\sum_{k\in I_n}\sum_{l\in I_n}e^{-d_{kl}/\ell}
+\le C_2 n^{-4}|I_n|
+=O(n^{-2}),
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4b531110b8f53f7b)
-under the declared mixing bound, and therefore
+
+where $C_1$ and $C_2$ are independent of the shell index and include the fixed powers of $\ell$. The shell fluctuation is thus square-summable:
+
 $$
 \sum_{n=1}^{\infty}\mathbb{E}\|S_n\|^2<\infty
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1036eabe49f53f39)
-The shell series converges in $L^2$ and almost surely by the standard square-summable fluctuation criterion. Thus a homogeneous locally neutral Noether sea record supplies a convergent receiver-centered exhaustion under these assumptions. This result does not prove convergence for arbitrary inhomogeneous or coherent far populations. A coherent far dipole texture, long-range orientational correlation, or anisotropic source family can defeat vector cancellation even when scalar polarity neutrality holds. Every coherent assembly, anisotropic source family, or long-range correlated medium feature on top of the background must supply its own shielding, screening, finite active horizon, or explicit subtraction prescription before its many-source wake sum is treated as closed.
 
-The first inhomogeneous obligation is isolated in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md). For a weak density gradient $\rho_{\mathrm{NS}}=\rho_0+\mathbf g_\rho\cdot\mathbf X+\cdots$, the neutral-cell multipole and the conditional shell mean must be derived and shown convergent. The homogeneous variance theorem therefore does not by itself imply an acceleration proportional to $-\nabla\rho_{\mathrm{NS}}$, fix the sign or coefficient of a weak-gradient response, or close the gravity, clock, and ruler maps.
+To obtain convergence both in mean square and almost surely, add the explicit hypothesis $\mathbb E[S_n\mid\mathcal F_{n-1}]=0$, where $\mathcal F_{n-1}$ contains the information revealed by the completed preceding shells and $S_n$ is measurable once shell $n$ is revealed. This makes the partial sums an $L^2$-bounded martingale: distinct increments have zero covariance, so the second moment of each partial sum is bounded by the sum of the shell variances. The martingale convergence theorem then gives both conclusions. Exponential cell covariance does not itself prove this conditional-mean hypothesis. Without it, a different convergence theorem is needed, and only the conclusion of that theorem may be claimed.
 
-Plainly: cancellation in a uniform sea does not determine the response of a tilted sea. That response remains a separate derivation.
+This proves convergence of the centered sum along the completed-shell exhaustion under the stated hypotheses. Recovering the full acceleration also requires zero coherent shell mean, a convergent sum of those means, or an explicitly declared subtraction rule. Intermediate cutoffs within a shell and other exhaustion orders require control of their residual contributions before they can be assigned the same limit. Cancellation in this conditional statistical model does not establish that the physical Noether sea satisfies its weighted covariance or conditional-mean assumptions.
 
-These assumptions are not additional ontology. They are the analytic conditions needed for the master equation and simulation approximations to be well-defined on the product background.
+That is also exactly why the theorem does not extend. A coherent far dipole texture, long-range orientational correlation, or anisotropic source family can defeat vector cancellation even with perfect polarity neutrality — the shells would add in step rather than at random. Every coherent assembly or correlated medium feature on top of the background must supply its own shielding, screening, finite horizon, or explicit subtraction before its sum may be treated as closed.
+
+The first such obligation is isolated in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md). For a weak density gradient $\rho_{\mathrm{NS}}=\rho_0+\mathbf g_\rho\cdot\mathbf X+\cdots$, the multipole contribution and the conditional shell mean must be derived and shown convergent. The homogeneous theorem does not by itself imply an acceleration proportional to $-\nabla\rho_{\mathrm{NS}}$, fix the sign or size of a weak-gradient response, or close the gravity, clock, and ruler maps.
+
+Cancellation in a uniform sea says nothing about the response of a tilted one. That remains a separate derivation.
+
+These conditions are not extra ontology. They are what the master equation and its numerical approximations need in order to be well-defined.
 
 ### Relation to Relativistic Spacetime
 
-Relativistic spacetime remains the correct comparison target for recovered observer laws, but this chapter does not treat it as substrate ontology. The table therefore compares a fixed product background with a downstream effective description.
+Relativistic spacetime remains the correct comparison target for recovered observer laws. This table sets a fixed product background beside a downstream effective description — the two are at different levels, and the comparison is only meaningful with that said.
 
 | **Feature** | **Absolute Timespace** | **Relativistic Spacetime** |
 |:---|:---|:---|
@@ -2257,7 +2727,8 @@ Relativistic spacetime remains the correct comparison target for recovered obser
 | **Gravity** | Emergent from assembly and Noether sea dynamics | Spacetime curvature |
 | **Expansion** | No expansion of the void | Metric expansion possible |
 
-The effective metric used in GR-style recovery is a downstream constitutive object. It must be derived from clocks, rulers, signal transport, and Noether sea response. The local handoff is an observer-level clock-and-ruler relation of the form
+The effective metric used in relativistic recovery is a downstream object, derived from clocks, rulers, signal transport, and medium response. The local handoff is
+
 $$
 d\tau^2
 =
@@ -2270,7 +2741,11 @@ B_{ij}(\mathcal{N}_{\mathrm{sea}})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d8fd4033b3daa123)
-with $A>0$ and $B_{ij}$ symmetric positive definite. Equivalently, defining $ds_{\mathrm{eff}}^2=-c_0^2d\tau^2$ and $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$ gives the component export
+
+with $A>0$ and $B_{ij}$ symmetric positive definite. The factor $A$ is how fast a local clock runs, $B_{ij}$ is how local rulers measure distance, and $u^i_{\mathrm{sea,eff}}$ is the medium's flow, subtracted so that distance is measured relative to the medium rather than the chart.
+
+Equivalently, define $ds_{\mathrm{eff}}^2=-c_0^2d\tau^2$ and $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$. In that convention the component form is
+
 $$
 g^{\mathrm{eff}}_{00}
 =
@@ -2286,59 +2761,76 @@ B_{ij}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a20b3912bb43ea2b)
-This is the same observer-level ADM/Cartan map stated in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md). This equation is not substrate geometry; it is the required metric handoff from Noether sea state and Physical Observer assemblies into effective spacetime language.
+
+the same decomposition used in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md). This is not substrate geometry. It is the required handoff from medium state and observer assemblies into effective spacetime language.
 
 ### Role in $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-Absolute timespace is the formal product background in which all architrino dynamics unfold:
+Absolute timespace is the background in which all architrino dynamics unfold:
 
-- Architrino worldlines are curves $(T,\mathbf X(T))$ in $\mathcal{M}$.
-- Causal wakes are emitted at earlier events and intersect receivers at later events.
-- Path history is well-defined because the past is the set of all events with smaller $T$.
-- Assembly motion, clock behavior, and effective spacetime geometry are built on this substrate but are not identical with it.
-- Proper time is a functional of physical observer dynamics, not a fundamental interval of $\mathcal{M}$.
+- Worldlines are curves $(T,\mathbf X(T))$ in $\mathcal{M}$.
+- Wakes are emitted at earlier events and meet receivers at later ones.
+- Path history is well-defined because the past is simply everything at smaller $T$.
+- Assembly motion, clock behavior, and effective geometry are built on this substrate without being identical to it.
+- Proper time is a functional of observer dynamics, not a fundamental interval.
 
 ### Summary Postulate
 
-Postulate 3 fails if any accepted substrate-level interaction requires breaking the constant-$T$ foliation, for example through a substrate time coordinate of the form $T'=T+f(\mathbf X)$, or requires a fundamental nondegenerate four-metric. Effective clock synchronization, proper time, and metric reconstruction may mix observer coordinates after recovery; they cannot replace the substrate product structure without replacing this postulate.
+Postulate 3 fails if any accepted substrate interaction requires breaking the constant-$T$ slicing — for instance through a time coordinate $T'=T+f(\mathbf X)$ — or requires a fundamental non-degenerate four-metric. Effective clock synchronization, proper time, and metric reconstruction may mix observer coordinates after recovery; they cannot replace the substrate product structure without replacing this postulate.
 
-> **Postulate 3 (Absolute Timespace):** The background arena for all physics is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dT$ and Euclidean spatial metric $h_{ij}=\delta_{ij}$. This defines a global foliation into simultaneous Euclidean slices indexed by universal time. The background is non-dynamical and non-curved. Causality is defined by absolute temporal ordering and finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law, by fixing the wake speed $c_f$ relative to the void, structurally distinguishes the void rest frame. Effective Lorentz behavior, gravity, lensing, clock dilation, and cosmological expansion are recovery targets: when the assembly and Noether sea closure programs succeed, they are emergent descriptions within absolute timespace, not properties of the background itself.
+> **Postulate 3 (Absolute Timespace):** The background arena for all physics is the product manifold $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$, equipped with the exact substrate clock form $dT$, Euclidean spatial metric $h_{ij}=\delta_{ij}$, and a compatible flat torsion-free product connection $\nabla$. These data define a global foliation into simultaneous Euclidean slices indexed by universal time and an affine rule for comparing positions and velocities across slices. The background is non-dynamical and non-curved. Causality is defined by absolute temporal ordering and finite wake speed $c_f$. The product background preserves Galilean kinematic structure, while the interaction law, by fixing the wake speed $c_f$ relative to the void, structurally distinguishes the void rest frame within that structure. Effective Lorentz behavior, gravity, lensing, clock dilation, and cosmological expansion are recovery targets: when the assembly and Noether sea closure programs succeed, they are emergent descriptions within absolute timespace, not properties of the background itself.
 
 ## Absolute Time Defense
 
-This chapter states why absolute time is the theory's fundamental evolution parameter. The key distinction is simple but load-bearing: absolute time is the variable used by the [master equation](../../../../markdown/aaa/dynamics/master-equation.md); a simultaneity slice is the complete substrate state at one value of that variable; proper time is the derived readout of a physical clock assembly.
+This chapter argues why absolute time is the theory's fundamental evolution parameter, and — more importantly — states precisely what would falsify the proposed recovery of observed clock, ruler, and signal behavior from that choice.
 
-The teaching sequence is deliberately layered. First comes the ontological claim about absolute time and the Euclidean void. Then comes the dynamical claim about universe-state evolution on those simultaneity slices. Only after those claims are fixed does the chapter introduce proper time, clock-rate extraction, and relativistic observer inferences. It is the argumentative companion to [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md).
+One distinction carries the whole argument:
 
-### The Case for Absolute Time ($T$)
+- **Absolute time** $T$ is the variable the [master equation](../../../../markdown/aaa/dynamics/master-equation.md) evolves in.
+- A **simultaneity slice** $\Sigma_T$ is the geometric copy of space at one value of that variable; the complete substrate state $S(T)$ is indexed on it.
+- **Proper time** is what a physical clock reads.
 
-1. **Fundamental evolution parameter**: Absolute time $T$ is the unique evolution parameter of the master equation.
-2. **Product substrate**: The kinematic background is the product manifold $\mathcal{M} = \mathbb{R} \times \mathbb{R}^3$ with clock projection $\pi_T:\mathcal{M}\to\mathbb{R}$.
-3. **Unique foliation**: The simultaneity slice at fixed $T_\ast$ is the level set
+The three are routinely conflated, and keeping them apart is necessary for a coherent statement of the theory.
+
+The sequence is layered deliberately. First the ontological claim about absolute time and the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md). Then the dynamical claim about how states evolve on slices. Only after those are fixed does proper time appear, along with clock-rate extraction and relativistic inference. This is the argumentative companion to [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md).
+
+### The Case for Absolute Time
+
+1. **Fundamental evolution parameter.** $T$ is the unique parameter the master equation evolves in.
+2. **Product substrate.** The background is $\mathcal{M}=\mathbb{R}\times\mathbb{R}^3$ with a projection $\pi_T$ reading off the time coordinate.
+3. **Unique foliation.** The slice at fixed $T_\ast$ is everything sharing that time:
+
    $$
    \Sigma_{T_\ast} = \pi_T^{-1}(\{T_\ast\}) = \{T_\ast\}\times \mathbb{R}^3
    $$
 
    [View →](../../../../../equation-mapping.html#corpus-equation-5e84fc71ef931610)
-4. **Substrate clock form**: The substrate clock form $dT$ is exact, closed, and nowhere vanishing as the pullback from the $\mathbb{R}$ factor. Together with the chosen orientation of increasing $T$, it fixes the tangent planes to the slices $\Sigma_T$; foliation ambiguity is absent at the substrate level rather than removed by coordinate gauge.
-5. **Derived clock time**: Proper time $\tau$ is not fundamental; it is a derived functional of Noether braid internal phase dynamics.
 
-The list separates what exists at the substrate level from what embedded observers can read. Absolute time, the Euclidean void, and the slices $\Sigma_T$ are substrate commitments. Proper time, clock synchronization, and relativistic simultaneity judgments are effective readouts produced by assemblies embedded in the Noether sea. The defense of absolute time therefore does not deny observed clock dilation; it relocates clock dilation from fundamental temporal ontology to derived assembly dynamics.
+4. **Substrate clock form.** The theory postulates a global function $T$; its differential $dT$ is therefore exact, closed, and nowhere vanishing. Those properties encode the postulate and its foliation consistently, but they do not independently prove that nature supplies such a function.
+5. **Derived clock time.** Proper time $\tau$ is not fundamental. It is a functional of a clock assembly's internal phase dynamics.
 
-A useful comparison with relativistic block-universe arguments is the distinction between absolute time, the substrate-level simultaneity slice, and the observer-readable present. Absolute time $T$ is fundamental. The complete slice $\mathbb{U}_{\text{now}}\equiv S(T)$ is substrate-level: it is the full universe state at one value of $T$, not a clock reading available to embedded observers. Special relativity correctly removes any observer-accessible global three-space: a Physical Observer cannot synchronize distant records into one public present without using clocks, rulers, and signal conventions that must themselves satisfy Lorentz tests. The observer-facing obligation is therefore to show why attempts to read the absolute foliation through matter clocks, photon synchronization, CMB rest-frame comparison, or gravitational channels collapse to an effective Lorentz or metric reconstruction with preferred-frame leakage below the declared bounds.
+The list separates what exists from what can be read. Absolute time, the void, and the slices are substrate commitments. Proper time, synchronization, and simultaneity judgments are readouts produced by assemblies embedded in the medium.
 
-A cosmological frame such as the CMB rest frame can be a useful effective foliation for data reduction, but it is not absolute time itself and does not expose the substrate clock form. It supplies a large-scale observer record only after photon transport, source evolution, and receiver cadence are modeled; it cannot by itself license an exact observer-readable global present.
+So the defense does **not** deny observed clock dilation. It relocates it — from the nature of time to the behavior of clocks.
+
+#### The block-universe comparison
+
+Special relativity is usually taken to show there is no global present. That conclusion is correct as far as it goes, and it goes exactly as far as observers.
+
+Absolute time $T$ is fundamental. The complete state $\mathbb{U}_{\text{now}}\equiv S(T)$ is indexed on the slice $\Sigma_T$: it is the full state at one $T$, not a reading available to anyone. What special relativity denies as an invariant observable is a public simultaneity assignment shared by all inertial frames; an observer cannot reconstruct the substrate slice without clocks, rulers, and signal conventions that must themselves pass Lorentz tests.
+
+The obligation this creates is specific rather than philosophical. Every attempt to read the absolute slicing — through matter clocks, photon synchronization, comparison against the cosmic microwave background rest frame, or gravitational channels — must be shown to collapse into an effective Lorentz reconstruction with leakage below declared bounds. Not argued to. Shown.
+
+A cosmological frame such as the microwave background rest frame is a useful effective slicing for data reduction, and it is not absolute time. It supplies a large-scale record only after photon transport, source evolution, and receiver cadence are modeled, and it licenses no exact global present.
 
 ### Absolute Time, Global Foliation, and Proper Time
 
-**Absolute time $T$ and universe state**
-- The $\mathbb{U}_{\text{now}}$ perspective indexes the exact microstate as $S(T)$ on each slice $\Sigma_T$.
-- On each $\Sigma_T$, the spatial metric is Euclidean: $h_{ij}=\delta_{ij}$.
-- Absolute time is substrate structure, not a coordinate gauge choice.
+On each slice $\Sigma_T$ the spatial metric is Euclidean, $h_{ij}=\delta_{ij}$, and the state is indexed as $S(T)$. Absolute time is substrate structure, not a coordinate choice.
 
-At this level, $\mathbb{U}_{\text{now}}\equiv S(T)$ is not an observer's reconstruction of events. It is the complete ontic universe state on a simultaneity slice, including constituent positions, velocities, polarities, path-history data, and any branch information required by the delayed dynamics. Observers infer only a coarse-grained portion of this state through clocks, rulers, signals, and records.
+$\mathbb{U}_{\text{now}}\equiv S(T)$ is not a reconstruction of events. It is the complete state on a slice: positions, velocities, polarities, path histories, and any branch data the delayed dynamics needs. Observers infer a coarse fraction of it.
 
-Because the master equation is path-history dependent, the complete state on a slice is not merely an instantaneous Markov projection. The precise schematic form is
+Because the master equation depends on path history, the state on a slice is not just an instantaneous snapshot:
+
 $$
 S(T)
 =
@@ -2351,20 +2843,23 @@ H_T,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-32ba4361fc774e61)
-where $X(T)$ contains instantaneous architrino and assembly data, $H_T$ is the path-history and provenance ledger, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, and $\mathcal{B}_T$ records the active branch chart or regularization data. Determinism applies to this complete history state, not to a history-free slice projection.
 
-The branch-chart entry is not an observer bookkeeping choice imported into the substrate. $\mathcal{B}_T$ is ontic only insofar as it records the dynamically occupied branch, active causal-root labels, and regularization regime of the deterministic history $H_T$. Where a reduced subsystem has a proved contraction after its exported fluxes are included, the record may also identify its attractor basin. A different analyst may choose different coordinates for describing the branch, but cannot choose a different occupied branch without changing $S(T)$ itself.
+with instantaneous data $X(T)$, the history and provenance ledger $H_T$, the retained medium state, and $\mathcal{B}_T$ recording the dynamically occupied branch and active roots. A numerical regularization may accompany a calculation without becoming part of the physical state. Determinism applies where this complete physical state defines a well-posed initial-history problem.
 
-**Deterministic evolution and branch selection**
-- The delay-differential master equation is deterministic: where the declared branch chart or regularization makes the evolution well posed, a fully specified $\mathbb{U}_{\text{now}}\equiv S(T_\ast)$, including the required path-history and provenance ledger, generates a unique trajectory $S(T)$ for $T>T_\ast$.
-- Apparent branching is multistability, not stochastic evolution: near separatrices, infinitesimal perturbations in initial microstate direct trajectories into different stable branch neighborhoods.
-- Therefore the general statement is branch selection under deterministic flow, not a "distribution of allowed configurations" from one exact state. The stronger phrase *attractor-basin selection* is reserved for a declared retained subsystem whose contraction and exported wake, Noether sea, and memory-boundary fluxes have been established.
+The branch entry is not analyst bookkeeping smuggled into the ontology. $\mathcal{B}_T$ is real insofar as it records which branch the deterministic history actually occupies and which roots are active. Chart labels and regularization parameters used to represent that state remain descriptive. A different analyst may use different coordinates, but cannot choose a *different occupied branch* without changing the physical state itself.
 
-This is a claim about deterministic selection in the complete history state, not a classification of the exact full flow as dissipative or attracting. A finite observer may lack the path-history resolution needed to know which branch the system occupies, but that ignorance is inferential. It does not convert a single exact state into many simultaneous ontic futures.
+#### Deterministic evolution and branch selection
 
-**Proper time $\tau$ for physical observers**
+The delay-differential master equation is deterministic. Where the declared chart makes evolution well posed, a fully specified state — including its history ledger — generates a unique trajectory forward.
 
-Physical clocks are Noether braid assemblies. Their ticks are internal periodic-branch phase advances, so the primary definition is phase extraction, not an arbitrary scalar fit:
+Where distinct stable neighbourhoods and their separatrix have been established, apparent branching is **multistability**, not stochasticity: arbitrarily small differences on opposite sides can send trajectories to different outcomes. More generally the honest phrase is branch selection under deterministic flow, never "a distribution of allowed configurations" from one exact state. The stronger term *attractor-basin selection* is reserved for a subsystem whose contraction and exported fluxes have actually been established.
+
+A finite observer may lack the resolution to know which branch is occupied. That ignorance is **inferential**. It does not convert one exact state into many simultaneous futures.
+
+#### Proper time for physical observers
+
+Physical clocks are assemblies. Their ticks are internal phase advances, so the definition is phase extraction rather than a fitted scalar:
+
 $$
 d\tau_{\mathcal A}
 =
@@ -2386,7 +2881,11 @@ H_{\mathcal A}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-105e00cb4ffec320)
-Here $\varphi_{\mathcal A}$ is the declared clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $R_{\mathcal A}$ is the clock assembly orientation and geometry record, and $H_{\mathcal A}$ is the relevant path-history ledger. Both $\Omega_{\mathcal A}$ and $\Omega_{\mathcal A}^{(0)}$ are phase rates per unit effective time $t_{\mathrm{eff}}$, so the ratio is dimensionless. The velocity relative to the local Noether sea flow in the observer-level bookkeeping map is
+
+Elapsed clock time is phase advanced divided by the rate at rest, and the rate at which the clock runs relative to effective time is its current rate over its rest rate. The rate depends on velocity relative to the medium, the medium state, the clock's orientation and geometry $R_{\mathcal A}$, and its history $H_{\mathcal A}$. Both rates are phases per unit effective time, so the ratio is a pure number.
+
+Velocity relative to the local medium flow is
+
 $$
 w^i_{\mathcal A}
 =
@@ -2396,9 +2895,19 @@ u^i_{\mathrm{sea,eff}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5ab406531d40bca2)
-for the clock worldline $x^i_{\mathcal A,\mathrm{eff}}(t_{\mathrm{eff}})$.
 
-This phase extraction is admissible only on a clock branch whose internal return map retains a normally hyperbolic invariant cycle with a unique rotation number. In plain terms, the assembly must keep returning to the same countable cycle before it can function as a clock. More explicitly, let $P_{\mathcal A}$ be the Poincare return map on the retained clock branch and let $\tilde P_{\mathcal A}$ be a lift of its action on the invariant phase circle. The clock rotation number is
+the clock's own velocity minus the medium's. This variable isolates motion through the medium in the proposed clock map; any additional dependence on absolute motion remains part of the preferred-frame residual and cannot be discarded by definition.
+
+#### When is something actually a clock?
+
+Phase extraction is not always available, and saying so precisely is what keeps this from being circular.
+
+An assembly can serve as a clock only if it carries a persistent phase. For a periodic branch, a **Poincaré return map** records successive crossings of a transverse section and a stable fixed or periodic point supplies repeatable returns. For a quasiperiodic invariant circle, an orientation-preserving circle map may instead carry a well-defined rotation number. These are distinct clock cases and must not be collapsed into one criterion.
+
+For the invariant-circle case, picture observing a rotating pointer at each return to the section. The circle map records its successive positions, but those positions alone specify neither the complete turns between observations nor the elapsed time. Write the phase in cycles as $\theta\in\mathbb R/\mathbb Z$ and the return map as $P_{\mathcal A}$. A **lift** $\tilde P_{\mathcal A}$ keeps the phase on the real line and satisfies $\tilde P_{\mathcal A}(x+1)=\tilde P_{\mathcal A}(x)+1$. The continuous physical phase selects the lift that counts the actual complete turns. In expressions involving that lift, $\theta$ denotes a chosen real representative of the initial circle phase.
+
+The **rotation number** records the mean advance per return, reduced modulo one cycle:
+
 $$
 \rho_{\mathcal A}
 =
@@ -2408,9 +2917,36 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-21cce4f28c680633)
-defined mod 1 through the choice of lift. When $P_{\mathcal A}$ restricted to the retained clock circle is an orientation-preserving homeomorphism, this limit exists and is independent of $\theta$; that invertibility is the real hypothesis. If the restriction is only degree-one and non-invertible, the rotation set can be an interval rather than a point, and clock validity requires it to collapse to a point. The clock-validity domain is the parameter region where $P_{\mathcal A}$ restricted to the clock circle is topologically conjugate to a rigid rotation, or reduces to a unique normally hyperbolic periodic orbit with a well-defined phase advance. In that regime $\varphi_{\mathcal A}$ can be chosen continuously and $\Omega_{\mathcal A}$ is a branch observable. If the moving or dressed branch loses normal hyperbolicity through a saddle-node of cycles, torus breakdown, quasiperiodic transition, loss of return-map invertibility with an open rotation interval, or collapse of the cycle-stability floor, then a single rotation number no longer exists and $d\tau_{\mathcal A}$ is undefined for that branch. That event is a clock-failure mode, not a new proper-time law; in simulation it appears as a Floquet or Lyapunov-spectrum sign change in the transverse clock-cycle directions.
 
-In the Noether-braid clock class, this is the observer-side use of the [candidate and certified braid](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#candidate-and-certified-braids) distinction. A physical clock is an admitted branch whose retained record returns under the delayed return map, modulo only true neutral symmetries, with a positive non-symmetry Floquet margin. Its declared clock phase $\varphi_{\mathcal A}$ is the rotation coordinate of that relative periodic orbit. Thus the clock-validity certificate can be written schematically as
+The numerator counts the phase advance over $n$ returns. Dividing by $n$ gives cycles per return; reducing modulo one discards whole turns from that mean. Adding a complete turn between every pair of observations leaves the circle map unchanged, so its rotation number alone does not recover the physical turn count.
+
+The real hypothesis in that case is invertibility. When the return map restricted to an invariant circle is an orientation-preserving homeomorphism, the limit exists and does not depend on where one starts. If the circle map is non-invertible, a rotation set rather than one rotation number may be required. A periodic clock does not need this circle-map construction: its phase is defined by repeatable return along its periodic orbit.
+
+Frequency also needs the time between returns. Let $\delta t_{\mathcal A}(\theta)>0$ be the elapsed effective time $t_{\mathrm{eff}}$ until the next return from phase $\theta$, and write $\theta_k=P_{\mathcal A}^{\,k}(\theta)$ for the successive circle phases. The mean frequency is the total physical phase advance divided by the total elapsed effective time:
+
+$$
+\overline\nu_{\mathcal A}
+=\lim_{n\to\infty}
+\frac{\tilde P_{\mathcal A}^{\,n}(\theta)-\theta}
+{\sum_{k=0}^{n-1}\delta t_{\mathcal A}(\theta_k)},
+\qquad
+\overline\Omega_{\mathcal A}=2\pi\overline\nu_{\mathcal A}.
+$$
+
+[View →](../../../../../equation-mapping.html#corpus-equation-bec62a39745a7416)
+
+Here $\overline\nu_{\mathcal A}$ is measured in cycles per effective-time unit and $\overline\Omega_{\mathcal A}$ is the mean angular phase rate. If the real mean advance per return converges and the mean return duration converges to a finite positive value, this ratio exists and equals the quotient of those two limits. A frequency shared across the branch also requires the quotient to be independent of the initial phase. Doubling all return durations leaves the circle map unchanged and halves the frequency. Rates per substrate time $T$ require the corresponding time conversion; they cannot be identified with rates per $t_{\mathrm{eff}}$ by notation alone.
+
+The delayed trajectory supplies the physical turn counts and return times when these can be extracted consistently. A unique mean frequency alone does not establish small timing fluctuations or a positive instantaneous phase rate. Those remain part of phase coherence. For a periodic orbit with one counted phase cycle per period, the frequency is the reciprocal of that period in the declared time parameter.
+
+So the clock-validity domain has at least two controlled cases: a stable periodic orbit with repeatable return, or a normally stable invariant circle with coherent phase, physical turn counts, and controlled return times. There the phase can be chosen continuously and its rate is a candidate observable.
+
+If a moving or dressed branch loses every admissible phase structure — through destruction of a periodic orbit, breakup of an invariant circle, loss of circle-map invertibility, or collapse of transverse stability — then **proper time is undefined for that branch.** A transition from periodic to quasiperiodic motion is not automatically a failure; it is a failure only when no unique, stable phase functional survives.
+
+#### The clock certificate
+
+In the braid clock class this is the observer-side use of the [candidate and certified braid](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#candidate-and-certified-braids) distinction. For a periodic branch, a physical clock is a record that returns under the delayed map, up to genuine symmetries only, with a positive transverse Floquet margin. Its phase is the coordinate along that periodic orbit:
+
 $$
 \mathcal R_{\mathrm{cert}}(\mathcal A)
 \le
@@ -2420,9 +2956,15 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-860738cb635545d8)
-The certificate condition is open: a normally hyperbolic phase-locked cycle with positive Floquet margin persists under small perturbations of the dressing and retained record, which is why certified clocks are robust standards rather than fine-tuned branches. This certificate establishes transverse persistence on the retained clock branch; it does not by itself prove contraction of the complete history flow. The stronger word *attracting* applies only after a declared reduced clock subsystem includes the wake, Noether sea, and memory-boundary fluxes crossing its retained boundary and proves the required contraction. Loss of the clock certificate is the clock instance of branch de-certification: the phase coordinate ceases to be single-valued, and $d\tau_{\mathcal A}$ is not exported.
 
-The same condition has a memory-boundary form. A valid clock branch must replay the retained path-history window over one return, so that the memory-corrected symplectic flux has no secular remainder:
+the return residual is small, and the **Floquet** margin for transverse perturbations of the periodic orbit is strictly positive. An invariant-circle clock requires the corresponding normal-hyperbolicity and phase-coherence certificate rather than this periodic-orbit Floquet row.
+
+The positive transverse-margin condition is **open**: a stable phase-locked cycle with strictly positive margin survives sufficiently small perturbations of its dressing and record. A certificate also needs strict slack below the chosen return-residual ceiling; a record sitting exactly on that ceiling has no such robustness guarantee.
+
+The certificate establishes transverse persistence on the retained branch. It does **not** prove contraction of the complete history flow, and the word *attracting* applies only after a reduced subsystem includes the wake, medium, and memory-boundary fluxes crossing its boundary and proves contraction with those included.
+
+Clock repeatability requires a reproducible phase evolution with the relevant delayed history and exchanges accounted for. An additional condition enters when a branch is represented by an [effective Hamiltonian](../../../../markdown/aaa/dynamics/effective-lagrangian.md): its evolution must preserve the symplectic structure, the oriented-area structure on pairs of state variations. For a delayed branch, the proposed structure includes a memory correction. Its candidate boundary balance over one return is
+
 $$
 \oint_{\mathrm{return}}
 \omega_{\mathrm{mem},\partial[-h,0]}
@@ -2431,9 +2973,15 @@ O(\epsilon_{\omega}).
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-13b3921c2e458f6a)
-This is the clock-sector reading of the branch-symplectic-promotion condition in [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md#effective-hamiltonian-domain-gate). A branch that leaks energy, symplectic area, or wake momentum through the memory boundary per cycle may still be a transient oscillator, but it is not a stable proper-time standard because its rotation number drifts.
 
-The full local Noether sea state is the retained state record $\mathcal{N}_{\mathrm{sea}}$, for example
+Here $h$ is the retained history duration, $[-h,0]$ is the interval of history ages, and $\omega_{\mathrm{mem},\partial[-h,0]}$ denotes the proposed boundary contribution to the transported memory-corrected symplectic structure. Its kernel, boundary identity, evaluation over a return, and norm and scale for the error $\epsilon_\omega$ require an explicit construction. These remain open conditions for this Hamiltonian representation; the displayed balance is not an established equivalent of the clock certificate.
+
+A defect in this proposed symplectic balance does not by itself establish clock-rate drift. The phase calculation must determine whether omitted history or physical exchanges change the rate, introduce timing errors, or destroy the repeatable phase. Failure of a reduced Hamiltonian description alone does not disqualify a branch as a clock, and a repeatable phase alone does not establish Hamiltonian validity. An externally maintained clock requires the driving and exported fluxes to be included in the same repeatability account.
+
+#### The medium state
+
+The full local medium record is
+
 $$
 \mathcal{N}_{\mathrm{sea}}
 =
@@ -2449,11 +2997,12 @@ Q^{\text{sea}}_{ij},
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-60bfdf3c6a2e0b4e)
-The scalar $\chi_{\text{sea}}(\mathbf X,T)\equiv c_f/c_{\text{eff}}(\mathbf X,T)$ is only the Noether sea delay factor extracted for a specified channel. It is not the full Noether sea state.
 
-A broad constitutive expression $d\tau=F(\cdots)dt_{\mathrm{eff}}$ may still be used as a schematic summary after the clock channel has been declared, but the closure target is the extracted phase functional above. Proper time is not a free scalar function assigned independently of assembly dynamics.
+density, normalized Noether braid density $n$, flow, orientation, stress, gradients, and more. The single scalar $\chi_{\text{sea}}\equiv c_f/c_{\text{eff}}$ is only a delay factor for one declared channel, not the state.
 
-The integral clock-frequency form is
+A broad expression $d\tau=F(\cdots)dt_{\mathrm{eff}}$ may summarize things once a channel is declared, but the closure target is the extracted phase functional. Proper time is not a free scalar assigned independently of the dynamics.
+
+The integral form is
 
 $$
 \tau(t_{\mathrm{eff},1})-\tau(t_{\mathrm{eff},0})=\int_{t_{\mathrm{eff},0}}^{t_{\mathrm{eff},1}}\frac{\omega_{\text{clk}}(t_{\mathrm{eff}})}{\omega_0}\,dt_{\mathrm{eff}}
@@ -2461,9 +3010,14 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d21e5fbcfc3a642b)
 
-where $\omega_{\text{clk}}(t_{\mathrm{eff}})$ is the phase rate extracted from the declared Noether braid clock channel and $\omega_0$ is its rest-branch reference frequency; this is the integral form of the same phase extraction, with $\omega_{\text{clk}}=\Omega_{\mathcal A}$ and $\omega_0=\Omega_{\mathcal A}^{(0)}$ on the declared branch. The dependencies hidden in $\omega_{\text{clk}}$ are the local causal-root ledger, the relevant path-history data, and the same Noether sea state variables used by the clock/ruler metric handoff.
+accumulating the rate ratio over the interval. What hides inside the rate is the local root ledger, the relevant history, and the same medium variables the metric handoff uses.
 
-This definition avoids assigning proper time as an independent scalar, but it does not by itself prove relativity-compatible clock behavior. The non-circular closure statement is stronger: after phase extraction, all admitted low-energy clock and ruler assemblies in a tested comparison class must reduce to the same observer-level clock/ruler map. Equivalently, for each clock assembly $\mathcal A$,
+### Clock Universality: The Hard Part
+
+Defining proper time this way avoids assigning it arbitrarily. It does **not** prove relativity-compatible behavior, and the gap is where the defense is genuinely exposed.
+
+The requirement is stronger: every admitted low-energy clock and ruler in a tested comparison class must reduce to the *same* observer-level map. For each assembly,
+
 $$
 A_{\mathcal A}
 =
@@ -2475,7 +3029,9 @@ B_{ij}+\delta B_{ij}^{(\mathcal A)}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e9e0a48dfe4c1487)
-with the assembly-dependent remainders bounded by the clock-comparison, composition, and Lorentz-test rows below. The residual universality condition can be written schematically as
+
+a common clock function and ruler tensor plus a small assembly-specific remainder. The universality residual is
+
 $$
 \epsilon_{\mathrm{univ}}
 \equiv
@@ -2497,26 +3053,38 @@ B^{(\mathcal B)}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-bce23479e117f7c9)
-with $\epsilon_{\mathrm{univ}}$ forced below the relevant residual ceilings for the comparison being made. The proposed mechanism is primitive-wake commonality: atomic, nuclear, and mechanical clocks are all architrino assemblies whose stable translating branches are solved from the same causal-wake law, causal-root ledger grammar, and Noether sea state. A moving branch should therefore deform its closed return cycles, clock periods, and ruler scales together rather than receiving separate Lorentz factors by definition.
 
-A useful sufficient-condition target is connected-moduli dressing. Let $\mathfrak M_{\mathrm{clk}}$ denote the retained moduli component for the admitted low-energy clock and ruler branches in a comparison class, and let $\Phi_\lambda$ be the Noether sea dressing flow on that component. If all admitted clock branches lie in one connected component of $\mathfrak M_{\mathrm{clk}}$, and if the generator $D_{\mathrm{dress}}$ of $\Phi_\lambda$ preserves the topological branch labels carried by the causal-root ledger and framing data, then clock universality reduces to the failure of dressing and branch-label transport to commute:
+the worst fractional disagreement between any two clocks or rulers in the class. It must fall below the relevant experimental ceiling.
+
+The proposed mechanism is **common origin**: atomic, nuclear, and mechanical clocks are all architrino assemblies solved from the same wake law, the same root grammar, and the same medium state. The program asks whether a moving branch deforms their cycles, periods, and scales *together*, rather than assigning each a Lorentz factor by fiat. Common origin alone does not guarantee that result.
+
+#### Route one: connected moduli
+
+Let $\mathfrak M_{\mathrm{clk}}$ be the space of admitted clock and ruler branches — their **moduli**, the parameter space of all such configurations — and let $\Phi_\lambda$ be the medium dressing flow acting on it.
+
+If every admitted clock lies in one connected piece of that space, and the dressing generator preserves the topological labels carried by the root ledger and framing, a useful local obstruction is the failure of two operations to commute:
+
 $$
-\epsilon_{\mathrm{univ}}
-=
-O\!\left(
+\mathcal K_{\mathrm{dress,br}}
+\equiv
 \sup_{\mathcal A\in\mathfrak M_{\mathrm{clk}}}
 \left\|
 [D_{\mathrm{dress}},D_{\mathrm{br}}]_{\mathcal A}
 \right\|
-\right)
-+
-O(\epsilon_{\mathrm{chart}})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-31a569f78e0dfb28)
-Here $D_{\mathrm{br}}$ denotes transport along the retained branch-label flow and $\epsilon_{\mathrm{chart}}$ collects declared chart and regularization remainders. This is not yet a proof of universality; it states the topological route by which a single dressing map could move every admitted clock and ruler branch together.
 
-The topological route also needs a spectral separation condition. Primitive-wake commonality alone does not imply one effective clock/ruler channel. Let $\Delta_{\mathrm{sea,gap}}>0$ be the lowest frequency gap from the shared long-wavelength Noether sea sector to any other collective sector that couples to the admitted clock and ruler branches, and let $\omega_{\mathrm{test}}$ be the highest frequency in the declared comparison regime. The single-sector reduction requires
+The commutator compares dressing then moving along the branch with moving then dressing. Its vanishing is an infinitesimal path-independence condition, not a universality theorem. A theorem also needs agreement at a reference branch, regular transport over paths of controlled length, and trivial or quantitatively bounded holonomy around closed paths, together with chart-error control. Only after those ingredients are supplied may $\epsilon_{\mathrm{univ}}$ be bounded by the corresponding reference, commutator, holonomy, and chart terms.
+
+This is not yet a proof. It is the topological route by which one dressing map could move every clock together.
+
+#### Route two: spectral separation
+
+Common ingredients are not sufficient, and this is the subtler requirement.
+
+Let $\Delta_{\mathrm{sea,gap}}>0$ be the lowest frequency gap between the shared long-wavelength medium sector and any *other* collective sector that couples to clocks, and let $\omega_{\mathrm{test}}$ be the highest frequency in the comparison. Single-sector reduction requires
+
 $$
 \frac{\omega_{\mathrm{test}}}{\Delta_{\mathrm{sea,gap}}}
 \ll
@@ -2524,30 +3092,41 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a393148bda4b7213)
-and can be organized schematically as
+
+the experiment must probe far below any competing response. If a controlled low-frequency reduction has been proved for those sectors, then
+
 $$
 \epsilon_{\mathrm{univ}}
 \le
 \epsilon_{\mathrm{intra}}
 +
-\epsilon_{\mathrm{mix}}
-\left(
-\frac{\omega_{\mathrm{test}}}{\Delta_{\mathrm{sea,gap}}}
-\right),
+\epsilon_{\mathrm{mix}}(r),
+\qquad
+ r=\frac{\omega_{\mathrm{test}}}{\Delta_{\mathrm{sea,gap}}},
 \qquad
 \lim_{r\to0}\epsilon_{\mathrm{mix}}(r)=0,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3bdffce6e2e36133)
-where $\epsilon_{\mathrm{intra}}$ is the connected-moduli commutator and chart remainder above, while $\epsilon_{\mathrm{mix}}$ measures contamination by the gapped sectors. This is a conditional reduction target, not an automatic consequence of one microscopic law. A second gapless sector with a nonzero species-dependent leading coupling makes $\Delta_{\mathrm{sea,gap}}=0$ for this purpose and structurally defeats this route to clock universality.
 
-Plainly: common microscopic ingredients are not enough. The tested clocks and rulers must share one low-frequency medium response, while every competing response either decouples or remains above the tested frequency band.
+with $\epsilon_{\mathrm{intra}}$ the transport, holonomy, and chart remainder, and $\epsilon_{\mathrm{mix}}(r)$ the contamination from other sectors, required by the reduction theorem to vanish as the frequency ratio $r$ does.
 
-This is the clock-side analogue of the mass-map universality residual $\mathcal R_{\alpha}$ in [Energy](../../../../markdown/aaa/dynamics/energy.md#emergent-inertia-mass-from-shielded-energy). Both are flatness conditions over the connected component of realized assembly moduli: $\epsilon_{\mathrm{univ}}$ tests whether clock and ruler functionals $(A,B_{ij})$ are transported together, while $\mathcal R_{\alpha}$ tests whether the exposed inertial coefficient is transported together. If compared species lie in one connected dressed certified-braid component, the two residuals should be controlled by the same holonomy and chart remainders. If they lie in disconnected assembly topological charge sectors, composition-dependent clock leakage and mass-map non-universality can become one inter-class obstruction rather than two unrelated failures.
+This is conditional, not automatic. **A second gapless sector with a species-dependent coupling sets the gap to zero and defeats this route entirely** — different clocks would then sample different responses with nothing suppressing the difference.
 
-The dressing caveat is essential. The simple common-wake argument works only after the Noether sea dressing map descends to a shared clock/ruler channel. If one apparatus samples $c_\star=c_{\text{eff}}^{(1)}$ and another samples a different dressed channel $c_\star=c_{\text{eff}}^{(2)}$ without a common reduction to the same $A$ and $B_{ij}$, the mismatch is not hidden by the definition of $\tau$. It appears as $\Delta_{\mathcal A}^{\mathrm{comp}}$, $\Delta_{\mathcal A}^{\mathrm{ori}}$, or $\Delta_{\mathcal A}^{\mathrm{PF}}$ and must be carried as a failure pressure on the Lorentz-closure program. The clock universality row is therefore one component of the structural-integrity common-limit closure in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure), not a standalone proper-time definition.
+Common microscopic ingredients are not enough. The tested clocks and rulers must share one low-frequency medium response, while every competing response either decouples or sits above the tested band.
 
-The low-energy Lorentz-closure target for a declared clock branch has the form
+This is the clock-side analogue of the mass-map universality residual in [Energy](../../../../markdown/aaa/dynamics/energy.md#emergent-inertia-mass-from-shielded-energy). Both can be expressed as transport problems over branch space. They are controlled by the same holonomy only after one shared connection or dressing transport has been derived for both clock/ruler and inertial-response functionals. Disconnected sectors remove the continuous-path argument, but do not by themselves prove a nonzero residual: separate sectors could still map to the same effective coefficients.
+
+#### The dressing caveat
+
+The common-origin argument works only after the dressing map descends to a shared channel. If one apparatus samples one dressed channel and another samples a different one without a common reduction, the mismatch is not hidden by the definition of $\tau$. It appears as a residual and must be carried as pressure on the Lorentz-closure program.
+
+Clock universality is therefore one component of the common-limit closure in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure), not a standalone definition.
+
+### The Lorentz-Closure Target
+
+For a declared clock branch:
+
 $$
 \frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}}
 =
@@ -2557,7 +3136,7 @@ A(\mathcal{N}_{\mathrm{sea}})
 \frac{
 B_{ij}(\mathcal{N}_{\mathrm{sea}})w^iw^j
 }{
-c_0^2
+A^2(\mathcal{N}_{\mathrm{sea}})c_0^2
 }
 }
 \left[
@@ -2574,7 +3153,13 @@ O(w^4/c_0^4)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3f62541724b9b224)
-The residuals record orientation leakage, composition dependence, and preferred-frame leakage. They must be bounded by clock-comparison and Lorentz-test rows rather than hidden inside the constitutive function. The leading orientation row should be read as the trace-free quadrupole of the clock branch's framed trajectory bundle, not as an independent nuisance. If $Q_{\mathcal A}^{ij}$ is the symmetric trace-free framing tensor
+
+The square root is the required relativistic target ansatz for the declared branch. It is derived only when the assembly and medium calculation produces this form and closes the residuals. The bracket collects three residuals — orientation leakage, composition dependence, and preferred-frame leakage — which must be bounded by experiment rather than absorbed into the constitutive function.
+
+For $A>0$, the clock path lies in the timelike domain $B_{ij}w^iw^j<A^2c_0^2$, where the metric handoff below assigns positive squared elapsed clock time. Dividing that quadratic form by $dt_{\mathrm{eff}}^2$ gives $(d\tau/dt_{\mathrm{eff}})^2=A^2-B_{ij}w^iw^j/c_0^2$ before the declared residual corrections. Factoring $A^2$ out of its positive square root produces the velocity denominator $A^2c_0^2$ in the clock target. This algebraic agreement is required for a common clock and metric description; its derivation from assembly dynamics remains the recovery obligation.
+
+The clock's orientation response must be calculated from its delayed dynamics and medium coupling. A candidate statistic of the framed trajectory bundle is the framing quadrupole:
+
 $$
 Q_{\mathcal A}^{ij}
 =
@@ -2586,7 +3171,9 @@ Q_{\mathcal A}^{ij}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-985e981bcb83865e)
-then the lowest anisotropic clock response has the schematic form
+
+where the framing directions are unit vectors and the average is normalized so that $\langle1\rangle_{\mathcal A}^{\mathrm{frame}}=1$. A branch calculation must specify the direction extraction, retained history interval, and weighting prescription before comparing clocks or response channels. Subtracting the isotropic part makes this statistic trace-free. Its vanishing removes its quadrupolar preferred-axis moment, but does not exclude higher directional moments, phase relations, or other relevant history information. A conditional ansatz for the clock's leading directional response is
+
 $$
 \Delta_{\mathcal A}^{\mathrm{ori}}(\hat{\mathbf n})
 =
@@ -2602,15 +3189,25 @@ O_{\ell\ge4}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b77dc16ee840f76f)
-The same $Q_{\mathcal A}^{ij}$ is the matter-response source constrained by Hughes-Drever-type anisotropy tests, so the clock orientation row and the inertial-response anisotropy row are two exports of one branch certificate.
 
-For Noether braid candidates, [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#frame-orthogonality-and-framing-anisotropy) supplies the corresponding geometric order parameter. The theorem target is sharper than near-orthogonality alone: $|D_{\mathrm{plane}}|\to1$ suppresses the non-orthogonal-frame part of the trace-free framing quadrupole $Q_{\mathcal A}^{ij}$, while small total $\|Q_{\mathcal A}\|$ also requires near-degenerate retained spectral weights, shielding, or branch averaging in the same frame extraction. If those conditions close for a clock assembly, the strict orientation row, Hughes-Drever matter anisotropy, scalar-mass anisotropy, and translating-loop Lorentz period anisotropy become different projections of one $\ell=2$ framing-isotropy condition rather than separately tuned residuals.
+where $\hat{\mathbf n}$ now denotes the probe direction and $\lambda_{\mathcal A}$ is the proposed scalar response gain. The term $O_{\ell\ge4}$ denotes spherical-harmonic multipoles of degree four and above, not fourth order in a small angle. This even-multipole expansion assumes the observable is reciprocal under $\hat{\mathbf n}\mapsto-\hat{\mathbf n}$; without that symmetry, odd multipoles must be retained too. The ansatz additionally requires the clock's quadrupolar response to be proportional to this particular framing statistic. Matching tensor type does not establish that proportionality.
 
-The residual budget is not symmetric. The defense is most exposed in the composition channel: $\Delta_{\mathcal A}^{\mathrm{comp}}$ is the residual that can survive if two stable clock species sample inequivalent dressed $c_{\text{eff}}$ channels even after each has an internally consistent phase definition. The common-channel reduction must therefore prove that atomic, nuclear, mechanical, and material clock/ruler assemblies descend to the same $A$ and $B_{ij}$ in the tested regime, or else carry the mismatch as a failed universality row. Once that reduction holds, $\Delta_{\mathcal A}^{\mathrm{ori}}$ and $\Delta_{\mathcal A}^{\mathrm{PF}}$ become branch-geometry and medium-drift leakage rows bounded by the orientation, two-way anisotropy, and PPN tests below.
+The response calculation must derive the dependence on $Q_{\mathcal A}$ and the gain $\lambda_{\mathcal A}$ from the counted phase rate. A leading-order approximation needs a declared expansion parameter and bounds on omitted contributions across its branch regime and probe orientations. The harmonic-degree label alone supplies no such bound, and small $Q_{\mathcal A}$ controls neither higher moments nor an unbounded response gain. The same physical history must account for the matter and clock channels, but the sufficiency of this statistic for both remains unestablished. Information discarded by the framing average must be retained in the response description whenever its effect cannot be bounded within the declared approximation.
 
-The composition row has a topological floor when clock species live in disconnected dressed components. Let $\mathfrak M_{\mathrm{clk}}^{(a)}$ and $\mathfrak M_{\mathrm{clk}}^{(b)}$ be the retained moduli components containing two compared clock species. If there is a continuous dressing path between them that preserves the certified-braid certificate and the relevant assembly topological charge data, then $\Delta_{\mathcal A}^{\mathrm{comp}}$ is bounded by the holonomy and chart error along that path. If every such path crosses a phase-lock jump, root-fold sector change, $D_{\mathrm{plane}}=0$ frame wall, or memory-boundary failure, then the composition residual has an irreducible inter-component floor. The defense fails in that case unless the compared species are removed from the same clock-universality class.
+For braid candidates, [Noether Braid Configuration Space](../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#frame-orthogonality-and-framing-anisotropy) supplies the geometric order parameter. The target is sharper than near-orthogonality: driving the plane parameter to unity suppresses the non-orthogonal part of the framing quadrupole, while making the whole tensor small also needs near-degenerate spectral weights, shielding, or averaging in the same extraction. These geometric conditions constrain the statistic. Their implications for clock orientation, matter anisotropy, mass anisotropy, and Lorentz period anisotropy require the respective response derivations and bounds on omitted information; they do not follow from small framing quadrupole alone.
 
-Equivalence-principle differential acceleration is a separate observer-level residual. For two test assemblies $A$ and $B$ falling toward a source $S$, use the Eötvös row owned by [General Relativity](../../../../markdown/aaa/spacetime/general-relativity.md#equivalence-principle-channels):
+#### The composition channel is where this is most exposed
+
+The residual budget is not symmetric, and it is worth saying which way it leans.
+
+$\Delta_{\mathcal A}^{\mathrm{comp}}$ can survive even when every clock has an internally consistent phase definition, if two species sample inequivalent dressed channels. The common-channel reduction must prove that atomic, nuclear, mechanical, and material assemblies descend to the same functions — or carry the mismatch as a failed row. Once that holds, the other two residuals become branch-geometry and drift terms bounded by the tests below.
+
+Connected branch space offers a transport route for comparing species: if a certificate-preserving path exists, its holonomy bounds the mismatch. If every path crosses a phase-lock jump, fold-sector change, frame wall, or memory-boundary failure, that route is unavailable. Disconnectedness alone does not impose a positive **topological floor**, because separate components may still export identical clock functions. The residual is irreducible only after the component-wise maps are computed and shown to disagree.
+
+#### Equivalence-principle residual
+
+Differential free-fall is a separate observer-level test. For two assemblies falling toward a source:
+
 $$
 \eta_{AB}^{S}
 =
@@ -2618,69 +3215,89 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6527952b172a86b7)
-The MICROSCOPE experiment platinum/titanium result supplies a $10^{-15}$-class benchmark for this free-fall row, not for $\Delta_{\mathcal A}^{\mathrm{comp}}$. The two residuals may be linked only after a formal cross-map derives both the gravitational/inertial response and the clock/ruler maps $(A,B_{ij})$ from the same retained assembly and Noether sea record.
 
-These scales are experimental requirements and bookkeeping ceilings, not framework-predicted amplitudes by themselves:
+the fractional difference in their accelerations, zero when composition does not matter. This is the **Eötvös ratio**. The MICROSCOPE final result for titanium and platinum was $\eta(\mathrm{Ti},\mathrm{Pt})=[-1.5\pm2.3\,(\mathrm{stat})\pm1.5\,(\mathrm{syst})]\times10^{-15}$ at one standard deviation; see Touboul and collaborators, [*MICROSCOPE Mission: Final Results of the Test of the Equivalence Principle* (2022)](https://doi.org/10.1103/PhysRevLett.129.121102).
+
+That benchmark applies to free fall, **not** to the clock composition residual. The two may be linked only after a formal cross-map derives both the gravitational response and the clock and ruler maps from the same record. Treating one bound as covering the other would be exactly the shortcut this chapter exists to prevent.
+
+#### The ceilings
+
+These are experimental requirements and bookkeeping ceilings, not amplitudes the framework predicts:
 
 | Residual | Meaning | Required low-energy ceiling | Framework-predicted scale |
 | --- | --- | --- | --- |
-| $\Delta_{\mathcal A}^{\mathrm{ori}}$ | Orientation leakage in clock/ruler response | typically $10^{-16}\text{--}10^{-18}$, with the strictest resonator rows at the $10^{-18}$ scale | Must be computed from branch-chart, hierarchy, dressing, and regularization residuals; no value is predicted by the phase definition alone. |
-| $\Delta_{\mathcal A}^{\mathrm{comp}}$ | Composition dependence across atomic, nuclear, mechanical, or material clock/ruler assemblies | bounded by the declared composition-sensitive clock-comparison row for the selected species and channel; no universal equivalence-principle ceiling is assigned | Must descend from a common $A$ and $B_{ij}$ after dressing; channel-dependent $c_{\text{eff}}$ maps contribute directly to this residual. |
-| $\eta_{AB}^{S}$ | Composition-dependent differential acceleration of test assemblies $A$ and $B$ toward source $S$ | bounded by the declared equivalence-principle instrument and material pair; MICROSCOPE supplies a $10^{-15}$-class platinum/titanium benchmark | Must descend from the effective gravitational and inertial response maps. It constrains $\Delta_{\mathcal A}^{\mathrm{comp}}$ only after the formal cross-map stated above is derived. |
-| $\Delta_{\mathcal A}^{\mathrm{PF}}$ | Preferred-frame leakage from the Euclidean-void rest frame into observer observables | projected into the two-way anisotropy and PPN rows below unless a sharper channel-specific bound is declared | Must be traced to named branch-chart, medium-drift, or dressing terms rather than fitted as an independent nuisance. |
+| $\Delta_{\mathcal A}^{\mathrm{ori}}$ | Orientation leakage in clock/ruler response | channel-specific; the cited Nagel resonator result reaches the $10^{-18}$ scale | Must be computed from branch-chart, hierarchy, dressing, and regularization residuals; no value is predicted by the phase definition alone. |
+| $\Delta_{\mathcal A}^{\mathrm{comp}}$ | Composition dependence across atomic, nuclear, mechanical, or material assemblies | bounded by the declared composition-sensitive clock-comparison row for the selected species and channel; no universal equivalence-principle ceiling is assigned | Must descend from a common $A$ and $B_{ij}$ after dressing; channel-dependent maps contribute directly. |
+| $\eta_{AB}^{S}$ | Composition-dependent differential acceleration toward source $S$ | bounded by the declared instrument and material pair; MICROSCOPE supplies a $10^{-15}$-class platinum/titanium benchmark | Must descend from the effective gravitational and inertial response maps. Constrains the composition residual only after the cross-map above is derived. |
+| $\Delta_{\mathcal A}^{\mathrm{PF}}$ | Preferred-frame leakage into observables | projected into the two-way anisotropy and PPN rows below unless a sharper bound is declared | Must be traced to named branch-chart, drift, or dressing terms rather than fitted as a nuisance. |
 
-Required emergent limits:
-- Speed convention: $c_f$ is the primitive wake speed used inside delayed-root equations. Observer-level clock limits use the declared channel speed $c_\star$ from the [transverse causal budget lemma](../../../../markdown/aaa/noether-braid/braid-mathematics.md#transverse-causal-budget-lemma): $c_\star=c_{\text{eff}}(\mathbf{X},t)$ for Noether sea dressed clocks and rulers, with $c_0\equiv c_{\text{eff}}(\infty)$ in the weak homogeneous comparison. In this sense $c_0$ is the deformation-invariant fixed point of the dressing flow as $\mathcal{N}_{\mathrm{sea}}$ approaches the homogeneous neutral background, not a second primitive speed. Set $c_\star=c_f$ only for a primitive branch chart, or after deriving that a specific internal limit-cycle branch is governed directly by the undressed wake speed.
-- Homogeneous medium, low velocities:
-  $$
-  \frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}} \approx \sqrt{1 - \|\mathbf{w}\|^2/c_\star^2},
-  \qquad c_\star=c_0 \text{ in the weak homogeneous observer branch}
-  $$
+For the resonator benchmark, Nagel and collaborators reported an orientation-dependent relative frequency change of $(9.2\pm10.7)\times10^{-19}$ at 95% confidence in [*Direct terrestrial test of Lorentz symmetry in electrodynamics to $10^{-18}$* (2015)](https://doi.org/10.1038/ncomms9174). Clock and matter limits are channel- and species-dependent; the [Data Tables for Lorentz and CPT Violation](https://arxiv.org/abs/0801.0287) should be used to select the coefficient actually exported by a proposed map.
 
-  [View →](../../../../../equation-mapping.html#corpus-equation-03a877c70273e6a2)
-  In the weak homogeneous sea-rest branch, $u^i_{\text{sea}}=0$, so $\mathbf{w}=\mathbf{v}$.
-- Weak field, low velocities, after the clock-channel potential has been matched to the Newtonian benchmark:
-  $$
-  \Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_0^2),
-  \qquad
-  \frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}} \approx \sqrt{1 + 2\Phi_{\text{eff}}/c_0^2 - \|\mathbf{w}\|^2/c_0^2}
-  $$
+#### Required emergent limits
 
-  [View →](../../../../../equation-mapping.html#corpus-equation-53bfef88e39b1d25)
-  Here $\Phi_N$ is the conventional negative Newtonian potential. If a positive PPN potential $U_N\ge0$ is used, set
-  $$
-  \Phi_N=-U_N
-  $$
+**Speed convention.** $c_f$ is the primitive wake speed inside delayed-root equations. Observer-level limits use the declared channel speed $c_\star$, equal to the dressed effective speed for clocks and rulers, with $c_0$ the measured low-energy calibration in the weak homogeneous limit. The claim that a dressing flow approaches $c_0$ is a closure target, not the definition of $c_0$. Set $c_\star=c_f$ only for a primitive chart, or after deriving that a specific cycle is governed by the undressed speed.
 
-  [View →](../../../../../equation-mapping.html#corpus-equation-56e423932ee52960)
-  so the first-order clock expansion reads
-  $$
-  \frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}}
-  \approx
-  1+\frac{\Phi_N}{c_0^2}
-  -\frac{\|\mathbf{w}\|^2}{2c_0^2}
-  =
-  1-\frac{U_N}{c_0^2}
-  -\frac{\|\mathbf{w}\|^2}{2c_0^2}
-  $$
+Homogeneous medium, low velocities:
 
-  [View →](../../../../../equation-mapping.html#corpus-equation-06d0e5181bfb5d54)
+$$
+\frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}} \approx \sqrt{1 - \|\mathbf{w}\|^2/c_\star^2},
+\qquad c_\star=c_0 \text{ in the weak homogeneous observer branch}
+$$
 
-**Speed convention table**
+[View →](../../../../../equation-mapping.html#corpus-equation-03a877c70273e6a2)
+
+In the medium-rest branch the flow vanishes, so velocity relative to the medium is just velocity.
+
+Weak field, low velocities, after the clock-channel potential is matched to the Newtonian benchmark:
+
+$$
+\Phi_{\text{eff}}=\Phi_N+O(\Phi_N^2/c_0^2),
+\qquad
+\frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}} \approx \sqrt{1 + 2\Phi_{\text{eff}}/c_0^2 - \|\mathbf{w}\|^2/c_0^2}
+$$
+
+[View →](../../../../../equation-mapping.html#corpus-equation-53bfef88e39b1d25)
+
+with $\Phi_N$ the conventional negative Newtonian potential. If a positive convention is used instead, set
+
+$$
+\Phi_N=-U_N
+$$
+
+[View →](../../../../../equation-mapping.html#corpus-equation-56e423932ee52960)
+
+so the first-order expansion reads
+
+$$
+\frac{d\tau_{\mathcal A}}{dt_{\mathrm{eff}}}
+\approx
+1+\frac{\Phi_N}{c_0^2}
+-\frac{\|\mathbf{w}\|^2}{2c_0^2}
+=
+1-\frac{U_N}{c_0^2}
+-\frac{\|\mathbf{w}\|^2}{2c_0^2}
+$$
+
+[View →](../../../../../equation-mapping.html#corpus-equation-06d0e5181bfb5d54)
+
+which is the required first-order observer benchmark: clocks run slower deeper in a gravitational well and when moving. The displayed expansion states the target after matching; the $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery is complete only when the same assembly and medium record derives it.
+
+#### Speed convention table
 
 | Symbol | Meaning | Status |
 | --- | --- | --- |
 | $c_f$ | Primitive causal-wake propagation speed relative to the Euclidean void | fundamental |
-| $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a Noether sea state and direction | derived |
-| $c_{\text{eff}}$ | Effective signal or clock-channel speed for a specified dressed branch | derived/contextual |
-| $c_\star$ | Local comparison speed used in a declared clock, ruler, or signal branch | branch-dependent |
-| $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration and dressing-flow fixed-point target |
+| $c_\gamma(\mathcal{N}_{\mathrm{sea}},\hat{\mathbf{k}})$ | Photon-channel speed in a medium state and direction | derived |
+| $c_{\text{eff}}$ | Effective signal or clock-channel speed for a dressed branch | derived/contextual |
+| $c_\star$ | Local comparison speed in a declared branch | branch-dependent |
+| $c_0$ | Measured low-energy invariant light speed in weak homogeneous conditions | empirical calibration target |
 
-These symbols must not be identified unless the local regime and derivation have been stated.
+None may be identified with another until the regime and derivation are stated.
 
-**Preferred-frame leakage closure**
+### Preferred-Frame Leakage Closure
 
-The operational two-way photon-speed diagnostic is
+The operational diagnostic is two-way photon speed:
+
 $$
 c_{2w}(\hat{\mathbf n})
 =
@@ -2688,7 +3305,11 @@ c_{2w}(\hat{\mathbf n})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e41b35d34629c42b)
-In ordinary low-energy conditions its anisotropy must fit
+
+round-trip distance over round-trip time. Two-way rather than one-way because one-way measurement requires synchronized clocks at both ends, which presupposes the convention under test.
+
+Its anisotropy must fit
+
 $$
 \frac{c_{2w}(\hat{\mathbf n})-c_0}{c_0}
 =
@@ -2703,7 +3324,11 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a7d979a4d966f967)
-with the trace-free anisotropy below the current hard-wall row in the constraint ledger, presently of order $|\zeta_{ij}^{\mathrm{TF}}|\lesssim10^{-17}$ and, for the strictest cavity rows, at the $10^{-18}$ scale. The PPN export must also pass the componentwise bound vector
+
+an isotropic piece plus a direction-dependent piece. The coefficient must be compared with a declared contemporary instrument and coefficient map; the Nagel benchmark cited above reached the $10^{-18}$ scale for its resonator channel.
+
+The parameterized post-Newtonian export must also pass:
+
 $$
 \left(
 |\gamma_{\mathrm{PPN}}-1|,
@@ -2723,13 +3348,17 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5330b39dbced67eb)
-Any screening mechanism must be included before exporting the observer-level PPN and Lorentz-test coefficients. The exported coefficients themselves must pass the ledger bounds. Preferred-frame hiding is therefore a numerical closure condition, not a prose reassurance.
 
-The trace-free coefficient $\zeta_{ij}^{\mathrm{TF}}$ is the photon-channel projection of the Noether sea framing quadrupole. It is parallel to, but not identical with, the matter framing tensor $Q_{\mathcal A}^{ij}$ above: matter leakage tests the retained assembly framing, while photon and PPN leakage test the sea-response framing sampled by the signal channel. Translation and rotation invariance forbid leading $\ell=1$ preferred-axis leakage in the homogeneous rest branch, so the first dangerous rows are $\ell=2$ trace-free projections. The preferred-frame budget is therefore a collection of framing-isotropy conditions on matter assemblies and on the Noether sea response, with the two-way photon row measuring the sea-side quadrupole.
+The **parameterized post-Newtonian (PPN) framework** is the standard weak-field catalogue of ways a metric gravity theory can differ from general relativity. The displayed inequality is interpreted component by component and records representative bounds compiled in Will's 2014 [review of experimental tests of general relativity](https://doi.org/10.12942/lrr-2014-4), not a timeless or automatically current bound vector. Its entries summarize different experiments and, for some preferred-frame parameters, include strong-field pulsar analyses rather than five independent measurements of one system. The first two entries test spatial curvature per unit mass and nonlinear superposition; $\alpha_1$, $\alpha_2$, and $\alpha_3$ parameterize preferred-frame or related nonconservative effects. Any present comparison must select the current coefficient-specific constraint and state its assumptions.
 
-**Effective metric handoff**
+Any screening must be included before exporting these coefficients, and the exported values must pass. Preferred-frame hiding is a numerical closure condition, not a prose reassurance.
 
-The clock/ruler handoff to effective metric language can be written locally as
+The trace-free photon coefficient is the proposed photon-channel projection of the medium framing quadrupole. It is parallel to but distinct from the matter tensor: matter leakage tests assembly framing, while photon and PPN leakage test the medium response sampled by the signal. For a reciprocal two-way observable, reversing the path direction removes odd directional multipoles, so a dipole term is absent and the leading anisotropic row is quadrupolar. Translation and rotation invariance alone would not establish that cancellation. The projection from medium state to each coefficient remains a derivation target.
+
+### Effective Metric Handoff
+
+Locally:
+
 $$
 d\tau^2
 =
@@ -2742,7 +3371,9 @@ B_{ij}(\mathcal{N}_{\mathrm{sea}})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0f9a5b68a09b6135)
-The metric handoff is admissible only on branches where
+
+The handoff is admissible only where
+
 $$
 A>0,
 \qquad
@@ -2754,9 +3385,15 @@ B_{ij}\xi^i\xi^j>0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d47797a6f7809924)
-These inequalities have a physical meaning. $A>0$ says the declared clock phase remains monotone in absolute time, so the branch still supplies a usable clock. Positive-definite $B_{ij}$ says the local ruler/signal compliance remains an ordinary spatial quadratic form, so one observer-level light cone can be exported from the branch. The handoff fails when a certified clock cycle is lost, when a separator or branch-chart transition makes the causal-root ledger discontinuous, when a Jacobian floor collapses, or when a strong-field channel becomes dispersive, birefringent, or multi-valued enough that no single $B_{ij}$ represents the local response. In those regimes the effective metric description is suspended and the analysis must return to finite branch data, as in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#causal-root-ledger-progression-as-a-lorentz-prediction) and the strong-field continuation criteria in [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md).
 
-**Conditional uniform-flow affine-equivalence lemma.** Suppose that, on one comparison window, $A$ is a positive constant, $B_{ij}$ is a constant symmetric positive-definite matrix, and $u^i_{\mathrm{sea,eff}}$ is constant. Suppose also that every admitted clock, ruler, and signal in that window couples only through this same effective handoff. Choose a constant matrix $L^a{}_i$ satisfying
+These have physical content rather than being technical hygiene. $A>0$ supplies a positive rest-clock factor. A moving clock must additionally lie in the timelike domain stated above and retain a valid, advancing phase. Positive-definiteness of $B_{ij}$ says every spatial direction has positive measured length. A single light cone additionally requires a nondispersive, nonbirefringent signal law governed by this same tensor.
+
+The handoff fails when a certified cycle is lost, when a branch transition makes the ledger discontinuous, when a Jacobian floor collapses, or when a strong-field channel becomes dispersive or **birefringent** — splitting a signal by polarization so no single response tensor describes it. There the metric description is suspended and analysis returns to finite branch data, as in [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#causal-root-ledger-progression-as-a-lorentz-prediction) and [Singularity Resolution](../../../../markdown/aaa/spacetime/singularity-resolution.md).
+
+#### Conditional uniform-flow affine-equivalence lemma
+
+Suppose on one window that $A$ is a positive constant, $B_{ij}$ is a constant positive-definite matrix, the medium flow is constant, and every admitted clock, ruler, and signal couples only through this handoff. Choose a constant matrix satisfying
+
 $$
 B_{ij}
 =
@@ -2764,7 +3401,9 @@ B_{ij}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ebb791623df657c4)
-and define
+
+a square root of the ruler tensor, and define
+
 $$
 t'_{\mathrm{eff}}
 =
@@ -2782,7 +3421,9 @@ u^i_{\mathrm{sea,eff}}t_{\mathrm{eff}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f1f3c9c3e04165e5)
-The handoff then becomes
+
+rescaling time by the clock rate and moving to coordinates that drift with the medium. Then
+
 $$
 d\tau^2
 =
@@ -2793,9 +3434,16 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9622f4df7a4487ec)
 
-Plainly: a uniform sea flow with constant universal clock, ruler, and signal response is removable from the effective record by an affine coordinate change. This lemma does not remove the substrate preferred frame or establish universality. It localizes observable preferred-frame leakage to gradients or time dependence in the sea record, dispersion, non-universal assembly coupling, or channels not captured by the single metric handoff.
+flat Minkowski form on that window, with the constant coefficients absorbed into the chosen effective coordinates.
 
-Equivalently, the metric handoff is a local-invertibility claim. Let the reduced clock/ruler branch map be written schematically as
+A uniform medium flow with constant universal response is **coordinate-removable** within this local quadratic handoff. This lemma shows that those constant coefficients alone do not create an observable local anisotropy for channels satisfying its hypotheses. It does not prove global preferred-frame hiding or explain why the required universal coefficients arise.
+
+But note what it does not do. It does not remove the substrate frame, and it does not establish universality — it assumed it. What it does is localize observable leakage to the places where its hypotheses fail: gradients or time dependence in the medium, dispersion, non-universal coupling, or channels outside the single handoff.
+
+#### Forward regularity and inverse identifiability
+
+The handoff first requires a well-defined forward map. Write it as
+
 $$
 \Psi_{\mathrm{cr}}
 :
@@ -2805,7 +3453,9 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d13e1ce133948a4e)
-On a regular branch, $\Psi_{\mathrm{cr}}$ has the fixed rank needed to export one clock rate and one positive spatial quadratic response. The failure set is the branch-fold locus
+
+from branch, history, and medium data to one clock rate and one ruler tensor. Many microscopic records may legitimately produce the same effective pair, so the map need not be invertible. What the export needs is single-valued continuity and sufficient differential rank in the output directions being varied. A rank-deficiency set may be written
+
 $$
 \mathfrak{F}_{\mathrm{cr}}
 =
@@ -2817,7 +3467,9 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-855b8fb677f47adc)
-The conditioning face of the same admissibility condition is a singular-value floor:
+
+and the conditioning face is a singular-value floor:
+
 $$
 \sigma_{\min}
 \left(
@@ -2828,17 +3480,25 @@ D\Psi_{\mathrm{cr}}\big|_{\mathrm{reg}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b59763c66090a8a4)
-The inequalities $A>0$ and $B_{ij}\succ0$ are the positivity face of this condition, while the rank and singular-value bounds are the local-invertibility face. A branch can therefore fail metric export either by losing clock/ruler positivity or by becoming so ill-conditioned that the effective metric is locally multivalued under small retained-record perturbations.
 
-For a generic finite-dimensional retained branch chart, the regular clock/ruler region is the open complement of a stratified failure set. Its top stratum is expected to be codimension one: a fold hypersurface across which $\Psi_{\mathrm{cr}}$ loses local invertibility and the metric handoff must be suspended. Higher-codimension strata correspond to cusp, multiple-fold, or simultaneous clock/ruler degeneracies. The preceding list gives coordinate descriptions of the same loss of one-to-one branch structure. This is the clock/ruler version of the fold and non-degeneracy-floor discipline used for causal-root charts in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#causal-time-map-and-root-topology).
+The smallest retained **singular value** measures the most compressed direction in a chosen complement to the expected coarse-graining fibers. Bounding it away from zero controls sensitivity of the exported variables on that reduced chart; it does not recover the erased microscopic data.
 
-Define the Lorentzian observer metric by
+Positivity and forward regularity are separate admissibility conditions. A branch can fail by losing clock or ruler positivity, by making the forward export discontinuous or multivalued, or by losing rank in an output direction required by the effective chart. Inverse identification of microscopic state from $(A,B_{ij})$ is a different problem and is not required for coarse-graining.
+
+The geometry of the failure set depends on the dimensions and the rank condition. A scalar fold is generically codimension one, but determinantal rank varieties can have higher codimension. No universal codimension follows from the notation above. Each clock-and-ruler chart must state its dimensions, regular rank, and failure geometry rather than importing the fold count from the causal-root problem.
+
+#### Export
+
+Define
+
 $$
 ds_{\mathrm{eff}}^2=-c_0^2d\tau^2
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-142d1bd421e3f1b2)
-With $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$, the exported components are
+
+With $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$, the components are
+
 $$
 g^{\mathrm{eff}}_{00}
 =
@@ -2846,6 +3506,7 @@ g^{\mathrm{eff}}_{00}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-077f6f96b2236e09)
+
 $$
 g^{\mathrm{eff}}_{0i}
 =
@@ -2853,7 +3514,9 @@ g^{\mathrm{eff}}_{0i}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e0931c21a6845226)
+
 and
+
 $$
 g^{\mathrm{eff}}_{ij}
 =
@@ -2861,7 +3524,11 @@ B_{ij}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-58d9d410e1c1b17a)
-Photon-channel closure then reads the null condition of this observer-level quadratic form, with $c_\gamma$ derived from the same Noether sea state rather than assigned independently:
+
+The time-time component carries the clock rate corrected for flow, the mixed components carry the flow itself, and the spatial components are the ruler tensor.
+
+Photon closure then reads the null condition of that form, with the photon speed derived from the same medium state:
+
 $$
 \frac{dx_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}}
 =
@@ -2871,6 +3538,9 @@ c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})\hat k^i
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-53d3b79421c051ab)
+
+light is carried by the medium flow and travels through it at
+
 $$
 c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})
 =
@@ -2878,9 +3548,15 @@ c_\gamma^{\mathrm{rel}}(\hat{\mathbf{k}})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b386c818670a88e7)
-The weak homogeneous branch requires $A\to1$, $B_{ij}\to\delta_{ij}$, and $u^i_{\mathrm{sea,eff}}\to0$.
 
-The same-record rule is stricter than using one symbol $\mathcal{N}_{\mathrm{sea}}$ in several equations. The clock/ruler map must consume the same Noether sea response record that supplies $G_{\mathrm{eff}}$ in the gravity inventory, $c_{\text{eff}}$ in the matter limiting-speed and mass-shell rows, and $c_\gamma$ in the photon channel:
+the clock rate over the ruler length in the direction of travel. The weak homogeneous branch requires the clock function to approach one, the ruler tensor to approach the identity, and the flow to vanish.
+
+#### The same-record rule
+
+This is stricter than using one symbol in several equations, and it is the strongest structural constraint in the chapter.
+
+The clock and ruler map must consume the **same** medium record that supplies the effective gravitational constant, the matter limiting speed, and the photon speed:
+
 $$
 \Theta_{\mathrm{sea}}
 \longmapsto
@@ -2894,93 +3570,100 @@ c_\gamma
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-30f59d13f3892938)
-If these projections require separate sea records or independently tuned response tensors, the effective metric is fitted rather than derived. The closure burden is therefore one sea-constitutive object with clock, ruler, gravity, matter-speed, and photon projections, not a separate clock-sector construction.
 
-**Key point**
+one object, five projections. If these require separate records or independently tuned tensors, the effective metric is **fitted rather than derived**. It may still summarize data, but it does not provide the claimed common-origin explanation. The burden is one constitutive object with five projections.
 
-Relativity of simultaneity and time dilation are emergent observer-level effects of assembly dynamics. The $\mathbb{U}_{\text{now}}$ formalism evolves in absolute time $T$; proper time $\tau$ is a derived clock functional. The closure burden is therefore not to remove the preferred foliation, but to derive clock, ruler, and signal behavior that bounds preferred-frame leakage to the required precision in the effective observer sector.
+### Key Point
 
-The converse is a hard falsifiability wall. The defense fails if $\Delta_{\mathcal A}^{\mathrm{comp}}$ cannot be driven to the declared clock-comparison ceiling by a common-channel reduction. A sharp topological obstruction is disconnected clock moduli: if physically realized clock species occupy different deformation classes of the Noether braid atlas and no shared dressing path identifies their $A$ and $B_{ij}$ maps, then the composition residual is irreducible rather than a small correction. The defense also fails if a stable low-energy clock or ruler species retains orientation or preferred-frame leakage after branch-chart, dressing, and regularization terms have been accounted for, with residuals exceeding the relevant cavity or two-way anisotropy row, in particular at the $10^{-18}$ scale for the strictest resonator comparisons. Such leakage would not be an alternate interpretation of proper time; it would be a failed Lorentz-closure branch.
+Relativity of simultaneity and time dilation are emergent observer-level effects of assembly dynamics. The formalism evolves in absolute time; proper time is a derived functional.
+
+The closure burden is therefore not to remove the preferred foliation. It is to derive clock, ruler, and signal behavior that bounds leakage to the required precision.
+
+### Falsifiability Wall
+
+The defense fails in three specific ways, and none is a matter of interpretation.
+
+**It fails** if the composition residual cannot be driven below the declared clock-comparison ceiling by a common-channel reduction.
+
+**The connected-moduli route fails** if realized clock species occupy different deformation classes with no certificate-preserving dressing path between them. That does not by itself prove a nonzero composition residual; the defense fails only if their separately computed effective maps disagree above the declared ceiling.
+
+**It fails** if a stable low-energy clock or ruler retains orientation or preferred-frame leakage after branch-chart, dressing, and regularization terms are accounted for, with residuals above the relevant cavity or two-way anisotropy row — in particular at the $10^{-18}$ scale for the strictest resonator comparisons.
+
+Such leakage would not be an alternative reading of proper time. It would falsify the proposed Lorentz-recovery branch. Persistent failure across every admissible branch would make this absolute-time realization incompatible with the measured observer sector; it would not constitute a purely logical disproof of every possible absolute-time model.
 
 ## Detecting the Absolute Frame
 
-This chapter asks how the theory can identify absolute rest without first painting a coordinate grid onto the Euclidean void. The answer is a complete-state diagnostic: in $\mathbb{A}\mathbb{A}\mathbb{A}$, the preferred frame is encoded in the transmitter-tagged geometry of causal wakes available to complete-state bookkeeping.
+If space has no grid painted on it, how can anything be said to be at rest?
+
+That is not a rhetorical question. $\mathbb{A}\mathbb{A}\mathbb{A}$ claims [architrinos](../../../../markdown/aaa/foundations/architrino.md) — its sole primitive material entities — have definite positions and velocities in the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md). But the void is the same everywhere and in every direction, so nothing about a location marks it out. If the theory cannot distinguish rest from motion using its own physics, then "absolute velocity" is an empty label rather than a fact.
+
+It can. The answer is a **complete-state diagnostic**: the preferred frame is written into the geometry of the [wakes](../../../../markdown/aaa/foundations/architrino.md) that architrinos emit, and it can be read off without any coordinate grid at all.
 
 ### Overview
 
-This chapter answers the question that must be settled before any coordinate construction can begin: can the architrino framework identify **absolute rest** from its own physics, without assuming a pre-labeled grid? The answer in this framework is yes, but the answer belongs first to the $\mathbb{U}_{\text{now}}$ universe-state perspective. The complete-state diagnostic is the **concentricity of transmitter-tagged causal isochron centers**. A stationary architrino is sufficient to expose that diagnostic, but the preferred rest frame itself is defined by the propagation law: it is the frame in which primitive causal wakes expand isotropically at $c_f$.
+The diagnostic is the **concentricity of transmitter-tagged wake centers**, and the rest of this chapter unpacks that phrase.
 
-This argument sits between [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), which states the underlying substrate, and [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md), which turns the preferred-rest diagnostic into a usable coordinate frame. Its operational shielding claims also connect directly to [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md) and [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md).
+A stationary architrino is enough to expose the preferred frame, but it does not define it. The frame is defined by the propagation law: it is the one in which wakes expand at the same speed $c_f$ in every direction.
 
-The important separation is transmitter-tagged geometry versus summed observation. Complete-state bookkeeping can ask where each causal isochron was emitted. A physical apparatus normally receives only a combined record after propagation, coupling, clocking, and Noether sea dressing. The preferred frame can be real in the first sense without becoming an easy observable in the second.
+This chapter sits between [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), which states the substrate, and [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md), which turns a rest condition into a usable coordinate system. Its claims about what observers can and cannot detect connect directly to [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md) and [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md).
+
+One separation governs everything below: **tagged geometry versus summed observation.** Complete-state bookkeeping can ask where each individual wake was emitted and by whom. A physical apparatus receives only a combined total, after propagation, coupling, clocking, and medium dressing have blended everything together. A preferred frame can be real in the first sense while remaining unidentified by a specified observer record in the second. Showing that it is hidden across all admitted measurements requires the quantitative leakage bound developed below.
 
 ### The Fundamental Challenge
 
-The architrino theory posits the **Euclidean void** and **absolute time** as the fundamental substrate. These are ontological commitments, not coordinate labels. Unlike a laboratory bench with meter sticks and clocks, the void has no inherent origin, no painted grid lines, no axis arrows, and no universal clock reading "now = 0."
+The void and absolute time are ontological commitments, not coordinate labels. Unlike a laboratory bench with meter sticks and clocks, the void has no origin, no painted grid, no axis arrows, and no universal clock reading zero.
 
-This presents an apparent paradox:
-- We claim architrinos have **definite positions** $\mathbf X(T)$ and **definite velocities** $\mathbf V(T)$ in the Euclidean void as indexed by absolute time.
-- Yet the Euclidean void is **translationally and rotationally invariant**: the physics is identical at any location, any orientation, and any moment.
-- How can the theory internally distinguish absolute rest ($\mathbf V = \mathbf{0}$) from absolute motion ($\mathbf V \neq \mathbf{0}$) without reference coordinates?
+That creates an apparent paradox:
 
-This is not merely a philosophical puzzle. It is a **practical requirement** for the theory's internal consistency. If the theory cannot, even in principle, extract a preferred rest condition from intrinsic physics, then claims about absolute velocity lack complete-state content and become only an imposed coordinate convention.
+- The theory says architrinos have definite positions $\mathbf X(T)$ and velocities $\mathbf V(T)$ in the void.
+- Yet the void is unchanged by translation and rotation — the physics is identical at every location and orientation.
+- So how can the theory distinguish $\mathbf V=\mathbf{0}$ from $\mathbf V\neq\mathbf{0}$ without reference coordinates?
+
+This is a practical requirement rather than a philosophical nicety. If the theory cannot extract a rest condition from its own physics even in principle, claims about absolute velocity carry no content and reduce to an imposed convention.
 
 ### Detecting Absolute Rest: The Causal Wake Diagnostic
 
-#### The Key Physical Mechanism
+#### The mechanism
 
-The diagnostic rests on the theory's **finite wake-speed** postulate: architrino-emitted causal wakes propagate at speed $c_f$ **relative to the Euclidean void**, not relative to the source's subsequent motion. This postulate structurally distinguishes the void rest frame, making it available to complete-state reconstruction through purely geometric relationships.
+Everything rests on one postulate: wakes propagate at $c_f$ **relative to the void**, not relative to whatever the source does afterward. Once emitted, a wake has no memory of its transmitter's later motion.
 
-The idea is easiest to see by following the centers of emitted wake surfaces. A stationary transmitter keeps emitting from the same void point. A moving transmitter leaves a sequence of distinct emission centers behind it. The center pattern, not an external grid label, carries the rest diagnostic.
+That propagation law dynamically distinguishes the void rest frame, and the emitted-center geometry supplies a way to diagnose the distinction.
 
-#### The Nature of Causal Wakes
+The way to see it is to follow the *centers* of emitted wake surfaces. A stationary transmitter emits from the same point over and over. A moving transmitter leaves a trail of distinct emission centers behind it. The center pattern carries the diagnostic, and no external grid is needed to read it.
 
-Each architrino continuously emits potential-bearing structure as **expanding causal isochrons**. A single emission at time $T_t$ produces a causal wake surface expanding at speed $c_f$ from the emission point. This is not a discrete shell or particle; it is a **potential-bearing distribution** supported on the emitted wake surface. At any given absolute time $T$, with $\Delta T=T-T_t$, that emitted isochron has radius $r = c_f \Delta T$ centered on the point where it was emitted.
+#### The nature of wakes
 
-The crucial point is that this expanding causal isochron carries transmitter-tagged information about the **absolute location** where the architrino was when it emitted that portion of the potential-bearing wake. The isochron does not follow where the architrino goes afterward. It continues expanding from its emission point in the Euclidean void.
+Each architrino continuously emits expanding surfaces. A single emission at time $T_t$ produces a surface expanding at $c_f$ from the emission point. It is not a shell of stuff and not a particle; it is a potential-bearing distribution living on that surface. At any later time $T$, with $\Delta T=T-T_t$, it has radius $r=c_f\Delta T$ centered where it was emitted.
 
-#### The Concentricity Test
+The crucial point is that the surface records where the architrino **was**. Under the unbounded-history postulate, that support continues expanding from the emission point rather than following the architrino; any finite-memory approximation must declare where it truncates the record.
 
-Consider a $\mathbb{U}_{\text{now}}$ universe-state perspective with access to complete microdynamics that can track:
-1. The complete path history of any architrino,
-2. The transmitter identity and provenance of each emitted causal isochron,
-3. The geometric centers of all emitted and expanding causal wake surfaces,
-4. The absolute emission times associated with those wake surfaces.
+#### The concentricity test
 
-**The Diagnostic Signature:** An architrino at **absolute rest** ($\mathbf V = \mathbf{0}$) exhibits a unique geometric property. It remains at the **exact center** of every transmitter-tagged expanding causal isochron it has ever emitted during the rest interval.
+Consider a perspective with access to complete microdynamics — able to track every architrino's full path, the identity and provenance of every emitted surface, the geometric center of each, and the absolute emission times.
 
-**The Physical Basis:**
-- At time $T_t$, the architrino emits potential from position $\mathbf X_{\mathrm{em}}$, creating a causal isochron.
-- This causal isochron expands at speed $c_f$ relative to the void, centered on $\mathbf X_{\mathrm{em}}$.
-- If the architrino is stationary, at later time $T_1 = T_t + \Delta T$, it remains at $\mathbf X_{\mathrm{em}}$.
-- The causal isochron has expanded to radius $r = c_f \Delta T$, but its center remains $\mathbf X_{\mathrm{em}}$.
-- All successive emissions create perfectly **concentric causal isochrons**: nested potential distributions sharing a common geometric center.
+**The signature.** An architrino at absolute rest stays at the exact center of every surface it has ever emitted during that interval.
 
-**If the architrino moves:**
-- At $T_t$, emission occurs at $\mathbf X_{\mathrm{em}}$.
-- On a uniform segment, at $T_1$ the architrino has displaced to $\mathbf X_1 = \mathbf X_{\mathrm{em}} + \mathbf V \Delta T$.
-- The first causal isochron remains centered on $\mathbf X_{\mathrm{em}}$ with radius $c_f \Delta T$.
-- Subsequent causal isochrons are centered on displaced positions along the trajectory.
-- The emitted centers are **non-coincident**; the transmitter-tagged wake stream is **non-concentric**.
-- The architrino lies closer to the expanding wake front in its direction of motion, producing the geometric asymmetry that later appears as Doppler-like structure at the observer level.
+Why: it emits at $T_t$ from $\mathbf X_{\mathrm{em}}$, the surface expands centered on $\mathbf X_{\mathrm{em}}$, and if the architrino has not moved it is still at $\mathbf X_{\mathrm{em}}$ when the surface has grown to radius $c_f\Delta T$. Successive emissions produce perfectly **concentric** surfaces, nested like the layers of an onion around one shared point.
 
-The difference between these two cases is the whole diagnostic. Rest means one repeated center. Uniform motion means a straight center sequence. Accelerated motion means a curved center history.
+If it moves instead: emission at $T_t$ from $\mathbf X_{\mathrm{em}}$, but by $T_1$ it has displaced to $\mathbf X_{\mathrm{em}}+\mathbf V\Delta T$. The first surface stays centered where it was emitted, later surfaces are centered on later positions along the path, and the centers are **not coincident**. This creates a source-motion asymmetry in the tagged geometry. Recovering an observer-level Doppler law from that asymmetry remains a signal and clock-channel derivation.
 
-#### The Complete-State Diagnostic Procedure
+That difference is the entire diagnostic. Rest means one repeated center. Uniform motion means a straight line of centers. Accelerated motion means a curved center history.
 
-**Step 1:** Track the transmitter-tagged geometric centers of all expanding causal isochrons emitted by a target architrino over a diagnostic interval.
+#### The procedure
 
-**Step 2:** Test for spatial coincidence of these centers.
+Track the centers of all surfaces emitted by a target architrino over an interval, then test whether they coincide.
 
-**Result:**
-- **All centers coincident** means $\mathbf V_{\text{abs}} = \mathbf{0}$ on that interval (absolute rest).
-- **Centers form a trajectory** means $\mathbf V_{\text{abs}} \neq \mathbf{0}$; for a uniform segment, the displacement vector $\Delta \mathbf X$ per unit time $\Delta T$ yields the absolute velocity: $\mathbf V_{\text{abs}} = \Delta \mathbf X / \Delta T$.
+- **All coincident:** $\mathbf V_{\text{abs}}=\mathbf{0}$ on that interval.
+- **Centers form a trajectory:** $\mathbf V_{\text{abs}}\neq\mathbf{0}$, and for a uniform segment the displacement per unit time gives the velocity directly, $\mathbf V_{\text{abs}}=\Delta\mathbf X/\Delta T$.
 
-This is definitionally a complete-state test. It assumes the individual transmitter identity, emission time, and isochron support are already available in the provenance-bearing state. A physical apparatus receiving only the summed potential cannot recover the transmitter-tagged centers by a clever superposition-resolving operation unless it already has access to the very provenance data the diagnostic assumes.
+This is definitionally a *complete-state* test. It assumes transmitter identity, emission time, and surface support are already available in the provenance-bearing record. One unrestricted summed value at one event does not uniquely recover the tagged centers; extended arrays, time series, or a restricted source model define different inverse problems and may recover partial information.
 
-That limitation is not a weakness of the ontology. It marks the difference between complete-state reconstruction and what embedded Physical Observers can infer after provenance has been erased into a summed received record.
+That limitation marks the boundary between complete-state reconstruction and what an embedded observer can infer after provenance has been erased into a sum. Whether the assumed tagged record is a coherent part of the complete-state ontology remains a separate consistency question.
 
-**Wake-center theorem:** Let a transmitter-tagged causal isochron emitted by transmitter $a$ at time $T_t$ and inspected at time $T>T_t$ have emission center $\mathbf Z_a(T_t)=\mathbf X_a(T_t)$ and support
+#### Wake-center theorem
+
+Let a tagged surface emitted by transmitter $a$ at time $T_t$, inspected at $T>T_t$, have center $\mathbf Z_a(T_t)=\mathbf X_a(T_t)$ and support
+
 $$
 W_a(T_t;T)
 =
@@ -2991,16 +3674,22 @@ W_a(T_t;T)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-70fa004fb29fc77e)
-In Euclidean three-space, a nondegenerate isochron support of this form has a unique center. Therefore, if $W_a(T_t;T)$ is known as a transmitter-tagged support, its emission center $\mathbf Z_a(T_t)$ is geometrically reconstructible without first assigning coordinates to the void.
 
-Equivalently, Euclidean geometry gives a bijection between nondegenerate metric spheres and center-radius pairs:
+the set of points on the slice at exactly the right distance — an ordinary sphere.
+
+In three-dimensional Euclidean space a nondegenerate sphere has exactly one center. So if the tagged support is known, its emission center is reconstructible geometrically, with no coordinates assigned to the void beforehand. That is what makes the diagnostic coordinate-free rather than merely coordinate-independent.
+
+Equivalently, spheres correspond one-to-one with center-and-radius pairs:
+
 $$
 W_a(T_t;T)\longleftrightarrow
 \left(\mathbf Z_a(T_t),\,c_f(T-T_t)\right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9b2967e14028431c)
-for full spherical supports. In a finite sampled reconstruction, a clean nondegeneracy certificate is supplied by four support points $\mathbf Y_0,\ldots,\mathbf Y_3$ whose displacement Gram determinant is bounded away from zero:
+
+In a finite sampled reconstruction, four support points $\mathbf Y_0,\ldots,\mathbf Y_3$ certify nondegeneracy when their displacement determinant stays away from zero:
+
 $$
 \Delta_{\mathrm{sph}}
 =
@@ -3013,9 +3702,13 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-98d283752f1455bc)
-with a declared numerical floor in simulation. This is the same determinant family as the volume test used in [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md): when the sampled support collapses toward a line, plane, or tiny aperture, the inverse center fit is no longer a stable complete-state reconstruction. If the radius $c_f(T-T_t)$ is already supplied, three non-collinear points plus a side convention can reduce the data requirement, but the four-point certificate is the safer branch-independent test.
 
-For a full spherical support, uniqueness is exact. A finite reconstruction usually sees only a partial support $U_a(T_t;T)\subset W_a(T_t;T)$, so the inverse-center problem needs its own conditioning floor. Let
+This Gram determinant is the **square** of the parallelepiped volume spanned by the three displacements. It vanishes exactly when the four points are coplanar and therefore cannot determine a unique unconstrained sphere in three dimensions. It is the same determinant family as the signed-volume test in [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md): when the sampled points collapse toward a line, a plane, or a tiny patch, fitting a center stops being stable. Given the radius in advance, three non-collinear points plus a side convention can suffice, but the four-point certificate is safer.
+
+#### Finite apertures need their own floor
+
+For a full sphere, uniqueness is exact. A real reconstruction sees only a patch $U_a(T_t;T)\subset W_a(T_t;T)$, and fitting a center from a patch has its own conditioning problem. Define the **solid angle** the patch subtends, which is how much of the sky it covers as seen from the center:
+
 $$
 \omega_a(T_t;T)
 =
@@ -3027,134 +3720,145 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cbf26eb9bce2cdc5)
-The reconstructed center is admissible only when
+
+The reconstruction is admissible only when
+
 $$
 \omega_a(T_t;T)\ge \omega_{\min} > 0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0ec92f269c9d25a5)
-on the declared support window. Below that solid-angle floor, the center may remain formally unique in the full-support idealization while the finite inverse problem becomes ill-conditioned.
 
-The solid-angle floor is a practical proxy for a smallest-eigenvalue floor in the sphere-fit Jacobian. For sampled directions $\hat{\mathbf{n}}_k=(\mathbf Y_k-\mathbf Z)/\|\mathbf Y_k-\mathbf Z\|$ with positive weights $w_k$, define the direction design matrix
+Below that floor the center may remain formally unique in the full-sphere idealization while the finite problem becomes hopelessly ill-conditioned — a small arc of a large sphere looks almost flat, and almost any distant center fits it.
+
+The solid-angle floor is a practical stand-in for a rank condition. For sampled directions $\hat{\mathbf{n}}_k$ with weights $w_k$, define
+
 $$
 G_a=\sum_k w_k\,\hat{\mathbf{n}}_k\hat{\mathbf{n}}_k^{T}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-387e8ed2a2a758c3)
-The finite-aperture inverse is accepted only when $\lambda_{\min}(G_a)\ge\lambda_{\min}^{\mathrm{ctr}}>0$ on the reconstruction window, or when an equivalent continuous-support bound is supplied. A direction cloud concentrated in a small cap or nearly planar arc is rank-deficient in the same way that a near-collinear tuple is rank-deficient in frame construction. Thus $\omega_{\min}$, the basis floor $\sin\theta_{\min}$, separatrix regularity, and the causal-root transversality floor $\kappa_{\mathrm{hit}}$ are all instances of one non-degeneracy requirement: the retained reconstruction map must have a bounded local inverse on the chart being used.
 
-A future finite reconstruction must fail closed, returning no absolute-rest verdict, when transmitter tags are absent, $\omega_a<\omega_{\min}$, or the declared rank floor fails. These are implementation acceptance conditions for a reconstruction that does not yet exist, not evidence supplied by the complete-state injectivity lemma itself; executable negative controls belong with that implementation when it is built.
+which accumulates how much the sampled directions cover each spatial axis. The inverse is accepted only when its smallest eigenvalue satisfies $\lambda_{\min}(G_a)\ge\lambda_{\min}^{\mathrm{ctr}}>0$ — meaning no direction is left unconstrained. A direction cloud confined to a small cap or a nearly planar arc is deficient in exactly the way a near-collinear tuple is deficient in frame construction.
 
-For a target architrino $a$ and emission interval $I$, define the transmitter-tagged center set
+So $\omega_{\min}$ and the basis floor $\sin\theta_{\min}$ both condition geometric inversions. Separatrix regularity and the root transversality floor $\kappa_{\mathrm{hit}}$ guard different objects: a branch boundary and implicit root continuation. The shared discipline is to name the exact map and fail closed when its own nondegeneracy condition is lost.
+
+A finite reconstruction must **fail closed** — returning no verdict at all — when tags are missing, the aperture is too small, or the rank floor fails. These are theorem-level acceptance conditions for any future instrument; the ideal full-sphere result does not certify finite sampled recovery.
+
+#### The center curve
+
+For a target architrino $a$ and emission interval $I$, the tagged center set is
+
 $$
 Z_a(I)=\{\mathbf Z_a(T_t):T_t\in I\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-322da7f047873084)
-and its Euclidean diameter
+
+with diameter
+
 $$
 D_a(I)=\sup_{T_t,T'_t\in I}\|\mathbf Z_a(T_t)-\mathbf Z_a(T'_t)\|
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a52adb1cf67c9b5d)
 
-Equivalently,
+the largest separation between any two centers, written compactly as
+
 $$
 D_a(I)=\operatorname{diam}Z_a(I)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b55589f8dd99eea7)
-With exact complete-state access and transmitter-independent propagation at $c_f$, $D_a(I)=0$ if and only if $\mathbf Z_a(T_t)$ is constant on $I$, so the transmitter is at absolute rest almost everywhere on that interval. For uniform motion over a duration $\Delta T_I$, $D_a(I)=\|\mathbf V_a\|\Delta T_I$. This is a **coordinate-free** geometric diagnostic. It does not compare position to some external grid. It checks an **intrinsic relational property**: whether the transmitter-tagged centers of emitted causal isochrons occupy the same point in the Euclidean void.
 
-The velocity readout in the uniform case assumes $\mathbf Z_a(T_t)=\mathbf Z_0+\mathbf V_a(T_t-T_0)$ on the interval. For accelerated or curved transmitter histories, $D_a(I)$ measures only the chord-span of the center curve and cannot determine the velocity history by itself. The faithful complete-state object is the full center curve $T_t\mapsto\mathbf Z_a(T_t)$, including its tangent, curvature, and torsion where those derivatives exist; that curve is the geometric record the self-hit ledger later samples.
+With exact access and transmitter-independent propagation, $D_a(I)=0$ if and only if the center never moved, so the transmitter was at rest. For uniform motion over duration $\Delta T_I$ it equals $\|\mathbf V_a\|\Delta T_I$.
 
-The resulting diagnostic hierarchy is a hierarchy of derivative data on the same center curve. Absolute rest is the zeroth-order condition that $Z_a(I)$ has zero diameter, equivalently $\mathbf Z_a(T_t)$ is constant on the interval. Uniform absolute motion is the first-order condition $d\mathbf Z_a/dT_t=\mathbf V_0$ with vanishing curvature on the interval. Self-hit eligibility is a higher-order and global condition: curvature, torsion, recurrence, or super-field-speed history must bring the source into the forward isochron foliation generated by its own past centers. The Frenet framing is useful on regular curve segments, but the self-hit condition itself is the causal-root condition below, not merely a local curvature scalar.
+This is **coordinate-free**. It compares no position to any external grid. It checks an intrinsic relational property: whether the tagged centers occupy the same point.
 
-If no architrino is stationary over the diagnostic interval, complete-state reconstruction may still recover the preferred rest-frame structure from the centers of transmitter-tagged wake isochrons. A coordinate origin can then be chosen conventionally from any reconstructed emission center at a chosen time. The stationary architrino is therefore a convenient material origin, not the definition of the preferred frame.
+The velocity readout in the uniform case assumes the centers lie on a straight line traversed at constant rate. For accelerated or curved histories, the diameter measures only the chord span and cannot recover the velocity history. The faithful object is the whole curve $T_t\mapsto\mathbf Z_a(T_t)$, including its tangent, curvature, and torsion where they exist — and that curve is precisely the record the self-hit ledger samples later.
 
-This distinction fixes the level of the claim. Ontologically, the preferred frame is defined by the propagation law in the Euclidean void. Inference-wise, the concentricity test reconstructs that rest condition from transmitter-tagged wake records. At the effective observer level, the same fact need not be directly measurable, because assemblies use clocks, rulers, and signal channels that must themselves satisfy Lorentz-recovery closure.
+The diagnostics form a hierarchy on that one curve. **Rest** is the zeroth-order condition that the curve is a point. **Uniform motion** is the first-order condition that its tangent is constant and its curvature vanishes. **Self-hit eligibility** is global: two points on the history must have average chord speed exactly $c_f$. For an absolutely continuous path, this requires $\|\mathbf V\|\ge c_f$ somewhere on the interval, but curvature, torsion, recurrence, or a super-wake-speed segment is neither necessary nor sufficient by itself. Frenet framing is useful on regular segments; the root equality below is decisive.
+
+If nothing is stationary over the interval, the frame structure can still be recovered from the tagged centers, and an origin chosen conventionally from any reconstructed center. A stationary architrino is a convenience, not the definition.
+
+That fixes the level of the claim precisely. **Ontologically**, the preferred frame is defined by the propagation law. **Inferentially**, the concentricity test reconstructs it from tagged records. **Operationally**, it need not be measurable at all, because observers use clocks, rulers, and signal channels that must themselves satisfy Lorentz-recovery closure.
 
 ### Connections to Core Dynamics
 
-#### Self-Hit and Delay-Root Geometry
+#### Self-hit and delay-root geometry
 
-The concentricity diagnostic connects directly to the geometry developed in [Self-Interaction (Self-Hit Dynamics)](../../../../markdown/aaa/dynamics/master-equation.md#self-interaction-self-hit-dynamics) and [Causal Interaction Set (The Geometry of Delay)](../../../../markdown/aaa/dynamics/master-equation.md#causal-interaction-set-the-geometry-of-delay), but the two claims must remain distinct:
+The diagnostic connects to the geometry in [Self-Interaction](../../../../markdown/aaa/dynamics/master-equation.md#self-interaction-self-hit-dynamics) and [Causal Interaction Set](../../../../markdown/aaa/dynamics/master-equation.md#causal-interaction-set-the-geometry-of-delay), but two claims must stay distinct, and running them together is a natural mistake.
 
-- An architrino at rest ($\mathbf V=\mathbf{0}$) emits concentric causal isochrons, but it does not receive a delayed self-hit merely by being stationary. For $T_t<T_r$, the self-hit root condition would require $\|\mathbf X_i(T_r)-\mathbf X_i(T_t)\|=c_f(T_r-T_t)$; a stationary worldline has the left side equal to zero while the right side is positive.
-- An architrino in ordinary sub-field-speed straight motion emits non-concentric transmitter-tagged isochrons, but that is still not enough by itself to create a self-hit. Self-hit is a transmitter-identity root condition, not a synonym for nonzero absolute velocity.
-- Curved path history and super-field-speed history are the relevant self-hit ingredients. Once the transmitter path folds through its own emitted causal isochrons, same-transmitter roots can enter the causal-root ledger and produce non-Markovian feedback.
-- In exact center-curve terms, a same-transmitter root exists when the transmitter re-enters its own forward isochron:
+- A resting architrino emits concentric surfaces, but **does not** receive a self-hit merely by being still. A self-hit would require $\|\mathbf X_i(T_r)-\mathbf X_i(T_t)\|=c_f(T_r-T_t)$, and for a stationary worldline the left side is zero while the right side is positive. It never catches its own wake because it is not going anywhere.
+- An architrino in ordinary straight sub-wake-speed motion emits non-concentric surfaces, and that too is not enough. Self-hit is a root condition on transmitter identity, not a synonym for nonzero velocity.
+- Curvature or a super-wake-speed segment may help a history satisfy the condition, but neither guarantees a root. A root exists only when a later point lies exactly on an earlier emitted surface; for an absolutely continuous history, attaining speed at least $c_f$ somewhere is necessary but not sufficient.
+- Exactly, a same-transmitter root exists when the transmitter re-enters its own forward surface:
+
   $$
   \exists\,T_t < T:
   \|\mathbf Z_a(T)-\mathbf Z_a(T_t)\|=c_f(T-T_t)
   $$
 
   [View →](../../../../../equation-mapping.html#corpus-equation-d13fc0e3f2c35584)
-  This is re-entry into the expanding-sphere foliation generated by the past center curve. It is not a requirement that the spatial curve literally intersect itself in $\mathbb{R}^3$. For closed or recurrent framed branches, the protected topology row should be stated as a linking or framed self-linking record, such as $Lk=\operatorname{Wr}+\operatorname{Tw}$ when the branch supplies a nonsingular frame. Thus absolute rest and self-hit are distinct invariants: rest is concentricity of transmitter-tagged centers, while self-hit is a transmitter-identity root with a retained wake/worldline linking or framing record when such a record is part of the branch certificate.
-- For bound assemblies, the corresponding closure problem is conditional: a translating Noether braid must retune its moving-assembly deformation, clock/ruler behavior, two-way signal synchronization, and preferred-frame leakage while its internal causal-root ledgers remain admissible. Failure of that shared closure would appear as phase loss, dissociation, or unacceptable preferred-frame leakage; the disruption claim is a theorem target, not an established consequence of the rest diagnostic alone.
-- This moving-assembly bias is one input to the medium-dressed inertial response of bound assemblies: acceleration skews the delayed causal ledger, while shielding determines how much of the internal energy is exposed to external probes.
 
-**The upshot:** Absolute velocity is not merely a kinematic label, but the direct rest diagnostic is geometric rather than an immediate self-hit claim. The dynamical burden belongs to the Lorentz-closure ladder: moving assemblies must show stable delayed-root closure, medium-dressed deformation, and bounded preferred-frame leakage before Physical Observers can recover ordinary relativistic behavior.
+  This is re-entry into the expanding-sphere family generated by the past center curve. It does **not** require the spatial path to cross itself. A closed or recurrent framed assembly may separately carry a protected linking or framed self-linking row such as $Lk=\operatorname{Wr}+\operatorname{Tw}$, but linking is not part of the definition of a self-hit. Rest and self-hit are different conditions: rest is concentricity of centers; self-hit is a same-transmitter causal root.
+- For bound assemblies the corresponding problem is conditional. A translating braid must retune its deformation, clock and ruler behavior, two-way synchronization, and preferred-frame leakage while its internal ledgers stay admissible. Failure would show as phase loss, dissociation, or unacceptable leakage — but that disruption is a theorem target, not a consequence of the rest diagnostic.
+- **Closure target:** delayed-ledger asymmetry, together with shielding and medium coupling, is a candidate contributor to the inertial response of a bound assembly. The rest diagnostic alone neither derives that response nor fixes its magnitude.
 
-#### Master Equation Requirements
+**The upshot.** Absolute velocity is not merely a label, but the rest diagnostic is geometric rather than an immediate claim about self-hits. The dynamical burden belongs to the Lorentz-closure ladder.
 
-The [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form) demands **explicit positions** $\mathbf X_i(T)$ to compute:
-- Separation distance $r_{ij}$ between architrinos $i$ and $j$
-- Path-history positions (where was architrino $j$ when the wake contribution currently reaching $i$ was emitted?)
+#### Master equation requirements
 
-The concentric-wake diagnostic demonstrates that $\mathbf X_i(T)$ is physically meaningful within complete-state reconstruction. Stationarity can be identified without circular reference to pre-existing coordinate labels; coordinates enter afterward as a convenient representation of the already-defined rest condition.
+The [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form) needs explicit positions $\mathbf X_i(T)$ to compute separations and to answer "where was $j$ when the contribution now reaching $i$ was emitted?"
 
-#### Foundational Validation
+The concentricity diagnostic shows those positions are physically meaningful within complete-state reconstruction. Stationarity is identifiable without circular reference to pre-existing labels, and coordinates enter afterward as a representation of an already-defined condition.
 
-This complete-state diagnostic serves as a **consistency test** for [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md) and [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md):
-- Can the theory self-consistently define its own reference frame from intrinsic physics alone?
-- **Yes**: through geometric properties of continuous wake dynamics.
+#### Foundational validation
 
-This prevents the preferred-frame claim from being empty inside the formal ontology. Direct empirical access remains a separate issue: it depends on the moving-assembly and photon-channel closures that determine whether Physical Observers can detect any preferred-frame leakage.
+This serves as a consistency test for [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md) and [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md). Can the theory define its own reference frame from intrinsic physics alone? Yes — through the geometry of wake dynamics.
 
-#### Conservation-Law Counting as a Frame Diagnostic
+That prevents the preferred-frame claim from being empty inside the formal ontology. Empirical access is a separate matter, depending on the closures that decide whether observers can detect any leakage.
 
-The absolute frame also leaves a fingerprint in the dynamical symmetry group. The [proved invariance group of the Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#fundamental-symmetry-group) is time translation plus the Euclidean motions of the void: one time translation, three space translations, and three rotations. It therefore has exactly seven continuous generators. In a symmetry-preserving delayed action, those generators organize one energy-charge target, three momentum-charge targets, and three angular-momentum-charge targets as particle-plus-wake history functionals. The generator count is proved; exact conservation of those seven charges is conditional on deriving them from the same action and closing its history-boundary, wake-ledger, and regularization residuals independently.
+#### Conservation-law counting as a frame diagnostic
 
-Newtonian mechanics with Galilean invariance has three additional boost generators, which supply the center-of-mass theorem once its mass and momentum structure is declared, while relativistic mechanics has the corresponding ten generators of the Poincare group. The substrate count is seven, not ten, because boosts are not substrate symmetries: $c_f$ anchors a preferred frame, and the three missing boost generators are that frame's signature as absent substrate theorems rather than as a measured velocity. Generator counting is therefore a formal frame signature complementary to the concentricity test, not by itself an observer-level detection measurement. The Lorentz-recovery program carries the corresponding obligation: three effective boost generators must join the seven substrate generators in the effective ten-generator structure of [Theorem G](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure), while [Information and the Wake](../../../../markdown/aaa/philosophy-history/information-and-the-wake.md) surveys the separate conservation-accounting burden.
+The absolute frame leaves a second fingerprint, in the symmetry group.
+
+The [proved invariance group of the Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#fundamental-symmetry-group) is time translation plus the Euclidean motions of the void: one time translation, three space translations, three rotations. **Seven** continuous generators. In a symmetry-preserving delayed action those organize one energy target, three momentum targets, and three angular-momentum targets as particle-plus-wake functionals. The count is proved; exact conservation of the charges is conditional on deriving them from the same action and closing its residuals.
+
+Compare the alternatives. Newtonian mechanics with Galilean invariance has **three more** — the boost generators, which give the center-of-mass theorem once mass and momentum structure are declared. Relativistic mechanics has **ten**, the generators of the Poincaré group, comprising translations, rotations, and Lorentz boosts.
+
+The substrate count is seven rather than ten because boosts are not substrate symmetries: $c_f$ anchors a preferred frame. **The three missing boost generators are that frame's signature** — visible as absent theorems rather than as a measured velocity.
+
+Generator counting is a formal signature complementary to the concentricity test, not an observer-level detection. The recovery program carries the matching obligation: three effective boost generators must join the seven in the ten-generator structure of [Theorem G](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure), while [Information and the Wake](../../../../markdown/aaa/philosophy-history/information-and-the-wake.md) surveys the separate accounting burden.
 
 ### Ontological Clarifications
 
-#### What Is Physically Real vs. What Is Convention
+#### Real versus conventional
 
-**Ontologically fundamental (physically real):**
-- **Euclidean void and absolute time**: The substrate in which all architrino dynamics occur
-- **Absolute velocity**: Physically meaningful and detectable to complete-state reconstruction via transmitter-tagged wake concentricity
-- **Causal wakes**: continuous source-dependent, potential-bearing causal records propagating through the void
-- **Geometric relationships**: Concentricity and displacement are objective, observer-independent properties
+**Physically real:** the void and absolute time; absolute velocity, meaningful and reconstructible from tagged concentricity; wakes, as continuous source-dependent causal records; and geometric relationships such as concentricity and displacement, which are observer-independent.
 
-**Conventional (mathematical scaffolding):**
-- **Coordinate labels**: Tools for calculation and communication
-- **Choice of origin**: A stationary architrino supplies a convenient material origin when available; otherwise any reconstructed emission center at a chosen time may be selected conventionally
-- **Axis orientation**: The void is isotropic; no direction is physically privileged
+**Conventional scaffolding:** coordinate labels, used for calculation and communication; the choice of origin, taken from a stationary architrino when available and otherwise from any reconstructed center; and axis orientation, since the void is isotropic and privileges no direction.
 
-#### Why Physical Observers Don't Detect the Preferred Frame
+#### Why observers do not detect the frame
 
-The concentric-wake diagnostic requires access to full microdynamics: something only a $\mathbb{U}_{\text{now}}$ universe-state perspective can achieve. **Physical Observers** composed of assemblies measure through assembly-based apparatus:
+The diagnostic needs access to full microdynamics. Observers made of assemblies measure through assembly-based apparatus: proper time $\tau$ from internal clocks rather than $T$, effective coordinates from local rulers, relative velocities from Doppler shifts and aberration.
 
-- **Proper time** $\tau$ via internal clocks, not absolute time $T$
-- **Effective coordinates** via local rulers
-- **Relative velocities** via Doppler shifts and aberration
+Those instruments are themselves deformed by motion and by coupling to the medium. At accessible energies the recovery target is that moving assemblies contract, retune their internal periods, and synchronize photon channels so that preferred-frame signatures fall below detection thresholds. The frame exists as the ontological foundation, but the shielding must be **derived** rather than assumed — asserting it would beg the question.
 
-Assembly-based measuring devices are themselves distorted by motion and coupling to the Noether sea. At accessible energies and weak Noether sea density gradients, the Lorentz-recovery target is that moving assemblies contract, retune their internal periods, and synchronize photon channels so that preferred-frame signatures remain below experimental detection thresholds. The absolute frame exists as the ontological foundation, but emergent effective geometry shields it from direct operational observation only if that moving-assembly closure is derived, not merely assumed.
+#### The source-independence assumption
 
-#### The Source-Independence Assumption
+The diagnostic rests on one physical assumption: once emitted, a wake propagates at $c_f$ relative to the void, independent of what the transmitter does next.
 
-The diagnostic relies on a critical physical assumption:
-- **Wake propagation independence from transmitter motion**: once emitted, the potential-bearing wake propagates at $c_f$ relative to the void, independent of the transmitter's subsequent trajectory.
+This is like sound in air. Once a speaker emits a wave, that wave travels at the speed of sound in the medium and does not follow the speaker. **The analogy stops there**, in an important place: air is a material medium that can be dragged, heated, and blown about, and the void is none of those things. The wake carries no substance and the void has no state.
 
-This is analogous to **acoustic waves** in air: once a speaker emits sound, that wave propagates at the speed of sound in the medium. The wave does not follow the speaker if it moves. The analogy does not by itself answer Michelson-Morley-style null results for group-motion anisotropy; that burden is owned by the moving-assembly closure ladder, not by this complete-state diagnostic.
+The analogy also does not answer **Michelson–Morley**-type null results. Interferometric and modern rotating-resonator experiments compare propagation or resonance along differently oriented paths and report no significant preferred-frame anisotropy. Nagel and collaborators measured a relative orientation-dependent frequency change of $(9.2\pm10.7)\times10^{-19}$ at 95% confidence; see [*Direct terrestrial test of Lorentz symmetry in electrodynamics to $10^{-18}$* (2015)](https://doi.org/10.1038/ncomms9174). That observer-level burden belongs to the moving-assembly closure ladder, not to the complete-state diagnostic.
 
-The reason is structural rather than rhetorical. The complete-state diagnostic operates on transmitter-tagged wake centers: transmitter identity, emission time, and support geometry are part of its data. A Michelson-Morley-style interferometer samples a summed, untagged received potential through physical clocks, rulers, mirrors, and photon channels. The null group-motion anisotropy result constrains the observer-level shielding and common-channel closure of that untagged measurement system; it does not falsify the transmitter-tagged center diagnostic unless the complete-state provenance ledger itself is inconsistent.
+The diagnostic operates on **tagged** centers: transmitter identity, emission time, and support geometry are part of its data. An interferometer samples a summed observer channel through physical clocks, rulers, mirrors, and photon transport. A null result does not contradict the geometric identity of tagged centers, but it constrains the theory that contains that identity: failure to derive leakage below the measured ceiling would falsify the proposed observer-hiding closure and require a different account.
 
-#### Tagged-Emission Injectivity Lemma
+#### Tagged-emission injectivity lemma
 
-Let $\mathcal{H}_{\mathrm{tag}}$ denote an admissible transmitter-history record and let $\mathcal{E}_{\mathrm{tag}}(\mathcal{H}_{\mathrm{tag}})$ denote its family of emitted supports $(a,T_t,W_a(T_t;T))$ on the declared time window. Assume that transmitter and emission-time tags are retained, wake propagation is transmitter-motion independent after emission, the center supports satisfy the declared aperture or center-fit non-degeneracy floor, and the worldlines are absolutely continuous. Then
+Let $\mathcal{H}_{\mathrm{tag}}$ be an admissible tagged history record and $\mathcal{E}_{\mathrm{tag}}(\mathcal{H}_{\mathrm{tag}})$ its family of emitted supports on a declared window. Assume tags are retained, propagation is transmitter-motion independent after emission, the supports satisfy the aperture floor, and the worldlines are absolutely continuous. Then
+
 $$
 \mathcal{E}_{\mathrm{tag}}(\mathcal{H}_{\mathrm{tag}})
 =
@@ -3165,58 +3869,50 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-34d9786056214f65)
 
-*Proof.* Equality of the nondegenerate tagged supports gives the same unique center for every $(a,T_t)$ and therefore the same center curves. Those curves are the transmitter worldlines; absolute continuity then gives the same velocities almost everywhere, while the retained tags carry identity and polarity. Translation, rotation, and time-origin conventions enter only when the same records are presented in convention-relative charts.
+On the declared emission window, the same tagged emitted surfaces imply the same transmitter center curves and hence the same worldlines there. The map is **injective on that scoped record**; it makes no claim about history outside the retained window.
 
-This is not an observer-accessible decomposition theorem for the summed potential. The proof depends on the hypothesis that provenance tags survive in complete-state bookkeeping. If that hypothesis fails, the tagged map is unavailable; if only the later label-erasing observer map has large fibers, the preferred frame remains complete-state real but operationally hidden.
+*Proof.* Equality of the nondegenerate tagged supports gives the same unique center for every emission, hence the same center curves. Those curves are the transmitter worldlines; absolute continuity then gives the same velocities almost everywhere, and the retained tags carry identity and polarity. Translation, rotation, and time-origin conventions enter only when the same records are presented in convention-relative charts.
+
+This is **not** an observer-accessible decomposition theorem. The proof depends on tags surviving in complete-state bookkeeping. If that fails the map is unavailable. Large fibers of a label-erasing observer map establish non-identifiability from that record alone; operational hiding across all admitted measurements requires the separate quantitative leakage bound below.
 
 ### Philosophical Context
 
-#### Relationalism vs. Substantivalism
+#### Relationalism versus substantivalism
 
-- **Relationalism** (Leibniz, Mach): spatial facts are merely relations between objects; no independent Euclidean-void container is meaningful
-- **Substantivalism** (Newton, this theory): the Euclidean void is a real container with intrinsic structure, existing independent of matter
+**Relationalism**, associated with Leibniz and Mach, holds that spatial facts are only relations between objects, and that an independent container is meaningless. **Substantivalism**, associated with Newton and adopted here, holds that the void is a real container with intrinsic structure, existing independently of what occupies it.
 
-In the terminology of this chapter, the substantival claim is the reality of the Euclidean void and absolute time, not the existence of a preferred coordinate chart. The architrino framework is therefore **substantivalist**, but it avoids the idea that the void comes with pre-painted coordinates. Instead, **causal-wake dynamics** reveal the structure that matters.
+The substantival claim here is the reality of the void and absolute time, not the existence of a preferred coordinate chart. The framework is substantivalist while rejecting the idea that space arrives pre-painted with coordinates. The wake dynamics reveal the structure that matters.
 
-#### Neo-Lorentzian Character
+#### Neo-Lorentzian character
 
-This places the theory in the tradition of **Lorentz Ether Theory**:
-- Absolute space and time are fundamental
-- Operational Lorentz symmetry is a recovery target of the moving-assembly closure ladder, not a primitive substrate symmetry
-- A preferred frame exists but must be operationally hidden at low energies by the moving-assembly closure ladder
+This places the theory in a **neo-Lorentzian** comparison class: absolute space and time are retained, while moving objects and clocks are required to reproduce the Lorentzian observations that special relativity encodes geometrically. Agreement is a target over the tested kinematic regime, not a general result already established for $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
-**Key distinctions from classical LET:**
-- The Noether sea is not a continuous classical ether; it is an assembly network rather than a coordinate grid
-- The preferred frame is hidden by emergent effective geometry
-- The framework states explicit closure targets and failure criteria for where symmetry-breaking signatures would appear
+Shared with that tradition: absolute space and time are fundamental; operational Lorentz symmetry is a recovery target rather than a primitive symmetry; a preferred frame exists but must be operationally hidden.
+
+Differing from it: the Noether sea is an assembly network rather than a continuous classical ether or a coordinate grid; the frame is hidden by emergent effective geometry rather than by stipulation; and the framework states explicit closure targets and failure criteria for where symmetry-breaking signatures would appear.
 
 ### Summary: The Detection Method
 
-**The Question:** Can a $\mathbb{U}_{\text{now}}$ universe-state perspective determine when an architrino has absolute velocity zero, without pre-existing coordinates?
+**Question.** Can complete-state bookkeeping determine when an architrino has zero absolute velocity, without pre-existing coordinates?
 
-**The Answer:** **Yes**, by testing the **concentricity** of transmitter-tagged outgoing causal isochrons.
+**Answer.** Yes, by testing the concentricity of tagged outgoing wake surfaces.
 
-**Detection signatures:**
-- Absolute rest means all transmitter-tagged wake centers are spatially coincident.
-- Absolute motion means wake centers form a displacement trajectory; for uniform segments, velocity $\mathbf V_{\text{abs}} = \Delta \mathbf X / \Delta T$.
+**Signatures.** Rest means all tagged centers coincide. Motion means the centers form a trajectory; for uniform segments, $\mathbf V_{\text{abs}}=\Delta\mathbf X/\Delta T$.
 
-**Why this works:**
-- Wake speed $c_f$ is isotropic in the void's rest frame
-- Emission centers mark absolute positions in the void
-- Concentricity is a coordinate-free geometric invariant of transmitter-tagged continuous potential distributions
+**Why it works.** Wake speed is isotropic in the void's rest frame; emission centers mark absolute positions; concentricity is a coordinate-free invariant.
 
-**Theoretical implications:**
-- The Euclidean void and absolute time have complete-state diagnostic content
-- The theory can identify a preferred rest condition from intrinsic physics alone
-- Operational Lorentz invariance is compatible with fundamental absolute structure
+**Implications.** The void and absolute time have diagnostic content. The theory identifies a complete-state rest condition from its own propagation law. Operational Lorentz invariance is compatible with that structure only if the clock, ruler, photon, and matter closures satisfy the measured leakage bounds.
 
-The next chapter, [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md), uses this preferred-rest diagnostic as the starting point for constructing a complete coordinate frame.
+[Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md) uses this as the starting point for a complete coordinate frame.
 
-#### Tagged Recovery and Observer-Hiding Theorem Target
+#### Tagged recovery and observer-hiding theorem target
 
-The risk-bearing claim is two-sided. The preferred-frame program fails at the complete-state level if transmitter-tagged wake centers cannot define one consistent rest-frame structure. It fails at the observer level if physical clocks, rulers, or photon channels retain preferred-frame leakage above the declared cavity, two-way anisotropy, or PPN ceilings after moving-assembly closure is applied. The framework is therefore committed both to a real complete-state preferred frame and to a quantitatively hidden observer-sector leakage row.
+The risk-bearing claim is two-sided, and both sides can fail.
 
-In map language, the theorem target pairs the proved tagged-emission injectivity lemma with approximate observer invariance. The label-erasure map to summed observer-accessible records must make the preferred-frame orbit diameter small for physical observables across the tested boost or group velocity family:
+It fails at the complete-state level if tagged centers cannot define one consistent rest-frame structure. It fails at the observer level if clocks, rulers, or photon channels retain preferred-frame leakage above the declared cavity, two-way anisotropy, or parameterized post-Newtonian ceilings after closure is applied. The framework is committed to a real complete-state frame **and** to a quantitatively hidden observer-sector leakage.
+
+In map language, the target pairs the injectivity lemma above with approximate observer invariance. The label-erasing map must make the preferred-frame spread small across the tested velocity family:
+
 $$
 \operatorname{diam}_{\mathrm{obs}}
 \left\{
@@ -3228,35 +3924,47 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-50fa63b4aacb7a83)
-Here $\mathcal{H}_{\mathrm{tag}}^{(\mathbf w)}$ denotes the tagged record produced by re-preparing the same experiment with absolute group velocity $\mathbf w$ inside the tested low-energy comparison window, and $\mathcal{O}$ denotes the admitted observer-accessible functionals. The first condition makes the preferred frame real in complete-state geometry. The second is the Lorentz-recovery burden that makes that frame hidden from embedded Physical Observers.
+
+Here $\mathcal{H}_{\mathrm{tag}}^{(\mathbf w)}$ is the tagged record from re-preparing the same experiment at absolute velocity $\mathbf w$, and $\mathcal{O}$ the admitted observer functionals. Read it as: repeat the experiment at every velocity in the tested range, look at what an observer could measure each time, and require the spread across all of them to stay under $\epsilon_{\mathrm{PF}}$.
+
+The injectivity lemma makes the frame real in complete-state geometry. This bound is the recovery burden that makes it hidden from observers. Both are required, and each without the other would leave the theory either empty or falsified.
 
 ## Constructing the Absolute Frame
 
-This chapter answers a simple question: if the Euclidean void has no grid painted into it, how can the theory ever use coordinates? The answer is reconstruction. A usable frame is built from complete-state wake geometry, not assumed as a label already attached to space. The ontological data are architrino worldlines, transmitter-tagged causal wakes, Euclidean distances on an absolute-time slice, and the path-history records needed to compare them. The coordinate frame reconstructed from those data is a mathematical and computational representation, not an additional constituent of the ontology.
+This chapter answers a question that sounds like an objection: if the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md) — the fixed, featureless space that everything in $\mathbb{A}\mathbb{A}\mathbb{A}$ happens inside — has no grid painted onto it, how can the theory ever use coordinates?
+
+The answer is reconstruction. A usable frame is *built* from the geometry that is already there, rather than assumed as a label space came with. The raw material is the paths [architrinos](../../../../markdown/aaa/foundations/architrino.md) trace, the transmitter-tagged wakes they emit, ordinary Euclidean distances measured on one slice of absolute time, and the path-history records needed to compare them. The coordinate frame that comes out is a mathematical and computational representation — a convenience — and not an additional ingredient of reality.
 
 ### Overview
 
-The previous chapter showed how transmitter-tagged wake centers identify the preferred rest structure, and how a stationary architrino can supply one convenient material origin when available. The next task is more ordinary but just as important: construct a complete coordinate system. The Euclidean void provides no intrinsic markers: no origin point labeled "here," no arrows painted "this way," and no universal clock displaying "now = 0." Those absences are not defects in the ontology. They are the reason coordinates must be inferred from complete-state geometry rather than treated as primitive labels attached to the void.
+The previous chapter showed how transmitter-tagged wake centers identify the preferred rest structure, and how a stationary architrino can supply a convenient material origin when one happens to be available. The next task is more ordinary and just as necessary: build a complete coordinate system.
 
-The conceptual sequence is: [Detecting the Absolute Frame](../../../../markdown/aaa/foundations/detecting-the-absolute-frame.md) identifies absolute rest, [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md) defends the global temporal ledger, and [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) explains how observer-level clocks arise once the coordinate frame is in place.
+The void provides no intrinsic markers. There is no point labeled "here," no arrow painted "this way," and no universal clock reading "now = 0." Those absences are not defects. They are exactly why coordinates have to be inferred from geometry rather than treated as something space came equipped with.
 
-The coordinate system reconstructed here is a workbench tool. It lets the theory state equations in components, run simulations, and compare descriptions. The universe itself requires none of it. Architrinos interact through transmitter-tagged causal wakes according to invariant laws that can exhibit deterministic multistability at self-hit thresholds. The physics continues whether or not any Physical Observer labels the axes.
+The conceptual sequence runs across three chapters. [Detecting the Absolute Frame](../../../../markdown/aaa/foundations/detecting-the-absolute-frame.md) identifies absolute rest, [Absolute Time Defense](../../../../markdown/aaa/foundations/absolute-time-defense.md) defends the global temporal record, and [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) explains how the clocks an observer actually reads arise once a frame is in place.
 
-The reader should therefore treat the construction like assigning graph paper after the geometry is already there. The graph paper helps calculate and compare; it does not create the distances, the rest condition, the causal wakes, or the architrino worldlines. This is why the reconstruction can be mathematically exact at the complete-state level while still being unavailable as a direct laboratory procedure for an embedded observer.
+The coordinate system built here is a workbench tool. It lets the theory write equations in components, run simulations, and compare descriptions. The universe requires none of it. Architrinos interact through their wakes according to laws that make no reference to axes, and the physics proceeds whether or not anyone labels anything.
 
-The claim is therefore narrow. From the $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective, a unique oriented basis can be defined after a nondegenerate ordered architrino tuple and parity convention are fixed. That is a mathematical existence proof. It is not an operational laboratory protocol for Physical Observers made of assemblies.
+The useful image is graph paper laid over a drawing that already exists. The paper helps you measure and compare; it did not create the distances, the rest condition, the wakes, or the paths. That is why the reconstruction can be mathematically exact while remaining unavailable as a laboratory procedure to an observer made of assemblies.
 
-The mathematical content is small but useful. The Euclidean metric plus a nondegenerate ordered tuple supplies an origin, two axes, and a parity convention. The important points are the lemma, the exact failure conditions, and the fact that coordinate parity is not dynamical chirality.
+So the claim is narrow, and stating its narrowness is the point. From the complete-state perspective — with exact positions plus the tagged wake and history data used to identify the rest structure and origin — a unique oriented basis can be defined once an ordered set of reference architrinos and a handedness convention are fixed. That is an existence proof. It is not a protocol anyone inside the system can carry out.
+
+The mathematics is small. The Euclidean metric plus a well-chosen ordered triple supplies an origin, two axes, and a handedness convention. What matters is the lemma, the precise conditions under which it fails, and one distinction that is easy to lose: coordinate handedness is not physical handedness.
 
 ### Reconstruction Existence Lemma
 
-Fix one absolute-time slice $\Sigma_{T_\ast}$. Suppose complete-state wake geometry identifies an origin point $O$ on that slice. Let $\mathbf X_O(T_\ast)$ denote that fixed Euclidean-void point, whether it is occupied by a stationary architrino or reconstructed from a transmitter-tagged emission center and carried to $\Sigma_{T_\ast}$ by spatial identity. Now choose two architrinos $A$ and $B$ whose positions on $\Sigma_{T_\ast}$ satisfy
+Fix one slice of absolute time, $\Sigma_{T_\ast}$ — a complete snapshot of space at one instant. Suppose the wake geometry identifies an origin point $O$ on that slice, and write $\mathbf X_O(T_\ast)$ for that fixed point of the void. It may be occupied by a stationary architrino, or reconstructed from a tagged emission center and carried to this slice by the fact that void points keep their identity forever.
+
+Now choose two architrinos $A$ and $B$ whose positions satisfy
+
 $$
 \mathbf{d}_1=\mathbf X_A(T_\ast)-\mathbf X_O(T_\ast)\ne\mathbf{0}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-703cdd1a293f81c3)
-and
+
+so the first one is not sitting on the origin, and
+
 $$
 \mathbf{d}_2=\mathbf X_B(T_\ast)-\mathbf X_O(T_\ast),
 \qquad
@@ -3264,12 +3972,19 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9d9f0c637c1adaba)
-Then the first two unit axes are fixed by
+
+so the two displacements are not parallel. The cross product $\mathbf{d}_1\times\mathbf{d}_2$ has length equal to the area of the parallelogram they span, so requiring it nonzero is requiring that they actually span a plane rather than lying along one line.
+
+The first axis is then just the first displacement, scaled to unit length:
+
 $$
 \hat{\mathbf e}_1=\frac{\mathbf{d}_1}{\|\mathbf{d}_1\|}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9ab08029dbdf3267)
+
+and the second axis is what remains of the second displacement after removing everything pointing along the first:
+
 $$
 \mathbf{d}_2^{\perp}=\mathbf{d}_2-(\mathbf{d}_2\cdot\hat{\mathbf e}_1)\hat{\mathbf e}_1,
 \qquad
@@ -3277,22 +3992,39 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a0ffdb7086cc4c79)
-Read the first displacement as the first arrow from the origin, and the second displacement as the arrow that fixes the plane. Once those are nondegenerate, only one binary choice remains. The remaining completion has exactly two signs. Once an orientation convention is declared, the right-handed completion is
+
+Read it as two arrows. The first displacement is the first arrow out of the origin. The second fixes which plane you are working in. Subtracting the component along $\hat{\mathbf e}_1$ leaves something perpendicular to it, and normalizing gives the second axis.
+
+With two perpendicular axes fixed, only one choice remains, and it is binary: the third axis is perpendicular to both, and there are exactly two directions available. Declaring an orientation convention picks one, and the right-handed completion is
+
 $$
 \hat{\mathbf e}_3=\hat{\mathbf e}_1\times\hat{\mathbf e}_2
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ca4ef3def46df100)
 
-Geometrically, the lemma constructs a section of the orthonormal frame bundle over the selected Euclidean point from a nondegenerate ordered tuple. In plainer language, the tuple removes the freedom to slide the origin around and spin the axes freely. The continuous freedoms removed are the translations and rotations of the special Euclidean group:
+#### What the tuple actually removes
+
+Geometrically, the lemma picks one specific frame out of all possible frames at that point. In plainer terms, the ordered triple removes the freedom to slide the origin anywhere and spin the axes freely.
+
+Those continuous freedoms are the translations and rotations of the special Euclidean group:
+
 $$
 SE(3)=\mathbb{R}^3\rtimes SO(3)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b399e459906d0fd5)
-This is the identity component of the full Euclidean group $E(3)=\mathbb{R}^3\rtimes O(3)$, while the remaining parity choice is the connected-component label of the full orthogonal group, $\pi_0(O(3))\cong\mathbb{Z}_2$. Thus the two signs are not an extra dynamical datum. They are the residual component choice left after the ordered tuple fixes the connected Euclidean-frame freedom.
 
-The construction fails only when the chosen reference data do not actually define a plane. That happens when the first displacement is coincident with the origin or the first two displacements are collinear:
+three directions to slide combined with three-dimensional rotation, and the $\rtimes$ recording that the order of the two operations matters. This is the part of the full symmetry group $E(3)=\mathbb{R}^3\rtimes O(3)$ that can be reached by continuous motion from doing nothing.
+
+The remaining handedness choice is the part that cannot. Reflections are disconnected from rotations — no amount of turning converts a left hand into a right one — and that disconnection is exactly the two-element set $\pi_0(O(3))\cong\mathbb{Z}_2$.
+
+So the two signs are not a hidden physical fact awaiting discovery. They are the leftover discrete choice after the ordered tuple has used up all the continuous freedom.
+
+#### Where it fails
+
+The construction fails in exactly one circumstance: the reference data do not define a plane. That happens if the first architrino sits on the origin, or if the two displacements are parallel:
+
 $$
 \|\mathbf{d}_1\|=0
 \qquad\text{or}\qquad
@@ -3300,7 +4032,9 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5e179351141d1a8a)
-For simulation and finite-precision reconstruction, exact nondegeneracy is not enough. The ordered tuple should also carry a conditioning floor
+
+For simulation on finite-precision arithmetic, exact nondegeneracy is not enough, because *nearly* parallel is nearly as bad as parallel. The tuple should carry a conditioning floor:
+
 $$
 \frac{\|\mathbf{d}_1\times\mathbf{d}_2\|}
 {\|\mathbf{d}_1\|\,\|\mathbf{d}_2\|}
@@ -3309,11 +4043,17 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4d911da3b862103f)
-on the retained reconstruction window. If this floor is small, the projection defining $\hat{\mathbf e}_2$ is ill-conditioned and the completed $\hat{\mathbf e}_3$ amplifies roundoff or perturbation error. The simulator should then choose a better-conditioned tuple rather than treating the near-collinear basis as an ordinary pass.
 
-This floor is one instance of the non-degeneracy floors used throughout the foundation stack. The common idea is simple: do not trust a reconstruction that would change wildly under a tiny perturbation. In each case the retained chart is accepted only when the relevant reconstruction map has a scale-appropriate nonzero floor. For causal-root charts this is the transversality floor, such as $\lvert\partial_{T_t}F_{ij}\rvert\ge\kappa_{\mathrm{hit}}$; for basin partitions it is the separatrix floor; for this frame construction the scale-free floor is the conditioning of the normalized direction pair $(\mathbf{d}_1/\|\mathbf{d}_1\|,\mathbf{d}_2/\|\mathbf{d}_2\|)$, recorded above by the sine of their angle. The common mathematical content is controlled local invertibility: the map has a bounded inverse-Lipschitz constant on the retained chart, so small perturbations of the complete-state data do not create a different branch or frame.
+The left side is the sine of the angle between the two displacements, and dividing by both lengths makes it dimensionless so the test does not depend on how far away the reference architrinos happen to be.
 
-If a fourth architrino $C$ is introduced, it is non-coplanar with the first three exactly when
+When that floor is small the subtraction defining $\hat{\mathbf e}_2$ removes almost everything, leaving a small remainder dominated by rounding error, and the completed $\hat{\mathbf e}_3$ amplifies it. A simulator should pick a better-conditioned tuple rather than treating a nearly-collinear basis as an ordinary success.
+
+This floor is one instance of a pattern used throughout the foundations: **do not trust a reconstruction that changes wildly under a tiny perturbation.** Here the angle floor bounds the inverse frame construction. A causal-root transversality floor instead supports the implicit-function continuation of a root, while a basin-separator floor regularizes a branch boundary. These are related nondegeneracy conditions, but they do not certify one common inverse map.
+
+#### The fourth marker
+
+If a fourth architrino $C$ is introduced, it lies off the plane of the first three exactly when
+
 $$
 \mathbf{d}_3=\mathbf X_C(T_\ast)-\mathbf X_O(T_\ast),
 \qquad
@@ -3321,36 +4061,48 @@ V_{\mathrm{vol}}=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)\ne0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-60b3c28cbc6bba07)
-Here $V_{\mathrm{vol}}\ne0$ is the structural non-coplanarity test for basis completion. The sign $\operatorname{sgn}(V_{\mathrm{vol}})$ reports which side of the already oriented plane the marker occupies relative to a declared orientation. It does not by itself turn coordinate parity into a dynamical chirality claim.
 
-This lemma is an existence claim at the complete-state level. It does not say that the Euclidean void contains an origin or preferred axes. It says that once a nondegenerate ordered tuple is selected, the Euclidean metric supplies enough invariant structure to construct a coordinate basis for calculation.
+The scalar triple product $V_{\mathrm{vol}}$ is the **signed** volume of the parallelepiped; its geometric volume is $|V_{\mathrm{vol}}|$. It vanishes precisely when the three displacements are coplanar, and its sign says which side of the oriented plane the fourth marker occupies.
+
+That sign reports a convention. It does not, on its own, make anything physically handed — a distinction the chapter returns to below, because it is the easiest error to make here.
+
+This lemma is an existence claim at the complete-state level. It does not say the void contains an origin or preferred axes. It says that once a nondegenerate ordered tuple is selected, the Euclidean metric supplies enough structure to build a basis for calculation.
 
 ### Minimal Reconstruction Procedure
 
-The lemma above is the full construction. Complete-state bookkeeping performs four choices. Each choice adds a piece of coordinate language without adding a new physical ingredient:
+The lemma is the whole construction. Complete-state bookkeeping makes four choices, and each adds coordinate language without adding physics:
 
-1. Choose an origin point $O$ on $\Sigma_{T_\ast}$. A stationary architrino can supply a material origin, but a reconstructed transmitter-tagged emission center also suffices. If the emission time is $T_t\ne T_\ast$, the origin on $\Sigma_{T_\ast}$ is the same fixed Euclidean-void point carried by spatial identity across slices, not the original event on $\Sigma_{T_t}$.
-2. Choose a non-coincident architrino $A$ and set $\hat{\mathbf e}_1=\mathbf{d}_1/\|\mathbf{d}_1\|$. This fixes a reference direction but not a physically preferred direction; the tuple choice is conventional once the complete-state geometry is available.
-3. Choose a non-collinear architrino $B$ and use the orthogonal projection of $\mathbf{d}_2$ to define $\hat{\mathbf e}_2$. This fixes the remaining continuous roll around $\hat{\mathbf e}_1$.
-4. Declare a parity convention and set $\hat{\mathbf e}_3=\hat{\mathbf e}_1\times\hat{\mathbf e}_2$, or use a non-coplanar fourth architrino only as a side marker for reporting the chosen convention.
+1. **Choose an origin** $O$ on $\Sigma_{T_\ast}$. A stationary architrino supplies a material origin, but a reconstructed emission center works too. If that emission happened at $T_t\ne T_\ast$, the origin is the same fixed void point carried across slices by spatial identity — not the original event on its own slice.
+2. **Choose a non-coincident architrino** $A$ and set $\hat{\mathbf e}_1=\mathbf{d}_1/\|\mathbf{d}_1\|$. This fixes a reference direction, not a physically preferred one.
+3. **Choose a non-collinear architrino** $B$ and project out the part of $\mathbf{d}_2$ along the first axis to define $\hat{\mathbf e}_2$. This removes the remaining freedom to roll around $\hat{\mathbf e}_1$.
+4. **Declare a handedness convention** and set $\hat{\mathbf e}_3=\hat{\mathbf e}_1\times\hat{\mathbf e}_2$, optionally using a fourth architrino as a marker for reporting which convention was chosen.
 
-The continuous freedoms removed are translation and rotation. Absolute time zero remains a separate temporal convention. The spatial basis does not need to be re-derived on every slice: once the chart is fixed on $\Sigma_{T_\ast}$, it transports identically across absolute-time slices because Euclidean-void points have fixed identity. In the selected $c_f$-isotropic rest frame, the dynamically completed Newton-Cartan connection is the flat representative described in [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md#newton-cartan-data), so this transport has trivial holonomy and is path-independent. The delayed root condition $\|\mathbf X_{o'}(T_r)-\mathbf X_j(T_t)\|=c_f(T_r-T_t)$ therefore compares positions at different times inside the same spatial chart, not inside separately reconstructed per-slice frames.
+The freedoms removed are translation and rotation. Choosing where time zero falls remains a separate convention.
 
-The reconstruction fails only for degenerate or ill-conditioned reference data: $\|\mathbf{d}_1\|=0$, $\|\mathbf{d}_1\times\mathbf{d}_2\|=0$, or a violated conditioning floor. In that case complete-state bookkeeping must choose a different ordered tuple. The failure belongs to the selected chart data, not to the Euclidean void.
+The basis does not need rebuilding on each slice. Once fixed on $\Sigma_{T_\ast}$ it transports unchanged across all absolute-time slices, because void points keep their identity. In the rest frame where the wake speed is the same in every direction, the completed connection is flat, so that transport is path-independent — carrying the frame by one route or another gives the same answer, as described in [Absolute Timespace](../../../../markdown/aaa/foundations/absolute-timespace.md#newton-cartan-data).
+
+That matters for delayed interactions specifically. The root condition $\|\mathbf X_{o'}(T_r)-\mathbf X_j(T_t)\|=c_f(T_r-T_t)$ compares positions at two different times, so it only means anything if both are expressed in the same spatial chart. A single transported frame provides that; separately reconstructed per-slice frames would not.
+
+The procedure fails only on degenerate or ill-conditioned reference data. In that case bookkeeping picks a different tuple. The failure belongs to the chosen data, never to the void.
 
 ### Parity Convention and Dynamical Chirality
 
-Coordinate handedness is a basis convention. It chooses which side of the already-defined plane is called positive $\hat{\mathbf e}_3$. A complete-state side marker $C$ can report that choice through
+This is the section the chapter exists to get right, because conflating these two things is a genuine error rather than a matter of wording.
+
+Coordinate handedness is a convention. It chooses which side of an already-defined plane gets called positive $\hat{\mathbf e}_3$. A marker architrino $C$ reports the choice through
+
 $$
 V_{\mathrm{vol}}=\mathbf{d}_3\cdot(\mathbf{d}_1\times\mathbf{d}_2)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ac975a3834957f4d)
-with $V_{\mathrm{vol}}>0$ and $V_{\mathrm{vol}}<0$ selecting opposite sides of the plane after the orientation convention has been declared. The sign of $V_{\mathrm{vol}}$ does not turn coordinate parity into a dynamical handedness law.
 
-Equivalently, $\operatorname{sgn}(V_{\mathrm{vol}})$ is gauge data for the selected coordinate chart, while dynamical chirality must be an invariant of the retained branch record. Coordinate parity lives in $\pi_0(O(3))$ for the chart; dynamical chirality lives in the connected-component data of framed worldline or assembly-branch configuration space. A simulation may align these signs as a reporting convention, but a nonzero $V_{\mathrm{vol}}$ does not imply that the assembly itself is chiral.
+with positive and negative values selecting opposite sides once an orientation has been declared. The sign of $V_{\mathrm{vol}}$ does not make anything physically handed.
 
-Dynamical chirality is reserved for an assembly-level handed marker carried by the retained branch record. Ordered precession, axial-frame exposure, reaction provenance, and Noether braid handedness may feed that marker, but the deformation-stable object should be a framed topology invariant, such as a framed self-linking sign
+The two live in different places. Coordinate handedness is a property of the chart — a label you assigned. **Dynamical chirality** is a property of the physical configuration, and would have to be an invariant of the retained branch record, surviving any smooth deformation that preserves the branch. A simulation may line the two signs up as a reporting convention, but a nonzero $V_{\mathrm{vol}}$ never implies that the assembly is chiral.
+
+Dynamical chirality is reserved for a handed marker carried by the assembly itself. Ordered precession, axial-frame exposure, reaction provenance, and braid handedness may all feed such a marker, but the deformation-stable object should be a topological invariant — for example a framed self-linking sign,
+
 $$
 Lk(\gamma,\gamma^{\mathrm{fr}})
 =
@@ -3358,88 +4110,105 @@ Lk(\gamma,\gamma^{\mathrm{fr}})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b3e9e39386cbd52e)
-for a closed framed constituent trace, or the linking number of distinct constituent worldlines. If that branch record supplies a nonzero handed marker, a simulation may choose the coordinate parity convention so that $\operatorname{sgn}(V_{\mathrm{vol}})$ reports the same sign as $\operatorname{sgn}(Lk)$. If the framed self-linking or linking row is zero, uncomputed, or not protected under branch-preserving deformation, the coordinate parity remains a reporting convention with no dynamical chirality content.
 
-The self-linking row is defined only on a regular closed return cycle or on an explicitly closed and nonsingular framed trace. A raw open worldline does not by itself carry a deformation-invariant writhe, and a near self-hit or fold crossing is exactly where the framing can degenerate. Chirality is therefore a regular-branch certificate: it is admissible where the retained roots and nonsingular frame have positive floors, including $\kappa_{\mathrm{hit}}>0$ for the relevant causal-root rows. At a fold, reconnection, or framing slip, $Lk$ can jump; that jump is a branch-transition event, not a change in coordinate convention.
+for the two disjoint edges of a closed, nonsingular framed ribbon. This is the Călugăreanu–White–Fuller relation: the integer linking number is the sum of geometric writhe and framing twist. Writhe and twist may change under a smooth ribbon deformation, while their sum remains fixed so long as the two edges remain disjoint and the framing stays regular. Dennis and Hannay give a geometric account in [*Geometry of Călugăreanu's theorem* (2005)](https://doi.org/10.1098/rspa.2005.1527). Linking between distinct closed worldline traces is a related invariant, but it must be defined on the actual retained closure.
+
+If the branch record supplies a nonzero handed marker, a simulation may choose its coordinate convention so that $\operatorname{sgn}(V_{\mathrm{vol}})$ matches $\operatorname{sgn}(Lk)$. If the linking row is zero, uncomputed, or not protected under branch-preserving deformation, then coordinate parity is a reporting convention carrying no physical content.
+
+There is a real restriction on when this is available. The self-linking row is defined only on a closed return cycle or an explicitly closed, nonsingular framed trace. An open worldline carries no deformation-invariant writhe on its own, and a near self-hit or a fold crossing is exactly where the framing degenerates.
+
+So chirality is a regular-branch certificate: admissible where the retained roots and the frame have positive floors, including $\kappa_{\mathrm{hit}}>0$ on the relevant rows. A causal-root fold alone does not change $Lk$. The linking certificate can change only when the retained closure is replaced or when the ribbon passes through a collision, reconnection, or framing singularity; such an event is a physical branch transition rather than a coordinate convention.
 
 ### Coordinate Frames Are Not Ontology
 
-The Euclidean void has no preferred origin, no intrinsic axis labels, and no substrate-level marker for clockwise versus counterclockwise. At the ontological level, architrinos move and interact through Euclidean separations, transmitter-tagged causal wakes, and line-of-action hits. Coordinates describe those relations; they do not cause them.
+The void has no preferred origin, no intrinsic axis labels, and no substrate marker for clockwise against counterclockwise. At the ontological level architrinos move and interact through Euclidean separations, tagged wakes, and the directions along which those wakes act. Coordinates describe those relations; they do not cause them.
 
-The reconstruction procedure serves theory-building and simulation:
-- writing the master equation in component form,
-- running numerical simulations,
-- communicating results,
-- and comparing frames.
+The procedure serves theory-building and simulation: writing the master equation in components, running numerical work, communicating results, and comparing frames.
 
-The coordinate-invariant content of the laws does not depend on the selected frame. A left-handed coordinate system and a right-handed one produce identical predictions for measurable quantities, differing only in the coordinate signs assigned to pseudovectors and pseudoscalars.
+None of the invariant content depends on the frame. A left-handed coordinate system and a right-handed one give identical predictions for every measurable quantity, differing only in the signs attached to pseudovectors and pseudoscalars — quantities that flip under reflection precisely because handedness was baked into their definition.
 
-The universe does not require a coordinate frame. Theory and simulation use one because the relevant relationships need a stable component language. Origin, first axis, and plane are enough for distances, derivatives, scalar products, and component equations. Handedness matters only when reporting cross products, pseudovectors, pseudoscalars, or parity-sensitive coordinate quantities.
+Origin, first axis, and plane suffice for distances, derivatives, scalar products, and component equations. Handedness matters only when reporting cross products and other parity-sensitive coordinate quantities.
 
 ### Complete-State and Physical-Observer Access
 
-This final distinction separates three layers that are easy to confuse. The substrate contains architrinos, causal wakes, absolute time, the Euclidean void, and contents of the Noether sea. Complete-state bookkeeping can infer a coordinate frame from that full record. Physical Observers access only effective records through assembly clocks, rulers, signals, and retained apparatus states.
+A final distinction separates three layers that are easy to run together. The substrate holds architrinos, wakes, absolute time, the void, and the contents of the Noether sea. Complete-state bookkeeping can infer a frame from that full record. Observers reach only effective records, through clocks, rulers, and signals that are themselves assemblies.
 
-**Complete-state reconstruction:** The $\mathbb{U}_{\text{now}}$ complete-state bookkeeping perspective has access to all architrino positions and can compute wake geometries exactly. The coordinate system is a data structure: an origin offset plus three orthonormal vectors.
+**Complete-state reconstruction** has every position together with the transmitter identities, emission times, and retained path histories needed to reconstruct tagged wake geometry. The coordinate system is a data structure: an origin offset plus three orthonormal vectors.
 
-**Physical Observer access:** Physical Observers cannot directly measure the complete transmitter-tagged wake-center geometry or identify absolute rest by this procedure. Their rulers and clocks are themselves assemblies, distorted by motion and coupling to the Noether sea. They measure:
-- **Proper time** $\tau$, not absolute time $T$
-- **Effective coordinates** via local rulers
-- **Relative velocities** via Doppler shifts and aberration
+**Observer access** does not automatically supply this complete-state construction. An observer's rulers and clocks are assemblies, deformed by motion and by coupling to the medium. They record proper time $\tau$, effective ruler coordinates, and signal-based relative-motion data. Whether a sufficiently extended time series can infer any preferred-frame leakage is an empirical closure question, not something the existence lemma decides.
 
-The obstruction is structural. No operator acting on the superposed received potential alone recovers the transmitter-tagged center set $\{\mathbf Z_a(T_t)\}$ without provenance data already in hand. Transmitter identity, emission time, and wake-center provenance are complete-state ledger entries; once a Physical Observer has only a summed effective record, those tags are not restored by a more clever coordinate reconstruction.
+At one event, an unrestricted summed potential does not uniquely determine the transmitter-tagged center set $\{\mathbf Z_a(T_t)\}$: different tagged source histories can give the same local sum. Transmitter identity, emission time, and wake-center tags are complete-state entries. Extended detector arrays, time series, or a restricted source model may recover partial information, but that is a separate inverse problem and cannot be claimed from the local sum alone.
 
-This can be stated as a quotient obstruction. Let $\mathcal{T}$ denote the provenance-tagged configuration record containing transmitter identity, emission time, and wake-center data, and let
+Stated as a map, let $\mathcal{T}$ be the tagged record and
+
 $$
 Q_{\mathrm{erase}}:\mathcal{T}\to\mathcal{T}/\!\sim_{\mathrm{erase}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b154232fac8d3d1c)
-be the map that forgets the labels retained only by complete-state bookkeeping. The summed observer record lies in the quotient fiber, not in $\mathcal{T}$ itself. Absolute-frame reconstruction requires a section of $Q_{\mathrm{erase}}$ selecting the correct tagged representative. No such section is determined by the superposed potential alone, because many tagged configurations can lie over the same unlabeled record. This is the same kind of label-erasure map that appears in the provenance-leakage bound of [Architrino](../../../../markdown/aaa/foundations/architrino.md#provenance-and-persistence).
 
-The reconstruction described here is a **foundational consistency proof**. It shows that the theory has the mathematical structure necessary to define absolute rest and an absolute-frame coordinate system **in principle** from complete ontic data. It does not claim that an embedded observer can perform the reconstruction directly. At accessible energies, the Lorentz-closure target is that moving-assembly deformation, clock/ruler retuning, and two-way signal synchronization bound preferred-frame leakage enough that Physical Observers cannot detect the absolute frame operationally, while the frame remains the ontological background beneath the effective geometry.
+the operation that forgets the labels only complete-state bookkeeping retains. The observer's record lives on the far side of that map.
 
-For the effective kinematic layer built on top of this scaffold, see [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) and [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
+The quotient map erases the tags by definition, so it has no unique inverse on unrestricted tagged histories. A physical observer map may retain other correlations from multiple locations or times, and those can distinguish some quotient classes. The exact conclusion is therefore non-identifiability from the erased record alone, not a theorem that every operational inference must fail. This is the same label-erasure structure that appears in the provenance-leakage bound of [Architrino](../../../../markdown/aaa/foundations/architrino.md#provenance-and-persistence).
+
+So the reconstruction here is a **foundational consistency proof**. It shows the theory has the structure needed to define absolute rest and an absolute frame **in principle**, from complete data. It claims nothing about an embedded observer's ability to do it.
+
+The matching closure target sits at the other end: moving-assembly deformation, clock and ruler retuning, and two-way signal synchronization must bound preferred-frame leakage below the declared experimental limits while the frame remains the background beneath effective geometry. Both halves are needed. Nagel and collaborators' rotating-resonator experiment reported no significant orientation-dependent frequency shift at the $10^{-18}$ scale; see [*Direct terrestrial test of Lorentz symmetry in electrodynamics to $10^{-18}$* (2015)](https://doi.org/10.1038/ncomms9174). A detectable excess would falsify the proposed observer-hiding closure. Failure of this reconstruction would instead falsify the stated reconstruction lemma or its data assumptions; it would not by itself disprove a preferred frame defined directly by the propagation law.
+
+For the effective layer built on this scaffold, see [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md) and [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 
 ## Emergence of Structure
 
-Emergence in this chapter means persistent organization formed by architrino dynamics. It does not mean that a second kind of substance or law is added on top. The substrate claim is that architrinos move in absolute time through the Euclidean void and interact through causal wakes. The effective claim is that repeated delayed interactions can settle into assemblies, branch records, and coarse variables useful at observer scales. The inferential claim is narrower still: once a preparation and measure source are declared, unresolved basin selection can be assigned branch weights without treating those weights as ontic randomness.
+**Emergence** here means persistent organization formed by [architrino](../../../../markdown/aaa/foundations/architrino.md) dynamics — patterns that hold together and last, built from parts that individually do nothing of the sort.
 
-The chapter is therefore about how order can be real without being primitive. Architrinos supply the persistent inventory and the causal-wake law supplies the motion. Assemblies, stable patterns, and statistical weights appear only after histories are constrained, repeated, and coarse-grained. Nothing mystical is added; the hard part is proving which delayed histories become stable enough to deserve higher-level names.
+It does not mean that a second kind of substance or law is added on top. That is the point of the word, and also the way it most often goes wrong. Saying something "emerges" can be a genuine explanation or a polite way of saying "we don't know yet," and this chapter exists partly to keep the two apart.
+
+Three claims, at three levels:
+
+- **Substrate:** architrinos move in absolute time through the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md) and interact through [wakes](../../../../markdown/aaa/foundations/architrino.md) — the expanding records each one leaves as it moves.
+- **Effective:** repeated delayed interactions can settle into assemblies, branch records, and coarse variables useful at observer scales.
+- **Inferential:** once a preparation and a measure are declared, unresolved branch selection can be assigned weights — without treating those weights as randomness built into the world.
+
+So the chapter is about how order can be *real* without being *primitive*. Architrinos supply the inventory, the wake law supplies the motion, and assemblies appear only after histories are constrained, repeated, and coarse-grained. Nothing mystical is added. The hard part is proving which delayed histories become stable enough to deserve higher-level names.
 
 ### Conway's Game of Life: A Discrete Touchstone
 
-Conway's Game of Life is useful only as an introductory picture of emergence. It is a zero-player cellular automaton: cells live on a 2D grid, all cells update together at discrete time steps, and each next state depends only on the current states of nearby cells.
+Conway's Game of Life is a useful first picture and a misleading second one.
 
-From these basic rules, a rich and unpredictable world of patterns appears:
--   **Still Lifes:** Stable configurations that do not change over time.
--   **Oscillators:** Patterns that repeat themselves over a fixed period.
--   **Spaceships (like the Glider):** Patterns that move across the grid.
+It is a zero-player cellular automaton: cells live on a two-dimensional grid, every cell updates simultaneously at discrete ticks, and each cell's next state depends only on its immediate neighbours. From those rules a surprising world appears:
 
-The lesson that carries over is narrow: simple deterministic rules can generate stable forms, periodic behavior, and moving patterns. The dynamical picture should not be carried over. The Game of Life is grid-based, memoryless, nearest-neighbor, and globally clocked. Architrino dynamics is none of those things.
+- **Still lifes:** configurations that never change.
+- **Oscillators:** patterns repeating with a fixed period.
+- **Spaceships**, such as the glider: patterns that travel across the grid.
 
-The useful structural map is topological rather than cellular. A still life is the fixed-point analogue of an equilibrium link, an oscillator is the periodic-orbit analogue of a limit-cycle branch, and a glider is the translation-invariant analogue of a translating branch family in the assembly atlas.
+The lesson that carries over is narrow: simple deterministic rules can generate stable forms, periodic behavior, and moving patterns, with none of those written into the rules.
 
-In return-map language, these are three different components of the branch atlas. A still life corresponds to a fixed point with trivial rotation data, an oscillator corresponds to a periodic orbit with rational rotation number on a retained invariant cycle, and, in the discrete-grid case, a glider corresponds to a covering-space lift of such a periodic orbit. In the co-moving quotient the glider closes like an oscillator; in the Euclidean-void frame its lift returns only after a nonzero deck displacement. This is the precise sense in which a translating branch family is a periodic branch in the quotient whose lift carries nonzero displacement per return.
+The dynamics do not carry over at all. Life is grid-based, memoryless, nearest-neighbour, and updated synchronously at discrete ticks. Architrino dynamics instead uses continuous space, absolute time, delayed path history, and no nearest-neighbour cutoff; over an unbounded history its causal reach can be unbounded. It has a shared substrate time but no global discrete update rule. Pushing the analogy past the first lesson does damage.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, architrinos move in continuous space and absolute time. A receiver responds when causal wake surfaces emitted in the past intersect its worldline, so active causal roots are not synchronized by a shared update tick. Each contribution has inverse-square falloff and depends on transmitter and receiver path history. The effective evolution is therefore a nonlinear delay-differential system with formally infinite-range coupling rather than a cellular rule table.
+What does survive is a structural map. A still life is the analogue of an equilibrium, an oscillator of a periodic orbit, and a glider of a travelling branch.
 
-### Emergence in the Architrino Universe: Continuous Delay Dynamics
+In dynamical-systems language these are three different invariant patterns: a fixed point, a periodic orbit, and — for the glider — a **relative periodic orbit** that closes only after applying a spatial translation. Rotation number is a separate invariant for suitable circle maps; it is not what makes an ordinary periodic orbit periodic. In the frame moving with the glider, the relative periodic orbit appears stationary or periodic; in the fixed frame, each recurrence carries a displacement.
 
-The closer pedagogical analogy is a population of coupled delayed-feedback oscillators, such as delayed Kuramoto-type phase systems, or nonlinear medium flows where phase-lagged feedback can produce synchronization, attractor basins, and persistent coherent structures. These analogies are not substitutes for the master equation. They are guides for the correct mental model. Structure forms through continuous delayed feedback and basin selection, not through grid-based cellular updates.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, architrinos move in continuous space and absolute time. A receiver responds when wake surfaces emitted in the past meet its current event, so interactions are not synchronized by a discrete tick. Each contribution depends on the transmitter's sampled past state and the receiver's current state; integrated playback and branch selection may depend on the retained histories. The effective evolution is a nonlinear delay-differential system with formally unlimited range, not a rule table.
 
--   **Absolute time and Euclidean void:** Unlike the Game of Life's grid and time steps, architrinos occupy positions in the Euclidean void indexed by absolute time. Their interactions are not clocked updates; they occur whenever an architrino intersects a causal isochron.
--   **Delayed causal roots:** The active interaction terms depend on past transmitter positions and, in self-hit regimes, on an architrino's own earlier path. The state needed to evaluate the next motion is therefore path-history dependent rather than Markovian.
--   **Infinite-range but convergence-controlled coupling:** Causal wake surfaces are not nearest-neighbor links. Their density falls as $1/r^2$, so distant structure can contribute in principle, but inverse-square dilution alone does not make an infinite three-dimensional source sum convergent. A valid branch must also declare the cancellation, screening, finite active horizon, or summation prescription that makes the retained wake sum well-defined.
--   **Emergent assemblies:** Through these continuous delayed interactions, architrinos can self-organize into complex, stable or metastable configurations called **assemblies**. An assembly is not a new primitive; it is a retained branch structure of the delay-differential dynamics, comparable in pedagogy to synchronized oscillator clusters, vortices, or soliton-like coherent structures. It becomes an attractor-basin structure only where the reduced assembly flow has the contraction and exported-flux account stated below.
+### Emergence in Continuous Delay Dynamics
 
-The stability of an assembly is therefore dynamic rather than static. It is not a fixed object held in place by definition. It persists because its trajectory remains inside a stable or metastable branch neighborhood while all dynamically active wakes continue to balance. Where reduced-flow contraction has been established, that neighborhood is an attractor basin. The assembly can dissolve, branch, or reconfigure when perturbations or self-hit thresholds push it across the corresponding branch boundary.
+The closer analogy is a population of coupled oscillators with delayed feedback — systems where phase-lagged coupling produces synchronization, competing basins, and persistent coherent structures. These are guides to the right mental model, not substitutes for the master equation. Structure forms through continuous delayed feedback and basin selection.
 
-This makes persistence a finite-window dynamical statement. For a declared observation window $W$ and surrounding context $c$, an assembly branch persists only while its path-history remains in an admitted stable or metastable branch neighborhood and the retained causal-root, shielding, and provenance rows continue to close. If those rows fail, the branch has reconfigured or dissolved even when a coarse observer label could still be reused.
+- **Absolute time and Euclidean void.** No grid and no time steps. Interactions occur whenever an architrino crosses an expanding wake surface.
+- **Delayed roots.** Active terms depend on past transmitter positions and, in self-hit regimes, on the architrino's own earlier path. Evaluating the next motion needs history, not just the present state.
+- **Unlimited range, with convergence to be earned.** Wake surfaces are not nearest-neighbour links. Contributions fall as $1/r^2$, so distant structure can contribute in principle. But inverse-square falloff alone does *not* make an infinite three-dimensional sum converge, for a reason worth carrying: a shell at radius $r$ contains sources growing as $r^2$, which exactly cancels the falloff. A valid branch must declare the cancellation, screening, horizon, or subtraction that makes its sum well-defined.
+- **Emergent assemblies.** The dynamical target is that delayed interactions admit stable or metastable configurations called **assemblies**. An assembly is not a new primitive; it is a retained branch structure of the delay dynamics, comparable to a synchronized oscillator cluster or a soliton. The existence and persistence of each physical assembly class must be derived or measured, and it becomes an attractor basin only where the reduced flow has the contraction and flux accounting stated below.
+
+Stability here is dynamic rather than static. An assembly is not held together by definition or by one instantaneous acceleration balance. The claim that it persists is established only when its delayed return record remains on an admissible branch with the required stability margin, energy and boundary ledger, shielding, and provenance closure. The physical trajectory may persist before those facts are known, but the corpus may not grade it as stable on that basis. It can dissolve, branch, or reconfigure when the corresponding dynamical conditions fail.
+
+That makes a demonstrated persistence claim a finite-window statement. For a declared observation window $W$ and surrounding context $c$, a branch is certified as persistent only while its history stays in an admitted neighbourhood and its causal-root, shielding, and provenance conditions continue to close. Failure of a diagnostic suspends the certificate; an actual branch transition or departure from the neighbourhood establishes reconfiguration or dissolution. A coarse label may survive either event and cannot decide between them.
 
 ### Context as Constraint on Basin Selection
 
-Higher-level context does not add a rival ontology to the lower-level dynamics. It acts more like a constraint on which histories are available. A surrounding assembly or Noether sea state can select boundary conditions, admissible branch charts, finite memory windows, and effective constraints for the same architrino-level flow. In this section, context means a physical surrounding state that restricts histories, not an independent causal agent. For a regularized chart, fix $\eta>0$, a memory horizon $h$, and a record window $W=[0,T]$. Let $\mathcal{H}_{\eta,h}$ be a path-history phase space compatible with the regularized master-equation assumptions, let $\Phi_t^c$ denote the resulting delayed flow under context $c$, let $\Pi_L$ expose the lower-level data used by a higher-level description, and let $\Gamma_{\mathrm{adm}}(c)$ collect the branch charts admitted by the surrounding assembly or Noether sea context. The context-restricted history set is then
+Higher-level context does not add a rival law or substance. It is lower-level physical state summarized as an environment, acting through the same wake dynamics while constraining which histories and branch charts are available.
+
+For a regularized chart, fix a regulator $\eta>0$, a memory horizon $h$, and a record window $W=[0,T]$. Let $\mathcal{H}_{\eta,h}$ be the space of admissible path histories, $\Phi_t^c$ the delayed flow under context $c$, $\Pi_L$ the map exposing lower-level data, and $\Gamma_{\mathrm{adm}}(c)$ the branch charts the surrounding context admits. The context-restricted history set is
 
 $$
 \mathcal K_c
@@ -3450,9 +4219,10 @@ G_\alpha(\Pi_L\phi(0),c)=0\ \text{for all}\ \alpha,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-dec5af64b60d25c8)
-Here $\mathcal H_\gamma$ denotes the path-history domain associated with the branch chart $\gamma$.
 
-The native state is $\mathsf Z=(\mathbf X,\mathbf V)$. The constrained flow is still the lower-level causal-wake dynamics,
+reading as: the histories that satisfy every constraint $G_\alpha$ imposed by the context, and that live in at least one branch chart the context allows.
+
+The native state is $\mathsf Z=(\mathbf X,\mathbf V)$, and the constrained flow is still the same lower-level dynamics:
 
 $$
 \frac{d\mathsf Z}{dT}=F_L(\mathsf Z_T),\qquad \mathsf Z_T\in \mathcal K_c
@@ -3460,11 +4230,19 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a22147c2836f6f9e)
 
-where $\mathsf Z_T(\theta)=\mathsf Z(T+\theta)$ is the path-history segment needed by the delayed equation of motion. The equations $G_\alpha=0$ encode the surrounding context as constraints on which lower-level histories are available, not as independent causes outside the architrino dynamics.
+where $\mathsf Z_T(\theta)=\mathsf Z(T+\theta)$ is the stretch of history the delayed equation needs. The constraints restrict which histories are available; they are not causes acting from outside.
 
-The load-bearing object is therefore the context-to-chart map $c\mapsto\Gamma_{\mathrm{adm}}(c)$. One may regard the allowed context space $\mathfrak C$ as stratified: on an open top stratum, the admitted chart set is locally constant, while codimension-one walls mark contexts where a branch chart opens, closes, or changes regularity. A context change that turns $\mu_c(B_k)=0$ into $\mu_{c'}(B_k)>0$ is then a wall-crossing in $\mathfrak C$, not a second causal law. This places context changes in the same geometric family as root folds and basin separatrices: the active branch topology changes when a retained chart crosses a declared stratum.
+#### Context changes are wall-crossings
 
-Once the admissible history set is fixed, the same setup gives a compact basin-selection measure after the window and measure source are declared. Let $\Pi_{\mathrm{br}}$ be the branch-record map that reads the realized assembly branch at the end of the window. The context-restricted basin for branch $k$ is
+The load-bearing object is the map from context to admitted charts, $c\mapsto\Gamma_{\mathrm{adm}}(c)$.
+
+Picture the space of possible contexts as divided into regions. Across most of it, small changes in context change nothing about which branches are available. But there are surfaces where a branch chart opens, closes, or changes character — and crossing one changes the available physics discontinuously.
+
+A context change that turns an impossible branch into a possible one is such a crossing, not a second causal law. That places context changes in the same geometric family as root folds and basin separatrices: a discrete label changes only when the retained chart crosses a singular surface.
+
+#### Basin weights
+
+Once the admissible histories and a measure source are fixed, branch weights can be defined. Let $\Pi_{\mathrm{br}}$ read the realized branch at the end of the window. The basin for branch $k$ is
 
 $$
 B_k^W(c)
@@ -3474,7 +4252,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b767f484238c02b2)
 
-The measure $\mu_c$ must come from a declared preparation, return section, coarse-graining, or unresolved Noether sea occupation rule; it is not an external probability assigned after the outcome. With that rule fixed, the context-conditioned branch weight is
+the histories that end on branch $k$ and stay admissible throughout.
+
+The measure $\mu_c$ must come from a declared preparation, return section, coarse-graining, or medium occupation rule. **It is not a probability assigned after the outcome.** For the formula below, require $\mu_c$ to be normalized on the admissible history set, $\mu_c(\mathcal K_c)=1$. With it fixed, the branch weight is
 
 $$
 P_c(k)=\mu_c(B_k^W(c))
@@ -3482,9 +4262,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b765c7f1fa3ef956)
 
-This is only the foundation-level basin-measure form. It says how branch weights can be assigned after the physical preparation and measure source are declared. It becomes a quantum-probability recovery only after a measurement chart supplies an apparatus kernel, record map, interference or coherence bookkeeping, and a proof that the same declared measure pushes forward to Born statistics across the relevant measurement contexts. In particular, a Born-rule closure must show that these finite-window basin weights reproduce $|\psi_k|^2$ frequencies without changing the measure between outcome statistics, interference records, and thermodynamic cost. That burden belongs to the quantum recovery chapters, especially [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md) and [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence).
+the fraction of admissible histories landing on branch $k$.
 
-For this expression to support stable observer-level inference, the basin partition must be measurable on the declared chart. A useful admissibility target is
+This is only the foundation-level form, and the gap between it and quantum probability is large. It becomes a recovery of the Born rule — the established rule that outcome probabilities are $|\psi_k|^2$ — only after a measurement chart supplies an apparatus kernel, a record map, interference bookkeeping, and a proof that the *same* declared measure reproduces those frequencies across measurement contexts. Critically, the measure may not be changed between predicting outcome statistics, predicting interference, and computing thermodynamic cost. That burden belongs to [Wavefunction Ontology](../../../../markdown/aaa/quantum/wavefunction-ontology.md) and [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence).
+
+#### The partition has to be clean
+
+For weights to support inference, the basins must partition the space sensibly:
 
 $$
 \mu_c(\partial B_k^W(c))=0,
@@ -3494,7 +4278,12 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b685ad66e70ea708)
 
-This clean partition is an admissibility target, not an automatic property of delayed feedback. Basin boundaries in state-dependent delay systems can be fractal, riddled, or measure-thick under the preparation measure; in those cases $\mu_c(\partial B_k^W(c))=0$ can fail and the branch weights are not stable observer-level probabilities. A useful separatrix regularity row is therefore the basin analogue of a causal-root transversality floor: on the declared return-section chart, each boundary between neighboring basins should be represented outside a null exceptional set by a signed separator functional $S_{k\ell}$ with
+the boundaries carry no weight, and almost nothing escapes classification.
+
+This is an admissibility **target**, not an automatic property, and delayed feedback is exactly where it can fail. Basin boundaries in state-dependent delay systems may be fractal. A **riddled basin** is stronger: every neighborhood of a point in one basin contains positive-measure points belonging to another. Where such intermingling defeats stable classification under the declared preparation measure, the displayed weights are not yet robust branch probabilities.
+
+The remedy is a regularity condition analogous to the root transversality floor. On the declared return section, each boundary between neighbouring basins should be a clean surface outside a negligible set:
+
 $$
 S_{k\ell}(\phi)=0,
 \qquad
@@ -3502,23 +4291,28 @@ S_{k\ell}(\phi)=0,
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ca01df3e59b9e366)
-If no codimension-one separatrix row, equivalent null-boundary proof, or controlled fractal-boundary measure theorem is supplied, $P_c(k)$ remains a diagnostic basin volume rather than a closed branch-weight law.
 
-Local separator smoothness is not by itself enough in an infinite-dimensional or state-dependent delay system. A valid basin chart should also rule out uncontrolled accumulation of separator sheets on the compact return-section region being measured. One useful formulation is local finiteness: for every compact $K$ in the declared return section,
+a separator function vanishing on the boundary, with gradient bounded away from zero so the boundary is a genuine surface rather than a smear. Without such a row, or an equivalent proof, $P_c(k)$ is a diagnostic volume rather than a branch-weight law.
+
+Smoothness of each separator is still not enough in an infinite-dimensional delay system, because infinitely many smooth sheets can pile up. So a valid chart also needs local finiteness: on every compact region $K$ of the return section,
+
 $$
 \#\{(k,\ell,n):\{S_{k\ell}^{(n)}=0\}\cap K\ne\varnothing\}<\infty
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-77791d0694746ea9)
-after discarding a $\mu_c$-null exceptional set. Here $n$ indexes distinct separator sheets between the same branch pair when the delayed return map creates multiple folds. This condition prevents a countable pile-up of individually smooth sheets from producing a measure-thick or riddled basin boundary. It is the basin analogue of excluding cusp accumulation in a causal-root chart.
 
-Changing $c$ can shift the inferred branch weights $P_c(k)$ by moving basin boundaries, suppressing some causal-root branches, or opening self-hit channels, while the underlying ontology remains the same collection of architrino worldlines and causal wakes.
+only finitely many separator sheets meet it, with $n$ indexing the multiple sheets a delayed return map can create between the same pair of branches. This excludes one countable-sheet accumulation mechanism for a pathological boundary — the basin analogue of excluding accumulating cusps in a root chart — but it does not by itself rule out every possible riddled-basin mechanism.
+
+Changing context can shift the weights by moving boundaries, suppressing branches, or opening self-hit channels, while the ontology remains the same worldlines and wakes throughout.
 
 ### Context Changes and Energy Ledger
 
-A change in context is not a free semantic relabeling. Something physical must have changed. If a surrounding assembly or Noether sea state changes from $c$ to $c'$, the emergence claim is admissible only when the changed constraints alter the accessible basin support and the change can be accounted for by the same energy and provenance bookkeeping used elsewhere in the theory. The ontology-level rule remains architrino motion plus causal wakes; the effective level records which assembly branches become available.
+A change in context is not free relabeling. Something physical must have changed, and it must be paid for.
 
-For a candidate assembly branch $B_k^W$, a clean opening criterion is
+If the surroundings change from $c$ to $c'$, the emergence claim is admissible only when the altered constraints change the accessible basins *and* the change is accounted for in the same energy and provenance bookkeeping used everywhere else.
+
+A clean opening criterion is
 
 $$
 \mu_c(B_k^W(c))=0,
@@ -3528,9 +4322,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e26dabf6f02bd8bf)
 
-The reverse inequality pattern records branch closure, and partial changes in $\mu_c(B_k^W(c))$ record ordinary reshaping of basin weights. In each case, the context change must be tied to a physical transition rather than to a new ontology outside the architrino dynamics.
+a branch with no admissible histories before, and some after. The reverse records closure; intermediate changes record reshaping.
 
-A physical transition should therefore be representable as a replayable event
+A physical transition must be representable as a replayable event
 
 $$
 \mathsf e=(\mathsf Z,I_{\mathsf e},Y_{\mathsf e})
@@ -3538,17 +4332,23 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d3df431c5011bc64)
 
-where $\mathsf Z$ is the local state and path-history record, $I_{\mathsf e}$ is the finite selected channel set, and $Y_{\mathsf e}$ lists outgoing assemblies, radiation or non-photon shedding, recoil targets, Noether sea updates, remnant states, and provenance records. The corresponding energy row is not an independent emergence law. It is a candidate event-ledger closure condition whose wake term must be earned, not presumed.
+with local state and history $\mathsf Z$, the finite set of selected channels $I_{\mathsf e}$, and $Y_{\mathsf e}$ listing what came out: outgoing assemblies, radiation, recoil, medium updates, remnants, and provenance records.
 
-The row below is a closure template until $E_{\text{wake}}$ has been defined constructively for the declared regularized delay system. Its job is to make every branch-opening event pay for itself. Time-translation invariance of a delay equation does not by itself supply a standard Noether energy. The current load-bearing route is the action-boundary or work-integral construction, because it can use the same non-Markovian causal-history rows that generate the acceleration. A local potential reconstruction is a chart-local equivalent only after its crosswalk is stated, and a convergent boundary-flux account is admissible only after the retained branch supplies the needed far-field or exhaustion law, such as the [Receiver-Centered Exhaustion Lemma](../../../../markdown/aaa/foundations/absolute-timespace.md#receiver-centered-exhaustion-lemma) in the homogeneous neutral Noether sea case. The routes must be shown equivalent on the retained window before they can be treated as one conserved energy.
+#### The energy row, and what it still owes
 
-When this route closes, $E_{\text{wake}}$ should be read as the Noether charge of the delayed action under absolute-time translation, not as a primitive local energy density placed on one slice. For a memory depth $h$, the charge is expected to be a functional of the retained history segment
+The row below is a **closure template**, not an established law, and the distinction matters because the honest status is easy to lose.
+
+Time-translation invariance of a delay equation does not by itself hand you a conserved energy the way it does for an ordinary one. A compatible route is an action-boundary or work-integral construction, because it can use the same delayed history rows that generate the acceleration. A local potential reconstruction is equivalent only once its crosswalk is stated, and a boundary-flux account is admissible only once the branch supplies a convergence law such as the [Receiver-Centered Exhaustion Lemma](../../../../markdown/aaa/foundations/absolute-timespace.md#receiver-centered-exhaustion-lemma).
+
+When it closes, $E_{\text{wake}}$ should be read as the conserved charge of the delayed action under time translation — not as an energy density sitting on one time slice. For memory depth $h$ it is a functional of the retained history segment
+
 $$
-\mathsf Z_T\in C([-h,0])
+\mathsf Z_T\in C([-h,0],\mathcal Z)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-70098b9d537b12f5)
-with boundary and memory-window terms built from the same causal kernel that supplies the acceleration. In simulation, the object to discretize is therefore a path-history functional over the retained memory window, together with its endpoint and boundary increments, rather than a pointwise Hamiltonian density guessed independently of the delayed action.
+
+a continuous history taking values in the native state space $\mathcal Z$, rather than a value at one instant, with boundary terms built from the same kernel that supplies the acceleration. In simulation, the object to discretize is that functional over the window, not a pointwise Hamiltonian introduced independently.
 
 $$
 \Delta_E(\mathsf e)
@@ -3570,24 +4370,29 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f5c52ce08e9ae48d)
 
-Here $K_{\mathrm{mech}}$ is the $\mu_{\text{arch}}$-weighted kinetic bookkeeping term from the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md)'s regularized energy diagnostic for the retained architrino degrees of freedom, with assembly-level kinetic entries allowed only as derived ledger summaries after their constituent account is declared. The subscript `retained` marks the degrees of freedom kept inside the subsystem account, and $W_{\partial\Omega}$ is boundary work, positive for work done on the retained subsystem. The term $E_{\mathrm{sea}}$ records retained Noether sea energy changes.
+Everything must balance: the change in what is kept inside — motion bookkeeping, wake energy, medium energy — plus everything exported, minus work done across the boundary, sums to zero. Here $K_{\mathrm{mech}}$ is a declared motion-bookkeeping functional for retained architrino degrees of freedom, not a primitive $m\|\mathbf V\|^2/2$ term; `retained` marks what stays inside the account, and $W_{\partial\Omega}$ is boundary work counted positive when done on the subsystem.
 
-The no-double-counting rule is explicit: a Noether sea update included in retained $E_{\mathrm{sea}}$ must not also appear as an outgoing row in $Y_{\mathsf e}$, while a Noether sea change exported outside the retained subsystem belongs in $Y_{\mathsf e}$ rather than in retained $E_{\mathrm{sea}}$. If a local potential reconstruction is used, it may replace $E_{\text{wake}}$ as an equivalent work-integral account on the declared window; it must not be added as a second independent energy store without a crosswalk. Radiation, recoil, reaction products, remnant excitation, and unresolved medium updates must be named inside $Y_{\mathsf e}$ and closed through [Reaction Ledger and Channel Closure](../../../../markdown/aaa/validation/reaction-ledger.md) rather than hidden inside the phrase "emergence." In plain language, a new higher-level branch becomes available because the physical constraints changed, not because a second law or substance was added on top of the lower-level dynamics.
+The **no-double-counting rule** is explicit. A medium update inside retained $E_{\mathrm{sea}}$ must not also appear as an outgoing row, and one exported outside belongs in $Y_{\mathsf e}$ rather than in retained energy. A local potential reconstruction may replace $E_{\text{wake}}$ as an equivalent account; it must not be added alongside as a second store. Radiation, recoil, products, remnant excitation, and unresolved medium updates must be named in $Y_{\mathsf e}$ and closed through [Reaction Ledger and Channel Closure](../../../../markdown/aaa/validation/reaction-ledger.md) — never hidden inside the word "emergence." A new branch becomes available because constraints changed, not because a law was added.
 
-This ledger also separates full-history conservation from reduced assembly behavior. A retained assembly branch can be contractive while a complete particle-plus-wake history ledger is conserved, but that combination is established only when one branch calculation balances its retained mechanical change against $E_{\mathrm{wake}}$, $E_{\mathrm{sea}}$, the declared outgoing channels, and boundary work on the same window. The partner-only positive-work diagnostic does not establish that balance. It identifies an exchange or export contribution that the complete branch calculation must account for.
+The ledger also separates full-history conservation from reduced assembly behavior. A retained branch can be contractive while the complete particle-plus-wake ledger is conserved — but that combination is established only when one calculation balances retained mechanical change against wake energy, medium energy, outgoing channels, and boundary work on the same window. A partner-only positive-work diagnostic does not establish it; it identifies a contribution the complete calculation must account for.
 
 ### Assembly Theory and Recursion
 
-Assemblies enter the chapter as recursive dynamical organizations rather than as new primitives. A larger assembly is not an unexplained new object; it is a higher-level pattern built from lower-level branch records that still have to close. The recursive description is useful only when each level preserves closure, shielding, and provenance from the level below.
+Assemblies are recursive dynamical organizations, not new primitives. A larger assembly is a higher-level pattern built from lower-level branch records that still have to close.
 
--   **Base case:** The most basic bound-assembly candidate is the **orbiting binary**, formed by an electrino:positrino pair once the two-body branch stability certificate is supplied. This is the first assembly motif from which more complex structures can be built.
--   **Recursive step:** More complex assemblies are described in terms of constituent sub-assemblies, indexed shielding support, separated radii and frequencies, and the causal-root ledgers that keep the combined motion closed.
+- **Base case:** the **orbiting binary**, an electrino paired with a positrino — the first bound assembly candidate, once its two-body stability certificate is supplied.
+- **Recursive step:** more complex assemblies described through constituent sub-assemblies, indexed shielding, separated radii and frequencies, and the root ledgers keeping the combined motion closed.
 
-This recursive structure implies that many stable forms can be deconstructed into simpler binary and multi-binary components, provided the branch supplies the required closure, shielding, and provenance records. The decomposition is physical only if the lower-level ledgers still explain the higher-level persistence.
+So many candidate forms can be decomposed into simpler binary components — *provided* the branch supplies the required closure, shielding, and provenance. The decomposition is physical only if the lower ledgers actually explain the higher persistence.
 
-Assembly-index language from origin-of-life work is useful here as an effective reconstruction comparison, not as a new ontological layer. The comparison asks for a short construction path once reusable sub-assemblies are allowed. The native $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue is stricter: a proposed construction path counts only when the retained reaction history preserves branch identity, energy closure, shielding behavior, and provenance on the declared window. Two reaction histories may end with the same coarse assembly label, but they are not equivalent until the retained ledger shows that the same closure data survives. In this sense, abiotic selection means that an assembly branch is formed and persists under the relevant constraints; it does not import biological reproduction or agency into the substrate ontology.
+Assembly-index language from origin-of-life research is a useful comparison rather than a new layer. It asks for a shortest construction path once reusable sub-assemblies are allowed; Sharma and collaborators give the contemporary formulation in [*Assembly theory explains and quantifies selection and evolution* (2023)](https://doi.org/10.1038/s41586-023-06600-9). The native requirement is stricter: a path counts only when the retained reaction history preserves branch identity, energy closure, shielding, and provenance across the window. Two histories can end with the same coarse label without being equivalent, and only the ledger settles it. "Abiotic selection" here means a branch forms and persists under the relevant constraints — it imports no biological reproduction or agency.
 
-The phrase "progressively stronger shielding" is a theorem target, not an automatic consequence of adding layers. A captured layer can in principle reduce external reactivity, leave it unchanged, or expose a new resonance. A useful branch target is therefore a shielding monotone on a declared window,
+#### Shielding is a target, not an assumption
+
+The phrase "progressively stronger shielding" is a theorem target. Adding a layer can reduce external reactivity, leave it unchanged, or expose a new resonance, and assuming the first would be assuming the conclusion.
+
+A useful monotone on a declared window is
+
 $$
 \Sigma_{\mathrm{shield}}(A;W)
 =
@@ -3596,62 +4401,68 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d1cc7aa3a12e1317)
-where $\Phi_{\mathrm{int}}^{\mathrm{root}}$ is the retained internal causal-root flux, $\Phi_{\mathrm{ext}}^{\mathrm{root}}$ is the externally exposed root or wake flux, and $\varepsilon_{\mathrm{reg}}>0$ is a root-flux regulator. A candidate geometric estimator for the external flux ordering is the lowest unquenched polarity-signed moment of the assembly's configuration: arrangements whose low-order moments cancel expose less structure at distance, which is the moment hypothesis developed for the six-architrino [Accessory Configuration](../../../../markdown/aaa/noether-braid/braid-mathematics.md#accessory-configuration). A capture step $A\to A'$ is shielding-improving only if it decreases external reactivity; an increase in $\Sigma_{\mathrm{shield}}$ is a useful witness under the declared convention when the retained internal-flux account is fixed or separately controlled, and the energy and provenance ledger still closes. If this monotonicity fails, the assembly atlas should treat the result as a side branch or metastable over-reactive intermediate rather than forcing it into the main bottom-up ladder.
+
+where $\Phi_{\mathrm{int}}^{\mathrm{root}}$ and $\Phi_{\mathrm{ext}}^{\mathrm{root}}$ are nonnegative integrated magnitudes of admitted root contributions on the same window and in the same units, and $\varepsilon_{\mathrm{reg}}>0$ has those units and keeps the ratio finite when exposure is small. A well-shielded assembly has a large internal-to-exposed ratio under that declared measure.
+
+A candidate estimator for external exposure is the lowest surviving polarity-weighted moment of the configuration: arrangements whose low-order moments cancel expose less at distance, which is the hypothesis developed for the six-architrino [Accessory Configuration](../../../../markdown/aaa/noether-braid/braid-mathematics.md#accessory-configuration). A capture step is shielding-improving only if external reactivity actually falls, with the internal account fixed or separately controlled and the energy and provenance ledger still closing. Where monotonicity fails, the result is a side branch or an over-reactive intermediate, not a rung on the main ladder.
 
 ### Bottom-Up Structural Ladder
 
-The recursive picture is easiest to read as a bottom-up construction ladder. The ladder is a teaching map of claim levels, not a proof that every branch has already been derived. Its discipline is simple: a higher rung cannot be more closed than the weakest rung it depends on. Closure inheritance is strict: no rung may export effective claims with a stronger status than the weakest supporting rung below it. If a fermion, bosonic channel, or composite-matter claim depends on an unclosed binary or Noether braid branch, it inherits that lower branch's target status until the supporting certificate closes.
+The recursive picture reads as a construction ladder. It is a map of *claim levels*, not a proof that every branch is derived.
 
-1. **Ontological background:** status: postulate. Absolute time and the Euclidean void provide the fixed arena.
-2. **Primitive transceivers:** status: primitive definition. Individual architrinos are the irreducible transmitters and receivers of causal wake structure.
-3. **First bound assembly candidate:** status: branch-certificate target. A stable orbiting electrino:positrino binary is the first bound assembly once its branch stability certificate is supplied.
-4. **Noether braid candidates:** status: prescribed-record analytical/conjectural construction target. Three neutral binaries can be arranged in the prescribed A1, A2, A3, and B1 coordinate classes, while two-component circular charts carries six neutral binaries in one twelve-worldline coaxial record. Current instruments evaluate declared geometry and analytical measures on prescribed records; they do not evolve or certify an assembly branch. Shielding and persistence must be computed from the complete family-declared record rather than inferred from radius order or family membership.
-5. **Noether braid stabilization:** status: closure target. A retained neutral six-architrino branch is the required shielded scaffold; see [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md). Its persistence must be closed through delayed phase return, energy separation, and reduced external reactivity through superposition. Isolated partner-wake diagnostics across three independent charts show the delayed kernel doing net positive work on the assembly, so a persistent braid must supply an exchange or export channel for that pumped action — internal multi-frequency exchange, same-transmitter root transitions, or medium response — rather than merely closing a static acceleration balance; see the [A2 return-response question](../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md#isolated-release-and-the-return-response-question).
-6. **Fermions with axial layers:** status: working map and routing target. A retained Noether braid plus a six-site axial layer is the candidate architecture for charged fermions and quark families. Any generation or shielding-tier map must be derived from the retained shielding ledger rather than assigned to a braid family. Pro/anti orientation tracks handedness within the same braid architecture rather than a separate substance type. Neutrino and near-photon branches require their own closure statements. This is the same ladder later used in [Particle Masses: Emergent Inertia in the Noether sea](../../../../markdown/aaa/assemblies/particle-masses.md).
-7. **Collective medium:** status: effective collective-state target. Larger balanced populations of neutral braids organize into the [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), so the Noether sea is a higher-order collective state of neutral braids rather than a second fundamental substrate. Its pro/anti assembly hypotheses are tracked in [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md).
-8. **Bosonic channels:** status: channel-specific routing targets. Propagating coupled disturbances of assemblies appear as effective bosonic channels, but the channels are not interchangeable. Photons are routed through the coaxial contra-rotating polarity-conjugate planar pair branch, weak carriers through massive corridor maps, and gluonic links through color-sector reconfiguration or ribbon-like coupling targets. These belong to the interaction/excitation branch of the hierarchy, not to a separate ontological species; see [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md).
-9. **Composite matter and reactions:** status: effective summary after lower closure. Nucleons, atoms, and larger structures arise from the coupling of already-formed assemblies. A reaction is then a reorganization of conserved constituents inside a structured environment, not creation from nothing.
+Its discipline is strict: **a higher rung cannot be more closed than the weakest rung it depends on.** If a fermion or composite-matter claim rests on an unclosed binary or braid branch, it inherits that branch's status until the supporting certificate closes. This is what stops a chain of plausible steps from adding up to an unearned conclusion.
 
-This ladder matters because it prevents category drift. Fermions, bosonic channels, and observer-level spacetime are not separate ontological species added by hand. They are different organizational levels or effective descriptions of the same underlying architrino dynamics.
+1. **Ontological background** — *postulate*. Absolute time and the Euclidean void provide the arena.
+2. **Primitive transceivers** — *primitive definition*. Individual architrinos.
+3. **First bound assembly** — *branch-certificate target*. A stable orbiting electrino:positrino binary, once certified.
+4. **Noether braid candidates** — *analytical construction target*. Three neutral binaries in prescribed coordinate classes, with two-component circular configurations carrying six neutral binaries in one twelve-worldline record. Current instruments evaluate declared geometry on prescribed records; they do not evolve or certify a branch. Shielding must be computed from the complete record, never inferred from radius order or family membership.
+5. **Noether braid stabilization** — *closure target*. A retained neutral six-architrino branch is the required shielded scaffold; see [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md). Its persistence must close through delayed phase return, energy separation, and reduced external reactivity. The [scoped anti-damping results](../../../../markdown/aaa/noether-braid/braid-mathematics.md#scoped-anti-damping-results) record several chart-specific positive-work obstructions, while the [equal-geometry return-response analysis](../../../../markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md#isolated-release-and-the-return-response-question) isolates the corresponding phase-compensation question. These are analytically related constraints, not independent validation of an evolved branch. They require any persistent braid to close a compensating channel — internal exchange, same-transmitter transitions, or medium response — rather than relying on static acceleration balance.
+6. **Fermions with axial layers** — *working map*. A retained braid plus a six-site axial layer is the candidate architecture for charged fermions and quark families. Generation and shielding-tier maps must be derived from the retained ledger, not assigned by family. Pro/anti orientation tracks handedness within one architecture rather than a separate substance. Neutrino and near-photon branches need their own closures.
+7. **Collective medium** — *effective collective-state target*. Balanced populations of neutral braids organize into the [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), which is a collective state of braids rather than a second substrate.
+8. **Bosonic channels** — *channel-specific routing targets*. Propagating coupled disturbances appear as effective bosonic channels, and the channels are **not** interchangeable: photons through the coaxial contra-rotating pair branch, weak carriers through massive corridor maps, gluonic links through color-sector reconfiguration. These belong to the interaction branch, not a separate species; see [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md).
+9. **Composite matter and reactions** — *effective summary after lower closure*. Nucleons, atoms, and larger structures from coupling already-formed assemblies. A reaction is reorganization of conserved constituents, not creation from nothing.
+
+The ladder prevents category drift. Fermions, bosonic channels, and observer-level spacetime are not separate species added by hand. They are organizational levels of the same dynamics.
 
 ### Emergence Claim Discipline
 
-When this corpus says that something "emerges," the claim should identify four pieces. These four pieces keep the word from becoming a shortcut for "we have not explained it yet":
+When this corpus says something "emerges," the claim must identify four things. These keep the word from becoming shorthand for an unpaid debt:
 
-1. **Mechanism:** how the effect arises from lower-level dynamics.
-2. **Mapping:** which lower-level configurations correspond to the emergent object or quantity.
-3. **Regime:** where the emergent description is expected to hold.
-4. **Breakdown:** what changes outside that regime.
+1. **Mechanism** — how the effect arises from lower-level dynamics.
+2. **Mapping** — which lower-level configurations correspond to the emergent object.
+3. **Regime** — where the description is expected to hold.
+4. **Breakdown** — what changes outside it.
 
-For example, Lorentz-like behavior is an emergence claim only when the text names the moving-assembly deformation law, the clock-period renormalization law, the Noether sea response mechanism, and the coefficient or theorem target that would suppress preferred-frame leakage. The claim should also state the weak-gradient or low-energy regime where the effective law is expected to hold, and identify the self-hit, separator, or strong-field conditions where the approximation can fail.
+For example, Lorentz-like behavior is an emergence claim only when the text names the deformation law for moving assemblies, the clock-period renormalization, the medium response, and the coefficient or theorem that would suppress preferred-frame leakage — plus the regime where it holds and the conditions where it fails.
 
-This rule makes every emergence claim auditable. The surrounding prose must state whether the mechanism is derived, simulated, conjectural, or only a routing target.
+This makes every emergence claim auditable, and requires the prose to say whether the mechanism is derived, simulated, conjectural, or merely routed.
 
-Just as important, the ladder should not be read as a single unbranched stack after the Noether braid appears. Once stable braids exist, three descriptive branches open at once:
+The ladder should also not be read as a single stack after braids appear. Three branches open at once:
 
--   **Matter branch:** Noether braids carrying axial layers yield fermions and then larger composites.
--   **Medium branch:** dense balanced populations of neutral braids yield the Noether sea.
--   **Interaction branch:** phase-locked disturbances and exchange corridors yield effective bosonic behavior.
+- **Matter branch:** braids with axial layers are candidate maps to fermions and then composites.
+- **Medium branch:** dense balanced populations are the proposed carrier of the Noether sea.
+- **Interaction branch:** phase-locked disturbances and exchange corridors are candidate maps to effective bosonic behavior.
 
-This separation of branches helps keep levels distinct. The theory does not place a photon, a fermion axial layer, and the Noether sea on the same explanatory rung. They are different organizations of the same underlying ingredients.
+The theory does not place a photon, a fermion axial layer, and the medium on the same explanatory rung. They are different organizations of the same ingredients.
 
 ### Emergent Measures and Stability Markers
 
-The most useful observer-level quantities enter only after assemblies have formed. They are not primitive objects sitting underneath the dynamics. Their use depends on an effective mapping from persistent assembly behavior to a measured descriptor.
+The most useful observer-level quantities appear only after assemblies form. They are not primitives waiting underneath.
 
--   **Angular momentum:** derivation target. The mechanism is organized binary circulation and ordered orientation data; the mapping is through the return-period phase and angular-momentum ledger; the regime is stable or metastable closed cycles; the breakdown occurs at separator crossings, root-ledger changes, or dissociation.
--   **Chirality:** derivation target. The mechanism is ordered-frame precession plus a deformation-stable framed topology row, such as a framed self-linking sign $Lk(\gamma,\gamma^{\mathrm{fr}})=\operatorname{Wr}(\gamma)+\operatorname{Tw}(\gamma,\gamma^{\mathrm{fr}})$ for a closed framed constituent trace, or linking number among distinct constituent worldlines. The mapping is through the Noether braid closure label and its framed-wake or linking data; the regime is branch-preserving deformation with noncollision and nonsingular frame transport; the breakdown occurs when a causal-root bifurcation, reconnection, collision-floor loss, or frame slip changes the link or framing class.
--   **Apparent mass and reactivity:** effective summary with a mass-map closure burden. The mechanism is a closed internal causal-history ledger, shielding, and Noether sea response; the mapping runs through $E_{\text{internal}}$, shielding exposure factor $\zeta$, and the medium-response channel; the regime is stable assemblies in a declared Noether sea context. Dissipative drag is a separate failure channel, not the default mass mechanism.
+- **Angular momentum** — *derivation target*. Mechanism: organized binary circulation and ordered orientation. Mapping: through return-period phase and the angular-momentum ledger. Regime: stable closed cycles. Breakdown: separator crossings, ledger changes, dissociation.
+- **Chirality** — *derivation target*. Mechanism: ordered-frame precession plus a deformation-stable topological row such as the framed self-linking $Lk(\gamma,\gamma^{\mathrm{fr}})=\operatorname{Wr}(\gamma)+\operatorname{Tw}(\gamma,\gamma^{\mathrm{fr}})$, splitting total linking into coiling in space and rotation of the frame. Regime: branch-preserving deformation with no collisions and a nonsingular frame. Breakdown: a root bifurcation, reconnection, collision-floor loss, or frame slip changing the class.
+- **Apparent mass and reactivity** — *effective summary with a closure burden*. Mechanism: a closed internal history ledger, shielding, and medium response. Mapping: through internal energy, shielding exposure, and the medium channel. Regime: stable assemblies in a declared medium context. Dissipative drag is a separate failure channel, not the default mass mechanism.
 
-In this sense, emergence is not merely a catalog of larger objects. It is also the stage at which familiar physical descriptors become well-defined coarse variables for persistent assemblies.
+Emergence is therefore not just a catalogue of larger objects. It is the level at which familiar physical descriptors can become well-defined after their maps and regimes close.
 
 ### The Dynamics of Structure and Asymmetry
 
-At the substrate level, structure is carried by **dynamical geometry**. Every architrino interacts with the wakes of other architrinos and, in the relevant regimes, with its own past isochrons. This creates an infinite-scale delayed N-body problem, so no single closed-form analytical solution is expected for the evolution of a generic structure.
+At the substrate level, structure is carried by **dynamical geometry**. Each architrino receives the causal-root contributions that actually meet it and, where same-transmitter roots exist, contributions from its own past emissions. This is a delayed many-body problem with no finite-range cutoff in the canonical model; whether a particular branch admits a closed form is a mathematical question rather than a foundation postulate.
 
-However, because the potential density on each causal wake surface falls off as $1/r^2$, nearby coherent roots are weighted more strongly than distant roots. This supports effective locality only after the branch also supplies convergence control for the far population. In three spatial dimensions, a homogeneous radial layer contains $O(r^2\,dr)$ possible sources, so inverse-square dilution by itself is not enough to define the infinite many-source sum.
+Because wake density falls as $1/r^2$, nearby coherent roots weigh more than distant ones. That supports effective locality only once the branch supplies convergence control, because — as above — a radial layer contains $O(r^2\,dr)$ sources, exactly cancelling the falloff.
 
-A mathematically admissible many-source branch must satisfy the [Receiver-Centered Exhaustion Lemma](../../../../markdown/aaa/foundations/absolute-timespace.md#receiver-centered-exhaustion-lemma): it must make a limit such as
+An admissible many-source branch must satisfy the [Receiver-Centered Exhaustion Lemma](../../../../markdown/aaa/foundations/absolute-timespace.md#receiver-centered-exhaustion-lemma), making
+
 $$
 \lim_{R\to\infty}
 \sum_{\substack{j,\ T_t\in\mathcal{C}_{ij}(T_r)\\
@@ -3660,15 +4471,19 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-856c9b4a5873bdd3)
-exist under the declared receiver-centered summation prescription, or else use the corresponding continuum condition. More invariantly, one may declare an exhaustion $\Lambda_R\uparrow\mathbb{R}^3$ and take the corresponding limit over transmitter events with $\mathbf X_j(T_t)\in\Lambda_R$. Acceptable mechanisms include local neutrality, angular cancellation, shielding, a screened kernel, a finite active horizon, or a declared principal-value or mean-field subtraction. Without such a condition, the many-source wake sum is not mathematically well-defined.
 
-For the weak homogeneous Noether sea case, the canonical lemma proves that statistically homogeneous, isotropic, locally neutral, vector-mixing shell contributions have variance $O(n^{-2})$ and hence converge almost surely under the declared mixing bound. This is the convergence foothold consumed by the Noether sea construction; the proof and its hypotheses remain in [Receiver-Centered Exhaustion Lemma](../../../../markdown/aaa/foundations/absolute-timespace.md#receiver-centered-exhaustion-lemma), and coherent, inhomogeneous, strong-field, or poorly screened branches retain a separate burden.
+exist under a declared summation prescription: add up contributions within distance $R$, let $R$ grow, and require a limit. Acceptable mechanisms include local neutrality, angular cancellation, shielding, a screened kernel, a finite horizon, or a declared subtraction. Without one, the sum is not defined.
 
-This convergence discipline is what lets **metastable assemblies** maintain their general form for long periods. Persistence requires the branch to say which wakes matter, which far contributions cancel or screen, and which histories remain in the retained account.
+For the weak homogeneous case, the lemma derives the $O(n^{-2})$ shell-variance target from local neutrality and vector mixing. Almost-sure and mean-square convergence additionally require the stated martingale-difference shell hypothesis, or another declared cross-shell convergence theorem. That is the foothold the medium construction consumes; coherent, inhomogeneous, strong-field, or poorly screened branches keep a separate burden.
 
-The infinite-history statement is therefore not a claim that every past wake carries equal computational weight. In principle, an architrino receives the delayed wake history that intersects it. In practical assembly dynamics, the active burden is bounded by inverse-square wake dilution, phase cancellation across remote populations, and any shielding or screening demonstrated by retained Noether-braid records. The mathematical task is to identify which causal-root branches remain dynamically active in a regime, not to infer shielding from an A1 label or treat the entire past universe as an undifferentiated influence of equal importance.
+This convergence discipline makes the acceleration sum well-defined; it does not by itself make an assembly metastable. Persistence additionally requires a retained return or stability certificate, an energy and boundary ledger, shielding, and provenance closure.
 
-Self-hit is not defined by speed alone. It occurs when the same-transmitter causal-root set is nonempty:
+So the unbounded-history statement does not mean every past wake carries equal weight. An architrino receives the contributions whose supports intersect it. A declared branch may control the remote sum through dilution together with phase cancellation, screening, a finite active horizon, or demonstrated shielding; none follows automatically from the kernel. The task is identifying which branches remain dynamically active — not inferring shielding from a label, nor treating the entire past universe as an undifferentiated influence.
+
+#### Self-hit is not a speed test
+
+Self-hit occurs when the same-transmitter root set is nonempty:
+
 $$
 \mathcal{C}_{ii}(T_r)
 =
@@ -3678,7 +4493,11 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-883656d7fdb85db5)
-If $\|\mathbf V_i(U)\|\le c_f-\delta_v$ throughout the interval $[T_t,T_r]$ for some speed margin $\delta_v>0$, then no self-hit root can occur on that interval, because
+
+the architrino now sits exactly on a surface it emitted earlier.
+
+If its speed stays below $c_f$ by any margin $\delta_v>0$ throughout $[T_t,T_r]$, no self-hit is possible on that interval, because
+
 $$
 \|\mathbf X_i(T_r)-\mathbf X_i(T_t)\|
 \le
@@ -3688,16 +4507,21 @@ c_f(T_r-T_t)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-bc9b501879794569)
-Thus reaching or exceeding $c_f$ somewhere along the intervening history is a necessary condition for a simple nontrivial self-hit root, apart from the degenerate straight field-speed tangent case excluded by the simple-root assumptions, but it is not sufficient. Curvature, acceleration, and branch geometry determine whether the worldline actually intersects its own emitted causal wake. The exact onset condition is root existence plus transversality, not the scalar inequality $\|\mathbf V\|>c_f$ alone; onset governs root existence, while an admitted self-hit acceleration contribution additionally carries the same-record transmitter-side acceleration weight.
 
-This creates a threshold asymmetry in the system. A small acceleration caused by intersecting a wake can push an architrino into a branch chart where same-transmitter roots become admissible, or where the transversality floor fails and a degenerate causal-root regime must be resolved. The transistor analogy is only pedagogical: a small input changes which channel is available. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the underlying mechanism is not electronics but delayed causal-root selection.
+The chord distance cannot exceed the integrated speed, and if speed stays under $c_f$ throughout the stated interval then the architrino cannot meet its own surface on that interval. If the bound persists for all later times, the exclusion persists as well.
 
-The common geometric pattern is codimension-one transition. Self-hit onset is a fold in the same-transmitter causal-root set, context opening is a wall-crossing in the admitted-chart map $c\mapsto\Gamma_{\mathrm{adm}}(c)$, and basin branching is a separatrix crossing in the return section. In each case an integer or discrete branch label changes only when the retained chart crosses a singular stratum: an active-root count jumps, an admitted branch appears or disappears, or a basin label changes. Emergence is therefore not merely "larger patterns appear"; it is the formation and reorganization of persistent branches across stratified causal-root and basin geometry.
+So reaching $c_f$ somewhere in the history is **necessary** for a nontrivial self-hit — but not **sufficient**. Curvature, acceleration, and branch geometry decide whether the worldline actually meets its own surface. The onset condition is root existence plus transversality, never the scalar inequality alone. Onset governs whether a root exists; an admitted contribution additionally carries the transmitter-side weight.
+
+That creates a **threshold asymmetry**. A small acceleration from crossing a wake can push an architrino into a chart where same-transmitter roots become admissible, or where the transversality floor fails. The transistor comparison is pedagogical only — a small input changing which channel conducts. The mechanism here is delayed root selection, not electronics.
+
+The common pattern is a discrete label changing at a regularity boundary, but the codimension must be proved for each map. Generic same-transmitter root onset is a codimension-one fold. A context opening is codimension one only when one regular scalar wall function defines it, and a basin boundary is a regular hypersurface only under the separator assumptions above. More complicated rank losses, cusps, or riddled basins can have different local structure.
+
+Emergence is therefore not merely "larger patterns appear." It is the formation and reorganization of persistent branches across stratified geometry.
 
 ### Provenance within Emergence
 
-A key feature of this model is that emergence does not erase identity. Since architrinos cannot be created or destroyed and each follows a unique path, they retain their individual provenance even when participating in a complex assembly. An assembly is a collective behavior, not a new primitive entity.
+Emergence does not erase identity. Architrinos cannot be created or destroyed and each follows a unique path, so they keep their provenance even inside a complex assembly. An assembly is collective behavior, not a new entity.
 
-This has a practical consequence for reaction language. Reaction, association, dissociation, reconfiguration, and channels historically labeled as decay should be read as provenance-preserving rearrangements of constituents inside a complicated many-body environment. The local reaction region may be difficult to resolve, but the ontology still says that architrino worldlines and causal-wake provenance records are redirected, rebound, screened, or released rather than created ex nihilo.
+That has a practical consequence for reaction language. Reaction, association, dissociation, reconfiguration, and channels historically called decay are all **provenance-preserving rearrangements** of constituents in a complicated environment. The local region may be hard to resolve, but the ontology says worldlines and provenance records are redirected, rebound, screened, or released — never created from nothing.
 
-A $\mathbb{U}_{\text{now}}$ universe-state perspective could, in principle, track the complete and distinct path of every architrino as it associates, dissociates, reconfigures, and continues through time. This is an ontic bookkeeping claim, not a claim that ordinary observers can reconstruct the full provenance ledger.
+Complete-state bookkeeping could in principle track every architrino's distinct path as it associates, dissociates, reconfigures, and continues. That is a claim about what the ontology contains, not about what any observer could reconstruct.

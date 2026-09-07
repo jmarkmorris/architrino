@@ -26,7 +26,7 @@ import time
 
 _EXECUTING_CODE = sys._getframe().f_code
 EXPORT_SHA256 = "f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1"
-THEOREM_SHA256 = "f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68"
+THEOREM_SHA256 = "db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc"
 THEOREM_PATH = "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md"
 SCHEMA = "braid-program/f6c-retained-history-guards.v1"
 RUN_ID = "f6c-balanced-tetrahedral-p0.678-n1.25-th3.36-br0.787-cp1.76-hp0.0771-hm-0.147-rp0.0463-rm-0.134-tp0.116-tm-0.254-hhp4.82-hhm2.21-hrp6-hrm3.44-v1"

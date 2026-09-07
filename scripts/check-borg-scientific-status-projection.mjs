@@ -4,7 +4,7 @@ import { readFile, stat } from "node:fs/promises";
 import { BORG_ASSEMBLY_RECORD_CATALOG } from "../src/apps/borg/BorgAssemblyRecordCatalog.js";
 import { validateBorgScientificStatusProjection } from "../src/apps/borg/BorgScientificStatus.mjs";
 
-const projectionPath = new URL("../reference/priorities/braid-program/braid-candidate-adjudication-projection.v1.json", import.meta.url);
+const projectionPath = new URL("../reference/priorities/braid-program/contracts/braid-candidate-adjudication-projection.v1.json", import.meta.url);
 const projection = validateBorgScientificStatusProjection(JSON.parse(await readFile(projectionPath)));
 const ownerBytes = await readFile(new URL(`../${projection.source}`, import.meta.url));
 const ownerText = ownerBytes.toString("utf8");

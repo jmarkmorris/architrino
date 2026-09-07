@@ -220,7 +220,7 @@ The information-theoretic equations above are alternate diagnostics for the exis
 | [EPR--Bell work queue](./work-queue.md) | EPRB-001 and EPRB-004 can be sharpened without adding queue objects. | Amend their evidence and request text. |
 | [EPR--Bell work log](./work-log.md) | The re-mining event and non-promotion decision require a durable receipt. | Add a dated entry. |
 | [Source-mining priorities](../../source-mining/priorities.md) | The focused packet should be discoverable from the source-mining lane. | Add it to the comparison-packet list. |
-| [Source-mining history](../../source-mining/source-mining-history.md) | The August 2 duplicate disposition is superseded by focused priority capture. | Update the existing source row rather than add a duplicate row. |
+| [Source-mining history](../../source-mining/analysis/source-mining-history.md) | The August 2 duplicate disposition is superseded by focused priority capture. | Update the existing source row rather than add a duplicate row. |
 | Bell and entanglement bridge pages | Their settled live-$c_f$ route wording conflicts with the owning EPR--Bell lane's `discussion-scoped` status. | No edit in this pass. Retain as decision debt for EPRB-002 after EPRB-001 is answered. |
 | Measurement and wavefunction pages | Most historical and ontic/epistemic distinctions already exist. | No duplicate reader-facing prose. |
 

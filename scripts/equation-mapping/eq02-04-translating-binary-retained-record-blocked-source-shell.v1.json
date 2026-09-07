@@ -2,7 +2,7 @@
   "schema": "aaa-equation-map-eq02-04-translating-binary-retained-record-input/v1",
   "claimLevel": "blocked source-backed S_eq retained-record shell for EQ-02 through EQ-04; score-neutral and not accepted evidence",
   "sourceBasis": {
-    "path": "reference/priorities/mapping-equations/eq-02-04-s-eq-retained-domain-evidence-object.md",
+    "path": "reference/priorities/mapping-equations/analysis/eq-02-04-s-eq-retained-domain-evidence-object.md",
     "role": "priority-only retained-record blocker reproduction, not accepted retained evidence"
   },
   "commonCarrierId": "C_02-04_bin_u_blocked_source_shell_0001",

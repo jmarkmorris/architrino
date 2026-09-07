@@ -41,7 +41,7 @@
       "boundary": "The local prose states the color-singlet closure picture for protons and neutrons, but it is not an accepted neutron envelope source row with a finite boundary and no-free-color audit."
     },
     "qcdBenchmarkConstraint": {
-      "candidatePath": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
+      "candidatePath": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
       "usableFor": [
         "hard_no_free_color_constraint",
         "residual_strong_interaction_recovery_burden"

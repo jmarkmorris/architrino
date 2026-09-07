@@ -10,7 +10,7 @@ import {
 } from "../src/apps/borg/BorgScientificStatus.mjs";
 
 const projection = validateBorgScientificStatusProjection(JSON.parse(await readFile(
-  new URL("../reference/priorities/braid-program/braid-candidate-adjudication-projection.v1.json", import.meta.url),
+  new URL("../reference/priorities/braid-program/contracts/braid-candidate-adjudication-projection.v1.json", import.meta.url),
 )));
 const clone = (value) => structuredClone(value);
 const exact = (candidate) => projection.relations.find((relation) => relation.kind === "adjudication" && relation.scope === "exact-configuration" && relation.candidate.includes(candidate));

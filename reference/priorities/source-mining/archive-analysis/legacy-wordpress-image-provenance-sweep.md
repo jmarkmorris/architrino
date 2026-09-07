@@ -4,7 +4,7 @@ Date: June 28, 2026
 
 ## Scope
 
-Swept the live Architrino WordPress posts listed in `reference/priorities/source-mining/legacy-architrino-wordpress-posts.jsonl` for rendered post images and featured-image URLs. Formula renderers, Wikimedia math-render SVGs, and Amazon ad widgets were excluded from the asset import.
+Swept the live Architrino WordPress posts listed in `reference/priorities/source-mining/archive-analysis/legacy-architrino-wordpress-posts.jsonl` for rendered post images and featured-image URLs. Formula renderers, Wikimedia math-render SVGs, and Amazon ad widgets were excluded from the asset import.
 
 ## Local Asset Result
 

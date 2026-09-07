@@ -7,10 +7,35 @@ import { fileURLToPath } from "node:url";
 
 const ROOT_DIR = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 
+// Failure handling (OPS-020 question 1, accepted 2026-09-06): every check runs
+// and failures are summarized at the end with a non-zero exit, so one stale
+// receipt cannot hide the result of every later check. A check marked
+// `halts: true` is a precondition whose output later checks consume; its
+// failure still stops the run, because everything after it would report
+// cascade noise rather than findings. A check marked `reporting: true` prints
+// its result but does not affect the exit status (OPS-022, until promoted).
+// A check carrying `skipWhen` is left out of the run, with its reason printed,
+// when that predicate holds; the exit status is unaffected.
+//
+// The reporting sweep is opt-in until promoted: it runs only when the host sets
+// AAA_TEST_SWEEP=run. Measured 2026-09-07 (OPS-022): the pilot-process tests
+// stall wherever the supervisor fails to observe its owned process group close
+// — unbounded on a GitHub runner (both PR #260 jobs cancelled at 92 minutes),
+// and 120 s per test on the operator's Mac under the sweep's own bound, where
+// the child stage had in fact completed. Until that supervision defect is
+// repaired the sweep cannot sit in a commit gate; run it deliberately with
+// `AAA_TEST_SWEEP=run node scripts/check-content-integrity.mjs` or directly
+// with `node scripts/run-test-sweep.mjs`.
+const SWEEP_OPT_IN = { variable: "AAA_TEST_SWEEP", value: "run" };
+function sweepNotRequested(env = process.env) {
+  return env[SWEEP_OPT_IN.variable] !== SWEEP_OPT_IN.value;
+}
+
 const CHECKS = [
   {
     name: "Prepare ignored runtime assets from canonical sources",
     args: ["scripts/prepare-runtime-assets.mjs", "--write"],
+    halts: true,
   },
   {
     name: "Verify Borg registry and record byte identities",
@@ -136,6 +161,13 @@ const CHECKS = [
     name: "Test reader-facing publication boundary",
     args: ["--test", "tests/reader-facing-publication-boundary.test.js"],
   },
+  {
+    name: "Sweep test files outside the declared slow list (reporting until promoted)",
+    args: ["scripts/run-test-sweep.mjs"],
+    reporting: true,
+    skipWhen: sweepNotRequested,
+    skipReason: `opt-in; set ${SWEEP_OPT_IN.variable}=${SWEEP_OPT_IN.value} to run it`,
+  },
 ];
 
 function formatDuration(ms) {
@@ -149,13 +181,32 @@ function formatDuration(ms) {
 }
 
 const suiteStartedAt = performance.now();
+const failures = [];
+const reportingFailures = [];
+const skipped = [];
 
-for (const check of CHECKS) {
-  console.log(`[content-integrity] ${check.name}`);
+// Environment for child checks. Git exports GIT_DIR, GIT_WORK_TREE, and
+// GIT_INDEX_FILE to hooks; a child that runs `git init` or `git config` in a
+// temporary directory would otherwise act on this repository.
+const REPO_SCOPED_GIT_VARIABLES = ["GIT_DIR", "GIT_WORK_TREE", "GIT_INDEX_FILE", "GIT_PREFIX", "GIT_COMMON_DIR", "GIT_OBJECT_DIRECTORY", "GIT_ALTERNATE_OBJECT_DIRECTORIES", "GIT_NAMESPACE"];
+function childEnvironment(env = process.env) {
+  const child = { ...env };
+  for (const name of REPO_SCOPED_GIT_VARIABLES) delete child[name];
+  return child;
+}
+
+for (const [index, check] of CHECKS.entries()) {
+  const label = `${index + 1}/${CHECKS.length} ${check.name}`;
+  console.log(`[content-integrity] ${label}`);
+  if (check.skipWhen?.()) {
+    console.log(`[content-integrity] skipped: ${check.name} (${check.skipReason})`);
+    skipped.push({ label, reason: check.skipReason });
+    continue;
+  }
   const checkStartedAt = performance.now();
   const result = spawnSync(process.execPath, check.args, {
     cwd: ROOT_DIR,
-    env: process.env,
+    env: childEnvironment(),
     stdio: "inherit",
   });
   const duration = formatDuration(performance.now() - checkStartedAt);
@@ -165,10 +216,45 @@ for (const check of CHECKS) {
   }
   if (result.status !== 0) {
     const detail = result.signal ? `signal ${result.signal}` : `exit ${result.status ?? 1}`;
+    const record = { label, detail, duration };
+    if (check.reporting) {
+      console.error(`[content-integrity] reported (does not affect exit status): ${check.name} (${detail}, ${duration})`);
+      reportingFailures.push(record);
+      continue;
+    }
     console.error(`[content-integrity] failed: ${check.name} (${detail}, ${duration})`);
-    process.exit(result.status ?? 1);
+    failures.push(record);
+    if (check.halts) {
+      console.error(`[content-integrity] halting: later checks consume this step's output`);
+      process.exit(result.status ?? 1);
+    }
+    continue;
   }
   console.log(`[content-integrity] passed: ${check.name} (${duration})`);
 }
 
-console.log(`[content-integrity] all checks passed (${formatDuration(performance.now() - suiteStartedAt)})`);
+const total = formatDuration(performance.now() - suiteStartedAt);
+
+if (skipped.length > 0) {
+  console.log(`[content-integrity] ${skipped.length} check(s) skipped on this host:`);
+  for (const entry of skipped) {
+    console.log(`[content-integrity]   - ${entry.label} (${entry.reason})`);
+  }
+}
+
+if (reportingFailures.length > 0) {
+  console.error(`[content-integrity] ${reportingFailures.length} reporting-only check(s) failed (not gating):`);
+  for (const failure of reportingFailures) {
+    console.error(`[content-integrity]   - ${failure.label} (${failure.detail}, ${failure.duration})`);
+  }
+}
+
+if (failures.length > 0) {
+  console.error(`[content-integrity] ${failures.length} of ${CHECKS.length} checks failed (${total}), in run order; the first is the likeliest root:`);
+  for (const failure of failures) {
+    console.error(`[content-integrity]   - ${failure.label} (${failure.detail}, ${failure.duration})`);
+  }
+  process.exit(1);
+}
+
+console.log(`[content-integrity] all checks passed (${total})`);

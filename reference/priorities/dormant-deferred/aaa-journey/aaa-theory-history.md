@@ -30,9 +30,9 @@ The workstream control file is [aaa-journey](priorities.md). This file is the lo
 
 ## Source Surfaces
 
-- Registry: [../../source-mining/legacy-architrino-wordpress-posts.jsonl](../../source-mining/legacy-architrino-wordpress-posts.jsonl)
-- Generated library view: [../../source-mining/legacy-architrino-wordpress-library-posts.md](../../source-mining/legacy-architrino-wordpress-library-posts.md)
-- Generated mining queue: [../../source-mining/legacy-architrino-wordpress-mining-queue.txt](../../source-mining/legacy-architrino-wordpress-mining-queue.txt)
+- Registry: [../../source-mining/legacy-architrino-wordpress-posts.jsonl](../../source-mining/archive-analysis/legacy-architrino-wordpress-posts.jsonl)
+- Generated library view: [../../source-mining/legacy-architrino-wordpress-library-posts.md](../../source-mining/analysis/legacy-architrino-wordpress-library-posts.md)
+- Generated mining queue: [../../source-mining/legacy-architrino-wordpress-mining-queue.txt](../../source-mining/archive-analysis/legacy-architrino-wordpress-mining-queue.txt)
 - Archive analysis report: [../../source-mining/archive-analysis/legacy-architrino-archive-mining-report.md](../../source-mining/archive-analysis/legacy-architrino-archive-mining-report.md)
 - Clean-text cache: `${TMPDIR:-/tmp}/architrino-archive-mining/clean-text`
 

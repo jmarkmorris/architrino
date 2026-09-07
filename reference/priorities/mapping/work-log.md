@@ -6,7 +6,7 @@ This file records decisions about the shared mapping entry point and directory o
 
 - Added the [Mapping overview](README.md) at the operator's request, covering purpose, all ten current `mapping-*` directories, benchmark meaning, bidirectional methodology, evidence boundaries, and a Zeeman ownership example.
 - Kept the scientific directories as siblings under `reference/priorities/`. This documentation directory adds no ranked workstream, parent queue, acceptance gate, or score.
-- Retained the [Shared Equation And Mapping Architecture](mapping-method.md) as the method and mathematical architecture owner; the overview explains and links to it.
+- Retained the [Shared Equation And Mapping Architecture](contracts/mapping-method.md) as the method and mathematical architecture owner; the overview explains and links to it.
 - Connected the entry point from the priorities index, benchmark tracker, and shared architecture. No scientific result, workstream status, evidence grade, or reader-facing corpus claim changed.
 
 ### Validation
@@ -18,7 +18,7 @@ This file records decisions about the shared mapping entry point and directory o
 
 ## 2026-08-27 — Shared method relocated
 
-- Moved the [shared mapping method and mathematical architecture](mapping-method.md) from the equation-specific directory into this shared mapping directory at the operator's request. The document remains the single method owner; its mathematics, section headings, evidence grades, and score dispositions are preserved.
+- Moved the [shared mapping method and mathematical architecture](contracts/mapping-method.md) from the equation-specific directory into this shared mapping directory at the operator's request. The document remains the single method owner; its mathematics, section headings, evidence grades, and score dispositions are preserved.
 - Updated incoming links, rebased the document's outgoing links, and made the Mapping overview its parent. Equation Mapping retains equation-specific packets, scores, and its reverse-inference application. No new queue or scientific workstream was created.
 - The write set is limited to mapping documentation and the priorities index. Protected asymmetric counter-breathing representative readiness, configuration, record, numerical-source, control, launch-plan, and ignored-evidence files are outside this move; no generated artifacts were written.
 - Validation: all 57 new or rebased links resolve, including their section targets; a snapshot comparison confirms that the method body changed only in link targets and parent metadata, with every heading preserved. The old filename has no remaining references in the searchable repository. Priority ranking and `git diff --check` passed.

@@ -8,7 +8,7 @@ Use this prompt when Op asks whether another agent's edits correctly resolved a 
 
 ## Startup
 
-Read `AGENTS.md`, the generated startup router, and the selected live workflow owner before inspecting the working set and target changes. Use only mechanisms permitted for the current agent; the repository's Claude git prohibition remains in force. Then read:
+Read `AGENTS.md`, the generated startup router, and the selected live workflow owner before inspecting the working set and target changes. Use only mechanisms permitted for the current agent. Then read:
 
 1. The relevant sections of `[TARGET_FILE]`.
 2. The original review items Op supplied.

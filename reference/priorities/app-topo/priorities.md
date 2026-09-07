@@ -8,14 +8,14 @@
 - App name: `Wake Topography`
 - Priority directory: `app-topo`
 - Execution ledger: [work queue](work-queue.md)
-- Requirements packet: [requirements and design](requirements-and-design.md)
-- Observable contract: [TOPO-001 observable and reference geometry v1](topo-observable-and-reference-geometry-v1.md)
-- Interaction contract: [TOPO-002 interaction and color contract v1](topo-interaction-and-color-contract-v1.md)
-- Circular-binary contract: [prescribed circular binary v1](topo-circular-binary-prescribed-history-v1.md)
-- Dynamic-contour recommendation: [canonical sampled-field path](dynamic-contour-rendering-recommendation.md)
+- Requirements packet: [requirements and design](contracts/requirements-and-design.md)
+- Observable contract: [TOPO-001 observable and reference geometry v1](contracts/topo-observable-and-reference-geometry-v1.md)
+- Interaction contract: [TOPO-002 interaction and color contract v1](contracts/topo-interaction-and-color-contract-v1.md)
+- Circular-binary contract: [prescribed circular binary v1](contracts/topo-circular-binary-prescribed-history-v1.md)
+- Dynamic-contour recommendation: [canonical sampled-field path](brainstorming.md)
 - Exploratory notes: [brainstorming](brainstorming.md)
 - Chronological record: [work log](work-log.md)
-- Potential-product owner: [AAA Core Potential](../app-aaa-core/potential-v1.md)
+- Potential-product owner: [AAA Core Potential](../app-aaa-core/contracts/potential-v1.md)
 - Shared platform: [AAA Core](../app-aaa-core/priorities.md)
 - Ranking: pending a reference-surface estimate
 
@@ -39,8 +39,8 @@ Wake Topography exposes four prescribed display scenarios: a single electrino, a
 8. Contours use one fixed raw-decade lattice with exactly one raw magnitude per factor of ten per sign plus explicit zero. Integer `Contour span` values $1$ through $4$ select the same number of inward and outward decades around the reference, which appears once; the unchanged inverse-square geometry places single-source radii at $r_m=r_0 10^{-m/2}$ without spatial warping or movement of shared levels.
 9. The field uses one zero-safe signed base-10 logarithmic color mapping. No alternate transform selector or transform-dependent contour geometry remains.
 10. A singular source neighborhood is shown as masked or unavailable. Display masking must not be described as a physical core or a change to the wake law.
-11. Wake Topography renders declared Potential products supplied through [AAA Core Potential](../app-aaa-core/potential-v1.md); it does not establish a competing app-local path-to-Potential law.
-12. The first raw map product is `Signed ordinary wake intensity`, not potential. It uses the canonical inverse-square distance factor and transmitter-side ordinary-root weight on the prescribed path, as fixed by [TOPO-001](topo-observable-and-reference-geometry-v1.md).
+11. Wake Topography renders declared Potential products supplied through [AAA Core Potential](../app-aaa-core/contracts/potential-v1.md); it does not establish a competing app-local path-to-Potential law.
+12. The first raw map product is `Signed ordinary wake intensity`, not potential. It uses the canonical inverse-square distance factor and transmitter-side ordinary-root weight on the prescribed path, as fixed by [TOPO-001](contracts/topo-observable-and-reference-geometry-v1.md).
 13. TOPO-002 fixes the signed base-10 mapping with $z_*=4$, a symmetric ordinary display clip at $|z|=64$, $r_0=0.025$, a $10^{1/2}$ adjacent-radius ratio, a $3$-decade default contour range, and $75\%$ contour visibility.
 14. The TOPO-002 route is an explicitly labeled synthetic interaction preview. It supplies no TOPO-001 raw values and is not the TOPO-003 reference surface.
 15. Applications presents fourteen apps together in one deliberate operator-selected sequence, and Wake Topography retains the compatibility scene id and route token `topo`.
@@ -50,13 +50,13 @@ Wake Topography exposes four prescribed display scenarios: a single electrino, a
 
 ## Current Scientific Status
 
-[TOPO-001](topo-observable-and-reference-geometry-v1.md) closes the prescribed single-source reference geometry and selects a source-signed ordinary wake-intensity scalar for v1. It derives the causal root, transmitter-side factor, regular domain, polarity reversal, axis controls, and exact $\beta=1$ boundary without defining a new physical law.
+[TOPO-001](contracts/topo-observable-and-reference-geometry-v1.md) closes the prescribed single-source reference geometry and selects a source-signed ordinary wake-intensity scalar for v1. It derives the causal root, transmitter-side factor, regular domain, polarity reversal, axis controls, and exact $\beta=1$ boundary without defining a new physical law.
 
-The canon does not yet supply a completed pointwise scalar-potential formula for this map. A later Potential mode therefore remains routed through [AAA Core Potential](../app-aaa-core/potential-v1.md) and must be separately named, versioned, and validated.
+The canon does not yet supply a completed pointwise scalar-potential formula for this map. A later Potential mode therefore remains routed through [AAA Core Potential](../app-aaa-core/contracts/potential-v1.md) and must be separately named, versioned, and validated.
 
 Plainly: the first colored pixel now has an exact wake-intensity meaning. A true potential remains a different, still-open product rather than a second name for the same numbers.
 
-[TOPO-002](topo-interaction-and-color-contract-v1.md) closes the single display mapping, scale, logarithmic contour lattice, signed color, private nonnumeric state, panel, shared-chrome, accessibility, and responsive-layout decisions. The companion preview uses only the declared synthetic comparison surface. TOPO-003 is now unblocked and remains responsible for independently checked TOPO-001 raw values.
+[TOPO-002](contracts/topo-interaction-and-color-contract-v1.md) closes the single display mapping, scale, logarithmic contour lattice, signed color, private nonnumeric state, panel, shared-chrome, accessibility, and responsive-layout decisions. The companion preview uses only the declared synthetic comparison surface. TOPO-003 is now unblocked and remains responsible for independently checked TOPO-001 raw values.
 
 Plainly: the interface rules are fixed, but the scientific map has not yet been implemented.
 
@@ -66,6 +66,6 @@ Plainly: the binary controls change an authored comparison path and its display.
 
 ## Promotion Boundary
 
-This lane owns the Wake Topography interaction model, fixed-source camera, two-dimensional contour renderer, signed base-10 color mapping, scenario menu, and display-only validation. The canonical Master Equation owns the inverse-square and transmitter-side factors used by the v1 diagnostic composition. [AAA Core Potential](../app-aaa-core/potential-v1.md) owns the reusable computational and product boundary. The scientific lane that supplies any later observable owns its meaning and authority. The EOM solver remains the sole forward-evolution owner.
+This lane owns the Wake Topography interaction model, fixed-source camera, two-dimensional contour renderer, signed base-10 color mapping, scenario menu, and display-only validation. The canonical Master Equation owns the inverse-square and transmitter-side factors used by the v1 diagnostic composition. [AAA Core Potential](../app-aaa-core/contracts/potential-v1.md) owns the reusable computational and product boundary. The scientific lane that supplies any later observable owns its meaning and authority. The EOM solver remains the sole forward-evolution owner.
 
 No Wake Topography image establishes a wake law, field-speed ceiling, front or trailing enhancement, dynamics, stability, conservation, or physical validation. Those features may be displayed only when supplied by a declared mathematical product with matching authority.

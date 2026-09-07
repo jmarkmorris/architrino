@@ -47,7 +47,7 @@ $$
 
 and each such point is an **event**: a fixed location in the void at a definite instant.
 
-The two factors have different jobs. The $\mathbb{R}$ supplies universal time and a total ordering of events — for any two events, one strictly precedes the other, or they are simultaneous, with no ambiguity. The $\mathbb{R}^3$ supplies the fixed spatial container and its distance rule.
+The two factors have different jobs. The $\mathbb{R}$ supplies universal time and a total ordering of instants, hence of simultaneity slices. Two events on different slices have an unambiguous temporal order; distinct events on the same slice are simultaneous. The $\mathbb{R}^3$ supplies the fixed spatial container and its distance rule.
 
 The product structure is fundamental. It is not an approximation to some deeper curved four-dimensional geometry waiting to be discovered.
 
@@ -77,7 +77,7 @@ $$
 
 Worldlines are graphs over $T$: for each instant there is exactly one position. Admissible physical evolution is future-directed, so it is followed toward increasing $T$. Reversing an auxiliary curve parameter would merely retrace the same geometric curve and would not define a second physical evolution.
 
-That single structural fact rules out a whole family of problems by construction. Closed timelike curves — paths looping back to their own past, which established general relativity permits in certain exotic solutions — cannot exist here, because a worldline that returned to an earlier $T$ would not be a graph. Backward-in-time propagation is excluded the same way. Nothing has to be forbidden by a separate rule; the geometry simply has no room for it.
+The future-directed admissibility rule and the wake law's support condition $T_t<T_r$ exclude causal loops: every link of an admissible causal chain increases $T$, so the chain cannot return to its starting event. This excludes the paths returning to their own past that occur as closed timelike curves in some relativistic geometries. The product manifold supplies a global time parameter; the admissibility and support rules select the physical direction of evolution. Being a graph over $T$ alone does not select that direction.
 
 Absolute timespace is a stack of Euclidean spaces, one for each value of $T$, and a worldline pierces exactly one slice at each instant.
 
@@ -351,7 +351,7 @@ reading as: a small change in velocity produces a change in momentum through a r
 
 Ordinary scalar mass is recovered only where the response matrix becomes proportional to the identity, $\mathcal{M}^{\mathrm{resp}}_{ij}\to m\,\delta_{ij}$, across the directions probed — that is, only where the assembly responds identically however you push it.
 
-That isotropy is an assembly-geometry claim, not a convenient assumption. If the retained trajectory bundle and internal ledger have no preferred axis at the probed scale, the response can reduce to $m\delta_{ij}$. If the branch keeps an axial layer or other framed orientation, the leading correction is a direction-dependent residual unless shielding and averaging cancel it. The carrier is a symmetric trace-free framing tensor
+That isotropy is an assembly-geometry claim, not a convenient assumption. If the retained trajectory bundle and internal ledger have no preferred axis at the probed scale, the response can reduce to $m\delta_{ij}$. If the branch keeps an axial layer or other framed orientation, the leading correction is a direction-dependent residual unless shielding and averaging cancel it. A candidate diagnostic of this directional structure is the symmetric trace-free framing tensor
 
 $$
 Q_A^{ij}
@@ -363,17 +363,21 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e2f115e364e4de37)
 
-averaging the assembly's framing directions and subtracting the isotropic part. $Q_A=0$ means there is no **quadrupolar** preferred-axis moment in this statistic; higher multipoles or other anisotropy measures may still survive.
+where $\hat{\mathbf n}$ is a unit framing direction and the average is normalized so that $\langle1\rangle_A^{\mathrm{frame}}=1$. A branch calculation must declare how it extracts the framing directions, which history interval it averages, and how it assigns and normalizes their weights. Weights derived from action, energy, or angular-momentum data are distinct prescriptions unless their equivalence is established. The prescription is fixed before comparing the response channels.
+
+Subtracting the isotropic part makes $Q_A$ trace-free. Its vanishing means there is no **quadrupolar** preferred-axis moment in this statistic; higher directional moments, phase relations, and delayed-history information can remain. Consequently, $Q_A=0$ alone establishes neither full framing isotropy nor isotropy of the physical response.
 
 ### Framing-Quadrupole Economy Theorem Target
 
-One branch certificate bounding $\|Q_A\|$ should control all three leading preferred-axis effects:
+The quadrupole economy target is to identify a branch regime in which a bound on $\|Q_A\|$, with the averaging prescription fixed, controls all three leading preferred-axis effects:
 
 1. the matter-sector orientation residual $\epsilon_M^{\mathrm{HD}}$;
 2. the clock-orientation residual $\Delta^{\mathrm{ori}}$;
 3. the ruler anisotropy carried by the trace-free part of $B_{ij}$.
 
-The target does not claim any of them vanishes. It requires all three to descend from the *same* framing tensor rather than from three independently fitted anisotropies — economy, in the sense that one structure explains three observations instead of three parameters explaining them separately.
+Establishing this target requires deriving each response from the assembly's delayed dynamics and medium coupling. The matter calculation must relate framing to the directional inertial response; the clock calculation must relate it to the counted cycle frequency; the ruler calculation must relate it to the measured spatial response. Each derivation must identify its dependence on $Q_A$ and bound the effect of information discarded by that average. A leading-order claim also needs a declared expansion parameter and a bound on the omitted terms, uniform over the stated branch regime and probe orientations. Small $Q_A$ does not by itself supply either a small omitted contribution or a bounded response gain.
+
+The common physical history must account consistently for all three channels. The sufficiency of this particular tensor is an additional, unestablished reduction claim. If a channel depends materially on omitted information, that information must be retained or its effect controlled within a narrower approximation. Failure of quadrupole economy alone does not establish failure of the underlying physical account.
 
 The isotropic limit is not a simplifying convention but an experimental constraint. **Hughes–Drever experiments** compare atomic clocks as the Earth rotates, testing whether physics depends on which way an apparatus points; they are among the most precise null results in physics. So the residual attached to $\mathcal{M}^{\mathrm{resp}}_{ij}$ has to be declared against them:
 
@@ -486,7 +490,7 @@ None of these may be identified with another unless a document states the regime
 
 ## Causal Wake Geometry
 
-Causality here is absolute ordering plus finite propagation speed. Three related objects must be kept apart, because the master equation uses only the third.
+Causal-wake propagation respects absolute temporal order and the finite speed $c_f$. Temporal order, direct wake support, and the locations a wake has passed by a given time describe different aspects of that propagation. The master equation selects direct contributions by the support equality.
 
 For two events
 
@@ -520,7 +524,7 @@ $$
 
 an expanding sphere. That is the **actual wake support**.
 
-Everything the emission could ever reach is the filled region
+Including every fixed spatial location reached no later than a given time produces the filled set
 
 $$
 \{(T,\mathbf X):T\geq T_t,\ \|\mathbf X-\mathbf X_{\mathrm{em}}\|\leq c_f(T-T_t)\}
@@ -528,9 +532,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1d76ea7bd73813c1)
 
-which is **reachability**.
+which records passage by time $T$, with the emission point included as the boundary case $T=T_t$.
 
-The distinction is the crux. The filled region records what is reachable in principle; the sphere records where the wake actually *is*. A receiver is acted on only on the surface — at the moment the sphere arrives, not before and not after. In established relativity the analogous object is the light cone of a spacetime metric; here it is an ordinary sphere in ordinary space, growing at a fixed rate. With a mollifier the support becomes a narrow shell around that surface, interpreted in the limit.
+The sphere gives the direct support of that emission at the current time. An interior event in the filled set is not an additional direct hit: the wake passed that fixed location earlier. With $c_f=1$, a wake emitted at the origin at $T_t=0$ reaches a location one unit away at $T=1$; the event at that location at $T=2$ lies inside the filled set but receives no second contribution from that emission. A moving receiver can meet the same surface again only if its worldline intersects it again. With a mollifier, direct support is represented by a narrow shell around the surface, interpreted in the limit.
+
+Indirect influence also includes changes carried forward in affected worldlines and later emissions. The filled set has not been proved to bound all such influence: individual architrinos are not kinematically restricted to speeds below $c_f$. A reachability theorem for a specified signaling procedure must account for its admitted transport and relay mechanisms. This distinction adds no observer-level faster-than-light signaling claim.
 
 For transmitter $j$ and receiver $i$ the root function is
 
@@ -556,7 +562,7 @@ $$
 
 every past emission moment currently being heard. The same notation covers partner hits ($i\ne j$) and self-hits ($i=j$).
 
-Using these roots requires that they be *clean* crossings rather than grazing contacts:
+On a regular root chart, a nonzero emission-time derivative permits local continuation of a root. A declared positive margin supplies a quantitative conditioning bound:
 
 $$
 \left|
@@ -582,7 +588,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0beea2d96374e0e7)
 
-The middle expression is the transmitter-side factor met in [Architrino](architrino.md). Requiring it bounded away from zero requires the root condition to cross zero at a definite rate, so that roots do not merge or vanish. Failure marks a caustic-like regime — a chart failure, not a small perturbation to be absorbed.
+The middle expression is the transmitter-side factor met in [Architrino](architrino.md). Falling below a chosen margin can leave the derivative nonzero and the root simple; it does not by itself establish a caustic. Actual derivative zero requires a singular-root analysis. Preserving the root inventory also requires that no root enter or leave the retained history boundaries and that the admitted transmitter-receiver pair set remain fixed. A regular root can leave a memory window without any derivative degeneration.
 
 On a smooth branch $T_t=T_{t,\ell}(T_r)$, differentiating the root condition gives
 
@@ -601,7 +607,7 @@ The status of $\kappa_{\mathrm{hit}}$ is fixed in [Absolute Time](absolute-time.
 
 ### Exceeding the wake speed is permitted; backward influence is not
 
-The geometry does not forbid a point architrino from exceeding $c_f$. It forbids influence travelling backward in time. Those are different prohibitions, and only the second is structural.
+The product geometry does not forbid a point architrino from exceeding $c_f$. Backward influence is excluded by future-directed evolution and the wake law's $T_t<T_r$ support rule. A constituent speed and the temporal orientation of an interaction are separate questions.
 
 This separates kinematic freedom from dynamical stability. The substrate imposes no speed limit on a point. It does not follow that an assembly can be carried through that regime intact, and the rest of this section is about why.
 
@@ -613,21 +619,21 @@ At the primitive level, approaching $c_f$ can make the leading and trailing cons
 
 ### A diagnostic for that failure
 
-A useful theorem-target diagnostic is the sign-resolved root ledger over a return cycle. Split the retained roots by the sign of their Jacobian into counts $N_+(A)$ and $N_-(A)$, and record
+A useful theorem-target diagnostic follows the instantaneous root inventory through one declared return cycle. At each reception time $T_r$, fix the assembly pair set and retained history domain, then split its finite set of simple roots by the sign of their emission-time derivative into counts $N_+(A;T_r)$ and $N_-(A;T_r)$. The signed count is
 
 $$
-\chi_{\mathrm{root}}(A)
+\chi_{\mathrm{root}}(A;T_r)
 =
-N_+(A)-N_-(A)
+N_+(A;T_r)-N_-(A;T_r)
 =
 \sum_{i,j\in A}
-\sum_{T_t\in\mathcal{C}_{ij}}
-\operatorname{sgn}\!\left(\partial_{T_t}F_{ij}\right)
+\sum_{T_t\in\mathcal{C}_{ij}(T_r)}
+\operatorname{sgn}\!\left(\partial_{T_t}F_{ij}(T_r,T_t)\right)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-085c6e60abf7246e)
 
-the signed total over all retained self- and partner-hit rows.
+where the root sets are restricted to that retained domain. These are counts at $T_r$ followed as functions of reception time, not totals of sampled rows accumulated over the cycle. Sampling the same smooth root branch more often does not create additional roots.
 
 The two components detect different failures, which is why both are kept. Generic fold events create or destroy roots in pairs of *opposite* sign, so they change the unsigned total $N=N_++N_-$ by $\pm2$ while leaving the signed total $\chi_{\mathrm{root}}$ untouched — the conservation recorded in [Master Equation](../dynamics/master-equation.md#signed-causal-root-complex) and [Noether Braid Topological Charge](../noether-braid/noether-braid-topological-charge.md).
 
@@ -654,12 +660,13 @@ $$
 
 the matter limit, the dressed clock and ruler speed, the photon speed, and the calibrated laboratory speed, agreeing to within the Lorentz-violation budget $\epsilon_{\mathrm{LV}}$. The same constitutive record must keep the gravitational-wave speed tied to the photon channel within the multi-messenger residual.
 
-It must also recover the three boost generators the substrate dynamics lacks, so that the seven proved substrate symmetries participate in the ten-generator Lorentz structure within the same budget. Counting generators is not the same as conserving the associated charges, and those remain separate closure targets.
+It must also recover the three boost generators the substrate dynamics lacks, so that the seven proved substrate symmetries participate in the ten-generator Poincare structure within the same budget. The Lorentz subgroup has six generators, comprising three rotations and three boosts; the four time and space translations complete the Poincare group. Counting generators is not the same as conserving the associated charges, and those remain separate closure targets.
 
-And it must show the *approach* to that limit is Lorentzian rather than some arbitrary deformation:
+The approach to the limit must recover the Lorentzian changes relative to a declared rest branch. Let $R_\parallel(v_{\mathrm{eff}})$ and $R_\perp(v_{\mathrm{eff}})$ be positive longitudinal and transverse envelope radii measured by the same prescription, with internal excitation, medium state, and reference orientation held fixed in the branch comparison. Normalize each radius to its rest value. In a weak homogeneous observer chart calibrated so that the reference clock has $d\tau/dt_{\mathrm{eff}}=1$ at rest, the targets are
 
 $$
-\frac{R_{\parallel}}{R_{\perp}}
+\frac{R_\parallel(v_{\mathrm{eff}})/R_\parallel(0)}
+{R_\perp(v_{\mathrm{eff}})/R_\perp(0)}
 =
 \frac{1}{\gamma_0(v_{\mathrm{eff}})}
 +O(\epsilon_{\mathrm{LV}}),
@@ -676,9 +683,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c2c28880e4a680bb)
 
-The first says a moving assembly must contract along its motion by exactly the established relativistic factor. The second says its internal clock must slow by that same factor. Both must produce $\gamma_0$, the standard Lorentz factor — not something merely similar.
+The first compares longitudinal and transverse deformation factors; it does not require equal radii at rest. In normalized units $c_f=1$, a rest aspect ratio of two gives the target moving aspect ratio $2/\gamma_0$, not $1/\gamma_0$. The second compares the moving clock rate with its calibrated rest rate. Both statements apply for $0\le v_{\mathrm{eff}}<c_0$ in the declared branch regime. The residual estimates require an explicit velocity interval and uniform bounds on that interval; extending them arbitrarily close to $c_0$ is an additional limit estimate, not a consequence of the displayed $O(\epsilon_{\mathrm{LV}})$ notation.
 
-This is one structural claim, not four coincidences. Matter transport, clock retiming, photon transport, and laboratory calibration must all be projections of the same root ledger through the same dressing map. Sharpened, the moving branch's closed-cycle geometry should factor through a single deformation family:
+Matter transport, clock retiming, photon transport, and laboratory calibration must be derived consistently from the same retained physical record and medium response. Their observable maps can differ: a clock counts cycles, a ruler compares spatial extents, and a signal measurement compares emission and reception records. Agreement obtained by independently fitting those channels does not establish the common dynamical origin.
+
+A group representation describes a different mathematical object from any one of those measured ratios. In the recovered homogeneous observer geometry, fix a boost axis and let $\mathcal D$ act on the four event coordinates $x_{\mathrm{eff}}^\mu=(c_0t_{\mathrm{eff}},x_{\mathrm{eff}}^1,x_{\mathrm{eff}}^2,x_{\mathrm{eff}}^3)$. Its standard Lorentz representation is
 
 $$
 \mathcal{D}(v_{\mathrm{eff}})=\exp\!\left(\varphi_{\text{eff}}K\right),
@@ -688,7 +697,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d47aad562c4e8ad1)
 
-with **rapidity** $\varphi_{\text{eff}}$ — the natural boost parameter, which unlike velocity adds under composition of collinear boosts — and a single generator $K$ producing both the shape change and the clock rate. Non-collinear boosts also include a rotation and cannot be summarized by scalar rapidity addition. If the length response and the clock response need *independent* generators, the branch has not recovered Lorentzian structure even if one scalar speed happens to match. That is the sharpest form of the test, and it is much harder to pass by accident.
+where **rapidity** $\varphi_{\text{eff}}$ adds under composition of collinear boosts, and $K$ is the dimensionless linear generator for the chosen axis in this event-coordinate representation. This is an observer-level recovery target, not an imposed action on native assembly histories. Non-collinear boosts also include a rotation and cannot be summarized by scalar rapidity addition.
+
+Clock readings and simultaneous length comparisons require their own extraction maps from transformed event records. Their reduced factors need not obey the composition law of $\mathcal D$: the contraction factor $\operatorname{sech}\varphi_{\mathrm{eff}}$ does not multiply under rapidity addition. Different observable spaces may also represent the same abstract symmetry with different matrices. Lorentz recovery requires a consistent action and observation maps derived from the common physical record; different reduced maps alone do not demonstrate failure.
 
 The target fails if stable matter classes acquire composition-dependent limiting speeds, if the photon channel stays independently dressed from matter transport, or if the leading deformation is non-Lorentzian once $c_0$ is calibrated. The observer speed limit is a structural barrier only after all of this closes.
 
@@ -801,39 +812,38 @@ summing contributions from everything within distance $R$ and letting $R$ grow, 
 
 The sum runs over retained emission events — $(j,T_t)$ pairs — not over sources. A transmitter faster than the wake speed can contribute several active roots entering the ball at different $R$, so the ordering must be at event level.
 
-This is an admissibility condition: a branch is well-defined only when the limit exists under the declared rule, and when refining the ordering does not change the answer. Inverse-square dilution alone is not enough in three dimensions, and the reason is worth seeing. Contributions fall as $1/r^2$, but a shell at radius $r$ and thickness $dr$ contains sources growing as $r^2\,dr$. The two exactly cancel, leaving each shell contributing comparably regardless of distance — so the sum does not converge on size grounds and needs cancellation.
+This is an admissibility condition: a branch is well-defined only when the limit exists under the declared exhaustion and subtraction rule. Subdividing a fixed finite region while retaining all its events must preserve its sum. Independence from arbitrary rearrangements of an infinite series requires a separate proof. Inverse-square dilution alone is not enough in three dimensions: a homogeneous population supplies $O(r^2\,dr)$ sources in a shell, offsetting a per-contribution magnitude of $O(r^{-2})$ before any cancellation. A convergence argument must therefore control the full weighted vector sum.
 
 ### When the lemma becomes a theorem
 
 There is one important case where convergence can be proved rather than assumed. Its scope is a background result: it covers a statistically neutral far population, not every coherent assembly embedded in one.
 
-Suppose the far population is statistically homogeneous, isotropic, locally neutral, and mixing, with correlation length $\ell$. The mixing needed is on the *vector* sum, not merely on polarity counts, because contributions could cancel in sign while still add coherently in direction. After subtracting the local mean, a useful cell-covariance hypothesis is
+Fix a receiver event and suppose the far population is statistically homogeneous, isotropic, and locally neutral. Partition the retained emission events outside a local ball into cells of diameter $O(\ell)$, with a uniformly bounded number of cell centers per volume $\ell^3$. Each cell contribution must be well-defined before taking the far-population limit. Let $\delta\mathbf a_k$ be cell $k$'s complete received acceleration minus its ensemble mean, including every admitted root and its transmitter-side weight. Write $r_k$ for the distance of its center from the receiver and $d_{kl}$ for the distance between two cell centers. One sufficient weighted covariance hypothesis is
 
 $$
 \left|
-\mathbb{E}\!\left[
-\delta\mathbf{a}_{\mathrm{cell}}(\mathbf{r})
-\cdot
-\delta\mathbf{a}_{\mathrm{cell}}(\mathbf{r}')
-\right]
+\mathbb{E}\!\left[\delta\mathbf a_k\cdot\delta\mathbf a_l\right]
 \right|
 \le
-C\,e^{-\|\mathbf{r}-\mathbf{r}'\|/\ell}
+C\,r_k^{-2}r_l^{-2}e^{-d_{kl}/\ell}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7e63fec8490556b9)
 
-meaning correlations between well-separated cell contributions decay exponentially. This condition motivates the shell scaling below, but it does not by itself make different shells independent or prove almost-sure convergence.
+The constant $C$ is uniform over the cells at this receiver event and carries the units required by the bound. The radial factors control the size of received fluctuations; the exponential controls correlations between separated cells. At $k=l$, the same inequality bounds each cell's second moment by $C r_k^{-4}$. Per-hit inverse-square dilution alone does not supply this complete-cell bound: admitted root multiplicities, source populations, and transmitter weights must satisfy the stated moment condition too. Statistical neutrality alone proves none of those conditions.
 
-Now partition space outside a local ball into shells of thickness $\ell$, grouped into neutral cells of diameter $O(\ell)$, and let $S_n$ be shell $n$'s contribution after subtracting the mean. Exponential cell mixing, together with uniform moment bounds, gives the target variance estimate for a shell with $N_n=O(n^2)$ cells: incoherent vector fluctuations scale as $O(\sqrt{N_n})=O(n)$ while each cell carries an inverse-square factor $O(n^{-2})$. Thus
+Group these cells into successive receiver-centered shells of thickness $\ell$, and let $I_n$ contain the cells in shell $n$, with radii comparable to $n\ell$. The packing bound gives $|I_n|=O(n^2)$ and a uniform bound on $\sum_l e^{-d_{kl}/\ell}$: the number of nearby cells grows polynomially with separation, while the exponential decays faster. For the centered shell sum $S_n=\sum_{k\in I_n}\delta\mathbf a_k$, the covariance expansion therefore gives
 
 $$
-\mathbb{E}\|S_n\|^2=O(n^{-2})
+\mathbb E\|S_n\|^2
+\le C_1 n^{-4}\sum_{k\in I_n}\sum_{l\in I_n}e^{-d_{kl}/\ell}
+\le C_2 n^{-4}|I_n|
+=O(n^{-2}),
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4b531110b8f53f7b)
 
-and therefore
+where $C_1$ and $C_2$ are independent of the shell index and include the fixed powers of $\ell$. The shell fluctuation is thus square-summable:
 
 $$
 \sum_{n=1}^{\infty}\mathbb{E}\|S_n\|^2<\infty
@@ -841,9 +851,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1036eabe49f53f39)
 
-since $\sum n^{-2}$ converges. To obtain the stated mean-square and almost-sure conclusion, add the explicit probabilistic hypothesis that the centered shell increments form a martingale-difference sequence relative to the growing receiver-centered filtration. Their partial sums are then an $L^2$-bounded martingale, so the martingale convergence theorem gives convergence both almost surely and in $L^2$. Without that hypothesis, one must instead prove a suitable summable cross-shell covariance or other convergence theorem, and may claim only what that theorem supplies.
+To obtain convergence both in mean square and almost surely, add the explicit hypothesis $\mathbb E[S_n\mid\mathcal F_{n-1}]=0$, where $\mathcal F_{n-1}$ contains the information revealed by the completed preceding shells and $S_n$ is measurable once shell $n$ is revealed. This makes the partial sums an $L^2$-bounded martingale: distinct increments have zero covariance, so the second moment of each partial sum is bounded by the sum of the shell variances. The martingale convergence theorem then gives both conclusions. Exponential cell covariance does not itself prove this conditional-mean hypothesis. Without it, a different convergence theorem is needed, and only the conclusion of that theorem may be claimed.
 
-The proved mechanism is cancellation under the declared statistical hypotheses. A zero coherent mean and controlled shell correlations make the fluctuations grow too slowly to overcome inverse-square falloff.
+This proves convergence of the centered sum along the completed-shell exhaustion under the stated hypotheses. Recovering the full acceleration also requires zero coherent shell mean, a convergent sum of those means, or an explicitly declared subtraction rule. Intermediate cutoffs within a shell and other exhaustion orders require control of their residual contributions before they can be assigned the same limit. Cancellation in this conditional statistical model does not establish that the physical Noether sea satisfies its weighted covariance or conditional-mean assumptions.
 
 That is also exactly why the theorem does not extend. A coherent far dipole texture, long-range orientational correlation, or anisotropic source family can defeat vector cancellation even with perfect polarity neutrality — the shells would add in step rather than at random. Every coherent assembly or correlated medium feature on top of the background must supply its own shielding, screening, finite horizon, or explicit subtraction before its sum may be treated as closed.
 

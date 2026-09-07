@@ -21,6 +21,10 @@
       {
         "nodeId": "help",
         "scenePath": "content/scenes/archie/help.json"
+      },
+      {
+        "nodeId": "feedback",
+        "scenePath": "content/scenes/archie/feedback.json"
       }
     ]
   },
@@ -48,6 +52,14 @@
       "color": "#5a1f2e",
       "labelTitle": "Navigation & Controls",
       "labelBadge": "doc"
+    },
+    {
+      "id": "feedback",
+      "title": "Webapp Feedback",
+      "radius": 2.2,
+      "color": "#146c74",
+      "labelTitle": "Webapp Feedback",
+      "labelBadge": ""
     }
   ]
 }

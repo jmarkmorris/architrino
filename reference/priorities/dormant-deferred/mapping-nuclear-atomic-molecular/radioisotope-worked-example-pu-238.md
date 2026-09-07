@@ -127,7 +127,7 @@ Plainly: the measured lifetime and energy per decay predict the familiar heat de
 | Daughter gamma/internal-conversion split | Source-bound evaluated row with an inferred consistency check | $I_{\gamma}^{\mathrm{pred}}=I_{\alpha}/(1+\alpha_T)$ disagrees with the evaluated gamma intensity outside the combined source uncertainty. |
 | Beta and neutrino channels | Source-bound absent for this selected alpha event | A weak branch is required inside $e_{43.498}$ rather than in a separately identified isotope event. |
 | Ensemble heat output | Source-bound IAEA comparison plus inferred effective calculation | The half-life/mean-energy calculation fails to reproduce the independently tabulated heat generation at the declared $2\%$ rounded-source tolerance. |
-| Photon carrier details | Routed to [EQ-29](../../mapping-equations/eq-29-radiation-source-carrier-source-field-map.md); not advanced here | This packet attempts to accept photon carrier geometry or source-field dynamics from the ENSDF line assignment alone. |
+| Photon carrier details | Routed to [EQ-29](../../mapping-equations/analysis/eq-29-radiation-source-carrier-source-field-map.md); not advanced here | This packet attempts to accept photon carrier geometry or source-field dynamics from the ENSDF line assignment alone. |
 | Native event, material partition, and Noether sea update | `blocked_missing_native_pu238_alpha_escape_event` | One accepted retained event record supplies the rows below and passes their same-record tests. |
 
 ## Route Object

@@ -28,8 +28,8 @@ import json
 import re
 from types import MappingProxyType
 
-REQUIRED_REFERENCE_SHA = '19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132'
-PROOF_REQUIRED_SHA256 = '652d77241f9b5c082e7d15e2bb62328f346760548f9f13e4ffe7562c4cad0733'
+REQUIRED_REFERENCE_SHA = '3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'
+PROOF_REQUIRED_SHA256 = 'c9f0924cd24745bd10e2b51ee5b60a09c0c0576b5dec3bc14f647c9c7ee6fc47'
 PARENT_SCHEMA = 'braid-program/f6c-original-parent-refinement-input.v1'
 IDS = ('0+', '0-', '1+', '1-', '2+', '2-', '3+', '3-')
 A, END = Fraction(-8), Fraction(13, 100)

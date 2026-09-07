@@ -2,8 +2,11 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-const ROOT_DIR = process.cwd();
+// Repository root from this file's location, not the working directory, so the
+// script behaves the same when a session is rooted above the repository.
+const ROOT_DIR = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 const RANKING_PATH = path.join(
   ROOT_DIR,
   "reference/priorities/aaa-work-threads/priorities.md"
@@ -13,9 +16,20 @@ const PRIORITY_COMPATIBILITY_DIRECTORIES = new Set(["app-simulation"]);
 const LEGACY_TASK_HEADING =
   /^##+ (Task Queue|Immediate Priority Queue|Open Work Queue|Detailed Task Inventory|Ranked Next Objects|Next Actions|Recommended Build Order|Candidate Discussion Prompts|Implementation Tickets|Release Gates)\s*$/m;
 
+// Workstream directory layout, per reference/priorities/README.md#workstream-directory-layout.
+// A lane over this many top-level files should file its supporting material into
+// reviews/, analysis/, evidence/, contracts/, campaigns/, configurations/, or archive/.
+// Reported as a warning, not a failure: several lanes predate the layout and converting
+// them is scheduled work, so this must not block unrelated validation.
+const TOP_LEVEL_FILE_ADVISORY_LIMIT = 12;
+
 function fail(message) {
   console.error(`[priority-ranking] ${message}`);
   process.exitCode = 1;
+}
+
+function warn(message) {
+  console.warn(`[priority-ranking] warning: ${message}`);
 }
 
 function roundHalfUp(value, digits) {
@@ -80,6 +94,19 @@ for (const owner of activeOwnerDirectories) {
         `${path.relative(ROOT_DIR, brainstormingPath)} still owns an executable task section`
       );
     }
+  }
+
+  const topLevelFiles = fs
+    .readdirSync(ownerDirectory, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && !entry.name.startsWith("."));
+
+  if (topLevelFiles.length > TOP_LEVEL_FILE_ADVISORY_LIMIT) {
+    warn(
+      `${path.relative(ROOT_DIR, ownerDirectory)} holds ${topLevelFiles.length} top-level files ` +
+        `(advisory limit ${TOP_LEVEL_FILE_ADVISORY_LIMIT}); file supporting material into ` +
+        `reviews/, analysis/, evidence/, contracts/, campaigns/, configurations/, or archive/ ` +
+        `per reference/priorities/README.md#workstream-directory-layout`
+    );
   }
 }
 

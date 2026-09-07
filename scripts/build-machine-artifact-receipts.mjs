@@ -13,7 +13,7 @@ const RING_RECEIPT =
 const PHOTON_RAW =
   ".local-data/braid-analysis/retained-evidence/photon/helical-self-hit-phase-lock-sweep.v1.json";
 const PHOTON_RECEIPT =
-  "reference/priorities/app-photon/helical-self-hit-phase-lock-sweep.receipt.v1.json";
+  "reference/priorities/app-photon/evidence/helical-self-hit-phase-lock-sweep.receipt.v1.json";
 const ORTHOGONAL_RAW =
   ".local-data/braid-analysis/retained-evidence/orthogonal-plane-weave/2026-08-29-orthogonal-plane-weave-complete-cycle.v1.json";
 const ORTHOGONAL_RECEIPT =

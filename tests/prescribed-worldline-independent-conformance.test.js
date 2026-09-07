@@ -33,7 +33,7 @@ const F6B_URL = new URL(
   import.meta.url,
 );
 const READINESS_MATRIX_URL = new URL(
-  "../reference/priorities/braid-program/prescribed-worldline-readiness-matrix.md",
+  "../reference/priorities/braid-program/analysis/prescribed-worldline-readiness-matrix.md",
   import.meta.url,
 );
 

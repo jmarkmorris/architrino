@@ -6,7 +6,7 @@ This synthesis isolates explanatory results and unaccepted mechanism ideas surro
 
 On one connected regular moving-simple-root chart, the canonical per-root acceleration row has a derived scalar-gradient representation. Finite scalar superposition is conditional on every row occupying one shared retained-history and boundary chart; it does not license an independently postulated vector-superposition law.
 
-The derived treatment belongs in [receiver-wake-gradient-closure.md](receiver-wake-gradient-closure.md) and the canonical Master Equation chapter. Singular sources, folds, coincidences, the self diagonal, chart gluing, and infinite-source limits require separate prescriptions or theorems.
+The derived treatment belongs in [receiver-wake-gradient-closure.md](analysis/receiver-wake-gradient-closure.md) and the canonical Master Equation chapter. Singular sources, folds, coincidences, the self diagonal, chart gluing, and infinite-source limits require separate prescriptions or theorems.
 
 Plainly: a local scalar description can be exact on one regular branch without automatically extending across every singularity or infinitely many sources.
 

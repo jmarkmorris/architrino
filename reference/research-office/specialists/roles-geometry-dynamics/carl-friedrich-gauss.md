@@ -12,7 +12,7 @@
 
 **Current theory alignment**:
 
-- The live owner for this scope is `reference/priorities/field-speed-ceiling/mathematics-geometry-dynamical-system.md`; `reference/priorities/field-speed-ceiling/work-log.md` records its current claim status.
+- The live owner for this scope is `reference/priorities/field-speed-ceiling/analysis/mathematics-geometry-dynamical-system.md`; `reference/priorities/field-speed-ceiling/work-log.md` records its current claim status.
 - At $\|\mathbf V\|=c_f$, the state constraint alone permits accelerations satisfying $\mathbf V\mathbin{\cdot}\mathbf A\le0$. For a differentiable locally speed-preserving boundary path, $\mathbf V\mathbin{\cdot}\mathbf A=0$. These are kinematic statements, not a causal-root response law.
 - The Euclidean least-change tangent-cone projection is a proposed foundational response axiom for a complete finite ordinary net ledger. It is not derived from the speed bound, from this role, or from a least-constraint analogy.
 - Do not use a constraint argument to assert a physical-space circle, maximum turning rate, minimum radius, contact continuation, conservation result, or physical validation. Those require separately stated response and causal-history assumptions.

@@ -8,17 +8,17 @@
 - Claim level: `priority-contract-and-design`
 - Platform name: `AAA Core`
 - Priority directory: `app-aaa-core`
-- Architecture draft: [AAA Core architecture v0](architecture-v0.md)
-- Accepted path interchange: [AAA Core Path Interchange v0](path-interchange-v0.md)
-- Accepted codec registry: [AAA Core Codec Registry v0](codec-registry-v0.md)
-- Accepted history stream: [AAA Core Accepted-History Stream v0](accepted-history-stream-v0.md)
-- Accepted query and publication contract: [AAA Core Query, Transform, And Publication v0](query-transform-publication-v0.md)
-- Accepted application client: [AAA Core Client v0](client-v0.md)
-- Accepted shared Potential API: [AAA Core Potential v1](potential-v1.md)
+- Architecture draft: [AAA Core architecture v0](contracts/architecture-v0.md)
+- Accepted path interchange: [AAA Core Path Interchange v0](contracts/path-interchange-v0.md)
+- Accepted codec registry: [AAA Core Codec Registry v0](contracts/codec-registry-v0.md)
+- Accepted history stream: [AAA Core Accepted-History Stream v0](contracts/accepted-history-stream-v0.md)
+- Accepted query and publication contract: [AAA Core Query, Transform, And Publication v0](contracts/query-transform-publication-v0.md)
+- Accepted application client: [AAA Core Client v0](contracts/client-v0.md)
+- Accepted shared Potential API: [AAA Core Potential v1](contracts/potential-v1.md)
 - Execution ledger: [work queue](work-queue.md)
 - Exploratory notes: [brainstorming](brainstorming.md)
 - Chronological record: [work log](work-log.md)
-- Representative workload contract: [path workload matrix](representative-path-workload-matrix.md)
+- Representative workload contract: [path workload matrix](contracts/representative-path-workload-matrix.md)
 - Ranking: pending measured representative workload estimates and external dataset or accelerator access
 
 ## Objective
@@ -48,23 +48,23 @@ AAA Core is not an end-user application. It has no public scene, visitor launch 
 
 ## Current Blocker
 
-The accepted [`aaa_core_path_interchange/v0`](path-interchange-v0.md) contract now fixes the logical path-set, chunk, stream-envelope, view, and derived-product records with normalized units, numeric profiles, immutable identity, provenance, authority, source closure, and fail-closed fixtures. No application should create a competing local path schema.
+The accepted [`aaa_core_path_interchange/v0`](contracts/path-interchange-v0.md) contract now fixes the logical path-set, chunk, stream-envelope, view, and derived-product records with normalized units, numeric profiles, immutable identity, provenance, authority, source closure, and fail-closed fixtures. No application should create a competing local path schema.
 
-The accepted [`aaa_core_codec_registry/v0`](codec-registry-v0.md) contract now fixes capability negotiation and concrete conformance examples for authoritative-history, precision-bounded-analysis, and display-stream profiles. It registers Core canonical JSON and quantized display capabilities, the Core-owned Potential fixture-map codec, and a source-preserving experimental fixture decoder. These are registry and synthetic conformance results, not production representation selections or performance evidence.
+The accepted [`aaa_core_codec_registry/v0`](contracts/codec-registry-v0.md) contract now fixes capability negotiation and concrete conformance examples for authoritative-history, precision-bounded-analysis, and display-stream profiles. It registers Core canonical JSON and quantized display capabilities, the Core-owned Potential fixture-map codec, and a source-preserving experimental fixture decoder. These are registry and synthetic conformance results, not production representation selections or performance evidence.
 
-The accepted [`aaa_core_accepted_history_stream/v0`](accepted-history-stream-v0.md) contract now fixes producer sequencing, two bounded subscriptions, idempotent duplicates, acknowledgement, backpressure, disconnect/reconnect cursors, retained replay, sealing, exact halt propagation, and deterministic consumer receipts over a three-chunk synthetic path bundle. This is in-process conformance, not a deployed transport or performance result.
+The accepted [`aaa_core_accepted_history_stream/v0`](contracts/accepted-history-stream-v0.md) contract now fixes producer sequencing, two bounded subscriptions, idempotent duplicates, acknowledgement, backpressure, disconnect/reconnect cursors, retained replay, sealing, exact halt propagation, and deterministic consumer receipts over a three-chunk synthetic path bundle. This is in-process conformance, not a deployed transport or performance result.
 
-The accepted [`aaa_core_query_transform_publication/v0`](query-transform-publication-v0.md) contract now fixes equivalent request normalization, order-sensitive transform and reusable cache identities, exact source closure, provisional versus sealed state, non-escalating authority, and receipt-bound cross-application retrieval. Its conformance fixtures use complete and incomplete path-interchange sources and cover all fifteen named refusal codes. This is synthetic software conformance, not a production query, cache, catalog, transport, kernel, or scientific result.
+The accepted [`aaa_core_query_transform_publication/v0`](contracts/query-transform-publication-v0.md) contract now fixes equivalent request normalization, order-sensitive transform and reusable cache identities, exact source closure, provisional versus sealed state, non-escalating authority, and receipt-bound cross-application retrieval. Its conformance fixtures use complete and incomplete path-interchange sources and cover all fifteen named refusal codes. This is synthetic software conformance, not a production query, cache, catalog, transport, kernel, or scientific result.
 
-The accepted [`aaa_core_client/v0`](client-v0.md) now exposes the four contracts through one defensive-copy operation surface. Topo and Equation Mapping validate and query the same fixture records, subscribe through one shared accepted-history session, inspect the same progress, reuse one equivalent sealed publication, and retrieve it by exact receipt without application-local path logic. This is synchronous in-process client conformance, not a network SDK or production service.
+The accepted [`aaa_core_client/v0`](contracts/client-v0.md) now exposes the four contracts through one defensive-copy operation surface. Topo and Equation Mapping validate and query the same fixture records, subscribe through one shared accepted-history session, inspect the same progress, reuse one equivalent sealed publication, and retrieve it by exact receipt without application-local path logic. This is synchronous in-process client conformance, not a network SDK or production service.
 
-The accepted [`aaa_core_potential/v1`](potential-v1.md) is the sole supported application-facing Potential calculation boundary. Lorentz Geometry consumes it from its surface scheduler, while Topo exposes a thin consumer module for a separately approved Potential display mode. Complete finite contribution accounting is mandatory; missing, unavailable, duplicate, or nonfinite output fails closed. Core owns no Potential page, scene, controls, or visualization.
+The accepted [`aaa_core_potential/v1`](contracts/potential-v1.md) is the sole supported application-facing Potential calculation boundary. Lorentz Geometry consumes it from its surface scheduler, while Topo exposes a thin consumer module for a separately approved Potential display mode. Complete finite contribution accounting is mandatory; missing, unavailable, duplicate, or nonfinite output fails closed. Core owns no Potential page, scene, controls, or visualization.
 
 Plainly: Core computes and packages Potential results; applications decide how to show them, and no application fills a missing result with zero.
 
 No executable Core queue row remains. CORE-006 and CORE-009 require measured local and rented-accelerator workloads, while CORE-007 requires a selected public experimental dataset and scientific comparison mapping. Production transport, persistence, authentication, and retention choices remain open but are not independently accepted queue objects.
 
-The [representative path workload matrix](representative-path-workload-matrix.md) is accepted as the shared benchmark definition for EOM continuation, Potential live maps, reaction studies, optimization sweeps, and collider imports. All five workloads remain unmeasured; the matrix selects no representation, deployment, or accelerator posture.
+The [representative path workload matrix](contracts/representative-path-workload-matrix.md) is accepted as the shared benchmark definition for EOM continuation, Potential live maps, reaction studies, optimization sweeps, and collider imports. All five workloads remain unmeasured; the matrix selects no representation, deployment, or accelerator posture.
 
 ## Promotion Boundary
 

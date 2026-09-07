@@ -10,7 +10,7 @@ import { validateBorgAssemblyRegistry } from "../../src/apps/borg/registry/BorgA
 import { validateAssemblyViewCollectionManifest } from "../../src/apps/shared/AssemblyViewRecordCarriers.mjs";
 
 const ROOT = path.resolve(fileURLToPath(new URL("../../", import.meta.url)));
-const DEFAULT_REGISTRY_PATH = "reference/priorities/app-borg/assembly-registry.v1.json";
+const DEFAULT_REGISTRY_PATH = "reference/priorities/app-borg/contracts/assembly-registry.v1.json";
 const DEFAULT_COLLECTION_PATH = "content/assets/borg/assembly-view-collection.v1.json";
 const sha256 = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const identityKey = (row) => `${row.assemblyId}\0${row.modelRevisionSha256}`;

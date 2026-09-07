@@ -2,9 +2,7 @@
 
 This guide keeps the mathematical language from switching layers without warning. The main danger is not a typo; it is a valid-looking equation that quietly treats absolute time, Euclidean void coordinates, effective observer charts, and standard comparison variables as if they were the same thing.
 
-Use the rules below as a wiring diagram for notation. Every symbol should tell the reader which layer it belongs to and what map, if any, is still owed.
-
-Purpose: Define a single, canonical mathematical and geometrical dialect for the Geometrical Model of Nature. All technical documents should adhere to this guide. Equations are presented in display math for clarity where appropriate.
+Use the rules below as a wiring diagram for the single canonical mathematical and geometrical dialect of $\mathbb{A}\mathbb{A}\mathbb{A}$. Every symbol should tell the reader which layer it belongs to and what map, if any, is still owed. Technical documents follow this dialect, with display mathematics used where it clarifies the structure.
 
 ---
 
@@ -22,12 +20,14 @@ Authors must define every newly introduced symbol in the equation's local prose 
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-ce1ed8c3c92ade1c)
+
   with native absolute coordinates $(T, X, Y, Z)$.
   $$
   \Sigma_T = \{T\}\times \mathbb{R}^3
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-203e58669ae272dd)
+
   are simultaneity slices (Euclidean 3-space snapshots).
 - Vectors and norms:
   - Native spatial, velocity, and acceleration vectors are bold: $\mathbf X$, $\mathbf V$, $\mathbf A$.
@@ -36,7 +36,7 @@ Authors must define every newly introduced symbol in the equation's local prose 
 - Indices:
   - Components indexed by $i, j \in \{1,2,3\}$ with $\delta_{ij}$.
 
-Plain language: One global clock $T$ and ordinary 3D space; we write vectors in bold, unit directions with hats, and lengths with double bars.
+One global clock $T$ orders ordinary three-dimensional space. Vectors are bold, unit directions carry hats, and lengths use double bars.
 
 ---
 
@@ -80,7 +80,7 @@ $$
 
 This map is a closure target unless the local document has already derived the needed mapping. It must not be smuggled in by reusing the same letters on both sides. In programs and app data, the same rule applies to field names and labels: EOM solver state, display coordinates, and effective observer coordinates must not share one undifferentiated symbol when a calculation or claim depends on the distinction.
 
-Plain language: first ask which layer the math is using. Native equations use the absolute clock and Euclidean void. Effective equations use the coordinates an observer reconstruction would assign. Proper time is a clock readout, not the native clock.
+The first question is which layer the mathematics uses. Native equations use the absolute clock and Euclidean void. Effective equations use the coordinates an observer reconstruction would assign. Proper time is a clock readout, not the native clock.
 
 ---
 
@@ -94,7 +94,7 @@ Keep useful role subscripts: $P_b$ for branch $b$, $P_q$ for clock branch $q$, $
 
 An epoch $T_0$, an emission time $T_t$, a reception time $T_r$, a normalization scale, a record window $T_W$, and a record persistence duration $T_{\mathrm{rec}}$ are not cycle periods. Preserve their meanings. A dimensionless period in a rescaled time needs its own declared conversion; for example, when $s=T/P_0$, write $P_s=P/P_0$. Preserve literal schema keys and provenance-bound records, and explain their translation at the consuming interface when the recorded spelling differs from current prose.
 
-Plainly: $T$ tells us when; $P$ tells us how long one cycle takes. A cycle can repeat a visible shape without repeating all the history that drives the next motion.
+$T$ identifies an instant, whereas $P$ gives the duration of one cycle. A cycle can repeat a visible shape without repeating all the history that drives the next motion.
 
 ### Native kinematic quantities
 
@@ -121,7 +121,7 @@ Plainly: $T$ tells us when; $P$ tells us how long one cycle takes. A cycle can r
 - Worldlines:
   - $\mathbf X: I \subset \mathbb{R} \to \mathbb{R}^3,\ T \mapsto \mathbf X(T)$, absolutely continuous; $\mathbf V = d\mathbf X/dT$, $\mathbf A = d\mathbf V/dT$.
 
-Plain language: Objects move as dots in 3D through successive instants; speeds and distances are measured separately from time.
+Objects occupy points in three-dimensional space at successive instants; speeds and distances are measured separately from time.
 
 ---
 
@@ -136,6 +136,7 @@ Plain language: Objects move as dots in 3D through successive instants; speeds a
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-1de04f0e8ff46451)
+
 - Causal set:
   $$
   \mathcal C_{r\leftarrow t}(T_r)
@@ -144,12 +145,13 @@ Plain language: Objects move as dots in 3D through successive instants; speeds a
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-a0da82a20deadbab)
+
 - Conventions:
-  - $H(0)=0$ (no instantaneous self-kick).
+  - $H(0)=0$ (no coincident-time self-acceleration).
   - No $r=0$ causal roots exist beyond $\Delta_{r\leftarrow t}=0$: because $r=c_f(T_r-T_t)$, $r=0$ implies $T_r=T_t$; that coincident-time case is excluded by $H(0)=0$.
   - This exclusion does not supply a continuation through a coincident same-transmitter root birth. Verification remains incomplete until one finite transition rule certifies the singular event's root ledger and conserved accounts.
 
-Plain language: A push now only happens if a past causal wake surface has had exactly enough time to reach the receiver.
+A receiver is accelerated now only if a past causal wake surface has had exactly enough time to reach it.
 
 ---
 
@@ -161,26 +163,30 @@ Plain language: A push now only happens if a past causal wake surface has had ex
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-83e434800a542d5b)
+
 - Expanding causal wake surface at speed $c_f$:
   $$
   \rho(T,\mathbf X) = \frac{q}{4\pi r^2}\,\delta(r - c_f\,\Delta)\,H(\Delta),\quad r=\|\mathbf X-\mathbf X_{\mathrm{em}}\|,\ \Delta=T-T_t
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-41494e9e2536ea37)
+
   $$
   \rho = \frac{q}{4\pi r^2}\,\delta_{S_{c_f\Delta}}(\mathbf X-\mathbf X_{\mathrm{em}})\,H(\Delta)
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-89d585b137da7a8d)
+
 - Regularization:
   $$
   \delta(r - c_f\,\Delta)\ \to\ \delta_\eta(r - c_f\,\Delta) \;=\; \frac{1}{\sqrt{2\pi}\,\eta}\,\exp\!\Big(\!-\frac{(r - c_f\,\Delta)^2}{2\,\eta^2}\Big)
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-19de06f3e97e6332)
+
   - Use $\eta > 0$ when differentiability is required; take $\eta\to 0$ limits in the weak/integrated sense.
 
-Plain language: Each emission is a razor-thin causal wake surface; when needed, we thicken it slightly so calculus works smoothly.
+Each emission is represented by a zero-thickness causal wake surface. When differentiability is required, regularization gives that surface a small width so calculus remains well defined.
 
 ---
 
@@ -194,6 +200,7 @@ r(T_r;T_t)=\|\mathbf X_r(T_r)-\mathbf X_t(T_t)\|,
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a8d8303a9aabb2a0)
+
 and $\sigma_{tr}=\operatorname{sign}(q_tq_r)\in\{+1,-1\}$.
 
 Canonical per-hit acceleration:
@@ -205,6 +212,7 @@ W_{r\leftarrow t}^{\mathrm{acc}}(T_r;T_t)\,\hat{\mathbf r}_t(T_r;T_t)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a51dcb9c70d498e2)
+
 where
 $$
 D_t(T_r;T_t)
@@ -217,6 +225,7 @@ c_f-\mathbf V_r(T_r)\cdot\hat{\mathbf r}_t(T_r;T_t)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fbc30fc4f202854b)
+
 and
 $$
 W_{r\leftarrow t}^{\mathrm{acc}}(T_r;T_t)
@@ -225,6 +234,7 @@ W_{r\leftarrow t}^{\mathrm{acc}}(T_r;T_t)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0db3f36e9d32f5a9)
+
 The transmitter-side factor $D_t$ controls root transversality and wake-front compression or dilation from transmitter motion. The receiver-side factor $D_r$ controls how the moving receiver cuts through the same emitted wake sequence. The exact signed root-playback derivative is $dT_t/dT_r=D_r/D_t$. The transmitter-side acceleration weight is $W^{\mathrm{acc}}=c_f/|D_t|$; it is not the magnitude of root playback.
 
 Total acceleration:
@@ -240,13 +250,14 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-738999c80e2c8ef1)
+
 with $\Delta_j$ determined implicitly by $\|\mathbf X(T)-\mathbf X_j(T-\Delta_j)\| = c_f\,\Delta_j$, and per-hit contributions summed over all roots. In the $\eta\to 0$ limit interpret in the weak sense.
 
 Notes:
 - Emission cadence and per-wavefront amplitude are constant at the transmitter; the received acceleration magnitude is modulated by the transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$.
 - No cross products, no right-hand-rule magnetism; every per-hit action is along $\hat{\mathbf{r}}$.
 
-Plain language: For each past emission that can reach the receiver now, accelerate along the line from the transmitter's emission point to the receiver, with inverse-square falloff multiplied by how densely the transmitter laid down the wake surfaces, then add all contributions. Receiver motion changes root playback and future geometry, not the arriving multiplier.
+For each past emission that can reach the receiver now, the equation adds an acceleration along the line from the transmitter's emission point to the receiver. Its magnitude combines inverse-square falloff with the density of the transmitter's emitted wake surfaces. Receiver motion changes root playback and future geometry, not the arriving multiplier.
 
 Receiver velocity decomposition (instantaneous):
 - Decompose the receiver velocity relative to $\hat{\mathbf r}_t$:
@@ -257,6 +268,7 @@ Receiver velocity decomposition (instantaneous):
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-6936fdc66791a896)
+
 - Because $\mathbf A_{r\leftarrow t}\parallel\hat{\mathbf r}_t$, a single hit updates only the radial component:
   $$
   \frac{d}{dT_r}\mathbf V_{r,\perp}=0,
@@ -265,9 +277,10 @@ Receiver velocity decomposition (instantaneous):
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-5e380ac954c81743)
+
 - Local trend: inward motion ($V_{r,\parallel}<0$) tends to strengthen subsequent per-hit contributions via the $1/r^2$ factor; outward motion ($V_{r,\parallel}>0$) tends to weaken them, all else equal.
 
-Plain language: a hit changes only the along-the-line piece of your velocity right then; sideways motion is unchanged at that instant.
+A hit changes only the receiver's velocity component along the transmitter-receiver line at that instant; its transverse velocity is unchanged.
 
 ---
 
@@ -280,6 +293,7 @@ Plain language: a hit changes only the along-the-line piece of your velocity rig
     $$
 
     [View →](../../../../equation-mapping.html#corpus-equation-1b6e8a47dea58f29)
+
 - Potential-gradient bookkeeping relation:
   - Holds pointwise for $\Phi_\eta$; the force symbol is optional assembly-level bookkeeping, and as $\eta \to 0$, interpret it in the weak sense over resolved intervals:
     $$
@@ -287,6 +301,7 @@ Plain language: a hit changes only the along-the-line piece of your velocity rig
     $$
 
     [View →](../../../../equation-mapping.html#corpus-equation-5014f350e3600243)
+
 - Work–energy:
   $$
   \Delta E_k \;=\; \int \mathbf{F}\cdot d\mathbf X \;=\; -\,\Delta U_{\text{pot}}
@@ -294,7 +309,7 @@ Plain language: a hit changes only the along-the-line piece of your velocity rig
 
   [View →](../../../../equation-mapping.html#corpus-equation-12fd04f32ba7f1d5)
 
-Plain language: With slightly thick causal wake surfaces, the optional force-bookkeeping variable is minus the potential gradient; the primitive substrate statement remains the per-hit acceleration law, and the razor-thin limit is interpreted after integrating over small time windows.
+With regularized causal wake surfaces, the optional assembly-level force-bookkeeping variable is minus the potential gradient. The primitive substrate statement remains the per-hit acceleration law, and the zero-thickness limit is interpreted after integration over small time windows.
 
 ---
 
@@ -309,7 +324,7 @@ Plain language: With slightly thick causal wake surfaces, the optional force-boo
 - Emission cadence and per-wavefront amplitude are constant. Receiver-side velocity enters signed root playback through $D_r/D_t$ and instantaneous specific power through $\mathbf A_{r\leftarrow t}\cdot\mathbf V_r=\sigma_{tr}\|\mathbf A_{r\leftarrow t}\|V_{r,\parallel}$; it does not multiply the instantaneous acceleration weight.
 - $r$, $\hat{\mathbf{r}}$ as above; $H$ is the Heaviside step function with $H(0)=0$.
 
-Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic polarity unit; transmitter motion sets the arriving acceleration weight, while receiver motion changes root playback, future geometry, and instantaneous power.
+Numerical work fixes units so the field speed is one and uses $\epsilon$ as the basic polarity unit. Transmitter motion sets the arriving acceleration weight, whereas receiver motion changes root playback, future geometry, and instantaneous power.
 
 ---
 

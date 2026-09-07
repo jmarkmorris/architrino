@@ -17,57 +17,57 @@
       "theta_transfer": {
         "id": "theta_transfer_eq17_signed_frequency_transfer_priority_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md"
       },
       "endpoint_cadence_emitter": {
         "id": "Gamma_N_E_eq17_signed_frequency_transfer_priority_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md"
       },
       "endpoint_cadence_receiver": {
         "id": "Gamma_N_R_eq17_signed_frequency_transfer_priority_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md"
       },
       "source_branch_factor": {
         "id": "B_X_E_eq17_signed_frequency_transfer_priority_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md"
       },
       "launch_geometry_factor": {
         "id": "D_v_eq17_signed_frequency_transfer_priority_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md"
       },
       "path_history_propagation": {
         "id": "Y_X_E_to_R_eq17_signed_frequency_transfer_priority_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md"
       },
       "photon_channel_record": {
         "id": "photon_channel_eq17_signed_frequency_transfer_priority_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md"
       },
       "event_ledger": {
         "id": "event_ledger_eq17_signed_frequency_transfer_priority_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md"
       },
       "energy_exchange_segments": {
         "id": "segments_eq17_signed_frequency_transfer_priority_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md"
       },
       "path_quality_constraints": {
         "id": "path_quality_eq17_signed_frequency_transfer_priority_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md"
       },
       "no_hidden_retune_witness": {
         "id": "no_hidden_retune_eq17_signed_frequency_transfer_priority_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md"
       }
     },
     "factors": {
@@ -102,7 +102,7 @@
       {
         "key": "Gamma_N_E",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md",
         "projectionValues": {
           "endpoint": 1.02,
           "transfer": 1.02
@@ -111,7 +111,7 @@
       {
         "key": "Gamma_N_R",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md",
         "projectionValues": {
           "endpoint": 1,
           "transfer": 1
@@ -120,16 +120,16 @@
       {
         "key": "B_X_E",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md",
         "projectionValues": {
-          "source": "reference/priorities/mapping-equations/equation.md",
+          "source": "reference/priorities/mapping-equations/analysis/equation.md",
           "transfer": 1
         }
       },
       {
         "key": "D_v",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md",
         "projectionValues": {
           "launch": 1,
           "transfer": 1
@@ -138,7 +138,7 @@
       {
         "key": "Y_X_E_to_R",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md",
         "projectionValues": {
           "path": 0.01,
           "transfer": 0.01
@@ -147,7 +147,7 @@
       {
         "key": "chi_gamma",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md",
         "projectionValues": {
           "path": 1,
           "photon": 1
@@ -156,7 +156,7 @@
       {
         "key": "chi_sea",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md",
         "projectionValues": {
           "path": 1,
           "sea": 1
@@ -165,7 +165,7 @@
       {
         "key": "event_id",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md",
         "projectionValues": {
           "path": 1,
           "event": 1
@@ -174,16 +174,16 @@
       {
         "key": "source_branch_id",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md",
         "projectionValues": {
-          "source": "reference/priorities/mapping-equations/equation.md",
+          "source": "reference/priorities/mapping-equations/analysis/equation.md",
           "event": 1
         }
       },
       {
         "key": "receiver_branch_id",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/equation.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/equation.md",
         "projectionValues": {
           "receiver": 1,
           "event": 1

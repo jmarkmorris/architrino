@@ -6,7 +6,7 @@ Closure goal: Integrate the externally supplied neutral-braid review into BP-002
 - Artifact type: research findings, proposed changes, and priority disposition
 - Source provenance: externally supplied review attributed by the operator to Bill Thurston, checked here against the live Braid Program owners and current braid taxonomy
 - Authority: research guidance only; not accepted theory, an adopted configuration-chart specification, a solver result, a retention or stability result, a physical-realization claim, a particle identity, or an independent acceptance record
-- Owning target: `reference/priorities/braid-program/configuration-chart.md` under BP-002
+- Owning target: `reference/priorities/braid-program/configurations/configuration-chart.md` under BP-002
 
 ## research findings
 
@@ -82,7 +82,7 @@ Plainly: the only immediate owner change is a compact obligation and completion 
 
 | Disposition | Priority destination | Item |
 | --- | --- | --- |
-| Promote now | `reference/priorities/braid-program/configuration-chart.md` | Preserve named families as finite ansatz subcharts and add the scope-and-provenance overlay plus the three-pass completion sequence |
+| Promote now | `reference/priorities/braid-program/configurations/configuration-chart.md` | Preserve named families as finite ansatz subcharts and add the scope-and-provenance overlay plus the three-pass completion sequence |
 | Priority-only | BP-002 follow-on work | Inventory admitted subcharts and fill their overlay rows from live family and campaign owners |
 | Priority-only | BP-002 follow-on work | Decide whether the overlay remains Markdown or later receives a machine-readable schema; do not create a new checker until a live consumer needs it |
 | Priority-only | Campaign-specific specifications | Add topology closure and singular-stratum handling only where the campaign can express and evaluate those rows |

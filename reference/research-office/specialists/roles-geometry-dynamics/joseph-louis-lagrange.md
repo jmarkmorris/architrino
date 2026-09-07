@@ -12,7 +12,7 @@
 
 **Current theory alignment**:
 
-- The live owner for this scope is reference/priorities/field-speed-ceiling/mathematics-geometry-dynamical-system.md; reference/priorities/field-speed-ceiling/work-log.md records its current claim status.
+- The live owner for this scope is reference/priorities/field-speed-ceiling/analysis/mathematics-geometry-dynamical-system.md; reference/priorities/field-speed-ceiling/work-log.md records its current claim status.
 - Treat the closed speed ball as given for this review. At $\|\mathbf V\|=c_f$, its kinematics supplies only the admissible half-space $\{\mathbf A:\mathbf V\mathbin{\cdot}\mathbf A\le0\}$. It does not select a unique acceleration or a reaction term.
 - For a complete finite ordinary ledger $\mathbf A_{\mathrm{ord}}$, a candidate Euclidean selection principle is
   $$

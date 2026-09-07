@@ -12,7 +12,7 @@ Plainly: a speed limit says which velocities are allowed. It does not say what h
 
 ## Exact-Mirror Continuation Boundary
 
-The exact-mirror packet now distinguishes the incoming partner cap family, its trace-dependent right-hand presence, and the proposed zero-impulse coincidence convention. The focused [event-family construction](mirror-event-family-completion-and-right-trace.md), [selection analysis](exact-mirror-continuation-selection-analysis.md), and [delayed-ignition theorem](trailing-front-activation-dichotomy.md) own those results.
+The exact-mirror packet now distinguishes the incoming partner cap family, its trace-dependent right-hand presence, and the proposed zero-impulse coincidence convention. The focused [event-family construction](analysis/mirror-event-family-completion-and-right-trace.md), [selection analysis](analysis/exact-mirror-continuation-selection-analysis.md), and [delayed-ignition theorem](analysis/trailing-front-activation-dichotomy.md) own those results.
 
 For every positive waiting time in the declared local class, a braking continuation shares the preceding straight history and then activates a new ordinary partner root. The straight trace is also compatible. This establishes conditional local nonuniqueness, not rebound, retention, stability, conservation, or physical realization.
 
@@ -121,7 +121,7 @@ Plainly: the candidate state fails to start braking, not because the available p
 
 ### Two-Lobe Return Map Result
 
-The [two-lobe return-map audit](two-lobe-return-map-and-autonomous-trigger-audit.md) completes the proposed next calculation. A prescribed onset satisfying $K\ge7u_*/2$ produces a brake--turn--inward-cap--coincidence lobe and resets the exact-mirror event geometry. Repeating the same onset gives a reflected spatial two-cycle. This is not an autonomous full-state breather because the minimal crossing state supplies no onset and literal all-past ownership records have not been placed in a proved shift-periodic state space.
+The [two-lobe return-map audit](analysis/two-lobe-return-map-and-autonomous-trigger-audit.md) completes the proposed next calculation. A prescribed onset satisfying $K\ge7u_*/2$ produces a brake--turn--inward-cap--coincidence lobe and resets the exact-mirror event geometry. Repeating the same onset gives a reflected spatial two-cycle. This is not an autonomous full-state breather because the minimal crossing state supplies no onset and literal all-past ownership records have not been placed in a proved shift-periodic state space.
 
 The most direct event-record trigger, $u_{n+1}=L_{n+1}=G(K,u_n)$ with $L_{n+1}$ the inward-cap duration arriving at the next event, fails in the analytically closed regime $K/u_n\ge6$. There the exact cap map is
 
@@ -163,7 +163,7 @@ $$
 
 Plainly: the leading direction contains a characteristic pile-up, but a trailing receiver meets successive ordinary fronts one at a time.
 
-The complete all-past spatial result and its zero-residual sub-cap limit belong in [uniform-translation-spatial-receiver-measure-limit.md](uniform-translation-spatial-receiver-measure-limit.md). It supplies no point self-action, coincidence measure, or ceiling adoption.
+The complete all-past spatial result and its zero-residual sub-cap limit belong in [uniform-translation-spatial-receiver-measure-limit.md](analysis/uniform-translation-spatial-receiver-measure-limit.md). It supplies no point self-action, coincidence measure, or ceiling adoption.
 
 ## Fixed-Speed Circular Geometry
 
@@ -189,7 +189,7 @@ which constrains phase and root topology but does not select a radius because $R
 
 Plainly: circular geometry can select which delayed partner hits exist, but amplitude balance and an all-label closure condition are still required to select a physical scale.
 
-The complete prescribed circular root census belongs in [circular-binary-all-root-certificate.md](circular-binary-all-root-certificate.md). It establishes neither local continuation nor a retained Braid.
+The complete prescribed circular root census belongs in [circular-binary-all-root-certificate.md](analysis/circular-binary-all-root-certificate.md). It establishes neither local continuation nor a retained Braid.
 
 ## Capped-Braid Closure Conditions
 

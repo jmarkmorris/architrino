@@ -69,9 +69,9 @@ BP-008 is complete at documentary grade:
 - the best comparable axial-transverse coincident-axis three-binary interior configuration row is isolated in its discrete stratum and remains far above the unchanged handoff ceiling;
 - the three unknown rows remain unresolved and null-score;
 - no retained evidence supports threshold relaxation, another blind Monte Carlo draw, or a solver/physical claim; and
-- the next object is the coordinator-reviewed [axial-transverse coincident-axis three-binary interior configuration local landscape design](../axial-transverse-three-binary-interior-score-landscape-predeclaration.md), whose analytical execution remains blocked on an exact score-free manifest and instrument freeze.
+- the next object is the coordinator-reviewed [axial-transverse coincident-axis three-binary interior configuration local landscape design](../campaigns/axial-transverse-three-binary-interior-score-landscape-predeclaration.md), whose analytical execution remains blocked on an exact score-free manifest and instrument freeze.
 
-A separate [rational multi-frequency slice](../axial-transverse-three-binary-interior-rational-multifrequency-chart-slice-predeclaration.md) is declared now but remains downstream of the local geometry audit.
+A separate [rational multi-frequency slice](../campaigns/axial-transverse-three-binary-interior-rational-multifrequency-chart-slice-predeclaration.md) is declared now but remains downstream of the local geometry audit.
 
 Plainly: the next authorized work is to freeze and validate the local landscape manifest without evaluating roots. Search execution is not yet authorized.
 

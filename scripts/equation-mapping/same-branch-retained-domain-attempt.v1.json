@@ -8,7 +8,7 @@
     "kind": "positive_width_domain",
     "status": "attempt",
     "rowId": "domain_support_attempt",
-    "sourcePath": "reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md",
+    "sourcePath": "reference/priorities/mapping-equations/analysis/eq-02-04-translating-binary-shared-record-instantiation.md",
     "commonCarrierId": "C_02-04_bin_u_attempt_0001"
   },
   "rowBindings": {
@@ -17,7 +17,7 @@
       "rowId": "raw_labeled_rows_attempt",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-02-04-translating-binary-shared-record-instantiation.md",
       "commonCarrierId": "C_02-04_bin_u_attempt_0001"
     },
     "six_body_polarity_neutral_inventory_preserved": {
@@ -25,7 +25,7 @@
       "rowId": "six_body_inventory_attempt",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-02-04-translating-binary-shared-record-instantiation.md",
       "commonCarrierId": "C_02-04_bin_u_attempt_0001"
     },
     "role_map_selected_or_quotient_policy_declared": {
@@ -33,7 +33,7 @@
       "rowId": "role_map_policy_attempt",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-02-04-translating-binary-shared-record-instantiation.md",
       "commonCarrierId": "C_02-04_bin_u_attempt_0001"
     },
     "path_history_rows_bound_to_S_eq": {
@@ -41,7 +41,7 @@
       "rowId": "path_history_rows_attempt",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-02-04-translating-binary-shared-record-instantiation.md",
       "commonCarrierId": "C_02-04_bin_u_attempt_0001"
     },
     "causal_root_ledger_rows_bound_to_S_eq": {
@@ -49,7 +49,7 @@
       "rowId": "causal_root_ledger_attempt",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-02-04-translating-binary-shared-record-instantiation.md",
       "commonCarrierId": "C_02-04_bin_u_attempt_0001"
     },
     "wake_tail_rows_bound_to_S_eq": {
@@ -57,7 +57,7 @@
       "rowId": "wake_tail_rows_attempt",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-02-04-translating-binary-shared-record-instantiation.md",
       "commonCarrierId": "C_02-04_bin_u_attempt_0001"
     },
     "energy_action_rows_bound_to_S_eq": {
@@ -65,7 +65,7 @@
       "rowId": "energy_action_rows_attempt",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-02-04-translating-binary-shared-record-instantiation.md",
       "commonCarrierId": "C_02-04_bin_u_attempt_0001"
     },
     "momentum_and_angular_momentum_rows_bound_to_S_eq": {
@@ -73,7 +73,7 @@
       "rowId": "momentum_angular_momentum_rows_attempt",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-02-04-translating-binary-shared-record-instantiation.md",
       "commonCarrierId": "C_02-04_bin_u_attempt_0001"
     },
     "phase_rows_bound_to_S_eq": {
@@ -81,7 +81,7 @@
       "rowId": "phase_rows_attempt",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-02-04-translating-binary-shared-record-instantiation.md",
       "commonCarrierId": "C_02-04_bin_u_attempt_0001"
     },
     "retained_plane_orientation_rows_bound_to_S_eq": {
@@ -89,7 +89,7 @@
       "rowId": "plane_orientation_rows_attempt",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-02-04-translating-binary-shared-record-instantiation.md",
       "commonCarrierId": "C_02-04_bin_u_attempt_0001"
     },
     "response_center_and_group_velocity_rows_bound_to_S_eq": {
@@ -97,7 +97,7 @@
       "rowId": "response_center_group_velocity_rows_attempt",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-02-04-translating-binary-shared-record-instantiation.md",
       "commonCarrierId": "C_02-04_bin_u_attempt_0001"
     },
     "Noether_sea_record_bound_to_S_eq": {
@@ -105,7 +105,7 @@
       "rowId": "noether_sea_record_attempt",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-02-04-translating-binary-shared-record-instantiation.md",
       "commonCarrierId": "C_02-04_bin_u_attempt_0001"
     },
     "binary_to_binary_phase_row_set_identity": {
@@ -113,7 +113,7 @@
       "rowId": "binary_phase_row_set_identity_attempt",
       "retainedRowSetId": "S_eq",
       "domainId": "S_eq_retained_domain_attempt_0001",
-      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-02-04-translating-binary-shared-record-instantiation.md",
       "commonCarrierId": "C_02-04_bin_u_attempt_0001"
     }
   },
@@ -122,21 +122,21 @@
       "status": "attempt",
       "rowId": "split_witness_zero_attempt",
       "residual": 0,
-      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-02-04-translating-binary-shared-record-instantiation.md",
       "commonCarrierId": "C_02-04_bin_u_attempt_0001"
     },
     "retune_witness_zero": {
       "status": "attempt",
       "rowId": "retune_witness_zero_attempt",
       "residual": 0,
-      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-02-04-translating-binary-shared-record-instantiation.md",
       "commonCarrierId": "C_02-04_bin_u_attempt_0001"
     },
     "overlap_preimage_identity": {
       "status": "attempt",
       "rowId": "overlap_preimage_identity_attempt",
       "consistent": false,
-      "sourcePath": "reference/priorities/mapping-equations/eq-02-04-translating-binary-shared-record-instantiation.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-02-04-translating-binary-shared-record-instantiation.md",
       "commonCarrierId": "C_02-04_bin_u_attempt_0001"
     }
   },

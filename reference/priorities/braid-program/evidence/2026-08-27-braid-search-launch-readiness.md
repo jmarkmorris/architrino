@@ -1512,11 +1512,11 @@ Plainly: scoped checks pass, while the repository-wide strict check is not green
 This integration batch covers the following thirty-eight source, control, plan and owner paths, including the separately reviewed next-parent launch plan. It does not edit the frozen mathematical references, configuration JSON, Borg records, brainstorming files, README files or prior evidence outputs. The ignored source/control and readiness-owner archives described above preserve consumed generations and are additional archival copies, not replacement evidence. No commit, push or generated-index refresh is performed.
 
 ```text
-reference/priorities/braid-program/candidate-registry.md
+reference/priorities/braid-program/configurations/candidate-registry.md
 reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md
 reference/priorities/braid-program/priorities.md
 reference/priorities/braid-program/work-queue.md
-reference/priorities/braid-program/braid-candidate-requirement-adjudication.md
+reference/priorities/braid-program/analysis/braid-candidate-requirement-adjudication.md
 reference/priorities/app-solver/work-queue.md
 reference/priorities/app-solver/work-log.md
 scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py
@@ -1560,7 +1560,7 @@ The dated 377-row score-free axial-transverse local-landscape packet measured on
 
 Plainly: the old check showed that old bytes could still be read. It did not reconstruct the current exact configuration or produce a scientific result, so it is not carried forward as current evidence.
 
-The [facts-first local-landscape design](../axial-transverse-three-binary-interior-score-landscape-predeclaration.md) remains a non-executable predeclaration. Any center-only capability pilot must first freeze a new manifest from current `assemblyId + modelRevisionSha256` source pairs, a current protocol, a separately reviewed analytical runner, and an independent dense-root audit. No remaining 376-row landscape, score, or EOM campaign is authorized.
+The [facts-first local-landscape design](../campaigns/axial-transverse-three-binary-interior-score-landscape-predeclaration.md) remains a non-executable predeclaration. Any center-only capability pilot must first freeze a new manifest from current `assemblyId + modelRevisionSha256` source pairs, a current protocol, a separately reviewed analytical runner, and an independent dense-root audit. No remaining 376-row landscape, score, or EOM campaign is authorized.
 
 ## Verification and separate-change boundary
 

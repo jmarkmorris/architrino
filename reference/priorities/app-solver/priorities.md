@@ -86,7 +86,7 @@ The future segment must be determined by the Master EOM. EOM must not accept a p
 
 ## Braid Program Finite-Width Tail Handoff
 
-For Braid Program atlas and campaign claims, [`BP-002` configuration chart completion](../braid-program/configuration-chart.md) owns the scientific and certification question for any omitted finite-width Gaussian history tail and owns the resulting claim scope. The frozen [EOM evolution contract](./contracts/evolution-contract-v1.md) owns computation on the declared retained interval and any implementation of a declared tolerance-bound evaluation; it does not certify an omitted tail or decide the Braid Program's scientific scope.
+For Braid Program atlas and campaign claims, [`BP-002` configuration chart completion](../braid-program/configurations/configuration-chart.md) owns the scientific and certification question for any omitted finite-width Gaussian history tail and owns the resulting claim scope. The frozen [EOM evolution contract](./contracts/evolution-contract-v1.md) owns computation on the declared retained interval and any implementation of a declared tolerance-bound evaluation; it does not certify an omitted tail or decide the Braid Program's scientific scope.
 
 The shared acceptance boundary is exact: either derive an independently checked regulator-, history-, and tolerance-dependent omitted-tail bound, or limit certified claims strictly to the declared retained-interval integral. This handoff creates no new queue, changes no status, and changes no contract field, validation requirement, evidence status, or implementation authority.
 

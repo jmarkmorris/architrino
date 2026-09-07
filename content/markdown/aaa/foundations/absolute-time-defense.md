@@ -122,7 +122,9 @@ Phase extraction is not always available, and saying so precisely is what keeps 
 
 An assembly can serve as a clock only if it carries a persistent phase. For a periodic branch, a **Poincaré return map** records successive crossings of a transverse section and a stable fixed or periodic point supplies repeatable returns. For a quasiperiodic invariant circle, an orientation-preserving circle map may instead carry a well-defined rotation number. These are distinct clock cases and must not be collapsed into one criterion.
 
-For the invariant-circle case, the average advance is measured by the **rotation number**:
+For the invariant-circle case, picture observing a rotating pointer at each return to the section. The circle map records its successive positions, but those positions alone specify neither the complete turns between observations nor the elapsed time. Write the phase in cycles as $\theta\in\mathbb R/\mathbb Z$ and the return map as $P_{\mathcal A}$. A **lift** $\tilde P_{\mathcal A}$ keeps the phase on the real line and satisfies $\tilde P_{\mathcal A}(x+1)=\tilde P_{\mathcal A}(x)+1$. The continuous physical phase selects the lift that counts the actual complete turns. In expressions involving that lift, $\theta$ denotes a chosen real representative of the initial circle phase.
+
+The **rotation number** records the mean advance per return, reduced modulo one cycle:
 
 $$
 \rho_{\mathcal A}
@@ -134,11 +136,28 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-21cce4f28c680633)
 
-apply the return map $n$ times, see how far around the cycle you have gone, divide by $n$. The average fraction of a cycle per return.
+The numerator counts the phase advance over $n$ returns. Dividing by $n$ gives cycles per return; reducing modulo one discards whole turns from that mean. Adding a complete turn between every pair of observations leaves the circle map unchanged, so its rotation number alone does not recover the physical turn count.
 
 The real hypothesis in that case is invertibility. When the return map restricted to an invariant circle is an orientation-preserving homeomorphism, the limit exists and does not depend on where one starts. If the circle map is non-invertible, a rotation set rather than one rotation number may be required. A periodic clock does not need this circle-map construction: its phase is defined by repeatable return along its periodic orbit.
 
-So the clock-validity domain has at least two controlled cases: a stable periodic orbit with repeatable return, or a normally stable invariant circle with a unique rotation number and coherent phase. There the phase can be chosen continuously and the rate is a candidate observable.
+Frequency also needs the time between returns. Let $\delta t_{\mathcal A}(\theta)>0$ be the elapsed effective time $t_{\mathrm{eff}}$ until the next return from phase $\theta$, and write $\theta_k=P_{\mathcal A}^{\,k}(\theta)$ for the successive circle phases. The mean frequency is the total physical phase advance divided by the total elapsed effective time:
+
+$$
+\overline\nu_{\mathcal A}
+=\lim_{n\to\infty}
+\frac{\tilde P_{\mathcal A}^{\,n}(\theta)-\theta}
+{\sum_{k=0}^{n-1}\delta t_{\mathcal A}(\theta_k)},
+\qquad
+\overline\Omega_{\mathcal A}=2\pi\overline\nu_{\mathcal A}.
+$$
+
+[View →](../../../../equation-mapping.html#corpus-equation-bec62a39745a7416)
+
+Here $\overline\nu_{\mathcal A}$ is measured in cycles per effective-time unit and $\overline\Omega_{\mathcal A}$ is the mean angular phase rate. If the real mean advance per return converges and the mean return duration converges to a finite positive value, this ratio exists and equals the quotient of those two limits. A frequency shared across the branch also requires the quotient to be independent of the initial phase. Doubling all return durations leaves the circle map unchanged and halves the frequency. Rates per substrate time $T$ require the corresponding time conversion; they cannot be identified with rates per $t_{\mathrm{eff}}$ by notation alone.
+
+The delayed trajectory supplies the physical turn counts and return times when these can be extracted consistently. A unique mean frequency alone does not establish small timing fluctuations or a positive instantaneous phase rate. Those remain part of phase coherence. For a periodic orbit with one counted phase cycle per period, the frequency is the reciprocal of that period in the declared time parameter.
+
+So the clock-validity domain has at least two controlled cases: a stable periodic orbit with repeatable return, or a normally stable invariant circle with coherent phase, physical turn counts, and controlled return times. There the phase can be chosen continuously and its rate is a candidate observable.
 
 If a moving or dressed branch loses every admissible phase structure — through destruction of a periodic orbit, breakup of an invariant circle, loss of circle-map invertibility, or collapse of transverse stability — then **proper time is undefined for that branch.** A transition from periodic to quasiperiodic motion is not automatically a failure; it is a failure only when no unique, stable phase functional survives.
 
@@ -162,7 +181,7 @@ The positive transverse-margin condition is **open**: a stable phase-locked cycl
 
 The certificate establishes transverse persistence on the retained branch. It does **not** prove contraction of the complete history flow, and the word *attracting* applies only after a reduced subsystem includes the wake, medium, and memory-boundary fluxes crossing its boundary and proves contraction with those included.
 
-The same condition has a memory-boundary form. A valid clock must replay its retained history window over one return with nothing leaking:
+Clock repeatability requires a reproducible phase evolution with the relevant delayed history and exchanges accounted for. An additional condition enters when a branch is represented by an [effective Hamiltonian](../dynamics/effective-lagrangian.md): its evolution must preserve the symplectic structure, the oriented-area structure on pairs of state variations. For a delayed branch, the proposed structure includes a memory correction. Its candidate boundary balance over one return is
 
 $$
 \oint_{\mathrm{return}}
@@ -173,7 +192,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-13b3921c2e458f6a)
 
-the accumulated flux around one cycle is negligible rather than systematically nonzero. A branch with uncompensated memory-boundary leakage may still oscillate, but it is not an autonomous time standard because a secular rate drift remains. An externally maintained clock requires the driving and exported fluxes to be included in the same repeatability account.
+Here $h$ is the retained history duration, $[-h,0]$ is the interval of history ages, and $\omega_{\mathrm{mem},\partial[-h,0]}$ denotes the proposed boundary contribution to the transported memory-corrected symplectic structure. Its kernel, boundary identity, evaluation over a return, and norm and scale for the error $\epsilon_\omega$ require an explicit construction. These remain open conditions for this Hamiltonian representation; the displayed balance is not an established equivalent of the clock certificate.
+
+A defect in this proposed symplectic balance does not by itself establish clock-rate drift. The phase calculation must determine whether omitted history or physical exchanges change the rate, introduce timing errors, or destroy the repeatable phase. Failure of a reduced Hamiltonian description alone does not disqualify a branch as a clock, and a repeatable phase alone does not establish Hamiltonian validity. An externally maintained clock requires the driving and exported fluxes to be included in the same repeatability account.
 
 ### The medium state
 
@@ -333,7 +354,7 @@ A(\mathcal{N}_{\mathrm{sea}})
 \frac{
 B_{ij}(\mathcal{N}_{\mathrm{sea}})w^iw^j
 }{
-c_0^2
+A^2(\mathcal{N}_{\mathrm{sea}})c_0^2
 }
 }
 \left[
@@ -353,7 +374,9 @@ $$
 
 The square root is the required relativistic target ansatz for the declared branch. It is derived only when the assembly and medium calculation produces this form and closes the residuals. The bracket collects three residuals — orientation leakage, composition dependence, and preferred-frame leakage — which must be bounded by experiment rather than absorbed into the constitutive function.
 
-The orientation row is not an independent nuisance. It is the quadrupole of the clock's framed trajectory bundle:
+For $A>0$, the clock path lies in the timelike domain $B_{ij}w^iw^j<A^2c_0^2$, where the metric handoff below assigns positive squared elapsed clock time. Dividing that quadratic form by $dt_{\mathrm{eff}}^2$ gives $(d\tau/dt_{\mathrm{eff}})^2=A^2-B_{ij}w^iw^j/c_0^2$ before the declared residual corrections. Factoring $A^2$ out of its positive square root produces the velocity denominator $A^2c_0^2$ in the clock target. This algebraic agreement is required for a common clock and metric description; its derivation from assembly dynamics remains the recovery obligation.
+
+The clock's orientation response must be calculated from its delayed dynamics and medium coupling. A candidate statistic of the framed trajectory bundle is the framing quadrupole:
 
 $$
 Q_{\mathcal A}^{ij}
@@ -367,7 +390,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-985e981bcb83865e)
 
-averaging the framing directions and removing the isotropic part. Its vanishing removes the quadrupolar preferred-axis moment in this statistic, but does not exclude higher multipoles or other anisotropy measures. The lowest retained anisotropic response is then
+where the framing directions are unit vectors and the average is normalized so that $\langle1\rangle_{\mathcal A}^{\mathrm{frame}}=1$. A branch calculation must specify the direction extraction, retained history interval, and weighting prescription before comparing clocks or response channels. Subtracting the isotropic part makes this statistic trace-free. Its vanishing removes its quadrupolar preferred-axis moment, but does not exclude higher directional moments, phase relations, or other relevant history information. A conditional ansatz for the clock's leading directional response is
 
 $$
 \Delta_{\mathcal A}^{\mathrm{ori}}(\hat{\mathbf n})
@@ -385,9 +408,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b77dc16ee840f76f)
 
-where $O_{\ell\ge4}$ denotes spherical-harmonic multipoles of degree four and above, not fourth order in a small angle. This even-multipole expansion assumes the observable is reciprocal under $\hat{\mathbf n}\mapsto-\hat{\mathbf n}$; without that symmetry, odd multipoles must be retained too. The same tensor is a candidate common source for matter-response and clock anisotropy. Establishing that economy requires deriving both projections from the same record; it cannot be assumed from notation alone.
+where $\hat{\mathbf n}$ now denotes the probe direction and $\lambda_{\mathcal A}$ is the proposed scalar response gain. The term $O_{\ell\ge4}$ denotes spherical-harmonic multipoles of degree four and above, not fourth order in a small angle. This even-multipole expansion assumes the observable is reciprocal under $\hat{\mathbf n}\mapsto-\hat{\mathbf n}$; without that symmetry, odd multipoles must be retained too. The ansatz additionally requires the clock's quadrupolar response to be proportional to this particular framing statistic. Matching tensor type does not establish that proportionality.
 
-For braid candidates, [Noether Braid Configuration Space](../noether-braid/noether-braid-configuration-space.md#frame-orthogonality-and-framing-anisotropy) supplies the geometric order parameter. The target is sharper than near-orthogonality: driving the plane parameter to unity suppresses the non-orthogonal part of the framing quadrupole, while making the whole tensor small also needs near-degenerate spectral weights, shielding, or averaging in the same extraction. If those close, the orientation row, matter anisotropy, mass anisotropy, and Lorentz period anisotropy become four projections of one isotropy condition.
+The response calculation must derive the dependence on $Q_{\mathcal A}$ and the gain $\lambda_{\mathcal A}$ from the counted phase rate. A leading-order approximation needs a declared expansion parameter and bounds on omitted contributions across its branch regime and probe orientations. The harmonic-degree label alone supplies no such bound, and small $Q_{\mathcal A}$ controls neither higher moments nor an unbounded response gain. The same physical history must account for the matter and clock channels, but the sufficiency of this statistic for both remains unestablished. Information discarded by the framing average must be retained in the response description whenever its effect cannot be bounded within the declared approximation.
+
+For braid candidates, [Noether Braid Configuration Space](../noether-braid/noether-braid-configuration-space.md#frame-orthogonality-and-framing-anisotropy) supplies the geometric order parameter. The target is sharper than near-orthogonality: driving the plane parameter to unity suppresses the non-orthogonal part of the framing quadrupole, while making the whole tensor small also needs near-degenerate spectral weights, shielding, or averaging in the same extraction. These geometric conditions constrain the statistic. Their implications for clock orientation, matter anisotropy, mass anisotropy, and Lorentz period anisotropy require the respective response derivations and bounds on omitted information; they do not follow from small framing quadrupole alone.
 
 ### The composition channel is where this is most exposed
 
@@ -579,7 +604,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d47797a6f7809924)
 
-These have physical content rather than being technical hygiene. $A>0$ says the clock phase still advances monotonically, so the branch supplies a usable clock. Positive-definiteness of $B_{ij}$ says every spatial direction has positive measured length. A single light cone additionally requires a nondispersive, nonbirefringent signal law governed by this same tensor.
+These have physical content rather than being technical hygiene. $A>0$ supplies a positive rest-clock factor. A moving clock must additionally lie in the timelike domain stated above and retain a valid, advancing phase. Positive-definiteness of $B_{ij}$ says every spatial direction has positive measured length. A single light cone additionally requires a nondispersive, nonbirefringent signal law governed by this same tensor.
 
 The handoff fails when a certified cycle is lost, when a branch transition makes the ledger discontinuous, when a Jacobian floor collapses, or when a strong-field channel becomes dispersive or **birefringent** — splitting a signal by polarization so no single response tensor describes it. There the metric description is suspended and analysis returns to finite branch data, as in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md#causal-root-ledger-progression-as-a-lorentz-prediction) and [Singularity Resolution](../spacetime/singularity-resolution.md).
 

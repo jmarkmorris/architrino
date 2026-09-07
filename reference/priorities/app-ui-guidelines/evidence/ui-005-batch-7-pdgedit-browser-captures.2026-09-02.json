@@ -11,7 +11,7 @@
     "stylesheet": "src/runtime/top-dynamic-control-bar.css",
     "page_composition": "src/apps/pdgedit/PdgeditAppRuntime.js",
     "page": "pdgedit.html",
-    "design": "reference/priorities/app-ui-guidelines/top-dynamic-control-bar-runtime-design-v1.md"
+    "design": "reference/priorities/app-ui-guidelines/contracts/top-dynamic-control-bar-runtime-design-v1.md"
   },
   "storage": {
     "tracked": false,

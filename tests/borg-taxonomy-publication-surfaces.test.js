@@ -45,8 +45,8 @@ test("the generated Borg record directory exposes only current catalog records",
 
 test("current Borg documentation uses exact identity routes and no retired record query", () => {
   const files = [
-    "reference/priorities/app-borg/requirements-and-design.md",
-    "reference/priorities/app-borg/assembly-viewer-requirements.md",
+    "reference/priorities/app-borg/contracts/requirements-and-design.md",
+    "reference/priorities/app-borg/contracts/assembly-viewer-requirements.md",
     "reference/priorities/braid-program/campaigns/instrument-gate.md",
     "src/apps/borg/library/README.md",
   ];

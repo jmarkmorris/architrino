@@ -46,30 +46,30 @@ MAX_SOURCE_BYTES = 1024**3
 MAX_LINE = 131072
 IDS = ('0+', '0-', '1+', '1-', '2+', '2-', '3+', '3-')
 NAMED = {
- 'declaration': (PREFIX+'2026-08-27-f6c-parent-emission-refinement-reference.md','652d77241f9b5c082e7d15e2bb62328f346760548f9f13e4ffe7562c4cad0733'),
+ 'declaration': (PREFIX+'2026-08-27-f6c-parent-emission-refinement-reference.md','c9f0924cd24745bd10e2b51ee5b60a09c0c0576b5dec3bc14f647c9c7ee6fc47'),
  'producer': ('scripts/eom/prepare-f6c-parent-emission-refinement.py',None),
  'producerControls': ('tests/test_f6c_parent_emission_refinement_preparation.py',None),
- 'proposalReference': ('scripts/eom/f6c_parent_emission_refinement.py','1517575f3df783af36d2bf2b758d19427e8ec85247efec892783716c263b7c27'),
+ 'proposalReference': ('scripts/eom/f6c_parent_emission_refinement.py','d2653fd0dc74c7515ee7eccdd59c0f487903a481c6294cabce43e58b633c1406'),
  'proposalReferenceControls': ('tests/test_f6c_parent_emission_refinement.py','f1650b5e73a06ecd7ed05bff10ba97949b42aa5330e84fb3514c2f868eff0fc2'),
  'verifier': (SELF,None), 'verifierControls': (CONTROLS,None),
- 'comparisonReference': ('scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py','ffe91ad7cbfe4e41bf92203fe73b4195e0ad1437176dace9d12751e68aa2cbec'),
- 'comparisonReferenceControls': ('tests/test_f6c_parent_emission_refinement_conformance.py','18c21d6e84d0d6ae7e3b4ea35861a75b38d362d8aad1e0cc14715cea167a5a04'),
+ 'comparisonReference': ('scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py','9bca879b94386d033597bb9d1e3a4ceeb9943925615c916299feb91e482391ad'),
+ 'comparisonReferenceControls': ('tests/test_f6c_parent_emission_refinement_conformance.py','2eafcd7551a6d64c5f6c7bc6923507da8d27084af74bc5742583d63eb708aebb'),
 }
 DEPENDENCIES = {
- 'transport': ('scripts/eom/verify-f6c-refined-acceleration.py','3f49831a2e63d2526125c1585c1250330079fa423986ec1b36901bb3cecde6ae'),
+ 'transport': ('scripts/eom/verify-f6c-refined-acceleration.py','545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421'),
  'transportControls': ('tests/test_f6c_refined_acceleration.py','4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a'),
- 'scientificDecoder': ('scripts/eom/oracle/f6c_refined_acceleration_conformance.py','63db48f604d0b1abdf61f0efcb3894feac9d30a25af26a4d96f01bda6522e2a2'),
- 'scientificDecoderControls': ('tests/test_f6c_refined_acceleration_conformance.py','3fb6eabd03a56b982f2601f11b535c60208f03df519e41ea29d4ba018a0e531e'),
- 'productionHelper': ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386'),
- 'productionHelperControls': ('tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','9abc7c3a80ad670e7bc7ad9f94a95f1fcd8924de425991032d6d26bba3372427'),
+ 'scientificDecoder': ('scripts/eom/oracle/f6c_refined_acceleration_conformance.py','7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e'),
+ 'scientificDecoderControls': ('tests/test_f6c_refined_acceleration_conformance.py','147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921'),
+ 'productionHelper': ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5'),
+ 'productionHelperControls': ('tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','3bee7599b03f2500ede6eeeea31c46e1aac82410f456e967102c13e820b93221'),
  'historyReference': ('scripts/eom/oracle/certified_history.py','ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'),
  'decimalReference': ('scripts/eom/oracle/decimal_interval.py','fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'),
  'decimalControls': ('tests/test_eom_decimal_interval.py','22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44'),
  'rootLibrary': ('scripts/eom/oracle/continuous_reception_roots_cached.py','daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf'),
  'rootControls': ('tests/test_eom_continuous_reception_roots_cached.py','a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb'),
- 'independentRootReference': ('scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py','19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132'),
- 'independentRootControls': ('tests/test_f6c_cached_continuous_reception_root_cover.py','2fd2080b3b4facdc80b85cdc65610c2bfeefdd8eab5f7234e207d3d4908bc117'),
- 'cacheEquivalence': (PREFIX+'2026-08-27-f6c-call-local-state-cache-equivalence.md','798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3'),
+ 'independentRootReference': ('scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py','3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'),
+ 'independentRootControls': ('tests/test_f6c_cached_continuous_reception_root_cover.py','09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3'),
+ 'cacheEquivalence': (PREFIX+'2026-08-27-f6c-call-local-state-cache-equivalence.md','a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d'),
 }
 FULL_BASE = '.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/'
 FULL = {
@@ -86,7 +86,7 @@ ORIGINAL = {
  'export': ('.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json','f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1'),
  'reconstruction': ('.local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json','7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43'),
  'guards': ('.local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json','86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880'),
- 'fullEntry': ('scripts/eom/run-f6c-cached-root-cover-full.mjs','1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b'),
+ 'fullEntry': ('scripts/eom/run-f6c-cached-root-cover-full.mjs','9e71ac129b9f62a5c6302ddadf2fdfcb8525b0342bb81a9d7c827cf9553ee792'),
  **FULL,
 }
 PLAN_KEYS = ('schema','scope','parentIndex',*NAMED,'dependencies','originalBindings','acceptanceOwner','priorCoverClosure','runtimeBindings','operationalBindings','historicalDocumentRoutes','limits')
@@ -154,8 +154,8 @@ def validate_plan(w, plan, own_sha, root):
 
 def historical_routes(rows,root,w):
     require(type(rows) is list and len(rows)<=2,'bounded consumed archive routes')
-    allowed={'c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853':16985,
-             '46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef':13021}
+    allowed={'7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc':16985,
+             '2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40':13021}
     result={}
     for row in rows:
         keys(row,('original','physical'));old=w.normalized(row['original'],root);physical=w.normalized(row['physical'],root)

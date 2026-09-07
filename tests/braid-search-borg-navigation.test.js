@@ -27,7 +27,7 @@ import {
 
 const ENTRY = BORG_ASSEMBLY_RECORD_CATALOG.entries[0];
 const BORG_REGISTRY = JSON.parse(readFileSync(new URL(
-  "../reference/priorities/app-borg/assembly-registry.v1.json",
+  "../reference/priorities/app-borg/contracts/assembly-registry.v1.json",
   import.meta.url,
 ), "utf8"));
 const REGISTRY_ENTRY = BORG_REGISTRY.entries.find((entry) =>

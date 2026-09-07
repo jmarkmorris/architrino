@@ -65,7 +65,7 @@
       "boundary": "The no-free-color blocker requires a finite residual tail but is not that proof."
     },
     "qcdBenchmarkConstraint": {
-      "candidatePath": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "candidatePath": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
       "usableFor": [
         "static confinement and residual-potential recovery pressure",
         "same sigma_eff domain requirement"

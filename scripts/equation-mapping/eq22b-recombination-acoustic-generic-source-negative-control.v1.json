@@ -41,7 +41,7 @@
         "sourceKind": "generic_corpus_anchor",
         "sourceFamily": "EQ-22B carrier shell",
         "sourceRole": "carrier",
-        "sourcePath": "reference/priorities/mapping-equations/eq-22b-recombination-acoustic-transfer.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-22b-recombination-acoustic-transfer.md"
       },
       "theta_src": {
         "status": "accepted",
@@ -50,7 +50,7 @@
         "sourceKind": "generic_corpus_anchor",
         "sourceFamily": "shared observation source window",
         "sourceRole": "support",
-        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "theta_therm_prov": {
         "status": "accepted",
@@ -59,7 +59,7 @@
         "sourceKind": "generic_corpus_anchor",
         "sourceFamily": "thermal/provenance ledger",
         "sourceRole": "support",
-        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "theta_read": {
         "status": "accepted",
@@ -68,7 +68,7 @@
         "sourceKind": "generic_corpus_anchor",
         "sourceFamily": "effective readout clock/projection",
         "sourceRole": "support",
-        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "theta_bb": {
         "status": "accepted",
@@ -86,7 +86,7 @@
         "sourceKind": "source_shell",
         "sourceFamily": "photon Gate A/B/C and action packet",
         "sourceRole": "support",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "neutrino_channel": {
         "status": "accepted",
@@ -95,7 +95,7 @@
         "sourceKind": "generic_corpus_anchor",
         "sourceFamily": "BBN/CMB neutrino handoff",
         "sourceRole": "support",
-        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "noether_sea_state": {
         "status": "accepted",
@@ -113,7 +113,7 @@
         "sourceKind": "priority_packet",
         "sourceFamily": "Saha/Peebles recombination kinetics",
         "sourceRole": "computed_row",
-        "sourcePath": "reference/priorities/mapping-equations/eq-22b-recombination-acoustic-transfer.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-22b-recombination-acoustic-transfer.md"
       },
       "thomson_visibility_row": {
         "status": "accepted",
@@ -122,7 +122,7 @@
         "sourceKind": "priority_packet",
         "sourceFamily": "Thomson visibility row",
         "sourceRole": "computed_row",
-        "sourcePath": "reference/priorities/mapping-equations/eq-22b-recombination-acoustic-transfer.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-22b-recombination-acoustic-transfer.md"
       },
       "sound_horizon_row": {
         "status": "accepted",
@@ -158,7 +158,7 @@
         "sourceKind": "priority_packet",
         "sourceFamily": "finite-window event ledger",
         "sourceRole": "provenance",
-        "sourcePath": "reference/priorities/mapping-equations/eq-22b-recombination-acoustic-transfer.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-22b-recombination-acoustic-transfer.md"
       },
       "source_provenance": {
         "status": "accepted",
@@ -167,7 +167,7 @@
         "sourceKind": "priority_packet",
         "sourceFamily": "source/provenance residual",
         "sourceRole": "provenance",
-        "sourcePath": "reference/priorities/mapping-equations/eq-22b-recombination-acoustic-transfer.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-22b-recombination-acoustic-transfer.md"
       },
       "no_hidden_retune_witness": {
         "status": "accepted",
@@ -176,7 +176,7 @@
         "sourceKind": "priority_packet",
         "sourceFamily": "shared-record retune witness",
         "sourceRole": "retune_witness",
-        "sourcePath": "reference/priorities/mapping-equations/eq-22b-recombination-acoustic-transfer.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-22b-recombination-acoustic-transfer.md"
       }
     },
     "recombinationSamples": [

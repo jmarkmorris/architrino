@@ -8,28 +8,28 @@ import { fileURLToPath } from "node:url";
 
 export const ENTRY = "scripts/eom/run-f6c-root-cover-pilot.mjs";
 export const LAUNCHER = "scripts/eom/launch-f6c-root-cover-pilot.mjs";
-export const OUTER = "scripts/eom/launch-abc-enclosed-root-pilot.mjs";
+export const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs";
 export const CONSUMER = "scripts/eom/prepare-f6c-continuous-reception-root-cover.py";
 export const COMPARISON = "scripts/eom/verify-f6c-continuous-reception-root-cover.py";
 export const RESOURCE_PLAN = "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md";
 export const LANE = ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827";
 export const LIMIT_MS = 1800000, LOG_LIMIT = 16*1024**2, FILE_LIMIT = 64*1024**2;
 export const PINS = Object.freeze({
-  [OUTER]: "5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa",
-  [CONSUMER]: "4ce6436c09c445030192aeb5b894239b7fa04cee578e6067f1088151695a5e9e",
-  [COMPARISON]: "2d25103e0fb6ab584485b7954465afe0fa5de556b3a7e111c56d20156b7011fd",
-  [RESOURCE_PLAN]: "36b72681c116cedf1803cc89ead8b48a7d9604bae7f9bffd7b0f95b33c3bb9b4",
+  [OUTER]: "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+  [CONSUMER]: "6229e8227d26abdb1acc415ae10f0456d325ced5649ad68eb261790c585ae0a3",
+  [COMPARISON]: "1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36",
+  [RESOURCE_PLAN]: "1a6327933b0060905aec97022e87c243b54f353af8c7aec83712967b285b010d",
   "tests/test_f6c_continuous_reception_root_cover_preparation.py": "68a940c40b2e3b463555b95858031f96796e2ac94963a86b3a9ae6fd74dc3742",
   "tests/test_f6c_continuous_reception_root_cover.py": "5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5",
   "scripts/eom/oracle/continuous_reception_roots.py": "f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c",
   "scripts/eom/oracle/certified_history.py": "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7",
   "scripts/eom/oracle/decimal_interval.py": "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md": "765e6663cdd60323f84b9e1af52ba1399345322eb747727f2a0898b4dd0fd079",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md": "f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md": "6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936",
-  "tests/test_eom_continuous_reception_roots.py": "473cba3b039027879eeea6987515261faaadcf0833f3e4d2864fc610f5b7a144",
-  "scripts/eom/verify-f6c-accepted-frame-reconstruction.py": "80a96ebd0b306148b3eb96cb12e797c5cf80942e52ea457a8c6a72d58e8618a0",
-  "scripts/eom/verify-f6c-retained-history-guards.py": "efaed33a6d6e55be5788ffb7e4e6f596fbc0381466a8308154dbd550743896b9",
+  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md": "3b20e5d7bce4b57dfd41c0d1efcc34f9242dcd41a02b35676f45ba0984499578",
+  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md": "db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc",
+  "reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md": "710279f5c348a81fd36d58c6ca704730b3fa70da729ca30b9c92ae4e1cc6734b",
+  "tests/test_eom_continuous_reception_roots.py": "81de0ebc74a6e2e2a6c66e96cd3a7856806b7e41f775e3e2f184caf5bd1158ac",
+  "scripts/eom/verify-f6c-accepted-frame-reconstruction.py": "0c5ae3b5e7161cbed60de71670d17d5437a41b7ce4109843dbf3cdd20b9e3965",
+  "scripts/eom/verify-f6c-retained-history-guards.py": "b8480f3652fd7254bdfe998bbe0f6d092500c6451d692c1ab225d3405295897d",
   ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json": "f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1",
   ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json": "7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43",
   ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json": "86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880",

@@ -63,7 +63,7 @@ const DEFAULT_DATABASE_VERIFICATION_PATH = path.join(
 );
 const DEFAULT_BORG_REGISTRY_PATH = path.join(
   REPOSITORY_ROOT,
-  "reference/priorities/app-borg/assembly-registry.v1.json",
+  "reference/priorities/app-borg/contracts/assembly-registry.v1.json",
 );
 const DEFAULT_OUTPUT_PATH = path.join(
   DEFAULT_OUTPUT_DIRECTORY,

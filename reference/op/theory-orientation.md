@@ -24,7 +24,7 @@ The current frontier is core geometrical theory closure: master-equation closure
 
 1. Start with current state when priority work is involved:
    - [aaa-work-threads/priorities.md](../priorities/aaa-work-threads/priorities.md)
-   - [closure-join-matrix.md](../priorities/aaa-work-threads/closure-join-matrix.md)
+   - [closure-join-matrix.md](../priorities/aaa-work-threads/analysis/closure-join-matrix.md)
    - the owning workstream packet.
 2. For bedrock ontology:
    - [Ontology](../../content/markdown/aaa/foundations/ontology.md)

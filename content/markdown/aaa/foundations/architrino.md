@@ -85,9 +85,9 @@ The strength of the acceleration depends on $D_t$ only. The receiver-side factor
 
 ### The condition that picks out a causal root
 
-The requirement "the wake sphere has just now reached the receiver" can be written as an equation that must equal zero. In length units it is $g_{ij}=r_{ij}-c_f(T_r-T_t)$, written this way in the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) and as $F_{ij}$ in these foundations pages. It carries a floor, $\lvert\partial_{T_t}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$, whose purpose is explained below. When a dimensionless version is wanted, divide through by the wake speed: $\tilde F_{ij}=F_{ij}/c_f$.
+The requirement "the wake sphere has just now reached the receiver" can be written as an equation that must equal zero. In length units it is $g_{ij}=r_{ij}-c_f(T_r-T_t)$, written this way in the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) and as $F_{ij}$ in these foundations pages. It carries a floor, $\lvert\partial_{T_t}g_{ij}\rvert \ge \kappa_{\mathrm{hit}} > 0$, whose purpose is explained below. For a time-valued version, divide through by the wake speed: $\tilde F_{ij}=F_{ij}/c_f$.
 
-The rate at which that condition changes as you vary the emission time is $J_{ij}^{t}=\partial_{T_t} \tilde F_{ij}$, called the transmitter-side **transversality Jacobian** — "transversality" meaning the condition crosses zero cleanly rather than grazing it, and "Jacobian" being the standard name for a derivative that measures how a change of variable stretches or compresses. Multiplying by the wake speed recovers the transmitter-side factor exactly: $c_fJ_{ij}^{t}=\partial_{T_t}g_{ij}=D_{t,ij}$.
+Its dimensionless rate of change with emission time is $J_{ij}^{t}=\partial_{T_t} \tilde F_{ij}$, called the transmitter-side **transversality Jacobian** — "transversality" meaning the condition crosses zero cleanly rather than grazing it, and "Jacobian" being the standard name for a derivative that measures how a change of variable stretches or compresses. Multiplying by the wake speed recovers the transmitter-side factor exactly: $c_fJ_{ij}^{t}=\partial_{T_t}g_{ij}=D_{t,ij}$.
 
 That identity is why $D_t$ appears in the acceleration weight $W_{ij}^{\mathrm{acc}}=c_f/|D_{t,ij}|$. The weight is not an extra physical ingredient. It is the transmitter-side Jacobian induced by uniform emission in $T$. The rate at which the selected emission time advances with reception time is the separate ratio $D_r/D_t$, so arrival playback cannot be attributed to $D_t$ alone.
 
@@ -99,7 +99,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-756246cb5822ff4b)
 
-On that set — the **Whitney-fold set**, named for the mathematician who classified how smooth families of solutions can fold over on themselves — the condition and its first emission-time derivative vanish together. A generic fold has one double root at contact; crossing it creates or destroys a pair of simple roots. The denominator $|D_t|$ heads toward zero and the simple formula above stops being trustworthy. Approaching that set moves the calculation into a fold-resolution treatment, and using this denominator at all requires first checking the transversality floor $\kappa_{\mathrm{hit}} > 0$ stated above.
+On this **singular causal-root set**, the condition and its first emission-time derivative vanish together. Its nondegenerate **Whitney-fold stratum** consists of ordinary double roots: the second emission-time derivative is nonzero, and the chosen control crosses the singular set transversely. Crossing such a fold creates or destroys a pair of simple roots. Higher degeneracies need not have this behavior and require their own classification. The denominator $|D_t|$ tends to zero at a singular root, so the simple-root acceleration formula no longer applies there. A fold-resolution treatment is appropriate only on the fold stratum; other singularities require the corresponding analysis in the [Master Equation](../dynamics/master-equation.md#caustic-transit-and-finite-impulse). Using the simple-root denominator requires the transversality floor $\kappa_{\mathrm{hit}} > 0$ stated above.
 
 ### The coupling constant
 
@@ -169,7 +169,7 @@ Take the numbers seriously for a moment. If $|e|=6\epsilon$, then an electron's 
 
 But **the six is put in by hand.** It is an input parameter and an unresolved explanatory target, not a derived result. Stating that plainly matters, because a convention that produces tidy integers can easily look like an explanation when it is really a placeholder.
 
-What the theory is reaching for is a *protected six-unit polarity inventory*: six sign-carrying architrinos, or six retained polarity slots, whose signed total supplies observer-level charge. That parent target does not yet decide whether the six units sit inside the Noether braid — the theory's candidate structure for a stable charged particle — or couple to it externally, or live in its retained path history, or arrive through some other branch.
+What the theory is reaching for is a *protected six-unit polarity inventory*: six sign-carrying architrinos, or six retained polarity slots, whose signed total supplies observer-level charge. That parent target does not yet decide whether the six units sit inside the Noether braid — the candidate neutral scaffold used in charged-particle assemblies — or couple to it externally, or live in its retained path history, or arrive through some other branch.
 
 One candidate realization is the axial-layer model, in which the six-unit inventory appears as a closed six-site record: three pairs of sites in a frame defined by the assembly's own axis, each site holding one architrino of sign $\pm\epsilon$. The pairs carry persistent labels $a\in\{1,2,3\}$, which are identity tags only and imply no ordering by radius or anything else. The protected-site version of this target asks for a finite symmetry action $G_{\mathrm{ax}}$ on the braid framing whose orbit has exactly six members:
 
@@ -189,7 +189,7 @@ An individual architrino never receives an electric or magnetic field. There is 
 
 There is nevertheless a clean bridge to electric behavior, and it is worth following because it shows where the electric sign comes from without importing anything.
 
-Fix one transmitter's history. Now evaluate the acceleration it produces on two hypothetical receivers that differ *only* in polarity — same position, same velocity, opposite sign. Split the result into the part they share and the part that flips:
+Fix an external transmitter's history, with the transmitter distinct from either hypothetical receiver. Evaluate its direct acceleration on two hypothetical receivers at the same reception time and position, with the same velocity and equal polarity magnitudes but opposite signs. Use the same complete admitted simple-root set for both evaluations. Split the result into the part they share and the part that flips:
 
 $$
 \mathbf A_{\mathrm{even}}^{\mathrm{src}}
@@ -237,7 +237,11 @@ The labels *even* and *odd* refer to reversing the receiver's polarity, and noth
 
 Be careful about what the matched pair is. Any real architrino has one fixed sign. The two hypothetical receivers are a measuring instrument made of arithmetic, not two objects sitting in the same place.
 
-Now the payoff. If the shared part vanishes in some regime, the two polarities receive equal and opposite accelerations from the same source. That polarity-odd parity is a necessary sign property of an electric-like response, but it is not a complete derivation of an electric field, its Lorentz transformation, or its coupling to assemblies. The decomposition exposes the candidate sign structure without importing a primitive $q\mathbf E/m$ law.
+For this fixed external history, the shared part vanishes exactly under the canonical law: $\mathbf A_-^{\mathrm{src}}=-\mathbf A_+^{\mathrm{src}}$ and $\mathbf A_{\mathrm{even}}^{\mathrm{src}}=\mathbf0$. The reason is algebraic. The polarity factor is $\operatorname{sign}(q_iq_j)|q_iq_j|=q_iq_j$, while the causal roots, delayed separations, directions, and transmitter weights are unchanged by reversing only $q_i$. Each admitted contribution reverses sign, and so does their sum. The result also holds for several fixed external transmitters when the sum is finite or converges under a fixed summation prescription.
+
+For example, use $c_f=1$, $\kappa=1$, an external transmitter of polarity $+1$ stationary at the origin, and matched receivers of polarity $\pm1$ at $(2,0,0)$ at reception time 3. The unique emission root is time 1, the delayed distance is 2, and the transmitter weight is 1. The two direct accelerations are $(1/4,0,0)$ and $(-1/4,0,0)$. This prescribed-history example checks the sign and inverse-square factors; it is not a coupled solution.
+
+Self-response has a different comparison rule. Reversing an architrino's polarity also reverses its own transmitter polarity, so a self-hit carries $q_i^2$ and is unchanged at fixed history. Recomputing a coupled evolution can change the histories and root sets themselves. The exact external identity therefore does not establish vanishing total even response, assembly response, or electromagnetic recovery. It supplies a necessary sign property of an electric-like response without importing a primitive $q\mathbf E/m$ law.
 
 Magnetic behavior does not appear this way. A single radial hit contains no primitive magnetic vector at all. Magnetic readouts must be recovered from organized structure: many sources, many roots, moving or circulating assembly geometry, whatever the Noether sea and boundary contribute, and finally an observer-level projection. Whether the sea is essential to that recovery, merely modifies it, or stays within its balanced reference tolerance is an open constitutive question rather than a definition.
 
@@ -343,7 +347,7 @@ Naming the architrino a primitive does not make any of that go away. This chapte
 
 A point-transceiver branch counts as an ordinary, admissible branch only if its regularized self-energy and self-acceleration stay finite as the regulator is removed, written $\eta\to0$, with the active causal roots still protected by a transversality floor such as $\kappa_{\mathrm{hit}} > 0$.
 
-Two singular situations get confused with each other, so keep them apart. The **coincidence stratum** $\{r_{ij}=0\}$ is two architrinos at zero separation — a problem about the kernel blowing up at a point in space, needing spatial or weak-limit regularization. The **caustic stratum** $\{\partial_{T_t} F_{ij}=0\}$ is the fold set met earlier, where causal roots merge — a problem about the root structure, needing a fold-resolution chart and the active-root floor. Different problems, different remedies.
+Two singular situations get confused with each other, so keep them apart. The **coincidence stratum** $\{r_{ij}=0\}$ is two architrinos at zero separation — a problem about the kernel blowing up at a point in space, needing spatial or weak-limit regularization. The **caustic stratum** $\{\partial_{T_t} F_{ij}=0\}$ is understood on the causal-root set $F_{ij}=0$: it contains singular roots, including ordinary folds and higher degeneracies. This is a problem about root structure, requiring the appropriate singularity chart; the active-root floor applies on the neighboring simple-root branches. Different problems, different remedies.
 
 If either finite self-response or simple-root transversality fails, the branch is not an ordinary point-transceiver case. It must be rejected, moved to a caustic or regularized chart, or quarantined as a pathology channel in the dynamics chapter.
 
@@ -408,7 +412,7 @@ $$
 
 exists almost everywhere and is piecewise continuous in well-behaved regimes.
 
-Now a consequence that is easy to skip past and shouldn't be. Because architrinos are true points with no volume, **two of them may occupy the same coordinate at the same absolute time.** Nothing forbids it. There is no exclusion, because there is nothing to exclude — a point has no extent to overlap. The impossibility of two solid objects sharing a location is a property of assemblies, not of the primitives they are made from. What happens dynamically at such a coincidence, including how the kernel is regularized there, belongs to the dynamics layer.
+An architrino has no postulated hard core or primitive excluded volume. Equal coordinates are therefore not excluded by size alone. Point support does not, however, establish that a lawful history can reach and continue through coincidence: the domain and singular behavior of the acceleration law must decide that question. Coordinate coincidence remains a boundary, regularized, or quarantined condition until an admissible continuation is established in the [Master Equation](../dynamics/master-equation.md#auxiliary-dual-mollified-regulator-for-proof-and-computation). Assembly-level exclusion likewise requires an account of organized dynamics rather than a primitive geometric radius.
 
 The complete path history matters to an architrino's identity record. This is stronger than an observer's reconstruction of where something went: the path history is substrate bookkeeping that the delayed dynamics genuinely requires, because a receiver may be responding to any past moment of a transmitter's motion. The law converting path history into acceleration belongs to the [Master Equation](../dynamics/master-equation.md).
 

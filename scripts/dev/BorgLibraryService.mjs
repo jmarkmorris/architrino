@@ -15,7 +15,7 @@ const send = (res, status, data) => { res.writeHead(status, { "Content-Type": "a
 // Indexed, read-only BORG-014 provider. The committed registry is the migration
 // authority; content-addressed source and record objects remain in their owning
 // files and are loaded only on snapshot construction or exact preview demand.
-export function createBorgLibraryService({ repoRoot, registryFile = "reference/priorities/app-borg/assembly-registry.v1.json", classificationFile = "reference/priorities/app-borg/library-classifications.v4.json", scientificProjectionFile = "reference/priorities/braid-program/braid-candidate-adjudication-projection.v1.json", platonicAssignmentsFile = "reference/priorities/braid-program/borg-platonic-relationship-assignments.v1.json" } = {}) {
+export function createBorgLibraryService({ repoRoot, registryFile = "reference/priorities/app-borg/contracts/assembly-registry.v1.json", classificationFile = "reference/priorities/app-borg/contracts/library-classifications.v4.json", scientificProjectionFile = "reference/priorities/braid-program/contracts/braid-candidate-adjudication-projection.v1.json", platonicAssignmentsFile = "reference/priorities/braid-program/configurations/borg-platonic-relationship-assignments.v1.json" } = {}) {
   let snapshot = null;
   let pending = Promise.resolve();
 

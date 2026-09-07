@@ -20,7 +20,7 @@ import {
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const readJson = (relativePath) => JSON.parse(fs.readFileSync(path.join(ROOT, relativePath), "utf8"));
-const REGISTRY = readJson("reference/priorities/app-aaa-core/aaa-core-codec-registry.v0.json");
+const REGISTRY = readJson("reference/priorities/app-aaa-core/contracts/aaa-core-codec-registry.v0.json");
 const POSITIVE = readJson(REGISTRY.conformance.positiveFixtures);
 const NEGATIVE = readJson(REGISTRY.conformance.negativeFixtures);
 const PATH_POSITIVE = readJson(POSITIVE.pathInterchangeFixtureSuite);

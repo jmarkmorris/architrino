@@ -11,7 +11,7 @@
     "stylesheet": "src/runtime/top-dynamic-control-bar.css",
     "lattice_composition": "src/apps/lattice-lab/LatticeLabRuntime.js",
     "topo_composition": "src/apps/topo/TopoInteractionContractRuntime.js",
-    "design": "reference/priorities/app-ui-guidelines/top-dynamic-control-bar-runtime-design-v1.md"
+    "design": "reference/priorities/app-ui-guidelines/contracts/top-dynamic-control-bar-runtime-design-v1.md"
   },
   "storage": {
     "tracked": false,

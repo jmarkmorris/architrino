@@ -6,7 +6,7 @@ Use this prompt when Op pastes a review and asks whether the comments are right,
 
 ## Startup
 
-Read `AGENTS.md` first, then the generated startup router and the selected live workflow owner. Inspect the working set using the mechanisms permitted for the current agent; the repository's Claude git prohibition remains in force. Read the following task-specific sources:
+Read `AGENTS.md` first, then the generated startup router and the selected live workflow owner. Inspect the working set using the mechanisms permitted for the current agent. Read the following task-specific sources:
 
 1. `AGENTS.md`
 2. `reference/op/theory-orientation.md`
