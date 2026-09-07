@@ -158,6 +158,14 @@ const CHECKS = [
     args: ["--test", "tests/pr-validation-receipt.test.js"],
   },
   {
+    name: "Test required, diagnostic, skipped and unexecuted gate reporting",
+    args: ["--test", "tests/content-integrity-reporting.test.js"],
+  },
+  {
+    name: "Check supported launch profiles' current repository bindings",
+    args: ["--test", "tests/current-launch-bindings.test.js"],
+  },
+  {
     name: "Test reader-facing publication boundary",
     args: ["--test", "tests/reader-facing-publication-boundary.test.js"],
   },
@@ -180,11 +188,6 @@ function formatDuration(ms) {
   return `${minutes}m ${remainingSeconds.toFixed(1)}s`;
 }
 
-const suiteStartedAt = performance.now();
-const failures = [];
-const reportingFailures = [];
-const skipped = [];
-
 // Environment for child checks. Git exports GIT_DIR, GIT_WORK_TREE, and
 // GIT_INDEX_FILE to hooks; a child that runs `git init` or `git config` in a
 // temporary directory would otherwise act on this repository.
@@ -195,66 +198,87 @@ function childEnvironment(env = process.env) {
   return child;
 }
 
-for (const [index, check] of CHECKS.entries()) {
-  const label = `${index + 1}/${CHECKS.length} ${check.name}`;
-  console.log(`[content-integrity] ${label}`);
-  if (check.skipWhen?.()) {
-    console.log(`[content-integrity] skipped: ${check.name} (${check.skipReason})`);
-    skipped.push({ label, reason: check.skipReason });
-    continue;
-  }
-  const checkStartedAt = performance.now();
-  const result = spawnSync(process.execPath, check.args, {
-    cwd: ROOT_DIR,
-    env: childEnvironment(),
-    stdio: "inherit",
-  });
-  const duration = formatDuration(performance.now() - checkStartedAt);
-  if (result.error) {
-    console.error(`[content-integrity] failed to start ${check.name} after ${duration}: ${result.error.message}`);
-    process.exit(1);
-  }
-  if (result.status !== 0) {
-    const detail = result.signal ? `signal ${result.signal}` : `exit ${result.status ?? 1}`;
-    const record = { label, detail, duration };
-    if (check.reporting) {
-      console.error(`[content-integrity] reported (does not affect exit status): ${check.name} (${detail}, ${duration})`);
-      reportingFailures.push(record);
+export function runChecks({ checks = CHECKS, execute = spawnSync, log = console.log, error = console.error } = {}) {
+  const suiteStartedAt = performance.now();
+  const failures = [];
+  const reportingFailures = [];
+  const skipped = [];
+  const passed = [];
+  const unexecuted = [];
+  let exitCode = 0;
+  for (const [index, check] of checks.entries()) {
+    const label = `${index + 1}/${checks.length} ${check.name}`;
+    log(`[content-integrity] ${label}`);
+    if (check.skipWhen?.()) {
+      log(`[content-integrity] skipped: ${check.name} (${check.skipReason})`);
+      skipped.push({ label, reason: check.skipReason });
       continue;
     }
-    console.error(`[content-integrity] failed: ${check.name} (${detail}, ${duration})`);
-    failures.push(record);
-    if (check.halts) {
-      console.error(`[content-integrity] halting: later checks consume this step's output`);
-      process.exit(result.status ?? 1);
+    const checkStartedAt = performance.now();
+    const result = execute(process.execPath, check.args, {
+      cwd: ROOT_DIR,
+      env: childEnvironment(),
+      stdio: "inherit",
+    });
+    const duration = formatDuration(performance.now() - checkStartedAt);
+    if (result.error) {
+      error(`[content-integrity] failed to start ${check.name} after ${duration}: ${result.error.message}`);
+      failures.push({ label, detail: result.error.message, duration });
+      unexecuted.push(...checks.slice(index + 1).map(({ name }) => name));
+      exitCode = 1;
+      break;
     }
-    continue;
+    if (result.status !== 0) {
+      const detail = result.signal ? `signal ${result.signal}` : `exit ${result.status ?? 1}`;
+      const record = { label, detail, duration };
+      if (check.reporting) {
+        error(`[content-integrity] reported (does not affect exit status): ${check.name} (${detail}, ${duration})`);
+        reportingFailures.push(record);
+        continue;
+      }
+      error(`[content-integrity] failed: ${check.name} (${detail}, ${duration})`);
+      failures.push(record);
+      exitCode = 1;
+      if (check.halts) {
+        error(`[content-integrity] halting: later checks consume this step's output`);
+        unexecuted.push(...checks.slice(index + 1).map(({ name }) => name));
+        exitCode = result.status ?? 1;
+        break;
+      }
+      continue;
+    }
+    passed.push({ label, reporting: Boolean(check.reporting), duration });
+    log(`[content-integrity] passed: ${check.name} (${duration})`);
   }
-  console.log(`[content-integrity] passed: ${check.name} (${duration})`);
+
+  const total = formatDuration(performance.now() - suiteStartedAt);
+
+  if (skipped.length > 0) {
+    log(`[content-integrity] ${skipped.length} check(s) skipped on this host:`);
+    for (const entry of skipped) {
+      log(`[content-integrity]   - ${entry.label} (${entry.reason})`);
+    }
+  }
+
+  if (reportingFailures.length > 0) {
+    error(`[content-integrity] ${reportingFailures.length} reporting-only check(s) failed (not gating):`);
+    for (const failure of reportingFailures) {
+      error(`[content-integrity]   - ${failure.label} (${failure.detail}, ${failure.duration})`);
+    }
+  }
+
+  if (failures.length > 0) {
+    error(`[content-integrity] ${failures.length} required check(s) failed (${total}), listed in run order without causal attribution:`);
+    for (const failure of failures) {
+      error(`[content-integrity]   - ${failure.label} (${failure.detail}, ${failure.duration})`);
+    }
+  }
+  if (unexecuted.length) error(`[content-integrity] not executed after prerequisite/startup failure: ${unexecuted.join('; ')}`);
+  const status = exitCode ? "required checks failed" : "required checks passed";
+  log(`[content-integrity] ${status}; ${passed.filter(row => !row.reporting).length} required passed, ${failures.length} required failed, ${reportingFailures.length} reporting-only failed, ${skipped.length} skipped, ${unexecuted.length} not reached (${total})`);
+  return { exitCode, passed, failures, reportingFailures, skipped, unexecuted };
 }
 
-const total = formatDuration(performance.now() - suiteStartedAt);
-
-if (skipped.length > 0) {
-  console.log(`[content-integrity] ${skipped.length} check(s) skipped on this host:`);
-  for (const entry of skipped) {
-    console.log(`[content-integrity]   - ${entry.label} (${entry.reason})`);
-  }
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  process.exitCode = runChecks().exitCode;
 }
-
-if (reportingFailures.length > 0) {
-  console.error(`[content-integrity] ${reportingFailures.length} reporting-only check(s) failed (not gating):`);
-  for (const failure of reportingFailures) {
-    console.error(`[content-integrity]   - ${failure.label} (${failure.detail}, ${failure.duration})`);
-  }
-}
-
-if (failures.length > 0) {
-  console.error(`[content-integrity] ${failures.length} of ${CHECKS.length} checks failed (${total}), in run order; the first is the likeliest root:`);
-  for (const failure of failures) {
-    console.error(`[content-integrity]   - ${failure.label} (${failure.detail}, ${failure.duration})`);
-  }
-  process.exit(1);
-}
-
-console.log(`[content-integrity] all checks passed (${total})`);

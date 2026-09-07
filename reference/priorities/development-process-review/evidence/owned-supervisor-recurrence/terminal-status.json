@@ -1,0 +1,60 @@
+{
+  "classification": "terminal",
+  "lease": {
+    "schema": "architrino.owned-compute-lease.v1",
+    "runId": "4cb4733d-4dd6-4ac9-bdfb-7ad1c0889951",
+    "status": "completed",
+    "requestedAtUtc": "2026-09-07T17:16:26.223Z",
+    "startedAtUtc": "2026-09-07T17:16:26.297Z",
+    "deadlineAtUtc": "2026-09-07T17:18:26.224Z",
+    "heartbeatAtUtc": "2026-09-07T17:16:31.300Z",
+    "heartbeatMs": 5000,
+    "terminationGraceMs": 5000,
+    "owner": {
+      "task": "01a07cbc-b8ac-7ae3-8f49-1635827ab34b",
+      "threadId": null
+    },
+    "ownerHistory": [],
+    "command": "node",
+    "args": [
+      "--test",
+      "tests/owned-compute-supervisor.test.js",
+      "tests/owned-compute-stop-hook.test.js",
+      "tests/owned-compute-launch-policy.test.js",
+      "tests/f6c-parent-refinement-batch-preparation.test.js"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/4cb4733d-4dd6-4ac9-bdfb-7ad1c0889951.stdout.log",
+    "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/4cb4733d-4dd6-4ac9-bdfb-7ad1c0889951.stderr.log",
+    "stdoutBytes": 2861,
+    "stderrBytes": 0,
+    "lastOutputAtUtc": "2026-09-07T17:16:32.155Z",
+    "sidecarIdentity": {
+      "pid": 46457,
+      "ppid": 46456,
+      "pgid": 46457,
+      "started": "Mon Sep 7 13:16:26 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node /Users/markmorris/vibe/architrino/scripts/dev/owned-compute-supervisor.mjs __sidecar 4cb4733d-4dd6-4ac9-bdfb-7ad1c0889951"
+    },
+    "targetIdentity": {
+      "pid": 46460,
+      "ppid": 46457,
+      "pgid": 46460,
+      "started": "Mon Sep 7 13:16:26 2026",
+      "command": "node --test tests/owned-compute-supervisor.test.js tests/owned-compute-stop-hook.test.js tests/owned-compute-launch-policy.test.js tests/f6c-parent-refinement-batch-preparation.test.js"
+    },
+    "claimBoundary": "Operational process ownership only; scientific validity and acceptance remain with the target's declared instruments and owners.",
+    "elapsedWallSeconds": 5.872,
+    "finishedAtUtc": "2026-09-07T17:16:32.158Z",
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "control": {
+      "host": "127.0.0.1",
+      "port": 61309,
+      "authentication": "token-redacted"
+    }
+  }
+}

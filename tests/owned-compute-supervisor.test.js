@@ -18,11 +18,24 @@ assert.deepEqual(fs.readFileSync(SUPERVISOR), fs.readFileSync(path.join(SOURCE_R
 const STATE_ROOT = path.join(ROOT, ".local-data/owned-compute");
 const LEASE_DIR = path.join(ROOT, ".local-data/owned-compute/leases");
 const LOG_DIR = path.join(ROOT, ".local-data/owned-compute/logs");
-after(() => {
+after(async () => {
   if (fs.existsSync(LEASE_DIR)) {
     for (const name of fs.readdirSync(LEASE_DIR)) {
       const lease = JSON.parse(fs.readFileSync(path.join(LEASE_DIR, name)));
       assert.equal(lease.processGroupClosed, true, `Retain unresolved test ownership evidence at ${ROOT}`);
+      for (const pid of [lease.targetIdentity?.pgid && -lease.targetIdentity.pgid, lease.sidecarIdentity?.pid].filter(Boolean)) {
+        const until = Date.now() + 2500;
+        let absent = false;
+        while (Date.now() < until) {
+          try { process.kill(pid, 0); } catch (error) {
+            if (error.code !== "ESRCH") throw error;
+            absent = true;
+            break;
+          }
+          await new Promise((resolve) => setTimeout(resolve, 25));
+        }
+        assert.equal(absent, true, `OS probe found surviving identity/group ${pid}; retain evidence at ${ROOT}`);
+      }
     }
   }
   fs.rmSync(ROOT, { recursive: true, force: true });
@@ -251,6 +264,99 @@ test("a lost supervisor leaves an exactly identifiable group that can be reconci
     assert.equal(stopped.lease.processGroupClosed, true);
   } finally {
     if (runId) await invoke(["stop", "--run-id", runId, "--reason", "test_finalizer"]).catch(() => {});
+  }
+});
+
+test("a missing leader cannot clear a surviving group or sidecar", { skip: process.platform === "win32" }, async () => {
+  const running = await invoke(["start", "--owner-task", "closure-evidence-control", "--deadline-seconds", "20", "--termination-grace-seconds", "0.5", "--", process.execPath, "-e", "setInterval(() => {}, 1000)"]);
+  const fixture = createPruneFixture({ status: "running", processGroupClosed: false, extra: {
+    targetIdentity: { ...running.targetIdentity, pid: 2147483647 },
+    sidecarIdentity: { ...running.sidecarIdentity, pid: 2147483647 },
+  } });
+  try {
+    const group = await invoke(["status", "--run-id", fixture.runId]);
+    assert.equal(group.classification, "identity_mismatch_do_not_signal");
+    assert.equal((await invoke(["reconcile", "--repair-closed"])).find((row) => row.lease.runId === fixture.runId).classification, "identity_mismatch_do_not_signal");
+    const synthetic = JSON.parse(fs.readFileSync(fixture.filePath));
+    fs.writeFileSync(fixture.filePath, JSON.stringify({ ...synthetic, targetIdentity: { ...synthetic.targetIdentity, pgid: 2147483647 }, sidecarIdentity: running.sidecarIdentity }));
+    assert.equal((await invoke(["status", "--run-id", fixture.runId])).classification, "identity_mismatch_do_not_signal");
+    const blocked = await invoke(["closeout", "--owner-task", synthetic.owner.task], { expectFailure: true });
+    assert.match(blocked.stderr, /still owns 1 live or identity-uncertain compute run/u);
+    fs.writeFileSync(fixture.filePath, JSON.stringify({ ...synthetic, targetIdentity: { ...synthetic.targetIdentity, pgid: 2147483647 } }));
+    assert.equal((await invoke(["status", "--run-id", fixture.runId])).classification, "stale_closed");
+    fs.writeFileSync(fixture.filePath, JSON.stringify({ ...synthetic, targetIdentity: null, sidecarIdentity: null }));
+    assert.equal((await invoke(["status", "--run-id", fixture.runId])).classification, "identity_mismatch_do_not_signal");
+  } finally {
+    removeFixture(fixture);
+    await invoke(["stop", "--run-id", running.runId]);
+  }
+});
+
+test("foreground wait reports lost supervision before the target deadline", { skip: process.platform === "win32" }, async () => {
+  const owner = `foreground-supervisor-loss-${process.pid}`;
+  const resultPromise = invoke(["run", "--owner-task", owner, "--deadline-seconds", "30", "--termination-grace-seconds", "0.5", "--", process.execPath, "-e", "setInterval(() => {}, 1000)"], { expectFailure: true, timeout: 10000 });
+  let running;
+  try {
+    const until = Date.now() + 5000;
+    while (!running && Date.now() < until) {
+      for (const name of fs.readdirSync(LEASE_DIR)) {
+        const lease = JSON.parse(fs.readFileSync(path.join(LEASE_DIR, name)));
+        if (lease.owner.task === owner && lease.status === "running") running = lease;
+      }
+      if (!running) await new Promise((resolve) => setTimeout(resolve, 50));
+    }
+    assert.ok(running, "foreground target did not record ownership");
+    process.kill(running.sidecarIdentity.pid, "SIGKILL");
+    const result = await resultPromise;
+    assert.equal(result.error.killed, false, "test timeout must not be the mechanism that ends the waiter");
+    assert.match(result.stderr, /lost its supervisor before recording completion/u);
+    const stopped = await invoke(["stop", "--run-id", running.runId]);
+    assert.equal(stopped.lease.status, "reconciled_stopped");
+    assert.equal(stopped.lease.processGroupClosed, true);
+  } finally {
+    if (running) await invoke(["stop", "--run-id", running.runId]).catch(() => {});
+    await resultPromise;
+  }
+});
+
+test("stop reports observed closure when its supervisor dies after acknowledging stop", { skip: process.platform === "win32" }, async () => {
+  const running = await invoke(["start", "--owner-task", "stop-supervisor-loss", "--deadline-seconds", "20", "--termination-grace-seconds", "2", "--", process.execPath, "-e", "process.on('SIGTERM', () => setTimeout(() => { process.kill(process.ppid, 'SIGKILL'); process.exit(0); }, 100)); setTimeout(() => process.exit(2), 8000)"]);
+  try {
+    const stopped = await invoke(["stop", "--run-id", running.runId], { timeout: 5000 });
+    assert.equal(stopped.classification, "stale_closed");
+    assert.equal(stopped.lease.status, "stopping", "observed closure must not invent a completion result");
+    assert.notEqual(stopped.lease.processGroupClosed, true);
+    const rows = await invoke(["reconcile", "--repair-closed"]);
+    assert.equal(rows.find((row) => row.lease.runId === running.runId).lease.status, "reconciled_closed");
+  } finally {
+    await invoke(["stop", "--run-id", running.runId]).catch(() => {});
+    await invoke(["reconcile", "--repair-closed"]);
+  }
+});
+
+test("startup log failure records closed failure before any target can spawn", async () => {
+  const fixture = createPruneFixture({ status: "launching", processGroupClosed: false });
+  const marker = path.join(ROOT, "forbidden-startup-target");
+  const planFile = path.join(STATE_ROOT, "plans", `${fixture.runId}.json`);
+  fs.mkdirSync(path.dirname(planFile), { recursive: true });
+  fs.writeFileSync(fixture.stdoutPath, "preserve-existing-log");
+  fs.writeFileSync(planFile, JSON.stringify({
+    schema: "architrino.owned-compute-lease.v1", runId: fixture.runId,
+    stdoutPath: fixture.stdoutPath, stderrPath: fixture.stderrPath,
+    command: process.execPath, args: ["-e", `require('node:fs').writeFileSync(${JSON.stringify(marker)}, 'started')`],
+    cwd: ROOT, owner: { task: "startup-failure-control" }, ownerHistory: [],
+  }));
+  try {
+    await invoke(["__sidecar", fixture.runId], { expectFailure: true, timeout: 5000 });
+    const lease = JSON.parse(fs.readFileSync(fixture.filePath));
+    assert.equal(lease.status, "failed");
+    assert.equal(lease.processGroupClosed, true);
+    assert.equal(lease.targetIdentity, null);
+    assert.match(lease.error, /before target spawn:.*EEXIST/u);
+    assert.equal(fs.existsSync(marker), false);
+    assert.equal(fs.readFileSync(fixture.stdoutPath, "utf8"), "preserve-existing-log");
+  } finally {
+    removeFixture(fixture, [planFile, marker]);
   }
 });
 

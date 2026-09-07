@@ -18,12 +18,12 @@ function fixture(t){
   const output=path.join(root,E.LANE,'prescribed-response-synthetic');mkdirSync(output+'-outer');
   const python=path.resolve(process.env.AAA_VENV??path.join(ROOT,'../.venv'),'bin/python');
   const pythonRealPath=realpathSync(python),node=realpathSync(process.execPath);
-  const originalBindings=E.ORIGINALS.map(([role,p,sha256])=>({role,path:p?path.join(root,p):pythonRealPath,sha256:sha256??H,bytes:100}));
+  const originalBindings=E.ORIGINALS.map(([role,p,sha256])=>({role,path:p?path.join(root,p):pythonRealPath,originalPath:p?path.join(root,p):pythonRealPath,sha256:sha256??H,bytes:100}));
   const runtimeBindings=[{path:pythonRealPath,sha256:H,bytes:100},{path:path.join(path.dirname(path.dirname(python)),'pyvenv.cfg'),sha256:H,bytes:100}];
   const operationalBindings=[E.ENTRY,E.ENTRY_TESTS,E.LAUNCH_TESTS,E.PROCESS_TESTS,E.LAUNCHER,E.OUTER,E.PUBLISHER,'tests/test_prescribed_acceleration_response_publication.py']
     .map(p=>({path:path.join(root,p),sha256:p===E.ENTRY?EH:p===E.LAUNCHER?LH:E.PINS[p]??H,bytes:100}))
     .concat([node,'/bin/ps','/usr/bin/memory_pressure'].map(p=>({path:p,sha256:H,bytes:100})));
-  const plan={schema:'braid-program/prescribed-response-pilot-launch.v1',scope:'f5-release',originalBindings,operationalBindings,
+  const plan={schema:'braid-program/prescribed-response-pilot-launch.v2',scope:'f5-release',originalBindings,operationalBindings,
     runtimeBindings,python,pythonRealPath,node,limits:{...E.LIMITS},
     platformTrust:'host OS and macOS shared-cache libraries; explicitly listed file-backed runtime dependencies only'};
   return {root,output,plan,entrySha256:EH,launcherSha256:LH,deadlineNanoseconds:String(process.hrtime.bigint()+60000000000n)};
@@ -47,6 +47,21 @@ test('fixed original role order, paths, source hashes and complete census',t=>{
   for(const mutate of [p=>p.originalBindings.pop(),p=>p.originalBindings.reverse(),p=>p.originalBindings[0].sha256=H,
     p=>p.originalBindings[0].path='/other/packet.json',p=>p.originalBindings[13].path='/other/python',
     p=>p.originalBindings[0].bytes=64*1024**2+1]){
+    const p=clone(f.plan);mutate(p);assert.throws(()=>E.validatePlan(p,f.root,LH,EH));
+  }
+});
+test('explicit preserved data routes retain original identities and are bound at their physical paths',t=>{
+  const f=fixture(t);
+  for(const b of f.plan.originalBindings)if(['approvedSource','scientificFixture','predeclaration'].includes(b.role))b.path=path.join(f.root,'reference','archive',b.role+'.source');
+  E.validatePlan(f.plan,f.root,LH,EH);
+  const physical=E.planBindings(f.plan,f.root);
+  for(const b of f.plan.originalBindings.slice(6,9))assert.ok(physical.some(x=>x.path===b.path&&x.sha256===b.sha256));
+  const spec=E.stageSpec({...f,stage:'compute',budget:'10'});
+  assert.deepEqual(JSON.parse(spec.args[spec.args.indexOf('--original-bindings')+1]),f.plan.originalBindings);
+  for(const mutate of [p=>p.schema='braid-program/prescribed-response-pilot-launch.v1',
+    p=>p.originalBindings[11].path=path.join(f.root,'reference','consumer.source'),
+    p=>p.originalBindings[6].originalPath='/wrong/original',p=>p.originalBindings[6].path='/outside/data.source',
+    p=>p.originalBindings[6].path=path.join(f.root,'reference','data.py')]){
     const p=clone(f.plan);mutate(p);assert.throws(()=>E.validatePlan(p,f.root,LH,EH));
   }
 });

@@ -315,7 +315,18 @@ async function classifyLease(lease) {
     return { classification: "authenticated_running", lease: response.lease };
   } catch (controlError) {
     const actual = lease.targetIdentity ? await processIdentity(lease.targetIdentity.pid) : null;
-    if (!actual) return { classification: "stale_closed", lease, detail: controlError.message };
+    if (!actual) {
+      // A vanished leader does not establish that its descendants are gone.
+      // Missing launch identities likewise cannot establish process closure.
+      const pgid = lease.targetIdentity?.pgid;
+      const sidecarPid = lease.sidecarIdentity?.pid;
+      if (!Number.isSafeInteger(pgid) || pgid <= 1 ||
+          !Number.isSafeInteger(sidecarPid) || sidecarPid <= 1 ||
+          groupExists(pgid) || await processIdentity(sidecarPid)) {
+        return { classification: "identity_mismatch_do_not_signal", lease, detail: "control unavailable; process closure is not established" };
+      }
+      return { classification: "stale_closed", lease, detail: controlError.message };
+    }
     if (sameIdentity(actual, lease.targetIdentity)) {
       return { classification: "unmonitored_owned_group", lease, detail: controlError.message };
     }
@@ -392,10 +403,22 @@ async function launch(argv, waitForCompletion) {
   };
   process.once("SIGINT", interrupt);
   process.once("SIGTERM", interrupt);
+  let nextSupervisorCheck = 0;
   try {
     return await waitUntil(async () => {
       const lease = await readJson(leasePath(runId));
-      return TERMINAL_STATUSES.has(lease.status) ? lease : null;
+      if (TERMINAL_STATUSES.has(lease.status)) return lease;
+      if (Date.now() >= nextSupervisorCheck) {
+        nextSupervisorCheck = Date.now() + 1000;
+        const actual = lease.sidecarIdentity ? await processIdentity(lease.sidecarIdentity.pid) : null;
+        if (!sameIdentity(actual, lease.sidecarIdentity)) {
+          // Re-read after observing exit: final persistence can race this poll.
+          const latest = await readJson(leasePath(runId));
+          if (TERMINAL_STATUSES.has(latest.status)) return latest;
+          throw new Error(`owned compute ${runId} lost its supervisor before recording completion; inspect status and reconcile ownership`);
+        }
+      }
+      return null;
     }, specification.deadlineSeconds * 1000 + specification.terminationGraceSeconds * 1000 + 15000, `owned compute ${runId} to finish`);
   } finally {
     process.off("SIGINT", interrupt);
@@ -437,11 +460,12 @@ async function stopRun(runId, reason = "operator_requested") {
   } else {
     throw new Error(`refusing to signal ${runId}: process identity does not match its lease`);
   }
-  const terminal = await waitUntil(async () => {
+  const stopped = await waitUntil(async () => {
     const current = await readJson(filePath);
-    return TERMINAL_STATUSES.has(current.status) ? current : null;
+    const state = await classifyLease(current);
+    return state.classification === "terminal" || state.classification === "stale_closed" ? state : null;
   }, (lease.terminationGraceMs ?? 5000) + 10000, `${runId} to stop`);
-  return { classification: "terminal", lease: terminal };
+  return stopped;
 }
 
 async function handoffRun(runId, toTask, toThread) {
@@ -672,7 +696,7 @@ async function runSidecar(runId) {
     await rm(planPath(runId), { force: true });
   } catch (error) {
     const current = existsSync(filePath) ? JSON.parse(readFileSync(filePath, "utf8")) : { schema: SCHEMA, runId };
-    await writeJsonAtomic(filePath, { ...current, status: "failed", error: error.message, finishedAtUtc: new Date().toISOString() });
+    await writeJsonAtomic(filePath, { ...current, status: "failed", error: error.message, finishedAtUtc: new Date().toISOString(), targetIdentity: null, processGroupClosed: true });
     process.exitCode = 1;
     return;
   }
@@ -731,12 +755,32 @@ async function runSidecar(runId) {
       }
     });
   });
-  await new Promise((resolve, reject) => {
-    server.once("error", reject);
-    server.listen(0, "127.0.0.1", resolve);
-  });
+  let sidecarIdentity;
+  try {
+    // No target may start until its logs, control endpoint and observer work.
+    const opened = stream => new Promise((resolve, reject) => {
+      const cleanup = () => { stream.off("open", ready); stream.off("error", failed); stream.off("close", closed); };
+      const ready = () => { cleanup(); resolve(); };
+      const failed = error => { cleanup(); reject(error); };
+      const closed = () => failed(new Error("log closed before startup completed"));
+      stream.once("open", ready); stream.once("error", failed); stream.once("close", closed);
+    });
+    await Promise.all([opened(stdout), opened(stderr)]);
+    await new Promise((resolve, reject) => {
+      server.once("error", reject);
+      server.listen(0, "127.0.0.1", resolve);
+    });
+    sidecarIdentity = await waitForProcessIdentity(process.pid);
+  } catch (error) {
+    stdout.destroy(); stderr.destroy();
+    if (server.listening) await new Promise(resolve => server.close(resolve));
+    const current = await readJson(filePath);
+    await writeJsonAtomic(filePath, { ...current, status: "failed", error: `before target spawn: ${error.message}`,
+      finishedAtUtc: new Date().toISOString(), targetIdentity: null, processGroupClosed: true });
+    process.exitCode = 1;
+    return;
+  }
   const port = server.address().port;
-  const sidecarIdentity = await waitForProcessIdentity(process.pid);
 
   const target = spawn(plan.command, plan.args, {
     cwd: plan.cwd,

@@ -1,0 +1,38 @@
+[
+  {
+    "path": "scripts/eom/reduce-prescribed-acceleration-response.py",
+    "sha256": "2485f14b44ccd8a5a6294f6e8290f819a7eab35ce82991b0cbb95fd6cc04fe71",
+    "archive": "reference/priorities/development-process-review/evidence/prescribed-response-migration/reduce-prescribed-acceleration-response.py.2485f14b44cc.source",
+    "ref": "e09d3ceb6922b6a5392c0caf3c5907ad0feaa95f"
+  },
+  {
+    "path": "scripts/eom/publish-prescribed-acceleration-response.py",
+    "sha256": "f69014d90ce17696fbd9940cf37129d5203f4629051b45be11c0a9f9c9587734",
+    "archive": "reference/priorities/development-process-review/evidence/prescribed-response-migration/publish-prescribed-acceleration-response.py.f69014d90ce1.source",
+    "ref": "e09d3ceb6922b6a5392c0caf3c5907ad0feaa95f"
+  },
+  {
+    "path": "scripts/eom/run-prescribed-response-pilot.mjs",
+    "sha256": "1f20af7e907c3fca1db42c9c1e91e879cbaab77b5bd3dd4f27bb84123366e943",
+    "archive": "reference/priorities/development-process-review/evidence/prescribed-response-migration/run-prescribed-response-pilot.mjs.1f20af7e907c.source",
+    "ref": "e09d3ceb6922b6a5392c0caf3c5907ad0feaa95f"
+  },
+  {
+    "path": "tests/test_prescribed_acceleration_response_consumer.py",
+    "sha256": "2d97ad74c5a4ad1c33bf587ea4050cf4f028179e55ba1c817404714346cdb6d1",
+    "archive": "reference/priorities/development-process-review/evidence/prescribed-response-migration/test_prescribed_acceleration_response_consumer.py.2d97ad74c5a4.source",
+    "ref": "e09d3ceb6922b6a5392c0caf3c5907ad0feaa95f"
+  },
+  {
+    "path": "tests/test_prescribed_acceleration_response_publication.py",
+    "sha256": "c5805819a7e54f68b4ad63757752afd48efba8c2d01f7caed7ace3b048bb7dd1",
+    "archive": "reference/priorities/development-process-review/evidence/prescribed-response-migration/test_prescribed_acceleration_response_publication.py.c5805819a7e5.source",
+    "ref": "e09d3ceb6922b6a5392c0caf3c5907ad0feaa95f"
+  },
+  {
+    "path": "tests/prescribed-response-pilot-entry.test.js",
+    "sha256": "e3de479240d67e9f70edd9b32c0948ed264cb11aa10b5157a87f60557d6e48a9",
+    "archive": "reference/priorities/development-process-review/evidence/prescribed-response-migration/prescribed-response-pilot-entry.test.js.e3de479240d6.source",
+    "ref": "e09d3ceb6922b6a5392c0caf3c5907ad0feaa95f"
+  }
+]

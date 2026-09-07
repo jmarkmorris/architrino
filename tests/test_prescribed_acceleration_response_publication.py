@@ -34,7 +34,7 @@ def fixture():
     root = Path('/synthetic/root')
     for row in bindings:
         if row['role'] == 'consumer': row['sha256'] = P.CONSUMER_SHA
-        if row['role'] == 'pythonExecutable': row['path'] = str(Path(sys.executable).resolve())
+        if row['role'] == 'pythonExecutable': row['path'] = row['originalPath'] = str(Path(sys.executable).resolve())
     candidate = C.decode(raw)
     candidate['bindings'] = bindings
     raw = C.canonical(candidate)+b'\n'

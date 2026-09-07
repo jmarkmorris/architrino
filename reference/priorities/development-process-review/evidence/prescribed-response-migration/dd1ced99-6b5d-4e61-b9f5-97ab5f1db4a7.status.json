@@ -1,0 +1,56 @@
+{
+  "classification": "terminal",
+  "lease": {
+    "schema": "architrino.owned-compute-lease.v1",
+    "runId": "dd1ced99-6b5d-4e61-b9f5-97ab5f1db4a7",
+    "status": "completed",
+    "requestedAtUtc": "2026-09-07T22:34:34.148Z",
+    "startedAtUtc": "2026-09-07T22:34:34.216Z",
+    "deadlineAtUtc": "2026-09-07T22:36:34.148Z",
+    "heartbeatAtUtc": "2026-09-07T22:34:34.217Z",
+    "heartbeatMs": 5000,
+    "terminationGraceMs": 5000,
+    "owner": {
+      "task": "01a07cbc-b8ac-7ae3-8f49-1635827ab34b",
+      "threadId": null
+    },
+    "ownerHistory": [],
+    "command": "node",
+    "args": [
+      "reference/priorities/development-process-review/evidence/prescribed-response-migration/prepare-current-plan.mjs"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/dd1ced99-6b5d-4e61-b9f5-97ab5f1db4a7.stdout.log",
+    "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/dd1ced99-6b5d-4e61-b9f5-97ab5f1db4a7.stderr.log",
+    "stdoutBytes": 126,
+    "stderrBytes": 0,
+    "lastOutputAtUtc": "2026-09-07T22:34:34.767Z",
+    "sidecarIdentity": {
+      "pid": 52347,
+      "ppid": 52346,
+      "pgid": 52347,
+      "started": "Mon Sep 7 18:34:34 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node /Users/markmorris/vibe/architrino/scripts/dev/owned-compute-supervisor.mjs __sidecar dd1ced99-6b5d-4e61-b9f5-97ab5f1db4a7"
+    },
+    "targetIdentity": {
+      "pid": 52350,
+      "ppid": 52347,
+      "pgid": 52350,
+      "started": "Mon Sep 7 18:34:34 2026",
+      "command": "node reference/priorities/development-process-review/evidence/prescribed-response-migration/prepare-current-plan.mjs"
+    },
+    "claimBoundary": "Operational process ownership only; scientific validity and acceptance remain with the target's declared instruments and owners.",
+    "finishedAtUtc": "2026-09-07T22:34:34.770Z",
+    "elapsedWallSeconds": 0.564,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "control": {
+      "host": "127.0.0.1",
+      "port": 62418,
+      "authentication": "token-redacted"
+    }
+  }
+}

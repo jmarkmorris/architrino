@@ -82,6 +82,24 @@ test("validation receipt verifies only the exact staged and overlay state", (t) 
   assert.equal(stagedMismatch.reason, "state mismatch: stagedIndexHash");
 });
 
+test("publication validation refuses partially staged files before running checks", (t) => {
+  const { cwd } = createRepository(t);
+  fs.writeFileSync(path.join(cwd, "tracked.txt"), "different unstaged implementation\n");
+  let ran = false;
+  assert.throws(() => runValidationAndWriteReceipt({ cwd, runCommands: () => { ran = true; } }), /staged files differ from tested working files: tracked.txt/);
+  assert.equal(ran, false);
+  assert.equal(fs.existsSync(path.join(cwd, ".local-data/pr-validation/receipt.v1.json")), false);
+});
+
+test("a matching snapshot cannot authorize an untested staged version", (t) => {
+  const { cwd } = createRepository(t);
+  fs.writeFileSync(path.join(cwd, "tracked.txt"), "different unstaged implementation\n");
+  writeValidationReceipt({ cwd, state: captureValidationState({ cwd, baseRef: "origin/main" }) });
+  const result = verifyValidationReceipt({ cwd, baseRef: "origin/main" });
+  assert.equal(result.valid, false);
+  assert.match(result.reason, /staged files differ from tested working files/);
+});
+
 test("validation receipt invalidates when the comparison base moves", (t) => {
   const { cwd, baseTwo } = createRepository(t);
   const state = captureValidationState({ cwd, baseRef: "origin/main" });

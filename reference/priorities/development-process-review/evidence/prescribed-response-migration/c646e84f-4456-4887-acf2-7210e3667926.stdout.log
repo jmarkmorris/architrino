@@ -1,0 +1,71 @@
+✔ closed first-pilot machine plan validates metadata only (3.444709ms)
+✔ fixed original role order, paths, source hashes and complete census (2.832917ms)
+✔ explicit preserved data routes retain original identities and are bound at their physical paths (3.166416ms)
+✔ no altered scope, hidden strength, unknown fields or relaxed limits (1.059208ms)
+✔ operational generation and shared runtime context are mandatory (8.428208ms)
+✔ repeated binding path may not contradict size or hash (4.716458ms)
+✔ compute command is one isolated direct Python source with fixed inputs (2.548083ms)
+✔ publisher command consumes exact sibling job hash, not a new compute (0.6985ms)
+✔ stage budget, output lane and job location fail closed (0.8935ms)
+✔ remaining budget cannot be exhausted or exceed the original cap (0.127084ms)
+✔ every child is detached and piped; entry never claims group closure (0.2995ms)
+✔ stage abnormal exit and log overflow cannot become successful (0.16575ms)
+✔ lost gate, unsuccessful exit, changed command and unclosed groups rejected before files (1.132833ms)
+✔ closed compute measurements required without invented output length (0.321875ms)
+✔ strict JSON rejects duplicate keys at any depth, trailing data and nonfinite values (0.505667ms)
+✔ strict JSON has a finite nesting bound (0.078083ms)
+✔ regular same-file bytes and exact SHA/size are checked (2.072833ms)
+✔ symlink, nonregular input and same-byte inode substitution fail (1.304708ms)
+✔ source change during capture and expired capture deadline fail (1.066ms)
+✔ exclusive durable mechanical publication never overwrites (11.065458ms)
+✔ late publication fails without an admissible successful worker result (11.940541ms)
+✔ file operation rejects expired deadline and incomplete final authority (0.197125ms)
+✔ publication cannot begin from an unclosed or unauthenticated compute (0.079958ms)
+✔ all frozen source pins still match; entry imports no science or F6c module (0.456167ms)
+✔ runtime inventory is metadata-only with explicit F5 standard-library closure (0.0565ms)
+✔ exact integer host minima, malformed observations and disk thresholds (0.988708ms)
+✔ RSS is aggregate with strict2GiB bound and conservative sample-start timing (0.241083ms)
+✔ final teardown must retain a recent observation (0.072917ms)
+✔ process parser preserves birth identity, resident bytes and full command (0.32225ms)
+✔ owned RSS retains orphaned group members and rejects reused identities (0.886ms)
+✔ startup abort stops admission once while leaving cleanup inspection available (0.146083ms)
+✔ source capture refuses drift, symlinks, directories and truncated byte bounds (2.296917ms)
+✔ shared lock is exclusive and cannot unlink replacement ownership (17.522458ms)
+✔ both F5 stages and F6c stages conflict, own descendants are allowed (0.334458ms)
+✔ log writes preserve bytes and enforce total16MiB ceiling (1.471292ms)
+✔ hung worker timeout and abort terminate the owned worker (56.641333ms)
+✔ worker executes captured bytes with clean execArgv and binds original stdout (12.734334ms)
+✔ embedded execution represents actually closed compute, leaves outputBytes derived (0.445292ms)
+✔ final completion awaits actual stdout callback, rejects stalls and late flush (17.668292ms)
+✔ closed CLI hash/path contract rejects extras, duplicates and traversal (0.272792ms)
+✔ composition is standalone and fixes compute-before-publisher, source rechecks and original clock (0.309709ms)
+{"kind":"host-resource","elapsedSeconds":0.066520791,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944104472576"}
+{"kind":"host-resource","elapsedSeconds":0.5201922499999999,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944104484864"}
+{"kind":"host-resource","elapsedSeconds":1.012368916,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944104464384"}
+{"kind":"host-resource","elapsedSeconds":1.0670905,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944104460288"}
+{"kind":"host-resource","elapsedSeconds":1.088461291,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944104325120"}
+✔ synthetic compute closes before private job and publisher, then whole admission (1149.741417ms)
+{"kind":"host-resource","elapsedSeconds":0.049926582999999934,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944104312832"}
+✔ first target failure closes owned groups without publisher (664.284167ms)
+{"kind":"host-resource","elapsedSeconds":0.04962425000000008,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944104284160"}
+{"kind":"host-resource","elapsedSeconds":0.48522812500000007,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944104251392"}
+{"kind":"host-resource","elapsedSeconds":0.9748726660000002,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944104235008"}
+{"kind":"host-resource","elapsedSeconds":1.0205978329999998,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944104230912"}
+{"kind":"host-resource","elapsedSeconds":2.543581083,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944104030208"}
+✔ slow final publication remains sampled while worker is active (2600.964209ms)
+✔ startup interruption launches no target and releases owned lock (40.941958ms)
+{"kind":"host-resource","elapsedSeconds":0.049916957999999796,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944103997440"}
+✔ lost monitor cancels stubborn target and preserves unverified census (515.7195ms)
+{"kind":"host-resource","elapsedSeconds":0.061709084000000074,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944103899136"}
+✔ monitor sink failure cancels target and prevents publisher (580.872291ms)
+{"kind":"host-resource","elapsedSeconds":0.05076995799999986,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944103870464"}
+✔ wrong completion binding prevents second stage (494.178458ms)
+✔ initial log ENOSPC leaves no timer, listener or process (5.491167ms)
+ℹ tests 49
+ℹ suites 0
+ℹ pass 49
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6133.345792
