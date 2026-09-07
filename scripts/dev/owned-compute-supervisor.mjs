@@ -905,6 +905,12 @@ function print(value) {
   console.log(JSON.stringify(value, null, 2));
 }
 
+// Programmatic foreground entry uses the same launch, deadline, interruption,
+// and terminal-lease path as the CLI. It does not write to the caller's stdout.
+export async function runOwned(argv) {
+  return publicLease(await launch(argv, true));
+}
+
 export async function main(argv = process.argv.slice(2)) {
   const [action, ...rest] = argv;
   if (action === "__sidecar") {
@@ -913,8 +919,8 @@ export async function main(argv = process.argv.slice(2)) {
     return;
   }
   if (action === "run" || action === "start") {
-    const lease = await launch(rest, action === "run");
-    print(publicLease(lease));
+    const lease = action === "run" ? await runOwned(rest) : publicLease(await launch(rest, false));
+    print(lease);
     if (action === "run" && lease.status !== "completed") process.exitCode = 1;
     return;
   }

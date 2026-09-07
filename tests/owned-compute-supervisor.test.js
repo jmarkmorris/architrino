@@ -1,16 +1,43 @@
-import test from "node:test";
+import test, { after } from "node:test";
 import assert from "node:assert/strict";
 import { execFile } from "node:child_process";
 import { randomUUID } from "node:crypto";
 import fs from "node:fs";
+import { tmpdir } from "node:os";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+// Run the exact implementation in a private fixture checkout. Retention tests
+// must never inspect or prune the operator's real leases and logs.
+const SOURCE_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const ROOT = fs.realpathSync(fs.mkdtempSync(path.join(tmpdir(), "owned-compute-controls-")));
 const SUPERVISOR = path.join(ROOT, "scripts/dev/owned-compute-supervisor.mjs");
+fs.mkdirSync(path.dirname(SUPERVISOR), { recursive: true });
+fs.copyFileSync(path.join(SOURCE_ROOT, "scripts/dev/owned-compute-supervisor.mjs"), SUPERVISOR);
+assert.deepEqual(fs.readFileSync(SUPERVISOR), fs.readFileSync(path.join(SOURCE_ROOT, "scripts/dev/owned-compute-supervisor.mjs")));
 const STATE_ROOT = path.join(ROOT, ".local-data/owned-compute");
 const LEASE_DIR = path.join(ROOT, ".local-data/owned-compute/leases");
 const LOG_DIR = path.join(ROOT, ".local-data/owned-compute/logs");
+after(() => {
+  if (fs.existsSync(LEASE_DIR)) {
+    for (const name of fs.readdirSync(LEASE_DIR)) {
+      const lease = JSON.parse(fs.readFileSync(path.join(LEASE_DIR, name)));
+      assert.equal(lease.processGroupClosed, true, `Retain unresolved test ownership evidence at ${ROOT}`);
+    }
+  }
+  fs.rmSync(ROOT, { recursive: true, force: true });
+});
+
+test("programmatic foreground ownership returns the same closed lease without changing caller exit status", async () => {
+  const { runOwned } = await import(pathToFileURL(SUPERVISOR));
+  const before = process.exitCode;
+  const lease = await runOwned(["--owner-task", `owned-compute-api-test-${process.pid}`, "--deadline-seconds", "10", "--", process.execPath, "-e", "console.log('api-control');process.exitCode=3"]);
+  assert.equal(lease.status, "failed");
+  assert.equal(lease.exitCode, 3);
+  assert.equal(lease.processGroupClosed, true);
+  assert.equal(process.exitCode, before);
+  assert.equal(fs.readFileSync(lease.stdoutPath, "utf8"), "api-control\n");
+});
 
 function invoke(args, { expectFailure = false, timeout = 15000 } = {}) {
   return new Promise((resolve, reject) => {

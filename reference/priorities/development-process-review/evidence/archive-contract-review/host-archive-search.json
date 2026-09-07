@@ -1,0 +1,386 @@
+{
+  "knownCase": "SHA-256 abc before target",
+  "scope": "nonignored and ignored .local-data filenames matching utility basename, not arbitrary renamed payloads or external backups",
+  "candidates": 63,
+  "matches": [],
+  "rows": [
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-cuimd2dv/full-main-positive/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-cuimd2dv/full-main-positive/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-cuimd2dv/full-main-positive/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-positive/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-1gymrt87/full-main-positive/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-positive/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-positive/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-1gymrt87/full-main-positive/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-1gymrt87/full-main-positive/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-deadline-duration-reset/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-deadline-duration-reset/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-deadline-duration-reset/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-6900mzsu/full-main-positive/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-6900mzsu/full-main-positive/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-6900mzsu/full-main-positive/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-positive-historical-archive/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-positive-historical-archive/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-positive-historical-archive/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-baseline-underflow/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-missing-direct-metadata-dependency/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-null-metadata-archive-list/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-owner-generation/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-missing-direct-metadata-dependency/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-baseline-underflow/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-null-metadata-archive-list/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-owner-generation/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-baseline-underflow/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-missing-direct-metadata-dependency/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-null-metadata-archive-list/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-owner-generation/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-missing-observer-role/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-same-path-old-route/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-missing-explicit-old-route/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-prohibited-current-checker-archive/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-missing-observer-role/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-same-path-old-route/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-prohibited-current-checker-archive/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-missing-explicit-old-route/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-missing-observer-role/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-same-path-old-route/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-missing-explicit-old-route/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-prohibited-current-checker-archive/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-duplicate-old-route/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-empty-operational-role/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-existing-output/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-existing-output/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-empty-operational-role/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-empty-operational-role/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-existing-output/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-duplicate-old-route/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-duplicate-old-route/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-empty-runtime-role/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-empty-runtime-role/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-empty-runtime-role/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-foreign-unused-metadata-archive/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-live-original-lock/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-live-original-lock/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-foreign-unused-metadata-archive/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-live-original-lock/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-foreign-unused-metadata-archive/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-missing-interpreter-role/git",
+      "bytes": 4,
+      "sha256": "d21cc3b88a7ca1bbfadb85771a66eab1a8015a493ca21b4653e05cd4f9934f4a",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-missing-interpreter-role/memory_pressure",
+      "bytes": 16,
+      "sha256": "b08ae1c5692bef5037ba7c0271f5243d2249c59402a433502b59b6be281d2c69",
+      "matchesExpected": false
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/issuer-controls-h8qgr_73/full-main-missing-interpreter-role/ps",
+      "bytes": 3,
+      "sha256": "6edb888d959ca75e8d03a1e97bfedb06d4eaf1b282d7e9953444078ffe626b5f",
+      "matchesExpected": false
+    }
+  ]
+}

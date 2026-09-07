@@ -10,6 +10,8 @@ The [first bounded process investigation](analysis/first-process-investigation.m
 
 The subsequent [source recovery and binding repair](analysis/source-recovery-and-binding-repair.md) reconstructs the exact intermediate preparation version, preserves all 19 changed or missing repository sources from the historical full-run receipt, and repairs the reviewed current composition. It identifies the separate archive-contract gap and three unrecovered historical host utilities; historical authentication remains open.
 
+The latest [archive-contract and coordinator review](analysis/archive-contract-and-coordinator-review.md) explains why old host binaries block the current implementation, proposes separate historical-evidence and environment-availability claims, and traces the coordinator mismatch to an incompatible completion-interface replacement. The operator subsequently approved both implementations; the same document now contains the [current implementation and validation](analysis/archive-contract-and-coordinator-review.md#approved-implementation-and-current-disposition). The current parent path verifies retained historical evidence and uses separately observed operational closure. Wider scientific-consumer and binding defects remain explicit in the work queue.
+
 ## Evidence inventory
 
 The operator also supplied the [post-report responses](evidence/agent-post-report-responses.md), preserving Agents 2–5's write-verification claims and coverage limitations, plus the note that Agent 1 had no separate post-report response.

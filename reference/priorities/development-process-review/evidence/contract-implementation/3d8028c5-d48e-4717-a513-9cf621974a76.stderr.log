@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/contract-implementation/check-historical-evidence.py", line 46, in <module>
+    result=v.authenticate_full(w,r,docs,originals,files['fullEntry'].data,owner_raw,pool)
+  File "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-parent-emission-refinement.py", line 433, in authenticate_full
+    authenticate_owner(owner_raw)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-parent-emission-refinement.py", line 424, in authenticate_owner
+    require(text.count(heading)==1,'unique full closure-owner section');section=text.split(heading,1)[1].split('\n### ',1)[0]
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-parent-emission-refinement.py", line 108, in require
+    if not value: raise ValueError(message)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: unique full closure-owner section

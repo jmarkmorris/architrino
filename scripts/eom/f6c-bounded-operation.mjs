@@ -41,7 +41,7 @@ export const LIMITS=Object.freeze({inclusiveMilliseconds:1800000,aggregateRSSByt
 export const PINS=Object.freeze({
   helpers:['scripts/eom/launch-prescribed-response-pilot.mjs','f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31'],
   outer:['scripts/eom/launch-subfield-circular-root-pilot.mjs','35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826'],
-  diagnostics:['scripts/eom/launch-f6c-emission-refinement-pilot.mjs','7a1f5571827225d1529f73a3f0b905be75e81e2f7d11c2670b697e0599d65e71'],
+  diagnostics:['scripts/eom/launch-f6c-emission-refinement-pilot.mjs','042684de5b23216a8af4a8187e02db3236206249d0f857215dc47a89b8c62d47'],
 });
 const check=(ok,message)=>{if(!ok)throw Error(message);};
 const sha=raw=>createHash('sha256').update(raw).digest('hex');

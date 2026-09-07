@@ -9,9 +9,12 @@ import {fileURLToPath} from 'node:url';
 
 export const SELF='scripts/eom/prepare-f6c-parent-refinement-batch.mjs';
 export const CONTROLS='tests/f6c-parent-refinement-batch-preparation.test.js';
-export const COORDINATOR=['scripts/eom/f6c-bounded-operation.mjs','5428e4b89736730cdae1671f39b3fd5b0067be781fbfb8cda774347a9890b885'];
-export const EXPECTATIONS=['.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/parent-batch-prepare-only-expectations.md','fcf3d69fa443e5aa9a042f7725a807a3543a37755008c2c6860521f901ac5ab2'];
-export const CORRECTION=['.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/parent-batch-consumed-document-route-correction.md','4301c278c958ff99582cbe6b8cd73b94c987d4e34f48f6ee3672dd7b2a0fd5c5'];
+export const COORDINATOR=['scripts/eom/f6c-bounded-operation.mjs','f3bbaf59b3fec7340a3b68097d6745fef589c777273558a71cfd8744cfeeb13a'];
+export const EXPECTATIONS=['reference/priorities/development-process-review/contracts/historical-evidence-and-external-closure-v1.md','88692213f16b093a81f9aac34ac2789fc31fd4dbb722383b7961ed94b8311d18'];
+export const OBSERVER='scripts/eom/observe-parent-batch.mjs';
+export const CLOSURE_CHECKER='scripts/eom/verify-f6c-bounded-operation-closure.mjs';
+export const CLOSURE_CONTROLS='tests/f6c-bounded-operation-closure.test.js';
+export const SUPERVISOR='scripts/dev/owned-compute-supervisor.mjs';
 export const LIMITS=Object.freeze({milliseconds:120000,rssBytes:2147483648,sourceFiles:512,sourceBytes:1073741824,outputBytes:67108864,outputPaths:512});
 const check=(ok,message)=>{if(!ok)throw Error(message);};
 const sha=raw=>createHash('sha256').update(raw).digest('hex');
@@ -38,17 +41,19 @@ function bootstrap(filename,expected,live){
  }finally{closeSync(fd);}
 }
 export function validateConfiguration(c,C,root){
- keys(c,['schema','root','template','coordinator','composition','compositionControls','preparationControls','expectations','sources','sourceIdentities','runtimeBindings','operationalBindings','acceptanceOwner','historicalDocumentRoutes','pythonCommand','git','operationDirectory','parents','closureReserveBytes']);
- check(c.schema==='braid-program/f6c-parent-refinement-batch-preparation.v1'&&c.root===root,'preparation root/schema');absolute(root);absolute(c.operationDirectory);absolute(c.pythonCommand);absolute(c.git);
- for(const k of ['template','coordinator','composition','compositionControls','preparationControls','expectations','acceptanceOwner'])C.binding(c[k]);
+ keys(c,['schema','root','template','coordinator','composition','compositionControls','preparationControls','observer','closureChecker','closureControls','expectations','sources','sourceIdentities','runtimeBindings','operationalBindings','acceptanceOwner','historicalDocumentRoutes','unavailableHistoricalEnvironment','pythonCommand','git','operationDirectory','parents','closureReserveBytes','ownerTask']);
+ check(c.schema==='braid-program/f6c-parent-refinement-batch-preparation.v2'&&c.root===root,'preparation root/schema');absolute(root);absolute(c.operationDirectory);absolute(c.pythonCommand);absolute(c.git);
+ for(const k of ['template','coordinator','composition','compositionControls','preparationControls','observer','closureChecker','closureControls','expectations','acceptanceOwner'])C.binding(c[k]);
  check(c.coordinator.path===path.join(root,COORDINATOR[0])&&c.coordinator.sha256===COORDINATOR[1],'frozen coordinator');
  check(c.preparationControls.path===path.join(root,CONTROLS)&&c.expectations.path===path.join(root,EXPECTATIONS[0])&&c.expectations.sha256===EXPECTATIONS[1],'preparation control/expectation');
  check(Array.isArray(c.sources)&&Array.isArray(c.runtimeBindings)&&Array.isArray(c.operationalBindings),'explicit source/runtime arrays');
  const sources=C.sourceUnion(c.sources);check(sources.length===c.sources.length,'unique explicit source paths');
+ check(sources.some(b=>b.path===path.join(root,SUPERVISOR)),'explicitly selected owned-compute source');
  check(c.sourceIdentities&&Object.getPrototypeOf(c.sourceIdentities)===Object.prototype&&Object.keys(c.sourceIdentities).sort().join('|')===sources.map(b=>b.path).sort().join('|'),'exact original identity keys');
  for(const value of Object.values(c.sourceIdentities))check(typeof value==='string'&&/^(?:0|[1-9][0-9]*)(?::(?:0|[1-9][0-9]*)){4}$/u.test(value),'original five-field identity');
- for(const k of ['template','coordinator','composition','compositionControls','preparationControls','expectations','acceptanceOwner'])check(sources.some(b=>canonical(b)===canonical(c[k])),'missing explicit '+k);
- check(sources.some(b=>b.path===path.join(root,CORRECTION[0])&&b.sha256===CORRECTION[1]),'independently frozen consumed-route correction');
+ for(const k of ['template','coordinator','composition','compositionControls','preparationControls','observer','closureChecker','closureControls','expectations','acceptanceOwner'])check(sources.some(b=>canonical(b)===canonical(c[k])),'missing explicit '+k);
+ check(c.observer.path===path.join(root,OBSERVER)&&c.closureChecker.path===path.join(root,CLOSURE_CHECKER)&&c.closureControls.path===path.join(root,CLOSURE_CONTROLS),'current external closure boundary');
+ check(typeof c.ownerTask==='string'&&c.ownerTask.length>0&&c.ownerTask.length<=256,'explicit operation owner');
  for(const b of [...c.runtimeBindings,...c.operationalBindings]){C.binding(b);check(sources.some(x=>canonical(x)===canonical(b)),'runtime not in explicit union');}
  check(Array.isArray(c.parents)&&c.parents.length>0&&c.parents.length<=8,'bounded selected parents');let previous=-1;
  for(const p of c.parents){keys(p,['parentIndex','output','producerMaximumBytes','comparisonMaximumBytes']);check(Number.isInteger(p.parentIndex)&&p.parentIndex>previous&&p.parentIndex<160,'strict original parent index');previous=p.parentIndex;absolute(p.output);}
@@ -56,14 +61,14 @@ export function validateConfiguration(c,C,root){
 }
 export function derivePlans({configuration:c,template,admission,exported,self,configurationBinding,outDirectory,C,B}){
  validateConfiguration(c,C,c.root);absolute(outDirectory);
- const plans=B.makeParentPlans({template,indices:c.parents.map(p=>p.parentIndex),sourceBindings:c.sources,runtimeBindings:c.runtimeBindings,operationalBindings:c.operationalBindings,acceptanceOwner:c.acceptanceOwner,historicalDocumentRoutes:c.historicalDocumentRoutes});
+ const plans=B.makeParentPlans({template,indices:c.parents.map(p=>p.parentIndex),sourceBindings:c.sources,runtimeBindings:c.runtimeBindings,operationalBindings:c.operationalBindings,acceptanceOwner:c.acceptanceOwner,historicalDocumentRoutes:c.historicalDocumentRoutes,unavailableHistoricalEnvironment:c.unavailableHistoricalEnvironment});
  const inputs=plans.map(p=>B.validatePlan(p,{root:c.root,selfSha:c.composition.sha256,python:c.pythonCommand,git:c.git}));
  check(c.composition.path===path.join(c.root,B.SELF)&&c.compositionControls.path===path.join(c.root,B.CONTROL),'exact reviewed composition paths');
  check(admission.schema==='braid-program/f6c-cached-root-cover-full-admission.v1'&&admission.scope==='full'&&admission.accepted===true&&admission.processesClosed===true&&Array.isArray(admission.sourceBindings)&&admission.sourceBindings.length===198,'bound complete original ancestry');
  const historical=admission.sourceBindings.map(b=>B.binding(b,c.root));
  check(Array.isArray(admission.stages)&&admission.stages.length===2,'original two closed stages');
  const logs=admission.stages.flatMap((s,i)=>{check(s.stage===['consumer','comparison'][i]&&s.process?.accepted===true&&s.process?.processesClosed===true,'original stage closure');return[s.process.stdoutLog,s.process.stderrLog].map(b=>B.binding(b,c.root));});
- const needed=C.sourceUnion([...inputs.flatMap(p=>p.sources),...historical.map(b=>B.physicalSource(b,inputs[0].plan)),...logs]);
+ const needed=C.sourceUnion([...inputs.flatMap(p=>p.sources),...B.historicalPhysicalSources(historical,inputs[0].plan),...logs]);
  for(const r of inputs[0].plan.historicalDocumentRoutes)check(historical.some(b=>canonical(b)===canonical(r.original)),'unused original document route');
  for(const b of needed)check(c.sources.some(x=>canonical(x)===canonical(b)),'undeclared historical/current source '+b.path);
  const metadata=c.parents.map(p=>B.originalParentMetadata(exported,p.parentIndex));
@@ -77,7 +82,7 @@ export function derivePlans({configuration:c,template,admission,exported,self,co
  C.sourceUnion([...sources,batchBinding]); // Runtime also captures its plan.
  records.push({path:batchBinding.path,value:batch,raw:batchRaw,binding:batchBinding});
  check(records.length+1<=LIMITS.outputPaths&&records.reduce((n,r)=>n+r.raw.length,0)<LIMITS.outputBytes,'preparation output quota');
- return{records,batch,batchBinding,metadata,requiredSources:needed,sources,invocation:[node.path,c.coordinator.path,'--plan',batchBinding.path,'--plan-sha256',batchBinding.sha256,'--self-sha256',c.coordinator.sha256]};
+ return{records,batch,batchBinding,metadata,requiredSources:needed,sources,invocation:[node.path,c.observer.path,'--plan',batchBinding.path,'--plan-sha256',batchBinding.sha256,'--self-sha256',c.observer.sha256,'--checker-sha256',c.closureChecker.sha256,'--out-directory',c.operationDirectory+'-external','--owner-task',c.ownerTask]};
 }
 export class Publication{
  constructor(directory,C,live){

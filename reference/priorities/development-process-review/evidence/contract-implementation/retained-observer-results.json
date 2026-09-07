@@ -1,0 +1,20 @@
+{
+  "knownHashControl": "passed before source capture",
+  "records": [
+    {
+      "control": "normal-return",
+      "source": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/observer/closure.json",
+      "retained": "normal-return-closure.json",
+      "sha256": "ce0170910217f777bd94a2046993174ae965778dee1b25e7b80eb2e5475c1798",
+      "bytes": 11133
+    },
+    {
+      "control": "intentional-stage-failure",
+      "source": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-OH7kZu/observer/failure.json",
+      "retained": "intentional-stage-failure.json",
+      "sha256": "60ade8c1b60c53ceb9c051e723528c76c3a52a3b8a548b889342215aede04ced",
+      "bytes": 199
+    }
+  ],
+  "scope": "Exact closure/failure records retained. Full host process snapshot remains in the ignored local observer directory."
+}

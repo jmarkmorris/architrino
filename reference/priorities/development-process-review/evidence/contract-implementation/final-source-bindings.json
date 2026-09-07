@@ -1,0 +1,81 @@
+{
+  "knownHashControl": "passed before targets",
+  "assertions": "Current coordinator and parent dependency pins, coordinator selection in both parent callers and the external checker, and approved contract selection all match actual bytes.",
+  "files": [
+    {
+      "path": "scripts/eom/prepare-f6c-parent-emission-refinement.py",
+      "sha256": "5321e3aeb4da539dd9456a2994d027bebe96d6954908c8a4407fee50c0bc85bf",
+      "bytes": 70877
+    },
+    {
+      "path": "scripts/eom/verify-f6c-parent-emission-refinement.py",
+      "sha256": "3dfc638744e27cf5a21b776687469980efe1bdff5778617e940d1913b4a7cb05",
+      "bytes": 59498
+    },
+    {
+      "path": "scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs",
+      "sha256": "acfe000d61121cf41e82e789e063756ea85aa0f1b73dc25e07ec583ec8b06903",
+      "bytes": 59476
+    },
+    {
+      "path": "scripts/eom/prepare-f6c-parent-refinement-batch.mjs",
+      "sha256": "891766bda32420687960ece1d105ae501767e821906d34d5ca190f7a43a61ddf",
+      "bytes": 18438
+    },
+    {
+      "path": "scripts/eom/f6c-bounded-operation.mjs",
+      "sha256": "f3bbaf59b3fec7340a3b68097d6745fef589c777273558a71cfd8744cfeeb13a",
+      "bytes": 81416
+    },
+    {
+      "path": "scripts/eom/observe-parent-batch.mjs",
+      "sha256": "f8d03048a3e8ac8c984f0e1eb3308c6711f03c7644f33983fae4e5487c4249b3",
+      "bytes": 7600
+    },
+    {
+      "path": "scripts/eom/verify-f6c-bounded-operation-closure.mjs",
+      "sha256": "bd40d9617c321e66ad4f5f6943ee85361cfa8163545780fa9c7d389063204509",
+      "bytes": 12331
+    },
+    {
+      "path": "scripts/dev/owned-compute-supervisor.mjs",
+      "sha256": "a7d504d413d8cd870ea4117c8ef2e11cf28b09cd0ff0bdbeb665f5ae78693979",
+      "bytes": 37401
+    },
+    {
+      "path": "tests/f6c-bounded-operation-closure.test.js",
+      "sha256": "53ded755076a4c9f8b22754aecb8d163959a534219287ea0d6301d3e0b0e5241",
+      "bytes": 8059
+    },
+    {
+      "path": "tests/f6c-parent-emission-refinement-pilot.test.js",
+      "sha256": "b7e951961312b3625c0696d2b0d4aeefb415e3fff71204fe9f78d72329551afa",
+      "bytes": 11254
+    },
+    {
+      "path": "tests/f6c-parent-refinement-batch-preparation.test.js",
+      "sha256": "8761855716703b76b59cfeb0501a13640d180de4a8a24b579f00c165662e46ad",
+      "bytes": 12710
+    },
+    {
+      "path": "tests/owned-compute-supervisor.test.js",
+      "sha256": "86bec01ab4aa2d69a870cefd0f6fffcf4d6e01d5ea1845e95266d87d41f42f4c",
+      "bytes": 17987
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement_preparation.py",
+      "sha256": "54897aa0a891fe61159a776f3d175eab84adf590c872606a4e15bdd773911cf8",
+      "bytes": 45975
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement_verification.py",
+      "sha256": "99a29b5df829c60cadf277a57a6c9393131528448813d06a726e5bd65116e724",
+      "bytes": 44387
+    },
+    {
+      "path": "tests/test_f6c_historical_archive_contract.py",
+      "sha256": "5285f41a7851ea1dd4bc4484784a17d3598f6f0c6679950626a51acebacf3104",
+      "bytes": 5089
+    }
+  ]
+}
