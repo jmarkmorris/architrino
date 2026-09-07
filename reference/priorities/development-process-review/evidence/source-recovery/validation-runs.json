@@ -1,0 +1,129 @@
+{
+  "knownCase": "passed before target",
+  "runs": [
+    {
+      "runId": "c24983e3-f43c-43a2-8988-df1b76998dce",
+      "status": "failed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-timeout=60000",
+        "tests/f6c-refined-acceleration-pilot.test.js"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "requestedAtUtc": "2026-09-07T05:17:09.152Z",
+      "startedAtUtc": "2026-09-07T05:17:09.234Z",
+      "finishedAtUtc": "2026-09-07T05:17:13.208Z",
+      "elapsedWallSeconds": 3.988,
+      "exitCode": 1,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "stopReason": null,
+      "stdout": "c24983e3-f43c-43a2-8988-df1b76998dce.stdout.log",
+      "stderr": "c24983e3-f43c-43a2-8988-df1b76998dce.stderr.log"
+    },
+    {
+      "runId": "a77eeddc-02be-431b-80a7-761ce3c3e20b",
+      "status": "completed",
+      "command": "../.venv/bin/python",
+      "args": [
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_f6c_refined_acceleration_preparation.py"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "requestedAtUtc": "2026-09-07T05:18:04.220Z",
+      "startedAtUtc": "2026-09-07T05:18:04.303Z",
+      "finishedAtUtc": "2026-09-07T05:18:05.239Z",
+      "elapsedWallSeconds": 0.949,
+      "exitCode": 0,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "stopReason": null,
+      "stdout": "a77eeddc-02be-431b-80a7-761ce3c3e20b.stdout.log",
+      "stderr": "a77eeddc-02be-431b-80a7-761ce3c3e20b.stderr.log"
+    },
+    {
+      "runId": "4138e20f-2d9a-46e2-9e44-e4fb12017c68",
+      "status": "failed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-timeout=60000",
+        "tests/f6c-refined-acceleration-pilot.test.js",
+        "tests/f6c-parent-emission-refinement-pilot.test.js"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "requestedAtUtc": "2026-09-07T05:20:48.660Z",
+      "startedAtUtc": "2026-09-07T05:20:48.743Z",
+      "finishedAtUtc": "2026-09-07T05:20:52.894Z",
+      "elapsedWallSeconds": 4.163,
+      "exitCode": 1,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "stopReason": null,
+      "stdout": "4138e20f-2d9a-46e2-9e44-e4fb12017c68.stdout.log",
+      "stderr": "4138e20f-2d9a-46e2-9e44-e4fb12017c68.stderr.log"
+    },
+    {
+      "runId": "b5fae141-c847-48e9-8383-222364939fba",
+      "status": "timed_out",
+      "command": "/Users/markmorris/vibe/.venv/bin/python",
+      "args": [
+        "-B",
+        "-m",
+        "unittest",
+        "test_f6c_refined_acceleration_preparation",
+        "test_f6c_refined_acceleration",
+        "test_f6c_parent_emission_refinement_preparation",
+        "test_f6c_parent_emission_refinement_verification",
+        "test_f6c_single_leaf_diagnostic",
+        "test_f6c_streamed_leaf_session"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino/tests",
+      "requestedAtUtc": "2026-09-07T05:21:15.459Z",
+      "startedAtUtc": "2026-09-07T05:21:15.540Z",
+      "finishedAtUtc": "2026-09-07T05:22:45.464Z",
+      "elapsedWallSeconds": 89.937,
+      "exitCode": null,
+      "exitSignal": "SIGTERM",
+      "processGroupClosed": true,
+      "stopReason": "deadline_exceeded",
+      "stdout": "b5fae141-c847-48e9-8383-222364939fba.stdout.log",
+      "stderr": "b5fae141-c847-48e9-8383-222364939fba.stderr.log"
+    },
+    {
+      "runId": "7a396d7f-5518-4d9a-bd97-3bc7bccbb1c6",
+      "status": "failed",
+      "command": "/Users/markmorris/vibe/.venv/bin/python",
+      "args": [
+        "-B",
+        "-m",
+        "unittest",
+        "-v",
+        "test_f6c_refined_acceleration_preparation",
+        "test_f6c_refined_acceleration",
+        "test_f6c_parent_emission_refinement_preparation",
+        "test_f6c_parent_emission_refinement_verification",
+        "test_f6c_single_leaf_diagnostic",
+        "test_f6c_streamed_leaf_session"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino/tests",
+      "requestedAtUtc": "2026-09-07T05:23:31.323Z",
+      "startedAtUtc": "2026-09-07T05:23:31.408Z",
+      "finishedAtUtc": "2026-09-07T05:25:20.888Z",
+      "elapsedWallSeconds": 109.493,
+      "exitCode": 1,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "stopReason": null,
+      "stdout": "7a396d7f-5518-4d9a-bd97-3bc7bccbb1c6.stdout.log",
+      "stderr": "7a396d7f-5518-4d9a-bd97-3bc7bccbb1c6.stderr.log"
+    }
+  ]
+}

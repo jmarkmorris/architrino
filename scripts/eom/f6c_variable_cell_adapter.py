@@ -156,8 +156,8 @@ PARENT_FIXED=(
  ('comparisonReferenceControls','tests/test_f6c_parent_emission_refinement_conformance.py','2eafcd7551a6d64c5f6c7bc6923507da8d27084af74bc5742583d63eb708aebb'),
 )
 SOURCES = (
- ('transport','scripts/eom/verify-f6c-refined-acceleration.py','35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015'),
- ('transportControls','tests/test_f6c_refined_acceleration.py','4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a'),
+ ('transport','scripts/eom/verify-f6c-refined-acceleration.py','e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae'),
+ ('transportControls','tests/test_f6c_refined_acceleration.py','d65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd'),
  ('mapping','scripts/eom/verify-f6c-continuous-reception-acceleration.py','23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d'),
  ('mappingControls','tests/test_f6c_continuous_reception_acceleration.py','13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed'),
  ('decoder','scripts/eom/oracle/f6c_refined_acceleration_conformance.py','7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e'),

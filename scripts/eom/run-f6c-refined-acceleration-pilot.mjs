@@ -24,8 +24,8 @@ export const CHECKER='scripts/eom/verify-f6c-refined-acceleration.py';
 export const CHECKER_TESTS='tests/test_f6c_refined_acceleration.py';
 // Separately authored checker and controls, independently accepted before this
 // operational generation. No subject or mathematical reference is altered.
-export const CHECKER_SHA='35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015';
-export const CHECKER_TESTS_SHA='4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a';
+export const CHECKER_SHA='e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae';
+export const CHECKER_TESTS_SHA='d65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd';
 export const LANE='.local-data/braid-analysis/f6c-refined-acceleration-20260827';
 export const SHARED_LOCK_LANE='.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827';
 export const SCOPE='refined-pilot-cell-0-range';
@@ -85,9 +85,9 @@ export const PRIOR_OPERATIONS=Object.freeze([
  ['resourceLog',refinedBase+'-outer/resource-observations.ndjson','e8af4c71f7cd0278b8df5c831738bd5d3f0f4cfd872ebf887a6cbd3396dc4313',471433]
 ].map(Object.freeze));
 export const PINS=Object.freeze({...Object.fromEntries([...FIXED,...REFINED,...PRIOR_OPERATIONS].map(([,p,h])=>[p,h])),
- [CONSUMER]:'738c716f95c419d49c14ffd533ba3bde4b6bfe666521f363db15c6212a52842c',
+ [CONSUMER]:'00684a4779e3636e984d46cf76a6d462c648eb771a3084b7645ba81347eb1af4',
  [CONSUMER_TESTS]:'28ac5b67e594f52ea151fa00ddb04dabbbe8a522108a7421ec56550b70e87252',
- [DECLARATION]:'c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d',
+ [DECLARATION]:'a9d871a35e6e9f00e96ba07182798cb87f546eabe0664e7f170b67c820bb43fc',
  [NAMED.comparisonCore]:'7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e',
  [NAMED.comparisonCoreControls]:'147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921',
  [NAMED.rangeComparison]:'23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d',

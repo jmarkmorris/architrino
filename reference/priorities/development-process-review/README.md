@@ -8,6 +8,8 @@ The [operator's concerns](analysis/operator-concerns.md) define the questions an
 
 The [first bounded process investigation](analysis/first-process-investigation.md) now supplies local synthetic controls, raw outputs, receipts, and a reproducible diagnostic instrument. The subsequently authorized [process repair and validation](analysis/process-repair-validation.md) records 85 passing process regressions; the [consequential repair audit](analysis/consequential-repair-audit.md) separates historical-binding errors and a remaining preparation-pin failure from that repair.
 
+The subsequent [source recovery and binding repair](analysis/source-recovery-and-binding-repair.md) reconstructs the exact intermediate preparation version, preserves all 19 changed or missing repository sources from the historical full-run receipt, and repairs the reviewed current composition. It identifies the separate archive-contract gap and three unrecovered historical host utilities; historical authentication remains open.
+
 ## Evidence inventory
 
 The operator also supplied the [post-report responses](evidence/agent-post-report-responses.md), preserving Agents 2–5's write-verification claims and coverage limitations, plus the note that Agent 1 had no separate post-report response.

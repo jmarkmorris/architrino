@@ -599,7 +599,7 @@ class BisectedTests(unittest.TestCase):
 
     def test_source_and_numeric_references_remain_the_frozen_contract(self):
         self.assertEqual(hashlib.sha256((ROOT/'scripts/eom/f6c_variable_cell_adapter.py').read_bytes()).hexdigest(),
-                         'd6e9d68735a85d0b6aa6a04a1168628dea5bd05de30ba6bff3e8920a45a1c951')
+                         '84c4dadb643e7b828bafec92e4bfb468c7f3bb6b8474cc72b59084a59b7fa0ea')
         for key in ('rms', 'aggregate', 'full_run_authorized'):
             self.assertNotIn(key, D.BisectedRestrictedDiagnostic.__dataclass_fields__)
 

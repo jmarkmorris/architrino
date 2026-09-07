@@ -1,0 +1,113 @@
+{
+  "knownCase": "passed before target enumeration",
+  "scope": "all local Git objects including unreachable objects; only blobs of 1000 through 200000 bytes hashed",
+  "objects": 177541,
+  "selectedBlobs": 51671,
+  "matches": [
+    {
+      "oid": "03c45fd7b1bffb9fa8e1f07701a9bdc44a80a302",
+      "sha256": "765e6663cdd60323f84b9e1af52ba1399345322eb747727f2a0898b4dd0fd079",
+      "bytes": 25546
+    },
+    {
+      "oid": "0bb7e3521203d67a61c584ff8816ad5eb91e15a4",
+      "sha256": "0f11fe5e51ef52f95c02605b776fe6b94c72a67a4a5f2b69671870f5f548ae17",
+      "bytes": 26659
+    },
+    {
+      "oid": "211eb505b7f61f223c39d55357b3a93a3fc67bf0",
+      "sha256": "5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa",
+      "bytes": 39465
+    },
+    {
+      "oid": "2166adcfc0b4fb82057341337e751a2a8b5f8c72",
+      "sha256": "46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef",
+      "bytes": 13021
+    },
+    {
+      "oid": "257332b06d1ddaa2fc90abf397b620f70ecda117",
+      "sha256": "36b72681c116cedf1803cc89ead8b48a7d9604bae7f9bffd7b0f95b33c3bb9b4",
+      "bytes": 6754
+    },
+    {
+      "oid": "53db9db24faeebb297f166a89c463cd77540f827",
+      "sha256": "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b",
+      "bytes": 27166
+    },
+    {
+      "oid": "53dcd974361376f343653d2e409f258d09a09f25",
+      "sha256": "7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4",
+      "bytes": 12103
+    },
+    {
+      "oid": "61d2ee829d83c7fc61b4c43d0ea269bc36c3a3e3",
+      "sha256": "af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386",
+      "bytes": 38160
+    },
+    {
+      "oid": "623f18662ba9267a10fc589b3ad156c0db6523ca",
+      "sha256": "4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a",
+      "bytes": 35015
+    },
+    {
+      "oid": "653cd8f4baa9c9389310a3129cb4d978faeaa353",
+      "sha256": "6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936",
+      "bytes": 21031
+    },
+    {
+      "oid": "6940d5d8416ec2b0594043a697727548ede53526",
+      "sha256": "798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3",
+      "bytes": 10933
+    },
+    {
+      "oid": "78a97ead17b93f1c66752d5ed5ec96b27770f6de",
+      "sha256": "80a96ebd0b306148b3eb96cb12e797c5cf80942e52ea457a8c6a72d58e8618a0",
+      "bytes": 31153
+    },
+    {
+      "oid": "834627d92cc01b839a1ba4dc43acdc5c7b2c325c",
+      "sha256": "9abc7c3a80ad670e7bc7ad9f94a95f1fcd8924de425991032d6d26bba3372427",
+      "bytes": 11113
+    },
+    {
+      "oid": "865cfd618eeb39b19886d0692f1c779ed8721ce0",
+      "sha256": "f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",
+      "bytes": 28340
+    },
+    {
+      "oid": "935566449ffc4162a42d75e7c3cc7b483aa6bb8a",
+      "sha256": "efaed33a6d6e55be5788ffb7e4e6f596fbc0381466a8308154dbd550743896b9",
+      "bytes": 31651
+    },
+    {
+      "oid": "aa46cd746f0ede55a569a5a368e82e6f4f3a9902",
+      "sha256": "2d25103e0fb6ab584485b7954465afe0fa5de556b3a7e111c56d20156b7011fd",
+      "bytes": 39929
+    },
+    {
+      "oid": "b408f9ebcb62fc1220ca1a482ce64efae8a54926",
+      "sha256": "19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132",
+      "bytes": 41336
+    },
+    {
+      "oid": "baf743a3891739e833c0c7ad6b8c0683217453d3",
+      "sha256": "daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b",
+      "bytes": 10021
+    },
+    {
+      "oid": "d52110e79852fb757cd50f66f392e4c58d1d7493",
+      "sha256": "c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d",
+      "bytes": 30139
+    },
+    {
+      "oid": "f29d933da83ba19d6722775283325c5c3d68cf47",
+      "sha256": "2fd2080b3b4facdc80b85cdc65610c2bfeefdd8eab5f7234e207d3d4908bc117",
+      "bytes": 11096
+    },
+    {
+      "oid": "f79c824f90de0b9b8299a30f38cbd8eb2ef3aa5c",
+      "sha256": "473cba3b039027879eeea6987515261faaadcf0833f3e4d2864fc610f5b7a144",
+      "bytes": 32501
+    }
+  ]
+}

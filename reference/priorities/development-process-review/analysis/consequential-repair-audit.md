@@ -44,4 +44,6 @@ The subsequent source-binding test also exposes a pre-existing refined-accelerat
 
 ## Remaining scope
 
+**Subsequent recovery, 2026-09-07:** the [source recovery and binding repair](source-recovery-and-binding-repair.md) recovers the full entry and the intermediate preparation version exactly, inventories the complete historical source set, and repairs the reviewed current composition. It supersedes the unrecovered-preparation status above. Historical authentication remains open; the new archive manifest names its exact remaining byte and contract gaps.
+
 The broader mathematical consequences of earlier proof-document edits, configuration identity changes, enclosure certificate rewrites, and other reported failure families remain with their existing owners. This pass neither restores the old entire branch nor certifies the new entire branch. The next highest-value task is restoring the historical source/evidence distinction, followed by the explicitly inventoried failure families. Generic owned-compute startup deadline failure remains a separate operational defect from the pilot watchdog repaired here.

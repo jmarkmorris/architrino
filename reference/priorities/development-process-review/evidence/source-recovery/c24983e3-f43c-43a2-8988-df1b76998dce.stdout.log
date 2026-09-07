@@ -1,0 +1,63 @@
+✖ all scientific implementation/control pins remain the separately accepted source generation (1.913125ms)
+✔ closed plan has no invented runtime/default fields and exact operational closure (2.35475ms)
+✔ duplicate JSON keys unsafe numbers malformed UTF8 and excessive nesting fail closed (0.417ms)
+✔ bounded source read and write preserve exact bytes and reject symlink/overwrite (7.764ms)
+✔ pure helper capture refuses changed bytes and exposes only operational functions used here (0.221708ms)
+✔ data/outer siblings are distinct and stage CLI preserves original candidate and deadline (0.588333ms)
+✔ captured Python wrapper reports real target CPU separately and rejects changed source (78.773708ms)
+✔ metadata inventory source keeps the public lazy-dependency exercise without executing science (0.170875ms)
+✔ synthetic consumer admission needs exact closed gate candidate census and binding chain (142.766459ms)
+✔ synthetic checker admission binds original candidate complete analysis and unpromoted flags (147.805792ms)
+✔ rebound candidate census source maps and authority must retain exact refined contract (1508.252167ms)
+✔ rebound checker needs exact snake-case analysis fifteen false flags and separate prior logs (1767.149834ms)
+✔ all prior source lists and logs retained without replacing historical stage semantics (5.916166ms)
+✔ metadata admission string class is explicit and other bounded structures never widen (16.528625ms)
+✔ captured current-entry provenance command fits the fixed admission class without a launch (4.844166ms)
+ℹ Prospective synthetic-path provenance command characters: 72864, 72948; actual plan paths still require prelaunch measurement.
+✔ private single-candidate publication monitoring rejects repeats symlinks and oversized files (38.226583ms)
+✔ diagnostic lifetime and failed-cleanup helper sections preserve the frozen89b safety generation (0.453792ms)
+✔ stage piping uses one detached registered target and rejects failure and log overflow (6.769458ms)
+✔ metadata timeout waits for killed child closure (7.254291ms)
+✔ shared exclusion recognizes old/cached/full/root/range and both F5 stages (0.972708ms)
+✔ explicit runtime launch options reject extras missing values unsafe hash and traversal (0.25975ms)
+✔ reused safeguards enforce first-to-last RSS interval host thresholds and stdout flush (12.461041ms)
+✔ captured file worker timeout is bounded and finalization requires complete closed stages (14.198083ms)
+✔ final diagnostics drain waits for queued writes and rejects stalled or late callbacks (11.871167ms)
+✔ final diagnostics EPIPE and callback failures reject and close only owned stream (0.52025ms)
+✔ late durable final publication returns no admissible result and never overwrites earlier data (6.348417ms)
+✔ failed attempt diagnostic epilogue cannot strand an unread stderr stream (12.122875ms)
+✔ CLI failure epilogue invokes only nonzero exit after bounded diagnostics or sink throw (10.579667ms)
+✔ failed stage projection retains unresolved process identities and cleanup failures without closure promotion (0.260708ms)
+✔ attempt diagnostic guard retains first async or callback failure and remains attached through cleanup (0.834625ms)
+✔ diagnostic guard waits for queued callbacks and bounds stalled failed cleanup without leaking healthy listeners (10.961042ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 30
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3909.936958
+
+✖ failing tests:
+
+test at tests/f6c-refined-acceleration-pilot.test.js:27:1
+✖ all scientific implementation/control pins remain the separately accepted source generation (1.913125ms)
+  AssertionError [ERR_ASSERTION]: tests/test_f6c_refined_acceleration.py
+  + actual - expected
+  
+  + 'd65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd'
+  - '4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a'
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-refined-acceleration-pilot.test.js:29:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'd65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd',
+    expected: '4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

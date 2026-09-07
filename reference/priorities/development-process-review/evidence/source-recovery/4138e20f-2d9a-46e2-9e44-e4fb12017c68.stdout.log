@@ -1,0 +1,75 @@
+✖ fixed math census/limits and source pins remain unchanged (2.5965ms)
+✔ closed JSON parser rejects duplicate keys/trailing syntax/unsafe integers (0.652209ms)
+✔ data-only planmaker gives exact3/4/5 producer/comparison order and alias layout (0.61125ms)
+✔ data-only parent plans preserve every original mathematical/ancestry token (0.746041ms)
+✔ batch validates explicit order and rejects changed stages/aliases/roots (2.5875ms)
+✔ registered args require original deadline, captured plan and immediate prior context (0.283958ms)
+✔ duration transfer cannot reset original1800s or compare epochs (0.111708ms)
+✔ hook leaves completion binding ownership to frozen coordinator (0.326416ms)
+✔ exact historical tuples are separate logical/physical bindings (0.541166ms)
+✔ eight publication paths count four inodes; replacement/third alias reject (12.388083ms)
+✔ original metadata retains nonuniform exact endpoint tokens (2.40475ms)
+✔ thin batch source contains no legacy supervisor or output deletion (0.19575ms)
+✔ all scientific implementation/control pins remain the separately accepted source generation (1.962042ms)
+✔ closed plan has no invented runtime/default fields and exact operational closure (1.863042ms)
+✔ duplicate JSON keys unsafe numbers malformed UTF8 and excessive nesting fail closed (0.398084ms)
+✔ bounded source read and write preserve exact bytes and reject symlink/overwrite (11.854416ms)
+✔ pure helper capture refuses changed bytes and exposes only operational functions used here (0.256ms)
+✔ data/outer siblings are distinct and stage CLI preserves original candidate and deadline (0.681458ms)
+✔ captured Python wrapper reports real target CPU separately and rejects changed source (51.858708ms)
+✔ metadata inventory source keeps the public lazy-dependency exercise without executing science (0.171375ms)
+✔ synthetic consumer admission needs exact closed gate candidate census and binding chain (145.8215ms)
+✔ synthetic checker admission binds original candidate complete analysis and unpromoted flags (158.914458ms)
+✔ rebound candidate census source maps and authority must retain exact refined contract (1557.95375ms)
+✔ rebound checker needs exact snake-case analysis fifteen false flags and separate prior logs (1908.014ms)
+✔ all prior source lists and logs retained without replacing historical stage semantics (6.190875ms)
+✔ metadata admission string class is explicit and other bounded structures never widen (11.494833ms)
+✔ captured current-entry provenance command fits the fixed admission class without a launch (5.010375ms)
+ℹ Prospective synthetic-path provenance command characters: 72864, 72948; actual plan paths still require prelaunch measurement.
+✔ private single-candidate publication monitoring rejects repeats symlinks and oversized files (36.354917ms)
+✔ diagnostic lifetime and failed-cleanup helper sections preserve the frozen89b safety generation (0.419959ms)
+✔ stage piping uses one detached registered target and rejects failure and log overflow (4.607083ms)
+✔ metadata timeout waits for killed child closure (6.110959ms)
+✔ shared exclusion recognizes old/cached/full/root/range and both F5 stages (1.769125ms)
+✔ explicit runtime launch options reject extras missing values unsafe hash and traversal (0.326417ms)
+✔ reused safeguards enforce first-to-last RSS interval host thresholds and stdout flush (12.776791ms)
+✔ captured file worker timeout is bounded and finalization requires complete closed stages (13.661542ms)
+✔ final diagnostics drain waits for queued writes and rejects stalled or late callbacks (12.886208ms)
+✔ final diagnostics EPIPE and callback failures reject and close only owned stream (0.527042ms)
+✔ late durable final publication returns no admissible result and never overwrites earlier data (6.417334ms)
+✔ failed attempt diagnostic epilogue cannot strand an unread stderr stream (12.597167ms)
+✔ CLI failure epilogue invokes only nonzero exit after bounded diagnostics or sink throw (11.04725ms)
+✔ failed stage projection retains unresolved process identities and cleanup failures without closure promotion (0.289667ms)
+✔ attempt diagnostic guard retains first async or callback failure and remains attached through cleanup (1.086416ms)
+✔ diagnostic guard waits for queued callbacks and bounds stalled failed cleanup without leaking healthy listeners (10.342208ms)
+ℹ tests 43
+ℹ suites 0
+ℹ pass 42
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4084.843417
+
+✖ failing tests:
+
+test at tests/f6c-parent-emission-refinement-pilot.test.js:21:1
+✖ fixed math census/limits and source pins remain unchanged (2.5965ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '47c2828c918c008c9f183e341d8f0ba677d79f3cb003bbb375d8a01d718a4098'
+  - '5428e4b89736730cdae1671f39b3fd5b0067be781fbfb8cda774347a9890b885'
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-parent-emission-refinement-pilot.test.js:26:9)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '47c2828c918c008c9f183e341d8f0ba677d79f3cb003bbb375d8a01d718a4098',
+    expected: '5428e4b89736730cdae1671f39b3fd5b0067be781fbfb8cda774347a9890b885',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

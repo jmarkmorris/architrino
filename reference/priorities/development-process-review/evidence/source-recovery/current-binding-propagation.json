@@ -1,0 +1,218 @@
+[
+  {
+    "path": "scripts/eom/f6c_variable_cell_adapter.py",
+    "before": "5b3c694c43c7146fc8acf36215b742ac96aba316e7f468532bbd31d759f59508",
+    "after": "84c4dadb643e7b828bafec92e4bfb468c7f3bb6b8474cc72b59084a59b7fa0ea",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/verify-f6c-refined-acceleration.py",
+        "before": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015",
+        "after": "e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae"
+      }
+    ],
+    "lines": [
+      {
+        "line": 159,
+        "text": " ('transport','scripts/eom/verify-f6c-refined-acceleration.py','35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015'),"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/prepare-f6c-parent-emission-refinement.py",
+    "before": "d77701556d9bdf3d0a4b68478f6f295541834432bc09cdda8bba6ae8db0ff69a",
+    "after": "b61e3ff13aa686e462e300da2bd22a166181d7918bdd50700e446f6f1cd2b8c8",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/verify-f6c-refined-acceleration.py",
+        "before": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015",
+        "after": "e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae"
+      }
+    ],
+    "lines": [
+      {
+        "line": 65,
+        "text": " 'transport': ('scripts/eom/verify-f6c-refined-acceleration.py','35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015'),"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/prepare-f6c-refined-acceleration.py",
+    "before": "a93761a2437ee7e6f67db4603dc5dba31771cb1675c84416ec0dc5235c32264a",
+    "after": "00684a4779e3636e984d46cf76a6d462c648eb771a3084b7645ba81347eb1af4",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/verify-f6c-refined-acceleration.py",
+        "before": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015",
+        "after": "e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae"
+      }
+    ],
+    "lines": [
+      {
+        "line": 86,
+        "text": " 'verifier':('scripts/eom/verify-f6c-refined-acceleration.py','35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015'),'verifierControls':('tests/test_f6c_refined_acceleration.py','d65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd'),"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs",
+    "before": "ba71f24f866c5d1760ba7d4c40e0ed131b3ef28ec9a4fb377a12ae1b2ec2dcf6",
+    "after": "31b120ef488abc05750587329adab499c06c6dd5f48649bcdea3328d2910edf1",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/verify-f6c-refined-acceleration.py",
+        "before": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015",
+        "after": "e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae"
+      }
+    ],
+    "lines": [
+      {
+        "line": 24,
+        "text": "export const DEPENDENCIES=Object.freeze({\"transport\":[\"scripts/eom/verify-f6c-refined-acceleration.py\",\"35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015\"],\"transportControls\":[\"tests/test_f6c_refined_acceleration.py\",\"d65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd\"],\"scientificDecoder\":[\"scripts/eom/oracle/f6c_refined_acceleration_conformance.py\",\"7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e\"],\"scientificDecoderControls\":[\"tests/test_f6c_refined_acceleration_conformance.py\",\"147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921\"],\"productionHelper\":[\"scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py\",\"7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5\"],\"productionHelperControls\":[\"tests/test_f6c_cached_continuous_reception_root_cover_preparation.py\",\"3bee7599b03f2500ede6eeeea31c46e1aac82410f456e967102c13e820b93221\"],\"historyReference\":[\"scripts/eom/oracle/certified_history.py\",\"ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7\"],\"decimalReference\":[\"scripts/eom/oracle/decimal_interval.py\",\"fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a\"],\"decimalControls\":[\"tests/test_eom_decimal_interval.py\",\"22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44\"],\"rootLibrary\":[\"scripts/eom/oracle/continuous_reception_roots_cached.py\",\"daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf\"],\"rootControls\":[\"tests/test_eom_continuous_reception_roots_cached.py\",\"a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb\"],\"independentRootReference\":[\"scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py\",\"3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7\"],\"independentRootControls\":[\"tests/test_f6c_cached_continuous_reception_root_cover.py\",\"09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3\"],\"cacheEquivalence\":[\"reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md\",\"a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d\"]});"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/run-f6c-refined-acceleration-pilot.mjs",
+    "before": "73a3386ecd8d99d1dbabc3754a4b9bdc3cc2779e2962f6c18b2cbdb7872c6617",
+    "after": "9d7a940ed76d463ad1112bf153acb32757824247fb373743ebb06483fd3cfc1d",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/verify-f6c-refined-acceleration.py",
+        "before": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015",
+        "after": "e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae"
+      },
+      {
+        "dependency": "scripts/eom/prepare-f6c-refined-acceleration.py",
+        "before": "cb7bbef900b620d908cbcf3803793826c87cbf41e7f42d75c8fd26cf59ca5b8b",
+        "after": "00684a4779e3636e984d46cf76a6d462c648eb771a3084b7645ba81347eb1af4"
+      }
+    ],
+    "lines": [
+      {
+        "line": 27,
+        "text": "export const CHECKER_SHA='35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015';"
+      },
+      {
+        "line": 88,
+        "text": " [CONSUMER]:'cb7bbef900b620d908cbcf3803793826c87cbf41e7f42d75c8fd26cf59ca5b8b',"
+      }
+    ]
+  },
+  {
+    "path": "tests/test_f6c_single_leaf_diagnostic.py",
+    "before": "ce1e9a9a7f7fdf6266958176397aa7ee351017b328a7d5c9dbd802cf4b44b1c6",
+    "after": "3731c0e401ef918aea90952e7c65981c4ba456e9143f63a609b16de37eae0554",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/f6c_variable_cell_adapter.py",
+        "before": "d6e9d68735a85d0b6aa6a04a1168628dea5bd05de30ba6bff3e8920a45a1c951",
+        "after": "84c4dadb643e7b828bafec92e4bfb468c7f3bb6b8474cc72b59084a59b7fa0ea"
+      }
+    ],
+    "lines": [
+      {
+        "line": 602,
+        "text": "                         'd6e9d68735a85d0b6aa6a04a1168628dea5bd05de30ba6bff3e8920a45a1c951')"
+      }
+    ]
+  },
+  {
+    "path": "tests/test_f6c_streamed_leaf_session.py",
+    "before": "014dcdb11cd8582088d47f4c37f748f960114c3bfc30eed89d5ae976a3c7042a",
+    "after": "d1d25097a8350761ce7ebfa02ba318a91cd6472e2a6f6c855716c52ec736f910",
+    "bindings": [
+      {
+        "dependency": "tests/test_f6c_single_leaf_diagnostic.py",
+        "before": "ce1e9a9a7f7fdf6266958176397aa7ee351017b328a7d5c9dbd802cf4b44b1c6",
+        "after": "3731c0e401ef918aea90952e7c65981c4ba456e9143f63a609b16de37eae0554"
+      }
+    ],
+    "lines": [
+      {
+        "line": 462,
+        "text": "                 'ce1e9a9a7f7fdf6266958176397aa7ee351017b328a7d5c9dbd802cf4b44b1c6')"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs",
+    "before": "1376cbd3481860b92a2917fd6f702ba5d2aca1815b13cb35afe587b0226c07ac",
+    "after": "0c5a391fcd723c6d7d2c0f29bd81e6cf9b19d22488bdfde04d0c2f88372266f3",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/f6c_variable_cell_adapter.py",
+        "before": "d6e9d68735a85d0b6aa6a04a1168628dea5bd05de30ba6bff3e8920a45a1c951",
+        "after": "84c4dadb643e7b828bafec92e4bfb468c7f3bb6b8474cc72b59084a59b7fa0ea"
+      },
+      {
+        "dependency": "tests/test_f6c_single_leaf_diagnostic.py",
+        "before": "ce1e9a9a7f7fdf6266958176397aa7ee351017b328a7d5c9dbd802cf4b44b1c6",
+        "after": "3731c0e401ef918aea90952e7c65981c4ba456e9143f63a609b16de37eae0554"
+      },
+      {
+        "dependency": "tests/test_f6c_streamed_leaf_session.py",
+        "before": "014dcdb11cd8582088d47f4c37f748f960114c3bfc30eed89d5ae976a3c7042a",
+        "after": "d1d25097a8350761ce7ebfa02ba318a91cd6472e2a6f6c855716c52ec736f910"
+      },
+      {
+        "dependency": "scripts/eom/verify-f6c-refined-acceleration.py",
+        "before": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015",
+        "after": "e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae"
+      }
+    ],
+    "lines": [
+      {
+        "line": 51,
+        "text": "  \"d6e9d68735a85d0b6aa6a04a1168628dea5bd05de30ba6bff3e8920a45a1c951\""
+      },
+      {
+        "line": 63,
+        "text": "  \"ce1e9a9a7f7fdf6266958176397aa7ee351017b328a7d5c9dbd802cf4b44b1c6\""
+      },
+      {
+        "line": 71,
+        "text": "  \"014dcdb11cd8582088d47f4c37f748f960114c3bfc30eed89d5ae976a3c7042a\""
+      },
+      {
+        "line": 103,
+        "text": "  \"35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015\""
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/verify-f6c-parent-emission-refinement.py",
+    "before": "483aee78be53842ac7cc1e6f2ebf2c9c33ff3fa349ff74537805e6f15e5e935a",
+    "after": "2e27bae084e2e35b28dd7a6f6a5675c8c418dbda762d9ebb72ffeae952b7fec6",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/verify-f6c-refined-acceleration.py",
+        "before": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015",
+        "after": "e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae"
+      }
+    ],
+    "lines": [
+      {
+        "line": 59,
+        "text": " 'transport': ('scripts/eom/verify-f6c-refined-acceleration.py','35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015'),"
+      }
+    ]
+  },
+  {
+    "path": "tests/f6c-refined-acceleration-pilot.test.js",
+    "before": "1f5999f7b728f3f1bb9bcb6af8a21cee3535ad62453ef20ff7465debae4f489d",
+    "after": "fc989f488fdc301c9767ccef818c8630b7e11dee0356d6c0b949070f51a08c81",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/verify-f6c-refined-acceleration.py",
+        "before": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015",
+        "after": "e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae"
+      }
+    ],
+    "lines": [
+      {
+        "line": 30,
+        "text": "  assert.equal(E.FIXED.length,16);assert.equal(E.CHECKER_SHA,'35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015');"
+      }
+    ]
+  }
+]

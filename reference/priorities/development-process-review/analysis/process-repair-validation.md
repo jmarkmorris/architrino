@@ -34,6 +34,8 @@ Monitor loss may be observed first by the outer resource monitor or the register
 
 ## Remaining blocker: preparation pin
 
+**Subsequent recovery, 2026-09-07:** the [source recovery investigation](source-recovery-and-binding-repair.md) reconstructs the exact expected intermediate edit, repairs the current composition, and identifies the distinct remaining historical archive gap. The paragraphs below preserve what was known at the preceding repair handoff; the preparation version is no longer unrecovered.
+
 The refined-acceleration source-generation test still fails because `run-f6c-refined-acceleration-pilot.mjs` pins its preparation script at `738c716f…52842c`. Before this repair, `git show HEAD:scripts/eom/prepare-f6c-refined-acceleration.py | shasum -a 256` gives `6786bcda…b9d7c4c`, already different. The current preparation script differs from those baseline bytes only in reviewed operational hashes, but that does not establish what the older expected generation contained.
 
 Hashing the seven available versions from that path's history rooted at `36d34a262` did not recover the expected value. This is a bounded history search, not proof the blob is unrecoverable. The expectation has not been replaced. Recover its original bytes and compare the intended source contract before deciding whether to update the current-generation pin or preserve a separate historical dependency. Owner: braid-program/OPS-024 source-generation review. This is a genuine outstanding validation failure, not an environmental exclusion.

@@ -1,0 +1,63 @@
+{
+  "baseline": "713c53a0acf5c8c78002873d9ebc8887bd8d4bcc",
+  "knownCases": "normalization and different code checked before target",
+  "claim": "Every script/test edit is confined to digest values; this proves syntax preservation only",
+  "changes": [
+    {
+      "path": "scripts/eom/f6c_variable_cell_adapter.py",
+      "before": "d6e9d68735a85d0b6aa6a04a1168628dea5bd05de30ba6bff3e8920a45a1c951",
+      "after": "84c4dadb643e7b828bafec92e4bfb468c7f3bb6b8474cc72b59084a59b7fa0ea"
+    },
+    {
+      "path": "scripts/eom/prepare-f6c-parent-emission-refinement.py",
+      "before": "bfac926b01dbd4a4bf060cc80b5aef4df95cd28d14fc0e34ebdd4ea73c4ea4af",
+      "after": "b61e3ff13aa686e462e300da2bd22a166181d7918bdd50700e446f6f1cd2b8c8"
+    },
+    {
+      "path": "scripts/eom/prepare-f6c-refined-acceleration.py",
+      "before": "cb7bbef900b620d908cbcf3803793826c87cbf41e7f42d75c8fd26cf59ca5b8b",
+      "after": "00684a4779e3636e984d46cf76a6d462c648eb771a3084b7645ba81347eb1af4"
+    },
+    {
+      "path": "scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs",
+      "before": "935e1e2e104672d79a41458d51ce663ef3c2c97b37742ec80431b2b3d0d80d53",
+      "after": "31b120ef488abc05750587329adab499c06c6dd5f48649bcdea3328d2910edf1"
+    },
+    {
+      "path": "scripts/eom/run-f6c-refined-acceleration-pilot.mjs",
+      "before": "c13ecb4215919181267d9972e288eda23369e4a89239abc56b7c7643bb66435c",
+      "after": "9d7a940ed76d463ad1112bf153acb32757824247fb373743ebb06483fd3cfc1d"
+    },
+    {
+      "path": "scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs",
+      "before": "1376cbd3481860b92a2917fd6f702ba5d2aca1815b13cb35afe587b0226c07ac",
+      "after": "0c5a391fcd723c6d7d2c0f29bd81e6cf9b19d22488bdfde04d0c2f88372266f3"
+    },
+    {
+      "path": "scripts/eom/verify-f6c-parent-emission-refinement.py",
+      "before": "fd57cf85365ea5bfc9db279dc4fee1454a971335fd4aea02e94220906eb8d578",
+      "after": "2e27bae084e2e35b28dd7a6f6a5675c8c418dbda762d9ebb72ffeae952b7fec6"
+    },
+    {
+      "path": "scripts/eom/verify-f6c-refined-acceleration.py",
+      "before": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015",
+      "after": "e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae"
+    },
+    {
+      "path": "tests/f6c-refined-acceleration-pilot.test.js",
+      "before": "1f5999f7b728f3f1bb9bcb6af8a21cee3535ad62453ef20ff7465debae4f489d",
+      "after": "fc989f488fdc301c9767ccef818c8630b7e11dee0356d6c0b949070f51a08c81"
+    },
+    {
+      "path": "tests/test_f6c_single_leaf_diagnostic.py",
+      "before": "ce1e9a9a7f7fdf6266958176397aa7ee351017b328a7d5c9dbd802cf4b44b1c6",
+      "after": "3731c0e401ef918aea90952e7c65981c4ba456e9143f63a609b16de37eae0554"
+    },
+    {
+      "path": "tests/test_f6c_streamed_leaf_session.py",
+      "before": "014dcdb11cd8582088d47f4c37f748f960114c3bfc30eed89d5ae976a3c7042a",
+      "after": "d1d25097a8350761ce7ebfa02ba318a91cd6472e2a6f6c855716c52ec736f910"
+    }
+  ],
+  "archiveFilesVerified": 19
+}
