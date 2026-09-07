@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/check-retained-adapter.py", line 47, in <module>
+    with a.open_adapter(ROOT,adapter_sha256=bind(ROOT/a.SELF)['sha256'],controls_sha256=bind(ROOT/a.CONTROLS)['sha256'],
+         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            closure_owner_sha256=owner['sha256'],deadline=time.monotonic()+100,historical_evidence=selection)as obj:
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/markmorris/vibe/architrino/scripts/eom/f6c_variable_cell_adapter.py", line 1969, in open_adapter
+    w.authenticate_observations(rdocs['admission'],logs,w.decode_operational)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-refined-acceleration.py", line 404, in authenticate_observations
+    require((len(host),len(pilots),len(gates))==(20,15,14),'prior operational observation kinds')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-refined-acceleration.py", line 131, in require
+    if not ok:raise ValueError(message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: prior operational observation kinds

@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/check-retained-adapter.py", line 38, in <module>
+    count=a._full_chain(w,core,docs,full,entry.data,pool,ownerraw)
+  File "/Users/markmorris/vibe/architrino/scripts/eom/f6c_variable_cell_adapter.py", line 1744, in _full_chain
+    for path,digest in _entry_pins(entry_raw).items():expected.append(pool.capture(path,digest).binding())
+                                                                      ~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/f6c_variable_cell_adapter.py", line 959, in capture
+    raise ValueError('unavailable historical host cannot supply bytes')
+ValueError: unavailable historical host cannot supply bytes

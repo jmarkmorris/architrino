@@ -1,0 +1,58 @@
+[
+  {
+    "role": "integralProof",
+    "original": {
+      "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-residual-integral-supremum-enclosure.md",
+      "sha256": "945441097fdd2934434dd2ff6d9dd6f06a77898752db6bcac90745a76420eb4b",
+      "bytes": 27167
+    },
+    "physical": {
+      "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-residual-integral-supremum-enclosure.md.source",
+      "sha256": "945441097fdd2934434dd2ff6d9dd6f06a77898752db6bcac90745a76420eb4b",
+      "bytes": 27167
+    },
+    "gitSource": "897fe1aa79be7ae1e77144d52ef396d209645323^:reference/priorities/braid-program/evidence/2026-08-27-f6c-residual-integral-supremum-enclosure.md"
+  },
+  {
+    "role": "correlatedProof",
+    "original": {
+      "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-correlated-residual-box-envelope.md",
+      "sha256": "4180faad5d631af4bdbaf9ebd11500b0cc158b50da6ccc81295cf4d84a82bd41",
+      "bytes": 16640
+    },
+    "physical": {
+      "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-correlated-residual-box-envelope.md.source",
+      "sha256": "4180faad5d631af4bdbaf9ebd11500b0cc158b50da6ccc81295cf4d84a82bd41",
+      "bytes": 16640
+    },
+    "gitSource": "897fe1aa79be7ae1e77144d52ef396d209645323^:reference/priorities/braid-program/evidence/2026-08-27-f6c-correlated-residual-box-envelope.md"
+  },
+  {
+    "role": "gkProof",
+    "original": {
+      "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-gk13-execution-protocol.md",
+      "sha256": "66ec97315dd8caf08d0628e2b23326044ac0a2f5b86b29d7c2f5542dc879cc85",
+      "bytes": 18601
+    },
+    "physical": {
+      "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-gk13-execution-protocol.md.source",
+      "sha256": "66ec97315dd8caf08d0628e2b23326044ac0a2f5b86b29d7c2f5542dc879cc85",
+      "bytes": 18601
+    },
+    "gitSource": "897fe1aa79be7ae1e77144d52ef396d209645323^:reference/priorities/braid-program/evidence/2026-08-27-f6c-gk13-execution-protocol.md"
+  },
+  {
+    "role": "refinedClosure",
+    "original": {
+      "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-refined-cover-acceleration-projection.md",
+      "sha256": "c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d",
+      "bytes": 30139
+    },
+    "physical": {
+      "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-refined-cover-acceleration-projection.md.source",
+      "sha256": "c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d",
+      "bytes": 30139
+    },
+    "gitSource": "897fe1aa79be7ae1e77144d52ef396d209645323^:reference/priorities/braid-program/evidence/2026-08-27-f6c-refined-cover-acceleration-projection.md"
+  }
+]

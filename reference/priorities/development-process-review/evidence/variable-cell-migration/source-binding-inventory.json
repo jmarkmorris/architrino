@@ -1,0 +1,32 @@
+[
+  {
+    "role": "integralProof",
+    "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-residual-integral-supremum-enclosure.md",
+    "expected": "945441097fdd2934434dd2ff6d9dd6f06a77898752db6bcac90745a76420eb4b",
+    "actual": "178700b0c92b7a080f2a1d081c54d3ac6bb00cb398b22e59f04e91f6a546ec63"
+  },
+  {
+    "role": "correlatedProof",
+    "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-correlated-residual-box-envelope.md",
+    "expected": "4180faad5d631af4bdbaf9ebd11500b0cc158b50da6ccc81295cf4d84a82bd41",
+    "actual": "887412474764bd80a36a0750ea41ecf90f4c7f744b8e9b1beb147a6291dbcad2"
+  },
+  {
+    "role": "gkProof",
+    "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-gk13-execution-protocol.md",
+    "expected": "66ec97315dd8caf08d0628e2b23326044ac0a2f5b86b29d7c2f5542dc879cc85",
+    "actual": "866ddc2f182fb0bf62447aa193ab1d27d5ef1d6b8a7128c5f97f3c70dfb25421"
+  },
+  {
+    "role": "refinedClosure",
+    "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-refined-cover-acceleration-projection.md",
+    "expected": "c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d",
+    "actual": "a9d871a35e6e9f00e96ba07182798cb87f546eabe0664e7f170b67c820bb43fc"
+  },
+  {
+    "role": "fullEntry",
+    "path": "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+    "expected": "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b",
+    "actual": "20c8d44ee55fe77de2e6fb5f394739fe71c806562542c22632789d59dd0734b7"
+  }
+]

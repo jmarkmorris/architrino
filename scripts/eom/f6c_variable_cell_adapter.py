@@ -2,7 +2,8 @@
 
 open_adapter(repo_root, *, adapter_sha256, controls_sha256,
              closure_owner_sha256, deadline, parent_refinements=(),
-             evidence_package=None) is a context manager. Construction
+             evidence_package=None, accepted_parent_evidence=(),
+             historical_evidence=None) is a context manager. Construction
 captures original files and authenticates preserved metadata only: NO root,
 acceleration, residual or GK evaluation. The expected closure-owner hash MUST
 be fixed before construction. The captured readiness version attributes the
@@ -16,6 +17,13 @@ Sorted explicit ParentRefinements may additionally select authenticated original
 parents1..159. Each needs separately bound independent acceptance. Historical
 source generations may be read only through explicit ArchivedSource relations;
 logical historical bindings and current physical provenance remain distinct.
+historical_evidence explicitly selects variable-cell-historical-evidence.v1:
+routes contain original/physical binding tuples, and
+unavailableHistoricalEnvironment contains only the exact three admitted old
+host tuples. Every selection must be consumed. Current executable modules
+bypass these routes. historical_evidence_verification separately reports
+retained-record verification and missing original-environment bytes; it does
+not accept new operational closure receipts as scientific parent evidence.
 An explicit EvidencePackage may replace only the frozen accepted parent1/2
 payload inventory. It preserves logical records and archive attribution, holds
 one checked physical package handle, and never falls back to loose members.
@@ -94,7 +102,7 @@ PARENT_ONE=(
  ('rows',PARENT_BASE+'pilot-parent-1-v1/rows.ndjson','ad9734afd944cf92994852f3cfbb3c3b64ebcecf090e243cbf7a37ab5c019624',161022),
  ('pieces',PARENT_BASE+'pilot-parent-1-v1/pieces.ndjson','928a7d56104e528170b50f971c3217f157f5ba462a815cd646afba73fd354e46',48578),
 )
-# Only these historical nonexecuting wrapper generations may be archived.
+# These separately accepted parent wrapper generations may be archived.
 # The current adapter, numerical references and runtime are never remappable.
 PARENT_ARCHIVE_SOURCES=(
  ('producer','scripts/eom/prepare-f6c-parent-emission-refinement.py','492882b63f074fd46253ee92974524c4fd6b43ae6190db23797c307251ed8544',57641),
@@ -177,7 +185,7 @@ SOURCES = (
  ('gkControls','tests/test_f6c_gk13_protocol.py','4b53d57f19de401348830b809600f01a9ae0c0c88d19d406a6a85e5ac8c5a241'),
  ('gkProof',PREFIX+'2026-08-27-f6c-gk13-execution-protocol.md','66ec97315dd8caf08d0628e2b23326044ac0a2f5b86b29d7c2f5542dc879cc85'),
  ('refinedClosure',PREFIX+'2026-08-27-f6c-refined-cover-acceleration-projection.md','c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d'),
- ('fullEntry','scripts/eom/run-f6c-cached-root-cover-full.mjs','9e71ac129b9f62a5c6302ddadf2fdfcb8525b0342bb81a9d7c827cf9553ee792'),
+ ('fullEntry','scripts/eom/run-f6c-cached-root-cover-full.mjs','1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b'),
  ('geometry','scripts/eom/f6c_reception_geometry_restriction.py','e4bc1ff8bd23346f58a934ace429dbf65b11d0b2bb71ebc55dc34036ab9c51e7'),
  ('geometryControls','tests/test_f6c_reception_geometry_restriction.py','b6c4b4e6a82a11b4ee84c782bf208df4b141860bb8d01f1ad2b2a1ca749a6c7b'),
  ('captureHelper','scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5'),
@@ -188,6 +196,126 @@ SOURCES = (
  ('geometryIntervals','scripts/eom/oracle/decimal_interval.py','fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'),
  ('geometryIntervalControls','tests/test_eom_decimal_interval.py','22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44'),
 )
+HISTORICAL_ARCHIVES = {
+ "scripts/eom/launch-abc-enclosed-root-pilot.mjs": [
+  "5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa",
+  39465
+ ],
+ "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py": [
+  "af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386",
+  38160
+ ],
+ "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py": [
+  "19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132",
+  41336
+ ],
+ "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md": [
+  "daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b",
+  10021
+ ],
+ "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py": [
+  "9abc7c3a80ad670e7bc7ad9f94a95f1fcd8924de425991032d6d26bba3372427",
+  11113
+ ],
+ "tests/test_f6c_cached_continuous_reception_root_cover.py": [
+  "2fd2080b3b4facdc80b85cdc65610c2bfeefdd8eab5f7234e207d3d4908bc117",
+  11096
+ ],
+ "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md": [
+  "7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4",
+  12103
+ ],
+ "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md": [
+  "f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",
+  28340
+ ],
+ "reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md": [
+  "6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936",
+  21031
+ ],
+ "tests/test_eom_continuous_reception_roots.py": [
+  "473cba3b039027879eeea6987515261faaadcf0833f3e4d2864fc610f5b7a144",
+  32501
+ ],
+ "scripts/eom/verify-f6c-accepted-frame-reconstruction.py": [
+  "80a96ebd0b306148b3eb96cb12e797c5cf80942e52ea457a8c6a72d58e8618a0",
+  31153
+ ],
+ "scripts/eom/verify-f6c-retained-history-guards.py": [
+  "efaed33a6d6e55be5788ffb7e4e6f596fbc0381466a8308154dbd550743896b9",
+  31651
+ ],
+ "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md": [
+  "765e6663cdd60323f84b9e1af52ba1399345322eb747727f2a0898b4dd0fd079",
+  25546
+ ],
+ "scripts/eom/verify-f6c-continuous-reception-root-cover.py": [
+  "2d25103e0fb6ab584485b7954465afe0fa5de556b3a7e111c56d20156b7011fd",
+  39929
+ ],
+ "reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md": [
+  "798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3",
+  10933
+ ],
+ "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md": [
+  "46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef",
+  13021
+ ],
+ "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md": [
+  "36b72681c116cedf1803cc89ead8b48a7d9604bae7f9bffd7b0f95b33c3bb9b4",
+  6754
+ ],
+ "scripts/eom/run-f6c-cached-root-cover-full.mjs": [
+  "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b",
+  27166
+ ],
+ "scripts/eom/launch-f6c-cached-root-cover-full.mjs": [
+  "0f11fe5e51ef52f95c02605b776fe6b94c72a67a4a5f2b69671870f5f548ae17",
+  26659
+ ]
+}
+HISTORICAL_ARCHIVES.update({'reference/priorities/braid-program/evidence/2026-08-27-f6c-residual-integral-supremum-enclosure.md': ['945441097fdd2934434dd2ff6d9dd6f06a77898752db6bcac90745a76420eb4b', 27167], 'reference/priorities/braid-program/evidence/2026-08-27-f6c-correlated-residual-box-envelope.md': ['4180faad5d631af4bdbaf9ebd11500b0cc158b50da6ccc81295cf4d84a82bd41', 16640], 'reference/priorities/braid-program/evidence/2026-08-27-f6c-gk13-execution-protocol.md': ['66ec97315dd8caf08d0628e2b23326044ac0a2f5b86b29d7c2f5542dc879cc85', 18601], 'reference/priorities/braid-program/evidence/2026-08-27-f6c-refined-cover-acceleration-projection.md': ['c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d', 30139]})
+REFINED_ARCHIVES = {('reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md', 'c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'): ['c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853',
+                                                                                                                                                                                       16985],
+ ('reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md', 'c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f'): ['c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f',
+                                                                                                                                                                                     17211],
+ ('reference/priorities/braid-program/evidence/2026-08-27-f6c-emission-refinement-predeclaration.md', '53f3398ba083218948c9efd93f10db09cbf5d617bc0270988f5adea24c48f037'): ['53f3398ba083218948c9efd93f10db09cbf5d617bc0270988f5adea24c48f037',
+                                                                                                                                                                            21345],
+ ('scripts/eom/launch-f6c-cached-root-cover-pilot.mjs', '03ef68dbdc9e578402771490c274ab246f02688c443f8ecba8d3006f3d35a5ec'): ['03ef68dbdc9e578402771490c274ab246f02688c443f8ecba8d3006f3d35a5ec',
+                                                                                                                              26639],
+ ('scripts/eom/launch-f6c-emission-refinement-pilot.mjs', '89b23af09f57aa50e3ebfc0780189f2f0d1a409a7e13004af0cb48167894b944'): ['89b23af09f57aa50e3ebfc0780189f2f0d1a409a7e13004af0cb48167894b944',
+                                                                                                                                24893],
+ ('scripts/eom/launch-prescribed-response-pilot.mjs', 'a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9'): ['a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9',
+                                                                                                                            28305],
+ ('scripts/eom/oracle/f6c_emission_refinement_conformance.py', 'ec0eaaeae3da4ffb597ac92ff3ac1a5700a8cf88916144a7d994912270c4157a'): ['ec0eaaeae3da4ffb597ac92ff3ac1a5700a8cf88916144a7d994912270c4157a',
+                                                                                                                                     16703],
+ ('scripts/eom/prepare-f6c-emission-refinement.py', 'bb9e1a287552483f7ad0fc1431162c1fbdb2da84fd862bc9b1c4799eef993600'): ['bb9e1a287552483f7ad0fc1431162c1fbdb2da84fd862bc9b1c4799eef993600',
+                                                                                                                          39849],
+ ('scripts/eom/run-f6c-cached-root-cover-pilot.mjs', '51cd543f9f28d87299a59614805cdbf949dceabcabad1a64a701b0b2b8ea6c57'): ['51cd543f9f28d87299a59614805cdbf949dceabcabad1a64a701b0b2b8ea6c57',
+                                                                                                                           25508],
+ ('scripts/eom/run-f6c-emission-refinement-pilot.mjs', '20466a4540dc972c248d30b8dd1987a19b00ca59a4f883752ec1c7c8b96d68ac'): ['20466a4540dc972c248d30b8dd1987a19b00ca59a4f883752ec1c7c8b96d68ac',
+                                                                                                                             36995],
+ ('scripts/eom/verify-f6c-emission-refinement.py', '1b3e39eea14c2a21be76ab2a3fe2bdbcc055b5a73325d03de9734c79a8017c33'): ['1b3e39eea14c2a21be76ab2a3fe2bdbcc055b5a73325d03de9734c79a8017c33',
+                                                                                                                         38678],
+ ('tests/f6c-emission-refinement-pilot-process.test.js', 'ee3f86b5fd29a2547a13dde7733c38ed3bcf4a95ffcbb9d17019fc94f4ee287e'): ['ee3f86b5fd29a2547a13dde7733c38ed3bcf4a95ffcbb9d17019fc94f4ee287e',
+                                                                                                                               18422],
+ ('tests/test_f6c_emission_refinement.py', '1d3af80d89834b31968cfe5dd7fb016bb0ac4eee6ce77fbabaeea21a9a905bc7'): ['1d3af80d89834b31968cfe5dd7fb016bb0ac4eee6ce77fbabaeea21a9a905bc7',
+                                                                                                                 31668]}
+HISTORICAL_HOSTS = {
+ "/usr/bin/git": [
+  "179301dcb41ea78accc3fa0048a7e6f6710d891945a751a34addd622020c1818",
+  118928
+ ],
+ "/bin/ps": [
+  "472992c470606d28f577590decfecd7f4a20f832fd92c671bebc6d44790b5d02",
+  170816
+ ],
+ "/usr/bin/memory_pressure": [
+  "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56",
+  135248
+ ]
+}
+
 LABELS=('0+','0-','1+','1-','2+','2-','3+','3-')
 CHARGE='0.1666666666666666666666666666666667'
 COUPLING='10.304229970992187'
@@ -471,7 +599,7 @@ def _register_evaluation(registry,key,evaluated):
 
 class Adapter:
     __slots__=('_a','_i','_c','_gk','histories','frames','parents','context','provenance','_closed','_pool','_actual','_issued','_evaluated','_clips','_residuals',
-        '_geometry','_geometry_refs','_geometry_histories','_geometry_parents','_geometry_guards','_geometry_counts','_successful_counts','historical_owner_archives','fresh_provenance')
+        '_geometry','_geometry_refs','_geometry_histories','_geometry_parents','_geometry_guards','_geometry_counts','_successful_counts','historical_owner_archives','fresh_provenance','historical_evidence_verification')
     def __init__(self,*_):raise TypeError('use open_adapter or make_synthetic_adapter')
     def __setattr__(self,*_):raise TypeError('immutable captured adapter generation')
 
@@ -648,7 +776,7 @@ def _build(a,i,c,export,parents,*,actual,provenance,pool=None,source_sha=None,gk
     adapter=object.__new__(Adapter)
     for name,value in (('_a',a),('_i',i),('_c',c),('_gk',gk),('histories',histories),('frames',frames),('parents',parents),
         ('context',i.Context(i.FAMILY,source_sha or _hash(_encoded(export)),_hash(_encoded(export['acceptedFrames'])),'1',COUPLING,RULER)),
-        ('provenance',provenance),('fresh_provenance',()),('historical_owner_archives',historical_owner_archives),('_closed',False),('_pool',pool),('_actual',actual),('_issued',{}),('_evaluated',{}),('_clips',clips),('_residuals',[0]),('_successful_counts',[0,0]),
+        ('provenance',provenance),('fresh_provenance',()),('historical_evidence_verification',None),('historical_owner_archives',historical_owner_archives),('_closed',False),('_pool',pool),('_actual',actual),('_issued',{}),('_evaluated',{}),('_clips',clips),('_residuals',[0]),('_successful_counts',[0,0]),
         ('_geometry',geometry),('_geometry_refs',None),('_geometry_histories',()),('_geometry_parents',()),('_geometry_guards',None),
         ('_geometry_counts',dict(restriction_calls=0,completed_restrictions=0,history_state_evaluations=0,restricted_projections=0))):
         object.__setattr__(adapter,name,value)
@@ -830,6 +958,73 @@ class _AncestryPool:
     def recheck(self):
         require(self.used==set(self.routes),'unused ancestry archive')
         self._pool.recheck()
+
+
+class _ArchivePool:
+    """Explicit retained-evidence view; current module captures bypass this view.
+
+    Selection is caller data with a closed schema. Only exact frozen tuples can
+    route, and unavailable host records can supply bindings, never bytes.
+    """
+    def __init__(self,pool,selection):
+        _keys(selection,('schema','routes','unavailableHistoricalEnvironment'))
+        require(selection['schema']=='braid-program/variable-cell-historical-evidence.v1','explicit historical evidence version')
+        self._pool=pool;self.root=pool.root;self.w=pool.w;self.live=pool.live;self.files=pool.files
+        self.routes={};self.missing={};self.used=set();self.used_missing=set()
+        rows=selection['routes'];missing=selection['unavailableHistoricalEnvironment']
+        require(type(rows)is list and len(rows)<=198 and type(missing)is list and len(missing)<=3,'bounded historical selection')
+        targets=set()
+        for row in rows:
+            _keys(row,('original','physical'))
+            old=self.w.normalized(row['original'],self.root);new=self.w.normalized(row['physical'],self.root)
+            relative=os.path.relpath(old['path'],self.root)
+            expected=REFINED_ARCHIVES.get((relative,old['sha256']))or HISTORICAL_ARCHIVES.get(relative)or HISTORICAL_HOSTS.get(old['path'])
+            require(expected==[old['sha256'],old['bytes']],'exact historical archive tuple')
+            require(old['path']!=new['path'] and new['path'].endswith('.source')
+                and (old['sha256'],old['bytes'])==(new['sha256'],new['bytes']),'nonexecuting identical archive')
+            key=(old['path'],old['sha256'])
+            require(key not in self.routes and new['path']not in targets,'duplicate historical archive')
+            self.routes[key]=(old,new);targets.add(new['path'])
+        for row in missing:
+            old=self.w.normalized(row,self.root)
+            require(HISTORICAL_HOSTS.get(old['path'])==[old['sha256'],old['bytes']],'exact unavailable host tuple')
+            require(not any(k[0]==old['path']for k in self.routes) and old['path']not in self.missing,'conflicting unavailable host')
+            self.missing[old['path']]=old
+    def capture(self,path,digest,*,data=False,size=None):
+        self.live();key=str(self.root/Path(path));route=self.routes.get((key,digest))
+        if key in self.missing:
+            raise ValueError('unavailable historical host cannot supply bytes')
+        if route is None or digest!=route[0]['sha256']:
+            return self._pool.capture(path,digest,data=data,size=size)
+        old,new=route
+        require(size is None or type(size)is int and size==old['bytes'],'historical archive byte count')
+        physical=self._pool.capture(new['path'],new['sha256'],data=data,size=new['bytes'])
+        self.used.add((key,digest))
+        return _LogicalFile(physical,SourceBinding(**old))
+    def read_binding(self,b,*,capture=False):
+        old=self.w.normalized(b,self.root);key=old['path']
+        if key in self.missing:
+            self.live()
+            require(not capture and self.w.equal(old,self.missing[key]),'unavailable historical host binding only')
+            self.used_missing.add(key);return old
+        file=self.capture(key,old['sha256'],data=capture,size=old['bytes'])
+        return file.data if capture else file.binding()
+    def recheck(self):
+        require(self.used==set(self.routes) and self.used_missing==set(self.missing),'unused historical selection')
+        self._pool.recheck()
+    def verification(self):
+        self.recheck()
+        return MappingProxyType(dict(schema='braid-program/retained-historical-evidence.v1',
+            retainedScientificBytesVerified=True,recordedProvenanceVerified=True,
+            fullOriginalEnvironmentVerified=not self.missing,
+            unavailableHistoricalEnvironment=tuple(SourceBinding(**b)for _,b in sorted(self.missing.items())),
+            authority='retained artifacts and recorded conditional provenance only; no fresh historical observation or replay'))
+    @property
+    def metadata(self):return self._pool.metadata
+    def read_identity(self,b):
+        old=self.w.normalized(b,self.root)
+        return _file_identity(self.capture(old['path'],old['sha256'],size=old['bytes']))
+    def release(self,bindings):self._pool.release(bindings)
 
 
 class _PackagePhysicalFile:
@@ -1341,7 +1536,7 @@ def _authenticate_parent(w,core,pool,descriptor,owner,ancestry,full,fdocs,export
         'parent publication boundary differs')
     for key in ('accelerationEvaluated','eomExecuted','wholeHistoryMetrics'):require(op[key]is False,'parent numerical authority promoted')
     expected_original={k:ancestry[k]for k in ('export','reconstruction','guards')}
-    expected_original['fullEntry']=pool.files[str(pool.root/'scripts/eom/run-f6c-cached-root-cover-full.mjs')].binding()
+    expected_original['fullEntry']=pool.capture('scripts/eom/run-f6c-cached-root-cover-full.mjs','1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b',size=27166).binding()
     expected_original.update(('full'+k[0].upper()+k[1:],v)for k,v in full.items())
     require(w.equal(w.source_map(p['originalBindings'].values(),pool.root),w.source_map(expected_original.values(),pool.root))
         and set(p['originalBindings'])==set(expected_original),'parent exact original sources')
@@ -1502,7 +1697,7 @@ def _authenticate_fresh_parents(w,core,pool,owner,ancestry,full,fdocs,export,par
     context=dict(family=integral.FAMILY,source_generation_sha256=ancestry['export']['sha256'],
         frame_generation_sha256=_hash(_encoded(export['acceptedFrames'])),field_speed='1',coupling=COUPLING,ruler=RULER)
     original={k:ancestry[k]for k in ('export','reconstruction','guards')}
-    original['fullEntry']=pool.files[str(pool.root/'scripts/eom/run-f6c-cached-root-cover-full.mjs')].binding()
+    original['fullEntry']=pool.capture('scripts/eom/run-f6c-cached-root-cover-full.mjs','1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b',size=27166).binding()
     original.update(('full'+k[0].upper()+k[1:],v)for k,v in full.items())
     expected_full=tuple(fdocs['admission']['sourceBindings'])
     selected=[];archives=[]
@@ -1552,8 +1747,11 @@ def _authenticate_fresh_parents(w,core,pool,owner,ancestry,full,fdocs,export,par
 
 def _owner_declaration(raw):
     require(type(raw)is bytes and 0<len(raw)<=MAX_BYTES,'bounded acceptance-owner bytes')
-    text=raw.decode('utf-8',errors='strict');heading='### Independently Accepted Actual Full F6c Conditional Cover\n'
-    require(text.count(heading)==1,'unique full acceptance-owner section')
+    text=raw.decode('utf-8',errors='strict')
+    headings=('### Independently Accepted Actual Full F6c Conditional Cover\n',
+        '### Independently Accepted Actual Full asymmetric counter-breathing representative Conditional Cover\n')
+    require(sum(text.count(h)for h in headings)==1,'unique full acceptance-owner section')
+    heading=next(h for h in headings if h in text)
     section=text.split(heading,1)[1].split('\n### ',1)[0]
     for token in ('original caller session `13512`','final completion chunk `c21aa7`','exit zero',
                   '`862.951823625`','Independent post-closure review accepts all 160',FULL_BASE):
@@ -1579,6 +1777,35 @@ def _entry_pins(raw):
     return result
 
 
+def _authenticate_historical_prior(reference,docs,ancestry):
+    """Validate old identities, then reuse unchanged structural predicates.
+
+    The local view changes only the checker's two generation tokens. Original
+    records and the logical ancestry are never rewritten or re-hashed.
+    """
+    contract=docs['priorPlan']['comparisonContract'];comparison=docs['comparison']
+    require(contract['verifierSha256']=='19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132'
+        and contract['declarationSha256']=='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4'
+        and comparison['verifier']['sha256']==contract['verifierSha256'],'original prior oracle generation')
+    current_verifier='3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'
+    view=dict(docs,priorPlan=dict(docs['priorPlan'],comparisonContract=dict(contract,
+        verifierSha256=current_verifier,declarationSha256='520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba')),
+        comparison=dict(comparison,verifier=dict(comparison['verifier'],sha256=current_verifier)))
+    reference.authenticate_prior(view,ancestry)
+
+
+def _historical_observation_decoder(decode):
+    """Project only the exact old gate schema for unchanged resource checks."""
+    def read(raw):
+        record=decode(raw)
+        if type(record)is dict:
+            require(record.get('schema')!='braid-program/subfield-circular-pilot-outer-heartbeat.v1','historical gate cannot use current schema')
+            if record.get('schema')=='braid-program/abc-pilot-outer-heartbeat.v1':
+                return dict(record,schema='braid-program/subfield-circular-pilot-outer-heartbeat.v1')
+        return record
+    return read
+
+
 def _full_chain(w,core,docs,bound,entry_raw,pool,owner_raw):
     """Authenticate preserved full metadata; no root or geometry replay."""
     _owner_declaration(owner_raw)
@@ -1586,10 +1813,15 @@ def _full_chain(w,core,docs,bound,entry_raw,pool,owner_raw):
     _keys(p,('schema','scope','resourcePlan','comparisonContract','operationalBindings','controlBindings','python','pythonRealPath','git','node'))
     require(p['schema']=='braid-program/f6c-cached-root-cover-full-launch.v1'and p['scope']=='full','full plan identity')
     contract=p['comparisonContract'];_keys(contract,('declarationSha256','verifierSha256','scope','subjectSourceBindings','runtimeBindings'))
-    require(contract['scope']=='full'and contract['verifierSha256']==dict((r,h)for r,_,h in SOURCES)['rootComparison']
-        and contract['declarationSha256']=='520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba','full comparison contract')
+    require(contract['scope']=='full'and contract['verifierSha256']=='19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132'
+        and contract['declarationSha256']=='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4','full comparison contract')
     expected=[]
-    for path,digest in _entry_pins(entry_raw).items():expected.append(pool.capture(path,digest).binding())
+    for path,digest in _entry_pins(entry_raw).items():
+        host=HISTORICAL_HOSTS.get(path)
+        if host is not None:
+            require(digest==host[0],'original entry host identity')
+            expected.append(pool.read_binding(dict(path=path,sha256=digest,bytes=host[1])))
+        else:expected.append(pool.capture(path,digest).binding())
     for group,n in ((contract['subjectSourceBindings'],4),(contract['runtimeBindings'],158),(p['operationalBindings'],6),(p['controlBindings'],2)):
         w.binding_list(group,n);expected.extend(pool.read_binding(b)for b in group)
     expected.extend((pool.read_binding(p['resourcePlan']),bound['plan']))
@@ -1695,7 +1927,7 @@ def _parents_from_raw(a,reference,rows,pieces,histories,bindings,*,cells,refined
 
 
 @contextmanager
-def open_adapter(repo_root,*,adapter_sha256,controls_sha256,closure_owner_sha256,deadline,parent_refinements=(),evidence_package=None,accepted_parent_evidence=()):
+def open_adapter(repo_root,*,adapter_sha256,controls_sha256,closure_owner_sha256,deadline,parent_refinements=(),evidence_package=None,accepted_parent_evidence=(),historical_evidence=None):
     """Capture-only constructor. Caller fixes all three expected hashes first.
 
     deadline is the caller's finite monotonic absolute deadline, at most1800s
@@ -1724,8 +1956,9 @@ def open_adapter(repo_root,*,adapter_sha256,controls_sha256,closure_owner_sha256
             if accepted_parent_evidence:
                 with physical_pool.observe(fresh_consumed):
                     pool=_fresh_evidence_pool(pool,accepted_parent_evidence,deadline,{0,*(d.parent_index for d in parent_refinements)})
+            if historical_evidence is not None:pool=_ArchivePool(pool,historical_evidence)
             module_roles=('mapping','decoder','rootComparison','acceleration','integral','correlated','gk','geometry','captureHelper')
-            source={role:pool.capture(path,digest,data=role in module_roles+('fullEntry','geometryHistory','geometryRoots','geometryIntervals'))for role,path,digest in SOURCES}
+            source={role:(pool if role in ('fullEntry','integralProof','correlatedProof','gkProof','refinedClosure') else physical_pool).capture(path,digest,data=role in module_roles+('fullEntry','geometryHistory','geometryRoots','geometryIntervals'))for role,path,digest in SOURCES}
             modules={role:stack.enter_context(_module(source[role].data,source[role].path))for role in module_roles}
             # The frozen helper owns private relative imports and their cleanup.
             # The alias remains continuous_reception_roots for the cached bytes.
@@ -1733,17 +1966,31 @@ def open_adapter(repo_root,*,adapter_sha256,controls_sha256,closure_owner_sha256
                 (('decimal_interval','geometryIntervals'),('certified_history','geometryHistory'),('continuous_reception_roots','geometryRoots'))}
             geometry_modules=stack.enter_context(modules['captureHelper'].captured_package(captured))
             reference,core=modules['mapping'],modules['decoder']
-            ancestry_files={role:pool.capture(p,h,data=role in ('export','manifest','comparison','admission','reconstruction','guards','priorPlan'))for role,p,h in reference.FIXED}
-            ancestry={k:v.binding()for k,v in ancestry_files.items()}
-            old={k:w.decode_role(core,ancestry_files[k].data,k)for k in ('export','manifest','comparison','admission','reconstruction','guards','priorPlan')}
-            reference.authenticate_prior(old,ancestry)
-            for b in old['admission']['sourceBindings']:pool.read_binding(b)
-            modules['rootComparison'].validate_premises(old['export'],old['reconstruction'],old['guards'])
             refined_files={role:pool.capture(p,h,data=True)for role,p,h in w.REFINED};refined={k:v.binding()for k,v in refined_files.items()}
             rdocs={k:w.decode_role(core,refined_files[k].data,k)for k in ('manifest','comparison','admission','plan')}
+            fixed=reference.FIXED
+            if historical_evidence is not None:
+                recorded=rdocs['manifest']['fixedBindings'];require(set(recorded)=={r for r,_,_ in fixed},'complete historical ancestry roles')
+                historical_fixed=[]
+                for role,path,digest in fixed:
+                    b=w.normalized(recorded[role],root)
+                    require(b['path']==str(root/path),'original ancestry role path')
+                    if b['sha256']!=digest:
+                        allowed=REFINED_ARCHIVES.get((path,b['sha256']))or HISTORICAL_ARCHIVES.get(path)
+                        require(allowed==[b['sha256'],b['bytes']],'exact historical ancestry generation')
+                    historical_fixed.append((role,path,b['sha256']))
+                fixed=historical_fixed
+            ancestry_files={role:pool.capture(p,h,data=role in ('export','manifest','comparison','admission','reconstruction','guards','priorPlan'))for role,p,h in fixed}
+            ancestry={k:v.binding()for k,v in ancestry_files.items()}
+            old={k:w.decode_role(core,ancestry_files[k].data,k)for k in ('export','manifest','comparison','admission','reconstruction','guards','priorPlan')}
+            if historical_evidence is not None:_authenticate_historical_prior(reference,old,ancestry)
+            else:reference.authenticate_prior(old,ancestry)
+            for b in old['admission']['sourceBindings']:pool.read_binding(b)
+            modules['rootComparison'].validate_premises(old['export'],old['reconstruction'],old['guards'])
             w.authenticate_refinement(rdocs,refined,ancestry,root,w.decode_operational,pool.read_binding)
             logs={role:pool.capture(p,h,data=True,size=n).data for role,p,h,n in w.PRIOR_OPERATIONS}
-            w.authenticate_observations(rdocs['admission'],logs,w.decode_operational)
+            w.authenticate_observations(rdocs['admission'],logs,
+                _historical_observation_decoder(w.decode_operational)if historical_evidence is not None else w.decode_operational)
             w.records(core,refined_files['queries'].data,3584)  # census only; no replay
             owner=pool.capture(OWNER,closure_owner_sha256,data=True)
             full_files={role:pool.capture(p,h,data=True,size=n)for role,p,h,n in FULL};full={k:v.binding()for k,v in full_files.items()}
@@ -1784,6 +2031,8 @@ def open_adapter(repo_root,*,adapter_sha256,controls_sha256,closure_owner_sha256
             require(set(fresh_provenance)<=set(provenance),'fresh physical sources belong to complete source union')
             object.__setattr__(adapter,'fresh_provenance',fresh_provenance)
             pool.recheck();live()
+            if historical_evidence is not None:
+                object.__setattr__(adapter,'historical_evidence_verification',pool.verification())
             try:yield adapter
             finally:
                 object.__setattr__(adapter,'_closed',True)

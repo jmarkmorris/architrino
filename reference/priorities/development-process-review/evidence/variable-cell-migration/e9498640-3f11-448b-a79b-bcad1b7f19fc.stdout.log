@@ -1,0 +1,36 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ '042684de5b23216a8af4a8187e02db3236206249d0f857215dc47a89b8c62d47'
+- '7a1f5571827225d1529f73a3f0b905be75e81e2f7d11c2670b697e0599d65e71'
+
+    at load (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:20:76)
+    at file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:21:44 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: '042684de5b23216a8af4a8187e02db3236206249d0f857215dc47a89b8c62d47',
+  expected: '7a1f5571827225d1529f73a3f0b905be75e81e2f7d11c2670b697e0599d65e71',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v26.3.0
+✖ tests/f6c-streamed-leaf-diagnostic.test.js (70.031875ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 74.375875
+
+✖ failing tests:
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:1:1
+✖ tests/f6c-streamed-leaf-diagnostic.test.js (70.031875ms)
+  'test failed'

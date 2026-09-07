@@ -1,0 +1,47 @@
+{
+  "knownCase": "unique replacement and duplicate refusal before target",
+  "edges": [
+    {
+      "file": "tests/test_f6c_single_leaf_diagnostic.py",
+      "dependency": "scripts/eom/f6c_variable_cell_adapter.py",
+      "before": "203b540d5b80223c015869205c4623d9db2bcf4a3947ce957a306c3217253a05",
+      "after": "2f0b9ea1ff9ed60a8dacf1b8447ea2a075f482a2d9b505de46e24b1dafb16a25"
+    },
+    {
+      "file": "tests/test_f6c_single_leaf_diagnostic.py",
+      "dependency": "tests/test_f6c_variable_cell_adapter.py",
+      "before": "89060d9830f48125bebb40f37de70fef6ef112a8bf24264ded9f8ab51489d9b1",
+      "after": "1fe6838fc63b10cd8e0051ce03039db05b7ea8370c0b8f065beb3e59492df6c2"
+    },
+    {
+      "file": "tests/test_f6c_streamed_leaf_session.py",
+      "dependency": "tests/test_f6c_single_leaf_diagnostic.py",
+      "before": "ce9d996945f51745939b27a7b5887bbd9b029861f94a00a597bb36759bd4f301",
+      "after": "47d502100d4f92e8c803f5f0dad7c248874f493ed0df9ef43e1e956e8e9bf71c"
+    },
+    {
+      "file": "scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs",
+      "dependency": "scripts/eom/f6c_variable_cell_adapter.py",
+      "before": "203b540d5b80223c015869205c4623d9db2bcf4a3947ce957a306c3217253a05",
+      "after": "2f0b9ea1ff9ed60a8dacf1b8447ea2a075f482a2d9b505de46e24b1dafb16a25"
+    },
+    {
+      "file": "scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs",
+      "dependency": "tests/test_f6c_variable_cell_adapter.py",
+      "before": "89060d9830f48125bebb40f37de70fef6ef112a8bf24264ded9f8ab51489d9b1",
+      "after": "1fe6838fc63b10cd8e0051ce03039db05b7ea8370c0b8f065beb3e59492df6c2"
+    },
+    {
+      "file": "scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs",
+      "dependency": "tests/test_f6c_single_leaf_diagnostic.py",
+      "before": "ce9d996945f51745939b27a7b5887bbd9b029861f94a00a597bb36759bd4f301",
+      "after": "47d502100d4f92e8c803f5f0dad7c248874f493ed0df9ef43e1e956e8e9bf71c"
+    },
+    {
+      "file": "scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs",
+      "dependency": "tests/test_f6c_streamed_leaf_session.py",
+      "before": "240fdc4c6039268ee99cbb38ab1e5cac991f68b4634fbc9393f5d9e73a9b5c88",
+      "after": "8fd4f300db43fcd67eda052677ee1f004efda464db7b51eea40d69c6169cd39b"
+    }
+  ]
+}

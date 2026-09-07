@@ -25,3 +25,7 @@ The operator also supplied the [post-report responses](evidence/agent-post-repor
 | 5 | [Cowork GitHub connector availability](evidence/agent-05-session-incident-report.md) | Assessed for connector attribution and read-versus-write evidence. Covers its own conversation, not repository validation. |
 
 Substantive analysis of all five reports is in the linked cross-report assessment; it includes targeted source verification rather than a full audit of every reported change. Preserve received reports unchanged. Put corrections, cross-session reconciliation, and current verification in `analysis/`. Reports from agents are evidence of what those agents reported, not independent proof of the underlying diagnosis. Retain distinct session numbers even when topics overlap. Future reports should be written only to their assigned evidence file; an agent without checkout write access should return a downloadable Markdown file rather than claim a repository write.
+
+## Variable-cell historical migration
+
+The [migration analysis](analysis/variable-cell-historical-migration.md) explains the repaired original bindings, exact source archives, retained-data construction, passing Python controls, and still-failing Node diagnostic entry. The [validation run inventory](evidence/variable-cell-migration/validation-runs.json) records the complete validation logs; its containing directory also retains the explicit selection, recovery instruments, and results.
