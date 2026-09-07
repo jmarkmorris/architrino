@@ -76,6 +76,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 - [x] Ask workers to return changed file paths, tests run, residual risks, and any priority item removed.
 - [x] Reserve the main thread for integration, conflict resolution, and final technical judgment.
 - [ ] Treat constrained sandbox agents as read/edit-only for Git when their environment cannot safely complete repository mutations; have them return the exact scoped commit command rather than leaving a lock or partial Git state.
+- [ ] From a Cowork sandbox, Claude edits and verifies but the operator commits and pushes on the Mac: the pre-commit hook runs the exact-state gate, and the sandbox cannot write its receipt (`EPERM` under `.local-data/`), so a sandbox commit fails at the hook. Expect a scoped `git add <files>` / `git commit` / `git push origin <branch>` handoff at the end of such a turn (2026-09-07, PR #260).
 
 ## Technical Closure
 

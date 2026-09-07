@@ -1,7 +1,7 @@
 {
   "schema": "architrino.test-sweep-slow-list.v1",
   "owner": "reference/priorities/aaa-operations/work-queue.md#ops-022--pr-gate-test-sweep-by-duration-split",
-  "rule": "A test file may be listed here only with a measured wall time above thresholdMs, recorded with its date and instrument. The list excludes files from the aggregate sweep in check-content-integrity.mjs; the excluded files run in .github/workflows/content-integrity.yml instead. The list is not a place to park a failing test.",
+  "rule": "A test file may be listed here only with a measured wall time above thresholdMs, recorded with its date and instrument. The list excludes files from the aggregate sweep in check-content-integrity.mjs; the excluded files run on demand with `node scripts/run-test-sweep.mjs --slow`, and the aggregate step itself is opt-in (AAA_TEST_SWEEP=run) until promotion, since 2026-09-07 (the pilot-process tests stall pending a supervision repair; PR #260). The list is not a place to park a failing test.",
   "thresholdMs": 10000,
   "gateStatus": {
     "mode": "reporting",

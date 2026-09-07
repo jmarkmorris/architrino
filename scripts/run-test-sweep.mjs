@@ -5,6 +5,15 @@
 // on the declared slow list; `--slow` runs only the slow list; `--list`
 // prints the selected files without running them. The exit status is the
 // `node --test` exit status, so the caller decides whether it gates.
+//
+// Every test runs under a `--test-timeout` so a test that blocks becomes a
+// reported failure instead of an open-ended wait: on 2026-09-07 the pilot-
+// process tests, waiting on a venv Python that a GitHub runner does not have,
+// held both PR #260 jobs for 92 minutes until cancelled. The default bound is
+// 120 s outside the slow list, twelve times the 10 s threshold above which a
+// file must move to the slow list; the slow list gets 600 s, six times the
+// 100 s cap its two unmeasured entries hit. `--test-timeout=<ms>` overrides
+// either. The timeout is per test, as `node --test` applies it, not per file.
 
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
@@ -19,6 +28,17 @@ const TEST_FILE_PATTERN = /\.test\.(?:js|mjs)$/u;
 const args = new Set(process.argv.slice(2));
 const slowMode = args.has("--slow");
 const listOnly = args.has("--list");
+const DEFAULT_TEST_TIMEOUT_MS = { sweep: 120_000, slow: 600_000 };
+
+export function resolveTestTimeoutMs(argv, { slow = false } = {}) {
+  const override = [...argv].find((arg) => arg.startsWith("--test-timeout="));
+  if (override === undefined) return slow ? DEFAULT_TEST_TIMEOUT_MS.slow : DEFAULT_TEST_TIMEOUT_MS.sweep;
+  const value = Number(override.slice("--test-timeout=".length));
+  if (!Number.isInteger(value) || value <= 0) {
+    throw new Error(`--test-timeout must be a positive integer number of milliseconds: ${override}`);
+  }
+  return value;
+}
 
 function collectTestFiles(directory, found = []) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -75,7 +95,8 @@ const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPat
 if (isMain) {
   const selected = selectTestFiles({ slow: slowMode });
   const label = slowMode ? "slow list" : "outside the slow list";
-  console.log(`[test-sweep] ${selected.length} test file(s) ${label}`);
+  const testTimeoutMs = resolveTestTimeoutMs(args, { slow: slowMode });
+  console.log(`[test-sweep] ${selected.length} test file(s) ${label}; per-test timeout ${testTimeoutMs} ms`);
   if (listOnly) {
     for (const file of selected) console.log(file);
     process.exit(0);
@@ -84,7 +105,7 @@ if (isMain) {
     process.exit(0);
   }
   const startedAt = Date.now();
-  const result = spawnSync(process.execPath, ["--test", ...selected], {
+  const result = spawnSync(process.execPath, ["--test", `--test-timeout=${testTimeoutMs}`, ...selected], {
     cwd: ROOT_DIR,
     env: process.env,
     stdio: "inherit",
