@@ -1,0 +1,299 @@
+[
+  {
+    "schema": "architrino.owned-compute-lease.v1",
+    "runId": "52c115f7-5b32-452d-a593-fe996982c5e3",
+    "status": "completed",
+    "requestedAtUtc": "2026-09-07T16:42:48.177Z",
+    "startedAtUtc": "2026-09-07T16:42:48.249Z",
+    "deadlineAtUtc": "2026-09-07T16:43:33.179Z",
+    "heartbeatAtUtc": "2026-09-07T16:42:48.249Z",
+    "heartbeatMs": 5000,
+    "terminationGraceMs": 5000,
+    "owner": {
+      "task": "01a07cbc-b8ac-7ae3-8f49-1635827ab34b",
+      "threadId": null
+    },
+    "ownerHistory": [],
+    "command": "node",
+    "args": [
+      "--test",
+      "tests/f6c-root-cover-pilot.test.js",
+      "tests/f6c-cached-root-cover-pilot-launcher.test.js"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "stdoutPath": "reference/priorities/development-process-review/evidence/root-cover-migration/52c115f7-5b32-452d-a593-fe996982c5e3.stdout.log",
+    "stderrPath": "reference/priorities/development-process-review/evidence/root-cover-migration/52c115f7-5b32-452d-a593-fe996982c5e3.stderr.log",
+    "stdoutBytes": 5479,
+    "stderrBytes": 0,
+    "lastOutputAtUtc": "2026-09-07T16:42:48.802Z",
+    "sidecarIdentity": {
+      "pid": 41199,
+      "ppid": 41198,
+      "pgid": 41199,
+      "started": "Mon Sep 7 12:42:48 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node /Users/markmorris/vibe/architrino/scripts/dev/owned-compute-supervisor.mjs __sidecar 52c115f7-5b32-452d-a593-fe996982c5e3"
+    },
+    "targetIdentity": {
+      "pid": 41202,
+      "ppid": 41199,
+      "pgid": 41202,
+      "started": "Mon Sep 7 12:42:48 2026",
+      "command": "node --test tests/f6c-root-cover-pilot.test.js tests/f6c-cached-root-cover-pilot-launcher.test.js"
+    },
+    "claimBoundary": "Operational process ownership only; scientific validity and acceptance remain with the target's declared instruments and owners.",
+    "finishedAtUtc": "2026-09-07T16:42:48.804Z",
+    "elapsedWallSeconds": 0.567,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true
+  },
+  {
+    "schema": "architrino.owned-compute-lease.v1",
+    "runId": "2990310c-3505-4247-851a-fa8c1d008f51",
+    "status": "completed",
+    "requestedAtUtc": "2026-09-07T16:43:00.288Z",
+    "startedAtUtc": "2026-09-07T16:43:00.356Z",
+    "deadlineAtUtc": "2026-09-07T16:44:30.289Z",
+    "heartbeatAtUtc": "2026-09-07T16:43:10.361Z",
+    "heartbeatMs": 5000,
+    "terminationGraceMs": 5000,
+    "owner": {
+      "task": "01a07cbc-b8ac-7ae3-8f49-1635827ab34b",
+      "threadId": null
+    },
+    "ownerHistory": [],
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "tests/f6c-root-cover-pilot-process.test.js",
+      "tests/f6c-cached-root-cover-pilot-process.test.js"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "stdoutPath": "reference/priorities/development-process-review/evidence/root-cover-migration/2990310c-3505-4247-851a-fa8c1d008f51.stdout.log",
+    "stderrPath": "reference/priorities/development-process-review/evidence/root-cover-migration/2990310c-3505-4247-851a-fa8c1d008f51.stderr.log",
+    "stdoutBytes": 4655,
+    "stderrBytes": 0,
+    "lastOutputAtUtc": "2026-09-07T16:43:13.445Z",
+    "sidecarIdentity": {
+      "pid": 41217,
+      "ppid": 41216,
+      "pgid": 41217,
+      "started": "Mon Sep 7 12:43:00 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node /Users/markmorris/vibe/architrino/scripts/dev/owned-compute-supervisor.mjs __sidecar 2990310c-3505-4247-851a-fa8c1d008f51"
+    },
+    "targetIdentity": {
+      "pid": 41221,
+      "ppid": 41217,
+      "pgid": 41221,
+      "started": "Mon Sep 7 12:43:00 2026",
+      "command": "node --test --test-concurrency=1 tests/f6c-root-cover-pilot-process.test.js tests/f6c-cached-root-cover-pilot-process.test.js"
+    },
+    "claimBoundary": "Operational process ownership only; scientific validity and acceptance remain with the target's declared instruments and owners.",
+    "elapsedWallSeconds": 13.102,
+    "finishedAtUtc": "2026-09-07T16:43:13.448Z",
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true
+  },
+  {
+    "schema": "architrino.owned-compute-lease.v1",
+    "runId": "d4793805-226b-4074-a9b7-d73fcda8e12d",
+    "status": "completed",
+    "requestedAtUtc": "2026-09-07T16:44:16.347Z",
+    "startedAtUtc": "2026-09-07T16:44:16.417Z",
+    "deadlineAtUtc": "2026-09-07T16:44:46.347Z",
+    "heartbeatAtUtc": "2026-09-07T16:44:16.417Z",
+    "heartbeatMs": 5000,
+    "terminationGraceMs": 5000,
+    "owner": {
+      "task": "01a07cbc-b8ac-7ae3-8f49-1635827ab34b",
+      "threadId": null
+    },
+    "ownerHistory": [],
+    "command": "node",
+    "args": [
+      "reference/priorities/development-process-review/evidence/root-cover-migration/prepare-current-plans.mjs"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "stdoutPath": "reference/priorities/development-process-review/evidence/root-cover-migration/d4793805-226b-4074-a9b7-d73fcda8e12d.stdout.log",
+    "stderrPath": "reference/priorities/development-process-review/evidence/root-cover-migration/d4793805-226b-4074-a9b7-d73fcda8e12d.stderr.log",
+    "stdoutBytes": 611,
+    "stderrBytes": 0,
+    "lastOutputAtUtc": "2026-09-07T16:44:16.621Z",
+    "sidecarIdentity": {
+      "pid": 41502,
+      "ppid": 41501,
+      "pgid": 41502,
+      "started": "Mon Sep 7 12:44:16 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node /Users/markmorris/vibe/architrino/scripts/dev/owned-compute-supervisor.mjs __sidecar d4793805-226b-4074-a9b7-d73fcda8e12d"
+    },
+    "targetIdentity": {
+      "pid": 41505,
+      "ppid": 41502,
+      "pgid": 41505,
+      "started": "Mon Sep 7 12:44:16 2026",
+      "command": "node reference/priorities/development-process-review/evidence/root-cover-migration/prepare-current-plans.mjs"
+    },
+    "claimBoundary": "Operational process ownership only; scientific validity and acceptance remain with the target's declared instruments and owners.",
+    "finishedAtUtc": "2026-09-07T16:44:16.623Z",
+    "elapsedWallSeconds": 0.216,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true
+  },
+  {
+    "schema": "architrino.owned-compute-lease.v1",
+    "runId": "a8e1861a-cc9a-4ee9-8b19-f4651043c095",
+    "status": "completed",
+    "requestedAtUtc": "2026-09-07T16:45:30.944Z",
+    "startedAtUtc": "2026-09-07T16:45:31.018Z",
+    "deadlineAtUtc": "2026-09-07T16:45:50.945Z",
+    "heartbeatAtUtc": "2026-09-07T16:45:31.019Z",
+    "heartbeatMs": 5000,
+    "terminationGraceMs": 5000,
+    "owner": {
+      "task": "01a07cbc-b8ac-7ae3-8f49-1635827ab34b",
+      "threadId": null
+    },
+    "ownerHistory": [],
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-name-pattern=^(full composition differs from frozen pilot only by declared addresses scope census and resource bindings|all32 original operational obligations survive full scope retargeting unchanged)$",
+      "tests/f6c-cached-root-cover-full.test.js"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "stdoutPath": "reference/priorities/development-process-review/evidence/root-cover-migration/a8e1861a-cc9a-4ee9-8b19-f4651043c095.stdout.log",
+    "stderrPath": "reference/priorities/development-process-review/evidence/root-cover-migration/a8e1861a-cc9a-4ee9-8b19-f4651043c095.stderr.log",
+    "stdoutBytes": 333,
+    "stderrBytes": 0,
+    "lastOutputAtUtc": "2026-09-07T16:45:31.159Z",
+    "sidecarIdentity": {
+      "pid": 42007,
+      "ppid": 42006,
+      "pgid": 42007,
+      "started": "Mon Sep 7 12:45:30 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node /Users/markmorris/vibe/architrino/scripts/dev/owned-compute-supervisor.mjs __sidecar a8e1861a-cc9a-4ee9-8b19-f4651043c095"
+    },
+    "targetIdentity": {
+      "pid": 42010,
+      "ppid": 42007,
+      "pgid": 42010,
+      "started": "Mon Sep 7 12:45:31 2026",
+      "command": "node --test --test-name-pattern=^(full composition differs from frozen pilot only by declared addresses scope census and resource bindings|all32 original operational obligations survive full scope retargeting unchanged)$ tests/f6c-cached-root-cover-full.test.js"
+    },
+    "claimBoundary": "Operational process ownership only; scientific validity and acceptance remain with the target's declared instruments and owners.",
+    "finishedAtUtc": "2026-09-07T16:45:31.162Z",
+    "elapsedWallSeconds": 0.154,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true
+  },
+  {
+    "schema": "architrino.owned-compute-lease.v1",
+    "runId": "d48315e0-4a97-44d6-909b-a2dbabf414d5",
+    "status": "completed",
+    "requestedAtUtc": "2026-09-07T16:45:14.915Z",
+    "startedAtUtc": "2026-09-07T16:45:14.987Z",
+    "deadlineAtUtc": "2026-09-07T16:46:14.916Z",
+    "heartbeatAtUtc": "2026-09-07T16:45:24.992Z",
+    "heartbeatMs": 5000,
+    "terminationGraceMs": 5000,
+    "owner": {
+      "task": "01a07cbc-b8ac-7ae3-8f49-1635827ab34b",
+      "threadId": null
+    },
+    "ownerHistory": [],
+    "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+    "args": [
+      "/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/root-cover-observer-Y4jU9U/run.mjs"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "stdoutPath": "reference/priorities/development-process-review/evidence/root-cover-migration/d48315e0-4a97-44d6-909b-a2dbabf414d5.stdout.log",
+    "stderrPath": "reference/priorities/development-process-review/evidence/root-cover-migration/d48315e0-4a97-44d6-909b-a2dbabf414d5.stderr.log",
+    "stdoutBytes": 4658,
+    "stderrBytes": 0,
+    "lastOutputAtUtc": "2026-09-07T16:45:28.675Z",
+    "sidecarIdentity": {
+      "pid": 41586,
+      "ppid": 41585,
+      "pgid": 41586,
+      "started": "Mon Sep 7 12:45:14 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node /Users/markmorris/vibe/architrino/scripts/dev/owned-compute-supervisor.mjs __sidecar d48315e0-4a97-44d6-909b-a2dbabf414d5"
+    },
+    "targetIdentity": {
+      "pid": 41588,
+      "ppid": 41586,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:14 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node /var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/root-cover-observer-Y4jU9U/run.mjs"
+    },
+    "claimBoundary": "Operational process ownership only; scientific validity and acceptance remain with the target's declared instruments and owners.",
+    "elapsedWallSeconds": 13.703,
+    "finishedAtUtc": "2026-09-07T16:45:28.679Z",
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true
+  },
+  {
+    "schema": "architrino.owned-compute-lease.v1",
+    "runId": "057f40a2-d10a-45b2-9df0-34675b5be600",
+    "status": "completed",
+    "requestedAtUtc": "2026-09-07T16:46:13.080Z",
+    "startedAtUtc": "2026-09-07T16:46:13.152Z",
+    "deadlineAtUtc": "2026-09-07T16:46:43.080Z",
+    "heartbeatAtUtc": "2026-09-07T16:46:13.153Z",
+    "heartbeatMs": 5000,
+    "terminationGraceMs": 5000,
+    "owner": {
+      "task": "01a07cbc-b8ac-7ae3-8f49-1635827ab34b",
+      "threadId": null
+    },
+    "ownerHistory": [],
+    "command": "node",
+    "args": [
+      "--test",
+      "tests/f6c-root-cover-pilot.test.js",
+      "tests/f6c-cached-root-cover-pilot-launcher.test.js"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "stdoutPath": "reference/priorities/development-process-review/evidence/root-cover-migration/057f40a2-d10a-45b2-9df0-34675b5be600.stdout.log",
+    "stderrPath": "reference/priorities/development-process-review/evidence/root-cover-migration/057f40a2-d10a-45b2-9df0-34675b5be600.stderr.log",
+    "stdoutBytes": 5474,
+    "stderrBytes": 0,
+    "lastOutputAtUtc": "2026-09-07T16:46:13.678Z",
+    "sidecarIdentity": {
+      "pid": 42038,
+      "ppid": 42037,
+      "pgid": 42038,
+      "started": "Mon Sep 7 12:46:13 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node /Users/markmorris/vibe/architrino/scripts/dev/owned-compute-supervisor.mjs __sidecar 057f40a2-d10a-45b2-9df0-34675b5be600"
+    },
+    "targetIdentity": {
+      "pid": 42041,
+      "ppid": 42038,
+      "pgid": 42041,
+      "started": "Mon Sep 7 12:46:13 2026",
+      "command": "node --test tests/f6c-root-cover-pilot.test.js tests/f6c-cached-root-cover-pilot-launcher.test.js"
+    },
+    "claimBoundary": "Operational process ownership only; scientific validity and acceptance remain with the target's declared instruments and owners.",
+    "finishedAtUtc": "2026-09-07T16:46:13.680Z",
+    "elapsedWallSeconds": 0.538,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true
+  }
+]

@@ -17,7 +17,7 @@ const binding=(p,h="1".repeat(64))=>({path:p,sha256:h,bytes:1});
 function plan() {
   const python=path.resolve(process.env.AAA_VENV??"../.venv","bin/python"),node=realpathSync(process.execPath);
   const sources=[R.CONSUMER,"scripts/eom/oracle/continuous_reception_roots.py","scripts/eom/oracle/certified_history.py","scripts/eom/oracle/decimal_interval.py"];
-  return {schema:"braid-program/f6c-root-cover-pilot-launch.v1",scope:"pilot-cell-0",resourcePlan:binding(R.RESOURCE_PLAN,R.PINS[R.RESOURCE_PLAN]),
+  return {schema:"braid-program/f6c-root-cover-pilot-launch.v2",scope:"pilot-cell-0",resourcePlan:binding(R.RESOURCE_PLAN,R.PINS[R.RESOURCE_PLAN]),
     python,pythonRealPath:realpathSync(python),git:realpathSync("/usr/bin/git"),node,
     comparisonContract:{declarationSha256:R.PINS["reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md"],verifierSha256:R.PINS[R.COMPARISON],scope:"pilot-cell-0",
       subjectSourceBindings:sources.map(p=>binding(p,R.PINS[p])),runtimeBindings:[binding(realpathSync(python)),binding(realpathSync("/usr/bin/git")),binding(path.resolve(python,"../../pyvenv.cfg"))]},
@@ -26,7 +26,7 @@ function plan() {
 }
 test("machine plan is pilot-only and binds complete frozen sources/environment",()=>{
   const p=plan();assert.equal(R.validatePlan(p,root,"1".repeat(64),"1".repeat(64)),p);
-  for(const mutate of [p=>p.scope="full",p=>p.comparisonContract.scope="full",p=>p.operationalBindings.pop(),
+  for(const mutate of [p=>p.schema=p.schema.replace(".v2",".v1"),p=>p.scope="full",p=>p.comparisonContract.scope="full",p=>p.operationalBindings.pop(),
     p=>p.comparisonContract.subjectSourceBindings.pop(),p=>p.comparisonContract.runtimeBindings.pop(),
     p=>p.resourcePlan.sha256="0".repeat(64),p=>p.extra=true,p=>p.pythonRealPath=p.python,p=>p.controlBindings[0].sha256="0".repeat(64)]) {
     const bad=structuredClone(p);mutate(bad);assert.throws(()=>R.validatePlan(bad,root,"1".repeat(64),"1".repeat(64)));

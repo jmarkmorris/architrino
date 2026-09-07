@@ -1,0 +1,882 @@
+{
+  "knownCasesPassed": true,
+  "samples": 171,
+  "observed": [
+    {
+      "pid": 41588,
+      "ppid": 41586,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:14 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41590,
+      "ppid": 41588,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:15 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41592,
+      "ppid": 41590,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:15 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41598,
+      "ppid": 41592,
+      "pgid": 41598,
+      "started": "Mon Sep 7 12:45:15 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41600,
+      "ppid": 41598,
+      "pgid": 41600,
+      "started": "Mon Sep 7 12:45:15 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41604,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:15 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41606,
+      "ppid": 41598,
+      "pgid": 41606,
+      "started": "Mon Sep 7 12:45:15 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41613,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:15 2026",
+      "command": "/bin/ps"
+    },
+    {
+      "pid": 41615,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:15 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41617,
+      "ppid": 41592,
+      "pgid": 41617,
+      "started": "Mon Sep 7 12:45:15 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41619,
+      "ppid": 41617,
+      "pgid": 41619,
+      "started": "Mon Sep 7 12:45:15 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41622,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:15 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41623,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:15 2026",
+      "command": "/bin/ps"
+    },
+    {
+      "pid": 41625,
+      "ppid": 41617,
+      "pgid": 41625,
+      "started": "Mon Sep 7 12:45:15 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41628,
+      "ppid": 41625,
+      "pgid": 41625,
+      "started": "Mon Sep 7 12:45:16 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41631,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:16 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41633,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:16 2026",
+      "command": "/bin/ps"
+    },
+    {
+      "pid": 41637,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:16 2026",
+      "command": "/bin/ps"
+    },
+    {
+      "pid": 41639,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:16 2026",
+      "command": "/bin/ps"
+    },
+    {
+      "pid": 41641,
+      "ppid": 41592,
+      "pgid": 41641,
+      "started": "Mon Sep 7 12:45:16 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41643,
+      "ppid": 41641,
+      "pgid": 41643,
+      "started": "Mon Sep 7 12:45:16 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41644,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:16 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41648,
+      "ppid": 41641,
+      "pgid": 41648,
+      "started": "Mon Sep 7 12:45:16 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41651,
+      "ppid": 41648,
+      "pgid": 41648,
+      "started": "Mon Sep 7 12:45:16 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41654,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:16 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41658,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:16 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41662,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:16 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41670,
+      "ppid": 41592,
+      "pgid": 41670,
+      "started": "Mon Sep 7 12:45:17 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41673,
+      "ppid": 41670,
+      "pgid": 41673,
+      "started": "Mon Sep 7 12:45:17 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41674,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:17 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41678,
+      "ppid": 41670,
+      "pgid": 41678,
+      "started": "Mon Sep 7 12:45:17 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41681,
+      "ppid": 41678,
+      "pgid": 41678,
+      "started": "Mon Sep 7 12:45:17 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41689,
+      "ppid": 41592,
+      "pgid": 41689,
+      "started": "Mon Sep 7 12:45:17 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41691,
+      "ppid": 41689,
+      "pgid": 41691,
+      "started": "Mon Sep 7 12:45:17 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41692,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:17 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41696,
+      "ppid": 41689,
+      "pgid": 41696,
+      "started": "Mon Sep 7 12:45:17 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41699,
+      "ppid": 41696,
+      "pgid": 41696,
+      "started": "Mon Sep 7 12:45:17 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41705,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:18 2026",
+      "command": "/bin/ps"
+    },
+    {
+      "pid": 41709,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:18 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41713,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:18 2026",
+      "command": "/bin/ps"
+    },
+    {
+      "pid": 41734,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:19 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41738,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:20 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41749,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:20 2026",
+      "command": "/bin/ps"
+    },
+    {
+      "pid": 41750,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:20 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41755,
+      "ppid": 41592,
+      "pgid": 41755,
+      "started": "Mon Sep 7 12:45:20 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41757,
+      "ppid": 41755,
+      "pgid": 41757,
+      "started": "Mon Sep 7 12:45:20 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41761,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:21 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41763,
+      "ppid": 41755,
+      "pgid": 41763,
+      "started": "Mon Sep 7 12:45:21 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41764,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:21 2026",
+      "command": "/bin/ps"
+    },
+    {
+      "pid": 41766,
+      "ppid": 41763,
+      "pgid": 41763,
+      "started": "Mon Sep 7 12:45:21 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41770,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:21 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41772,
+      "ppid": 41592,
+      "pgid": 41772,
+      "started": "Mon Sep 7 12:45:21 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41773,
+      "ppid": 41772,
+      "pgid": 41773,
+      "started": "Mon Sep 7 12:45:21 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41776,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:21 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41777,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:21 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41779,
+      "ppid": 41772,
+      "pgid": 41779,
+      "started": "Mon Sep 7 12:45:21 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41782,
+      "ppid": 41779,
+      "pgid": 41779,
+      "started": "Mon Sep 7 12:45:21 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41785,
+      "ppid": 41592,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:21 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41788,
+      "ppid": 41590,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:21 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41790,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:21 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41792,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:22 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41794,
+      "ppid": 41788,
+      "pgid": 41794,
+      "started": "Mon Sep 7 12:45:22 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41796,
+      "ppid": 41794,
+      "pgid": 41796,
+      "started": "Mon Sep 7 12:45:22 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41797,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:22 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41798,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:22 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41801,
+      "ppid": 41794,
+      "pgid": 41801,
+      "started": "Mon Sep 7 12:45:22 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41804,
+      "ppid": 41801,
+      "pgid": 41801,
+      "started": "Mon Sep 7 12:45:22 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41807,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:22 2026",
+      "command": "/bin/ps"
+    },
+    {
+      "pid": 41812,
+      "ppid": 41788,
+      "pgid": 41812,
+      "started": "Mon Sep 7 12:45:22 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41814,
+      "ppid": 41812,
+      "pgid": 41814,
+      "started": "Mon Sep 7 12:45:22 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41815,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:22 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41819,
+      "ppid": 41812,
+      "pgid": 41819,
+      "started": "Mon Sep 7 12:45:22 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41822,
+      "ppid": 41819,
+      "pgid": 41819,
+      "started": "Mon Sep 7 12:45:22 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41828,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:23 2026",
+      "command": "/bin/ps"
+    },
+    {
+      "pid": 41830,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:23 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41835,
+      "ppid": 41788,
+      "pgid": 41835,
+      "started": "Mon Sep 7 12:45:23 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41837,
+      "ppid": 1,
+      "pgid": 41837,
+      "started": "Mon Sep 7 12:45:23 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41841,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:23 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41843,
+      "ppid": 41835,
+      "pgid": 41843,
+      "started": "Mon Sep 7 12:45:23 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41844,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:23 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41847,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:23 2026",
+      "command": "/bin/ps"
+    },
+    {
+      "pid": 41850,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:23 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41851,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:23 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41855,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:23 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41858,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:23 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41864,
+      "ppid": 41788,
+      "pgid": 41864,
+      "started": "Mon Sep 7 12:45:23 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41866,
+      "ppid": 41864,
+      "pgid": 41866,
+      "started": "Mon Sep 7 12:45:24 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41870,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:24 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41872,
+      "ppid": 41864,
+      "pgid": 41872,
+      "started": "Mon Sep 7 12:45:24 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41873,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:24 2026",
+      "command": "/bin/ps"
+    },
+    {
+      "pid": 41875,
+      "ppid": 41872,
+      "pgid": 41872,
+      "started": "Mon Sep 7 12:45:24 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41878,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:24 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41879,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:24 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41881,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:24 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41883,
+      "ppid": 41788,
+      "pgid": 41883,
+      "started": "Mon Sep 7 12:45:24 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41884,
+      "ppid": 41883,
+      "pgid": 41884,
+      "started": "Mon Sep 7 12:45:24 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41887,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:24 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41888,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:24 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41890,
+      "ppid": 41883,
+      "pgid": 41890,
+      "started": "Mon Sep 7 12:45:24 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41893,
+      "ppid": 41890,
+      "pgid": 41890,
+      "started": "Mon Sep 7 12:45:24 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41896,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:24 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41897,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:24 2026",
+      "command": "/bin/ps"
+    },
+    {
+      "pid": 41916,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:25 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41920,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:26 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41925,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:26 2026",
+      "command": "/bin/ps"
+    },
+    {
+      "pid": 41944,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:27 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41947,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:27 2026",
+      "command": "/bin/ps"
+    },
+    {
+      "pid": 41950,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:27 2026",
+      "command": "/bin/ps"
+    },
+    {
+      "pid": 41951,
+      "ppid": 41788,
+      "pgid": 41951,
+      "started": "Mon Sep 7 12:45:27 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41953,
+      "ppid": 41951,
+      "pgid": 41953,
+      "started": "Mon Sep 7 12:45:27 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41954,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:27 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41958,
+      "ppid": 41951,
+      "pgid": 41958,
+      "started": "Mon Sep 7 12:45:27 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41961,
+      "ppid": 41958,
+      "pgid": 41958,
+      "started": "Mon Sep 7 12:45:27 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41967,
+      "ppid": 41788,
+      "pgid": 41967,
+      "started": "Mon Sep 7 12:45:28 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41969,
+      "ppid": 1,
+      "pgid": 41969,
+      "started": "Mon Sep 7 12:45:28 2026",
+      "command": "(node)"
+    },
+    {
+      "pid": 41975,
+      "ppid": 41967,
+      "pgid": 41975,
+      "started": "Mon Sep 7 12:45:28 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    {
+      "pid": 41976,
+      "ppid": 41788,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:28 2026",
+      "command": "(ps)"
+    },
+    {
+      "pid": 41978,
+      "ppid": 41975,
+      "pgid": 41975,
+      "started": "Mon Sep 7 12:45:28 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    }
+  ],
+  "remaining": [],
+  "lease": {
+    "schema": "architrino.owned-compute-lease.v1",
+    "runId": "d48315e0-4a97-44d6-909b-a2dbabf414d5",
+    "status": "completed",
+    "requestedAtUtc": "2026-09-07T16:45:14.915Z",
+    "startedAtUtc": "2026-09-07T16:45:14.987Z",
+    "deadlineAtUtc": "2026-09-07T16:46:14.916Z",
+    "heartbeatAtUtc": "2026-09-07T16:45:24.992Z",
+    "heartbeatMs": 5000,
+    "terminationGraceMs": 5000,
+    "owner": {
+      "task": "01a07cbc-b8ac-7ae3-8f49-1635827ab34b",
+      "threadId": null
+    },
+    "ownerHistory": [],
+    "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+    "args": [
+      "/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/root-cover-observer-Y4jU9U/run.mjs"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/d48315e0-4a97-44d6-909b-a2dbabf414d5.stdout.log",
+    "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/d48315e0-4a97-44d6-909b-a2dbabf414d5.stderr.log",
+    "stdoutBytes": 4658,
+    "stderrBytes": 0,
+    "lastOutputAtUtc": "2026-09-07T16:45:28.675Z",
+    "sidecarIdentity": {
+      "pid": 41586,
+      "ppid": 41585,
+      "pgid": 41586,
+      "started": "Mon Sep 7 12:45:14 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node /Users/markmorris/vibe/architrino/scripts/dev/owned-compute-supervisor.mjs __sidecar d48315e0-4a97-44d6-909b-a2dbabf414d5"
+    },
+    "targetIdentity": {
+      "pid": 41588,
+      "ppid": 41586,
+      "pgid": 41588,
+      "started": "Mon Sep 7 12:45:14 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node /var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/root-cover-observer-Y4jU9U/run.mjs"
+    },
+    "claimBoundary": "Operational process ownership only; scientific validity and acceptance remain with the target's declared instruments and owners.",
+    "elapsedWallSeconds": 13.703,
+    "finishedAtUtc": "2026-09-07T16:45:28.679Z",
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true
+  },
+  "claim": "Sampled observed process identities and groups absent after bounded synthetic controls; no scientific validation."
+}

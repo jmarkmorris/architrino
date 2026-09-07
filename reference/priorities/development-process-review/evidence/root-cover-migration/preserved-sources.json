@@ -1,0 +1,23 @@
+[
+  {
+    "path": "scripts/eom/run-f6c-cached-root-cover-pilot.mjs",
+    "sha256": "e03e8ae0f17c04aa2e15361078f5f258d0c4bee887b4aaf7257f52c09a745cef",
+    "bytes": 25513,
+    "archive": "reference/priorities/development-process-review/evidence/root-cover-migration/run-f6c-cached-root-cover-pilot.mjs.e03e8ae0f17c.source",
+    "commit": "d08cbad4aa8fbbed8a734adfe7affdf15ac4f322"
+  },
+  {
+    "path": "scripts/eom/launch-f6c-cached-root-cover-pilot.mjs",
+    "sha256": "cd772242810517aa65d7a8d720e322890002435df28fea002be0253ed2cf8d2f",
+    "bytes": 26644,
+    "archive": "reference/priorities/development-process-review/evidence/root-cover-migration/launch-f6c-cached-root-cover-pilot.mjs.cd7722428105.source",
+    "commit": "d08cbad4aa8fbbed8a734adfe7affdf15ac4f322"
+  },
+  {
+    "path": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+    "sha256": "7075322e83ad4dce350ace413be572f8a32b0512c3cea3696a16c89cffa94400",
+    "bytes": 33141,
+    "archive": "reference/priorities/development-process-review/evidence/root-cover-migration/f6c-cached-root-cover-pilot-launcher.test.js.7075322e83ad.source",
+    "commit": "d08cbad4aa8fbbed8a734adfe7affdf15ac4f322"
+  }
+]

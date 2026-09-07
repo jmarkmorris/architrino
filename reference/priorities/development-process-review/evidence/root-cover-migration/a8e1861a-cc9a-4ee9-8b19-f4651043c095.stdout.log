@@ -1,0 +1,10 @@
+✔ full composition differs from frozen pilot only by declared addresses scope census and resource bindings (1.986458ms)
+✔ all32 original operational obligations survive full scope retargeting unchanged (0.425583ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 85.281625

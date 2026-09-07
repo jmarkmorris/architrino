@@ -1,5 +1,7 @@
 # Shared operational helper caller audit
 
+The Monday-am continuation implements the supported one-cell profiles under the [version-two current-execution contract](../contracts/root-cover-current-execution-v2.md), with [bounded validation](root-cover-current-migration.md). The audit below records the preceding baseline; its 27 occurrences and seven mismatching maps are not a count of current unresolved failures after migration. The [work queue](../work-queue.md) owns remaining work.
+
 ## Result and attribution
 
 The remaining caller audit identifies a real incomplete migration. The [metadata inventory](../evidence/shared-helper-audit/inventory.json), produced by the [known-case-tested instrument](../evidence/shared-helper-audit/inspect-callers.mjs), finds 27 occurrences of the three selected old helper-generation tokens in 19 tracked files under `scripts/` and `tests/` at commit `c86595d1316d3794d897489dffc0b2b287bd5e7e`. These are occurrences, not 27 independent defects. Seven operational entry-point declarations were inspected in full through their exported `PINS` objects; every one has mismatches against the current checkout. Their existing `checkBindings` functions reject the selected old helper bindings against the current physical files. No numerical stage was launched.

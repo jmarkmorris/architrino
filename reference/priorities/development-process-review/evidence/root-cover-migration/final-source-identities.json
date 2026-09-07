@@ -1,0 +1,41 @@
+{
+  "knownShaCasePassed": true,
+  "files": [
+    {
+      "path": "scripts/eom/launch-f6c-cached-root-cover-pilot.mjs",
+      "sha256": "41b45206f34f1949c28ffbd45c3ebdb682511007c189d47fa048291f7a8641fd",
+      "bytes": 26644
+    },
+    {
+      "path": "scripts/eom/launch-f6c-root-cover-pilot.mjs",
+      "sha256": "940409097ff39365effef47c7ce46a77b9212b14adf2f15f69baa0a2865edb34",
+      "bytes": 26599
+    },
+    {
+      "path": "scripts/eom/run-f6c-cached-root-cover-pilot.mjs",
+      "sha256": "6f66c8efef0e9b97a92e8b61703352852f2792bb00f51a17dfa70562090b1fef",
+      "bytes": 25513
+    },
+    {
+      "path": "scripts/eom/run-f6c-root-cover-pilot.mjs",
+      "sha256": "47725e154ab54da14ab272c9293374dc67ed531bd02ecc892842ea8f52a5059b",
+      "bytes": 24446
+    },
+    {
+      "path": "tests/f6c-cached-root-cover-full.test.js",
+      "sha256": "09ce766c39654afe12381060eefda95b018df0c130e12361a583186b6d8199b3",
+      "bytes": 39206
+    },
+    {
+      "path": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+      "sha256": "f6a1239e608a2683800870bf22cecd0901121a89f0a6309c4e7cc95c04d19fb7",
+      "bytes": 33191
+    },
+    {
+      "path": "tests/f6c-root-cover-pilot.test.js",
+      "sha256": "00e9c947ef8082e596bca7c1bb8d4c61fd9029cbf136ee9d7910b765ca3cec9d",
+      "bytes": 20839
+    }
+  ],
+  "preservedSourceChecks": 7
+}

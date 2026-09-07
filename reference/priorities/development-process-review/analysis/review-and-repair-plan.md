@@ -1,6 +1,6 @@
 # Development Process Review: Findings and Proposed Order
 
-Status: proposed plan for operator discussion, 2026-09-07. Analysis and evidence capture are authorized. Implementation, broad test execution, publication, credential changes, and workspace migration are not activated by this document. The [operator concerns](operator-concerns.md) define scope; the [five reports and post-report statements](../README.md#evidence-inventory) remain unchanged source evidence.
+Status: active review and repair campaign, resumed in Monday-am on 2026-09-07 under the operator's continuation instruction. The [work log](../work-log.md) records subsequent approvals and completed repairs; the [current queue](../work-queue.md) owns the next executable batch. The original order below remains the campaign map, not an instruction to repeat completed investigations. Bounded development and supported-profile migration are authorized. Broad sweeps, scientific campaigns, additional Git publication, credential changes and workspace migration require their corresponding authority. The [operator concerns](operator-concerns.md) define scope; the [five reports and post-report statements](../README.md#evidence-inventory) remain unchanged source evidence.
 
 ## Assessment
 
@@ -81,6 +81,6 @@ For the parent project, obtain the existing Claude description before proposing 
 
 ## Discussion and completion boundary
 
-Recommended next action: discuss and authorize the first bounded process/cleanup investigation, with the repair-audit scope beside it. Evidence preservation should precede experiments where originals are still available. The full backlog is now organized, so decisions about project layout or a wholesale pin redesign need not interrupt that first technical result.
+Current execution resumes with supported launch-profile migration, beginning with the [one-cell current-execution contract](../contracts/root-cover-current-execution-v2.md). The first process investigation, consequential audit and subsequent approved repairs are recorded in the work log and are not repeated. Evidence preservation still precedes changes to historical bindings.
 
 This plan is complete as an ordered proposal. It does not certify the five retrospective reports, resolve their remaining defects, or declare the repository healthy. The existing subject queues retain their decisions; accepted repair tasks should be recorded there with links back to this review, avoiding a second competing defect queue.
