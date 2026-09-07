@@ -9,8 +9,8 @@ import {fileURLToPath} from 'node:url';
 
 const SELF='scripts/eom/launch-f6c-emission-refinement-pilot.mjs',ENTRY='scripts/eom/run-f6c-emission-refinement-pilot.mjs';
 const HELPERS='scripts/eom/launch-prescribed-response-pilot.mjs',OUTER='scripts/eom/launch-subfield-circular-root-pilot.mjs';
-const HELPER_SHA='f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31';
-const OUTER_SHA='35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826';
+const HELPER_SHA='9af9a6a33b3b1c5889550953496be13d0698e5d24e9033dbdd5ffcb82deeafe2';
+const OUTER_SHA='58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c';
 const LIMIT_MS=1800000,FILE_LIMIT=64*1024**2,LOG_LIMIT=16*1024**2;
 const check=(yes,message)=>{if(!yes)throw Error(message);};
 const sha=b=>createHash('sha256').update(b).digest('hex');

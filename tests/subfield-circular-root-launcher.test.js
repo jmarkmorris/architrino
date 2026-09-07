@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { spawn } from "node:child_process";
+import { spawn, execFile } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, mkdtempSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import os from "node:os";
@@ -294,4 +294,15 @@ test("failure publication preserves rejected operational evidence without granti
   assert.equal(written.accepted, false); assert.equal(written.h3EvidenceEligible, false);
   assert.match(written.publicationScope, /never-acceptance/u);
   await assert.rejects(outerWorkerOperation({ kind: "failure-publication", output: root, receipt: {} }), /exist/u);
+});
+
+test("captured-source commands above 64 KiB retain exact bounded ownership evidence", async () => {
+ const {options}=fixture();
+ options.inspectProcesses=async()=>parseOwnedProcessTable(await new Promise((resolve,reject)=>execFile('/bin/ps',['-axo','pid=,ppid=,pgid=,lstart=,stat=,args='],{encoding:'utf8',timeout:2000,maxBuffer:8*1024**2,env:{...process.env,LC_ALL:'C'}},(e,out)=>e?reject(e):resolve(out))));
+ const source=options.sources[0];source.bytes=Buffer.concat([source.bytes,Buffer.from('\n//'+ 'x'.repeat(55000))]);source.sha256=sha(source.bytes);
+ const receipt=await superviseRegisteredPilot(options);
+ assert.equal(receipt.accepted,true);assert.equal(receipt.processesClosed,true);assert.equal(receipt.guardClosed,true);
+ const commands=receipt.snapshots.flatMap(s=>s.processes).map(p=>p.command??'');
+ assert(commands.some(c=>c.length>65536),'long captured command was actually observed');
+ assert(receipt.snapshots.every(s=>s.complete&&!s.truncated));gone(receipt.runner.pid);
 });

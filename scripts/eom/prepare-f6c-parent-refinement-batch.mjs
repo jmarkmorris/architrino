@@ -9,7 +9,7 @@ import {fileURLToPath} from 'node:url';
 
 export const SELF='scripts/eom/prepare-f6c-parent-refinement-batch.mjs';
 export const CONTROLS='tests/f6c-parent-refinement-batch-preparation.test.js';
-export const COORDINATOR=['scripts/eom/f6c-bounded-operation.mjs','f3bbaf59b3fec7340a3b68097d6745fef589c777273558a71cfd8744cfeeb13a'];
+export const COORDINATOR=['scripts/eom/f6c-bounded-operation.mjs','e100a96f0771d82664fa62b66865cbf5924cced1216588c631836ed361d6a252'];
 export const EXPECTATIONS=['reference/priorities/development-process-review/contracts/historical-evidence-and-external-closure-v1.md','88692213f16b093a81f9aac34ac2789fc31fd4dbb722383b7961ed94b8311d18'];
 export const OBSERVER='scripts/eom/observe-parent-batch.mjs';
 export const CLOSURE_CHECKER='scripts/eom/verify-f6c-bounded-operation-closure.mjs';

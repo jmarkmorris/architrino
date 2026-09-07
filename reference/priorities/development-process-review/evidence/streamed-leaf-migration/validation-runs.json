@@ -1,0 +1,308 @@
+{
+  "knownCase": "SHA-256 abc passed before capture",
+  "runs": [
+    {
+      "runId": "1ded2fb9-8313-4929-89c7-e321ba4a3852",
+      "status": "failed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-name-pattern",
+        "actual captured Python.*normal|reviewed dependencies",
+        "tests/f6c-streamed-leaf-diagnostic.test.js"
+      ],
+      "exitCode": 1,
+      "exitSignal": null,
+      "elapsedWallSeconds": 12.096,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "file": "1ded2fb9-8313-4929-89c7-e321ba4a3852.stdout.log",
+          "sha256": "99a4b7da85aaab51c2115832d5e28f9955cbc18035408b89656bcd2050840928",
+          "bytes": 1074
+        },
+        "stderr": {
+          "file": "1ded2fb9-8313-4929-89c7-e321ba4a3852.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "runId": "5c45ee5c-61af-45c4-95b8-3a5d455fd3f9",
+      "status": "failed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-name-pattern",
+        "actual captured Python.*normal",
+        "tests/f6c-streamed-leaf-diagnostic.test.js"
+      ],
+      "exitCode": 1,
+      "exitSignal": null,
+      "elapsedWallSeconds": 10.777,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "file": "5c45ee5c-61af-45c4-95b8-3a5d455fd3f9.stdout.log",
+          "sha256": "42be1a1433093486f49a78f2c8c9f55faf5cb13432c575ac3461ed4715f51db4",
+          "bytes": 1098
+        },
+        "stderr": {
+          "file": "5c45ee5c-61af-45c4-95b8-3a5d455fd3f9.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "runId": "2df622ff-f53d-4db8-99f7-a1aa0fb8826a",
+      "status": "failed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-name-pattern",
+        "actual captured Python.*normal|reviewed dependencies",
+        "tests/f6c-streamed-leaf-diagnostic.test.js"
+      ],
+      "exitCode": 1,
+      "exitSignal": null,
+      "elapsedWallSeconds": 10.797,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "file": "2df622ff-f53d-4db8-99f7-a1aa0fb8826a.stdout.log",
+          "sha256": "89c1078dc6b17f31f4ea4c797503ca93e59833a7c301f2666406d9aa5442c5e2",
+          "bytes": 1158
+        },
+        "stderr": {
+          "file": "2df622ff-f53d-4db8-99f7-a1aa0fb8826a.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "runId": "4d36fc21-ca74-4cb7-ab19-cb77319e5081",
+      "status": "failed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-name-pattern",
+        "commands above|actual captured Python.*normal|reviewed dependencies",
+        "tests/subfield-circular-root-launcher.test.js",
+        "tests/f6c-streamed-leaf-diagnostic.test.js"
+      ],
+      "exitCode": 1,
+      "exitSignal": null,
+      "elapsedWallSeconds": 1.68,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "file": "4d36fc21-ca74-4cb7-ab19-cb77319e5081.stdout.log",
+          "sha256": "89322fd8e0019d8c070cbc072c4525d8924df9ef47a014c4d5458bef2f280ad3",
+          "bytes": 1414
+        },
+        "stderr": {
+          "file": "4d36fc21-ca74-4cb7-ab19-cb77319e5081.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "runId": "103d9d3a-f6b0-4c1b-b17a-112a22148b2c",
+      "status": "failed",
+      "command": "node",
+      "args": [
+        "--test",
+        "tests/f6c-streamed-leaf-diagnostic.test.js"
+      ],
+      "exitCode": 1,
+      "exitSignal": null,
+      "elapsedWallSeconds": 199.161,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "file": "103d9d3a-f6b0-4c1b-b17a-112a22148b2c.stdout.log",
+          "sha256": "03899651013f799f9901c7ab1b0d9eaa66e98b2a379f8c5e46ee954a41b6c5bc",
+          "bytes": 13792
+        },
+        "stderr": {
+          "file": "103d9d3a-f6b0-4c1b-b17a-112a22148b2c.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "runId": "ccb05766-fcea-4b0b-804a-6115bd8db577",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-concurrency=1",
+        "--test-name-pattern",
+        "commands above|actual captured Python.*normal|synthetic low|active private-growth",
+        "tests/subfield-circular-root-launcher.test.js",
+        "tests/f6c-streamed-leaf-diagnostic.test.js"
+      ],
+      "exitCode": 0,
+      "exitSignal": null,
+      "elapsedWallSeconds": 21.739,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "file": "ccb05766-fcea-4b0b-804a-6115bd8db577.stdout.log",
+          "sha256": "5424b2ea131fd83a10ece2826dd9164ba972cdb9cc5141afdab2ad75ab72f52c",
+          "bytes": 1502
+        },
+        "stderr": {
+          "file": "ccb05766-fcea-4b0b-804a-6115bd8db577.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "runId": "0dc235f6-7dd3-422e-a5c3-cad96ab2948d",
+      "status": "completed",
+      "command": "../.venv/bin/python",
+      "args": [
+        "reference/priorities/development-process-review/evidence/streamed-leaf-migration/check-retained-transport.py"
+      ],
+      "exitCode": 0,
+      "exitSignal": null,
+      "elapsedWallSeconds": 20.771,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "file": "0dc235f6-7dd3-422e-a5c3-cad96ab2948d.stdout.log",
+          "sha256": "b358fdd5c87632133241eb3e41cf33fd594ce634cf58d0aaa7654d441db6767f",
+          "bytes": 372
+        },
+        "stderr": {
+          "file": "0dc235f6-7dd3-422e-a5c3-cad96ab2948d.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "runId": "78d6d30b-4fd9-475d-acd7-c7918eb3d146",
+      "status": "failed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-name-pattern",
+        "version-five|unconsumed retained",
+        "tests/f6c-streamed-leaf-diagnostic.test.js"
+      ],
+      "exitCode": 1,
+      "exitSignal": null,
+      "elapsedWallSeconds": 2.836,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "file": "78d6d30b-4fd9-475d-acd7-c7918eb3d146.stdout.log",
+          "sha256": "cf1b73a6c3d65030fac2c6fd2917e35b2e3215b59b8ee25daec1b7f1d26cbfad",
+          "bytes": 1210
+        },
+        "stderr": {
+          "file": "78d6d30b-4fd9-475d-acd7-c7918eb3d146.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "runId": "7598e34b-ba33-4d1c-9a14-3d67210ae72c",
+      "status": "failed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-concurrency=1",
+        "tests/f6c-streamed-leaf-diagnostic.test.js",
+        "tests/f6c-streamed-historical-inputs.test.js",
+        "tests/subfield-circular-root-launcher.test.js",
+        "tests/f6c-bounded-operation.test.js",
+        "tests/f6c-bounded-operation-closure.test.js",
+        "tests/f6c-parent-emission-refinement-pilot.test.js",
+        "tests/f6c-parent-refinement-batch-preparation.test.js"
+      ],
+      "exitCode": 1,
+      "exitSignal": null,
+      "elapsedWallSeconds": 46.081,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "file": "7598e34b-ba33-4d1c-9a14-3d67210ae72c.stdout.log",
+          "sha256": "3cc35c7315cc33d525fe680a52a6059a9bb243929df0041def22e0733e41baac",
+          "bytes": 53215
+        },
+        "stderr": {
+          "file": "7598e34b-ba33-4d1c-9a14-3d67210ae72c.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "runId": "7b8e843d-8009-494c-a307-785bfb608da8",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "--test",
+        "tests/f6c-streamed-leaf-diagnostic.test.js"
+      ],
+      "exitCode": 0,
+      "exitSignal": null,
+      "elapsedWallSeconds": 204.082,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "file": "7b8e843d-8009-494c-a307-785bfb608da8.stdout.log",
+          "sha256": "9c0ce23f8375aac0657fcf8a6715c76fe1d8aaa72790853037532f7a2a11771d",
+          "bytes": 9914
+        },
+        "stderr": {
+          "file": "7b8e843d-8009-494c-a307-785bfb608da8.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "runId": "483015ff-0495-4acf-8868-1edc9cd5a347",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-concurrency=1",
+        "tests/f6c-streamed-leaf-diagnostic.test.js",
+        "tests/f6c-streamed-historical-inputs.test.js",
+        "tests/subfield-circular-root-launcher.test.js",
+        "tests/f6c-bounded-operation.test.js",
+        "tests/f6c-bounded-operation-closure.test.js",
+        "tests/f6c-parent-emission-refinement-pilot.test.js",
+        "tests/f6c-parent-refinement-batch-preparation.test.js"
+      ],
+      "exitCode": 0,
+      "exitSignal": null,
+      "elapsedWallSeconds": 228.193,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "file": "483015ff-0495-4acf-8868-1edc9cd5a347.stdout.log",
+          "sha256": "2330c8074a99e4dc06d2ed656ebe5cbedb68796303406720d435e710850d602a",
+          "bytes": 25249
+        },
+        "stderr": {
+          "file": "483015ff-0495-4acf-8868-1edc9cd5a347.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    }
+  ]
+}

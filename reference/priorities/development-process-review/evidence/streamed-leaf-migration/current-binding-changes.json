@@ -1,0 +1,27 @@
+[
+  {
+    "path": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+    "before": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826",
+    "after": "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c"
+  },
+  {
+    "path": "scripts/eom/launch-prescribed-response-pilot.mjs",
+    "before": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31",
+    "after": "9af9a6a33b3b1c5889550953496be13d0698e5d24e9033dbdd5ffcb82deeafe2"
+  },
+  {
+    "path": "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
+    "before": "042684de5b23216a8af4a8187e02db3236206249d0f857215dc47a89b8c62d47",
+    "after": "42cff90c1d7fab71a3e826c5e9da4185363b6d2ab48ba7d826ef1ac3f9e9427c"
+  },
+  {
+    "path": "scripts/eom/f6c-bounded-operation.mjs",
+    "before": "f3bbaf59b3fec7340a3b68097d6745fef589c777273558a71cfd8744cfeeb13a",
+    "after": "e100a96f0771d82664fa62b66865cbf5924cced1216588c631836ed361d6a252"
+  },
+  {
+    "path": "scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs",
+    "before": "71e42fa8fd3d6875a15a1ad209cbc6e56560977fa137ccd542004680e976d977",
+    "after": "5aca02b67d40587555d7de50c36aca3eda05873a9ed0d9b387214fbf3c0be9bd"
+  }
+]

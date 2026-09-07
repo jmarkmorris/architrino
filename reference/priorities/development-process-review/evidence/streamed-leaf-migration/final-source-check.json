@@ -1,0 +1,237 @@
+{
+  "knownCase": "SHA-256 abc passed before captures",
+  "bindings": [
+    {
+      "consumer": "streamed",
+      "role": "operationCoordinator",
+      "path": "scripts/eom/f6c-bounded-operation.mjs",
+      "sha256": "e100a96f0771d82664fa62b66865cbf5924cced1216588c631836ed361d6a252",
+      "bytes": 81434
+    },
+    {
+      "consumer": "streamed",
+      "role": "operationCoordinatorControls",
+      "path": "tests/f6c-bounded-operation.test.js",
+      "sha256": "4beac06fb776869c62c52ef2ee5b7a79c078f9ee45ba7d5b30e59871ca944ebe",
+      "bytes": 35918
+    },
+    {
+      "consumer": "streamed",
+      "role": "adapter",
+      "path": "scripts/eom/f6c_variable_cell_adapter.py",
+      "sha256": "2f0b9ea1ff9ed60a8dacf1b8447ea2a075f482a2d9b505de46e24b1dafb16a25",
+      "bytes": 141499
+    },
+    {
+      "consumer": "streamed",
+      "role": "adapterControls",
+      "path": "tests/test_f6c_variable_cell_adapter.py",
+      "sha256": "1fe6838fc63b10cd8e0051ce03039db05b7ea8370c0b8f065beb3e59492df6c2",
+      "bytes": 140272
+    },
+    {
+      "consumer": "streamed",
+      "role": "diagnostic",
+      "path": "scripts/eom/f6c_single_leaf_diagnostic.py",
+      "sha256": "88b8fece4d8facc4943b01ebb5eb1cac2fe1061fecc86cae157a5d3ba4658a1e",
+      "bytes": 32801
+    },
+    {
+      "consumer": "streamed",
+      "role": "diagnosticControls",
+      "path": "tests/test_f6c_single_leaf_diagnostic.py",
+      "sha256": "47d502100d4f92e8c803f5f0dad7c248874f493ed0df9ef43e1e956e8e9bf71c",
+      "bytes": 62290
+    },
+    {
+      "consumer": "streamed",
+      "role": "stream",
+      "path": "scripts/eom/f6c_streamed_leaf_session.py",
+      "sha256": "12503e98995464abdca6b1c54616c27797f7ba8849d12217e8677fab7825e46a",
+      "bytes": 16236
+    },
+    {
+      "consumer": "streamed",
+      "role": "streamControls",
+      "path": "tests/test_f6c_streamed_leaf_session.py",
+      "sha256": "8fd4f300db43fcd67eda052677ee1f004efda464db7b51eea40d69c6169cd39b",
+      "bytes": 22827
+    },
+    {
+      "consumer": "streamed",
+      "role": "continuation",
+      "path": "scripts/eom/f6c_leaf_continuation.py",
+      "sha256": "b98cce1a5dc1a1e3903146de39e8ff25d4bae996bd9bcd99ca4205fcb2ee6b0a",
+      "bytes": 20260
+    },
+    {
+      "consumer": "streamed",
+      "role": "continuationControls",
+      "path": "tests/test_f6c_leaf_continuation.py",
+      "sha256": "ec3e156d1d1f71729c6649cbaf43db40779d873e37cfa0d1dd223966bde91743",
+      "bytes": 13649
+    },
+    {
+      "consumer": "streamed",
+      "role": "codec",
+      "path": "scripts/eom/f6c_leaf_evidence_codec.py",
+      "sha256": "371f6eff5a7a50514816b9af04c98fdae18084cc364b35b565fc53acae76a79f",
+      "bytes": 22926
+    },
+    {
+      "consumer": "streamed",
+      "role": "codecControls",
+      "path": "tests/test_f6c_leaf_evidence_codec.py",
+      "sha256": "af39c302680ce1a9d55c5539dfa3084f20132a12113d9b6285d6abbec074c648",
+      "bytes": 22489
+    },
+    {
+      "consumer": "streamed",
+      "role": "storage",
+      "path": "scripts/eom/f6c_leaf_stream_publication.py",
+      "sha256": "5a638da1aa91ce80b9dcdfe503f4e2193a981c43e903719e4e18b5bb17c9658e",
+      "bytes": 15594
+    },
+    {
+      "consumer": "streamed",
+      "role": "storageControls",
+      "path": "tests/test_f6c_leaf_stream_publication.py",
+      "sha256": "b1c8e0a789ec2215d12a20e601dfc5175df3516c450373a624c8049b060d49ae",
+      "bytes": 24104
+    },
+    {
+      "consumer": "streamed",
+      "role": "transport",
+      "path": "scripts/eom/verify-f6c-refined-acceleration.py",
+      "sha256": "e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae",
+      "bytes": 44244
+    },
+    {
+      "consumer": "streamed",
+      "role": "helpers",
+      "path": "scripts/eom/launch-prescribed-response-pilot.mjs",
+      "sha256": "9af9a6a33b3b1c5889550953496be13d0698e5d24e9033dbdd5ffcb82deeafe2",
+      "bytes": 28310
+    },
+    {
+      "consumer": "streamed",
+      "role": "outer",
+      "path": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+      "sha256": "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c",
+      "bytes": 65769
+    },
+    {
+      "consumer": "streamed",
+      "role": "diagnostics",
+      "path": "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
+      "sha256": "42cff90c1d7fab71a3e826c5e9da4185363b6d2ab48ba7d826ef1ac3f9e9427c",
+      "bytes": 24898
+    },
+    {
+      "consumer": "whole",
+      "role": "helpers",
+      "path": "scripts/eom/launch-prescribed-response-pilot.mjs",
+      "sha256": "9af9a6a33b3b1c5889550953496be13d0698e5d24e9033dbdd5ffcb82deeafe2",
+      "bytes": 28310
+    },
+    {
+      "consumer": "whole",
+      "role": "outer",
+      "path": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+      "sha256": "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c",
+      "bytes": 65769
+    },
+    {
+      "consumer": "whole",
+      "role": "diagnostics",
+      "path": "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
+      "sha256": "42cff90c1d7fab71a3e826c5e9da4185363b6d2ab48ba7d826ef1ac3f9e9427c",
+      "bytes": 24898
+    },
+    {
+      "consumer": "parent",
+      "role": "helpers",
+      "path": "scripts/eom/launch-prescribed-response-pilot.mjs",
+      "sha256": "9af9a6a33b3b1c5889550953496be13d0698e5d24e9033dbdd5ffcb82deeafe2",
+      "bytes": 28310
+    },
+    {
+      "consumer": "parent",
+      "role": "outer",
+      "path": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+      "sha256": "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c",
+      "bytes": 65769
+    },
+    {
+      "consumer": "parent",
+      "role": "diagnostics",
+      "path": "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
+      "sha256": "42cff90c1d7fab71a3e826c5e9da4185363b6d2ab48ba7d826ef1ac3f9e9427c",
+      "bytes": 24898
+    }
+  ],
+  "unchangedByGitDiff": [
+    "scripts/eom/oracle",
+    "scripts/eom/f6c_variable_cell_adapter.py",
+    "scripts/eom/f6c_single_leaf_diagnostic.py",
+    "scripts/eom/f6c_streamed_leaf_session.py",
+    "scripts/eom/f6c_leaf_evidence_codec.py",
+    "scripts/eom/verify-f6c-refined-acceleration.py",
+    "reference/priorities/development-process-review/evidence/source-recovery",
+    "reference/priorities/development-process-review/evidence/variable-cell-migration"
+  ],
+  "edits": [
+    {
+      "path": "scripts/eom/f6c-bounded-operation.mjs",
+      "sha256": "e100a96f0771d82664fa62b66865cbf5924cced1216588c631836ed361d6a252"
+    },
+    {
+      "path": "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
+      "sha256": "42cff90c1d7fab71a3e826c5e9da4185363b6d2ab48ba7d826ef1ac3f9e9427c"
+    },
+    {
+      "path": "scripts/eom/launch-prescribed-response-pilot.mjs",
+      "sha256": "9af9a6a33b3b1c5889550953496be13d0698e5d24e9033dbdd5ffcb82deeafe2"
+    },
+    {
+      "path": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+      "sha256": "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c"
+    },
+    {
+      "path": "scripts/eom/prepare-f6c-parent-refinement-batch.mjs",
+      "sha256": "0f9178d5757bbb06093dc446979c3dd797614ee0b6f428d8bf48e150fba5373b"
+    },
+    {
+      "path": "scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs",
+      "sha256": "70a2c47063575b75685f84e0ae6f9e7fb3b71394db211c15bda2d9cb3c20adca"
+    },
+    {
+      "path": "scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs",
+      "sha256": "5aca02b67d40587555d7de50c36aca3eda05873a9ed0d9b387214fbf3c0be9bd"
+    },
+    {
+      "path": "scripts/eom/verify-f6c-bounded-operation-closure.mjs",
+      "sha256": "0113d03bcbd682a9950977304ac8eba42539430427c4dde147e090bb39871fd5"
+    },
+    {
+      "path": "tests/f6c-bounded-operation-closure.test.js",
+      "sha256": "a01885b905f72d1f1a933c6d5282d684c702a2d42378f4f02eb3e6e3f3499c56"
+    },
+    {
+      "path": "tests/f6c-bounded-operation.test.js",
+      "sha256": "4beac06fb776869c62c52ef2ee5b7a79c078f9ee45ba7d5b30e59871ca944ebe"
+    },
+    {
+      "path": "tests/f6c-streamed-leaf-diagnostic.test.js",
+      "sha256": "95dd0cfde639b2dd22f0743dbce1bdf139189f65c8a0fa9edc8a260effce8696"
+    },
+    {
+      "path": "tests/subfield-circular-root-launcher.test.js",
+      "sha256": "3bfc9713020803dc216fa740706a00a8f3d9794b0dab7c43964720d15cb3f6ea"
+    }
+  ],
+  "newControl": {
+    "path": "tests/f6c-streamed-historical-inputs.test.js",
+    "sha256": "ce038bac1cdca287e371d1f199ceb58da6bb3f96ae0eaf1fbd2da82584a6a75b"
+  }
+}

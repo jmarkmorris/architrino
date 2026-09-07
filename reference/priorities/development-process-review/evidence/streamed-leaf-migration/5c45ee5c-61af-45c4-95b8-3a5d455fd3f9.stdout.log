@@ -1,0 +1,30 @@
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-vaeGnJ
+✖ actual captured Python + frozen stream/codec/publication: normal (10632.5145ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10712.500542
+
+✖ failing tests:
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:724:2
+✖ actual captured Python + frozen stream/codec/publication: normal (10632.5145ms)
+  AssertionError [ERR_ASSERTION]: {"kind":"host-resource","elapsedSeconds":0.06660275,"atLaunch":true,"stdout":"System-wide memory free percentage: 40%\n","freePercent":40,"availableDiskBytes":"68719476736"}
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:726:39)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

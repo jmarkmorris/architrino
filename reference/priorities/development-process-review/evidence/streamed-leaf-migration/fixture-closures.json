@@ -1,0 +1,3951 @@
+{
+  "knownCase": "literal fixture-line control passed before extracting final fixture paths",
+  "scope": "external test observation only; no scientific acceptance",
+  "fixtures": [
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-KZ8lj4",
+      "sha256": "82cb458416103f539861d412616f54471e05fd53d3764f5014ca3468282b7213",
+      "bytes": 1444,
+      "record": {
+        "processGroupClosed": true,
+        "status": "completed",
+        "exitCode": 0,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 29491,
+            "ppid": 29489,
+            "pgid": 29489,
+            "started": "Mon Sep 7 10:17:44 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29489,
+            "ppid": 29487,
+            "pgid": 29489,
+            "started": "Mon Sep 7 10:17:44 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29499,
+            "ppid": 29491,
+            "pgid": 29499,
+            "started": "Mon Sep 7 10:17:44 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29501,
+            "ppid": 1,
+            "pgid": 29501,
+            "started": "Mon Sep 7 10:17:44 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29507,
+            "ppid": 29499,
+            "pgid": 29507,
+            "started": "Mon Sep 7 10:17:44 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29510,
+            "ppid": 29507,
+            "pgid": 29507,
+            "started": "Mon Sep 7 10:17:45 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 29512,
+            "ppid": 29491,
+            "pgid": 29489,
+            "started": "Mon Sep 7 10:17:45 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29517,
+            "ppid": 29491,
+            "pgid": 29489,
+            "started": "Mon Sep 7 10:17:45 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29518,
+            "ppid": 29491,
+            "pgid": 29489,
+            "started": "Mon Sep 7 10:17:45 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29520,
+            "ppid": 29491,
+            "pgid": 29489,
+            "started": "Mon Sep 7 10:17:45 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 29524,
+            "ppid": 29491,
+            "pgid": 29489,
+            "started": "Mon Sep 7 10:17:45 2026",
+            "command": "/bin/ps"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-llg8Ig",
+      "sha256": "973043979a4480c76f1569b775a9d15bafb4901ca87c672798f0b3113a3359e6",
+      "bytes": 336,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 29535,
+            "ppid": 29533,
+            "pgid": 29533,
+            "started": "Mon Sep 7 10:17:45 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29533,
+            "ppid": 29531,
+            "pgid": 29533,
+            "started": "Mon Sep 7 10:17:45 2026",
+            "command": "(node)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-Hgxsu6",
+      "sha256": "188c9b227a6404ba6c2e8b28c7f0613a392e705ef3fda3663c119f193fde0f54",
+      "bytes": 1503,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 29549,
+            "ppid": 29547,
+            "pgid": 29547,
+            "started": "Mon Sep 7 10:17:46 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29547,
+            "ppid": 29545,
+            "pgid": 29547,
+            "started": "Mon Sep 7 10:17:46 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29557,
+            "ppid": 29549,
+            "pgid": 29557,
+            "started": "Mon Sep 7 10:17:46 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29559,
+            "ppid": 29557,
+            "pgid": 29559,
+            "started": "Mon Sep 7 10:17:46 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29565,
+            "ppid": 29557,
+            "pgid": 29565,
+            "started": "Mon Sep 7 10:17:46 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29566,
+            "ppid": 29549,
+            "pgid": 29547,
+            "started": "Mon Sep 7 10:17:46 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 29568,
+            "ppid": 29565,
+            "pgid": 29565,
+            "started": "Mon Sep 7 10:17:46 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 29570,
+            "ppid": 29549,
+            "pgid": 29547,
+            "started": "Mon Sep 7 10:17:47 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29573,
+            "ppid": 29549,
+            "pgid": 29547,
+            "started": "Mon Sep 7 10:17:47 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29575,
+            "ppid": 29549,
+            "pgid": 29547,
+            "started": "Mon Sep 7 10:17:47 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29576,
+            "ppid": 29549,
+            "pgid": 29547,
+            "started": "Mon Sep 7 10:17:47 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 29578,
+            "ppid": 29549,
+            "pgid": 29547,
+            "started": "Mon Sep 7 10:17:47 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-S6sV0w",
+      "sha256": "8684f51acac04528c1594956471ffbdcf14529bed9d5bcda6da1bafdeab0a7a4",
+      "bytes": 336,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 29590,
+            "ppid": 29588,
+            "pgid": 29588,
+            "started": "Mon Sep 7 10:17:47 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29588,
+            "ppid": 29586,
+            "pgid": 29588,
+            "started": "Mon Sep 7 10:17:47 2026",
+            "command": "(node)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-k9K3tZ",
+      "sha256": "ca4ab02ca3f477c40f3b3150cf3e3b60de9ac3d872a30c3aadf384d011eaeba8",
+      "bytes": 1407,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 29604,
+            "ppid": 29602,
+            "pgid": 29602,
+            "started": "Mon Sep 7 10:17:48 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29602,
+            "ppid": 29600,
+            "pgid": 29602,
+            "started": "Mon Sep 7 10:17:48 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29612,
+            "ppid": 29604,
+            "pgid": 29612,
+            "started": "Mon Sep 7 10:17:48 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29614,
+            "ppid": 29612,
+            "pgid": 29614,
+            "started": "Mon Sep 7 10:17:48 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29618,
+            "ppid": 29604,
+            "pgid": 29602,
+            "started": "Mon Sep 7 10:17:48 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29620,
+            "ppid": 29612,
+            "pgid": 29620,
+            "started": "Mon Sep 7 10:17:48 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29623,
+            "ppid": 29620,
+            "pgid": 29620,
+            "started": "Mon Sep 7 10:17:48 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 29625,
+            "ppid": 29604,
+            "pgid": 29602,
+            "started": "Mon Sep 7 10:17:48 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29630,
+            "ppid": 29604,
+            "pgid": 29602,
+            "started": "Mon Sep 7 10:17:48 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29631,
+            "ppid": 29604,
+            "pgid": 29602,
+            "started": "Mon Sep 7 10:17:48 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 29633,
+            "ppid": 29604,
+            "pgid": 29602,
+            "started": "Mon Sep 7 10:17:49 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-zVoXtv",
+      "sha256": "86bfe8c58efda43f00dd4e36154ac8c59f0cac40ea4bbe5829f66351f6f9eb72",
+      "bytes": 1633,
+      "record": {
+        "processGroupClosed": true,
+        "status": "completed",
+        "exitCode": 0,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 29646,
+            "ppid": 29644,
+            "pgid": 29644,
+            "started": "Mon Sep 7 10:17:49 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29644,
+            "ppid": 29642,
+            "pgid": 29644,
+            "started": "Mon Sep 7 10:17:49 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29654,
+            "ppid": 29646,
+            "pgid": 29654,
+            "started": "Mon Sep 7 10:17:49 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29656,
+            "ppid": 1,
+            "pgid": 29656,
+            "started": "Mon Sep 7 10:17:49 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29662,
+            "ppid": 29654,
+            "pgid": 29662,
+            "started": "Mon Sep 7 10:17:49 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29663,
+            "ppid": 29646,
+            "pgid": 29644,
+            "started": "Mon Sep 7 10:17:49 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 29665,
+            "ppid": 29662,
+            "pgid": 29662,
+            "started": "Mon Sep 7 10:17:49 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 29667,
+            "ppid": 29646,
+            "pgid": 29644,
+            "started": "Mon Sep 7 10:17:50 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29670,
+            "ppid": 29646,
+            "pgid": 29644,
+            "started": "Mon Sep 7 10:17:50 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 29672,
+            "ppid": 29646,
+            "pgid": 29644,
+            "started": "Mon Sep 7 10:17:50 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29673,
+            "ppid": 29646,
+            "pgid": 29644,
+            "started": "Mon Sep 7 10:17:50 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29675,
+            "ppid": 29646,
+            "pgid": 29644,
+            "started": "Mon Sep 7 10:17:50 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29679,
+            "ppid": 29646,
+            "pgid": 29644,
+            "started": "Mon Sep 7 10:17:50 2026",
+            "command": "/bin/ps"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-U3PRBv",
+      "sha256": "49082859c2af154e00a49feb821158e01bfe38410a0517c7fbe22b677c4e6b1a",
+      "bytes": 1630,
+      "record": {
+        "processGroupClosed": true,
+        "status": "completed",
+        "exitCode": 0,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 29690,
+            "ppid": 29688,
+            "pgid": 29688,
+            "started": "Mon Sep 7 10:17:50 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29688,
+            "ppid": 29686,
+            "pgid": 29688,
+            "started": "Mon Sep 7 10:17:50 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29698,
+            "ppid": 29690,
+            "pgid": 29698,
+            "started": "Mon Sep 7 10:17:51 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29700,
+            "ppid": 1,
+            "pgid": 29700,
+            "started": "Mon Sep 7 10:17:51 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29706,
+            "ppid": 29698,
+            "pgid": 29706,
+            "started": "Mon Sep 7 10:17:51 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29707,
+            "ppid": 29690,
+            "pgid": 29688,
+            "started": "Mon Sep 7 10:17:51 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 29709,
+            "ppid": 29706,
+            "pgid": 29706,
+            "started": "Mon Sep 7 10:17:51 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 29711,
+            "ppid": 29690,
+            "pgid": 29688,
+            "started": "Mon Sep 7 10:17:51 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29714,
+            "ppid": 29690,
+            "pgid": 29688,
+            "started": "Mon Sep 7 10:17:51 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29716,
+            "ppid": 29690,
+            "pgid": 29688,
+            "started": "Mon Sep 7 10:17:51 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29717,
+            "ppid": 29690,
+            "pgid": 29688,
+            "started": "Mon Sep 7 10:17:51 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 29719,
+            "ppid": 29690,
+            "pgid": 29688,
+            "started": "Mon Sep 7 10:17:51 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29723,
+            "ppid": 29690,
+            "pgid": 29688,
+            "started": "Mon Sep 7 10:17:52 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-16ZEi8",
+      "sha256": "ff32dec0cd98340e747a4b5509ac4bd78d83710439fba67245a79e6616f15a8c",
+      "bytes": 1439,
+      "record": {
+        "processGroupClosed": true,
+        "status": "completed",
+        "exitCode": 0,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 29734,
+            "ppid": 29732,
+            "pgid": 29732,
+            "started": "Mon Sep 7 10:17:52 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29732,
+            "ppid": 29730,
+            "pgid": 29732,
+            "started": "Mon Sep 7 10:17:52 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29742,
+            "ppid": 29734,
+            "pgid": 29742,
+            "started": "Mon Sep 7 10:17:52 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29744,
+            "ppid": 29742,
+            "pgid": 29744,
+            "started": "Mon Sep 7 10:17:52 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29751,
+            "ppid": 29742,
+            "pgid": 29751,
+            "started": "Mon Sep 7 10:17:52 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29752,
+            "ppid": 29734,
+            "pgid": 29732,
+            "started": "Mon Sep 7 10:17:52 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 29754,
+            "ppid": 29751,
+            "pgid": 29751,
+            "started": "Mon Sep 7 10:17:53 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 29756,
+            "ppid": 29734,
+            "pgid": 29732,
+            "started": "Mon Sep 7 10:17:53 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29761,
+            "ppid": 29734,
+            "pgid": 29732,
+            "started": "Mon Sep 7 10:17:53 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29762,
+            "ppid": 29734,
+            "pgid": 29732,
+            "started": "Mon Sep 7 10:17:53 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 29765,
+            "ppid": 29734,
+            "pgid": 29732,
+            "started": "Mon Sep 7 10:17:53 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 29767,
+            "ppid": 29734,
+            "pgid": 29732,
+            "started": "Mon Sep 7 10:17:53 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-Olplp4",
+      "sha256": "d38f0fcfbf876beb1e141116ce5784fc60dbcb3928a925a81c07903b75d1dcd7",
+      "bytes": 1128,
+      "record": {
+        "processGroupClosed": true,
+        "status": "completed",
+        "exitCode": 0,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 29780,
+            "ppid": 29778,
+            "pgid": 29778,
+            "started": "Mon Sep 7 10:17:53 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29778,
+            "ppid": 29776,
+            "pgid": 29778,
+            "started": "Mon Sep 7 10:17:53 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29788,
+            "ppid": 29780,
+            "pgid": 29788,
+            "started": "Mon Sep 7 10:17:54 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29790,
+            "ppid": 29788,
+            "pgid": 29790,
+            "started": "Mon Sep 7 10:17:54 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29794,
+            "ppid": 29780,
+            "pgid": 29778,
+            "started": "Mon Sep 7 10:17:54 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29796,
+            "ppid": 29788,
+            "pgid": 29796,
+            "started": "Mon Sep 7 10:17:54 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29799,
+            "ppid": 29796,
+            "pgid": 29796,
+            "started": "Mon Sep 7 10:17:54 2026",
+            "command": "(Python)"
+          },
+          {
+            "pid": 29801,
+            "ppid": 29780,
+            "pgid": 29778,
+            "started": "Mon Sep 7 10:17:54 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29806,
+            "ppid": 29780,
+            "pgid": 29778,
+            "started": "Mon Sep 7 10:17:54 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29812,
+            "ppid": 29780,
+            "pgid": 29778,
+            "started": "Mon Sep 7 10:17:55 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-64bpOb",
+      "sha256": "322ab9a29be8635dbd2801bb27d09476207e913cece79373ca54f762e4651f9a",
+      "bytes": 1171,
+      "record": {
+        "processGroupClosed": true,
+        "status": "completed",
+        "exitCode": 0,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 29827,
+            "ppid": 29825,
+            "pgid": 29825,
+            "started": "Mon Sep 7 10:17:55 2026",
+            "command": "<defunct>"
+          },
+          {
+            "pid": 29825,
+            "ppid": 29823,
+            "pgid": 29825,
+            "started": "Mon Sep 7 10:17:55 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29829,
+            "ppid": 29827,
+            "pgid": 29825,
+            "started": "Mon Sep 7 10:17:55 2026",
+            "command": "<defunct>"
+          },
+          {
+            "pid": 29835,
+            "ppid": 29827,
+            "pgid": 29835,
+            "started": "Mon Sep 7 10:17:55 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29837,
+            "ppid": 29835,
+            "pgid": 29837,
+            "started": "Mon Sep 7 10:17:55 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29841,
+            "ppid": 29827,
+            "pgid": 29825,
+            "started": "Mon Sep 7 10:17:55 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29843,
+            "ppid": 29835,
+            "pgid": 29843,
+            "started": "Mon Sep 7 10:17:55 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29846,
+            "ppid": 29843,
+            "pgid": 29843,
+            "started": "Mon Sep 7 10:17:56 2026",
+            "command": "(Python)"
+          },
+          {
+            "pid": 29848,
+            "ppid": 29827,
+            "pgid": 29825,
+            "started": "Mon Sep 7 10:17:56 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29859,
+            "ppid": 29827,
+            "pgid": 29825,
+            "started": "Mon Sep 7 10:17:56 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-eFEM3D",
+      "sha256": "b7190f64b110bb4bd88dd8a9cd280520baf5c3ffdd8a7791eb82707fb3f814d1",
+      "bytes": 1509,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 29871,
+            "ppid": 29869,
+            "pgid": 29869,
+            "started": "Mon Sep 7 10:17:57 2026",
+            "command": "<defunct>"
+          },
+          {
+            "pid": 29869,
+            "ppid": 29867,
+            "pgid": 29869,
+            "started": "Mon Sep 7 10:17:56 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29879,
+            "ppid": 29871,
+            "pgid": 29879,
+            "started": "Mon Sep 7 10:17:57 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29881,
+            "ppid": 29879,
+            "pgid": 29881,
+            "started": "Mon Sep 7 10:17:57 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29887,
+            "ppid": 29879,
+            "pgid": 29887,
+            "started": "Mon Sep 7 10:17:57 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29889,
+            "ppid": 29871,
+            "pgid": 29869,
+            "started": "Mon Sep 7 10:17:57 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 29890,
+            "ppid": 29887,
+            "pgid": 29887,
+            "started": "Mon Sep 7 10:17:57 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 29894,
+            "ppid": 29871,
+            "pgid": 29869,
+            "started": "Mon Sep 7 10:17:57 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 29897,
+            "ppid": 29871,
+            "pgid": 29869,
+            "started": "Mon Sep 7 10:17:57 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29901,
+            "ppid": 29871,
+            "pgid": 29869,
+            "started": "Mon Sep 7 10:17:57 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29905,
+            "ppid": 29871,
+            "pgid": 29869,
+            "started": "Mon Sep 7 10:17:57 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29906,
+            "ppid": 29871,
+            "pgid": 29869,
+            "started": "Mon Sep 7 10:17:57 2026",
+            "command": "/bin/ps"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-GRptAN",
+      "sha256": "62976747fad320a31897e497689da795d517044d51ed741d83452c891f690eac",
+      "bytes": 1596,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 29917,
+            "ppid": 29915,
+            "pgid": 29915,
+            "started": "Mon Sep 7 10:17:58 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29915,
+            "ppid": 29913,
+            "pgid": 29915,
+            "started": "Mon Sep 7 10:17:58 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29919,
+            "ppid": 29917,
+            "pgid": 29915,
+            "started": "Mon Sep 7 10:17:58 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29925,
+            "ppid": 29917,
+            "pgid": 29925,
+            "started": "Mon Sep 7 10:17:58 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29927,
+            "ppid": 29925,
+            "pgid": 29927,
+            "started": "Mon Sep 7 10:17:58 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29931,
+            "ppid": 29917,
+            "pgid": 29915,
+            "started": "Mon Sep 7 10:17:58 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29933,
+            "ppid": 29925,
+            "pgid": 29933,
+            "started": "Mon Sep 7 10:17:58 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29936,
+            "ppid": 29933,
+            "pgid": 29933,
+            "started": "Mon Sep 7 10:17:58 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 29939,
+            "ppid": 29917,
+            "pgid": 29915,
+            "started": "Mon Sep 7 10:17:58 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29943,
+            "ppid": 29917,
+            "pgid": 29915,
+            "started": "Mon Sep 7 10:17:58 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29947,
+            "ppid": 29917,
+            "pgid": 29915,
+            "started": "Mon Sep 7 10:17:59 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29951,
+            "ppid": 29917,
+            "pgid": 29915,
+            "started": "Mon Sep 7 10:17:59 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 29952,
+            "ppid": 29917,
+            "pgid": 29915,
+            "started": "Mon Sep 7 10:17:59 2026",
+            "command": "/bin/ps"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-CqEdFi",
+      "sha256": "494d5c0e10dc813e599b9f00a0eb4275be2393fa7b0716ea443ccfa637e64aae",
+      "bytes": 1599,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 29963,
+            "ppid": 29961,
+            "pgid": 29961,
+            "started": "Mon Sep 7 10:17:59 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29961,
+            "ppid": 29959,
+            "pgid": 29961,
+            "started": "Mon Sep 7 10:17:59 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 29965,
+            "ppid": 29963,
+            "pgid": 29961,
+            "started": "Mon Sep 7 10:17:59 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29971,
+            "ppid": 29963,
+            "pgid": 29971,
+            "started": "Mon Sep 7 10:17:59 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29973,
+            "ppid": 29971,
+            "pgid": 29973,
+            "started": "Mon Sep 7 10:17:59 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29979,
+            "ppid": 29971,
+            "pgid": 29979,
+            "started": "Mon Sep 7 10:17:59 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 29980,
+            "ppid": 29963,
+            "pgid": 29961,
+            "started": "Mon Sep 7 10:17:59 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 29982,
+            "ppid": 29979,
+            "pgid": 29979,
+            "started": "Mon Sep 7 10:17:59 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 29986,
+            "ppid": 29963,
+            "pgid": 29961,
+            "started": "Mon Sep 7 10:18:00 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29991,
+            "ppid": 29963,
+            "pgid": 29961,
+            "started": "Mon Sep 7 10:18:00 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 29993,
+            "ppid": 29963,
+            "pgid": 29961,
+            "started": "Mon Sep 7 10:18:00 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29997,
+            "ppid": 29963,
+            "pgid": 29961,
+            "started": "Mon Sep 7 10:18:00 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 29998,
+            "ppid": 29963,
+            "pgid": 29961,
+            "started": "Mon Sep 7 10:18:00 2026",
+            "command": "/bin/ps"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-6g8NvC",
+      "sha256": "6e0ff3a8e861043fdbf383f1db6790d6e9ef8194a1f19353095fdb7dde42027e",
+      "bytes": 1500,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 30009,
+            "ppid": 30007,
+            "pgid": 30007,
+            "started": "Mon Sep 7 10:18:00 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30007,
+            "ppid": 30005,
+            "pgid": 30007,
+            "started": "Mon Sep 7 10:18:00 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30011,
+            "ppid": 30009,
+            "pgid": 30007,
+            "started": "Mon Sep 7 10:18:00 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30017,
+            "ppid": 30009,
+            "pgid": 30017,
+            "started": "Mon Sep 7 10:18:00 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30019,
+            "ppid": 30017,
+            "pgid": 30019,
+            "started": "Mon Sep 7 10:18:00 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30023,
+            "ppid": 30009,
+            "pgid": 30007,
+            "started": "Mon Sep 7 10:18:01 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30025,
+            "ppid": 30017,
+            "pgid": 30025,
+            "started": "Mon Sep 7 10:18:01 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30028,
+            "ppid": 30025,
+            "pgid": 30025,
+            "started": "Mon Sep 7 10:18:01 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 30035,
+            "ppid": 30009,
+            "pgid": 30007,
+            "started": "Mon Sep 7 10:18:01 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30039,
+            "ppid": 30009,
+            "pgid": 30007,
+            "started": "Mon Sep 7 10:18:01 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30042,
+            "ppid": 30009,
+            "pgid": 30007,
+            "started": "Mon Sep 7 10:18:01 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30043,
+            "ppid": 30009,
+            "pgid": 30007,
+            "started": "Mon Sep 7 10:18:01 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-E3vJtv",
+      "sha256": "44f80f50fbb4148ce8b4562f2eca7783c3e992edca464bb747a4a6ba87060f6d",
+      "bytes": 1816,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 30055,
+            "ppid": 30053,
+            "pgid": 30053,
+            "started": "Mon Sep 7 10:18:01 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30053,
+            "ppid": 30051,
+            "pgid": 30053,
+            "started": "Mon Sep 7 10:18:01 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30057,
+            "ppid": 30055,
+            "pgid": 30053,
+            "started": "Mon Sep 7 10:18:01 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30063,
+            "ppid": 30055,
+            "pgid": 30063,
+            "started": "Mon Sep 7 10:18:02 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30065,
+            "ppid": 1,
+            "pgid": 30065,
+            "started": "Mon Sep 7 10:18:02 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30069,
+            "ppid": 30055,
+            "pgid": 30053,
+            "started": "Mon Sep 7 10:18:02 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30071,
+            "ppid": 30063,
+            "pgid": 30071,
+            "started": "Mon Sep 7 10:18:02 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30074,
+            "ppid": 30071,
+            "pgid": 30071,
+            "started": "Mon Sep 7 10:18:02 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 30076,
+            "ppid": 30055,
+            "pgid": 30053,
+            "started": "Mon Sep 7 10:18:02 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30077,
+            "ppid": 30055,
+            "pgid": 30053,
+            "started": "Mon Sep 7 10:18:02 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30080,
+            "ppid": 30055,
+            "pgid": 30053,
+            "started": "Mon Sep 7 10:18:02 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30084,
+            "ppid": 30055,
+            "pgid": 30053,
+            "started": "Mon Sep 7 10:18:02 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30088,
+            "ppid": 30055,
+            "pgid": 30053,
+            "started": "Mon Sep 7 10:18:02 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30090,
+            "ppid": 30055,
+            "pgid": 30053,
+            "started": "Mon Sep 7 10:18:02 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30092,
+            "ppid": 30055,
+            "pgid": 30053,
+            "started": "Mon Sep 7 10:18:02 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-wQxOKl",
+      "sha256": "cfd7edbbe55e9f4982734cb6b9269e7f7de1002ab71e491a44e89a12d53d32e4",
+      "bytes": 1573,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 30101,
+            "ppid": 30099,
+            "pgid": 30099,
+            "started": "Mon Sep 7 10:18:03 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30099,
+            "ppid": 30097,
+            "pgid": 30099,
+            "started": "Mon Sep 7 10:18:02 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30103,
+            "ppid": 30101,
+            "pgid": 30099,
+            "started": "Mon Sep 7 10:18:03 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30109,
+            "ppid": 30101,
+            "pgid": 30109,
+            "started": "Mon Sep 7 10:18:03 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30111,
+            "ppid": 30109,
+            "pgid": 30111,
+            "started": "Mon Sep 7 10:18:03 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30115,
+            "ppid": 30101,
+            "pgid": 30099,
+            "started": "Mon Sep 7 10:18:03 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30117,
+            "ppid": 30109,
+            "pgid": 30117,
+            "started": "Mon Sep 7 10:18:03 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30120,
+            "ppid": 30117,
+            "pgid": 30117,
+            "started": "Mon Sep 7 10:18:03 2026",
+            "command": "(Python)"
+          },
+          {
+            "pid": 30122,
+            "ppid": 30101,
+            "pgid": 30099,
+            "started": "Mon Sep 7 10:18:03 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30127,
+            "ppid": 30101,
+            "pgid": 30099,
+            "started": "Mon Sep 7 10:18:03 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30129,
+            "ppid": 30101,
+            "pgid": 30099,
+            "started": "Mon Sep 7 10:18:03 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30133,
+            "ppid": 30101,
+            "pgid": 30099,
+            "started": "Mon Sep 7 10:18:03 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30134,
+            "ppid": 30101,
+            "pgid": 30099,
+            "started": "Mon Sep 7 10:18:03 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30139,
+            "ppid": 30101,
+            "pgid": 30099,
+            "started": "Mon Sep 7 10:18:03 2026",
+            "command": "/bin/ps"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-DKvQG6",
+      "sha256": "8149db6dcea60523606bf5980d47f70c3028d45c76f8443872495f8949c50fd7",
+      "bytes": 429,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 30148,
+            "ppid": 30146,
+            "pgid": 30146,
+            "started": "Mon Sep 7 10:18:04 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30146,
+            "ppid": 30144,
+            "pgid": 30146,
+            "started": "Mon Sep 7 10:18:04 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30150,
+            "ppid": 30148,
+            "pgid": 30146,
+            "started": "Mon Sep 7 10:18:04 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-rfG6t7",
+      "sha256": "3505f1250a3dadb2c491cbfee28ebd75ef68e85a55c3ce307bb7a0ce10cc8704",
+      "bytes": 1500,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 30165,
+            "ppid": 30163,
+            "pgid": 30163,
+            "started": "Mon Sep 7 10:18:04 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30163,
+            "ppid": 30161,
+            "pgid": 30163,
+            "started": "Mon Sep 7 10:18:04 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30167,
+            "ppid": 30165,
+            "pgid": 30163,
+            "started": "Mon Sep 7 10:18:04 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30173,
+            "ppid": 30165,
+            "pgid": 30173,
+            "started": "Mon Sep 7 10:18:05 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30175,
+            "ppid": 30173,
+            "pgid": 30175,
+            "started": "Mon Sep 7 10:18:05 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30181,
+            "ppid": 30173,
+            "pgid": 30181,
+            "started": "Mon Sep 7 10:18:05 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30184,
+            "ppid": 30181,
+            "pgid": 30181,
+            "started": "Mon Sep 7 10:18:05 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 30186,
+            "ppid": 30165,
+            "pgid": 30163,
+            "started": "Mon Sep 7 10:18:05 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30189,
+            "ppid": 30165,
+            "pgid": 30163,
+            "started": "Mon Sep 7 10:18:05 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30192,
+            "ppid": 30165,
+            "pgid": 30163,
+            "started": "Mon Sep 7 10:18:05 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30196,
+            "ppid": 30165,
+            "pgid": 30163,
+            "started": "Mon Sep 7 10:18:05 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30197,
+            "ppid": 30165,
+            "pgid": 30163,
+            "started": "Mon Sep 7 10:18:05 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-0TagSt",
+      "sha256": "aedb5eb46fc21a1a1747f3873097693f3831db7687606377c52e995b1f45c9f1",
+      "bytes": 1813,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 30212,
+            "ppid": 30210,
+            "pgid": 30210,
+            "started": "Mon Sep 7 10:18:06 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30210,
+            "ppid": 30208,
+            "pgid": 30210,
+            "started": "Mon Sep 7 10:18:06 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30216,
+            "ppid": 30212,
+            "pgid": 30210,
+            "started": "Mon Sep 7 10:18:06 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30222,
+            "ppid": 30212,
+            "pgid": 30222,
+            "started": "Mon Sep 7 10:18:06 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30224,
+            "ppid": 1,
+            "pgid": 30224,
+            "started": "Mon Sep 7 10:18:06 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30228,
+            "ppid": 30212,
+            "pgid": 30210,
+            "started": "Mon Sep 7 10:18:06 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30230,
+            "ppid": 30222,
+            "pgid": 30230,
+            "started": "Mon Sep 7 10:18:06 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30233,
+            "ppid": 30230,
+            "pgid": 30230,
+            "started": "Mon Sep 7 10:18:06 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 30235,
+            "ppid": 30212,
+            "pgid": 30210,
+            "started": "Mon Sep 7 10:18:06 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30237,
+            "ppid": 30212,
+            "pgid": 30210,
+            "started": "Mon Sep 7 10:18:06 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30240,
+            "ppid": 30212,
+            "pgid": 30210,
+            "started": "Mon Sep 7 10:18:06 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30244,
+            "ppid": 30212,
+            "pgid": 30210,
+            "started": "Mon Sep 7 10:18:06 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30245,
+            "ppid": 30212,
+            "pgid": 30210,
+            "started": "Mon Sep 7 10:18:06 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30249,
+            "ppid": 30212,
+            "pgid": 30210,
+            "started": "Mon Sep 7 10:18:07 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30252,
+            "ppid": 30212,
+            "pgid": 30210,
+            "started": "Mon Sep 7 10:18:07 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-SzTA70",
+      "sha256": "3ffb158e6c1ef4b85466726cfa673fbb21755d4e42ef83e2504ff2d16395741f",
+      "bytes": 1407,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 30262,
+            "ppid": 30260,
+            "pgid": 30260,
+            "started": "Mon Sep 7 10:18:07 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30260,
+            "ppid": 30258,
+            "pgid": 30260,
+            "started": "Mon Sep 7 10:18:07 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30270,
+            "ppid": 30262,
+            "pgid": 30270,
+            "started": "Mon Sep 7 10:18:07 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30272,
+            "ppid": 30270,
+            "pgid": 30272,
+            "started": "Mon Sep 7 10:18:07 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30278,
+            "ppid": 30270,
+            "pgid": 30278,
+            "started": "Mon Sep 7 10:18:07 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30281,
+            "ppid": 30278,
+            "pgid": 30278,
+            "started": "Mon Sep 7 10:18:07 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 30283,
+            "ppid": 30262,
+            "pgid": 30260,
+            "started": "Mon Sep 7 10:18:08 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30287,
+            "ppid": 30262,
+            "pgid": 30260,
+            "started": "Mon Sep 7 10:18:08 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30290,
+            "ppid": 30262,
+            "pgid": 30260,
+            "started": "Mon Sep 7 10:18:08 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30291,
+            "ppid": 30262,
+            "pgid": 30260,
+            "started": "Mon Sep 7 10:18:08 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30295,
+            "ppid": 30262,
+            "pgid": 30260,
+            "started": "Mon Sep 7 10:18:08 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-W2Ww0G",
+      "sha256": "6871d05a75057fcb31694b25cfce337c7f69bbbf8ac086eaf4c72cd9f7951904",
+      "bytes": 1323,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 30310,
+            "ppid": 30308,
+            "pgid": 30308,
+            "started": "Mon Sep 7 10:18:08 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30308,
+            "ppid": 30306,
+            "pgid": 30308,
+            "started": "Mon Sep 7 10:18:08 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30318,
+            "ppid": 30310,
+            "pgid": 30318,
+            "started": "Mon Sep 7 10:18:09 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30320,
+            "ppid": 30318,
+            "pgid": 30320,
+            "started": "Mon Sep 7 10:18:09 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30326,
+            "ppid": 30318,
+            "pgid": 30326,
+            "started": "Mon Sep 7 10:18:09 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30329,
+            "ppid": 30326,
+            "pgid": 30326,
+            "started": "Mon Sep 7 10:18:09 2026",
+            "command": "(Python)"
+          },
+          {
+            "pid": 30331,
+            "ppid": 30310,
+            "pgid": 30308,
+            "started": "Mon Sep 7 10:18:09 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30334,
+            "ppid": 30310,
+            "pgid": 30308,
+            "started": "Mon Sep 7 10:18:09 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30338,
+            "ppid": 30310,
+            "pgid": 30308,
+            "started": "Mon Sep 7 10:18:09 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30342,
+            "ppid": 30310,
+            "pgid": 30308,
+            "started": "Mon Sep 7 10:18:09 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30346,
+            "ppid": 30310,
+            "pgid": 30308,
+            "started": "Mon Sep 7 10:18:09 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-6voNqF",
+      "sha256": "be4632218e946dbb4c51a95d0340906a47726731e8b9e572a60d3188d0954e17",
+      "bytes": 1334,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 30357,
+            "ppid": 30355,
+            "pgid": 30355,
+            "started": "Mon Sep 7 10:18:10 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30355,
+            "ppid": 30353,
+            "pgid": 30355,
+            "started": "Mon Sep 7 10:18:09 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30365,
+            "ppid": 30357,
+            "pgid": 30365,
+            "started": "Mon Sep 7 10:18:10 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30367,
+            "ppid": 30365,
+            "pgid": 30367,
+            "started": "Mon Sep 7 10:18:10 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30371,
+            "ppid": 30357,
+            "pgid": 30355,
+            "started": "Mon Sep 7 10:18:10 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30373,
+            "ppid": 30365,
+            "pgid": 30373,
+            "started": "Mon Sep 7 10:18:10 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30376,
+            "ppid": 30373,
+            "pgid": 30373,
+            "started": "Mon Sep 7 10:18:10 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 30378,
+            "ppid": 30357,
+            "pgid": 30355,
+            "started": "Mon Sep 7 10:18:10 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30383,
+            "ppid": 30357,
+            "pgid": 30355,
+            "started": "Mon Sep 7 10:18:10 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30389,
+            "ppid": 30357,
+            "pgid": 30355,
+            "started": "Mon Sep 7 10:18:11 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30393,
+            "ppid": 30357,
+            "pgid": 30355,
+            "started": "Mon Sep 7 10:18:11 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-LJ55OB",
+      "sha256": "be677a082ff1c5b5056374565b8cd927e28d9760d45a59850e632cb1200e934f",
+      "bytes": 1944,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 30404,
+            "ppid": 30402,
+            "pgid": 30402,
+            "started": "Mon Sep 7 10:18:11 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30402,
+            "ppid": 30400,
+            "pgid": 30402,
+            "started": "Mon Sep 7 10:18:11 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30412,
+            "ppid": 30404,
+            "pgid": 30412,
+            "started": "Mon Sep 7 10:18:11 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30414,
+            "ppid": 30412,
+            "pgid": 30414,
+            "started": "Mon Sep 7 10:18:11 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30418,
+            "ppid": 30404,
+            "pgid": 30402,
+            "started": "Mon Sep 7 10:18:11 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30420,
+            "ppid": 1,
+            "pgid": 30420,
+            "started": "Mon Sep 7 10:18:12 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30423,
+            "ppid": 30420,
+            "pgid": 30420,
+            "started": "Mon Sep 7 10:18:12 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 30425,
+            "ppid": 30404,
+            "pgid": 30402,
+            "started": "Mon Sep 7 10:18:12 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30426,
+            "ppid": 30404,
+            "pgid": 30402,
+            "started": "Mon Sep 7 10:18:12 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30429,
+            "ppid": 30404,
+            "pgid": 30402,
+            "started": "Mon Sep 7 10:18:12 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30432,
+            "ppid": 30404,
+            "pgid": 30402,
+            "started": "Mon Sep 7 10:18:12 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30435,
+            "ppid": 30404,
+            "pgid": 30402,
+            "started": "Mon Sep 7 10:18:12 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30437,
+            "ppid": 30404,
+            "pgid": 30402,
+            "started": "Mon Sep 7 10:18:12 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30439,
+            "ppid": 30404,
+            "pgid": 30402,
+            "started": "Mon Sep 7 10:18:12 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30443,
+            "ppid": 30404,
+            "pgid": 30402,
+            "started": "Mon Sep 7 10:18:12 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30446,
+            "ppid": 30404,
+            "pgid": 30402,
+            "started": "Mon Sep 7 10:18:12 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-tX5Z02",
+      "sha256": "46119c95c489aeee8e4110186e3cc63d492e668859a16cebb611d63aebcc860b",
+      "bytes": 3913,
+      "record": {
+        "processGroupClosed": true,
+        "status": "timed_out",
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "observed": [
+          {
+            "pid": 30455,
+            "ppid": 1,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:12 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30453,
+            "ppid": 30451,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:12 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30457,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:12 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30463,
+            "ppid": 30455,
+            "pgid": 30463,
+            "started": "Mon Sep 7 10:18:13 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30465,
+            "ppid": 30463,
+            "pgid": 30465,
+            "started": "Mon Sep 7 10:18:13 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30469,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:13 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30471,
+            "ppid": 1,
+            "pgid": 30471,
+            "started": "Mon Sep 7 10:18:13 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30474,
+            "ppid": 30471,
+            "pgid": 30471,
+            "started": "Mon Sep 7 10:18:13 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 30476,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:13 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30480,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:13 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30509,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:15 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30513,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:15 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30517,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:16 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30522,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:16 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30526,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:16 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30554,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:18 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30558,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:18 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30564,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:18 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30588,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:20 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30592,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:20 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30597,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:20 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30619,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:22 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30623,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:22 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30627,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:22 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30632,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:22 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30652,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:24 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30656,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:24 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30660,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:24 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30664,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:24 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30689,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:26 2026",
+            "command": "<defunct>"
+          },
+          {
+            "pid": 30693,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:26 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30697,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:26 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30719,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:27 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30722,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:27 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30725,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:28 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30730,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:28 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30733,
+            "ppid": 30455,
+            "pgid": 30453,
+            "started": "Mon Sep 7 10:18:28 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-0oib9F",
+      "sha256": "72ea08bc3d0243cdbf28ddb2ea0f6ee05a749ce0132be7d1ca74dde2e807be99",
+      "bytes": 1557,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 30749,
+            "ppid": 30747,
+            "pgid": 30747,
+            "started": "Mon Sep 7 10:18:29 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30747,
+            "ppid": 30745,
+            "pgid": 30747,
+            "started": "Mon Sep 7 10:18:29 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30751,
+            "ppid": 30749,
+            "pgid": 30747,
+            "started": "Mon Sep 7 10:18:29 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30757,
+            "ppid": 30749,
+            "pgid": 30757,
+            "started": "Mon Sep 7 10:18:29 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30759,
+            "ppid": 1,
+            "pgid": 30759,
+            "started": "Mon Sep 7 10:18:29 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30765,
+            "ppid": 30757,
+            "pgid": 30765,
+            "started": "Mon Sep 7 10:18:29 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30766,
+            "ppid": 30749,
+            "pgid": 30747,
+            "started": "Mon Sep 7 10:18:29 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30768,
+            "ppid": 30765,
+            "pgid": 30765,
+            "started": "Mon Sep 7 10:18:29 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 30770,
+            "ppid": 30749,
+            "pgid": 30747,
+            "started": "Mon Sep 7 10:18:29 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30775,
+            "ppid": 30749,
+            "pgid": 30747,
+            "started": "Mon Sep 7 10:18:29 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30776,
+            "ppid": 30749,
+            "pgid": 30747,
+            "started": "Mon Sep 7 10:18:29 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30778,
+            "ppid": 30749,
+            "pgid": 30747,
+            "started": "Mon Sep 7 10:18:29 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30782,
+            "ppid": 30749,
+            "pgid": 30747,
+            "started": "Mon Sep 7 10:18:30 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-9r1UMW",
+      "sha256": "eb0602b9bcfb817c5538ffdee0a4df375f0cf20c55a49e6f998e28967b122634",
+      "bytes": 1570,
+      "record": {
+        "processGroupClosed": true,
+        "status": "timed_out",
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "observed": [
+          {
+            "pid": 30795,
+            "ppid": 1,
+            "pgid": 30793,
+            "started": "Mon Sep 7 10:18:30 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30793,
+            "ppid": 30791,
+            "pgid": 30793,
+            "started": "Mon Sep 7 10:18:30 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30803,
+            "ppid": 30795,
+            "pgid": 30803,
+            "started": "Mon Sep 7 10:18:30 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30805,
+            "ppid": 1,
+            "pgid": 30805,
+            "started": "Mon Sep 7 10:18:30 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 30811,
+            "ppid": 30803,
+            "pgid": 30811,
+            "started": "Mon Sep 7 10:18:30 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 30812,
+            "ppid": 30795,
+            "pgid": 30793,
+            "started": "Mon Sep 7 10:18:31 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30814,
+            "ppid": 30811,
+            "pgid": 30811,
+            "started": "Mon Sep 7 10:18:31 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 30816,
+            "ppid": 30795,
+            "pgid": 30793,
+            "started": "Mon Sep 7 10:18:31 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30819,
+            "ppid": 30795,
+            "pgid": 30793,
+            "started": "Mon Sep 7 10:18:31 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30821,
+            "ppid": 30795,
+            "pgid": 30793,
+            "started": "Mon Sep 7 10:18:31 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30822,
+            "ppid": 30795,
+            "pgid": 30793,
+            "started": "Mon Sep 7 10:18:31 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 30824,
+            "ppid": 30795,
+            "pgid": 30793,
+            "started": "Mon Sep 7 10:18:31 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 30828,
+            "ppid": 30795,
+            "pgid": 30793,
+            "started": "Mon Sep 7 10:18:31 2026",
+            "command": "/bin/ps"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-MoA8GF",
+      "sha256": "3e677a63e5a8d8e578a010c41220bd9cb263d6f792e15938b282572d609a1a91",
+      "bytes": 1475,
+      "record": {
+        "processGroupClosed": true,
+        "status": "timed_out",
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "observed": [
+          {
+            "pid": 31019,
+            "ppid": 1,
+            "pgid": 31017,
+            "started": "Mon Sep 7 10:18:46 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 31017,
+            "ppid": 31015,
+            "pgid": 31017,
+            "started": "Mon Sep 7 10:18:46 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 31021,
+            "ppid": 31019,
+            "pgid": 31017,
+            "started": "Mon Sep 7 10:18:46 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31027,
+            "ppid": 31019,
+            "pgid": 31027,
+            "started": "Mon Sep 7 10:18:46 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 31029,
+            "ppid": 31027,
+            "pgid": 31029,
+            "started": "Mon Sep 7 10:18:46 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 31035,
+            "ppid": 31027,
+            "pgid": 31035,
+            "started": "Mon Sep 7 10:18:47 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 31038,
+            "ppid": 31035,
+            "pgid": 31035,
+            "started": "Mon Sep 7 10:18:47 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 31040,
+            "ppid": 31019,
+            "pgid": 31017,
+            "started": "Mon Sep 7 10:18:47 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31045,
+            "ppid": 31019,
+            "pgid": 31017,
+            "started": "Mon Sep 7 10:18:47 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31047,
+            "ppid": 31019,
+            "pgid": 31017,
+            "started": "Mon Sep 7 10:18:47 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 31048,
+            "ppid": 31019,
+            "pgid": 31017,
+            "started": "Mon Sep 7 10:18:47 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31053,
+            "ppid": 31019,
+            "pgid": 31017,
+            "started": "Mon Sep 7 10:18:47 2026",
+            "command": "/bin/ps"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-wWcUPF",
+      "sha256": "9f43abfe404f26c8e96766368073fc024761d92870e6628588d432afa7a3cb2c",
+      "bytes": 1132,
+      "record": {
+        "processGroupClosed": true,
+        "status": "timed_out",
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "observed": [
+          {
+            "pid": 31247,
+            "ppid": 1,
+            "pgid": 31245,
+            "started": "Mon Sep 7 10:19:02 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 31245,
+            "ppid": 31243,
+            "pgid": 31245,
+            "started": "Mon Sep 7 10:19:02 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 31255,
+            "ppid": 31247,
+            "pgid": 31255,
+            "started": "Mon Sep 7 10:19:03 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 31257,
+            "ppid": 31255,
+            "pgid": 31257,
+            "started": "Mon Sep 7 10:19:03 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 31263,
+            "ppid": 31255,
+            "pgid": 31263,
+            "started": "Mon Sep 7 10:19:03 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 31266,
+            "ppid": 31263,
+            "pgid": 31263,
+            "started": "Mon Sep 7 10:19:03 2026",
+            "command": "(Python)"
+          },
+          {
+            "pid": 31268,
+            "ppid": 31247,
+            "pgid": 31245,
+            "started": "Mon Sep 7 10:19:03 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31273,
+            "ppid": 31247,
+            "pgid": 31245,
+            "started": "Mon Sep 7 10:19:03 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31279,
+            "ppid": 31247,
+            "pgid": 31245,
+            "started": "Mon Sep 7 10:19:03 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31285,
+            "ppid": 31247,
+            "pgid": 31245,
+            "started": "Mon Sep 7 10:19:04 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-RWIaea",
+      "sha256": "a235648effef3e242e7af7cfdde1ad6267bb188369342883a26792a3ab7e5cba",
+      "bytes": 1820,
+      "record": {
+        "processGroupClosed": true,
+        "status": "timed_out",
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "observed": [
+          {
+            "pid": 31474,
+            "ppid": 1,
+            "pgid": 31472,
+            "started": "Mon Sep 7 10:19:19 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 31472,
+            "ppid": 31470,
+            "pgid": 31472,
+            "started": "Mon Sep 7 10:19:18 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 31476,
+            "ppid": 31474,
+            "pgid": 31472,
+            "started": "Mon Sep 7 10:19:19 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31482,
+            "ppid": 31474,
+            "pgid": 31482,
+            "started": "Mon Sep 7 10:19:19 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 31484,
+            "ppid": 1,
+            "pgid": 31484,
+            "started": "Mon Sep 7 10:19:19 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 31490,
+            "ppid": 31482,
+            "pgid": 31490,
+            "started": "Mon Sep 7 10:19:19 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 31491,
+            "ppid": 31474,
+            "pgid": 31472,
+            "started": "Mon Sep 7 10:19:19 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 31493,
+            "ppid": 31490,
+            "pgid": 31490,
+            "started": "Mon Sep 7 10:19:19 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 31495,
+            "ppid": 31474,
+            "pgid": 31472,
+            "started": "Mon Sep 7 10:19:19 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31498,
+            "ppid": 31474,
+            "pgid": 31472,
+            "started": "Mon Sep 7 10:19:19 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31500,
+            "ppid": 31474,
+            "pgid": 31472,
+            "started": "Mon Sep 7 10:19:19 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31502,
+            "ppid": 31474,
+            "pgid": 31472,
+            "started": "Mon Sep 7 10:19:19 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 31503,
+            "ppid": 31474,
+            "pgid": 31472,
+            "started": "Mon Sep 7 10:19:19 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31507,
+            "ppid": 31474,
+            "pgid": 31472,
+            "started": "Mon Sep 7 10:19:20 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31509,
+            "ppid": 31474,
+            "pgid": 31472,
+            "started": "Mon Sep 7 10:19:20 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-WYySJG",
+      "sha256": "7ec60ac0f41bbc986f53a552136276afd873386283ab9d7db54db1b68ecea4fa",
+      "bytes": 1631,
+      "record": {
+        "processGroupClosed": true,
+        "status": "timed_out",
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "observed": [
+          {
+            "pid": 31694,
+            "ppid": 1,
+            "pgid": 31692,
+            "started": "Mon Sep 7 10:19:35 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 31692,
+            "ppid": 31690,
+            "pgid": 31692,
+            "started": "Mon Sep 7 10:19:35 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 31696,
+            "ppid": 31694,
+            "pgid": 31692,
+            "started": "Mon Sep 7 10:19:35 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31702,
+            "ppid": 31694,
+            "pgid": 31702,
+            "started": "Mon Sep 7 10:19:35 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 31704,
+            "ppid": 1,
+            "pgid": 31704,
+            "started": "Mon Sep 7 10:19:35 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 31710,
+            "ppid": 31702,
+            "pgid": 31710,
+            "started": "Mon Sep 7 10:19:35 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 31711,
+            "ppid": 31694,
+            "pgid": 31692,
+            "started": "Mon Sep 7 10:19:35 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 31713,
+            "ppid": 31710,
+            "pgid": 31710,
+            "started": "Mon Sep 7 10:19:35 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 31715,
+            "ppid": 31694,
+            "pgid": 31692,
+            "started": "Mon Sep 7 10:19:35 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31718,
+            "ppid": 31694,
+            "pgid": 31692,
+            "started": "Mon Sep 7 10:19:35 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31720,
+            "ppid": 31694,
+            "pgid": 31692,
+            "started": "Mon Sep 7 10:19:36 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31723,
+            "ppid": 31694,
+            "pgid": 31692,
+            "started": "Mon Sep 7 10:19:36 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31727,
+            "ppid": 31694,
+            "pgid": 31692,
+            "started": "Mon Sep 7 10:19:36 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-GEy78f",
+      "sha256": "427528b9ea0380aef27f45df8600b48361f41ef244377be5596409254318d5a5",
+      "bytes": 1661,
+      "record": {
+        "processGroupClosed": true,
+        "status": "timed_out",
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "observed": [
+          {
+            "pid": 31920,
+            "ppid": 1,
+            "pgid": 31918,
+            "started": "Mon Sep 7 10:19:51 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 31918,
+            "ppid": 31916,
+            "pgid": 31918,
+            "started": "Mon Sep 7 10:19:51 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 31922,
+            "ppid": 31920,
+            "pgid": 31918,
+            "started": "Mon Sep 7 10:19:51 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31928,
+            "ppid": 31920,
+            "pgid": 31928,
+            "started": "Mon Sep 7 10:19:51 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 31930,
+            "ppid": 31928,
+            "pgid": 31930,
+            "started": "Mon Sep 7 10:19:51 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 31933,
+            "ppid": 31920,
+            "pgid": 31918,
+            "started": "Mon Sep 7 10:19:51 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31934,
+            "ppid": 31920,
+            "pgid": 31918,
+            "started": "Mon Sep 7 10:19:51 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31936,
+            "ppid": 31928,
+            "pgid": 31936,
+            "started": "Mon Sep 7 10:19:51 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 31939,
+            "ppid": 31936,
+            "pgid": 31936,
+            "started": "Mon Sep 7 10:19:51 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 31941,
+            "ppid": 31920,
+            "pgid": 31918,
+            "started": "Mon Sep 7 10:19:51 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 31946,
+            "ppid": 31920,
+            "pgid": 31918,
+            "started": "Mon Sep 7 10:19:52 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31949,
+            "ppid": 31920,
+            "pgid": 31918,
+            "started": "Mon Sep 7 10:19:52 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 31953,
+            "ppid": 31920,
+            "pgid": 31918,
+            "started": "Mon Sep 7 10:19:52 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 31957,
+            "ppid": 31920,
+            "pgid": 31918,
+            "started": "Mon Sep 7 10:19:52 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-C9TCIN",
+      "sha256": "d739b19b5a563bf58f076c070c461b334ad7dfedc38c2192e370641746e51a4a",
+      "bytes": 1537,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 32161,
+            "ppid": 32159,
+            "pgid": 32159,
+            "started": "Mon Sep 7 10:20:07 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 32159,
+            "ppid": 32157,
+            "pgid": 32159,
+            "started": "Mon Sep 7 10:20:07 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 32163,
+            "ppid": 32161,
+            "pgid": 32159,
+            "started": "Mon Sep 7 10:20:07 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32169,
+            "ppid": 32161,
+            "pgid": 32169,
+            "started": "Mon Sep 7 10:20:07 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32171,
+            "ppid": 32169,
+            "pgid": 32171,
+            "started": "Mon Sep 7 10:20:07 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32177,
+            "ppid": 1,
+            "pgid": 32177,
+            "started": "Mon Sep 7 10:20:07 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 32178,
+            "ppid": 32161,
+            "pgid": 32159,
+            "started": "Mon Sep 7 10:20:07 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 32180,
+            "ppid": 32177,
+            "pgid": 32177,
+            "started": "Mon Sep 7 10:20:07 2026",
+            "command": "(Python)"
+          },
+          {
+            "pid": 32182,
+            "ppid": 32161,
+            "pgid": 32159,
+            "started": "Mon Sep 7 10:20:08 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32185,
+            "ppid": 32161,
+            "pgid": 32159,
+            "started": "Mon Sep 7 10:20:08 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32188,
+            "ppid": 32161,
+            "pgid": 32159,
+            "started": "Mon Sep 7 10:20:08 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32192,
+            "ppid": 32161,
+            "pgid": 32159,
+            "started": "Mon Sep 7 10:20:08 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 32196,
+            "ppid": 32161,
+            "pgid": 32159,
+            "started": "Mon Sep 7 10:20:08 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32200,
+            "ppid": 32161,
+            "pgid": 32159,
+            "started": "Mon Sep 7 10:20:08 2026",
+            "command": "/bin/ps"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-uagXhq",
+      "sha256": "35ae626e8053f172f3acc00d75f93025b2252ef9cf5364c4eb51cbe2c6242e8c",
+      "bytes": 1138,
+      "record": {
+        "processGroupClosed": true,
+        "status": "timed_out",
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "observed": [
+          {
+            "pid": 32211,
+            "ppid": 1,
+            "pgid": 32209,
+            "started": "Mon Sep 7 10:20:08 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32209,
+            "ppid": 32207,
+            "pgid": 32209,
+            "started": "Mon Sep 7 10:20:08 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 32219,
+            "ppid": 32211,
+            "pgid": 32219,
+            "started": "Mon Sep 7 10:20:09 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 32221,
+            "ppid": 32219,
+            "pgid": 32221,
+            "started": "Mon Sep 7 10:20:09 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 32222,
+            "ppid": 32211,
+            "pgid": 32209,
+            "started": "Mon Sep 7 10:20:09 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 32227,
+            "ppid": 32219,
+            "pgid": 32227,
+            "started": "Mon Sep 7 10:20:09 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 32228,
+            "ppid": 32211,
+            "pgid": 32209,
+            "started": "Mon Sep 7 10:20:09 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 32230,
+            "ppid": 32227,
+            "pgid": 32227,
+            "started": "Mon Sep 7 10:20:09 2026",
+            "command": "(Python)"
+          },
+          {
+            "pid": 32232,
+            "ppid": 32211,
+            "pgid": 32209,
+            "started": "Mon Sep 7 10:20:09 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32233,
+            "ppid": 32211,
+            "pgid": 32209,
+            "started": "Mon Sep 7 10:20:09 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-ULzQXu",
+      "sha256": "2e049c751d54f19322e6a363ba4c3361a1458231b2382cc5671bd6eff9aca4f8",
+      "bytes": 1723,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 32430,
+            "ppid": 32428,
+            "pgid": 32428,
+            "started": "Mon Sep 7 10:20:24 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32428,
+            "ppid": 32426,
+            "pgid": 32428,
+            "started": "Mon Sep 7 10:20:24 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32438,
+            "ppid": 32430,
+            "pgid": 32438,
+            "started": "Mon Sep 7 10:20:25 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32440,
+            "ppid": 1,
+            "pgid": 32440,
+            "started": "Mon Sep 7 10:20:25 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 32446,
+            "ppid": 32438,
+            "pgid": 32446,
+            "started": "Mon Sep 7 10:20:25 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32447,
+            "ppid": 32430,
+            "pgid": 32428,
+            "started": "Mon Sep 7 10:20:25 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 32449,
+            "ppid": 32446,
+            "pgid": 32446,
+            "started": "Mon Sep 7 10:20:25 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 32453,
+            "ppid": 32430,
+            "pgid": 32428,
+            "started": "Mon Sep 7 10:20:25 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32456,
+            "ppid": 32430,
+            "pgid": 32428,
+            "started": "Mon Sep 7 10:20:25 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 32458,
+            "ppid": 32430,
+            "pgid": 32428,
+            "started": "Mon Sep 7 10:20:25 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32459,
+            "ppid": 32430,
+            "pgid": 32428,
+            "started": "Mon Sep 7 10:20:25 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 32461,
+            "ppid": 32430,
+            "pgid": 32428,
+            "started": "Mon Sep 7 10:20:25 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32465,
+            "ppid": 32430,
+            "pgid": 32428,
+            "started": "Mon Sep 7 10:20:26 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32469,
+            "ppid": 32430,
+            "pgid": 32428,
+            "started": "Mon Sep 7 10:20:26 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-XMdp1C",
+      "sha256": "84dba0eb71bdc1e44bbba2753589fbe3316d3c1cd43131ba48eb18af50fe575e",
+      "bytes": 1301,
+      "record": {
+        "processGroupClosed": true,
+        "status": "timed_out",
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "observed": [
+          {
+            "pid": 32478,
+            "ppid": 1,
+            "pgid": 32476,
+            "started": "Mon Sep 7 10:20:26 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32476,
+            "ppid": 32474,
+            "pgid": 32476,
+            "started": "Mon Sep 7 10:20:26 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32490,
+            "ppid": 32478,
+            "pgid": 32490,
+            "started": "Mon Sep 7 10:20:26 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 32492,
+            "ppid": 32490,
+            "pgid": 32492,
+            "started": "Mon Sep 7 10:20:26 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32502,
+            "ppid": 32478,
+            "pgid": 32476,
+            "started": "Mon Sep 7 10:20:26 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32504,
+            "ppid": 32490,
+            "pgid": 32504,
+            "started": "Mon Sep 7 10:20:26 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 32507,
+            "ppid": 32504,
+            "pgid": 32504,
+            "started": "Mon Sep 7 10:20:26 2026",
+            "command": "(Python)"
+          },
+          {
+            "pid": 32516,
+            "ppid": 32478,
+            "pgid": 32476,
+            "started": "Mon Sep 7 10:20:27 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32524,
+            "ppid": 32478,
+            "pgid": 32476,
+            "started": "Mon Sep 7 10:20:27 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32525,
+            "ppid": 32478,
+            "pgid": 32476,
+            "started": "Mon Sep 7 10:20:27 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 32586,
+            "ppid": 32478,
+            "pgid": 32476,
+            "started": "Mon Sep 7 10:20:27 2026",
+            "command": "/bin/ps"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-vDsIxU",
+      "sha256": "b4882608287caf5b999e2ff9df80fb14861ec7f19e69e516b6db06f505ffc31f",
+      "bytes": 1624,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 32907,
+            "ppid": 32905,
+            "pgid": 32905,
+            "started": "Mon Sep 7 10:20:42 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32905,
+            "ppid": 32903,
+            "pgid": 32905,
+            "started": "Mon Sep 7 10:20:42 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32909,
+            "ppid": 32907,
+            "pgid": 32905,
+            "started": "Mon Sep 7 10:20:42 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32915,
+            "ppid": 32907,
+            "pgid": 32915,
+            "started": "Mon Sep 7 10:20:42 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32917,
+            "ppid": 1,
+            "pgid": 32917,
+            "started": "Mon Sep 7 10:20:42 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 32923,
+            "ppid": 32915,
+            "pgid": 32923,
+            "started": "Mon Sep 7 10:20:43 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32926,
+            "ppid": 32923,
+            "pgid": 32923,
+            "started": "Mon Sep 7 10:20:43 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 32928,
+            "ppid": 32907,
+            "pgid": 32905,
+            "started": "Mon Sep 7 10:20:43 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32931,
+            "ppid": 32907,
+            "pgid": 32905,
+            "started": "Mon Sep 7 10:20:43 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 32933,
+            "ppid": 32907,
+            "pgid": 32905,
+            "started": "Mon Sep 7 10:20:43 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32936,
+            "ppid": 32907,
+            "pgid": 32905,
+            "started": "Mon Sep 7 10:20:43 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32940,
+            "ppid": 32907,
+            "pgid": 32905,
+            "started": "Mon Sep 7 10:20:43 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32944,
+            "ppid": 32907,
+            "pgid": 32905,
+            "started": "Mon Sep 7 10:20:43 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-9xcizU",
+      "sha256": "67153f4f7aeffed5cec09cc82b5c7196a403ccc4b20d46966d91659b0d2623f9",
+      "bytes": 1481,
+      "record": {
+        "processGroupClosed": true,
+        "status": "timed_out",
+        "exitCode": null,
+        "exitSignal": "SIGTERM",
+        "observed": [
+          {
+            "pid": 32953,
+            "ppid": 1,
+            "pgid": 32951,
+            "started": "Mon Sep 7 10:20:44 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32951,
+            "ppid": 32949,
+            "pgid": 32951,
+            "started": "Mon Sep 7 10:20:44 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32961,
+            "ppid": 32953,
+            "pgid": 32961,
+            "started": "Mon Sep 7 10:20:44 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32963,
+            "ppid": 32961,
+            "pgid": 32963,
+            "started": "Mon Sep 7 10:20:44 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32969,
+            "ppid": 32961,
+            "pgid": 32969,
+            "started": "Mon Sep 7 10:20:44 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 32970,
+            "ppid": 32953,
+            "pgid": 32951,
+            "started": "Mon Sep 7 10:20:44 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32972,
+            "ppid": 32969,
+            "pgid": 32969,
+            "started": "Mon Sep 7 10:20:44 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 32974,
+            "ppid": 32953,
+            "pgid": 32951,
+            "started": "Mon Sep 7 10:20:44 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32977,
+            "ppid": 32953,
+            "pgid": 32951,
+            "started": "Mon Sep 7 10:20:44 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32980,
+            "ppid": 32953,
+            "pgid": 32951,
+            "started": "Mon Sep 7 10:20:44 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 32986,
+            "ppid": 32953,
+            "pgid": 32951,
+            "started": "Mon Sep 7 10:20:45 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-h9bW9a",
+      "sha256": "f489d1f11e3afe4a450afa6bf34022047428130814f0276e707a5d7d0175b4e5",
+      "bytes": 1723,
+      "record": {
+        "processGroupClosed": true,
+        "status": "completed",
+        "exitCode": 0,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 33174,
+            "ppid": 33172,
+            "pgid": 33172,
+            "started": "Mon Sep 7 10:21:00 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 33172,
+            "ppid": 33170,
+            "pgid": 33172,
+            "started": "Mon Sep 7 10:21:00 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 33176,
+            "ppid": 33174,
+            "pgid": 33172,
+            "started": "Mon Sep 7 10:21:00 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 33182,
+            "ppid": 33174,
+            "pgid": 33182,
+            "started": "Mon Sep 7 10:21:00 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 33184,
+            "ppid": 1,
+            "pgid": 33184,
+            "started": "Mon Sep 7 10:21:00 2026",
+            "command": "(node)"
+          },
+          {
+            "pid": 33190,
+            "ppid": 33182,
+            "pgid": 33190,
+            "started": "Mon Sep 7 10:21:00 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 33191,
+            "ppid": 33174,
+            "pgid": 33172,
+            "started": "Mon Sep 7 10:21:00 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 33193,
+            "ppid": 33190,
+            "pgid": 33190,
+            "started": "Mon Sep 7 10:21:00 2026",
+            "command": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python"
+          },
+          {
+            "pid": 33195,
+            "ppid": 33174,
+            "pgid": 33172,
+            "started": "Mon Sep 7 10:21:00 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 33198,
+            "ppid": 33174,
+            "pgid": 33172,
+            "started": "Mon Sep 7 10:21:01 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 33200,
+            "ppid": 33174,
+            "pgid": 33172,
+            "started": "Mon Sep 7 10:21:01 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 33201,
+            "ppid": 33174,
+            "pgid": 33172,
+            "started": "Mon Sep 7 10:21:01 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 33203,
+            "ppid": 33174,
+            "pgid": 33172,
+            "started": "Mon Sep 7 10:21:01 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 33207,
+            "ppid": 33174,
+            "pgid": 33172,
+            "started": "Mon Sep 7 10:21:01 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    },
+    {
+      "directory": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-AHEDwm",
+      "sha256": "e41c477d81a53cc665536216bec7077aa218d9a9e660b085452f1412c8a71773",
+      "bytes": 1457,
+      "record": {
+        "processGroupClosed": true,
+        "status": "failed",
+        "exitCode": 1,
+        "exitSignal": null,
+        "observed": [
+          {
+            "pid": 33219,
+            "ppid": 33217,
+            "pgid": 33217,
+            "started": "Mon Sep 7 10:21:01 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 33217,
+            "ppid": 33215,
+            "pgid": 33217,
+            "started": "Mon Sep 7 10:21:01 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 33227,
+            "ppid": 33219,
+            "pgid": 33227,
+            "started": "Mon Sep 7 10:21:02 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 33229,
+            "ppid": 33227,
+            "pgid": 33229,
+            "started": "Mon Sep 7 10:21:02 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 33230,
+            "ppid": 33219,
+            "pgid": 33217,
+            "started": "Mon Sep 7 10:21:02 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 33235,
+            "ppid": 33227,
+            "pgid": 33235,
+            "started": "Mon Sep 7 10:21:02 2026",
+            "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+          },
+          {
+            "pid": 33236,
+            "ppid": 33219,
+            "pgid": 33217,
+            "started": "Mon Sep 7 10:21:02 2026",
+            "command": "/bin/ps"
+          },
+          {
+            "pid": 33238,
+            "ppid": 33235,
+            "pgid": 33235,
+            "started": "Mon Sep 7 10:21:02 2026",
+            "command": "(Python)"
+          },
+          {
+            "pid": 33242,
+            "ppid": 33219,
+            "pgid": 33217,
+            "started": "Mon Sep 7 10:21:02 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 33246,
+            "ppid": 33219,
+            "pgid": 33217,
+            "started": "Mon Sep 7 10:21:02 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 33250,
+            "ppid": 33219,
+            "pgid": 33217,
+            "started": "Mon Sep 7 10:21:02 2026",
+            "command": "(ps)"
+          },
+          {
+            "pid": 33254,
+            "ppid": 33219,
+            "pgid": 33217,
+            "started": "Mon Sep 7 10:21:02 2026",
+            "command": "(ps)"
+          }
+        ],
+        "allObservedAbsent": true,
+        "mathematicalAcceptance": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+Known SHA-256 abc control passed before source capture
+{"parents": 160, "sourceCount": 265, "numericalCalls": 0, "adapter": {"path": "/Users/markmorris/vibe/architrino/scripts/eom/f6c_variable_cell_adapter.py", "sha256": "2f0b9ea1ff9ed60a8dacf1b8447ea2a075f482a2d9b505de46e24b1dafb16a25", "bytes": 141499}, "fullOriginalEnvironmentVerified": false, "contextClosed": true}

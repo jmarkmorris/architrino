@@ -1,0 +1,116 @@
+✔ fresh closure authority is the separately accepted pure checker generation (0.878167ms)
+✔ fresh source selection checks pinned transport without executing an authority (2.529375ms)
+✔ reviewed dependencies remain byte-exact (1.135125ms)
+✔ genuine two-refined-parent provider connects to frozen stream and codec (4827.755834ms)
+✔ original-clock duration rejects renewal and exhaustion (0.226042ms)
+✔ literal Python duration supports unrelated clock epochs (28.917625ms)
+✔ canonical spec rejects duplicate and trailing records (0.206125ms)
+✔ read identity catches byte-identical path replacement (1.225625ms)
+✔ closed spec caps and parent selection reject before target creation (89.03725ms)
+✔ complete input union includes combined runtime, metadata and invocation bounds (1.722542ms)
+✔ publication retains original inode through callbacks and preserves foreign replacements (28.53975ms)
+✔ publication identity option preserves default three-field transport and original five-field identity (25.236792ms)
+✔ publication identity option rejects non-Booleans before opening an output (0.373459ms)
+✔ publication file-worker returns original identity without promoting the operation (5.229042ms)
+✔ competitor coverage includes coordinated F5, F6c packaging and EOM measurement tools (0.5565ms)
+✔ every late publication callback preserves original identity and foreign evidence (30.516667ms)
+✔ package selection preserves logical descriptors and removes only admitted physical inputs (51.493083ms)
+✔ parent-two historical wrapper routes require the exact original plan and six literal tuples (43.243959ms)
+✔ generic descriptors preserve exact archives, derived inventory and invocation-bound readiness (61.21675ms)
+✔ fresh metadata inventory includes existing lazy integer helper without science (0.105792ms)
+✔ two explicit nonexecuting ancestry documents retain exact historical tuples (41.02625ms)
+✔ shared competitor guard excludes only own descendants (0.130542ms)
+✔ unique inode quota does not double count one hard-linked stream (1.29525ms)
+✔ retraction preserves a foreign public replacement and private prefix (1.160458ms)
+✔ final layout preserves original directory names and identities, not only public bytes (53.915125ms)
+✔ growing private data is charged before public-link creation (0.608125ms)
+✔ frozen observer limits and final observation gap remain unchanged (0.322958ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-ssHPsD
+✔ synthetic host inputs reach unchanged real threshold admission (1506.872583ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-9FofwI
+✔ synthetic low launch-memory is rejected by unchanged host guard (422.146709ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-f4NLoP
+✔ synthetic low running-memory is rejected by unchanged host guard (1274.808084ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-RwJWYB
+✔ synthetic low launch-disk is rejected by unchanged host guard (422.504958ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-FH0rGz
+✔ synthetic low running-disk is rejected by unchanged host guard (1347.302958ms)
+✔ attempt-lifetime diagnostic guard retains asynchronous EPIPE (13.331958ms)
+✔ late final stdout callback cannot accept an expired observation (0.519667ms)
+✔ worker expires before reading source and admission requires closed target (0.148666ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-1t8aw6
+✔ actual captured Python + frozen stream/codec/publication: normal (1506.363208ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-kHLep7
+✔ actual captured Python + frozen stream/codec/publication: exhausted (1506.943ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-gPOQhG
+✔ actual captured Python + frozen stream/codec/publication: archives (1502.985083ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-1liSCi
+✔ actual captured Python + frozen stream/codec/publication: multi-occupant-archives (1553.736583ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-wHlxYs
+✔ synthetic package transport keeps source/runtime distinction: package (1505.982417ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-9OZsi9
+✔ synthetic package transport keeps source/runtime distinction: package-runtime (1345.816833ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-hIs4Wh
+✔ literal Python rejects and preserves only private evidence: missing-runtime (1192.586417ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-F3X2fP
+✔ literal Python rejects and preserves only private evidence: runtime-in-provenance (1191.895792ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-L0CoQW
+✔ literal Python rejects and preserves only private evidence: archive-runtime (1197.206958ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-JSshbL
+✔ literal Python rejects and preserves only private evidence: late-runtime (1278.540917ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-gm4ISq
+✔ literal Python rejects and preserves only private evidence: source-count-overflow (1284.493958ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-XHkro9
+✔ literal Python rejects and preserves only private evidence: source-hardlink (502.334542ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-tMgIIn
+✔ literal Python rejects and preserves only private evidence: cleanup-replacement (1276.685666ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-BIVDqI
+✔ literal Python rejects and preserves only private evidence: module-cleanup (1281.23275ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-jQ3nNE
+✔ literal Python rejects and preserves only private evidence: postpublish (1427.36225ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-BEfOcM
+✔ literal Python rejects and preserves only private evidence: trailing (1275.304875ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-hkCCkv
+✔ literal Python rejects and preserves only private evidence: final-cleanup (1508.065625ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-Uz0ujG
+✔ active stubborn synthetic target is reaped after cancellation (1352.768ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-pnQeTO
+✔ active stubborn synthetic target is reaped after diagnostic EPIPE (16143.853958ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-Sqovt1
+✔ poststdout failure is exit1, retracts public stream and invalidates operation (1509.847584ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-xMgGzx
+✔ original private directory rename rejects at cleanup with invalid new name (16123.530667ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-HOwq1v
+✔ original private directory rename rejects at cleanup with valid new name (16131.02825ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-kFZ0HP
+✔ original private directory rename rejects at prestdout with invalid new name (16145.646083ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-wJy61j
+✔ original private directory rename rejects at prestdout with valid new name (16195.297208ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-ppJMow
+✔ original private directory rename rejects at poststdout with invalid new name (16125.87625ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-vG2kkL
+✔ original private directory rename rejects at poststdout with valid new name (16116.506ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-Y21lQ4
+✔ active monitor rejection retains first failure after owned cancellation (1355.388625ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-LYQ30q
+✔ active private-growth rejection retains first failure after owned cancellation (16121.401834ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-xjjPE5
+✔ final bound log 0 append after stdout rejects (1507.389875ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-lKoKVz
+✔ final bound log 0 identity replacement after stdout rejects (16130.0485ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-XkvHvM
+✔ final bound log 1 append after stdout rejects (1507.347ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-ltmJxB
+✔ final bound log 1 identity replacement after stdout rejects (16121.830542ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-NO7UJk
+✔ version-five retained selection reaches adapter and frozen stream metadata (1551.0685ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-7Ae044
+✔ unconsumed retained physical source rejects before first provider call (1185.408042ms)
+ℹ tests 69
+ℹ suites 0
+ℹ pass 69
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 204035.110375

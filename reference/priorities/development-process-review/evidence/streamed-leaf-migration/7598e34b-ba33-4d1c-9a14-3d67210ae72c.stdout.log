@@ -1,0 +1,810 @@
+✔ literal positive: external closure is a distinct non-scientific result (2.181917ms)
+✔ pending-only, bad exit, late completion, guard and lock gaps reject (0.651292ms)
+✔ wrong invocation, incomplete stage and substituted sources/outputs reject (0.479042ms)
+✔ escaped stage/observer processes and retained owned groups reject (0.792417ms)
+✔ resource, host capacity, missing guard acknowledgement and log loss reject (0.418166ms)
+✔ real same-descriptor capture rejects wrong bytes and identical replacement (1.5155ms)
+✔ process snapshot parser requires complete unambiguous identity rows (0.318666ms)
+✔ immutable exact resource limits and inert stage plan (3.5115ms)
+✔ source union retains exact generations and unchanged physical limits (0.921209ms)
+✔ source capture rejects source replacement and duplicate hardlinks (3.317541ms)
+✔ first plan/self/helper captures remain original through later capture (1.340208ms)
+✔ every physical output counted and only explicit publication alias accepted (3.358125ms)
+✔ output count, byte, disappearance, directory and symlink controls (2.090042ms)
+✔ empty stage logs hash successfully without becoming valid source bindings (0.759542ms)
+✔ output directory identity and finite file census are retained (73.568542ms)
+✔ registered descendants are distinguished from competing science (0.373209ms)
+✔ prior stdout dataflow binds one predecessor and counts appended arguments (0.356167ms)
+✔ write-once operation receipt retains foreign bytes and obeys deadline callback (11.811125ms)
+✔ production entries reject absent or invented actual lifetime before any work (0.469833ms)
+✔ direct CLI has exact flags, absolute plan and explicit hashes (0.161583ms)
+✔ created receipt cannot be replaced with byte-identical foreign output (1.274333ms)
+✔ one public file cannot satisfy both sides of a publication alias (1.400709ms)
+✔ pure hook guards block ordinary and low-level process creation (0.368042ms)
+✔ renewed-clock cleanup interface has no unguarded fallback (0.050291ms)
+✔ writer optional original identity is exact and default binding remains clean (35.229042ms)
+✔ writer rejects every non-Boolean option before opening output (0.647917ms)
+✔ initial output fstat exception closes original descriptor and retains path (1.689167ms)
+✔ publication original token is inserted before first observation and cannot be replaced (2.038625ms)
+✔ literal inherited clock cutoffs and conservative bridge use no real worker (0.984792ms)
+✔ ready acknowledgment is exact and failure never turns back into work success (0.824833ms)
+✔ full H worker promise remains pending through termination and rejected closure stays unresolved (1.518208ms)
+✔ fixed control profile contracts every nested cutoff without altering science limits (0.649042ms)
+✔ finite control CLI accepts no arbitrary duration or mixed-mode fallback (0.384333ms)
+✔ actual unexpected guard-exit event marks local failure and only exits self (0.398959ms)
+✔ scoped stderr charges outward copies and waits for actual callbacks (0.483333ms)
+✔ verified empty output log has an identity without becoming a positive-byte source (0.527041ms)
+✔ lost RSS gap remains failure while a bounded cleanup observation is scheduled (0.352333ms)
+✔ publication and raw rejection log quotas reject before output creation (0.383583ms)
+✔ v2 prior declaration is closed and may name its already captured plan (0.977667ms)
+✔ prior context derives literal byte totals and rejects aliases and uncaptured identities (0.187875ms)
+✔ prior files remain inputs across repeated census and exact generation checks (12.271791ms)
+✔ literal combined limits include old bytes and current outward traffic without accumulation (2.787209ms)
+✔ combined path reserve precedes initial logs, publication and registered logs (0.373209ms)
+✔ fixed math census/limits and source pins remain unchanged (2.919958ms)
+✔ closed JSON parser rejects duplicate keys/trailing syntax/unsafe integers (0.565916ms)
+✔ data-only planmaker gives exact3/4/5 producer/comparison order and alias layout (0.56075ms)
+✔ data-only parent plans preserve every original mathematical/ancestry token (0.684833ms)
+✔ batch validates explicit order and rejects changed stages/aliases/roots (2.3985ms)
+✔ registered args require original deadline, captured plan and immediate prior context (0.27825ms)
+✔ duration transfer cannot reset original1800s or compare epochs (0.108875ms)
+✔ hook leaves completion binding ownership to frozen coordinator (0.17775ms)
+✔ exact historical tuples are separate logical/physical bindings (0.437916ms)
+✔ eight publication paths count four inodes; replacement/third alias reject (3.785ms)
+✔ original metadata retains nonuniform exact endpoint tokens (2.265209ms)
+✔ thin batch source contains no legacy supervisor or output deletion (0.180291ms)
+✔ exact CLI flags and hashes; captured imports do not execute CLI (0.799458ms)
+✔ pure plan preparation yields original3/4/5 tokens and40MiB commitment (39.69825ms)
+✔ closed source/configuration/identity/schema/census mutations reject (49.993917ms)
+✔ only actually consumed exact historical document routes admit (34.690042ms)
+✔ expanded runtime cannot exceed downstream one-MiB plan consumer bound (93.827125ms)
+✔ exclusive publication retains original descriptors until closure (7.893166ms)
+✔ byte-identical replacement and final callback replacement reject and retain (10.428875ms)
+✔ deadline/callback failures retain bytes and close all owned descriptors (5.936417ms)
+✔ post-open fstat failure closes unregistered file and directory descriptors (0.679959ms)
+✔ literal retained selection includes exact nonexecuting physical source (1.441ms)
+✔ archive/runtime confusion, substitution, omitted and duplicate sources reject (0.331792ms)
+✔ distinct historical generations at one logical path remain distinct (0.084333ms)
+✔ missing original environment is explicit metadata, never a physical source exemption (0.096959ms)
+✔ fresh closure authority is the separately accepted pure checker generation (1.062292ms)
+✔ fresh source selection checks pinned transport without executing an authority (2.22275ms)
+✔ reviewed dependencies remain byte-exact (0.996959ms)
+✔ genuine two-refined-parent provider connects to frozen stream and codec (4852.423791ms)
+✔ original-clock duration rejects renewal and exhaustion (0.232709ms)
+✔ literal Python duration supports unrelated clock epochs (29.470375ms)
+✔ canonical spec rejects duplicate and trailing records (0.224ms)
+✔ read identity catches byte-identical path replacement (1.31575ms)
+✔ closed spec caps and parent selection reject before target creation (87.233709ms)
+✔ complete input union includes combined runtime, metadata and invocation bounds (1.706167ms)
+✔ publication retains original inode through callbacks and preserves foreign replacements (21.437833ms)
+✔ publication identity option preserves default three-field transport and original five-field identity (20.493583ms)
+✔ publication identity option rejects non-Booleans before opening an output (0.3405ms)
+✔ publication file-worker returns original identity without promoting the operation (5.41625ms)
+✔ competitor coverage includes coordinated F5, F6c packaging and EOM measurement tools (0.466292ms)
+✔ every late publication callback preserves original identity and foreign evidence (37.87525ms)
+✔ package selection preserves logical descriptors and removes only admitted physical inputs (50.018166ms)
+✔ parent-two historical wrapper routes require the exact original plan and six literal tuples (40.449917ms)
+✔ generic descriptors preserve exact archives, derived inventory and invocation-bound readiness (62.661667ms)
+✔ fresh metadata inventory includes existing lazy integer helper without science (0.114125ms)
+✔ two explicit nonexecuting ancestry documents retain exact historical tuples (40.533417ms)
+✔ shared competitor guard excludes only own descendants (0.127791ms)
+✔ unique inode quota does not double count one hard-linked stream (1.259709ms)
+✔ retraction preserves a foreign public replacement and private prefix (1.182458ms)
+✔ final layout preserves original directory names and identities, not only public bytes (50.887167ms)
+✔ growing private data is charged before public-link creation (0.606625ms)
+✔ frozen observer limits and final observation gap remain unchanged (0.325875ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-9pvH4k
+✖ synthetic host inputs reach unchanged real threshold admission (426.957542ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-DCE9hE
+✖ synthetic low launch-memory is rejected by unchanged host guard (422.450459ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-vaqkCg
+✖ synthetic low running-memory is rejected by unchanged host guard (419.748542ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-Yy7gqd
+✖ synthetic low launch-disk is rejected by unchanged host guard (424.08025ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-fhzd61
+✖ synthetic low running-disk is rejected by unchanged host guard (419.484166ms)
+✔ attempt-lifetime diagnostic guard retains asynchronous EPIPE (12.550417ms)
+✔ late final stdout callback cannot accept an expired observation (0.466625ms)
+✔ worker expires before reading source and admission requires closed target (0.134ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-5sjtEr
+✖ actual captured Python + frozen stream/codec/publication: normal (424.808875ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-M9ntce
+✖ actual captured Python + frozen stream/codec/publication: exhausted (418.215625ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-LmcO4x
+✖ actual captured Python + frozen stream/codec/publication: archives (419.763209ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-0bLJM7
+✖ actual captured Python + frozen stream/codec/publication: multi-occupant-archives (346.926458ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-iINlFe
+✖ synthetic package transport keeps source/runtime distinction: package (424.006459ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-8QfOP6
+✖ synthetic package transport keeps source/runtime distinction: package-runtime (348.623625ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-iHj9DK
+✖ literal Python rejects and preserves only private evidence: missing-runtime (421.281292ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-BvEQpu
+✖ literal Python rejects and preserves only private evidence: runtime-in-provenance (417.784791ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-nEO6gb
+✖ literal Python rejects and preserves only private evidence: archive-runtime (422.794583ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-Wz1lF1
+✖ literal Python rejects and preserves only private evidence: late-runtime (422.927291ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-FgKQQt
+✖ literal Python rejects and preserves only private evidence: source-count-overflow (422.580291ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-XYWKED
+✖ literal Python rejects and preserves only private evidence: source-hardlink (422.706875ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-Obd3fL
+✖ literal Python rejects and preserves only private evidence: cleanup-replacement (429.83025ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-7gA2fc
+✖ literal Python rejects and preserves only private evidence: module-cleanup (419.429625ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-UqBjTi
+✖ literal Python rejects and preserves only private evidence: postpublish (423.098875ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-vPSn8b
+✖ literal Python rejects and preserves only private evidence: trailing (427.538875ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-GuD5FV
+✖ literal Python rejects and preserves only private evidence: final-cleanup (417.529666ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-kCCkoN
+✖ active stubborn synthetic target is reaped after cancellation (425.2935ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-7AgkoK
+✖ active stubborn synthetic target is reaped after diagnostic EPIPE (419.384958ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-wvXFys
+✖ poststdout failure is exit1, retracts public stream and invalidates operation (418.261ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-ACaKOU
+✖ original private directory rename rejects at cleanup with invalid new name (419.827917ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-0ZMEjK
+✖ original private directory rename rejects at cleanup with valid new name (423.625625ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-U64bGR
+✖ original private directory rename rejects at prestdout with invalid new name (418.422292ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-kdyLx6
+✖ original private directory rename rejects at prestdout with valid new name (421.805125ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-w3A0HU
+✖ original private directory rename rejects at poststdout with invalid new name (420.4095ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-feqJ3B
+✖ original private directory rename rejects at poststdout with valid new name (423.454541ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-LfDD8f
+✖ active monitor rejection retains first failure after owned cancellation (420.296709ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-UuPMlc
+✖ active private-growth rejection retains first failure after owned cancellation (423.269541ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-jarZOB
+✖ final bound log 0 append after stdout rejects (427.975125ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-wB0O1Z
+✖ final bound log 0 identity replacement after stdout rejects (422.381959ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-pADiua
+✖ final bound log 1 append after stdout rejects (423.894583ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-7o8Y2o
+✖ final bound log 1 identity replacement after stdout rejects (421.156708ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-67IA0c
+✖ version-five retained selection reaches adapter and frozen stream metadata (426.112541ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-ZZgbIb
+✖ unconsumed retained physical source rejects before first provider call (422.800208ms)
+✔ launcher arguments require reviewed bytes and fresh scoped output (0.854583ms)
+✔ identity table parsing and transitive owned-group closure exclude unrelated rows (0.856417ms)
+✔ completed or reused historical group identities are permanently retired from signal authority (0.302833ms)
+✔ shared summary mentioning every phase receipt is charged only to its exact summary output role (0.38425ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25618,"elapsedWallSeconds":0.244541375,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ registered normal child preserves output, original arguments, clean exit and measured gate overhead (433.655417ms)
+✔ natural module return closes runner and watchdog without forced successful exit (239.187917ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25635,"elapsedWallSeconds":0.23720050000000004,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ referenced timer after module return closes runner and watchdog without forced successful exit (306.421916ms)
+✔ pending output drain closes runner and watchdog without forced successful exit (242.886458ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25649,"elapsedWallSeconds":0.23634441700000003,"registeredGates":0,"stdoutBytes":0,"stderrBytes":516,"stopping":true,"h3EvidenceEligible":false}
+✔ import error closes runner and watchdog without forced successful exit (333.08175ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25660,"elapsedWallSeconds":0.23728587500000003,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25660,"elapsedWallSeconds":0.43951745900000017,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25660,"elapsedWallSeconds":0.6417482089999998,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25660,"elapsedWallSeconds":0.844500125,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25660,"elapsedWallSeconds":1.047204917,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25660,"elapsedWallSeconds":1.2466558340000002,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ watchdog IPC loss still kills a live runner within its bounded exit observation (1387.101208ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25673,"elapsedWallSeconds":0.18640245800000002,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25673,"elapsedWallSeconds":0.33758195800000024,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25673,"elapsedWallSeconds":0.4897105410000004,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25673,"elapsedWallSeconds":0.6418209160000001,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25673,"elapsedWallSeconds":0.7943004580000002,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25673,"elapsedWallSeconds":0.9441086660000001,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ blocked runner and detached target are stopped, while an unrelated process survives (990.321583ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25693,"elapsedWallSeconds":0.23735804199999985,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ parent exit before registration never starts its target (339.624584ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25705,"elapsedWallSeconds":0.1838349589999998,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25705,"elapsedWallSeconds":0.33517245900000037,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25705,"elapsedWallSeconds":0.4872944170000001,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25705,"elapsedWallSeconds":0.6393900839999996,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ inspection failure after STOP uses self-owned cancellation and returns bounded unverified closure (777.043834ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25717,"elapsedWallSeconds":0.1857862500000001,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25717,"elapsedWallSeconds":0.33754791700000075,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25717,"elapsedWallSeconds":0.4896699170000002,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25717,"elapsedWallSeconds":0.641774625,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25717,"elapsedWallSeconds":0.7926169170000003,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25717,"elapsedWallSeconds":0.9432942920000005,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ inspection failure after CONT uses self-owned cancellation and preserves an unrelated process (968.207ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25736,"elapsedWallSeconds":0.185171875,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25736,"elapsedWallSeconds":0.3372564999999995,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25736,"elapsedWallSeconds":0.4883408749999999,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25736,"elapsedWallSeconds":0.6404251669999994,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ inspection failure before STOP uses self-owned cancellation without stale signal authority (703.878875ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25744,"elapsedWallSeconds":0.23736104200000047,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25744,"elapsedWallSeconds":0.43875320800000006,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ parent exit after acknowledgement retains and cleans the detached target group (536.861583ms)
+✔ deadline guard terminates a host with an unresolved final admission callback after child exit (15675.246375ms)
+✔ existing output is never overwritten and does not launch a bootstrap (25.641333ms)
+✔ final publication rechecks actual log bytes and refuses an already expired deadline (1.449333ms)
+✔ failure publication preserves rejected operational evidence without granting acceptance (0.540334ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":25782,"elapsedWallSeconds":0.2473337500000016,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ captured-source commands above 64 KiB retain exact bounded ownership evidence (453.358792ms)
+ℹ tests 158
+ℹ suites 0
+ℹ pass 119
+ℹ fail 39
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 46013.987875
+
+✖ failing tests:
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:729:1
+✖ synthetic host inputs reach unchanged real threshold admission (426.957542ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:731:38)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:741:2
+✖ synthetic low launch-memory is rejected by unchanged host guard (422.450459ms)
+  Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-DCE9hE/host-failure.json'
+      at Object.openSync (node:fs:556:18)
+      at readFileSync (node:fs:440:35)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:743:102)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-DCE9hE/host-failure.json'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:741:2
+✖ synthetic low running-memory is rejected by unchanged host guard (419.748542ms)
+  Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-vaqkCg/host-failure.json'
+      at Object.openSync (node:fs:556:18)
+      at readFileSync (node:fs:440:35)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:743:102)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-vaqkCg/host-failure.json'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:741:2
+✖ synthetic low launch-disk is rejected by unchanged host guard (424.08025ms)
+  Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-Yy7gqd/host-failure.json'
+      at Object.openSync (node:fs:556:18)
+      at readFileSync (node:fs:440:35)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:743:102)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-Yy7gqd/host-failure.json'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:741:2
+✖ synthetic low running-disk is rejected by unchanged host guard (419.484166ms)
+  Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-fhzd61/host-failure.json'
+      at Object.openSync (node:fs:556:18)
+      at readFileSync (node:fs:440:35)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:743:102)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-fhzd61/host-failure.json'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:763:2
+✖ actual captured Python + frozen stream/codec/publication: normal (424.808875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:765:39)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:763:2
+✖ actual captured Python + frozen stream/codec/publication: exhausted (418.215625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:765:39)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:763:2
+✖ actual captured Python + frozen stream/codec/publication: archives (419.763209ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:765:39)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:763:2
+✖ actual captured Python + frozen stream/codec/publication: multi-occupant-archives (346.926458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:765:39)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:795:2
+✖ synthetic package transport keeps source/runtime distinction: package (424.006459ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:798:11)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:795:2
+✖ synthetic package transport keeps source/runtime distinction: package-runtime (348.623625ms)
+  Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-8QfOP6/.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/synthetic-outer/process/runner-stderr.log'
+      at readFileSync (node:fs:436:20)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:807:17)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-8QfOP6/.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/synthetic-outer/process/runner-stderr.log'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:813:2
+✖ literal Python rejects and preserves only private evidence: missing-runtime (421.281292ms)
+  Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-iHj9DK/.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/synthetic-outer/process/runner-stderr.log'
+      at readFileSync (node:fs:436:20)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:818:18)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-iHj9DK/.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/synthetic-outer/process/runner-stderr.log'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:813:2
+✖ literal Python rejects and preserves only private evidence: runtime-in-provenance (417.784791ms)
+  Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-BvEQpu/.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/synthetic-outer/process/runner-stderr.log'
+      at readFileSync (node:fs:436:20)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:818:18)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-BvEQpu/.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/synthetic-outer/process/runner-stderr.log'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:813:2
+✖ literal Python rejects and preserves only private evidence: archive-runtime (422.794583ms)
+  Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-nEO6gb/.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/synthetic-outer/process/runner-stderr.log'
+      at readFileSync (node:fs:436:20)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:818:18)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-nEO6gb/.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/synthetic-outer/process/runner-stderr.log'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:813:2
+✖ literal Python rejects and preserves only private evidence: late-runtime (422.927291ms)
+  Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-Wz1lF1/.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/synthetic-outer/process/runner-stderr.log'
+      at readFileSync (node:fs:436:20)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:818:18)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-Wz1lF1/.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/synthetic-outer/process/runner-stderr.log'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:813:2
+✖ literal Python rejects and preserves only private evidence: source-count-overflow (422.580291ms)
+  Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-FgKQQt/.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/synthetic-outer/process/runner-stderr.log'
+      at readFileSync (node:fs:436:20)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:821:48)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-FgKQQt/.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/synthetic-outer/process/runner-stderr.log'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:813:2
+✖ literal Python rejects and preserves only private evidence: source-hardlink (422.706875ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /physical source hardlink alias/. Input:
+  
+  'competing numerical or packaging operation'
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:826:100)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'competing numerical or packaging operation',
+    expected: /physical source hardlink alias/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:813:2
+✖ literal Python rejects and preserves only private evidence: cleanup-replacement (429.83025ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(existsSync(f.events))
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:828:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:813:2
+✖ literal Python rejects and preserves only private evidence: module-cleanup (419.429625ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(existsSync(f.events))
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:828:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:813:2
+✖ literal Python rejects and preserves only private evidence: postpublish (423.098875ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(existsSync(f.events))
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:828:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:813:2
+✖ literal Python rejects and preserves only private evidence: trailing (427.538875ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(existsSync(f.events))
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:828:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:813:2
+✖ literal Python rejects and preserves only private evidence: final-cleanup (417.529666ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(existsSync(f.events))
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:828:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:834:2
+✖ active stubborn synthetic target is reaped after cancellation (425.2935ms)
+  Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-kCCkoN/target.pid'
+      at readFileSync (node:fs:436:20)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:837:21)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-kCCkoN/target.pid'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:834:2
+✖ active stubborn synthetic target is reaped after diagnostic EPIPE (419.384958ms)
+  Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-7AgkoK/target.pid'
+      at readFileSync (node:fs:436:20)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:837:21)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-7AgkoK/target.pid'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:842:1
+✖ poststdout failure is exit1, retracts public stream and invalidates operation (418.261ms)
+  SyntaxError: Unexpected end of JSON input
+      at JSON.parse (<anonymous>)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:844:81)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:852:2
+✖ original private directory rename rejects at cleanup with invalid new name (419.827917ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(existsSync(path.join(f.output,'leaf-evidence.ndjson')))
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:864:4)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:852:2
+✖ original private directory rename rejects at cleanup with valid new name (423.625625ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(existsSync(path.join(f.output,'leaf-evidence.ndjson')))
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:864:4)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:852:2
+✖ original private directory rename rejects at prestdout with invalid new name (418.422292ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(existsSync(path.join(f.output,'leaf-evidence.ndjson')))
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:864:4)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:852:2
+✖ original private directory rename rejects at prestdout with valid new name (421.805125ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(existsSync(path.join(f.output,'leaf-evidence.ndjson')))
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:864:4)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:852:2
+✖ original private directory rename rejects at poststdout with invalid new name (420.4095ms)
+  SyntaxError: Unexpected end of JSON input
+      at JSON.parse (<anonymous>)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:861:55)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:852:2
+✖ original private directory rename rejects at poststdout with valid new name (423.454541ms)
+  SyntaxError: Unexpected end of JSON input
+      at JSON.parse (<anonymous>)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:861:55)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:874:2
+✖ active monitor rejection retains first failure after owned cancellation (420.296709ms)
+  AssertionError [ERR_ASSERTION]
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:885:4)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:874:2
+✖ active private-growth rejection retains first failure after owned cancellation (423.269541ms)
+  AssertionError [ERR_ASSERTION]
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:885:4)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:896:2
+✖ final bound log 0 append after stdout rejects (427.975125ms)
+  AssertionError [ERR_ASSERTION]
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:904:48)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:896:2
+✖ final bound log 0 identity replacement after stdout rejects (422.381959ms)
+  AssertionError [ERR_ASSERTION]
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:904:48)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:896:2
+✖ final bound log 1 append after stdout rejects (423.894583ms)
+  AssertionError [ERR_ASSERTION]
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:904:48)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:896:2
+✖ final bound log 1 identity replacement after stdout rejects (421.156708ms)
+  AssertionError [ERR_ASSERTION]
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:904:48)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:919:1
+✖ version-five retained selection reaches adapter and frozen stream metadata (426.112541ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:921:38)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:938:1
+✖ unconsumed retained physical source rejects before first provider call (422.800208ms)
+  Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-ZZgbIb/.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/synthetic-outer/process/runner-stderr.log'
+      at readFileSync (node:fs:436:20)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:941:16)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-ZZgbIb/.local-data/braid-analysis/f6c-streamed-leaf-diagnostic-20260827/synthetic-outer/process/runner-stderr.log'
+  }

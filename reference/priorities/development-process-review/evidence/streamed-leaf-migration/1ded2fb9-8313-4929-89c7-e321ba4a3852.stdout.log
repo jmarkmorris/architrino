@@ -1,0 +1,30 @@
+✔ reviewed dependencies remain byte-exact (1.918583ms)
+✖ actual captured Python + frozen stream/codec/publication: normal (11947.483167ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12031.041416
+
+✖ failing tests:
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:723:2
+✖ actual captured Python + frozen stream/codec/publication: normal (11947.483167ms)
+  AssertionError [ERR_ASSERTION]: {"kind":"host-resource","elapsedSeconds":0.07965495800000001,"atLaunch":true,"stdout":"System-wide memory free percentage: 40%\n","freePercent":40,"availableDiskBytes":"68719476736"}
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:725:39)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

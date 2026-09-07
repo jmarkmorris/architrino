@@ -1,0 +1,30 @@
+✔ reviewed dependencies remain byte-exact (2.161167ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-QXlGrm
+✔ actual captured Python + frozen stream/codec/publication: normal (1527.96075ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":23140,"elapsedWallSeconds":0.246664833,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✖ captured-source commands above 64 KiB retain exact bounded ownership evidence (452.891292ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1614.439041
+
+✖ failing tests:
+
+test at tests/subfield-circular-root-launcher.test.js:299:1
+✖ captured-source commands above 64 KiB retain exact bounded ownership evidence (452.891292ms)
+  AssertionError [ERR_ASSERTION]: long captured command was actually observed
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/subfield-circular-root-launcher.test.js:304:2)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -29,3 +29,7 @@ Substantive analysis of all five reports is in the linked cross-report assessmen
 ## Variable-cell historical migration
 
 The [migration analysis](analysis/variable-cell-historical-migration.md) explains the repaired original bindings, exact source archives, retained-data construction, passing Python controls, and still-failing Node diagnostic entry. The [validation run inventory](evidence/variable-cell-migration/validation-runs.json) records the complete validation logs; its containing directory also retains the explicit selection, recovery instruments, and results.
+
+## Streamed-leaf launch migration
+
+The [launch migration analysis](analysis/streamed-leaf-launch-migration.md) records the version-five historical source transport, bounded whole-process controls, two operational defects found during validation, the final 158 passing tests, and remaining caller audit. The [validation records](evidence/streamed-leaf-migration/validation-runs.json) preserve unsuccessful and successful runs.

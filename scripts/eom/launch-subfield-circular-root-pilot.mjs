@@ -468,7 +468,10 @@ export async function superviseRegisteredPilot({ root, entry, args, sources, out
       if (boundedRows.length >= 4096) { truncated = true; break; }
       const value = {};
       for (const key of Object.keys(row)) if (typeof row[key] === "string") {
-        value[key] = row[key].slice(0, 65536); if (value[key] !== row[key]) truncated = true;
+        // Captured-source bootstrap arguments can exceed 64 KiB. Preserve
+        // exact strings; the complete row and snapshot byte caps below still
+        // reject oversized evidence rather than silently shortening identity.
+        value[key] = row[key];
       } else if (row[key] === null || ["number", "boolean"].includes(typeof row[key])) value[key] = row[key];
       const n = Buffer.byteLength(JSON.stringify(value));
       if (bytes + n > cap) { truncated = true; break; }

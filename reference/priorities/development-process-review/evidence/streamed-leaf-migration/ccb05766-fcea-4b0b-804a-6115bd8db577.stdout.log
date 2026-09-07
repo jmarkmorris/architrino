@@ -1,0 +1,22 @@
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-7du2Zx
+✔ synthetic low launch-memory is rejected by unchanged host guard (471.986958ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-EBE8Rg
+✔ synthetic low running-memory is rejected by unchanged host guard (1267.347792ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-5O8L24
+✔ synthetic low launch-disk is rejected by unchanged host guard (416.951291ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-9c91kK
+✔ synthetic low running-disk is rejected by unchanged host guard (1262.770292ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-3Gr6TN
+✔ actual captured Python + frozen stream/codec/publication: normal (1500.049916ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-QibYJN
+✔ active private-growth rejection retains first failure after owned cancellation (16124.641334ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":24796,"elapsedWallSeconds":0.25138441699999997,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ captured-source commands above 64 KiB retain exact bounded ownership evidence (464.922083ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21675.137583

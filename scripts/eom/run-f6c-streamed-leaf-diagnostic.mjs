@@ -40,11 +40,11 @@ export const FALSE_FLAGS='accepted source_bytes_authenticated frame_identity_aut
 export const PINS=Object.freeze({
  "operationCoordinator": [
   "scripts/eom/f6c-bounded-operation.mjs",
-  "d89bc20d6026ec5893047490a75aabe6f441a88a44b2a4e04c2baf2ae51678c4"
+  "e100a96f0771d82664fa62b66865cbf5924cced1216588c631836ed361d6a252"
  ],
  "operationCoordinatorControls": [
   "tests/f6c-bounded-operation.test.js",
-  "0738e5134680c2cd0e927b764e5a65ab9b13b3a8e87b65048b56384bc7ae3302"
+  "4beac06fb776869c62c52ef2ee5b7a79c078f9ee45ba7d5b30e59871ca944ebe"
  ],
  "adapter": [
   "scripts/eom/f6c_variable_cell_adapter.py",
@@ -104,15 +104,15 @@ export const PINS=Object.freeze({
  ],
  "helpers": [
   "scripts/eom/launch-prescribed-response-pilot.mjs",
-  "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31"
+  "9af9a6a33b3b1c5889550953496be13d0698e5d24e9033dbdd5ffcb82deeafe2"
  ],
  "outer": [
   "scripts/eom/launch-subfield-circular-root-pilot.mjs",
-  "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+  "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c"
  ],
  "diagnostics": [
   "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
-  "7a1f5571827225d1529f73a3f0b905be75e81e2f7d11c2670b697e0599d65e71"
+  "42cff90c1d7fab71a3e826c5e9da4185363b6d2ab48ba7d826ef1ac3f9e9427c"
  ]
 });
 // Readiness alone is selected by the reviewed invocation. Historical wrapper
@@ -420,7 +420,8 @@ function inspectContinuation(spec,read,requireDeclaredSources){
   }
   const header=json(a.reviewerBindings.frozenHeader).expectedHeaderStatic;
   check(header&&equalBinding(header.spec.binding,a.invocation)&&same(header.spec.parentRefinements,invocation.parentRefinements)&&same(header.sourceBindings.files,invocation.bindings)&&same(header.runtimeBindings,invocation.runtimeBindings),'original frozen header bindings');
-  if(invocation.schema==='braid-program/f6c-streamed-leaf-invocation.v4')check(Object.hasOwn(header.spec,'acceptedParentEvidence')&&Object.hasOwn(header.spec,'evidencePackage')&&same(header.spec.acceptedParentEvidence,invocation.acceptedParentEvidence)&&same(header.spec.evidencePackage,invocation.evidencePackage),'exact historical v4 evidence selection');
+  if(['braid-program/f6c-streamed-leaf-invocation.v4','braid-program/f6c-streamed-leaf-invocation.v5'].includes(invocation.schema))check(Object.hasOwn(header.spec,'acceptedParentEvidence')&&Object.hasOwn(header.spec,'evidencePackage')&&same(header.spec.acceptedParentEvidence,invocation.acceptedParentEvidence)&&same(header.spec.evidencePackage,invocation.evidencePackage),'exact historical v4 evidence selection');
+  if(invocation.schema==='braid-program/f6c-streamed-leaf-invocation.v5')check(Object.hasOwn(header.spec,'historicalEvidence')&&same(header.spec.historicalEvidence,invocation.historicalEvidence),'exact historical v5 retained selection');
   const parents=json(entry.parents),parentAcceptance=json(entry.parentAcceptance);
   keys(parentAcceptance,['schema','accepted','scope','invocation','descriptors','parents','comparisonParents','metadataReceipt','monitorReceipt','instrument','producerInstrument','adapter','adapterControls','context','historyFrameParentSha256','parentCount','rowsPerParent','refinedIndices','providerCalls','sourceClosed','claims']);
   check(parentAcceptance.accepted===true&&equalBinding(parentAcceptance.parents,entry.parents)&&equalBinding(parentAcceptance.invocation,a.invocation),'independent original-parent snapshot acceptance');
@@ -457,9 +458,31 @@ export function prepareContinuation(spec,read=readBound){
  const result=inspectContinuation(spec,read,false);
  return {...structuredClone(spec.continuation),sourceBindings:result.sources};
 }
+export function historicalEvidenceInputs(spec){
+ const h=spec.historicalEvidence;if(h===null)return [];
+ keys(h,['selection','sourceBindings']);keys(h.selection,['schema','routes','unavailableHistoricalEnvironment']);
+ check(h.selection.schema==='braid-program/variable-cell-historical-evidence.v1','explicit retained evidence version');
+ const {routes,unavailableHistoricalEnvironment:missing}=h.selection;
+ check(Array.isArray(routes)&&routes.length<=198&&Array.isArray(missing)&&missing.length<=3,'bounded retained evidence routes');
+ check(Array.isArray(h.sourceBindings)&&h.sourceBindings.length>0,'explicit complete retained physical source union');
+ const sources=boundedSourceUnion(h.sourceBindings),byPath=new Map(sources.map(b=>[b.path,b])),keysSeen=new Set(),targets=new Set();
+ check(sources.length===h.sourceBindings.length,'duplicate retained physical source');
+ for(const row of routes){
+  keys(row,['original','physical']);binding(row.original);binding(row.physical);
+  const a=row.original,b=row.physical,key=JSON.stringify(bindingKey(a));
+  check(a.path!==b.path&&b.path.endsWith('.source')&&a.sha256===b.sha256&&a.bytes===b.bytes,'identical nonexecuting historical archive');
+  check(!keysSeen.has(key)&&!targets.has(b.path),'duplicate historical route');keysSeen.add(key);targets.add(b.path);
+  check(byPath.has(b.path)&&equalBinding(byPath.get(b.path),b),'archive absent from physical union');
+  check(!spec.runtimeBindings.some(r=>r.path===b.path)&&!Object.values(spec.bindings).some(r=>r.path===b.path),'archive cannot supply executable/runtime source');
+ }
+ const absent=new Set();for(const b of missing){binding(b);check(!absent.has(b.path)&&!routes.some(r=>r.original.path===b.path),'conflicting missing historical environment');absent.add(b.path);}
+ // The adapter owns the finite original tuple catalogue and verifies all routes
+ // were consumed. This layer authenticates transport, never historical truth.
+ return sources;
+}
 export function validateSpec(s,selfSha){
- keys(s,['schema','scope','root','output','python','git','bindings','runtimeBindings','parentRefinements','evidencePackage','acceptedParentEvidence','continuation','maxAdvances','limits']);
- check(s.schema==='braid-program/f6c-streamed-leaf-invocation.v4'&&s.scope===SCOPE,'fixed streamed diagnostic scope');
+ keys(s,['schema','scope','root','output','python','git','bindings','runtimeBindings','parentRefinements','evidencePackage','acceptedParentEvidence','historicalEvidence','continuation','maxAdvances','limits']);
+ check(s.schema==='braid-program/f6c-streamed-leaf-invocation.v5'&&s.scope===SCOPE,'fixed streamed diagnostic scope');
  check(typeof s.root==='string'&&path.isAbsolute(s.root)&&realpathSync(s.root)===s.root&&typeof s.output==='string'&&path.dirname(s.output)===path.join(s.root,LANE)&&path.resolve(s.output)===s.output&&/^[a-z0-9][a-z0-9-]{0,95}$/u.test(path.basename(s.output)),'fresh canonical direct-child lane');
  keys(s.bindings,['coordinator','controls',...Object.keys(PINS)]);for(const b of Object.values(s.bindings))binding(b);
  check(s.bindings.coordinator.path===path.join(s.root,SELF)&&s.bindings.coordinator.sha256===selfSha&&s.bindings.controls.path===path.join(s.root,CONTROL),'executing connection and controls');
@@ -474,7 +497,7 @@ export function validateSpec(s,selfSha){
  const physical=descriptors.filter(b=>{const route=packaged.routes.get(b.path);if(!route)return true;check(equalBinding(route,b),'packaged descriptor generation differs');return false;});
  const continuation=continuationInputs(s);
  check(s.maxAdvances+continuation.inheritedPairs<=3280,'inherited evaluations remain spent');
- return boundedSourceUnion([...all,...physical,...packaged.sources,...fresh.sources,...continuation.sources]);
+ return boundedSourceUnion([...all,...physical,...packaged.sources,...fresh.sources,...continuation.sources,...historicalEvidenceInputs(s)]);
 }
 
 export function writeNew(filename,value,live=()=>{},includeIdentity=false){
@@ -554,7 +577,7 @@ def execute(spec_path,spec_sha,node_deadline,remaining,body_sha):
      if key in originals:require(originals[key]==(b['sha256'],identity(f.initial)),'capture replaced original')
      originals.setdefault(key,(b['sha256'],identity(f.initial)));files[key]=f
     capture(dict(path=spec_path,sha256=spec_sha,bytes=len(raw)))
-    for b in [*bindings.values(),*spec['runtimeBindings'],*(spec['evidencePackage']or{}).values(),*(spec['continuation']or{}).get('sourceBindings',[]),*(b for e in spec['acceptedParentEvidence']for b in e['sourceBindings'])]:capture(b)
+    for b in [*bindings.values(),*spec['runtimeBindings'],*(spec['evidencePackage']or{}).values(),*(spec['continuation']or{}).get('sourceBindings',[]),*(b for e in spec['acceptedParentEvidence']for b in e['sourceBindings']),*(spec['historicalEvidence']or{}).get('sourceBindings',[])]:capture(b)
     def recheck():
      for f in files.values():f.recheck()
      live()
@@ -619,8 +642,13 @@ def execute(spec_path,spec_sha,node_deadline,remaining,body_sha):
       key=(r['role'],r['original']['path'],r['original']['sha256'],r['original']['bytes'],r['archive']['path'],r['archive']['sha256'],r['archive']['bytes'])
       if key not in seen_archives:seen_archives.add(key);expected_archives.append(r)
      archive_paths={r['archive']['path']for r in expected_archives}
-     with A.open_adapter(root,adapter_sha256=bindings['adapter']['sha256'],controls_sha256=bindings['adapterControls']['sha256'],closure_owner_sha256=bindings['readiness']['sha256'],deadline=deadline,parent_refinements=selected,evidence_package=package_selection,accepted_parent_evidence=tuple(fresh_selected))as adapter:
+     with A.open_adapter(root,adapter_sha256=bindings['adapter']['sha256'],controls_sha256=bindings['adapterControls']['sha256'],closure_owner_sha256=bindings['readiness']['sha256'],deadline=deadline,parent_refinements=selected,evidence_package=package_selection,accepted_parent_evidence=tuple(fresh_selected),historical_evidence=None if spec['historicalEvidence']is None else spec['historicalEvidence']['selection'])as adapter:
       provenance=tuple(adapter.provenance)
+      historical_verification=None
+      if spec['historicalEvidence']is not None:
+       advertised={(b['path'],b['sha256'],b['bytes'])for b in spec['historicalEvidence']['sourceBindings']}
+       require(advertised==set(provenance),'exact retained physical source union')
+       historical_verification=S.to_wire(adapter.historical_evidence_verification)
       require(0<len(provenance)<=512 and len({p for p,_,_ in provenance})==len(provenance),'unique captured source census')
       for p,h,n in provenance:
        capture(dict(path=p,sha256=h,bytes=n))
@@ -676,8 +704,8 @@ def execute(spec_path,spec_sha,node_deadline,remaining,body_sha):
        require(all(adapter.call_counts[k]==0 for k in ('projections','evaluations','residuals','root_queries','emission_refinements'))and all(v==0 for v in adapter.geometry_accounting.values()),'restoration performed provider work')
        runtime_check();recheck();progress('restoration',inherited_pairs,inherited_pairs)
       publication=P.LeafStreamPublication(spec['output'],C,deadline=deadline,byte_limit=67108864,live=live)
-      header_spec=dict(binding=dict(path=spec_path,sha256=spec_sha,bytes=len(raw)),maxAdvances=spec['maxAdvances'],parentRefinements=spec['parentRefinements'],evidencePackage=spec['evidencePackage'],acceptedParentEvidence=spec['acceptedParentEvidence'])
-      metadata_wire=dict(scope=spec['scope'],spec=header_spec,sourceBindings=dict(files=bindings,historicalOwnerArchives=archives),runtimeBindings=spec['runtimeBindings'],pythonBodySha256=body_sha,clockTransfer=clock_transfer,publicationRequires='fresh matching successful process completion and independent mathematical comparison; no metric authority')
+      header_spec=dict(binding=dict(path=spec_path,sha256=spec_sha,bytes=len(raw)),maxAdvances=spec['maxAdvances'],parentRefinements=spec['parentRefinements'],evidencePackage=spec['evidencePackage'],acceptedParentEvidence=spec['acceptedParentEvidence'],historicalEvidence=spec['historicalEvidence'])
+      metadata_wire=dict(scope=spec['scope'],spec=header_spec,sourceBindings=dict(files=bindings,historicalOwnerArchives=archives,historicalEvidenceVerification=historical_verification),runtimeBindings=spec['runtimeBindings'],pythonBodySha256=body_sha,clockTransfer=clock_transfer,publicationRequires='fresh matching successful process completion and independent mathematical comparison; no metric authority')
       session=S.StreamedLeafSession(adapter,D,C,metadata_wire,publication.write,byte_limit=67108864,live=live,**({}if prefix is None else dict(continuation=continuation_module,prefix=prefix)))
       runtime_check();recheck()
       maximum=spec['maxAdvances'];require(type(maximum)is int and 1<=maximum<=3280-inherited_pairs,'explicit original bounded advance count')
@@ -889,8 +917,8 @@ export async function coordinate({specPath,specSha,selfSha,self,began,deadlineNa
   try{
     const capturedSpec=readBound(specPath,specSha,true,1024**2,live),spec=decodeSpec(capturedSpec.data);
     // Full evidence/continuation validation stays in the observed file worker.
-    keys(spec,['schema','scope','root','output','python','git','bindings','runtimeBindings','parentRefinements','evidencePackage','acceptedParentEvidence','continuation','maxAdvances','limits']);
-    check(spec.schema==='braid-program/f6c-streamed-leaf-invocation.v4'&&spec.scope===SCOPE&&spec.root===root,'fixed streamed invocation');
+    keys(spec,['schema','scope','root','output','python','git','bindings','runtimeBindings','parentRefinements','evidencePackage','acceptedParentEvidence','historicalEvidence','continuation','maxAdvances','limits']);
+    check(spec.schema==='braid-program/f6c-streamed-leaf-invocation.v5'&&spec.scope===SCOPE&&spec.root===root,'fixed streamed invocation');
     check(typeof spec.output==='string'&&path.dirname(spec.output)===path.join(root,LANE)&&path.resolve(spec.output)===spec.output&&/^[a-z0-9][a-z0-9-]{0,95}$/u.test(path.basename(spec.output)),'fixed streamed output');
     keys(spec.bindings,['coordinator','controls',...Object.keys(PINS)]);
     check(Array.isArray(spec.runtimeBindings)&&spec.runtimeBindings.length>0&&spec.runtimeBindings.length<=256,'bounded runtime declaration');

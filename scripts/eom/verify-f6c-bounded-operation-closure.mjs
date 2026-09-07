@@ -7,7 +7,7 @@ import {createHash} from 'node:crypto';
 import {openSync,closeSync,readSync,fstatSync,lstatSync,realpathSync,constants} from 'node:fs';
 import path from 'node:path';
 
-export const COORDINATOR_SHA='f3bbaf59b3fec7340a3b68097d6745fef589c777273558a71cfd8744cfeeb13a';
+export const COORDINATOR_SHA='e100a96f0771d82664fa62b66865cbf5924cced1216588c631836ed361d6a252';
 export const LOCK='.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/.pilot.lock';
 const check=(ok,message)=>{if(!ok)throw Error(message);};
 const canonical=o=>o===null||typeof o!=='object'?JSON.stringify(o):Array.isArray(o)?'['+o.map(canonical).join(',')+']':'{'+Object.keys(o).sort().map(k=>JSON.stringify(k)+':'+canonical(o[k])).join(',')+'}';
