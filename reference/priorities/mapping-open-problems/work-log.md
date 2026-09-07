@@ -20,7 +20,7 @@ Plainly: the public paper now says one consistent thing about the maturity of ev
 ### 2026-09-01 — OP-002 Architecture-Ready Test Contracts Complete
 
 - Audited all 16 `architecture-ready` chapters against a four-part contract: recovery target or native result, source or evidence family, compared record or variable, and a failure condition.
-- Recorded the complete specified-but-unexecuted contract set in [test-contract-audit-2026-09-01.md](test-contract-audit-2026-09-01.md).
+- Recorded the complete specified-but-unexecuted contract set in [test-contract-audit-2026-09-01.md](evidence/test-contract-audit-2026-09-01.md).
 - Confirmed that every architecture-ready chapter already has a defensible `Resolution tests` surface in the deployed paper. No chapter required demotion during this pass.
 - Removed OP-002 from the live queue and promoted OP-003 paper maintenance to local item 1.
 - Claim boundary: this closes test definition only. The audit did not execute a recovery, compare data, validate a simulation, certify a retained branch, or promote any open problem to solved status.
@@ -30,7 +30,7 @@ Plainly: each strongest chapter now says what must be recovered, which evidence 
 ### 2026-09-01 — OP-001 Claim-Level Audit Complete
 
 - Audited all 46 `###` problem chapters in the deployed [Solving the Crisis](../../../content/markdown/aaa/philosophy-history/solving-the-crisis.md) paper against its declared four-level classification rule.
-- Recorded one classification, one primary owner, and one unresolved burden or reconsideration condition for every chapter in [claim-level-audit-2026-09-01.md](claim-level-audit-2026-09-01.md): 16 `architecture-ready`, 24 `direction-ready`, 4 `appendix-watch`, and 2 `exclude-for-now`.
+- Recorded one classification, one primary owner, and one unresolved burden or reconsideration condition for every chapter in [claim-level-audit-2026-09-01.md](evidence/claim-level-audit-2026-09-01.md): 16 `architecture-ready`, 24 `direction-ready`, 4 `appendix-watch`, and 2 `exclude-for-now`.
 - Normalized ten ambiguous public claim lines that previously combined two levels or offered alternatives. The audit keeps quantitative, theorem, retained-history, stability, and observational closure burdens open with their scientific owners.
 - Removed OP-001 from the live queue and promoted OP-002, the test-contract review, to local item 1.
 - Claim boundary: this is an inferred editorial audit of mechanism and test-surface readiness. It does not certify any theorem, fit, numerical recovery, assembly identity, retained branch, stability result, or solved open problem.
@@ -44,6 +44,6 @@ Plainly: every chapter now has one honest status and one place responsible for i
 - Merged `paper_claim_filter` into `claim_level_audit` and `test_contracts` because mechanism and falsifier checks are their acceptance conditions, not a separate downstream object.
 - Routed the public-facing primary-source refresh to [Source Mining](../source-mining/priorities.md).
 - Routed the micro/meso/macro bridge to [Mapping Benchmarks](../mapping-benchmarks/brainstorming.md), the drift-relaxed moving-branch instrument to [EOM](../app-solver/brainstorming.md), and the three-axis/Witten-chain proof gap to [Standard Model Closure](../mapping-standard-model/brainstorming.md).
-- Removed the former local theory brainstorming file after disposition. Its Lorentz-attractor obligations are already owned by [Lorentz Invariance Test Suite](../mapping-benchmarks/lorentz-invariance-test-suite.md) and the current Lorentz corpus; its population-average scale identity is already owned by Cosmology Closure and Mapping Benchmarks.
+- Removed the former local theory brainstorming file after disposition. Its Lorentz-attractor obligations are already owned by [Lorentz Invariance Test Suite](../mapping-benchmarks/analysis/lorentz-invariance-test-suite.md) and the current Lorentz corpus; its population-average scale identity is already owned by Cosmology Closure and Mapping Benchmarks.
 - Retired three stale or duplicate notes rather than copying them: the receiver-normal acceleration-strength reading is superseded by the current transmitter-side acceleration authority; the rail-pin action claim was removed by the later Braid Program corpus reconciliation; and the weak-mixing observation identified itself as already cross-linked.
 - Claim grade: ownership and priority-only routing. No theorem, evolved branch, recovery benchmark, or paper chapter was promoted by this distribution.

@@ -14,8 +14,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
-ASSIGNMENTS = ROOT / "reference/priorities/braid-program/borg-platonic-relationship-assignments.v1.json"
-REGISTRY = ROOT / "reference/priorities/app-borg/assembly-registry.v1.json"
+ASSIGNMENTS = ROOT / "reference/priorities/braid-program/configurations/borg-platonic-relationship-assignments.v1.json"
+REGISTRY = ROOT / "reference/priorities/app-borg/contracts/assembly-registry.v1.json"
 CONTROLLED_RELATIONSHIPS = {
     "exact-vertex-set",
     "platonic-component",

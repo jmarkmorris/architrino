@@ -2,7 +2,7 @@
 
 ## Question and sources
 
-This audit asks which current Borg identities have an active exact Braid Program adjudication, which have only contextual evidence, and which exact evidence artifacts can be integrated without changing scientific identity. The census is recomputed from [the Borg assembly registry](../../app-borg/assembly-registry.v1.json), [the Braid-owned scientific projection](../braid-candidate-adjudication-projection.v1.json), and the Braid Search evidence-index builder in `src/apps/braid-search/BraidSearchData.js`. The active-candidate scope is the 20 exact identities in `src/prescribed-path-analysis/campaigns/all-candidate-analytical-campaign.registry.v2.json`.
+This audit asks which current Borg identities have an active exact Braid Program adjudication, which have only contextual evidence, and which exact evidence artifacts can be integrated without changing scientific identity. The census is recomputed from [the Borg assembly registry](../../app-borg/contracts/assembly-registry.v1.json), [the Braid-owned scientific projection](../contracts/braid-candidate-adjudication-projection.v1.json), and the Braid Search evidence-index builder in `src/apps/braid-search/BraidSearchData.js`. The active-candidate scope is the 20 exact identities in `src/prescribed-path-analysis/campaigns/all-candidate-analytical-campaign.registry.v2.json`.
 
 Plainly: the counts come from the live registries and the same code that feeds Braid Search. The previously reported 121 unsupported identities was treated as a snapshot, not as a required answer.
 

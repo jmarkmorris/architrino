@@ -2,7 +2,7 @@
 
 This is the canonical execution ledger for accepted electromagnetic recovery and inverse-geometry tasks.
 
-The [Inferring Braid Requirements](../mapping-equations/inferring-braid-requirements.md) packet supplies the shared pre-derivation method and requirement ledger used by these objects. Work on that packet follows the edit authority declared by the executing request or queue item. Creating or expanding it does not by itself change a queue state, equation score, or retained-evidence decision.
+The [Inferring Braid Requirements](../mapping-equations/analysis/inferring-braid-requirements.md) packet supplies the shared pre-derivation method and requirement ledger used by these objects. Work on that packet follows the edit authority declared by the executing request or queue item. Creating or expanding it does not by itself change a queue state, equation score, or retained-evidence decision.
 
 ## Ranked Next Objects
 
@@ -19,7 +19,7 @@ No executable scientific object. The overall action-symbology task remains discu
 
 ### Fine-structure promotion terminology
 
-- **Status:** Required before promotion of [Fine-Structure Coupling Map](fine-structure.md) into `content/markdown/aaa`.
+- **Status:** Required before promotion of [Fine-Structure Coupling Map](analysis/fine-structure.md) into `content/markdown/aaa`.
 - **Request / acceptance:** When the packet becomes promotion-ready, add every newly accepted cross-chapter symbol or term to the relevant controlled terminology guide, retain local definitions for specialized packet symbols, and audit the destination plus its immediate consumers for notation collisions and layer ambiguity.
 - **Completion:** The promoted document uses the accepted action symbology and fine-structure terminology, introduces no unregistered cross-chapter symbol, and preserves the distinction between observer-level comparison quantities and retained $\mathbb{A}\mathbb{A}\mathbb{A}$ readouts.
 
@@ -50,10 +50,10 @@ No executable scientific rows.
 - **Status:** Deferred / blocked
 - **Priority object:** noether_sea_electromagnetic_constitutive_map
 - **Request / acceptance:** Determine whether one nontrivial weak-regime Noether sea response family is required for effective permittivity, permeability, impedance, wave speed, dispersion, magnetic circulation, and material-boundary response. If required, derive it from retained sea braids; if not, bound the sea contribution within the declared reference tolerance while the direct source-history projection recovers the same rows.
-- **Pre-derivation requirements:** [Inferring Braid Requirements](../mapping-equations/inferring-braid-requirements.md) separates deduced effective requirements, inferred native requirements, and candidate source/matter/sea/carrier/receiver realizations without claiming a derived constitutive law.
-- **Focused packet:** [Fine-Structure Coupling Map](fine-structure.md) applies the same constitutive state to $\alpha_{\mathrm{ref}}$ and $\mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}},I_\mu)$ while preserving Equation Mapping ownership of `EQ-26A` evidence and score decisions.
-- **Electric-response experiment:** [$E0$--$E4$ Multi-Receiver Electric Response](e0-e4-multi-receiver-electric-response.md) predeclares one common-history diagnostic and matched live-evolution forks for a neutral sea braid, electron/positron conjugate receivers, and a neutral nucleon surrogate, with group translation and internal deformation reported separately.
-- **Fixed-law continuation:** [Fixed-Law Source Continuation](fixed-law-source-continuation.md) implements a score-neutral evaluator for the weak signed tangent, geometric-departure residual, first native transition, and fail-closed pair/backreaction gate. Its checked-in run is `candidate_only`; physical population remains blocked on an accepted EOM-evolved retained source--sea--receiver branch and, for any pair attempt, same-record certified conjugate product basins.
+- **Pre-derivation requirements:** [Inferring Braid Requirements](../mapping-equations/analysis/inferring-braid-requirements.md) separates deduced effective requirements, inferred native requirements, and candidate source/matter/sea/carrier/receiver realizations without claiming a derived constitutive law.
+- **Focused packet:** [Fine-Structure Coupling Map](analysis/fine-structure.md) applies the same constitutive state to $\alpha_{\mathrm{ref}}$ and $\mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}},I_\mu)$ while preserving Equation Mapping ownership of `EQ-26A` evidence and score decisions.
+- **Electric-response experiment:** [$E0$--$E4$ Multi-Receiver Electric Response](analysis/e0-e4-multi-receiver-electric-response.md) predeclares one common-history diagnostic and matched live-evolution forks for a neutral sea braid, electron/positron conjugate receivers, and a neutral nucleon surrogate, with group translation and internal deformation reported separately.
+- **Fixed-law continuation:** [Fixed-Law Source Continuation](analysis/fixed-law-source-continuation.md) implements a score-neutral evaluator for the weak signed tangent, geometric-departure residual, first native transition, and fail-closed pair/backreaction gate. Its checked-in run is `candidate_only`; physical population remains blocked on an accepted EOM-evolved retained source--sea--receiver branch and, for any pair attempt, same-record certified conjugate product basins.
 - **Depends on:** accepted assembly source rows, photon transport rows, and at least two independent electromagnetic benchmark classes. The fine-structure application additionally depends on an accepted `theta_gamma_packet`, a geometry-derived action period, and a scheme-pinned `charge_exposure_row`.
 - **Completion:** Two or more benchmark families follow from one constitutive state without per-observable retuning, with explicit failure outside the declared regime. For the fine-structure application, the same state supplies the low-energy reference readout and one running interval without a private alpha-only coefficient.
 

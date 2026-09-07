@@ -97,7 +97,8 @@ test("children's-book pilot exports stay local and optional during routine PRs",
   const ignore = read(".gitignore");
   const manifest = JSON.parse(read("reference/learning-office/childrens-books/production/generation-manifest.json"));
   assert.match(procedure, /children's-book pilot exports are also on-demand and excluded from routine PR output/);
-  assert.match(ignore, /^\/\.local-data\/childrens-books\/$/m);
+  // The whole local-runtime directory is ignored since 2026-09-06; the pilot exports live under it.
+  assert.match(ignore, /^\/\.local-data\/$/m);
   assert.doesNotMatch(aggregate, /render_book_pages|build_review_bundle|pilot_appearance/);
   for (const entry of manifest.entries) {
     for (const key of ["page_landscape_png", "derivative_4x5_png", "derivative_9x16_png"]) {
@@ -116,6 +117,9 @@ test("PR procedure makes unattended execution measurable and requires verificati
   );
   const operatorFeedback = read("reference/op/README-op.md");
 
+  // The four counters are defined once, in the procedure's Permission measurement
+  // section. The ledger references that definition rather than restating the list,
+  // so assert the definition here and the reference below.
   for (const counter of [
     "operatorDecisionPromptCount",
     "hostPermissionPromptCount",
@@ -123,14 +127,12 @@ test("PR procedure makes unattended execution measurable and requires verificati
     "reusedApprovalCount",
   ]) {
     assert.match(procedure, new RegExp(`\\b${counter}\\b`));
-    assert.match(verification, new RegExp(`\\b${counter}\\b`));
   }
 
   assert.match(procedure, /operatorDecisionPromptCount = 0/);
   assert.match(procedure, /hostPermissionPromptCount = 0/);
   assert.match(procedure, /Run read-only Git inspection, `gh pr` inspection/);
   assert.match(procedure, /without preemptive escalation/);
-  assert.match(procedure, /three consecutive/);
   assert.match(procedure, /Record the publish handoff receipt/);
   assert.match(procedure, /Record the post-merge handoff receipt/);
   assert.match(
@@ -145,18 +147,28 @@ test("PR procedure makes unattended execution measurable and requires verificati
     procedure,
     /\[codex-pr-unattended-verification\.md\]\(codex-pr-unattended-verification\.md\)/
   );
-  assert.match(procedure, /resets the qualifying count to zero/);
+  // The unattended-execution correction closed on 2026-09-05 by operator
+  // disposition. The counters survive as diagnostics, so the procedure must still
+  // measure and report them, but no consecutive-run acceptance count is maintained
+  // and an unknown host prompt count no longer disqualifies a handoff.
+  assert.match(procedure, /correction closed on 2026-09-05 by operator disposition/);
+  assert.match(procedure, /live diagnostics rather than an acceptance gate/);
+  assert.doesNotMatch(procedure, /resets the qualifying count to zero/);
 
-  assert.match(verification, /Corrective-action status: `open`/);
-  assert.match(verification, /Required consecutive qualifying runs: `3`/);
-  assert.match(verification, /Current consecutive qualifying runs: `0`/);
-  assert.equal(
-    [...verification.matchAll(/^\| [123] \| pending \|/gm)].length,
-    3
+  assert.match(verification, /Corrective-action status: `closed`/);
+  assert.match(verification, /Closure route actually used: operator acceptance/);
+  // The closure must not be describable as measured: the three-run rule was never
+  // satisfied, and the ledger has to keep saying so.
+  assert.match(verification, /That rule was never satisfied/);
+  assert.match(verification, /Do not describe this correction as verified by measurement/);
+  assert.match(
+    verification,
+    /\[Permission measurement\]\(codex-pr-branch\.md#permission-measurement\)/
   );
+  // The single measured observation is retained as history.
   assert.match(verification, /2026-07-23 \| 225 \| `codex\/diamond`/);
   assert.match(
     operatorFeedback,
-    /Verify three consecutive `codex-pr-branch\.md` lifecycles/
+    /The three-run verification requirement closed on 2026-09-05 by operator disposition rather than by measurement/
   );
 });

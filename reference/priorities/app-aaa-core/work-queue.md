@@ -1,6 +1,6 @@
 # AAA Core Work Queue
 
-This is the canonical execution ledger for accepted AAA Core work. [priorities.md](priorities.md) owns strategy, [architecture-v0.md](architecture-v0.md) is the current design draft, and [brainstorming.md](brainstorming.md) holds ideas that are not yet accepted tasks.
+This is the canonical execution ledger for accepted AAA Core work. [priorities.md](priorities.md) owns strategy, [architecture-v0.md](contracts/architecture-v0.md) is the current design draft, and [brainstorming.md](brainstorming.md) holds ideas that are not yet accepted tasks.
 
 ## Rules
 
@@ -34,7 +34,7 @@ No rows.
 - **Status:** Deferred / blocked
 - **Priority object:** `heterogeneous_path_compute_architecture`
 - **Request / acceptance:** Implement staged candidate screening, compaction, bracket isolation, conditioning buckets, branch-preserving refinement queues, difficult-row return, stricter CPU or precision services, deterministic or bounded reductions, device-resident decoding, and measured end-to-end scheduling without moving EOM root authority into Core.
-- **Evidence / blocker:** CORE-001 through CORE-003 now fix logical records, representative workloads, codec profiles, and provider/device-layout declarations. Every representative workload remains unmeasured, so the [dated options packet](root-gpu-and-operations-options-2026-08-02.md) remains a benchmark plan rather than GPU suitability or a purchase result.
+- **Evidence / blocker:** CORE-001 through CORE-003 now fix logical records, representative workloads, codec profiles, and provider/device-layout declarations. Every representative workload remains unmeasured, so the [dated options packet](evidence/root-gpu-and-operations-options-2026-08-02.md) remains a benchmark plan rather than GPU suitability or a purchase result.
 - **Completion:** CPU-reference and accelerator runs agree within declared discrete and continuous obligations, and profiles include decoding, indexing, transfer, divergence, fallback, reduction, and publication.
 
 ### CORE-007 — Experimental path import profile
@@ -49,7 +49,7 @@ No rows.
 
 - **Status:** Deferred / blocked
 - **Priority object:** `root_accelerator_benchmark_and_operating_decision`
-- **Request / acceptance:** Execute the benchmark ladder in [Root GPU and operations options](root-gpu-and-operations-options-2026-08-02.md) on the local CPU/Metal reference posture and at least one rented FP64-capable accelerator, then select or reject a near-term operating posture from measured correctness, latency, throughput, memory, difficult-row rate, utilization, and total cost.
+- **Request / acceptance:** Execute the benchmark ladder in [Root GPU and operations options](evidence/root-gpu-and-operations-options-2026-08-02.md) on the local CPU/Metal reference posture and at least one rented FP64-capable accelerator, then select or reject a near-term operating posture from measured correctness, latency, throughput, memory, difficult-row rate, utilization, and total cost.
 - **Evidence / blocker:** The current hardware table is a dated market snapshot. No common root workload, independently checked result, utilization profile, or backend parity record exists yet.
 - **Completion:** The same versioned workload and input hashes run on each candidate; a separately authored reference or analytical case checks root identity and completeness; profiles include codec, upload, screening, compaction, refinement, fallback, accumulation, publication, and dollar cost; the decision names its workload envelope and falsifier.
 

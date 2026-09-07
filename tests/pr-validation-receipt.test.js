@@ -13,8 +13,10 @@ import {
   writeValidationReceipt,
 } from "../scripts/pr-validation-receipt.mjs";
 
+// Strip repository-scoped Git variables so a fixture never acts on the real checkout when this test runs inside a hook.
+const GIT_FIXTURE_ENV = Object.fromEntries(Object.entries(process.env).filter(([name]) => !/^GIT_(DIR|WORK_TREE|INDEX_FILE|PREFIX|COMMON_DIR|OBJECT_DIRECTORY|ALTERNATE_OBJECT_DIRECTORIES|NAMESPACE)$/u.test(name)));
 function git(cwd, ...args) {
-  return execFileSync("git", args, { cwd, encoding: "utf8" }).trim();
+  return execFileSync("git", args, { cwd, encoding: "utf8", env: GIT_FIXTURE_ENV }).trim();
 }
 
 function createRepository(t) {

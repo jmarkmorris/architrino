@@ -21,7 +21,7 @@ export const ENTRY_TESTS = 'tests/prescribed-response-pilot-entry.test.js';
 export const LAUNCH_TESTS = 'tests/prescribed-response-pilot-launch.test.js';
 export const PROCESS_TESTS = 'tests/prescribed-response-pilot-process.test.js';
 export const LAUNCHER = 'scripts/eom/launch-prescribed-response-pilot.mjs';
-export const OUTER = 'scripts/eom/launch-abc-enclosed-root-pilot.mjs';
+export const OUTER = 'scripts/eom/launch-subfield-circular-root-pilot.mjs';
 export const CONSUMER = 'scripts/eom/reduce-prescribed-acceleration-response.py';
 export const PUBLISHER = 'scripts/eom/publish-prescribed-acceleration-response.py';
 export const LANE = '.local-data/braid-analysis';
@@ -61,7 +61,7 @@ export const ORIGINALS = Object.freeze([
   ['predeclaration','reference/priorities/braid-program/evidence/2026-08-27-prescribed-acceleration-response-predeclaration.md','c08d7f53616fc2843b3a192f7e3c10229f9a9fe7abc1a8670ddb1706d95756ef'],
   ['reference','scripts/eom/oracle/prescribed_acceleration_response.py','e630c2f4c48c9fcfc56866166e8b5977d70ab83c6ca3f2b08ad9ea4f3f5e910c'],
   ['referenceTests','tests/test_prescribed_acceleration_response.py','4b0e66feb308544aa6294b126a05f6a3c9fbb403580e8193d3140a7b52c370f1'],
-  ['consumer',CONSUMER,'af7884573f834994dd18803e345d052de7f09d7ca87b543eea22214e6ef8d02f'],
+  ['consumer',CONSUMER,'2485f14b44ccd8a5a6294f6e8290f819a7eab35ce82991b0cbb95fd6cc04fe71'],
   ['consumerTests','tests/test_prescribed_acceleration_response_consumer.py','2d97ad74c5a4ad1c33bf587ea4050cf4f028179e55ba1c817404714346cdb6d1'],
   ['pythonExecutable',null,null],
   ['scripts/eom/oracle/decimal_interval.py','scripts/eom/oracle/decimal_interval.py','fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'],
@@ -71,8 +71,8 @@ export const ORIGINALS = Object.freeze([
   ['scripts/eom/oracle/certified_acceleration.py','scripts/eom/oracle/certified_acceleration.py','62787f1bb0d14329c0ad1f3586ef1f1cbeb666fe8c11f8831f7ad761d7c42b83'],
 ].map(row=>Object.freeze(row)));
 export const PINS = Object.freeze({...Object.fromEntries(ORIGINALS.filter(r=>r[1]).map(r=>[r[1],r[2]])),
-  [OUTER]:'5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa',
-  [PUBLISHER]:'4d67564c4ddc56ac616c334aeb43c2005028727bc97423d2ce35545497c30556',
+  [OUTER]:'3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a',
+  [PUBLISHER]:'f69014d90ce17696fbd9940cf37129d5203f4629051b45be11c0a9f9c9587734',
   'tests/test_prescribed_acceleration_response_publication.py':'c5805819a7e54f68b4ad63757752afd48efba8c2d01f7caed7ace3b048bb7dd1'});
 export const check = (ok,message)=>{if(!ok)throw new Error(message);};
 export const sha = bytes=>createHash('sha256').update(bytes).digest('hex');

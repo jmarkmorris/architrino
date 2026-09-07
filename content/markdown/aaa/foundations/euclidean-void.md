@@ -134,7 +134,7 @@ Read it as a budget. Whatever effective curvature an observer measures is accoun
 
 There is a subtler way a background could smuggle in geometry, and it is worth closing off explicitly.
 
-Because the void is $\mathbb{R}^3$, it is **contractible** — it can be continuously shrunk to a single point, so it has no holes, handles, or loops that cannot be undone. It is also **parallelizable**, meaning you can lay down a consistent set of reference directions everywhere at once without them tangling. Its bundle of orthonormal frames — the collection of all possible ways to orient a set of perpendicular axes at each point — is therefore globally trivial:
+Because the void is $\mathbb{R}^3$, it is **contractible** — it can be continuously shrunk to a single point, so it has no holes, handles, or loops that cannot be undone. It is also **parallelizable**, meaning you can lay down a consistent set of reference directions everywhere at once without them tangling. After choosing a reference spatial orientation, its oriented orthonormal frame bundle — the collection of ordered perpendicular unit axes at each point with the chosen handedness — is therefore globally trivial:
 
 $$
 F(\mathbb{R}^3)\cong \mathbb{R}^3\times SO(3),
@@ -142,7 +142,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9c718bbca3ed6ab9)
 
-which says that structure is just space paired with rotations, with no twisting between the two. The same triviality holds for the unoriented version and the general frame bundle.
+which says that structure is just space paired with rotations, with no twisting between the two. The orientation choice is conventional and assigns no physically preferred handedness to the void. The full orthonormal frame bundle includes both handedness classes and has $O(3)$ in place of $SO(3)$. The same triviality holds for that full bundle and the general frame bundle.
 
 The payoff is that the flat connection has trivial **holonomy**: carry a direction around any closed loop in the void and it comes back unrotated. There is no ambient twisting, no path-dependence, and no topological feature the container could use to secretly supply curvature or to label an assembly. If topological protection appears anywhere in this theory, it comes from the configurations inside the void, never from the void.
 
@@ -232,7 +232,7 @@ That condition is unchanged if you translate or rotate your chart, because both 
 
 Cartesian coordinates are the natural default, but the same flat geometry can be written in other coordinate systems when a problem has a symmetry worth exploiting.
 
-In spherical coordinates $(r,\theta,\phi)$ with $r\geq0$, $\theta\in[0,\pi]$, and $\phi\in[0,2\pi)$,
+Spherical coordinates $(r,\theta,\phi)$ label a point by distance from the origin, polar angle, and azimuth. The usual parameter ranges $r\geq0$, $\theta\in[0,\pi]$, and $\phi\in[0,2\pi)$ cover space with repeated angular labels at the origin and polar axis. For a regular coordinate chart, restrict to $r>0$, $0<\theta<\pi$, and an open azimuth interval such as $0<\phi<2\pi$. This also removes a chosen angular seam. On that chart,
 
 $$
 h=dr^2+r^2d\theta^2+r^2\sin^2\theta\,d\phi^2
@@ -253,7 +253,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-30c4fd8263c17e84)
 
-In cylindrical coordinates $(\rho,\phi,z)$,
+In cylindrical coordinates $(\rho,\phi,z)$, a regular chart similarly requires $\rho>0$, $z\in\mathbb R$, and an open azimuth interval such as $0<\phi<2\pi$. On that chart,
 
 $$
 h=d\rho^2+\rho^2d\phi^2+dz^2,
@@ -268,6 +268,8 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-468ca128cc62b125)
 
+The spherical matrix has determinant $r^4\sin^2\theta$, and the cylindrical matrix has determinant $\rho^2$. Their vanishing at the excluded origin or axes records a failure of the coordinate labels: at a spherical pole, for example, every azimuth names the same point. The Euclidean metric itself remains nondegenerate there. Use Cartesian coordinates or an overlapping regular chart at those locations and across the chosen angular seam; formulas requiring an inverse metric apply only where the chart is regular.
+
 The components look different, and that is worth being unbothered by. The $r^2$ appears because a step in angle covers more distance when you are further out — a fact about the labelling, not about the space. The geometry is untouched, and curvature is independent of the labels used to describe it, so
 
 $$
@@ -276,7 +278,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2eb51da7a56c1da7)
 
-in every coordinate system without exception.
+on every regular coordinate chart, including Cartesian charts through the locations excluded by these spherical or cylindrical coordinates.
 
 ## Index Notation and Tensor Operations
 
@@ -508,7 +510,9 @@ where $\mathcal{N}_{\mathrm{sea}}(T)$ is the relevant sea state and $O(t_{\mathr
 
 It produces a single global scale factor only under a condition that is easy to assume without noticing. The retained sea record and the observer family must be statistically homogeneous and isotropic across the averaging cell. Without that, the honest output is a local or tensorial summary — a full $g^{\mathrm{eff}}_{\mu\nu}$, or a direction-dependent response $a_{\mathrm{eff},ij}$ — rather than one number per time.
 
-When a tensorial response is retained, the familiar single-number version is its trace:
+A directional response can be summarized by its average and its variation with direction, once the measured quantity and its calibration have been specified. For the decomposition below, suppose a selected dimensionless response admits the symmetric quadratic representation $R(\mathbf n)=a_{\mathrm{eff},ij}n^in^j$, where $\mathbf n$ is a direction with $h_{ij}n^in^j=1$. The tensor $a_{\mathrm{eff},ij}$ contains the coefficients of this retained response; it is not assigned a universal clock, ruler, or metric meaning. The response and reference metric must be expressed in the same spatial chart. In the displayed effective coordinates, $h_{ij}$ therefore means the fixed Euclidean reference metric carried into that chart, and $h^{ij}$ is its inverse. This representation is conditional on a derived response having the stated directional form; it supplies no constitutive law for the sea.
+
+The directional average and the trace-free remainder are
 
 $$
 a_0(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})=\frac{1}{3}h^{ij}a_{\mathrm{eff},ij}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}}),
@@ -518,7 +522,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9f412c51252b80d8)
 
-The first equation averages the response over directions; the second collects what the average threw away. That leftover $a_{\langle ij\rangle}$ is the obstruction, and the scalar summary is admissible only where it falls below the declared isotropy tolerance. The same quantity shows up as ruler anisotropy in response tensors and as the orientational residuals bounded by Hughes–Drever experiments, which test whether physics depends on which way an apparatus points. It is a question about medium and assembly response, not a hidden anisotropy of the void.
+The first equation averages $R(\mathbf n)$ uniformly over the reference unit sphere, since the directional average of $n^in^j$ is $h^{ij}/3$. The second collects the directional dependence discarded by that average. Replacing the retained response by one scalar is justified only when $a_{\langle ij\rangle}n^in^j$ stays within the declared response tolerance over the directions of interest. Directional structure outside the assumed quadratic representation also requires a separate error bound. These are conditions for summarizing a specified response, not a derivation of a global cosmological scale.
+
+The distinction between lengths and squared lengths illustrates why the response definition matters. An isotropic linear stretch by a positive factor $a$ has tensor $a h_{ij}$ and trace mean $a$; the corresponding squared-length metric has tensor $a^2h_{ij}$ and trace mean $a^2$. The same effective length change therefore gives different trace means in the two descriptions. Identifying $a_0$ with the scale factor in [Cosmology Ontology](../cosmology/cosmology-ontology.md#effective-frw-variable-ledger) requires a derived response definition, reference normalization, and a consistent clock, ruler, and signal reconstruction. Homogeneity and isotropy alone do not provide those identifications.
+
+Laboratory comparison requires another explicit map. A directional medium response affects a clock record through the assembly and apparatus dynamics; it cannot be equated directly with a measured frequency residual. Connecting $a_{\langle ij\rangle}$ to the Hughes–Drever and clock-comparison constraints discussed in [Lorentz Kinematics](../spacetime/lorentz-kinematics.md) requires deriving that apparatus response and its normalization. The cosmological and laboratory connections remain recovery obligations. They concern medium and assembly behavior within the fixed void.
 
 None of this may be read as
 
@@ -540,7 +548,7 @@ Refusing an expanding void creates a specific and heavy observational burden, an
 
 The filter that most candidate mechanisms fail is transport versus loss. An admissible redshift must retune the signal's clock rate, through medium transport or clock and ruler response, and it must come with matching distance and intensity bookkeeping. It cannot be mere attenuation. Propagation loss can dim a signal, but dimming supplies neither the time dilation nor the thermal scaling above. Simple **tired-light** mechanisms based only on scattering, phase degradation, or photon energy loss fail this joint benchmark; excluding every possible fixed-void transport law would require testing the law's complete predictions rather than its label.
 
-Sources for these comparison benchmarks: Lubin and Sandage, [*The Tolman Surface Brightness Test for the Reality of the Expansion. IV* (2001)](https://arxiv.org/abs/astro-ph/0106566), reports consistency with expansion after luminosity-evolution modeling; Goldhaber and collaborators, [*Observation of cosmological time dilation using Type Ia supernovae as clocks* (1996)](https://doi.org/10.1016/S0920-5632(96)00493-8), reports the supernova stretching test; the Planck-oriented temperature study [*Probing the Evolution of the Cosmic Microwave Background Temperature with Planck Data* (2012)](https://doi.org/10.1088/0004-637X/757/2/144) states the $T(z)$ benchmark and deviation parameterization; and the Fermi collaboration's [GRB 090510 analysis](https://doi.org/10.1038/nature08574) bounds a linear energy dependence of photon speed under its stated emission assumptions. These are observer-level constraints, not premises of the substrate theory.
+Sources for these comparison benchmarks: Lubin and Sandage, [*The Tolman Surface Brightness Test for the Reality of the Expansion. IV* (2001)](https://arxiv.org/abs/astro-ph/0106566), reports consistency with expansion after luminosity-evolution modeling; Goldhaber and collaborators, [*Observation of cosmological time dilation using Type Ia supernovae as clocks* (1996)](https://doi.org/10.1016/S0920-5632(96)00493-8), reports the supernova stretching test; de Martino and collaborators’ [*Measuring the Redshift Dependence of the Cosmic Microwave Background Monopole Temperature with Planck Data* (2012)](https://doi.org/10.1088/0004-637X/757/2/144) presents the $T(z)$ benchmark and deviation parameterization in a method and sensitivity study forecasting Planck measurement accuracy using simulated clusters and measured X-ray cluster properties; and the Fermi collaboration's [GRB 090510 analysis](https://doi.org/10.1038/nature08574) bounds a linear energy dependence of photon speed under its stated emission assumptions. These are observer-level constraints, not premises of the substrate theory.
 
 Positive recovery is owned by the cosmology branch: [Cosmology Ontology](../cosmology/cosmology-ontology.md) defines the shared fixed-void variables, [Expansion Mechanism](../cosmology/expansion-mechanism.md) carries the redshift and distance tests, and [CMB](../cosmology/CMB.md) carries the temperature and spectrum tests.
 

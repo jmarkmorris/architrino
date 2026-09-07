@@ -40,7 +40,7 @@ export const FALSE_FLAGS='accepted source_bytes_authenticated frame_identity_aut
 export const PINS=Object.freeze({
  "operationCoordinator": [
   "scripts/eom/f6c-bounded-operation.mjs",
-  "0e0f728b79f32c3a8c03021748902dca3b450fac6b450d73ce1868b32ae61228"
+  "d89bc20d6026ec5893047490a75aabe6f441a88a44b2a4e04c2baf2ae51678c4"
  ],
  "operationCoordinatorControls": [
   "tests/f6c-bounded-operation.test.js",
@@ -48,11 +48,11 @@ export const PINS=Object.freeze({
  ],
  "adapter": [
   "scripts/eom/f6c_variable_cell_adapter.py",
-  "d3a6ff0f9203935bd2bd6ecec9907b04efc141f40dc61c9b7e149841fd7973c7"
+  "2635f927e18752b99edf57860381597e0c23b7f6e781e30a3016d323434d06e9"
  ],
  "adapterControls": [
   "tests/test_f6c_variable_cell_adapter.py",
-  "9cf5aae2bcfd5fecd1e3a73855eee86b0c16b19164056f5ce745a4b4b1973a7c"
+  "e6b9d0343dc026926b0974b7de20ce092d7b4b1f088cdc6acfc7c1d058a9faaa"
  ],
  "diagnostic": [
   "scripts/eom/f6c_single_leaf_diagnostic.py",
@@ -60,7 +60,7 @@ export const PINS=Object.freeze({
  ],
  "diagnosticControls": [
   "tests/test_f6c_single_leaf_diagnostic.py",
-  "7a665b6ca9bb3bea918732f3a5aea7aba1afda71d3c87b0805a90c96e7719697"
+  "a830ef66bd44292a8b2f35940ca739f35f696377b51659988198e8e268aed2e2"
  ],
  "stream": [
   "scripts/eom/f6c_streamed_leaf_session.py",
@@ -68,7 +68,7 @@ export const PINS=Object.freeze({
  ],
  "streamControls": [
   "tests/test_f6c_streamed_leaf_session.py",
-  "10088b235bce2c46f91d212ca4bc12158393330ac772e367e012b1945a863542"
+  "b1abbb006bcc589dfe49928570eab1556c34263c1ac9eaccedcd2c0dc498e246"
  ],
  "continuation": [
   "scripts/eom/f6c_leaf_continuation.py",
@@ -100,19 +100,19 @@ export const PINS=Object.freeze({
  ],
  "transport": [
   "scripts/eom/verify-f6c-refined-acceleration.py",
-  "3f49831a2e63d2526125c1585c1250330079fa423986ec1b36901bb3cecde6ae"
+  "545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421"
  ],
  "helpers": [
   "scripts/eom/launch-prescribed-response-pilot.mjs",
-  "a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9"
+  "7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7"
  ],
  "outer": [
-  "scripts/eom/launch-abc-enclosed-root-pilot.mjs",
-  "18cc7d6a646d1bad55fbc02e3b8eb09223f7098c9940360998ad6a6a04e1d2c8"
+  "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+  "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a"
  ],
  "diagnostics": [
   "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
-  "89b23af09f57aa50e3ebfc0780189f2f0d1a409a7e13004af0cb48167894b944"
+  "7a1f5571827225d1529f73a3f0b905be75e81e2f7d11c2670b697e0599d65e71"
  ]
 });
 // Readiness alone is selected by the reviewed invocation. Historical wrapper
@@ -141,13 +141,13 @@ function historicalArchiveSources(d,root){
  return d.parent_index===2&&d.plan.path===path.join(root,p)&&d.plan.sha256===h&&d.plan.bytes===n?PARENT_TWO_ARCHIVE_SOURCES:ARCHIVE_SOURCES;
 }
 export const ANCESTRY_ARCHIVE_SOURCES=Object.freeze({
- memberPredeclaration:['reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853',16985],
- fullResourcePlan:['reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md','46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021]
+ memberPredeclaration:['reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc',16985],
+ fullResourcePlan:['reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md','2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40',13021]
 });
 export const PACKAGE_PINS=Object.freeze({
  reader:['scripts/eom/f6c_evidence_package.py','9d888682514f23652b39bfaa53fdfb3ceab66e6ba88cf34222c156d226764ad6'],
- readerControls:['tests/test_f6c_evidence_package.py','df81708fb1877ce549c4eacfd66c7d7f47f192d57d716a65f184039adb075cbf'],
- inventory:['tests/fixtures/f6c-lossless-packaging-expectations.v1.json','79a91daedff0fdb712b5b76ff0a4d8c345711eb2c4b69c0731a509da701e48fc']
+ readerControls:['tests/test_f6c_evidence_package.py','f2c52fd510cad3da99f65ab2497dde754f8842d18004c3e1ae98d1bbdcb6d3d8'],
+ inventory:['tests/fixtures/f6c-lossless-packaging-expectations.v1.json','901687bd92fdc686dc26b8634d8f58ecd46bd9f81208ca68563ad4cff983b09b']
 });
 export const FRESH_EVIDENCE_PINS=Object.freeze({
  reader:PACKAGE_PINS.reader,readerControls:PACKAGE_PINS.readerControls,
@@ -163,8 +163,8 @@ export const FRESH_CLOSURE_PINS=Object.freeze({
  contract:['.local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/fresh-parent-batch-closure-validator-expectations.md','7132bcf6db99bef0b2255418f656e3fb5900eb23fac9d1400d294d5ba8fd2eed'],
 });
 export const CONTINUATION_MATH=Object.freeze([
- ['scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py','19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132',41336],
- ['scripts/eom/verify-f6c-continuous-reception-acceleration.py','cc26f5a45d0e09a472e3066d0d62ae8192492a7c3e0ab18a3658781a0274b299',42580],
+ ['scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py','3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7',41336],
+ ['scripts/eom/verify-f6c-continuous-reception-acceleration.py','23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d',42580],
  ['scripts/eom/oracle/f6c_residual_integral_supremum.py','fc170a91b2747923bda89ef00b58d529c98bf96b01cc7b2c05c035042fc79c5a',20129],
  ['scripts/eom/oracle/f6c_gk13_protocol.py','a70a15481f793e913440628068f9c53bab611fe9d92f36206a401c01e91478eb',24388],
  ['scripts/eom/oracle/f6c_correlated_residual_enclosure.py','b86907236e849124f3fa9c6bcad0f65492ecc6fbeb1b51a27438655c45b037b1',7830],

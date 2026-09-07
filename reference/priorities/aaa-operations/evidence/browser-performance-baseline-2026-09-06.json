@@ -1,0 +1,213 @@
+{
+  "schema": "architrino.browser-performance-evidence.v1",
+  "status": "passed_pre_release",
+  "productionMutation": false,
+  "measuredAtUtc": "2026-09-06T16:41:01.341Z",
+  "measurementBoundary": "Both profiles were re-captured in full on 2026-09-06 against the current sources; no figure is carried forward from the 2026-09-01 baseline. The public-feedback-interaction profile was re-measured because its load-time closure grew from four files to the fifteen accepted in the release gate on 2026-09-05 (the shared control strip and scene-search stack) and because two of its three shared content indexes were regenerated on 2026-09-05; its source closure now lists all fifteen release-gate files plus the three public manifests the page fetches, eighteen paths. The photon-4k-visual profile was re-measured because its source fingerprint drifted after shared runtime changes. The instrument was updated on 2026-09-06: BrowserPerformanceProbe.js previously waited for the status text 'Manifest ready', and the feedback page has said 'Diagnostic details ready' since 2026-09-05; the probe now accepts either wording. The instrument followed the page, not the reverse, and its current hashes are recorded below. Each cold profile used a loopback port the measuring browser had never opened; every cold resource transferred its full encoded size, and the warm reload shows 304 validations, which corroborates the fresh-origin claim. The GPU-process envelope was sampled from the measuring browser's own GPU process, so it is a shared-process envelope across every page that browser had open, not a per-page figure; the active sample was taken during a second foreground load of /photon.html on the same origin, viewport, and DPR immediately after the recorded probe run, because the recorded run completed before the sample could be taken.",
+  "environment": {
+    "browser": "Google Chrome 152.0.7977.76 on macOS (operator's browser), DevTools device toolbar in Responsive mode with device type Desktop and device pixel ratio forced to 1; the built-in Cowork browser pane and the Codex in-app browser were rejected as capture surfaces because the former does not fire requestAnimationFrame and the latter cannot set device pixel ratio",
+    "platform": "macOS",
+    "server": "scripts/dev/start-local-dev.mjs with EOM_BORG_SHADOW=0 and one fresh loopback port per cold profile (127.0.0.1:59378 for feedback, 127.0.0.1:59379 for photon)",
+    "cacheBoundary": "Cold values use the first app load on a fresh loopback origin. Warm values use an identical same-origin reload with the development server's HTTP validation behavior retained.",
+    "claimBoundary": "These are local pre-release measurements on one Chromium 152 browser and one host. They establish current regression budgets, not global user latency, network transfer, exact per-page GPU allocation, production performance, or hosting cost.",
+    "captureRecords": "Raw probe outputs and ps samples were kept in the untracked .local-data/browser-performance-capture/ directory at capture time."
+  },
+  "instrumentSources": [
+    {
+      "path": "scripts/dev/browser-performance-probe.html",
+      "bytes": 1072,
+      "sha256": "ca6f5918726b09d888e04dfa079a7f1696d6867ced38f5247ed7ca765b14b3a0"
+    },
+    {
+      "path": "scripts/dev/BrowserPerformanceProbe.js",
+      "bytes": 10430,
+      "sha256": "4e05af26ba687988b11e545b56195d12d884cec5c2a2335b9ded447b028c5012"
+    }
+  ],
+  "profiles": {
+    "public-feedback-interaction": {
+      "status": "passed",
+      "route": "/feedback.html",
+      "measuredAtUtc": "2026-09-06T16:36:28.937Z",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+      "viewport": {
+        "cssWidth": 1440,
+        "cssHeight": 900,
+        "devicePixelRatio": 1
+      },
+      "launch": {
+        "cold": {
+          "originWasFresh": true,
+          "loadEventEndMs": 61.10000002384186,
+          "transferBytes": 882355,
+          "encodedBytes": 876955,
+          "resourceCount": 17
+        },
+        "warm": {
+          "sameOriginReload": true,
+          "loadEventEndMs": 60.60000002384186,
+          "transferBytes": 812473,
+          "encodedBytes": 811636,
+          "resourceCount": 17
+        }
+      },
+      "interaction": {
+        "id": "refresh-public-manifest",
+        "status": "passed",
+        "nextPaintMs": 32
+      },
+      "frameTiming": {
+        "samples": 240,
+        "p95Ms": 17.100000000000136,
+        "medianFps": 59.88023952095874,
+        "intervalsOver33_34Ms": 0
+      },
+      "heap": {
+        "supported": true,
+        "warmAfterFramesUsedBytes": 12166799,
+        "frameWindowGrowthBytes": 82320
+      },
+      "storage": {
+        "supported": true,
+        "originUsageBytes": 0,
+        "originQuotaBytes": 10737418240
+      },
+      "resourceCountNote": "The 17 load-time resources are the fourteen code files after the HTML navigation (ten JavaScript modules, three stylesheets, ui-tokens.css) plus the three public manifests fetched by the runtime."
+    },
+    "photon-4k-visual": {
+      "status": "passed",
+      "route": "/photon.html",
+      "measuredAtUtc": "2026-09-06T16:41:01.341Z",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
+      "viewport": {
+        "cssWidth": 3840,
+        "cssHeight": 2160,
+        "devicePixelRatio": 1
+      },
+      "launch": {
+        "cold": {
+          "originWasFresh": true,
+          "loadEventEndMs": 430.1999999284744,
+          "transferBytes": 4571927,
+          "encodedBytes": 4560527,
+          "resourceCount": 37
+        },
+        "warm": {
+          "sameOriginReload": true,
+          "loadEventEndMs": 388.40000009536743,
+          "transferBytes": 10800,
+          "encodedBytes": 578704,
+          "resourceCount": 37
+        }
+      },
+      "frameTiming": {
+        "samples": 300,
+        "p95Ms": 17.300000000000182,
+        "medianFps": 59.88023952095874,
+        "intervalsOver33_34Ms": 1
+      },
+      "heap": {
+        "supported": true,
+        "warmAfterFramesUsedBytes": 40220575,
+        "frameWindowGrowthBytes": -14133770,
+        "note": "Negative frame-window growth is a garbage collection during the sample window; used heap fell from 54354345 to 40220575 bytes."
+      },
+      "gpuSurfaceProxy": {
+        "method": "canvas backing-store lower bound; excludes textures, geometry, driver allocation, compositor copies, and shared GPU-process memory",
+        "surfaceCount": 3,
+        "minimumSurfaceBytes": 28888248
+      },
+      "storage": {
+        "supported": true,
+        "originUsageBytes": 0,
+        "originQuotaBytes": 10737418240
+      }
+    }
+  },
+  "gpuProcess": {
+    "method": "macOS ps RSS samples of the measuring browser's identified GPU process before and during the foreground 4K profile",
+    "sharedProcessBoundaryAcknowledged": true,
+    "browser": "Google Chrome Helper --type=gpu-process, Chrome 152.0.7977.76",
+    "processIdAtMeasurement": 44833,
+    "samples": 2,
+    "baselineResidentBytes": 144654336,
+    "activeResidentBytes": [
+      155877376
+    ],
+    "peakResidentBytes": 155877376,
+    "peakGrowthBytes": 11223040,
+    "sampleNote": "ps reports RSS in KiB; 141264 and 152224 KiB multiplied by 1024."
+  },
+  "sourceClosures": {
+    "public-feedback-interaction": {
+      "files": 18,
+      "bytes": 876955,
+      "sha256": "ae56ae18c8b54b215e09d6b671b1ff728e28af844868d67cddbd97f091acfde5",
+      "paths": [
+        "feedback.html",
+        "src/apps/feedback/FeedbackManifestRuntime.js",
+        "src/apps/feedback/feedback.css",
+        "src/apps/feedback/main.js",
+        "src/apps/navigator/StandaloneAppHomeRuntime.js",
+        "src/apps/navigator/StandaloneAppLaunchRuntime.js",
+        "src/apps/navigator/StandaloneAppNavigationRuntime.js",
+        "src/apps/navigator/StandaloneAppSceneSearchRuntime.js",
+        "src/runtime/SceneSearchRuntime.js",
+        "src/runtime/SceneSearchUiRuntime.js",
+        "src/runtime/TopDynamicControlBarRuntime.js",
+        "src/runtime/top-dynamic-control-bar.css",
+        "src/services/SceneIndexService.js",
+        "src/services/SceneSearchCoordinatorService.js",
+        "ui-tokens.css",
+        "content/scenes/scenes_index.json",
+        "content/markdown/markdown_index.json",
+        "content/graph/scene_graph.json"
+      ]
+    },
+    "photon-4k-visual": {
+      "files": 38,
+      "bytes": 4560527,
+      "sha256": "7a98dccf828e9edbc655a200a347298cd64912e8979df88afbece3f1343a7e46",
+      "paths": [
+        "photon.html",
+        "src/runtime/top-dynamic-control-bar.css",
+        "src/runtime/markdown-mermaid.css",
+        "apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.css",
+        "src/apps/photon/main.js",
+        "vendor/markdown-it/markdown-it.min.js",
+        "apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.js",
+        "vendor/mermaid/mermaid.min.js",
+        "ui-tokens.css",
+        "src/apps/photon/PhotonRuntime.js",
+        "src/apps/photon/PhotonStateRuntime.js",
+        "src/apps/photon/PhotonPresetRuntime.js",
+        "src/runtime/MarkdownRuntime.js",
+        "src/apps/photon/PhotonSearchRuntime.js",
+        "src/services/MarkdownPolicyService.js",
+        "src/apps/photon/PhotonControlsRuntime.js",
+        "src/apps/photon/PhotonBraidVisualRuntime.js",
+        "src/apps/photon/PhotonDiagnosticsRuntime.js",
+        "src/apps/photon/PhotonFormulaRuntime.js",
+        "src/prescribed-path-analysis/PrescribedPathAnalysis.mjs",
+        "src/apps/navigator/StandaloneAppNavigationRuntime.js",
+        "src/runtime/MermaidMarkdownRuntime.js",
+        "src/runtime/MarkdownColumnPaginationRuntime.js",
+        "src/runtime/MarkdownEquationMapRuntime.js",
+        "src/runtime/TransportControlIcons.js",
+        "src/apps/photon/PhotonTransmitterHistoryRuntime.js",
+        "src/runtime/TopDynamicControlBarRuntime.js",
+        "src/apps/navigator/StandaloneAppHomeRuntime.js",
+        "src/apps/navigator/StandaloneAppSceneSearchRuntime.js",
+        "src/prescribed-path-analysis/PrescribedOrbitCausalRoots.mjs",
+        "src/runtime/EquationMappingNavigation.js",
+        "src/runtime/SceneSearchRuntime.js",
+        "src/runtime/SceneSearchUiRuntime.js",
+        "src/services/SceneIndexService.js",
+        "src/services/SceneSearchCoordinatorService.js",
+        "src/apps/navigator/StandaloneAppLaunchRuntime.js",
+        "apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/fonts/KaTeX_Main-Regular.woff2",
+        "apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/fonts/KaTeX_Math-Italic.woff2"
+      ]
+    }
+  }
+}

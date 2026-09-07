@@ -161,7 +161,7 @@ The Virtual Observer $x$, $y$, and $z$ sliders should continue to show a visible
 
 The lower Electric Field plot is based on a Virtual Observer branch-sum calculation from the architrino source histories in the two braids. This mapping is diagnostic-only and is not a photon-substrate derivation or closure certificate. The current root equation uses the visible signal-speed control $c_{\mathrm{sig}}/c_f$.
 
-The default calculation is now `Absolute history`: the two braid centers and the Virtual Observer translate at $c_\gamma$, and the Electric Field plot is reconstructed from shared prescribed-path moving-circular transmitter roots and observer-field contributions. The `co_moving` mode remains available as a comparison diagnostic where braid centers are held at fixed app-frame offsets and the Virtual Observer is held at a fixed app-frame coordinate. The [reusable absolute-history facade](reusable-absolute-history-facade.md) now composes the existing linear, moving-circular, and moving-circular same-transmitter contracts, exposes receiver-phase and phase-spread records, and rejects invalid field branches without contribution. It remains a display/reference capability; arbitrary history families and production EOM ownership remain with App Solver.
+The default calculation is now `Absolute history`: the two braid centers and the Virtual Observer translate at $c_\gamma$, and the Electric Field plot is reconstructed from shared prescribed-path moving-circular transmitter roots and observer-field contributions. The `co_moving` mode remains available as a comparison diagnostic where braid centers are held at fixed app-frame offsets and the Virtual Observer is held at a fixed app-frame coordinate. The [reusable absolute-history facade](contracts/reusable-absolute-history-facade.md) now composes the existing linear, moving-circular, and moving-circular same-transmitter contracts, exposes receiver-phase and phase-spread records, and rejects invalid field branches without contribution. It remains a display/reference capability; arbitrary history families and production EOM ownership remain with App Solver.
 
 The Virtual Observer coordinate is
 
@@ -246,7 +246,7 @@ R_{i,k}
 R_{\mathrm{display},i,k}=\max(R_{i,k},0.08).
 $$
 
-The $0.08$ floor is a display regularization, not a derived short-distance rule. The exact I/M/O grouping, harmonic projection, residuals, and falsifiers are recorded in the [PHO-005 substrate-mapping refinement](substrate-mapping-refinement.md).
+The $0.08$ floor is a display regularization, not a derived short-distance rule. The exact I/M/O grouping, harmonic projection, residuals, and falsifiers are recorded in the [PHO-005 substrate-mapping refinement](analysis/substrate-mapping-refinement.md).
 
 The displayed electric readout is the transverse observer reconstruction from that receiver acceleration:
 
@@ -509,7 +509,7 @@ The search should flag a configuration as interesting when one or more of these 
 
 Suspect numerical cases should be labeled as suspect, not good. Missed roots, very small Jacobian values, large delay-solve gaps, or unstable diagnostics can still be useful clues, but they should not be presented as clean polarization evidence.
 
-The detailed execution and export boundary is recorded in [configuration-search-deep-comparison.md](configuration-search-deep-comparison.md). Deep comparison is independently scheduled from later UI mutation, but it reuses the same prescribed-path analysis and therefore is not an independent numerical oracle or physical certificate.
+The detailed execution and export boundary is recorded in [configuration-search-deep-comparison.md](brainstorming.md). Deep comparison is independently scheduled from later UI mutation, but it reuses the same prescribed-path analysis and therefore is not an independent numerical oracle or physical certificate.
 
 ## Work Queue
 
@@ -552,4 +552,4 @@ The photon app is an exploratory diagnostic. It may visualize candidate planar-p
 - Photon planar-pair ledger substrate packet
 - Planar-pair symbolic substrate instance
 - Photon event ledger balance diagnostic
-- [Malus' law](../mapping-benchmarks/malus-law.md)
+- [Malus' law](../mapping-benchmarks/analysis/malus-law.md)

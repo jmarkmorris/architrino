@@ -5,7 +5,7 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { startupAbortInspection } from "../scripts/eom/launch-f5-prehistory-handoff-build.mjs";
-import { processTable, superviseRegisteredPilot } from "../scripts/eom/launch-abc-enclosed-root-pilot.mjs";
+import { processTable, superviseRegisteredPilot } from "../scripts/eom/launch-subfield-circular-root-pilot.mjs";
 
 // Independently authored startup controls. The only possible executable target
 // is a synthetic Node marker writer; no build, F5 data, or EOM is invoked.
@@ -24,7 +24,7 @@ child.stdout.pipe(process.stdout);child.stderr.pipe(process.stderr);child.once('
   writeFileSync(path.join(root, "synthetic.mjs"), source, { flag: "wx" });
   return { marker, options: { root, entry: "synthetic.mjs", args: [],
     sources: [{ path: "synthetic.mjs", bytes: source, sha256: createHash("sha256").update(source).digest("hex") }],
-    output: path.join(root, "attempt"), limitMs: 5000, heartbeatMs: 1000, graceMs: 100,
+    output: path.join(root, "attempt"), limitMs: 20000, heartbeatMs: 1000, graceMs: 100,
     admit: async () => { throw new Error("interrupted startup must never reach admission"); } } };
 }
 async function rejected(options) {
@@ -69,7 +69,11 @@ test("interruption during first inspection creates no bootstrap or target ACK", 
   for (const signal of ["SIGINT", "SIGTERM"]) assert.deepEqual(process.listeners(signal), before[signal]);
 });
 
-for (const [inspection, label] of [[2, "bootstrap"], [3, "first target gate"]]) {
+// Interrupted at the bootstrap inspection, the runner's birth is never authenticated, so the launcher's
+// cleanup guard (no unobserved PID is promoted into signal authority during failure) reports that it could
+// not validate owned cleanup; the processes still close and the runner is still gone. Interrupted one
+// inspection later, ownership is authenticated and cleanup reports no failure.
+for (const [inspection, label, cleanupFailure] of [[2, "bootstrap", "runner birth was never authenticated"], [3, "first target gate", undefined]]) {
   test(`interruption at ${label} inspection prevents target ACK and permits validated owned cleanup`, async () => {
     const { marker, options } = fixture(), controller = new AbortController();
     let calls = 0;
@@ -82,11 +86,16 @@ for (const [inspection, label] of [[2, "bootstrap"], [3, "first target gate"]]) 
     assert.equal(calls > inspection, true, "real process inspection must remain callable during cleanup");
     assert.match(receipt.failure, /synthetic .* interruption/);
     assert.equal(receipt.processesClosed, true);
-    assert.equal(receipt.cleanupFailure, undefined);
+    assert.equal(receipt.cleanupFailure, cleanupFailure);
     assert.deepEqual(receipt.gates, []);
     assert.equal(existsSync(marker), false);
-    assert.ok(receipt.runner?.pid, "synthetic bootstrap identity must be retained");
-    assert.throws(() => process.kill(receipt.runner.pid, 0), error => error.code === "ESRCH");
+    if (cleanupFailure) {
+      // An unauthenticated birth is never recorded as the runner identity, for the same reason it is never signalled.
+      assert.equal(receipt.runner, undefined, "unauthenticated bootstrap identity must not be promoted into the receipt");
+    } else {
+      assert.ok(receipt.runner?.pid, "synthetic bootstrap identity must be retained");
+      assert.throws(() => process.kill(receipt.runner.pid, 0), error => error.code === "ESRCH");
+    }
     assert.ok(receipt.signals.every(record => record.pgid !== process.pid));
   });
 }

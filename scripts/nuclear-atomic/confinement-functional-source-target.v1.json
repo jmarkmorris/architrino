@@ -4,7 +4,7 @@
   "status": "target_required",
   "sourceIdentity": {
     "sourceObjectId": "confinement_functional_source_target_0001",
-    "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md",
+    "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md",
     "consumer": "scripts/nuclear-atomic/iron-group-binding-cusp-toy-sweep.mjs",
     "acceptedPromotionBlocker": "missing_accepted_confinement_functional"
   },
@@ -30,7 +30,7 @@
         "color_charge_domain",
         "sigma_eff_variation_record"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
       "sourceTargetPath": "scripts/nuclear-atomic/K-perp-transverse-stiffness-functional-retained-evidence.v1.json"
     },
     "V_exc": {
@@ -43,7 +43,7 @@
         "vacuum_exceptionality_profile",
         "rho_NS_chi_sea_arguments"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
       "sourceTargetPath": "scripts/nuclear-atomic/V-exc-excitation-potential-functional-retained-evidence.v1.json"
     },
     "rho_NS": {
@@ -56,7 +56,7 @@
         "same_record_noether_sea_response",
         "provider_source_path"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
       "sourceTargetPath": "scripts/nuclear-atomic/rho-NS-confinement-domain-retained-evidence.v1.json"
     },
     "chi_sea": {
@@ -69,7 +69,7 @@
         "same_record_noether_sea_response",
         "effective_speed_relation"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
       "sourceTargetPath": "scripts/nuclear-atomic/chi-sea-confinement-delay-factor-retained-evidence.v1.json"
     },
     "axis_exceptionality_charge": {
@@ -82,7 +82,7 @@
         "charge_normalization_row",
         "same_sigma_eff_domain"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
       "sourceTargetPath": "scripts/nuclear-atomic/axis-exceptionality-charge-confinement-retained-evidence.v1.json"
     },
     "same_record_noether_sea_response": {
@@ -96,7 +96,7 @@
         "stress_strain_row",
         "same_event_ledger"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
       "sourceTargetPath": "scripts/nuclear-atomic/same-record-noether-sea-response-confinement-retained-evidence.v1.json"
     },
     "same_sigma_eff_domain": {
@@ -283,7 +283,7 @@
         "finite_envelope_boundary",
         "no_free_color_asymptotic_state"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
       "sourceTargetPath": "scripts/nuclear-atomic/proton-color-singlet-envelope-source-acquisition-blocker.v1.json"
     },
     "accepted_neutron_color_singlet_envelope": {
@@ -296,7 +296,7 @@
         "finite_envelope_boundary",
         "no_free_color_asymptotic_state"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
       "sourceTargetPath": "scripts/nuclear-atomic/neutron-color-singlet-envelope-source-acquisition-blocker.v1.json"
     },
     "no_free_color_asymptotic_state": {
@@ -309,7 +309,7 @@
         "asymptotic_field_audit",
         "finite_range_residual"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
       "sourceTargetPath": "scripts/nuclear-atomic/no-free-color-asymptotic-state-retained-evidence.v1.json"
     },
     "same_record_branch_interface": {
@@ -342,7 +342,7 @@
         "refinement_stable_sigma_eff_row",
         "source_path_tying_extraction_to_accepted_upstream_rows"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
       "sourceTargetPath": "scripts/nuclear-atomic/sigma-eff-extraction-retained-evidence.v1.json"
     },
     "accepted_color_singlet_nucleon_envelope": {
@@ -356,7 +356,7 @@
         "no_free_color_asymptotic_state",
         "same_record_branch_interface"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
       "sourceTargetPath": "scripts/nuclear-atomic/accepted-color-singlet-nucleon-envelope-source-acquisition-blocker.v1.json"
     },
     "accepted_branch_interface_rows": {
@@ -383,7 +383,7 @@
         "corridor_overlap_window",
         "no_open_color_far_field"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
       "sourceTargetPath": "scripts/nuclear-atomic/finite-residual-corridor-overlap-source-acquisition-blocker.v1.json"
     },
     "accepted_delta_E_corr_NN": {
@@ -397,7 +397,7 @@
         "accepted_branch_interface_rows",
         "finite_residual_corridor_overlap"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
       "sourceTargetPath": "scripts/nuclear-atomic/accepted-delta-E-corr-NN-source-acquisition-blocker.v1.json"
     },
     "Delta_E_corr_NN_tail_limit": {
@@ -521,7 +521,7 @@
         "neutron_color_singlet_envelope",
         "no_free_color_asymptotic_state"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
       "sourceTargetPath": "scripts/nuclear-atomic/color-singlet-closure-source-acquisition-blocker.v1.json"
     },
     "same_record_no_open_color_audit": {
@@ -535,7 +535,7 @@
         "color_singlet_closure",
         "same_event_ledger"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
       "sourceTargetPath": "scripts/nuclear-atomic/same-record-no-open-color-audit-source-acquisition-blocker.v1.json"
     },
     "bounded_open_color_projection_operator_norm": {
@@ -855,7 +855,7 @@
         "same_record_noether_sea_response"
       ],
       "sourceEvidencePath": "scripts/nuclear-atomic/sigma-eff-extraction-retained-evidence.v1.json",
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
     },
     "color_singlet_nucleon_envelope": {
       "id": "color_singlet_nucleon_envelope_target_0001",
@@ -867,7 +867,7 @@
         "no_free_color_asymptotic_state",
         "same_record_branch_interface"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints"
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints"
     },
     "delta_E_corr_NN": {
       "id": "delta_E_corr_NN_target_0001",
@@ -883,7 +883,7 @@
       "acceptedSourceRows": [
         "accepted_sigma_eff_extraction"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
     },
     "no_open_color_far_field": {
       "id": "no_open_color_far_field_target_0001",
@@ -896,7 +896,7 @@
         "color_singlet_closure",
         "same_record_no_open_color_audit"
       ],
-      "currentPriorityPacket": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+      "currentPriorityPacket": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
     }
   },
   "toyBindings": {

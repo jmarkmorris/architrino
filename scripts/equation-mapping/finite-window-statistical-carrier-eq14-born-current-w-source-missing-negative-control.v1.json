@@ -26,29 +26,29 @@
     "transitionMap": {
       "id": "Phi_T_eq14_record_current_w_source_missing_negative_control_0001",
       "retainedStatus": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-14-30-31-finite-window-w-source-field-map.md"
     },
     "finiteMeasure": {
       "id": "mu_star_T_eq14_record_current_w_source_missing_negative_control_0001",
       "totalMass": 1,
       "invarianceResidual": 0.0002,
       "retainedStatus": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-14-30-31-finite-window-w-source-field-map.md"
     },
     "coarseGraining": {
       "id": "Q_eq14_record_current_w_source_missing_negative_control_0001",
       "retainedStatus": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-14-30-31-finite-window-w-source-field-map.md"
     },
     "detectorKernel": {
       "id": "K_det_eq14_record_current_w_source_missing_negative_control_0001",
       "retainedStatus": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-14-30-31-finite-window-w-source-field-map.md"
     },
     "outcomePartition": {
       "id": "B_eq14_record_current_w_source_missing_negative_control_0001",
       "retainedStatus": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-14-30-31-finite-window-w-source-field-map.md",
       "classes": [
         "left_record_cell",
         "right_record_cell"
@@ -58,7 +58,7 @@
       "id": "S_retune_eq14_record_current_w_source_missing_negative_control_0001",
       "residual": 0,
       "retainedStatus": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-14-30-31-finite-window-w-source-field-map.md"
     },
     "recordCurrentProjection": {
       "id": "Theta_rhoJ_eq14_record_current_w_source_missing_negative_control_0001",
@@ -68,7 +68,7 @@
       "densityFlowId": "Phi_T_eq14_record_current_w_source_missing_negative_control_0001",
       "currentFlowId": "Phi_T_eq14_record_current_w_source_missing_negative_control_0001",
       "retainedStatus": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-14-30-31-finite-window-w-source-field-map.md"
     },
     "recordCurrentSamples": [
       {
@@ -82,7 +82,7 @@
         "currentRecord": 0.12,
         "currentReference": 0.1203,
         "retainedStatus": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-14-30-31-finite-window-w-source-field-map.md"
       },
       {
         "id": "right_record_cell_eq14_w_source_missing_negative_control_0001",
@@ -95,7 +95,7 @@
         "currentRecord": -0.08,
         "currentReference": -0.0796,
         "retainedStatus": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-14-30-31-finite-window-w-source-field-map.md"
       }
     ]
   }

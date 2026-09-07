@@ -119,7 +119,7 @@ The reviewed source generation is `ad83d1bbe9ea02a4f664b9a2e9eefc9fda40433fe21ab
 - **Measured:** a normalized-$c_f=1$ one-path constant-history control with accepted-step growth produced equal exact-cut fingerprints but different uninterrupted and checkpoint-resumed accepted-step partitions and final retained-history fingerprints.
 - **Derived implementation cause:** `consecutive_growth_headroom_steps` controls growth after two accepted headroom steps, but it is local to the evolution invocation and absent from the evolution certificate, checkpoint, and resume reconstruction. Restart initializes it to zero.
 - **Boundary:** the inertial endpoint remained equal. This is a complete-record and identical-discrete-decision parity defect under `EOM-003`, not a physical trajectory, Master-Equation, or checkpoint-corruption claim.
-- **Handoff:** preserve or exactly reconstruct the counter and add an adaptive exact-cut parity regression. The focused evidence and CT-004 tool assessment are in [CT-004 Application — EOM Restart Factorization Audit](../category-theory/ct004-eom-restart-factorization-audit.md).
+- **Handoff:** preserve or exactly reconstruct the counter and add an adaptive exact-cut parity regression. The focused evidence and CT-004 tool assessment are in [CT-004 Application — EOM Restart Factorization Audit](../category-theory/evidence/ct004-eom-restart-factorization-audit.md).
 
 ## 2026-07-26 — Priority Directory Renamed
 

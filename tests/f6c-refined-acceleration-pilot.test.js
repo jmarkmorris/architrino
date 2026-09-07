@@ -27,7 +27,7 @@ function planFixture(){return {schema:'braid-program/f6c-refined-acceleration-la
 test('all scientific implementation/control pins remain the separately accepted source generation',()=>{
   for(const p of [...Object.values(E.NAMED),E.HELPERS,E.OUTER,...E.FIXED.filter(([,p])=>!p.startsWith('.local-data')).map(([,p])=>p)])
     assert.equal(hash(readFileSync(p)),E.PINS[p],p);
-  assert.equal(E.FIXED.length,16);assert.equal(E.CHECKER_SHA,'3f49831a2e63d2526125c1585c1250330079fa423986ec1b36901bb3cecde6ae');
+  assert.equal(E.FIXED.length,16);assert.equal(E.CHECKER_SHA,'545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421');
 });
 test('closed plan has no invented runtime/default fields and exact operational closure',()=>{
   const plan=planFixture();
@@ -175,14 +175,14 @@ test('metadata admission string class is explicit and other bounded structures n
  assert.throws(()=>E.decode(Buffer.from('['.repeat(25)+'0'+']'.repeat(25))));
 });
 test('captured current-entry provenance command fits the fixed admission class without a launch',async t=>{
- const outer=await import('../scripts/eom/launch-abc-enclosed-root-pilot.mjs'),entry=readFileSync(E.ENTRY),lengths=[];
+ const outer=await import('../scripts/eom/launch-subfield-circular-root-pilot.mjs'),entry=readFileSync(E.ENTRY),lengths=[];
  for(const stage of ['consumer','comparison']){
   const output=path.join(root,E.LANE,'synthetic-command-length'),planPath=path.join(root,'reference/priorities/braid-program/evidence/synthetic-refined-range-launch.v1.json');
   const args=['--plan',planPath,'--plan-sha256',H,'--entry-sha256',hash(entry),'--launcher-sha256',H,'--stage',stage,'--out',output,'--deadline-ns','99999999999999999999','--candidate-sha256',stage==='consumer'?'none':H,'--python',python,'--git-binary',realpathSync('/usr/bin/git')];
   // Literal serialization of frozen outer412–414: bounded placeholders stand
   // for port/secret and prospective paths, never an executed operation.
-  const payload={root,entry:E.ENTRY,args,sources:[{path:E.ENTRY,sha256:hash(entry),bytes:entry.toString('base64')}],port:65535,secret:'a'.repeat(64),gateSource:outer.ABC_GATE_SOURCE,gateSha256:hash(outer.ABC_GATE_SOURCE),limitMs:E.LIMIT_MS};
-  const command=[process.execPath,'-e',outer.ABC_BOOTSTRAP_SOURCE,Buffer.from(JSON.stringify(payload)).toString('base64')].join(' ');lengths.push(command.length);
+  const payload={root,entry:E.ENTRY,args,sources:[{path:E.ENTRY,sha256:hash(entry),bytes:entry.toString('base64')}],port:65535,secret:'a'.repeat(64),gateSource:outer.SUBFIELD_CIRCULAR_GATE_SOURCE,gateSha256:hash(outer.SUBFIELD_CIRCULAR_GATE_SOURCE),limitMs:E.LIMIT_MS};
+  const command=[process.execPath,'-e',outer.SUBFIELD_CIRCULAR_BOOTSTRAP_SOURCE,Buffer.from(JSON.stringify(payload)).toString('base64')].join(' ');lengths.push(command.length);
   assert.ok(command.length<=131072);assert.equal(E.decode(Buffer.from(JSON.stringify({command})),E.FILE_LIMIT,'operational-receipt').command,command);
   assert.throws(()=>E.decode(Buffer.from(JSON.stringify({command}))));
  }

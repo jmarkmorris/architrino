@@ -6,6 +6,20 @@ Use it for repeatable working practices, thread orchestration, run procedures, a
 
 During the current core geometrical theory push, operational guidance should route default effort toward hard mathematical closure: equations, theorem ladders, proof certificates, simulation diagnostics, and durable capture in the corpus or priority staging.
 
+## Proposed Corpus Review Sequence — 2026-09-05
+
+The proposed next use of the completed workflow and style-policy work is a substantive review in textbook order, beginning with Foundations and then Dynamics. The operator is considering small review sets using the newly selected model. This recommendation remains provisional; it does not start a corpus rewrite or supersede the existing assurance-review assignments.
+
+The [corpus conversion ledger](../priorities/aaa-corpus-rewrite/evidence/conversion-ledger.md) records edition 1.0 work, and the [priority-document ledger](../priorities/operator-document-style-conversion-ledger.md) records dispositions that include dormant deferrals and preserved evidence. These are evidence of earlier work at their recorded scope, not blanket certification against the current standards. The workflow-and-skill campaign below was accepted on 2026-09-05. Repeating that entire operational campaign before examining theory would postpone the use of its results without a demonstrated need.
+
+Use coherent groups of two to four ordinary chapters as an initial planning size, reducing a group to one document when a derivation or evidence burden warrants sustained attention. This is a proposed batching choice, not a measured optimum. The [corpus reviewer](../research-office/cto/prompts/corpus-reviewer.md) defaults to one file per turn; a selected multi-document set must be explicit in the review brief. Follow the live textbook order and compare neighboring chapters for incompatible definitions, assumptions, and conclusions. Start from existing review findings and their dispositions so the new pass checks what changed and what remains uncertain.
+
+Each review should assess mathematical correctness, internal and cross-document consistency, source and instrument support, claim authority, explanatory sufficiency under edition 1.1, and useful new connections or proof routes. Keep errors, missing explanations, provisional insights, and optional editorial preferences distinct. A new model's agreement is not independent mathematical validation: name the derivation, counterexample, external source, or separately authored instrument supporting each consequential finding. Retain an explicit no-change outcome when the existing treatment is adequate.
+
+Discuss each set before applying changes to the reviewed chapters. Integrate accepted corrections and targeted explanatory rewrites while the reasoning is fresh, then check the resulting full documents and the effects on downstream claims. Review the associated priority and evidence owners when a chapter depends on them; do not require a second hierarchy-wide priority or operator-procedure rewrite as an entry condition. A contradiction that prevents interpretation of the next chapter is a reason to resolve that dependency before proceeding.
+
+The recommendation is an inference from the recorded conversion coverage, remaining assurance work, current style scope, and the dependency of later chapters on Foundations and Dynamics. It should be revised if early sets reveal systematic unreadability that prevents substantive review, or repeated unresolved priority-owner contradictions. In those cases, perform a focused rewrite or owner reconciliation for the affected material before resuming. Assess the approach by the usefulness and checkability of its findings and the operator's ability to review each set, rather than by how many documents or words change.
+
 ## Final Review — 2026-09-05
 
 The authorized organization and conformance plan is complete for the 97-file boundary below and was approved by the operator on 2026-09-05. The retained architecture has four repository skills pointing to live workflow owners. The skills distinguish review, active convergence and source mining, provisional research discussion, and mathematical preview; the prompt library provides the remaining specialist procedures without requiring a skill for every prompt.
@@ -109,7 +123,7 @@ The primary inventory recursively includes every file under `reference/op/`, `re
 
 Claim grade: measured by sorted `rg --files --hidden` enumeration of the five directories above, explicit dependency enumeration, and duplicate-path reconciliation on 2026-09-05. Falsifier: a current file in those directories without exactly one inventory row, or a named dependency missing from the table. Re-enumerate before campaign completion because concurrent additions can change the scope. File existence and accounting do not establish semantic conformance.
 
-The [Office Document Standards Review](../priorities/aaa-operations/office-document-standards-review.md) already records an earlier review of the Research Office prompts and roles. Its recorded dispositions are carried below as prior evidence, not converted into fresh conformance verdicts. Reuse that work and review relevant changes and remaining seams; do not repeat the whole office campaign. F3 demonstrates why a prior review receipt is not sufficient to close this workflow audit.
+The [Office Document Standards Review](../priorities/aaa-operations/evidence/office-document-standards-review.md) already records an earlier review of the Research Office prompts and roles. Its recorded dispositions are carried below as prior evidence, not converted into fresh conformance verdicts. Reuse that work and review relevant changes and remaining seams; do not repeat the whole office campaign. F3 demonstrates why a prior review receipt is not sufficient to close this workflow audit.
 
 Historical review packets, research reports, production prompts, manuscripts, scientific target documents, application implementations, and external or user-installed skills are outside this reusable-workflow revision scope. The prompt library's lane-specific equation-search and children's production links retain their own owners. Merely linking a scientific document does not enroll it in this campaign. Code and machine-readable assets in the inventoried directories remain accounted for, but receive no prose conversion.
 
@@ -197,7 +211,7 @@ Each row below has one final disposition. Prior office review is reused for its 
 | [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md) | Updated; source and workflow conformance reviewed | Purpose, standard ownership, evidence, and execution authority |
 | [reference/op/git/codex-pr-unattended-verification.md](git/codex-pr-unattended-verification.md) | Reviewed; source and workflow conformance retained | Purpose, standard ownership, evidence, and execution authority |
 | [reference/op/git/continuous-development-during-pr-review.md](git/continuous-development-during-pr-review.md) | Reviewed; source and workflow conformance retained | Purpose, standard ownership, evidence, and execution authority |
-| [reference/op/issue-resolution.md](issue-resolution.md) | Updated; source and workflow conformance reviewed | Purpose, standard ownership, evidence, and execution authority |
+| [reference/op/git/issue-resolution.md](git/issue-resolution.md) | Updated; source and workflow conformance reviewed | Purpose, standard ownership, evidence, and execution authority |
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | Updated; source and workflow conformance reviewed | Purpose, standard ownership, evidence, and execution authority |
 | [reference/op/machine-artifact-retention-registry.v1.json](machine-artifact-retention-registry.v1.json) | Support asset parsed; unchanged | Outside prose conversion; owner and numerical settings preserved |
 | [reference/op/machine-artifact-retention.md](machine-artifact-retention.md) | Updated; source and workflow conformance reviewed | Purpose, standard ownership, evidence, and execution authority |
@@ -296,7 +310,7 @@ Each row below has one final disposition. Prior office review is reused for its 
 | [content/markdown/aaa/archie/software-architecture-and-maintenance.md](../../content/markdown/aaa/archie/software-architecture-and-maintenance.md) | Controlled authority applied; retained | Source of truth for this review; no policy expansion |
 | [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | Controlled authority applied; retained | Source of truth for this review; no policy expansion |
 | [reference/priorities/README.md](../priorities/README.md) | Controlled authority applied; retained | Source of truth for this review; no policy expansion |
-| [reference/priorities/aaa-operations/office-document-standards-review.md](../priorities/aaa-operations/office-document-standards-review.md) | Prior review evidence reused; preserved | Per-file dispositions and scientific holds retained |
+| [reference/priorities/aaa-operations/evidence/office-document-standards-review.md](../priorities/aaa-operations/evidence/office-document-standards-review.md) | Prior review evidence reused; preserved | Per-file dispositions and scientific holds retained |
 | [reference/research-office/cso/cso.md](../research-office/cso/cso.md) | Prior office review reused; workflow integration reviewed | Current charter, standards, scope, and live-owner boundaries |
 | [reference/research-office/cto/cto.md](../research-office/cto/cto.md) | Prior office review reused; workflow integration reviewed | Current charter, standards, scope, and live-owner boundaries |
 | [reference/research-office/principal-investigator/principal-investigator.md](../research-office/principal-investigator/principal-investigator.md) | Prior office review reused; workflow integration reviewed | Current charter, standards, scope, and live-owner boundaries |
@@ -322,9 +336,10 @@ That file is a routing aid, not an authority. If it conflicts with the live sour
 
 ## Issue Resolution and Publication
 
-- GitHub issue resolution: [issue-resolution.md](issue-resolution.md), then [codex-pr-branch.md](git/codex-pr-branch.md) if the work needs a branch, commit, push, or PR.
+- Git lifecycle routing, including the branch-series registries: [git/README.md](git/README.md).
+- Fresh-session bootstrap check when the session root, project, or mounts change: [session-root-self-test.md](session-root-self-test.md).
 - Branch, commit, push, and PR mechanics: [codex-pr-branch.md](git/codex-pr-branch.md).
-- Unattended PR lifecycle verification: [codex-pr-unattended-verification.md](git/codex-pr-unattended-verification.md).
+- GitHub issue resolution: [issue-resolution.md](git/issue-resolution.md), then [codex-pr-branch.md](git/codex-pr-branch.md) if the work needs a branch, commit, push, or PR.
 
 ## Research, Corpus Convergence, and Sources
 

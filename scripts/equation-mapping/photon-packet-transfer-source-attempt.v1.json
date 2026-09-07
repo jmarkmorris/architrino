@@ -39,42 +39,42 @@
         "rowId": "theta-gamma-packet-W-gamma-0-source-candidate-row",
         "status": "attempt",
         "carrierId": "theta_gamma_packet_W_gamma_0_source_candidate_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "photon_branch_packet": {
         "id": "P_gamma_W_gamma_0_source_candidate_0001",
         "rowId": "photon-branch-packet-W-gamma-0-source-candidate-row",
         "status": "attempt",
         "carrierId": "theta_gamma_packet_W_gamma_0_source_candidate_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-16a-photon-quantum-gauge-neutrino-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-16a-photon-quantum-gauge-neutrino-packet.md"
       },
       "gate_a_kinematics_row": {
         "id": "gate_a_kinematics_W_gamma_0_source_candidate_0001",
         "rowId": "gate-a-kinematics-W-gamma-0-source-candidate-row",
         "status": "attempt",
         "carrierId": "theta_gamma_packet_W_gamma_0_source_candidate_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-13-28-e-gamma-e0-gate-a-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-13-28-e-gamma-e0-gate-a-source-field-map.md"
       },
       "gate_b_transverse_row": {
         "id": "gate_b_transverse_W_gamma_0_source_candidate_0001",
         "rowId": "gate-b-transverse-W-gamma-0-source-candidate-row",
         "status": "attempt",
         "carrierId": "theta_gamma_packet_W_gamma_0_source_candidate_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "gate_c_event_routing_row": {
         "id": "gate_c_event_routing_W_gamma_0_source_candidate_0001",
         "rowId": "gate-c-event-routing-W-gamma-0-source-candidate-row",
         "status": "attempt",
         "carrierId": "theta_gamma_packet_W_gamma_0_source_candidate_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "emission_source_row": {
         "id": "emission_source_W_gamma_0_source_candidate_0001",
         "rowId": "emission-source-W-gamma-0-source-candidate-row",
         "status": "attempt",
         "carrierId": "theta_gamma_packet_W_gamma_0_source_candidate_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "path_history_transfer_row": {
         "id": "path_history_transfer_W_gamma_0_source_candidate_0001",
@@ -88,28 +88,28 @@
         "rowId": "receiver-coupling-W-gamma-0-source-candidate-row",
         "status": "attempt",
         "carrierId": "theta_gamma_packet_W_gamma_0_source_candidate_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "energy_frequency_row": {
         "id": "energy_frequency_W_gamma_0_source_candidate_0001",
         "rowId": "energy-frequency-W-gamma-0-source-candidate-row",
         "status": "attempt",
         "carrierId": "theta_gamma_packet_W_gamma_0_source_candidate_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12a-retained-action-period-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12a-retained-action-period-source-field-map.md"
       },
       "null_eikonal_row": {
         "id": "null_eikonal_W_gamma_0_source_candidate_0001",
         "rowId": "null-eikonal-W-gamma-0-source-candidate-row",
         "status": "attempt",
         "carrierId": "theta_gamma_packet_W_gamma_0_source_candidate_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-10-theta-w-source-field-map.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-10-theta-w-source-field-map.md"
       },
       "helicity_ledger_row": {
         "id": "helicity_ledger_W_gamma_0_source_candidate_0001",
         "rowId": "helicity-ledger-W-gamma-0-source-candidate-row",
         "status": "attempt",
         "carrierId": "theta_gamma_packet_W_gamma_0_source_candidate_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "event_balance_row": {
         "id": "event_balance_W_gamma_0_source_candidate_0001",
@@ -151,7 +151,7 @@
         "rowId": "no-hidden-retune-W-gamma-0-source-candidate-row",
         "status": "attempt",
         "carrierId": "theta_gamma_packet_W_gamma_0_source_candidate_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       }
     },
     "photonPacket": {

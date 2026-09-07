@@ -35,7 +35,7 @@
       "totalMass": 1,
       "invarianceResidual": 0.0002,
       "retainedStatus": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-14-30-31-finite-window-w-source-field-map.md"
     },
     "coarseGraining": {
       "id": "Q_eq31_pi_plus_mu_star_T_coordination_source_negative_control_0001",

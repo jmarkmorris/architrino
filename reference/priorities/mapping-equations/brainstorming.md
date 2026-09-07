@@ -4,13 +4,13 @@ This synthesis organizes provisional equation families that constrain Noether br
 
 ## Bidirectional Mapping And Mathematical Reframing
 
-The operator's development goal is to make native derivation and reverse constraints from established physics meet, advancing $\mathbb{A}\mathbb{A}\mathbb{A}$ while developing a mathematical language that can reframe the mapped domains. The [shared method](../mapping/mapping-method.md#bidirectional-mapping-and-mathematical-reframing) owns that direction; this note preserves the provisional mathematical opportunity.
+The operator's development goal is to make native derivation and reverse constraints from established physics meet, advancing $\mathbb{A}\mathbb{A}\mathbb{A}$ while developing a mathematical language that can reframe the mapped domains. The [shared method](../mapping/contracts/mapping-method.md#bidirectional-mapping-and-mathematical-reframing) owns that direction; this note preserves the provisional mathematical opportunity.
 
 - **Claim level:** derivation/closure target for a common construction; inferred research value in using both directions; speculative explanatory or predictive gain from the new language until demonstrated.
 - **Assumptions and proof burden:** start from the declared native primitives, preserve the tested observer behavior in the claimed regime, and distinguish discovery constraints from independent validation. A reverse constraint may select several histories rather than a unique inverse. Demonstrate what a native formulation derives or relates beyond a change of notation.
 - **Falsifier:** the proposed bridge fails for its declared case if its common construction cannot recover the required comparisons without separate retuning. A claimed mathematical improvement fails if it only relabels the inherited expression while adding no derived relationship or reduction in assumptions.
 - **Promotion target:** [Theory Bridges](../../../content/markdown/aaa/philosophy-history/theory-bridges.md) for the method and the existing scientific owner for the worked mathematical reformulation; no corpus promotion is made here.
-- **Disposition:** the [EQM-010 Solved-Wave Inverse-Clue Audit](solved-wave-inverse-clue-audit.md) now supplies the requested worked example and maps every retained clue to an existing row and falsifier. The audit changes no equation score and does not claim that the missing native carriers are complete.
+- **Disposition:** the [EQM-010 Solved-Wave Inverse-Clue Audit](evidence/solved-wave-inverse-clue-audit.md) now supplies the requested worked example and maps every retained clue to an existing row and falsifier. The audit changes no equation score and does not claim that the missing native carriers are complete.
 
 Plainly: choose one familiar solved case and show how it helps us discover the underlying construction, then show what that construction explains in return. That example should demonstrate the method more clearly than a new general vocabulary alone.
 

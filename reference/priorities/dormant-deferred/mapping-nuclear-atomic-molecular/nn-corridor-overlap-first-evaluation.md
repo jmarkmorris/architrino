@@ -5,7 +5,7 @@
 - Kind: quantitative priority row.
 - Date captured: July 1, 2026.
 - Status: candidate reduced evaluation with first branch-interface channel extraction; not reader-facing canon.
-- Supports: [QCD Confinement And Hadronization Recovery Targets](../../mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md) and [Nuclear Binding Closure](./nuclear-binding-closure.md).
+- Supports: [QCD Confinement And Hadronization Recovery Targets](../../mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md) and [Nuclear Binding Closure](./nuclear-binding-closure.md).
 
 ## Claim Level
 

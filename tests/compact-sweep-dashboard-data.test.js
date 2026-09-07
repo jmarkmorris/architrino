@@ -257,10 +257,10 @@ test("quantiles and correlations are deterministic and ignore null values", () =
 
 test("evidence index covers every current Borg identity without a compact export", () => {
   const registry = readJson(
-    "reference/priorities/app-borg/assembly-registry.v1.json",
+    "reference/priorities/app-borg/contracts/assembly-registry.v1.json",
   );
   const projection = readJson(
-    "reference/priorities/braid-program/braid-candidate-adjudication-projection.v1.json",
+    "reference/priorities/braid-program/contracts/braid-candidate-adjudication-projection.v1.json",
   );
   const campaignRegistry = readJson(
     "src/prescribed-path-analysis/campaigns/all-candidate-analytical-campaign.registry.v2.json",

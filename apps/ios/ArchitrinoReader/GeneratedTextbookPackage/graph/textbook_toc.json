@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 187,
-      "sections": 1570
+      "entries": 184,
+      "sections": 1633
     }
   },
   "tocRoot": {
@@ -116,6 +116,22 @@
             "scenePath": "content/scenes/foundations/architrino.json",
             "markdownPath": "content/markdown/aaa/foundations/architrino.md",
             "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Why the delay is the whole idea",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "Why the delay is the whole idea",
+                "sectionKey": "why the delay is the whole idea",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What an architrino is not",
+                "markdownPath": "content/markdown/aaa/foundations/architrino.md",
+                "markdownSection": "What an architrino is not",
+                "sectionKey": "what an architrino is not",
+                "headingLevel": 2
+              },
               {
                 "kind": "markdown-section",
                 "title": "Core Definition",
@@ -386,6 +402,14 @@
             "sections": [
               {
                 "kind": "markdown-section",
+                "title": "Three layers that get confused",
+                "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
+                "markdownSection": "Three layers that get confused",
+                "sectionKey": "three layers that get confused",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Core Concept",
                 "markdownPath": "content/markdown/aaa/foundations/euclidean-void.md",
                 "markdownSection": "Core Concept",
@@ -646,10 +670,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "The Case for Absolute Time ($T$)",
+                "title": "The Case for Absolute Time",
                 "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
-                "markdownSection": "The Case for Absolute Time ($T$)",
-                "sectionKey": "the case for absolute time t",
+                "markdownSection": "The Case for Absolute Time",
+                "sectionKey": "the case for absolute time",
                 "headingLevel": 2
               },
               {
@@ -658,6 +682,54 @@
                 "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
                 "markdownSection": "Absolute Time, Global Foliation, and Proper Time",
                 "sectionKey": "absolute time global foliation and proper time",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Clock Universality: The Hard Part",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "Clock Universality: The Hard Part",
+                "sectionKey": "clock universality the hard part",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Lorentz-Closure Target",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "The Lorentz-Closure Target",
+                "sectionKey": "the lorentz closure target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Preferred-Frame Leakage Closure",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "Preferred-Frame Leakage Closure",
+                "sectionKey": "preferred frame leakage closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Effective Metric Handoff",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "Effective Metric Handoff",
+                "sectionKey": "effective metric handoff",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Key Point",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "Key Point",
+                "sectionKey": "key point",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Falsifiability Wall",
+                "markdownPath": "content/markdown/aaa/foundations/absolute-time-defense.md",
+                "markdownSection": "Falsifiability Wall",
+                "sectionKey": "falsifiability wall",
                 "headingLevel": 2
               }
             ]
@@ -804,10 +876,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Emergence in the Architrino Universe: Continuous Delay Dynamics",
+                "title": "Emergence in Continuous Delay Dynamics",
                 "markdownPath": "content/markdown/aaa/foundations/emergence-of-structure.md",
-                "markdownSection": "Emergence in the Architrino Universe: Continuous Delay Dynamics",
-                "sectionKey": "emergence in the architrino universe continuous delay dynamics",
+                "markdownSection": "Emergence in Continuous Delay Dynamics",
+                "sectionKey": "emergence in continuous delay dynamics",
                 "headingLevel": 2
               },
               {
@@ -927,10 +999,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Analytic Regimes and Research Roadmap",
+                "title": "Analytic Regimes and Remaining Derivations",
                 "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
-                "markdownSection": "Analytic Regimes and Research Roadmap",
-                "sectionKey": "analytic regimes and research roadmap",
+                "markdownSection": "Analytic Regimes and Remaining Derivations",
+                "sectionKey": "analytic regimes and remaining derivations",
                 "headingLevel": 2
               },
               {
@@ -939,6 +1011,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
                 "markdownSection": "Energy, Symmetry, and Conservation",
                 "sectionKey": "energy symmetry and conservation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "References",
+                "markdownPath": "content/markdown/aaa/dynamics/master-equation.md",
+                "markdownSection": "References",
+                "sectionKey": "references",
                 "headingLevel": 2
               }
             ]
@@ -1033,10 +1113,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Intuition (Plain Language)",
+                "title": "Mechanism in One Picture",
                 "markdownPath": "content/markdown/aaa/dynamics/energy.md",
-                "markdownSection": "Intuition (Plain Language)",
-                "sectionKey": "intuition plain language",
+                "markdownSection": "Mechanism in One Picture",
+                "sectionKey": "mechanism in one picture",
                 "headingLevel": 2
               },
               {
@@ -1053,6 +1133,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/energy.md",
                 "markdownSection": "Appendix A: Energy Zero and Bookkeeping",
                 "sectionKey": "appendix a energy zero and bookkeeping",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "References",
+                "markdownPath": "content/markdown/aaa/dynamics/energy.md",
+                "markdownSection": "References",
+                "sectionKey": "references",
                 "headingLevel": 2
               }
             ]
@@ -1072,6 +1160,14 @@
                 "scenePath": "content/scenes/validation/action_model.json",
                 "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
                 "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Setup and Assumptions",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+                    "markdownSection": "Setup and Assumptions",
+                    "sectionKey": "setup and assumptions",
+                    "headingLevel": 2
+                  },
                   {
                     "kind": "markdown-section",
                     "title": "Time-based PDE (wave equation with a moving point source term)",
@@ -1130,6 +1226,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Implementation Summary",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
+                    "markdownSection": "Implementation Summary",
+                    "sectionKey": "implementation summary",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Sibling Derivation Notes",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
                     "markdownSection": "Sibling Derivation Notes",
@@ -1144,7 +1248,33 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/validation/analytic_baselines.json",
-                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md"
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Models",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
+                    "markdownSection": "Models",
+                    "sectionKey": "models",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Methodological Priority",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
+                    "markdownSection": "Methodological Priority",
+                    "sectionKey": "methodological priority",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Deliverables",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md",
+                    "markdownSection": "Deliverables",
+                    "sectionKey": "deliverables",
+                    "headingLevel": 2
+                  }
+                ]
               },
               {
                 "id": "validation_action_energy__attraction",
@@ -1152,7 +1282,49 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/validation/attraction.json",
-                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md"
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Setup",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
+                    "markdownSection": "Setup",
+                    "sectionKey": "setup",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Objectives",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
+                    "markdownSection": "Objectives",
+                    "sectionKey": "objectives",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Canonical Delayed-Law Conditions",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
+                    "markdownSection": "Canonical Delayed-Law Conditions",
+                    "sectionKey": "canonical delayed law conditions",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Equations of Motion",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
+                    "markdownSection": "Equations of Motion",
+                    "sectionKey": "equations of motion",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Deliverables",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
+                    "markdownSection": "Deliverables",
+                    "sectionKey": "deliverables",
+                    "headingLevel": 2
+                  }
+                ]
               },
               {
                 "id": "validation_action_energy__background_simple_action",
@@ -1280,7 +1452,17 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/validation/numerical_recipe_stability.json",
-                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md"
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Event-Aware Integration",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md",
+                    "markdownSection": "Event-Aware Integration",
+                    "sectionKey": "event aware integration",
+                    "headingLevel": 2
+                  }
+                ]
               },
               {
                 "id": "validation_action_energy__radial_attraction",
@@ -1288,7 +1470,57 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/validation/radial_attraction.json",
-                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md"
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Setup",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+                    "markdownSection": "Setup",
+                    "sectionKey": "setup",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Objectives",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+                    "markdownSection": "Objectives",
+                    "sectionKey": "objectives",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Delay Equation and Exact Reduction",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+                    "markdownSection": "Delay Equation and Exact Reduction",
+                    "sectionKey": "delay equation and exact reduction",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Solvability Status",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+                    "markdownSection": "Solvability Status",
+                    "sectionKey": "solvability status",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Receiver-Velocity Dependence",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+                    "markdownSection": "Receiver-Velocity Dependence",
+                    "sectionKey": "receiver velocity dependence",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Validation Use",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md",
+                    "markdownSection": "Validation Use",
+                    "sectionKey": "validation use",
+                    "headingLevel": 2
+                  }
+                ]
               },
               {
                 "id": "validation_action_energy__receiver_velocity_work",
@@ -1314,7 +1546,49 @@
                 "kind": "markdown-view",
                 "sceneType": "Scene-Markdown-View",
                 "scenePath": "content/scenes/validation/repulsion.json",
-                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md"
+                "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
+                "sections": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Setup",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
+                    "markdownSection": "Setup",
+                    "sectionKey": "setup",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Objectives",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
+                    "markdownSection": "Objectives",
+                    "sectionKey": "objectives",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Delay Differential Equations",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
+                    "markdownSection": "Delay Differential Equations",
+                    "sectionKey": "delay differential equations",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Solvability Status",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
+                    "markdownSection": "Solvability Status",
+                    "sectionKey": "solvability status",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Deliverables",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
+                    "markdownSection": "Deliverables",
+                    "sectionKey": "deliverables",
+                    "headingLevel": 2
+                  }
+                ]
               },
               {
                 "id": "validation_action_energy__self_energy",
@@ -1404,6 +1678,14 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
+                    "title": "Core Symbols",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
+                    "markdownSection": "Core Symbols",
+                    "sectionKey": "core symbols",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Dynamical Geometry",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md",
                     "markdownSection": "Dynamical Geometry",
@@ -1422,10 +1704,10 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Impulses Versus Smooth Pushes",
+                    "title": "Impulses Versus Smooth Acceleration",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md",
-                    "markdownSection": "Impulses Versus Smooth Pushes",
-                    "sectionKey": "impulses versus smooth pushes",
+                    "markdownSection": "Impulses Versus Smooth Acceleration",
+                    "sectionKey": "impulses versus smooth acceleration",
                     "headingLevel": 2
                   },
                   {
@@ -1575,6 +1857,14 @@
                 "markdownSection": "Interfaces",
                 "sectionKey": "interfaces",
                 "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "References",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "References",
+                "sectionKey": "references",
+                "headingLevel": 2
               }
             ]
           },
@@ -1596,18 +1886,18 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Spiral Momentum Budget Across the Hinge (Speculative)",
+                "title": "Candidate Spiral Momentum Budget Across the Hinge",
                 "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-                "markdownSection": "Spiral Momentum Budget Across the Hinge (Speculative)",
-                "sectionKey": "spiral momentum budget across the hinge speculative",
+                "markdownSection": "Candidate Spiral Momentum Budget Across the Hinge",
+                "sectionKey": "candidate spiral momentum budget across the hinge",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Spiral Binary Field-Speed Symmetry-Breaking Point",
+                "title": "Circular Self-Hit Threshold at the Wake Speed",
                 "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
-                "markdownSection": "Spiral Binary Field-Speed Symmetry-Breaking Point",
-                "sectionKey": "spiral binary field speed symmetry breaking point",
+                "markdownSection": "Circular Self-Hit Threshold at the Wake Speed",
+                "sectionKey": "circular self hit threshold at the wake speed",
                 "headingLevel": 2
               },
               {
@@ -1657,87 +1947,13 @@
                 "markdownSection": "Summary",
                 "sectionKey": "summary",
                 "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "dynamics__shared_circle_assemblies",
-            "title": "Planar (2D) Braid Assemblies",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/shared_circle_assemblies.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "The Rigid Co-Rotating Chart",
-                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
-                "markdownSection": "The Rigid Co-Rotating Chart",
-                "sectionKey": "the rigid co rotating chart",
-                "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Degrees of Freedom and Search Directions",
-                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
-                "markdownSection": "Degrees of Freedom and Search Directions",
-                "sectionKey": "degrees of freedom and search directions",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Collision-Free Winding Constraint",
-                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
-                "markdownSection": "Collision-Free Winding Constraint",
-                "sectionKey": "collision free winding constraint",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Complete Causal-Root Balance",
-                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
-                "markdownSection": "Complete Causal-Root Balance",
-                "sectionKey": "complete causal root balance",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Exact Taxonomy Intersections",
-                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
-                "markdownSection": "Exact Taxonomy Intersections",
-                "sectionKey": "exact taxonomy intersections",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Verified Bounded Landscape",
-                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
-                "markdownSection": "Verified Bounded Landscape",
-                "sectionKey": "verified bounded landscape",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Fixed Axial-Translation Study",
-                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
-                "markdownSection": "Fixed Axial-Translation Study",
-                "sectionKey": "fixed axial translation study",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Exact Circular-Solution Theorem",
-                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
-                "markdownSection": "Exact Circular-Solution Theorem",
-                "sectionKey": "exact circular solution theorem",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Release Attempt and Dynamical Boundary",
-                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
-                "markdownSection": "Release Attempt and Dynamical Boundary",
-                "sectionKey": "release attempt and dynamical boundary",
+                "title": "References",
+                "markdownPath": "content/markdown/aaa/dynamics/binary-dynamics.md",
+                "markdownSection": "References",
+                "sectionKey": "references",
                 "headingLevel": 2
               }
             ]
@@ -1808,10 +2024,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Summary and Status",
+                "title": "What the Functional Establishes",
                 "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Summary and Status",
-                "sectionKey": "summary and status",
+                "markdownSection": "What the Functional Establishes",
+                "sectionKey": "what the functional establishes",
                 "headingLevel": 2
               }
             ]
@@ -1822,7 +2038,89 @@
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
             "scenePath": "content/scenes/dynamics/effective_lagrangian.json",
-            "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
+            "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Ordinary Lagrangian Orientation",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "Ordinary Lagrangian Orientation",
+                "sectionKey": "ordinary lagrangian orientation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ordinary Hamiltonian Orientation",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "Ordinary Hamiltonian Orientation",
+                "sectionKey": "ordinary hamiltonian orientation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Regularized Nonlocal Action and Variation",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "Regularized Nonlocal Action and Variation",
+                "sectionKey": "regularized nonlocal action and variation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Symmetries and History-Aware Conservation Laws",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "Symmetries and History-Aware Conservation Laws",
+                "sectionKey": "symmetries and history aware conservation laws",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Coarse-Graining: The Effective Continuum Lagrangian",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "Coarse-Graining: The Effective Continuum Lagrangian",
+                "sectionKey": "coarse graining the effective continuum lagrangian",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Effective Hamiltonian Domain Criterion",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "Effective Hamiltonian Domain Criterion",
+                "sectionKey": "effective hamiltonian domain criterion",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Topological Constraints and Assembly Stability",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "Topological Constraints and Assembly Stability",
+                "sectionKey": "topological constraints and assembly stability",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closure Interface: Action-to-Envelope Reduction",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "Closure Interface: Action-to-Envelope Reduction",
+                "sectionKey": "closure interface action to envelope reduction",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What the Effective Lagrangian Establishes",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "What the Effective Lagrangian Establishes",
+                "sectionKey": "what the effective lagrangian establishes",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "References",
+                "markdownPath": "content/markdown/aaa/dynamics/effective-lagrangian.md",
+                "markdownSection": "References",
+                "sectionKey": "references",
+                "headingLevel": 2
+              }
+            ]
           }
         ]
       },
@@ -1941,10 +2239,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Base-two-component circular chartsertificate Instantiation",
+                "title": "Neutral-Braid Certificate Instantiation",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-recovery-requirements.md",
-                "markdownSection": "Base-two-component circular chartsertificate Instantiation",
-                "sectionKey": "base family certificate instantiation",
+                "markdownSection": "Neutral-Braid Certificate Instantiation",
+                "sectionKey": "neutral braid certificate instantiation",
                 "headingLevel": 2
               }
             ]
@@ -1959,381 +2257,246 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Assembly Composition",
+                "title": "Exact Configuration Identity",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-taxonomy.md",
-                "markdownSection": "Assembly Composition",
-                "sectionKey": "assembly composition",
+                "markdownSection": "Exact Configuration Identity",
+                "sectionKey": "exact configuration identity",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Individual Braid",
+                "title": "Assembly, Component Braid, and Binary",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-taxonomy.md",
-                "markdownSection": "Individual Braid",
-                "sectionKey": "individual braid",
+                "markdownSection": "Assembly, Component Braid, and Binary",
+                "sectionKey": "assembly component braid and binary",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Individual Binary",
+                "title": "Component-Braid Dimensionality",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-taxonomy.md",
-                "markdownSection": "Individual Binary",
-                "sectionKey": "individual binary",
+                "markdownSection": "Component-Braid Dimensionality",
+                "sectionKey": "component braid dimensionality",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "three-axis circular charts: Noether Core",
+                "title": "Circle Occupancy",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-taxonomy.md",
-                "markdownSection": "three-axis circular charts: Noether Core",
-                "sectionKey": "family a noether core",
+                "markdownSection": "Circle Occupancy",
+                "sectionKey": "circle occupancy",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "common-axis three-binary charts: Coincident Binary Axes",
+                "title": "Co-Sphericity",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-taxonomy.md",
-                "markdownSection": "common-axis three-binary charts: Coincident Binary Axes",
-                "sectionKey": "family b coincident binary axes",
+                "markdownSection": "Co-Sphericity",
+                "sectionKey": "co sphericity",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "two-component circular charts: Coaxial Twelve-Architrino Geometry",
+                "title": "Independent Identification Characteristics",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-taxonomy.md",
-                "markdownSection": "two-component circular charts: Coaxial Twelve-Architrino Geometry",
-                "sectionKey": "family c coaxial twelve architrino geometry",
+                "markdownSection": "Independent Identification Characteristics",
+                "sectionKey": "independent identification characteristics",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Master Tables",
+                "title": "Coordinate Constraints Used by Worked Configurations",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-taxonomy.md",
-                "markdownSection": "Master Tables",
-                "sectionKey": "master tables",
+                "markdownSection": "Coordinate Constraints Used by Worked Configurations",
+                "sectionKey": "coordinate constraints used by worked configurations",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Borg Correspondence",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-taxonomy.md",
+                "markdownSection": "Borg Correspondence",
+                "sectionKey": "borg correspondence",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Claim Boundary and Falsifiers",
+                "markdownPath": "content/markdown/aaa/noether-braid/braid-taxonomy.md",
+                "markdownSection": "Claim Boundary and Falsifiers",
+                "sectionKey": "claim boundary and falsifiers",
                 "headingLevel": 2
               }
             ]
           },
           {
-            "id": "noether_braid__braid_family_a",
-            "title": "Braid three-axis circular charts",
-            "kind": "scene-index",
-            "sceneType": "Scene-Index",
-            "scenePath": "content/scenes/noether-braid/braid_family_a.json",
-            "children": [
-              {
-                "id": "noether_braid__braid_family_a_overview",
-                "title": "Braid three-axis circular charts",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/noether-braid/braid_family_a_overview.json",
-                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Shared three-axis circular-chart Geometry",
-                    "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
-                    "markdownSection": "Shared three-axis circular-chart Geometry",
-                    "sectionKey": "shared family a geometry",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "A1",
-                    "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
-                    "markdownSection": "A1",
-                    "sectionKey": "a1",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "A2",
-                    "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
-                    "markdownSection": "A2",
-                    "sectionKey": "a2",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "A3",
-                    "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
-                    "markdownSection": "A3",
-                    "sectionKey": "a3",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "A1, A2, and A3 Relations",
-                    "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
-                    "markdownSection": "A1, A2, and A3 Relations",
-                    "sectionKey": "a1 a2 and a3 relations",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Claim Boundary",
-                    "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
-                    "markdownSection": "Claim Boundary",
-                    "sectionKey": "claim boundary",
-                    "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "noether_braid__explored_braid_geometries",
-                "title": "Braid A1 Dynamics and Interpretation",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/noether-braid/explored_braid_geometries.json",
-                "markdownPath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Claim-Ownership Classification",
-                    "markdownPath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
-                    "markdownSection": "Claim-Ownership Classification",
-                    "sectionKey": "claim ownership classification",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Retention and Interpretation",
-                    "markdownPath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
-                    "markdownSection": "Retention and Interpretation",
-                    "sectionKey": "retention and interpretation",
-                    "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "noether_braid__braid_a2_symmetry_and_return_response",
-                "title": "A2 Symmetry and Return Response",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/noether-braid/braid_a2_symmetry_and_return_response.json",
-                "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Invariant Channels and Equivariant Reductions",
-                    "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
-                    "markdownSection": "Invariant Channels and Equivariant Reductions",
-                    "sectionKey": "invariant channels and equivariant reductions",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "A2 Two-Ring Geometry",
-                    "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
-                    "markdownSection": "A2 Two-Ring Geometry",
-                    "sectionKey": "a2 two ring geometry",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Moments and the Axial Polarity Dipole",
-                    "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
-                    "markdownSection": "Moments and the Axial Polarity Dipole",
-                    "sectionKey": "moments and the axial polarity dipole",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Momentum Screw and Helicity",
-                    "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
-                    "markdownSection": "Momentum Screw and Helicity",
-                    "sectionKey": "momentum screw and helicity",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Retention and Return Response",
-                    "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
-                    "markdownSection": "Retention and Return Response",
-                    "sectionKey": "retention and return response",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Claim Boundary",
-                    "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
-                    "markdownSection": "Claim Boundary",
-                    "sectionKey": "claim boundary",
-                    "headingLevel": 2
-                  }
-                ]
-              },
-              {
-                "id": "noether_braid__doubling_frequency_lock",
-                "title": "A3.3 Doubling-Frequency Resonance Lock",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/noether-braid/doubling_frequency_lock.json",
-                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Status and Assumptions",
-                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
-                    "markdownSection": "Status and Assumptions",
-                    "sectionKey": "status and assumptions",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Exact Kinematic Identity",
-                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
-                    "markdownSection": "Exact Kinematic Identity",
-                    "sectionKey": "exact kinematic identity",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Assumption 1 (Candidate Caustic-Grazing Carrier)",
-                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
-                    "markdownSection": "Assumption 1 (Candidate Caustic-Grazing Carrier)",
-                    "sectionKey": "assumption 1 candidate caustic grazing carrier",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Assumption 2 (Exact Integer Phase Closure)",
-                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
-                    "markdownSection": "Assumption 2 (Exact Integer Phase Closure)",
-                    "sectionKey": "assumption 2 exact integer phase closure",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Assumption 3 (Fixed Relative Phase Lock)",
-                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
-                    "markdownSection": "Assumption 3 (Fixed Relative Phase Lock)",
-                    "sectionKey": "assumption 3 fixed relative phase lock",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Bundle Holonomy Reading",
-                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
-                    "markdownSection": "Bundle Holonomy Reading",
-                    "sectionKey": "bundle holonomy reading",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)",
-                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
-                    "markdownSection": "Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)",
-                    "sectionKey": "assumption 4 bundle flatness and cancellation selection principle",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Non-Assumptions",
-                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
-                    "markdownSection": "Non-Assumptions",
-                    "sectionKey": "non assumptions",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Immediate Consequences",
-                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
-                    "markdownSection": "Immediate Consequences",
-                    "sectionKey": "immediate consequences",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Proposition 1 (Exterior Integer Lock Formulas)",
-                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
-                    "markdownSection": "Proposition 1 (Exterior Integer Lock Formulas)",
-                    "sectionKey": "proposition 1 exterior integer lock formulas",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Could $1{:}2{:}4$ Be a Solution?",
-                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
-                    "markdownSection": "Could $1{:}2{:}4$ Be a Solution?",
-                    "sectionKey": "could 1 2 4 be a solution",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "What Exact Periodicity Gives, and What It Does Not",
-                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
-                    "markdownSection": "What Exact Periodicity Gives, and What It Does Not",
-                    "sectionKey": "what exact periodicity gives and what it does not",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Interpreting the Cancellation Principle",
-                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
-                    "markdownSection": "Interpreting the Cancellation Principle",
-                    "sectionKey": "interpreting the cancellation principle",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "RG-Style Truncation Test",
-                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
-                    "markdownSection": "RG-Style Truncation Test",
-                    "sectionKey": "rg style truncation test",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Reduced-Theorem Target",
-                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
-                    "markdownSection": "Reduced-Theorem Target",
-                    "sectionKey": "reduced theorem target",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Recurrence Diagnostic",
-                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
-                    "markdownSection": "Recurrence Diagnostic",
-                    "sectionKey": "recurrence diagnostic",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Ancillary Symmetry Check",
-                    "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
-                    "markdownSection": "Ancillary Symmetry Check",
-                    "sectionKey": "ancillary symmetry check",
-                    "headingLevel": 2
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "id": "noether_braid__braid_family_b",
-            "title": "Braid common-axis three-binary charts",
+            "id": "noether_braid__2d_braid_assemblies",
+            "title": "Planar (2D) Braid Assemblies",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/braid_family_b.json",
+            "scenePath": "content/scenes/noether-braid/2d_braid_assemblies.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "The Rigid Co-Rotating Chart",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
+                "markdownSection": "The Rigid Co-Rotating Chart",
+                "sectionKey": "the rigid co rotating chart",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Degrees of Freedom and Search Directions",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
+                "markdownSection": "Degrees of Freedom and Search Directions",
+                "sectionKey": "degrees of freedom and search directions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Collision-Free Winding Constraint",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
+                "markdownSection": "Collision-Free Winding Constraint",
+                "sectionKey": "collision free winding constraint",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Complete Causal-Root Balance",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
+                "markdownSection": "Complete Causal-Root Balance",
+                "sectionKey": "complete causal root balance",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Exact Taxonomy Intersections",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
+                "markdownSection": "Exact Taxonomy Intersections",
+                "sectionKey": "exact taxonomy intersections",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Verified Bounded Landscape",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
+                "markdownSection": "Verified Bounded Landscape",
+                "sectionKey": "verified bounded landscape",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Fixed Axial-Translation Study",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
+                "markdownSection": "Fixed Axial-Translation Study",
+                "sectionKey": "fixed axial translation study",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Exact Circular-Solution Theorem",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
+                "markdownSection": "Exact Circular-Solution Theorem",
+                "sectionKey": "exact circular solution theorem",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Release Attempt and Dynamical Boundary",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
+                "markdownSection": "Release Attempt and Dynamical Boundary",
+                "sectionKey": "release attempt and dynamical boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Two Planar Component Braids",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
+                "markdownSection": "Two Planar Component Braids",
+                "sectionKey": "two planar component braids",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Exact Borg Configuration Index",
+                "markdownPath": "content/markdown/aaa/noether-braid/2d-braid-assemblies.md",
+                "markdownSection": "Exact Borg Configuration Index",
+                "sectionKey": "exact borg configuration index",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "noether_braid__3d_braid_assemblies",
+            "title": "Spatial (3D) Braid Assemblies",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/noether-braid/3d_braid_assemblies.json",
             "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Shared common-axis three-binary-chart Geometry",
+                "title": "Orthogonal-Axis Three-Binary Geometry",
                 "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
-                "markdownSection": "Shared common-axis three-binary-chart Geometry",
-                "sectionKey": "shared family b geometry",
+                "markdownSection": "Orthogonal-Axis Three-Binary Geometry",
+                "sectionKey": "orthogonal axis three binary geometry",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "B1",
+                "title": "Coincident-Midpoint Orthogonal-Axis Three-Binary Configuration",
                 "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
-                "markdownSection": "B1",
-                "sectionKey": "b1",
+                "markdownSection": "Coincident-Midpoint Orthogonal-Axis Three-Binary Configuration",
+                "sectionKey": "coincident midpoint orthogonal axis three binary configuration",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Phase-Compensated Equal-Geometry Orthogonal-Axis Three-Binary Configuration",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "Phase-Compensated Equal-Geometry Orthogonal-Axis Three-Binary Configuration",
+                "sectionKey": "phase compensated equal geometry orthogonal axis three binary configuration",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Axially Separated Orthogonal-Axis Three-Binary Configuration",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "Axially Separated Orthogonal-Axis Three-Binary Configuration",
+                "sectionKey": "axially separated orthogonal axis three binary configuration",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Relations Among the Orthogonal-Axis Loci",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "Relations Among the Orthogonal-Axis Loci",
+                "sectionKey": "relations among the orthogonal axis loci",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Claim Boundary",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "Claim Boundary",
+                "sectionKey": "claim boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Coincident-Axis Three-Binary Geometry",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "Coincident-Axis Three-Binary Geometry",
+                "sectionKey": "coincident axis three binary geometry",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Coincident-Axis Three-Binary Coordinate Chart",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "Coincident-Axis Three-Binary Coordinate Chart",
+                "sectionKey": "coincident axis three binary coordinate chart",
                 "headingLevel": 2
               },
               {
@@ -2354,36 +2517,26 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Boundary with three-axis circular charts",
+                "title": "Boundary with Orthogonal-Axis Three-Binary Configurations",
                 "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
-                "markdownSection": "Boundary with three-axis circular charts",
-                "sectionKey": "boundary with family a",
+                "markdownSection": "Boundary with Orthogonal-Axis Three-Binary Configurations",
+                "sectionKey": "boundary with orthogonal axis three binary configurations",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Claim Boundary",
+                "title": "Coincident-Axis Claim Boundary",
                 "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
-                "markdownSection": "Claim Boundary",
-                "sectionKey": "claim boundary",
+                "markdownSection": "Coincident-Axis Claim Boundary",
+                "sectionKey": "coincident axis claim boundary",
                 "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "noether_braid__braid_family_c",
-            "title": "Braid two-component circular charts",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/braid_family_c.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
-            "sections": [
+              },
               {
                 "kind": "markdown-section",
-                "title": "Shared two-component circular-chart Coordinate Chart",
+                "title": "Two-Component Circular Coordinate Chart",
                 "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
-                "markdownSection": "Shared two-component circular-chart Coordinate Chart",
-                "sectionKey": "shared family c coordinate chart",
+                "markdownSection": "Two-Component Circular Coordinate Chart",
+                "sectionKey": "two component circular coordinate chart",
                 "headingLevel": 2
               },
               {
@@ -2404,34 +2557,34 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "C1",
+                "title": "Co-Rotating Coincident-Center Two-Component Circular Configuration",
                 "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
-                "markdownSection": "C1",
-                "sectionKey": "c1",
+                "markdownSection": "Co-Rotating Coincident-Center Two-Component Circular Configuration",
+                "sectionKey": "co rotating coincident center two component circular configuration",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "C2",
+                "title": "Counter-Rotating Coincident-Center Two-Component Circular Configuration",
                 "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
-                "markdownSection": "C2",
-                "sectionKey": "c2",
+                "markdownSection": "Counter-Rotating Coincident-Center Two-Component Circular Configuration",
+                "sectionKey": "counter rotating coincident center two component circular configuration",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "C3 and C4",
+                "title": "Coaxial Two-Component Circular Configurations",
                 "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
-                "markdownSection": "C3 and C4",
-                "sectionKey": "c3 and c4",
+                "markdownSection": "Coaxial Two-Component Circular Configurations",
+                "sectionKey": "coaxial two component circular configurations",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "C5 and C6",
+                "title": "Planar-Locus Routing",
                 "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
-                "markdownSection": "C5 and C6",
-                "sectionKey": "c5 and c6",
+                "markdownSection": "Planar-Locus Routing",
+                "sectionKey": "planar locus routing",
                 "headingLevel": 2
               },
               {
@@ -2452,10 +2605,354 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Claim Boundary",
+                "title": "Two-Component Claim Boundary",
                 "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "Two-Component Claim Boundary",
+                "sectionKey": "two component claim boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Co-Spherical Chart",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "The Co-Spherical Chart",
+                "sectionKey": "the co spherical chart",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Degrees of Freedom and Search Directions",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "Degrees of Freedom and Search Directions",
+                "sectionKey": "degrees of freedom and search directions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "The Sphere Is Not Supplied By The Substrate",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "The Sphere Is Not Supplied By The Substrate",
+                "sectionKey": "the sphere is not supplied by the substrate",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Exact Taxonomy Intersections",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "Exact Taxonomy Intersections",
+                "sectionKey": "exact taxonomy intersections",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Inventory Of Evaluated Co-Spherical Objects",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "Inventory Of Evaluated Co-Spherical Objects",
+                "sectionKey": "inventory of evaluated co spherical objects",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Platonic Vertex Sets",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "Platonic Vertex Sets",
+                "sectionKey": "platonic vertex sets",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Terminology",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "Terminology",
+                "sectionKey": "terminology",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Open Mathematical Questions",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "Open Mathematical Questions",
+                "sectionKey": "open mathematical questions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Exact Borg Configuration Index",
+                "markdownPath": "content/markdown/aaa/noether-braid/3d-braid-assemblies.md",
+                "markdownSection": "Exact Borg Configuration Index",
+                "sectionKey": "exact borg configuration index",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "noether_braid__zero_axial_offset_three_binary_dynamics_and_interpretation",
+            "title": "Zero-Axial-Offset Three-Binary Dynamics and Interpretation",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/noether-braid/zero_axial_offset_three_binary_dynamics_and_interpretation.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Claim-Ownership Classification",
+                "markdownPath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
+                "markdownSection": "Claim-Ownership Classification",
+                "sectionKey": "claim ownership classification",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Retention and Interpretation",
+                "markdownPath": "content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md",
+                "markdownSection": "Retention and Interpretation",
+                "sectionKey": "retention and interpretation",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "noether_braid__coordinate_axis_six_point_symmetry_and_return_response",
+            "title": "Coordinate-Axis Six-Point Symmetry and Return Response",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/noether-braid/coordinate_axis_six_point_symmetry_and_return_response.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Invariant Channels and Equivariant Reductions",
+                "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
+                "markdownSection": "Invariant Channels and Equivariant Reductions",
+                "sectionKey": "invariant channels and equivariant reductions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Phase-Compensated Two-Ring Geometry",
+                "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
+                "markdownSection": "Phase-Compensated Two-Ring Geometry",
+                "sectionKey": "phase compensated two ring geometry",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Moments and the Axial Polarity Dipole",
+                "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
+                "markdownSection": "Moments and the Axial Polarity Dipole",
+                "sectionKey": "moments and the axial polarity dipole",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Momentum Screw and Helicity",
+                "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
+                "markdownSection": "Momentum Screw and Helicity",
+                "sectionKey": "momentum screw and helicity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Retention and Return Response",
+                "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
+                "markdownSection": "Retention and Return Response",
+                "sectionKey": "retention and return response",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Claim Boundary",
+                "markdownPath": "content/markdown/aaa/noether-braid/coordinate-axis-six-point-symmetry-and-return-response.md",
                 "markdownSection": "Claim Boundary",
                 "sectionKey": "claim boundary",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "noether_braid__three_binary_4_2_1_frequency_lock",
+            "title": "Three-Binary 4:2:1 Frequency Lock",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/noether-braid/three_binary_4_2_1_frequency_lock.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Status and Assumptions",
+                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+                "markdownSection": "Status and Assumptions",
+                "sectionKey": "status and assumptions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Exact Kinematic Identity",
+                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+                "markdownSection": "Exact Kinematic Identity",
+                "sectionKey": "exact kinematic identity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Assumption 1 (Candidate Caustic-Grazing Carrier)",
+                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+                "markdownSection": "Assumption 1 (Candidate Caustic-Grazing Carrier)",
+                "sectionKey": "assumption 1 candidate caustic grazing carrier",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Assumption 2 (Exact Integer Phase Closure)",
+                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+                "markdownSection": "Assumption 2 (Exact Integer Phase Closure)",
+                "sectionKey": "assumption 2 exact integer phase closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Assumption 3 (Fixed Relative Phase Lock)",
+                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+                "markdownSection": "Assumption 3 (Fixed Relative Phase Lock)",
+                "sectionKey": "assumption 3 fixed relative phase lock",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Bundle Holonomy Reading",
+                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+                "markdownSection": "Bundle Holonomy Reading",
+                "sectionKey": "bundle holonomy reading",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)",
+                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+                "markdownSection": "Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)",
+                "sectionKey": "assumption 4 bundle flatness and cancellation selection principle",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Non-Assumptions",
+                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+                "markdownSection": "Non-Assumptions",
+                "sectionKey": "non assumptions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Immediate Consequences",
+                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+                "markdownSection": "Immediate Consequences",
+                "sectionKey": "immediate consequences",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Proposition 1 (Exterior Integer Lock Formulas)",
+                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+                "markdownSection": "Proposition 1 (Exterior Integer Lock Formulas)",
+                "sectionKey": "proposition 1 exterior integer lock formulas",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Could $1{:}2{:}4$ Be a Solution?",
+                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+                "markdownSection": "Could $1{:}2{:}4$ Be a Solution?",
+                "sectionKey": "could 1 2 4 be a solution",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What Exact Periodicity Gives, and What It Does Not",
+                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+                "markdownSection": "What Exact Periodicity Gives, and What It Does Not",
+                "sectionKey": "what exact periodicity gives and what it does not",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interpreting the Cancellation Principle",
+                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+                "markdownSection": "Interpreting the Cancellation Principle",
+                "sectionKey": "interpreting the cancellation principle",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "RG-Style Truncation Test",
+                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+                "markdownSection": "RG-Style Truncation Test",
+                "sectionKey": "rg style truncation test",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reduced-Theorem Target",
+                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+                "markdownSection": "Reduced-Theorem Target",
+                "sectionKey": "reduced theorem target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Recurrence Diagnostic",
+                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+                "markdownSection": "Recurrence Diagnostic",
+                "sectionKey": "recurrence diagnostic",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ancillary Symmetry Check",
+                "markdownPath": "content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md",
+                "markdownSection": "Ancillary Symmetry Check",
+                "sectionKey": "ancillary symmetry check",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "noether_braid__coincident_axis_three_binary_symmetry",
+            "title": "Coincident-Axis Three-Binary Symmetry",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/noether-braid/coincident_axis_three_binary_symmetry.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "The Harmonic-Matching Hypothesis",
+                "markdownPath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
+                "markdownSection": "The Harmonic-Matching Hypothesis",
+                "sectionKey": "the harmonic matching hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cyclic-Symmetric Orthogonal-Axis/Coincident-Axis Overlap",
+                "markdownPath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
+                "markdownSection": "Cyclic-Symmetric Orthogonal-Axis/Coincident-Axis Overlap",
+                "sectionKey": "cyclic symmetric orthogonal axis coincident axis overlap",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Discrete-Symmetry Structure",
+                "markdownPath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
+                "markdownSection": "Discrete-Symmetry Structure",
+                "sectionKey": "discrete symmetry structure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Candidate Status and Open Burden",
+                "markdownPath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
+                "markdownSection": "Candidate Status and Open Burden",
+                "sectionKey": "candidate status and open burden",
                 "headingLevel": 2
               }
             ]
@@ -2486,10 +2983,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "common-axis three-binary-chart Example: B1",
+                "title": "Coincident-Axis Three-Binary Example",
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
-                "markdownSection": "common-axis three-binary-chart Example: B1",
-                "sectionKey": "family b example b1",
+                "markdownSection": "Coincident-Axis Three-Binary Example",
+                "sectionKey": "coincident axis three binary example",
                 "headingLevel": 2
               },
               {
@@ -2634,48 +3131,6 @@
                 "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
                 "markdownSection": "Relation To The Doubling-frequency Chapter",
                 "sectionKey": "relation to the doubling frequency chapter",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "noether_braid__spindle_braid",
-            "title": "B1 Hypotheses and Discrete Symmetry",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/noether-braid/spindle_braid.json",
-            "markdownPath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "The Harmonic-Matching Hypothesis",
-                "markdownPath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
-                "markdownSection": "The Harmonic-Matching Hypothesis",
-                "sectionKey": "the harmonic matching hypothesis",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Cyclic-Symmetric A2/B1 Overlap",
-                "markdownPath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
-                "markdownSection": "Cyclic-Symmetric A2/B1 Overlap",
-                "sectionKey": "cyclic symmetric a2 b1 overlap",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Discrete-Symmetry Structure",
-                "markdownPath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
-                "markdownSection": "Discrete-Symmetry Structure",
-                "sectionKey": "discrete symmetry structure",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Candidate Status and Open Burden",
-                "markdownPath": "content/markdown/aaa/noether-braid/coincident-axis-three-binary-symmetry.md",
-                "markdownSection": "Candidate Status and Open Burden",
-                "sectionKey": "candidate status and open burden",
                 "headingLevel": 2
               }
             ]
@@ -2844,10 +3299,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Analytical Evaluation Programs",
+                "title": "Numerical Evaluation",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
-                "markdownSection": "Analytical Evaluation Programs",
-                "sectionKey": "analytical evaluation programs",
+                "markdownSection": "Numerical Evaluation",
+                "sectionKey": "numerical evaluation",
                 "headingLevel": 2
               },
               {
@@ -2876,18 +3331,18 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Borg Analysis Surface",
+                "title": "Visualization of Analytical Results",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
-                "markdownSection": "Borg Analysis Surface",
-                "sectionKey": "borg analysis surface",
+                "markdownSection": "Visualization of Analytical Results",
+                "sectionKey": "visualization of analytical results",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Minimum Publication Packet",
+                "title": "Reproducible Candidate Comparisons",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-analysis-methodology.md",
-                "markdownSection": "Minimum Publication Packet",
-                "sectionKey": "minimum publication packet",
+                "markdownSection": "Reproducible Candidate Comparisons",
+                "sectionKey": "reproducible candidate comparisons",
                 "headingLevel": 2
               }
             ]
@@ -2958,10 +3413,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "A1 Envelope Deformability",
+                "title": "Coincident-Midpoint Orthogonal-Axis Locus Envelope Deformability",
                 "markdownPath": "content/markdown/aaa/noether-braid/braid-envelope-geometry.md",
-                "markdownSection": "A1 Envelope Deformability",
-                "sectionKey": "a1 envelope deformability",
+                "markdownSection": "Coincident-Midpoint Orthogonal-Axis Locus Envelope Deformability",
+                "sectionKey": "coincident midpoint orthogonal axis locus envelope deformability",
                 "headingLevel": 2
               },
               {
@@ -5018,10 +5473,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Working Summary",
+                    "title": "Summary",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md",
-                    "markdownSection": "Working Summary",
-                    "sectionKey": "working summary",
+                    "markdownSection": "Summary",
+                    "sectionKey": "summary",
                     "headingLevel": 2
                   }
                 ]
@@ -5271,10 +5726,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Purpose",
+                "title": "Claim Boundary",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-                "markdownSection": "Purpose",
-                "sectionKey": "purpose",
+                "markdownSection": "Claim Boundary",
+                "sectionKey": "claim boundary",
                 "headingLevel": 2
               },
               {
@@ -5391,14 +5846,6 @@
             "scenePath": "content/scenes/nuclear/nuclear_binding.json",
             "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
             "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Purpose",
-                "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
-                "markdownSection": "Purpose",
-                "sectionKey": "purpose",
-                "headingLevel": 2
-              },
               {
                 "kind": "markdown-section",
                 "title": "Binding-Energy Intuition",
@@ -5587,10 +6034,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Purpose",
+                "title": "Derivation Boundary",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
-                "markdownSection": "Purpose",
-                "sectionKey": "purpose",
+                "markdownSection": "Derivation Boundary",
+                "sectionKey": "derivation boundary",
                 "headingLevel": 2
               },
               {
@@ -6256,10 +6703,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Mapping (Provisional)",
+                "title": "Provisional $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Map",
                 "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
-                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Mapping (Provisional)",
-                "sectionKey": "mathbb a mathbb a mathbb a ontology mapping provisional",
+                "markdownSection": "Provisional $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Ontology Map",
+                "sectionKey": "provisional mathbb a mathbb a mathbb a ontology map",
                 "headingLevel": 2
               },
               {
@@ -6272,26 +6719,26 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Anticipated Mapping Targets",
+                "title": "Open Mapping Targets",
                 "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
-                "markdownSection": "Anticipated Mapping Targets",
-                "sectionKey": "anticipated mapping targets",
+                "markdownSection": "Open Mapping Targets",
+                "sectionKey": "open mapping targets",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Explanatory Gain (Provisional)",
+                "title": "Possible Explanatory Gain",
                 "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
-                "markdownSection": "Explanatory Gain (Provisional)",
-                "sectionKey": "explanatory gain provisional",
+                "markdownSection": "Possible Explanatory Gain",
+                "sectionKey": "possible explanatory gain",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Why Reinterpret (Theory Payoff)",
+                "title": "Conditions for a Useful Reinterpretation",
                 "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
-                "markdownSection": "Why Reinterpret (Theory Payoff)",
-                "sectionKey": "why reinterpret theory payoff",
+                "markdownSection": "Conditions for a Useful Reinterpretation",
+                "sectionKey": "conditions for a useful reinterpretation",
                 "headingLevel": 2
               }
             ]
@@ -6315,10 +6762,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Current Status",
+                "title": "Open Quantum Obligations",
                 "markdownPath": "content/markdown/aaa/quantum/quantum-summary.md",
-                "markdownSection": "Current Status",
-                "sectionKey": "current status",
+                "markdownSection": "Open Quantum Obligations",
+                "sectionKey": "open quantum obligations",
                 "headingLevel": 2
               },
               {
@@ -6439,10 +6886,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Purpose and Scope",
+                "title": "Claim Boundary",
                 "markdownPath": "content/markdown/aaa/quantum/wavefunction-ontology.md",
-                "markdownSection": "Purpose and Scope",
-                "sectionKey": "purpose and scope",
+                "markdownSection": "Claim Boundary",
+                "sectionKey": "claim boundary",
                 "headingLevel": 2
               },
               {
@@ -7842,14 +8289,6 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Core Idea",
-                "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
-                "markdownSection": "Core Idea",
-                "sectionKey": "core idea",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
                 "title": "Tension Meanings",
                 "markdownPath": "content/markdown/aaa/cosmology/hubble-s8-tensions.md",
                 "markdownSection": "Tension Meanings",
@@ -8453,14 +8892,6 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Purpose",
-                "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
-                "markdownSection": "Purpose",
-                "sectionKey": "purpose",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
                 "title": "Severity Scale",
                 "markdownPath": "content/markdown/aaa/validation/known-tensions.md",
                 "markdownSection": "Severity Scale",
@@ -8535,10 +8966,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Experiment-two-component circular chartslassification",
+                "title": "Experiment-two-component circular configurationslassification",
                 "markdownPath": "content/markdown/aaa/validation/massive-superposition-gravity.md",
-                "markdownSection": "Experiment-two-component circular chartslassification",
-                "sectionKey": "experiment family classification",
+                "markdownSection": "Experiment-two-component circular configurationslassification",
+                "sectionKey": "experiment two component circular configurationslassification",
                 "headingLevel": 2
               },
               {
@@ -8822,10 +9253,10 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Simulation Frame: Virtual $\\mathbb{U}_{\\text{now}}$ Perspective",
+                    "title": "Simulation Frame and the $\\mathbb{U}_{\\text{now}}$ Universe-State Perspective",
                     "markdownPath": "content/markdown/aaa/validation/simulations/README.md",
-                    "markdownSection": "Simulation Frame: Virtual $\\mathbb{U}_{\\text{now}}$ Perspective",
-                    "sectionKey": "simulation frame virtual mathbb u text now perspective",
+                    "markdownSection": "Simulation Frame and the $\\mathbb{U}_{\\text{now}}$ Universe-State Perspective",
+                    "sectionKey": "simulation frame and the mathbb u text now universe state perspective",
                     "headingLevel": 2
                   },
                   {
@@ -8946,10 +9377,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Certificate Packet Schema",
+                    "title": "Evidence Required for a Branch",
                     "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
-                    "markdownSection": "Certificate Packet Schema",
-                    "sectionKey": "certificate packet schema",
+                    "markdownSection": "Evidence Required for a Branch",
+                    "sectionKey": "evidence required for a branch",
                     "headingLevel": 2
                   },
                   {
@@ -8982,14 +9413,6 @@
                     "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
                     "markdownSection": "Tier 3: Medium-Response Probe",
                     "sectionKey": "tier 3 medium response probe",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Planned Runtime Artifacts",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/a0-branch-certificate-protocol.md",
-                    "markdownSection": "Planned Runtime Artifacts",
-                    "sectionKey": "planned runtime artifacts",
                     "headingLevel": 2
                   },
                   {
@@ -9037,10 +9460,10 @@
                     "sections": [
                       {
                         "kind": "markdown-section",
-                        "title": "Output Status",
+                        "title": "Interpretation of a Candidate",
                         "markdownPath": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
-                        "markdownSection": "Output Status",
-                        "sectionKey": "output status",
+                        "markdownSection": "Interpretation of a Candidate",
+                        "sectionKey": "interpretation of a candidate",
                         "headingLevel": 2
                       },
                       {
@@ -9069,26 +9492,26 @@
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Floquet Handoff",
+                        "title": "Floquet Stability",
                         "markdownPath": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
-                        "markdownSection": "Floquet Handoff",
-                        "sectionKey": "floquet handoff",
+                        "markdownSection": "Floquet Stability",
+                        "sectionKey": "floquet stability",
                         "headingLevel": 2
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Certificate Gates and Failure Codes",
+                        "title": "Preliminary Consistency Conditions",
                         "markdownPath": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
-                        "markdownSection": "Certificate Gates and Failure Codes",
-                        "sectionKey": "certificate gates and failure codes",
+                        "markdownSection": "Preliminary Consistency Conditions",
+                        "sectionKey": "preliminary consistency conditions",
                         "headingLevel": 2
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Promotion Boundary",
+                        "title": "Scope of the Preliminary Result",
                         "markdownPath": "content/markdown/aaa/validation/simulations/a0-tier0-result-interpretation.md",
-                        "markdownSection": "Promotion Boundary",
-                        "sectionKey": "promotion boundary",
+                        "markdownSection": "Scope of the Preliminary Result",
+                        "sectionKey": "scope of the preliminary result",
                         "headingLevel": 2
                       }
                     ]
@@ -9153,16 +9576,16 @@
                   },
                   {
                     "id": "validation_simulations__sim_branch_quantum__sim_nested_shell_braid_action_increment_protocol",
-                    "title": "A1 Action-Increment Protocol",
+                    "title": "Coincident-Midpoint Orthogonal-Axis Action-Increment Protocol",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
                     "sections": [
                       {
                         "kind": "markdown-section",
                         "title": "Closure Question",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
                         "markdownSection": "Closure Question",
                         "sectionKey": "closure question",
                         "headingLevel": 2
@@ -9170,7 +9593,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Accepted Transition Class",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
                         "markdownSection": "Accepted Transition Class",
                         "sectionKey": "accepted transition class",
                         "headingLevel": 2
@@ -9178,7 +9601,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Master-Equation Increment",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
                         "markdownSection": "Master-Equation Increment",
                         "sectionKey": "master equation increment",
                         "headingLevel": 2
@@ -9186,7 +9609,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Branch-Chart Conservation Pullback",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
                         "markdownSection": "Branch-Chart Conservation Pullback",
                         "sectionKey": "branch chart conservation pullback",
                         "headingLevel": 2
@@ -9194,7 +9617,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Cluster and Stability Residuals",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
                         "markdownSection": "Cluster and Stability Residuals",
                         "sectionKey": "cluster and stability residuals",
                         "headingLevel": 2
@@ -9202,7 +9625,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Field-Speed Approach Scan",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
                         "markdownSection": "Field-Speed Approach Scan",
                         "sectionKey": "field speed approach scan",
                         "headingLevel": 2
@@ -9210,7 +9633,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Required Packet Files",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
                         "markdownSection": "Required Packet Files",
                         "sectionKey": "required packet files",
                         "headingLevel": 2
@@ -9218,7 +9641,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Promotion Gates",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
                         "markdownSection": "Promotion Gates",
                         "sectionKey": "promotion gates",
                         "headingLevel": 2
@@ -9226,7 +9649,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Failure-Code Enum",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
                         "markdownSection": "Failure-Code Enum",
                         "sectionKey": "failure code enum",
                         "headingLevel": 2
@@ -9234,7 +9657,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Interpretation",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/a1-action-increment-protocol.md",
+                        "markdownPath": "content/markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md",
                         "markdownSection": "Interpretation",
                         "sectionKey": "interpretation",
                         "headingLevel": 2
@@ -9251,10 +9674,10 @@
                     "sections": [
                       {
                         "kind": "markdown-section",
-                        "title": "Runtime Artifact",
+                        "title": "Scope and Evidence",
                         "markdownPath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
-                        "markdownSection": "Runtime Artifact",
-                        "sectionKey": "runtime artifact",
+                        "markdownSection": "Scope and Evidence",
+                        "sectionKey": "scope and evidence",
                         "headingLevel": 2
                       },
                       {
@@ -9267,34 +9690,18 @@
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Input Packet",
+                        "title": "Model Inputs",
                         "markdownPath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
-                        "markdownSection": "Input Packet",
-                        "sectionKey": "input packet",
+                        "markdownSection": "Model Inputs",
+                        "sectionKey": "model inputs",
                         "headingLevel": 2
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "Output Diagnostics",
+                        "title": "Consistency Tests",
                         "markdownPath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
-                        "markdownSection": "Output Diagnostics",
-                        "sectionKey": "output diagnostics",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Required Mock Behavior",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
-                        "markdownSection": "Required Mock Behavior",
-                        "sectionKey": "required mock behavior",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Failure Reading",
-                        "markdownPath": "content/markdown/aaa/validation/simulations/retuning-map-toy-model.md",
-                        "markdownSection": "Failure Reading",
-                        "sectionKey": "failure reading",
+                        "markdownSection": "Consistency Tests",
+                        "sectionKey": "consistency tests",
                         "headingLevel": 2
                       }
                     ]
@@ -9717,10 +10124,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Reusable Assessment Prompt",
+                "title": "Assessment Method",
                 "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
-                "markdownSection": "Reusable Assessment Prompt",
-                "sectionKey": "reusable assessment prompt",
+                "markdownSection": "Assessment Method",
+                "sectionKey": "assessment method",
                 "headingLevel": 2
               },
               {
@@ -9842,10 +10249,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "Methods for Interpreting Theory and Evidence",
                 "markdownPath": "content/markdown/aaa/philosophy-history/philosophy-of-science.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "Methods for Interpreting Theory and Evidence",
+                "sectionKey": "methods for interpreting theory and evidence",
                 "headingLevel": 2
               },
               {
@@ -9979,11 +10386,29 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Overview",
+                    "title": "Comparative Map",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
-                    "markdownSection": "Overview",
-                    "sectionKey": "overview",
-                    "headingLevel": 2
+                    "markdownSection": "Comparative Map",
+                    "sectionKey": "comparative map",
+                    "headingLevel": 2,
+                    "children": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Four Relocations At A Glance",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+                        "markdownSection": "Four Relocations At A Glance",
+                        "sectionKey": "four relocations at a glance",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Four Interactions As Sector Projections",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+                        "markdownSection": "Four Interactions As Sector Projections",
+                        "sectionKey": "four interactions as sector projections",
+                        "headingLevel": 3
+                      }
+                    ]
                   },
                   {
                     "kind": "markdown-section",
@@ -10397,11 +10822,77 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Overview",
+                    "title": "The Modern Ontological Network",
                     "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
-                    "markdownSection": "Overview",
-                    "sectionKey": "overview",
-                    "headingLevel": 2
+                    "markdownSection": "The Modern Ontological Network",
+                    "sectionKey": "the modern ontological network",
+                    "headingLevel": 2,
+                    "children": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Dual-Stack Mapping Frame",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Dual-Stack Mapping Frame",
+                        "sectionKey": "dual stack mapping frame",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Theory-Like Concepts and Cross-Cutting Constructs",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Theory-Like Concepts and Cross-Cutting Constructs",
+                        "sectionKey": "theory like concepts and cross cutting constructs",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Unification Filter: Symmetry Container Is Not Enough",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Unification Filter: Symmetry Container Is Not Enough",
+                        "sectionKey": "unification filter symmetry container is not enough",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Ontological Area",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Ontological Area",
+                        "sectionKey": "ontological area",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Sub-Ontological Area",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Sub-Ontological Area",
+                        "sectionKey": "sub ontological area",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Concept Status",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "Concept Status",
+                        "sectionKey": "concept status",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Relation Type",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Relation Type",
+                        "sectionKey": "mathbb a mathbb a mathbb a relation type",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "How to Read a Differential",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-differentials.md",
+                        "markdownSection": "How to Read a Differential",
+                        "sectionKey": "how to read a differential",
+                        "headingLevel": 3
+                      }
+                    ]
                   },
                   {
                     "kind": "markdown-section",
@@ -11800,18 +12291,18 @@
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "B1 Spin Scaffold",
+                        "title": "Coincident-Axis Three-Binary Braid Spin Scaffold",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
-                        "markdownSection": "B1 Spin Scaffold",
-                        "sectionKey": "b1 spin scaffold",
+                        "markdownSection": "Coincident-Axis Three-Binary Braid Spin Scaffold",
+                        "sectionKey": "coincident axis three binary braid spin scaffold",
                         "headingLevel": 2
                       },
                       {
                         "kind": "markdown-section",
-                        "title": "A1 Spin Scaffold",
+                        "title": "Coincident-Midpoint Orthogonal-Axis Braid Spin Scaffold",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
-                        "markdownSection": "A1 Spin Scaffold",
-                        "sectionKey": "a1 spin scaffold",
+                        "markdownSection": "Coincident-Midpoint Orthogonal-Axis Braid Spin Scaffold",
+                        "sectionKey": "coincident midpoint orthogonal axis braid spin scaffold",
                         "headingLevel": 2
                       },
                       {
@@ -12650,16 +13141,16 @@
                   },
                   {
                     "id": "theory_bridges__planck_scale_nested_shell_braid_alignment",
-                    "title": "Mapping the Planck Scale to the A1 Geometry",
+                    "title": "Mapping the Planck Scale to Coincident-Midpoint Orthogonal-Axis Geometry",
                     "kind": "markdown-view",
                     "sceneType": "Scene-Markdown-View",
                     "scenePath": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
                     "sections": [
                       {
                         "kind": "markdown-section",
                         "title": "Thesis",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
                         "markdownSection": "Thesis",
                         "sectionKey": "thesis",
                         "headingLevel": 2
@@ -12667,7 +13158,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Operational Probing Limit",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
                         "markdownSection": "Operational Probing Limit",
                         "sectionKey": "operational probing limit",
                         "headingLevel": 2
@@ -12675,7 +13166,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "What Planck Units Imply About the binary 3",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
                         "markdownSection": "What Planck Units Imply About the binary 3",
                         "sectionKey": "what planck units imply about the binary 3",
                         "headingLevel": 2
@@ -12683,7 +13174,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Kinematic and Dynamical Alignment Conditions",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
                         "markdownSection": "Kinematic and Dynamical Alignment Conditions",
                         "sectionKey": "kinematic and dynamical alignment conditions",
                         "headingLevel": 2
@@ -12691,7 +13182,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Energy as Causal-Wake Interaction History",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
                         "markdownSection": "Energy as Causal-Wake Interaction History",
                         "sectionKey": "energy as causal wake interaction history",
                         "headingLevel": 2
@@ -12699,7 +13190,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
                         "markdownSection": "Discrete Ladder and Phase-Slip Dynamics (Hypothesis)",
                         "sectionKey": "discrete ladder and phase slip dynamics hypothesis",
                         "headingLevel": 2
@@ -12707,7 +13198,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Spin Transition and Configuration-Space Topology (Hypothesis)",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
                         "markdownSection": "Spin Transition and Configuration-Space Topology (Hypothesis)",
                         "sectionKey": "spin transition and configuration space topology hypothesis",
                         "headingLevel": 2
@@ -12715,7 +13206,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
                         "markdownSection": "Emergent Constants: $\\hbar$, $\\ell_P$, and $G$",
                         "sectionKey": "emergent constants hbar ell p and g",
                         "headingLevel": 2
@@ -12723,7 +13214,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
                         "markdownSection": "Horizon Microstructure and “Condensate-Like” Phases (Conjecture)",
                         "sectionKey": "horizon microstructure and condensate like phases conjecture",
                         "headingLevel": 2
@@ -12731,7 +13222,7 @@
                       {
                         "kind": "markdown-section",
                         "title": "Constraints, Assumptions, and Failure Modes",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-a1-geometry.md",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md",
                         "markdownSection": "Constraints, Assumptions, and Failure Modes",
                         "sectionKey": "constraints assumptions and failure modes",
                         "headingLevel": 2
@@ -12752,10 +13243,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "Where Geometry Belongs",
                 "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "Where Geometry Belongs",
+                "sectionKey": "where geometry belongs",
                 "headingLevel": 2
               },
               {
@@ -12818,10 +13309,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "Substance, Causal Structure, and Effective Description",
                 "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "Substance, Causal Structure, and Effective Description",
+                "sectionKey": "substance causal structure and effective description",
                 "headingLevel": 2
               },
               {
@@ -12892,10 +13383,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "Wake Records and Inference",
                 "markdownPath": "content/markdown/aaa/philosophy-history/information-and-the-wake.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "Wake Records and Inference",
+                "sectionKey": "wake records and inference",
                 "headingLevel": 2
               },
               {
@@ -12966,10 +13457,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "Historical and Conceptual Scope",
                 "markdownPath": "content/markdown/aaa/philosophy-history/major-thinkers.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "Historical and Conceptual Scope",
+                "sectionKey": "historical and conceptual scope",
                 "headingLevel": 2
               },
               {
@@ -13558,10 +14049,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "Comparative Scope",
                 "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "Comparative Scope",
+                "sectionKey": "comparative scope",
                 "headingLevel": 2
               },
               {
@@ -13736,10 +14227,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "Information, Computation, and Ontology",
                 "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "Information, Computation, and Ontology",
+                "sectionKey": "information computation and ontology",
                 "headingLevel": 2
               },
               {
@@ -13884,10 +14375,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "Historical Near-Misses and Recovery Burdens",
                 "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "Historical Near-Misses and Recovery Burdens",
+                "sectionKey": "historical near misses and recovery burdens",
                 "headingLevel": 2
               },
               {
@@ -14046,10 +14537,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "Predictive Success and Ontological Debt",
                 "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "Predictive Success and Ontological Debt",
+                "sectionKey": "predictive success and ontological debt",
                 "headingLevel": 2
               },
               {
@@ -14160,10 +14651,10 @@
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Overview",
+                "title": "From Diagnosis to Resolution Tests",
                 "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
+                "markdownSection": "From Diagnosis to Resolution Tests",
+                "sectionKey": "from diagnosis to resolution tests",
                 "headingLevel": 2
               },
               {

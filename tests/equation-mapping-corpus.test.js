@@ -41,9 +41,9 @@ test("generated equation registry covers every corpus display equation", () => {
 
   assert.equal(result.errors.length, 0);
   assert.equal(result.files, 199);
-  assert.equal(result.equations, 4598);
+  assert.equal(result.equations, 4658);
   assert.equal(result.promoted, 23);
-  assert.equal(result.symbolDefinitions, 29624);
+  assert.equal(result.symbolDefinitions, 30035);
 });
 
 test("every equation registry record is addressable, sourced, and symbol-defined", () => {
@@ -51,7 +51,7 @@ test("every equation registry record is addressable, sourced, and symbol-defined
   const semanticIds = new Set(normalized.records.map((record) => record.semanticId));
 
   assert.equal(normalized.schema, EQUATION_MAPPING_CORPUS_REGISTRY_SCHEMA);
-  assert.equal(normalized.records.length, 4598);
+  assert.equal(normalized.records.length, 4658);
   assert.equal(semanticIds.size, normalized.records.length);
   assert.equal(normalized.records.filter((record) => record.promoted).length, 23);
   assert.equal(normalized.records.every((record) => record.source.sourcePath && record.source.sourceHeading), true);
@@ -74,7 +74,7 @@ test("corpus loader and public registry expose basic direct equation pages", asy
   const basicRecord = records.find((record) => !record.promoted);
   const page = api.get(basicRecord.semanticId);
 
-  assert.equal(api.list().length, 4598);
+  assert.equal(api.list().length, 4658);
   assert.equal(page.semanticId, basicRecord.semanticId);
   assert.equal(page.promoted, false);
   assert.equal(page.source.sourcePath, basicRecord.source.sourcePath);
@@ -92,8 +92,8 @@ test("promotion changes carousel membership but not baseline equation access", (
     window: {},
   });
 
-  assert.equal(documents.length, 4598);
-  assert.equal(runtime.getVisibleDocumentList().length, 4598);
+  assert.equal(documents.length, 4658);
+  assert.equal(runtime.getVisibleDocumentList().length, 4658);
   assert.equal(runtime.getCarouselDocumentList().length, 23);
   assert.equal(runtime.activeDocument.id, basicDocument.id);
   assert.equal(runtime.activeDocument.source.sourcePath, basicDocument.source.sourcePath);
@@ -242,7 +242,7 @@ test("every Equation Mapping link shipped in the iOS package has a public app ro
       .map((target) => decodeURIComponent(target.split("#")[1]))
   );
 
-  assert.equal(equationIds.size, 4543);
+  assert.equal(equationIds.size, 4606);
   assert.equal(publicEquationIds.size, equationIds.size);
   assert.deepEqual([...equationIds].filter((id) => !publicEquationIds.has(id)), []);
 });

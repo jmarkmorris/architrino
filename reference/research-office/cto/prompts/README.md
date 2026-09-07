@@ -50,7 +50,7 @@ These procedures and specialized prompts retain their canonical homes. Link to t
 | [../../../op/codex-multiprompt.md](../../../op/codex-multiprompt.md) | General multi-thread procedure, owned in `reference/op/`. |
 | [../../../op/source-mining-best-practice.md](../../../op/source-mining-best-practice.md) | Source-intake specialization with many source-family prompt addenda. Keep in `reference/op/` because it owns procedure, not only prompt text. |
 | [../../research-history/review-packets/README.md](../../research-history/review-packets/README.md) and `reference/research-office/research-history/review-packets/*.md` | Historical self-contained review packets. Keep in place as review artifacts, not reusable prompt templates. |
-| [../../../priorities/mapping-equations/equation-breakthrough-search-prompt.md](../../../priorities/mapping-equations/equation-breakthrough-search-prompt.md) | Priority-specific live breakthrough-search prompt. It resolves queue state from the current tracker and score ladder instead of embedding a dated checkpoint. |
+| [../../../priorities/mapping-equations/equation-breakthrough-search-prompt.md](../../../priorities/mapping-equations/campaigns/equation-breakthrough-search-prompt.md) | Priority-specific live breakthrough-search prompt. It resolves queue state from the current tracker and score ladder instead of embedding a dated checkpoint. |
 | [../../../learning-office/childrens-books/production/prompts/here-there-back-book-1-imagegen-prompts.md](../../../learning-office/childrens-books/production/prompts/here-there-back-book-1-imagegen-prompts.md) | Production asset prompts. Keep in the children's-books production lane. |
 
 ## Maintenance Rule

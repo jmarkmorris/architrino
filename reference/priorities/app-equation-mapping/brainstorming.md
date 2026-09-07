@@ -9,3 +9,7 @@ Accepted implementation work belongs in [work-queue.md](work-queue.md), strategy
 ## Unresolved Ideas
 
 - None currently recorded.
+
+## Resolved
+
+The duplicated top-right control strip, the redundant second magnifier, the live local map editor, and the overlapping settings labels are no longer open ideas. They were implemented on 2026-09-06; the cause analysis, the delivered change, and the claim grades are recorded in [work-log.md](work-log.md), and the resulting interface is described in [contracts/requirements-and-design.md](contracts/requirements-and-design.md).

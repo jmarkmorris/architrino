@@ -2,7 +2,7 @@
 
 ## Status And Authority
 
-This accepted Core product contract defines how AAA Core Potential consumes a semantically ordered stream of immutable EOM-accepted history chunks, advances map coverage, exposes progressive state, and seals a derived product. AAA Core owns the shared stream envelope and transport. The machine-readable contract now consumes the accepted [`aaa_core_accepted_history_stream/v0`](../accepted-history-stream-v0.md) capability without redefining its payload or production transport.
+This accepted Core product contract defines how AAA Core Potential consumes a semantically ordered stream of immutable EOM-accepted history chunks, advances map coverage, exposes progressive state, and seals a derived product. AAA Core owns the shared stream envelope and transport. The machine-readable contract now consumes the accepted [`aaa_core_accepted_history_stream/v0`](../contracts/accepted-history-stream-v0.md) capability without redefining its payload or production transport.
 
 Plainly: this document fixes Potential's behavior when chunks arrive. It does not create a private wire format, decide whether an EOM step was accepted, or take over the shared data service.
 

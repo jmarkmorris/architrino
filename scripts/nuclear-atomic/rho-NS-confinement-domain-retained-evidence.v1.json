@@ -20,7 +20,7 @@
     "sourceTargetId": "rho_NS_source_target_0001",
     "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
     "providerSourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json#/thetaSeaRows/rho_NS",
-    "priorityContextPath": "reference/priorities/mapping-standard-model/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+    "priorityContextPath": "reference/priorities/mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
   },
   "providerRow": {
     "providerPath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",

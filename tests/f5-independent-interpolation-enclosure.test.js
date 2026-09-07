@@ -15,7 +15,7 @@ function sha256(bytes) {
 test("F5 independent instrument reproduces the accepted interpolation enclosure", () => {
   assert.equal(
     sha256(readFileSync(INSTRUMENT)),
-    "c59190e94c196e78b5f4e53ee0cca7f4e8395fedf66e92d0c5dd4efb544d95f1",
+    "f07ee01d7f253ae757b23fe1edb269b706f2da587f36d8fdb83dc653372d19a9",
   );
   const directory = mkdtempSync(path.join(tmpdir(), "f5-independent-enclosure-"));
   const output = path.join(directory, "report.v1.json");

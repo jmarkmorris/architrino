@@ -23,28 +23,28 @@
   "packet": {
     "id": "eq21-shear-rsd-transfer-child-priority-source-negative-control-0001",
     "rows": {
-      "shear_rsd_transfer_child": { "status": "accepted", "rowId": "eq21-shear-rsd-transfer-child-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      "shear_kernel_row": { "status": "accepted", "rowId": "eq21-shear-kernel-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      "rsd_growth_rate_row": { "status": "accepted", "rowId": "eq21-rsd-growth-rate-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      "matter_power_parent_row": { "status": "accepted", "rowId": "eq21-shear-rsd-matter-power-parent-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      "lensing_parent_row": { "status": "accepted", "rowId": "eq21-shear-rsd-lensing-parent-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      "shear_rsd_grid": { "status": "accepted", "rowId": "eq21-shear-rsd-grid-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      "source_provenance": { "status": "accepted", "rowId": "eq21-shear-rsd-source-provenance-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      "no_hidden_retune_witness": { "status": "accepted", "rowId": "eq21-shear-rsd-no-hidden-retune-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" }
+      "shear_rsd_transfer_child": { "status": "accepted", "rowId": "eq21-shear-rsd-transfer-child-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      "shear_kernel_row": { "status": "accepted", "rowId": "eq21-shear-kernel-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      "rsd_growth_rate_row": { "status": "accepted", "rowId": "eq21-rsd-growth-rate-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      "matter_power_parent_row": { "status": "accepted", "rowId": "eq21-shear-rsd-matter-power-parent-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      "lensing_parent_row": { "status": "accepted", "rowId": "eq21-shear-rsd-lensing-parent-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      "shear_rsd_grid": { "status": "accepted", "rowId": "eq21-shear-rsd-grid-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      "source_provenance": { "status": "accepted", "rowId": "eq21-shear-rsd-source-provenance-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      "no_hidden_retune_witness": { "status": "accepted", "rowId": "eq21-shear-rsd-no-hidden-retune-priority-source-control-0001", "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" }
     },
     "sharedKeys": [
-      { "key": "rho_NS", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      { "key": "n", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      { "key": "chi_sea", "status": "accepted", "value": 1.002, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      { "key": "Gamma_N", "status": "accepted", "value": 1.0000010100010202, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      { "key": "M_sea_ab", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      { "key": "rho_bar", "status": "accepted", "value": 0.05, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      { "key": "rho_A", "status": "accepted", "value": 0.25, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      { "key": "H_eff", "status": "accepted", "value": 3.424706202494149, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
-      { "key": "a_eff", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" }
+      { "key": "rho_NS", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "n", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "chi_sea", "status": "accepted", "value": 1.002, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "Gamma_N", "status": "accepted", "value": 1.0000010100010202, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "M_sea_ab", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "rho_bar", "status": "accepted", "value": 0.05, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "rho_A", "status": "accepted", "value": 0.25, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "H_eff", "status": "accepted", "value": 3.424706202494149, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
+      { "key": "a_eff", "status": "accepted", "value": 1, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" }
     ],
     "model": {
-      "shearRsdKernel": { "status": "accepted", "A_shear": 0.5, "bias_eff": 1.4, "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md" },
+      "shearRsdKernel": { "status": "accepted", "A_shear": 0.5, "bias_eff": 1.4, "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md" },
       "samples": [
         { "sampleId": "SR_L40_z1_k0p02", "lensingSampleId": "L40_z1_k0p02", "matterSampleId": "k0p02_z1", "benchmark": { "shear_band_power_observed": 0.013861588025376138, "shear_sigma": 0.0013861588025376138, "f_sigma8_z_observed": 0.38520379395186893, "f_sigma8_sigma": 0.03852037939518689, "beta_RSD_observed": 0.6180154402322824, "beta_sigma": 0.06180154402322824 } },
         { "sampleId": "SR_L200_z1_k0p1", "lensingSampleId": "L200_z1_k0p1", "matterSampleId": "k0p1_z1", "benchmark": { "shear_band_power_observed": 0.00264985151838017, "shear_sigma": 0.000264985151838017, "f_sigma8_z_observed": 0.38520379395186893, "f_sigma8_sigma": 0.03852037939518689, "beta_RSD_observed": 0.6180154402322824, "beta_sigma": 0.06180154402322824 } },

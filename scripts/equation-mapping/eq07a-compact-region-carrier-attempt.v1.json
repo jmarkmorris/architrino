@@ -18,7 +18,7 @@
   "carrier": {
     "id": "Theta_cs_07A_compact_region_attempt_0001",
     "status": "attempt",
-    "sourcePath": "reference/priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md"
+    "sourcePath": "reference/priorities/mapping-equations/analysis/eq-07a-compact-star-support-collapse-scale-residual.md"
   },
   "packet": {
     "id": "Theta_cs_07A_compact_region_attempt_0001",
@@ -30,87 +30,87 @@
       "standard_benchmark_row": {
         "status": "attempt",
         "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-07a-compact-star-support-collapse-scale-residual.md"
       },
       "electron_inventory_row": {
         "status": "attempt",
         "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-07a-compact-star-support-collapse-scale-residual.md"
       },
       "fermi_state_counting_row": {
         "status": "attempt",
         "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-07a-compact-star-support-collapse-scale-residual.md"
       },
       "pressure_regime_row": {
         "status": "attempt",
         "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-07a-compact-star-support-collapse-scale-residual.md"
       },
       "composition_row": {
         "status": "attempt",
         "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-07a-compact-star-support-collapse-scale-residual.md"
       },
       "compact_region_record": {
         "status": "attempt",
         "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-07a-compact-star-support-collapse-scale-residual.md"
       },
       "material_scale_compression_row": {
         "status": "attempt",
         "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-07a-compact-star-support-collapse-scale-residual.md"
       },
       "native_pressure_packing_row": {
         "status": "attempt",
         "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-07a-compact-star-support-collapse-scale-residual.md"
       },
       "neutron_star_radial_support_row": {
         "status": "attempt",
         "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-07a-compact-star-support-collapse-scale-residual.md"
       },
       "reaction_inventory_row": {
         "status": "attempt",
         "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-07a-compact-star-support-collapse-scale-residual.md"
       },
       "compact_region_conservation_ledger": {
         "status": "attempt",
         "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-07a-compact-star-support-collapse-scale-residual.md"
       },
       "metric_compliance_row": {
         "status": "attempt",
         "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-07a-compact-star-support-collapse-scale-residual.md"
       },
       "eos_projection": {
         "status": "attempt",
         "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-07a-compact-star-support-collapse-scale-residual.md"
       },
       "metric_projection": {
         "status": "attempt",
         "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-07a-compact-star-support-collapse-scale-residual.md"
       },
       "source_provenance": {
         "status": "attempt",
         "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-07a-compact-star-support-collapse-scale-residual.md"
       },
       "no_hidden_retune_witness": {
         "status": "attempt",
         "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-07a-compact-star-support-collapse-scale-residual.md"
       },
       "level_separation_witness": {
         "status": "attempt",
         "carrierId": "Theta_cs_07A_compact_region_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-07a-compact-star-support-collapse-scale-residual.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-07a-compact-star-support-collapse-scale-residual.md"
       }
     },
     "variables": {

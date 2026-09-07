@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 import { checkDeploymentBudget } from "../scripts/check-deployment-budget.mjs";
 
 const ROOT = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
-const CONTRACT_PATH = "reference/priorities/aaa-operations/deployment-budget.v1.json";
+const CONTRACT_PATH = "reference/priorities/aaa-operations/contracts/deployment-budget.v1.json";
 const contract = JSON.parse(fs.readFileSync(path.join(ROOT, CONTRACT_PATH), "utf8"));
 
 test("Borg consumes the measured deployment budget while EOM throughput stays separate", () => {

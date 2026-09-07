@@ -105,8 +105,8 @@ def plan_fixture(root):
         acceptanceOwner=b(s.OWNER,'c'*64),priorCoverClosure=s.closure_premise(),runtimeBindings=[b(str(root/'python'),'d'*64)],
         operationalBindings=[b(str(root/'node'),'e'*64)],limits=dict(w.LIMITS))
     plan['historicalDocumentRoutes']=[dict(original=dict(path=s.PREFIX+name,sha256=h,bytes=n),physical=dict(path=str(root/('archive-'+h+'.json')),sha256=h,bytes=n)) for name,h,n in (
-        ('2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853',16985),
-        ('historical-resource-plan.json','46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021))]
+        ('2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc',16985),
+        ('historical-resource-plan.json','2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40',13021))]
     return plan
 
 
@@ -409,7 +409,7 @@ class HistoricalChainTests(unittest.TestCase):
             def binding(self):return self.b
         files={role:File(dict(path=str(root/role),sha256='a'*64,bytes=1)) for role in s.ORIGINAL}
         files['fullPlan']=File(sources[-1]);files['fullEntry'].data=b'entry'
-        contract=dict(declarationSha256='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4',
+        contract=dict(declarationSha256='520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba',
             verifierSha256=s.DEPENDENCIES['independentRootReference'][1],scope='full',subjectSourceBindings=sources[193:197],runtimeBindings=sources[35:193])
         plan=dict(schema='braid-program/f6c-cached-root-cover-full-launch.v1',scope='full',resourcePlan=sources[8],comparisonContract=contract,
             operationalBindings=sources[:6],controlBindings=sources[6:8],python='x',pythonRealPath='x',git='x',node='x')

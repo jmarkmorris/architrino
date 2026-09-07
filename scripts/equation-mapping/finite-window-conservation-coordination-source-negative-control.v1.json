@@ -20,47 +20,47 @@
       "branch_chart": {
         "id": "branch_chart_coordination_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-01-05-root-conservation-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-01-05-root-conservation-packet.md"
       },
       "active_root_ledger": {
         "id": "active_root_ledger_coordination_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-01-05-root-conservation-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-01-05-root-conservation-packet.md"
       },
       "force_row": {
         "id": "force_row_coordination_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-01-05-root-conservation-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-01-05-root-conservation-packet.md"
       },
       "action_or_work_route": {
         "id": "action_or_work_route_coordination_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-01-05-root-conservation-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-01-05-root-conservation-packet.md"
       },
       "wake_charge_route": {
         "id": "wake_charge_route_coordination_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-01-05-root-conservation-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-01-05-root-conservation-packet.md"
       },
       "event_ledger": {
         "id": "event_ledger_coordination_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-01-05-root-conservation-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-01-05-root-conservation-packet.md"
       },
       "boundary_flux": {
         "id": "boundary_flux_coordination_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-01-05-root-conservation-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-01-05-root-conservation-packet.md"
       },
       "same_root_checksum": {
         "id": "same_root_checksum_coordination_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-01-05-root-conservation-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-01-05-root-conservation-packet.md"
       },
       "no_double_count_witness": {
         "id": "no_double_count_witness_coordination_source_negative_control",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-01-05-root-conservation-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-01-05-root-conservation-packet.md"
       }
     },
     "rootSignatures": {

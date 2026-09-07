@@ -150,7 +150,7 @@
       "elasticClassId": "elastic_ep",
       "inelasticLeakage": 0.0005,
       "retainedStatus": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-14-30-31-finite-window-w-source-field-map.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-14-30-31-finite-window-w-source-field-map.md"
     }
   }
 }

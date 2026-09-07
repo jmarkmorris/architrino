@@ -39,9 +39,9 @@ export const LIMITS=Object.freeze({inclusiveMilliseconds:1800000,aggregateRSSByt
   outputFiles:512,serialWorkers:1,startFreePercent:40,startDiskBytes:68719476736,
   stopFreePercent:20,stopDiskBytes:17179869184});
 export const PINS=Object.freeze({
-  helpers:['scripts/eom/launch-prescribed-response-pilot.mjs','a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9'],
-  outer:['scripts/eom/launch-abc-enclosed-root-pilot.mjs','18cc7d6a646d1bad55fbc02e3b8eb09223f7098c9940360998ad6a6a04e1d2c8'],
-  diagnostics:['scripts/eom/launch-f6c-emission-refinement-pilot.mjs','89b23af09f57aa50e3ebfc0780189f2f0d1a409a7e13004af0cb48167894b944'],
+  helpers:['scripts/eom/launch-prescribed-response-pilot.mjs','7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7'],
+  outer:['scripts/eom/launch-subfield-circular-root-pilot.mjs','3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a'],
+  diagnostics:['scripts/eom/launch-f6c-emission-refinement-pilot.mjs','7a1f5571827225d1529f73a3f0b905be75e81e2f7d11c2670b697e0599d65e71'],
 });
 const check=(ok,message)=>{if(!ok)throw Error(message);};
 const sha=raw=>createHash('sha256').update(raw).digest('hex');

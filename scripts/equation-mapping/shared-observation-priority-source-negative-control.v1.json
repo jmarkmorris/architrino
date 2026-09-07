@@ -14,7 +14,7 @@
     "id": "Theta_obs_shared_observation_priority_source_negative_control_0001",
     "rowId": "theta_obs_theta_src_shared_observation_priority_source_negative_control_row",
     "status": "accepted",
-    "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md",
+    "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md",
     "sourceAttempt": {
       "expectedSummaryBlocker": "missing_accepted_theta_obs",
       "expectedFocusedThetaSrcBlocker": "missing_accepted_theta_src"
@@ -24,7 +24,7 @@
         "id": "Theta_src_shared_observation_priority_source_negative_control_0001",
         "rowId": "theta_src_shared_observation_priority_source_negative_control_row",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md",
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md",
         "sourceKeys": {
           "BBN": [
             "W_src",
@@ -76,25 +76,25 @@
         "id": "Theta_read_shared_observation_priority_source_negative_control_0001",
         "rowId": "theta_read_theta_src_shared_observation_priority_source_negative_control_row",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "theta_therm_prov": {
         "id": "Theta_therm_prov_shared_observation_priority_source_negative_control_0001",
         "rowId": "theta_therm_prov_theta_src_shared_observation_priority_source_negative_control_row",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "theta_gal": {
         "id": "Theta_gal_shared_observation_priority_source_negative_control_0001",
         "rowId": "theta_gal_theta_src_shared_observation_priority_source_negative_control_row",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md"
       },
       "event_ledger": {
         "id": "L_EpJ_obs_shared_observation_priority_source_negative_control_0001",
         "rowId": "event_ledger_theta_src_shared_observation_priority_source_negative_control_row",
         "status": "accepted",
-        "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md"
       }
     },
     "frwHandoff": {
@@ -102,21 +102,21 @@
       "rowId": "frw_handoff_theta_src_shared_observation_priority_source_negative_control_row",
       "status": "accepted",
       "residual": 0,
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md"
     },
     "thermalProvenanceLedger": {
       "id": "R_therm_prov_shared_observation_priority_source_negative_control_0001",
       "rowId": "thermal_provenance_ledger_theta_src_shared_observation_priority_source_negative_control_row",
       "status": "accepted",
       "residual": 0,
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md"
     },
     "noHiddenRetuneWitness": {
       "id": "S_retune_obs_shared_observation_priority_source_negative_control_0001",
       "rowId": "no_hidden_retune_theta_src_shared_observation_priority_source_negative_control_row",
       "status": "accepted",
       "residual": 0,
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md"
     }
   },
   "projections": {
@@ -134,7 +134,7 @@
         "Y_p",
         "H_eff"
       ],
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md"
     },
     "CMB": {
       "id": "Pi_CMB_shared_observation_priority_source_negative_control_0001",
@@ -151,7 +151,7 @@
         "H_eff",
         "a_eff"
       ],
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md"
     },
     "growth": {
       "id": "Pi_growth_shared_observation_priority_source_negative_control_0001",
@@ -169,7 +169,7 @@
         "H_eff",
         "a_eff"
       ],
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md"
     },
     "RAR": {
       "id": "Pi_RAR_shared_observation_priority_source_negative_control_0001",
@@ -185,14 +185,14 @@
         "rho_bar",
         "rho_A"
       ],
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md"
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md"
     }
   },
   "sharedKeys": [
     {
       "key": "rho_NS",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md",
       "projectionValues": {
         "BBN": 1,
         "CMB": 1,
@@ -203,7 +203,7 @@
     {
       "key": "n",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md",
       "projectionValues": {
         "BBN": 1,
         "CMB": 1,
@@ -214,7 +214,7 @@
     {
       "key": "chi_sea",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md",
       "projectionValues": {
         "BBN": 1,
         "CMB": 1,
@@ -225,7 +225,7 @@
     {
       "key": "Gamma_N",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md",
       "projectionValues": {
         "BBN": 0.1,
         "CMB": 0.1,
@@ -236,7 +236,7 @@
     {
       "key": "u_sea",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md",
       "projectionValues": {
         "BBN": 0,
         "CMB": 0,
@@ -247,7 +247,7 @@
     {
       "key": "M_sea_ab",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md",
       "projectionValues": {
         "BBN": 1,
         "CMB": 1,
@@ -258,7 +258,7 @@
     {
       "key": "rho_bar",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md",
       "projectionValues": {
         "BBN": 0.05,
         "CMB": 0.05,
@@ -269,7 +269,7 @@
     {
       "key": "rho_A",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md",
       "projectionValues": {
         "BBN": 0.25,
         "CMB": 0.25,
@@ -280,7 +280,7 @@
     {
       "key": "eta",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md",
       "projectionValues": {
         "BBN": 6.1e-10,
         "CMB": 6.1e-10,
@@ -291,7 +291,7 @@
     {
       "key": "N_eff",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md",
       "projectionValues": {
         "BBN": 3.046,
         "CMB": 3.046,
@@ -302,7 +302,7 @@
     {
       "key": "Y_p",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md",
       "projectionValues": {
         "BBN": 0.245,
         "CMB": 0.245,
@@ -313,7 +313,7 @@
     {
       "key": "H_eff",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md",
       "projectionValues": {
         "BBN": 70,
         "CMB": 70,
@@ -324,7 +324,7 @@
     {
       "key": "a_eff",
       "status": "accepted",
-      "sourcePath": "reference/priorities/mapping-equations/eq-21-23-32-shared-observation-residual-packet.md",
+      "sourcePath": "reference/priorities/mapping-equations/analysis/eq-21-23-32-shared-observation-residual-packet.md",
       "projectionValues": {
         "BBN": 1,
         "CMB": 1,

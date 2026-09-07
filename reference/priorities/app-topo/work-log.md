@@ -1,6 +1,6 @@
 # Wake Topography App Work Log
 
-This file is the chronological work log for the `app-topo` priority area. Use [priorities.md](priorities.md) for strategy, [work-queue.md](work-queue.md) for accepted executable work, [requirements-and-design.md](requirements-and-design.md) for the current application boundary, and [brainstorming.md](brainstorming.md) for provisional ideas.
+This file is the chronological work log for the `app-topo` priority area. Use [priorities.md](priorities.md) for strategy, [work-queue.md](work-queue.md) for accepted executable work, [requirements-and-design.md](contracts/requirements-and-design.md) for the current application boundary, and [brainstorming.md](brainstorming.md) for provisional ideas.
 
 ## Log Entries
 
@@ -59,7 +59,7 @@ Plainly: Topo now has one orders-of-magnitude architecture. The slider reveals m
 
 ### 2026-08-02 — TOPO-002 Interaction And Color Contract Closed
 
-- Added [the TOPO-002 contract](topo-interaction-and-color-contract-v1.md) and an explicitly labeled synthetic interaction preview at `topo.html`.
+- Added [the TOPO-002 contract](contracts/topo-interaction-and-color-contract-v1.md) and an explicitly labeled synthetic interaction preview at `topo.html`.
 - Retained `Linear` and `Signed log2` field-color transforms, with `Signed log2` as the interim default while the independent contour-spacing semantics remain open. The fixed reference scale is $z_*=4$ with a symmetric ordinary display clip at $|z|=64$.
 - Kept scenario and $\beta$ in raw-frame identity while contour density, contour visibility, transform, and panel state remain display-only state.
 - Bound Topo to the shared semantic shell tokens, shared panel icon, existing Applications-return behavior, global search runtime, keyboard focus, reduced-motion treatment, and responsive $58$-pixel collapse rail.
@@ -91,12 +91,12 @@ Plainly: the app now has a fixed interface and a safe preview, while the real sc
 
 ### 2026-08-02 — TOPO-001 Observable And Reference Geometry Closed
 
-- Added [the TOPO-001 contract](topo-observable-and-reference-geometry-v1.md) for the prescribed uniformly translating single-source geometry with $c_f=1$.
+- Added [the TOPO-001 contract](contracts/topo-observable-and-reference-geometry-v1.md) for the prescribed uniformly translating single-source geometry with $c_f=1$.
 - Derived the unique positive causal root for every off-source sample at $0\leq\beta<1$, together with $D_t=\lambda_\beta/\tau_\beta$ and $W^{\mathrm{acc}}=\tau_\beta/\lambda_\beta$.
 - Selected `Signed ordinary wake intensity`, $\mathcal I_q^{\mathrm{ord}}=\varsigma_q/(\tau_\beta\lambda_\beta)$, as the first raw scalar and explicitly did not identify it as a scalar potential or receiver acceleration.
 - Added the radial $\beta=0$ control, exact equal-distance leading/trailing samples at two regular nonzero speeds, polarity reversal, and the exact $\beta=1$ split between the ordinary trailing half-plane, rootless leading/transverse region, and degenerate source-point family.
 - Defined distinct ordinary, singular, unavailable, nonordinary, unresolved, and display-clipped result states plus operator-checkable falsifiers.
-- Removed TOPO-001 from the live queue. TOPO-002 is now the top item; the reference surface remains blocked on that display contract. A future true scalar-Potential mode remains routed through [AAA Core Potential](../app-aaa-core/potential-v1.md).
+- Removed TOPO-001 from the live queue. TOPO-002 is now the top item; the reference surface remains blocked on that display contract. A future true scalar-Potential mode remains routed through [AAA Core Potential](../app-aaa-core/contracts/potential-v1.md).
 
 Plainly: the first map now has one exact raw meaning and exact endpoint behavior. The open potential question remains separate instead of being hidden inside the wake-intensity label.
 

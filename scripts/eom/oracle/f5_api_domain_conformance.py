@@ -32,7 +32,7 @@ EXPECTED_SEGMENTS = 12384
 ORACLE_HASHES = {
     "scripts/eom/oracle/decimal_interval.py": "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a",
     "scripts/eom/oracle/f5_actual_cubic_conformance.py": "4a90227cd79a4acfe319c723a05b711df1947953cc229f87114c4bc7babf6e09",
-    "scripts/eom/oracle/f5_history_manifest_conformance.py": "7441fa7069b960e4bbce86267dc33348f21078a9ae5635f8724999de1751738c",
+    "scripts/eom/oracle/f5_history_manifest_conformance.py": "c34cd3f368398fd1ecd3a227c8026508efd319e9219b0ae8819eb4dfab646c74",
 }
 SUBJECT_API_HASHES = {
     "src/eom/native/eom_f5_enclosed_root_cli.cpp": "9f7661f4000174d631d4c60f7078e124d77ae9b2ddba6af36197f13096095f81",

@@ -39,119 +39,119 @@
         "rowId": "theta-gamma-packet-W-gamma-0-source-candidate-row",
         "status": "accepted",
         "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "photon_branch_packet": {
         "id": "P_gamma_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
         "rowId": "photon-branch-packet-W-gamma-0-source-candidate-row",
         "status": "accepted",
         "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "gate_a_kinematics_row": {
         "id": "gate_a_kinematics_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
         "rowId": "gate-a-kinematics-W-gamma-0-source-candidate-row",
         "status": "accepted",
         "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "gate_b_transverse_row": {
         "id": "gate_b_transverse_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
         "rowId": "gate-b-transverse-W-gamma-0-source-candidate-row",
         "status": "accepted",
         "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "gate_c_event_routing_row": {
         "id": "gate_c_event_routing_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
         "rowId": "gate-c-event-routing-W-gamma-0-source-candidate-row",
         "status": "accepted",
         "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "emission_source_row": {
         "id": "emission_source_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
         "rowId": "emission-source-W-gamma-0-source-candidate-row",
         "status": "accepted",
         "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "path_history_transfer_row": {
         "id": "path_history_transfer_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
         "rowId": "path-history-transfer-W-gamma-0-source-candidate-row",
         "status": "accepted",
         "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "receiver_coupling_row": {
         "id": "receiver_coupling_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
         "rowId": "receiver-coupling-W-gamma-0-source-candidate-row",
         "status": "accepted",
         "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "energy_frequency_row": {
         "id": "energy_frequency_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
         "rowId": "energy-frequency-W-gamma-0-source-candidate-row",
         "status": "accepted",
         "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "null_eikonal_row": {
         "id": "null_eikonal_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
         "rowId": "null-eikonal-W-gamma-0-source-candidate-row",
         "status": "accepted",
         "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "helicity_ledger_row": {
         "id": "helicity_ledger_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
         "rowId": "helicity-ledger-W-gamma-0-source-candidate-row",
         "status": "accepted",
         "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "event_balance_row": {
         "id": "event_balance_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
         "rowId": "event-balance-W-gamma-0-source-candidate-row",
         "status": "accepted",
         "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "source_depletion_row": {
         "id": "source_depletion_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
         "rowId": "source-depletion-W-gamma-0-source-candidate-row",
         "status": "accepted",
         "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "recoil_wake_remnant_row": {
         "id": "recoil_wake_remnant_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
         "rowId": "recoil-wake-remnant-W-gamma-0-source-candidate-row",
         "status": "accepted",
         "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "noether_sea_path_row": {
         "id": "noether_sea_path_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
         "rowId": "noether-sea-path-W-gamma-0-source-candidate-row",
         "status": "accepted",
         "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "source_provenance": {
         "id": "source_provenance_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
         "rowId": "source-provenance-W-gamma-0-source-candidate-row",
         "status": "accepted",
         "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       },
       "no_hidden_retune_witness": {
         "id": "no_hidden_retune_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
         "rowId": "no-hidden-retune-W-gamma-0-source-candidate-row",
         "status": "accepted",
         "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-theta-gamma-packet-source-shell.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-theta-gamma-packet-source-shell.md"
       }
     },
     "photonPacket": {

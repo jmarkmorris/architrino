@@ -7,10 +7,18 @@ import { fileURLToPath } from "node:url";
 
 const ROOT_DIR = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 
+// Failure handling (OPS-020 question 1, accepted 2026-09-06): every check runs
+// and failures are summarized at the end with a non-zero exit, so one stale
+// receipt cannot hide the result of every later check. A check marked
+// `halts: true` is a precondition whose output later checks consume; its
+// failure still stops the run, because everything after it would report
+// cascade noise rather than findings. A check marked `reporting: true` prints
+// its result but does not affect the exit status (OPS-022, until promoted).
 const CHECKS = [
   {
     name: "Prepare ignored runtime assets from canonical sources",
     args: ["scripts/prepare-runtime-assets.mjs", "--write"],
+    halts: true,
   },
   {
     name: "Verify Borg registry and record byte identities",
@@ -136,6 +144,11 @@ const CHECKS = [
     name: "Test reader-facing publication boundary",
     args: ["--test", "tests/reader-facing-publication-boundary.test.js"],
   },
+  {
+    name: "Sweep test files outside the declared slow list (reporting until promoted)",
+    args: ["scripts/run-test-sweep.mjs"],
+    reporting: true,
+  },
 ];
 
 function formatDuration(ms) {
@@ -149,13 +162,26 @@ function formatDuration(ms) {
 }
 
 const suiteStartedAt = performance.now();
+const failures = [];
+const reportingFailures = [];
 
-for (const check of CHECKS) {
-  console.log(`[content-integrity] ${check.name}`);
+// Environment for child checks. Git exports GIT_DIR, GIT_WORK_TREE, and
+// GIT_INDEX_FILE to hooks; a child that runs `git init` or `git config` in a
+// temporary directory would otherwise act on this repository.
+const REPO_SCOPED_GIT_VARIABLES = ["GIT_DIR", "GIT_WORK_TREE", "GIT_INDEX_FILE", "GIT_PREFIX", "GIT_COMMON_DIR", "GIT_OBJECT_DIRECTORY", "GIT_ALTERNATE_OBJECT_DIRECTORIES", "GIT_NAMESPACE"];
+function childEnvironment(env = process.env) {
+  const child = { ...env };
+  for (const name of REPO_SCOPED_GIT_VARIABLES) delete child[name];
+  return child;
+}
+
+for (const [index, check] of CHECKS.entries()) {
+  const label = `${index + 1}/${CHECKS.length} ${check.name}`;
+  console.log(`[content-integrity] ${label}`);
   const checkStartedAt = performance.now();
   const result = spawnSync(process.execPath, check.args, {
     cwd: ROOT_DIR,
-    env: process.env,
+    env: childEnvironment(),
     stdio: "inherit",
   });
   const duration = formatDuration(performance.now() - checkStartedAt);
@@ -165,10 +191,38 @@ for (const check of CHECKS) {
   }
   if (result.status !== 0) {
     const detail = result.signal ? `signal ${result.signal}` : `exit ${result.status ?? 1}`;
+    const record = { label, detail, duration };
+    if (check.reporting) {
+      console.error(`[content-integrity] reported (does not affect exit status): ${check.name} (${detail}, ${duration})`);
+      reportingFailures.push(record);
+      continue;
+    }
     console.error(`[content-integrity] failed: ${check.name} (${detail}, ${duration})`);
-    process.exit(result.status ?? 1);
+    failures.push(record);
+    if (check.halts) {
+      console.error(`[content-integrity] halting: later checks consume this step's output`);
+      process.exit(result.status ?? 1);
+    }
+    continue;
   }
   console.log(`[content-integrity] passed: ${check.name} (${duration})`);
 }
 
-console.log(`[content-integrity] all checks passed (${formatDuration(performance.now() - suiteStartedAt)})`);
+const total = formatDuration(performance.now() - suiteStartedAt);
+
+if (reportingFailures.length > 0) {
+  console.error(`[content-integrity] ${reportingFailures.length} reporting-only check(s) failed (not gating):`);
+  for (const failure of reportingFailures) {
+    console.error(`[content-integrity]   - ${failure.label} (${failure.detail}, ${failure.duration})`);
+  }
+}
+
+if (failures.length > 0) {
+  console.error(`[content-integrity] ${failures.length} of ${CHECKS.length} checks failed (${total}), in run order; the first is the likeliest root:`);
+  for (const failure of failures) {
+    console.error(`[content-integrity]   - ${failure.label} (${failure.detail}, ${failure.duration})`);
+  }
+  process.exit(1);
+}
+
+console.log(`[content-integrity] all checks passed (${total})`);

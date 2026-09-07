@@ -209,7 +209,7 @@ async function sha256Text(value, cryptoLike) {
 }
 
 export async function loadBorgScientificStatus({ fetchLike, coordinates, identity,
-  projectionUrl = "./reference/priorities/braid-program/braid-candidate-adjudication-projection.v1.json",
+  projectionUrl = "./reference/priorities/braid-program/contracts/braid-candidate-adjudication-projection.v1.json",
   cryptoLike = globalThis.crypto } = {}) {
   try {
     if (typeof fetchLike !== "function") throw new Error("projection loading requires fetch()");

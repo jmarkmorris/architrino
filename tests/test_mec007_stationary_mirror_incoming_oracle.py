@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ORACLE = ROOT / "scripts/eom/stationary-mirror-incoming-oracle.py"
 RECEIPT = (
     ROOT
-    / "reference/priorities/master-equation-closure"
+    / "reference/priorities/master-equation-closure/evidence"
     / "mec-007-stationary-mirror-incoming-oracle.v1.json"
 )
 

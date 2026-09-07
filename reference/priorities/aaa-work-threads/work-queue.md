@@ -22,6 +22,7 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 10. `full_ppn_completion` — Status: `Deferred / blocked`.
 11. `horizon_diagnostics_consumer` — Status: `Deferred / blocked`.
 12. `speed_symbol_consolidation` — Status: `Deferred / blocked`.
+13. `data_file_layout_completion` — Owner: this queue. Status: `In progress`.
 
 ## In progress
 
@@ -38,6 +39,13 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 - **Request / acceptance:** Close the causal wake update, finite coincident same-transmitter continuation, and all three conserved accounts on the same update.
 - **Evidence / blocker:** Master-Equation Closure owns the derivation and joint acceptance.
 - **Completion:** The owner queue records a jointly accepted update and accounts, or a decisive no-go.
+
+### AWT-015 — Data-file layout completion
+
+- **Status:** In progress
+- **Request / acceptance:** File the 32 machine-readable data files still at the top level of nine active lanes into their layout subdirectories, updating every consumer that references them by path. Scope, destinations, consumers, hazards, and validation are in [campaigns/data-file-layout-completion.md](campaigns/data-file-layout-completion.md).
+- **Evidence / blocker:** Both stages of the filing are complete, recorded in [the work log](work-log.md). No data file remains at the top level of an active lane and no reference to a former path survives. What keeps this item open is the residual described in that entry: the layout pass rewrote 4,478 links, which changed the bytes of documents that other files bind by pinned SHA-256, and those pins break on a link edit as readily as on a substantive one. Three were traced, two repaired after verifying substance, and one left for an explicit analytical coverage impact review. Eight further content-digest failures were observed in a partial sweep of 120 of 318 Node test files; 198 files are unswept.
+- **Completion:** Every content-digest pin affected by the layout pass is resolved, each by verifying the bound document's substance before refreshing its digest, or by the review its gate requires. The full Node and Python suites pass on a machine with the shared venv, and the content-integrity gate passes apart from the separately tracked [OPS-017](../aaa-operations/work-queue.md#ops-017--feedback-app-resource-closure-adjudication).
 
 ## Deferred / blocked
 

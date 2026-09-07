@@ -6,7 +6,7 @@
   "carrier": {
     "status": "attempt",
     "id": "theta_nu_ex_attempt_0001",
-    "sourcePath": "reference/priorities/mapping-equations/eq-28a-path-frequency-exchange.md"
+    "sourcePath": "reference/priorities/mapping-equations/analysis/eq-28a-path-frequency-exchange.md"
   },
   "tolerances": {
     "carrier": 1e-12,
@@ -32,17 +32,17 @@
       "path_frequency_exchange_carrier": {
         "status": "attempt",
         "carrierId": "theta_nu_ex_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-28a-path-frequency-exchange.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-28a-path-frequency-exchange.md"
       },
       "theta_gamma_packet": {
         "status": "attempt",
         "carrierId": "theta_nu_ex_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-12-16a-photon-quantum-gauge-neutrino-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-12-16a-photon-quantum-gauge-neutrino-packet.md"
       },
       "photon_gate_a_b_handoff": {
         "status": "attempt",
         "carrierId": "theta_nu_ex_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-26-31-observation-first-precision-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-26-31-observation-first-precision-packet.md"
       },
       "electron_medium_population": {
         "status": "attempt",
@@ -57,7 +57,7 @@
       "exchange_event_ledger": {
         "status": "attempt",
         "carrierId": "theta_nu_ex_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-28a-path-frequency-exchange.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-28a-path-frequency-exchange.md"
       },
       "inverse_compton_row": {
         "status": "attempt",
@@ -77,22 +77,22 @@
       "recoil_remnant_row": {
         "status": "attempt",
         "carrierId": "theta_nu_ex_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-26-31-observation-first-precision-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-26-31-observation-first-precision-packet.md"
       },
       "finite_window_thermal_record": {
         "status": "attempt",
         "carrierId": "theta_nu_ex_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-06-24-25-continuum-medium-thermo-packet.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-06-24-25-continuum-medium-thermo-packet.md"
       },
       "source_provenance": {
         "status": "attempt",
         "carrierId": "theta_nu_ex_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-28a-path-frequency-exchange.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-28a-path-frequency-exchange.md"
       },
       "no_hidden_retune_witness": {
         "status": "attempt",
         "carrierId": "theta_nu_ex_attempt_0001",
-        "sourcePath": "reference/priorities/mapping-equations/eq-28a-path-frequency-exchange.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-28a-path-frequency-exchange.md"
       }
     },
     "exchangeSegments": [

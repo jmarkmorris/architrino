@@ -117,7 +117,7 @@ test("the exact six-member orthogonal-plane weave seed is validated and routed f
   }
 
   const displayCatalog = readFileSync(new URL(
-    "../reference/priorities/braid-program/configuration-display-catalog.md",
+    "../reference/priorities/braid-program/configurations/configuration-display-catalog.md",
     import.meta.url,
   ), "utf8");
   assert.match(displayCatalog, /Six-member orthogonal-plane circular weave/);

@@ -16,7 +16,7 @@ export const LAUNCHER='scripts/eom/launch-f6c-acceleration-pilot.mjs';
 export const TESTS='tests/f6c-acceleration-pilot.test.js';
 export const PROCESS_TESTS='tests/f6c-acceleration-pilot-process.test.js';
 export const HELPERS='scripts/eom/launch-prescribed-response-pilot.mjs';
-export const OUTER='scripts/eom/launch-abc-enclosed-root-pilot.mjs';
+export const OUTER='scripts/eom/launch-subfield-circular-root-pilot.mjs';
 export const CONSUMER='scripts/eom/prepare-f6c-continuous-reception-acceleration.py';
 export const CONSUMER_TESTS='tests/test_f6c_continuous_reception_acceleration_preparation.py';
 export const DECLARATION='reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md';
@@ -24,8 +24,8 @@ export const CHECKER='scripts/eom/verify-f6c-continuous-reception-acceleration.p
 export const CHECKER_TESTS='tests/test_f6c_continuous_reception_acceleration.py';
 // Separately authored checker and controls, independently accepted before this
 // operational generation. No subject or mathematical reference is altered.
-export const CHECKER_SHA='cc26f5a45d0e09a472e3066d0d62ae8192492a7c3e0ab18a3658781a0274b299';
-export const CHECKER_TESTS_SHA='be741dccccd90c349849b19dc15df1acd4ea5752ec6f8a9e98e7ae14013c52c6';
+export const CHECKER_SHA='23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d';
+export const CHECKER_TESTS_SHA='13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed';
 export const LANE='.local-data/braid-analysis/f6c-continuous-reception-acceleration-20260827';
 export const SHARED_LOCK_LANE='.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827';
 export const SCOPE='cached-pilot-cell-0-range';
@@ -53,20 +53,20 @@ export const FIXED=Object.freeze([
   ['rows',base+'subject/rows.ndjson','786785b2597bcdf024e350ba89c129fb32115afed693169a6db3137c6bdca383'],
   ['pieces',base+'subject/pieces.ndjson','2c064a5956e7684868cbda7aa7e312ac609e07760bf67f1cf121c934d6d4c411'],
   ['priorPlan','reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json','5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86'],
-  ['priorClosureOwner','reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md','daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b'],
+  ['priorClosureOwner','reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md','8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378'],
   ['reference','scripts/eom/oracle/continuous_reception_acceleration.py','abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8'],
   ['referenceControls','tests/test_eom_continuous_reception_acceleration.py','26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'],
-  ['referenceProof','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md','c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f'],
-  ['memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'],
-  ['rootTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md','f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68'],
-  ['reconstructionTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md','6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936'],
+  ['referenceProof','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md','8d2c7819962db6bac0e1ea0939292992145dbe342a28b51928efb81e74478179'],
+  ['memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc'],
+  ['rootTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md','db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc'],
+  ['reconstructionTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md','710279f5c348a81fd36d58c6ca704730b3fa70da729ca30b9c92ae4e1cc6734b'],
 ].map(Object.freeze));
 export const PINS=Object.freeze({...Object.fromEntries(FIXED.map(([,p,h])=>[p,h])),
-  [CONSUMER]:'dca5f5b3b42b42347b0b6b49a8974663169171e2293c1eca9c4b4a8c7646a53e',
-  [CONSUMER_TESTS]:'616a4e9c464e95607140dd90b47a8288ae73183f74faa0cc5078b81b8c8767c8',
+  [CONSUMER]:'8fa7a73487a2658814dc130f3f6d0827bd4066bad23ab95bf88935b264efc618',
+  [CONSUMER_TESTS]:'45f40e2c6580fa09a614a471e7375615c8d54e3fc295a68dbdb8ad2167b7690b',
   [DECLARATION]:'3ef8fb9020bae71833b1e06a119672b49a4beb5395f697dcb3d037d088e7891e',
-  [OUTER]:'5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa',
-  [HELPERS]:'a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9',
+  [OUTER]:'3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a',
+  [HELPERS]:'7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7',
   [CHECKER]:CHECKER_SHA,[CHECKER_TESTS]:CHECKER_TESTS_SHA,
   '/usr/bin/memory_pressure':'a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56'});
 export const check=(ok,message)=>{if(!ok)throw new Error(message);};

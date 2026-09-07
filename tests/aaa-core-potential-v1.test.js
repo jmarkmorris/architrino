@@ -17,7 +17,7 @@ import {
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const CONTRACT = JSON.parse(fs.readFileSync(
-  path.join(ROOT, "reference/priorities/app-aaa-core/aaa-core-potential.v1.json"),
+  path.join(ROOT, "reference/priorities/app-aaa-core/contracts/aaa-core-potential.v1.json"),
   "utf8",
 ));
 

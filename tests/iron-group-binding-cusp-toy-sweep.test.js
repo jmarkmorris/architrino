@@ -14,6 +14,11 @@ import {
 const SCRIPT_PATH = fileURLToPath(
   new URL("../scripts/nuclear-atomic/iron-group-binding-cusp-toy-sweep.mjs", import.meta.url),
 );
+// Derived from this file's location so the expectation is portable; the provider's
+// resolved path is machine-specific and must not be asserted as a literal.
+const PROVIDER_PATH = fileURLToPath(
+  new URL("../scripts/spacetime/noether-sea-density-compression-provider.v1.json", import.meta.url),
+);
 
 const RELEASE_LEDGER_ROUTES = [
   "daughter_binding_rows",
@@ -1567,8 +1572,7 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
       reportSourceEvidence: {
         passed: true,
         reason: "source_file",
-        resolvedPath:
-          "/Users/markmorris/vibe/architrino/scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+        resolvedPath: PROVIDER_PATH,
       },
       providerObjectCheck: {
         passed: true,

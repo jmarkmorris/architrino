@@ -14,7 +14,7 @@
 - Statistical models should be built on `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, and the path-history/self-hit structure used there.
 - Ensemble and coarse-graining assumptions must remain consistent with `foundations/ontology.md` and `cosmology/cosmology-ontology.md` (absolute-state vs observer-level projection).
 - Branch statistics must respect retained-record fields from `noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md`: active causal-root ledger, finite memory depth, branch-Jacobian floor, inactive-root gap, Floquet gap, and event ledger.
-- Candidate status and persistence claims must follow `noether-braid/braid-analysis-methodology.md`, `noether-braid/braid-recovery-requirements.md`, `reference/priorities/braid-program/method.md`, and the accepted EOM solver evolution contract.
+- Candidate status and persistence claims must follow `noether-braid/braid-analysis-methodology.md`, `noether-braid/braid-recovery-requirements.md`, `reference/priorities/braid-program/contracts/method.md`, and the accepted EOM solver evolution contract.
 - Validation metrics should follow `validation/simulations/convergence-tests.md`, `validation/constraint-ledger.md`, and `validation/no-go-theorems.md`; legacy `$A_0$` protocols are not current program authority.
 
 **Core responsibilities**:

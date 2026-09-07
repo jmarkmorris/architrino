@@ -32,7 +32,7 @@ from dataclasses import dataclass
 from fractions import Fraction
 from types import MappingProxyType
 
-REQUIRED_REFERENCE_SHA='19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132'
+REQUIRED_REFERENCE_SHA='3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'
 DECLARATION_SHA='53f3398ba083218948c9efd93f10db09cbf5d617bc0270988f5adea24c48f037'
 IDS=('0+','0-','1+','1-','2+','2-','3+','3-')
 A,B=Fraction(-8),Fraction(-1,20)

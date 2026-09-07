@@ -12,10 +12,10 @@ import { LIBRARY_FACETS } from "../../src/apps/borg/library/BorgLibraryQuery.mjs
 import { BORG_ASSEMBLY_REGISTRY_SCHEMA, BORG_FACET_DESCRIPTOR_SCHEMA, BORG_TAXONOMY_GRAPH_SCHEMA, validateBorgAssemblyRegistry } from "../../src/apps/borg/registry/BorgAssemblyRegistryContract.mjs";
 
 const repoRoot = resolve(fileURLToPath(new URL("../../", import.meta.url)));
-const outputPath = resolve(repoRoot, "reference/priorities/app-borg/assembly-registry.v1.json");
-const classificationPath = resolve(repoRoot, "reference/priorities/app-borg/library-classifications.v4.json");
-const projectionPath = resolve(repoRoot, "reference/priorities/braid-program/braid-candidate-adjudication-projection.v1.json");
-const platonicPath = resolve(repoRoot, "reference/priorities/braid-program/borg-platonic-relationship-assignments.v1.json");
+const outputPath = resolve(repoRoot, "reference/priorities/app-borg/contracts/assembly-registry.v1.json");
+const classificationPath = resolve(repoRoot, "reference/priorities/app-borg/contracts/library-classifications.v4.json");
+const projectionPath = resolve(repoRoot, "reference/priorities/braid-program/contracts/braid-candidate-adjudication-projection.v1.json");
+const platonicPath = resolve(repoRoot, "reference/priorities/braid-program/configurations/borg-platonic-relationship-assignments.v1.json");
 const sha256 = (value) => createHash("sha256").update(value).digest("hex");
 const opaque = (prefix, domain, value) => `${prefix}-${sha256(`${domain}\0${value}`).slice(0, 32)}`;
 

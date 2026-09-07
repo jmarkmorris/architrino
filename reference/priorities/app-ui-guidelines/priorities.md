@@ -28,7 +28,7 @@ The top dynamic control-bar standard is accepted. The live audit now distinguish
 - Website Statistics, public feedback, Brand Visual Identity, and Solver GPU Harness conform to their accepted lightweight policies. Website Statistics is a public static operations utility under Archie Operations, outside product-application discovery, and states that its route provides no access control. The brand page retains its existing explicit project-return identity link, and the harness exposes a compact Applications action beside live status.
 - PDG Edit Review, generated reading copies, iOS reader mounts, and local children's-book review pages remain explicitly exempt; Assembly Explorer is a retired redirect.
 
-The [accepted runtime design](top-dynamic-control-bar-runtime-design-v1.md) is implemented by `TopDynamicControlBarRuntime.js`, its canonical stylesheet, and the thin standalone adapter. The main webapp and Animator were the first migrated surfaces, and the main reader matches Photon and Lorentz Geometry by keeping full-document, layout, print/PDF, and Close actions in its reading-surface header. The [UI-007 browser receipt](evidence/ui-007-top-dynamic-control-bar-browser-captures.2026-09-02.json) binds current desktop/mobile captures for those first two surfaces.
+The [accepted runtime design](contracts/top-dynamic-control-bar-runtime-design-v1.md) is implemented by `TopDynamicControlBarRuntime.js`, its canonical stylesheet, and the thin standalone adapter. The main webapp and Animator were the first migrated surfaces, and the main reader matches Photon and Lorentz Geometry by keeping full-document, layout, print/PDF, and Close actions in its reading-surface header. The [UI-007 browser receipt](evidence/ui-007-top-dynamic-control-bar-browser-captures.2026-09-02.json) binds current desktop/mobile captures for those first two surfaces.
 
 UI-005 browser receipts bind [Lattice Lab and Wake Topography](evidence/ui-005-batch-1-lattice-topo-browser-captures.2026-09-02.json), [Photon](evidence/ui-005-batch-2-photon-browser-captures.2026-09-02.json), [Causal Delay Feedback](evidence/ui-005-batch-3-causal-delay-feedback-browser-captures.2026-09-02.json), the [two lightweight headers](evidence/ui-005-batch-4-lightweight-headers-browser-captures.2026-09-02.json), [Greek Letter Match](evidence/ui-005-batch-5-greek-letter-match-browser-captures.2026-09-02.json), [Equation Mapping](evidence/ui-005-batch-6-equation-mapping-browser-captures.2026-09-02.json), [PDG Edit](evidence/ui-005-batch-7-pdgedit-browser-captures.2026-09-02.json), [Molecule](evidence/ui-005-batch-8-molecule-browser-captures.2026-09-02.json), and the final [Lorentz Geometry, Braid Search, Borg, and Borg Library batch](evidence/ui-005-batch-9-borg-braid-browser-captures.2026-09-02.json).
 
@@ -36,7 +36,7 @@ A follow-up visual audit found that the canonical runtime had created icon-shape
 
 UI-005 and UI-008 are verified, the superseded standalone stylesheet is deleted, and this owner has no remaining executable queue object.
 
-Local playback surfaces now share the accepted [transport-control standard](transport-controls.md) and icon runtime. This does not move those controls into the top dynamic control bar.
+Local playback surfaces now share the accepted [transport-control standard](contracts/transport-controls.md) and icon runtime. This does not move those controls into the top dynamic control bar.
 
 ## Objective
 
@@ -64,7 +64,7 @@ It has three action groups:
 | Discovery and documents | global `Search` and optional reading-surface entry; panel-local `Full document`, `Layout`, `Print` / `PDF`, and `Close` when applicable | Show only controls that the current surface can honor. Once a reading surface is open, its document operations belong in that surface's header rather than global chrome. |
 | App mode | optional `Settings`, optional `Edit`, optional app-specific mode entry | Use icon buttons for mode entry. Keep play, scrub, reset, solver, timeline, and canvas-local toggles near the affected work surface. |
 
-The detailed accepted standard and refreshed audit live in [top-dynamic-control-bar.md](top-dynamic-control-bar.md).
+The detailed accepted standard and refreshed audit live in [top-dynamic-control-bar.md](contracts/top-dynamic-control-bar.md).
 
 ## Product Boundaries
 
@@ -82,9 +82,9 @@ The locally ranked standardization tasks, dependencies, and acceptance boundarie
 
 | File | Role | Primary targets |
 | --- | --- | --- |
-| [top-dynamic-control-bar.md](top-dynamic-control-bar.md) | Candidate control-bar standard, current surface inventory, non-conformer migration plan, and validation expectations. | `index.html`, standalone app HTML entrypoints, app runtimes under `src/apps/`, and markdown display controls. |
-| [top-dynamic-control-bar-runtime-design-v1.md](top-dynamic-control-bar-runtime-design-v1.md) | Accepted canonical runtime, stylesheet, adapter, extension, focus, migration, and verification design. | `src/runtime/`, `src/apps/navigator/`, main scene and standalone composition roots. |
-| [transport-controls.md](transport-controls.md) | Accepted transport semantics, canonical glyph set, shared implementation path, and migration record. | Borg, Animator, Causal Delay Feedback, Lorentz Geometry, Photon, and `src/runtime/TransportControlIcons.js`. |
+| [top-dynamic-control-bar.md](contracts/top-dynamic-control-bar.md) | Candidate control-bar standard, current surface inventory, non-conformer migration plan, and validation expectations. | `index.html`, standalone app HTML entrypoints, app runtimes under `src/apps/`, and markdown display controls. |
+| [top-dynamic-control-bar-runtime-design-v1.md](contracts/top-dynamic-control-bar-runtime-design-v1.md) | Accepted canonical runtime, stylesheet, adapter, extension, focus, migration, and verification design. | `src/runtime/`, `src/apps/navigator/`, main scene and standalone composition roots. |
+| [transport-controls.md](contracts/transport-controls.md) | Accepted transport semantics, canonical glyph set, shared implementation path, and migration record. | Borg, Animator, Causal Delay Feedback, Lorentz Geometry, Photon, and `src/runtime/TransportControlIcons.js`. |
 
 ## Related Guidance
 

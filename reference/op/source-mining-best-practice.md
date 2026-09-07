@@ -17,7 +17,7 @@ Use the [Source Mining priority](../priorities/source-mining/priorities.md) for 
 - The [operator explanation standard](operator-explanation-standard.md) owns responses, questions, follow-up prompts, and live discussion capture; the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md) owns explanatory prose in both working records and reader-facing material.
 - This guide is the source-intake specialization. It owns source-family acquisition, traceability, source maps, source-specific prompt addenda, mining-history routing, creative reframing, and external technique anchors.
 - The `aaa-corpus-advancement` skill is a thin router. It points source-mining work here after loading the shared convergence campaign protocol.
-- Source-mining history remains in [source-mining-history.md](../priorities/source-mining/source-mining-history.md). This guide describes process; the history file records completed sources.
+- Source-mining history remains in [source-mining-history.md](../priorities/source-mining/analysis/source-mining-history.md). This guide describes process; the history file records completed sources.
 
 If instructions overlap, apply workspace policy first, then the shared convergence campaign protocol, then this source-intake guide.
 
@@ -58,7 +58,7 @@ This guide is a source-intake and source-processing practice. It is not another 
 
 ## Mining History
 
-The completed target list lives in [source-mining-history.md](../priorities/source-mining/source-mining-history.md). When the declared write scope permits, record a newly mined source or source family there with its identity, link or path, date, and disposition. An explicit no-file-edit pass supplies the proposed history entry in its response without writing it.
+The completed target list lives in [source-mining-history.md](../priorities/source-mining/analysis/source-mining-history.md). When the declared write scope permits, record a newly mined source or source family there with its identity, link or path, date, and disposition. An explicit no-file-edit pass supplies the proposed history entry in its response without writing it.
 
 ## Common Source-Mining Prompt Skeleton
 
@@ -448,7 +448,7 @@ Acquisition steps:
 4. Mark abandoned language and historical process as non-corpus unless it can be rewritten as current doctrine with a clear claim level.
 5. Route product or outlook material through priority-only planning unless it directly improves a current definition, equation, proof route, or reader-facing bridge.
 
-For legacy WordPress batches, use [legacy-architrino-wordpress-posts.jsonl](../priorities/source-mining/legacy-architrino-wordpress-posts.jsonl) as the durable Architrino post registry, [legacy-architrino-wordpress-library-posts.md](../priorities/source-mining/legacy-architrino-wordpress-library-posts.md) as the generated human-readable inventory, and [legacy-architrino-wordpress-mining-queue.txt](../priorities/source-mining/legacy-architrino-wordpress-mining-queue.txt) as the generated all-post URL view. The current authoritative discovery surfaces are the [Architrino home archive](https://architrino.wordpress.com/), [Posts History](https://architrino.wordpress.com/library/), year archive pages such as [2026](https://architrino.wordpress.com/2026/), and the public WordPress API. Crawl the archive links or API before assuming the registry is complete. Treat the WordPress site as an official historical archive while the subscription remains active, currently expected through approximately June 2029. As of June 28, 2026, WordPress tags are not used for source-mining completion; source-mining history records mining and incorporation events. If a session uses `${TMPDIR:-/tmp}/architrino-unmined-links.txt` or another scratch queue, treat it as a disposable working copy and resync durable inventory changes through the registry generator.
+For legacy WordPress batches, use [legacy-architrino-wordpress-posts.jsonl](../priorities/source-mining/archive-analysis/legacy-architrino-wordpress-posts.jsonl) as the durable Architrino post registry, [legacy-architrino-wordpress-library-posts.md](../priorities/source-mining/analysis/legacy-architrino-wordpress-library-posts.md) as the generated human-readable inventory, and [legacy-architrino-wordpress-mining-queue.txt](../priorities/source-mining/archive-analysis/legacy-architrino-wordpress-mining-queue.txt) as the generated all-post URL view. The current authoritative discovery surfaces are the [Architrino home archive](https://architrino.wordpress.com/), [Posts History](https://architrino.wordpress.com/library/), year archive pages such as [2026](https://architrino.wordpress.com/2026/), and the public WordPress API. Crawl the archive links or API before assuming the registry is complete. Treat the WordPress site as an official historical archive while the subscription remains active, currently expected through approximately June 2029. As of June 28, 2026, WordPress tags are not used for source-mining completion; source-mining history records mining and incorporation events. If a session uses `${TMPDIR:-/tmp}/architrino-unmined-links.txt` or another scratch queue, treat it as a disposable working copy and resync durable inventory changes through the registry generator.
 
 Deferred legacy material classes:
 

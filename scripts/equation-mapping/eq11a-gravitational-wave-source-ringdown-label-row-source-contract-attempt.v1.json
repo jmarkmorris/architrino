@@ -236,7 +236,7 @@
         "sourceWindowId": "GW150914-v3",
         "supportId": "H1L1_GWTC1_PE_v3",
         "eventId": "GWTC-1-confident/GW150914/v3",
-        "sourcePath": "reference/priorities/mapping-equations/eq-11a-gravitational-wave-source-recovery.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-11a-gravitational-wave-source-recovery.md"
       },
       "no_hidden_retune_witness": {
         "status": "attempt",
@@ -244,7 +244,7 @@
         "sourceWindowId": "GW150914-v3",
         "supportId": "H1L1_GWTC1_PE_v3",
         "eventId": "GWTC-1-confident/GW150914/v3",
-        "sourcePath": "reference/priorities/mapping-equations/eq-11a-gravitational-wave-source-recovery.md"
+        "sourcePath": "reference/priorities/mapping-equations/analysis/eq-11a-gravitational-wave-source-recovery.md"
       }
     },
     "binarySamples": [

@@ -4,7 +4,7 @@ Date: 2026-09-01
 Compatibility identifier: `aaa-corpus-advancement`
 Status: accepted representation handoff; no one-cycle evolution result
 Mathematical owner: [Planar Three-Binary Circular Balance-Ladder Evidence](2026-08-29-planar-three-binary-circular-balance-ladder.md)
-Queue owner: [Planar Common-Center Three-Binary Investigation Work Queue](../planar-three-binary-work-queue.md)
+Queue owner: [Planar Common-Center Three-Binary Investigation Work Queue](../campaigns/planar-three-binary-work-queue.md)
 
 ## Decision
 

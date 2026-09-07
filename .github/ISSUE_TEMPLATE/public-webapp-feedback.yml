@@ -53,11 +53,11 @@ body:
   - type: textarea
     id: sanitized_manifest
     attributes:
-      label: Sanitized reproducibility manifest
-      description: Paste the reviewed output from https://www.architrino.com/feedback.html. If copying is unavailable, state the browser family and major version, device class, operating-system family, and whether each public manifest was available.
+      label: Diagnostic details (optional)
+      description: If helpful, paste the diagnostic details you reviewed and copied from https://www.architrino.com/feedback.html. You can leave this field blank.
       render: json
     validations:
-      required: true
+      required: false
   - type: checkboxes
     id: public_confirmation
     attributes:

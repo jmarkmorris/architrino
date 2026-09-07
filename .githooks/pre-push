@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Git exports GIT_DIR and GIT_WORK_TREE to hooks when it was invoked with
+# --git-dir/--work-tree or with GIT_DIR set. Any `git init` or `git config` run
+# in another directory by the checks below would then act on THIS repository
+# (measured 2026-09-06: test fixtures rewrote user.name and core.hooksPath).
+unset GIT_DIR GIT_WORK_TREE
+
 origin_main_oid="$(git rev-parse --verify refs/remotes/origin/main 2>/dev/null || true)"
 policy_output=""
 if policy_output="$(
