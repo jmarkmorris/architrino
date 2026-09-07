@@ -1,0 +1,56 @@
+Known cases passed before target inventory.
+Existing binding API known cases passed: scripts/eom/run-prescribed-response-pilot.mjs
+Existing binding API known cases passed: scripts/eom/run-f6c-root-cover-pilot.mjs
+Existing binding API known cases passed: scripts/eom/run-f6c-cached-root-cover-pilot.mjs
+Existing binding API known cases passed: scripts/eom/run-f6c-cached-root-cover-full.mjs
+Existing binding API known cases passed: scripts/eom/run-f6c-acceleration-pilot.mjs
+Existing binding API known cases passed: scripts/eom/run-f6c-emission-refinement-pilot.mjs
+Existing binding API known cases passed: scripts/eom/run-f6c-refined-acceleration-pilot.mjs
+{
+  "occurrences": 27,
+  "files": 19,
+  "declarations": [
+    {
+      "file": "scripts/eom/run-prescribed-response-pilot.mjs",
+      "bindings": 21,
+      "differ": 4,
+      "unavailable": 0
+    },
+    {
+      "file": "scripts/eom/run-f6c-root-cover-pilot.mjs",
+      "bindings": 19,
+      "differ": 2,
+      "unavailable": 0
+    },
+    {
+      "file": "scripts/eom/run-f6c-cached-root-cover-pilot.mjs",
+      "bindings": 26,
+      "differ": 2,
+      "unavailable": 0
+    },
+    {
+      "file": "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+      "bindings": 35,
+      "differ": 2,
+      "unavailable": 0
+    },
+    {
+      "file": "scripts/eom/run-f6c-acceleration-pilot.mjs",
+      "bindings": 24,
+      "differ": 4,
+      "unavailable": 0
+    },
+    {
+      "file": "scripts/eom/run-f6c-emission-refinement-pilot.mjs",
+      "bindings": 36,
+      "differ": 4,
+      "unavailable": 0
+    },
+    {
+      "file": "scripts/eom/run-f6c-refined-acceleration-pilot.mjs",
+      "bindings": 37,
+      "differ": 3,
+      "unavailable": 0
+    }
+  ]
+}

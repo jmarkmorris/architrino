@@ -33,3 +33,7 @@ The [migration analysis](analysis/variable-cell-historical-migration.md) explain
 ## Streamed-leaf launch migration
 
 The [launch migration analysis](analysis/streamed-leaf-launch-migration.md) records the version-five historical source transport, bounded whole-process controls, two operational defects found during validation, the final 158 passing tests, and remaining caller audit. The [validation records](evidence/streamed-leaf-migration/validation-runs.json) preserve unsuccessful and successful runs.
+
+## Shared-helper caller audit
+
+The [caller audit](analysis/shared-helper-caller-audit.md) attributes the new unmatched helper selections to the streamed repair, reproduces the failing cached-root binding test, and documents every selected occurrence's current or historical role. The [source and dependency inventory](evidence/shared-helper-audit/inventory.json) records measured mismatches and consumer references. Current-profile migration remains open; the earlier passing tests do not cover these launch blockers.

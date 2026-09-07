@@ -1,0 +1,32 @@
+✖ all frozen hashes and comparison schema match disk without reading scientific data (1.895291ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 80.326583
+
+✖ failing tests:
+
+test at tests/f6c-cached-root-cover-pilot-launcher.test.js:35:1
+✖ all frozen hashes and comparison schema match disk without reading scientific data (1.895291ms)
+  AssertionError [ERR_ASSERTION]: scripts/eom/launch-subfield-circular-root-pilot.mjs
+  + actual - expected
+  
+  + '58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c'
+  - '35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826'
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-cached-root-cover-pilot-launcher.test.js:36:105)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c',
+    expected: '35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
