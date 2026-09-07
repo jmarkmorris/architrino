@@ -588,19 +588,19 @@ const FULL_EXTRA_PIN_LINES="  \"reference/priorities/braid-program/evidence/2026
 const retarget=(s,pairs)=>{for(const[a,b]of pairs)s=s.replaceAll(a,b);return s;};
 const frozen=(p,h)=>{const raw=readFileSync(p);assert.equal(digest(raw),h,p);return raw.toString("utf8");};
 test("full composition differs from frozen pilot only by declared addresses scope census and resource bindings",()=>{
-  const entry=frozen("scripts/eom/run-f6c-cached-root-cover-pilot.mjs","83aa60e7c665793283fa6b327abb4d20e226329e350df36d239056db786010a2");
+  const entry=frozen("scripts/eom/run-f6c-cached-root-cover-pilot.mjs","e03e8ae0f17c04aa2e15361078f5f258d0c4bee887b4aaf7257f52c09a745cef");
   let expected=retarget(retarget(entry,FULL_COMMON_REPLACEMENTS),FULL_ENTRY_REPLACEMENTS);
   expected=expected.replace('});\nexport const check',FULL_EXTRA_PIN_LINES+'});\nexport const check');
   assert.equal(readFileSync(R.ENTRY,"utf8"),expected);
-  const launcher=frozen("scripts/eom/launch-f6c-cached-root-cover-pilot.mjs","664278c0a67fd8499cb5ab4645a104f0bebec6e3558ede704cf6336f7f7a1903");
+  const launcher=frozen("scripts/eom/launch-f6c-cached-root-cover-pilot.mjs","cd772242810517aa65d7a8d720e322890002435df28fea002be0253ed2cf8d2f");
   assert.equal(readFileSync(R.LAUNCHER,"utf8"),retarget(retarget(launcher,FULL_COMMON_REPLACEMENTS),FULL_LAUNCHER_REPLACEMENTS));
 });
 test("all32 original operational obligations survive full scope retargeting unchanged",()=>{
-  const prior=frozen("tests/f6c-cached-root-cover-pilot-launcher.test.js","b1768e32edf47b3905ea3d895c2bee996f64147f525aab4fa3728ed88a6502c9").split("\n// Cached successor binding controls;")[0];
+  const prior=frozen("tests/f6c-cached-root-cover-pilot-launcher.test.js","7075322e83ad4dce350ace413be572f8a32b0512c3cea3696a16c89cffa94400").split("\n// Cached successor binding controls;")[0];
   assert.equal(prior.match(/^test\(/gmu)?.length,26);
   const actual=readFileSync("tests/f6c-cached-root-cover-full.test.js","utf8").split("\n// Full-scope binding/census controls;")[0];
   assert.equal(actual,retarget(prior,FULL_TEST_REPLACEMENTS));
-  const process=frozen("tests/f6c-cached-root-cover-pilot-process.test.js","72a68ac029d0ef269daa4c1508ee122a4548953e1238d237c7de5518556ea736");
+  const process=frozen("tests/f6c-cached-root-cover-pilot-process.test.js","433452397ac00c2deaa6a9300b84510f553943c491fd49c965a7573a691b0cf7");
   assert.equal(process.match(/^test\(/gmu)?.length,6);
   assert.equal(readFileSync("tests/f6c-cached-root-cover-full-process.test.js","utf8"),retarget(process,FULL_COMMON_REPLACEMENTS));
 });

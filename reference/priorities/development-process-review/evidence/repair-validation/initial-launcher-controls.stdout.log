@@ -1,0 +1,57 @@
+✔ aborted inspection rejects once, then leaves real inspection available for cleanup (1.013875ms)
+✔ interruption during first inspection creates no bootstrap or target ACK (18.282ms)
+✔ interruption at bootstrap inspection prevents target ACK and permits validated owned cleanup (10154.302208ms)
+✔ interruption at first target gate inspection prevents target ACK and permits validated owned cleanup (475.563708ms)
+✔ launcher arguments require reviewed bytes and fresh scoped output (1.15725ms)
+✔ identity table parsing and transitive owned-group closure exclude unrelated rows (0.891125ms)
+✔ completed or reused historical group identities are permanently retired from signal authority (0.76825ms)
+✔ shared summary mentioning every phase receipt is charged only to its exact summary output role (0.49575ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":74989,"elapsedWallSeconds":0.244640667,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ registered normal child preserves output, original arguments, clean exit and measured gate overhead (451.315958ms)
+✔ natural module return closes runner and watchdog without forced successful exit (257.951917ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75006,"elapsedWallSeconds":0.23747166600000003,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ referenced timer after module return closes runner and watchdog without forced successful exit (328.352833ms)
+✔ pending output drain closes runner and watchdog without forced successful exit (267.012792ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75020,"elapsedWallSeconds":0.2373687090000001,"registeredGates":0,"stdoutBytes":0,"stderrBytes":516,"stopping":true,"h3EvidenceEligible":false}
+✔ import error closes runner and watchdog without forced successful exit (350.911916ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75032,"elapsedWallSeconds":0.18822675000000003,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75032,"elapsedWallSeconds":0.3397722080000001,"registeredGates":1,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75032,"elapsedWallSeconds":0.49100704199999995,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75032,"elapsedWallSeconds":0.6411492919999998,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75032,"elapsedWallSeconds":0.7923762079999999,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75032,"elapsedWallSeconds":0.9434209579999999,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ blocked runner and detached target are stopped, while an unrelated process survives (1000.686875ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75052,"elapsedWallSeconds":0.2368438329999999,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ parent exit before registration never starts its target (367.817042ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75064,"elapsedWallSeconds":0.18782079099999965,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75064,"elapsedWallSeconds":0.33890012499999966,"registeredGates":1,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75064,"elapsedWallSeconds":0.4902240829999996,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75064,"elapsedWallSeconds":0.6416038329999997,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ inspection failure after STOP uses self-owned cancellation and returns bounded unverified closure (779.523208ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75076,"elapsedWallSeconds":0.1905321250000002,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75076,"elapsedWallSeconds":0.34210916700000055,"registeredGates":1,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75076,"elapsedWallSeconds":0.4933677500000003,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75076,"elapsedWallSeconds":0.6437557500000003,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75076,"elapsedWallSeconds":0.7950943340000003,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75076,"elapsedWallSeconds":0.9464682920000005,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ inspection failure after CONT uses self-owned cancellation and preserves an unrelated process (976.103083ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75095,"elapsedWallSeconds":0.1884650419999998,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75095,"elapsedWallSeconds":0.33956287500000054,"registeredGates":1,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75095,"elapsedWallSeconds":0.49003170800000045,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75095,"elapsedWallSeconds":0.6411833750000006,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ inspection failure before STOP uses self-owned cancellation without stale signal authority (704.23125ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75103,"elapsedWallSeconds":0.23724979199999963,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":75103,"elapsedWallSeconds":0.4380755840000002,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ parent exit after acknowledgement retains and cleans the detached target group (563.613375ms)
+✔ deadline guard terminates a host with an unresolved final admission callback after child exit (15680.452208ms)
+✔ existing output is never overwritten and does not launch a bootstrap (24.007375ms)
+✔ final publication rechecks actual log bytes and refuses an already expired deadline (1.436833ms)
+✔ failure publication preserves rejected operational evidence without granting acceptance (0.781417ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 32570.73375

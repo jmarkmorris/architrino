@@ -1,0 +1,239 @@
+✔ aborted inspection rejects once, then leaves real inspection available for cleanup (1.064042ms)
+✔ interruption during first inspection creates no bootstrap or target ACK (18.903875ms)
+✔ interruption at bootstrap inspection prevents target ACK and permits validated owned cleanup (10156.363667ms)
+✔ interruption at first target gate inspection prevents target ACK and permits validated owned cleanup (487.013708ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.06390245800000001,"freePercent":100,"availableDiskBytes":"944620179456","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.521674542,"freePercent":100,"availableDiskBytes":"944620126208","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.95701625,"freePercent":100,"availableDiskBytes":"944620085248","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.003963792,"freePercent":100,"availableDiskBytes":"944620081152","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.028880292,"freePercent":100,"availableDiskBytes":"944619966464","atLaunch":false}
+✔ captured launcher worker entry and Python wrapper close two synthetic stages with measured CPU (1091.781541ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.053344916999999895,"freePercent":100,"availableDiskBytes":"944619950080","atLaunch":true}
+✔ first Python failure closes owned groups and leaves data absent without checker dispatch (668.454208ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05045883299999991,"freePercent":100,"availableDiskBytes":"944619896832","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.48594808299999975,"freePercent":100,"availableDiskBytes":"944619855872","atLaunch":false}
+✔ checker failure after publication cannot promote its existing synthetic file (1102.412458ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05009908399999995,"freePercent":100,"availableDiskBytes":"944619798528","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.48186262499999977,"freePercent":100,"availableDiskBytes":"944619732992","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.9210413749999998,"freePercent":100,"availableDiskBytes":"944619712512","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":0.9675124999999998,"freePercent":100,"availableDiskBytes":"944619712512","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":2.993611875,"freePercent":100,"availableDiskBytes":"944619569152","atLaunch":false}
+✔ slow final publication stays observed through worker termination (3053.037584ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05381066700000065,"freePercent":100,"availableDiskBytes":"944619548672","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.5019382920000007,"freePercent":100,"availableDiskBytes":"944619507712","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":1.0023822920000003,"freePercent":100,"availableDiskBytes":"944619487232","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.0620883750000003,"freePercent":100,"availableDiskBytes":"944619487232","atLaunch":false}
+✔ late final publication failure preserves failed attempt and closed stage identities (1094.036459ms)
+✔ startup interruption creates no target and releases owned common lock (40.441583ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.051531292000000575,"freePercent":100,"availableDiskBytes":"944619421696","atLaunch":true}
+✔ lost monitor cancels stubborn Python and prevents checker dispatch (546.610708ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.0532475000000004,"freePercent":100,"availableDiskBytes":"944619372544","atLaunch":true}
+✔ monitor sink failure cancels stubborn Python and prevents checker dispatch (582.540125ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05609108399999968,"freePercent":100,"availableDiskBytes":"944619319296","atLaunch":true}
+✔ fresh stdout binding mismatch prevents comparison and retains closed first stage (536.568292ms)
+✔ real unread diagnostic pipe fails final drain then closes without a success completion (168.420833ms)
+✔ real unread diagnostics close on early failure without a success completion (177.04375ms)
+{"kind":"host-resource","elapsedSeconds":0.06787975,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944619261952"}
+{"kind":"host-resource","elapsedSeconds":0.5810129159999999,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944619229184"}
+{"kind":"host-resource","elapsedSeconds":1.061856791,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944619208704"}
+{"kind":"host-resource","elapsedSeconds":1.109300833,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944619204608"}
+{"kind":"host-resource","elapsedSeconds":1.133513208,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944619073536"}
+✔ two captured synthetic stages register and close separately before final admission (1197.402625ms)
+{"kind":"host-resource","elapsedSeconds":0.052407958000000004,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944619061248"}
+✔ first synthetic target failure closes owned groups and prevents comparison dispatch (700.985667ms)
+{"kind":"host-resource","elapsedSeconds":0.05142687499999988,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944619032576"}
+{"kind":"host-resource","elapsedSeconds":0.5427858329999997,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944618999808"}
+{"kind":"host-resource","elapsedSeconds":1.0351833329999998,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944618975232"}
+{"kind":"host-resource","elapsedSeconds":1.08386775,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944618967040"}
+{"kind":"host-resource","elapsedSeconds":3.6101033749999996,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944618827776"}
+✔ slow final publication remains sampled through captured worker closure (3671.874125ms)
+✔ startup interruption launches no target and releases its owned lock (42.573417ms)
+{"kind":"host-resource","elapsedSeconds":0.06359912500000064,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944618799104"}
+✔ lost process monitoring cancels a stubborn owned target with honest unverified closure (514.049625ms)
+{"kind":"host-resource","elapsedSeconds":0.05650345800000014,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944618770432"}
+✔ monitor log failure cancels a stubborn owned target before any comparison (579.153708ms)
+{"kind":"host-resource","elapsedSeconds":0.06441666600000001,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944618725376"}
+{"kind":"host-resource","elapsedSeconds":0.572291833,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944617656320"}
+{"kind":"host-resource","elapsedSeconds":1.0641360410000003,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944617635840"}
+{"kind":"host-resource","elapsedSeconds":1.112041833,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944617631744"}
+{"kind":"host-resource","elapsedSeconds":1.1370433750000002,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944617496576"}
+✔ two captured synthetic stages register and close separately before final admission (1204.486375ms)
+{"kind":"host-resource","elapsedSeconds":0.05338537500000007,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944617484288"}
+✔ first synthetic target failure closes owned groups and prevents comparison dispatch (713.695708ms)
+{"kind":"host-resource","elapsedSeconds":0.053277499999999915,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944617451520"}
+{"kind":"host-resource","elapsedSeconds":0.5454089160000001,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944617418752"}
+{"kind":"host-resource","elapsedSeconds":1.031110041,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944617398272"}
+{"kind":"host-resource","elapsedSeconds":1.079214166,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944617394176"}
+{"kind":"host-resource","elapsedSeconds":3.605383833,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944634126336"}
+✔ slow final publication remains sampled through captured worker closure (3663.387667ms)
+✔ startup interruption launches no target and releases its owned lock (44.106667ms)
+{"kind":"host-resource","elapsedSeconds":0.0871452079999999,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944634101760"}
+✔ lost process monitoring cancels a stubborn owned target with honest unverified closure (764.811083ms)
+{"kind":"host-resource","elapsedSeconds":0.056329499999999824,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944634007552"}
+✔ monitor log failure cancels a stubborn owned target before any comparison (575.14375ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.066077833,"freePercent":100,"availableDiskBytes":"944633974784","atLaunch":true}
+{"kind":"host-resource","stage":"producer","elapsedSeconds":0.540971,"freePercent":100,"availableDiskBytes":"944633909248","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.992758208,"freePercent":100,"availableDiskBytes":"944633884672","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.067603417,"freePercent":100,"availableDiskBytes":"944633884672","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.0932436669999999,"freePercent":100,"availableDiskBytes":"944633745408","atLaunch":false}
+✔ captured launcher worker entry and Python wrapper close two synthetic stages with measured CPU (1166.496959ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05468875000000003,"freePercent":100,"availableDiskBytes":"944633729024","atLaunch":true}
+✔ first Python failure closes owned groups and leaves data absent without checker dispatch (759.492416ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.056268417,"freePercent":100,"availableDiskBytes":"944632623104","atLaunch":true}
+{"kind":"host-resource","stage":"producer","elapsedSeconds":0.5083505829999999,"freePercent":100,"availableDiskBytes":"944632569856","atLaunch":false}
+✔ checker failure after publication cannot promote its existing synthetic file (1169.377666ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05288254200000028,"freePercent":100,"availableDiskBytes":"944632512512","atLaunch":true}
+{"kind":"host-resource","stage":"producer","elapsedSeconds":0.5101217920000004,"freePercent":100,"availableDiskBytes":"944632451072","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.9587990830000004,"freePercent":100,"availableDiskBytes":"944632426496","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.007786708,"freePercent":100,"availableDiskBytes":"944632426496","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":3.0350963750000006,"freePercent":100,"availableDiskBytes":"944632274944","atLaunch":false}
+✔ slow final publication stays observed through worker termination (3095.656125ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.052560042000000064,"freePercent":100,"availableDiskBytes":"944632258560","atLaunch":true}
+{"kind":"host-resource","stage":"producer","elapsedSeconds":0.49587008400000016,"freePercent":100,"availableDiskBytes":"944632197120","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.9522742090000001,"freePercent":100,"availableDiskBytes":"944631402496","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.0006957499999998,"freePercent":100,"availableDiskBytes":"944631402496","atLaunch":false}
+✔ late final publication failure preserves failed attempt and closed stage identities (1039.089584ms)
+✔ startup interruption creates no target and releases owned common lock (39.420167ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05257650000000012,"freePercent":100,"availableDiskBytes":"944631361536","atLaunch":true}
+✔ lost monitor cancels stubborn Python and prevents checker dispatch (513.727291ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.055457916000000294,"freePercent":100,"availableDiskBytes":"944631304192","atLaunch":true}
+✔ monitor sink failure cancels stubborn Python and prevents checker dispatch (595.0975ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05303329200000007,"freePercent":100,"availableDiskBytes":"944631255040","atLaunch":true}
+✔ fresh stdout binding mismatch prevents comparison and retains closed first stage (501.834125ms)
+✔ real unread diagnostic pipe fails final drain then closes without a success completion (167.931791ms)
+✔ real unread diagnostics close on early failure without a success completion (174.372542ms)
+✔ real active-target diagnostic EPIPE cancels owned group releases lock and emits no accepted completion (576.754709ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.063225709,"freePercent":100,"availableDiskBytes":"944630075392","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.5251572919999999,"freePercent":100,"availableDiskBytes":"944630050816","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.9768345840000001,"freePercent":100,"availableDiskBytes":"944629993472","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.028407292,"freePercent":100,"availableDiskBytes":"944629989376","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.0546232500000001,"freePercent":100,"availableDiskBytes":"944629874688","atLaunch":false}
+✔ captured launcher worker entry and Python wrapper close two synthetic stages with measured CPU (1118.597791ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05415208299999995,"freePercent":100,"availableDiskBytes":"944629858304","atLaunch":true}
+✔ first Python failure closes owned groups and leaves data absent without checker dispatch (690.200292ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.053854916999999884,"freePercent":100,"availableDiskBytes":"944629796864","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.5032217920000001,"freePercent":100,"availableDiskBytes":"944629755904","atLaunch":false}
+✔ checker failure after publication cannot promote its existing synthetic file (1142.846667ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.052277083999999835,"freePercent":100,"availableDiskBytes":"944629702656","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.5043755419999998,"freePercent":100,"availableDiskBytes":"944629657600","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.9526959999999999,"freePercent":100,"availableDiskBytes":"944629637120","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.000686709,"freePercent":100,"availableDiskBytes":"944629637120","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":3.0260172499999993,"freePercent":100,"availableDiskBytes":"944629485568","atLaunch":false}
+✔ slow final publication stays observed through worker termination (3084.78675ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05215454200000022,"freePercent":100,"availableDiskBytes":"944629465088","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.5028417499999996,"freePercent":100,"availableDiskBytes":"944629395456","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.9479231250000002,"freePercent":100,"availableDiskBytes":"944627916800","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":0.995984375,"freePercent":100,"availableDiskBytes":"944627916800","atLaunch":false}
+✔ late final publication failure preserves failed attempt and closed stage identities (1040.644666ms)
+✔ startup interruption creates no target and releases owned common lock (39.405167ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05133429200000046,"freePercent":100,"availableDiskBytes":"944627892224","atLaunch":true}
+✔ lost monitor cancels stubborn Python and prevents checker dispatch (512.281125ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.06110004200000003,"freePercent":100,"availableDiskBytes":"944627838976","atLaunch":true}
+✔ monitor sink failure cancels stubborn Python and prevents checker dispatch (576.72075ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05624620900000082,"freePercent":100,"availableDiskBytes":"944627785728","atLaunch":true}
+✔ fresh stdout binding mismatch prevents comparison and retains closed first stage (536.902083ms)
+✔ real unread diagnostic pipe fails final drain then closes without a success completion (168.645708ms)
+✔ real unread diagnostics close on early failure without a success completion (175.831917ms)
+✔ real active-target diagnostic EPIPE cancels owned group releases lock and emits no accepted completion (580.308333ms)
+{"kind":"host-resource","elapsedSeconds":0.059975834000000006,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944627691520"}
+{"kind":"host-resource","elapsedSeconds":0.557192584,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944627650560"}
+{"kind":"host-resource","elapsedSeconds":1.054343167,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944627621888"}
+{"kind":"host-resource","elapsedSeconds":1.1017688340000003,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944627617792"}
+{"kind":"host-resource","elapsedSeconds":1.1257921250000003,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944627503104"}
+✔ two captured synthetic stages register and close separately before final admission (1189.141583ms)
+{"kind":"host-resource","elapsedSeconds":0.05134974999999986,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944627490816"}
+✔ first synthetic target failure closes owned groups and prevents comparison dispatch (704.647042ms)
+{"kind":"host-resource","elapsedSeconds":0.052385041,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944626503680"}
+{"kind":"host-resource","elapsedSeconds":0.5531058750000002,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944626417664"}
+{"kind":"host-resource","elapsedSeconds":1.029609125,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944626503680"}
+{"kind":"host-resource","elapsedSeconds":1.077253833,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944626495488"}
+{"kind":"host-resource","elapsedSeconds":3.602998666,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944626311168"}
+✔ slow final publication remains sampled through captured worker closure (3663.110875ms)
+✔ startup interruption launches no target and releases its owned lock (42.168542ms)
+{"kind":"host-resource","elapsedSeconds":0.05304679099999976,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944626225152"}
+✔ lost process monitoring cancels a stubborn owned target with honest unverified closure (514.264792ms)
+{"kind":"host-resource","elapsedSeconds":0.058519124999999804,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944626262016"}
+✔ monitor log failure cancels a stubborn owned target before any comparison (577.371542ms)
+{"kind":"host-resource","elapsedSeconds":0.0650665,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944626229248"}
+{"kind":"host-resource","elapsedSeconds":0.553458083,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944626204672"}
+{"kind":"host-resource","elapsedSeconds":1.084265291,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944626184192"}
+{"kind":"host-resource","elapsedSeconds":1.1316959999999998,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944626180096"}
+{"kind":"host-resource","elapsedSeconds":1.155924916,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944626032640"}
+✔ synthetic compute closes before private job and publisher, then whole admission (1219.53775ms)
+{"kind":"host-resource","elapsedSeconds":0.05307558399999993,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944626008064"}
+✔ first target failure closes owned groups without publisher (707.575958ms)
+{"kind":"host-resource","elapsedSeconds":0.05261933399999998,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944625975296"}
+{"kind":"host-resource","elapsedSeconds":0.5287055000000003,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944625950720"}
+{"kind":"host-resource","elapsedSeconds":1.0525186249999998,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944625934336"}
+{"kind":"host-resource","elapsedSeconds":1.100354917,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944625926144"}
+{"kind":"host-resource","elapsedSeconds":2.625305292,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944625782784"}
+✔ slow final publication remains sampled while worker is active (2684.559333ms)
+✔ startup interruption launches no target and releases owned lock (40.208834ms)
+{"kind":"host-resource","elapsedSeconds":0.05221408400000018,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944625754112"}
+✔ lost monitor cancels stubborn target and preserves unverified census (512.435958ms)
+{"kind":"host-resource","elapsedSeconds":0.057857291999999685,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944625721344"}
+✔ monitor sink failure cancels target and prevents publisher (574.2475ms)
+{"kind":"host-resource","elapsedSeconds":0.05440520800000013,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944625692672"}
+✔ wrong completion binding prevents second stage (539.114375ms)
+✔ initial log ENOSPC leaves no timer, listener or process (6.253875ms)
+✔ launcher arguments require reviewed bytes and fresh scoped output (1.558916ms)
+✔ identity table parsing and transitive owned-group closure exclude unrelated rows (1.009958ms)
+✔ completed or reused historical group identities are permanently retired from signal authority (0.352708ms)
+✔ shared summary mentioning every phase receipt is charged only to its exact summary output role (0.432416ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83743,"elapsedWallSeconds":0.24597470800000001,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ registered normal child preserves output, original arguments, clean exit and measured gate overhead (464.117084ms)
+✔ natural module return closes runner and watchdog without forced successful exit (261.057167ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83760,"elapsedWallSeconds":0.23905991700000004,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ referenced timer after module return closes runner and watchdog without forced successful exit (326.761875ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83767,"elapsedWallSeconds":0.2413321249999999,"registeredGates":0,"stdoutBytes":2097152,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ pending output drain closes runner and watchdog without forced successful exit (271.019917ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83774,"elapsedWallSeconds":0.2364700419999999,"registeredGates":0,"stdoutBytes":0,"stderrBytes":516,"stopping":true,"h3EvidenceEligible":false}
+✔ import error closes runner and watchdog without forced successful exit (358.34975ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83785,"elapsedWallSeconds":0.23715833299999986,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83785,"elapsedWallSeconds":0.43853899999999973,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83785,"elapsedWallSeconds":0.6391999169999999,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83785,"elapsedWallSeconds":0.8406862919999999,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83785,"elapsedWallSeconds":1.0417185829999998,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83785,"elapsedWallSeconds":1.2425636249999998,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ watchdog IPC loss still kills a live runner within its bounded exit observation (1403.105708ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83797,"elapsedWallSeconds":0.1927593750000001,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83797,"elapsedWallSeconds":0.34317091600000005,"registeredGates":1,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83797,"elapsedWallSeconds":0.49512579100000037,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83797,"elapsedWallSeconds":0.6463117910000001,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83797,"elapsedWallSeconds":0.7973299160000001,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83797,"elapsedWallSeconds":0.9474903750000003,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ blocked runner and detached target are stopped, while an unrelated process survives (1000.796042ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83817,"elapsedWallSeconds":0.23583525000000008,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ parent exit before registration never starts its target (362.368708ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83829,"elapsedWallSeconds":0.18782400000000052,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83829,"elapsedWallSeconds":0.33913900000000013,"registeredGates":1,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83829,"elapsedWallSeconds":0.4893959160000004,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83829,"elapsedWallSeconds":0.6405357080000004,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ inspection failure after STOP uses self-owned cancellation and returns bounded unverified closure (779.883791ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83841,"elapsedWallSeconds":0.18947883300000012,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83841,"elapsedWallSeconds":0.34107349999999953,"registeredGates":1,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83841,"elapsedWallSeconds":0.49190358300000026,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83841,"elapsedWallSeconds":0.643051458,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83841,"elapsedWallSeconds":0.7936340419999997,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83841,"elapsedWallSeconds":0.9447717499999999,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ inspection failure after CONT uses self-owned cancellation and preserves an unrelated process (976.767084ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83860,"elapsedWallSeconds":0.18843333299999995,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83860,"elapsedWallSeconds":0.33958566700000026,"registeredGates":1,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83860,"elapsedWallSeconds":0.4900446670000001,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83860,"elapsedWallSeconds":0.6407229170000001,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ inspection failure before STOP uses self-owned cancellation without stale signal authority (703.228125ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83868,"elapsedWallSeconds":0.23856254199999966,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":83868,"elapsedWallSeconds":0.43956820900000004,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ parent exit after acknowledgement retains and cleans the detached target group (571.1365ms)
+✔ deadline guard terminates a host with an unresolved final admission callback after child exit (15686.22425ms)
+✔ existing output is never overwritten and does not launch a bootstrap (25.644042ms)
+✔ final publication rechecks actual log bytes and refuses an already expired deadline (2.347375ms)
+✔ failure publication preserves rejected operational evidence without granting acceptance (0.494125ms)
+ℹ tests 85
+ℹ suites 0
+ℹ pass 85
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 89804.119167

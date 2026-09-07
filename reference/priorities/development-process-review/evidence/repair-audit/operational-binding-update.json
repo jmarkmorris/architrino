@@ -1,0 +1,794 @@
+[
+  {
+    "path": "scripts/eom/dispatch-subfield-circular-root-ladder.mjs",
+    "before": "f8cfd7beb4049f31692e8815be94862cefefe90a8d7ff53f482c3dee4a0ac97b",
+    "after": "71a75e3a682f484eea9cea07ab47e529310937dcb9e37aa8eb39806ab450bfb7",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 11,
+        "text": "const OUTER = \"scripts/eom/launch-subfield-circular-root-pilot.mjs\", OUTER_SHA = \"3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a\";"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/launch-prescribed-response-pilot.mjs",
+    "before": "7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7",
+    "after": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 13,
+        "text": "const OUTER_SHA=\"3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a\";"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/f6c-bounded-operation.mjs",
+    "before": "f695eadd6d3553620c4f70a86b3c0d85444900e92b54cbd6ccbbb13dc04d73dd",
+    "after": "47c2828c918c008c9f183e341d8f0ba677d79f3cb003bbb375d8a01d718a4098",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-prescribed-response-pilot.mjs",
+        "before": "7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7",
+        "after": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31"
+      },
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 42,
+        "text": "  helpers:['scripts/eom/launch-prescribed-response-pilot.mjs','7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7'],"
+      },
+      {
+        "line": 43,
+        "text": "  outer:['scripts/eom/launch-subfield-circular-root-pilot.mjs','3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a'],"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/verify-f6c-refined-acceleration.py",
+    "before": "545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421",
+    "after": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-prescribed-response-pilot.mjs",
+        "before": "7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7",
+        "after": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31"
+      },
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 115,
+        "text": "OP_PINS={'scripts/eom/launch-prescribed-response-pilot.mjs':'7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7',"
+      },
+      {
+        "line": 116,
+        "text": " 'scripts/eom/launch-subfield-circular-root-pilot.mjs':'3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a',"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/f6c_variable_cell_adapter.py",
+    "before": "2635f927e18752b99edf57860381597e0c23b7f6e781e30a3016d323434d06e9",
+    "after": "d6e9d68735a85d0b6aa6a04a1168628dea5bd05de30ba6bff3e8920a45a1c951",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/verify-f6c-refined-acceleration.py",
+        "before": "545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421",
+        "after": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015"
+      }
+    ],
+    "lines": [
+      {
+        "line": 159,
+        "text": " ('transport','scripts/eom/verify-f6c-refined-acceleration.py','545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421'),"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/launch-f5-prehistory-handoff-build.mjs",
+    "before": "107ca7c8e43678762d0ed0127966b8a042660e6b393aae041a814408d4304491",
+    "after": "c1093dbc27b5b7efd6b59fefbf047e3a633091be5273a133f2c033069527635c",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 18,
+        "text": "  [OUTER]: \"3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a\","
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/launch-f6c-acceleration-pilot.mjs",
+    "before": "4c6cd13ade3f63e6c31bfac8687dcc4fa50222205ccf32a7161a943978c93c3b",
+    "after": "f0a4bc6c03d2e26ce0778c5dbe793fd95f717824be88dca99a5e3f8cf41a3ea0",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-prescribed-response-pilot.mjs",
+        "before": "7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7",
+        "after": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31"
+      },
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 12,
+        "text": "const HELPER_SHA='7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7';"
+      },
+      {
+        "line": 13,
+        "text": "const OUTER_SHA='3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a';"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/launch-f6c-cached-root-cover-full.mjs",
+    "before": "e5caa7f77ca27954ef45559e966b42fdf9549914409359693cf4b2082dc26919",
+    "after": "d2e1966c83fcbf0667678c4c2d948b28e5f2f52c55a491e9e0c3fd81ffd27123",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 12,
+        "text": "const OUTER_SHA=\"3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a\";"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/launch-f6c-cached-root-cover-pilot.mjs",
+    "before": "664278c0a67fd8499cb5ab4645a104f0bebec6e3558ede704cf6336f7f7a1903",
+    "after": "cd772242810517aa65d7a8d720e322890002435df28fea002be0253ed2cf8d2f",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 12,
+        "text": "const OUTER_SHA=\"3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a\";"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
+    "before": "b6b76b64b33cff5e47a8642b683f1c028ee65ae2bc2745efcfb8b81f8235d166",
+    "after": "042684de5b23216a8af4a8187e02db3236206249d0f857215dc47a89b8c62d47",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-prescribed-response-pilot.mjs",
+        "before": "7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7",
+        "after": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31"
+      },
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 12,
+        "text": "const HELPER_SHA='7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7';"
+      },
+      {
+        "line": 13,
+        "text": "const OUTER_SHA='3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a';"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/launch-f6c-refined-acceleration-pilot.mjs",
+    "before": "f8956331c316cc3c65f7479b50a9d176cefeb80168a606dd1ce492c910d05056",
+    "after": "efb628f982fd3f745320caba298dd9bbe14e75ba78336d8ae60db6d82cf3bac2",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-prescribed-response-pilot.mjs",
+        "before": "7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7",
+        "after": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31"
+      },
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 12,
+        "text": "const HELPER_SHA='7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7';"
+      },
+      {
+        "line": 13,
+        "text": "const OUTER_SHA='3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a';"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/launch-f6c-root-cover-pilot.mjs",
+    "before": "af4e71ec25e9e615abf117b02f7793e6a9ede0274c7b8ade1bd7e408c411c412",
+    "after": "8cda0f76785a3a687b79794115efd0f8cc0d80ea5edee072745c533c72dafa2b",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 12,
+        "text": "const OUTER_SHA=\"3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a\";"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/prepare-f6c-emission-refinement.py",
+    "before": "8ff88b47a6783ca8151b643f84e184cfb22b8ee53381fd2915b0f41fab9aaa42",
+    "after": "ec254ad004fb38612d3e895f5c150d8e5bec8fe53142739a50b15e073bd9783d",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-prescribed-response-pilot.mjs",
+        "before": "7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7",
+        "after": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31"
+      },
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 121,
+        "text": "    OPERATIONS[4]: \"7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7\","
+      },
+      {
+        "line": 122,
+        "text": "    OPERATIONS[5]: \"3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a\","
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/prepare-f6c-parent-emission-refinement.py",
+    "before": "fd9ca0a80eefd4665f9d7f8ba3033580d6791f57cdc5f6cd3409781e4cb1d98e",
+    "after": "bfac926b01dbd4a4bf060cc80b5aef4df95cd28d14fc0e34ebdd4ea73c4ea4af",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/verify-f6c-refined-acceleration.py",
+        "before": "545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421",
+        "after": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015"
+      }
+    ],
+    "lines": [
+      {
+        "line": 65,
+        "text": " 'transport': ('scripts/eom/verify-f6c-refined-acceleration.py','545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421'),"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/prepare-f6c-refined-acceleration.py",
+    "before": "6786bcdad9ad6d3f0f32053298d4d296d933d7de080e5ff0ff36fc731b9d7c4c",
+    "after": "cb7bbef900b620d908cbcf3803793826c87cbf41e7f42d75c8fd26cf59ca5b8b",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/verify-f6c-refined-acceleration.py",
+        "before": "545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421",
+        "after": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015"
+      },
+      {
+        "dependency": "scripts/eom/launch-prescribed-response-pilot.mjs",
+        "before": "7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7",
+        "after": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31"
+      },
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 86,
+        "text": " 'verifier':('scripts/eom/verify-f6c-refined-acceleration.py','545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421'),'verifierControls':('tests/test_f6c_refined_acceleration.py','4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a'),"
+      },
+      {
+        "line": 123,
+        "text": "OP_PINS={'scripts/eom/launch-prescribed-response-pilot.mjs':'7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7',"
+      },
+      {
+        "line": 124,
+        "text": " 'scripts/eom/launch-subfield-circular-root-pilot.mjs':'3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a',"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/run-f6c-acceleration-pilot.mjs",
+    "before": "11fa4fdc71ff9252db5e21af3f485d2ec85d5bab9a497faba7fcb59474ca4706",
+    "after": "10a164daf750d21627087c5af18d7ba6a7bd2bb46383e144d886db33ffced9d7",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      },
+      {
+        "dependency": "scripts/eom/launch-prescribed-response-pilot.mjs",
+        "before": "7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7",
+        "after": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31"
+      }
+    ],
+    "lines": [
+      {
+        "line": 68,
+        "text": "  [OUTER]:'3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a',"
+      },
+      {
+        "line": 69,
+        "text": "  [HELPERS]:'7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7',"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+    "before": "9e71ac129b9f62a5c6302ddadf2fdfcb8525b0342bb81a9d7c827cf9553ee792",
+    "after": "20c8d44ee55fe77de2e6fb5f394739fe71c806562542c22632789d59dd0734b7",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 18,
+        "text": "  [OUTER]: \"3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a\","
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/run-f6c-cached-root-cover-pilot.mjs",
+    "before": "83aa60e7c665793283fa6b327abb4d20e226329e350df36d239056db786010a2",
+    "after": "e03e8ae0f17c04aa2e15361078f5f258d0c4bee887b4aaf7257f52c09a745cef",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 18,
+        "text": "  [OUTER]: \"3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a\","
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/run-f6c-emission-refinement-pilot.mjs",
+    "before": "645a79139f31b804c30d6a0e4b931e0443c7c09b1d4e47dfca4c4f7c0a6b1946",
+    "after": "f9be59e33f907fe31c1beb7011aad4dfadd4156db9cf32f326ea5f4517439459",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/prepare-f6c-emission-refinement.py",
+        "before": "8ff88b47a6783ca8151b643f84e184cfb22b8ee53381fd2915b0f41fab9aaa42",
+        "after": "ec254ad004fb38612d3e895f5c150d8e5bec8fe53142739a50b15e073bd9783d"
+      },
+      {
+        "dependency": "scripts/eom/launch-prescribed-response-pilot.mjs",
+        "before": "7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7",
+        "after": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31"
+      },
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 71,
+        "text": " [PRODUCER]:'8ff88b47a6783ca8151b643f84e184cfb22b8ee53381fd2915b0f41fab9aaa42',"
+      },
+      {
+        "line": 78,
+        "text": " [HELPERS]:'7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7',"
+      },
+      {
+        "line": 79,
+        "text": " [OUTER]:'3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a',"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs",
+    "before": "40420c3dc49e82aa57fe71244f209ef57cb2d3f242afccde2917bbb755cb8ca2",
+    "after": "935e1e2e104672d79a41458d51ce663ef3c2c97b37742ec80431b2b3d0d80d53",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-prescribed-response-pilot.mjs",
+        "before": "7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7",
+        "after": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31"
+      },
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      },
+      {
+        "dependency": "scripts/eom/verify-f6c-refined-acceleration.py",
+        "before": "545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421",
+        "after": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015"
+      }
+    ],
+    "lines": [
+      {
+        "line": 19,
+        "text": " helpers:['scripts/eom/launch-prescribed-response-pilot.mjs','7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7'],"
+      },
+      {
+        "line": 20,
+        "text": " outer:['scripts/eom/launch-subfield-circular-root-pilot.mjs','3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a'],"
+      },
+      {
+        "line": 24,
+        "text": "export const DEPENDENCIES=Object.freeze({\"transport\":[\"scripts/eom/verify-f6c-refined-acceleration.py\",\"545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421\"],\"transportControls\":[\"tests/test_f6c_refined_acceleration.py\",\"4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a\"],\"scientificDecoder\":[\"scripts/eom/oracle/f6c_refined_acceleration_conformance.py\",\"7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e\"],\"scientificDecoderControls\":[\"tests/test_f6c_refined_acceleration_conformance.py\",\"147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921\"],\"productionHelper\":[\"scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py\",\"7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5\"],\"productionHelperControls\":[\"tests/test_f6c_cached_continuous_reception_root_cover_preparation.py\",\"3bee7599b03f2500ede6eeeea31c46e1aac82410f456e967102c13e820b93221\"],\"historyReference\":[\"scripts/eom/oracle/certified_history.py\",\"ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7\"],\"decimalReference\":[\"scripts/eom/oracle/decimal_interval.py\",\"fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a\"],\"decimalControls\":[\"tests/test_eom_decimal_interval.py\",\"22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44\"],\"rootLibrary\":[\"scripts/eom/oracle/continuous_reception_roots_cached.py\",\"daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf\"],\"rootControls\":[\"tests/test_eom_continuous_reception_roots_cached.py\",\"a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb\"],\"independentRootReference\":[\"scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py\",\"3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7\"],\"independentRootControls\":[\"tests/test_f6c_cached_continuous_reception_root_cover.py\",\"09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3\"],\"cacheEquivalence\":[\"reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md\",\"a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d\"]});"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/run-f6c-refined-acceleration-pilot.mjs",
+    "before": "425b1434cd0b0702f40129426af9044ef9808cded624588da8da035694cfab88",
+    "after": "c13ecb4215919181267d9972e288eda23369e4a89239abc56b7c7643bb66435c",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/verify-f6c-refined-acceleration.py",
+        "before": "545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421",
+        "after": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015"
+      },
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      },
+      {
+        "dependency": "scripts/eom/launch-prescribed-response-pilot.mjs",
+        "before": "7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7",
+        "after": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31"
+      }
+    ],
+    "lines": [
+      {
+        "line": 27,
+        "text": "export const CHECKER_SHA='545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421';"
+      },
+      {
+        "line": 95,
+        "text": " [OUTER]:'3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a',"
+      },
+      {
+        "line": 96,
+        "text": " [HELPERS]:'7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7',"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/run-f6c-root-cover-pilot.mjs",
+    "before": "c01c6a6bfaee2bd49ee693e896686298de011c2db5365174d80d869b3da2630c",
+    "after": "53ed8f14e2d98ee461f2f51e5e83aa8838449bffd8e93228b0e63699e4dfa31b",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 18,
+        "text": "  [OUTER]: \"3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a\","
+      }
+    ]
+  },
+  {
+    "path": "tests/test_f6c_single_leaf_diagnostic.py",
+    "before": "a830ef66bd44292a8b2f35940ca739f35f696377b51659988198e8e268aed2e2",
+    "after": "ce1e9a9a7f7fdf6266958176397aa7ee351017b328a7d5c9dbd802cf4b44b1c6",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/f6c_variable_cell_adapter.py",
+        "before": "2635f927e18752b99edf57860381597e0c23b7f6e781e30a3016d323434d06e9",
+        "after": "d6e9d68735a85d0b6aa6a04a1168628dea5bd05de30ba6bff3e8920a45a1c951"
+      }
+    ],
+    "lines": [
+      {
+        "line": 602,
+        "text": "                         '2635f927e18752b99edf57860381597e0c23b7f6e781e30a3016d323434d06e9')"
+      }
+    ]
+  },
+  {
+    "path": "tests/test_f6c_streamed_leaf_session.py",
+    "before": "b1abbb006bcc589dfe49928570eab1556c34263c1ac9eaccedcd2c0dc498e246",
+    "after": "014dcdb11cd8582088d47f4c37f748f960114c3bfc30eed89d5ae976a3c7042a",
+    "bindings": [
+      {
+        "dependency": "tests/test_f6c_single_leaf_diagnostic.py",
+        "before": "a830ef66bd44292a8b2f35940ca739f35f696377b51659988198e8e268aed2e2",
+        "after": "ce1e9a9a7f7fdf6266958176397aa7ee351017b328a7d5c9dbd802cf4b44b1c6"
+      }
+    ],
+    "lines": [
+      {
+        "line": 462,
+        "text": "                 'a830ef66bd44292a8b2f35940ca739f35f696377b51659988198e8e268aed2e2')"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs",
+    "before": "6e33dfbeb6780cb284dc8d654479001107b8cffa9252a36a211443a41e1365bb",
+    "after": "1376cbd3481860b92a2917fd6f702ba5d2aca1815b13cb35afe587b0226c07ac",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/f6c_variable_cell_adapter.py",
+        "before": "2635f927e18752b99edf57860381597e0c23b7f6e781e30a3016d323434d06e9",
+        "after": "d6e9d68735a85d0b6aa6a04a1168628dea5bd05de30ba6bff3e8920a45a1c951"
+      },
+      {
+        "dependency": "tests/test_f6c_single_leaf_diagnostic.py",
+        "before": "a830ef66bd44292a8b2f35940ca739f35f696377b51659988198e8e268aed2e2",
+        "after": "ce1e9a9a7f7fdf6266958176397aa7ee351017b328a7d5c9dbd802cf4b44b1c6"
+      },
+      {
+        "dependency": "tests/test_f6c_streamed_leaf_session.py",
+        "before": "b1abbb006bcc589dfe49928570eab1556c34263c1ac9eaccedcd2c0dc498e246",
+        "after": "014dcdb11cd8582088d47f4c37f748f960114c3bfc30eed89d5ae976a3c7042a"
+      },
+      {
+        "dependency": "scripts/eom/verify-f6c-refined-acceleration.py",
+        "before": "545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421",
+        "after": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015"
+      },
+      {
+        "dependency": "scripts/eom/launch-prescribed-response-pilot.mjs",
+        "before": "7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7",
+        "after": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31"
+      },
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 51,
+        "text": "  \"2635f927e18752b99edf57860381597e0c23b7f6e781e30a3016d323434d06e9\""
+      },
+      {
+        "line": 63,
+        "text": "  \"a830ef66bd44292a8b2f35940ca739f35f696377b51659988198e8e268aed2e2\""
+      },
+      {
+        "line": 71,
+        "text": "  \"b1abbb006bcc589dfe49928570eab1556c34263c1ac9eaccedcd2c0dc498e246\""
+      },
+      {
+        "line": 103,
+        "text": "  \"545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421\""
+      },
+      {
+        "line": 107,
+        "text": "  \"7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7\""
+      },
+      {
+        "line": 111,
+        "text": "  \"3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a\""
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/run-prescribed-response-pilot.mjs",
+    "before": "36a8c644c675a7942ec6e02376679e9bc69d2322b0b15d1713364227ce71f7c7",
+    "after": "1f20af7e907c3fca1db42c9c1e91e879cbaab77b5bd3dd4f27bb84123366e943",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 74,
+        "text": "  [OUTER]:'3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a',"
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/run-subfield-circular-root-rung.mjs",
+    "before": "c3d96e7d43611cc108ef6b83730ebd6178daa365b02a03104b41bd16c5c45553",
+    "after": "c214478c79e83774d828947356946cda30a7cf2bbcbb3b05c22d3c78be20056a",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      }
+    ],
+    "lines": [
+      {
+        "line": 22,
+        "text": "  outer: \"3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a\","
+      }
+    ]
+  },
+  {
+    "path": "scripts/eom/verify-f6c-parent-emission-refinement.py",
+    "before": "085ba6d4e3760fee9b7bd198707dc2dc2eb9bbbef7275547e4ae8250fca84093",
+    "after": "fd57cf85365ea5bfc9db279dc4fee1454a971335fd4aea02e94220906eb8d578",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/verify-f6c-refined-acceleration.py",
+        "before": "545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421",
+        "after": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015"
+      }
+    ],
+    "lines": [
+      {
+        "line": 59,
+        "text": " 'transport': ('scripts/eom/verify-f6c-refined-acceleration.py','545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421'),"
+      }
+    ]
+  },
+  {
+    "path": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+    "before": "b1768e32edf47b3905ea3d895c2bee996f64147f525aab4fa3728ed88a6502c9",
+    "after": "543fe61726d799e482681b1f32a7cb553c38a81b6ff2cd04649e9d8805e4074a",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "before": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+        "after": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+      },
+      {
+        "dependency": "scripts/eom/run-f6c-root-cover-pilot.mjs",
+        "before": "c01c6a6bfaee2bd49ee693e896686298de011c2db5365174d80d869b3da2630c",
+        "after": "53ed8f14e2d98ee461f2f51e5e83aa8838449bffd8e93228b0e63699e4dfa31b"
+      },
+      {
+        "dependency": "scripts/eom/launch-f6c-root-cover-pilot.mjs",
+        "before": "af4e71ec25e9e615abf117b02f7793e6a9ede0274c7b8ade1bd7e408c411c412",
+        "after": "8cda0f76785a3a687b79794115efd0f8cc0d80ea5edee072745c533c72dafa2b"
+      }
+    ],
+    "lines": [
+      {
+        "line": 306,
+        "text": "  \"scripts/eom/launch-subfield-circular-root-pilot.mjs\": \"3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a\","
+      },
+      {
+        "line": 337,
+        "text": "  const oldEntry=frozen(\"scripts/eom/run-f6c-root-cover-pilot.mjs\",\"c01c6a6bfaee2bd49ee693e896686298de011c2db5365174d80d869b3da2630c\");"
+      },
+      {
+        "line": 343,
+        "text": "  const oldLauncher=frozen(\"scripts/eom/launch-f6c-root-cover-pilot.mjs\",\"af4e71ec25e9e615abf117b02f7793e6a9ede0274c7b8ade1bd7e408c411c412\");"
+      }
+    ]
+  },
+  {
+    "path": "tests/f6c-cached-root-cover-full.test.js",
+    "before": "95fa56cbe1f164b2014863036fb265c84f496e7bb0464a6aa128507eaa5210f9",
+    "after": "96e0a15f2a689e39c7087d6ac7b79784e8d3da0b25b5204b9b87e6a9d6b7c3a7",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/run-f6c-cached-root-cover-pilot.mjs",
+        "before": "83aa60e7c665793283fa6b327abb4d20e226329e350df36d239056db786010a2",
+        "after": "e03e8ae0f17c04aa2e15361078f5f258d0c4bee887b4aaf7257f52c09a745cef"
+      },
+      {
+        "dependency": "scripts/eom/launch-f6c-cached-root-cover-pilot.mjs",
+        "before": "664278c0a67fd8499cb5ab4645a104f0bebec6e3558ede704cf6336f7f7a1903",
+        "after": "cd772242810517aa65d7a8d720e322890002435df28fea002be0253ed2cf8d2f"
+      },
+      {
+        "dependency": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+        "before": "b1768e32edf47b3905ea3d895c2bee996f64147f525aab4fa3728ed88a6502c9",
+        "after": "543fe61726d799e482681b1f32a7cb553c38a81b6ff2cd04649e9d8805e4074a"
+      }
+    ],
+    "lines": [
+      {
+        "line": 591,
+        "text": "  const entry=frozen(\"scripts/eom/run-f6c-cached-root-cover-pilot.mjs\",\"83aa60e7c665793283fa6b327abb4d20e226329e350df36d239056db786010a2\");"
+      },
+      {
+        "line": 595,
+        "text": "  const launcher=frozen(\"scripts/eom/launch-f6c-cached-root-cover-pilot.mjs\",\"664278c0a67fd8499cb5ab4645a104f0bebec6e3558ede704cf6336f7f7a1903\");"
+      },
+      {
+        "line": 599,
+        "text": "  const prior=frozen(\"tests/f6c-cached-root-cover-pilot-launcher.test.js\",\"b1768e32edf47b3905ea3d895c2bee996f64147f525aab4fa3728ed88a6502c9\").split(\"\\n// Cached successor binding controls;\")[0];"
+      }
+    ]
+  },
+  {
+    "path": "tests/f6c-refined-acceleration-pilot.test.js",
+    "before": "e73a58a0bef307b45122f573bd0100f46d817952f84faf872c0ee12b507ba363",
+    "after": "1f5999f7b728f3f1bb9bcb6af8a21cee3535ad62453ef20ff7465debae4f489d",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/verify-f6c-refined-acceleration.py",
+        "before": "545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421",
+        "after": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015"
+      }
+    ],
+    "lines": [
+      {
+        "line": 30,
+        "text": "  assert.equal(E.FIXED.length,16);assert.equal(E.CHECKER_SHA,'545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421');"
+      }
+    ]
+  },
+  {
+    "path": "tests/test_f6c_parent_emission_refinement.py",
+    "before": "82a12c9de533f76c82eb016a86ecde608f53149f97d96f13791b76509f639fb0",
+    "after": "64e1f215789099d72ba34523dc4b0919d00e9a4b52464e442d6b245c4b7da28c",
+    "bindings": [
+      {
+        "dependency": "scripts/eom/prepare-f6c-emission-refinement.py",
+        "before": "8ff88b47a6783ca8151b643f84e184cfb22b8ee53381fd2915b0f41fab9aaa42",
+        "after": "ec254ad004fb38612d3e895f5c150d8e5bec8fe53142739a50b15e073bd9783d"
+      }
+    ],
+    "lines": [
+      {
+        "line": 36,
+        "text": "    'oldSubject': ('scripts/eom/prepare-f6c-emission-refinement.py', '8ff88b47a6783ca8151b643f84e184cfb22b8ee53381fd2915b0f41fab9aaa42'),"
+      }
+    ]
+  }
+]

@@ -1,0 +1,196 @@
+✔ machine plan is full-only and binds complete frozen sources/environment (3.141375ms)
+✔ all frozen hashes and comparison schema match disk without reading scientific data (2.503375ms)
+✔ source capture rejects replacement, symlinks, byte bound and overwrite (1.184667ms)
+✔ stage controls retain exact hash/manifest and full-only arguments (1.180167ms)
+✔ captured Python bootstrap executes a synthetic byte-bound program and measures CPU (69.896042ms)
+✔ synthetic mechanical handoff checks exact output/gate/resource census (28.903209ms)
+✔ synthetic comparison admission requires authenticated preceding output and exact claims (28.051416ms)
+✔ single-stage piping rejects child failure and log overflow without a second dispatch (3.950667ms)
+✔ metadata-only inventory has bounded timeout and awaits its killed child closure (27.472583ms)
+✔ host minima equality is accepted and fractional/malformed/low values fail (0.546375ms)
+✔ RSS samples enforce aggregate sum, exact2GiB stop and conservative <=1s timing (0.223791ms)
+✔ late synchronous teardown cannot hide an observation-to-closure gap (0.100292ms)
+✔ final stdout is awaited and a stalled flush is destroyed within its remaining deadline (49.296209ms)
+✔ stdout callback failure and a callback past the RSS-gap deadline cannot admit (1.04075ms)
+✔ metadata runtime inventory includes the loaded future-feature source and cache (95.011042ms)
+✔ process observations retain birth identity, RSS and complete command line (0.392625ms)
+✔ owned RSS tracks detached group after parent exit, excluding unrelated and PS probe (0.314458ms)
+✔ startup abort is consumed once and cleanup inspection remains available (0.1185ms)
+✔ exclusive lock cannot steal stale/replaced lock or remove another inode (10.048416ms)
+✔ competing pilot is rejected but own captured stage descendants are allowed (0.260667ms)
+✔ bounded log and partial progress retain raw bytes and reject backwards counts (0.537875ms)
+✔ worker deadline and abort reject hung captured file operation and close worker (54.686792ms)
+✔ file worker executes captured generation, not changed on-disk source (14.296ms)
+✔ final publication needs completed stages and live inclusive clock (6.260291ms)
+✔ launcher CLI requires all exact hashes and rejects path traversal (0.193834ms)
+✔ source composition pins unchanged registered bootstrap and sequential stages (0.169458ms)
+✔ full consumer admits only the exact complete 160-cell census, never a pilot or prefix (356.910541ms)
+✔ full comparison authenticates every full census and rejects fresh wrong-count receipts (421.973458ms)
+✔ full progress accepts beyond the pilot through10240 and rejects overflow, reversal and noninteger counts (1.112292ms)
+✔ all pilot and full addresses share the unchanged exclusion and lock lane (0.298041ms)
+✔ full machine plan refuses pilot scope and prior resource plan without relaxing operational limits (0.929625ms)
+✔ full composition differs from frozen pilot only by declared addresses scope census and resource bindings (1.073792ms)
+✖ all32 original operational obligations survive full scope retargeting unchanged (1.272084ms)
+✔ measured full resource rule and every frozen pilot input are mandatory source bindings (0.684083ms)
+✔ machine plan is pilot-only and binds complete frozen sources/environment (3.01575ms)
+✔ all frozen hashes and comparison schema match disk without reading scientific data (1.87975ms)
+✔ source capture rejects replacement, symlinks, byte bound and overwrite (1.145083ms)
+✔ stage controls retain exact hash/manifest and one-cell-only arguments (1.444458ms)
+✔ captured Python bootstrap executes a synthetic byte-bound program and measures CPU (53.629541ms)
+✔ synthetic mechanical handoff checks exact output/gate/resource census (22.115708ms)
+✔ synthetic comparison admission requires authenticated preceding output and exact claims (29.136458ms)
+✔ single-stage piping rejects child failure and log overflow without a second dispatch (2.974417ms)
+✔ metadata-only inventory has bounded timeout and awaits its killed child closure (26.603625ms)
+✔ host minima equality is accepted and fractional/malformed/low values fail (0.693084ms)
+✔ RSS samples enforce aggregate sum, exact2GiB stop and conservative <=1s timing (0.273042ms)
+✔ late synchronous teardown cannot hide an observation-to-closure gap (0.130458ms)
+✔ final stdout is awaited and a stalled flush is destroyed within its remaining deadline (49.226375ms)
+✔ stdout callback failure and a callback past the RSS-gap deadline cannot admit (1.51325ms)
+✔ metadata runtime inventory includes the loaded future-feature source and cache (58.947083ms)
+✔ process observations retain birth identity, RSS and complete command line (0.446667ms)
+✔ owned RSS tracks detached group after parent exit, excluding unrelated and PS probe (0.372583ms)
+✔ startup abort is consumed once and cleanup inspection remains available (2.404667ms)
+✔ exclusive lock cannot steal stale/replaced lock or remove another inode (11.424083ms)
+✔ competing pilot is rejected but own captured stage descendants are allowed (0.224125ms)
+✔ bounded log and partial progress retain raw bytes and reject backwards counts (0.491917ms)
+✔ worker deadline and abort reject hung captured file operation and close worker (55.261459ms)
+✔ file worker executes captured generation, not changed on-disk source (43.582125ms)
+✔ final publication needs completed stages and live inclusive clock (5.92675ms)
+✔ launcher CLI requires all exact hashes and rejects path traversal (0.219375ms)
+✔ source composition pins unchanged registered bootstrap and sequential stages (0.15825ms)
+✔ cached composition exact source delta is binding/address-only, not operational logic (0.382375ms)
+✖ all32 original entry/launcher/process control obligations survive exact retargeting (0.712375ms)
+✔ old or mixed launch bindings cannot select the cached composition (2.528583ms)
+✔ all20 comparison fixed bindings occur in actual preflight closure, including prior resource return (0.747958ms)
+✔ cached and baseline pilot addresses share exclusion and the unchanged lock lane (0.222541ms)
+✖ all scientific implementation/control pins remain the separately accepted source generation (1.96475ms)
+✔ closed plan has no invented runtime/default fields and exact operational closure (1.732458ms)
+✔ duplicate JSON keys unsafe numbers malformed UTF8 and excessive nesting fail closed (0.403041ms)
+✔ bounded source read and write preserve exact bytes and reject symlink/overwrite (7.151417ms)
+✔ pure helper capture refuses changed bytes and exposes only operational functions used here (0.284166ms)
+✔ data/outer siblings are distinct and stage CLI preserves original candidate and deadline (0.688875ms)
+✔ captured Python wrapper reports real target CPU separately and rejects changed source (54.620042ms)
+✔ metadata inventory source keeps the public lazy-dependency exercise without executing science (0.212417ms)
+✔ synthetic consumer admission needs exact closed gate candidate census and binding chain (147.968041ms)
+✔ synthetic checker admission binds original candidate complete analysis and unpromoted flags (159.106583ms)
+✔ rebound candidate census source maps and authority must retain exact refined contract (1569.330958ms)
+✔ rebound checker needs exact snake-case analysis fifteen false flags and separate prior logs (1894.067ms)
+✔ all prior source lists and logs retained without replacing historical stage semantics (7.743125ms)
+✔ metadata admission string class is explicit and other bounded structures never widen (15.179917ms)
+✔ captured current-entry provenance command fits the fixed admission class without a launch (5.187292ms)
+ℹ Prospective synthetic-path provenance command characters: 72864, 72948; actual plan paths still require prelaunch measurement.
+✔ private single-candidate publication monitoring rejects repeats symlinks and oversized files (45.941083ms)
+✔ diagnostic lifetime and failed-cleanup helper sections preserve the frozen89b safety generation (0.4545ms)
+✔ stage piping uses one detached registered target and rejects failure and log overflow (5.168584ms)
+✔ metadata timeout waits for killed child closure (6.774125ms)
+✔ shared exclusion recognizes old/cached/full/root/range and both F5 stages (2.074583ms)
+✔ explicit runtime launch options reject extras missing values unsafe hash and traversal (0.4325ms)
+✔ reused safeguards enforce first-to-last RSS interval host thresholds and stdout flush (13.574125ms)
+✔ captured file worker timeout is bounded and finalization requires complete closed stages (14.544125ms)
+✔ final diagnostics drain waits for queued writes and rejects stalled or late callbacks (11.252792ms)
+✔ final diagnostics EPIPE and callback failures reject and close only owned stream (0.674208ms)
+✔ late durable final publication returns no admissible result and never overwrites earlier data (6.381833ms)
+✔ failed attempt diagnostic epilogue cannot strand an unread stderr stream (12.448458ms)
+✔ CLI failure epilogue invokes only nonzero exit after bounded diagnostics or sink throw (10.7005ms)
+✔ failed stage projection retains unresolved process identities and cleanup failures without closure promotion (0.261417ms)
+✔ attempt diagnostic guard retains first async or callback failure and remains attached through cleanup (0.84425ms)
+✔ diagnostic guard waits for queued callbacks and bounds stalled failed cleanup without leaking healthy listeners (10.590541ms)
+✔ plain markdown document navigation resets the panel scroll position (2.110667ms)
+✔ markdown panels expose a focused article surface for browser read aloud (0.326208ms)
+✔ markdown image sources resolve relative to the markdown document (0.93ms)
+✔ markdown document HTML entrypoints load local KaTeX assets (1744.176166ms)
+✔ markdown document HTML entrypoints load local Mermaid assets (496.489125ms)
+✔ one-column markdown documents can toggle to a two-column layout (1.53675ms)
+✔ markdown math placeholders retry when the renderer loads late (0.611667ms)
+✔ markdown panels leave TeX delimiter examples inside inline code (0.300042ms)
+✔ open markdown panels can invoke the browser PDF save flow (0.204333ms)
+✔ download-only markdown sources trigger a file download without rendering (0.188125ms)
+✔ priority markdown links stay inside the markdown runtime (0.45475ms)
+✔ markdown heading links open the owning definition section (0.24675ms)
+✔ PDF toolbar button opens markdown before invoking browser print (0.206125ms)
+✔ whole document toolbar button clears runtime section identity (0.079292ms)
+✔ whole document toolbar button toggles an open current document (0.097417ms)
+✔ outside pointer closes an open markdown panel (0.120375ms)
+✔ document-only markdown close returns through scene history (0.082ms)
+✔ PDF toolbar button downloads download-only markdown without opening print (0.052083ms)
+ℹ tests 114
+ℹ suites 0
+ℹ pass 111
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8199.105291
+
+✖ failing tests:
+
+test at tests/f6c-cached-root-cover-full.test.js:598:1
+✖ all32 original operational obligations survive full scope retargeting unchanged (1.272084ms)
+  AssertionError [ERR_ASSERTION]: tests/f6c-cached-root-cover-pilot-process.test.js
+  + actual - expected
+  
+  + '433452397ac00c2deaa6a9300b84510f553943c491fd49c965a7573a691b0cf7'
+  - '72a68ac029d0ef269daa4c1508ee122a4548953e1238d237c7de5518556ea736'
+  
+      at frozen (file:///Users/markmorris/vibe/architrino/tests/f6c-cached-root-cover-full.test.js:589:55)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-cached-root-cover-full.test.js:603:17)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '433452397ac00c2deaa6a9300b84510f553943c491fd49c965a7573a691b0cf7',
+    expected: '72a68ac029d0ef269daa4c1508ee122a4548953e1238d237c7de5518556ea736',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-cached-root-cover-pilot-launcher.test.js:349:1
+✖ all32 original entry/launcher/process control obligations survive exact retargeting (0.712375ms)
+  AssertionError [ERR_ASSERTION]: tests/f6c-root-cover-pilot-process.test.js
+  + actual - expected
+  
+  + '159244ee6d45bc92463ff5e27ac60d416114820b187a6ab767983ec01e228c6b'
+  - 'cc0cac9ea3059239463e36f09f9d289146b6be92443daeda0136a16b6ecf6629'
+  
+      at frozen (file:///Users/markmorris/vibe/architrino/tests/f6c-cached-root-cover-pilot-launcher.test.js:335:57)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-cached-root-cover-pilot-launcher.test.js:351:14)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '159244ee6d45bc92463ff5e27ac60d416114820b187a6ab767983ec01e228c6b',
+    expected: 'cc0cac9ea3059239463e36f09f9d289146b6be92443daeda0136a16b6ecf6629',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-refined-acceleration-pilot.test.js:27:1
+✖ all scientific implementation/control pins remain the separately accepted source generation (1.96475ms)
+  AssertionError [ERR_ASSERTION]: scripts/eom/prepare-f6c-refined-acceleration.py
+  + actual - expected
+  
+  + 'cb7bbef900b620d908cbcf3803793826c87cbf41e7f42d75c8fd26cf59ca5b8b'
+  - '738c716f95c419d49c14ffd533ba3bde4b6bfe666521f363db15c6212a52842c'
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-refined-acceleration-pilot.test.js:29:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'cb7bbef900b620d908cbcf3803793826c87cbf41e7f42d75c8fd26cf59ca5b8b',
+    expected: '738c716f95c419d49c14ffd533ba3bde4b6bfe666521f363db15c6212a52842c',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

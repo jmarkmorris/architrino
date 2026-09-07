@@ -1,0 +1,90 @@
+{
+  "knownCases": "SHA-256 abc and fullEntry tuple extraction passed before target read",
+  "source": ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/full-admission.json",
+  "sourceSha256": "8fe8f0f9651fd8de15467a69f0534f08bbe19e0e3fdb64a86c6422be857eb77f",
+  "sourceBytes": 332567,
+  "scope": "selected sourceBindings only; original receipt is not reproduced here",
+  "sourceBindings": [
+    {
+      "path": "/Users/markmorris/vibe/architrino/scripts/eom/launch-abc-enclosed-root-pilot.mjs",
+      "sha256": "5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa",
+      "bytes": 39465
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md",
+      "sha256": "f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",
+      "bytes": 28340
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/scripts/eom/run-f6c-cached-root-cover-full.mjs",
+      "sha256": "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b",
+      "bytes": 27166
+    }
+  ],
+  "consumer": "scripts/eom/prepare-f6c-parent-emission-refinement.py",
+  "history": [
+    {
+      "revision": "730940e16^",
+      "binding": [
+        "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+        "373930ca36ca50067b0df37a48ed96cd34527d912af2f6696d6c4d4992a99bb0"
+      ]
+    },
+    {
+      "revision": "730940e16",
+      "binding": [
+        "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+        "373930ca36ca50067b0df37a48ed96cd34527d912af2f6696d6c4d4992a99bb0"
+      ]
+    },
+    {
+      "revision": "295a24ce2",
+      "binding": [
+        "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+        "6dbf89315553b027335e3ca29094514e4ef663dadb2c98a8ad0f51fcf922de21"
+      ]
+    },
+    {
+      "revision": "590ddc942",
+      "binding": [
+        "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+        "e9381a6564087c681bbf8a1ae12ca257aa3d2314ab6ca14ab91897bdc8630a9d"
+      ]
+    },
+    {
+      "revision": "582efe4bf",
+      "binding": [
+        "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+        "d46ca542216c3554b2cbf4475a18149ac78f6d0c9ccd35897e1280b7632d7ea0"
+      ]
+    },
+    {
+      "revision": "959247191",
+      "binding": [
+        "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+        "9e71ac129b9f62a5c6302ddadf2fdfcb8525b0342bb81a9d7c827cf9553ee792"
+      ]
+    },
+    {
+      "revision": "bb9d82d94",
+      "binding": [
+        "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+        "9e71ac129b9f62a5c6302ddadf2fdfcb8525b0342bb81a9d7c827cf9553ee792"
+      ]
+    },
+    {
+      "revision": "36d34a262",
+      "binding": [
+        "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+        "9e71ac129b9f62a5c6302ddadf2fdfcb8525b0342bb81a9d7c827cf9553ee792"
+      ]
+    },
+    {
+      "revision": "HEAD",
+      "binding": [
+        "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+        "9e71ac129b9f62a5c6302ddadf2fdfcb8525b0342bb81a9d7c827cf9553ee792"
+      ]
+    }
+  ]
+}

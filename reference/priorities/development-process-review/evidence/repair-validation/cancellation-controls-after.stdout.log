@@ -1,0 +1,38 @@
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.063514416,"freePercent":100,"availableDiskBytes":"944621072384","atLaunch":true}
+✔ lost monitor cancels stubborn Python and prevents checker dispatch (526.396166ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05895062500000006,"freePercent":100,"availableDiskBytes":"944621019136","atLaunch":true}
+✔ monitor sink failure cancels stubborn Python and prevents checker dispatch (576.164125ms)
+{"kind":"host-resource","elapsedSeconds":0.059992250000000004,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944620974080"}
+✔ lost process monitoring cancels a stubborn owned target with honest unverified closure (550.425125ms)
+{"kind":"host-resource","elapsedSeconds":0.06003554199999996,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944620945408"}
+✔ monitor log failure cancels a stubborn owned target before any comparison (572.559ms)
+{"kind":"host-resource","elapsedSeconds":0.059736541000000004,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944620924928"}
+✔ lost process monitoring cancels a stubborn owned target with honest unverified closure (521.37325ms)
+{"kind":"host-resource","elapsedSeconds":0.05320483300000001,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944620896256"}
+✔ monitor log failure cancels a stubborn owned target before any comparison (579.122958ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.065741167,"freePercent":100,"availableDiskBytes":"944620863488","atLaunch":true}
+✔ lost monitor cancels stubborn Python and prevents checker dispatch (528.848125ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.06167624999999998,"freePercent":100,"availableDiskBytes":"944620814336","atLaunch":true}
+✔ monitor sink failure cancels stubborn Python and prevents checker dispatch (579.681958ms)
+✔ real active-target diagnostic EPIPE cancels owned group releases lock and emits no accepted completion (568.603959ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.065679625,"freePercent":100,"availableDiskBytes":"944619659264","atLaunch":true}
+✔ lost monitor cancels stubborn Python and prevents checker dispatch (528.106875ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05926587500000005,"freePercent":100,"availableDiskBytes":"944619606016","atLaunch":true}
+✔ monitor sink failure cancels stubborn Python and prevents checker dispatch (580.8875ms)
+✔ real active-target diagnostic EPIPE cancels owned group releases lock and emits no accepted completion (565.251625ms)
+{"kind":"host-resource","elapsedSeconds":0.060670749999999996,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944619503616"}
+✔ lost process monitoring cancels a stubborn owned target with honest unverified closure (522.638541ms)
+{"kind":"host-resource","elapsedSeconds":0.05869604200000003,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944619474944"}
+✔ monitor log failure cancels a stubborn owned target before any comparison (578.387459ms)
+{"kind":"host-resource","elapsedSeconds":0.064275541,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944619446272"}
+✔ lost monitor cancels stubborn target and preserves unverified census (524.087875ms)
+{"kind":"host-resource","elapsedSeconds":0.058369083000000044,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944619417600"}
+✔ monitor sink failure cancels target and prevents publisher (575.943458ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9423.283709

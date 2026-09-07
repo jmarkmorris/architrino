@@ -1,0 +1,3 @@
+{"event":"known-command-capture-pass","mode":"bootstrap-interruption"}
+{"event":"probe-start","mode":"bootstrap-interruption","root":"/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/dpr-supervision-tZh8x3","node":"v26.3.0"}
+{"event":"probe-result","mode":"bootstrap-interruption","root":"/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/dpr-supervision-tZh8x3","rejected":true,"accepted":false,"failure":"synthetic bootstrap interruption","cleanupFailure":"runner birth was never authenticated","seconds":10.161411042000001,"processesClosed":true,"stdout":"","observations":[{"pid":74512,"present":false},{"pid":74513,"present":false}]}

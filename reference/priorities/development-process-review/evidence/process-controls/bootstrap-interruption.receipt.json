@@ -1,0 +1,84 @@
+{
+  "schema": "braid-program/subfield-circular-pilot-outer-process.v1",
+  "accepted": false,
+  "h3EvidenceEligible": false,
+  "authority": "registered-process-supervision-and-external-terminal-admission-only",
+  "startedAt": "2026-09-07T04:35:46.544Z",
+  "limitMs": 20000,
+  "scope": "direct-superviseRegisteredPilot-only; caller preparation/publication not guarded",
+  "budget": {
+    "startedAtMs": 111.094167,
+    "entryAtMs": 111.095,
+    "workEndMs": 5111.094166999999,
+    "completionEndMs": 20111.094167,
+    "reserveMs": 15000
+  },
+  "inspectionAuthority": "explicit callback; its bounded probe lifetime and complete resource accounting require external review",
+  "spawnPlumbing": "captured-owned-bootstrap-intercepts-spawn; registered-gate-launches-original-command-in-owned-group",
+  "bootstrapSha256": "44e820cd7496c1bfb1b8549d16fba9eee5cb9e4afa8320ae486596b3a0f1b6df",
+  "gateSha256": "a140ac54859e5c14ca3c2f564589be5a2397472eaf822c116da3f65b98f7800e",
+  "rootGuardSha256": "530629de944e1988bd38db47d90679d3640a5cedd7ecf8dc5f56a02bb14c9408",
+  "gates": [],
+  "snapshots": [
+    {
+      "reason": "final-complete-group-census",
+      "elapsedMilliseconds": 10155.029958000001,
+      "processes": [],
+      "complete": true,
+      "truncated": false
+    }
+  ],
+  "signals": [],
+  "processesClosed": true,
+  "autonomousGateCancellation": "immutable self-owned target and runner-group behavior; no new reaction-time guarantee",
+  "guard": {
+    "sourceSha256": "ead24dec510af8a4e8e5732585e98693dccfec7df91a3c45102c2a3dfef2fb0e",
+    "bridgeNanoseconds": "692396622218041",
+    "bridgeMilliseconds": 112.04325,
+    "workDeadlineNanoseconds": "692401621268958",
+    "completionDeadlineNanoseconds": "692416621268958",
+    "ready": true,
+    "closed": true,
+    "schedulingBoundary": "independently schedulable worker and OS; no suspension/uninterruptible-OS guarantee",
+    "exitCode": 1
+  },
+  "outputReserved": true,
+  "rootGuard": {
+    "identity": null,
+    "acknowledged": false,
+    "actualCommand": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+    "actualSourceSha256": "530629de944e1988bd38db47d90679d3640a5cedd7ecf8dc5f56a02bb14c9408",
+    "registeredAtMilliseconds": 158.30808299999998
+  },
+  "firstFailure": {
+    "message": "synthetic bootstrap interruption",
+    "elapsedMilliseconds": 183.20149999999998,
+    "afterAbort": false,
+    "evidence": {
+      "rows": [],
+      "complete": true,
+      "truncated": false
+    }
+  },
+  "pendingCallbackObserved": true,
+  "cleanupFailure": "runner birth was never authenticated",
+  "exit": {
+    "code": 125,
+    "signal": null
+  },
+  "stdoutLog": {
+    "path": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/dpr-supervision-tZh8x3/attempt/runner-stdout.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderrLog": {
+    "path": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/dpr-supervision-tZh8x3/attempt/runner-stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdoutDroppedBytes": 0,
+  "stderrDroppedBytes": 0,
+  "guardClosed": true,
+  "elapsedWallSeconds": 10.156090416000001,
+  "failure": "synthetic bootstrap interruption"
+}

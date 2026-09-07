@@ -1,0 +1,197 @@
+[
+  {
+    "label": "natural-return-after",
+    "runId": "3dbfccc2-7ade-4311-a512-aeb70ca7a0a4",
+    "node": "v26.3.0",
+    "command": "node",
+    "args": [
+      "reference/priorities/development-process-review/evidence/process-controls/supervision-probe.mjs",
+      "natural-return"
+    ],
+    "startedAtUtc": "2026-09-07T04:46:19.771Z",
+    "finishedAtUtc": "2026-09-07T04:46:20.162Z",
+    "status": "completed",
+    "exitCode": 0,
+    "exitSignal": null,
+    "elapsedWallSeconds": 0.406,
+    "processGroupClosed": true
+  },
+  {
+    "label": "initial-launcher-controls",
+    "runId": "861ddc45-2605-4811-aac8-c1037fe36ef5",
+    "node": "v26.3.0",
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "--test-timeout=30000",
+      "tests/subfield-circular-root-launcher.test.js",
+      "tests/f5-prehistory-handoff-build-startup.test.js"
+    ],
+    "startedAtUtc": "2026-09-07T04:46:49.782Z",
+    "finishedAtUtc": "2026-09-07T04:47:22.420Z",
+    "status": "completed",
+    "exitCode": 0,
+    "exitSignal": null,
+    "elapsedWallSeconds": 32.651,
+    "processGroupClosed": true
+  },
+  {
+    "label": "blocked-by-operational-pin",
+    "runId": "3c7e2b18-cce3-4037-a3fd-bc63118c8c04",
+    "node": "v26.3.0",
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "--test-timeout=30000",
+      "tests/f6c-acceleration-pilot-process.test.js"
+    ],
+    "startedAtUtc": "2026-09-07T04:47:47.260Z",
+    "finishedAtUtc": "2026-09-07T04:47:47.789Z",
+    "status": "failed",
+    "exitCode": 1,
+    "exitSignal": null,
+    "elapsedWallSeconds": 0.543,
+    "processGroupClosed": true
+  },
+  {
+    "label": "acceleration-before-fixture-repair",
+    "runId": "45fa4c31-7bad-42b8-8ec3-1c2d7b9d239a",
+    "node": "v26.3.0",
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "--test-timeout=30000",
+      "tests/f6c-acceleration-pilot-process.test.js"
+    ],
+    "startedAtUtc": "2026-09-07T04:50:28.221Z",
+    "finishedAtUtc": "2026-09-07T04:50:37.111Z",
+    "status": "failed",
+    "exitCode": 1,
+    "exitSignal": null,
+    "elapsedWallSeconds": 8.903,
+    "processGroupClosed": true
+  },
+  {
+    "label": "pilot-matrix-before-fixture-repair",
+    "runId": "49f850c2-0643-471c-b580-00d878b8f5bc",
+    "node": "v26.3.0",
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "--test-timeout=30000",
+      "tests/f6c-acceleration-pilot-process.test.js",
+      "tests/f6c-refined-acceleration-pilot-process.test.js",
+      "tests/f6c-emission-refinement-pilot-process.test.js",
+      "tests/f6c-root-cover-pilot-process.test.js",
+      "tests/f6c-cached-root-cover-pilot-process.test.js",
+      "tests/f6c-cached-root-cover-full-process.test.js",
+      "tests/prescribed-response-pilot-process.test.js"
+    ],
+    "startedAtUtc": "2026-09-07T04:52:10.482Z",
+    "finishedAtUtc": "2026-09-07T04:53:05.928Z",
+    "status": "failed",
+    "exitCode": 1,
+    "exitSignal": null,
+    "elapsedWallSeconds": 55.464,
+    "processGroupClosed": true
+  },
+  {
+    "label": "cancellation-controls-after",
+    "runId": "cc74cf70-6739-41a4-8b6c-fc6a3f80b169",
+    "node": "v26.3.0",
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "--test-timeout=30000",
+      "--test-name-pattern=monitor|diagnostic EPIPE",
+      "tests/f6c-acceleration-pilot-process.test.js",
+      "tests/f6c-refined-acceleration-pilot-process.test.js",
+      "tests/f6c-emission-refinement-pilot-process.test.js",
+      "tests/f6c-root-cover-pilot-process.test.js",
+      "tests/f6c-cached-root-cover-pilot-process.test.js",
+      "tests/f6c-cached-root-cover-full-process.test.js",
+      "tests/prescribed-response-pilot-process.test.js"
+    ],
+    "startedAtUtc": "2026-09-07T04:54:24.398Z",
+    "finishedAtUtc": "2026-09-07T04:54:33.885Z",
+    "status": "completed",
+    "exitCode": 0,
+    "exitSignal": null,
+    "elapsedWallSeconds": 9.5,
+    "processGroupClosed": true
+  },
+  {
+    "label": "final-process-regressions",
+    "runId": "86dabab5-2d5b-4af8-a740-64b659f2afaa",
+    "node": "v26.3.0",
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "--test-timeout=30000",
+      "tests/subfield-circular-root-launcher.test.js",
+      "tests/f5-prehistory-handoff-build-startup.test.js",
+      "tests/f6c-acceleration-pilot-process.test.js",
+      "tests/f6c-refined-acceleration-pilot-process.test.js",
+      "tests/f6c-emission-refinement-pilot-process.test.js",
+      "tests/f6c-root-cover-pilot-process.test.js",
+      "tests/f6c-cached-root-cover-pilot-process.test.js",
+      "tests/f6c-cached-root-cover-full-process.test.js",
+      "tests/prescribed-response-pilot-process.test.js"
+    ],
+    "startedAtUtc": "2026-09-07T04:55:40.499Z",
+    "finishedAtUtc": "2026-09-07T04:57:10.371Z",
+    "status": "completed",
+    "exitCode": 0,
+    "exitSignal": null,
+    "elapsedWallSeconds": 89.883,
+    "processGroupClosed": true
+  },
+  {
+    "label": "source-and-layout-checks",
+    "runId": "ea414e01-c74f-478a-a6fa-3f9d87436bcc",
+    "node": "v26.3.0",
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "--test-timeout=30000",
+      "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+      "tests/f6c-cached-root-cover-full.test.js",
+      "tests/f6c-refined-acceleration-pilot.test.js",
+      "tests/markdown-runtime-layout.test.js"
+    ],
+    "startedAtUtc": "2026-09-07T04:57:19.990Z",
+    "finishedAtUtc": "2026-09-07T04:57:28.255Z",
+    "status": "failed",
+    "exitCode": 1,
+    "exitSignal": null,
+    "elapsedWallSeconds": 8.28,
+    "processGroupClosed": true
+  },
+  {
+    "label": "final-source-composition",
+    "runId": "70734f7a-21cf-4e4d-a78e-8c0b410c9761",
+    "node": "v26.3.0",
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "--test-timeout=30000",
+      "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+      "tests/f6c-cached-root-cover-full.test.js"
+    ],
+    "startedAtUtc": "2026-09-07T04:59:46.759Z",
+    "finishedAtUtc": "2026-09-07T04:59:48.497Z",
+    "status": "completed",
+    "exitCode": 0,
+    "exitSignal": null,
+    "elapsedWallSeconds": 1.751,
+    "processGroupClosed": true
+  }
+]

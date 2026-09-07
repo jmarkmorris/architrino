@@ -15,7 +15,7 @@ const self=readFileSync("scripts/eom/launch-f6c-cached-root-cover-pilot.mjs");
 const entryPath="scripts/eom/run-f6c-cached-root-cover-pilot.mjs";
 const lane=".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827";
 function entrySource(mode) {
-  const program=mode==="child-failure"?"process.exit(7)":["lost-monitor","log-failure"].includes(mode)?"process.on('SIGTERM',()=>{});setInterval(()=>{},1000)":"process.stdout.write(JSON.stringify({completed:true,accepted:false,synthetic:true})+'\\n')";
+  const program=mode==="child-failure"?"process.exit(7)":["lost-monitor","log-failure"].includes(mode)?"process.on('SIGTERM',()=>{});require('node:fs').writeFileSync('synthetic-target-ready','ready');setInterval(()=>{},1000)":"process.stdout.write(JSON.stringify({completed:true,accepted:false,synthetic:true})+'\\n')";
   return Buffer.from([
     "import {spawn} from 'node:child_process';import{mkdirSync,readFileSync,realpathSync}from'node:fs';",
     "import path from'node:path';import{fileURLToPath}from'node:url';",
@@ -48,13 +48,13 @@ async function runFixture(mode) {
     }
     if(command==="/bin/ps"){
       psCalls++;
-      if(mode==="lost-monitor"&&psCalls>=6){setImmediate(()=>callback(new Error("synthetic lost monitor")));return {pid:-2000};}
+      if(mode==='lost-monitor'&&existsSync(path.join(dir,'synthetic-target-ready'))){setImmediate(()=>callback(new Error("synthetic lost monitor")));return {pid:-2000};}
       if(mode==="startup-interruption"&&psCalls===1)return original.call(this,command,args,options,(error,text)=>{process.emit("SIGTERM");callback(error,text);});
     }
     return original.call(this,command,args,options,callback);
   };
   fs.writeSync=function(fd,bytes,...args){
-    if(mode==="log-failure"&&psCalls>=6&&Buffer.isBuffer(bytes)&&bytes.toString().includes('"kind":"aggregate-rss"'))throw new Error("synthetic ENOSPC monitor log");
+    if(mode==='log-failure'&&existsSync(path.join(dir,'synthetic-target-ready'))&&Buffer.isBuffer(bytes)&&bytes.toString().includes('"kind":"aggregate-rss"'))throw new Error("synthetic ENOSPC monitor log");
     return originalWrite.call(this,fd,bytes,...args);
   };
   syncBuiltinESMExports();

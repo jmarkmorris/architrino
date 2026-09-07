@@ -414,6 +414,8 @@ The ten slowest are two `eq21-*` transfer residuals that hit the 100 s cap, `coi
 
 ### OPS-024 — Post-campaign binding corruption sweep
 
+**Scoped review update, 2026-09-07.** The operator-authorized [consequential repair audit](../development-process-review/analysis/consequential-repair-audit.md) verifies the seven reported commits by actual file bytes, restores independent bootstrap cleanup assertions, and identifies historical full-entry pins that no longer name the source in the intact old admission receipt. Those historical bindings were not advanced again. A separate refined-acceleration preparation pin already disagrees with its baseline source by `git show HEAD:<path>` and SHA-256; its expected generation remains unrecovered in the bounded path-history search. Both are open braid-program source/evidence authentication blockers, not environmental exceptions. The pilot normal-return defect is repaired within the 85-control Mac scope below; the wider failure inventory remains open.
+
 - **Status:** In progress, opened 2026-09-06 on the operator's instruction to find and repair every binding left broken by the September campaigns while the context is fresh.
 - **Priority object:** `post_campaign_binding_corruption_sweep`
 - **Request / acceptance:** Take the full test sweep as ground truth, classify every non-environmental failure to its cause, repair each cause that is a verified mechanical drift, and route each cause that needs a judgment to its owner with the evidence already gathered. Acceptance: every failing file in the sweep is either green, environmental by measurement, or named under a decision row with its owner.
@@ -458,6 +460,8 @@ A pin-audit instrument (`git ls-files`, regex over path-plus-64-hex pairs, 689 p
 - **Completion:** The runner behaves as accepted, the pinned tests pass, and a deliberate two-failure run demonstrates both failures reported and a non-zero exit.
 
 ### OPS-022 — PR gate test sweep by duration split
+
+**Scoped process repair, 2026-09-07.** The registered watchdog no longer holds a naturally completed runner alive; IPC-loss cancellation observes parent exit within one second while retaining the supervisor control channel. The [repair record](../development-process-review/analysis/process-repair-validation.md) retains the unchanged before/after probe and complete logs for 85 passing process tests across nine files on Mac Node v26.3.0 with the shared venv (89.804 s test duration). Independent PID-absence controls cover normal completion and cancellation. This verifies the process repair, not a green full sweep, Node 22/Linux compatibility, or resolution of the separate generic-wrapper startup deadline. Reporting status and CI placement are unchanged.
 
 - **Status:** Queued
 - **Priority object:** `pr_gate_test_sweep_duration_split`

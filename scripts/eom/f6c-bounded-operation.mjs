@@ -39,8 +39,8 @@ export const LIMITS=Object.freeze({inclusiveMilliseconds:1800000,aggregateRSSByt
   outputFiles:512,serialWorkers:1,startFreePercent:40,startDiskBytes:68719476736,
   stopFreePercent:20,stopDiskBytes:17179869184});
 export const PINS=Object.freeze({
-  helpers:['scripts/eom/launch-prescribed-response-pilot.mjs','7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7'],
-  outer:['scripts/eom/launch-subfield-circular-root-pilot.mjs','3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a'],
+  helpers:['scripts/eom/launch-prescribed-response-pilot.mjs','f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31'],
+  outer:['scripts/eom/launch-subfield-circular-root-pilot.mjs','35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826'],
   diagnostics:['scripts/eom/launch-f6c-emission-refinement-pilot.mjs','7a1f5571827225d1529f73a3f0b905be75e81e2f7d11c2670b697e0599d65e71'],
 });
 const check=(ok,message)=>{if(!ok)throw Error(message);};

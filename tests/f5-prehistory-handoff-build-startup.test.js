@@ -77,9 +77,15 @@ for (const [inspection, label, cleanupFailure] of [[2, "bootstrap", "runner birt
   test(`interruption at ${label} inspection prevents target ACK and permits validated owned cleanup`, async () => {
     const { marker, options } = fixture(), controller = new AbortController();
     let calls = 0;
+    const observedPids = new Set();
     options.inspectProcesses = startupAbortInspection(async () => {
       const rows = await processTable();
-      if (++calls === inspection) controller.abort(new Error(`synthetic ${label} interruption`));
+      if (++calls === inspection) {
+        const runners = rows.filter(row => row.ppid === process.pid && row.pgid === row.pid && row.command === process.execPath);
+        assert.equal(runners.length, 1, "observe the newly created runner before rejecting its authentication");
+        for (const row of rows) if (runners.some(runner => row.pid === runner.pid || row.ppid === runner.pid)) observedPids.add(row.pid);
+        controller.abort(new Error(`synthetic ${label} interruption`));
+      }
       return rows;
     }, controller.signal);
     const receipt = await rejected(options);
@@ -89,6 +95,10 @@ for (const [inspection, label, cleanupFailure] of [[2, "bootstrap", "runner birt
     assert.equal(receipt.cleanupFailure, cleanupFailure);
     assert.deepEqual(receipt.gates, []);
     assert.equal(existsSync(marker), false);
+    // These observations are test witnesses only, never supervisor signal
+    // authority. Do not replace an independent absence check with a receipt.
+    assert.ok(observedPids.size > 0);
+    for (const pid of observedPids) assert.throws(() => process.kill(pid, 0), error => error.code === "ESRCH");
     if (cleanupFailure) {
       // An unauthenticated birth is never recorded as the runner identity, for the same reason it is never signalled.
       assert.equal(receipt.runner, undefined, "unauthenticated bootstrap identity must not be promoted into the receipt");

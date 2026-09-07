@@ -25,6 +25,7 @@ function pythonSource(){return Buffer.from([
   'if mode=="child-failure":sys.exit(7)',
   'if mode in ("lost-monitor","log-failure"):',
   ' signal.signal(signal.SIGTERM,signal.SIG_IGN)',
+ ' (ops/"synthetic-target-ready").write_text("ready")',
   ' while True:time.sleep(.1)',
   'if stage=="consumer":',
   ' assert not data.exists();data.mkdir();target=data/"range.json"',
@@ -73,13 +74,13 @@ async function runFixture(mode){
     if(command==='/usr/bin/memory_pressure'){setImmediate(()=>callback(null,'System-wide memory free percentage: 100%\n'));return {pid:-1000};}
     if(command==='/bin/ps'){
       psCalls++;
-      if(mode==='lost-monitor'&&psCalls>=6){setImmediate(()=>callback(Error('synthetic monitor lost')));return {pid:-2000};}
+      if(mode==='lost-monitor'&&existsSync(path.join(ops,'synthetic-target-ready'))){setImmediate(()=>callback(Error('synthetic monitor lost')));return {pid:-2000};}
       if(mode==='startup-interruption'&&psCalls===1)return original.call(this,command,args,options,(error,text)=>{process.emit('SIGTERM');callback(error,text);});
     }
     return original.call(this,command,args,options,callback);
   };
   fs.writeSync=function(fd,bytes,...args){
-    if(mode==='log-failure'&&psCalls>=6&&Buffer.isBuffer(bytes)&&bytes.toString().includes('"kind":"aggregate-rss"'))throw Error('synthetic monitor ENOSPC');
+    if(mode==='log-failure'&&existsSync(path.join(ops,'synthetic-target-ready'))&&Buffer.isBuffer(bytes)&&bytes.toString().includes('"kind":"aggregate-rss"'))throw Error('synthetic monitor ENOSPC');
     return originalWrite.call(this,fd,bytes,...args);
   };syncBuiltinESMExports();
   const output=path.join(dir,lane,'attempt'),ops=output+'-outer';
@@ -93,12 +94,13 @@ async function runFixture(mode){
       const expectedStages={'child-failure':1,'checker-failure':2,'publication-failure':2,'startup-interruption':0,'lost-monitor':1,'log-failure':1,'wrong-stdout':1};
       assert.equal(rejection.stages.length,expectedStages[mode],'intended failure stage must actually be exercised');
       const expectedFailure={'child-failure':/runner did not exit cleanly/,'checker-failure':/runner did not exit cleanly/,'publication-failure':/synthetic late publication/,
-        'startup-interruption':/interrupted/,'lost-monitor':/interruption/,'log-failure':/interruption/,'wrong-stdout':/fresh supervisor logs differ/};
+        'startup-interruption':/interrupted/,'lost-monitor':/^(synthetic monitor lost|outer operator interruption or original work deadline)$/,'log-failure':/interruption/,'wrong-stdout':/fresh supervisor logs differ/};
       assert.match(rejection.failure,expectedFailure[mode]);
+      if(['lost-monitor','log-failure'].includes(mode))assert.equal(existsSync(path.join(ops,'synthetic-target-ready')),true,'fault injection waits for the stubborn target, not a process-query count');
       if(mode==='startup-interruption'){assert.equal(rejection.stages.length,0);assert.equal(existsSync(output),false);}
       for(const stage of rejection.stages)for(const gate of stage.gates){
         for(const identity of [gate.identity,gate.target])if(identity?.pid)assert.throws(()=>process.kill(identity.pid,0));
-        if(['lost-monitor','log-failure'].includes(mode)){assert.ok(gate.target?.pid,'stubborn target actually started');assert.equal(stage.cancellationObservedPidsAbsent,true);}
+        if(['lost-monitor','log-failure'].includes(mode)){assert.ok(gate.target?.pid,'stubborn target actually started');if(mode==='lost-monitor')assert.equal(stage.cancellationObservedPidsAbsent,true);else assert.equal(stage.processesClosed===true||stage.cancellationObservedPidsAbsent===true,true,'require verified census or explicitly observed cancellation, plus independent PID absence');}
       }
       if(['child-failure','lost-monitor','log-failure','wrong-stdout','startup-interruption'].includes(mode))assert.equal(existsSync(path.join(ops,'comparison-process')),false);
       if(mode==='publication-failure'){assert.equal(rejection.stages.length,2);assert.equal(existsSync(path.join(ops,'partial-admission.json')),true);}

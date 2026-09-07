@@ -1,0 +1,409 @@
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.09924899999999999,"freePercent":100,"availableDiskBytes":"944625250304","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.6496822499999999,"freePercent":100,"availableDiskBytes":"944625180672","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":1.1231474579999998,"freePercent":100,"availableDiskBytes":"944625156096","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.174285375,"freePercent":100,"availableDiskBytes":"944625156096","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.2032274160000003,"freePercent":100,"availableDiskBytes":"944625033216","atLaunch":false}
+✔ captured launcher worker entry and Python wrapper close two synthetic stages with measured CPU (1270.917208ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05566604200000006,"freePercent":100,"availableDiskBytes":"944625020928","atLaunch":true}
+✔ first Python failure closes owned groups and leaves data absent without checker dispatch (795.765ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.06487037499999997,"freePercent":100,"availableDiskBytes":"944624951296","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.5386105419999999,"freePercent":100,"availableDiskBytes":"944624910336","atLaunch":false}
+✔ checker failure after publication cannot promote its existing synthetic file (1255.550792ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05224445900000001,"freePercent":100,"availableDiskBytes":"944624852992","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.5044955420000001,"freePercent":100,"availableDiskBytes":"944624795648","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.9539097919999999,"freePercent":100,"availableDiskBytes":"944624779264","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.001552459,"freePercent":100,"availableDiskBytes":"944624779264","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":3.028194334,"freePercent":100,"availableDiskBytes":"944624640000","atLaunch":false}
+✔ slow final publication stays observed through worker termination (3090.20975ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05308924999999999,"freePercent":100,"availableDiskBytes":"944624623616","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.49792391600000063,"freePercent":100,"availableDiskBytes":"944624582656","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.9487118330000003,"freePercent":100,"availableDiskBytes":"944624566272","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":0.9970672910000002,"freePercent":100,"availableDiskBytes":"944624566272","atLaunch":false}
+✔ late final publication failure preserves failed attempt and closed stage identities (1038.825584ms)
+✔ startup interruption creates no target and releases owned common lock (40.873208ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.054916541999999936,"freePercent":100,"availableDiskBytes":"944624476160","atLaunch":true}
+✔ lost monitor cancels stubborn Python and prevents checker dispatch (515.741125ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.06241529199999968,"freePercent":100,"availableDiskBytes":"944624443392","atLaunch":true}
+✖ monitor sink failure cancels stubborn Python and prevents checker dispatch (578.91525ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05746454199999971,"freePercent":100,"availableDiskBytes":"944624394240","atLaunch":true}
+✔ fresh stdout binding mismatch prevents comparison and retains closed first stage (537.267709ms)
+✔ real unread diagnostic pipe fails final drain then closes without a success completion (169.105ms)
+✔ real unread diagnostics close on early failure without a success completion (177.560292ms)
+{"kind":"host-resource","elapsedSeconds":0.0676375,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944624336896"}
+{"kind":"host-resource","elapsedSeconds":0.575549542,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624300032"}
+{"kind":"host-resource","elapsedSeconds":1.054509667,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624283648"}
+{"kind":"host-resource","elapsedSeconds":1.102138042,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624279552"}
+{"kind":"host-resource","elapsedSeconds":1.1275345419999998,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624148480"}
+✔ two captured synthetic stages register and close separately before final admission (1190.226166ms)
+{"kind":"host-resource","elapsedSeconds":0.0522188329999999,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944624136192"}
+✔ first synthetic target failure closes owned groups and prevents comparison dispatch (747.44725ms)
+{"kind":"host-resource","elapsedSeconds":0.05334112499999992,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944624107520"}
+{"kind":"host-resource","elapsedSeconds":0.5451126669999998,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624070656"}
+{"kind":"host-resource","elapsedSeconds":1.0260117089999998,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624054272"}
+{"kind":"host-resource","elapsedSeconds":1.0742682089999998,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624050176"}
+{"kind":"host-resource","elapsedSeconds":3.598716834,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944623915008"}
+✔ slow final publication remains sampled through captured worker closure (3658.267167ms)
+✔ startup interruption launches no target and releases its owned lock (39.845208ms)
+{"kind":"host-resource","elapsedSeconds":0.053891499999999724,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944623874048"}
+✖ lost process monitoring cancels a stubborn owned target with honest unverified closure (370.683625ms)
+{"kind":"host-resource","elapsedSeconds":0.054344457999999575,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944623865856"}
+✖ monitor log failure cancels a stubborn owned target before any comparison (432.830208ms)
+{"kind":"host-resource","elapsedSeconds":0.061954749999999996,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944623841280"}
+{"kind":"host-resource","elapsedSeconds":0.5724600419999999,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944623808512"}
+{"kind":"host-resource","elapsedSeconds":1.0615698750000002,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944623796224"}
+{"kind":"host-resource","elapsedSeconds":1.110706375,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944623788032"}
+{"kind":"host-resource","elapsedSeconds":1.135270709,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944623648768"}
+✔ two captured synthetic stages register and close separately before final admission (1200.313167ms)
+{"kind":"host-resource","elapsedSeconds":0.05318641699999989,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944623640576"}
+✔ first synthetic target failure closes owned groups and prevents comparison dispatch (721.543083ms)
+{"kind":"host-resource","elapsedSeconds":0.05409737499999983,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944623611904"}
+{"kind":"host-resource","elapsedSeconds":0.5500603330000001,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944623570944"}
+{"kind":"host-resource","elapsedSeconds":1.035005833,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944623558656"}
+{"kind":"host-resource","elapsedSeconds":1.083743541,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944623554560"}
+{"kind":"host-resource","elapsedSeconds":3.6099082909999995,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944623415296"}
+✔ slow final publication remains sampled through captured worker closure (3670.615584ms)
+✔ startup interruption launches no target and releases its owned lock (38.711167ms)
+{"kind":"host-resource","elapsedSeconds":0.05267016700000022,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944623390720"}
+✖ lost process monitoring cancels a stubborn owned target with honest unverified closure (368.618833ms)
+{"kind":"host-resource","elapsedSeconds":0.052989666999999824,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944623366144"}
+✖ monitor log failure cancels a stubborn owned target before any comparison (424.403791ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.063433959,"freePercent":100,"availableDiskBytes":"944623341568","atLaunch":true}
+{"kind":"host-resource","stage":"producer","elapsedSeconds":0.526618292,"freePercent":100,"availableDiskBytes":"944623284224","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.982070334,"freePercent":100,"availableDiskBytes":"944623267840","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.032737167,"freePercent":100,"availableDiskBytes":"944623267840","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.0587163339999999,"freePercent":100,"availableDiskBytes":"944623112192","atLaunch":false}
+✔ captured launcher worker entry and Python wrapper close two synthetic stages with measured CPU (1125.517166ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05536495799999989,"freePercent":100,"availableDiskBytes":"944623095808","atLaunch":true}
+✔ first Python failure closes owned groups and leaves data absent without checker dispatch (737.298042ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05455616600000007,"freePercent":100,"availableDiskBytes":"944623038464","atLaunch":true}
+{"kind":"host-resource","stage":"producer","elapsedSeconds":0.5102142079999998,"freePercent":100,"availableDiskBytes":"944622952448","atLaunch":false}
+✔ checker failure after publication cannot promote its existing synthetic file (1156.011709ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.053950249999999866,"freePercent":100,"availableDiskBytes":"944622927872","atLaunch":true}
+{"kind":"host-resource","stage":"producer","elapsedSeconds":0.5108735419999998,"freePercent":100,"availableDiskBytes":"944622870528","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.9672533749999997,"freePercent":100,"availableDiskBytes":"944626991104","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.016930917,"freePercent":100,"availableDiskBytes":"944626987008","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":3.0491102089999997,"freePercent":100,"availableDiskBytes":"944626835456","atLaunch":false}
+✔ slow final publication stays observed through worker termination (3110.321292ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05331020799999987,"freePercent":100,"availableDiskBytes":"944626823168","atLaunch":true}
+{"kind":"host-resource","stage":"producer","elapsedSeconds":0.503992542,"freePercent":100,"availableDiskBytes":"944626765824","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.9539289170000002,"freePercent":100,"availableDiskBytes":"944626749440","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.0028524170000002,"freePercent":100,"availableDiskBytes":"944626749440","atLaunch":false}
+✔ late final publication failure preserves failed attempt and closed stage identities (1038.888292ms)
+✔ startup interruption creates no target and releases owned common lock (41.009125ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.052328749999999674,"freePercent":100,"availableDiskBytes":"944626647040","atLaunch":true}
+✔ lost monitor cancels stubborn Python and prevents checker dispatch (515.276792ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.06254891599999973,"freePercent":100,"availableDiskBytes":"944626630656","atLaunch":true}
+✖ monitor sink failure cancels stubborn Python and prevents checker dispatch (580.850084ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05511158400000022,"freePercent":100,"availableDiskBytes":"944626507776","atLaunch":true}
+✔ fresh stdout binding mismatch prevents comparison and retains closed first stage (539.728458ms)
+✔ real unread diagnostic pipe fails final drain then closes without a success completion (170.352709ms)
+✔ real unread diagnostics close on early failure without a success completion (177.802541ms)
+✖ real active-target diagnostic EPIPE cancels owned group releases lock and emits no accepted completion (584.480917ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.06435029199999999,"freePercent":100,"availableDiskBytes":"944626294784","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.532859125,"freePercent":100,"availableDiskBytes":"944626241536","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.986345292,"freePercent":100,"availableDiskBytes":"944626225152","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.03600075,"freePercent":100,"availableDiskBytes":"944626225152","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.0612077500000001,"freePercent":100,"availableDiskBytes":"944626081792","atLaunch":false}
+✔ captured launcher worker entry and Python wrapper close two synthetic stages with measured CPU (1126.644083ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05581037500000002,"freePercent":100,"availableDiskBytes":"944626065408","atLaunch":true}
+✔ first Python failure closes owned groups and leaves data absent without checker dispatch (704.5065ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.054250499999999875,"freePercent":100,"availableDiskBytes":"944626012160","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.509725666,"freePercent":100,"availableDiskBytes":"944625963008","atLaunch":false}
+✔ checker failure after publication cannot promote its existing synthetic file (1166.175167ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05358295899999985,"freePercent":100,"availableDiskBytes":"944625913856","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.513292292,"freePercent":100,"availableDiskBytes":"944625872896","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.9756309590000001,"freePercent":100,"availableDiskBytes":"944625852416","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.0258823750000001,"freePercent":100,"availableDiskBytes":"944625852416","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":3.056566584,"freePercent":100,"availableDiskBytes":"944625545216","atLaunch":false}
+✔ slow final publication stays observed through worker termination (3121.529291ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05712337499999921,"freePercent":100,"availableDiskBytes":"944625545216","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.5364432499999994,"freePercent":100,"availableDiskBytes":"944625487872","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.9954204579999996,"freePercent":100,"availableDiskBytes":"944625385472","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.0593849169999994,"freePercent":100,"availableDiskBytes":"944625385472","atLaunch":false}
+✔ late final publication failure preserves failed attempt and closed stage identities (1091.596042ms)
+✔ startup interruption creates no target and releases owned common lock (40.242083ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05210395900000003,"freePercent":100,"availableDiskBytes":"944625352704","atLaunch":true}
+✔ lost monitor cancels stubborn Python and prevents checker dispatch (514.748166ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.0616708749999998,"freePercent":100,"availableDiskBytes":"944625303552","atLaunch":true}
+✖ monitor sink failure cancels stubborn Python and prevents checker dispatch (587.819083ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.056582541999998286,"freePercent":100,"availableDiskBytes":"944625242112","atLaunch":true}
+✔ fresh stdout binding mismatch prevents comparison and retains closed first stage (539.446167ms)
+✔ real unread diagnostic pipe fails final drain then closes without a success completion (167.71875ms)
+✔ real unread diagnostics close on early failure without a success completion (176.176042ms)
+✖ real active-target diagnostic EPIPE cancels owned group releases lock and emits no accepted completion (694.64625ms)
+{"kind":"host-resource","elapsedSeconds":0.0671305,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944625135616"}
+{"kind":"host-resource","elapsedSeconds":0.5834674160000001,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944625098752"}
+{"kind":"host-resource","elapsedSeconds":1.07604475,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944625078272"}
+{"kind":"host-resource","elapsedSeconds":1.124348083,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944625074176"}
+{"kind":"host-resource","elapsedSeconds":1.1495397500000002,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624947200"}
+✔ two captured synthetic stages register and close separately before final admission (1216.686917ms)
+{"kind":"host-resource","elapsedSeconds":0.05585783300000003,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944624889856"}
+✔ first synthetic target failure closes owned groups and prevents comparison dispatch (736.391958ms)
+{"kind":"host-resource","elapsedSeconds":0.0559950839999999,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944624906240"}
+{"kind":"host-resource","elapsedSeconds":0.5588736670000001,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624799744"}
+{"kind":"host-resource","elapsedSeconds":1.0553204589999998,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624783360"}
+{"kind":"host-resource","elapsedSeconds":1.105914625,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624775168"}
+{"kind":"host-resource","elapsedSeconds":3.6300769170000002,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624644096"}
+✔ slow final publication remains sampled through captured worker closure (3695.759042ms)
+✔ startup interruption launches no target and releases its owned lock (39.970208ms)
+{"kind":"host-resource","elapsedSeconds":0.052806750000000645,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944624615424"}
+✖ lost process monitoring cancels a stubborn owned target with honest unverified closure (422.332792ms)
+{"kind":"host-resource","elapsedSeconds":0.052303917000000186,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944624594944"}
+✖ monitor log failure cancels a stubborn owned target before any comparison (430.671167ms)
+{"kind":"host-resource","elapsedSeconds":0.063104542,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944624574464"}
+{"kind":"host-resource","elapsedSeconds":0.557234875,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624549888"}
+{"kind":"host-resource","elapsedSeconds":1.1008745,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624529408"}
+{"kind":"host-resource","elapsedSeconds":1.148449334,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624525312"}
+{"kind":"host-resource","elapsedSeconds":1.1725870840000001,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624381952"}
+✔ synthetic compute closes before private job and publisher, then whole admission (1237.957083ms)
+{"kind":"host-resource","elapsedSeconds":0.05368208299999992,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944624373760"}
+✔ first target failure closes owned groups without publisher (724.657041ms)
+{"kind":"host-resource","elapsedSeconds":0.05528404100000012,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944624340992"}
+{"kind":"host-resource","elapsedSeconds":0.5728181659999998,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624316416"}
+{"kind":"host-resource","elapsedSeconds":1.110216708,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624250880"}
+{"kind":"host-resource","elapsedSeconds":1.1590270830000002,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624242688"}
+{"kind":"host-resource","elapsedSeconds":2.684600166,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944624099328"}
+✔ slow final publication remains sampled while worker is active (2745.489166ms)
+✔ startup interruption launches no target and releases owned lock (42.056708ms)
+{"kind":"host-resource","elapsedSeconds":0.05529237499999999,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944624070656"}
+✔ lost monitor cancels stubborn target and preserves unverified census (375.519125ms)
+{"kind":"host-resource","elapsedSeconds":0.05196033299999999,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944624050176"}
+✔ monitor sink failure cancels target and prevents publisher (437.626125ms)
+{"kind":"host-resource","elapsedSeconds":0.05329054200000064,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944624021504"}
+✔ wrong completion binding prevents second stage (620.011083ms)
+✔ initial log ENOSPC leaves no timer, listener or process (6.656917ms)
+ℹ tests 61
+ℹ suites 0
+ℹ pass 50
+ℹ fail 11
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 55367.578583
+
+✖ failing tests:
+
+test at tests/f6c-acceleration-pilot-process.test.js:126:1
+✖ monitor sink failure cancels stubborn Python and prevents checker dispatch (578.91525ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  null !== true
+  
+      at runFixture (file:///Users/markmorris/vibe/architrino/tests/f6c-acceleration-pilot-process.test.js:103:129)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-cached-root-cover-full-process.test.js:100:1
+✖ lost process monitoring cancels a stubborn owned target with honest unverified closure (370.683625ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at runFixture (file:///Users/markmorris/vibe/architrino/tests/f6c-cached-root-cover-full-process.test.js:73:65)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-cached-root-cover-full-process.test.js:101:1
+✖ monitor log failure cancels a stubborn owned target before any comparison (432.830208ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at runFixture (file:///Users/markmorris/vibe/architrino/tests/f6c-cached-root-cover-full-process.test.js:73:65)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-cached-root-cover-pilot-process.test.js:100:1
+✖ lost process monitoring cancels a stubborn owned target with honest unverified closure (368.618833ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at runFixture (file:///Users/markmorris/vibe/architrino/tests/f6c-cached-root-cover-pilot-process.test.js:73:65)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-cached-root-cover-pilot-process.test.js:101:1
+✖ monitor log failure cancels a stubborn owned target before any comparison (424.403791ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at runFixture (file:///Users/markmorris/vibe/architrino/tests/f6c-cached-root-cover-pilot-process.test.js:73:65)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-emission-refinement-pilot-process.test.js:134:1
+✖ monitor sink failure cancels stubborn Python and prevents checker dispatch (580.850084ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  null !== true
+  
+      at runFixture (file:///Users/markmorris/vibe/architrino/tests/f6c-emission-refinement-pilot-process.test.js:110:149)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-emission-refinement-pilot-process.test.js:160:1
+✖ real active-target diagnostic EPIPE cancels owned group releases lock and emits no accepted completion (584.480917ms)
+  AssertionError [ERR_ASSERTION]: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  null !== true
+  
+      at runFixture (file:///Users/markmorris/vibe/architrino/[eval1]:98:149)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async file:///Users/markmorris/vibe/architrino/[eval1]:116:5
+  + actual - expected
+  
+  + 'AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n' +
+  +   '\n' +
+  +   'null !== true\n' +
+  +   '\n' +
+  +   '    at runFixture (file:///Users/markmorris/vibe/architrino/[eval1]:98:149)\n' +
+  +   '    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n' +
+  +   '    at async file:///Users/markmorris/vibe/architrino/[eval1]:116:5'
+  - undefined
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-emission-refinement-pilot-process.test.js:184:38)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nnull !== true\n\n    at runFixture (file:///Users/markmorris/vibe/architrino/[eval1]:98:149)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async file:///Users/markmorris/vibe/architrino/[eval1]:116:5',
+    expected: undefined,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-refined-acceleration-pilot-process.test.js:134:1
+✖ monitor sink failure cancels stubborn Python and prevents checker dispatch (587.819083ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  null !== true
+  
+      at runFixture (file:///Users/markmorris/vibe/architrino/tests/f6c-refined-acceleration-pilot-process.test.js:110:149)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-refined-acceleration-pilot-process.test.js:160:1
+✖ real active-target diagnostic EPIPE cancels owned group releases lock and emits no accepted completion (694.64625ms)
+  AssertionError [ERR_ASSERTION]: AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  null !== true
+  
+      at runFixture (file:///Users/markmorris/vibe/architrino/[eval1]:98:149)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async file:///Users/markmorris/vibe/architrino/[eval1]:116:5
+  + actual - expected
+  
+  + 'AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n' +
+  +   '\n' +
+  +   'null !== true\n' +
+  +   '\n' +
+  +   '    at runFixture (file:///Users/markmorris/vibe/architrino/[eval1]:98:149)\n' +
+  +   '    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n' +
+  +   '    at async file:///Users/markmorris/vibe/architrino/[eval1]:116:5'
+  - undefined
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-refined-acceleration-pilot-process.test.js:184:38)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\nnull !== true\n\n    at runFixture (file:///Users/markmorris/vibe/architrino/[eval1]:98:149)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async file:///Users/markmorris/vibe/architrino/[eval1]:116:5',
+    expected: undefined,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-root-cover-pilot-process.test.js:100:1
+✖ lost process monitoring cancels a stubborn owned target with honest unverified closure (422.332792ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at runFixture (file:///Users/markmorris/vibe/architrino/tests/f6c-root-cover-pilot-process.test.js:73:65)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6c-root-cover-pilot-process.test.js:101:1
+✖ monitor log failure cancels a stubborn owned target before any comparison (430.671167ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at runFixture (file:///Users/markmorris/vibe/architrino/tests/f6c-root-cover-pilot-process.test.js:73:65)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
