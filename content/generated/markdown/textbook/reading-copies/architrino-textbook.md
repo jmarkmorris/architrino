@@ -73099,7 +73099,7 @@ The strongest safe use is therefore not "this maps to $\mathbb{A}\mathbb{A}\math
 4. define the residual that would count as recovery,
 5. name the failure mode that would show the mapping has overreached.
 
-the inherited theory can tell the program what must be recovered, but it cannot tell the program what the world is made of.
+The inherited theory can tell the program what must be recovered, but it cannot tell the program what the world is made of.
 
 ##### Transfer Record
 
@@ -73359,7 +73359,7 @@ A historical audit of prize-recognized discoveries reinforces the same rule: mid
 
 Proof route: a verbal or diagrammatic mapping establishes only a relation between labels. Benchmark recovery requires an output comparison. Implementation closure requires a generator. If the generator is not declared, the concept still sits at the comparison layer. If the generator changes between benchmark families, the result is hidden tuning. If the generator is native and shared across the relevant sectors, then the inherited concept has been recovered as an effective limit rather than merely named.
 
-a map is not a mechanism. A mechanism is a native record that keeps working after the comparison target changes.
+A map is not a mechanism. A mechanism is a native record that keeps working after the comparison target changes.
 
 ##### Reasoning Provenance Below Existing Theory
 
@@ -87447,7 +87447,7 @@ The irony is what makes this a near-miss episode. The discarded half of Weyl's 1
 
 The unfinished question local to this episode is not whether gauge covariance works. It is why nature supplies this gauge group, these representations, these couplings, this topology, and one invariant record across all admissible descriptions. Connections and transition rules make local representatives agree; they do not by themselves derive the physical history whose curvature, holonomy, charge compatibility, anomaly cancellation, and reaction records survive the relabeling.
 
-gauge theory ensures that changing descriptive coordinates cannot change a prediction. A substrate theory must additionally produce the invariant physical record that those coordinates describe.
+Gauge theory ensures that changing descriptive coordinates cannot change a prediction. A substrate theory must additionally produce the invariant physical record that those coordinates describe.
 
 ##### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -89664,7 +89664,7 @@ $$
 
 Here $Z_{\mathrm{grav}}$ denotes the bulk gravitational partition functional with boundary data $\phi_0$, while $Z_{\mathrm{CFT}}$ denotes the boundary conformal field theory's generating functional with the corresponding source. The equality is schematic: its use requires a specified pair of theories, matched boundary conditions, and the appropriate approximation and renormalization prescriptions. It is not an equality between the spatial inside and outside of a black hole.
 
-the two sides calculate corresponding observables using different descriptions. This chapter does not substitute architrino variables into that equality, because no native bulk-boundary dictionary has been derived.
+The two sides calculate corresponding observables using different descriptions. This chapter does not substitute architrino variables into that equality, because no native bulk-boundary dictionary has been derived.
 
 #### $\mathbb{A}\mathbb{A}\mathbb{A}$ View
 

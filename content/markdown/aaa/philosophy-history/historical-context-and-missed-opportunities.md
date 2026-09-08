@@ -369,7 +369,7 @@ The irony is what makes this a near-miss episode. The discarded half of Weyl's 1
 
 The unfinished question local to this episode is not whether gauge covariance works. It is why nature supplies this gauge group, these representations, these couplings, this topology, and one invariant record across all admissible descriptions. Connections and transition rules make local representatives agree; they do not by themselves derive the physical history whose curvature, holonomy, charge compatibility, anomaly cancellation, and reaction records survive the relabeling.
 
-gauge theory ensures that changing descriptive coordinates cannot change a prediction. A substrate theory must additionally produce the invariant physical record that those coordinates describe.
+Gauge theory ensures that changing descriptive coordinates cannot change a prediction. A substrate theory must additionally produce the invariant physical record that those coordinates describe.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
