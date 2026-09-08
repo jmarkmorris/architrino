@@ -1,0 +1,114 @@
+{
+  "schema": "development-process-review/circular-current-data-path.v1",
+  "completed": true,
+  "build": {
+    "path": ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-v3-build-20260908-execution-review/preparation.json",
+    "sha256": "c80526d097c81627186cbbfcea7e0005d9d73288e331f4535f07982cc2bef944",
+    "bytes": 5009503
+  },
+  "executable": {
+    "path": ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-v3-build-20260908-execution-review/build/eom_subfield_circular_root_cli",
+    "sha256": "b15799584810810aff587e64ce0e6e6c32c07f12c53f34df8614b6012fd219f6",
+    "bytes": 921760
+  },
+  "stages": [
+    {
+      "stage": "manifest",
+      "command": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-v3-build-20260908-execution-review/build/eom_subfield_circular_root_cli",
+      "args": [
+        "manifest",
+        "--repo-root",
+        "/Users/markmorris/vibe/architrino",
+        "--candidate",
+        "coincident-midpoint-common-frequency",
+        "--rung",
+        "2",
+        "--phase",
+        "0",
+        "--out",
+        "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-data-path-20260908/history-manifest.json"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "interrupted": false,
+      "descendantsAfterClose": false,
+      "processGroupClosed": true,
+      "elapsedWallSeconds": 0.996565167,
+      "logBytes": 3668,
+      "log": {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-data-path-20260908/manifest.log",
+        "sha256": "008ac1e89f76a011f7326c0ed59c3f47499ee9744cd90e06c52d1292e321001b",
+        "bytes": 3668
+      }
+    },
+    {
+      "stage": "independent-whole-manifest-proof",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+      "args": [
+        "/Users/markmorris/vibe/architrino/scripts/eom/verify-subfield-circular-history.mjs",
+        "--manifest",
+        "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-data-path-20260908/history-manifest.json",
+        "--rung",
+        "2",
+        "--phase",
+        "0",
+        "--out",
+        "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-data-path-20260908/conformance.json"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "interrupted": false,
+      "descendantsAfterClose": false,
+      "processGroupClosed": true,
+      "elapsedWallSeconds": 1.308418542,
+      "logBytes": 357,
+      "log": {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-data-path-20260908/independent-whole-manifest-proof.log",
+        "sha256": "1b27a4bd813b1f2077cffc7b2e0d25165b378bf3e7e5ebe9affe6755bd25cc94",
+        "bytes": 357
+      }
+    },
+    {
+      "stage": "serve-eof-no-pairs",
+      "command": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-v3-build-20260908-execution-review/build/eom_subfield_circular_root_cli",
+      "args": [
+        "serve",
+        "--repo-root",
+        "/Users/markmorris/vibe/architrino",
+        "--candidate",
+        "coincident-midpoint-common-frequency",
+        "--rung",
+        "2",
+        "--phase",
+        "0",
+        "--out",
+        "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-data-path-20260908/zero-rows.ndjson",
+        "--history-manifest",
+        "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-data-path-20260908/history-manifest.json",
+        "--conformance",
+        "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-data-path-20260908/conformance.json"
+      ],
+      "code": 0,
+      "signal": null,
+      "timedOut": false,
+      "interrupted": false,
+      "descendantsAfterClose": false,
+      "processGroupClosed": true,
+      "elapsedWallSeconds": 1.0112404160000001,
+      "logBytes": 4113,
+      "log": {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-data-path-20260908/serve-eof-no-pairs.log",
+        "sha256": "0c7b5c949ec501b352db87dede4c3b2dd58b54f46111832ec0ba317887d178e7",
+        "bytes": 4113
+      }
+    }
+  ],
+  "elapsedSeconds": 3.3187010420000003,
+  "rootRequests": 0,
+  "rootPilotAccepted": false,
+  "phaseLedgerAccepted": false,
+  "h3EvidenceEligible": false,
+  "claimBoundary": "Current manifest and analytic proof plus EOF-only serve protocol. No exact-pair calculation or full pilot/ledger admission."
+}

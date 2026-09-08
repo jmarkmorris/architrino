@@ -37,3 +37,30 @@ Initial live verification succeeded for an authenticated GitHub account query ma
 ## MyLists installation context
 
 The storage helper also accepts `codex-mylists`, selecting its own Keychain service and exact `jmarkmorris/MyLists` repository. A compiled copy is installed at `/Users/markmorris/.local/bin/repo-keychain-token` so installation does not require invoking a binary inside Architrino. The token remains in Keychain. This repository's `run.mjs` still routes Architrino only; MyLists owns its separate command routing.
+
+## Claude Code Local setup
+
+The shared helper supports `claude-architrino` and `claude-mylists` as distinct Keychain services. Existing Codex service names remain unchanged. Use Claude Desktop's Code mode with Local selected for this Mac helper; the inspected Cowork Linux session cannot execute it. These are explicit credential routes, not shared GitHub CLI logins.
+
+From any directory in a Mac terminal, install the operator-created Claude–Architrino token:
+
+```bash
+"$HOME/.local/bin/repo-keychain-token" install claude-architrino
+```
+
+Enter the token only at the hidden prompt. From the Architrino repository root, Claude selects its route explicitly:
+
+```bash
+node scripts/github-auth/run.mjs --context claude-architrino gh api user --jq .login
+node scripts/github-auth/run.mjs --context claude-architrino git ls-remote --exit-code origin HEAD
+```
+
+Omitting `--context` retains the existing Codex–Architrino default. This runner rejects MyLists contexts because its working directory is Architrino; MyLists command routing remains owned by that repository. The helper can store MyLists tokens independently. Plain commands and the desktop's built-in PR status integration do not automatically inherit this explicit route.
+
+Validation on 2026-09-08: the compiled helper's non-secret `describe` operation returned the exact expected four service names, preserving both installed Codex names. Known-case controls rejected unknown contexts, another repository, noninteractive installation, and extra install arguments without accessing Keychain. `node --test tests/github-auth-routing.test.js` passed synthetic routing checks for both clients, the legacy default, Claude selection, secret-debug-variable removal, and no fallback when the selected helper fails. These controls do not establish live Claude authentication or token permissions; token installation and real-client verification remain pending.
+
+After operator installation, host-run `--context claude-architrino gh api user --jq .login` returned the intended owner and the repository API query returned `jmarkmorris/architrino`. This verifies the installed Claude token and explicit route for those reads. Claude Code Local subsequently reported both commands succeeded from its own session. This does not establish all fine-grained permissions or publication; the repository permissions object describes account capabilities rather than certifying token write access.
+
+The preserved Codex default was rechecked after the helper update with `node scripts/github-auth/run.mjs gh api user --jq .login`; it returned `jmarkmorris` with exit status zero after the operator answered a macOS Keychain access prompt. This establishes continued authenticated identity access through the default route, not a new publication test.
+
+Claude Code Local reports a completed operator-authorized commit-and-push run through `--context claude-architrino` at `170f0c63934c6563290fe135d75c522dab34271f`, with the exact-state gate and hooks passing and server ref/tree matching local. This task independently checked local HEAD against the reported commit; the remote comparisons are runner-reported evidence. This exercises Claude Git write access; PR creation and the full merge/cleanup lifecycle were not exercised.

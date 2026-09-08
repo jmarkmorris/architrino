@@ -13,7 +13,7 @@ const SUPERVISOR = "scripts/eom/prepare-f5-enclosed-root.mjs";
 const SUBJECT = "src/eom/native/eom_subfield_circular_root_cli.cpp";
 const BASE = ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/";
 const PINNED = Object.freeze({
-  [SUBJECT]: "42dc7eaa74a36f019ff126215754785f9b8418dd998d9850c2c70dc5cb03bd41",
+  [SUBJECT]: "a06246ca3aac60d500981b19fcffabb9612dc3a4085fc4fb3c441e8839726b7a",
   "src/eom/CMakeLists.txt": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4",
   [SUPERVISOR]: "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9",
 });

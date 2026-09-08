@@ -405,7 +405,7 @@ struct Member {
 };
 std::vector<Member> source_members(const FrozenInputs& inputs, const std::string& manifest_id) {
  const auto source = read_json(inputs.source_bytes);
- if (source.get<std::string>("schema") != "prescribed-assembly-spec.v2" ||
+ if (source.get<std::string>("schema") != "prescribed-assembly-spec.v3" ||
      source.get<std::string>("history.start") != "0" ||
      source.get<std::string>("history.end") != "8" ||
      source.get<std::string>("history.delayHorizon") != "2")

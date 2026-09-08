@@ -1,0 +1,558 @@
+TAP version 13
+# Subtest: successful synthetic sequence waits for each asynchronous check and retains profiler diagnostics
+ok 1 - successful synthetic sequence waits for each asynchronous check and retains profiler diagnostics
+  ---
+  duration_ms: 131.366625
+  type: 'test'
+  ...
+# Subtest: independent callback rejection prevents the next command and preserves first raw row
+ok 2 - independent callback rejection prevents the next command and preserves first raw row
+  ---
+  duration_ms: 100.794958
+  type: 'test'
+  ...
+# Subtest: adapter first failure preserves its raw certificate and never calls the independent callback
+ok 3 - adapter first failure preserves its raw certificate and never calls the independent callback
+  ---
+  duration_ms: 99.965625
+  type: 'test'
+  ...
+# Subtest: synthetic misidentified-event fails closed with raw/log bytes retained
+ok 4 - synthetic misidentified-event fails closed with raw/log bytes retained
+  ---
+  duration_ms: 97.448
+  type: 'test'
+  ...
+# Subtest: synthetic misidentified-row fails closed with raw/log bytes retained
+ok 5 - synthetic misidentified-row fails closed with raw/log bytes retained
+  ---
+  duration_ms: 96.171041
+  type: 'test'
+  ...
+# Subtest: synthetic partial-row fails closed with raw/log bytes retained
+ok 6 - synthetic partial-row fails closed with raw/log bytes retained
+  ---
+  duration_ms: 101.030584
+  type: 'test'
+  ...
+# Subtest: synthetic extra-row fails closed with raw/log bytes retained
+ok 7 - synthetic extra-row fails closed with raw/log bytes retained
+  ---
+  duration_ms: 97.890542
+  type: 'test'
+  ...
+# Subtest: synthetic unknown-event fails closed with raw/log bytes retained
+ok 8 - synthetic unknown-event fails closed with raw/log bytes retained
+  ---
+  duration_ms: 98.184875
+  type: 'test'
+  ...
+# Subtest: synthetic malformed-event fails closed with raw/log bytes retained
+ok 9 - synthetic malformed-event fails closed with raw/log bytes retained
+  ---
+  duration_ms: 92.029375
+  type: 'test'
+  ...
+# Subtest: synthetic missing-stopped fails closed with raw/log bytes retained
+ok 10 - synthetic missing-stopped fails closed with raw/log bytes retained
+  ---
+  duration_ms: 78.991833
+  type: 'test'
+  ...
+# Subtest: a late unknown event rejects and cleans up without assuming future stderr was already observed
+ok 11 - a late unknown event rejects and cleans up without assuming future stderr was already observed
+  ---
+  duration_ms: 116.334125
+  type: 'test'
+  ...
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63033,"state":"starting","elapsedWallSeconds":0.041973000000000184,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63033,"state":"awaiting-complete","elapsedWallSeconds":0.08305733400000008,"dispatchedRows":1,"checkedRows":0,"stdoutBytes":28,"stderrBytes":2309,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63033,"state":"awaiting-complete","elapsedWallSeconds":0.12336695900000018,"dispatchedRows":1,"checkedRows":0,"stdoutBytes":28,"stderrBytes":2309,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63033,"state":"awaiting-complete","elapsedWallSeconds":0.1644686250000002,"dispatchedRows":1,"checkedRows":0,"stdoutBytes":28,"stderrBytes":2309,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63033,"state":"awaiting-complete","elapsedWallSeconds":0.2052777090000002,"dispatchedRows":1,"checkedRows":0,"stdoutBytes":28,"stderrBytes":2309,"failed":true,"h3EvidenceEligible":false}
+# Subtest: external deadline terminates a child stuck inside a synchronous call
+ok 12 - external deadline terminates a child stuck inside a synchronous call
+  ---
+  duration_ms: 215.809833
+  type: 'test'
+  ...
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63034,"state":"starting","elapsedWallSeconds":0.04220187499999997,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63034,"state":"validating","elapsedWallSeconds":0.08278512499999988,"dispatchedRows":1,"checkedRows":0,"stdoutBytes":28,"stderrBytes":2674,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63034,"state":"validating","elapsedWallSeconds":0.12390866699999992,"dispatchedRows":1,"checkedRows":0,"stdoutBytes":28,"stderrBytes":2674,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63034,"state":"validating","elapsedWallSeconds":0.16504229199999987,"dispatchedRows":1,"checkedRows":0,"stdoutBytes":28,"stderrBytes":2674,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63034,"state":"validating","elapsedWallSeconds":0.20490091699999993,"dispatchedRows":1,"checkedRows":0,"stdoutBytes":28,"stderrBytes":2674,"failed":true,"h3EvidenceEligible":false}
+# Subtest: deadline aborts a never-resolving asynchronous callback and terminates the owned server
+ok 13 - deadline aborts a never-resolving asynchronous callback and terminates the owned server
+  ---
+  duration_ms: 238.956791
+  type: 'test'
+  ...
+# Subtest: driver exit with ignored-output descendants escalates scoped group cleanup
+ok 14 - driver exit with ignored-output descendants escalates scoped group cleanup
+  ---
+  duration_ms: 244.207
+  type: 'test'
+  ...
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63037,"state":"starting","elapsedWallSeconds":0.022006000000000085,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63037,"state":"starting","elapsedWallSeconds":0.04214895799999999,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63037,"state":"starting","elapsedWallSeconds":0.0632499580000001,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63037,"state":"starting","elapsedWallSeconds":0.08434912500000019,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63037,"state":"starting","elapsedWallSeconds":0.10545487500000013,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63037,"state":"starting","elapsedWallSeconds":0.12571775000000002,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63037,"state":"starting","elapsedWallSeconds":0.14681545800000004,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63037,"state":"starting","elapsedWallSeconds":0.16797362500000007,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63037,"state":"starting","elapsedWallSeconds":0.1886915409999999,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63037,"state":"starting","elapsedWallSeconds":0.20997849999999993,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63037,"state":"starting","elapsedWallSeconds":0.23132779099999992,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# Subtest: a transiently denied group probe retains failure and releases monitoring
+ok 15 - a transiently denied group probe retains failure and releases monitoring
+  ---
+  duration_ms: 317.931625
+  type: 'test'
+  ...
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.02192450000000008,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.043068416999999956,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.06335570899999993,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.08444749999999976,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.10490429200000016,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.12601666699999986,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":false,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.14701324999999998,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.1678807499999998,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.18807170899999984,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.20862679200000003,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.23042454199999976,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.25077633400000016,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.271472542,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.29072008400000005,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.31185683400000014,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.3318438339999998,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.353456459,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.37337424999999985,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.3945855419999998,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.416113292,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.43700129199999993,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.458394542,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.4791405420000001,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.4995457919999999,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.520769459,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.5425676669999998,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.56371,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.5851874170000001,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.6059379589999999,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.6274319999999998,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.6480094169999998,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.6680952090000001,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.689407917,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.709012542,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.729548625,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.7510464590000001,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.7720609589999999,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.7929211669999999,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.8138089999999998,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.8349890839999998,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.856359125,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.8774144999999999,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.8976417499999998,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.9185530840000001,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.940437042,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.9606579999999999,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":0.9814979589999998,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.0020187500000002,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.0229779589999999,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.0447655420000002,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.0659907090000003,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.0860694170000003,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.107615209,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.1298244169999998,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.150792292,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.1720453750000002,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.1926749169999997,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.2137810840000003,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.235309709,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.254938792,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.276184084,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.2969357089999998,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.3182813339999997,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.3389980420000003,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.3594154589999998,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.379689667,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.40131325,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.4225688340000002,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.4440895,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.4643729589999999,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.4845994169999999,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.5060400839999997,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.5266367919999997,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.5481899170000002,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.5680761250000002,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.5891818749999997,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.6093914169999999,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.630023542,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.650558709,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.671331459,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.692505959,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.712835834,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.7337261669999997,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.7549465839999998,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.7758748340000001,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.797250834,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.818432542,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.838468375,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.859204834,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.8793309589999998,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.9002282919999998,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.9206742089999997,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.942021084,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.9630697090000004,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":1.983332375,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":2.0045281249999998,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":2.0240975,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":2.045553334,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":2.0668043340000004,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":2.0876794170000004,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":2.109212292,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":2.1304490420000004,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":2.1510223340000003,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":2.1725935,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# {"schema":"braid-program/subfield-circular-phase-process-heartbeat.v1","pid":63040,"state":"starting","elapsedWallSeconds":2.194162042,"dispatchedRows":0,"checkedRows":0,"stdoutBytes":0,"stderrBytes":0,"failed":true,"h3EvidenceEligible":false}
+# Subtest: a persistently denied group probe retains failure and releases monitoring
+ok 16 - a persistently denied group probe retains failure and releases monitoring
+  ---
+  duration_ms: 2321.139666
+  type: 'test'
+  ...
+# Subtest: output reuse and duplicate pair schedules reject before any child starts
+ok 17 - output reuse and duplicate pair schedules reject before any child starts
+  ---
+  duration_ms: 3.557917
+  type: 'test'
+  ...
+# Subtest: synchronous final-log hashing cannot publish success after the wall deadline
+ok 18 - synchronous final-log hashing cannot publish success after the wall deadline
+  ---
+  duration_ms: 1210.412459
+  type: 'test'
+  ...
+# Subtest: sub-field circular subject help and syntax controls require a fresh explicitly selected binary
+ok 19 - sub-field circular subject help and syntax controls require a fresh explicitly selected binary
+  ---
+  duration_ms: 15.628709
+  type: 'test'
+  ...
+# Subtest: six-member actual manifest preserves exact grid, source order, errors, endpoint bits and EOM fingerprints
+not ok 20 - six-member actual manifest preserves exact grid, source order, errors, endpoint bits and EOM fingerprints
+  ---
+  duration_ms: 6.179292
+  type: 'test'
+  location: '/Users/markmorris/vibe/architrino/tests/subfield-circular-root-adapter.test.js:49:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"schema":"braid-program/subfield-circular-root-adapter-event.v1","event":"environment-controls-passed","stage":"environment-controls-passed","failureCode":"","constructedMemberSegments":0,"completedRows":0,"passingRows":0,"failureCount":0,"elapsedWallSeconds":6.05e-05,"historyManifestSha256":"","h3EvidenceEligible":false}
+    {"schema":"braid-program/subfield-circular-root-adapter-event.v1","event":"failed","stage":"failed","failureCode":"source history or schema differs","constructedMemberSegments":0,"completedRows":0,"passingRows":0,"failureCount":1,"elapsedWallSeconds":0.0025790000000000001,"historyManifestSha256":"","h3EvidenceEligible":false}
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/subfield-circular-root-adapter.test.js:52:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: repeated reception across rungs has identical original manifest bytes
+not ok 21 - repeated reception across rungs has identical original manifest bytes
+  ---
+  duration_ms: 4.533958
+  type: 'test'
+  location: '/Users/markmorris/vibe/architrino/tests/subfield-circular-root-adapter.test.js:67:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"schema":"braid-program/subfield-circular-root-adapter-event.v1","event":"environment-controls-passed","stage":"environment-controls-passed","failureCode":"","constructedMemberSegments":0,"completedRows":0,"passingRows":0,"failureCount":0,"elapsedWallSeconds":1.8167000000000001e-05,"historyManifestSha256":"","h3EvidenceEligible":false}
+    {"schema":"braid-program/subfield-circular-root-adapter-event.v1","event":"failed","stage":"failed","failureCode":"source history or schema differs","constructedMemberSegments":0,"completedRows":0,"passingRows":0,"failureCount":1,"elapsedWallSeconds":0.0016342080000000001,"historyManifestSha256":"","h3EvidenceEligible":false}
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/subfield-circular-root-adapter.test.js:70:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: twelve-member arbitrary-vector candidate preserves final pilot reception and full coverage
+not ok 22 - twelve-member arbitrary-vector candidate preserves final pilot reception and full coverage
+  ---
+  duration_ms: 4.302209
+  type: 'test'
+  location: '/Users/markmorris/vibe/architrino/tests/subfield-circular-root-adapter.test.js:75:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"schema":"braid-program/subfield-circular-root-adapter-event.v1","event":"environment-controls-passed","stage":"environment-controls-passed","failureCode":"","constructedMemberSegments":0,"completedRows":0,"passingRows":0,"failureCount":0,"elapsedWallSeconds":1.4958e-05,"historyManifestSha256":"","h3EvidenceEligible":false}
+    {"schema":"braid-program/subfield-circular-root-adapter-event.v1","event":"failed","stage":"failed","failureCode":"source history or schema differs","constructedMemberSegments":0,"completedRows":0,"passingRows":0,"failureCount":1,"elapsedWallSeconds":0.0016993749999999999,"historyManifestSha256":"","h3EvidenceEligible":false}
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/subfield-circular-root-adapter.test.js:78:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: existing output cannot be overwritten and semantic-only manifest equality is insufficient
+not ok 23 - existing output cannot be overwritten and semantic-only manifest equality is insufficient
+  ---
+  duration_ms: 5.027917
+  type: 'test'
+  location: '/Users/markmorris/vibe/architrino/tests/subfield-circular-root-adapter.test.js:84:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+    + Buffer(0) [Uint8Array] []
+    - undefined
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  actual:
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/subfield-circular-root-adapter.test.js:86:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: unaccepted conformance receipt cannot open the root execution path
+not ok 24 - unaccepted conformance receipt cannot open the root execution path
+  ---
+  duration_ms: 5.355708
+  type: 'test'
+  location: '/Users/markmorris/vibe/architrino/tests/subfield-circular-root-adapter.test.js:95:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /conformance receipt does not accept/u. Input:
+    
+    '{"schema":"braid-program/subfield-circular-root-adapter-event.v1","event":"environment-controls-passed","stage":"environment-controls-passed","failureCode":"","constructedMemberSegments":0,"completedRows":0,"passingRows":0,"failureCount":0,"elapsedWallSeconds":2.8625000000000001e-05,"historyManifestSha256":"","h3EvidenceEligible":false}\n' +
+      '{"schema":"braid-program/subfield-circular-root-adapter-event.v1","event":"failed","stage":"failed","failureCode":"source history or schema differs","constructedMemberSegments":0,"completedRows":0,"passingRows":0,"failureCount":1,"elapsedWallSeconds":0.0016031660000000001,"historyManifestSha256":"","h3EvidenceEligible":false}\n'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    {"schema":"braid-program/subfield-circular-root-adapter-event.v1","event":"environment-controls-passed","stage":"environment-controls-passed","failureCode":"","constructedMemberSegments":0,"completedRows":0,"passingRows":0,"failureCount":0,"elapsedWallSeconds":2.8625000000000001e-05,"historyManifestSha256":"","h3EvidenceEligible":false}
+    {"schema":"braid-program/subfield-circular-root-adapter-event.v1","event":"failed","stage":"failed","failureCode":"source history or schema differs","constructedMemberSegments":0,"completedRows":0,"passingRows":0,"failureCount":1,"elapsedWallSeconds":0.0016031660000000001,"historyManifestSha256":"","h3EvidenceEligible":false}
+    
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/subfield-circular-root-adapter.test.js:101:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: FIFO manifest without a writer rejects without entering a blocking read or root call
+not ok 25 - FIFO manifest without a writer rejects without entering a blocking read or root call
+  ---
+  duration_ms: 10.475084
+  type: 'test'
+  location: '/Users/markmorris/vibe/architrino/tests/subfield-circular-root-adapter.test.js:104:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input did not match the regular expression /regular file/u. Input:
+    
+    '{"schema":"braid-program/subfield-circular-root-adapter-event.v1","event":"environment-controls-passed","stage":"environment-controls-passed","failureCode":"","constructedMemberSegments":0,"completedRows":0,"passingRows":0,"failureCount":0,"elapsedWallSeconds":1.8749999999999998e-05,"historyManifestSha256":"","h3EvidenceEligible":false}\n' +
+      '{"schema":"braid-program/subfield-circular-root-adapter-event.v1","event":"failed","stage":"failed","failureCode":"source history or schema differs","constructedMemberSegments":0,"completedRows":0,"passingRows":0,"failureCount":1,"elapsedWallSeconds":0.0050456659999999999,"historyManifestSha256":"","h3EvidenceEligible":false}\n'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    {"schema":"braid-program/subfield-circular-root-adapter-event.v1","event":"environment-controls-passed","stage":"environment-controls-passed","failureCode":"","constructedMemberSegments":0,"completedRows":0,"passingRows":0,"failureCount":0,"elapsedWallSeconds":1.8749999999999998e-05,"historyManifestSha256":"","h3EvidenceEligible":false}
+    {"schema":"braid-program/subfield-circular-root-adapter-event.v1","event":"failed","stage":"failed","failureCode":"source history or schema differs","constructedMemberSegments":0,"completedRows":0,"passingRows":0,"failureCount":1,"elapsedWallSeconds":0.0050456659999999999,"historyManifestSha256":"","h3EvidenceEligible":false}
+    
+  operator: 'match'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/subfield-circular-root-adapter.test.js:110:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: sub-field circular build preparation accepts only a fresh scoped directory argument
+ok 26 - sub-field circular build preparation accepts only a fresh scoped directory argument
+  ---
+  duration_ms: 1.05375
+  type: 'test'
+  ...
+# Subtest: observed source inventory binds full solver tree and reviewed adapter/CMake/supervisor
+ok 27 - observed source inventory binds full solver tree and reviewed adapter/CMake/supervisor
+  ---
+  duration_ms: 4.790833
+  type: 'test'
+  ...
+# Subtest: reference inventory binds seven frozen references and sixteen exact candidate sources
+ok 28 - reference inventory binds seven frozen references and sixteen exact candidate sources
+  ---
+  duration_ms: 9.345083
+  type: 'test'
+  ...
+# Subtest: snapshot equality rejects hashes, paths, byte counts, missing files and added files
+ok 29 - snapshot equality rejects hashes, paths, byte counts, missing files and added files
+  ---
+  duration_ms: 0.2735
+  type: 'test'
+  ...
+# Subtest: compile command tokenizer preserves quoted paths without invoking shell syntax
+ok 30 - compile command tokenizer preserves quoted paths without invoking shell syntax
+  ---
+  duration_ms: 0.824542
+  type: 'test'
+  ...
+# Subtest: compiler dependency parser retains system headers, continuation and escaped spaces
+ok 31 - compiler dependency parser retains system headers, continuation and escaped spaces
+  ---
+  duration_ms: 0.150083
+  type: 'test'
+  ...
+# Subtest: compile plan rejects altered flags and separates only input/output from fixed compiler arguments
+ok 32 - compile plan rejects altered flags and separates only input/output from fixed compiler arguments
+  ---
+  duration_ms: 0.303459
+  type: 'test'
+  ...
+# Subtest: multicall invocation preserves alias while its identity hashes the underlying executable
+ok 33 - multicall invocation preserves alias while its identity hashes the underlying executable
+  ---
+  duration_ms: 0.554375
+  type: 'test'
+  ...
+# Subtest: only exact reviewed resource predicates and separately accepted cohort extension admit
+ok 34 - only exact reviewed resource predicates and separately accepted cohort extension admit
+  ---
+  duration_ms: 1.255208
+  type: 'test'
+  ...
+# Subtest: rung CLI rejects incomplete authority, changed rungs and output escape
+ok 35 - rung CLI rejects incomplete authority, changed rungs and output escape
+  ---
+  duration_ms: 0.183334
+  type: 'test'
+  ...
+# Subtest: all candidate ladders preserve canonical pair/phase counts and exact dyadic times
+ok 36 - all candidate ladders preserve canonical pair/phase counts and exact dyadic times
+  ---
+  duration_ms: 1.582
+  type: 'test'
+  ...
+# Subtest: failed candidate retains passed phases and accounts for every unvisited ordered pair
+ok 37 - failed candidate retains passed phases and accounts for every unvisited ordered pair
+  ---
+  duration_ms: 0.163542
+  type: 'test'
+  ...
+# Subtest: repeat scheduling guard uses exact rational overlap, including closed endpoint contact
+ok 38 - repeat scheduling guard uses exact rational overlap, including closed endpoint contact
+  ---
+  duration_ms: 0.3675
+  type: 'test'
+  ...
+# Subtest: captured repeat worker rejects mismatch and interruption without calling EOM
+ok 39 - captured repeat worker rejects mismatch and interruption without calling EOM
+  ---
+  duration_ms: 45.759
+  type: 'test'
+  ...
+# Subtest: authenticated prior chain covers pilot then complete8 and32 admissions, not caller labels
+ok 40 - authenticated prior chain covers pilot then complete8 and32 admissions, not caller labels
+  ---
+  duration_ms: 0.809542
+  type: 'test'
+  ...
+# Subtest: complete rung summary needs exact scope,census,phase order and hash chain
+ok 41 - complete rung summary needs exact scope,census,phase order and hash chain
+  ---
+  duration_ms: 0.222
+  type: 'test'
+  ...
+# Subtest: captured frozen runtime import exposes the exact APIs used by the composition
+not ok 42 - captured frozen runtime import exposes the exact APIs used by the composition
+  ---
+  duration_ms: 0.97625
+  type: 'test'
+  location: '/Users/markmorris/vibe/architrino/tests/subfield-circular-root-rung.test.js:100:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + '58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c'
+    - '35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826'
+  actual: '58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/subfield-circular-root-rung.test.js:103:117)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: same-descriptor source capture rejects FIFO, oversized, truncated and changed inputs
+ok 43 - same-descriptor source capture rejects FIFO, oversized, truncated and changed inputs
+  ---
+  duration_ms: 6.916167
+  type: 'test'
+  ...
+# Subtest: named output accounting deduplicates paths and retains honest partial precision scope
+ok 44 - named output accounting deduplicates paths and retains honest partial precision scope
+  ---
+  duration_ms: 6.78425
+  type: 'test'
+  ...
+1..44
+# tests 44
+# suites 0
+# pass 37
+# fail 7
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6151.080708

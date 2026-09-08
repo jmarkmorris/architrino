@@ -1,0 +1,41 @@
+# Independent current F5 transport review
+
+The review compares `scripts/eom/execute-f5-prehistory-handoff.py` with the unchanged producer and independent reference, and separately inspects `scripts/eom/run-f5-current-handoff.mjs`. This is source-level engineering review; it is not a new scientific acceptance result. Execution receipts and final test results belong in the accompanying run record.
+
+## Numerical and provenance boundary
+
+By inspection of `numerical_projection` against `verify-f5-prehistory-handoff.py:analyze_data`, the transport substitutes only the version-one schema and original source-owner mapping in an in-memory copy after checking the actual version-two schema, current source owners and producer bindings. The independent reference retains its original bytes and all remaining data predicates: original prefix and restriction identities, twelve members, 612 pieces, decimal tokens, binary64 conversion, exact joins, fingerprints, release boxes, analytic containment and false-authority flags. Its returned `accepted` field remains false. A changed token, binary64 word, endpoint, member census or future-time field accepted by this path would falsify this assessment; the transport controls exercise several of these mutations using the pre-existing independent host-IEEE fixture.
+
+The source-owner projection is a validation-domain conversion, not evidence that the current executable has the historical source identity. Actual current source/build/executable provenance must be established outside that numerical projection. The original reference explicitly leaves successful producer execution to separate review. The new runner addresses that obligation by running the producer and verifier in separate owned processes and linking their actual handoff identity. Neither a direct call to the pure reference nor a stage packet with `accepted:false` supplies that execution admission.
+
+## Findings communicated during implementation
+
+1. Current source census must reject a source omitted consistently from the build-before, build-after and review arrays. Equality among three incomplete arrays is insufficient. The five source-owner entries alone do not inventory every build source.
+2. Stage admission must compare the captured bridge with the runner-requested bridge, and must recheck both stages' captured inputs after verification before issuing final admission.
+3. Standalone stage deadline checks after capture teardown are elapsed-time predicates; the inclusive hard stop is supplied by the required owned runner. The scoped claim must preserve that distinction if an internal alarm is not retained through stdout.
+4. Stage-publication failure must retract only the current attempt's public inode. The implementation now includes an inode-checked retraction helper and catches failures through final stdout/deadline checks; its known-case controls cover late publication and preservation of unrelated output.
+5. The admission's runtime wording must distinguish captured Python/interpreter and inspector dependencies from the admission runner's own Node/helper composition unless the latter is also explicitly bound.
+
+These findings were sent directly to the implementation worker and parent for correction. Final disposition requires checking the corrected source and associated tests. This record does not treat a green regression subset, a matched source digest, or a successful build as overall test health, evolution authority or H3 eligibility.
+
+## Final source-review disposition
+
+Accepted for the declared bounded current transport, by inspection of bridge SHA-256 `90541a35f5609388dd16c1f91539909629e3d3da86b7f5699ae574dc2af89211` and runner SHA-256 `0a55b337c679a16bc611b96bda5a45e6dcf51c815f1dbcce15fba9287bf1f83b`. `shasum -a 256` confirms the original producer remains `4c9a5d724cb4d0e24fa35dd3cefed661448d0ff69077171f9d6adc869f8a079c` and original reference remains `6c94b0ca16dfe20bed4841a547adca349f2f36cdd5ec04211341d6b060032a68`.
+
+The corrected bridge compares the complete build source set with its scoped live source inventory, rejects duplicate rows, and preserves before/after and independent-review agreement. The consistent-omission negative control now exercises the relevant failure. Every loaded Python file must belong to the captured inventory, with a final inventory check after module and capture teardown. File-backed linked dependencies retain byte and size checks; shared-cache entries are restricted to the recorded platform paths, system-version record and known consumers.
+
+The runner now requires the requested bridge identity at stage admission, checks handoff sizes, and rechecks every captured input from both stages after verification. Its recorded operational bindings include the runner, both local imported modules, Node executable and `ps`. Import inspection of those local modules finds Node builtins only. The result explicitly records that path reopen checks do not establish atomic execution identity and that macOS system runtime remains platform trusted.
+
+Native log inspection of run `2c3a2b39-e84f-4a04-bdfe-ad56e105c033` records 9 Python tests passing; run `1b7e924b-5af4-4e15-9c47-0f31027f0d8e` records 1 Node test passing, including substituted-bridge and changed-input rejection. These are worker-run tests independently inspected here, not additional executions by this reviewer.
+
+The required owned runner supplies each interpreter's 600-second external process deadline. The bridge's later 1800-second elapsed checks do not constitute a separate interrupting watchdog after its internal watch exits. This source-review acceptance therefore applies to the joined owned-runner route; it does not accept arbitrary standalone stage execution. The actual current-plan producer/reference run and its fresh completion remain a separate measured requirement. Its result must be recorded before claiming current handoff execution acceptance. No root evaluation, future evolution, H3 eligibility, overall test health or broader scientific acceptance follows from this review.
+
+## Measured joined-execution disposition
+
+The actual-run requirement above is now satisfied for the recorded profile. An independent Node receipt inspection first passed the SHA-256 `abc` known answer and a known JSON object, then verified the exact byte lengths and hashes of the admission, plan, handoff, both stage receipts and both stage stdout completions. It matched each stage's plan, handoff and bridge binding against the admission and inspected the corresponding owned-compute leases.
+
+Outer run `e9581da2-9d3d-48db-a762-5a79de9b746f`, producer `b83a3b28-d051-4009-83cd-92a4a1005514`, and verifier `192a3576-774a-4d68-bfad-19a78b8cd1ea` each record completed status, exit zero and process-group closure. The joined admission at `.local-data/braid-analysis/f5-current-handoff-20260908-a/admission.json` has SHA-256 `b0a1b94f67a004a2940eb3441d08e944f9a5942b89117964cf313cc16bdc5cbf`; its plan has digest `c49985786aa359685e6f8b5b08cf6000e9ffed9198b346a9156731ab1280885e`, and both stages bind the same handoff `f13bc13ce4b276f628fe8f66280664629f0e28243576b1bd960134905c6682a7`.
+
+The unchanged independent reference reports data checks passed with no failures for 12 members, 612 pieces, 12,240 binary64 token comparisons and 3,600 exact join comparisons. Each stage and the pure numerical result retain `accepted:false`; the separate joined admission grants only the declared data-only handoff execution boundary. This closes the current F5 handoff transport requirement for this recorded build and input profile. These counts measure the unchanged reference's bounded checks; they do not establish overall test health, future evolution or wider scientific acceptance.
+
+Native stdout and stderr inspection of fault-control run `77874f1d-59d2-4583-9583-b09cff52fa3e` additionally records rejection of an injected post-write capture failure and reports no public stage receipt retained. This is supporting negative-control evidence, separate from the successful actual execution above. Any changed receipt hash, mismatched handoff, missing successful lease closure or nonempty reference failure list would overturn this execution disposition.
