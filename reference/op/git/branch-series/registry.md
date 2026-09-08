@@ -11,8 +11,8 @@ Branch tokens must be lowercase, contain no blanks, and use hyphens when the sou
 | 1 | Periodic table elements | 118 | [elements.md](elements.md) | consumed |
 | 2 | IAU planets | 8 | [planets.md](planets.md) | consumed |
 | 3 | Moons in our solar system | 43 | [moons.md](moons.md) | consumed |
-| 4 | Minerals and gemstones | 48 | [minerals-gemstones.md](minerals-gemstones.md) | active |
-| 5 | NASA space missions and probes | 64 | `nasa-space-mission-branch-registry.md` | pending |
+| 4 | Minerals and gemstones | 48 | [minerals-gemstones.md](minerals-gemstones.md) | consumed |
+| 5 | NASA space missions and probes | 64 | [nasa-space-mission-branch-registry.md](nasa-space-mission-branch-registry.md) | active |
 | 6 | Dog and cat breeds | 44 | `breed-branch-registry.md` | pending |
 | 7 | U.S. state names | 50 | `us-state-branch-registry.md` | pending |
 | 8 | U.S. state capital city names | 50 | `us-state-capital-branch-registry.md` | pending |
