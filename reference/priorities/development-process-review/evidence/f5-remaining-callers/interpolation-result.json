@@ -1,0 +1,65 @@
+{
+  "path": ".local-data/f5-original-input-trees/recovery-20260908-b/actual-interpolation.json",
+  "sha256": "b466091d28642c51bf108ed15c589c594e869c50b9a4fe76411fe64ec71a3bec",
+  "bytes": 201886,
+  "status": "independent-enclosure-passed",
+  "accepted": true,
+  "instrument": {
+    "pathWithinLaneAttempt": "derive-f5-independent-interpolation-enclosure.mjs",
+    "sha256": "f07ee01d7f253ae757b23fe1edb269b706f2da587f36d8fdb83dc653372d19a9"
+  },
+  "sourceChecks": [
+    {
+      "id": "f5-approved-row",
+      "path": "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
+      "expectedSha256": "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
+      "actualSha256": "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
+      "pass": true
+    },
+    {
+      "id": "f5-h3-predeclaration",
+      "path": "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md",
+      "expectedSha256": "1bc458d0b80c0a4f9e5b5c22e83d7e360306f020526296a937ae26742a6296e5",
+      "actualSha256": "1bc458d0b80c0a4f9e5b5c22e83d7e360306f020526296a937ae26742a6296e5",
+      "pass": true
+    },
+    {
+      "id": "f5-independent-guard",
+      "path": "scripts/eom/analyze-f5-phase-varying-guard-margin.mjs",
+      "expectedSha256": "aab128d5abbd248fb1879ad6dba71844951593b3ef636d67742729bbff886dfd",
+      "actualSha256": "aab128d5abbd248fb1879ad6dba71844951593b3ef636d67742729bbff886dfd",
+      "pass": true
+    },
+    {
+      "id": "f5-production-operator",
+      "path": "src/prescribed-geometry/PrescribedWorldlineOperators.mjs",
+      "expectedSha256": "f641daba8184c7e997478494d1642291d40fd6a6d365c289c6ee8b6637ef0a01",
+      "actualSha256": "f641daba8184c7e997478494d1642291d40fd6a6d365c289c6ee8b6637ef0a01",
+      "pass": true
+    }
+  ],
+  "enclosure": {
+    "squareRootIntervalCalls": 24769,
+    "minimumSquareRootInputLowerBound": 0.028432685765938433,
+    "globalFourthDerivativeBound": 0.286965499706333,
+    "maximumPositionMagnitude": 0.31000000000000005,
+    "maximumVelocityMagnitude": 0.17514839579186464,
+    "binary64RoundoffPosition": 1.4210854715202004e-14,
+    "binary64RoundoffVelocity": 1.4210854715202004e-14,
+    "positionWidth": 1.528724905003159e-10,
+    "velocityWidth": 2.866983034112353e-7,
+    "maximumObservedPositionResidual": 8.107559068548653e-11,
+    "maximumObservedVelocityResidual": 1.2485302874898352e-8,
+    "positionSlackRatio": 1.8855550629701652,
+    "velocitySlackRatio": 22.962863318890008
+  },
+  "falsifiers": {
+    "sourceMismatch": false,
+    "primitiveControlFailure": false,
+    "nonpositiveSquareRootInterval": false,
+    "infiniteInterval": false,
+    "densePositionEscape": false,
+    "denseVelocityEscape": false
+  },
+  "boundary": "Actual unchanged instrument execution. The original receipt digest remains distinct; current instrument identity and renamed config path are the only differences by diff -u."
+}

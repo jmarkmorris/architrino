@@ -1,0 +1,340 @@
+[
+  {
+    "runId": "d90c4bba-beba-4e29-845b-a85b15837f52",
+    "status": "failed",
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "tests/f5-original-input-tree.test.js"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "startedAtUtc": "2026-09-08T20:40:10.445Z",
+    "finishedAtUtc": "2026-09-08T20:40:10.592Z",
+    "elapsedWallSeconds": 0.159,
+    "exitCode": 1,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "55692cfcff78ccecaf4dd8c1151d96d8cee5874098da29b343f7ca6a48e8dc89",
+        "bytes": 1087
+      },
+      "stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "runId": "b2cdc0ba-8675-40dc-b966-f07605a98dd2",
+    "status": "completed",
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "tests/f5-original-input-tree.test.js"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "startedAtUtc": "2026-09-08T20:40:28.303Z",
+    "finishedAtUtc": "2026-09-08T20:40:28.456Z",
+    "elapsedWallSeconds": 0.166,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "b8fc67faac5d9bef2db9588d85086670a187c607c28d4f8939242e12992bf95a",
+        "bytes": 315
+      },
+      "stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "runId": "1de57d47-c0be-4d78-8b98-343c5b1a902d",
+    "status": "failed",
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "tests/f5-phase-varying-campaign-spec.test.js",
+      "tests/f5-enclosed-root-preparation.test.js",
+      "tests/f5-enclosed-root-prefix.test.js",
+      "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "tests/f5-independent-interpolation-enclosure.test.js"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/recovery-20260908-a",
+    "startedAtUtc": "2026-09-08T20:40:53.593Z",
+    "finishedAtUtc": "2026-09-08T20:41:19.427Z",
+    "elapsedWallSeconds": 25.846,
+    "exitCode": 1,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "f86a48d38fd4a337dad6ef31b9b379e1060efa47039c6deb7f2eaea97ffa5af7",
+        "bytes": 9947
+      },
+      "stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "runId": "89a9023b-dc53-477e-b02f-0872b781f11f",
+    "status": "completed",
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "tests/f5-original-input-tree.test.js"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "startedAtUtc": "2026-09-08T20:42:57.922Z",
+    "finishedAtUtc": "2026-09-08T20:42:58.080Z",
+    "elapsedWallSeconds": 0.172,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "e91e968b998cf47e78817e4831112013c9b1addfad606a2b21f0db86b4158565",
+        "bytes": 415
+      },
+      "stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "runId": "6d133a31-d782-4298-8acb-a1ec218d1a6d",
+    "status": "completed",
+    "command": "node",
+    "args": [
+      "scripts/eom/derive-f5-independent-interpolation-enclosure.mjs",
+      "--out",
+      "actual-interpolation.json"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/recovery-20260908-b",
+    "startedAtUtc": "2026-09-08T20:43:23.915Z",
+    "finishedAtUtc": "2026-09-08T20:43:25.673Z",
+    "elapsedWallSeconds": 1.77,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "b0adcc7f5ca92123b889f928bbfe4c64d11ad96da86b630dc19e7282322e6530",
+        "bytes": 1156
+      },
+      "stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "runId": "a79fd6f0-602d-4472-800e-82d509608a99",
+    "status": "completed",
+    "command": "/Users/markmorris/vibe/.venv/bin/python",
+    "args": [
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_f5_api_domain_conformance.py"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/recovery-20260908-b",
+    "startedAtUtc": "2026-09-08T20:43:37.816Z",
+    "finishedAtUtc": "2026-09-08T20:43:38.177Z",
+    "elapsedWallSeconds": 0.4,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "sha256": "025464ec50615c9f4edac325afd95b383b2ef4f6efd5552dcfb9512f4173e5a6",
+        "bytes": 117
+      }
+    }
+  },
+  {
+    "runId": "31cbb915-8fe3-4428-9cc3-c9059b9e103f",
+    "status": "completed",
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "tests/f5-phase-varying-campaign-spec.test.js",
+      "tests/f5-original-input-tree.test.js"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "startedAtUtc": "2026-09-08T20:44:47.612Z",
+    "finishedAtUtc": "2026-09-08T20:44:55.911Z",
+    "elapsedWallSeconds": 8.313,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "54cb94fe844790f2fed111ca0802e3868c3c7215884293faa9872af3b49c2b6e",
+        "bytes": 625
+      },
+      "stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "runId": "47393bd9-03a6-447a-8266-c18094ecce0a",
+    "status": "completed",
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "tests/f5-original-input-tree.test.js",
+      "tests/f5-independent-interpolation-enclosure.test.js",
+      "tests/f5-phase-varying-campaign-spec.test.js"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "startedAtUtc": "2026-09-08T20:46:02.298Z",
+    "finishedAtUtc": "2026-09-08T20:46:16.575Z",
+    "elapsedWallSeconds": 14.29,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "4548c69f1f349740280b06a1dbc1c31a6d5f7bea8660ec2f4eb6ee8650e6c680",
+        "bytes": 810
+      },
+      "stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "runId": "7003641d-643a-435a-b24a-b4cdf7142c2d",
+    "status": "completed",
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "tests/f5-enclosed-root-preparation.test.js",
+      "tests/f5-enclosed-root-prefix.test.js",
+      "tests/f5-enclosed-root-ledger-reducer.test.js"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/recovery-20260908-c",
+    "startedAtUtc": "2026-09-08T20:46:18.138Z",
+    "finishedAtUtc": "2026-09-08T20:46:39.709Z",
+    "elapsedWallSeconds": 21.584,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "2952993cb46be57af71f621ac958444e6306c2ea800e838d627414c78bf24613",
+        "bytes": 5334
+      },
+      "stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "runId": "49e84cb7-59c5-465d-917e-f5d88b6acda3",
+    "status": "completed",
+    "command": "/Users/markmorris/vibe/.venv/bin/python",
+    "args": [
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_f5_*conformance.py"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/recovery-20260908-c",
+    "startedAtUtc": "2026-09-08T20:46:51.341Z",
+    "finishedAtUtc": "2026-09-08T20:46:56.222Z",
+    "elapsedWallSeconds": 4.896,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "sha256": "7b1a5802142f6bc30a2d6aab585a935fbf8ec0f90d7b4bd7f1a5fd50417bc4b1",
+        "bytes": 131
+      }
+    }
+  },
+  {
+    "runId": "8ee2039d-15c6-4423-8d34-459c820f30b4",
+    "status": "completed",
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "tests/f5-original-input-tree.test.js"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "startedAtUtc": "2026-09-08T20:47:16.048Z",
+    "finishedAtUtc": "2026-09-08T20:47:16.275Z",
+    "elapsedWallSeconds": 0.239,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "ccec522b89df2b302600c3488d21f8753c17e553f8037f42d3313c0269fbd701",
+        "bytes": 502
+      },
+      "stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  }
+]

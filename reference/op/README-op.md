@@ -30,7 +30,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 - [ ] Prefer one hard target per turn; batch only independent items with clear file boundaries.
 - [x] Promote recurring operating decisions into repo docs instead of re-explaining them in chat.
 - [*] Finish and review documents before promotion; promote ready prose without an unnecessary rewrite, keeping status, queues, operator or agent dialogue, raw hashes, receipts, and resource telemetry separate from the publication-ready document.
-- [x] Keep generated-artifact writes out of ordinary turns; reserve generator `--write` commands for explicit regeneration/fix-drift requests or the `codex-pr-branch.md` final branch/PR process.
+- [x] Keep generated-artifact writes out of ordinary turns; reserve generator `--write` commands for explicit regeneration/fix-drift requests or the `pr-lifecycle.md` final branch/PR process.
 - [ ] Keep iOS textbook packaging on demand rather than requiring it for each PR; preserve the app/exporter and defer App Store release until theory closure and an explicit operator release decision.
 - [ ] Keep the children's-book pilot as preserved sources plus verified on-demand local exports, without adding generated books to routine PRs or the website.
 - [ ] Keep the local push gate and GitHub Content Integrity gate aligned before treating a push as clean.
@@ -39,8 +39,8 @@ This is the living feedback backlog for improving the shared operator/developer 
 - [ ] Keep GitHub PR validation deduplicated and timed so slow Content Integrity subchecks identify their bottleneck.
 - [ ] For broad advancement prompts, let the agent continue into the next safe scoped action rather than stopping at a menu.
 - [x] Treat "continue..." as approval to execute the last safe scoped recommendation or closure goal unless it requires a theory/canon decision, destructive action, or broad scope expansion.
-- [x] Treat `run codex-pr-branch.md` and either `merged, continue` or `merged, complete` as standing authorization for the guarded Git lifecycle, so the agent pauses only at PR review or a documented stop condition.
-- [x] Keep `codex-pr-branch.md` lifecycles free of operator decision prompts and interactive host permission prompts on the healthy path. The three-run verification requirement closed on 2026-09-05 by operator disposition rather than by measurement; [the ledger](git/codex-pr-unattended-verification.md) records that distinction, and the permission counters remain in both handoff receipts as diagnostics. Uncheck this if interactive prompts return.
+- [x] Treat `run pr-lifecycle.md` and either `merged, continue` or `merged, complete` as standing authorization for the guarded Git lifecycle, so the agent pauses only at PR review or a documented stop condition.
+- [x] Keep `pr-lifecycle.md` lifecycles free of operator decision prompts and interactive host permission prompts on the healthy path. The three-run verification requirement closed on 2026-09-05 by operator disposition rather than by measurement; the permission counters remain in both handoff receipts as diagnostics. Investigate unexpected prompts without automatically reopening this closed requirement.
 - [ ] For a multi-hour theory pass, state the desired checkpoint cadence or final artifact threshold when it differs from the default.
 - [ ] Add optional heartbeat diagnostics to long-running theory tests so healthy multi-minute artifact builds are distinguishable from hung runs; detailed recurrence notes live in [long-running-test-heartbeats.md](long-running-test-heartbeats.md).
 - [x] Require repository-controlled detached compute to carry an owner lease, deadline, heartbeat, authenticated handoff/stop control, and closeout check; reject new detached-launch paths through the owned-compute policy inventory.

@@ -1,0 +1,10 @@
+file:///Users/markmorris/vibe/architrino/src/archie-service/mcp/loopback-streamable-http-adapter.mjs:588
+  if (!condition) throw new Error(message);
+                        ^
+
+Error: deployment contract rejected: SNAPSHOT_IDENTITY_MISMATCH
+    at requireCondition (file:///Users/markmorris/vibe/architrino/src/archie-service/mcp/loopback-streamable-http-adapter.mjs:588:25)
+    at createLoopbackStreamableHttpAdapter (file:///Users/markmorris/vibe/architrino/src/archie-service/mcp/loopback-streamable-http-adapter.mjs:54:3)
+    at file:///Users/markmorris/vibe/architrino/scripts/archie-service/check-loopback-mcp-http-sdk-conformance.mjs:32:17
+
+Node.js v26.3.0

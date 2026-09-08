@@ -1,0 +1,35 @@
+content/scenes/archie/documentation.json: index node "research_notebook" has doc badge but child is Scene-Markdown-Split
+content/scenes/archie/people.json: override "picture page" does not match any heading
+content/scenes/archie/project.json: index node "people" has doc badge but child is Scene-Markdown-Split
+content/scenes/archie/research_notebook.json: override "overview" does not match any heading
+content/scenes/archie/research_notebook.json: override "2026 06 14 molecule visualization app" doc badge missing but expected doc
+content/scenes/archie/research_notebook.json: override "2026 06 20 noether braid middle hinge candidate narrowing" does not match any heading
+content/scenes/archie/research_notebook.json: override "2026 06 16 entropy and record coarse graining chapter" doc badge missing but expected doc
+content/scenes/archie/research_notebook.json: override "2026 06 13 photon and polarization visualization app" doc badge missing but expected doc
+content/scenes/archie/research_notebook.json: override "2026 06 10 ideal noether braid lorentz geometry app" does not match any heading
+content/scenes/archie/research_notebook.json: override "2026 03 17 planar three body breather bridge frozen" does not match any heading
+content/scenes/archie/research_notebook.json: override "2026 03 16 1d collinear breather scaffold reaches fixed point closure" does not match any heading
+content/scenes/archie/research_notebook.json: override "2026 03 14 doubling-frequency resonance lock" doc badge missing but expected doc
+content/scenes/archie/research_notebook.json: override "2026 03 12 major llm induced error is corrected with bill thurston ai" does not match any heading
+content/scenes/archie/research_notebook.json: override "2026 03 09 github presence and community" doc badge missing but expected doc
+content/scenes/archie/research_notebook.json: override "2026 03 08 scene taxonomy defined" doc badge missing but expected doc
+content/scenes/archie/research_notebook.json: override "2026 03 11 closure scorecard" doc badge missing but expected doc
+content/scenes/archie/research_notebook.json: override "2026 03 10 philosophy history leaf schema" does not match any heading
+content/scenes/archie/research_notebook.json: override "2026 03 07 hyde periodic table" doc badge missing but expected doc
+content/scenes/archie/research_notebook.json: override "2026 03 06 comparative glossary" doc badge missing but expected doc
+content/scenes/archie/research_notebook.json: override "2026 03 03 ckm closure reaches three digit predictive accuracy" does not match any heading
+content/scenes/philosophy_history/major_thinkers.json: override "overview" does not match any heading
+content/scenes/philosophy_history/major_thinkers.json: override "classical early modern metaphysics mechanism" does not match any heading
+content/scenes/philosophy_history/philosophy_history.json: index node "substance_structure_potential" has doc badge but child is Scene-Markdown-Split
+content/scenes/philosophy_history/solving_the_crisis.json: override "overview" does not match any heading
+content/scenes/philosophy_history/substance_structure_potential.json: override "overview" does not match any heading
+content/scenes/philosophy_history/theory_differentials.json: override "overview" does not match any heading
+content/scenes/philosophy_history/theory_differentials.json: override "additional major academic programs to consider" does not match any heading
+content/scenes/philosophy_history/theory_differentials.json: override "amplitude program on shell methods amplitudes" does not match any heading
+content/scenes/philosophy_history/theory_differentials.json: override "horava lifshitz gravity horava lifshitz" does not match any heading
+content/scenes/philosophy_history/theory_differentials.json: override "einstein aether theory einstein aether" does not match any heading
+content/scenes/philosophy_history/theory_differentials.json: override "galileon horndeski theory horndeski" does not match any heading
+content/scenes/philosophy_history/theory_differentials.json: override "chameleon screening modified gravity screening gravity" does not match any heading
+content/scenes/philosophy_history/theory_differentials.json: override "inflationary eternal inflation eternal inflation" does not match any heading
+content/scenes/philosophy_history/theory_differentials.json: override "vacuum landscape string landscape string landscape" does not match any heading
+content/scenes/philosophy_history/theory_mapping.json: override "overview" does not match any heading

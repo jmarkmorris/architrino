@@ -18,6 +18,37 @@ const positions = (dataset, time) => dataset.worldlines.map((worldline) => {
   return [x, y, z];
 });
 const near = (actual, expected, tolerance = 1e-5) => assert.ok(Math.abs(actual - expected) < tolerance, `${actual} vs ${expected}`);
+// At a segment's initial endpoint each coordinate is rounded to the declared
+// grid by at most q/2. A pair distance therefore moves by at most sqrt(3) q;
+// comparing two recorded pair distances requires twice that bound.
+// The additional 1e-14 is a conservative binary64 arithmetic allowance for
+// these unit-scale coordinates, not an interpolation or arbitrary-scale bound.
+const pairDistanceGridError = (record) => {
+  const q = record.provenance.prescribedGeometry.numericCanonicalization.positionQuantum;
+  assert.equal(q, 2e-11);
+  assert.ok(record.worldlines.every((row) => row.segments.some((segment) => segment.startTime === 0)));
+  return Math.sqrt(3) * q + 1e-14;
+};
+
+test("the endpoint grid bound rejects a distorted tetrahedral edge", () => {
+  const entry = exactStudyEntries.find((row) => row.recordUrl.includes("stella-octangula-static-assembly"));
+  const record = raw(entry);
+  const spec = source(entry);
+  const dataset = createEomHistoryDataset(record);
+  const members = spec.relationships.polaritySectors.find((row) => row.polarity === 1).members;
+  const endpoints = members.slice(0, 2).map((memberId) => {
+    const worldline = spec.worldlines.find((row) => row.constituentId === memberId);
+    const { x, y, z } = dataset.evaluateWorldline(worldline.id, 0).position;
+    return [x, y, z];
+  });
+  assert.ok(endpoints.every((point) => Math.hypot(...point) <= 1));
+  const length = distance(...endpoints);
+  const expected = Math.sqrt(2 / 3);
+  const bound = pairDistanceGridError(record);
+  near(length, expected, bound);
+  const displaced = endpoints[1].map((value, axis) => value + 1e-6 * (value - endpoints[0][axis]) / length);
+  assert.throws(() => near(distance(endpoints[0], displaced), expected, bound), assert.AssertionError);
+});
 
 test("the twenty exact geometry studies have neutral inventory and validated sources", () => {
   assert.equal(exactStudyEntries.length, 20);
@@ -52,7 +83,7 @@ test("the static stella octangula is exactly two tetrahedra and remains unclassi
     });
     const lengths = [];
     for (let left = 0; left < 4; left += 1) for (let right = left + 1; right < 4; right += 1) lengths.push(distance(sectorPositions[left], sectorPositions[right]));
-    lengths.forEach((length) => near(length, Math.sqrt(2 / 3), 1e-12));
+    lengths.forEach((length) => near(length, Math.sqrt(2 / 3), pairDistanceGridError(record)));
   }
   const positive = spec.relationships.polaritySectors.find((row) => row.polarity === 1).members;
   const negative = spec.relationships.polaritySectors.find((row) => row.polarity === -1).members;
@@ -116,12 +147,14 @@ test("rotating regular vertex sets preserve independently known edge graphs", ()
   for (const entry of exactStudyEntries.filter((row) => row.recordUrl.includes("vertex-set"))) {
     const name = [...graphs.keys()].find((key) => entry.recordUrl.includes(key));
     const [count, edgeCount, degree] = graphs.get(name);
-    const dataset = createEomHistoryDataset(raw(entry));
+    const record = raw(entry);
+    const dataset = createEomHistoryDataset(record);
     const initial = positions(dataset, 0);
     const pairs = [];
+    assert.ok(initial.every((point) => Math.hypot(...point) <= 1));
     for (let left = 0; left < count; left += 1) for (let right = left + 1; right < count; right += 1) pairs.push([left, right, distance(initial[left], initial[right])]);
     const edge = Math.min(...pairs.map((pair) => pair[2]));
-    const adjacency = pairs.filter((pair) => Math.abs(pair[2] - edge) < 1e-12);
+    const adjacency = pairs.filter((pair) => Math.abs(pair[2] - edge) < 2 * pairDistanceGridError(record));
     assert.equal(adjacency.length, edgeCount);
     for (let index = 0; index < count; index += 1) assert.equal(adjacency.filter((pair) => pair[0] === index || pair[1] === index).length, degree);
   }

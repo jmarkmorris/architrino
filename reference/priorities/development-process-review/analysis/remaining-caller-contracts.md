@@ -1,5 +1,9 @@
 # Remaining caller contracts after baseline review
 
+## Current continuation status
+
+The latest approved items 1–8 continuation provides [F5 production original-input routing](f5-remaining-callers.md), measured unchanged consumer regressions and an actual interpolation result. Its full preparation/build and accepted-prefix/rung chain remain open. The [circular context](circular-current-execution.md#current-context-implementation-september-8) is now implemented and independently reviewed; an actual pilot attempt identifies a different prerequisite, the complete top-level process-observation lifetime owner. The [refined original-byte prerequisites](../evidence/refined-current-migration/recoverability-review.md#disposition-in-the-approved-items-1-8-continuation) remain unresolved. The historical investigations below retain their original chronology; the [current remaining-task table](review-and-repair-plan.md#complete-remaining-task-reconciliation-after-publication-rollover) owns executable follow-through.
+
 The recovery separates an executable process from a scientifically accepted calculation. The September 8 batch restores the refined launcher's current supervisor composition, repairs a circular-phase cleanup exception, and recovers the complete selected F5 input set. It does not establish new numerical acceptance for emission, refined acceleration, or the circular ladder. The [coverage record](final-test-coverage.md) reports the actual tests; the [work queue](../work-queue.md) retains the uncompleted interfaces.
 
 ## Emission and refined acceleration

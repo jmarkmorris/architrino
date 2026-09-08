@@ -141,7 +141,7 @@ Accordingly, this verified item schedules no corpus work. It retains the histori
 
 **18 occurrences across 7 files, now zero:**
 
-- `reference/op/simulation-protocol-routing-index.md`, `textbook-review-exports.md`, `machine-artifact-retention.md`, `git/continuous-development-during-pr-review.md`
+- `reference/op/simulation-protocol-routing-index.md`, `textbook-review-exports.md`, `machine-artifact-retention.md`; the former review-time development experiment was removed by operator direction
 - `reference/research-office/cto/prompts/start-research.md`, `start-pi.md`
 - `.agents/skills/math-preview/SKILL.md`
 

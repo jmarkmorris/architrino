@@ -1,0 +1,9 @@
+Archie MCP tool-contract check failed with 8 error(s):
+- request-search-public-001: response does not match mcp-tool-contract/v1 semantics
+- request-read-public-001: response does not match mcp-tool-contract/v1 semantics
+- request-read-missing-001: response does not match mcp-tool-contract/v1 semantics
+- request-topics-public-001: response does not match mcp-tool-contract/v1 semantics
+- request-neighbors-public-001: response does not match mcp-tool-contract/v1 semantics
+- request-read-priority-public-001: response does not match mcp-tool-contract/v1 semantics
+- request-read-priority-operator-001: response does not match mcp-tool-contract/v1 semantics
+- request-walk-public-001: response does not match mcp-tool-contract/v1 semantics

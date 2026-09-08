@@ -1,0 +1,1 @@
+Architrino MCP remote deployment contract failed: positive fixture failed: SNAPSHOT_IDENTITY_MISMATCH: the contract candidate id, hash, and repository ref must match the fixture snapshot

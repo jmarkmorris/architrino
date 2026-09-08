@@ -1,5 +1,13 @@
 # Final recovery test coverage
 
+## Approved items 1–8 follow-through
+
+The [current circular context](circular-current-execution.md#current-context-implementation-september-8) now passes its enabled recorded-input profile and independent review. Its actual top-level pilot fails before scientific execution on the missing process-observation lifetime owner; the attempted caller pin changes are withdrawn. The final coverage inventory must explicitly enable `AAA_CIRCULAR_CURRENT_CONTEXT=1` for the retained reviewed-build/manifest/proof profile, or report its missing prerequisites. A skipped default profile is not a context pass.
+
+The [F5 original-input transport](f5-remaining-callers.md) gives the unchanged historical-input suites an explicit execution root. Schedule their Node and shared-venv Python commands there and run `--check-root` before and after; ordinary current-tree failures are not erased by the alternate selection. The [owner recovery](owner-failure-recovery.md) records fixed diagnostic/Borg tests, exact-input fold reproduction and every unresolved owner family. Fold reproduction remains historical-input coverage rather than a current-equation acceptance claim.
+
+The [supervision and omitted-coverage record](supervision-and-omitted-coverage.md) closes the startup deadline controls and executes both SDK conformance profiles with SDK 1.30.0. Stdio passes; HTTP fails at the Archie deployment snapshot before listening. The sealed compact database remains missing. Eight scientific/input-dependent standalone checks retain their exact required inputs and are outside the operational execution selection under the [scientific-consumption disposition](scientific-consumption-disposition.md). Final candidate validation, including both Node selections and applicable GitHub jobs, was item 9 and was excluded from this continuation. None of these scoped results establishes overall health.
+
 The first inventory is a discovery baseline, not a completed test run. The [candidate inventory](../evidence/test-coverage-inventory.json) was produced by `git ls-files -c -o --exclude-standard -z` and a path classifier after its positive and exclusion controls passed. It identifies 460 candidate paths: 326 JavaScript tests, 82 Python tests, 49 standalone check candidates, one CMake registration file and two GitHub workflow files. These are filenames, not test-case counts, independent coverage units or passing results.
 
 ## Execution groups to reconcile

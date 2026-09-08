@@ -1,4 +1,4 @@
-# Repo Process
+# PR Lifecycle
 
 Automation is desirable only when it mirrors the checked procedure below and the current `.githooks` gate set.
 
@@ -8,11 +8,11 @@ This document defines the standard repo process for ending a work session, publi
 
 This procedure is available to every repository agent as awareness of how deferred generation, validation, commits, pull requests, cleanup, and branch rollover are eventually handled. Reading this file, reaching it through the startup router, following a link to it, citing it, or noticing work that the procedure will later consume does not invoke the procedure and creates no obligation to execute any of its steps.
 
-Only an explicit instruction from Op to a specific agent to `run codex-pr-branch.md`, including the equivalent linked-file instruction defined below, designates that agent as the procedure runner for the applicable handoff. Unless separately designated by Op, every other reading or editing agent stays within its own task and does not regenerate for this procedure, stage, commit, push, create or update a pull request, verify a merge, clean up a branch, or roll over to a successor branch. Encountering generated drift outside an active invocation means reporting the drift and its owning command, then leaving execution to the designated runner.
+Only an explicit instruction from Op to a specific agent to `run pr-lifecycle.md`, including the equivalent linked-file instruction defined below, designates that agent as the procedure runner for the applicable handoff. Unless separately designated by Op, every other reading or editing agent stays within its own task and does not regenerate for this procedure, stage, commit, push, create or update a pull request, verify a merge, clean up a branch, or roll over to a successor branch. Encountering generated drift outside an active invocation means reporting the drift and its owning command, then leaving execution to the designated runner.
 
 ## Branch Naming Convention
 
-The active branch series for this repo is currently the minerals/gemstones sequence, using the committed [mineral/gemstone branch registry](branch-series/minerals-gemstones.md). The moon sequence ended at `codex/sao` and is consumed. When a branch series is exhausted, continue with the next series in [Branch Series Rollover Order](#branch-series-rollover-order) rather than reusing retired branch names. The branch-series index and configured counts are tracked in [branch-series registry](branch-series/registry.md).
+Select the active branch series and its concrete tokens from the [branch-series registry](branch-series/registry.md). When a branch series is exhausted, continue with the next series in [Branch Series Rollover Order](#branch-series-rollover-order) rather than reusing retired branch names.
 
 - Working branches should use `codex/<series-item-name>` by default.
 - If a short topic suffix materially improves clarity, use `codex/<series-item-name>-<topic>`.
@@ -32,6 +32,16 @@ This keeps the branch series ordered, memorable, and easy to reason about during
 
 The canonical series index, counts, registry status, and concrete registry files live in [branch-series/registry.md](branch-series/registry.md). Use that file and the active series registry to select the next token. Do not duplicate the full series list here; update the registry when policy changes.
 
+### New-series registry bootstrap
+
+Prefer preparing and committing the next series registry on an existing working branch before exhaustion. When the current series is exhausted and its last branch has been retired, the designated rollover runner may create the first branch of the next configured series before that series registry is committed. This exception is part of the second handoff; it does not authorize a direct commit on `main`.
+
+1. Confirm the next series and required count from the registry index. Establish its ordered token list and first unused token, checking for retired-name collisions and valid branch syntax. If the series definition leaves a substantive choice unresolved, obtain that decision before creating the branch; do not invent an unrelated series or token.
+2. After verifying synchronized `main` and safe checkout scope, create the first branch using that established token. Then write the registry and update the index on the new branch. Preserve any already-authored registry edits when switching; branch creation itself does not protect uncommitted content.
+3. Review and stage the registry and index by explicit path, run the required exact-state validation, and commit them on the new branch. Publish through the assigned credential route without force, set the upstream, and verify the server tip matches the committed local tip before reporting rollover complete. Registry content changes require the normal content gate; they are not an empty-branch push.
+
+Once committed, the registry freezes the sequence for later branches. A failure leaves rollover incomplete at the applicable stop condition; preserve the branch and files for recovery.
+
 ## Principles
 
 - Keep one clear canonical working branch at a time.
@@ -46,6 +56,10 @@ The canonical series index, counts, registry status, and concrete registry files
 - If a git command in the cleanup or rollover sequence fails, stop and resolve that exact failure before continuing to the next git step.
 - In sandboxed environments, some local ref-updating commands may require escalation because Git needs to create lockfiles under `.git/refs`.
 
+## Credential selection
+
+The runner must use only the token assigned to its own tool and the repository being published. Codex must not request a Claude token, and Claude must not request a Codex token, including for diagnostics, without a separate explicit operator instruction for that cross-context test. If the assigned route fails, stop and report it; do not substitute another context or shared login. Follow the [credential operating procedure](git-github-operating-guide.md#243-operating-routes-credential-ownership-and-remaining-verification). This is an operating restriction under the accepted shared-Mac setup, not a claim of OS-enforced credential isolation.
+
 ## Merge Method and Repository Settings
 
 Use ordinary merge commits for future PRs. The operator selects **Create a merge commit** after reviewing the exact published head. The runner's publication invocation does not grant merge authority. Preserve individual branch commits and their identities in main's ancestry; do not squash, rebase, rewrite existing history, or enable automatic merging as part of this procedure.
@@ -58,7 +72,7 @@ Branch retirement remains the runner's responsibility after the second handoff a
 
 The publication runner identifies the actual checkout, branch, candidate, and active writers before operating. Multiple agents may contribute coordinated work; publication remains assigned to the explicitly designated runner.
 
-**Pause development through PR review.** After editing stops for publication, keep ordinary development in this repository paused through PR review, merge, verified cleanup, and successor-branch preparation. Resume editing after the runner reports rollover complete. Reading and review may continue. If review requires a correction, perform only that scoped correction, renew the affected validation and review evidence, and keep ordinary development paused. Do not start new successor work while the PR awaits merge. The continuous-development experiment is inactive; reactivating it requires a new operator decision. This decision does not select a worktree architecture or prevent work in other repositories.
+**Operator decision: no continuous development during the PR lifecycle.** After editing stops for publication, keep ordinary development in this repository paused through PR review, merge, verified cleanup, and successor-branch preparation. Resume editing after the runner reports rollover complete. Reading and review may continue. If review requires a correction, perform only that scoped correction, renew the affected validation and review evidence, and keep ordinary development paused. Do not start new successor work while the PR awaits merge. The continuous-development experiment is inactive; reactivating it requires a new operator decision. This decision does not select a worktree architecture or prevent work in other repositories.
 
 ### Interim workflow: publish accumulated work after editing stops
 
@@ -83,7 +97,7 @@ This procedure is designed to run with two operator/developer handoffs and no ro
 
 ### First handoff: publish a ready PR
 
-The explicit instruction `run codex-pr-branch.md`, including the equivalent linked-file instruction, is standing authorization to execute the complete guarded publication path in this document:
+The explicit instruction `run pr-lifecycle.md`, including the equivalent linked-file instruction, is standing authorization to execute the complete guarded publication path in this document:
 
 - inspect the current working branch, identify the complete intended branch-tip scope (which may include several coordinated workstreams), and separate it from unrelated ambient worktree state;
 - run the required regeneration and validation steps;
@@ -114,7 +128,7 @@ After the operator/developer merges the PR, either explicit instruction `merged,
 - publish the successor branch without force and establish its upstream; and
 - return the final cleanup, synchronization, and rollover state.
 
-Recovery exception for an already-existing successor: the registry token for this rollover may already be consumed by prior use of [continuous-development-during-pr-review.md](continuous-development-during-pr-review.md). Verify that successor's identity, alignment, and upstream, and record it as the rollover result only when those checks establish readiness. Preserve unresolved successor work and report the blocker. Do not select a further token or create a second successor. This recovery rule does not authorize creating new pre-merge successors under the inactive experiment.
+Recovery exception for an already-existing successor: the registry token for this rollover may already be consumed by earlier experimental development during PR review. Verify that successor's identity, alignment, and upstream, and record it as the rollover result only when those checks establish readiness. Preserve unresolved successor work and report the blocker. Do not select a further token or create a second successor. This recovery rule does not authorize creating new pre-merge successors under the current workflow.
 
 The conditional `git branch -D` fallback is included in this standing authorization only when GitHub confirms that the exact branch PR is merged, the post-merge commit scan is clean, local `main` equals `origin/main`, and ordinary `git branch -d` refused solely because the merge strategy did not preserve ancestry. No other local or remote branch deletion is authorized.
 
@@ -166,7 +180,7 @@ A host permission prompt does not revoke the standing lifecycle authorization. R
 
 #### Standing of the unattended-execution correction
 
-The unattended-execution correction closed on 2026-09-05 by operator disposition, recorded in [codex-pr-unattended-verification.md](codex-pr-unattended-verification.md). Its former three-run acceptance rule no longer applies, no consecutive-run count is maintained, and an `unknown` host prompt count no longer disqualifies a handoff.
+The unattended-execution correction closed on 2026-09-05 by operator disposition. Its former three-run acceptance rule no longer applies, no consecutive-run count is maintained, and an `unknown` host prompt count no longer disqualifies a handoff.
 
 The counters above remain live diagnostics rather than an acceptance gate: they stay in both handoff receipts so a regression is legible when it happens. Report unexpected interactive prompts as workflow friction to investigate; their occurrence does not automatically reopen the closed correction. Actual missing authorization, denied access, or failed verification still follows the applicable pause boundary.
 
@@ -179,7 +193,7 @@ Standing authorization ends and the agent must stop with an exact blocker map if
 - **Branch identity mismatch** — a branch has post-merge commits, or its local, remote, and PR identities do not agree, including a local `HEAD` that differs from the reviewed `headRefOid` with the divergent commits not yet recovered.
 - **Judgment-bearing repair** — a required repair needs theory, EOM solver, evidence-authority, canon-policy, architecture, or product-design judgment.
 - **Persistent check failure** — a required check remains failing after deterministic branch-scoped mechanical repair.
-- **Registry ambiguity** — the next registry token is ambiguous, the next branch name would break the active sequence without an explicit reason, or the active branch series is exhausted without a configured successor.
+- **Registry ambiguity** — the next registry token is ambiguous, the next branch name would break the active sequence without an explicit reason, or the active branch series is exhausted without a configured successor. A missing committed registry alone is resolved by [new-series registry bootstrap](#new-series-registry-bootstrap) when its conditions are satisfied.
 - **Verification unavailable** — authentication, connectivity, or GitHub state prevents verification.
 - **Destructive requirement** — completing the path would require force push, rebase, reset, stash, restoration or discarding of work, broad deletion, or deletion of any branch other than the exact verified merged PR branch.
 - **Scope exceeded** — any action would exceed the explicit publication or post-merge scope above.
@@ -688,7 +702,7 @@ After the previous PR is merged and the previous branch is retired, start the ne
 ### 1. Create the next branch from current `main`
 
 - Use the next item in the active branch series.
-- The active series is currently the minerals/gemstones sequence; advance to the first unused item from the committed mineral/gemstone registry.
+- Advance to the first unused item from the active registry. If the series is exhausted and the next configured series lacks a committed registry, follow [new-series registry bootstrap](#new-series-registry-bootstrap), including its initial commit and validation before publication.
 - An optional `-<topic>` suffix is allowed when it materially improves clarity, but the series item prefix should still advance in order.
 - Create the branch only after local `main` has been fast-forwarded and verified against `origin/main`. New pre-merge successors are not part of the active workflow. If a successor already exists from earlier experimental work, apply the recovery exception in the second-handoff contract rather than creating another branch or discarding its work.
 - Create the branch first, then publish it. Do not try to create and push it in parallel.
@@ -746,7 +760,7 @@ Before returning the completed rollover state, record:
 - all four counters defined under [Permission measurement](#permission-measurement); and
 - any observed permission friction during the second handoff, with unknown observations identified honestly.
 
-Retain diagnostic counts in the handoff receipts; routine publication does not require updating the closed unattended-verification ledger. Never infer an unobserved interactive prompt count as zero. Judge lifecycle completion by the required Git outcomes and validation, not by permission-prompt counts.
+Retain diagnostic counts in the handoff receipts; routine publication requires no separate historical ledger. Never infer an unobserved interactive prompt count as zero. Judge lifecycle completion by the required Git outcomes and validation, not by permission-prompt counts.
 
 ## Full Lifecycle State Sequence
 

@@ -25,7 +25,7 @@ This file is not the authority. If this file conflicts with a source file, the s
 | Review comment integration | Classify review comments, integrate the valid ones, perform a full-document editorial self-review, and stage larger issues in priorities. Independent validation requires a separate mathematical reference or instrument. | [reference/research-office/cto/prompts/integrator-reviewer.md](../research-office/cto/prompts/integrator-reviewer.md)<br>target document<br>nearby corpus and style authorities | Review comments are input, not authority; verify against live canon before editing. |
 | Priority lane resume | Resume a named priority workstream from live state and make the next scoped progress step. | [reference/research-office/cto/prompts/priority-lane-resume.md](../research-office/cto/prompts/priority-lane-resume.md)<br>[reference/priorities/README.md](../priorities/README.md)<br>priorities.md, work-queue.md, brainstorming.md, and work-log.md | Do not rely on memory for queue state; read work-queue.md and its owning packet. |
 | Core geometry theorem review | Request concentrated mathematical review of one theorem target, equation stack, branch certificate, or proof gap. | [reference/research-office/cto/prompts/core-geometry-theorem-reviewer.md](../research-office/cto/prompts/core-geometry-theorem-reviewer.md)<br>the exact theorem or packet under review<br>nearby foundation, dynamics, and terminology files | Use live equations and local notation before making proof or closure claims. |
-| Branch, commit, push, and PR | Run the explicit branch/PR process, including validation, scoped staging, push, PR state checks, and rollover when requested. | [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md)<br>[.githooks/pre-commit](../../.githooks/pre-commit)<br>[.githooks/pre-push](../../.githooks/pre-push) | Always re-read the live procedure before publishing or regenerating; command order and required checks are policy. |
+| Branch, commit, push, and PR | Run the explicit branch/PR process, including validation, scoped staging, push, PR state checks, and rollover when requested. | [reference/op/git/pr-lifecycle.md](git/pr-lifecycle.md)<br>[.githooks/pre-commit](../../.githooks/pre-commit)<br>[.githooks/pre-push](../../.githooks/pre-push) | Always re-read the live procedure before publishing or regenerating; command order and required checks are policy. |
 | Long-running job | Run, detach, monitor, resume, or hand off a long test, simulation, rebuild, or analytical campaign. | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md)<br>the exact build and run entrypoints | Rebuild first, keep the job watched or observably detached, and verify that its fixed-cadence heartbeat advances. |
 
 ## Standing Rules
@@ -38,7 +38,7 @@ This file is not the authority. If this file conflicts with a source file, the s
 - [About Architrino](../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) owns reference selection and presentation; its [source-checking disclosures](../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review) govern verification and uncertainty. Other guidance applies, not replaces, that policy.
 - Do not link from `content/markdown/aaa` to `reference/priorities`; promote or restate priority material in corpus prose when it belongs there.
 - For ordinary edits, edit canonical sources first and run check-only validation when needed.
-- Use generator `--write` commands only for explicit regeneration, explicit fix-drift, or the final `codex-pr-branch.md` branch/PR process.
+- Use generator `--write` commands only for explicit regeneration, explicit fix-drift, or the final `pr-lifecycle.md` branch/PR process.
 
 ## Prompt Index
 
@@ -77,24 +77,24 @@ A source hash change means this target should be regenerated and then skimmed fo
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 157 | `8ba607fcba2c13d0` |
+| [AGENTS.md](../../AGENTS.md) | 157 | `1782a92156ad8941` |
 | [README.md](../../README.md) | 220 | `81b723567a77aae0` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 24 | `ea8da8bb87d4206f` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 38 | `3666ac9286628a8e` |
 | [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 285 | `6b42eb39e05c2fe5` |
-| [reference/op/brainstorming.md](brainstorming.md) | 373 | `9325b3f8f4e2f2b8` |
-| [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 188 | `8d7d70ef5b1b6ab3` |
+| [reference/op/brainstorming.md](brainstorming.md) | 371 | `56e725ce2a18e1ce` |
+| [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 188 | `c36b5a2639885f87` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 190 | `2c685c5e25ca8643` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 99 | `3205999b99d803a1` |
 | [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `286eeca87711d763` |
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 60 | `421e58e6c3ced0d5` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `45f14795d91a7703` |
-| [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md) | 818 | `6f3cc8617f835c6b` |
+| [reference/op/git/pr-lifecycle.md](git/pr-lifecycle.md) | 832 | `966f410ed427b401` |
 | [reference/priorities/README.md](../priorities/README.md) | 124 | `13f5e68cb419ca30` |
 | [reference/research-office/cto/prompts/README.md](../research-office/cto/prompts/README.md) | 59 | `7a13f638727952da` |
 | [reference/research-office/cto/prompts/start-pi.md](../research-office/cto/prompts/start-pi.md) | 72 | `1b72deebe03eae34` |
 | [reference/research-office/cto/prompts/start-research.md](../research-office/cto/prompts/start-research.md) | 102 | `b8baaff1670aa363` |
-| [reference/research-office/cto/prompts/convergence-campaign.md](../research-office/cto/prompts/convergence-campaign.md) | 575 | `52db7f1fc8203b9d` |
+| [reference/research-office/cto/prompts/convergence-campaign.md](../research-office/cto/prompts/convergence-campaign.md) | 575 | `0a78e6715b793c98` |
 | [reference/research-office/cto/prompts/corpus-reviewer.md](../research-office/cto/prompts/corpus-reviewer.md) | 108 | `43b06ff65ea3671b` |
 | [reference/research-office/cto/prompts/selective-reference-pass.md](../research-office/cto/prompts/selective-reference-pass.md) | 65 | `2447411668f02ebe` |
 | [reference/research-office/cto/prompts/integrator-reviewer.md](../research-office/cto/prompts/integrator-reviewer.md) | 113 | `7c21c30e5018aeb5` |

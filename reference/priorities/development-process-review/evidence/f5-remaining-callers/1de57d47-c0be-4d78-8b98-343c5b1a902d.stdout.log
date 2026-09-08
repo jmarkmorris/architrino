@@ -1,0 +1,121 @@
+✔ synthetic complete census is structurally valid but cannot grant evidence authority (953.684125ms)
+✔ the exact cell limit is admissible and precision provenance is coherent (1567.164375ms)
+✔ enclosure, elapsed time, projection, and phase-token declarations are mandatory (874.045ms)
+✔ history manifest rejects altered widths, coefficient chains, and coverage (215.99075ms)
+✔ root and warm-cache diagnostics reject impossible serialization (1339.749917ms)
+✔ production reduction rejects the former file-verification bypass (0.352125ms)
+✔ cited segments and repeated reception phases must describe the same roots (1379.701458ms)
+✔ eligible warm-start drift does not require successful cache reuse (984.81675ms)
+✔ all repeated-rung brackets share compatible intersections, not only adjacent overlap (897.006958ms)
+✔ binary64 cache boundaries accept only identical-carrier alternate decimal spellings (1113.803917ms)
+✔ scientific ledger hash excludes run labels and runtime projections (1840.711625ms)
+✔ implementation verification hashes every bound file and catches mutation (2.319666ms)
+✔ reducer rejects frozen-binding, control, and resource drift (667.06725ms)
+✔ reducer rejects missing, extra, reordered, and mistimed rows (876.045083ms)
+✔ reducer rejects invalid self and partner root semantics (868.31225ms)
+✔ reducer rejects factor, complement, boundary, status, and resource failures (1529.213042ms)
+✔ reducer rejects malformed brackets and incomplete certificate schema (659.229458ms)
+✔ reducer accepts a complete MPFR certificate without warm-reuse cells (912.369916ms)
+✔ reducer output is create-exclusive (0.622292ms)
+✔ reducer has no adapter, operator, EOM, or enclosure-instrument imports (1.388875ms)
+✔ frozen original and export-only appendix retain the agreed exact hashes (1.7285ms)
+✔ captured augmentation exposes original functions without invoking a validator (3.273417ms)
+✔ only genuine initial rung orders are admissible (0.263ms)
+✔ summary composition succeeds without returning acceptance authority (0.146916ms)
+✔ campaign and run must match every rung and the original manifest (0.126958ms)
+✔ all four checked binding-summary identities must agree (0.1515ms)
+✔ ordinary or cached imports cannot grant production acceptance (0.482ms)
+✔ fresh production CLI rejects unsupported rung order, never fabricates missing rungs (92.616041ms)
+✔ fresh production CLI reaches frozen manifest validation and rejects incomplete evidence (93.239417ms)
+✔ create-exclusive output preserves an existing rejection byte for byte (66.113209ms)
+✔ ambiguous CLI singleton overrides are rejected (65.7745ms)
+✔ copied bridge cannot claim another checkout's executing source identity (85.4325ms)
+✔ preparation requires explicit fresh scoped output and build directories (1.687625ms)
+✔ frozen F5 references match the reviewed prerequisite generation (2.02275ms)
+{"stage":"test-control","command":"/opt/homebrew/Cellar/node/26.3.0/bin/node","args":["-e","process.stdout.write('control\\n')"],"code":0,"signal":null,"timedOut":false,"interrupted":false,"descendantsAfterClose":false,"processGroupClosed":true,"elapsedWallSeconds":0.05656075000000001,"logBytes":8}
+✔ supervisor records child output and never overwrites a log (58.7315ms)
+{"stage":"test-deadline","pid":94935,"elapsedWallSeconds":0.052431083,"logBytes":0,"lastOutput":""}
+{"stage":"test-deadline","pid":94935,"elapsedWallSeconds":0.10292141599999999,"logBytes":0,"lastOutput":""}
+{"stage":"test-deadline","command":"/opt/homebrew/Cellar/node/26.3.0/bin/node","args":["-e","while(true){}"],"code":null,"signal":"SIGTERM","timedOut":true,"interrupted":false,"descendantsAfterClose":false,"processGroupClosed":true,"elapsedWallSeconds":0.103169791,"logBytes":0}
+✔ outer deadline stops a child that never finishes a synchronous call (103.811375ms)
+✔ spawn failure remains a failure and closes the create-exclusive log (2.447792ms)
+{"stage":"test-descendant","command":"/opt/homebrew/Cellar/node/26.3.0/bin/node","args":["-e","require('node:child_process').spawn(process.execPath,['-e','while(true){}'],{stdio:['ignore',1,2]});process.exit(0)"],"code":0,"signal":null,"timedOut":true,"interrupted":false,"descendantsAfterClose":false,"processGroupClosed":true,"elapsedWallSeconds":0.15262529099999997,"logBytes":0}
+✔ deadline still closes the owned group after its driver exits (153.565959ms)
+{"stage":"test-hidden-descendant","command":"/opt/homebrew/Cellar/node/26.3.0/bin/node","args":["-e","const c=require('node:child_process').spawn(process.execPath,['-e',\"process.on('SIGTERM',()=>{});setInterval(()=>{},1000);process.send('ready')\"],{stdio:['ignore','ignore','ignore','ipc']});c.on('message',()=>process.exit(0))"],"code":0,"signal":null,"timedOut":false,"interrupted":false,"descendantsAfterClose":true,"processGroupClosed":true,"elapsedWallSeconds":0.21434316700000006,"logBytes":0}
+✔ ignored-output descendant is killed even after the driver closes (215.323125ms)
+✔ existing build directory is rejected before starting preparation (1.025333ms)
+✔ accepted-looking proof must report the exact executed reference and complete census (1.263375ms)
+✖ F5 independent instrument reproduces the accepted interpolation enclosure (1736.730458ms)
+✔ F5 independent enclosure output remains create-exclusive (3474.602667ms)
+✖ the approved F5 display source preserves the frozen pilot's scientific row (1.635166ms)
+✖ the approved F5 display source preserves identities, source order, speed, and labeled return (0.145625ms)
+ℹ tests 45
+ℹ suites 0
+ℹ pass 42
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 25769.650458
+
+✖ failing tests:
+
+test at tests/f5-independent-interpolation-enclosure.test.js:15:1
+✖ F5 independent instrument reproduces the accepted interpolation enclosure (1736.730458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'b466091d28642c51bf108ed15c589c594e869c50b9a4fe76411fe64ec71a3bec'
+  - '2f8fa7bdd40df643a661b2efae4a1007683120077d074165f8f506a4b9941bd9'
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/recovery-20260908-a/tests/f5-independent-interpolation-enclosure.test.js:29:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'b466091d28642c51bf108ed15c589c594e869c50b9a4fe76411fe64ec71a3bec',
+    expected: '2f8fa7bdd40df643a661b2efae4a1007683120077d074165f8f506a4b9941bd9',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f5-phase-varying-campaign-spec.test.js:32:1
+✖ the approved F5 display source preserves the frozen pilot's scientific row (1.635166ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "prescribed assembly specification requires schema prescribed-assembly-spec.v3."
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/recovery-20260908-a/tests/f5-phase-varying-campaign-spec.test.js:37:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: prescribed assembly specification requires schema prescribed-assembly-spec.v3.
+        at validatePrescribedAssemblySpec (file:///Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/recovery-20260908-a/src/prescribed-geometry/PrescribedAssemblySpec.mjs:40:11)
+        at file:///Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/recovery-20260908-a/tests/f5-phase-varying-campaign-spec.test.js:37:29
+        at getActual (node:assert:580:5)
+        at strict.doesNotThrow (node:assert:748:32)
+        at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/recovery-20260908-a/tests/f5-phase-varying-campaign-spec.test.js:37:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.start (node:internal/test_runner/test:1242:17)
+        at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at tests/f5-phase-varying-campaign-spec.test.js:46:1
+✖ the approved F5 display source preserves identities, source order, speed, and labeled return (0.145625ms)
+  TypeError: prescribed assembly specification requires schema prescribed-assembly-spec.v3.
+      at validatePrescribedAssemblySpec (file:///Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/recovery-20260908-a/src/prescribed-geometry/PrescribedAssemblySpec.mjs:40:11)
+      at materializePrescribedAssemblySpec (file:///Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/recovery-20260908-a/src/prescribed-geometry/PrescribedAssemblySpec.mjs:70:16)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/recovery-20260908-a/tests/f5-phase-varying-campaign-spec.test.js:47:24)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)

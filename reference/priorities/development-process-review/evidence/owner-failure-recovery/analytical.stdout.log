@@ -1,0 +1,259 @@
+✔ flat catalog routing leaves analytical geometry checks owned by source specifications (23.331042ms)
+✖ all-candidate registry binds its complete analytical cohort to exact Borg leaves (9.402916ms)
+✖ methodology coverage is exact and a methodology byte change does not advance (0.208834ms)
+✔ centered stencil matches a cubic derivative and topology mismatch rejects differencing (0.156292ms)
+✔ transmitter-sensitivity convergence compares dimensionless per-measure uncertainty (0.158625ms)
+✖ cohort sensitivity creates a new exact identity and preserves the equal-radius constraint (9.006125ms)
+✖ coaxial separated planar braids have the declared geometry and exact envelope (8.664709ms)
+✔ registry omission fails before replacing the target database (6.093292ms)
+✖ check is nonpublishing, post-swap failure rolls back, and success swaps atomically (13.213292ms)
+✖ independent acceptance derives gates from raw ledgers and covers no-root rows (14.633208ms)
+✔ versioned migrations are checksummed and idempotent (6.317167ms)
+✔ disposable staging pragmas are explicit opt-in settings (3.249416ms)
+✖ failed independent preflight writes no campaign artifacts (9.026542ms)
+✖ interrupted ingestion resumes after the last committed batch without duplication (10.224334ms)
+✖ generated campaign import is idempotent and deterministic export reproduces every staged byte (9.22ms)
+✖ verified compressed raw import preserves baseline bytes and verification (9.854ms)
+✖ bounded raw-artifact transactions preserve output and resume after interruption (10.926833ms)
+✖ verified compressed raw import rejects a file changed after preflight (8.212375ms)
+✔ v2 exact-configuration calibration remains fail-closed until its receipt and packet are instantiated (0.98475ms)
+✔ the sealed v1 priority packet cannot be rebound as current v2 evidence (0.089417ms)
+✖ current producer, full protocol, and coverage protocol match frozen identities (14.086958ms)
+✔ target selection binds factual source slugs to their exact reference identities (0.620459ms)
+✖ surface ladder preserves all three grids, radii, thresholds, and R1/R2 pair (8.454375ms)
+✔ seven-way classification keeps every not-evaluated side inconclusive (0.143ms)
+✔ exact binomial bounds use the conditional denominator (1.038125ms)
+✖ endpoint-only search is deterministic, complete-inventory gated, and root-audited (15.364291ms)
+✖ endpoint-only search records sampling failures as unknown (10.822584ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 11
+ℹ fail 16
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 612.252291
+
+✖ failing tests:
+
+test at tests/all-candidate-analytical-rebuild.test.js:74:1
+✖ all-candidate registry binds its complete analytical cohort to exact Borg leaves (9.402916ms)
+  Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.
+      at fail (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:116:9)
+      at validateMethodologyCoverageContract (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:330:5)
+      at loadMethodologyCoverage (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:364:33)
+      at loadAllCandidateCampaignRegistry (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:386:31)
+      at buildAllCandidateAnalyticalCampaign (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:500:18)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/all-candidate-analytical-rebuild.test.js:75:20)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+
+test at tests/all-candidate-analytical-rebuild.test.js:118:1
+✖ methodology coverage is exact and a methodology byte change does not advance (0.208834ms)
+  Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.
+      at fail (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:116:9)
+      at validateMethodologyCoverageContract (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:330:5)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/all-candidate-analytical-rebuild.test.js:127:21)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/all-candidate-analytical-rebuild.test.js:186:1
+✖ cohort sensitivity creates a new exact identity and preserves the equal-radius constraint (9.006125ms)
+  Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.
+      at fail (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:116:9)
+      at validateMethodologyCoverageContract (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:330:5)
+      at loadMethodologyCoverage (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:364:33)
+      at loadAllCandidateCampaignRegistry (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:386:31)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/all-candidate-analytical-rebuild.test.js:187:20)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+
+test at tests/all-candidate-analytical-rebuild.test.js:214:1
+✖ coaxial separated planar braids have the declared geometry and exact envelope (8.664709ms)
+  Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.
+      at fail (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:116:9)
+      at validateMethodologyCoverageContract (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:330:5)
+      at loadMethodologyCoverage (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:364:33)
+      at loadAllCandidateCampaignRegistry (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:386:31)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/all-candidate-analytical-rebuild.test.js:215:20)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+
+test at tests/all-candidate-analytical-rebuild.test.js:267:1
+✖ check is nonpublishing, post-swap failure rolls back, and success swaps atomically (13.213292ms)
+  Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.
+      at fail (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:116:9)
+      at validateMethodologyCoverageContract (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:330:5)
+      at loadMethodologyCoverage (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:364:33)
+      at loadAllCandidateCampaignRegistry (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:386:31)
+      at buildAllCandidateAnalyticalCampaign (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:500:18)
+      at rebuildAllCandidateAnalyticalDatabase (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/database/AnalyticalCampaignRebuild.mjs:276:22)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/all-candidate-analytical-rebuild.test.js:275:27)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+
+test at tests/analytical-campaign-database.test.js:191:1
+✖ independent acceptance derives gates from raw ledgers and covers no-root rows (14.633208ms)
+  Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.
+      at fail (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:116:9)
+      at validateMethodologyCoverageContract (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:330:5)
+      at loadMethodologyCoverage (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:364:33)
+      at loadAllCandidateCampaignRegistry (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:386:31)
+      at buildAllCandidateAnalyticalCampaign (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:500:18)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/analytical-campaign-database.test.js:192:20)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at tests/analytical-campaign-database.test.js:297:1
+✖ failed independent preflight writes no campaign artifacts (9.026542ms)
+  Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.
+      at fail (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:116:9)
+      at validateMethodologyCoverageContract (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:330:5)
+      at loadMethodologyCoverage (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:364:33)
+      at loadAllCandidateCampaignRegistry (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:386:31)
+      at buildAllCandidateAnalyticalCampaign (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:500:18)
+      at stageCurrentCandidateCampaign (file:///Users/markmorris/vibe/architrino/tests/analytical-campaign-database.test.js:37:20)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/analytical-campaign-database.test.js:300:33)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+
+test at tests/analytical-campaign-database.test.js:343:1
+✖ interrupted ingestion resumes after the last committed batch without duplication (10.224334ms)
+  Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.
+      at fail (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:116:9)
+      at validateMethodologyCoverageContract (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:330:5)
+      at loadMethodologyCoverage (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:364:33)
+      at loadAllCandidateCampaignRegistry (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:386:31)
+      at buildAllCandidateAnalyticalCampaign (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:500:18)
+      at stageCurrentCandidateCampaign (file:///Users/markmorris/vibe/architrino/tests/analytical-campaign-database.test.js:37:20)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/analytical-campaign-database.test.js:346:33)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+
+test at tests/analytical-campaign-database.test.js:406:1
+✖ generated campaign import is idempotent and deterministic export reproduces every staged byte (9.22ms)
+  Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.
+      at fail (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:116:9)
+      at validateMethodologyCoverageContract (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:330:5)
+      at loadMethodologyCoverage (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:364:33)
+      at loadAllCandidateCampaignRegistry (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:386:31)
+      at buildAllCandidateAnalyticalCampaign (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:500:18)
+      at stageCurrentCandidateCampaign (file:///Users/markmorris/vibe/architrino/tests/analytical-campaign-database.test.js:37:20)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/analytical-campaign-database.test.js:409:33)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+
+test at tests/analytical-campaign-database.test.js:590:1
+✖ verified compressed raw import preserves baseline bytes and verification (9.854ms)
+  Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.
+      at fail (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:116:9)
+      at validateMethodologyCoverageContract (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:330:5)
+      at loadMethodologyCoverage (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:364:33)
+      at loadAllCandidateCampaignRegistry (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:386:31)
+      at buildAllCandidateAnalyticalCampaign (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:500:18)
+      at stageBaselineCampaignWithRawArtifact (file:///Users/markmorris/vibe/architrino/tests/analytical-campaign-database.test.js:56:20)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/analytical-campaign-database.test.js:594:7)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+
+test at tests/analytical-campaign-database.test.js:686:1
+✖ bounded raw-artifact transactions preserve output and resume after interruption (10.926833ms)
+  Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.
+      at fail (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:116:9)
+      at validateMethodologyCoverageContract (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:330:5)
+      at loadMethodologyCoverage (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:364:33)
+      at loadAllCandidateCampaignRegistry (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:386:31)
+      at buildAllCandidateAnalyticalCampaign (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:500:18)
+      at stageBaselineCampaignWithRawArtifact (file:///Users/markmorris/vibe/architrino/tests/analytical-campaign-database.test.js:56:20)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/analytical-campaign-database.test.js:689:23)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+
+test at tests/analytical-campaign-database.test.js:768:1
+✖ verified compressed raw import rejects a file changed after preflight (8.212375ms)
+  Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.
+      at fail (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:116:9)
+      at validateMethodologyCoverageContract (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:330:5)
+      at loadMethodologyCoverage (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:364:33)
+      at loadAllCandidateCampaignRegistry (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:386:31)
+      at buildAllCandidateAnalyticalCampaign (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:500:18)
+      at stageBaselineCampaignWithRawArtifact (file:///Users/markmorris/vibe/architrino/tests/analytical-campaign-database.test.js:56:20)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/analytical-campaign-database.test.js:772:7)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+
+test at tests/coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.test.js:71:1
+✖ current producer, full protocol, and coverage protocol match frozen identities (14.086958ms)
+  Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.
+      at fail (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:116:9)
+      at validateMethodologyCoverageContract (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:330:5)
+      at loadMethodologyCoverage (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:364:33)
+      at loadAllCandidateCampaignRegistry (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:386:31)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.test.js:72:18)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+
+test at tests/coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.test.js:127:1
+✖ surface ladder preserves all three grids, radii, thresholds, and R1/R2 pair (8.454375ms)
+  Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.
+      at fail (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:116:9)
+      at validateMethodologyCoverageContract (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:330:5)
+      at loadMethodologyCoverage (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:364:33)
+      at loadAllCandidateCampaignRegistry (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:386:31)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.test.js:128:18)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+
+test at tests/endpoint-residual-search-campaign.test.js:13:1
+✖ endpoint-only search is deterministic, complete-inventory gated, and root-audited (15.364291ms)
+  Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.
+      at fail (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:116:9)
+      at validateMethodologyCoverageContract (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:330:5)
+      at loadMethodologyCoverage (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:364:33)
+      at loadAllCandidateCampaignRegistry (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:386:31)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/endpoint-residual-search-campaign.test.js:14:18)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+
+test at tests/endpoint-residual-search-campaign.test.js:76:1
+✖ endpoint-only search records sampling failures as unknown (10.822584ms)
+  Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.
+      at fail (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:116:9)
+      at validateMethodologyCoverageContract (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:330:5)
+      at loadMethodologyCoverage (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:364:33)
+      at loadAllCandidateCampaignRegistry (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs:386:31)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/endpoint-residual-search-campaign.test.js:77:18)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)

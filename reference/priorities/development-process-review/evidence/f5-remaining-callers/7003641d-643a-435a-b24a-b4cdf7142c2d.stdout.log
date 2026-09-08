@@ -1,0 +1,55 @@
+✔ synthetic complete census is structurally valid but cannot grant evidence authority (1024.879041ms)
+✔ the exact cell limit is admissible and precision provenance is coherent (1648.986917ms)
+✔ enclosure, elapsed time, projection, and phase-token declarations are mandatory (923.448125ms)
+✔ history manifest rejects altered widths, coefficient chains, and coverage (216.822083ms)
+✔ root and warm-cache diagnostics reject impossible serialization (1384.653917ms)
+✔ production reduction rejects the former file-verification bypass (0.359958ms)
+✔ cited segments and repeated reception phases must describe the same roots (1421.502833ms)
+✔ eligible warm-start drift does not require successful cache reuse (1001.798208ms)
+✔ all repeated-rung brackets share compatible intersections, not only adjacent overlap (941.866833ms)
+✔ binary64 cache boundaries accept only identical-carrier alternate decimal spellings (1174.15575ms)
+✔ scientific ledger hash excludes run labels and runtime projections (1925.536166ms)
+✔ implementation verification hashes every bound file and catches mutation (3.026542ms)
+✔ reducer rejects frozen-binding, control, and resource drift (678.509625ms)
+✔ reducer rejects missing, extra, reordered, and mistimed rows (907.444375ms)
+✔ reducer rejects invalid self and partner root semantics (938.157333ms)
+✔ reducer rejects factor, complement, boundary, status, and resource failures (1674.747041ms)
+✔ reducer rejects malformed brackets and incomplete certificate schema (706.72425ms)
+✔ reducer accepts a complete MPFR certificate without warm-reuse cells (1008.473625ms)
+✔ reducer output is create-exclusive (1.059792ms)
+✔ reducer has no adapter, operator, EOM, or enclosure-instrument imports (0.532ms)
+✔ frozen original and export-only appendix retain the agreed exact hashes (1.733417ms)
+✔ captured augmentation exposes original functions without invoking a validator (3.4255ms)
+✔ only genuine initial rung orders are admissible (0.275417ms)
+✔ summary composition succeeds without returning acceptance authority (0.152042ms)
+✔ campaign and run must match every rung and the original manifest (0.134458ms)
+✔ all four checked binding-summary identities must agree (0.160125ms)
+✔ ordinary or cached imports cannot grant production acceptance (0.418791ms)
+✔ fresh production CLI rejects unsupported rung order, never fabricates missing rungs (96.839291ms)
+✔ fresh production CLI reaches frozen manifest validation and rejects incomplete evidence (95.412208ms)
+✔ create-exclusive output preserves an existing rejection byte for byte (68.645375ms)
+✔ ambiguous CLI singleton overrides are rejected (68.18425ms)
+✔ copied bridge cannot claim another checkout's executing source identity (89.968166ms)
+✔ preparation requires explicit fresh scoped output and build directories (1.870416ms)
+✔ frozen F5 references match the reviewed prerequisite generation (2.259541ms)
+{"stage":"test-control","command":"/opt/homebrew/Cellar/node/26.3.0/bin/node","args":["-e","process.stdout.write('control\\n')"],"code":0,"signal":null,"timedOut":false,"interrupted":false,"descendantsAfterClose":false,"processGroupClosed":true,"elapsedWallSeconds":0.059498333,"logBytes":8}
+✔ supervisor records child output and never overwrites a log (62.122417ms)
+{"stage":"test-deadline","pid":96710,"elapsedWallSeconds":0.051459958999999986,"logBytes":0,"lastOutput":""}
+{"stage":"test-deadline","pid":96710,"elapsedWallSeconds":0.10181245900000001,"logBytes":0,"lastOutput":""}
+{"stage":"test-deadline","command":"/opt/homebrew/Cellar/node/26.3.0/bin/node","args":["-e","while(true){}"],"code":null,"signal":"SIGTERM","timedOut":true,"interrupted":false,"descendantsAfterClose":false,"processGroupClosed":true,"elapsedWallSeconds":0.103020875,"logBytes":0}
+✔ outer deadline stops a child that never finishes a synchronous call (103.980292ms)
+✔ spawn failure remains a failure and closes the create-exclusive log (1.260417ms)
+{"stage":"test-descendant","command":"/opt/homebrew/Cellar/node/26.3.0/bin/node","args":["-e","require('node:child_process').spawn(process.execPath,['-e','while(true){}'],{stdio:['ignore',1,2]});process.exit(0)"],"code":0,"signal":null,"timedOut":true,"interrupted":false,"descendantsAfterClose":false,"processGroupClosed":true,"elapsedWallSeconds":0.15270191700000002,"logBytes":0}
+✔ deadline still closes the owned group after its driver exits (153.539125ms)
+{"stage":"test-hidden-descendant","command":"/opt/homebrew/Cellar/node/26.3.0/bin/node","args":["-e","const c=require('node:child_process').spawn(process.execPath,['-e',\"process.on('SIGTERM',()=>{});setInterval(()=>{},1000);process.send('ready')\"],{stdio:['ignore','ignore','ignore','ipc']});c.on('message',()=>process.exit(0))"],"code":0,"signal":null,"timedOut":false,"interrupted":false,"descendantsAfterClose":true,"processGroupClosed":true,"elapsedWallSeconds":0.22071841700000006,"logBytes":0}
+✔ ignored-output descendant is killed even after the driver closes (221.767708ms)
+✔ existing build directory is rejected before starting preparation (0.831875ms)
+✔ accepted-looking proof must report the exact executed reference and complete census (2.147083ms)
+ℹ tests 41
+ℹ suites 0
+ℹ pass 41
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21506.723667

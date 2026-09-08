@@ -1,0 +1,48 @@
+{
+  "schema": "archie-mcp-sdk-conformance-result/v1",
+  "status": "passed",
+  "sdk": {
+    "package": "@modelcontextprotocol/sdk",
+    "version": "1.30.0"
+  },
+  "server": {
+    "name": "architrino-fixture-mcp",
+    "title": "Architrino Fixture MCP",
+    "version": "0.2.0",
+    "description": "Read-only local Archie-service MCP protocol adapter over one validated Architrino fixture snapshot."
+  },
+  "tools": [
+    "search",
+    "read",
+    "topics",
+    "neighbors",
+    "walk"
+  ],
+  "calls": [
+    {
+      "name": "topics",
+      "status": "ok"
+    },
+    {
+      "name": "search",
+      "status": "ok"
+    },
+    {
+      "name": "read",
+      "status": "ok"
+    },
+    {
+      "name": "neighbors",
+      "status": "ok"
+    },
+    {
+      "name": "walk",
+      "status": "ok"
+    }
+  ],
+  "missingRead": {
+    "isError": true,
+    "code": "SOURCE_NOT_FOUND"
+  },
+  "ping": "passed"
+}

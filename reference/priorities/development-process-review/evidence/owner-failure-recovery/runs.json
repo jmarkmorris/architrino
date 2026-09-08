@@ -1,0 +1,520 @@
+{
+  "controls": "known SHA and token-excluding field allowlist passed first",
+  "records": [
+    {
+      "runId": "217f2cf8-4126-4bb6-811f-f829bad416d5",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-concurrency=1",
+        "tests/borg-home-entry.test.js",
+        "tests/borg-configuration-geometry-records.test.js"
+      ],
+      "startedAtUtc": "2026-09-08T20:48:43.515Z",
+      "finishedAtUtc": "2026-09-08T20:48:44.090Z",
+      "elapsedWallSeconds": 0.587,
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "78116f0f59ddfa16d41d1e250e6201b40a77575fab65a719e254f25a28ec0251",
+          "sizeBytes": 1144,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/217f2cf8-4126-4bb6-811f-f829bad416d5.stdout.log"
+        },
+        "stderr": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sizeBytes": 0,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/217f2cf8-4126-4bb6-811f-f829bad416d5.stderr.log"
+        }
+      }
+    },
+    {
+      "runId": "0a4403cd-2283-4119-b152-199dd7eceb75",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-concurrency=1",
+        "tests/borg-home-entry.test.js",
+        "tests/borg-configuration-geometry-records.test.js"
+      ],
+      "startedAtUtc": "2026-09-08T20:49:04.664Z",
+      "finishedAtUtc": "2026-09-08T20:49:05.214Z",
+      "elapsedWallSeconds": 0.563,
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "27779841ecbe68ab5b6f1d311994f61603c66908237bca65be5d48b0dea2c848",
+          "sizeBytes": 1139,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/0a4403cd-2283-4119-b152-199dd7eceb75.stdout.log"
+        },
+        "stderr": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sizeBytes": 0,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/0a4403cd-2283-4119-b152-199dd7eceb75.stderr.log"
+        }
+      }
+    },
+    {
+      "runId": "0239a2f9-b3ec-459c-af66-528d936aeb8f",
+      "status": "failed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-concurrency=1",
+        "tests/archie-service-contracts.test.js",
+        "tests/archie-service-fixture-mcp-server.test.js",
+        "tests/archie-service-mcp-loopback-http.test.js",
+        "tests/archie-service-mcp-remote-deployment-contract.test.js",
+        "tests/archie-service-mcp-tool-contract.test.js",
+        "tests/archie-service-source-index-snapshot.test.js",
+        "tests/borg-configuration-geometry-records.test.js",
+        "tests/borg-eom-migration.test.js",
+        "tests/borg-home-entry.test.js",
+        "tests/borg-library.test.js",
+        "tests/f6b-prescribed-kernel-diagnostic.test.js",
+        "tests/f6c-relative-equilibrium-search.test.js",
+        "tests/pdgedit-generator-drift.test.js",
+        "tests/pdgedit-renderer-drift.test.js"
+      ],
+      "startedAtUtc": "2026-09-08T20:37:17.705Z",
+      "finishedAtUtc": "2026-09-08T20:37:45.110Z",
+      "elapsedWallSeconds": 27.418,
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "02d098e1bd954c3f7ec84b961fe717282956270d922767e87be589f65c2cfd38",
+          "sizeBytes": 79729,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/0239a2f9-b3ec-459c-af66-528d936aeb8f.stdout.log"
+        },
+        "stderr": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sizeBytes": 0,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/0239a2f9-b3ec-459c-af66-528d936aeb8f.stderr.log"
+        }
+      }
+    },
+    {
+      "runId": "d2da367a-00a0-4dc9-9790-ca552c21182a",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "--test",
+        "tests/diagnostic-source-identity.test.js"
+      ],
+      "startedAtUtc": "2026-09-08T20:39:49.686Z",
+      "finishedAtUtc": "2026-09-08T20:39:49.836Z",
+      "elapsedWallSeconds": 0.164,
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "07a896426f05fbbf706471bb755864e96ee777a9a78da01511920933781081d6",
+          "sizeBytes": 206,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/d2da367a-00a0-4dc9-9790-ca552c21182a.stdout.log"
+        },
+        "stderr": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sizeBytes": 0,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/d2da367a-00a0-4dc9-9790-ca552c21182a.stderr.log"
+        }
+      }
+    },
+    {
+      "runId": "34f5e730-7328-4a12-924b-8b58d44f46f5",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-concurrency=1",
+        "tests/diagnostic-source-identity.test.js",
+        "tests/f6b-prescribed-kernel-diagnostic.test.js",
+        "tests/f6c-relative-equilibrium-search.test.js"
+      ],
+      "startedAtUtc": "2026-09-08T20:40:15.838Z",
+      "finishedAtUtc": "2026-09-08T20:40:25.344Z",
+      "elapsedWallSeconds": 9.519,
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "ea007e9087b03e359f30880a77d2fa12927973f86b35fd8aa9c16937d1cde92f",
+          "sizeBytes": 418,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/34f5e730-7328-4a12-924b-8b58d44f46f5.stdout.log"
+        },
+        "stderr": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sizeBytes": 0,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/34f5e730-7328-4a12-924b-8b58d44f46f5.stderr.log"
+        }
+      }
+    },
+    {
+      "runId": "7a210014-9d8b-4587-a550-a28e0bb54402",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-concurrency=1",
+        "tests/borg-home-entry.test.js",
+        "tests/borg-configuration-geometry-records.test.js"
+      ],
+      "startedAtUtc": "2026-09-08T20:41:57.131Z",
+      "finishedAtUtc": "2026-09-08T20:41:57.675Z",
+      "elapsedWallSeconds": 0.569,
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "d1f771ca97d30991970c705c28ca9e7167828c9596a327755c11681f00f96adc",
+          "sizeBytes": 1061,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/7a210014-9d8b-4587-a550-a28e0bb54402.stdout.log"
+        },
+        "stderr": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sizeBytes": 0,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/7a210014-9d8b-4587-a550-a28e0bb54402.stderr.log"
+        }
+      }
+    },
+    {
+      "runId": "b5814234-545d-45cf-9922-b62c2e573f82",
+      "status": "failed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-concurrency=1",
+        "tests/all-candidate-analytical-rebuild.test.js",
+        "tests/analytical-campaign-database.test.js",
+        "tests/endpoint-residual-search-campaign.test.js",
+        "tests/coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.test.js"
+      ],
+      "startedAtUtc": "2026-09-08T20:42:10.627Z",
+      "finishedAtUtc": "2026-09-08T20:42:11.306Z",
+      "elapsedWallSeconds": 0.692,
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "09b81b272bfd8aee86015ffc9d412683b7ff844d3341fa8b8684ce5d30b477dc",
+          "sizeBytes": 25431,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/b5814234-545d-45cf-9922-b62c2e573f82.stdout.log"
+        },
+        "stderr": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sizeBytes": 0,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/b5814234-545d-45cf-9922-b62c2e573f82.stderr.log"
+        }
+      }
+    },
+    {
+      "runId": "74f235aa-7e24-45e9-8398-00da06491b70",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/owner-failure-recovery/run-original-fold-regression.mjs"
+      ],
+      "startedAtUtc": "2026-09-08T20:43:43.154Z",
+      "finishedAtUtc": "2026-09-08T20:43:47.443Z",
+      "elapsedWallSeconds": 4.303,
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "cb201dba3efeda5df76b51f73b2edae254c041b273048a9dd26b85eba55fd06a",
+          "sizeBytes": 901,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/74f235aa-7e24-45e9-8398-00da06491b70.stdout.log"
+        },
+        "stderr": {
+          "sha256": "bb4456c0d810c6dcb0767f3c97912bddbd77498276858594c1f9804010caee20",
+          "sizeBytes": 105,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/74f235aa-7e24-45e9-8398-00da06491b70.stderr.log"
+        }
+      }
+    },
+    {
+      "runId": "40ccf153-052f-489d-81cf-fc6664353e25",
+      "status": "failed",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/final-validation/run-extra-checks.mjs",
+        "reference/priorities/development-process-review/evidence/owner-failure-recovery/standalone-selection.json"
+      ],
+      "startedAtUtc": "2026-09-08T20:44:17.469Z",
+      "finishedAtUtc": "2026-09-08T20:44:20.768Z",
+      "elapsedWallSeconds": 3.313,
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "e7e73de789d17c179a6b93af06f6238ee4ea5b7b825c6ae2a8538b166ec5233a",
+          "sizeBytes": 981,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/40ccf153-052f-489d-81cf-fc6664353e25.stdout.log"
+        },
+        "stderr": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sizeBytes": 0,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/40ccf153-052f-489d-81cf-fc6664353e25.stderr.log"
+        }
+      }
+    },
+    {
+      "runId": "38dd3ae8-aaa9-4475-8d98-6e82ef987d37",
+      "status": "failed",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/owner-failure-recovery/review-archie-contract.mjs"
+      ],
+      "startedAtUtc": "2026-09-08T20:45:15.090Z",
+      "finishedAtUtc": "2026-09-08T20:45:15.175Z",
+      "elapsedWallSeconds": 0.101,
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "a277ef25a93758d3f129b62f9b6fbff73a85b6618c5e076a39c06d03c68b931d",
+          "sizeBytes": 152,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/38dd3ae8-aaa9-4475-8d98-6e82ef987d37.stdout.log"
+        },
+        "stderr": {
+          "sha256": "4b26f97f50e37f8f5245df99f540ed7560eb75ba6ab2591d7c63f3d22ca1bf63",
+          "sizeBytes": 705,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/38dd3ae8-aaa9-4475-8d98-6e82ef987d37.stderr.log"
+        }
+      }
+    },
+    {
+      "runId": "f4a69e63-a765-4274-959f-948885a599f1",
+      "status": "failed",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/owner-failure-recovery/review-archie-contract.mjs"
+      ],
+      "startedAtUtc": "2026-09-08T20:45:37.245Z",
+      "finishedAtUtc": "2026-09-08T20:45:37.333Z",
+      "elapsedWallSeconds": 0.103,
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "97f09d1b954826f8f71e5e3859236fa5f5c81080077af9f12aa2b5c4b5f7dc9e",
+          "sizeBytes": 8090,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/f4a69e63-a765-4274-959f-948885a599f1.stdout.log"
+        },
+        "stderr": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sizeBytes": 0,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/f4a69e63-a765-4274-959f-948885a599f1.stderr.log"
+        }
+      }
+    },
+    {
+      "runId": "d0e474ea-835c-4787-abeb-24573575288e",
+      "status": "failed",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+      "args": [
+        "scripts/archie-service/check-fixture-mcp-server.mjs",
+        "--check"
+      ],
+      "startedAtUtc": "2026-09-08T20:44:17.686Z",
+      "finishedAtUtc": "2026-09-08T20:44:17.851Z",
+      "elapsedWallSeconds": 0.179,
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sizeBytes": 0,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/d0e474ea-835c-4787-abeb-24573575288e.stdout.log"
+        },
+        "stderr": {
+          "sha256": "34a23f02906be26dcebde34d71c6ec6cfac4f89f93933085a82951f5a394efc3",
+          "sizeBytes": 354,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/d0e474ea-835c-4787-abeb-24573575288e.stderr.log"
+        }
+      }
+    },
+    {
+      "runId": "ac19cc25-7a5d-4483-adc6-a515d0552630",
+      "status": "failed",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+      "args": [
+        "scripts/archie-service/validate-mcp-tool-contracts.mjs",
+        "--check"
+      ],
+      "startedAtUtc": "2026-09-08T20:44:18.037Z",
+      "finishedAtUtc": "2026-09-08T20:44:18.120Z",
+      "elapsedWallSeconds": 0.097,
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sizeBytes": 0,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/ac19cc25-7a5d-4483-adc6-a515d0552630.stdout.log"
+        },
+        "stderr": {
+          "sha256": "07738540aca0759b58c6bd39521d1a8010d3ecbeb005fae0dca7a79ee449dd43",
+          "sizeBytes": 741,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/ac19cc25-7a5d-4483-adc6-a515d0552630.stderr.log"
+        }
+      }
+    },
+    {
+      "runId": "44cc9b61-895b-4837-b913-7e2e3f72ac92",
+      "status": "failed",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+      "args": [
+        "scripts/archie-service/validate-mcp-remote-deployment-contract.mjs"
+      ],
+      "startedAtUtc": "2026-09-08T20:44:18.319Z",
+      "finishedAtUtc": "2026-09-08T20:44:18.469Z",
+      "elapsedWallSeconds": 0.164,
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sizeBytes": 0,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/44cc9b61-895b-4837-b913-7e2e3f72ac92.stdout.log"
+        },
+        "stderr": {
+          "sha256": "b6d2d5f680ec6b2f0aa49b034558a2d722e1e3369f889ba60ae9553ce4097839",
+          "sizeBytes": 187,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/44cc9b61-895b-4837-b913-7e2e3f72ac92.stderr.log"
+        }
+      }
+    },
+    {
+      "runId": "e602b4d9-01f8-401d-bc5b-a14b4957c6ef",
+      "status": "failed",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+      "args": [
+        "scripts/check-borg-scientific-status-projection.mjs"
+      ],
+      "startedAtUtc": "2026-09-08T20:44:18.652Z",
+      "finishedAtUtc": "2026-09-08T20:44:18.723Z",
+      "elapsedWallSeconds": 0.084,
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sizeBytes": 0,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/e602b4d9-01f8-401d-bc5b-a14b4957c6ef.stdout.log"
+        },
+        "stderr": {
+          "sha256": "a45f6a2a113bb14e20b16c4dbc824fe88123aae25822b11cc06e39f9da903b3c",
+          "sizeBytes": 625,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/e602b4d9-01f8-401d-bc5b-a14b4957c6ef.stderr.log"
+        }
+      }
+    },
+    {
+      "runId": "1150952f-969a-41e8-8ebb-3da85bc04c5f",
+      "status": "failed",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+      "args": [
+        "scripts/audit-markdown-doc-icons.mjs"
+      ],
+      "startedAtUtc": "2026-09-08T20:44:18.896Z",
+      "finishedAtUtc": "2026-09-08T20:44:19.136Z",
+      "elapsedWallSeconds": 0.257,
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "746a41fd16aa73b06fc7d3c1e477ce62b09f7aa15c4a6b773714d1a38285a0fc",
+          "sizeBytes": 4562,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1150952f-969a-41e8-8ebb-3da85bc04c5f.stdout.log"
+        },
+        "stderr": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sizeBytes": 0,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1150952f-969a-41e8-8ebb-3da85bc04c5f.stderr.log"
+        }
+      }
+    },
+    {
+      "runId": "33132b7d-a8fa-4a76-94f4-392066f0c05e",
+      "status": "failed",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+      "args": [
+        "scripts/build-reference-surface.mjs",
+        "--check"
+      ],
+      "startedAtUtc": "2026-09-08T20:44:19.334Z",
+      "finishedAtUtc": "2026-09-08T20:44:19.857Z",
+      "elapsedWallSeconds": 0.537,
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "9ab9b38e0ef956b8055f43ca19e1eddfb478607a9f09854915578c47b77fd59f",
+          "sizeBytes": 137,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/33132b7d-a8fa-4a76-94f4-392066f0c05e.stdout.log"
+        },
+        "stderr": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sizeBytes": 0,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/33132b7d-a8fa-4a76-94f4-392066f0c05e.stderr.log"
+        }
+      }
+    },
+    {
+      "runId": "9bb027d0-f4ec-4388-af42-495420e19e06",
+      "status": "failed",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+      "args": [
+        "scripts/build-machine-artifact-receipts.mjs",
+        "--check"
+      ],
+      "startedAtUtc": "2026-09-08T20:44:20.031Z",
+      "finishedAtUtc": "2026-09-08T20:44:20.327Z",
+      "elapsedWallSeconds": 0.31,
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sizeBytes": 0,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/9bb027d0-f4ec-4388-af42-495420e19e06.stdout.log"
+        },
+        "stderr": {
+          "sha256": "bd937cdc69526cf703b2bbd1d67a6692792dd9ffa88fcc2fc0bf6110cd4586c5",
+          "sizeBytes": 869,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/9bb027d0-f4ec-4388-af42-495420e19e06.stderr.log"
+        }
+      }
+    },
+    {
+      "runId": "f5d57802-e99b-4a3d-b8d1-e0a1f9d8b080",
+      "status": "failed",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+      "args": [
+        "scripts/archie-service/build-source-index.mjs",
+        "--check"
+      ],
+      "startedAtUtc": "2026-09-08T20:44:20.531Z",
+      "finishedAtUtc": "2026-09-08T20:44:20.740Z",
+      "elapsedWallSeconds": 0.224,
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "sizeBytes": 0,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/f5d57802-e99b-4a3d-b8d1-e0a1f9d8b080.stdout.log"
+        },
+        "stderr": {
+          "sha256": "73c7925c12acc665f2c64e2b894f866e38a05e22e8779f81aa0cfe5621072058",
+          "sizeBytes": 240,
+          "localPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/f5d57802-e99b-4a3d-b8d1-e0a1f9d8b080.stderr.log"
+        }
+      }
+    }
+  ]
+}

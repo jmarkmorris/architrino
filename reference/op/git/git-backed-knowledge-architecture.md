@@ -1,0 +1,464 @@
+# Git-backed knowledge architecture
+
+<a id="1-developing-and-protecting-the-knowledge-network"></a>
+
+This guide owns the explanation and accepted architecture for knowledge integrity. Option B remains accepted future work, not an implemented replacement. The [campaign checklist](../../priorities/development-process-review/processes-git-codex-claude.md#3-rollout-and-integration-plan) tracks execution; the [operating guide](git-github-operating-guide.md) covers daily collaboration. Existing validation and retention owners remain authoritative. Section labels are retained for continuity.
+
+<a id="11-motivation-what-problem-are-we-trying-to-solve"></a>
+
+## Motivation: what problem are we trying to solve?
+
+The objective is to advance the current theory and software while protecting valuable work from accidental damage, detecting errors in claims we rely on, and coordinating changes safely among collaborators. The theory is expected to change. We must identify the risks associated with those changes before choosing checks, tools, or retention requirements. Git provides the ordinary history of committed source; maintaining an additional system to preserve every previous theory state is not a project objective.
+
+Theory development is the creative work of constructing an interconnected network of explanations for how nature works. We formulate possibilities, develop arguments from the theory's ontology—its account of what exists and how it interacts—and discover which assumptions support further conclusions. We do several things at once: develop our account of nature, relate its consequences to established theories and observations, and reconcile the connected explanations as new insights reshape the theory. Established theories provide recovery targets and comparisons at the appropriate descriptive level; their laws do not become unexamined premises of the underlying ontology.
+
+Progress can require reorganizing substantial parts of this network. A promising explanation may make an earlier version appear disposable, yet replacing it wholesale can discard a useful derivation, counterexample, unresolved constraint, or connection that the new explanation has not addressed. This resembles a software regression: a change loses something valuable that the previous version provided. In theory development, that loss can occur in reasoning and assumptions before there is executable code to test. Deliberate revision therefore requires understanding what is being replaced, what depends on it, and what must carry forward or remain recoverable. Git can recover earlier committed text; it cannot recognize an overlooked insight or preserve an unfinished idea that was never committed.
+
+The same dependency problem extends into calculations, software, and collaboration. When an equation changes, an earlier result may no longer support the claim now being made, even though its recorded output is unchanged. We need enough provenance—the record of what produced a result—to assess whether that support remains sufficient or a new calculation is needed. When several agents work together, they also need to know which work is unfinished and which shared changes require coordination. At publication, the reported checks must apply to the candidate actually being published. Review, selective preservation, and explicit handoffs address different parts of this problem; no single fingerprint establishes all three.
+
+Ordinary development records are by-products of work. Superseded drafts, intermediate outputs, and routine execution records do not acquire lasting scientific value merely because they exist, and their continued usefulness is not a deliverable we must maintain. Additional preservation effort needs a purpose: supporting a current dependency or claim, retaining useful reasoning, meeting a recovery need, or satisfying explicit [retention requirements](#15-retention-what-to-keep-for-how-long-and-how-to-remove-it). Those requirements also determine when material can move to archival storage or be removed. We do not need to keep every abandoned calculation runnable, repair old records solely for completeness, or duplicate ordinary Git history. A record without an identified purpose creates no new maintenance obligation; decisions to remove existing material remain subject to its retention policy.
+
+These purposes determine how we evaluate the approaches in this guide: protection of current correctness and useful reasoning, safe cooperation, evidence that publication matches the checked candidate, and proportionate maintenance. Historical recovery is valuable where it supports those purposes. Greater archival capability alone does not make an approach better for this project.
+
+<a id="111-risks-and-what-we-need-to-check"></a>
+
+### Risks and what we need to check
+
+The risks below follow from revising an interconnected body of reasoning while several agents develop and publish it. Each identifies a question that our working practices need to answer. A check may be a human review, an independent mathematical argument, a software test, or a comparison of recorded state. The table does not assert that every failure has occurred or prescribe an automated gate for every row; the capability must fit the consequence we want to prevent.
+
+| Risk and consequence | What are we trying to check? | Capability needed and its boundary |
+| --- | --- | --- |
+| A revision accidentally damages current reasoning or discards a useful derivation, constraint, or unresolved connection. | What changed, what must carry forward, and does the revised reasoning still hold? | Review the affected mathematics and preserve selected earlier reasoning where needed. A hash can flag changed bytes; it cannot recognize a lost insight or determine correctness. |
+| An intentional theory change leaves dependent code, explanations, or calculations using an obsolete assumption. | Which current consumers depend on the changed statement, and have they been reconsidered? | Identify relevant dependencies and review or rerun affected current work. A declared dependency map helps only for dependencies it actually includes. |
+| An implementation produces an incorrect result, and its test repeats the same mistake. | Does the behavior satisfy an independently justified requirement? | Use a separate derivation, analytically known case, or independently authored reference. Agreement with output generated by the same implementation establishes repeatability, not independent correctness. |
+| A result is cited as support for the current theory even though it used different inputs or assumptions. | What produced this result, and does that support the claim being made now? | Connect a currently used result to its inputs, assumptions, method, and relevant checks. Exact historical reruns are required only where the accepted claim or an explicit decision needs them. |
+| A reported pass comes from skipped work, an unsupported environment, or an incomplete run. | Which checks actually executed, where did they run, and how did they finish? | Report executed and skipped coverage, prerequisites, and completion separately. A successful command exit does not establish a property the command never tested. |
+| Files change after validation, so publication includes work the reported checks did not examine. | Is the proposed publication state the state that was checked? | Associate validation with the candidate and reconsider affected checks when that candidate changes. This establishes the scope of validation, not the correctness of every file. |
+| An agent overwrites unfinished work or changes the shared branch or repository destination during another task. | Who owns affected work, what state is shared, and is the intended operation coordinated? | Use explicit ownership, handoffs, and repository/destination verification. Source hashes do not allocate ownership or establish permission to publish. |
+| Harmless edits trigger extensive repair work, or repeated false alarms encourage agents to bypass checks. | Does each check protect a current requirement, and is its response proportionate to the change? | Review the purpose and dependency scope of troublesome checks; measure repair effort and retained error detection in a bounded trial. Fewer failures alone do not demonstrate an improvement. |
+
+These risks span the support for current theory and calculations, the execution and collaboration needed to publish them safely, and the cost of the protection itself. For each risk, first establish whether an existing review or test provides adequate protection before adding another mechanism.
+
+<a id="112-why-the-checks-themselves-need-scrutiny"></a>
+
+### Why the checks themselves need scrutiny
+
+A check can create false confidence when its result is interpreted more broadly than its evidence allows. A content fingerprint, or hash, is a value calculated from a file's bytes. Matching a theorem document's fingerprint provides strong practical evidence that those bytes match the expected version. It does not establish that the theorem is true, that its assumptions apply to a calculation, or that the calculation implements it correctly. Conversely, a fingerprint mismatch after a punctuation correction does not establish a mathematical error.
+
+Circular checking creates a different problem. If a program supplies both an answer and the expected answer used by its test, both can share the same error. Updating the expectation merely to match new output can make the test pass while abandoning the requirement it was meant to protect. Confidence depends on the justification for the expected result, not on the pass alone.
+
+A useful check has a clearly stated scope: what it examines, why its expected result is justified, which failure it can expose, which inputs and environment it covered, and what remains outside its reach. A new checker must first demonstrate its behavior on a known case before its findings are used. A claim of mathematical correctness additionally needs independent justification. The required evidence depends on the conclusion: a byte-identity comparison does not need an independent mathematical reference, while a matching fingerprint cannot supply one.
+
+For each proposed check, ask: “What failure would this catch, what would a pass allow us to conclude, and what evidence supports that conclusion?” Adding a hash, test, receipt, or archive cannot resolve uncertainty when those answers are missing. Sections 1.2 and 2.2 develop the desired capabilities, and the later comparison examines ways to provide them. Its scores remain provisional until the relevant risks and required protection are settled.
+
+<a id="12-proposed-integrity-objectives-to-discuss"></a>
+
+## Proposed integrity objectives to discuss
+
+The motivation identifies what we want to protect. The following objectives translate it into capabilities we can inspect and compare. They are proposed implementation requirements, not an approval of every existing check or a request for a new gate per row. Their order begins with useful reasoning and current dependencies; historical retrieval supports those purposes where selected.
+
+| Proposed objective | Question the implementation must answer |
+| --- | --- |
+| Preserve useful reasoning through a deliberate revision | What derivations, constraints, counterexamples, or unresolved connections need to carry forward or remain recoverable? |
+| Identify affected current dependencies | Which explanations, calculations, and programs need reconsideration when an equation or assumption changes? |
+| Detect unexpected changes to selected inputs | Which changes should raise an alarm, and when does the responsible check actually run? |
+| Review changed scientific inputs before accepting their use | What is the mathematical justification for the change, and which dependent claims remain supported? |
+| Find mathematical or behavioral errors independently | What separately justified argument or test establishes the required property? |
+| Identify the support for a result still in use | Which input versions, assumptions, method, and checks produced it? |
+| Recover selected earlier reasoning and evidence | Which prior contents must remain retrievable, and has their recovery path been verified? |
+| Execute the checks and calculations required by current work | Which supported environment and entry point run them, and which work was skipped? Historical reproduction is a separate, selected obligation. |
+| Tie reported checks to the candidate being published | Does the recorded coverage apply to the exact publication candidate? |
+| Protect concurrent unfinished work | Who owns affected edits, and how are shared-state changes and handoffs coordinated? |
+| Explain failures without causing unnecessary repair cascades | Can a successor distinguish a substantive change, an editorial mismatch, a missing prerequisite, and an incomplete run? |
+| Keep the records and mechanisms maintainable | Can we update, query, retrieve, and retire records under their retention requirements with justified effort? |
+| Keep records directly inspectable and portable | Can the operator or a successor read, review, and transfer selected records without a running service or specialist query knowledge? What documentation is needed to understand them? |
+
+These objectives require both information and action. Versioned records can identify dependencies and prior states; review must determine their meaning, tests must execute, and participants must follow the coordination procedure. Section 1.3 compares the information-management approaches with those supporting practices made explicit. No database, pin, or receipt alone fulfills the entire list.
+
+<a id="13-integrity-approaches-and-provisional-comparison"></a>
+
+## Integrity approaches and provisional comparison
+
+The basic requirement is a **maintainable temporal database of the knowledge and relationships that matter to this work**. Here, the operator uses *temporal* to mean successive identifiable states or versions; clock timestamps are not required to express that progression. *Database* describes an organized collection of related records, without selecting a database product or requiring that the records leave text files. This is a requirement for evaluating the alternatives, not a claim that the current repository already provides every capability of a temporal database system.
+
+The records need to connect useful equations, assumptions, derivations, and explanations with the calculations and software that depend on them; identify the versions and inputs supporting results we still use; associate checks with their actual scope, execution environment, and examined candidate; and expose ownership and handoffs where concurrent work could collide. Retention requirements determine which earlier states and supporting materials remain necessary and how they can be retrieved. Recording these relationships must serve the objectives in sections 1.1–1.2 and 2.2 rather than create an obligation to preserve every intermediate state.
+
+Maintainability includes the effort to record and update these relationships, find affected work after a change, explain a failed check, recover selected prior material, and retire records whose purpose has ended. An implementation should make those operations understandable and keep the records consistent with the work they describe. The alternatives below should be assessed against that common requirement whether they use Git-managed text and structured files, pipeline metadata, or a dedicated database. A database engine alone would not discover scientific dependencies or establish their correctness; those relationships still need justified creation and review.
+
+The three options below address the same requirement: maintain an understandable, versioned network of selected knowledge, dependencies, and evidence. They differ in how explicitly they represent that network, where the records live, and how much supporting software we would maintain. A is the current arrangement. B is the accepted future architecture, with migration deferred behind higher-priority work. C remains a comparison alternative and is not selected.
+
+- **A — Current file checks and validation receipts.** Keep the existing combination of readable source files in Git, selected content hashes and dependency pins, Python checks, and publication receipts. These mechanisms identify particular inputs and examined repository states. Relationships are recorded across individual files and consumers, so understanding the wider network can require manual tracing and custom scripts. This option asks how far we can meet our needs by clarifying and improving what already exists.
+
+- **B — JSON-LD records in Git with Python and RDFLib.** Keep source documents and inspectable relationship records in files, but make the selected network explicit using stable identifiers and defined links. Git versions the records; RDFLib supplies standard graph processing and queries. We would maintain the theory-specific model, source-consistency checks, and workflow integration. This option offers a path to richer dependency tracking without operating a database service.
+
+- **C — A dedicated temporal database.** Store the selected network records in a database that retains their earlier versions, with an application connecting accepted records to source documents in Git. Microsoft system-versioned temporal tables illustrate this capability. We would gain structured record history and queries while taking on the application, service, access, backup, and cross-system consistency responsibilities. The public website could still serve published files without depending on the database at runtime.
+
+The major sections below are [A. Current file checks and validation receipts](#a-current-file-checks-and-validation-receipts), [B. JSON-LD records in Git with Python and RDFLib](#b-json-ld-records-in-git-with-python-and-rdflib), and [C. A dedicated temporal database](#c-a-dedicated-temporal-database). Each has lettered subsections, such as A.1 and B.2. Comparison and scoring follow all three. Product documentation establishes tool capabilities; it does not establish that a proposed architecture meets our requirements.
+
+The alternatives below explain the decision rationale. B is accepted but deferred; C remains a comparison, not queued implementation.
+
+## A. Current file checks and validation receipts
+
+**A. Our current approach: file-level provenance checks and validation receipts.** This is a descriptive name for the existing combination, not an established product or a claim that our implementation is an industry standard. Individual files have recorded fingerprints and expected versions; retained sources preserve historical evidence; validation receipts associate selected checks with a recorded repository state. The [source recovery analysis](../../priorities/development-process-review/analysis/source-recovery-and-binding-repair.md) and [archive-contract review](../../priorities/development-process-review/analysis/archive-contract-and-coordinator-review.md), through their recorded digest comparisons and consumer inspections, show both the precision of these bindings and incomplete migrations and unavailable historical tools. The authoritative external reference for the underlying provenance principle is [W3C PROV Overview](https://www.w3.org/TR/prov-overview/), which describes recording entities, activities, and responsibility. W3C does not endorse our pin chains, prescribe their granularity, or certify this implementation.
+
+**Is our implementation homegrown?** The inspected mechanisms are repository-specific code built from standard primitives: Python's hashing and test facilities implement the selected input comparisons, while the local JavaScript receipt runner defines its own state capture and acceptance logic. Direct reading of the oracle and test imports and the receipt runner, plus an attribution search in those files and the recovery analysis, found no named upstream provenance framework or reference implementation for this combination. This supports describing the inspected arrangement as custom; it does not establish that no author drew inspiration from an external design. An upstream attribution or design record would change that narrower conclusion. The PROV link in this guide is explanatory background, not evidence of the implementation's origin.
+
+### A.1. How the current checks work
+
+A **dependency** is something another piece of work relies on: a program can depend on a helper library, a data file, or a mathematical specification. **Content-integrity checking** asks whether selected content still has the expected identity. **Dependency pinning** requires a particular dependency version. These are established terms; our particular arrangement of file checks and receipts is custom repository machinery.
+
+A **hash**, also called a **digest**, is a fingerprint calculated from the bytes in a file. The fingerprint is not a compressed copy from which the document can be recovered. A **pin** gives an identity a job: “accept this version.” A stored fingerprint by itself is only information; a comparison performed by a test or launcher turns it into an enforced requirement. Neither mechanism understands the meaning of the document.
+
+Suppose a checker records the fingerprint of a theory document. An editor corrects a comma. The next comparison reports that the document has changed. If the editor changes an equation instead, the comparison reports the same kind of mismatch. It cannot classify either change as harmless or substantive. Which documents are checked is determined by the files and dependencies selected by the authors of those checks, not by automatic recognition of important mathematics.
+
+A **docstring** is explanatory text attached to a Python module, function, or class. It often appears inside triple quotation marks at the beginning of the relevant definition. It can contain a description or a recorded fingerprint. It does not, merely by being a docstring, enforce an input version; separate code must perform that comparison. Python tools can display this text as help, and special tools can process examples inside it, but those are additional mechanisms. See the [Python tutorial on documentation strings](https://docs.python.org/3/tutorial/controlflow.html#documentation-strings).
+
+The concrete repository example was checked by reading the opening docstring of `scripts/eom/oracle/continuous_reception_roots.py` and the `test_frozen_mathematical_dependencies_remain_identical` test in `tests/test_eom_continuous_reception_roots.py`. The first records a theorem fingerprint as provenance text. The second reads selected files as bytes, calculates their fingerprints, and compares them with expected values. They have distinct functions and need not represent the same revision. This inspection establishes what those passages do; it does not establish that every recorded identity is the right one for every current consumer.
+
+A **binding** is the connection between a consumer and the specific input it expects. A **cascade** occurs when changing one file changes the identities expected by other files, whose own changes then affect further consumers. For example, updating a fingerprint written inside a helper program changes that helper's bytes, even if its computational behavior is unchanged. A launcher that pins the helper can then reject it too. That mechanical chain explains how a small edit can lead to several updates; it does not establish that every link in the chain is worth maintaining.
+
+A **validation receipt** is a record connecting completed checks to the state examined. It answers “were these checks run on this candidate?” rather than “is every possible property correct?” If working files change after validation, a state comparison can require another check. This can protect current publication even when preserving old theory versions is not an objective.
+
+The practical decision for A is therefore per obligation: does this exact-content comparison protect a current need that review and ordinary tests do not adequately protect? A mismatch calls for understanding that need before accepting new bytes. It is neither an instruction to undo a valid theory improvement nor permission to replace every expected fingerprint automatically.
+
+### A.2. Hashes and pins: what each mechanism proves
+
+The objectives above distinguish preservation, change detection, correctness, and coordination. Hashes and pins serve particular parts of that arrangement; understanding their scope prevents a successful identity check from being mistaken for successful scientific review.
+
+A **hash** is a fingerprint computed from bytes. A SHA-256 file digest is commonly written as 64 hexadecimal characters. A change to a word or whitespace ordinarily changes that fingerprint. Equal cryptographic digests provide strong practical evidence of identical content; a matching hash does not prove the content is correct.
+
+A **pin** is a requirement to use a specific version or digest. If a test computes a file's hash and compares it with a stored value, changing the stored value changes which bytes the test accepts. The key question is what acceptance means: preserving past evidence, reviewing a current dependency, or detecting a generated document that needs rebuilding.
+
+| Mechanism | What it protects or checks | What justifies a change |
+| --- | --- | --- |
+| External dependency or Action version pin | Selection of an exact external implementation | Review the update and validate affected behavior. |
+| Historical evidence digest | Identity of the inputs or outputs of a past claim | Retain the original identity; create a new record or explicit correction rather than relabeling old results. |
+| Current-source or reviewed-source expectation | A review boundary around a present dependency | Inspect the real diff and satisfy that boundary before accepting new bytes. |
+| Generated-source fingerprint | Agreement between generated material and its source state | Regenerate using its owner under the authorized workflow, then check the result. |
+| Validation receipt | Completed checks tied to a recorded source state and environment | Repeat the relevant validation when that state changes and report covered versus skipped work. |
+| Behavioral or analytical test | An output or property against a justified reference | Establish the expectation independently of the implementation being tested. |
+
+GitHub recommends full commit pins for immutable third-party Actions dependencies. That supports the first row, not every local chain in which a test pins another test. See [Actions secure-use guidance](https://docs.github.com/en/actions/reference/security/secure-use#using-third-party-actions).
+
+Consider a theorem document whose digest is recorded in an oracle's Python header and also checked by a test. Renaming a label changes the document's bytes even if the mathematics remains identical. A digest mismatch correctly signals a changed input but cannot classify the change. Replacing the header's digest changes the oracle's own bytes, which can invalidate consumers that pin that oracle. A simple editorial change can therefore propagate through several legitimate but differently purposed bindings.
+
+The recovery assessment identifies this concrete distinction in `scripts/eom/oracle/continuous_reception_roots.py`: its docstring records provenance, while a historical test performs an executable hash assertion. Preserve the oracle's historical bytes when interpreting its historical result. A current implementation can have a new reviewed identity without pretending that the old run used it. Exact identities, transport paths, and evidence boundaries remain in the [source recovery analysis](../../priorities/development-process-review/analysis/source-recovery-and-binding-repair.md) and [archive-contract review](../../priorities/development-process-review/analysis/archive-contract-and-coordinator-review.md).
+
+A receipt also has a limited meaning. A recorded source state plus successful selected checks supports a claim about those checks on that state. It does not establish unrun coverage, an independent mathematical proof, or completion of all concurrent tasks. A process timeout, a verified cleanup, and a scientific result are three distinct outcomes. The recovery campaign owns the concrete repairs to these distinctions.
+
+### A.3. When checks run, and what can actually be recovered
+
+**When are the hashes written?** There is no single repository-wide stamping event. Three different records have different lifecycles:
+
+| Record | When it is created or updated | What repeated edits and commits do |
+| --- | --- | --- |
+| A scientific input pin stored in a test or provenance record | Its author records the selected input's digest when establishing the dependency. A later change to that expectation is an explicit source edit or an owner-controlled generation step, justified according to the binding's purpose. | Saving or committing an input does not automatically refresh this expectation. It can stay unchanged across many commits and PRs. Historical provenance must continue to identify the historical input. |
+| A freshly calculated digest used by a comparison | The check calculates it when that check executes, then compares it with the stored expectation. | This calculation can detect the latest saved edit before a commit. It does not normally replace the expectation or preserve each intermediate file version. |
+| A local publication validation receipt | The receipt runner writes it after its selected checks succeed and its state comparisons establish stability. It includes a creation time and state fingerprints. | A matching receipt can be reused at commit or push. A mismatch requires validation again; successful validation writes a replacement receipt. This local receipt is not an archive of every edit or every previous receipt. |
+
+The scientific pin example is measured by reading `test_frozen_mathematical_dependencies_remain_identical` in `tests/test_eom_continuous_reception_roots.py`: its expected digests are literal values in the test, and its assertion calculates each current file's digest without writing a new expectation. The receipt creation time and replacement behavior are measured by reading `writeValidationReceipt` in `scripts/pr-validation-receipt.mjs`. A hash identifies content; it is not a timestamp. The receipt's creation time is a separate field.
+
+Suppose a test expects document A. You save edits B, C, and D before committing. This pin mechanism does not stamp each save: the expected value still identifies A. If the test next runs against D, it calculates D's digest and compares it with A's stored digest. It can report a mismatch, but it has not gathered copies of B and C along the way. If review establishes that a current-input expectation should now accept D, updating that expectation is a separate, deliberate change. Committing D alone does not perform that update. Ten commits before a PR therefore do not imply ten new scientific pins. Git records the selected committed snapshots; the pin retains its own explicitly chosen reference until its owner changes it.
+
+Detecting a change and recovering the previous contents are separate capabilities. An existing pin can detect a changed file before that change is committed: its consumer compares the current bytes with an already-recorded expectation whenever that check runs. A fingerprint does not store the previous contents. If useful work was never committed, copied, or otherwise retained, a mismatch cannot reconstruct it. An editor's undo or local history may help, but that is a separate capability and has not been verified here.
+
+| Point in development | What happens in our configured workflow | What this does not provide |
+| --- | --- | --- |
+| Editing before a commit | An explicitly run test can examine current saved files, including uncommitted changes. An existing pin supplies a comparison baseline where one has been declared. | The publication hooks do not run on every keystroke or save. A new intermediate idea has no automatic recovery copy merely because it is in the working directory. |
+| Running the local publication gate | The receipt runner compares repository state before and after its selected checks and records a receipt only for a stable, successful run. Its identity includes staged entries, unstaged changes, and non-ignored untracked content. | The receipt stores fingerprints and validation context, not a backup of all those contents. Recording an identity does not mean every file received a substantive scientific test. |
+| Committing | The configured pre-commit hook verifies a matching receipt or runs the local publication gate. Git then records the selected staged snapshot when the commit succeeds. | The commit does not preserve every intermediate edit or unrelated unstaged and untracked work. Pins are not automatically refreshed to approve changes. |
+| Pushing | For ordinary content updates, the pre-push hook verifies a matching receipt or runs the gate. Its policy has narrow no-content exceptions, described by the publication owner. | It need not rerun checks when an exact matching receipt can be reused. A push does not upload uncommitted working files. |
+| Pull-request updates and changes reaching main | The Content Integrity GitHub workflow runs its declared checks for pull-request events and pushes to main. | Remote checks see the checked-out server state, not unsaved or uncommitted local work. They do not run every scientific campaign. |
+
+These timing statements are measured by reading the pre-commit and pre-push hooks, the receipt runner, the Content Integrity workflow, and the [publication procedure](pr-lifecycle.md); `git config --get core.hooksPath` returned `.githooks` in this checkout on September 7, 2026. Reading the content-integrity runner also shows that its broader test sweep is opt-in. Thus a publication pass must not be described as every hash assertion or every scientific test passing. Changed configuration, hook bypass, or a different selected check set would change this coverage.
+
+For example, a committed derivation A can be recovered from Git after an uncommitted replacement B. A pin referring to A may also flag B when its test runs. But if an intermediate insight existed only in B and was overwritten by C before any copy or commit retained B, neither A's pin nor the later validation receipt can bring B back. Protecting that interval requires an appropriate checkpoint or other retained copy before destructive replacement, coordinated with the existing publication and shared-checkout rules. This explains a recovery gap; it does not introduce a new automatic checkpoint policy.
+
+### A.4. Reviewing the amount of pinning
+
+The engineering question is whether each binding protects useful reasoning, a current dependency or claim, selected recoverability, or a publication requirement at a justified maintenance cost. Use Git for ordinary source history and examine current-code pinning for unnecessary coupling. This is a proposal for a bounded architectural review, not permission to repin existing evidence or remove gates. The incident establishes that real review boundaries and incomplete migrations were entangled; it does not establish that all pins are wasteful or that all failures should be made green.
+
+For each troublesome binding, identify its consumer, protected claim, update authority, and failure response. If changing a comment requires a chain of pin updates, determine whether every edge protects a distinct review obligation. Where only behavior matters, a versioned interface and independently justified tests may provide a more useful boundary than the hash of an entire implementation file. Where exact experimental provenance matters, retain the actual source bytes and compact manifest. An interface version alone cannot authenticate a past run.
+
+Before adopting a redesign, try it on one current caller without editing its historical evidence or independent oracle. Compare the number of review steps, false alarms, retained failure detection, and measured maintenance time with the existing approach. A design that accepts an unreviewed substantive change or makes a result still required by the current work unreconstructable fails the trial. This preserves the useful part of pinning while making its cost and coverage reviewable.
+
+Source, reproducible ignored outputs, compact evidence, archives, and Git objects are different storage categories. A file-size snapshot does not establish growth rate. Measure each category and compare dated observations before proposing storage changes; follow the [retention owner](../machine-artifact-retention.md). Do not delete records or run history cleanup merely because a cascade feels expensive.
+
+
+### A.5. Retained files, releases, and evidence archives
+
+**Supporting tools rather than competing network databases.** Reviewed Git changes and selected evidence archives remain useful in every arrangement. A release names a deliberately published version; a manifest inventories retained material without containing that material itself. GitHub documents [review and status-check controls](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) and [release archiving with Zenodo](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content). These help review and retain selected states; they do not supply the conceptual relationship model. Full evidence packages still require deliberate source, environment, command, and output capture. The documented Zenodo integration is for public repositories; private material needs suitable storage.
+
+
+## B. JSON-LD records in Git with Python and RDFLib
+
+**Decision: accepted for future migration; implementation deferred.** The operator selected B on September 8, 2026. JSON-LD records in Git with Python and RDFLib are the target architecture. Existing protections remain in service until their replacements are verified. The migration plan is in section 1.4.4.
+
+**B. JSON-LD network records in Git, with Python and RDFLib.** Keep authored mathematics and explanations in their canonical Markdown sources. Add only the missing structured records needed to identify selected concepts and dependencies, reusing existing equation registries and source identifiers where they satisfy the requirements. Store the authoritative relationship records alongside the source in Git. Each committed snapshot then identifies a version of both content and its declared network. Use JSON-LD for the selected authoritative relationship records and Python with RDFLib to load and query them. RDFLib supplies existing graph-processing and SPARQL query capabilities; a small repository-specific interface would expose readable questions and reports. Any in-memory graph or disposable index would be rebuilt from the files, not edited as a second source of truth. Git supplies the [snapshot and integrity model](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F); our schema, relationship queries, and checks for agreement with the source would be additional engineering. Selected evidence outside Git still needs retention and verified retrieval.
+
+### B.1. How the proposed workflow works
+
+**Architectural value of standard components.** B could move generic representation, parsing, graph traversal, and querying onto established formats and libraries, leaving custom code focused on our scientific meaning and workflow. RDFLib's externally maintained implementation could replace some functionality we would otherwise build and maintain ourselves. The benefit is reuse of working infrastructure and its ecosystem, not merely a different file extension. This supports the accepted direction, while migration planning must compare the generic machinery it could eliminate with the integration and dependency maintenance it introduces. Independent scientific tests and project-specific acceptance rules retain their distinct purpose.
+
+The same foundation offers extensibility. New kinds of knowledge objects, relationships, and queries could use the existing graph representation and processing tools rather than require a separate script format for every new use. Extensions still need clear vocabulary, validation, and compatible interpretation of existing records. Separating reusable provenance and network operations from Architrino-specific terms could also make a future tool useful to other researchers. That is an architectural opportunity, not an assertion of outside demand or a commitment to build a general product. Immediate value to this repository should justify each increment; potential reuse should inform clean boundaries without expanding the current task.
+
+**How much complication does B add?** B avoids a required database service, but it is still software development. It needs a small schema defining selected objects and relationships, stable identities that survive renaming, a way to query the records, checks that expose disagreement with source files, and an explicit update/review procedure. Existing registries and checks may already supply some of this; their suitability must be inspected before estimating new work. No implementation-time or maintenance-cost estimate has been measured.
+
+The central difficulty is keeping the declared network accurate. If an equation changes and its dependency record does not, a polished query can return an obsolete answer. Automatically recognizing every conceptual change would be a much larger undertaking; a bounded design can instead flag changed selected sources and require an explicit review of the associated relationships. That still costs effort and should be compared with the pin repairs and manual dependency tracing we already perform.
+
+B can begin as a focused improvement to A rather than a replacement: reuse one equation identity and its existing source, make a few important dependencies explicit, provide a simple readable query, and check that a source edit cannot silently leave those records accepted as current. Expansion should follow verification that the example provides the required protection, usable queries, and understood maintenance costs. The complexity grows substantially if the scope expands to automatic understanding of all equations, complete historical network reconstruction, or a repository-wide new identifier scheme. Those are not prerequisites for the bounded trial.
+
+The proposed stack has four responsibilities:
+
+| Component | Job |
+| --- | --- |
+| Canonical Markdown and selected JSON-LD records | Keep the reasoning readable and express selected object identities and relationships using a version-controlled context. |
+| Git | Retain committed source and network states together under the existing publication procedure. |
+| Python with RDFLib | Read JSON-LD into a graph, follow declared relationships, and execute queries using existing library capabilities. This is an on-demand tool, not a required persistent database service. |
+| Small project-specific commands and checks | Present questions such as “what depends on this equation?”, produce readable reports, and detect disagreement between selected source and records. Operators need not write SPARQL for routine questions. |
+
+B is the accepted target; its implementation details still require verification. Before installing the stack or relying on its results, verify the required parsing and query behavior with the repository's supported shared Python environment, using a version-controlled local context so normal inspection does not depend on a remote vocabulary download. Identify how selected publication checks would invoke the Python tooling on supported hosts; do not assume the current GitHub runner supplies that environment. No library has been installed or runtime compatibility established by this documentation change.
+
+A **commit** records the selected tracked snapshot; a **diff** shows changes between states. In B, a source document and its relationship records can be reviewed together in that snapshot. A stable equation identity is separate from a filename or a hash: the identity names the object, while a revision identifies its recorded state. A rename should not need to create a new scientific object simply because a path changed.
+
+Suppose a selected equation has an explicit assumption, a derivation using it, and a calculation implementing it. Its records identify those connections and the retained source state. If an editor corrects punctuation in an unrelated explanatory paragraph, the source diff changes, but the equation's relationship records need not change. That narrower boundary is a design choice requiring validation: an extractor or source-consistency check must not overlook an actual equation or assumption edit. We cannot assume a parser understands mathematical significance.
+
+If the equation changes, the editor reviews the mathematics and updates the affected records. A query of the declared network identifies the derivation and calculation for reconsideration. Tests associated with them must be selected by an explicit rule or an informed reviewer; the existence of a relationship does not run a test. The accepted source and network changes are committed together through the existing publication procedure. A subsequent query can load the earlier committed records and recover the earlier equation from its retained source snapshot.
+
+This is still selective capture. Several edits before a commit are not automatically separate retained network states. If an intermediate insight must survive replacement, it needs an authorized checkpoint or another designated copy. Git history is also a branching graph, not one universally ordered sequence; queries must name the source revision they mean.
+
+The attraction is that human-readable sources and relationship changes remain reviewable together through familiar tools. The engineering cost is maintaining identifiers, source bindings, relationship queries, conflict handling, and schema changes. Repeatedly correcting a manually duplicated equation in two places would undermine the design; keep one canonical content source and derive any index. Source-only edits that bypass record updates must be detected before the network is treated as current.
+
+A **regression test** protects a behavior we still require. Its expected answer needs independent justification, and a deliberate change in the theory requires review of the requirement itself. The structured network can help locate that obligation; it cannot determine whether the replacement expectation is correct.
+
+### B.2. JSON-LD for the network records
+
+The **data model** defines the objects and relationships; the **serialization** is the notation used to write those records into files. B uses [JSON-LD, the W3C-standard JSON representation of linked data](https://www.w3.org/TR/json-ld11/). It uses JSON syntax with standardized interpretation rules for identities and relationships. A context maps readable field names to defined vocabulary. The context should be local and version-controlled so interpretation remains predictable offline and across retained revisions.
+
+For example, “calculation run R used equation version E” can be represented in JSON-LD using the [PROV-O vocabulary](https://www.w3.org/TR/prov-o/). PROV-O supplies terms for entities, activities, usage, generation, and derivation; it supplies meaning for the records, not a competing file format. An equation's conceptual dependency on an assumption may need an additional precisely defined relation. Recording a relationship does not establish its mathematical validity.
+
+JSON-LD does not create version history by itself. Git retains committed records, and the application defines selected revision boundaries. The bounded evaluation must verify interpretation, readable diffs, offline context handling, and the required queries in the supported Python environment.
+
+### B.3. Python and RDFLib for processing and queries
+
+[RDFLib](https://rdflib.readthedocs.io/en/stable/) is the Python library proposed for B. It can load JSON-LD records into a graph, perform graph operations, and run SPARQL queries. **SPARQL** is a standard query language for RDF graph data: it lets us ask questions about recorded relationships, such as which calculations depend on a selected equation. An in-memory graph can be rebuilt from the authoritative files when needed, without operating a persistent database service.
+
+RDFLib provides existing parsing and query machinery. Our responsibilities remain defining the knowledge model, recording accurate source relationships, selecting the current or historical snapshot to query, integrating review and checks, and presenting readable reports. Its documentation was inspected; this review has not installed it or tested compatibility with the repository's supported Python environment. The bounded trial must verify those details rather than assume that library availability supplies a complete development workflow.
+
+### B.4. The proposed record model
+
+A stable identity means an equation or concept remains recognizable when its wording or location changes. A revision identifies a selected state of that object. A relationship identifies a specific connection, such as a derivation using an assumption or a calculation implementing an equation. The relationship itself can change and needs version history where that history is required. The following is a proposed minimum for a bounded trial, not a request to inventory every sentence or encode the whole ontology:
+
+| Record | Information needed for the selected example |
+| --- | --- |
+| Knowledge object | Stable identity, kind, canonical source location, and the source revision from which its content is recoverable. Distinguish an equation from its explanation, assumptions, and selected unresolved questions. |
+| Relationship | The objects and relevant revisions it connects, the kind of dependency, and its justification or review state. Explanatory cross-references can form cycles; a cycle is not automatically a valid circular proof. |
+| Accepted network revision | A coherent selection of object and relationship versions tied to an identified Git state. Draft work remains distinguishable from accepted work. |
+| Calculation and check | Exact inputs, command and environment, actual execution outcome and coverage, independent justification where required, and connection to the examined candidate. |
+| Retention and retrieval | Which earlier content remains needed, where its bytes live, how to retrieve them, and what permits retirement. A link or fingerprint alone is not a retained copy. |
+
+The records should answer concrete questions: “What depends on this equation now?”, “What depended on its selected earlier version?”, “Which supporting assumption changed?”, “Which checks actually covered this candidate?”, and “Can we retrieve the earlier reasoning we chose to keep?” A source edit must not silently leave the network falsely current. B needs a way to detect disagreement, expose it, and require the relevant update or review before acceptance. B does not automatically recognize conceptual dependencies or mathematical equivalence.
+
+
+### B.5. Fictitious prototype schema
+
+**Status: proposed prototype design, not an adopted production schema.** The operator authorized an isolated option B demonstration using invented arithmetic files only. No existing corpus, equation, or current validation record is a prototype fixture. The separate Option B task owns implementation and trial results; the model below records its reported initial field design for review.
+
+The prototype keeps a local versioned JSON-LD context, a record graph, marked blocks in a fictional Markdown source, and a check receipt in the same standalone Git repository. A selected Git commit identifies the snapshot. Records do not embed the hash of the commit that contains them, avoiding a self-referential hash dependency.
+
+| Field or record | Prototype meaning |
+| --- | --- |
+| `@context` | Local `context.jsonld`; interpretation must work offline. |
+| `@graph` | Collection of knowledge-object records. |
+| `@id` | Stable URI under the reserved fictitious `example.invalid` domain. |
+| `@type` | Assumption, Equation, Derivation, Calculation, Result, or Check. |
+| `revision` | Integer identifying the selected version of the object. |
+| `sourceBlock` | Explicit marked block in the fictional Markdown source; not a claim of automatic semantic extraction. |
+| `sourceDigest` | SHA-256 of the extracted block text; extraction and whitespace normalization must be specified before adoption. A mismatch means the source binding needs review, not that the mathematics is wrong. |
+| `dependsOn` | List of stable object URIs declaring dependencies. |
+| `dependencyRevisions` | Map from each dependency URI to its expected object revision. Its JSON-LD representation and consistency with the graph must be tested. |
+| `reviewState` | Prototype label `toy-reviewed`; it grants no scientific acceptance. |
+| Check: `checkName` | Allowlisted check selector, initially repeated addition; graph records cannot supply arbitrary executable commands. |
+| Calculation: `used` | PROV usage relation to an input entity. |
+| Result: `generatedBy` | PROV generation relation to the producing activity. |
+| Check receipt | Version 2: SHA-256 of exact stored source, record, and context bytes in `fileDigests`; exact checker bytes in `checker.digest`; selected and executed checks, recorded result with expected value, and Python version. Full environment binding and execution authentication remain outside this prototype. |
+
+The trial must independently test the invented arithmetic, current and earlier dependency queries, prior-source retrieval, and refusal to accept stale bindings. An explanation-only edit can leave an equation block unchanged while invalidating the full-source receipt; that distinction must remain visible. Graph consistency does not prove mathematical correctness or completeness of the declared dependencies. Field names, versioning, and receipt coverage remain subject to the prototype review.
+
+**Initial review findings:** the separate Option B review task reran the selftests, historical/current queries, source retrieval, and four arithmetic cases successfully. Its additional probes found that queries bypass freshness validation, receipt hashes cover normalized record/context representations rather than exact file bytes, and the arithmetic check does not verify the recorded Result text. These are prototype limitations, not production guarantees. The subsequent repair report records nine passing tests: queries now validate freshness before returning, receipts bind exact file and checker bytes, and the selected recorded result is checked against repeated addition. Block digests remain explicitly separate from whole-file digests. All trials remain confined to fictitious files.
+
+<a id="b5-provenance-vocabulary-and-w3c-prov"></a>
+
+### Prototype-informed comparison with A
+
+This assessment combines the documented A mechanisms with the fictitious B trial and its separate review. It is an architectural inference, not a production benchmark. The trial demonstrated queries and selected validation, but exposed freshness, digest-definition, and result-coverage gaps. The repair task reports the three gaps fixed with nine passing tests, confined to fictitious data. No storage, runtime, or maintenance-time advantage has been measured.
+
+| Concern | A: existing Git, pins, and checks | B: Git plus selected JSON-LD relationship records | Assessment after the prototype |
+| --- | --- | --- | --- |
+| Dependency discovery | Relationships are distributed among source, tests, and provenance; inspection may require several searches. | A common graph answers declared transitive dependencies. | B demonstrated useful current and historical queries; omitted relationships remain invisible. |
+| Earlier content | Git can retrieve retained committed source already. | Git retrieves source and the corresponding declared graph together. | B adds historical relationship queries, not a new source-backup capability. |
+| Unrelated prose edits | Whole-file pins can require review after changes unrelated to the protected equation. | Selected block bindings can leave relationship records unchanged. | Demonstrated for punctuation outside the selected block. A could also adopt narrower bindings; this benefit is not exclusive to JSON-LD. |
+| Python-file clutter | Some provenance expectations live inside Python or tests and can cause cascading byte changes. | Relationship data can move to reviewed records outside executable code. | Potentially fewer embedded metadata edits; Python still needs checks, interfaces, and receipt logic. No existing Python file has been simplified by this trial. |
+| Total code maintenance | Existing machinery has known consumers and failure modes. | RDFLib supplies graph parsing/querying; project-specific freshness, schema, identity, and execution rules remain. | B may replace scattered query machinery but initially adds code and dependency upkeep. Net reduction is unmeasured. |
+| Storage | Source history plus existing evidence and metadata. | Adds graph/context records and their Git history; retained evidence remains necessary. | No demonstrated space saving. A migration that leaves both metadata systems active would add duplication. |
+| Speed | Existing targeted checks avoid loading a graph but may require manual tracing. | Automated graph traversal can replace manual searches; parsing and validation add runtime. | No comparative timing measured; the small arithmetic example cannot establish scale. |
+| Scientific correctness | Depends on independent references and justified tests. | Can locate relevant checks and record execution, but cannot prove relationship truth or mathematics. | No inherent correctness advantage. The repaired toy check verifies its recorded arithmetic result; it does not interpret assumption or derivation prose. |
+| Stale information | Pins detect changes when their consuming checks execute. | Source bindings can reject stale graphs before queries or acceptance. | Revised prototype queries reject stale bindings before returning answers; completeness of the declared network still requires review. |
+| Readability | Familiar source and Git diffs, with metadata scattered across files. | One consistent relationship format, plus a vocabulary and additional record files to understand. | Better structured inspection is plausible; ease of editing has not been tested with users. |
+| Concurrent editing | Existing shared-checkout coordination and merge review. | The same rules plus graph/source consistency and possible record conflicts. | B does not solve concurrency. Duplicate-ID rejection is not a complete conflict-resolution design. |
+| Migration and recovery | Current workflow continues without conversion. | Requires selective mapping and validation; disposable graph views can be rebuilt from committed files. | Keep A operational. Expand B only after the fictitious fixes and a later explicitly authorized bounded migration. |
+
+**Completed fictitious comparison (task-reported, September 8, 2026):** the retained comparison report models A using exact file pins plus an independent arithmetic/result check, and B using the revised graph gate. Both reject the unrecorded equation change and wrong result, including after blind digest refresh. B additionally rejects stale revisions and duplicate identities after refresh; the modeled A lacks those structural checks. Conversely, removing an assumption edge and its revision entry together passes B’s fresh gate while A’s unchanged file pin flags the changed bytes. Both accept that omission after A is blindly repinned, and both miss the changed assumption’s semantic consequences after metadata refresh. Both invalidate old exact-state receipts. This is not evidence of generally stronger B protection. Seven edited fixtures caused seven A pin-manifest updates and three additional B record rewrites; these are harness byte-change counts, not measured human review effort. Narrower A block pins also avoid the harmless punctuation alert. Historical source retrieval works through Git for both; B adds historical graph queries. No production gate, runtime advantage, total storage saving, or human-time saving was measured. Preserve A’s explicit review boundary for relationship changes when developing B.
+
+**Authorized comparison:** after repairing the fictitious prototype, compare the same edits under A and B using independently specified expected outcomes. Include harmless prose changes, unrecorded equation changes, altered assumptions or dependencies, wrong recorded results, stale queries, changed checkers, duplicate identities, and historical retrieval where applicable. Measure detected errors, missed errors, false alarms, metadata updates, and reproducible review steps; separate mechanical steps from human judgment. Model A fairly from its documented current behavior and distinguish benefits that narrower A bindings could also provide. Better protection means retaining required detections or catching additional meaningful errors, not merely making checks pass. All fixtures remain fictitious; production migration is not authorized by this comparison.
+
+**Recommendation:** retain B as the accepted future direction for explicit dependency queries and organized relationship records. Do not justify it as smaller, faster, or mathematically safer on present evidence. Compare a corrected fictitious A/B example using the same edits and required detections before claiming fewer maintenance steps; retain existing historical evidence and independent checks.
+
+### B.6. Provenance vocabulary and W3C PROV
+
+W3C is the World Wide Web Consortium. **PROV** is its family of specifications for representing and exchanging provenance: information about how something was produced and the responsibility associated with that process. The [PROV Overview](https://www.w3.org/TR/prov-overview/) is a roadmap published as a Working Group Note; the family includes the normative [PROV Data Model](https://www.w3.org/TR/prov-dm/). It is a conceptual vocabulary and interchange framework, not a database engine or an automatic recorder of edits.
+
+The [PROV Primer](https://www.w3.org/TR/prov-primer/) introduces three useful concepts. An **entity** is a thing whose provenance is described; in a proposed mapping here, that could be a particular equation version or result. An **activity** produces or uses entities; a calculation or revision is an example. An **agent** bears responsibility for an activity and can be a person, organization, or software participant; this term is broader than an AI agent. Relationships describe inputs used, outputs generated, derivation, revision, and responsibility. Recording that one item was derived from another describes its origin; it does not establish a valid mathematical deduction.
+
+For our purposes, the distinction is between vocabulary, storage, and enforcement. PROV can inform the vocabulary connecting a result to its inputs and producing activity. Git-managed files or a database could store those records. Our review and executable checks would establish the specific acceptance requirements. PROV does not prescribe our Python tests, whole-file hash pins, receipt implementation, or retention duration, and citing it does not certify those mechanisms.
+
+The citation in A supplies technical background for provenance. We have not established that the authors of our existing mechanisms followed PROV, that our records conform to it, or that W3C endorses this implementation. B and C could use the same provenance concepts. Before adopting a formal mapping, test it against one actual calculation and determine which existing fields already express the needed information; a standard should reduce ambiguity rather than introduce a second parallel account of the work.
+
+
+Optional calculation-pipeline tooling is discussed in [appendix 4.3](../../priorities/development-process-review/processes-git-codex-claude.md#43-optional-calculation-execution-with-dvc). It is not part of the accepted B stack.
+
+## C. A dedicated temporal database
+
+**C. A dedicated temporal database with an explicit theory-development model.** Store the authoritative selected network records in a database through a controlled editing service. Keep source documents in Git, with every accepted network revision linked to a retained source snapshot. A proposed relational model would use ordinary entity and relationship tables, version the selected records, and identify a coherent accepted network revision. Microsoft's [system-versioned temporal tables](https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal/overview?view=sql-server-ver17) are a concrete example of automatic row history and historical querying. Database transaction time is distinct from a theory revision or Git branch; the application must explicitly represent those identities and their association. Microsoft's [limitations](https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal/considerations-limitations?view=sql-server-ver17) also matter: native graph node/edge tables cannot be temporal tables, and history tables do not have foreign-key constraints. Temporal row storage alone therefore does not guarantee a coherent historical knowledge network. SQL Server is an illustrative candidate, not a selected product or deployment recommendation.
+
+### C.1. How the proposed workflow works
+
+**Where would it run during development?** C would consist of a database service and an application layer that connects it to our work. The service could run locally while needed or on a shared host; that deployment choice is open. Agents would interact through a command, API, or editing interface rather than maintaining database tables by hand. The service being available does not mean it watches every editor action. Temporal history is recorded when an update reaches the relevant database tables, not merely because a Markdown file was saved or Git created a commit.
+
+One possible integration is an explicit development checkpoint: save the source change; ask the application to prepare a network update; inspect the affected equations and relationships; run the selected checks; and accept the network revision associated with the intended source state. Draft database updates could occur before a Git commit, but they must be identified as drafts. Publication would verify that an accepted network revision corresponds to the committed candidate. A watcher or editor integration could prepare updates earlier, but reliable detection, duplicate handling, and review boundaries would be additional functionality, not a built-in consequence of installing a temporal database.
+
+If the service is unavailable, ordinary text editing can continue, but those edits cannot be represented as accepted database updates until synchronization and validation succeed. The application would need to make that pending state visible. Thus C is an application-development and operating commitment: the database stores versions, while the integration determines what gets recorded, when it gets recorded, and how it stays aligned with the source. None of this service or integration has been installed by the documentation work.
+
+**Would the public web app need the database?** The proposed boundary is development-only database access. Authoring, dependency review, historical queries, and publication preparation could use the service; the website would receive the approved documents and any required generated data as published files. Visitors would not query the database, and a later database outage would not interrupt the already-published site. Publication might require the service to validate or export an accepted network revision, depending on the integration chosen. Keeping it out of the website's runtime does not remove the need to retain and back up its records between development sessions. A future reader-facing feature requiring live database queries would be a separate architecture decision, not a consequence of adopting C.
+
+C uses the same objects, relationships, and selected revision boundaries as B, but a database service owns the network records. A **transaction** groups database updates so they succeed or fail together. The proposed application would use it to accept a coherent set of equation references, assumptions, and dependent relationships rather than exposing a half-updated network. That transaction does not automatically include a Git commit or a remote push.
+
+An editor submits a proposed change tied to a source snapshot. Review and relevant checks occur before the application marks that network revision accepted. System versioning can retain earlier database rows when they change, while the application's explicit revision identifiers distinguish drafts, accepted theory states, and Git branches. Updating a document outside the service does not automatically update the database; source correspondence must be checked before acceptance. The database must not be treated as current merely because its last write succeeded.
+
+For the same equation edit, the application queries dependent relationships and presents affected work for review. On acceptance it records the new relationship state without losing selected historical records under the retention policy. A historical query retrieves a coherent earlier network revision, then follows its retained source reference to recover the equation and derivation. Restoring a database alone cannot recover externally stored source bytes that were never retained.
+
+A controlled service could reject conflicting writes to the same record by checking the version an editor started from. That protection applies to database writes through that service; it does not prevent two agents from overwriting a Markdown file in a shared checkout. Likewise, a stored review status does not prove that a review occurred unless the workflow establishes who recorded it and what was examined.
+
+The benefit is direct structured access to current and historical records, with database update rules supporting coordinated record changes. The cost includes operating the service, authoring tools, access controls, schema migrations, backups and restoration, retention, and reliable association with Git. A draft source state, an accepted network revision, and a published commit must not silently diverge. These are substantial obligations even if the row-history feature is built in.
+
+Neither the database's transaction timestamps nor its rows establish when a scientific statement became true. They record system history. The theory's revision model, claim grading, and supporting reasoning remain explicit application information. C is worth a trial only if the historical queries or controlled record updates justify these additional responsibilities.
+
+### C.2. Microsoft system-versioned temporal tables
+
+Microsoft calls the feature **system-versioned temporal tables**. A table contains rows of structured data. With system versioning enabled, updating or deleting a row causes the database to retain its previous values in a history table; recorded time periods support queries for earlier states. This is automatic for database writes to those tables, not for edits to external Markdown files. It retains previous data values, rather than merely a fingerprint identifying them. See Microsoft's [temporal-table overview](https://learn.microsoft.com/en-us/sql/relational-databases/tables/temporal/overview?view=sql-server-ver17).
+
+For an equation currently written in a Markdown document, installing SQL Server would change nothing by itself. If the application stores only its identifier and source reference, the database retains earlier identifiers and references—not the equation's missing source bytes. If it stores the equation text, it can retain that text across database updates, but the design must then establish which location is authoritative and how documents are rendered or synchronized. A second independently editable copy would introduce another consistency problem. The proposed C arrangement therefore keeps canonical documents in Git and requires recoverable source snapshots behind their database records.
+
+The practical attraction is automatic record history and structured historical queries. The practical limitation is that we must first decide what a record means and build the path by which it is updated. Database transaction time also does not automatically represent theory branches or accepted conceptual revisions. The feature supplies part of the version-management mechanism; it does not supply a complete theory-development application.
+
+### C.3. The proposed record model
+
+ A stable identity means an equation or concept remains recognizable when its wording or location changes. A revision identifies a selected state of that object. A relationship identifies a specific connection, such as a derivation using an assumption or a calculation implementing an equation. The relationship itself can change and needs version history where that history is required. The following is a proposed minimum for a bounded trial, not a request to inventory every sentence or encode the whole ontology:
+
+| Record | Information needed for the selected example |
+| --- | --- |
+| Knowledge object | Stable identity, kind, canonical source location, and the source revision from which its content is recoverable. Distinguish an equation from its explanation, assumptions, and selected unresolved questions. |
+| Relationship | The objects and relevant revisions it connects, the kind of dependency, and its justification or review state. Explanatory cross-references can form cycles; a cycle is not automatically a valid circular proof. |
+| Accepted network revision | A coherent selection of object and relationship versions tied to an identified Git state. Draft work remains distinguishable from accepted work. |
+| Calculation and check | Exact inputs, command and environment, actual execution outcome and coverage, independent justification where required, and connection to the examined candidate. |
+| Retention and retrieval | Which earlier content remains needed, where its bytes live, how to retrieve them, and what permits retirement. A link or fingerprint alone is not a retained copy. |
+
+The records should answer concrete questions: “What depends on this equation now?”, “What depended on its selected earlier version?”, “Which supporting assumption changed?”, “Which checks actually covered this candidate?”, and “Can we retrieve the earlier reasoning we chose to keep?” A source edit must not silently leave the network falsely current. C needs a way to detect disagreement, expose it, and require the relevant update or review before acceptance. C does not automatically recognize conceptual dependencies or mathematical equivalence.
+
+
+<a id="14-abc--comparison-and-scoring"></a>
+
+## A/B/C — Comparison and scoring
+
+<a id="141-a-versus-c--file-history-and-database-history"></a>
+
+### A versus C — File history and database history
+
+| Question | A — Current Git, files, pins, and receipts | C — Proposed Microsoft temporal tables |
+| --- | --- | --- |
+| What is versioned? | Git records committed source snapshots. Selected pins and receipts record particular input identities and validation states. | Selected structured records and their changes, such as equation metadata or dependency relationships. Their schema must be designed. |
+| When is history captured? | Git captures selected content on commit. A scientific pin changes only through its own explicit update; a receipt is written after successful validation. | The engine retains old row values when an update or deletion reaches a system-versioned table. The integration determines when source changes become database writes. |
+| Can we recover previous contents? | From retained Git objects or other saved copies. A hash alone cannot recover the contents. | From retained row history for data actually stored there. External documents and datasets still require their own retained copies. |
+| How do we find what depended on an earlier equation? | Inspect the selected earlier source and distributed records, using scripts where available. | Query explicitly modeled relationships at a coherent selected revision. The equation's row history alone does not identify its dependents. |
+| What establishes correctness? | Independent reasoning and relevant tests; hashes establish identity within their scope. | The same independent reasoning and tests. Automatic row history establishes neither mathematical truth nor successful validation. |
+| What additional work is required? | Maintain the existing files, bindings, check selection, and publication process. | Design the model, service, source association, review workflow, historical relationship checks, backups, and retention. |
+
+<a id="142-abc--objectives-and-comparative-scores"></a>
+
+### A/B/C — Objectives and comparative scores
+
+These scores are **inferred assessments of completed architectural capability**, revised September 8, 2026. Assume A, B, and C are each implemented well, including their declared integration, review workflow, retention, and validation. No option loses points because it has not yet been built. A retains its file-level bindings and receipts; B adds an explicit file-based knowledge graph; C uses a dedicated temporal database linked to source. Assuming good implementation does not change these architectural boundaries or assume that any system automatically discovers every scientific dependency.
+
+The scale is **0: outside the architecture’s scope; 1: limited or indirect support; 2: useful support with an inherent limitation; 3: strong support for the stated capability within the declared scope**. Development cost, implementation readiness, and ongoing operating effort are assessed separately. Scores are judgments for discussion, not measured benchmarks, proof of correctness, or vendor ratings.
+
+| Objective | A. File checks and receipts | B. JSON-LD in Git with Python/RDFLib | C. Dedicated temporal database and source linkage |
+| --- | --- | --- | --- |
+| Preserve useful reasoning through revision | **2** — retained sources and review preserve selected reasoning; identifying its value remains judgment | **2** — explicit objects and revisions support selective capture; identifying value remains judgment | **2** — versioned records preserve captured reasoning; identifying value remains judgment |
+| Identify affected declared dependencies | **2** — selected bindings are traceable across consumers; no explicit general knowledge graph | **3** — query the explicit graph of declared dependencies | **3** — query explicit entity and relationship records |
+| Query a coherent selected earlier network | **1** — reconstruct relationships from a retained source snapshot and distributed records | **3** — load and query the selected Git snapshot of source and network records | **3** — query a coherent accepted network revision linked to its source snapshot |
+| Detect source changes that invalidate recorded dependencies | **3** — scheduled comparisons detect changes to all selected pinned inputs | **3** — integrated source/record checks flag stale declared relationships | **3** — the integrated service checks source identity against accepted network records |
+| Require review of scientific changes | **3** — enforce review before accepting changes to protected inputs | **3** — enforce joint review of affected source and network records | **3** — enforce review before accepting source-linked record changes |
+| Establish correctness independently | **2** — supports independent checks; identity alone does not establish mathematical truth | **2** — supports independent checks; graph relationships alone do not establish mathematical truth | **2** — supports independent checks; database history alone does not establish mathematical truth |
+| Identify support for a current result | **3** — trace selected result bindings to identified inputs and checks | **3** — query explicit result, input-version, and check relationships | **3** — query explicit result, input-version, and check records |
+| Recover selected prior contents | **3** — retrieve deliberately retained source and evidence bytes | **3** — retrieve retained Git snapshots and selected external evidence | **3** — retrieve retained record history, source snapshots, and selected external evidence |
+| Run relevant checks at a defined checkpoint | **3** — run the declared checks through the integrated validation workflow | **3** — run checks selected through declared dependencies at the defined checkpoint | **3** — run checks through the integrated record and validation workflow |
+| Tie publication to examined state and coverage | **3** — receipt binds executed checks to the examined candidate | **3** — receipt includes source, JSON-LD records, and executed checks | **3** — publication binds the accepted database revision, source candidate, and executed checks |
+| Prevent overlapping shared-checkout edits | **0** — pins and receipts do not control concurrent file writers | **0** — versioned graph files do not control concurrent file writers | **0** — database transactions do not control concurrent checkout file writers |
+| Limit editorial repair cascades | **1** — whole-file pins also react to harmless changes in surrounding text | **2** — object-level relationships narrow coupling; source mappings still need review | **2** — record-level relationships narrow coupling; source mappings still need review |
+| Inspect and transfer records without a running service | **3** — authoritative text files can be opened and copied directly | **3** — authoritative JSON-LD files can be opened and copied directly; complex queries use tooling | **1** — authoritative records need database tooling; portable exports are derived copies |
+| **Total — equal weights (1 per objective)** | **29 / 39** | **33 / 39** | **31 / 39** |
+
+The total counts each of the 13 capability objectives once, with a maximum of 39. All three receive the same publication score: a completed integration can bind the relevant source, records, and executed checks to the candidate being published. C’s cross-system integration is a development responsibility, not a capability deduction here. Likewise, A’s present check-coverage gaps do not reduce its score under the completed-implementation assumption; its current behavior remains documented separately.
+
+Shared limitations remain visible. None of these storage architectures alone establishes mathematical truth or protects concurrent checkout writers. “Declared dependencies” means the relationships actually recorded; even a well-implemented system cannot report an unrecorded dependency as though it knew it. The total is a discussion aid: overlapping rows and essential requirements mean it cannot by itself decide adoption.
+
+**Accessibility is part of the architecture.** File-based records can be opened in an ordinary editor, reviewed as Git diffs, and copied without operating a database service. This direct visibility helps the operator and future collaborators inspect what is recorded. It does not make a complicated schema or a distributed chain of hashes self-explanatory. A dedicated database can provide readable views and exports, but access otherwise depends on a working service, appropriate permissions, suitable tools, and knowledge of the model or queries. That dependence can make records practically opaque even when the database contains them correctly. C would need a documented inspection interface and portable exports of selected records, with source revision and completeness made clear. Exports would be derived views, not a second independently editable authority.
+
+<a id="143-development-cost-and-ongoing-maintenance--separate-assessment"></a>
+
+### Development cost and ongoing maintenance — separate assessment
+
+**Compare total maintenance, not just new infrastructure.** A already requires work to author and maintain scripts, expected hashes, dependency bindings, failure explanations, and repairs. A database might replace some custom history and query machinery while adding service operation and integration. B likewise adds a schema and query tools while potentially reducing scattered bindings. Independent scientific tests remain necessary in all three. The trial must measure work eliminated, retained, and introduced for the same capabilities, including inspection and recovery when the usual tools are unavailable. No development or maintenance cost is included in the capability total. Those costs remain unmeasured; compare them separately when planning the migration and deciding its implementation scope.
+
+**Accepted direction.** Adopt B when higher-priority work permits. Its explicit relationship model and standard graph tools keep source review, version history, and publication in the Git workflow. Begin by inventorying existing equation identifiers and binding records; reuse adequate structures. C remains documented for comparison, not as an implementation commitment. Optional DVC integration is not included merely by selecting B. The decision selects the target architecture; it does not start implementation now.
+
+For B’s first implementation checkpoint, use one bounded example: one equation, an assumption, a derivation, a dependent calculation, and a result still used. Demonstrate current and historical dependency queries; preserve a selected earlier insight; change punctuation, then an equation; expose a source change made without its relationship update; run the relevant independent check at its declared checkpoint; retrieve prior selected contents; and reject publication with a stale source/network association. Also simulate conflicting record edits and test retrieval after the proposed retention action in a disposable fixture. Missing relationships, lost selected reasoning, stale metadata accepted as current, or more maintenance than predicted would overturn a favorable score. Measure effort and retrieval performance before making a cost or speed claim.
+
+See the [campaign plan](../../priorities/development-process-review/processes-git-codex-claude.md#36-migration-to-b--accepted-deferred) for implementation status and completion checks.
+
+<a id="15-retention-what-to-keep-for-how-long-and-how-to-remove-it"></a>
+
+## Retention: what to keep, for how long, and how to remove it
+
+**Retention** means deciding which material remains available, where it lives, and when its continued storage should be reviewed. **Pruning** means removing selected material under that decision. Neither means deleting everything old. Age is useful for temporary files, but an older derivation or irreplaceable input can remain important after a newer build output has become disposable. The live [machine-artifact retention policy](../machine-artifact-retention.md) and [GitHub Actions artifact policy](../../priorities/aaa-operations/contracts/github-actions-artifact-policy.md) own the operational rules; this section explains the choices without introducing a new deletion schedule.
+
+| Factor | Question to answer before choosing retention |
+| --- | --- |
+| Continuing purpose | Does current reasoning, a test, an application, an open investigation, or an explicit retention decision require this material? Could removal discard useful reasoning identified during theory revision? |
+| Replaceability | Can we actually rebuild it from retained sources and available tools, or does it contain unique inputs, observations, or intermediate reasoning? A written command alone does not establish recoverability. |
+| Recovery cost | How much measured time and resource use would reconstruction require? An expensive but reproducible result may justify storage. |
+| Dependency completeness | Do retained results depend on this source, dataset, environment, or explanatory record? A manifest listing a file is not a replacement for the file. |
+| Storage and exposure | What are the size, growth, storage cost, and privacy implications of keeping it here? Public Git, local storage, and an archive have different access and durability properties. |
+| Review and ownership | Who can decide that the purpose has ended? Is there an open incident, active reader, or running task that still needs the material? |
+| Retrieval assurance | Where is the retained copy, how is it retrieved, and has restoration been checked? A matching digest verifies identity only when the bytes remain available. |
+
+**Forever, for a fixed time, or until a condition changes?** These are different policies for different classes. Ordinary committed source history remains available through Git's retained history without making every old version an active maintenance task. Material supporting an ongoing claim or an explicitly retained insight needs a purpose-based decision rather than automatic expiry by age. Rebuildable caches and temporary workflow artifacts can use bounded lifetimes once their recovery and review needs are satisfied. “Keep while needed” requires an owner and a review trigger; otherwise it can become accidental indefinite retention. “Delete after a week” is also insufficient if that file is the only copy supporting an unresolved investigation.
+
+The existing Actions policy sets concrete temporary classes: a Pages deployment handoff has one-day retention, failure diagnostic bundles seven days, and visual captures, benchmark profiles, and review bundles fourteen days. These are policy limits for those artifact classes, not a schedule for theory documents or scientific evidence. Reading the current Pages workflow confirms its upload specifies one day. The policy requires a durable disposition for decision-bearing material before expiry and excludes generic raw scientific uploads by default. It does not establish that every listed artifact class is currently produced or that every historical run was handled correctly.
+
+**How removal works depends on the storage system.** Removing a tracked file in a later commit removes it from the current snapshot; it does not erase its earlier Git history or reclaim all historical storage. Purging Git history is a separate, explicitly authorized operation with consequences for collaborators and old references. Removing an ignored local output can remove its only copy because Git never tracked it. Expiring a hosted artifact removes that stored payload, even if a document still contains its link or fingerprint. In a database-backed design, deleting a record can similarly leave dependent records without their inputs unless the design checks those relationships. Storage format does not eliminate the retention decision.
+
+Before an authorized cleanup, identify the exact candidates and their consumers, resolve active ownership, preserve any still-required material in its intended durable location, and verify retrieval before removing its last durable copy. Keep enough identity and explanation to understand any retained claim; a compact receipt cannot substitute for raw data when that claim still needs the raw data. Then remove only the approved scope using the procedure appropriate to that storage system and check that current consumers still work. These are planning considerations for a future bounded cleanup, not permission to delete files, expire artifacts, or rewrite history now.
+
+An example makes the distinction concrete: an expanded website index can be rebuilt from retained sources, so its old local copies need not become permanent archives. A unique derivation discarded during a theory rewrite may deserve selective preservation because regeneration cannot recreate the overlooked insight on demand. A failed-run log can be temporary once its useful diagnosis is captured and its investigation is closed. The decision follows the material's purpose and recoverability rather than treating all three as equivalent old files.
+

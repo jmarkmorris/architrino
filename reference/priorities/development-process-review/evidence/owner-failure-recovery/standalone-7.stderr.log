@@ -1,0 +1,12 @@
+file:///Users/markmorris/vibe/architrino/scripts/build-machine-artifact-receipts.mjs:332
+    throw new Error(`${relativePath} is stale; run node scripts/build-machine-artifact-receipts.mjs --write`);
+          ^
+
+Error: reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.receipt.v1.json is stale; run node scripts/build-machine-artifact-receipts.mjs --write
+    at writeOrCheck (file:///Users/markmorris/vibe/architrino/scripts/build-machine-artifact-receipts.mjs:332:11)
+    at file:///Users/markmorris/vibe/architrino/scripts/build-machine-artifact-receipts.mjs:339:3
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:646:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v26.3.0

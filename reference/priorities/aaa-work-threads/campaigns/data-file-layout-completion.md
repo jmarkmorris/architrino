@@ -155,4 +155,4 @@ Add a dated entry to [../work-log.md](../work-log.md) recording the files moved,
 
 When both stages are complete, update the 2026-09-05 work-log entry so it no longer describes these files as outstanding, and remove this campaign from the queue that carries it.
 
-Do not stage, commit, push, or open a pull request. Publication happens only under an explicit operator invocation of [codex-pr-branch.md](../../../op/git/codex-pr-branch.md).
+Do not stage, commit, push, or open a pull request. Publication happens only under an explicit operator invocation of [pr-lifecycle.md](../../../op/git/pr-lifecycle.md).

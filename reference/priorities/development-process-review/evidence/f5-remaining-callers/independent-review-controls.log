@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: F5 instrument reproduces the original enclosure with disclosed current source metadata
+ok 1 - F5 instrument reproduces the original enclosure with disclosed current source metadata
+  ---
+  duration_ms: 1832.482
+  type: 'test'
+  ...
+# Subtest: F5 independent enclosure output remains create-exclusive
+ok 2 - F5 independent enclosure output remains create-exclusive
+  ---
+  duration_ms: 3513.599292
+  type: 'test'
+  ...
+# Subtest: regular-byte capture passes a known byte and digest control before real inputs
+ok 3 - regular-byte capture passes a known byte and digest control before real inputs
+  ---
+  duration_ms: 6.507708
+  type: 'test'
+  ...
+# Subtest: exact original routes reject byte substitutions, false sizes and path traversal
+ok 4 - exact original routes reject byte substitutions, false sizes and path traversal
+  ---
+  duration_ms: 2.456125
+  type: 'test'
+  ...
+# Subtest: missing, duplicate, wrong-identity and unsafe destinations cannot create an execution root
+ok 5 - missing, duplicate, wrong-identity and unsafe destinations cannot create an execution root
+  ---
+  duration_ms: 0.375083
+  type: 'test'
+  ...
+# Subtest: execution-root check rejects omitted census and changed captured bytes
+ok 6 - execution-root check rejects omitted census and changed captured bytes
+  ---
+  duration_ms: 53.457875
+  type: 'test'
+  ...
+# Subtest: the approved F5 display source preserves the frozen pilot's scientific row
+ok 7 - the approved F5 display source preserves the frozen pilot's scientific row
+  ---
+  duration_ms: 3897.653708
+  type: 'test'
+  ...
+# Subtest: the approved F5 display source preserves identities, source order, speed, and labeled return
+ok 8 - the approved F5 display source preserves identities, source order, speed, and labeled return
+  ---
+  duration_ms: 3576.772125
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 13218.031042

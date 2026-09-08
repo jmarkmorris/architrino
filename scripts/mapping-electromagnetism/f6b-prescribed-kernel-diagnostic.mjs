@@ -1,6 +1,7 @@
 import {
   evaluatePrescribedRecordAnalysis,
 } from "../../src/prescribed-path-analysis/index.mjs";
+import { identifyDiagnosticSourceRecord } from "./diagnostic-source-identity.mjs";
 
 // Report-grade prescribed-path diagnostic for the F6b balanced tetrahedral
 // edge partition. This does not evolve a path, invoke the EOM solver, or
@@ -89,7 +90,7 @@ const probes = sources.map((source)=>({
   observationTimes,
   polarities:[source.charge],
 }));
-const sourceRecord = {
+const sourceRecord = identifyDiagnosticSourceRecord({
   schema:"prescribed-path-analysis/exact-source-record.v1",
   recordId:"f6b-balanced-tetrahedral-edge-partition-h-rho-0p3-v1",
   engineId:"prescribed-geometry",
@@ -97,7 +98,7 @@ const sourceRecord = {
   evidenceStatus:"diagnostic-only",
   history:{start:-1,end:TWO_PI},
   sources,
-};
+});
 const protocol = {
   schema:"prescribed-path-analysis/analysis-protocol.v1",
   protocolId:"f6b-root-ledger-128x256-v1",

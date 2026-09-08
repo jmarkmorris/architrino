@@ -1,0 +1,13 @@
+✔ regular-byte capture passes a known byte and digest control before real inputs (8.085791ms)
+✔ exact original routes reject byte substitutions, false sizes and path traversal (5.650417ms)
+✔ missing, duplicate, wrong-identity and unsafe destinations cannot create an execution root (0.290333ms)
+✔ the approved F5 display source preserves the frozen pilot's scientific row (4132.667125ms)
+✔ the approved F5 display source preserves identities, source order, speed, and labeled return (3915.567791ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8235.857083

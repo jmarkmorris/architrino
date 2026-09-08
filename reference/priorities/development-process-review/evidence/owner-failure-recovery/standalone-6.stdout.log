@@ -1,0 +1,2 @@
+[reference-surface] content/generated/reference/reference-surface.v1.json is stale
+Run: node scripts/build-reference-surface.mjs --write

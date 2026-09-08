@@ -1,6 +1,7 @@
 import {
   evaluatePrescribedRecordAnalysis,
 } from "../../src/prescribed-path-analysis/index.mjs";
+import { identifyDiagnosticSourceRecord } from "./diagnostic-source-identity.mjs";
 
 // Report-grade bounded search for a uniform-cadence relative equilibrium on
 // the F6c polarity-resolved tetrahedral symmetry surface. The script evaluates
@@ -158,7 +159,7 @@ function buildRequest(parameters, requestedSampleCount, confirmation = false) {
     observationTimes,
     polarities: [source.charge],
   }));
-  const sourceRecord = {
+  const sourceRecord = identifyDiagnosticSourceRecord({
     schema: "prescribed-path-analysis/exact-source-record.v1",
     recordId: "f6c-uniform-cadence-relative-equilibrium-search-row-v1",
     engineId: "prescribed-geometry",
@@ -166,7 +167,7 @@ function buildRequest(parameters, requestedSampleCount, confirmation = false) {
     evidenceStatus: "diagnostic-only",
     history: { start: -16, end: period },
     sources,
-  };
+  });
   const protocol = {
     schema: "prescribed-path-analysis/analysis-protocol.v1",
     protocolId: `f6c-relative-equilibrium-${requestedSampleCount}-sample-${confirmation ? "confirmation" : "search"}-v1`,

@@ -2,20 +2,26 @@
 
 This directory holds the repository's version-control procedures: branch naming, validation, commit, push, pull request, issue closure, and branch rollover. It is a routing index, not an authority. Every rule lives in the file named below, and that file wins over any summary here.
 
-Reading this index does not invoke any procedure it names. [codex-pr-branch.md](codex-pr-branch.md#awareness-is-not-invocation) owns the distinction between awareness and invocation, and it governs the other procedures in this directory as well.
+Reading this index does not invoke any procedure it names. [pr-lifecycle.md](pr-lifecycle.md#awareness-is-not-invocation) owns the distinction between awareness and invocation, and it governs the other procedures in this directory as well.
 
-Plainly: this page tells you which file to open. Opening a file here does not put you on the hook to run it.
+Use this index to find the owner for a question; opening a guide does not authorize publication.
+
+## Guides and campaign status
+
+- [Git-backed knowledge architecture](git-backed-knowledge-architecture.md) explains source history, checks, provenance, and the accepted but deferred option B.
+- [Git and GitHub operating guide](git-github-operating-guide.md) explains repository setup, credentials, collaboration, and current versus deferred workflows.
+- [Development-process campaign checklist](../../priorities/development-process-review/processes-git-codex-claude.md#3-rollout-and-integration-plan) records completed, partial, open, and deferred implementation work.
+
+The guides explain the arrangement; the procedures below retain their execution authority.
 
 ## Procedures
 
 | File | Use when | Status |
 | --- | --- | --- |
-| [codex-pr-branch.md](codex-pr-branch.md) | Ending a work session, publishing a pull request, verifying a merge, retiring the previous branch, and rolling over to the successor. This is the standard lifecycle and the procedural source of truth. | Live standard |
-| [issue-resolution.md](issue-resolution.md) | Investigating, fixing, and closing a GitHub issue or issue set. Hands off to `codex-pr-branch.md` when the work needs a branch, commit, push, or PR. | Live standard |
-| [continuous-development-during-pr-review.md](continuous-development-during-pr-review.md) | Reference for prior experimental successor work; ordinary development now pauses through review, merge, and rollover. | Inactive; reactivation requires a new operator decision |
-| [codex-pr-unattended-verification.md](codex-pr-unattended-verification.md) | Reading how the unattended-execution correction was raised and closed. It imposes no current obligation. | Closed 2026-09-05 |
+| [pr-lifecycle.md](pr-lifecycle.md) | Ending a work session, publishing a pull request, verifying a merge, retiring the previous branch, and rolling over to the successor. This is the standard lifecycle and the procedural source of truth. | Live standard |
+| [github-issue-resolution.md](github-issue-resolution.md) | Investigating, fixing, and closing a GitHub issue or issue set. Hands off to `pr-lifecycle.md` when the work needs a branch, commit, push, or PR. | Live standard |
 
-The live publication procedure specifies [ordinary merge commits](codex-pr-branch.md#merge-method-and-repository-settings), operator-controlled merging, and verified branch cleanup. Automatic head-branch deletion remains disabled.
+The live publication procedure specifies [ordinary merge commits](pr-lifecycle.md#merge-method-and-repository-settings), operator-controlled merging, and verified branch cleanup. Automatic head-branch deletion remains disabled.
 
 ## Branch Series
 
@@ -31,7 +37,7 @@ Branch tokens come from the committed registries. [branch-series/registry.md](br
 
 These files are reached from the lifecycle but are owned elsewhere, because their subject is not version control.
 
-- [.githooks/pre-commit](../../../.githooks/pre-commit) and [.githooks/pre-push](../../../.githooks/pre-push) are the executable gate set that `codex-pr-branch.md` mirrors. The hook scripts are the source of truth for what actually runs.
+- [.githooks/pre-commit](../../../.githooks/pre-commit) and [.githooks/pre-push](../../../.githooks/pre-push) are the executable gate set that `pr-lifecycle.md` mirrors. The hook scripts are the source of truth for what actually runs.
 - [machine-artifact-retention.md](../machine-artifact-retention.md) owns what the repository tracks, the runtime build contract, and the Actions publishing and recovery path.
 - [GitHub Actions Artifact Policy](../../priorities/aaa-operations/contracts/github-actions-artifact-policy.md) and [GitHub Pages And Actions Limits](../../priorities/aaa-operations/evidence/github-pages-and-actions-limits-2026-09-01.md) cover hosting and continuous-integration quotas for the deployed site. They are operations material, not lifecycle procedure.
 - [operator-explanation-standard.md](../operator-explanation-standard.md) owns the shape of every operator-facing response, including the handoff reports these procedures produce.

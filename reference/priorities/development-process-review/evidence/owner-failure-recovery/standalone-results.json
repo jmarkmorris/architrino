@@ -1,0 +1,137 @@
+{
+  "selected": [
+    [
+      "scripts/archie-service/check-fixture-mcp-server.mjs",
+      "--check"
+    ],
+    [
+      "scripts/archie-service/validate-mcp-tool-contracts.mjs",
+      "--check"
+    ],
+    [
+      "scripts/archie-service/validate-mcp-remote-deployment-contract.mjs"
+    ],
+    [
+      "scripts/check-borg-scientific-status-projection.mjs"
+    ],
+    [
+      "scripts/audit-markdown-doc-icons.mjs"
+    ],
+    [
+      "scripts/build-reference-surface.mjs",
+      "--check"
+    ],
+    [
+      "scripts/build-machine-artifact-receipts.mjs",
+      "--check"
+    ],
+    [
+      "scripts/archie-service/build-source-index.mjs",
+      "--check"
+    ]
+  ],
+  "results": [
+    {
+      "args": [
+        "scripts/archie-service/check-fixture-mcp-server.mjs",
+        "--check"
+      ],
+      "sourceSha256": "6d735a895b860c13d83d6b4b54ba09b1cb1d44e57f567836f30f3e0cfb053aa1",
+      "runId": "d0e474ea-835c-4787-abeb-24573575288e",
+      "status": "failed",
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/d0e474ea-835c-4787-abeb-24573575288e.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/d0e474ea-835c-4787-abeb-24573575288e.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/validate-mcp-tool-contracts.mjs",
+        "--check"
+      ],
+      "sourceSha256": "436ec62abc9800bf8434c8fe897cfc5ad19cfce4322fb863b5f7eb99dcb09163",
+      "runId": "ac19cc25-7a5d-4483-adc6-a515d0552630",
+      "status": "failed",
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/ac19cc25-7a5d-4483-adc6-a515d0552630.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/ac19cc25-7a5d-4483-adc6-a515d0552630.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/validate-mcp-remote-deployment-contract.mjs"
+      ],
+      "sourceSha256": "168c14371522d9ba9ad1a2ac520439857d69a14d0ddfe1f08b7fabb6f49d2545",
+      "runId": "44cc9b61-895b-4837-b913-7e2e3f72ac92",
+      "status": "failed",
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/44cc9b61-895b-4837-b913-7e2e3f72ac92.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/44cc9b61-895b-4837-b913-7e2e3f72ac92.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/check-borg-scientific-status-projection.mjs"
+      ],
+      "sourceSha256": "7a6c271cb7d5fd4d9bdb985fa4d93724bef523e46cef5b29237e69c47d1fb932",
+      "runId": "e602b4d9-01f8-401d-bc5b-a14b4957c6ef",
+      "status": "failed",
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/e602b4d9-01f8-401d-bc5b-a14b4957c6ef.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/e602b4d9-01f8-401d-bc5b-a14b4957c6ef.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/audit-markdown-doc-icons.mjs"
+      ],
+      "sourceSha256": "b7cbe6059bf7cc196f17178ba9ca3f7b08bb7622dcf9ac163c7a0c67af814155",
+      "runId": "1150952f-969a-41e8-8ebb-3da85bc04c5f",
+      "status": "failed",
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1150952f-969a-41e8-8ebb-3da85bc04c5f.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1150952f-969a-41e8-8ebb-3da85bc04c5f.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/build-reference-surface.mjs",
+        "--check"
+      ],
+      "sourceSha256": "b4423cf50a5a630f1a5e9842de8448d559de1494a7ca0a51df5014ab7cc8f8d2",
+      "runId": "33132b7d-a8fa-4a76-94f4-392066f0c05e",
+      "status": "failed",
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/33132b7d-a8fa-4a76-94f4-392066f0c05e.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/33132b7d-a8fa-4a76-94f4-392066f0c05e.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/build-machine-artifact-receipts.mjs",
+        "--check"
+      ],
+      "sourceSha256": "c9efa938fe18b594fe1d4d80215d56b7ac0d1f94223609bee25dd18387fe3972",
+      "runId": "9bb027d0-f4ec-4388-af42-495420e19e06",
+      "status": "failed",
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/9bb027d0-f4ec-4388-af42-495420e19e06.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/9bb027d0-f4ec-4388-af42-495420e19e06.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/build-source-index.mjs",
+        "--check"
+      ],
+      "sourceSha256": "1f538ff470a7242a2e9a769337a11f571fd52c9200d105ef438db71fe73836ce",
+      "runId": "f5d57802-e99b-4a3d-b8d1-e0a1f9d8b080",
+      "status": "failed",
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/f5d57802-e99b-4a3d-b8d1-e0a1f9d8b080.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/f5d57802-e99b-4a3d-b8d1-e0a1f9d8b080.stderr.log"
+    }
+  ],
+  "status": "completed"
+}

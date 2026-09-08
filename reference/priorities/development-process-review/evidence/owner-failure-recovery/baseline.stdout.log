@@ -1,0 +1,1065 @@
+✔ Archie service schema-only contracts validate fixture expectations (72.07875ms)
+✖ Archie service source-index dry-run validates current route evidence (175.646833ms)
+✖ Archie MCP tool contracts stay bounded and fixture-backed (79.20175ms)
+✖ Archie fixture MCP server completes the local stdio protocol smoke (218.955916ms)
+✔ Archie service negative validators do not advance without side effects (59.450125ms)
+✔ Archie service endpoint response contracts stay fixture-backed (59.135416ms)
+✔ Archie fixture service stub selects fixture-backed responses (61.593833ms)
+✔ Archie render contracts consume fixture-backed responses (62.84175ms)
+✔ Archie service secret boundary rejects browser-visible secrets (65.333666ms)
+✔ Archie staging smoke stays local and fixture-backed (126.330583ms)
+✔ Archie rollback smoke preserves fixture compatibility (59.682541ms)
+✔ Archie provider sandbox stays gated and fixture-backed (59.105666ms)
+✔ Archie provider gateway stays no-call and fixture-backed (59.762708ms)
+✔ Archie token-ledger sandbox keeps provider work payment-free (58.408709ms)
+✔ Archie issue-mining sandbox keeps signals private and no-write (61.513542ms)
+✔ Archie action-broker sandbox keeps GitHub handoff confirmation-gated (59.385625ms)
+✔ fixture MCP snapshot bundle verifies without source-repository reads (2.29ms)
+✔ fixture MCP lifecycle blocks tools until initialized notification (8.3445ms)
+✖ fixture MCP stdio process completes the owned local smoke transcript (144.438459ms)
+✔ fixture MCP launcher resolves its snapshot outside the repository working directory (68.268ms)
+✔ loopback HTTP fixture exercises lifecycle, five tools, failures, safe logs, and rollback (48.83ms)
+✔ loopback adapter refuses a non-loopback bind (2.944333ms)
+✔ HTTP principal rate limit returns 429 with Retry-After (7.918791ms)
+✔ principal concurrency limit denies a second active lease (0.107583ms)
+✔ unauthenticated address limit and insufficient scope do not advance (9.472917ms)
+✔ operational logger rejects a field outside the safe contract (2.752125ms)
+✔ rollback snapshot with another visibility policy is rejected (2.682875ms)
+✔ HTTP request adapter has no filesystem, model, child-process, or external-action surface (0.559208ms)
+✖ full-corpus loopback launcher starts outside the repository without changing stdio (737.220417ms)
+✖ remote deployment contract is valid but deliberately not remote-ready (2.681917ms)
+✔ remote deployment negative fixtures fail with their named gate (0.811917ms)
+✔ candidate snapshot identity and freshness are enforced (24.958792ms)
+✖ mcp-tool-contract/v1 fixtures match the pure snapshot query engine (4.062291ms)
+✔ public search prefers the authored canonical source over routing copies (0.098084ms)
+✔ read pagination resumes exact snapshot content without repository access (0.435625ms)
+✔ priority material is hidden publicly and labeled when operator-visible (0.068542ms)
+✔ walk follows the fixture's breadth-first paths, suppresses cycles, and paginates deterministically (7.800459ms)
+✔ walk preserves operator-visible authority and excludes paths whose evidence is not public (0.3035ms)
+✔ walk enforces depth, cursor scope, response, and traversal-node ceilings (5.190667ms)
+✖ source-index snapshot v1 rebuilds exactly and ignores input ordering (36.253083ms)
+✖ source-index snapshot v1 rejects stale source hashes (7.626625ms)
+✔ source-index snapshot v1 rejects priority authority inflation (0.868875ms)
+✔ the twenty exact geometry studies have neutral inventory and validated sources (107.909292ms)
+✖ the static stella octangula is exactly two tetrahedra and remains unclassified as a braid (2.388709ms)
+✔ alternating circular rings follow their complete declared circles (113.434959ms)
+✔ co-spherical two-planar-braid records preserve radius and circulation relation (14.505666ms)
+✖ rotating regular vertex sets preserve independently known edge graphs (12.057583ms)
+✔ Borg mounts EOM idle by default and reserves automatic compute for explicit shadow mode (35.223ms)
+✔ Borg startup seed is randomized but remains injectable for deterministic controls (0.625958ms)
+✔ Borg EOM accepts individual polarity counts through a continuous prescribed initial history (0.401ms)
+✔ Borg computes artificial-history depth from causal separation and transmitter speed (0.093333ms)
+✔ Borg EOM migration uses canonical field speed and the declared memory depth (0.556917ms)
+✔ Borg certified-budget hashes identify the complete canonical allocations (0.181333ms)
+✔ Borg Display host memory keeps a proportional Mac reserve and admits available growth (0.123583ms)
+✖ Borg live contract and certified-budget records match the runtime identities (2.288458ms)
+✔ Borg EOM migration imports a complete continuous past, never a state-only start (0.191792ms)
+✔ Borg EOM shadow runner sends retained histories and derives frames only from published histories (1.411375ms)
+✔ Borg EOM requests preserve the native checkpoint's exact decimal cut time (0.1565ms)
+✔ Borg EOM runner preserves a numerically equal seed-history cut token (0.66175ms)
+✔ Borg EOM carries the controller height across atomic chunks (0.307083ms)
+✔ Borg display grade starts directly from point-projected input history (2.009458ms)
+✔ Borg Display releases exactly the solver-cleared retained prefix (1.029625ms)
+✔ Borg Display response accepts a self-consistent host memory envelope without changing Claim budget (0.535167ms)
+✔ Borg EOM shadow runner supports a deterministic retained-history population subset (0.272916ms)
+✔ Borg EOM preserves the finite UI duration, supports Forever, and keeps its atomic chunk (0.251083ms)
+✔ Borg promotion accepts canonical evolution from certified initial history (0.389083ms)
+✔ Borg publishes EOM evolution from accepted initial history at T=0 (0.312959ms)
+✔ Borg EOM shadow response rejects reordered or incomplete published histories (0.1365ms)
+✔ Borg EOM verification failed responses preserve native diagnostics (0.110666ms)
+✔ Borg names the exact response provenance field that failed (0.141917ms)
+✔ Borg certified response firewall rejects a server-invented evidence status (0.108708ms)
+✔ Borg claim grade publishes only its accepted prefix and then stops (0.190542ms)
+✔ Borg halted off-lattice prefix keeps distinct frame indexes (0.213334ms)
+✔ Borg claim grade stops instead of changing grade after an execution timeout (0.175791ms)
+✔ Borg keeps memory and engine failures as hard stops (0.606917ms)
+✔ Borg refuses to display a halted response without a nonempty atomic prefix (0.175375ms)
+✔ Borg native process protocol carries the same continuous-history request (0.975ms)
+✔ Borg native client rejects protocol skew with a restart instruction (385.639625ms)
+✔ Borg native clients own separate exact-history temporary roots (545.008ms)
+✔ Borg native client restarts a persistent worker when its executable changes (414.082625ms)
+✔ Borg native client clears its history prefix after a halted request (337.537ms)
+✔ Borg server process client forwards a validated Display prefix without segment retransmission (336.97875ms)
+✔ Borg browser EOM client posts the retained-history contract to the local native endpoint (0.368708ms)
+✔ Borg browser EOM client sends only a validated cached prefix after the first Display increment (0.295584ms)
+✔ Borg browser EOM client preserves full certified history across chunk two (0.13475ms)
+✔ Borg browser EOM cache releases a solver-cleared prefix before the next increment (0.189208ms)
+✔ Borg browser keeps a bounded Display window while the worker prefix grows (1.442375ms)
+✔ Borg browser EOM client stops if its worker-owned exact history is lost (0.161709ms)
+✔ disposing the Borg browser EOM client aborts an active native request (0.234ms)
+✔ Borg browser EOM client reports a certified request timeout without changing grade (0.641125ms)
+✔ Borg browser EOM client classifies HTTP failures without retrying evolution (0.138875ms)
+✔ Borg launches into visual assembly discovery (1.638958ms)
+✔ Borg discovery keeps random simulation separate from exact assemblies (0.538084ms)
+✔ Borg discovery collapses the filter rail at narrow widths (0.285125ms)
+✔ Borg workbench leaves assembly selection on the discovery home (1.17975ms)
+✔ legacy Assembly Explorer remains a non-indexed state-preserving redirect (0.259625ms)
+✖ Borg workbench receives the selected home-page record summary (1.565291ms)
+✔ Library query contract exposes independent facts-first facets (2.329667ms)
+✔ retired query fields and selector values fail closed (0.306625ms)
+✔ every Library row carries the exact identity pair and no alias surface (14.232917ms)
+✔ Library classifications bind exact scientific identities (0.937375ms)
+✔ Library scientific projection is Braid Program owned and exact adjudications bind exact identities (1.571ms)
+✖ seed provider covers all current records and exact preview pins (1294.49075ms)
+✖ seed provider exposes one 100-variant balance card and exact variant drill-down (1230.491541ms)
+✔ Library presents grouped results as braids and exact configurations as supporting provenance (1.303167ms)
+file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/ExactPrescribedSourceWake.mjs:53
+    throw new TypeError(`${label} must be a nonempty string.`);
+          ^
+
+TypeError: sourceRecord.assemblyId must be a nonempty string.
+    at concreteString (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/ExactPrescribedSourceWake.mjs:53:11)
+    at validateExactPrescribedSourceRecord (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/ExactPrescribedSourceWake.mjs:188:3)
+    at createPrescribedRecordAnalysisSession (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs:1227:24)
+    at resolveAnalysisSession (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs:1264:21)
+    at evaluatePrescribedRecordAnalysis (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs:1335:21)
+    at file:///Users/markmorris/vibe/architrino/scripts/mapping-electromagnetism/f6b-prescribed-kernel-diagnostic.mjs:116:16
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:646:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v26.3.0
+✖ F6b diagnostic rejects shared circles and preserves polarity-resolved tangent structure (108.7825ms)
+✖ F6c bounded search keeps one coefficient per row and rejects a near-uniform orbit (100.495375ms)
+✖ committed pdgedit reference svg filenames match the shared catalogs exactly (6.079959ms)
+✖ glyph.py regenerates the committed pdgedit reference svg set and canonical artifacts without drift (17717.619333ms)
+✖ the JS pdgedit tile renderer stays aligned with representative committed reference SVG artifacts (463.233583ms)
+✔ the JS tile renderer can reconstruct representative committed pdgedit review-group SVG semantics (318.241291ms)
+ℹ tests 111
+ℹ suites 0
+ℹ pass 91
+ℹ fail 20
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 27333.163458
+
+✖ failing tests:
+
+test at tests/archie-service-contracts.test.js:15:1
+✖ Archie service source-index dry-run validates current route evidence (175.646833ms)
+  AssertionError [ERR_ASSERTION]: 
+  Archie source-index check failed with 2 error(s):
+  - source-index snapshot drift: run node scripts/archie-service/build-source-index.mjs --write
+  - source-index snapshot validation failed: generated artifact digest mismatch for readingCopies
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/archie-service-contracts.test.js:21:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/archie-service-contracts.test.js:25:1
+✖ Archie MCP tool contracts stay bounded and fixture-backed (79.20175ms)
+  AssertionError [ERR_ASSERTION]: 
+  Archie MCP tool-contract check failed with 8 error(s):
+  - request-search-public-001: response does not match mcp-tool-contract/v1 semantics
+  - request-read-public-001: response does not match mcp-tool-contract/v1 semantics
+  - request-read-missing-001: response does not match mcp-tool-contract/v1 semantics
+  - request-topics-public-001: response does not match mcp-tool-contract/v1 semantics
+  - request-neighbors-public-001: response does not match mcp-tool-contract/v1 semantics
+  - request-read-priority-public-001: response does not match mcp-tool-contract/v1 semantics
+  - request-read-priority-operator-001: response does not match mcp-tool-contract/v1 semantics
+  - request-walk-public-001: response does not match mcp-tool-contract/v1 semantics
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/archie-service-contracts.test.js:31:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/archie-service-contracts.test.js:35:1
+✖ Archie fixture MCP server completes the local stdio protocol smoke (218.955916ms)
+  AssertionError [ERR_ASSERTION]: 
+  Archie fixture MCP check failed with 6 error(s):
+  - mcp-stdio-search-call-001: stdio response drift
+  - mcp-stdio-read-call-001: stdio response drift
+  - mcp-stdio-topics-call-001: stdio response drift
+  - mcp-stdio-neighbors-call-001: stdio response drift
+  - mcp-stdio-read-missing-call-001: stdio response drift
+  - mcp-stdio-walk-call-001: stdio response drift
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/archie-service-contracts.test.js:41:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/archie-service-fixture-mcp-server.test.js:86:1
+✖ fixture MCP stdio process completes the owned local smoke transcript (144.438459ms)
+  AssertionError [ERR_ASSERTION]: 
+  Archie fixture MCP check failed with 6 error(s):
+  - mcp-stdio-search-call-001: stdio response drift
+  - mcp-stdio-read-call-001: stdio response drift
+  - mcp-stdio-topics-call-001: stdio response drift
+  - mcp-stdio-neighbors-call-001: stdio response drift
+  - mcp-stdio-read-missing-call-001: stdio response drift
+  - mcp-stdio-walk-call-001: stdio response drift
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/archie-service-fixture-mcp-server.test.js:91:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/archie-service-mcp-loopback-http.test.js:212:1
+✖ full-corpus loopback launcher starts outside the repository without changing stdio (737.220417ms)
+  Error: loopback launcher exited before startup: code=1 signal=null file:///Users/markmorris/vibe/architrino/src/archie-service/mcp/loopback-streamable-http-adapter.mjs:588
+    if (!condition) throw new Error(message);
+                          ^
+  
+  Error: deployment contract rejected: SNAPSHOT_IDENTITY_MISMATCH
+      at requireCondition (file:///Users/markmorris/vibe/architrino/src/archie-service/mcp/loopback-streamable-http-adapter.mjs:588:25)
+      at createLoopbackStreamableHttpAdapter (file:///Users/markmorris/vibe/architrino/src/archie-service/mcp/loopback-streamable-http-adapter.mjs:54:3)
+      at file:///Users/markmorris/vibe/architrino/scripts/archie-service/run-loopback-mcp-http-server.mjs:26:17
+      at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+      at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:646:26)
+      at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+  
+  Node.js v26.3.0
+  
+      at ChildProcess.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/archie-service-mcp-loopback-http.test.js:367:14)
+      at Object.onceWrapper (node:events:631:12)
+      at ChildProcess.emit (node:events:509:20)
+      at ChildProcess._handle.onexit (node:internal/child_process:294:12)
+
+test at tests/archie-service-mcp-remote-deployment-contract.test.js:16:1
+✖ remote deployment contract is valid but deliberately not remote-ready (2.681917ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'SNAPSHOT_IDENTITY_MISMATCH',
+  +     message: 'the contract candidate id, hash, and repository ref must match the fixture snapshot'
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/archie-service-mcp-remote-deployment-contract.test.js:17:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'SNAPSHOT_IDENTITY_MISMATCH', message: 'the contract candidate id, hash, and repository ref must match the fixture snapshot' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/archie-service-mcp-tool-contract.test.js:16:1
+✖ mcp-tool-contract/v1 fixtures match the pure snapshot query engine (4.062291ms)
+  AssertionError [ERR_ASSERTION]: mcp-search-public-first-page-001
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      error: null,
+      page: {
+        limit: 1,
+        nextCursor: 'eyJvZmZzZXQiOjEsInNjb3BlU2hhMjU2IjoiNjYyNzgyZTY2ZjRmNTY2NDdmNjk4NDE0NGYzNDA3YmU4MWFmYWVlODdmZGU3ZWViNDI5NmYxNGNhMThlY2RjMSIsInNoYTI1NiI6IjkzYmQxYWJjYWZhYmMyNDk4ZTEwNWFlOTY2N2NiNzU1ZTFmMDczZDhkM2NmNTFiMzJhYzlmNDE4MmNjZjY4ODUiLCJzbmFwc2hvdElkIjoic291cmNlX3NuYXBzaG90X2ZpeHR1cmVfMDAxIiwidG9vbCI6InNlYXJjaCIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9',
+  ...
+              sectionAnchor: 'purpose-and-scope',
+  +           selectionSha256: '0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be',
+  -           selectionSha256: 'e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e',
+              sourceClass: 'published_corpus',
+              sourceId: 'source.ontology-purpose',
+              title: 'Ontology: Purpose and Scope',
+              visibility: 'public'
+            },
+  +         teaser: 'Ontology: Purpose and Scope ontological bedrock foundation levels absolute time architrino Euclidean void Noether sea Purpose and Scope This document establishes what fundamentally exists in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, what is emergen'
+  -         teaser: 'Ontology: Purpose and Scope ontological bedrock foundation levels absolute time architrino Euclidean void Noether sea Purpose and Scope This document establishes the ontological bedrock of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$: what fundamentall'
+          }
+        ]
+      },
+      schema: 'archie-mcp-tool-response/v1',
+      snapshot: {
+  ...
+        snapshotId: 'source_snapshot_fixture_001',
+  +     snapshotSha256: 'a997d4645a2246858fb579743b9614ab23021514926770f78debf66b34053350',
+  -     snapshotSha256: '95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773',
+        visibilityPolicyVersion: 'visibility_fixture_v1'
+      },
+      status: 'ok',
+      tool: 'search'
+    }
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/archie-service-mcp-tool-contract.test.js:23:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: { schema: 'archie-mcp-tool-response/v1', requestId: 'request-search-public-001', tool: 'search', status: 'ok', snapshot: { snapshotId: 'source_snapshot_fixture_001', snapshotSha256: 'a997d4645a2246858fb579743b9614ab23021514926770f78debf66b34053350', repositoryRef: 'fixture-ref', visibilityPolicyVersion: 'visibility_fixture_v1', freshnessState: 'fresh' }, result: { kind: 'search', query: 'ontology', records: [Array] }, page: { unit: 'records', limit: 1, returned: 1, nextCursor: 'eyJvZmZzZXQiOjEsInNjb3BlU2hhMjU2IjoiNjYyNzgyZTY2ZjRmNTY2NDdmNjk4NDE0NGYzNDA3YmU4MWFmYWVlODdmZGU3ZWViNDI5NmYxNGNhMThlY2RjMSIsInNoYTI1NiI6IjkzYmQxYWJjYWZhYmMyNDk4ZTEwNWFlOTY2N2NiNzU1ZTFmMDczZDhkM2NmNTFiMzJhYzlmNDE4MmNjZjY4ODUiLCJzbmFwc2hvdElkIjoic291cmNlX3NuYXBzaG90X2ZpeHR1cmVfMDAxIiwidG9vbCI6InNlYXJjaCIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9', truncated: true, truncationReasons: [Array] }, error: null },
+    expected: { schema: 'archie-mcp-tool-response/v1', requestId: 'request-search-public-001', tool: 'search', status: 'ok', snapshot: { snapshotId: 'source_snapshot_fixture_001', snapshotSha256: '95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773', repositoryRef: 'fixture-ref', visibilityPolicyVersion: 'visibility_fixture_v1', freshnessState: 'fresh' }, result: { kind: 'search', query: 'ontology', records: [Array] }, page: { unit: 'records', limit: 1, returned: 1, nextCursor: 'eyJvZmZzZXQiOjEsInNjb3BlU2hhMjU2IjoiNjYyNzgyZTY2ZjRmNTY2NDdmNjk4NDE0NGYzNDA3YmU4MWFmYWVlODdmZGU3ZWViNDI5NmYxNGNhMThlY2RjMSIsInNoYTI1NiI6IjkzYmQxYWJjYWZhYmMyNDk4ZTEwNWFlOTY2N2NiNzU1ZTFmMDczZDhkM2NmNTFiMzJhYzlmNDE4MmNjZjY4ODUiLCJzbmFwc2hvdElkIjoic291cmNlX3NuYXBzaG90X2ZpeHR1cmVfMDAxIiwidG9vbCI6InNlYXJjaCIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9', truncated: true, truncationReasons: [Array] }, error: null },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/archie-service-source-index-snapshot.test.js:21:1
+✖ source-index snapshot v1 rebuilds exactly and ignores input ordering (36.253083ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      freshnessState: 'fresh',
+      generatedArtifactDigests: {
+        markdownIndex: '43f2c5f5e1aa19e6088e518e1ffa459c9a3ad078aa2323a246e6c520ecae7611',
+  +     readingCopies: '6d517a356bb7c64b27f3bcabb49e0a3e85047d6ea0556b15fbaa20713fbab677',
+  -     readingCopies: 'ddba881af6dab835ee431c50872ff6f395ca8e1947284fab83725b2570a6c977',
+        sceneGraph: '4444d446677a091f13c381e530a6eafb58bdcbfb7207bf21c71f98570f524d78',
+        textbookToc: '6f6b1d077aaa2db82fb50afc05d2ee737ac43bbf54f638a7ba328621ceb891b9'
+      },
+      generatedArtifactRefs: {
+        markdownIndex: 'content/markdown/markdown_index.json',
+  ...
+      snapshotId: 'source_snapshot_fixture_001',
+  +   snapshotSha256: '656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c',
+  -   snapshotSha256: 'a997d4645a2246858fb579743b9614ab23021514926770f78debf66b34053350',
+      sourceInputs: [
+        {
+          sectionAnchor: 'open-architrino',
+          selectionSha256: '8e21372bd10a216ed5ba3dc4a63ac253e795f0e9fd4d9304cdde8d4f70b5eaa1',
+          sourceContentSha256: '794c711f2c200544ea2d70634fa49fd03d05fc771cab46be812f041b54dc21ec',
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/archie-service-source-index-snapshot.test.js:25:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { schema: 'archie-source-index-snapshot/v1', snapshotId: 'source_snapshot_fixture_001', repositoryRef: 'fixture-ref', schemaVersions: { snapshot: 'archie-source-index-snapshot/v1', content: 'archie-source-content-view/v1', search: 'archie-source-search-view/v1', graph: 'archie-source-graph-view/v1', metadata: 'archie-source-metadata-view/v1' }, hashAlgorithm: 'sha256', normalization: 'canonical-json-v1', generatedArtifactRefs: { markdownIndex: 'content/markdown/markdown_index.json', readingCopies: 'content/generated/markdown/textbook/reading-copies/', sceneGraph: 'content/graph/scene_graph.json', textbookToc: 'content/graph/textbook_toc.json' }, generatedArtifactDigests: { markdownIndex: '43f2c5f5e1aa19e6088e518e1ffa459c9a3ad078aa2323a246e6c520ecae7611', readingCopies: '6d517a356bb7c64b27f3bcabb49e0a3e85047d6ea0556b15fbaa20713fbab677', sceneGraph: '4444d446677a091f13c381e530a6eafb58bdcbfb7207bf21c71f98570f524d78', textbookToc: '6f6b1d077aaa2db82fb50afc05d2ee737ac43bbf54f638a7ba328621ceb891b9' }, sourceRecordCountByClass: { published_corpus: 1, generated_reading_copy: 1, scene_route: 1, app_guide: 1, archie_reference: 1, priority_material: 1, external_prior_physics: 0 }, visibilityPolicyVersion: 'visibility_fixture_v1', freshnessState: 'fresh', rollbackParent: null, sourceInputs: [ [Object], [Object], [Object], [Object], [Object], [Object] ], views: { content: [Object], search: [Object], graph: [Object], metadata: [Object] }, snapshotSha256: '656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c' },
+    expected: { schema: 'archie-source-index-snapshot/v1', snapshotId: 'source_snapshot_fixture_001', repositoryRef: 'fixture-ref', schemaVersions: { snapshot: 'archie-source-index-snapshot/v1', content: 'archie-source-content-view/v1', search: 'archie-source-search-view/v1', graph: 'archie-source-graph-view/v1', metadata: 'archie-source-metadata-view/v1' }, hashAlgorithm: 'sha256', normalization: 'canonical-json-v1', generatedArtifactRefs: { markdownIndex: 'content/markdown/markdown_index.json', readingCopies: 'content/generated/markdown/textbook/reading-copies/', sceneGraph: 'content/graph/scene_graph.json', textbookToc: 'content/graph/textbook_toc.json' }, generatedArtifactDigests: { markdownIndex: '43f2c5f5e1aa19e6088e518e1ffa459c9a3ad078aa2323a246e6c520ecae7611', readingCopies: 'ddba881af6dab835ee431c50872ff6f395ca8e1947284fab83725b2570a6c977', sceneGraph: '4444d446677a091f13c381e530a6eafb58bdcbfb7207bf21c71f98570f524d78', textbookToc: '6f6b1d077aaa2db82fb50afc05d2ee737ac43bbf54f638a7ba328621ceb891b9' }, sourceRecordCountByClass: { published_corpus: 1, generated_reading_copy: 1, scene_route: 1, app_guide: 1, archie_reference: 1, priority_material: 1, external_prior_physics: 0 }, visibilityPolicyVersion: 'visibility_fixture_v1', freshnessState: 'fresh', rollbackParent: null, sourceInputs: [ [Object], [Object], [Object], [Object], [Object], [Object] ], views: { content: [Object], search: [Object], graph: [Object], metadata: [Object] }, snapshotSha256: 'a997d4645a2246858fb579743b9614ab23021514926770f78debf66b34053350' },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/archie-service-source-index-snapshot.test.js:35:1
+✖ source-index snapshot v1 rejects stale source hashes (7.626625ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /source input content hash mismatch/. Input:
+  
+  'Error: generated artifact digest mismatch for readingCopies'
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/archie-service-source-index-snapshot.test.js:38:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: generated artifact digest mismatch for readingCopies
+        at requireCondition (file:///Users/markmorris/vibe/architrino/src/archie-service/source-index/snapshot-v1.mjs:629:25)
+        at validateSourceIndexSnapshot (file:///Users/markmorris/vibe/architrino/src/archie-service/source-index/snapshot-v1.mjs:235:5)
+        at file:///Users/markmorris/vibe/architrino/tests/archie-service-source-index-snapshot.test.js:39:11
+        at getActual (node:assert:580:5)
+        at strict.throws (node:assert:728:24)
+        at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/archie-service-source-index-snapshot.test.js:38:10)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19),
+    expected: /source input content hash mismatch/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/borg-configuration-geometry-records.test.js:35:1
+✖ the static stella octangula is exactly two tetrahedra and remains unclassified as a braid (2.388709ms)
+  AssertionError [ERR_ASSERTION]: 0.8164965809423974 vs 0.816496580927726
+      at near (file:///Users/markmorris/vibe/architrino/tests/borg-configuration-geometry-records.test.js:20:61)
+      at file:///Users/markmorris/vibe/architrino/tests/borg-configuration-geometry-records.test.js:55:33
+      at Array.forEach (<anonymous>)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/borg-configuration-geometry-records.test.js:55:13)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/borg-configuration-geometry-records.test.js:111:1
+✖ rotating regular vertex sets preserve independently known edge graphs (12.057583ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  6 !== 30
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/borg-configuration-geometry-records.test.js:125:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 6,
+    expected: 30,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/borg-eom-migration.test.js:473:1
+✖ Borg live contract and certified-budget records match the runtime identities (2.288458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'ccff8f702e9c2b3919a20186f05e804d11c7b829575850cae1b7844c3c963513'
+  - 'dbb88e073d51b5980e0520c0720439e803eeab35b350c49b3dd67adc3f036a3d'
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/borg-eom-migration.test.js:494:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'ccff8f702e9c2b3919a20186f05e804d11c7b829575850cae1b7844c3c963513',
+    expected: 'dbb88e073d51b5980e0520c0720439e803eeab35b350c49b3dd67adc3f036a3d',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/borg-home-entry.test.js:51:1
+✖ Borg workbench receives the selected home-page record summary (1.565291ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /librarySummary: createBorgWorkbenchRecordSummary/. Input:
+  
+  'import { mountBorgApp } from "./BorgAppRuntime.js";\n' +
+    'import { createBorgEomHttpClient } from "./BorgEomHttpClient.js";\n' +
+    'import { BORG_DATASET_MANIFEST_V1 } from "./BorgAppManifest.js";\n' +
+    'import {\n' +
+    '  BORG_DEFAULT_CERTIFIED_BUDGET_ID,\n' +
+    '  getBorgCertifiedBudgetPreset,\n' +
+    '} from "./BorgCertifiedBudgets.js";\n' +
+    'import {\n' +
+    '  calculateBorgInertialHistoryDepth,\n' +
+    '  createBorgAcceptedInertialSeedHistory,\n' +
+    '  createBorgSeededInitialConditionRows,\n' +
+    '} from "./BorgInitialConditions.js";\n' +
+    'import {\n' +
+    '  BORG_ELECTRINO_STATE_FLAG,\n' +
+    '  BORG_POSITRINO_STATE_FLAG,\n' +
+    '} from "./BorgPolarityDiagnostics.js";\n' +
+    'import {\n' +
+    '  createBorgInteractiveDefaults,\n' +
+    '  createBorgPlacementPolicy,\n' +
+    '} from "./BorgInteractiveDefaults.js";\n' +
+    'import { createBorgAssemblyViewSession } from "./BorgAssemblyViewSession.js";\n' +
+    'import { BORG_ASSEMBLY_RECORD_CATALOG } from "./BorgAssemblyRecordCatalog.js";\n' +
+    'import { loadBorgScientificStatus } from "./BorgScientificStatus.mjs";\n' +
+    'import { loadBorgPlatonicRelationships } from "./BorgPlatonicRelationships.mjs";\n' +
+    'import { describeLibraryRecord } from "./library/BorgLibraryDescriptors.mjs";\n' +
+    'import { LIBRARY_FACETS } from "./library/BorgLibraryQuery.mjs";\n' +
+    'import {\n' +
+    '  BORG_SELECTION_STATUS,\n' +
+    '  resolveBorgSelectionRequest,\n' +
+    '  resolveBorgLibraryReturnHref,\n' +
+    '  resolveBraidSearchReturnHref,\n' +
+    '} from "../shared/BorgSelectionNavigation.mjs";\n' +
+    'import {\n' +
+    '  ANIMATOR_BORG_HANDOFF_QUERY,\n' +
+    '  ANIMATOR_BORG_HANDOFF_QUERY_VALUE,\n' +
+    '  receiveAnimatorPrescribedSceneHandoff,\n' +
+    '} from "../shared/AnimatorBorgHandoffTransport.mjs";\n' +
+    '\n' +
+    'export const BORG_DEFAULT_RUNTIME_MODE = "eom-shadow";\n' +
+    'export const BORG_RECORD_REPLAY_RUNTIME_MODE = "eom-record-replay";\n' +
+    '\n' +
+    'export async function bootBorgApp({\n' +
+    '  search = globalThis.location?.search ?? "",\n' +
+    '  mountApp = mountBorgApp,\n' +
+    '  createEomClient = createBorgEomHttpClient,\n' +
+    '  manifest = BORG_DATASET_MANIFEST_V1,\n' +
+    '  fetchLike = globalThis.fetch,\n' +
+    '  locationLike = globalThis.location,\n' +
+    '  historyLike = globalThis.history,\n' +
+    '  assemblyRecordCatalog = BORG_ASSEMBLY_RECORD_CATALOG,\n' +
+    '  startupSeedIndex = createBorgStartupSeedIndex(),\n' +
+    '  receiveAnimatorHandoff = receiveAnimatorPrescribedSceneHandoff,\n' +
+    '  windowLike = globalThis.window,\n' +
+    '} = {}) {\n' +
+    '  const query = new URLSearchParams(search);\n' +
+    '  const runtimeMode = resolveBorgRuntimeMode(query);\n' +
+    '  const returnHref = resolveBraidSearchReturnHref(\n' +
+    '    query.get("returnTo"),\n' +
+    '    locationLike,\n' +
+    '  );\n' +
+    '  const libraryReturnHref = resolveBorgLibraryReturnHref(\n' +
+    '    query.get("libraryReturnTo"),\n' +
+    '    locationLike,\n' +
+    '  );\n' +
+    '  const braidRecordNavigation = createBorgAssemblyRecordNavigation({\n' +
+    '    catalog: assemblyRecordCatalog,\n' +
+    '    selectedAssemblyId: query.get("assemblyId"),\n' +
+    '    returnTo: returnHref,\n' +
+    '    libraryReturnTo: libraryReturnHref,\n' +
+    '    locationLike,\n' +
+    '    historyLike,\n' +
+    '    fetchLike,\n' +
+    '  });\n' +
+    '  let assemblyViewSession = null;\n' +
+    '  let eomRecordReplay = null;\n' +
+    '  let selectedCatalogEntry = null;\n' +
+    '  let selectedRecordSha256 = null;\n' +
+    '  if (runtimeMode === BORG_RECORD_REPLAY_RUNTIME_MODE) {\n' +
+    '    const animatorHandoffRequested =\n' +
+    '      query.get(ANIMATOR_BORG_HANDOFF_QUERY) === ANIMATOR_BORG_HANDOFF_QUERY_VALUE;\n' +
+    '    let records;\n' +
+    '    let scientificStatus = null;\n' +
+    '    let platonicRelationships = null;\n' +
+    '    let librarySummary = null;\n' +
+    '    let sourceUrls = [];\n' +
+    '    if (animatorHandoffRequested) {\n' +
+    '      const handoff = await receiveAnimatorHandoff({ windowLike });\n' +
+    '      records = [handoff.record];\n' +
+    '      selectedRecordSha256 = handoff.recordSha256;\n' +
+    '      librarySummary = createAnimatorPrescribedSceneSummary(handoff);\n' +
+    '    } else {\n' +
+    '      const selection = resolveBorgSelectionRequest(\n' +
+    '        query,\n' +
+    '        assemblyRecordCatalog.entries,\n' +
+    '      );\n' +
+    '      if (selection.status === BORG_SELECTION_STATUS.MISSING) {\n' +
+    '        throw new RangeError(selection.reason);\n' +
+    '      }\n' +
+    '      if (selection.status === BORG_SELECTION_STATUS.STALE) {\n' +
+    '        throw new RangeError(selection.reason);\n' +
+    '      }\n' +
+    '      if (selection.status !== BORG_SELECTION_STATUS.VALID) {\n' +
+    '        throw new TypeError(selection.reason);\n' +
+    '      }\n' +
+    '      const entry = selection.entry;\n' +
+    '      const recordSha256 = selection.recordSha256;\n' +
+    '      selectedCatalogEntry = entry;\n' +
+    '      selectedRecordSha256 = recordSha256;\n' +
+    '      records = [await fetchBorgRecord(fetchLike, entry, "assembly-view record", recordSha256)];\n' +
+    '      [scientificStatus, platonicRelationships] = await Promise.all([\n' +
+    '        loadBorgScientificStatus({\n' +
+    '          fetchLike,\n' +
+    '          coordinates: records[0].provenance?.prescribedGeometry?.coordinates,\n' +
+    '          identity: entry,\n' +
+    '        }),\n' +
+    '        loadBorgPlatonicRelationships({ fetchLike, identity: entry }),\n' +
+    '      ]);\n' +
+    '      librarySummary = createBorgWorkbenchRecordSummary({\n' +
+    '        record: records[0],\n' +
+    '        catalogEntry: entry,\n' +
+    '        recordSha256,\n' +
+    '        platonicRelationships,\n' +
+    '      });\n' +
+    '      sourceUrls = [entry.recordUrl];\n' +
+    '    }\n' +
+    '    assemblyViewSession = createBorgAssemblyViewSession(records);\n' +
+    '    eomRecordReplay = {\n' +
+    '      record: records[0],\n' +
+    '      records,\n' +
+    '      sourceUrls: Object.freeze(sourceUrls),\n' +
+    '      librarySummary,\n' +
+    '      scientificStatus,\n' +
+    '      platonicRelationships,\n' +
+    '    };\n' +
+    '  }\n' +
+    '\n' +
+    '  const eomStartTime = 0;\n' +
+    '  const eomDuration = queryPositiveNumber(query.get("eomDuration"), 60);\n' +
+    '  if (!Number.isSafeInteger(startupSeedIndex) || startupSeedIndex < 0) {\n' +
+    '    throw new TypeError("Borg startup seed index must be a nonnegative safe integer.");\n' +
+    '  }\n' +
+    '  const interactiveDefaults = createBorgInteractiveDefaults(manifest);\n' +
+    '  const certifiedBudget = getBorgCertifiedBudgetPreset(\n' +
+    '    query.get("certifiedBudget") ?? BORG_DEFAULT_CERTIFIED_BUDGET_ID,\n' +
+    '  );\n' +
+    '  const initialConditionConfig = interactiveDefaults.initialConditionConfig;\n' +
+    '  const displayPlacement = createBorgPlacementPolicy(\n' +
+    '    manifest,\n' +
+    '    initialConditionConfig.electrinoCount + initialConditionConfig.positrinoCount,\n' +
+    '  );\n' +
+    '  const fullPopulationEndpointRows = createBorgSeededInitialConditionRows({\n' +
+    '    manifest,\n' +
+    '    seedIndex: startupSeedIndex,\n' +
+    '    config: initialConditionConfig,\n' +
+    '    seedingRadius: displayPlacement.seedingRadius,\n' +
+    '    minimumPairSeparation: displayPlacement.minimumPairSeparation,\n' +
+    '  });\n' +
+    '  const activeInitialConditionConfig = Object.freeze({\n' +
+    '    ...initialConditionConfig,\n' +
+    '    electrinoCount: fullPopulationEndpointRows.filter(\n' +
+    '      (row) => row.stateFlags === BORG_ELECTRINO_STATE_FLAG,\n' +
+    '    ).length,\n' +
+    '    positrinoCount: fullPopulationEndpointRows.filter(\n' +
+    '      (row) => row.stateFlags === BORG_POSITRINO_STATE_FLAG,\n' +
+    '    ).length,\n' +
+    '  });\n' +
+    '  const sampleInterval = 0.01;\n' +
+    '  const causalHistoryDepth = calculateBorgInertialHistoryDepth(\n' +
+    '    fullPopulationEndpointRows,\n' +
+    '    {\n' +
+    '      fieldSpeed: manifest.simulationEnvelope?.fieldSpeed ?? 1,\n' +
+    '      sampleInterval,\n' +
+    '      maximumSeparation: 2 * displayPlacement.seedingRadius,\n' +
+    '    },\n' +
+    '  );\n' +
+    '  // Only the causal past is prescribed. Forward EOM segments are appended\n' +
+    '  // after T=0 and form the separately evolving retained history.\n' +
+    '  const seedHistoryDepth = causalHistoryDepth;\n' +
+    '  const runtimeManifest = createManifestWithHistoryDepth(\n' +
+    '    manifest,\n' +
+    '    seedHistoryDepth,\n' +
+    '  );\n' +
+    '  const initialEomSeed = await createBorgAcceptedInertialSeedHistory(\n' +
+    '    fullPopulationEndpointRows,\n' +
+    '    {\n' +
+    '      historyStartTime: eomStartTime - seedHistoryDepth,\n' +
+    '      historyEndTime: eomStartTime,\n' +
+    '      minimumPairSeparation: displayPlacement.minimumPairSeparation,\n' +
+    '    },\n' +
+    '  );\n' +
+    '  return mountApp({\n' +
+    '    manifest: runtimeManifest,\n' +
+    '    initialEomSeed,\n' +
+    '    initialDistributionSeedIndex: startupSeedIndex,\n' +
+    '    initialConditionConfig: activeInitialConditionConfig,\n' +
+    '    // Ordinary Borg startup must stay interactive. The long retained-history\n' +
+    '    // evolution is an explicit diagnostic action, not page-load work.\n' +
+    '    autoStartEom:\n' +
+    '      runtimeMode === BORG_RECORD_REPLAY_RUNTIME_MODE || query.get("eom") === "shadow",\n' +
+    '    eomShadowRunner: {\n' +
+    '      eomClientFactory: createEomClient,\n' +
+    '      startTime: eomStartTime,\n' +
+    '      targetDuration: eomStartTime + eomDuration,\n' +
+    '      runDuration: eomDuration,\n' +
+    '      historyDepth: seedHistoryDepth,\n' +
+    '      historySafetyMargin: sampleInterval,\n' +
+    '      certifiedBudgetId: certifiedBudget.id,\n' +
+    '      pathCount: fullPopulationEndpointRows.length,\n' +
+    '      // Batch six 0.05 EOM steps per process round trip. The selected run\n' +
+    '      // grade stays fixed while protocol traffic remains below render cadence.\n' +
+    '      chunkDuration: 0.3,\n' +
+    '      sampleInterval,\n' +
+    '      initialStep: certifiedBudget.allocations.controller.initialStep,\n' +
+    '      minimumStep: certifiedBudget.allocations.controller.minimumStep,\n' +
+    '      maximumStep: certifiedBudget.allocations.controller.maximumStep,\n' +
+    '      useAdaptiveStepGrowth: true,\n' +
+    '      simulationOuterRadius: displayPlacement.seedingRadius,\n' +
+    '      coupling: String(interactiveDefaults.coupling),\n' +
+    '    },\n' +
+    '    assemblyViewSession,\n' +
+    '    eomRecordReplay,\n' +
+    '    braidRecordNavigation,\n' +
+    '    libraryNavigation: Object.freeze({\n' +
+    '      href: libraryReturnHref ?? buildBorgLibrarySelectionHref(\n' +
+    '        selectedCatalogEntry,\n' +
+    '        selectedRecordSha256,\n' +
+    '      ),\n' +
+    '      label: "Back to Borg Library",\n' +
+    '    }),\n' +
+    '    returnNavigation: returnHref\n' +
+    '      ? Object.freeze({ href: returnHref, label: "Return to Braid Search" })\n' +
+    '      : null,\n' +
+    '  });\n' +
+    '}\n' +
+    '\n' +
+    'export function createBorgWorkbenchRecordSummary({\n' +
+    '  record,\n' +
+    '  catalogEntry,\n' +
+    '  recordSha256 = null,\n' +
+    '  platonicRelationships = null,\n' +
+    '}) {\n' +
+    '  const described = describeLibraryRecord(\n' +
+    '    record,\n' +
+    '    catalogEntry,\n' +
+    '    recordSha256,\n' +
+    '  ).summary;\n' +
+    '  const facets = {\n' +
+    '    ...described.facets,\n' +
+    '    platonicRelationship:\n' +
+    '      platonicRelationships?.values ?? described.facets.platonicRelationship,\n' +
+    '  };\n' +
+    '  return Object.freeze({\n' +
+    '    label: described.label,\n' +
+    '    assemblyId: described.assemblyId,\n' +
+    '    modelRevisionSha256: described.modelRevisionSha256,\n' +
+    '    description: described.description,\n' +
+    '    facets: Object.freeze(Object.entries(LIBRARY_FACETS).map(([key, definition]) =>\n' +
+    '      Object.freeze({\n' +
+    '        key,\n' +
+    '        label: definition.label,\n' +
+    '        value: [].concat(facets[key] ?? "unavailable")\n' +
+    '          .map((value) => borgWorkbenchFacetLabel(key, value))\n' +
+    '          .join(", "),\n' +
+    '      }))),\n' +
+    '  });\n' +
+    '}\n' +
+    '\n' +
+    'export function createAnimatorPrescribedSceneSummary(handoff) {\n' +
+    '  const record = handoff.record;\n' +
+    '  return Object.freeze({\n' +
+    '    label: record.tit'... 5590 more characters
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/borg-home-entry.test.js:54:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'import { mountBorgApp } from "./BorgAppRuntime.js";\nimport { createBorgEomHttpClient } from "./BorgEomHttpClient.js";\nimport { BORG_DATASET_MANIFEST_V1 } from "./BorgAppManifest.js";\nimport {\n  BORG_DEFAULT_CERTIFIED_BUDGET_ID,\n  getBorgCertifiedBudgetPreset,\n} from "./BorgCertifiedBudgets.js";\nimport {\n  calculateBorgInertialHistoryDepth,\n  createBorgAcceptedInertialSeedHistory,\n  createBorgSeededInitialConditionRows,\n} from "./BorgInitialConditions.js";\nimport {\n  BORG_ELECTRINO_STATE_FLAG,\n  BORG_POSITRINO_STATE_FLAG,\n} from "./BorgPolarityDiagnostics.js";\nimport {\n  createBorgInteractiveDefaults,\n  createBorgPlacementPolicy,\n} from "./BorgInteractiveDefaults.js";\nimport { createBorgAssemblyViewSession } from "./BorgAssemblyViewSession.js";\nimport { BORG_ASSEMBLY_RECORD_CATALOG } from "./BorgAssemblyRecordCatalog.js";\nimport { loadBorgScientificStatus } from "./BorgScientificStatus.mjs";\nimport { loadBorgPlatonicRelationships } from "./BorgPlatonicRelationships.mjs";\nimport { describeLibraryRecord } from "./library/BorgLibraryDescriptors.mjs";\nimport { LIBRARY_FACETS } from "./library/BorgLibraryQuery.mjs";\nimport {\n  BORG_SELECTION_STATUS,\n  resolveBorgSelectionRequest,\n  resolveBorgLibraryReturnHref,\n  resolveBraidSearchReturnHref,\n} from "../shared/BorgSelectionNavigation.mjs";\nimport {\n  ANIMATOR_BORG_HANDOFF_QUERY,\n  ANIMATOR_BORG_HANDOFF_QUERY_VALUE,\n  receiveAnimatorPrescribedSceneHandoff,\n} from "../shared/AnimatorBorgHandoffTransport.mjs";\n\nexport const BORG_DEFAULT_RUNTIME_MODE = "eom-shadow";\nexport const BORG_RECORD_REPLAY_RUNTIME_MODE = "eom-record-replay";\n\nexport async function bootBorgApp({\n  search = globalThis.location?.search ?? "",\n  mountApp = mountBorgApp,\n  createEomClient = createBorgEomHttpClient,\n  manifest = BORG_DATASET_MANIFEST_V1,\n  fetchLike = globalThis.fetch,\n  locationLike = globalThis.location,\n  historyLike = globalThis.history,\n  assemblyRecordCatalog = BORG_ASSEMBLY_RECORD_CATALOG,\n  startupSeedIndex = createBorgStartupSeedIndex(),\n  receiveAnimatorHandoff = receiveAnimatorPrescribedSceneHandoff,\n  windowLike = globalThis.window,\n} = {}) {\n  const query = new URLSearchParams(search);\n  const runtimeMode = resolveBorgRuntimeMode(query);\n  const returnHref = resolveBraidSearchReturnHref(\n    query.get("returnTo"),\n    locationLike,\n  );\n  const libraryReturnHref = resolveBorgLibraryReturnHref(\n    query.get("libraryReturnTo"),\n    locationLike,\n  );\n  const braidRecordNavigation = createBorgAssemblyRecordNavigation({\n    catalog: assemblyRecordCatalog,\n    selectedAssemblyId: query.get("assemblyId"),\n    returnTo: returnHref,\n    libraryReturnTo: libraryReturnHref,\n    locationLike,\n    historyLike,\n    fetchLike,\n  });\n  let assemblyViewSession = null;\n  let eomRecordReplay = null;\n  let selectedCatalogEntry = null;\n  let selectedRecordSha256 = null;\n  if (runtimeMode === BORG_RECORD_REPLAY_RUNTIME_MODE) {\n    const animatorHandoffRequested =\n      query.get(ANIMATOR_BORG_HANDOFF_QUERY) === ANIMATOR_BORG_HANDOFF_QUERY_VALUE;\n    let records;\n    let scientificStatus = null;\n    let platonicRelationships = null;\n    let librarySummary = null;\n    let sourceUrls = [];\n    if (animatorHandoffRequested) {\n      const handoff = await receiveAnimatorHandoff({ windowLike });\n      records = [handoff.record];\n      selectedRecordSha256 = handoff.recordSha256;\n      librarySummary = createAnimatorPrescribedSceneSummary(handoff);\n    } else {\n      const selection = resolveBorgSelectionRequest(\n        query,\n        assemblyRecordCatalog.entries,\n      );\n      if (selection.status === BORG_SELECTION_STATUS.MISSING) {\n        throw new RangeError(selection.reason);\n      }\n      if (selection.status === BORG_SELECTION_STATUS.STALE) {\n        throw new RangeError(selection.reason);\n      }\n      if (selection.status !== BORG_SELECTION_STATUS.VALID) {\n        throw new TypeError(selection.reason);\n      }\n      const entry = selection.entry;\n      const recordSha256 = selection.recordSha256;\n      selectedCatalogEntry = entry;\n      selectedRecordSha256 = recordSha256;\n      records = [await fetchBorgRecord(fetchLike, entry, "assembly-view record", recordSha256)];\n      [scientificStatus, platonicRelationships] = await Promise.all([\n        loadBorgScientificStatus({\n          fetchLike,\n          coordinates: records[0].provenance?.prescribedGeometry?.coordinates,\n          identity: entry,\n        }),\n        loadBorgPlatonicRelationships({ fetchLike, identity: entry }),\n      ]);\n      librarySummary = createBorgWorkbenchRecordSummary({\n        record: records[0],\n        catalogEntry: entry,\n        recordSha256,\n        platonicRelationships,\n      });\n      sourceUrls = [entry.recordUrl];\n    }\n    assemblyViewSession = createBorgAssemblyViewSession(records);\n    eomRecordReplay = {\n      record: records[0],\n      records,\n      sourceUrls: Object.freeze(sourceUrls),\n      librarySummary,\n      scientificStatus,\n      platonicRelationships,\n    };\n  }\n\n  const eomStartTime = 0;\n  const eomDuration = queryPositiveNumber(query.get("eomDuration"), 60);\n  if (!Number.isSafeInteger(startupSeedIndex) || startupSeedIndex < 0) {\n    throw new TypeError("Borg startup seed index must be a nonnegative safe integer.");\n  }\n  const interactiveDefaults = createBorgInteractiveDefaults(manifest);\n  const certifiedBudget = getBorgCertifiedBudgetPreset(\n    query.get("certifiedBudget") ?? BORG_DEFAULT_CERTIFIED_BUDGET_ID,\n  );\n  const initialConditionConfig = interactiveDefaults.initialConditionConfig;\n  const displayPlacement = createBorgPlacementPolicy(\n    manifest,\n    initialConditionConfig.electrinoCount + initialConditionConfig.positrinoCount,\n  );\n  const fullPopulationEndpointRows = createBorgSeededInitialConditionRows({\n    manifest,\n    seedIndex: startupSeedIndex,\n    config: initialConditionConfig,\n    seedingRadius: displayPlacement.seedingRadius,\n    minimumPairSeparation: displayPlacement.minimumPairSeparation,\n  });\n  const activeInitialConditionConfig = Object.freeze({\n    ...initialConditionConfig,\n    electrinoCount: fullPopulationEndpointRows.filter(\n      (row) => row.stateFlags === BORG_ELECTRINO_STATE_FLAG,\n    ).length,\n    positrinoCount: fullPopulationEndpointRows.filter(\n      (row) => row.stateFlags === BORG_POSITRINO_STATE_FLAG,\n    ).length,\n  });\n  const sampleInterval = 0.01;\n  const causalHistoryDepth = calculateBorgInertialHistoryDepth(\n    fullPopulationEndpointRows,\n    {\n      fieldSpeed: manifest.simulationEnvelope?.fieldSpeed ?? 1,\n      sampleInterval,\n      maximumSeparation: 2 * displayPlacement.seedingRadius,\n    },\n  );\n  // Only the causal past is prescribed. Forward EOM segments are appended\n  // after T=0 and form the separately evolving retained history.\n  const seedHistoryDepth = causalHistoryDepth;\n  const runtimeManifest = createManifestWithHistoryDepth(\n    manifest,\n    seedHistoryDepth,\n  );\n  const initialEomSeed = await createBorgAcceptedInertialSeedHistory(\n    fullPopulationEndpointRows,\n    {\n      historyStartTime: eomStartTime - seedHistoryDepth,\n      historyEndTime: eomStartTime,\n      minimumPairSeparation: displayPlacement.minimumPairSeparation,\n    },\n  );\n  return mountApp({\n    manifest: runtimeManifest,\n    initialEomSeed,\n    initialDistributionSeedIndex: startupSeedIndex,\n    initialConditionConfig: activeInitialConditionConfig,\n    // Ordinary Borg startup must stay interactive. The long retained-history\n    // evolution is an explicit diagnostic action, not page-load work.\n    autoStartEom:\n      runtimeMode === BORG_RECORD_REPLAY_RUNTIME_MODE || query.get("eom") === "shadow",\n    eomShadowRunner: {\n      eomClientFactory: createEomClient,\n      startTime: eomStartTime,\n      targetDuration: eomStartTime + eomDuration,\n      runDuration: eomDuration,\n      historyDepth: seedHistoryDepth,\n      historySafetyMargin: sampleInterval,\n      certifiedBudgetId: certifiedBudget.id,\n      pathCount: fullPopulationEndpointRows.length,\n      // Batch six 0.05 EOM steps per process round trip. The selected run\n      // grade stays fixed while protocol traffic remains below render cadence.\n      chunkDuration: 0.3,\n      sampleInterval,\n      initialStep: certifiedBudget.allocations.controller.initialStep,\n      minimumStep: certifiedBudget.allocations.controller.minimumStep,\n      maximumStep: certifiedBudget.allocations.controller.maximumStep,\n      useAdaptiveStepGrowth: true,\n      simulationOuterRadius: displayPlacement.seedingRadius,\n      coupling: String(interactiveDefaults.coupling),\n    },\n    assemblyViewSession,\n    eomRecordReplay,\n    braidRecordNavigation,\n    libraryNavigation: Object.freeze({\n      href: libraryReturnHref ?? buildBorgLibrarySelectionHref(\n        selectedCatalogEntry,\n        selectedRecordSha256,\n      ),\n      label: "Back to Borg Library",\n    }),\n    returnNavigation: returnHref\n      ? Object.freeze({ href: returnHref, label: "Return to Braid Search" })\n      : null,\n  });\n}\n\nexport function createBorgWorkbenchRecordSummary({\n  record,\n  catalogEntry,\n  recordSha256 = null,\n  platonicRelationships = null,\n}) {\n  const described = describeLibraryRecord(\n    record,\n    catalogEntry,\n    recordSha256,\n  ).summary;\n  const facets = {\n    ...described.facets,\n    platonicRelationship:\n      platonicRelationships?.values ?? described.facets.platonicRelationship,\n  };\n  return Object.freeze({\n    label: described.label,\n    assemblyId: described.assemblyId,\n    modelRevisionSha256: described.modelRevisionSha256,\n    description: described.description,\n    facets: Object.freeze(Object.entries(LIBRARY_FACETS).map(([key, definition]) =>\n      Object.freeze({\n        key,\n        label: definition.label,\n        value: [].concat(facets[key] ?? "unavailable")\n          .map((value) => borgWorkbenchFacetLabel(key, value))\n          .join(", "),\n      }))),\n  });\n}\n\nexport function createAnimatorPrescribedSceneSummary(handoff) {\n  const record = handoff.record;\n  return Object.freeze({\n    label: record.tit'... 5590 more characters,
+    expected: /librarySummary: createBorgWorkbenchRecordSummary/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/borg-library.test.js:92:1
+✖ seed provider covers all current records and exact preview pins (1294.49075ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 145
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/borg-library.test.js:98:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 145,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/borg-library.test.js:128:1
+✖ seed provider exposes one 100-variant balance card and exact variant drill-down (1230.491541ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 100
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/borg-library.test.js:135:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 100,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/f6b-prescribed-kernel-diagnostic.test.js:5:1
+✖ F6b diagnostic rejects shared circles and preserves polarity-resolved tangent structure (108.7825ms)
+  Error: Command failed: /opt/homebrew/Cellar/node/26.3.0/bin/node scripts/mapping-electromagnetism/f6b-prescribed-kernel-diagnostic.mjs
+  file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/ExactPrescribedSourceWake.mjs:53
+      throw new TypeError(`${label} must be a nonempty string.`);
+            ^
+  
+  TypeError: sourceRecord.assemblyId must be a nonempty string.
+      at concreteString (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/ExactPrescribedSourceWake.mjs:53:11)
+      at validateExactPrescribedSourceRecord (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/ExactPrescribedSourceWake.mjs:188:3)
+      at createPrescribedRecordAnalysisSession (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs:1227:24)
+      at resolveAnalysisSession (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs:1264:21)
+      at evaluatePrescribedRecordAnalysis (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs:1335:21)
+      at file:///Users/markmorris/vibe/architrino/scripts/mapping-electromagnetism/f6b-prescribed-kernel-diagnostic.mjs:116:16
+      at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+      at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:646:26)
+      at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+  
+  Node.js v26.3.0
+  
+      at genericNodeError (node:internal/errors:998:15)
+      at wrappedFn (node:internal/errors:543:14)
+      at checkExecSyncError (node:child_process:926:11)
+      at execFileSync (node:child_process:962:15)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6b-prescribed-kernel-diagnostic.test.js:6:18)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    status: 1,
+    signal: null,
+    output: [ null, '', 'file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/ExactPrescribedSourceWake.mjs:53\n    throw new TypeError(`${label} must be a nonempty string.`);\n          ^\n\nTypeError: sourceRecord.assemblyId must be a nonempty string.\n    at concreteString (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/ExactPrescribedSourceWake.mjs:53:11)\n    at validateExactPrescribedSourceRecord (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/ExactPrescribedSourceWake.mjs:188:3)\n    at createPrescribedRecordAnalysisSession (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs:1227:24)\n    at resolveAnalysisSession (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs:1264:21)\n    at evaluatePrescribedRecordAnalysis (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs:1335:21)\n    at file:///Users/markmorris/vibe/architrino/scripts/mapping-electromagnetism/f6b-prescribed-kernel-diagnostic.mjs:116:16\n    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:646:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v26.3.0\n' ],
+    pid: 92770,
+    stdout: '',
+    stderr: 'file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/ExactPrescribedSourceWake.mjs:53\n    throw new TypeError(`${label} must be a nonempty string.`);\n          ^\n\nTypeError: sourceRecord.assemblyId must be a nonempty string.\n    at concreteString (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/ExactPrescribedSourceWake.mjs:53:11)\n    at validateExactPrescribedSourceRecord (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/ExactPrescribedSourceWake.mjs:188:3)\n    at createPrescribedRecordAnalysisSession (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs:1227:24)\n    at resolveAnalysisSession (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs:1264:21)\n    at evaluatePrescribedRecordAnalysis (file:///Users/markmorris/vibe/architrino/src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs:1335:21)\n    at file:///Users/markmorris/vibe/architrino/scripts/mapping-electromagnetism/f6b-prescribed-kernel-diagnostic.mjs:116:16\n    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:646:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v26.3.0\n'
+  }
+
+test at tests/f6c-relative-equilibrium-search.test.js:5:1
+✖ F6c bounded search keeps one coefficient per row and rejects a near-uniform orbit (100.495375ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(report.bestRows.length > 0)
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-relative-equilibrium-search.test.js:36:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/pdgedit-generator-drift.test.js:161:1
+✖ committed pdgedit reference svg filenames match the shared catalogs exactly (6.079959ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+  
+    [
+      'pdgedit-group-anti-bi-binary.svg',
+      'pdgedit-group-anti-bottom-quark.svg',
+      'pdgedit-group-anti-charm-quark.svg',
+      'pdgedit-group-anti-down-quark.svg',
+  ...
+      'pdgedit-group-anti-neutron.svg',
+  -   'pdgedit-group-anti-noether-braid.svg',
+      'pdgedit-group-anti-proton.svg',
+      'pdgedit-group-anti-strange-quark.svg',
+      'pdgedit-group-anti-tau-neutrino.svg',
+      'pdgedit-group-anti-tau.svg',
+      'pdgedit-group-anti-top-quark.svg',
+  ...
+      'pdgedit-group-pro-neutron.svg',
+  -   'pdgedit-group-pro-noether-braid.svg',
+      'pdgedit-group-pro-proton.svg',
+      'pdgedit-group-pro-strange-quark.svg',
+      'pdgedit-group-pro-tau-neutrino.svg',
+      'pdgedit-group-pro-tau.svg',
+      'pdgedit-group-pro-top-quark.svg',
+  ...
+      'pdgedit-tile-anti-neutron.svg',
+  -   'pdgedit-tile-anti-noether-braid-glyph.svg',
+  -   'pdgedit-tile-anti-noether-braid.svg',
+      'pdgedit-tile-anti-proton.svg',
+      'pdgedit-tile-anti-strange-quark.svg',
+      'pdgedit-tile-anti-tau-neutrino.svg',
+      'pdgedit-tile-anti-tau.svg',
+      'pdgedit-tile-anti-top-quark.svg',
+  ...
+      'pdgedit-tile-pro-neutron.svg',
+  -   'pdgedit-tile-pro-noether-braid-glyph.svg',
+  -   'pdgedit-tile-pro-noether-braid.svg',
+      'pdgedit-tile-pro-proton.svg',
+      'pdgedit-tile-pro-strange-quark.svg',
+      'pdgedit-tile-pro-tau-neutrino.svg',
+      'pdgedit-tile-pro-tau.svg',
+      'pdgedit-tile-pro-top-quark.svg',
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/pdgedit-generator-drift.test.js:165:10)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [
+      'pdgedit-group-anti-bi-binary.svg',                       'pdgedit-group-anti-bottom-quark.svg',
+      'pdgedit-group-anti-charm-quark.svg',                     'pdgedit-group-anti-down-quark.svg',
+      'pdgedit-group-anti-electron-neutrino.svg',               'pdgedit-group-anti-electron.svg',
+      'pdgedit-group-anti-muon-neutrino.svg',                   'pdgedit-group-anti-muon.svg',
+      'pdgedit-group-anti-neutron.svg',                         'pdgedit-group-anti-proton.svg',
+      'pdgedit-group-anti-strange-quark.svg',                   'pdgedit-group-anti-tau-neutrino.svg',
+      'pdgedit-group-anti-tau.svg',                             'pdgedit-group-anti-top-quark.svg',
+      'pdgedit-group-anti-uni-binary.svg',                      'pdgedit-group-anti-up-quark.svg',
+      'pdgedit-group-down-quark-color-variations-family-i.svg', 'pdgedit-group-down-quark-color-variations-family-ii.svg',
+      'pdgedit-group-negative-b-meson.svg',                     'pdgedit-group-negative-kaon.svg',
+      'pdgedit-group-negative-pion.svg',                        'pdgedit-group-neutral-b-meson-b.svg',
+      'pdgedit-group-neutral-b-meson-d.svg',                    'pdgedit-group-neutral-kaon-d.svg',
+      'pdgedit-group-neutral-kaon-s.svg',                       'pdgedit-group-neutral-pion-d.svg',
+      'pdgedit-group-neutral-pion-u.svg',                       'pdgedit-group-noether-pair.svg',
+      'pdgedit-group-noether-quad.svg',                         'pdgedit-group-noether-sea.svg',
+      'pdgedit-group-photon.svg',                               'pdgedit-group-positive-b-meson.svg',
+      'pdgedit-group-positive-kaon.svg',                        'pdgedit-group-positive-pion.svg',
+      'pdgedit-group-pro-bi-binary.svg',                        'pdgedit-group-pro-bottom-quark.svg',
+      'pdgedit-group-pro-charm-quark.svg',                      'pdgedit-group-pro-down-quark.svg',
+      'pdgedit-group-pro-electron-neutrino.svg',                'pdgedit-group-pro-electron.svg',
+      'pdgedit-group-pro-muon-neutrino.svg',                    'pdgedit-group-pro-muon.svg',
+      'pdgedit-group-pro-neutron.svg',                          'pdgedit-group-pro-proton.svg',
+      'pdgedit-group-pro-strange-quark.svg',                    'pdgedit-group-pro-tau-neutrino.svg',
+      'pdgedit-group-pro-tau.svg',                              'pdgedit-group-pro-top-quark.svg',
+      'pdgedit-group-pro-uni-binary.svg',                       'pdgedit-group-pro-up-quark.svg',
+      'pdgedit-group-unbound-architrinos.svg',                  'pdgedit-group-up-quark-color-variations.svg',
+      'pdgedit-tile-anti-bi-binary.svg',                        'pdgedit-tile-anti-bottom-quark.svg',
+      'pdgedit-tile-anti-charm-quark.svg',                      'pdgedit-tile-anti-down-quark.svg',
+      'pdgedit-tile-anti-electron-neutrino.svg',                'pdgedit-tile-anti-electron.svg',
+      'pdgedit-tile-anti-muon-neutrino.svg',                    'pdgedit-tile-anti-muon.svg',
+      'pdgedit-tile-anti-neutron.svg',                          'pdgedit-tile-anti-proton.svg',
+      'pdgedit-tile-anti-strange-quark.svg',                    'pdgedit-tile-anti-tau-neutrino.svg',
+      'pdgedit-tile-anti-tau.svg',                              'pdgedit-tile-anti-top-quark.svg',
+      'pdgedit-tile-anti-uni-binary.svg',                       'pdgedit-tile-anti-up-quark.svg',
+      'pdgedit-tile-architrino-residue.svg',                    'pdgedit-tile-architrinos.svg',
+      'pdgedit-tile-associate.svg',                             'pdgedit-tile-binary-axis-br-bb.svg',
+      'pdgedit-tile-binary-axis-br-br.svg',                     'pdgedit-tile-binary-axis-br-rb.svg',
+      'pdgedit-tile-binary-axis-br-rr.svg',                     'pdgedit-tile-binary-axis-rb-bb.svg',
+      'pdgedit-tile-binary-axis-rb-br.svg',                     'pdgedit-tile-binary-axis-rb-rb.svg',
+      'pdgedit-tile-binary-axis-rb-rr.svg',                     'pdgedit-tile-binary-bare-br-none.svg',
+      'pdgedit-tile-binary-bare-rb-none.svg',                   'pdgedit-tile-binary-empty-none-none.svg',
+      'pdgedit-tile-binary-full-br-bb.svg',                     'pdgedit-tile-binary-full-br-br.svg',
+      'pdgedit-tile-binary-full-br-rb.svg',                     'pdgedit-tile-binary-full-br-rr.svg',
+      'pdgedit-tile-binary-full-rb-bb.svg',                     'pdgedit-tile-binary-full-rb-br.svg',
+      'pdgedit-tile-binary-full-rb-rb.svg',                     'pdgedit-tile-binary-full-rb-rr.svg',
+      'pdgedit-tile-binary-polar-none-bb.svg',                  'pdgedit-tile-binary-polar-none-br.svg',
+      'pdgedit-tile-binary-polar-none-rb.svg',                  'pdgedit-tile-binary-polar-none-rr.svg',
+      'pdgedit-tile-dissociate.svg',                            'pdgedit-tile-negative-b-meson.svg',
+      'pdgedit-tile-negative-kaon.svg',                         'pdgedit-tile-negative-pion.svg',
+      'pdgedit-tile-negative-w-boson.svg',                      'pdgedit-tile-neutral-b-meson-b.svg',
+      ... 41 more items
+    ],
+    expected: [
+      'pdgedit-group-anti-bi-binary.svg',                        'pdgedit-group-anti-bottom-quark.svg',
+      'pdgedit-group-anti-charm-quark.svg',                      'pdgedit-group-anti-down-quark.svg',
+      'pdgedit-group-anti-electron-neutrino.svg',                'pdgedit-group-anti-electron.svg',
+      'pdgedit-group-anti-muon-neutrino.svg',                    'pdgedit-group-anti-muon.svg',
+      'pdgedit-group-anti-neutron.svg',                          'pdgedit-group-anti-noether-braid.svg',
+      'pdgedit-group-anti-proton.svg',                           'pdgedit-group-anti-strange-quark.svg',
+      'pdgedit-group-anti-tau-neutrino.svg',                     'pdgedit-group-anti-tau.svg',
+      'pdgedit-group-anti-top-quark.svg',                        'pdgedit-group-anti-uni-binary.svg',
+      'pdgedit-group-anti-up-quark.svg',                         'pdgedit-group-down-quark-color-variations-family-i.svg',
+      'pdgedit-group-down-quark-color-variations-family-ii.svg', 'pdgedit-group-negative-b-meson.svg',
+      'pdgedit-group-negative-kaon.svg',                         'pdgedit-group-negative-pion.svg',
+      'pdgedit-group-neutral-b-meson-b.svg',                     'pdgedit-group-neutral-b-meson-d.svg',
+      'pdgedit-group-neutral-kaon-d.svg',                        'pdgedit-group-neutral-kaon-s.svg',
+      'pdgedit-group-neutral-pion-d.svg',                        'pdgedit-group-neutral-pion-u.svg',
+      'pdgedit-group-noether-pair.svg',                          'pdgedit-group-noether-quad.svg',
+      'pdgedit-group-noether-sea.svg',                           'pdgedit-group-photon.svg',
+      'pdgedit-group-positive-b-meson.svg',                      'pdgedit-group-positive-kaon.svg',
+      'pdgedit-group-positive-pion.svg',                         'pdgedit-group-pro-bi-binary.svg',
+      'pdgedit-group-pro-bottom-quark.svg',                      'pdgedit-group-pro-charm-quark.svg',
+      'pdgedit-group-pro-down-quark.svg',                        'pdgedit-group-pro-electron-neutrino.svg',
+      'pdgedit-group-pro-electron.svg',                          'pdgedit-group-pro-muon-neutrino.svg',
+      'pdgedit-group-pro-muon.svg',                              'pdgedit-group-pro-neutron.svg',
+      'pdgedit-group-pro-noether-braid.svg',                     'pdgedit-group-pro-proton.svg',
+      'pdgedit-group-pro-strange-quark.svg',                     'pdgedit-group-pro-tau-neutrino.svg',
+      'pdgedit-group-pro-tau.svg',                               'pdgedit-group-pro-top-quark.svg',
+      'pdgedit-group-pro-uni-binary.svg',                        'pdgedit-group-pro-up-quark.svg',
+      'pdgedit-group-unbound-architrinos.svg',                   'pdgedit-group-up-quark-color-variations.svg',
+      'pdgedit-tile-anti-bi-binary.svg',                         'pdgedit-tile-anti-bottom-quark.svg',
+      'pdgedit-tile-anti-charm-quark.svg',                       'pdgedit-tile-anti-down-quark.svg',
+      'pdgedit-tile-anti-electron-neutrino.svg',                 'pdgedit-tile-anti-electron.svg',
+      'pdgedit-tile-anti-muon-neutrino.svg',                     'pdgedit-tile-anti-muon.svg',
+      'pdgedit-tile-anti-neutron.svg',                           'pdgedit-tile-anti-noether-braid-glyph.svg',
+      'pdgedit-tile-anti-noether-braid.svg',                     'pdgedit-tile-anti-proton.svg',
+      'pdgedit-tile-anti-strange-quark.svg',                     'pdgedit-tile-anti-tau-neutrino.svg',
+      'pdgedit-tile-anti-tau.svg',                               'pdgedit-tile-anti-top-quark.svg',
+      'pdgedit-tile-anti-uni-binary.svg',                        'pdgedit-tile-anti-up-quark.svg',
+      'pdgedit-tile-architrino-residue.svg',                     'pdgedit-tile-architrinos.svg',
+      'pdgedit-tile-associate.svg',                              'pdgedit-tile-binary-axis-br-bb.svg',
+      'pdgedit-tile-binary-axis-br-br.svg',                      'pdgedit-tile-binary-axis-br-rb.svg',
+      'pdgedit-tile-binary-axis-br-rr.svg',                      'pdgedit-tile-binary-axis-rb-bb.svg',
+      'pdgedit-tile-binary-axis-rb-br.svg',                      'pdgedit-tile-binary-axis-rb-rb.svg',
+      'pdgedit-tile-binary-axis-rb-rr.svg',                      'pdgedit-tile-binary-bare-br-none.svg',
+      'pdgedit-tile-binary-bare-rb-none.svg',                    'pdgedit-tile-binary-empty-none-none.svg',
+      'pdgedit-tile-binary-full-br-bb.svg',                      'pdgedit-tile-binary-full-br-br.svg',
+      'pdgedit-tile-binary-full-br-rb.svg',                      'pdgedit-tile-binary-full-br-rr.svg',
+      'pdgedit-tile-binary-full-rb-bb.svg',                      'pdgedit-tile-binary-full-rb-br.svg',
+      'pdgedit-tile-binary-full-rb-rb.svg',                      'pdgedit-tile-binary-full-rb-rr.svg',
+      'pdgedit-tile-binary-polar-none-bb.svg',                   'pdgedit-tile-binary-polar-none-br.svg',
+      'pdgedit-tile-binary-polar-none-rb.svg',                   'pdgedit-tile-binary-polar-none-rr.svg',
+      'pdgedit-tile-dissociate.svg',                             'pdgedit-tile-negative-b-meson.svg',
+      ... 47 more items
+    ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pdgedit-generator-drift.test.js:168:1
+✖ glyph.py regenerates the committed pdgedit reference svg set and canonical artifacts without drift (17717.619333ms)
+  Error: ENOENT: no such file or directory, open '/Users/markmorris/vibe/architrino/scripts/glyphs/pdgedit-tile-pro-noether-braid-glyph.svg'
+      at Object.readFileSync (node:fs:436:20)
+      at file:///Users/markmorris/vibe/architrino/tests/pdgedit-generator-drift.test.js:193:29
+      at Array.forEach (<anonymous>)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/pdgedit-generator-drift.test.js:191:28)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/Users/markmorris/vibe/architrino/scripts/glyphs/pdgedit-tile-pro-noether-braid-glyph.svg'
+  }
+
+test at tests/pdgedit-renderer-drift.test.js:205:1
+✖ the JS pdgedit tile renderer stays aligned with representative committed reference SVG artifacts (463.233583ms)
+  Error: ENOENT: no such file or directory, open '/Users/markmorris/vibe/architrino/scripts/glyphs/pdgedit-tile-pro-noether-braid-glyph.svg'
+      at Object.readFileSync (node:fs:436:20)
+      at readSvgTestCase (file:///Users/markmorris/vibe/architrino/tests/pdgedit-renderer-drift.test.js:22:13)
+      at file:///Users/markmorris/vibe/architrino/tests/pdgedit-renderer-drift.test.js:222:68
+      at Array.forEach (<anonymous>)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/pdgedit-renderer-drift.test.js:217:18)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: '/Users/markmorris/vibe/architrino/scripts/glyphs/pdgedit-tile-pro-noether-braid-glyph.svg'
+  }

@@ -1,6 +1,6 @@
 # NASA Space Mission and Probe Branch Registry
 
-This registry freezes the NASA space mission and probe branch order required by [codex-pr-branch.md](../codex-pr-branch.md). Branch names use lowercase hyphenated mission or probe names after `codex/`.
+This registry freezes the NASA space mission and probe branch order required by [pr-lifecycle.md](../pr-lifecycle.md). Branch names use lowercase hyphenated mission or probe names after `codex/`.
 
 The sequence starts with the crewed programs in flight order, then moves through robotic lunar exploration, the early planetary probes, the outer-planet flagships, the inner-planet orbiters, Mars surface and orbital missions, small-body and sample-return missions, heliophysics, the space telescopes, and the Earth science observatories. Several entries are international partnerships in which NASA is a principal participant rather than the sole agency; they are included under their common mission names.
 
