@@ -1,0 +1,262 @@
+[
+  {
+    "runId": "181ee36f-66d1-4b7d-bb1e-909e441de9ab",
+    "status": "completed",
+    "command": "node",
+    "args": [
+      "scripts/eom/prepare-f5-enclosed-root.mjs",
+      "--out",
+      ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-acceptance-a",
+      "--build-dir",
+      ".tmp/current-f5-acceptance-a"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a",
+    "startedAtUtc": "2026-09-08T21:04:19.966Z",
+    "finishedAtUtc": "2026-09-08T21:07:45.908Z",
+    "elapsedWallSeconds": 205.955,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "ed10d7ab3aab45361238297d1d55351ed1e8cb0f339c55c774877778258fd8ff",
+        "bytes": 209
+      },
+      "stderr": {
+        "sha256": "32b3d06d31b5d8f9de67a5e4953c1a2952ed4ce5f39e9768dbf857c73d0576fd",
+        "bytes": 12445
+      }
+    }
+  },
+  {
+    "runId": "49c93254-0141-4a56-8dc1-42e2b35144f7",
+    "status": "completed",
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "tests/f5-enclosed-root-current-build.test.js"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "startedAtUtc": "2026-09-08T21:10:19.203Z",
+    "finishedAtUtc": "2026-09-08T21:10:19.355Z",
+    "elapsedWallSeconds": 0.166,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "9fb5fd2b4d5684231db77e6d4b146fc33e0a79e9b9e1c05ee654ded9c3de1848",
+        "bytes": 522
+      },
+      "stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "runId": "8cb977c9-12e5-47cc-b1b7-19cb14e95f60",
+    "status": "completed",
+    "command": "node",
+    "args": [
+      "scripts/eom/prepare-f5-enclosed-root-build.mjs",
+      "--out",
+      ".local-data/braid-analysis/f5-enclosed-root-current-build/acceptance-20260908-a",
+      "--python",
+      "/Users/markmorris/vibe/.venv/bin/python",
+      "--builder-sha256",
+      "4df9d54cf3627fa5cb0b3acd47bfb3f941bf8b0f82db7800c7d4fa0e3f3df14e"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "startedAtUtc": "2026-09-08T21:10:35.689Z",
+    "finishedAtUtc": "2026-09-08T21:10:57.058Z",
+    "elapsedWallSeconds": 21.381,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "25b46f37014cfba63aecdfa3e835638ee7304c1bee046041780afff691d86d3c",
+        "bytes": 363
+      },
+      "stderr": {
+        "sha256": "361c7683826d8fd08f17f6519a78cedd954a9425a50d2f6fe41d455b0fcb5264",
+        "bytes": 27712
+      }
+    }
+  },
+  {
+    "runId": "97a2a320-c740-41b5-b226-ffdc28491e55",
+    "status": "failed",
+    "command": "node",
+    "args": [
+      "scripts/eom/prepare-f5-enclosed-root-build.mjs",
+      "--out",
+      ".local-data/braid-analysis/f5-enclosed-root-current-build/acceptance-20260908-b",
+      "--python",
+      "/Users/markmorris/vibe/.venv/bin/python",
+      "--builder-sha256",
+      "7253642d0850a32c51de944c3b14647089970b4e634d630d356be66577516c42"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "startedAtUtc": "2026-09-08T21:12:56.748Z",
+    "finishedAtUtc": "2026-09-08T21:12:59.075Z",
+    "elapsedWallSeconds": 2.34,
+    "exitCode": 1,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "sha256": "a909be0c07764629d0e3f03eaa0f055f119fa1cbb9e7bb13e44531530c188ae8",
+        "bytes": 4654
+      }
+    }
+  },
+  {
+    "runId": "22a59898-afb3-4297-a111-68e0147b30e9",
+    "status": "completed",
+    "command": "node",
+    "args": [
+      "scripts/eom/prepare-f5-enclosed-root-build.mjs",
+      "--out",
+      ".local-data/braid-analysis/f5-enclosed-root-current-build/acceptance-20260908-c",
+      "--python",
+      "/Users/markmorris/vibe/.venv/bin/python",
+      "--builder-sha256",
+      "eeb342b80ab855930d58d30a23eaa88ee8d8376ec3117d1c4f0e7d2cceb25ee6"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "startedAtUtc": "2026-09-08T21:13:53.152Z",
+    "finishedAtUtc": "2026-09-08T21:14:16.882Z",
+    "elapsedWallSeconds": 23.743,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "83a22d593b90b28596315644bf299529539bb89aa9d2ba7eb2a467d454205d50",
+        "bytes": 363
+      },
+      "stderr": {
+        "sha256": "17b0911f86241ff0b0a2d92bea14cc3533f89456721cfc99a76230e48b388629",
+        "bytes": 28056
+      }
+    }
+  },
+  {
+    "runId": "fdc7a8cd-7f3a-49b3-bbb3-9edea9cd777b",
+    "status": "completed",
+    "command": "/Users/markmorris/vibe/.venv/bin/python",
+    "args": [
+      "-B",
+      "-m",
+      "scripts.eom.oracle.f5_api_domain_conformance",
+      "--history-manifest",
+      "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-acceptance-a/history-manifest.json",
+      "--nominal-certificate",
+      "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-acceptance-a/nominal-history-conformance.json",
+      "--nominal-certificate-sha256",
+      "dc65ce6a3c50caa75e11001a0dd48f3250516ea55e315fffb896d29cc2a32a57",
+      "--out",
+      "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-acceptance-a/api-domain-conformance.json"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/api-reference-20260908-a",
+    "startedAtUtc": "2026-09-08T21:11:39.164Z",
+    "finishedAtUtc": "2026-09-08T21:14:53.759Z",
+    "elapsedWallSeconds": 194.609,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "a6568b354567a1971a162a77429cc4fbcee478d9775184cd91c8553d01dab0cb",
+        "bytes": 1354
+      },
+      "stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  },
+  {
+    "runId": "a55db104-8520-42b2-855c-9bbfe2e56d14",
+    "status": "completed",
+    "command": ".local-data/braid-analysis/f5-enclosed-root-current-build/acceptance-20260908-c/build/eom_f5_enclosed_root_cli",
+    "args": [
+      "manifest",
+      "--repo-root",
+      "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a",
+      "--campaign-id",
+      "f5-enclosed-root-restart-20260826-v1",
+      "--run-id",
+      "current-acceptance-a",
+      "--out",
+      "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-acceptance-a/current-captured-build-manifest.json"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "startedAtUtc": "2026-09-08T21:14:56.617Z",
+    "finishedAtUtc": "2026-09-08T21:15:01.223Z",
+    "elapsedWallSeconds": 4.622,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "sha256": "f65f94ea3ecffd8c70fc5d729d3a7b5228ad18235edf33366672addc393972d7",
+        "bytes": 2868
+      }
+    }
+  },
+  {
+    "runId": "0a8fc451-7c8a-47a7-8915-c54d73c66fc3",
+    "status": "completed",
+    "command": "node",
+    "args": [
+      "--test",
+      "--test-concurrency=1",
+      "tests/f5-enclosed-root-current-build.test.js"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "startedAtUtc": "2026-09-08T21:16:08.403Z",
+    "finishedAtUtc": "2026-09-08T21:16:08.561Z",
+    "elapsedWallSeconds": 0.17,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "logs": {
+      "stdout": {
+        "sha256": "128058f6a97c4f6709233695e288859108a2d2db17dd5cdad9f6ad74b03731c2",
+        "bytes": 524
+      },
+      "stderr": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  }
+]

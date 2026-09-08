@@ -1,0 +1,198 @@
+{
+  "run": {
+    "runId": "efd61ef6-af27-47c9-874c-058a3b7fdbb7",
+    "status": "completed",
+    "command": "node",
+    "args": [
+      "scripts/eom/run-current-f5-enclosed-root.mjs",
+      "--admission",
+      "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/f5-remaining-callers/current-build-admission.json",
+      "--admission-sha256",
+      "c129a2662a032b5259ef44659f88a1cd20a5e4a27f03456848aede4eda90893f",
+      "--preparation",
+      ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-acceptance-a/preparation.json",
+      "--api-proof",
+      ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-acceptance-a/api-domain-conformance.json",
+      "--out",
+      ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a",
+    "startedAtUtc": "2026-09-08T21:20:59.347Z",
+    "finishedAtUtc": "2026-09-08T21:21:51.199Z",
+    "elapsedWallSeconds": 51.866,
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true
+  },
+  "logs": {
+    "stdout": {
+      "sha256": "2914ab1f65b00159378569a2b516095a817c0803d65dd0de5c131e656cf3359d",
+      "bytes": 187
+    },
+    "stderr": {
+      "sha256": "9de03da617b89df39c2bae439380aa1fe92ab634ceed68008c75a6bfd60a8b6e",
+      "bytes": 7288
+    }
+  },
+  "artifacts": [
+    {
+      "path": ".local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/run.json",
+      "sha256": "8730dc2e5e7c5c72662939cf12b2fa2282a7c486b77988c96e9b0f8443065d37",
+      "bytes": 841646,
+      "schema": "braid-program/f5-enclosed-root-run.v1",
+      "status": "prescribed-root-ladder-passed-pending-review",
+      "authority": "prescribed-root evidence only; independent final review required; no ordinary evolution or physical claim",
+      "h3EvidenceEligible": false,
+      "rungs": [
+        {
+          "samples": 8,
+          "elapsedWallSeconds": 6.5422195,
+          "projectedFinalRungSeconds": 104.675512,
+          "files": [
+            {
+              "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/rung-8.ndjson",
+              "sha256": "ccd471c58b0db3d0b2a74a7108a5ecd064386979a9adb60f4897a418687c239a"
+            },
+            {
+              "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/root-8.log",
+              "sha256": "48f92d5edd2388f47f2318bf17443d57532ce5d59ee6b2a6925aa936a7e8ebfd"
+            },
+            {
+              "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/rung-8.json",
+              "sha256": "a6232aed1c5f97b27367193ad9c71282acba2a5e44102782a75281c1faa9ae95"
+            },
+            {
+              "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/prefix-8.json",
+              "sha256": "da633f9d1e8170788580ecd3bfb61760e882b4a0325341a7e23b60673706b5f6"
+            }
+          ]
+        },
+        {
+          "samples": 32,
+          "elapsedWallSeconds": 10.118789374999999,
+          "projectedFinalRungSeconds": 40.475157499999995,
+          "files": [
+            {
+              "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/rung-32.ndjson",
+              "sha256": "342d7937ca775d14928761c7eed98ff3872c54a24c8f5b69ac5937d51c92dd80"
+            },
+            {
+              "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/root-32.log",
+              "sha256": "2c8759026529d01e7398c05c34653bb899f2563f377b9052d3ae1b31d433bcb6"
+            },
+            {
+              "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/rung-32.json",
+              "sha256": "2d155f8b09a9ecb842ba65089b4c50a87f6d86a68d17f6fb7a327642df6d783d"
+            },
+            {
+              "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/prefix-32.json",
+              "sha256": "0b072b98421f0bad53f8810ac2dbb9083ec11db4810a9aaa92cb7551281eda88"
+            }
+          ]
+        },
+        {
+          "samples": 128,
+          "elapsedWallSeconds": 26.268967958999998,
+          "projectedFinalRungSeconds": 26.268967958999998,
+          "files": [
+            {
+              "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/rung-128.ndjson",
+              "sha256": "7f56fa3ff5d21458e0bdfd7a89a7a74b78c2e961679bbe4c5518e906edfa4a6e"
+            },
+            {
+              "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/root-128.log",
+              "sha256": "a120b88695ae18f622efc4b5cedeb7994c18fa6052a470924d1c4a3104fd2f4b"
+            },
+            {
+              "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/rung-128.json",
+              "sha256": "528766ad57254c6519102dcaeceb45ebc9c768e541bc315af44b16a4c1164974"
+            },
+            {
+              "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/ledger-reduction.json",
+              "sha256": "dd470afe2692196309407886b1b9fd0b51a3c4e8636bf1c63856c4b7fc1c7cf3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": ".local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/ledger-reduction.json",
+      "sha256": "dd470afe2692196309407886b1b9fd0b51a3c4e8636bf1c63856c4b7fc1c7cf3",
+      "bytes": 5563,
+      "schema": "braid-program/f5-enclosed-root-ledger-reduction.v1",
+      "accepted": true,
+      "structurallyAccepted": true,
+      "authority": "source-and-byte-bound-independent-reduction",
+      "h3EvidenceEligible": false,
+      "totalRows": 24192,
+      "rungOrder": [
+        8,
+        32,
+        128
+      ],
+      "historyManifestSha256": "bbfb55e2c789b5e6f034745c8e7e1b3a7d502b97082862558fb8eb4c6a707749",
+      "combinedScientificLedgerSha256": "4f42902af1ce56b8d102d32fc40ef74db0d974671f5e7ff9e66d1f66ff6dec05"
+    },
+    {
+      "path": ".local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/prefix-8.json",
+      "sha256": "da633f9d1e8170788580ecd3bfb61760e882b4a0325341a7e23b60673706b5f6",
+      "bytes": 7361,
+      "schema": "braid-program/f5-enclosed-root-prefix-reduction.v1",
+      "status": "genuine-prefix-ledger-checks-passed",
+      "accepted": true,
+      "authority": "source-and-byte-bound-frozen-validator-prefix-composition",
+      "h3EvidenceEligible": false,
+      "totalRows": 1152,
+      "rungOrder": [
+        8
+      ],
+      "historyManifestSha256": "bbfb55e2c789b5e6f034745c8e7e1b3a7d502b97082862558fb8eb4c6a707749"
+    },
+    {
+      "path": ".local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/prefix-32.json",
+      "sha256": "0b072b98421f0bad53f8810ac2dbb9083ec11db4810a9aaa92cb7551281eda88",
+      "bytes": 8540,
+      "schema": "braid-program/f5-enclosed-root-prefix-reduction.v1",
+      "status": "genuine-prefix-ledger-checks-passed",
+      "accepted": true,
+      "authority": "source-and-byte-bound-frozen-validator-prefix-composition",
+      "h3EvidenceEligible": false,
+      "totalRows": 5760,
+      "rungOrder": [
+        8,
+        32
+      ],
+      "historyManifestSha256": "bbfb55e2c789b5e6f034745c8e7e1b3a7d502b97082862558fb8eb4c6a707749"
+    },
+    {
+      "path": ".local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/checkpoint-8.json",
+      "sha256": "c4f44ae0dab5a47c6af0845d127ba4594b783708caf85f70fa600f3b0913ea05",
+      "bytes": 831384,
+      "schema": "braid-program/f5-enclosed-root-run.v1",
+      "status": "prefix-passed",
+      "authority": "prescribed-root evidence only; independent final review required; no ordinary evolution or physical claim",
+      "h3EvidenceEligible": false
+    },
+    {
+      "path": ".local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/checkpoint-32.json",
+      "sha256": "8c48cb635914846e173377712c34cab84ed219e3708e370062c54d8c99509aa7",
+      "bytes": 836191,
+      "schema": "braid-program/f5-enclosed-root-run.v1",
+      "status": "prefix-passed",
+      "authority": "prescribed-root evidence only; independent final review required; no ordinary evolution or physical claim",
+      "h3EvidenceEligible": false
+    },
+    {
+      "path": ".local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/checkpoint-128.json",
+      "sha256": "414b7e0a01f2a3d60f20ec5c6804984318a8723e6e13f989835eee4d564e1014",
+      "bytes": 841571,
+      "schema": "braid-program/f5-enclosed-root-run.v1",
+      "status": "prefix-passed",
+      "authority": "prescribed-root evidence only; independent final review required; no ordinary evolution or physical claim",
+      "h3EvidenceEligible": false
+    }
+  ],
+  "boundary": "Actual prescribed-root ladder and unchanged ledger acceptance; H3 eligibility remains false, no overall test-health or broader scientific-acceptance claim. No failed actual ladder attempt preceded this pass."
+}

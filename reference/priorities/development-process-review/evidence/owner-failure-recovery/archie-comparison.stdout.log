@@ -1,0 +1,152 @@
+Known comparison controls passed before target responses.
+{"caseId":"mcp-search-public-first-page-001","exact":false,"equalExceptSnapshotSha256":false}
+Expected values to be strictly deep-equal:
++ actual - expected
+... Skipped lines
+
+  {
+    error: null,
+    page: {
+      limit: 1,
+      nextCursor: 'eyJvZmZzZXQiOjEsInNjb3BlU2hhMjU2IjoiNjYyNzgyZTY2ZjRmNTY2NDdmNjk4NDE0NGYzNDA3YmU4MWFmYWVlODdmZGU3ZWViNDI5NmYxNGNhMThlY2RjMSIsInNoYTI1NiI6IjkzYmQxYWJjYWZhYmMyNDk4ZTEwNWFlOTY2N2NiNzU1ZTFmMDczZDhkM2NmNTFiMzJhYzlmNDE4MmNjZjY4ODUiLCJzbmFwc2hvdElkIjoic291cmNlX3NuYXBzaG90X2ZpeHR1cmVfMDAxIiwidG9vbCI6InNlYXJjaCIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9',
+...
+            sectionAnchor: 'purpose-and-scope',
++           selectionSha256: '0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be',
+-           selectionSha256: 'e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e',
+            sourceClass: 'published_corpus',
+            sourceId: 'source.ontology-purpose',
+            title: 'Ontology: Purpose and Scope',
+            visibility: 'public'
+          },
++         teaser: 'Ontology: Purpose and Scope ontological bedrock foundation levels absolute time architrino Euclidean void Noether sea Purpose and Scope This document establishes what fundamentally exists in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, what is emergen'
+-         teaser: 'Ontology: Purpose and Scope ontological bedrock foundation levels absolute time architrino Euclidean void Noether sea Purpose and Scope This document establishes the ontological bedrock of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$: what fundamentall'
+        }
+      ]
+    },
+    schema: 'archie-mcp-tool-response/v1',
+    snapshot: {
+
+{"caseId":"mcp-read-public-truncated-001","exact":false,"equalExceptSnapshotSha256":false}
+Expected values to be strictly deep-equal:
++ actual - expected
+... Skipped lines
+
+  {
+    error: null,
+    page: {
+      limit: 256,
+      nextCursor: 'eyJvZmZzZXQiOjI1Niwic2NvcGVTaGEyNTYiOiI5OGU1MjMzNzNlMmZmNmZmNDY2Y2FlNDBiZmQyZWJiZDNlMzc5NGM4YmMyMjU4MDI3OTdiMmViOGY1OTkwMmVkIiwic2hhMjU2IjoiNTA1ZjAwNzY3NTU4ZTA0NDVjNGM4Njg2YmU1OTVkMmRlOWVlMDEwYzVkNTFhMmQwZjJjNjU3MGI4NDU5N2U5YiIsInNuYXBzaG90SWQiOiJzb3VyY2Vfc25hcHNob3RfZml4dHVyZV8wMDEiLCJ0b29sIjoicmVhZCIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9',
+...
+        '\n' +
++       'This document establishes what fundamentally exists in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, what is emergent, and what observers reconstruct from inside the system.\n' +
+-       'This document establishes the ontological bedrock of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$: what fundamentally exists, what is emergent, and what Physical Observers reconstruct from inside the system.\n' +
+        '\n' +
+        'It defines six foundation routes:\n' +
+        '\n' +
++       '1. **The Substrate**: [absolute time',
+-       '1.',
+      contentComplete: false,
+      contentOffset: 0,
+      contentType: 'markdown',
+      kind: 'read',
+      metadata: [
+...
+          sourceId: 'source.ontology-purpose',
++         sourceSelectionSha256: '0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be',
+-         sourceSelectionSha256: 'e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e',
+          tex: '$$\n' +
+            'S(T)\n' +
+            '\\xrightarrow{\\Pi_{\\mathrm{assembly}}}\n' +
+            '\\mathfrak B(T)\n' +
+            '\\xrightarrow{\\Pi_{\\mathrm{eff}}}\n' +
+...
+        sectionAnchor: 'purpose-and-scope',
++       selectionSha256: '0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be',
+-       selectionSha256: 'e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e',
+        sourceClass: 'published_corpus',
+        sourceId: 'source.ontology-purpose',
+        title: 'Ontology: Purpose and Scope',
+        visibility: 'public'
+      }
+
+{"caseId":"mcp-read-missing-source-001","exact":false,"equalExceptSnapshotSha256":true}
+{"caseId":"mcp-topics-public-first-page-001","exact":false,"equalExceptSnapshotSha256":false}
+Expected values to be strictly deep-equal:
++ actual - expected
+... Skipped lines
+
+  {
+    error: null,
+    page: {
+      limit: 1,
+      nextCursor: 'eyJvZmZzZXQiOjEsInNjb3BlU2hhMjU2IjoiMDc2N2JmYWJhZjVmODBiYjMzOGEyMGEyOWRlOTA4ZGM2ZDAzOTMyMzA0M2Q2ZTc5ODdhZTBlMzYyN2Y0NDgxNCIsInNoYTI1NiI6IjUxYzQ5ZDMyMTJkYjkwMjkwNGFiMDA4ZmM4YjkwZmFlZTk3MjljMTRmNjMwZWUzNGYxNzViMmRlNzYyY2QyMGUiLCJzbmFwc2hvdElkIjoic291cmNlX3NuYXBzaG90X2ZpeHR1cmVfMDAxIiwidG9vbCI6InRvcGljcyIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9',
+...
+          sectionAnchor: 'purpose-and-scope',
++         selectionSha256: '0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be',
+-         selectionSha256: 'e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e',
+          sourceClass: 'published_corpus',
+          sourceId: 'source.ontology-purpose',
+          title: 'Ontology: Purpose and Scope',
+          visibility: 'public'
+        }
+
+{"caseId":"mcp-neighbors-public-first-page-001","exact":false,"equalExceptSnapshotSha256":false}
+Expected values to be strictly deep-equal:
++ actual - expected
+... Skipped lines
+
+  {
+    error: null,
+    page: {
+      limit: 1,
+      nextCursor: 'eyJvZmZzZXQiOjEsInNjb3BlU2hhMjU2IjoiNTIwM2JmYzNmMDAzMTZlMDhmNjhlODAwYWQxNDFlYWEwMDIzYThiMmNkOGZjZTk0MjE5NmRmZmJmZjlmOGNjNCIsInNoYTI1NiI6ImU3OTQ5MmU5NjM0NDk3NzNiOWUxNDQ2OTZkYjFlNGMyNzBkYjA4NjY4YTY0MTVhMWY2YWMzOWRjNDNjYjMwNDIiLCJzbmFwc2hvdElkIjoic291cmNlX3NuYXBzaG90X2ZpeHR1cmVfMDAxIiwidG9vbCI6Im5laWdoYm9ycyIsInZlcnNpb24iOjEsInZpc2liaWxpdHlTY29wZSI6InB1YmxpYyJ9',
+...
+        sectionAnchor: 'purpose-and-scope',
++       selectionSha256: '0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be',
+-       selectionSha256: 'e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e',
+        sourceClass: 'published_corpus',
+        sourceId: 'source.ontology-purpose',
+        title: 'Ontology: Purpose and Scope',
+        visibility: 'public'
+      },
+...
+            sectionAnchor: 'ontology',
++           selectionSha256: 'b470ef72cef4704bc2f591b73e698b7ad6ca5dd1ae9870a20251152307e1c370',
+-           selectionSha256: 'ee3e46701a43bd8e28246d3850aac50f7122e29c6c88715536d9819ce6d3f394',
+            sourceClass: 'generated_reading_copy',
+            sourceId: 'source.generated-foundations-ontology',
+            title: 'Generated Foundations Reading Copy: Ontology',
+            visibility: 'public'
+          }
+
+{"caseId":"mcp-read-priority-public-excluded-001","exact":false,"equalExceptSnapshotSha256":true}
+{"caseId":"mcp-read-priority-operator-visible-001","exact":false,"equalExceptSnapshotSha256":true}
+{"caseId":"mcp-walk-public-first-page-001","exact":false,"equalExceptSnapshotSha256":false}
+Expected values to be strictly deep-equal:
++ actual - expected
+... Skipped lines
+
+  {
+    error: null,
+    page: {
+      limit: 1,
+      nextCursor: 'eyJvZmZzZXQiOjEsInNjb3BlU2hhMjU2IjoiNGRiYmQzNzFkOGExYTRiYzcxNmI5MzkxYzVhMTE5NmQyNjY4NjkzZGNiOGNlZmUzYWI4NzUxMjQzMGQzMTlkMiIsInNoYTI1NiI6ImNkZjUwNjFhMTEzNmFmODNiMWYwYjNhZTFkY2RmNjQyZjMyODRmOGRkZjQ0M2Y4YjM3M2Y3MDQzM2FjMzMzMjIiLCJzbmFwc2hvdElkIjoic291cmNlX3NuYXBzaG90X2ZpeHR1cmVfMDAxIiwidG9vbCI6IndhbGsiLCJ2ZXJzaW9uIjoxLCJ2aXNpYmlsaXR5U2NvcGUiOiJwdWJsaWMifQ',
+...
+        sectionAnchor: 'purpose-and-scope',
++       selectionSha256: '0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be',
+-       selectionSha256: 'e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e',
+        sourceClass: 'published_corpus',
+        sourceId: 'source.ontology-purpose',
+        title: 'Ontology: Purpose and Scope',
+        visibility: 'public'
+      },
+...
+            sectionAnchor: 'ontology',
++           selectionSha256: 'b470ef72cef4704bc2f591b73e698b7ad6ca5dd1ae9870a20251152307e1c370',
+-           selectionSha256: 'ee3e46701a43bd8e28246d3850aac50f7122e29c6c88715536d9819ce6d3f394',
+            sourceClass: 'generated_reading_copy',
+            sourceId: 'source.generated-foundations-ontology',
+            title: 'Generated Foundations Reading Copy: Ontology',
+            visibility: 'public'
+          }
+

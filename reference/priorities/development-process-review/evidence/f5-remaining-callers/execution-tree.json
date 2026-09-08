@@ -1,0 +1,600 @@
+{
+  "schema": "braid-program/f5-original-input-tree.v1",
+  "originRoot": "/Users/markmorris/vibe/architrino",
+  "executionRoot": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/recovery-20260908-c",
+  "accepted": false,
+  "scientificAcceptance": false,
+  "sourceCensus": [
+    "scripts/eom/analyze-f5-phase-varying-guard-margin.mjs",
+    "scripts/eom/derive-f5-independent-interpolation-enclosure.mjs",
+    "scripts/eom/oracle/decimal_interval.py",
+    "scripts/eom/oracle/f5_actual_cubic_conformance.py",
+    "scripts/eom/oracle/f5_api_domain_conformance.py",
+    "scripts/eom/oracle/f5_history_manifest_conformance.py",
+    "scripts/eom/prepare-f5-enclosed-root.mjs",
+    "scripts/eom/prepare-f5-original-input-tree.mjs",
+    "scripts/eom/reduce-f5-enclosed-root-ledger.mjs",
+    "scripts/eom/verify-f5-enclosed-root-prefix.mjs",
+    "src/eom/CMakeLists.txt",
+    "src/eom/include/architrino/eom/BlockExclusion.hpp",
+    "src/eom/include/architrino/eom/CenteredAffine.hpp",
+    "src/eom/include/architrino/eom/CertifiedAcceleration.hpp",
+    "src/eom/include/architrino/eom/CertifiedTraversal.hpp",
+    "src/eom/include/architrino/eom/Checkpoint.hpp",
+    "src/eom/include/architrino/eom/CoupledEvolution.hpp",
+    "src/eom/include/architrino/eom/Decimal.hpp",
+    "src/eom/include/architrino/eom/DelayedRootSensitivity.hpp",
+    "src/eom/include/architrino/eom/DisplayEvaluation.hpp",
+    "src/eom/include/architrino/eom/ExactPairBatch.hpp",
+    "src/eom/include/architrino/eom/History.hpp",
+    "src/eom/include/architrino/eom/Interval.hpp",
+    "src/eom/include/architrino/eom/JointAccelerationSnapshot.hpp",
+    "src/eom/include/architrino/eom/JointAffineHistory.hpp",
+    "src/eom/include/architrino/eom/JointEndpointCorrector.hpp",
+    "src/eom/include/architrino/eom/JointRootBracket.hpp",
+    "src/eom/include/architrino/eom/JointSharpRow.hpp",
+    "src/eom/include/architrino/eom/JointState.hpp",
+    "src/eom/include/architrino/eom/Krawczyk.hpp",
+    "src/eom/include/architrino/eom/MultiprecisionAcceleration.hpp",
+    "src/eom/include/architrino/eom/RootTimeBudget.hpp",
+    "src/eom/include/architrino/eom/ShadowAffineDiagnostic.hpp",
+    "src/eom/include/architrino/eom/SharpAccelerationSensitivity.hpp",
+    "src/eom/native/eom_borg_shadow_cli.cpp",
+    "src/eom/native/eom_f5_enclosed_root_cli.cpp",
+    "src/eom/native/eom_f5_prehistory_inspector.cpp",
+    "src/eom/native/eom_history_profile_cli.cpp",
+    "src/eom/native/eom_native_acceleration_fixture_cli.cpp",
+    "src/eom/native/eom_native_evolution_fixture_cli.cpp",
+    "src/eom/native/eom_native_fixture_cli.cpp",
+    "src/eom/native/eom_recursive_block_benchmark_cli.cpp",
+    "src/eom/native/eom_stationary_joint_frontier_fixture_cli.cpp",
+    "src/eom/native/eom_subfield_circular_root_cli.cpp",
+    "src/eom/src/BlockExclusion.cpp",
+    "src/eom/src/CenteredAffine.cpp",
+    "src/eom/src/CertifiedAcceleration.cpp",
+    "src/eom/src/CertifiedTraversal.cpp",
+    "src/eom/src/Checkpoint.cpp",
+    "src/eom/src/CoupledEvolution.cpp",
+    "src/eom/src/DelayedRootSensitivity.cpp",
+    "src/eom/src/DisplayEvaluation.cpp",
+    "src/eom/src/ExactPairBatch.cpp",
+    "src/eom/src/History.cpp",
+    "src/eom/src/Interval.cpp",
+    "src/eom/src/JointAccelerationSnapshot.cpp",
+    "src/eom/src/JointAffineHistory.cpp",
+    "src/eom/src/JointEndpointCorrector.cpp",
+    "src/eom/src/JointRootBracket.cpp",
+    "src/eom/src/JointSharpRow.cpp",
+    "src/eom/src/JointState.cpp",
+    "src/eom/src/Krawczyk.cpp",
+    "src/eom/src/MultiprecisionAcceleration.cpp",
+    "src/eom/src/RootTimeBudget.cpp",
+    "src/eom/src/ShadowAffineDiagnostic.cpp",
+    "src/eom/src/SharpAccelerationSensitivity.cpp",
+    "src/prescribed-geometry/AssemblyScientificIdentity.mjs",
+    "src/prescribed-geometry/PrescribedAssemblySpec.mjs",
+    "src/prescribed-geometry/PrescribedAssemblyValidators.mjs",
+    "src/prescribed-geometry/PrescribedCircularRelationshipParameters.mjs",
+    "src/prescribed-geometry/PrescribedLatticeOperators.mjs",
+    "src/prescribed-geometry/PrescribedSeaModels.mjs",
+    "src/prescribed-geometry/PrescribedWorldlineOperators.mjs",
+    "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs",
+    "tests/f5-enclosed-root-ledger-reducer.test.js",
+    "tests/f5-enclosed-root-prefix.test.js",
+    "tests/f5-enclosed-root-preparation.test.js",
+    "tests/test_f5_api_domain_conformance.py",
+    "tests/test_f5_history_manifest_conformance.py"
+  ],
+  "routeManifest": {
+    "path": "reference/priorities/development-process-review/evidence/final-validation/f5-original-input-availability.json",
+    "sha256": "8046ca2129b0781015a5b777154403bfeda680e601e1c38056058ea7a941bd9b",
+    "bytes": 2884
+  },
+  "files": [
+    {
+      "logicalPath": "scripts/eom/analyze-f5-phase-varying-guard-margin.mjs",
+      "physicalPath": "scripts/eom/analyze-f5-phase-varying-guard-margin.mjs",
+      "sha256": "aab128d5abbd248fb1879ad6dba71844951593b3ef636d67742729bbff886dfd",
+      "bytes": 11609
+    },
+    {
+      "logicalPath": "scripts/eom/derive-f5-independent-interpolation-enclosure.mjs",
+      "physicalPath": "scripts/eom/derive-f5-independent-interpolation-enclosure.mjs",
+      "sha256": "f07ee01d7f253ae757b23fe1edb269b706f2da587f36d8fdb83dc653372d19a9",
+      "bytes": 21438
+    },
+    {
+      "logicalPath": "scripts/eom/oracle/decimal_interval.py",
+      "physicalPath": "scripts/eom/oracle/decimal_interval.py",
+      "sha256": "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a",
+      "bytes": 11321
+    },
+    {
+      "logicalPath": "scripts/eom/oracle/f5_actual_cubic_conformance.py",
+      "physicalPath": "scripts/eom/oracle/f5_actual_cubic_conformance.py",
+      "sha256": "4a90227cd79a4acfe319c723a05b711df1947953cc229f87114c4bc7babf6e09",
+      "bytes": 17091
+    },
+    {
+      "logicalPath": "scripts/eom/oracle/f5_api_domain_conformance.py",
+      "physicalPath": "scripts/eom/oracle/f5_api_domain_conformance.py",
+      "sha256": "d33d90d1b292466e03846c86017a2444e6228c45927ddd3bb49e28c3daf500d3",
+      "bytes": 21038
+    },
+    {
+      "logicalPath": "scripts/eom/oracle/f5_history_manifest_conformance.py",
+      "physicalPath": "scripts/eom/oracle/f5_history_manifest_conformance.py",
+      "sha256": "c34cd3f368398fd1ecd3a227c8026508efd319e9219b0ae8819eb4dfab646c74",
+      "bytes": 18010
+    },
+    {
+      "logicalPath": "scripts/eom/prepare-f5-enclosed-root.mjs",
+      "physicalPath": "scripts/eom/prepare-f5-enclosed-root.mjs",
+      "sha256": "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9",
+      "bytes": 16428
+    },
+    {
+      "logicalPath": "scripts/eom/prepare-f5-original-input-tree.mjs",
+      "physicalPath": "scripts/eom/prepare-f5-original-input-tree.mjs",
+      "sha256": "881ffd557e8459f259f948613a44e1c36e3b27804919c0e9468a541e25f09373",
+      "bytes": 10180
+    },
+    {
+      "logicalPath": "scripts/eom/reduce-f5-enclosed-root-ledger.mjs",
+      "physicalPath": "scripts/eom/reduce-f5-enclosed-root-ledger.mjs",
+      "sha256": "9c4d5730613597d7931b59c37d77c405bcf928de2421d55d3c76f78b7228a73a",
+      "bytes": 3211
+    },
+    {
+      "logicalPath": "scripts/eom/verify-f5-enclosed-root-prefix.mjs",
+      "physicalPath": "scripts/eom/verify-f5-enclosed-root-prefix.mjs",
+      "sha256": "c5894a68aaad645a68b3d74d146c8f23ada96a4e28eb21721a33344aad09f6da",
+      "bytes": 14354
+    },
+    {
+      "logicalPath": "src/eom/CMakeLists.txt",
+      "physicalPath": "src/eom/CMakeLists.txt",
+      "sha256": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4",
+      "bytes": 4907
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/BlockExclusion.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/BlockExclusion.hpp",
+      "sha256": "f576f253bc7194d75445569b4d3788512395fbe3f08acfdbf494f1c7edcc6490",
+      "bytes": 1027
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/CenteredAffine.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/CenteredAffine.hpp",
+      "sha256": "a2c7f515db7c79a9b96a40c0b3b2dcca2b76bf78279debaca6936330c03e7818",
+      "bytes": 1714
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/CertifiedAcceleration.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/CertifiedAcceleration.hpp",
+      "sha256": "91ab55e2c3570b36f7249b6433379286a41f8cae966eadd4b66f00670de7d406",
+      "bytes": 5289
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/CertifiedTraversal.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/CertifiedTraversal.hpp",
+      "sha256": "b5765672674be6f9de9afeb97a463a2df5fb46875a8552aecd5a2d0f7ca58cbb",
+      "bytes": 4024
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/Checkpoint.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/Checkpoint.hpp",
+      "sha256": "7625031e3b726cbcbde9c191891ab2c1bbdf92a51f44d07895bc5bb726fabf36",
+      "bytes": 1890
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/CoupledEvolution.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/CoupledEvolution.hpp",
+      "sha256": "d6eaf55ae249b29ec6c24f64cad9803b0f3c78111ce1c4850f9f9080f1fecf19",
+      "bytes": 31390
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/Decimal.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/Decimal.hpp",
+      "sha256": "8126e685d9be5a2d4935d29eaa12d1aa995822781c198d48d809c0f0b6ddad7f",
+      "bytes": 1320
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/DelayedRootSensitivity.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/DelayedRootSensitivity.hpp",
+      "sha256": "fb28860fcffd3e92032d77d0adf9b55b8db19d244dfd5a421b60ed1a38330fcf",
+      "bytes": 2005
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/DisplayEvaluation.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/DisplayEvaluation.hpp",
+      "sha256": "59963b603cc2473492323ec840f5030418780353a2626a5875599e3183613a2d",
+      "bytes": 1872
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/ExactPairBatch.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/ExactPairBatch.hpp",
+      "sha256": "bc4e09892c01f6b855bd4b1378c90999aefda0a747fdd5a816d86283a0e8d751",
+      "bytes": 6996
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/History.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/History.hpp",
+      "sha256": "0e326f15c70a0b0dc5786b1c14a2f2378324754c28cc597b92d82c0c1da3c8f3",
+      "bytes": 15845
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/Interval.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/Interval.hpp",
+      "sha256": "880a98273244c65f85ebcce2e08026a177c4af633633b8e29078948b54143dd9",
+      "bytes": 2708
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/JointAccelerationSnapshot.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/JointAccelerationSnapshot.hpp",
+      "sha256": "e8c726a936f7fbac9160f3e6fccd0a64384d460b7406b4c4f368ddc20aa71627",
+      "bytes": 2016
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/JointAffineHistory.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/JointAffineHistory.hpp",
+      "sha256": "ff0b4eaac6d7835a27fe66a95e0adf1cb45a40afe25b5f69b7afb0a366931cc0",
+      "bytes": 4696
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/JointEndpointCorrector.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/JointEndpointCorrector.hpp",
+      "sha256": "b91034725aa6b4afc23eefa3c1812aceb94555688106fc0eb784ebac310ef03e",
+      "bytes": 1530
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/JointRootBracket.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/JointRootBracket.hpp",
+      "sha256": "2d95c236bf845faf9e8f52d0a2549deb5a9a161fd9630ce843b57fee22acf5eb",
+      "bytes": 1498
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/JointSharpRow.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/JointSharpRow.hpp",
+      "sha256": "7d51bc8d806ffe3e4a1ce3b4df08307473be546c5a01e049ecd6e8c2dfd51159",
+      "bytes": 1991
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/JointState.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/JointState.hpp",
+      "sha256": "6e7efc0632a42f1d81d61ea8e54cdb8c5a14475a3642bcc2642661206de2ff2b",
+      "bytes": 1964
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/Krawczyk.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/Krawczyk.hpp",
+      "sha256": "4a0c3e7432af40721be4cfcf525e9062ce58a66710b138a23821173d4ba6f11a",
+      "bytes": 1348
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/MultiprecisionAcceleration.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/MultiprecisionAcceleration.hpp",
+      "sha256": "81078fd046710e1c0975fab9a7d96dfa9252b37471cecc54dc81ce7262b6c934",
+      "bytes": 1345
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/RootTimeBudget.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/RootTimeBudget.hpp",
+      "sha256": "a1352d075b9cb8cbd705c0526e7a8e6d2fb08677e9821923298c27f579d97280",
+      "bytes": 1679
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/ShadowAffineDiagnostic.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/ShadowAffineDiagnostic.hpp",
+      "sha256": "134cf73c4c7d30d5e18395600fc58d82302c53e21312df89a93fd4438ba96138",
+      "bytes": 1603
+    },
+    {
+      "logicalPath": "src/eom/include/architrino/eom/SharpAccelerationSensitivity.hpp",
+      "physicalPath": "src/eom/include/architrino/eom/SharpAccelerationSensitivity.hpp",
+      "sha256": "b38885b2541a85c4b77922aaba6d238bc09e0a62a982916ded30e8ff6b9cae1a",
+      "bytes": 1823
+    },
+    {
+      "logicalPath": "src/eom/native/eom_borg_shadow_cli.cpp",
+      "physicalPath": "src/eom/native/eom_borg_shadow_cli.cpp",
+      "sha256": "127dc12f228d1d1613b9522334ac4f8c25e176b56586172e003b6e26712e4992",
+      "bytes": 167450
+    },
+    {
+      "logicalPath": "src/eom/native/eom_f5_enclosed_root_cli.cpp",
+      "physicalPath": "src/eom/native/eom_f5_enclosed_root_cli.cpp",
+      "sha256": "16a067847d77348b4c4d809dbaece8a4a80b91a6e9568198603b0338407d38f6",
+      "bytes": 46324
+    },
+    {
+      "logicalPath": "src/eom/native/eom_f5_prehistory_inspector.cpp",
+      "physicalPath": "src/eom/native/eom_f5_prehistory_inspector.cpp",
+      "sha256": "b9aeb71f6ca48d77e6b22e2ba06b0adb91884b4569399d4c6fc1acd642298b36",
+      "bytes": 10042
+    },
+    {
+      "logicalPath": "src/eom/native/eom_history_profile_cli.cpp",
+      "physicalPath": "src/eom/native/eom_history_profile_cli.cpp",
+      "sha256": "f24f2a99a14d99c70dce52b149bb134daccc3c4e9ad3d03bf11e338ef3018522",
+      "bytes": 19743
+    },
+    {
+      "logicalPath": "src/eom/native/eom_native_acceleration_fixture_cli.cpp",
+      "physicalPath": "src/eom/native/eom_native_acceleration_fixture_cli.cpp",
+      "sha256": "c951a5adb30424b48246721008616fd6a7feda8cdc3a645b549b056f71741ee3",
+      "bytes": 22102
+    },
+    {
+      "logicalPath": "src/eom/native/eom_native_evolution_fixture_cli.cpp",
+      "physicalPath": "src/eom/native/eom_native_evolution_fixture_cli.cpp",
+      "sha256": "7310605d2a4bb7b165e1d6921f9de732415ac9f3cd77b20a5169eb01d2ff2be0",
+      "bytes": 125520
+    },
+    {
+      "logicalPath": "src/eom/native/eom_native_fixture_cli.cpp",
+      "physicalPath": "src/eom/native/eom_native_fixture_cli.cpp",
+      "sha256": "c41ffae16a701cfa7dfd0b2758d46fa2062ec461c655a3ef1ea7b8809a07841f",
+      "bytes": 69065
+    },
+    {
+      "logicalPath": "src/eom/native/eom_recursive_block_benchmark_cli.cpp",
+      "physicalPath": "src/eom/native/eom_recursive_block_benchmark_cli.cpp",
+      "sha256": "4827f793ce357abe995ad439256aa86cf47f2172f3c6af3ee704f0c95b5a9de6",
+      "bytes": 19032
+    },
+    {
+      "logicalPath": "src/eom/native/eom_stationary_joint_frontier_fixture_cli.cpp",
+      "physicalPath": "src/eom/native/eom_stationary_joint_frontier_fixture_cli.cpp",
+      "sha256": "5fb7631607a0095332b8e30b4d770218748671423f8521eb7c8a84514b6ed672",
+      "bytes": 23506
+    },
+    {
+      "logicalPath": "src/eom/native/eom_subfield_circular_root_cli.cpp",
+      "physicalPath": "src/eom/native/eom_subfield_circular_root_cli.cpp",
+      "sha256": "a06246ca3aac60d500981b19fcffabb9612dc3a4085fc4fb3c441e8839726b7a",
+      "bytes": 47455
+    },
+    {
+      "logicalPath": "src/eom/src/BlockExclusion.cpp",
+      "physicalPath": "src/eom/src/BlockExclusion.cpp",
+      "sha256": "17d3d1b6f9416feffc8881679f3c5b77186de417e7032e21d8cae4caee5e0fe6",
+      "bytes": 3899
+    },
+    {
+      "logicalPath": "src/eom/src/CenteredAffine.cpp",
+      "physicalPath": "src/eom/src/CenteredAffine.cpp",
+      "sha256": "ddfbf20ecf0dd7ad81ea1db7d80a069eca04b295273961a0bd90fcc734bdc787",
+      "bytes": 5512
+    },
+    {
+      "logicalPath": "src/eom/src/CertifiedAcceleration.cpp",
+      "physicalPath": "src/eom/src/CertifiedAcceleration.cpp",
+      "sha256": "58f425847442aa8772a1d3a63bb09bbae8d0883c56fd60a3d300273dc5e68878",
+      "bytes": 80803
+    },
+    {
+      "logicalPath": "src/eom/src/CertifiedTraversal.cpp",
+      "physicalPath": "src/eom/src/CertifiedTraversal.cpp",
+      "sha256": "b08675123f40563b1600d11616364ec28f3b20ca0840a352265e870811d95ae0",
+      "bytes": 23763
+    },
+    {
+      "logicalPath": "src/eom/src/Checkpoint.cpp",
+      "physicalPath": "src/eom/src/Checkpoint.cpp",
+      "sha256": "3513ebc6bf8066acffabc0814034d8d4761c9b22f96a746833d81ed69835841b",
+      "bytes": 37885
+    },
+    {
+      "logicalPath": "src/eom/src/CoupledEvolution.cpp",
+      "physicalPath": "src/eom/src/CoupledEvolution.cpp",
+      "sha256": "6fa61e458ec337982932a7882090a875ff045e0da10b405c221bc671a68a4d0d",
+      "bytes": 345378
+    },
+    {
+      "logicalPath": "src/eom/src/DelayedRootSensitivity.cpp",
+      "physicalPath": "src/eom/src/DelayedRootSensitivity.cpp",
+      "sha256": "7da0396aba07cbdf21f67a4e30965931ced12a52761f28e7e5ee6c2fcc6e4b07",
+      "bytes": 3617
+    },
+    {
+      "logicalPath": "src/eom/src/DisplayEvaluation.cpp",
+      "physicalPath": "src/eom/src/DisplayEvaluation.cpp",
+      "sha256": "fac7b6d020b7607e0d5700960c6fd1aab36a6353d0d107fe8a4bfbe3a9e6518c",
+      "bytes": 33953
+    },
+    {
+      "logicalPath": "src/eom/src/ExactPairBatch.cpp",
+      "physicalPath": "src/eom/src/ExactPairBatch.cpp",
+      "sha256": "c82b71c8335bd02a98941439d26a17ba3fc452318adb91cb5f42a015933e23c1",
+      "bytes": 154892
+    },
+    {
+      "logicalPath": "src/eom/src/History.cpp",
+      "physicalPath": "src/eom/src/History.cpp",
+      "sha256": "cd732843db488de66798953278d1e3b15151163c826b9d5b93eed98363a8b4c5",
+      "bytes": 72320
+    },
+    {
+      "logicalPath": "src/eom/src/Interval.cpp",
+      "physicalPath": "src/eom/src/Interval.cpp",
+      "sha256": "5da66e8473f78439dbb075857918af85b7789b2749e5046c83d9b58d944023a5",
+      "bytes": 11812
+    },
+    {
+      "logicalPath": "src/eom/src/JointAccelerationSnapshot.cpp",
+      "physicalPath": "src/eom/src/JointAccelerationSnapshot.cpp",
+      "sha256": "535fb930e074820979403fdcb5ab7dc756ecc39c74a37459a2808406da26403d",
+      "bytes": 29982
+    },
+    {
+      "logicalPath": "src/eom/src/JointAffineHistory.cpp",
+      "physicalPath": "src/eom/src/JointAffineHistory.cpp",
+      "sha256": "8911c42ccbbac3567417b1757bdf20770259af382c4b7efbf0c1de1af3f2b7ab",
+      "bytes": 23346
+    },
+    {
+      "logicalPath": "src/eom/src/JointEndpointCorrector.cpp",
+      "physicalPath": "src/eom/src/JointEndpointCorrector.cpp",
+      "sha256": "84e819086e02fde699db8b4ba968a41f968b0e7370b79078653f9bf192a192a9",
+      "bytes": 8159
+    },
+    {
+      "logicalPath": "src/eom/src/JointRootBracket.cpp",
+      "physicalPath": "src/eom/src/JointRootBracket.cpp",
+      "sha256": "5d9bd6cc18057e3337346fae679e268079242d16fc137aae5442745c4292dcf7",
+      "bytes": 3859
+    },
+    {
+      "logicalPath": "src/eom/src/JointSharpRow.cpp",
+      "physicalPath": "src/eom/src/JointSharpRow.cpp",
+      "sha256": "eb0b6864539de68b9b641e9d16d19164b34103c8c45de0d4fe11a533f4b208e3",
+      "bytes": 13335
+    },
+    {
+      "logicalPath": "src/eom/src/JointState.cpp",
+      "physicalPath": "src/eom/src/JointState.cpp",
+      "sha256": "9ea62b42798e144b26787deee027f52fb8655c4ed64a8a045db1c568e4fb9645",
+      "bytes": 6287
+    },
+    {
+      "logicalPath": "src/eom/src/Krawczyk.cpp",
+      "physicalPath": "src/eom/src/Krawczyk.cpp",
+      "sha256": "8e45748f3c12bed75251dbbbdf42072d24d385a6a120635064eb891d99f0cfdc",
+      "bytes": 7827
+    },
+    {
+      "logicalPath": "src/eom/src/MultiprecisionAcceleration.cpp",
+      "physicalPath": "src/eom/src/MultiprecisionAcceleration.cpp",
+      "sha256": "131d86f6b66396cbc8deb2c60e7d3f49c294be5728fe5ea742f9c416502becc0",
+      "bytes": 33744
+    },
+    {
+      "logicalPath": "src/eom/src/RootTimeBudget.cpp",
+      "physicalPath": "src/eom/src/RootTimeBudget.cpp",
+      "sha256": "f4819c5fea7b8b681a3436345fc81b9e4fb83c774e1938b33c3252b10aa7fac4",
+      "bytes": 5338
+    },
+    {
+      "logicalPath": "src/eom/src/ShadowAffineDiagnostic.cpp",
+      "physicalPath": "src/eom/src/ShadowAffineDiagnostic.cpp",
+      "sha256": "ae5de8c7dbcf14648b096c57a91d9d6fe476f218f6faa5b93c085523934a1254",
+      "bytes": 60392
+    },
+    {
+      "logicalPath": "src/eom/src/SharpAccelerationSensitivity.cpp",
+      "physicalPath": "src/eom/src/SharpAccelerationSensitivity.cpp",
+      "sha256": "198fdbd118e103fc64dfa5cab1785318ae54075238852f96a02c2b81cf0b286c",
+      "bytes": 4339
+    },
+    {
+      "logicalPath": "src/prescribed-geometry/AssemblyScientificIdentity.mjs",
+      "physicalPath": "src/prescribed-geometry/AssemblyScientificIdentity.mjs",
+      "sha256": "e00c54bae0fddbe6776f127511440f2cf0a1466364eedc244384a5d055b94952",
+      "bytes": 5359
+    },
+    {
+      "logicalPath": "src/prescribed-geometry/PrescribedAssemblySpec.mjs",
+      "physicalPath": "src/prescribed-geometry/PrescribedAssemblySpec.mjs",
+      "sha256": "764fe3dd6c10feb711e0d449556b556c38d1d4c7de03a75d14d3bb34e2b5ea73",
+      "bytes": 25058
+    },
+    {
+      "logicalPath": "src/prescribed-geometry/PrescribedAssemblyValidators.mjs",
+      "physicalPath": "src/prescribed-geometry/PrescribedAssemblyValidators.mjs",
+      "sha256": "36a0b4e239eb58bd49aac4f7a196e9bc8ce3f22fa6ee9a35787e81cc60f833e6",
+      "bytes": 9146
+    },
+    {
+      "logicalPath": "src/prescribed-geometry/PrescribedCircularRelationshipParameters.mjs",
+      "physicalPath": "src/prescribed-geometry/PrescribedCircularRelationshipParameters.mjs",
+      "sha256": "bb463790020de1ff40558448977e3947b6041a4d9ed9a66d2fb140b57db3096c",
+      "bytes": 17125
+    },
+    {
+      "logicalPath": "src/prescribed-geometry/PrescribedLatticeOperators.mjs",
+      "physicalPath": "src/prescribed-geometry/PrescribedLatticeOperators.mjs",
+      "sha256": "f66bb536172b7e84794e4d1df717c860ba782cb326ca02ffc66ffc102aa82d40",
+      "bytes": 19852
+    },
+    {
+      "logicalPath": "src/prescribed-geometry/PrescribedSeaModels.mjs",
+      "physicalPath": "src/prescribed-geometry/PrescribedSeaModels.mjs",
+      "sha256": "f52aa56b23a97b1677f6f835270b16188510ddbcceb415f00758a0689fe5f260",
+      "bytes": 12553
+    },
+    {
+      "logicalPath": "src/prescribed-geometry/PrescribedWorldlineOperators.mjs",
+      "physicalPath": "src/prescribed-geometry/PrescribedWorldlineOperators.mjs",
+      "sha256": "f641daba8184c7e997478494d1642291d40fd6a6d365c289c6ee8b6637ef0a01",
+      "bytes": 18907
+    },
+    {
+      "logicalPath": "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs",
+      "physicalPath": "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs",
+      "sha256": "1b5051928406482ffa3fecfaa60b1e94d3f1372ed87ea2ea5e7442523ddc8fd0",
+      "bytes": 56346
+    },
+    {
+      "logicalPath": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "physicalPath": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "sha256": "de97d82cd75207f06edaf6694bac99304864e3fa6888641a9492c03e02132e0c",
+      "bytes": 27932
+    },
+    {
+      "logicalPath": "tests/f5-enclosed-root-prefix.test.js",
+      "physicalPath": "tests/f5-enclosed-root-prefix.test.js",
+      "sha256": "09d7b6d1a3db082a771b0a9967f505e22e94ba6d5952e57b1fd2559039806a87",
+      "bytes": 7586
+    },
+    {
+      "logicalPath": "tests/f5-enclosed-root-preparation.test.js",
+      "physicalPath": "tests/f5-enclosed-root-preparation.test.js",
+      "sha256": "66c8074dac80ce36e560c52d77779b9cbf381c3774bd26cb96074a59f6965e10",
+      "bytes": 6131
+    },
+    {
+      "logicalPath": "tests/test_f5_api_domain_conformance.py",
+      "physicalPath": "tests/test_f5_api_domain_conformance.py",
+      "sha256": "5fce3ea7c46e48073e5b7e038a858590e647997fdcfa71da58a3f282c663c788",
+      "bytes": 13280
+    },
+    {
+      "logicalPath": "tests/test_f5_history_manifest_conformance.py",
+      "physicalPath": "tests/test_f5_history_manifest_conformance.py",
+      "sha256": "b927ab51af36bf1a449645ec3f43ce7b0428e83db2d1ebba02675437ab91cc29",
+      "bytes": 10394
+    },
+    {
+      "logicalPath": "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
+      "physicalPath": "reference/priorities/development-process-review/evidence/next-caller-inputs/phase-varying-prescribed-display-history.v3.json.e92e450c8ea8.source",
+      "sha256": "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
+      "bytes": 17369
+    },
+    {
+      "logicalPath": "reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json",
+      "physicalPath": "reference/priorities/development-process-review/evidence/next-caller-inputs/2026-08-26-f5-phase-varying-root-pilot-source.v2.json.bda39fe695e8.source",
+      "sha256": "bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344",
+      "bytes": 17028
+    },
+    {
+      "logicalPath": "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md",
+      "physicalPath": "reference/priorities/development-process-review/evidence/final-validation/2026-08-26-f5-enclosed-root-restart-predeclaration.md.1bc458d0b80c.source",
+      "sha256": "1bc458d0b80c0a4f9e5b5c22e83d7e360306f020526296a937ae26742a6296e5",
+      "bytes": 6049
+    },
+    {
+      "logicalPath": "reference/priorities/braid-program/evidence/2026-08-26-f5-independent-interpolation-enclosure.md",
+      "physicalPath": "reference/priorities/development-process-review/evidence/final-validation/2026-08-26-f5-independent-interpolation-enclosure.md.931f5d88a209.source",
+      "sha256": "931f5d88a209648bde63dfbdd1f24303b7a33e101e11565e75fd608be347d496",
+      "bytes": 4826
+    },
+    {
+      "logicalPath": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure/accepted-enclosure-report.v1.json",
+      "physicalPath": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure/accepted-enclosure-report.v1.json",
+      "sha256": "2f8fa7bdd40df643a661b2efae4a1007683120077d074165f8f506a4b9941bd9",
+      "bytes": 201871
+    }
+  ],
+  "boundary": "Explicit original data under original logical names; captured current source bytes are unchanged. This materialization record is not build review, runtime authentication, proof acceptance or a solver result. Consumers retain their own validation and source-authentication obligations."
+}

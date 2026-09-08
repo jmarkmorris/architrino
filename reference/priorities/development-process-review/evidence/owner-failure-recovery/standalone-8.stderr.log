@@ -1,0 +1,3 @@
+Archie source-index check failed with 2 error(s):
+- source-index snapshot drift: run node scripts/archie-service/build-source-index.mjs --write
+- source-index snapshot validation failed: generated artifact digest mismatch for readingCopies

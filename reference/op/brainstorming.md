@@ -208,10 +208,8 @@ Each row below has one final disposition. Prior office review is reused for its 
 | [reference/op/git/branch-series/moons.md](git/branch-series/moons.md) | Registry framing reviewed; data unchanged | Declared series purpose and order preserved |
 | [reference/op/git/branch-series/planets.md](git/branch-series/planets.md) | Registry framing reviewed; data unchanged | Declared series purpose and order preserved |
 | [reference/op/git/branch-series/registry.md](git/branch-series/registry.md) | Registry framing reviewed; data unchanged | Declared series purpose and order preserved |
-| [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md) | Updated; source and workflow conformance reviewed | Purpose, standard ownership, evidence, and execution authority |
-| [reference/op/git/codex-pr-unattended-verification.md](git/codex-pr-unattended-verification.md) | Reviewed; source and workflow conformance retained | Purpose, standard ownership, evidence, and execution authority |
-| [reference/op/git/continuous-development-during-pr-review.md](git/continuous-development-during-pr-review.md) | Reviewed; source and workflow conformance retained | Purpose, standard ownership, evidence, and execution authority |
-| [reference/op/git/issue-resolution.md](git/issue-resolution.md) | Updated; source and workflow conformance reviewed | Purpose, standard ownership, evidence, and execution authority |
+| [reference/op/git/pr-lifecycle.md](git/pr-lifecycle.md) | Updated; source and workflow conformance reviewed | Purpose, standard ownership, evidence, and execution authority |
+| [reference/op/git/github-issue-resolution.md](git/github-issue-resolution.md) | Updated; source and workflow conformance reviewed | Purpose, standard ownership, evidence, and execution authority |
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | Updated; source and workflow conformance reviewed | Purpose, standard ownership, evidence, and execution authority |
 | [reference/op/machine-artifact-retention-registry.v1.json](machine-artifact-retention-registry.v1.json) | Support asset parsed; unchanged | Outside prose conversion; owner and numerical settings preserved |
 | [reference/op/machine-artifact-retention.md](machine-artifact-retention.md) | Updated; source and workflow conformance reviewed | Purpose, standard ownership, evidence, and execution authority |
@@ -338,8 +336,8 @@ That file is a routing aid, not an authority. If it conflicts with the live sour
 
 - Git lifecycle routing, including the branch-series registries: [git/README.md](git/README.md).
 - Fresh-session bootstrap check when the session root, project, or mounts change: [session-root-self-test.md](session-root-self-test.md).
-- Branch, commit, push, and PR mechanics: [codex-pr-branch.md](git/codex-pr-branch.md).
-- GitHub issue resolution: [issue-resolution.md](git/issue-resolution.md), then [codex-pr-branch.md](git/codex-pr-branch.md) if the work needs a branch, commit, push, or PR.
+- Branch, commit, push, and PR mechanics: [pr-lifecycle.md](git/pr-lifecycle.md).
+- GitHub issue resolution: [github-issue-resolution.md](git/github-issue-resolution.md), then [pr-lifecycle.md](git/pr-lifecycle.md) if the work needs a branch, commit, push, or PR.
 
 ## Research, Corpus Convergence, and Sources
 

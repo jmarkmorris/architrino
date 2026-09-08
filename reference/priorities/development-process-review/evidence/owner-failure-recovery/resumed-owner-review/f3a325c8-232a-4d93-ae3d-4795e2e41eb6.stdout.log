@@ -1,0 +1,448 @@
+TAP version 13
+# Subtest: Borg mounts EOM idle by default and reserves automatic compute for explicit shadow mode
+ok 1 - Borg mounts EOM idle by default and reserves automatic compute for explicit shadow mode
+  ---
+  duration_ms: 40.166166
+  type: 'test'
+  ...
+# Subtest: Borg startup seed is randomized but remains injectable for deterministic controls
+ok 2 - Borg startup seed is randomized but remains injectable for deterministic controls
+  ---
+  duration_ms: 0.660041
+  type: 'test'
+  ...
+# Subtest: Borg EOM accepts individual polarity counts through a continuous prescribed initial history
+ok 3 - Borg EOM accepts individual polarity counts through a continuous prescribed initial history
+  ---
+  duration_ms: 0.468709
+  type: 'test'
+  ...
+# Subtest: Borg computes artificial-history depth from causal separation and transmitter speed
+ok 4 - Borg computes artificial-history depth from causal separation and transmitter speed
+  ---
+  duration_ms: 0.10375
+  type: 'test'
+  ...
+# Subtest: Borg EOM migration uses canonical field speed and the declared memory depth
+ok 5 - Borg EOM migration uses canonical field speed and the declared memory depth
+  ---
+  duration_ms: 0.561916
+  type: 'test'
+  ...
+# Subtest: Borg certified-budget hashes identify the complete canonical allocations
+ok 6 - Borg certified-budget hashes identify the complete canonical allocations
+  ---
+  duration_ms: 0.196334
+  type: 'test'
+  ...
+# Subtest: Borg Display host memory keeps a proportional Mac reserve and admits available growth
+ok 7 - Borg Display host memory keeps a proportional Mac reserve and admits available growth
+  ---
+  duration_ms: 0.134542
+  type: 'test'
+  ...
+# Subtest: Borg live contract and certified-budget records match the runtime identities
+not ok 8 - Borg live contract and certified-budget records match the runtime identities
+  ---
+  duration_ms: 2.37525
+  type: 'test'
+  location: '/Users/markmorris/vibe/architrino/tests/borg-eom-migration.test.js:473:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'ccff8f702e9c2b3919a20186f05e804d11c7b829575850cae1b7844c3c963513'
+    - 'dbb88e073d51b5980e0520c0720439e803eeab35b350c49b3dd67adc3f036a3d'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'dbb88e073d51b5980e0520c0720439e803eeab35b350c49b3dd67adc3f036a3d'
+  actual: 'ccff8f702e9c2b3919a20186f05e804d11c7b829575850cae1b7844c3c963513'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/borg-eom-migration.test.js:494:10)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: Borg EOM migration imports a complete continuous past, never a state-only start
+ok 9 - Borg EOM migration imports a complete continuous past, never a state-only start
+  ---
+  duration_ms: 0.224375
+  type: 'test'
+  ...
+# Subtest: Borg EOM shadow runner sends retained histories and derives frames only from published histories
+ok 10 - Borg EOM shadow runner sends retained histories and derives frames only from published histories
+  ---
+  duration_ms: 1.452709
+  type: 'test'
+  ...
+# Subtest: Borg EOM requests preserve the native checkpoint's exact decimal cut time
+ok 11 - Borg EOM requests preserve the native checkpoint's exact decimal cut time
+  ---
+  duration_ms: 0.158541
+  type: 'test'
+  ...
+# Subtest: Borg EOM runner preserves a numerically equal seed-history cut token
+ok 12 - Borg EOM runner preserves a numerically equal seed-history cut token
+  ---
+  duration_ms: 0.662959
+  type: 'test'
+  ...
+# Subtest: Borg EOM carries the controller height across atomic chunks
+ok 13 - Borg EOM carries the controller height across atomic chunks
+  ---
+  duration_ms: 0.335333
+  type: 'test'
+  ...
+# Subtest: Borg display grade starts directly from point-projected input history
+ok 14 - Borg display grade starts directly from point-projected input history
+  ---
+  duration_ms: 2.53475
+  type: 'test'
+  ...
+# Subtest: Borg Display releases exactly the solver-cleared retained prefix
+ok 15 - Borg Display releases exactly the solver-cleared retained prefix
+  ---
+  duration_ms: 1.162
+  type: 'test'
+  ...
+# Subtest: Borg Display response accepts a self-consistent host memory envelope without changing Claim budget
+ok 16 - Borg Display response accepts a self-consistent host memory envelope without changing Claim budget
+  ---
+  duration_ms: 0.499958
+  type: 'test'
+  ...
+# Subtest: Borg EOM shadow runner supports a deterministic retained-history population subset
+ok 17 - Borg EOM shadow runner supports a deterministic retained-history population subset
+  ---
+  duration_ms: 0.200292
+  type: 'test'
+  ...
+# Subtest: Borg EOM preserves the finite UI duration, supports Forever, and keeps its atomic chunk
+ok 18 - Borg EOM preserves the finite UI duration, supports Forever, and keeps its atomic chunk
+  ---
+  duration_ms: 0.113083
+  type: 'test'
+  ...
+# Subtest: Borg promotion accepts canonical evolution from certified initial history
+ok 19 - Borg promotion accepts canonical evolution from certified initial history
+  ---
+  duration_ms: 0.2815
+  type: 'test'
+  ...
+# Subtest: Borg publishes EOM evolution from accepted initial history at T=0
+ok 20 - Borg publishes EOM evolution from accepted initial history at T=0
+  ---
+  duration_ms: 0.269208
+  type: 'test'
+  ...
+# Subtest: Borg EOM shadow response rejects reordered or incomplete published histories
+ok 21 - Borg EOM shadow response rejects reordered or incomplete published histories
+  ---
+  duration_ms: 0.122792
+  type: 'test'
+  ...
+# Subtest: Borg EOM verification failed responses preserve native diagnostics
+ok 22 - Borg EOM verification failed responses preserve native diagnostics
+  ---
+  duration_ms: 0.101959
+  type: 'test'
+  ...
+# Subtest: Borg names the exact response provenance field that failed
+ok 23 - Borg names the exact response provenance field that failed
+  ---
+  duration_ms: 0.118292
+  type: 'test'
+  ...
+# Subtest: Borg certified response firewall rejects a server-invented evidence status
+ok 24 - Borg certified response firewall rejects a server-invented evidence status
+  ---
+  duration_ms: 0.111917
+  type: 'test'
+  ...
+# Subtest: Borg claim grade publishes only its accepted prefix and then stops
+ok 25 - Borg claim grade publishes only its accepted prefix and then stops
+  ---
+  duration_ms: 0.184208
+  type: 'test'
+  ...
+# Subtest: Borg halted off-lattice prefix keeps distinct frame indexes
+ok 26 - Borg halted off-lattice prefix keeps distinct frame indexes
+  ---
+  duration_ms: 0.210708
+  type: 'test'
+  ...
+# Subtest: Borg claim grade stops instead of changing grade after an execution timeout
+ok 27 - Borg claim grade stops instead of changing grade after an execution timeout
+  ---
+  duration_ms: 0.169417
+  type: 'test'
+  ...
+# Subtest: Borg keeps memory and engine failures as hard stops
+ok 28 - Borg keeps memory and engine failures as hard stops
+  ---
+  duration_ms: 0.647625
+  type: 'test'
+  ...
+# Subtest: Borg refuses to display a halted response without a nonempty atomic prefix
+ok 29 - Borg refuses to display a halted response without a nonempty atomic prefix
+  ---
+  duration_ms: 0.250416
+  type: 'test'
+  ...
+# Subtest: Borg native process protocol carries the same continuous-history request
+ok 30 - Borg native process protocol carries the same continuous-history request
+  ---
+  duration_ms: 0.967625
+  type: 'test'
+  ...
+# Subtest: Borg native client rejects protocol skew with a restart instruction
+ok 31 - Borg native client rejects protocol skew with a restart instruction
+  ---
+  duration_ms: 350.409667
+  type: 'test'
+  ...
+# Subtest: Borg native clients own separate exact-history temporary roots
+ok 32 - Borg native clients own separate exact-history temporary roots
+  ---
+  duration_ms: 430.51675
+  type: 'test'
+  ...
+# Subtest: Borg native client restarts a persistent worker when its executable changes
+ok 33 - Borg native client restarts a persistent worker when its executable changes
+  ---
+  duration_ms: 386.644333
+  type: 'test'
+  ...
+# Subtest: Borg native client clears its history prefix after a halted request
+ok 34 - Borg native client clears its history prefix after a halted request
+  ---
+  duration_ms: 313.842
+  type: 'test'
+  ...
+# Subtest: Borg server process client forwards a validated Display prefix without segment retransmission
+ok 35 - Borg server process client forwards a validated Display prefix without segment retransmission
+  ---
+  duration_ms: 300.882
+  type: 'test'
+  ...
+# Subtest: Borg browser EOM client posts the retained-history contract to the local native endpoint
+ok 36 - Borg browser EOM client posts the retained-history contract to the local native endpoint
+  ---
+  duration_ms: 0.370291
+  type: 'test'
+  ...
+# Subtest: Borg browser EOM client sends only a validated cached prefix after the first Display increment
+ok 37 - Borg browser EOM client sends only a validated cached prefix after the first Display increment
+  ---
+  duration_ms: 0.290083
+  type: 'test'
+  ...
+# Subtest: Borg browser EOM client preserves full certified history across chunk two
+ok 38 - Borg browser EOM client preserves full certified history across chunk two
+  ---
+  duration_ms: 0.135291
+  type: 'test'
+  ...
+# Subtest: Borg browser EOM cache releases a solver-cleared prefix before the next increment
+ok 39 - Borg browser EOM cache releases a solver-cleared prefix before the next increment
+  ---
+  duration_ms: 0.185875
+  type: 'test'
+  ...
+# Subtest: Borg browser keeps a bounded Display window while the worker prefix grows
+ok 40 - Borg browser keeps a bounded Display window while the worker prefix grows
+  ---
+  duration_ms: 1.655833
+  type: 'test'
+  ...
+# Subtest: Borg browser EOM client stops if its worker-owned exact history is lost
+ok 41 - Borg browser EOM client stops if its worker-owned exact history is lost
+  ---
+  duration_ms: 0.209833
+  type: 'test'
+  ...
+# Subtest: disposing the Borg browser EOM client aborts an active native request
+ok 42 - disposing the Borg browser EOM client aborts an active native request
+  ---
+  duration_ms: 0.245709
+  type: 'test'
+  ...
+# Subtest: Borg browser EOM client reports a certified request timeout without changing grade
+ok 43 - Borg browser EOM client reports a certified request timeout without changing grade
+  ---
+  duration_ms: 1.909666
+  type: 'test'
+  ...
+# Subtest: Borg browser EOM client classifies HTTP failures without retrying evolution
+ok 44 - Borg browser EOM client classifies HTTP failures without retrying evolution
+  ---
+  duration_ms: 0.150792
+  type: 'test'
+  ...
+# Subtest: Library query contract exposes independent facts-first facets
+ok 45 - Library query contract exposes independent facts-first facets
+  ---
+  duration_ms: 2.532583
+  type: 'test'
+  ...
+# Subtest: retired query fields and selector values fail closed
+ok 46 - retired query fields and selector values fail closed
+  ---
+  duration_ms: 0.306333
+  type: 'test'
+  ...
+# Subtest: every Library row carries the exact identity pair and no alias surface
+ok 47 - every Library row carries the exact identity pair and no alias surface
+  ---
+  duration_ms: 17.669791
+  type: 'test'
+  ...
+# Subtest: Library classifications bind exact scientific identities
+ok 48 - Library classifications bind exact scientific identities
+  ---
+  duration_ms: 0.9275
+  type: 'test'
+  ...
+# Subtest: Library scientific projection is Braid Program owned and exact adjudications bind exact identities
+ok 49 - Library scientific projection is Braid Program owned and exact adjudications bind exact identities
+  ---
+  duration_ms: 1.496083
+  type: 'test'
+  ...
+# Subtest: seed provider covers all current records and exact preview pins
+not ok 50 - seed provider covers all current records and exact preview pins
+  ---
+  duration_ms: 1342.920875
+  type: 'test'
+  location: '/Users/markmorris/vibe/architrino/tests/borg-library.test.js:92:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 145
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 145
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/borg-library.test.js:98:10)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: seed provider exposes one 100-variant balance card and exact variant drill-down
+not ok 51 - seed provider exposes one 100-variant balance card and exact variant drill-down
+  ---
+  duration_ms: 1245.894792
+  type: 'test'
+  location: '/Users/markmorris/vibe/architrino/tests/borg-library.test.js:128:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 100
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 100
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/borg-library.test.js:135:10)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: Library presents grouped results as braids and exact configurations as supporting provenance
+ok 52 - Library presents grouped results as braids and exact configurations as supporting provenance
+  ---
+  duration_ms: 1.962459
+  type: 'test'
+  ...
+# Subtest: projection reproduces the current three-H4-pass and zero-H5-pass census
+ok 53 - projection reproduces the current three-H4-pass and zero-H5-pass census
+  ---
+  duration_ms: 0.72375
+  type: 'test'
+  ...
+# Subtest: H5 unknown stays unknown and an H4 pass is not promoted to retention
+ok 54 - H5 unknown stays unknown and an H4 pass is not promoted to retention
+  ---
+  duration_ms: 0.551583
+  type: 'test'
+  ...
+# Subtest: exact H4 and H5 failures use scoped wording
+ok 55 - exact H4 and H5 failures use scoped wording
+  ---
+  duration_ms: 0.830792
+  type: 'test'
+  ...
+# Subtest: bounded no-success wording names the searched domain
+ok 56 - bounded no-success wording names the searched domain
+  ---
+  duration_ms: 0.326417
+  type: 'test'
+  ...
+# Subtest: certified prescribed-balance obstruction is scoped, exact, and fail closed
+ok 57 - certified prescribed-balance obstruction is scoped, exact, and fail closed
+  ---
+  duration_ms: 0.2185
+  type: 'test'
+  ...
+# Subtest: static stella-octangula catalog endpoint exposes only its exact balance exclusion
+ok 58 - static stella-octangula catalog endpoint exposes only its exact balance exclusion
+  ---
+  duration_ms: 0.20525
+  type: 'test'
+  ...
+# Subtest: presentation rename preserves binding while model revision change invalidates it
+ok 59 - presentation rename preserves binding while model revision change invalidates it
+  ---
+  duration_ms: 0.278292
+  type: 'test'
+  ...
+# Subtest: slice-only context never becomes an exact leaf verdict
+ok 60 - slice-only context never becomes an exact leaf verdict
+  ---
+  duration_ms: 0.19775
+  type: 'test'
+  ...
+# Subtest: unsupported tokens, missing anchors, stale owners, and broken evidence links fail closed
+ok 61 - unsupported tokens, missing anchors, stale owners, and broken evidence links fail closed
+  ---
+  duration_ms: 0.831917
+  type: 'test'
+  ...
+# Subtest: superseded and withdrawn exact relations do not contribute a current verdict
+ok 62 - superseded and withdrawn exact relations do not contribute a current verdict
+  ---
+  duration_ms: 0.393167
+  type: 'test'
+  ...
+# Subtest: group aggregation counts exact members and never inherits its representative
+ok 63 - group aggregation counts exact members and never inherits its representative
+  ---
+  duration_ms: 1.421917
+  type: 'test'
+  ...
+# Subtest: both exact-inspection surfaces consume the shared renderer and expose stable hooks
+ok 64 - both exact-inspection surfaces consume the shared renderer and expose stable hooks
+  ---
+  duration_ms: 3.405917
+  type: 'test'
+  ...
+1..64
+# tests 64
+# suites 0
+# pass 61
+# fail 3
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4780.017125

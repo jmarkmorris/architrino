@@ -345,6 +345,7 @@ test("startup log failure records closed failure before any target can spawn", a
     stdoutPath: fixture.stdoutPath, stderrPath: fixture.stderrPath,
     command: process.execPath, args: ["-e", `require('node:fs').writeFileSync(${JSON.stringify(marker)}, 'started')`],
     cwd: ROOT, owner: { task: "startup-failure-control" }, ownerHistory: [],
+    deadlineAtUtc: new Date(Date.now() + 5000).toISOString(),
   }));
   try {
     await invoke(["__sidecar", fixture.runId], { expectFailure: true, timeout: 5000 });
@@ -357,6 +358,40 @@ test("startup log failure records closed failure before any target can spawn", a
     assert.equal(fs.readFileSync(fixture.stdoutPath, "utf8"), "preserve-existing-log");
   } finally {
     removeFixture(fixture, [planFile, marker]);
+  }
+});
+
+test("startup deadline closes a stalled observer before any target can spawn", async () => {
+  const fixture = createPruneFixture({ status: "launching", processGroupClosed: false });
+  const marker = path.join(ROOT, "forbidden-stalled-startup-target");
+  const planFile = path.join(STATE_ROOT, "plans", `${fixture.runId}.json`);
+  const stalledSupervisor = path.join(path.dirname(SUPERVISOR), "stalled-startup.mjs");
+  const source = fs.readFileSync(SUPERVISOR, "utf8");
+  const anchor = "startupStep(() => waitForProcessIdentity(process.pid))";
+  assert.equal(source.split(anchor).length, 2);
+  fs.writeFileSync(stalledSupervisor, source.replace(anchor, "startupStep(() => new Promise(() => {}))"));
+  fs.mkdirSync(path.dirname(planFile), { recursive: true });
+  fs.writeFileSync(planFile, JSON.stringify({
+    schema: "architrino.owned-compute-lease.v1", runId: fixture.runId,
+    stdoutPath: fixture.stdoutPath, stderrPath: fixture.stderrPath,
+    command: process.execPath, args: ["-e", `require('node:fs').writeFileSync(${JSON.stringify(marker)}, 'started')`],
+    cwd: ROOT, owner: { task: "startup-deadline-control" }, ownerHistory: [],
+    deadlineAtUtc: new Date(Date.now() + 300).toISOString(),
+  }));
+  try {
+    const result = await new Promise(resolve => execFile(process.execPath,
+      [stalledSupervisor, "__sidecar", fixture.runId], { cwd: ROOT, timeout: 5000 },
+      (error, stdout, stderr) => resolve({ error, stdout, stderr })));
+    assert.equal(result.error?.code, 1, result.stderr);
+    assert.equal(result.error?.killed, false, "test timeout must not supply startup cleanup");
+    const lease = JSON.parse(fs.readFileSync(fixture.filePath));
+    assert.equal(lease.status, "failed");
+    assert.equal(lease.processGroupClosed, true);
+    assert.equal(lease.targetIdentity, null);
+    assert.match(lease.error, /before target spawn: startup deadline exceeded/u);
+    assert.equal(fs.existsSync(marker), false);
+  } finally {
+    removeFixture(fixture, [planFile, marker, stalledSupervisor]);
   }
 });
 

@@ -1,0 +1,197 @@
+{
+  "retained": [
+    {
+      "name": "candidate.jsonld",
+      "sha256": "01bc1c1c68c280c825361f6af93ae42711b4d460870c1c6e80111cd13aa2655d",
+      "bytes": 57914,
+      "lines": 1434,
+      "retained": true
+    },
+    {
+      "name": "candidate_reader.py",
+      "sha256": "bed9baf5c6f0c66345fc480b5c495d4a009fde3c74fd3f60dcb423713551997b",
+      "bytes": 7125,
+      "lines": 117,
+      "retained": true
+    },
+    {
+      "name": "environment.json",
+      "sha256": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99",
+      "bytes": 275,
+      "lines": 7,
+      "retained": true
+    },
+    {
+      "name": "execution.json",
+      "sha256": "8e820fd17ff52b8141fa34857a53c1f03a1d8b97147d1880f40935982897a057",
+      "bytes": 1867,
+      "lines": 35,
+      "retained": true
+    },
+    {
+      "name": "expected.json",
+      "sha256": "33659df3026a1ec8b66a55818f19ae2601f807eca21b832cfa88fad6353a0832",
+      "bytes": 1396,
+      "lines": 78,
+      "retained": true
+    },
+    {
+      "name": "outcomes.json",
+      "sha256": "342d1639b251df2cdbd248d1f70f9cb0159d0ed7563f9b3699731c9052696948",
+      "bytes": 25560,
+      "lines": 547,
+      "retained": true
+    },
+    {
+      "name": "preflight.log",
+      "sha256": "0954fa8244e63e8168f2061d105d912acf7f166004f6f1c51e0e1870c3b88656",
+      "bytes": 198,
+      "lines": 2,
+      "retained": true
+    },
+    {
+      "name": "result_record_check.py",
+      "sha256": "f0f0b540de25e170ffa43d09a1a645a8d9837d3eaf237feaa81262119039362d",
+      "bytes": 1298,
+      "lines": 21,
+      "retained": true
+    },
+    {
+      "name": "run_candidate.py",
+      "sha256": "5d1aa165662425bdea1cd54f4df8cd73ac19a7a90982b16f7795335b3668801a",
+      "bytes": 19551,
+      "lines": 183,
+      "retained": true
+    },
+    {
+      "name": "scientific-output.json",
+      "sha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+      "bytes": 7689,
+      "lines": 260,
+      "retained": true
+    },
+    {
+      "name": "source-manifest.json",
+      "sha256": "5083ba5eed98be1f2760485c13d9e501b2f6d60255052b18ee1a964e0bc88793",
+      "bytes": 4488,
+      "lines": 37,
+      "retained": true
+    }
+  ],
+  "disposableRawOutputs": [
+    {
+      "path": "/private/tmp/option-b-corrected-run3/baseline-scientific-output.json",
+      "sha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+      "bytes": 7689,
+      "lines": 260,
+      "retained": false
+    },
+    {
+      "path": "/private/tmp/option-b-corrected-run3/baseline-scientific-test.log",
+      "sha256": "8ed2da08ee1a92970ca0443456785984bbc993752da8e12ce6e50fc3f4e3b025",
+      "bytes": 207,
+      "lines": 9,
+      "retained": false
+    },
+    {
+      "path": "/private/tmp/option-b-corrected-run3/changed-scalar-edge-scientific-output.json",
+      "sha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+      "bytes": 7689,
+      "lines": 260,
+      "retained": false
+    },
+    {
+      "path": "/private/tmp/option-b-corrected-run3/changed-scalar-edge-scientific-test.log",
+      "sha256": "6749c6dfe37bb74e33be2afec6cfcbe4eae2bc862b0c4a26e6e6c362ec15012b",
+      "bytes": 207,
+      "lines": 9,
+      "retained": false
+    },
+    {
+      "path": "/private/tmp/option-b-corrected-run3/changed-sign-scientific-output.json",
+      "sha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+      "bytes": 7689,
+      "lines": 260,
+      "retained": false
+    },
+    {
+      "path": "/private/tmp/option-b-corrected-run3/changed-sign-scientific-test.log",
+      "sha256": "b04703a48dfb3b21c501b413e6722bf07640a708afbbcfe0a91b15cbd1077896",
+      "bytes": 204,
+      "lines": 9,
+      "retained": false
+    },
+    {
+      "path": "/private/tmp/option-b-corrected-run3/deleted-proof-sign-scientific-output.json",
+      "sha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+      "bytes": 7689,
+      "lines": 260,
+      "retained": false
+    },
+    {
+      "path": "/private/tmp/option-b-corrected-run3/deleted-proof-sign-scientific-test.log",
+      "sha256": "041a01503b900cd751752561f02ca369cbaa0a53696a01a6283629b9da0a9d79",
+      "bytes": 207,
+      "lines": 9,
+      "retained": false
+    },
+    {
+      "path": "/private/tmp/option-b-corrected-run3/deleted-prose-coverage-scientific-output.json",
+      "sha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+      "bytes": 7689,
+      "lines": 260,
+      "retained": false
+    },
+    {
+      "path": "/private/tmp/option-b-corrected-run3/deleted-prose-coverage-scientific-test.log",
+      "sha256": "b76f1e93e9f46c227bf970272d68f77cffd03351c059577f83ad89e3c068f916",
+      "bytes": 206,
+      "lines": 9,
+      "retained": false
+    },
+    {
+      "path": "/private/tmp/option-b-corrected-run3/outside-selector-comment-scientific-output.json",
+      "sha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+      "bytes": 7689,
+      "lines": 260,
+      "retained": false
+    },
+    {
+      "path": "/private/tmp/option-b-corrected-run3/outside-selector-comment-scientific-test.log",
+      "sha256": "8c5db76174ba2c4b8903c02eaf1827d0ff5883ef837c2d6f9c982ad4a64d8ace",
+      "bytes": 207,
+      "lines": 9,
+      "retained": false
+    },
+    {
+      "path": "/private/tmp/option-b-corrected-run3/unchanged-scientific-output.json",
+      "sha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+      "bytes": 7689,
+      "lines": 260,
+      "retained": false
+    },
+    {
+      "path": "/private/tmp/option-b-corrected-run3/unchanged-scientific-test.log",
+      "sha256": "b7ab81bf0b3ea19c86ed8dca90321be48c83381f7ddc52c553cc39d1a4f477b3",
+      "bytes": 207,
+      "lines": 9,
+      "retained": false
+    },
+    {
+      "path": "/private/tmp/option-b-corrected-run3/wrong-displayed-result-scientific-output.json",
+      "sha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+      "bytes": 7689,
+      "lines": 260,
+      "retained": false
+    },
+    {
+      "path": "/private/tmp/option-b-corrected-run3/wrong-displayed-result-scientific-test.log",
+      "sha256": "a8c6247934e73484eee0917b92fd5c08b95e0cfed35441320f94c5d78bf9df57",
+      "bytes": 207,
+      "lines": 9,
+      "retained": false
+    }
+  ],
+  "replay": "run_candidate.py --repo /Users/markmorris/vibe/architrino --work-root <fresh external directory> using supported shared Python and scratch RDFLib",
+  "claimBoundary": "Observed bounded controls; no approval, complete dependency graph, new science, or byte-identical volatile replay."
+}

@@ -1,0 +1,15 @@
+✔ F5 instrument reproduces the original enclosure with disclosed current source metadata (1849.476708ms)
+✔ F5 independent enclosure output remains create-exclusive (3839.510083ms)
+✔ regular-byte capture passes a known byte and digest control before real inputs (6.622084ms)
+✔ exact original routes reject byte substitutions, false sizes and path traversal (3.940292ms)
+✔ missing, duplicate, wrong-identity and unsafe destinations cannot create an execution root (0.271833ms)
+✔ the approved F5 display source preserves the frozen pilot's scientific row (4280.495791ms)
+✔ the approved F5 display source preserves identities, source order, speed, and labeled return (3880.758291ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14212.449958

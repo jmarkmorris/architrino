@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 
 import { getStandaloneAppPathForScene } from "../src/apps/navigator/StandaloneAppLaunchRuntime.js";
+import { bootBorgApp } from "../src/apps/borg/BorgBootstrap.js";
+import { BORG_ASSEMBLY_RECORD_CATALOG } from "../src/apps/borg/BorgAssemblyRecordCatalog.js";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 
@@ -48,11 +50,18 @@ test("legacy Assembly Explorer remains a non-indexed state-preserving redirect",
   assert.match(html, />Assembly Explorer moved to Borg Library</);
 });
 
-test("Borg workbench receives the selected home-page record summary", () => {
-  const bootstrap = read("src/apps/borg/BorgBootstrap.js");
+test("Borg workbench receives the selected home-page record summary", async () => {
+  const entry = BORG_ASSEMBLY_RECORD_CATALOG.entries[0];
+  const record = JSON.parse(read(entry.recordUrl));
+  let mounted;
+  await bootBorgApp({
+    search: `?${new URLSearchParams({ assemblyId: entry.assemblyId, modelRevisionSha256: entry.modelRevisionSha256 })}`,
+    fetchLike: async () => ({ ok: true, async json() { return record; } }),
+    mountApp(options) { mounted = options; },
+  });
+  assert.equal(mounted.eomRecordReplay.librarySummary.assemblyId, entry.assemblyId);
+  assert.equal(mounted.eomRecordReplay.librarySummary.modelRevisionSha256, entry.modelRevisionSha256);
   const runtime = read("src/apps/borg/BorgAppRuntime.js");
-  assert.match(bootstrap, /librarySummary: createBorgWorkbenchRecordSummary/);
-  assert.match(bootstrap, /Object\.entries\(LIBRARY_FACETS\)/);
   assert.match(runtime, /function renderRecordSummary\(\)/);
   assert.match(runtime, /supplied\?\.assemblyId === rawRecord\.assemblyId/);
   assert.match(runtime, /Recorded description:/);

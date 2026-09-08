@@ -1,0 +1,43 @@
+{
+  "schema": "circular-current-resource-plan-review.v1",
+  "accepted": true,
+  "h3EvidenceEligible": false,
+  "laterLadderAuthorized": false,
+  "plan": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-ladder-preflight-20260908-b/resource-plan.accepted.json",
+    "sha256": "340961b3c8e134fee9548442c439b2c32a11e61dddf9b774e8db5c788bdfc39b",
+    "bytes": 11820
+  },
+  "originalPendingPlan": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-ladder-preflight-20260908-b/resource-plan.pending.json",
+    "sha256": "66b98be09a07f9fd9b8926de928f36a162ab9f6e4855f6597407c18762b0e875",
+    "bytes": 11690
+  },
+  "candidateId": "coincident-midpoint-common-frequency",
+  "rung": 8,
+  "entrySha256": "91218e1e4bd85fc614c5e270086bd62d766266cd02a51c06a047cef192984c81",
+  "memoryOwnerSha256": "721c75a7fa1e6d62618f48e982432e941cefe77a44a785a7a57f68d5322e6f9b",
+  "memoryHelperSha256": "abe24baaf063ba5fe159a8c475816816ff812c912d8faab67156cc7f318cc220",
+  "preflightReview": {
+    "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/circular-current-execution/current-ladder-preflight-review-b.json",
+    "sha256": "5d04bdf371ecd07ec09a5b92ab2b46a52098abb36b44968d24fa4b02d6f10078",
+    "bytes": 26589
+  },
+  "preparationReview": {
+    "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/circular-current-execution/current-ladder-preparation-review.md",
+    "sha256": "b01452cc7b3e228c00cec8d01ad185be30b22249778705d289247412550f1175",
+    "bytes": 3799
+  },
+  "memorySourceReview": {
+    "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/circular-current-execution/current-memory-source-review.md",
+    "sha256": "ea6cead63ccd4d76463081bd7b7ec808760dc019a76cc1a2ff16172745f12679",
+    "bytes": 3115
+  },
+  "entryControls": {
+    "runId": "1a2440a1-e9e4-404f-86b0-24f91f8aa2cb",
+    "passed": 2,
+    "exitCode": 0,
+    "processGroupClosed": true
+  },
+  "boundary": "Independent operational resource-envelope and source review for the first candidate rung8 only. Current entry must establish fresh launch and periodic resource predicates, complete phase/ledger/evidence admission and inclusive owner closure, plus exact external zero exit before1800seconds. No new scientific or H3 acceptance; no authority for other candidates or rungs from this review."
+}

@@ -1,0 +1,14 @@
+{"status": "started", "processedMemberSegments": 0, "limitSeconds": 1800}
+{"status": "running", "processedMemberSegments": 224, "elapsedWallSeconds": 15.003663667012006}
+{"status": "running", "processedMemberSegments": 496, "elapsedWallSeconds": 30.001042208983563}
+{"status": "running", "processedMemberSegments": 771, "elapsedWallSeconds": 45.00022408401128}
+{"status": "running", "processedMemberSegments": 1121, "elapsedWallSeconds": 60.00012341700494}
+{"status": "running", "processedMemberSegments": 3183, "elapsedWallSeconds": 75.00104324996937}
+{"status": "running", "processedMemberSegments": 5215, "elapsedWallSeconds": 90.0007941670483}
+{"status": "running", "processedMemberSegments": 6335, "elapsedWallSeconds": 105.0010014170548}
+{"status": "running", "processedMemberSegments": 6611, "elapsedWallSeconds": 120.00046470900998}
+{"status": "running", "processedMemberSegments": 6886, "elapsedWallSeconds": 135.00045883399434}
+{"status": "running", "processedMemberSegments": 7131, "elapsedWallSeconds": 150.00103533396032}
+{"status": "running", "processedMemberSegments": 8508, "elapsedWallSeconds": 165.0004023340298}
+{"status": "running", "processedMemberSegments": 10513, "elapsedWallSeconds": 180.00102595903445}
+{"status": "api-domain-conformance-passed", "accepted": true, "h3EvidenceEligible": false, "processedMemberSegments": 12384}

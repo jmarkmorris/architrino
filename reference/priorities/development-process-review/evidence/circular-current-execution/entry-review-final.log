@@ -1,0 +1,10 @@
+✔ current rung accepts only complete explicit bounded output selection (0.8545ms)
+✔ changed profile digest and cap or source-census substitutions close before workload (2.796916ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 91.511584

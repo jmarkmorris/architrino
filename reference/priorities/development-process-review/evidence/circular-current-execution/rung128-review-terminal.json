@@ -1,0 +1,13 @@
+{
+  "runId": "df28da71-96fc-4230-ba6c-6a37e9bba853",
+  "command": "node",
+  "args": [
+    "reference/priorities/development-process-review/evidence/circular-current-execution/review-current-rung128.mjs",
+    "e155fb9a-fc62-4374-a8b7-77133a1928f5",
+    ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung128-20260908-a/current-admission.json"
+  ],
+  "cwd": "/Users/markmorris/vibe/architrino",
+  "exitCode": 0,
+  "processGroupClosed": true,
+  "elapsedWallSeconds": 1.43
+}

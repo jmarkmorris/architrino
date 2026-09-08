@@ -1,0 +1,10 @@
+[
+  ["scripts/archie-service/check-fixture-mcp-server.mjs", "--check"],
+  ["scripts/archie-service/validate-mcp-tool-contracts.mjs", "--check"],
+  ["scripts/archie-service/validate-mcp-remote-deployment-contract.mjs"],
+  ["scripts/check-borg-scientific-status-projection.mjs"],
+  ["scripts/audit-markdown-doc-icons.mjs"],
+  ["scripts/build-reference-surface.mjs", "--check"],
+  ["scripts/build-machine-artifact-receipts.mjs", "--check"],
+  ["scripts/archie-service/build-source-index.mjs", "--check"]
+]

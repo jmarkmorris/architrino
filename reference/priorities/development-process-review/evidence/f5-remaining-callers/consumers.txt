@@ -1,0 +1,4 @@
+tests/f5-independent-interpolation-enclosure.test.js:8:import { prepareF5OriginalInputTree, verifyF5OriginalInputTree } from '../scripts/eom/prepare-f5-original-input-tree.mjs';
+tests/f5-original-input-tree.test.js:8:import { captureF5OriginalInputs, prepareF5OriginalInputTree, readF5RegularBytes } from '../scripts/eom/prepare-f5-original-input-tree.mjs';
+scripts/eom/prepare-f5-original-input-tree.mjs:9:const SELF = 'scripts/eom/prepare-f5-original-input-tree.mjs';
+scripts/eom/prepare-f5-original-input-tree.mjs:135:    if (process.argv.length !== 4 || !['--out-root', '--check-root'].includes(process.argv[2])) throw new Error('usage: prepare-f5-original-input-tree.mjs --out-root NEW | --check-root EXISTING');

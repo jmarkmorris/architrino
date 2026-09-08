@@ -1,0 +1,547 @@
+{
+  "status": "candidate-tested-not-approved",
+  "candidateSha256": "01bc1c1c68c280c825361f6af93ae42711b4d460870c1c6e80111cd13aa2655d",
+  "objects": 21,
+  "relationships": 37,
+  "outcomes": {
+    "unchanged": {
+      "consistency": "pass",
+      "review": "unchanged-exploratory",
+      "approval": "not-granted",
+      "changedFiles": [],
+      "changedObjects": [],
+      "affected": [],
+      "selectedChecks": [],
+      "removedEdges": [],
+      "addedEdges": [],
+      "executionReceipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/node",
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs"
+          ],
+          "cwd": "/private/tmp/option-b-corrected-run3/cases/unchanged",
+          "exitCode": 0,
+          "stdoutSha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inputs": {
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+            "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+          },
+          "environmentSha256": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99"
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/node",
+            "--test",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs"
+          ],
+          "cwd": "/private/tmp/option-b-corrected-run3/cases/unchanged",
+          "exitCode": 0,
+          "stdoutSha256": "b7ab81bf0b3ea19c86ed8dca90321be48c83381f7ddc52c553cc39d1a4f477b3",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inputs": {
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+            "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+          },
+          "environmentSha256": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99"
+        }
+      ],
+      "scientificCheck": "pass",
+      "proseComparison": {
+        "status": "pass",
+        "displayed": 2.1200000000000003e-12,
+        "actual": 2.1183055309847987e-12,
+        "tolerance": 5e-15,
+        "coverage": "one displayed maximum only"
+      },
+      "proseComparisonReceipt": {
+        "checkerSha256": "f0f0b540de25e170ffa43d09a1a645a8d9837d3eaf237feaa81262119039362d",
+        "proseSha256": "dbb88e073d51b5980e0520c0720439e803eeab35b350c49b3dd67adc3f036a3d",
+        "caseOutputSha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+        "comparisonSha256": "56a5dabeda8e350410fffeb4f1c3e2c1a805a6289bc53f18275da51e195bc8f0",
+        "authority": "observed isolated comparison; not authenticated receipt"
+      },
+      "expectedOutcomeMatched": true
+    },
+    "stale-sign": {
+      "consistency": "reject",
+      "reason": "Stale object sign",
+      "approval": "not-granted",
+      "scientificCheck": "not-run-after-binding-rejection",
+      "expectedOutcomeMatched": true
+    },
+    "changed-sign": {
+      "consistency": "pass",
+      "review": "required",
+      "approval": "not-granted",
+      "changedFiles": [
+        "content/markdown/aaa/dynamics/master-equation.md"
+      ],
+      "changedObjects": [
+        "sign"
+      ],
+      "affected": [
+        "calculation",
+        "identity",
+        "measured-prose",
+        "output",
+        "proof",
+        "run",
+        "scalar",
+        "scientific-check",
+        "sign",
+        "theorem-claim"
+      ],
+      "selectedChecks": [
+        "prose-check",
+        "scientific-check"
+      ],
+      "removedEdges": [],
+      "addedEdges": [],
+      "executionReceipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/node",
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs"
+          ],
+          "cwd": "/private/tmp/option-b-corrected-run3/cases/changed-sign",
+          "exitCode": 0,
+          "stdoutSha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inputs": {
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+            "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+          },
+          "environmentSha256": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99"
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/node",
+            "--test",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs"
+          ],
+          "cwd": "/private/tmp/option-b-corrected-run3/cases/changed-sign",
+          "exitCode": 0,
+          "stdoutSha256": "b04703a48dfb3b21c501b413e6722bf07640a708afbbcfe0a91b15cbd1077896",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inputs": {
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+            "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+          },
+          "environmentSha256": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99"
+        }
+      ],
+      "scientificCheck": "pass",
+      "proseComparison": {
+        "status": "pass",
+        "displayed": 2.1200000000000003e-12,
+        "actual": 2.1183055309847987e-12,
+        "tolerance": 5e-15,
+        "coverage": "one displayed maximum only"
+      },
+      "proseComparisonReceipt": {
+        "checkerSha256": "f0f0b540de25e170ffa43d09a1a645a8d9837d3eaf237feaa81262119039362d",
+        "proseSha256": "0b2a1b0b366552f310189660096394fd9ad5d817bfa8102d25e203cfdd5b4d46",
+        "caseOutputSha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+        "comparisonSha256": "56a5dabeda8e350410fffeb4f1c3e2c1a805a6289bc53f18275da51e195bc8f0",
+        "authority": "observed isolated comparison; not authenticated receipt"
+      },
+      "expectedOutcomeMatched": true
+    },
+    "deleted-proof-sign": {
+      "consistency": "pass",
+      "review": "required",
+      "approval": "not-granted",
+      "changedFiles": [],
+      "changedObjects": [],
+      "affected": [
+        "calculation",
+        "identity",
+        "measured-prose",
+        "output",
+        "proof",
+        "run",
+        "scientific-check",
+        "theorem-claim"
+      ],
+      "selectedChecks": [
+        "prose-check",
+        "scientific-check"
+      ],
+      "removedEdges": [
+        "https://example.invalid/option-b-corrected/dependsOn-proof-sign"
+      ],
+      "addedEdges": [],
+      "executionReceipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/node",
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs"
+          ],
+          "cwd": "/private/tmp/option-b-corrected-run3/cases/deleted-proof-sign",
+          "exitCode": 0,
+          "stdoutSha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inputs": {
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+            "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+          },
+          "environmentSha256": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99"
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/node",
+            "--test",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs"
+          ],
+          "cwd": "/private/tmp/option-b-corrected-run3/cases/deleted-proof-sign",
+          "exitCode": 0,
+          "stdoutSha256": "041a01503b900cd751752561f02ca369cbaa0a53696a01a6283629b9da0a9d79",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inputs": {
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+            "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+          },
+          "environmentSha256": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99"
+        }
+      ],
+      "scientificCheck": "pass",
+      "proseComparison": {
+        "status": "pass",
+        "displayed": 2.1200000000000003e-12,
+        "actual": 2.1183055309847987e-12,
+        "tolerance": 5e-15,
+        "coverage": "one displayed maximum only"
+      },
+      "proseComparisonReceipt": {
+        "checkerSha256": "f0f0b540de25e170ffa43d09a1a645a8d9837d3eaf237feaa81262119039362d",
+        "proseSha256": "dbb88e073d51b5980e0520c0720439e803eeab35b350c49b3dd67adc3f036a3d",
+        "caseOutputSha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+        "comparisonSha256": "56a5dabeda8e350410fffeb4f1c3e2c1a805a6289bc53f18275da51e195bc8f0",
+        "authority": "observed isolated comparison; not authenticated receipt"
+      },
+      "expectedOutcomeMatched": true
+    },
+    "deleted-prose-coverage": {
+      "consistency": "pass",
+      "review": "required",
+      "approval": "not-granted",
+      "changedFiles": [],
+      "changedObjects": [],
+      "affected": [
+        "measured-prose"
+      ],
+      "selectedChecks": [
+        "prose-check"
+      ],
+      "removedEdges": [
+        "https://example.invalid/option-b-corrected/checks-prose-check-measured-prose"
+      ],
+      "addedEdges": [],
+      "executionReceipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/node",
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs"
+          ],
+          "cwd": "/private/tmp/option-b-corrected-run3/cases/deleted-prose-coverage",
+          "exitCode": 0,
+          "stdoutSha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inputs": {
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+            "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+          },
+          "environmentSha256": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99"
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/node",
+            "--test",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs"
+          ],
+          "cwd": "/private/tmp/option-b-corrected-run3/cases/deleted-prose-coverage",
+          "exitCode": 0,
+          "stdoutSha256": "b76f1e93e9f46c227bf970272d68f77cffd03351c059577f83ad89e3c068f916",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inputs": {
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+            "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+          },
+          "environmentSha256": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99"
+        }
+      ],
+      "scientificCheck": "pass",
+      "proseComparison": {
+        "status": "pass",
+        "displayed": 2.1200000000000003e-12,
+        "actual": 2.1183055309847987e-12,
+        "tolerance": 5e-15,
+        "coverage": "one displayed maximum only"
+      },
+      "proseComparisonReceipt": {
+        "checkerSha256": "f0f0b540de25e170ffa43d09a1a645a8d9837d3eaf237feaa81262119039362d",
+        "proseSha256": "dbb88e073d51b5980e0520c0720439e803eeab35b350c49b3dd67adc3f036a3d",
+        "caseOutputSha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+        "comparisonSha256": "56a5dabeda8e350410fffeb4f1c3e2c1a805a6289bc53f18275da51e195bc8f0",
+        "authority": "observed isolated comparison; not authenticated receipt"
+      },
+      "expectedOutcomeMatched": true
+    },
+    "changed-scalar-edge": {
+      "consistency": "pass",
+      "review": "required",
+      "approval": "not-granted",
+      "changedFiles": [],
+      "changedObjects": [],
+      "affected": [
+        "calculation",
+        "identity",
+        "measured-prose",
+        "output",
+        "proof",
+        "run",
+        "scalar",
+        "scientific-check",
+        "theorem-claim"
+      ],
+      "selectedChecks": [
+        "prose-check",
+        "scientific-check"
+      ],
+      "removedEdges": [
+        "https://example.invalid/option-b-corrected/dependsOn-scalar-definitions"
+      ],
+      "addedEdges": [
+        "https://example.invalid/option-b-corrected/dependsOn-scalar-root-derivative"
+      ],
+      "executionReceipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/node",
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs"
+          ],
+          "cwd": "/private/tmp/option-b-corrected-run3/cases/changed-scalar-edge",
+          "exitCode": 0,
+          "stdoutSha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inputs": {
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+            "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+          },
+          "environmentSha256": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99"
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/node",
+            "--test",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs"
+          ],
+          "cwd": "/private/tmp/option-b-corrected-run3/cases/changed-scalar-edge",
+          "exitCode": 0,
+          "stdoutSha256": "6749c6dfe37bb74e33be2afec6cfcbe4eae2bc862b0c4a26e6e6c362ec15012b",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inputs": {
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+            "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+          },
+          "environmentSha256": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99"
+        }
+      ],
+      "scientificCheck": "pass",
+      "proseComparison": {
+        "status": "pass",
+        "displayed": 2.1200000000000003e-12,
+        "actual": 2.1183055309847987e-12,
+        "tolerance": 5e-15,
+        "coverage": "one displayed maximum only"
+      },
+      "proseComparisonReceipt": {
+        "checkerSha256": "f0f0b540de25e170ffa43d09a1a645a8d9837d3eaf237feaa81262119039362d",
+        "proseSha256": "dbb88e073d51b5980e0520c0720439e803eeab35b350c49b3dd67adc3f036a3d",
+        "caseOutputSha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+        "comparisonSha256": "56a5dabeda8e350410fffeb4f1c3e2c1a805a6289bc53f18275da51e195bc8f0",
+        "authority": "observed isolated comparison; not authenticated receipt"
+      },
+      "expectedOutcomeMatched": true
+    },
+    "wrong-displayed-result": {
+      "consistency": "pass",
+      "review": "required",
+      "approval": "not-granted",
+      "changedFiles": [
+        "content/markdown/aaa/dynamics/master-equation.md"
+      ],
+      "changedObjects": [
+        "measured-prose"
+      ],
+      "affected": [
+        "measured-prose",
+        "theorem-claim"
+      ],
+      "selectedChecks": [
+        "prose-check",
+        "scientific-check"
+      ],
+      "removedEdges": [],
+      "addedEdges": [],
+      "executionReceipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/node",
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs"
+          ],
+          "cwd": "/private/tmp/option-b-corrected-run3/cases/wrong-displayed-result",
+          "exitCode": 0,
+          "stdoutSha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inputs": {
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+            "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+          },
+          "environmentSha256": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99"
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/node",
+            "--test",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs"
+          ],
+          "cwd": "/private/tmp/option-b-corrected-run3/cases/wrong-displayed-result",
+          "exitCode": 0,
+          "stdoutSha256": "a8c6247934e73484eee0917b92fd5c08b95e0cfed35441320f94c5d78bf9df57",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inputs": {
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+            "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+          },
+          "environmentSha256": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99"
+        }
+      ],
+      "scientificCheck": "pass",
+      "proseComparison": {
+        "status": "reject",
+        "displayed": 9.99e-12,
+        "actual": 2.1183055309847987e-12,
+        "tolerance": 5e-15,
+        "coverage": "one displayed maximum only"
+      },
+      "proseComparisonReceipt": {
+        "checkerSha256": "f0f0b540de25e170ffa43d09a1a645a8d9837d3eaf237feaa81262119039362d",
+        "proseSha256": "646751156fd685c688a2e910fc0b556ade8f99cc96c78170dba2b7d3fd14f630",
+        "caseOutputSha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+        "comparisonSha256": "6280d022947876ade6037f54679a188691fb22326741daa899956a3e177fd306",
+        "authority": "observed isolated comparison; not authenticated receipt"
+      },
+      "expectedOutcomeMatched": true
+    },
+    "duplicate-displayed-result": {
+      "consistency": "reject",
+      "reason": "Missing or ambiguous literal",
+      "approval": "not-granted",
+      "scientificCheck": "not-run-after-binding-rejection",
+      "proseComparison": "reject",
+      "expectedOutcomeMatched": true
+    },
+    "outside-selector-comment": {
+      "consistency": "pass",
+      "review": "required",
+      "approval": "not-granted",
+      "changedFiles": [
+        "content/markdown/aaa/dynamics/master-equation.md"
+      ],
+      "changedObjects": [],
+      "affected": [],
+      "selectedChecks": [
+        "prose-check",
+        "scientific-check"
+      ],
+      "removedEdges": [],
+      "addedEdges": [],
+      "executionReceipts": [
+        {
+          "argv": [
+            "/opt/homebrew/bin/node",
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs"
+          ],
+          "cwd": "/private/tmp/option-b-corrected-run3/cases/outside-selector-comment",
+          "exitCode": 0,
+          "stdoutSha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inputs": {
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+            "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+          },
+          "environmentSha256": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99"
+        },
+        {
+          "argv": [
+            "/opt/homebrew/bin/node",
+            "--test",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs"
+          ],
+          "cwd": "/private/tmp/option-b-corrected-run3/cases/outside-selector-comment",
+          "exitCode": 0,
+          "stdoutSha256": "8c5db76174ba2c4b8903c02eaf1827d0ff5883ef837c2d6f9c982ad4a64d8ace",
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "inputs": {
+            "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+            "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+            "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+          },
+          "environmentSha256": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99"
+        }
+      ],
+      "scientificCheck": "pass",
+      "proseComparison": {
+        "status": "pass",
+        "displayed": 2.1200000000000003e-12,
+        "actual": 2.1183055309847987e-12,
+        "tolerance": 5e-15,
+        "coverage": "one displayed maximum only"
+      },
+      "proseComparisonReceipt": {
+        "checkerSha256": "f0f0b540de25e170ffa43d09a1a645a8d9837d3eaf237feaa81262119039362d",
+        "proseSha256": "7d62c30b5a05a201ca972f527c17bfd00f66d8e2665074d0eb14906df0c0987d",
+        "caseOutputSha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+        "comparisonSha256": "56a5dabeda8e350410fffeb4f1c3e2c1a805a6289bc53f18275da51e195bc8f0",
+        "authority": "observed isolated comparison; not authenticated receipt"
+      },
+      "expectedOutcomeMatched": true
+    }
+  },
+  "protectedUnchanged": true,
+  "instrumentDigests": {
+    "candidate_reader.py": "bed9baf5c6f0c66345fc480b5c495d4a009fde3c74fd3f60dcb423713551997b",
+    "result_record_check.py": "f0f0b540de25e170ffa43d09a1a645a8d9837d3eaf237feaa81262119039362d",
+    "run_candidate.py": "5d1aa165662425bdea1cd54f4df8cd73ac19a7a90982b16f7795335b3668801a"
+  },
+  "environment": {
+    "python": "3.13.2 (main, Feb  4 2025, 14:51:09) [Clang 16.0.0 (clang-1600.0.26.6)]",
+    "node": "v26.3.0",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "rdflib": "7.6.0",
+    "rdflibPath": "/private/tmp/option-b-fictional.34OFBx/dependencies/rdflib/__init__.py"
+  },
+  "nonclaims": [
+    "dependency completeness",
+    "trusted approval",
+    "production schema",
+    "scientific proof by traversal",
+    "historical run authentication"
+  ]
+}

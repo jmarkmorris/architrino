@@ -1,0 +1,82 @@
+{
+  "schema": "option-b-real-chain-disposable-artifacts/v1",
+  "knownCase": "passed before reading outputs",
+  "owner": "development-process-review / Option B bounded pilot",
+  "claimBoundary": "bounded scalar-gradient execution and eight controlled metadata/source cases; no production acceptance",
+  "sourceManifest": "manifest.json",
+  "resultReport": "report.json",
+  "reproduction": "Run run_pilot.py using the exact commit and supported environment documented in the analysis report, with a new empty work-root; then run capture_artifacts.py --run-dir <that directory>.",
+  "retention": "raw outputs are disposable scratch data; exact timing bytes need not reproduce; retain compact report and instruments",
+  "artifacts": [
+    {
+      "relativePath": "calculation.stdout.json",
+      "observedPath": "/private/tmp/option-b-real-chain.ElsMcz/run2/calculation.stdout.json",
+      "sha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+      "bytes": 7689,
+      "newlineCount": 260
+    },
+    {
+      "relativePath": "calculation.stderr.log",
+      "observedPath": "/private/tmp/option-b-real-chain.ElsMcz/run2/calculation.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "newlineCount": 0
+    },
+    {
+      "relativePath": "test.stdout.log",
+      "observedPath": "/private/tmp/option-b-real-chain.ElsMcz/run2/test.stdout.log",
+      "sha256": "0a58e4bc6cdf466871dd6a9d64d31ee473833333c7a9c4aa4fcc00c616140cf3",
+      "bytes": 204,
+      "newlineCount": 9
+    },
+    {
+      "relativePath": "test.stderr.log",
+      "observedPath": "/private/tmp/option-b-real-chain.ElsMcz/run2/test.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "newlineCount": 0
+    },
+    {
+      "relativePath": "cases/added-relationship/test.stdout.log",
+      "observedPath": "/private/tmp/option-b-real-chain.ElsMcz/run2/cases/added-relationship/test.stdout.log",
+      "sha256": "75045693adcedff519e81c7a6fe5d5dfda57baf5726a44e8cf87cd5bf232fd2b",
+      "bytes": 207,
+      "newlineCount": 9
+    },
+    {
+      "relativePath": "cases/changed-assumption-refreshed/test.stdout.log",
+      "observedPath": "/private/tmp/option-b-real-chain.ElsMcz/run2/cases/changed-assumption-refreshed/test.stdout.log",
+      "sha256": "0de740ce9fbef9bf9f10e283b89693e6bb1cc8291dac0621fb0227def98469c9",
+      "bytes": 205,
+      "newlineCount": 9
+    },
+    {
+      "relativePath": "cases/harmless-prose/test.stdout.log",
+      "observedPath": "/private/tmp/option-b-real-chain.ElsMcz/run2/cases/harmless-prose/test.stdout.log",
+      "sha256": "78f77c9fb44e9084f3db44ac7016992fc170de914b4b1e5438ac7fee150b1b69",
+      "bytes": 207,
+      "newlineCount": 9
+    },
+    {
+      "relativePath": "cases/omitted-relationship/test.stdout.log",
+      "observedPath": "/private/tmp/option-b-real-chain.ElsMcz/run2/cases/omitted-relationship/test.stdout.log",
+      "sha256": "37271e51f310f03450114cab9099d89880ed6bfca6e5b7439e4802447685f8a2",
+      "bytes": 207,
+      "newlineCount": 9
+    },
+    {
+      "relativePath": "cases/removed-check-coverage/test.stdout.log",
+      "observedPath": "/private/tmp/option-b-real-chain.ElsMcz/run2/cases/removed-check-coverage/test.stdout.log",
+      "sha256": "8ba7d2280603d1532488ba351ad1ae850a12c35939e170ff85a44202868aba92",
+      "bytes": 207,
+      "newlineCount": 9
+    },
+    {
+      "relativePath": "cases/wrong-recorded-result/test.stdout.log",
+      "observedPath": "/private/tmp/option-b-real-chain.ElsMcz/run2/cases/wrong-recorded-result/test.stdout.log",
+      "sha256": "788ad2bb29e2ff2ce5fc5ac09140b04e446bbe84bf9c294e55b6bf470e941ac1",
+      "bytes": 204,
+      "newlineCount": 9
+    }
+  ]
+}

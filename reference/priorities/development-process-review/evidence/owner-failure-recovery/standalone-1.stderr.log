@@ -1,0 +1,7 @@
+Archie fixture MCP check failed with 6 error(s):
+- mcp-stdio-search-call-001: stdio response drift
+- mcp-stdio-read-call-001: stdio response drift
+- mcp-stdio-topics-call-001: stdio response drift
+- mcp-stdio-neighbors-call-001: stdio response drift
+- mcp-stdio-read-missing-call-001: stdio response drift
+- mcp-stdio-walk-call-001: stdio response drift

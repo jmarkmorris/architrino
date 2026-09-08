@@ -1,0 +1,11 @@
+✔ diagnostic identity binds the declared paths and retains diagnostic status (0.987083ms)
+✔ F6b diagnostic rejects shared circles and preserves polarity-resolved tangent structure (1873.521958ms)
+✔ F6c bounded search keeps one coefficient per row and rejects a near-uniform orbit (7350.255625ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9444.854667

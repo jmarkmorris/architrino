@@ -1,6 +1,6 @@
 # Planet Branch Registry
 
-This registry freezes the planet-series branch order required by [codex-pr-branch.md](../codex-pr-branch.md). Branch names use lowercase planet names after `codex/`.
+This registry freezes the planet-series branch order required by [pr-lifecycle.md](../pr-lifecycle.md). Branch names use lowercase planet names after `codex/`.
 
 The sequence follows the eight IAU planets outward from the Sun. Dwarf planets are excluded.
 

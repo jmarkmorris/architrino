@@ -1,0 +1,69 @@
+{
+  "schema": "f5-independent-final-current-run-review.v1",
+  "boundedExecutionAccepted": true,
+  "h3EvidenceEligible": false,
+  "scientificAcceptance": false,
+  "checkedBindings": 2355,
+  "run": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/run.json",
+    "sha256": "8730dc2e5e7c5c72662939cf12b2fa2282a7c486b77988c96e9b0f8443065d37",
+    "bytes": 841646
+  },
+  "finalReduction": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/ledger-reduction.json",
+    "sha256": "dd470afe2692196309407886b1b9fd0b51a3c4e8636bf1c63856c4b7fc1c7cf3",
+    "bytes": 5563
+  },
+  "prefixes": [
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/prefix-8.json",
+      "sha256": "da633f9d1e8170788580ecd3bfb61760e882b4a0325341a7e23b60673706b5f6",
+      "bytes": 7361
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/prefix-32.json",
+      "sha256": "0b072b98421f0bad53f8810ac2dbb9083ec11db4810a9aaa92cb7551281eda88",
+      "bytes": 8540
+    }
+  ],
+  "stageLogs": [
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/root-8.log",
+      "sha256": "48f92d5edd2388f47f2318bf17443d57532ce5d59ee6b2a6925aa936a7e8ebfd",
+      "bytes": 1413706
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/check-8.log",
+      "sha256": "90a19eb82d270c0e214b2e1efbcfae58a839b6306d3f4bf092a2cf5314b6c823",
+      "bytes": 350
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/root-32.log",
+      "sha256": "2c8759026529d01e7398c05c34653bb899f2563f377b9052d3ae1b31d433bcb6",
+      "bytes": 5738796
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/check-32.log",
+      "sha256": "5b0874efdfe4809d5e597893cdb88684198505b8cc7d0acd8a6bf02b53c386a6",
+      "bytes": 354
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/root-128.log",
+      "sha256": "a120b88695ae18f622efc4b5cedeb7994c18fa6052a470924d1c4a3104fd2f4b",
+      "bytes": 23224329
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/check-128.log",
+      "sha256": "e1e2fc99991190674a55e4689352513e9bb0f73b93aa35cd50fd51df2a5afa8e",
+      "bytes": 1156
+    }
+  ],
+  "closedStages": 6,
+  "rungOrder": [
+    8,
+    32,
+    128
+  ],
+  "totalRows": 24192,
+  "claimBoundary": "root-ledger census, certificate serialization, source-byte and history-token conformance only; actual analytic-to-cubic correspondence and reviewed build provenance remain separate requirements before H3; no evolution, retention, stability, binding, score, particle identity, or physical-realization claim"
+}

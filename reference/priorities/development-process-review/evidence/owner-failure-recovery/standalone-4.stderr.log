@@ -1,0 +1,8 @@
+file:///Users/markmorris/vibe/architrino/scripts/check-borg-scientific-status-projection.mjs:12
+if (ownerSha256 !== projection.sourceSha256) throw new Error(`Projection source digest is stale: expected ${projection.sourceSha256}, current ${ownerSha256}.`);
+                                                   ^
+
+Error: Projection source digest is stale: expected c3addb7debd0a35b593cdb7a0a59c08945af65603e0f734e2ddc72ac0fa758da, current 9c68329d76276d10260e4897d50b3e1ffed080e221ac16ac6a3cf2e38f4873fb.
+    at file:///Users/markmorris/vibe/architrino/scripts/check-borg-scientific-status-projection.mjs:12:52
+
+Node.js v26.3.0

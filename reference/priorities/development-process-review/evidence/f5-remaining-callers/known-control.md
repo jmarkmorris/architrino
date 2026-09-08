@@ -1,0 +1,3 @@
+# Input-tree transport control
+
+Before running the materializer on the actual F5 source/input set, owned run `b2cdc0ba-8675-40dc-b966-f07605a98dd2` passed both `tests/f5-original-input-tree.test.js` controls. The first reads the known bytes `abc`, checks the standard SHA-256 digest, and rejects a symlink and directory; the second rejects incomplete/duplicate/wrong-identity routing and out-of-scope destinations. An initial fixture attempt (`d90c4bba-beba-4e29-845b-a85b15837f52`) used macOS's `/var` alias and correctly triggered the symlink prohibition; the fixture now canonicalizes its temporary parent. Both leases report process-group closure. The earlier sandbox launch failed with `spawn EPERM` before target execution and supplied no test result.

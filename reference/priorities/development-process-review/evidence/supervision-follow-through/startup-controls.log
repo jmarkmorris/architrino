@@ -1,0 +1,172 @@
+TAP version 13
+# Subtest: accepted detached-launch inventory names every current specialized owner
+ok 1 - accepted detached-launch inventory names every current specialized owner
+  ---
+  duration_ms: 37.972958
+  type: 'test'
+  ...
+# Subtest: an unregistered detached launch fails closed
+ok 2 - an unregistered detached launch fails closed
+  ---
+  duration_ms: 0.982958
+  type: 'test'
+  ...
+# Subtest: project Stop hook invokes the canonical owner-aware closeout adapter
+ok 3 - project Stop hook invokes the canonical owner-aware closeout adapter
+  ---
+  duration_ms: 1.791125
+  type: 'test'
+  ...
+# Subtest: Stop hook uses the stable session id as the owner-task label
+ok 4 - Stop hook uses the stable session id as the owner-task label
+  ---
+  duration_ms: 0.827333
+  type: 'test'
+  ...
+# Subtest: Stop hook fails closed when the task identity is absent
+ok 5 - Stop hook fails closed when the task identity is absent
+  ---
+  duration_ms: 0.073459
+  type: 'test'
+  ...
+# Subtest: Stop hook fails closed on a malformed successful closeout report
+ok 6 - Stop hook fails closed on a malformed successful closeout report
+  ---
+  duration_ms: 0.104916
+  type: 'test'
+  ...
+# Subtest: Stop hook continues the turn while its owner has live compute
+ok 7 - Stop hook continues the turn while its owner has live compute
+  ---
+  duration_ms: 693.244292
+  type: 'test'
+  ...
+# Subtest: programmatic foreground ownership returns the same closed lease without changing caller exit status
+ok 8 - programmatic foreground ownership returns the same closed lease without changing caller exit status
+  ---
+  duration_ms: 164.784375
+  type: 'test'
+  ...
+# Subtest: foreground compute records exact ownership and closes its process group
+ok 9 - foreground compute records exact ownership and closes its process group
+  ---
+  duration_ms: 300.782
+  type: 'test'
+  ...
+# Subtest: an invalid command produces an immediate closed failure lease
+ok 10 - an invalid command produces an immediate closed failure lease
+  ---
+  duration_ms: 242.8855
+  type: 'test'
+  ...
+# Subtest: detached compute supports authenticated handoff and controlled stop
+ok 11 - detached compute supports authenticated handoff and controlled stop
+  ---
+  duration_ms: 707.809042
+  type: 'test'
+  ...
+# Subtest: a detached run cannot outlive its declared deadline
+ok 12 - a detached run cannot outlive its declared deadline
+  ---
+  duration_ms: 1125.137375
+  type: 'test'
+  ...
+# Subtest: a lost supervisor leaves an exactly identifiable group that can be reconciled
+ok 13 - a lost supervisor leaves an exactly identifiable group that can be reconciled
+  ---
+  duration_ms: 390.579959
+  type: 'test'
+  ...
+# Subtest: a missing leader cannot clear a surviving group or sidecar
+ok 14 - a missing leader cannot clear a surviving group or sidecar
+  ---
+  duration_ms: 716.874583
+  type: 'test'
+  ...
+# Subtest: foreground wait reports lost supervision before the target deadline
+ok 15 - foreground wait reports lost supervision before the target deadline
+  ---
+  duration_ms: 320.742
+  type: 'test'
+  ...
+# Subtest: stop reports observed closure when its supervisor dies after acknowledging stop
+ok 16 - stop reports observed closure when its supervisor dies after acknowledging stop
+  ---
+  duration_ms: 576.871875
+  type: 'test'
+  ...
+# Subtest: startup log failure records closed failure before any target can spawn
+ok 17 - startup log failure records closed failure before any target can spawn
+  ---
+  duration_ms: 70.94225
+  type: 'test'
+  ...
+# Subtest: startup deadline closes a stalled observer before any target can spawn
+ok 18 - startup deadline closes a stalled observer before any target can spawn
+  ---
+  duration_ms: 307.062083
+  type: 'test'
+  ...
+# Subtest: identity mismatch refuses a historical or reused PID
+ok 19 - identity mismatch refuses a historical or reused PID
+  ---
+  duration_ms: 79.689667
+  type: 'test'
+  ...
+# Subtest: prune applies only to old closed terminal records
+ok 20 - prune applies only to old closed terminal records
+  ---
+  duration_ms: 75.986333
+  type: 'test'
+  ...
+# Subtest: prune is a dry-run unless apply is explicit
+ok 21 - prune is a dry-run unless apply is explicit
+  ---
+  duration_ms: 72.80125
+  type: 'test'
+  ...
+# Subtest: prune requires an explicit age threshold
+ok 22 - prune requires an explicit age threshold
+  ---
+  duration_ms: 66.455667
+  type: 'test'
+  ...
+# Subtest: prune retains terminal records newer than the explicit age
+ok 23 - prune retains terminal records newer than the explicit age
+  ---
+  duration_ms: 69.554875
+  type: 'test'
+  ...
+# Subtest: prune retains nonterminal records
+ok 24 - prune retains nonterminal records
+  ---
+  duration_ms: 70.885125
+  type: 'test'
+  ...
+# Subtest: prune refuses a declared log path outside owned-compute state
+ok 25 - prune refuses a declared log path outside owned-compute state
+  ---
+  duration_ms: 69.955667
+  type: 'test'
+  ...
+# Subtest: prune refuses a symlinked deletion target
+ok 26 - prune refuses a symlinked deletion target
+  ---
+  duration_ms: 71.345458
+  type: 'test'
+  ...
+# Subtest: prune retains identity-uncertain compute without signaling it
+ok 27 - prune retains identity-uncertain compute without signaling it
+  ---
+  duration_ms: 75.3635
+  type: 'test'
+  ...
+1..27
+# tests 27
+# suites 0
+# pass 27
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6600.999208

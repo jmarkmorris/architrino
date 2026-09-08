@@ -1,0 +1,101 @@
+{
+  "schema": "braid-program/f5-enclosed-root-ledger-reduction.v1",
+  "accepted": true,
+  "structurallyAccepted": true,
+  "authority": "source-and-byte-bound-independent-reduction",
+  "h3EvidenceEligible": false,
+  "claimBoundary": "root-ledger census, certificate serialization, source-byte and history-token conformance only; actual analytic-to-cubic correspondence and reviewed build provenance remain separate requirements before H3; no evolution, retention, stability, binding, score, particle identity, or physical-realization claim",
+  "campaignId": "f5-enclosed-root-restart-20260826-v1",
+  "runId": "current-acceptance-a",
+  "historyManifestSha256": "bbfb55e2c789b5e6f034745c8e7e1b3a7d502b97082862558fb8eb4c6a707749",
+  "rungOrder": [
+    8,
+    32,
+    128
+  ],
+  "totalRows": 24192,
+  "rungSummaries": [
+    {
+      "campaignId": "f5-enclosed-root-restart-20260826-v1",
+      "runId": "current-acceptance-a",
+      "rungSamples": 8,
+      "rowCount": 1152,
+      "rawSha256": "a6232aed1c5f97b27367193ad9c71282acba2a5e44102782a75281c1faa9ae95",
+      "scientificLedgerSha256": "1d07faeb33ecf0dfb428fe41c3fd06fa91e02c1ed6cc540a0d280e36e7041fd3",
+      "maximumVisitedCells": 52,
+      "maximumPrecisionBits": 53,
+      "ordinaryRootCount": 1056,
+      "bindingSetSha256": "5654cb3773cfe5ff452ca12be9c874baf00e28a4b20afd5613e04846e8dca5c5",
+      "implementationBindingSetSha256": "98cb7b2816944f968cdfc78986664d6a5bb839bed005d38566963c19d608a1bb",
+      "memberSetSha256": "2e63eedc8c3639925b0f2ade7e3895c36c0c2a0b53e4a9606e39d5802aa7a640",
+      "controlSetSha256": "4a80ac63b5535446e6a70f063236401aac2100b89d68bbc68dc76dce698ab4c1"
+    },
+    {
+      "campaignId": "f5-enclosed-root-restart-20260826-v1",
+      "runId": "current-acceptance-a",
+      "rungSamples": 32,
+      "rowCount": 4608,
+      "rawSha256": "2d155f8b09a9ecb842ba65089b4c50a87f6d86a68d17f6fb7a327642df6d783d",
+      "scientificLedgerSha256": "4fcbb43dc1d57d392da64d1340fdc4b0125d8db878120fb618dc3ac84c89956d",
+      "maximumVisitedCells": 52,
+      "maximumPrecisionBits": 53,
+      "ordinaryRootCount": 4224,
+      "bindingSetSha256": "5654cb3773cfe5ff452ca12be9c874baf00e28a4b20afd5613e04846e8dca5c5",
+      "implementationBindingSetSha256": "98cb7b2816944f968cdfc78986664d6a5bb839bed005d38566963c19d608a1bb",
+      "memberSetSha256": "2e63eedc8c3639925b0f2ade7e3895c36c0c2a0b53e4a9606e39d5802aa7a640",
+      "controlSetSha256": "4a80ac63b5535446e6a70f063236401aac2100b89d68bbc68dc76dce698ab4c1"
+    },
+    {
+      "campaignId": "f5-enclosed-root-restart-20260826-v1",
+      "runId": "current-acceptance-a",
+      "rungSamples": 128,
+      "rowCount": 18432,
+      "rawSha256": "528766ad57254c6519102dcaeceb45ebc9c768e541bc315af44b16a4c1164974",
+      "scientificLedgerSha256": "e0cd0b538b7f0514c0460a95f0b8f97c0d0b5e94b8abc5c70e6694b7aa287d46",
+      "maximumVisitedCells": 52,
+      "maximumPrecisionBits": 53,
+      "ordinaryRootCount": 16896,
+      "bindingSetSha256": "5654cb3773cfe5ff452ca12be9c874baf00e28a4b20afd5613e04846e8dca5c5",
+      "implementationBindingSetSha256": "98cb7b2816944f968cdfc78986664d6a5bb839bed005d38566963c19d608a1bb",
+      "memberSetSha256": "2e63eedc8c3639925b0f2ade7e3895c36c0c2a0b53e4a9606e39d5802aa7a640",
+      "controlSetSha256": "4a80ac63b5535446e6a70f063236401aac2100b89d68bbc68dc76dce698ab4c1"
+    }
+  ],
+  "combinedScientificLedgerSha256": "4f42902af1ce56b8d102d32fc40ef74db0d974671f5e7ff9e66d1f66ff6dec05",
+  "checks": {
+    "frozenBindings": "passed",
+    "enclosureAuthority": "passed",
+    "exactHistoryManifest": "passed",
+    "actualAnalyticToCubicConformance": "separate-independent-receipt-required",
+    "reviewedBuildProvenance": "separate-reviewed-receipt-required",
+    "exactCensus": "passed",
+    "selfRows": "passed",
+    "partnerRows": "passed",
+    "factorMargins": "passed",
+    "rootFreeComplements": "passed",
+    "resourceLimits": "passed"
+  },
+  "nextAuthority": "requires independent analytic-to-actual-cubic conformance bound to this history manifest and reviewed build provenance before H3 evidence review; ordinary evolution remains separately predeclared",
+  "reducer": {
+    "path": "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs",
+    "sha256": "1b5051928406482ffa3fecfaa60b1e94d3f1372ed87ea2ea5e7442523ddc8fd0"
+  },
+  "rawHistoryManifest": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-acceptance-a/history-manifest.json",
+    "sha256": "bbfb55e2c789b5e6f034745c8e7e1b3a7d502b97082862558fb8eb4c6a707749"
+  },
+  "rawRungFiles": [
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/rung-8.json",
+      "sha256": "a6232aed1c5f97b27367193ad9c71282acba2a5e44102782a75281c1faa9ae95"
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/rung-32.json",
+      "sha256": "2d155f8b09a9ecb842ba65089b4c50a87f6d86a68d17f6fb7a327642df6d783d"
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/rung-128.json",
+      "sha256": "528766ad57254c6519102dcaeceb45ebc9c768e541bc315af44b16a4c1164974"
+    }
+  ]
+}

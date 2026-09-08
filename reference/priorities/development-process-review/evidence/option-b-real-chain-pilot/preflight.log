@@ -1,0 +1,2 @@
+PASS: SHA-256 abc, literal selectors, duplicate JSON rejection, hand-enumerated transitive graph
+PASS: known recorded result and wrong-result controls

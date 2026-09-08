@@ -1,0 +1,20 @@
+✔ the endpoint grid bound rejects a distorted tetrahedral edge (3.231333ms)
+✔ the twenty exact geometry studies have neutral inventory and validated sources (97.35775ms)
+✔ the static stella octangula is exactly two tetrahedra and remains unclassified as a braid (2.654666ms)
+✔ alternating circular rings follow their complete declared circles (115.495292ms)
+✔ co-spherical two-planar-braid records preserve radius and circulation relation (14.518833ms)
+✔ rotating regular vertex sets preserve independently known edge graphs (23.293375ms)
+✔ Borg launches into visual assembly discovery (0.9335ms)
+✔ Borg discovery keeps random simulation separate from exact assemblies (0.233125ms)
+✔ Borg discovery collapses the filter rail at narrow widths (0.134459ms)
+✔ Borg workbench leaves assembly selection on the discovery home (0.26525ms)
+✔ legacy Assembly Explorer remains a non-indexed state-preserving redirect (0.080333ms)
+✔ Borg workbench receives the selected home-page record summary (27.515125ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 486.357916

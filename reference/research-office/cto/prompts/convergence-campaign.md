@@ -251,7 +251,7 @@ After editing, run:
 - `node scripts/build-scene-graph.mjs --check --strict`
 - `node scripts/build-textbook-md-pdf.mjs --check` when textbook-facing corpus markdown or generated reading-copy inputs changed.
 
-For branch, commit, push, or PR publication, run the full required check set in [codex-pr-branch.md](../../../op/git/codex-pr-branch.md).
+For branch, commit, push, or PR publication, run the full required check set in [pr-lifecycle.md](../../../op/git/pr-lifecycle.md).
 
 If scene graph drift appears, report the affected paths and these repair commands without running them:
 - `node scripts/build-scene-graph.mjs --write --strict`

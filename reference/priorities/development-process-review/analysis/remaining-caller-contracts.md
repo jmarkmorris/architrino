@@ -1,8 +1,24 @@
 # Remaining caller contracts after baseline review
 
+## Current continuation status
+
+Legend: ✓ Done, ◐ Partial, ○ Not done. Blocked identifies an unmet prerequisite; it is not completion. The dated investigations below preserve their original evidence and requirements. Their historical future-tense statements are not the current queue.
+
+| Current caller obligation | Status | Evidence and remaining condition |
+| --- | --- | --- |
+| Emission current transport | ✓ Done | [Current transport and actual metadata stages](emission-current-migration.md); no new numerical refinement acceptance |
+| F5 original-input routing, build/API review and complete prefix/rung chain | ✓ Done | [Complete current F5 execution](f5-remaining-callers.md); no broader scientific or repository-health conclusion |
+| Circular current build/context and complete pilot | ✓ Done | [Independent pilot acceptance](../evidence/circular-current-execution/current-pilot-independent-review.md) |
+| Circular current ladder resource and execution contract | ◐ Partial | [Detailed ladder requirements](circular-current-execution.md); memory/entry review and bounded current-rung evidence are separate from the completed pilot |
+| Refined current execution | ◐ Partial — Blocked | [Original-byte prerequisite review](../evidence/refined-current-migration/recoverability-review.md#wider-local-recovery-follow-through); three exact original utilities remain unavailable |
+
+The [current remaining-task table](review-and-repair-plan.md#complete-remaining-task-reconciliation-after-publication-rollover) owns executable follow-through.
+
 The recovery separates an executable process from a scientifically accepted calculation. The September 8 batch restores the refined launcher's current supervisor composition, repairs a circular-phase cleanup exception, and recovers the complete selected F5 input set. It does not establish new numerical acceptance for emission, refined acceleration, or the circular ladder. The [coverage record](final-test-coverage.md) reports the actual tests; the [work queue](../work-queue.md) retains the uncompleted interfaces.
 
-## Emission and refined acceleration
+## Historical emission and refined investigation
+
+**Current disposition: ✓ Done for emission transport; ◐ Partial — Blocked for refined execution.** The separate current caller rows above supersede the implementation status in this original investigation.
 
 The refined process launcher still selected the old shared helper and outer supervisor. The pre-repair command running both emission and refined process suites produced 24 tests with ten failures, all in the refined suite. Changing only the launcher's two operational dependency digests to the already used current generations makes its complete 12-test process suite pass in run `0c85f00b-f410-4da3-bd59-6a944bd202ca`. The emission process suite's twelve tests already passed in the pre-repair run. These synthetic controls exercise process composition, publication rejection and cleanup; they do not execute a scientific refinement. The terminal records and log bindings are in [completed runs](../evidence/final-validation/completed-runs.json).
 
@@ -10,7 +26,9 @@ Reading `run-f6c-emission-refinement-pilot.mjs`, `prepare-f6c-emission-refinemen
 
 The refined verifier is also a live historical transport dependency of parent and variable-cell work. Its numerical and transport API cannot be replaced merely to make its own new-run caller green. Acceptance requires a complete current dependency census, explicit original-data routes, unchanged numerical subject/reference bytes, metadata authentication through the actual prior chain, and synthetic success/rejection/cleanup controls before any new numerical run. This is an open implementation obligation owned by braid-program / OPS-024, not an unavailable-file excuse or a completed migration.
 
-## F5 inputs and build acceptance
+## Historical F5 input and build investigation
+
+**Current disposition: ✓ Done for the bounded F5 input/build/API and execution chain; ◐ Partial for the separate circular ladder.** Current evidence is linked above; the original diagnostic and regression results remain below.
 
 The [availability record](../evidence/final-validation/f5-original-input-availability.json) verifies all five selected original input digests: approved configuration, pilot fixture, restart declaration, enclosure evidence and retained accepted report. The two declaration files were recovered with `git show 0fb575921783188ce528a45c671090e9ecc00464:<original-path>` and their expected SHA-256 values verified. The recovered configuration and fixture agree on all seven compared history/geometry fields. None of these operations changes the original source or acceptance predicate.
 
@@ -22,16 +40,22 @@ The circular ladder additionally requires an accepted build, complete phase/pilo
 
 ## Circular-phase cleanup repair
 
+**✓ Done — Denied-probe cleanup repair**, within the exact controls and falsifiers below.
+
 Full normal sweep `f55b9aa1-7b24-4977-936f-cce06c98579e` failed the ignored-output-descendant control. Its final diagnostic records `kill EPERM` escaping from `groupExists` inside cleanup; heartbeats continued after the test failed. The owned supervisor stopped that run and recorded process-group closure. Its cancellation prevents treating the unreached remainder as test results.
 
 The new denied-probe control fails against the original implementation before the repair, as recorded in [the negative result](../evidence/final-validation/circular-phase-negative-control.json). The implementation now records an unsuccessful group probe, retains failure, and treats presence as unconfirmed until a later `ESRCH`. Cleanup remains bounded. A persistent denial yields `processGroupClosed: false`; the failure receipt remains scientifically ineligible and monitoring is released. The [repaired suite](../evidence/final-validation/circular-phase-repair-results.json) passes all 18 tests, including transient and persistent denial, with no failures, cancellations or skips. The fixture also performs a real OS absence probe after its synthetic denial. A leaked heartbeat after rejection, or a closure claim while every final probe is denied, would overturn the corresponding repair claim.
 
-## September 8 current transport and independent build follow-through
+## Historical September 8 transport and independent build follow-through
+
+**Current disposition: ✓ Done for emission and bounded F5 handoff/build obligations; ◐ Partial — Blocked for refined originals; ◐ Partial for the circular ladder.** Later acceptance evidence is linked in the current table.
 
 The [emission transport](emission-current-migration.md) now passes 42 Node and 11 Python controls plus both real metadata stages. These preserve the original producer and numerical verifier. The [refined recoverability review](../evidence/refined-current-migration/recoverability-review.md) identifies exactly three unavailable original host binaries after resolving 31 other original source generations. The unchanged refined source-authentication predicate therefore remains blocked; no current hash substitution or partial transport is presented as acceptance.
 
 The [independent F5/circular build review](f5-circular-build-review.md) supersedes the earlier incomplete solver-diff summary and records scoped pin integration and its measured boundary. The F5 handoff producer and independent verifier still require their old source-owner map; circular execution still needs its actual accepted build, pilot and resource chain. These obligations remain separate from build preparation.
 
-## Successor current F5 and circular results
+## Historical successor F5 and circular results
+
+**Current disposition: ✓ Done for the F5 chain and circular current pilot; ◐ Partial for the circular ladder; ◐ Partial — Blocked for refined execution.** The following paragraph records the earlier successor stage and is superseded for current task selection by the table above.
 
 The [current F5 handoff](f5-current-handoff.md) now supplies an explicit current build/input/runtime transport with joined producer and independent verifier execution. It preserves original numerical modules and records the validation projection boundary rather than relabeling current provenance as historical. Remaining F5 loader, ledger, prefix and interpolation callers retain their own unresolved contracts. The [circular schema repair and data-path validation](circular-current-execution.md) pass with the fresh adapter and unchanged analytic verifier; the independent phase reducer still needs a reviewed current-build context API before full pilot admission. The [widened original-binary search](../evidence/refined-current-migration/recoverability-review.md#wider-local-recovery-follow-through) does not supply the refined verifier's three original utility objects.

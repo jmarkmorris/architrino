@@ -1,0 +1,10 @@
+{
+  "unchanged": {"consistency":"pass","reviewStatus":"unchanged-relative-to-exploratory-baseline","affected":[],"selectedChecks":[],"recordedResult":"pass"},
+  "harmless-prose": {"consistency":"pass","reviewStatus":"review-required","affected":[],"selectedChecks":["check"],"recordedResult":"pass"},
+  "stale-assumption": {"consistency":"reject","reviewStatus":"not-evaluated","affected":null,"selectedChecks":null,"recordedResult":"not-run"},
+  "changed-assumption-refreshed": {"consistency":"pass","reviewStatus":"review-required","affected":["assumptions","calculation","definitions","derivation","identity","result","root-derivative","scalar"],"selectedChecks":["check"],"recordedResult":"pass"},
+  "omitted-relationship": {"consistency":"pass","reviewStatus":"review-required","affected":["calculation","definitions","derivation","identity","result","root-derivative","scalar"],"selectedChecks":["check"],"recordedResult":"pass"},
+  "added-relationship": {"consistency":"pass","reviewStatus":"review-required","affected":["calculation","result"],"selectedChecks":["check"],"recordedResult":"pass"},
+  "wrong-recorded-result": {"consistency":"pass","reviewStatus":"review-required","affected":["result"],"selectedChecks":["check"],"recordedResult":"reject"},
+  "removed-check-coverage": {"consistency":"pass","reviewStatus":"review-required","affected":["result"],"selectedChecks":["check"],"recordedResult":"pass"}
+}

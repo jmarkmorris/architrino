@@ -2,7 +2,9 @@
 
 Date: 2026-09-07. The operator authorized the first investigation after reviewing the proposed plan. This pass produced a controlled reproduction and a narrower mechanism hypothesis, not a production repair. Original reports, production sources, tests, and pins remain unchanged.
 
-## Result
+Legend: ✓ Done, ◐ Partial, ○ Not done. This is the original investigation, not the current failure list. **✓ Done — normal completion/cancellation repair and independent process-absence controls** are recorded in [process repair validation](process-repair-validation.md). **✓ Done — bounded startup-deadline repair** is recorded in [supervision follow-through](supervision-and-omitted-coverage.md). **◐ Partial — Blocked on surviving causal evidence:** the separate historical lost-supervisor recurrence remains open in that follow-through record.
+
+## Historical result
 
 The current supervisor does not accept normal completion of a minimal Node module that only writes a completion marker and returns. The same module with an explicit process exit completes successfully. Both results were measured on the operator's Mac with Node v26.3.0 using the [synthetic probe](../evidence/process-controls/supervision-probe.mjs). No Python, EOM executable, numerical calculation, or broad test sweep was needed.
 
@@ -54,7 +56,9 @@ The other modes are `natural-return`, `unref-control`, and `bootstrap-interrupti
 
 `shasum -a 256` measured the production launcher as `3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a` and the final preserved probe as `e2d2013adb9d309c375001851c6147f49f4a5380d6bfb45d270ce3efe4398282`. Reproduction at different source bytes must be recorded as a new comparison.
 
-## Next repair boundary
+## Historical next repair boundary
+
+**✓ Done — The normal-completion and startup implementation steps below were subsequently completed within the linked validation scopes.** The original investigation and proposed obligations remain unchanged below; the separate historical recurrence remains partial.
 
 The first bounded investigation is complete: it reproduced an operational defect, demonstrated a successful control, rejected a tempting incomplete patch, and independently checked one disputed cleanup scenario. No operator decision about scientific behavior was needed.
 

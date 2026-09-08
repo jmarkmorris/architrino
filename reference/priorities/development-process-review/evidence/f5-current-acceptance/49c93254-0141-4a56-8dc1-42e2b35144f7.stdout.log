@@ -1,0 +1,13 @@
+✔ build arguments preserve explicit fresh lane and runtime (0.804375ms)
+✔ build rejects missing, repeated, unknown, escaping and unbound inputs (0.191167ms)
+✔ minimal binding matches producer closed file-record shape (0.907917ms)
+✔ source snapshot binds fresh builder, whole EOM owners and frozen references (6.861ms)
+✔ build source uses two compilation workers and no data invocation (0.204208ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 90.417958

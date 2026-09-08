@@ -1,0 +1,22 @@
+{
+  "schema": "circular-independent-prior32-linkage-review.v1",
+  "accepted": true,
+  "h3EvidenceEligible": false,
+  "laterLadderAuthorized": false,
+  "candidateId": "coincident-midpoint-common-frequency",
+  "rung": 128,
+  "pending": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-prior128-preparation-20260908-a/next128-review.pending.json",
+    "sha256": "60fbd1dfb1581d8b457de65bb4a235047323a69429d8fa35d3271e00ec0745bd",
+    "bytes": 324612
+  },
+  "acceptedPacket": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-prior128-preparation-20260908-a/next128-review.accepted.json",
+    "sha256": "1c4c18b62eb1a96ca359d1b18521142c5c4d04c27738fcb81e3dc8cb9979253b",
+    "bytes": 324612
+  },
+  "priorRung": 32,
+  "priorPhases": 42,
+  "knownControlsPassedBeforeTarget": true,
+  "boundary": "Exact immutable next128 packet review only. Final profile must independently bind this same packet as planReview and final prior.rungAdmissions entry. Frozen entry does not generically compare those fields for arbitrary caller-created profiles; final selected invocation must be checked separately. No new closure or numerical result."
+}

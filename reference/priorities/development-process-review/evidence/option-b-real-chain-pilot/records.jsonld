@@ -1,0 +1,364 @@
+{
+  "@context": {
+    "@vocab": "https://example.invalid/option-b-real-chain/",
+    "kind": {
+      "@type": "@id"
+    },
+    "fromObject": {
+      "@type": "@id"
+    },
+    "toObject": {
+      "@type": "@id"
+    }
+  },
+  "schemaVersion": "real-chain-pilot/v1",
+  "scopeId": "moving-single-root",
+  "@graph": [
+    {
+      "@id": "https://example.invalid/option-b-real-chain/assumptions",
+      "@type": "Assumption",
+      "revisionId": "initial-1c376f88a29ec53ffc73",
+      "sourceBinding": {
+        "path": "content/markdown/aaa/dynamics/master-equation.md",
+        "selector": {
+          "kind": "between",
+          "start": "**Moving-single-root scalar representative",
+          "end": "Differentiating the causal constraint"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "1c376f88a29ec53ffc73982625560407670d2ece47a11db0cd9b329e3fa34640"
+      }
+    },
+    {
+      "@id": "https://example.invalid/option-b-real-chain/derivation",
+      "@type": "Derivation",
+      "revisionId": "initial-2a3097dddd0f4fc64dd1",
+      "sourceBinding": {
+        "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+        "selector": {
+          "kind": "between",
+          "start": "### Moving-Single-Root Scalar-Gradient Theorem",
+          "end": "## Partner Root, Same-History Root, And Diagonal Boundary"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "2a3097dddd0f4fc64dd17b692c43b490eb63737387af28a9b78f2b518e62a1e1"
+      }
+    },
+    {
+      "@id": "https://example.invalid/option-b-real-chain/calculation",
+      "@type": "CalculationSpecification",
+      "revisionId": "initial-ac2e04abb65924927c81",
+      "sourceBinding": {
+        "path": "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs",
+        "selector": {
+          "kind": "whole-file"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba"
+      }
+    },
+    {
+      "@id": "https://example.invalid/option-b-real-chain/reference",
+      "@type": "CalculationSpecification",
+      "revisionId": "initial-f62d06f094be9f85cf9b",
+      "sourceBinding": {
+        "path": "scripts/equation-mapping/verify-receiver-wake-gradient.mjs",
+        "selector": {
+          "kind": "whole-file"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d"
+      }
+    },
+    {
+      "@id": "https://example.invalid/option-b-real-chain/check",
+      "@type": "CheckObligation",
+      "revisionId": "initial-3f62205b55a601b5f96e",
+      "sourceBinding": {
+        "path": "tests/moving-single-root-scalar-gradient-verifier.test.mjs",
+        "selector": {
+          "kind": "whole-file"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+      }
+    },
+    {
+      "@id": "https://example.invalid/option-b-real-chain/result",
+      "@type": "Result",
+      "revisionId": "initial-503690401cd7093e0133",
+      "sourceBinding": {
+        "path": "content/markdown/aaa/dynamics/master-equation.md",
+        "selector": {
+          "kind": "between",
+          "start": "> Claim grade: derived for the identity on one connected regular moving-simple-root chart",
+          "end": "**Finite-ledger scalar-superposition theorem"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "503690401cd7093e0133f86bd9f1f61e93256b9eb68382bf7e4892d4bc869d2c"
+      }
+    },
+    {
+      "@id": "https://architrino.com/equation-mapping.html#corpus-equation-f320108876777c46",
+      "@type": "EquationOccurrence",
+      "revisionId": "initial-2a62d8a047f4243cc5a0",
+      "sourceBinding": {
+        "path": "content/markdown/aaa/dynamics/master-equation.md",
+        "selector": {
+          "kind": "equation-occurrence",
+          "id": "corpus-equation-f320108876777c46"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "2a62d8a047f4243cc5a0642ebabcfc0cbb9a03ddd93aa52b24b32be6a45670b0"
+      }
+    },
+    {
+      "@id": "https://architrino.com/equation-mapping.html#corpus-equation-0d1e584019eb76b1",
+      "@type": "EquationOccurrence",
+      "revisionId": "initial-398361f14b8cd508315e",
+      "sourceBinding": {
+        "path": "content/markdown/aaa/dynamics/master-equation.md",
+        "selector": {
+          "kind": "equation-occurrence",
+          "id": "corpus-equation-0d1e584019eb76b1"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "398361f14b8cd508315e3ec4f7675462cbeb535890a99533aa7f274c8777a2fa"
+      }
+    },
+    {
+      "@id": "https://architrino.com/equation-mapping.html#corpus-equation-4c68e6145352e9dc",
+      "@type": "EquationOccurrence",
+      "revisionId": "initial-e7cf0fb563d373f6eb69",
+      "sourceBinding": {
+        "path": "content/markdown/aaa/dynamics/master-equation.md",
+        "selector": {
+          "kind": "equation-occurrence",
+          "id": "corpus-equation-4c68e6145352e9dc"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "e7cf0fb563d373f6eb69b186d9723ee576e9b726416bc5979b86445605913317"
+      }
+    },
+    {
+      "@id": "https://architrino.com/equation-mapping.html#corpus-equation-193390fd300cb6a5",
+      "@type": "EquationOccurrence",
+      "revisionId": "initial-ef911916d69e936d527c",
+      "sourceBinding": {
+        "path": "content/markdown/aaa/dynamics/master-equation.md",
+        "selector": {
+          "kind": "equation-occurrence",
+          "id": "corpus-equation-193390fd300cb6a5"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "ef911916d69e936d527ca0077714329ed1e73df357dc5702ad86054b0fa6f857"
+      }
+    },
+    {
+      "@id": "https://example.invalid/option-b-real-chain/dependsOn-definitions-assumptions",
+      "@type": "Relationship",
+      "revisionId": "initial",
+      "kind": "https://example.invalid/option-b-real-chain/dependsOn",
+      "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-f320108876777c46",
+      "fromRevision": "initial-2a62d8a047f4243cc5a0",
+      "toObject": "https://example.invalid/option-b-real-chain/assumptions",
+      "toRevision": "initial-1c376f88a29ec53ffc73",
+      "justification": {
+        "path": "content/markdown/aaa/dynamics/master-equation.md",
+        "selector": {
+          "kind": "equation-occurrence",
+          "id": "corpus-equation-f320108876777c46"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "2a62d8a047f4243cc5a0642ebabcfc0cbb9a03ddd93aa52b24b32be6a45670b0"
+      }
+    },
+    {
+      "@id": "https://example.invalid/option-b-real-chain/dependsOn-root-derivative-definitions",
+      "@type": "Relationship",
+      "revisionId": "initial",
+      "kind": "https://example.invalid/option-b-real-chain/dependsOn",
+      "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-0d1e584019eb76b1",
+      "fromRevision": "initial-398361f14b8cd508315e",
+      "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-f320108876777c46",
+      "toRevision": "initial-2a62d8a047f4243cc5a0",
+      "justification": {
+        "path": "content/markdown/aaa/dynamics/master-equation.md",
+        "selector": {
+          "kind": "equation-occurrence",
+          "id": "corpus-equation-0d1e584019eb76b1"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "398361f14b8cd508315e3ec4f7675462cbeb535890a99533aa7f274c8777a2fa"
+      }
+    },
+    {
+      "@id": "https://example.invalid/option-b-real-chain/dependsOn-scalar-root-derivative",
+      "@type": "Relationship",
+      "revisionId": "initial",
+      "kind": "https://example.invalid/option-b-real-chain/dependsOn",
+      "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-4c68e6145352e9dc",
+      "fromRevision": "initial-e7cf0fb563d373f6eb69",
+      "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-0d1e584019eb76b1",
+      "toRevision": "initial-398361f14b8cd508315e",
+      "justification": {
+        "path": "content/markdown/aaa/dynamics/master-equation.md",
+        "selector": {
+          "kind": "equation-occurrence",
+          "id": "corpus-equation-4c68e6145352e9dc"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "e7cf0fb563d373f6eb69b186d9723ee576e9b726416bc5979b86445605913317"
+      }
+    },
+    {
+      "@id": "https://example.invalid/option-b-real-chain/dependsOn-derivation-scalar",
+      "@type": "Relationship",
+      "revisionId": "initial",
+      "kind": "https://example.invalid/option-b-real-chain/dependsOn",
+      "fromObject": "https://example.invalid/option-b-real-chain/derivation",
+      "fromRevision": "initial-2a3097dddd0f4fc64dd1",
+      "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-4c68e6145352e9dc",
+      "toRevision": "initial-e7cf0fb563d373f6eb69",
+      "justification": {
+        "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+        "selector": {
+          "kind": "between",
+          "start": "### Moving-Single-Root Scalar-Gradient Theorem",
+          "end": "## Partner Root, Same-History Root, And Diagonal Boundary"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "2a3097dddd0f4fc64dd17b692c43b490eb63737387af28a9b78f2b518e62a1e1"
+      }
+    },
+    {
+      "@id": "https://example.invalid/option-b-real-chain/dependsOn-identity-derivation",
+      "@type": "Relationship",
+      "revisionId": "initial",
+      "kind": "https://example.invalid/option-b-real-chain/dependsOn",
+      "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-193390fd300cb6a5",
+      "fromRevision": "initial-ef911916d69e936d527c",
+      "toObject": "https://example.invalid/option-b-real-chain/derivation",
+      "toRevision": "initial-2a3097dddd0f4fc64dd1",
+      "justification": {
+        "path": "content/markdown/aaa/dynamics/master-equation.md",
+        "selector": {
+          "kind": "equation-occurrence",
+          "id": "corpus-equation-193390fd300cb6a5"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "ef911916d69e936d527ca0077714329ed1e73df357dc5702ad86054b0fa6f857"
+      }
+    },
+    {
+      "@id": "https://example.invalid/option-b-real-chain/dependsOn-calculation-identity",
+      "@type": "Relationship",
+      "revisionId": "initial",
+      "kind": "https://example.invalid/option-b-real-chain/dependsOn",
+      "fromObject": "https://example.invalid/option-b-real-chain/calculation",
+      "fromRevision": "initial-ac2e04abb65924927c81",
+      "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-193390fd300cb6a5",
+      "toRevision": "initial-ef911916d69e936d527c",
+      "justification": {
+        "path": "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs",
+        "selector": {
+          "kind": "whole-file"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba"
+      }
+    },
+    {
+      "@id": "https://example.invalid/option-b-real-chain/dependsOn-calculation-reference",
+      "@type": "Relationship",
+      "revisionId": "initial",
+      "kind": "https://example.invalid/option-b-real-chain/dependsOn",
+      "fromObject": "https://example.invalid/option-b-real-chain/calculation",
+      "fromRevision": "initial-ac2e04abb65924927c81",
+      "toObject": "https://example.invalid/option-b-real-chain/reference",
+      "toRevision": "initial-f62d06f094be9f85cf9b",
+      "justification": {
+        "path": "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs",
+        "selector": {
+          "kind": "whole-file"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba"
+      }
+    },
+    {
+      "@id": "https://example.invalid/option-b-real-chain/dependsOn-result-calculation",
+      "@type": "Relationship",
+      "revisionId": "initial",
+      "kind": "https://example.invalid/option-b-real-chain/dependsOn",
+      "fromObject": "https://example.invalid/option-b-real-chain/result",
+      "fromRevision": "initial-503690401cd7093e0133",
+      "toObject": "https://example.invalid/option-b-real-chain/calculation",
+      "toRevision": "initial-ac2e04abb65924927c81",
+      "justification": {
+        "path": "content/markdown/aaa/dynamics/master-equation.md",
+        "selector": {
+          "kind": "between",
+          "start": "> Claim grade: derived for the identity on one connected regular moving-simple-root chart",
+          "end": "**Finite-ledger scalar-superposition theorem"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "503690401cd7093e0133f86bd9f1f61e93256b9eb68382bf7e4892d4bc869d2c"
+      }
+    },
+    {
+      "@id": "https://example.invalid/option-b-real-chain/checks-check-identity",
+      "@type": "Relationship",
+      "revisionId": "initial",
+      "kind": "https://example.invalid/option-b-real-chain/checks",
+      "fromObject": "https://example.invalid/option-b-real-chain/check",
+      "fromRevision": "initial-3f62205b55a601b5f96e",
+      "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-193390fd300cb6a5",
+      "toRevision": "initial-ef911916d69e936d527c",
+      "justification": {
+        "path": "tests/moving-single-root-scalar-gradient-verifier.test.mjs",
+        "selector": {
+          "kind": "whole-file"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+      }
+    },
+    {
+      "@id": "https://example.invalid/option-b-real-chain/checks-check-calculation",
+      "@type": "Relationship",
+      "revisionId": "initial",
+      "kind": "https://example.invalid/option-b-real-chain/checks",
+      "fromObject": "https://example.invalid/option-b-real-chain/check",
+      "fromRevision": "initial-3f62205b55a601b5f96e",
+      "toObject": "https://example.invalid/option-b-real-chain/calculation",
+      "toRevision": "initial-ac2e04abb65924927c81",
+      "justification": {
+        "path": "tests/moving-single-root-scalar-gradient-verifier.test.mjs",
+        "selector": {
+          "kind": "whole-file"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+      }
+    },
+    {
+      "@id": "https://example.invalid/option-b-real-chain/checks-check-result",
+      "@type": "Relationship",
+      "revisionId": "initial",
+      "kind": "https://example.invalid/option-b-real-chain/checks",
+      "fromObject": "https://example.invalid/option-b-real-chain/check",
+      "fromRevision": "initial-3f62205b55a601b5f96e",
+      "toObject": "https://example.invalid/option-b-real-chain/result",
+      "toRevision": "initial-503690401cd7093e0133",
+      "justification": {
+        "path": "tests/moving-single-root-scalar-gradient-verifier.test.mjs",
+        "selector": {
+          "kind": "whole-file"
+        },
+        "selectorContract": "pilot-byte-selectors/v1",
+        "selectedBytesSha256": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+      }
+    }
+  ]
+}

@@ -18,7 +18,7 @@ function bashBlocks(markdown) {
 }
 
 test("PR procedure executable blocks preserve commands required for advancement verification", () => {
-  const procedure = read("reference/op/git/codex-pr-branch.md");
+  const procedure = read("reference/op/git/pr-lifecycle.md");
   const executable = bashBlocks(procedure).join("\n");
 
   assert.equal(executable.includes("gh pr create --fill"), false);
@@ -30,7 +30,7 @@ test("PR procedure executable blocks preserve commands required for advancement 
 });
 
 test("PR procedure, pre-push hook, and CI share the aggregate gate", () => {
-  const procedure = read("reference/op/git/codex-pr-branch.md");
+  const procedure = read("reference/op/git/pr-lifecycle.md");
   const hook = read(".githooks/pre-push");
   const workflow = read(".github/workflows/content-integrity.yml");
   const aggregate = read("scripts/check-content-integrity.mjs");
@@ -52,7 +52,7 @@ test("PR procedure, pre-push hook, and CI share the aggregate gate", () => {
 
 test("routine PR validation excludes on-demand iOS package freshness without dropping web checks", () => {
   const aggregate = read("scripts/check-content-integrity.mjs");
-  const procedure = read("reference/op/git/codex-pr-branch.md");
+  const procedure = read("reference/op/git/pr-lifecycle.md");
   const iosReadme = read("apps/ios/ArchitrinoReader/README.md");
 
   assert.doesNotMatch(aggregate, /scripts\/export-ios-textbook-package\.mjs/);
@@ -92,7 +92,7 @@ test("routine notation validation ignores a saved iOS snapshot but rejects autho
 });
 
 test("children's-book pilot exports stay local and optional during routine PRs", () => {
-  const procedure = read("reference/op/git/codex-pr-branch.md");
+  const procedure = read("reference/op/git/pr-lifecycle.md");
   const aggregate = read("scripts/check-content-integrity.mjs");
   const ignore = read(".gitignore");
   const manifest = JSON.parse(read("reference/learning-office/childrens-books/production/generation-manifest.json"));
@@ -111,15 +111,11 @@ test("children's-book pilot exports stay local and optional during routine PRs",
 });
 
 test("PR procedure retains permission diagnostics without obsolete acceptance obligations", () => {
-  const procedure = read("reference/op/git/codex-pr-branch.md");
-  const verification = read(
-    "reference/op/git/codex-pr-unattended-verification.md"
-  );
+  const procedure = read("reference/op/git/pr-lifecycle.md");
   const operatorFeedback = read("reference/op/README-op.md");
 
   // The four counters are defined once, in the procedure's Permission measurement
-  // section. The ledger references that definition rather than restating the list,
-  // so assert the definition here and the reference below.
+  // section, which remains the live owner after historical-ledger removal.
   for (const counter of [
     "operatorDecisionPromptCount",
     "hostPermissionPromptCount",
@@ -143,10 +139,6 @@ test("PR procedure retains permission diagnostics without obsolete acceptance ob
     procedure,
     /any observed permission friction during the second handoff/
   );
-  assert.match(
-    procedure,
-    /\[codex-pr-unattended-verification\.md\]\(codex-pr-unattended-verification\.md\)/
-  );
   // The unattended-execution correction closed on 2026-09-05 by operator
   // disposition. The counters survive as diagnostics, so the procedure must still
   // measure and report them, but no consecutive-run acceptance count is maintained
@@ -155,21 +147,9 @@ test("PR procedure retains permission diagnostics without obsolete acceptance ob
   assert.match(procedure, /live diagnostics rather than an acceptance gate/);
   assert.doesNotMatch(procedure, /resets the qualifying count to zero/);
   assert.doesNotMatch(procedure, /whether .*hand.*qualif|Update the unattended-verification ledger|treat the correction as reopened/);
-  assert.match(procedure, /routine publication does not require updating the closed unattended-verification ledger/);
+  assert.match(procedure, /routine publication requires no separate historical ledger/);
   assert.match(procedure, /nonzero or unknown counts do not invalidate a successfully verified Git handoff/);
 
-  assert.match(verification, /Corrective-action status: `closed`/);
-  assert.match(verification, /Closure route actually used: operator acceptance/);
-  // The closure must not be describable as measured: the three-run rule was never
-  // satisfied, and the ledger has to keep saying so.
-  assert.match(verification, /That rule was never satisfied/);
-  assert.match(verification, /Do not describe this correction as verified by measurement/);
-  assert.match(
-    verification,
-    /\[Permission measurement\]\(codex-pr-branch\.md#permission-measurement\)/
-  );
-  // The single measured observation is retained as history.
-  assert.match(verification, /2026-07-23 \| 225 \| `codex\/diamond`/);
   assert.match(
     operatorFeedback,
     /The three-run verification requirement closed on 2026-09-05 by operator disposition rather than by measurement/

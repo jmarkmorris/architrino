@@ -693,6 +693,7 @@ async function runSidecar(runId) {
   try {
     plan = await readJson(planPath(runId));
     requireCondition(plan.schema === SCHEMA && plan.runId === runId, "sidecar plan identity changed");
+    requireCondition(Date.parse(plan.deadlineAtUtc) > Date.now(), "startup deadline exceeded");
     await rm(planPath(runId), { force: true });
   } catch (error) {
     const current = existsSync(filePath) ? JSON.parse(readFileSync(filePath, "utf8")) : { schema: SCHEMA, runId };
@@ -756,6 +757,23 @@ async function runSidecar(runId) {
     });
   });
   let sidecarIdentity;
+  // The declared deadline also bounds startup before there is a target to stop.
+  // Wrap each stage separately so a timed-out stage cannot later spawn a target.
+  const startupStep = async (operation) => {
+    const remaining = Date.parse(plan.deadlineAtUtc) - Date.now();
+    requireCondition(Number.isFinite(remaining) && remaining > 0, "startup deadline exceeded");
+    let timer;
+    try {
+      return await Promise.race([
+        operation(),
+        new Promise((_, reject) => {
+          timer = setTimeout(() => reject(new Error("startup deadline exceeded")), remaining);
+        }),
+      ]);
+    } finally {
+      clearTimeout(timer);
+    }
+  };
   try {
     // No target may start until its logs, control endpoint and observer work.
     const opened = stream => new Promise((resolve, reject) => {
@@ -765,12 +783,13 @@ async function runSidecar(runId) {
       const closed = () => failed(new Error("log closed before startup completed"));
       stream.once("open", ready); stream.once("error", failed); stream.once("close", closed);
     });
-    await Promise.all([opened(stdout), opened(stderr)]);
-    await new Promise((resolve, reject) => {
+    await startupStep(() => Promise.all([opened(stdout), opened(stderr)]));
+    await startupStep(() => new Promise((resolve, reject) => {
       server.once("error", reject);
       server.listen(0, "127.0.0.1", resolve);
-    });
-    sidecarIdentity = await waitForProcessIdentity(process.pid);
+    }));
+    sidecarIdentity = await startupStep(() => waitForProcessIdentity(process.pid));
+    requireCondition(Date.now() < Date.parse(plan.deadlineAtUtc), "startup deadline exceeded");
   } catch (error) {
     stdout.destroy(); stderr.destroy();
     if (server.listening) await new Promise(resolve => server.close(resolve));
@@ -803,7 +822,7 @@ async function runSidecar(runId) {
     stderr.write(chunk);
   });
   const launchOutcome = await Promise.race([
-    waitForProcessIdentity(target.pid).then((identity) => ({ identity })).catch((identityError) => ({ identityError })),
+    startupStep(() => waitForProcessIdentity(target.pid)).then((identity) => ({ identity })).catch((identityError) => ({ identityError })),
     targetResult.then((earlyResult) => ({ earlyResult })),
   ]);
   let targetIdentity = launchOutcome.identity;

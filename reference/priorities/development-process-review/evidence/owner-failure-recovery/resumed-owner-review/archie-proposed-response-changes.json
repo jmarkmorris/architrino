@@ -1,0 +1,97 @@
+{
+  "boundary": "Proposed generated fixture refresh from unchanged query engine; deterministic contract transport, no independent scientific validation. No fixture writes performed.",
+  "priorSnapshot": "a997d4645a2246858fb579743b9614ab23021514926770f78debf66b34053350",
+  "proposedSnapshot": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c",
+  "changes": [
+    {
+      "path": "mcp-search-public-first-page-001/snapshot/snapshotSha256",
+      "old": "95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773",
+      "new": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c"
+    },
+    {
+      "path": "mcp-search-public-first-page-001/result/records/0/source/selectionSha256",
+      "old": "e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e",
+      "new": "0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be"
+    },
+    {
+      "path": "mcp-search-public-first-page-001/result/records/0/teaser",
+      "old": "Ontology: Purpose and Scope ontological bedrock foundation levels absolute time architrino Euclidean void Noether sea Purpose and Scope This document establishes the ontological bedrock of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$: what fundamentall",
+      "new": "Ontology: Purpose and Scope ontological bedrock foundation levels absolute time architrino Euclidean void Noether sea Purpose and Scope This document establishes what fundamentally exists in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, what is emergen"
+    },
+    {
+      "path": "mcp-read-public-truncated-001/snapshot/snapshotSha256",
+      "old": "95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773",
+      "new": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c"
+    },
+    {
+      "path": "mcp-read-public-truncated-001/result/source/selectionSha256",
+      "old": "e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e",
+      "new": "0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be"
+    },
+    {
+      "path": "mcp-read-public-truncated-001/result/content",
+      "old": "## Purpose and Scope\n\nThis document establishes the ontological bedrock of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$: what fundamentally exists, what is emergent, and what Physical Observers reconstruct from inside the system.\n\nIt defines six foundation routes:\n\n1.",
+      "new": "## Purpose and Scope\n\nThis document establishes what fundamentally exists in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, what is emergent, and what observers reconstruct from inside the system.\n\nIt defines six foundation routes:\n\n1. **The Substrate**: [absolute time"
+    },
+    {
+      "path": "mcp-read-public-truncated-001/result/metadata/0/sourceSelectionSha256",
+      "old": "e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e",
+      "new": "0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be"
+    },
+    {
+      "path": "mcp-read-missing-source-001/snapshot/snapshotSha256",
+      "old": "95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773",
+      "new": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c"
+    },
+    {
+      "path": "mcp-topics-public-first-page-001/snapshot/snapshotSha256",
+      "old": "95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773",
+      "new": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c"
+    },
+    {
+      "path": "mcp-topics-public-first-page-001/result/records/0/selectionSha256",
+      "old": "e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e",
+      "new": "0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be"
+    },
+    {
+      "path": "mcp-neighbors-public-first-page-001/snapshot/snapshotSha256",
+      "old": "95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773",
+      "new": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c"
+    },
+    {
+      "path": "mcp-neighbors-public-first-page-001/result/origin/selectionSha256",
+      "old": "e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e",
+      "new": "0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be"
+    },
+    {
+      "path": "mcp-neighbors-public-first-page-001/result/records/0/neighbor/selectionSha256",
+      "old": "ee3e46701a43bd8e28246d3850aac50f7122e29c6c88715536d9819ce6d3f394",
+      "new": "b470ef72cef4704bc2f591b73e698b7ad6ca5dd1ae9870a20251152307e1c370"
+    },
+    {
+      "path": "mcp-read-priority-public-excluded-001/snapshot/snapshotSha256",
+      "old": "95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773",
+      "new": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c"
+    },
+    {
+      "path": "mcp-read-priority-operator-visible-001/snapshot/snapshotSha256",
+      "old": "95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773",
+      "new": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c"
+    },
+    {
+      "path": "mcp-walk-public-first-page-001/snapshot/snapshotSha256",
+      "old": "95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773",
+      "new": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c"
+    },
+    {
+      "path": "mcp-walk-public-first-page-001/result/origin/selectionSha256",
+      "old": "e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e",
+      "new": "0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be"
+    },
+    {
+      "path": "mcp-walk-public-first-page-001/result/records/0/source/selectionSha256",
+      "old": "ee3e46701a43bd8e28246d3850aac50f7122e29c6c88715536d9819ce6d3f394",
+      "new": "b470ef72cef4704bc2f591b73e698b7ad6ca5dd1ae9870a20251152307e1c370"
+    }
+  ]
+}

@@ -1,15 +1,13 @@
 // Measured-plan composition, not a solver or independent mathematical oracle.
 import { createHash } from "node:crypto";
 import { appendFileSync, closeSync, constants, existsSync, fstatSync, mkdirSync, openSync, readSync, realpathSync, statfsSync, writeFileSync } from "node:fs";
-import { execFile } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { Worker } from "node:worker_threads";
 
 const SELF = "scripts/eom/dispatch-subfield-circular-root-ladder.mjs", RUNG = "scripts/eom/run-subfield-circular-root-rung.mjs";
 const BASE = ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/";
-const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs", OUTER_SHA = "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826";
-export const SUBFIELD_CIRCULAR_MEMORY_COMMAND_SHA = "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56";
+const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs", OUTER_SHA = "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c";
 const sha = bytes => createHash("sha256").update(bytes).digest("hex");
 const check = (ok, message, code = "SHARED_INPUT_REJECTED") => { if (!ok) throw Object.assign(new Error(message), { failureCode: code }); };
 const writeJSON = (filename, value) => writeFileSync(filename, JSON.stringify(value) + "\n", { flag: "wx" });
@@ -116,12 +114,6 @@ export function parseSubfieldCircularResourceObservation(stdout, diskBytes, poli
     "observed free memory/disk below reviewed minimum", "RESOURCE_OBSERVATION_STOP");
   return { freePercent, availableDiskBytes: String(diskBytes), minimumDiskBytes: String(minimumDisk), atLaunch,
     accepted: true, h3EvidenceEligible: false, notAggregateMemoryMeasurement: true };
-}
-
-function queryMemoryPressure(timeout) {
-  return new Promise((resolve, reject) => execFile("/usr/bin/memory_pressure", [],
-    { timeout, killSignal: "SIGKILL", maxBuffer: 1024 * 1024, encoding: "utf8" },
-    (error, stdout, stderr) => error ? reject(Object.assign(error, { stdout, stderr, failureCode: "RESOURCE_OBSERVATION_STOP" })) : resolve({ stdout, stderr })));
 }
 
 export function checkSubfieldCircularRungGateCensus(processReceipt, rungReceipt) {
@@ -240,6 +232,9 @@ export async function runSubfieldCircularMeasuredDispatch({ root, args, selfByte
   // Reserve this required sink before any ref'ed timer or signal listener.
   // A failed reservation must be a prompt startup error with no owned job.
   const resourceLog = path.join(output, "resource-observations.ndjson"); writeFileSync(resourceLog, "", { flag: "wx" });
+  check(runtime.lifetime && ['observe','inspect','check'].every(key=>typeof runtime.lifetime[key]==='function') &&
+    Array.isArray(runtime.lifetime.bindings) && runtime.lifetime.bindings.length>0,
+    'current reviewed process and memory lifetime owner required', 'SHARED_RUNTIME_REJECTED');
   const receipt = { schema: "braid-program/subfield-circular-candidate-ladder-dispatch.v1", accepted: false, h3EvidenceEligible: false,
     rootExecutionAuthorized: false, startedAt: new Date().toISOString(), candidates: [], sharedStopped: false,
     plan: { path: path.resolve(args["--plan"]), sha256: args["--plan-sha256"] }, dispatcher: { path: SELF, sha256: args["--dispatcher-sha256"] } };
@@ -262,11 +257,8 @@ export async function runSubfieldCircularMeasuredDispatch({ root, args, selfByte
         append: line => appendFileSync(resourceLog, line),
         onFailure: error => { receipt.failureCode = "RESOURCE_OBSERVATION_STOP"; receipt.failure = error.message; stopNew(); process.emit("SIGTERM"); },
         query: async () => {
-        await operation({ kind: "read", files: [{ path: "/usr/bin/memory_pressure", sha256: SUBFIELD_CIRCULAR_MEMORY_COMMAND_SHA }] }, 2000);
-        const queries = await Promise.allSettled([queryMemoryPressure(policy.commandTimeoutMs), operation({ kind: "disk" }, policy.commandTimeoutMs)]);
-        const failed = queries.find(row => row.status === "rejected"); if (failed) throw failed.reason;
-        const [memory, diskBytes] = queries.map(row => row.value);
-        return { ...memory, ...parseSubfieldCircularResourceObservation(memory.stdout, diskBytes, policy, atLaunch) };
+        runtime.lifetime.check();
+        return await runtime.lifetime.observe({policy,atLaunch,remainingMs:policy.commandTimeoutMs+500});
       } }); } finally { resourceInFlight = undefined; }
     })(); return resourceInFlight;
   };
@@ -277,14 +269,14 @@ export async function runSubfieldCircularMeasuredDispatch({ root, args, selfByte
     const plan = runtime.rung.validateSubfieldCircularResourcePlan(planBinding.value);
     check(plan.dispatcherSha256 === sha(selfBytes) && plan.runnerSha256 === sha(rungBytes), "reviewed dispatch/rung generation differs");
     const [pilot] = await operation({ kind: "read", files: [{ ...plan.pilotAdmission, json: true }] });
-    check(pilot.value.accepted === true && pilot.value.h3EvidenceEligible === false && pilot.value.admission?.accepted === true &&
-      pilot.value.processesClosed === true, "accepted closed pilot outer receipt required");
-    const [pilotSummary] = await operation({ kind: "read", files: [{ ...pilot.value.admission.summary, json: true }] });
+    const [pilotReview] = await operation({kind:'read',files:[{...runtime.rung.SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW,json:true}]});
+    const pilotAuthority=runtime.rung.acceptCurrentCircularPilot(pilot,pilotReview);
+    const [pilotSummary] = await operation({ kind: "read", files: [{ ...pilotAuthority.admission.summary, json: true }] });
     check(pilotSummary.value.scope === "pilot" && pilotSummary.value.phaseCount === 32 && pilotSummary.value.rowCount === 2448 &&
       pilotSummary.value.accepted === true, "complete pilot phase chain required");
     bindings = [receipt.plan, plan.pilotAdmission, { path: SELF, sha256: sha(selfBytes) }, { path: RUNG, sha256: sha(rungBytes) },
       ...Object.entries(runtime.rung.SUBFIELD_CIRCULAR_RUNTIME_PATHS).map(([key, relative]) => ({ path: relative, sha256: runtime.rung.SUBFIELD_CIRCULAR_RUNTIME_HASHES[key] })),
-      { path: "/usr/bin/memory_pressure", sha256: SUBFIELD_CIRCULAR_MEMORY_COMMAND_SHA },
+      ...runtime.lifetime.bindings, runtime.rung.SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW,
       ...plan.cohorts.filter(cohort => cohort.resourceReturn).map(cohort => cohort.resourceReturn)];
     receipt.runtimeBindings = await operation({ kind: "read", files: [{ path: process.execPath }, { path: "/bin/ps" }] });
     bindings.push(...receipt.runtimeBindings);
@@ -323,10 +315,10 @@ export async function runSubfieldCircularMeasuredDispatch({ root, args, selfByte
               "--out", path.relative(root, runOutput), "--runner-sha256", plan.runnerSha256],
             sources: [{ path: RUNG, bytes: rungBytes, sha256: plan.runnerSha256 }], output: outerOutput,
             limitMs: wallLimitSeconds * 1000, startedAtMs: began,
-            inspectProcesses: async () => {
+            inspectProcesses: async context => {
               const first = firstInspection; firstInspection = false;
               check(!first || !sharedStop, "dispatch stopped before bootstrap", "SHARED_CANCELLED");
-              const table = await runtime.outer.processTable();
+              const table = await runtime.lifetime.inspect(context);
               if (sharedStop && first) throw Object.assign(new Error("dispatch stopped during first preflight"), { failureCode: "SHARED_CANCELLED" });
               if (sharedStop && !cancellationDelivered) { cancellationDelivered = true; process.emit("SIGTERM"); }
               return table;

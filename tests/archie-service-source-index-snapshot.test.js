@@ -33,7 +33,10 @@ test("source-index snapshot v1 rebuilds exactly and ignores input ordering", () 
 });
 
 test("source-index snapshot v1 rejects stale source hashes", () => {
-  const snapshot = readJson(snapshotPath);
+  // Start with an accepted current input so unrelated generated-artifact drift
+  // cannot satisfy or mask this source-provenance negative control.
+  const snapshot = buildSourceIndexSnapshot({ rootDir, input: readJson(inputPath) });
+  assert.doesNotThrow(() => validateSourceIndexSnapshot({ rootDir, snapshot }));
   snapshot.sourceInputs[0].sourceContentSha256 = "0".repeat(64);
   assert.throws(
     () => validateSourceIndexSnapshot({ rootDir, snapshot }),
