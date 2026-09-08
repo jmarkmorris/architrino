@@ -10,8 +10,8 @@ import { Worker } from "node:worker_threads";
 
 const SELF = "scripts/eom/run-subfield-circular-root-pilot.mjs";
 const BASE = ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/";
-const BUILD = `${BASE}recorded-build-20260827-v2/preparation.json`;
-const BUILD_SHA = "be6f2e43cc2c608a568d128c79535eacc628ea80cfc62cfe273af7c434243866";
+const BUILD = `${BASE}current-v3-build-20260908-execution-review/preparation.json`;
+const BUILD_SHA = "c80526d097c81627186cbbfcea7e0005d9d73288e331f4535f07982cc2bef944";
 const HELPER = "src/prescribed-path-analysis/SubfieldCircularPhaseProcess.mjs";
 const BRIDGE = "src/prescribed-path-analysis/SubfieldCircularPhaseLedgerWorker.mjs";
 const WATCH = "scripts/eom/prepare-f5-enclosed-root.mjs";
@@ -19,10 +19,10 @@ const LEDGER = "src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.m
 const LEDGER_CLI = "scripts/eom/reduce-subfield-circular-root-ledger.mjs";
 const PROOF = "scripts/eom/verify-subfield-circular-history.mjs";
 const PINS = Object.freeze({
-  [HELPER]: "1b96160ceee1d9a98374d84e9f15b1823572486a6b53546d922294a51cd3d982",
+  [HELPER]: "15a844adc1731a6ea47f0636f86d9e0d7196d6b15dd963006a278c129cc328f1",
   [BRIDGE]: "00cd8290a9929e0e099c91aeff03c52cf06ec5d9cad329ffad00092c61815e02",
   [WATCH]: "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9",
-  [LEDGER]: "1b146e7efbc05f000f37d313f8e5ee353e802ddf00738dbcdaa543165f001bb8",
+  [LEDGER]: "72935e3439b27cc27f2efcc1db5393cf0c8ce1eb0d2e9dc777755d4263d685b1",
   [LEDGER_CLI]: "2b3eb236b561c1901e6dfc58603f97f1104fc045e79d2d7a10d8879da02fd60a",
   [PROOF]: "b2fc83aa828ac9f175d7c3ae7bf43b66fcda54a702de6f2f80812852aebd5f38",
 });

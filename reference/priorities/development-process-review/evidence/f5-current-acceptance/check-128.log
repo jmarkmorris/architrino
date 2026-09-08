@@ -1,0 +1,19 @@
+{"accepted":true,"h3EvidenceEligible":false,"totalRows":24192,"combinedScientificLedgerSha256":"4f42902af1ce56b8d102d32fc40ef74db0d974671f5e7ff9e66d1f66ff6dec05","output":"/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/ledger-reduction.json"}
+       13.15 real        14.27 user         1.13 sys
+          3891920896  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              422717  page reclaims
+                 148  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   1  messages sent
+                   0  messages received
+                   0  signals received
+                  12  voluntary context switches
+               38773  involuntary context switches
+        247694211490  instructions retired
+         56314257624  cycles elapsed
+          4410611144  peak memory footprint

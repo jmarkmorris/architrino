@@ -1,0 +1,63 @@
+{
+  "artifacts": [
+    {
+      "path": ".local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-acceptance-a/preparation.json",
+      "sha256": "42051cd28e289565678de04c646d2bfdfad0c584d6e8fe0b009ea91b4de95b92",
+      "bytes": 13823,
+      "schema": "braid-program/f5-enclosed-root-preparation.v1",
+      "status": "nominal-actual-history-conformance-passed",
+      "h3EvidenceEligible": false
+    },
+    {
+      "path": ".local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-acceptance-a/history-manifest.json",
+      "sha256": "bbfb55e2c789b5e6f034745c8e7e1b3a7d502b97082862558fb8eb4c6a707749",
+      "bytes": 11837478,
+      "schema": "braid-program/f5-enclosed-root-history-manifest.v1"
+    },
+    {
+      "path": ".local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-acceptance-a/nominal-history-conformance.json",
+      "sha256": "dc65ce6a3c50caa75e11001a0dd48f3250516ea55e315fffb896d29cc2a32a57",
+      "bytes": 31838323,
+      "schema": "braid-program/f5-actual-cubic-conformance.v1",
+      "status": "actual-cubic-conformance-passed",
+      "accepted": true,
+      "h3EvidenceEligible": false,
+      "processedMemberSegments": 12384,
+      "expectedMemberSegments": 12384,
+      "elapsedWallSeconds": 180.79875199997332,
+      "failure": null,
+      "resourceContact": false
+    },
+    {
+      "path": ".local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-acceptance-a/api-domain-conformance.json",
+      "sha256": "46e073619800a15b7690a83b394f3af3be3cdfc4471a39e6e8bb3b0366d0d7a9",
+      "bytes": 49085072,
+      "schema": "braid-program/f5-api-domain-conformance.v1",
+      "status": "api-domain-conformance-passed",
+      "accepted": true,
+      "h3EvidenceEligible": false,
+      "processedMemberSegments": 12384,
+      "expectedMemberSegments": 12384,
+      "elapsedWallSeconds": 193.84487958298996,
+      "failure": null,
+      "resourceContact": false
+    },
+    {
+      "path": ".local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-acceptance-a/current-captured-build-manifest.json",
+      "sha256": "bbfb55e2c789b5e6f034745c8e7e1b3a7d502b97082862558fb8eb4c6a707749",
+      "bytes": 11837478,
+      "schema": "braid-program/f5-enclosed-root-history-manifest.v1"
+    },
+    {
+      "path": ".local-data/braid-analysis/f5-enclosed-root-current-build/acceptance-20260908-c/preparation.json",
+      "sha256": "b6086295446e9b447226cc0aafa401bb743281945ef613e66e6f15d59eb58e84",
+      "bytes": 4978722,
+      "schema": "braid-program/f5-enclosed-root-current-build.v1",
+      "status": "build-recorded-pending-independent-review",
+      "accepted": false,
+      "h3EvidenceEligible": false
+    }
+  ],
+  "freshManifestExactlyEqualsCertifiedManifest": true,
+  "boundary": "Actual manifest/nominal/API measurements and captured build receipts; rung/ledger acceptance remains a separate execution."
+}

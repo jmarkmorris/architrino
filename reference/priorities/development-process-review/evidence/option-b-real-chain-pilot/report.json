@@ -1,0 +1,493 @@
+{
+  "schema": "option-b-real-chain-pilot-report/v1",
+  "manifest": {
+    "commit": "e0afd98e5c032d14dcbb053a5636a0454bb94285",
+    "approval": "not-established-exploratory",
+    "mappingProvenance": "authored during this pilot; not present in historical Git snapshot",
+    "files": {
+      "content/markdown/aaa/dynamics/master-equation.md": {
+        "sha256": "dbb88e073d51b5980e0520c0720439e803eeab35b350c49b3dd67adc3f036a3d",
+        "bytes": 302697,
+        "gitEntry": "100644 blob 825a756819566a238546ba5e45bd6210b74d98d4\tcontent/markdown/aaa/dynamics/master-equation.md"
+      },
+      "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md": {
+        "sha256": "c30f14fd2efc4d8c14dcff01e5df07e5444815ea36c2010c8a198eaaf4affba2",
+        "bytes": 53383,
+        "gitEntry": "100644 blob 0e9126b5f79ba0837df202b0c04efb8b6f12d8f0\treference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md"
+      },
+      "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": {
+        "sha256": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+        "bytes": 12576,
+        "gitEntry": "100644 blob a6b5dca2b72d385e9d23c3ddecd447a340d7889e\tscripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs"
+      },
+      "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": {
+        "sha256": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+        "bytes": 16100,
+        "gitEntry": "100644 blob db1964f24052a771472afeb4cb4318cfe836cfea\tscripts/equation-mapping/verify-receiver-wake-gradient.mjs"
+      },
+      "tests/moving-single-root-scalar-gradient-verifier.test.mjs": {
+        "sha256": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08",
+        "bytes": 1716,
+        "gitEntry": "100644 blob c85e2c4d38b4cd71ba4adc1ed54fa93984560356\ttests/moving-single-root-scalar-gradient-verifier.test.mjs"
+      },
+      "reference/priorities/development-process-review/evidence/final-validation/additional-check-results.json": {
+        "sha256": "8e6dfb4bd98ef8f62d36e6dc61996787fd9218ad1350ee88e6c5c6b61f92ad02",
+        "bytes": 9589,
+        "gitEntry": "100644 blob 6ffff5d4d9b5539beecadce0e10f96c511e078e9\treference/priorities/development-process-review/evidence/final-validation/additional-check-results.json"
+      },
+      "reference/priorities/master-equation-closure/work-log.md": {
+        "sha256": "11f2e3e0d5053d546f37d856d9ae42142f5815cdd9b7f255a2db9854632efbde",
+        "bytes": 34480,
+        "gitEntry": "100644 blob 92f52e743850366335b7fe62f9d6dbd09232c420\treference/priorities/master-equation-closure/work-log.md"
+      }
+    },
+    "recordsSha256": "ba75ce9fca51bb0e3c8f9807e6da23babeaa15b62bc9a9b57c3211ee76d8a066",
+    "contextSha256": "249e794fc632f63bf3546593a96f2a4cab8d2def6d21bfe4d41be150412837d0",
+    "liveComparedToGit": {
+      "content/markdown/aaa/dynamics/master-equation.md": true,
+      "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md": true,
+      "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": true,
+      "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": true,
+      "tests/moving-single-root-scalar-gradient-verifier.test.mjs": true,
+      "reference/priorities/development-process-review/evidence/final-validation/additional-check-results.json": true,
+      "reference/priorities/master-equation-closure/work-log.md": true
+    }
+  },
+  "environment": {
+    "python": "3.13.2 (main, Feb  4 2025, 14:51:09) [Clang 16.0.0 (clang-1600.0.26.6)]",
+    "node": "v26.3.0",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "rdflib": "7.6.0",
+    "pyparsing": "3.3.2",
+    "rdflibLocation": "/private/tmp/option-b-fictional.34OFBx/dependencies/rdflib/__init__.py"
+  },
+  "instrumentDigests": {
+    "pilot.py": "a4eb8ffdccb2f534e6b6992a0c7c4f17dee1f3982c2eab6f59f56f5fde03c169",
+    "run_pilot.py": "7a7b8a1fcf238af910583666b0b9bd6aa7baa3eb0ee554f049e3187714350e12",
+    "expected.json": "3a5835530296b4d447d8b68e0746238101498de9fd95e00856f491c9757a06e5"
+  },
+  "baselineScientificExecution": [
+    {
+      "command": [
+        "/opt/homebrew/bin/node",
+        "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs"
+      ],
+      "exitCode": 0,
+      "inputDigests": {
+        "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+        "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+        "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+      },
+      "stdoutSha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourceStable": true
+    },
+    {
+      "command": [
+        "/opt/homebrew/bin/node",
+        "--test",
+        "tests/moving-single-root-scalar-gradient-verifier.test.mjs"
+      ],
+      "exitCode": 0,
+      "inputDigests": {
+        "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+        "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+        "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+      },
+      "stdoutSha256": "0a58e4bc6cdf466871dd6a9d64d31ee473833333c7a9c4aa4fcc00c616140cf3",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourceStable": true
+    }
+  ],
+  "cases": {
+    "unchanged": {
+      "consistency": "pass",
+      "baselineAcceptance": "exploratory-not-established",
+      "reviewStatus": "unchanged-relative-to-exploratory-baseline",
+      "approval": "not-granted",
+      "changedFiles": [],
+      "metadataChanged": false,
+      "relationshipsRemoved": [],
+      "relationshipsAdded": [],
+      "changedObjects": [],
+      "affectedDeclaredObjects": [],
+      "selectedChecks": [],
+      "sourceChanges": [],
+      "executionReceipt": {
+        "command": [
+          "/opt/homebrew/bin/node",
+          "--test",
+          "tests/moving-single-root-scalar-gradient-verifier.test.mjs"
+        ],
+        "exitCode": 0,
+        "inputDigests": {
+          "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+          "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+          "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+        },
+        "stdoutSha256": "0a58e4bc6cdf466871dd6a9d64d31ee473833333c7a9c4aa4fcc00c616140cf3",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sourceStable": true
+      },
+      "existingScientificCheck": "pass",
+      "recordedResultComparison": {
+        "status": "pass",
+        "displayed": 2.1200000000000003e-12,
+        "actual": 2.1183055309847987e-12,
+        "absoluteTolerance": 5e-15
+      },
+      "modeledAByteChangeGate": "unchanged",
+      "expectedOutcomeMatched": true
+    },
+    "harmless-prose": {
+      "consistency": "pass",
+      "baselineAcceptance": "exploratory-not-established",
+      "reviewStatus": "review-required",
+      "approval": "not-granted",
+      "changedFiles": [
+        "content/markdown/aaa/dynamics/master-equation.md"
+      ],
+      "metadataChanged": false,
+      "relationshipsRemoved": [],
+      "relationshipsAdded": [],
+      "changedObjects": [],
+      "affectedDeclaredObjects": [],
+      "selectedChecks": [
+        "https://example.invalid/option-b-real-chain/check"
+      ],
+      "sourceChanges": [],
+      "executionReceipt": {
+        "command": [
+          "/opt/homebrew/bin/node",
+          "--test",
+          "tests/moving-single-root-scalar-gradient-verifier.test.mjs"
+        ],
+        "exitCode": 0,
+        "inputDigests": {
+          "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+          "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+          "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+        },
+        "stdoutSha256": "78f77c9fb44e9084f3db44ac7016992fc170de914b4b1e5438ac7fee150b1b69",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sourceStable": true
+      },
+      "existingScientificCheck": "pass",
+      "recordedResultComparison": {
+        "status": "pass",
+        "displayed": 2.1200000000000003e-12,
+        "actual": 2.1183055309847987e-12,
+        "absoluteTolerance": 5e-15
+      },
+      "modeledAByteChangeGate": "review-required",
+      "expectedOutcomeMatched": true
+    },
+    "stale-assumption": {
+      "consistency": "reject",
+      "reason": "Stale source binding: https://example.invalid/option-b-real-chain/assumptions",
+      "approval": "not-granted",
+      "existingScientificCheck": "not-run",
+      "modeledAByteChangeGate": "review-required",
+      "expectedOutcomeMatched": true
+    },
+    "changed-assumption-refreshed": {
+      "consistency": "pass",
+      "baselineAcceptance": "exploratory-not-established",
+      "reviewStatus": "review-required",
+      "approval": "not-granted",
+      "changedFiles": [
+        "content/markdown/aaa/dynamics/master-equation.md"
+      ],
+      "metadataChanged": true,
+      "relationshipsRemoved": [],
+      "relationshipsAdded": [],
+      "changedObjects": [
+        "https://example.invalid/option-b-real-chain/assumptions"
+      ],
+      "affectedDeclaredObjects": [
+        "https://architrino.com/equation-mapping.html#corpus-equation-0d1e584019eb76b1",
+        "https://architrino.com/equation-mapping.html#corpus-equation-193390fd300cb6a5",
+        "https://architrino.com/equation-mapping.html#corpus-equation-4c68e6145352e9dc",
+        "https://architrino.com/equation-mapping.html#corpus-equation-f320108876777c46",
+        "https://example.invalid/option-b-real-chain/assumptions",
+        "https://example.invalid/option-b-real-chain/calculation",
+        "https://example.invalid/option-b-real-chain/derivation",
+        "https://example.invalid/option-b-real-chain/result"
+      ],
+      "selectedChecks": [
+        "https://example.invalid/option-b-real-chain/check"
+      ],
+      "sourceChanges": [
+        {
+          "object": "https://example.invalid/option-b-real-chain/assumptions",
+          "before": "**Moving-single-root scalar representative (derived on one regular chart).** Fix the reception time, a retained transmitter history, and a connected receiver chart $U$ on which one selected causal root $s_b(\\mathbf X_r)$ is unique and differentiable. For the canonical row, write\n\n$$\n\\begin{aligned}\n\\mathbf R_b\n&=\\mathbf X_r-\\mathbf X_{t(b)}(s_b),\n&r_b&=\\|\\mathbf R_b\\|,\n&\\mathbf n_b&=\\frac{\\mathbf R_b}{r_b},\\\\\nD_b\n&=c_f-\\mathbf n_b\\cdot\\mathbf V_{t(b)}(s_b),\n&C_b&=\\kappa\\,\\sigma_b|q_rq_{t(b)}|,\n\\end{aligned}\n$$\n\n[View →](../../../../equation-mapping.html#corpus-equation-f320108876777c46)\n\nwith $r_b\\ge r_{\\min}>0$ and $|D_b|\\ge D_{\\min}>0$ throughout $U$.\n\nThis is one admitted moving-source row with a smoothly tracked past emission event. The chart excludes sources, folds, coincidences, and singular self roots by keeping both the separation and transmitter factor away from zero.\n\n",
+          "after": "**Moving-single-root scalar representative (derived on one regular chart).** Fix the reception time, a retained transmitter history, and a disconnected receiver chart $U$ on which one selected causal root $s_b(\\mathbf X_r)$ is unique and differentiable. For the canonical row, write\n\n$$\n\\begin{aligned}\n\\mathbf R_b\n&=\\mathbf X_r-\\mathbf X_{t(b)}(s_b),\n&r_b&=\\|\\mathbf R_b\\|,\n&\\mathbf n_b&=\\frac{\\mathbf R_b}{r_b},\\\\\nD_b\n&=c_f-\\mathbf n_b\\cdot\\mathbf V_{t(b)}(s_b),\n&C_b&=\\kappa\\,\\sigma_b|q_rq_{t(b)}|,\n\\end{aligned}\n$$\n\n[View →](../../../../equation-mapping.html#corpus-equation-f320108876777c46)\n\nwith $r_b\\ge r_{\\min}>0$ and $|D_b|\\ge D_{\\min}>0$ throughout $U$.\n\nThis is one admitted moving-source row with a smoothly tracked past emission event. The chart excludes sources, folds, coincidences, and singular self roots by keeping both the separation and transmitter factor away from zero.\n\n"
+        }
+      ],
+      "executionReceipt": {
+        "command": [
+          "/opt/homebrew/bin/node",
+          "--test",
+          "tests/moving-single-root-scalar-gradient-verifier.test.mjs"
+        ],
+        "exitCode": 0,
+        "inputDigests": {
+          "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+          "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+          "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+        },
+        "stdoutSha256": "0de740ce9fbef9bf9f10e283b89693e6bb1cc8291dac0621fb0227def98469c9",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sourceStable": true
+      },
+      "existingScientificCheck": "pass",
+      "recordedResultComparison": {
+        "status": "pass",
+        "displayed": 2.1200000000000003e-12,
+        "actual": 2.1183055309847987e-12,
+        "absoluteTolerance": 5e-15
+      },
+      "modeledAByteChangeGate": "review-required",
+      "expectedOutcomeMatched": true
+    },
+    "omitted-relationship": {
+      "consistency": "pass",
+      "baselineAcceptance": "exploratory-not-established",
+      "reviewStatus": "review-required",
+      "approval": "not-granted",
+      "changedFiles": [],
+      "metadataChanged": true,
+      "relationshipsRemoved": [
+        [
+          "dependsOn",
+          "https://architrino.com/equation-mapping.html#corpus-equation-f320108876777c46",
+          "https://example.invalid/option-b-real-chain/assumptions"
+        ]
+      ],
+      "relationshipsAdded": [],
+      "changedObjects": [],
+      "affectedDeclaredObjects": [
+        "https://architrino.com/equation-mapping.html#corpus-equation-0d1e584019eb76b1",
+        "https://architrino.com/equation-mapping.html#corpus-equation-193390fd300cb6a5",
+        "https://architrino.com/equation-mapping.html#corpus-equation-4c68e6145352e9dc",
+        "https://architrino.com/equation-mapping.html#corpus-equation-f320108876777c46",
+        "https://example.invalid/option-b-real-chain/calculation",
+        "https://example.invalid/option-b-real-chain/derivation",
+        "https://example.invalid/option-b-real-chain/result"
+      ],
+      "selectedChecks": [
+        "https://example.invalid/option-b-real-chain/check"
+      ],
+      "sourceChanges": [],
+      "executionReceipt": {
+        "command": [
+          "/opt/homebrew/bin/node",
+          "--test",
+          "tests/moving-single-root-scalar-gradient-verifier.test.mjs"
+        ],
+        "exitCode": 0,
+        "inputDigests": {
+          "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+          "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+          "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+        },
+        "stdoutSha256": "37271e51f310f03450114cab9099d89880ed6bfca6e5b7439e4802447685f8a2",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sourceStable": true
+      },
+      "existingScientificCheck": "pass",
+      "recordedResultComparison": {
+        "status": "pass",
+        "displayed": 2.1200000000000003e-12,
+        "actual": 2.1183055309847987e-12,
+        "absoluteTolerance": 5e-15
+      },
+      "modeledAByteChangeGate": "review-required",
+      "expectedOutcomeMatched": true
+    },
+    "added-relationship": {
+      "consistency": "pass",
+      "baselineAcceptance": "exploratory-not-established",
+      "reviewStatus": "review-required",
+      "approval": "not-granted",
+      "changedFiles": [],
+      "metadataChanged": true,
+      "relationshipsRemoved": [],
+      "relationshipsAdded": [
+        [
+          "dependsOn",
+          "https://example.invalid/option-b-real-chain/calculation",
+          "https://example.invalid/option-b-real-chain/assumptions"
+        ]
+      ],
+      "changedObjects": [],
+      "affectedDeclaredObjects": [
+        "https://example.invalid/option-b-real-chain/calculation",
+        "https://example.invalid/option-b-real-chain/result"
+      ],
+      "selectedChecks": [
+        "https://example.invalid/option-b-real-chain/check"
+      ],
+      "sourceChanges": [],
+      "executionReceipt": {
+        "command": [
+          "/opt/homebrew/bin/node",
+          "--test",
+          "tests/moving-single-root-scalar-gradient-verifier.test.mjs"
+        ],
+        "exitCode": 0,
+        "inputDigests": {
+          "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+          "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+          "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+        },
+        "stdoutSha256": "75045693adcedff519e81c7a6fe5d5dfda57baf5726a44e8cf87cd5bf232fd2b",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sourceStable": true
+      },
+      "existingScientificCheck": "pass",
+      "recordedResultComparison": {
+        "status": "pass",
+        "displayed": 2.1200000000000003e-12,
+        "actual": 2.1183055309847987e-12,
+        "absoluteTolerance": 5e-15
+      },
+      "modeledAByteChangeGate": "review-required",
+      "expectedOutcomeMatched": true
+    },
+    "wrong-recorded-result": {
+      "consistency": "pass",
+      "baselineAcceptance": "exploratory-not-established",
+      "reviewStatus": "review-required",
+      "approval": "not-granted",
+      "changedFiles": [
+        "content/markdown/aaa/dynamics/master-equation.md"
+      ],
+      "metadataChanged": true,
+      "relationshipsRemoved": [],
+      "relationshipsAdded": [],
+      "changedObjects": [
+        "https://example.invalid/option-b-real-chain/result"
+      ],
+      "affectedDeclaredObjects": [
+        "https://example.invalid/option-b-real-chain/result"
+      ],
+      "selectedChecks": [
+        "https://example.invalid/option-b-real-chain/check"
+      ],
+      "sourceChanges": [
+        {
+          "object": "https://example.invalid/option-b-real-chain/result",
+          "before": "> Claim grade: derived for the identity on one connected regular moving-simple-root chart; measured for the circular-history check in normalized units with $c_f=1$. The check solves the roots afresh, computes the scalar gradient by finite differences, and compares it with the canonical ledger vector on the unchanged root record. Across five step refinements, the largest component residual was $2.12\\times10^{-12}$; a raw $1/r_b^2$ scalar left a residual of $0.513$ because its radial scaling is wrong. Falsifier: a nonzero scalar-gradient-versus-ledger residual on any certified regular point would refute the local representation; failure to reproduce the stated residuals on the same circular-history domain would refute the measurement.\n\n",
+          "after": "> Claim grade: derived for the identity on one connected regular moving-simple-root chart; measured for the circular-history check in normalized units with $c_f=1$. The check solves the roots afresh, computes the scalar gradient by finite differences, and compares it with the canonical ledger vector on the unchanged root record. Across five step refinements, the largest component residual was $9.99\\times10^{-12}$; a raw $1/r_b^2$ scalar left a residual of $0.513$ because its radial scaling is wrong. Falsifier: a nonzero scalar-gradient-versus-ledger residual on any certified regular point would refute the local representation; failure to reproduce the stated residuals on the same circular-history domain would refute the measurement.\n\n"
+        }
+      ],
+      "executionReceipt": {
+        "command": [
+          "/opt/homebrew/bin/node",
+          "--test",
+          "tests/moving-single-root-scalar-gradient-verifier.test.mjs"
+        ],
+        "exitCode": 0,
+        "inputDigests": {
+          "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+          "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+          "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+        },
+        "stdoutSha256": "788ad2bb29e2ff2ce5fc5ac09140b04e446bbe84bf9c294e55b6bf470e941ac1",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sourceStable": true
+      },
+      "existingScientificCheck": "pass",
+      "recordedResultComparison": {
+        "status": "reject",
+        "displayed": 9.99e-12,
+        "actual": 2.1183055309847987e-12,
+        "absoluteTolerance": 5e-15
+      },
+      "modeledAByteChangeGate": "review-required",
+      "expectedOutcomeMatched": true
+    },
+    "removed-check-coverage": {
+      "consistency": "pass",
+      "baselineAcceptance": "exploratory-not-established",
+      "reviewStatus": "review-required",
+      "approval": "not-granted",
+      "changedFiles": [],
+      "metadataChanged": true,
+      "relationshipsRemoved": [
+        [
+          "checks",
+          "https://example.invalid/option-b-real-chain/check",
+          "https://example.invalid/option-b-real-chain/result"
+        ]
+      ],
+      "relationshipsAdded": [],
+      "changedObjects": [],
+      "affectedDeclaredObjects": [
+        "https://example.invalid/option-b-real-chain/result"
+      ],
+      "selectedChecks": [
+        "https://example.invalid/option-b-real-chain/check"
+      ],
+      "sourceChanges": [],
+      "executionReceipt": {
+        "command": [
+          "/opt/homebrew/bin/node",
+          "--test",
+          "tests/moving-single-root-scalar-gradient-verifier.test.mjs"
+        ],
+        "exitCode": 0,
+        "inputDigests": {
+          "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+          "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+          "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+        },
+        "stdoutSha256": "8ba7d2280603d1532488ba351ad1ae850a12c35939e170ff85a44202868aba92",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sourceStable": true
+      },
+      "existingScientificCheck": "pass",
+      "recordedResultComparison": {
+        "status": "pass",
+        "displayed": 2.1200000000000003e-12,
+        "actual": 2.1183055309847987e-12,
+        "absoluteTolerance": 5e-15
+      },
+      "modeledAByteChangeGate": "review-required",
+      "expectedOutcomeMatched": true
+    }
+  },
+  "retrieval": {
+    "recoveredSourceSha256": "dbb88e073d51b5980e0520c0720439e803eeab35b350c49b3dd67adc3f036a3d",
+    "commit": "e0afd98e5c032d14dcbb053a5636a0454bb94285",
+    "graphHistory": "No prior committed B graph exists; mapping is retrospective pilot data"
+  },
+  "repositorySourcesStable": true,
+  "liveSourceDigestsBefore": {
+    "content/markdown/aaa/dynamics/master-equation.md": "dbb88e073d51b5980e0520c0720439e803eeab35b350c49b3dd67adc3f036a3d",
+    "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md": "c30f14fd2efc4d8c14dcff01e5df07e5444815ea36c2010c8a198eaaf4affba2",
+    "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+    "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+    "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08",
+    "reference/priorities/development-process-review/evidence/final-validation/additional-check-results.json": "8e6dfb4bd98ef8f62d36e6dc61996787fd9218ad1350ee88e6c5c6b61f92ad02",
+    "reference/priorities/master-equation-closure/work-log.md": "11f2e3e0d5053d546f37d856d9ae42142f5815cdd9b7f255a2db9854632efbde"
+  },
+  "liveSourceDigestsAfter": {
+    "content/markdown/aaa/dynamics/master-equation.md": "dbb88e073d51b5980e0520c0720439e803eeab35b350c49b3dd67adc3f036a3d",
+    "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md": "c30f14fd2efc4d8c14dcff01e5df07e5444815ea36c2010c8a198eaaf4affba2",
+    "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+    "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+    "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08",
+    "reference/priorities/development-process-review/evidence/final-validation/additional-check-results.json": "8e6dfb4bd98ef8f62d36e6dc61996787fd9218ad1350ee88e6c5c6b61f92ad02",
+    "reference/priorities/master-equation-closure/work-log.md": "11f2e3e0d5053d546f37d856d9ae42142f5815cdd9b7f255a2db9854632efbde"
+  },
+  "nonclaims": [
+    "production adoption",
+    "authenticated baseline approval",
+    "semantic dependency completeness",
+    "new scientific theorem",
+    "global scalar",
+    "action/conservation closure"
+  ]
+}

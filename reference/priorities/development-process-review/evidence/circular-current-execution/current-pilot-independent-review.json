@@ -1,0 +1,206 @@
+{
+  "schema": "circular-independent-current-pilot-review.v1",
+  "boundedPilotAccepted": true,
+  "h3EvidenceEligible": false,
+  "laterLadderAuthorized": false,
+  "checkedUniqueBindings": 430,
+  "joint": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-pilot-20260908-a/current-admission.json",
+    "sha256": "b5118997f6956029ef98f4fee7daaf43f78961a54b37ab6bea935ebdad040231",
+    "bytes": 659797
+  },
+  "operation": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-pilot-20260908-a/pilot/pilot-process.json",
+    "sha256": "31c212dc54a56953a7129f8167c7a6102246b5658fbb91ed3189ebfd83a1f442",
+    "bytes": 10230223
+  },
+  "ledger": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-pilot-20260908-a/pilot/pilot-ledger.json",
+    "sha256": "e9505f63f73923f3a7b4ab821bad6285fd14f66c0b0277ae92e9d5bba1e382e6",
+    "bytes": 14405
+  },
+  "externalOwner": {
+    "runId": "765515fb-a7ff-4a20-93a9-8b7662f6c71c",
+    "exitCode": 0,
+    "processGroupClosed": true,
+    "elapsedWallSeconds": 412.981,
+    "stdout": {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/765515fb-a7ff-4a20-93a9-8b7662f6c71c.stdout.log",
+      "sha256": "9157fc3fc141138c7b8902cfa4c333fdd654d378dff74734881e1dc68866a33b",
+      "bytes": 405
+    }
+  },
+  "phaseCount": 32,
+  "rowCount": 2448,
+  "candidateCount": 16,
+  "closedRegisteredGates": 129,
+  "closedObservationProbes": 136,
+  "observationRuntimeFiles": 61,
+  "maximumObservedResidentBytes": 957480960,
+  "observationBytes": 16421596,
+  "probeCPUUpperBoundSeconds": 131.5995483439982,
+  "wholeEntryCPUUpperBoundSeconds": 14400,
+  "candidateCosts": [
+    {
+      "candidateId": "coincident-midpoint-common-frequency",
+      "wallSeconds": 18.833468167000003,
+      "outputBytes": 37524134,
+      "maximumIndividualResidentBytes": 269172736,
+      "measuredCPUIncludingGates": 18.740835999999998,
+      "projected128PhaseSeconds": 1216.667184,
+      "projectionIsEstimate": true,
+      "laterLadderAuthorized": false
+    },
+    {
+      "candidateId": "coincident-midpoint-equal-radius-common-frequency",
+      "wallSeconds": 19.078167291000007,
+      "outputBytes": 37544193,
+      "maximumIndividualResidentBytes": 309608448,
+      "measuredCPUIncludingGates": 19.039451999999997,
+      "projected128PhaseSeconds": 1264.5223252480005,
+      "projectionIsEstimate": true,
+      "laterLadderAuthorized": false
+    },
+    {
+      "candidateId": "coincident-midpoint-3-2-1-frequency",
+      "wallSeconds": 18.832752167000002,
+      "outputBytes": 37528712,
+      "maximumIndividualResidentBytes": 329121792,
+      "measuredCPUIncludingGates": 18.787437,
+      "projected128PhaseSeconds": 1260.8820426240009,
+      "projectionIsEstimate": true,
+      "laterLadderAuthorized": false
+    },
+    {
+      "candidateId": "phase-compensated-equal-geometry",
+      "wallSeconds": 19.389314874999982,
+      "outputBytes": 37558848,
+      "maximumIndividualResidentBytes": 354910208,
+      "measuredCPUIncludingGates": 19.085783,
+      "projected128PhaseSeconds": 1274.2267307519987,
+      "projectionIsEstimate": true,
+      "laterLadderAuthorized": false
+    },
+    {
+      "candidateId": "axially-separated-common-frequency",
+      "wallSeconds": 18.35626387500001,
+      "outputBytes": 37560942,
+      "maximumIndividualResidentBytes": 366936064,
+      "measuredCPUIncludingGates": 18.551356000000002,
+      "projected128PhaseSeconds": 1176.375984000002,
+      "projectionIsEstimate": true,
+      "laterLadderAuthorized": false
+    },
+    {
+      "candidateId": "axially-separated-equal-radius-common-frequency",
+      "wallSeconds": 18.532221667,
+      "outputBytes": 37583732,
+      "maximumIndividualResidentBytes": 382337024,
+      "measuredCPUIncludingGates": 18.548549,
+      "projected128PhaseSeconds": 1210.8035892480002,
+      "projectionIsEstimate": true,
+      "laterLadderAuthorized": false
+    },
+    {
+      "candidateId": "axially-separated-3-2-1-frequency",
+      "wallSeconds": 18.889179624999997,
+      "outputBytes": 37566149,
+      "maximumIndividualResidentBytes": 391315456,
+      "measuredCPUIncludingGates": 18.844939999999998,
+      "projected128PhaseSeconds": 1235.4132586240012,
+      "projectionIsEstimate": true,
+      "laterLadderAuthorized": false
+    },
+    {
+      "candidateId": "axial-transverse-coincident-axis-interior",
+      "wallSeconds": 19.63070537499999,
+      "outputBytes": 37744039,
+      "maximumIndividualResidentBytes": 404897792,
+      "measuredCPUIncludingGates": 19.228555,
+      "projected128PhaseSeconds": 1309.445594752,
+      "projectionIsEstimate": true,
+      "laterLadderAuthorized": false
+    },
+    {
+      "candidateId": "high-axial-coincident-axis-interior",
+      "wallSeconds": 19.09727537500001,
+      "outputBytes": 37740340,
+      "maximumIndividualResidentBytes": 404897792,
+      "measuredCPUIncludingGates": 18.944514000000005,
+      "projected128PhaseSeconds": 1227.2715733759978,
+      "projectionIsEstimate": true,
+      "laterLadderAuthorized": false
+    },
+    {
+      "candidateId": "planar-common-center-three-binary",
+      "wallSeconds": 18.22136899999998,
+      "outputBytes": 37513760,
+      "maximumIndividualResidentBytes": 404897792,
+      "measuredCPUIncludingGates": 18.351695,
+      "projected128PhaseSeconds": 1175.3095040000007,
+      "projectionIsEstimate": true,
+      "laterLadderAuthorized": false
+    },
+    {
+      "candidateId": "coincident-center-two-component-circular-co-rotating",
+      "wallSeconds": 35.78351408299997,
+      "outputBytes": 138687866,
+      "maximumIndividualResidentBytes": 413696000,
+      "measuredCPUIncludingGates": 36.96145,
+      "projected128PhaseSeconds": 2290.1648052479977,
+      "projectionIsEstimate": true,
+      "laterLadderAuthorized": false
+    },
+    {
+      "candidateId": "coincident-center-two-component-circular-counter-rotating",
+      "wallSeconds": 35.56380141599999,
+      "outputBytes": 138712338,
+      "maximumIndividualResidentBytes": 416333824,
+      "measuredCPUIncludingGates": 36.784938,
+      "projected128PhaseSeconds": 2286.5684106240005,
+      "projectionIsEstimate": true,
+      "laterLadderAuthorized": false
+    },
+    {
+      "candidateId": "coaxial-separated-two-component-circular-co-rotating",
+      "wallSeconds": 37.073414458,
+      "outputBytes": 138808360,
+      "maximumIndividualResidentBytes": 444825600,
+      "measuredCPUIncludingGates": 37.696673,
+      "projected128PhaseSeconds": 2381.0340639999995,
+      "projectionIsEstimate": true,
+      "laterLadderAuthorized": false
+    },
+    {
+      "candidateId": "coaxial-separated-two-component-circular-counter-rotating",
+      "wallSeconds": 35.83546825000002,
+      "outputBytes": 138832843,
+      "maximumIndividualResidentBytes": 450854912,
+      "measuredCPUIncludingGates": 37.257785,
+      "projected128PhaseSeconds": 2300.9646187519975,
+      "projectionIsEstimate": true,
+      "laterLadderAuthorized": false
+    },
+    {
+      "candidateId": "coaxial-separated-two-planar-braid-co-rotating",
+      "wallSeconds": 35.84276962500002,
+      "outputBytes": 138433257,
+      "maximumIndividualResidentBytes": 455409664,
+      "measuredCPUIncludingGates": 37.201802,
+      "projected128PhaseSeconds": 2301.3880586239975,
+      "projectionIsEstimate": true,
+      "laterLadderAuthorized": false
+    },
+    {
+      "candidateId": "coaxial-separated-two-planar-braid-counter-rotating",
+      "wallSeconds": 35.74109329199996,
+      "outputBytes": 138458134,
+      "maximumIndividualResidentBytes": 457883648,
+      "measuredCPUIncludingGates": 37.137389999999996,
+      "projected128PhaseSeconds": 2299.2100532480035,
+      "projectionIsEstimate": true,
+      "laterLadderAuthorized": false
+    }
+  ],
+  "claimBoundary": "Complete prescribed two-phase pilot only; sampled RSS and conservative CPU upper bounds do not establish continuous peak memory or later-ladder cost approval."
+}

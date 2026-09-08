@@ -29,26 +29,30 @@ This is the campaign’s completion view. A checked item means only the stated s
 
 **Partially complete**
 
-- [ ] Finish reconciling the Git documentation. Immediate contradictions are corrected; worktree integration and the eventual documentation layout remain unsettled. [Findings](#312-conflicts-and-integration-work) and [proposed destinations](#32-proposed-documentation-destination-and-consolidation).
+- [ ] Finish the remaining integration review. The four-guide documentation layout and immediate contradictions are resolved; future worktree and B integration remain separate decisions. [Findings](#312-conflicts-and-integration-work) and [proposed destinations](#32-proposed-documentation-destination-and-consolidation).
 
 **Next to do**
+
+- [ ] Evaluate Option B’s authorized one-chain pilot, using the [gradual-adoption design](analysis/option-b-gradual-adoption-design.md) and [approval mechanism and proposed first pilot](analysis/option-b-approval-and-pilot-review.md). On September 8, the operator authorized mapping the real moving-single-root scalar-gradient chain and testing controlled changes in isolated copies. Existing production checks remain authoritative; adoption, enforcement transfer, and broader migration require a subsequent decision. The [completed exploratory pilot report](analysis/option-b-real-chain-pilot.md) records eight expected outcomes matched, including changed assumptions, deleted relationships and retained check obligations. The scientific checks do not establish prose or relationship completeness; review the results before any adoption decision.
+
 
 - [ ] Refine the knowledge-integrity requirements and trace one representative equation through dependencies, selected tests, receipts, and publication. [Objectives](../../op/git/git-backed-knowledge-architecture.md#12-proposed-integrity-objectives-to-discuss) and [remaining questions](../../op/git/git-github-operating-guide.md#29-accepted-directions-and-remaining-implementation-questions).
 - [ ] Complete the queued [public participation guidance review](../aaa-operations/work-queue.md#ops-026--github-presence-and-community-guidance-review) and [internal reference numbering work](../aaa-operations/work-queue.md#ops-025--internal-reference-section-numbering). These remain separately owned queue items.
 
 **Deferred**
 
+- [ ] Production migration to option B. The fictitious prototype is authorized; the operator is still evaluating the production approach. [Migration plan](#36-migration-to-b--accepted-deferred).
+
 - [ ] Automate coordinated publication across active editors. [Agreed future workflow](../../op/git/git-github-operating-guide.md#261-agreed-future-workflow-coordinated-publication-while-agents-are-active).
 - [ ] Evaluate worktrees when the operator is ready; no architecture selected. [Evaluation plan](../../op/git/git-github-operating-guide.md#283-how-we-would-evaluate-a-worktree-workflow).
 - [ ] Delegate PR approval and merging after an explicit scope decision and verification. The operator remains the merge gate. [Delegation plan](#33-future-delegation-of-pr-review-and-merge).
-- [ ] Implement the accepted option B after higher-priority operational work. [Migration to B](#36-migration-to-b--accepted-deferred).
-- [ ] Consolidate documents after responsibilities and implemented workflows are settled. [Proposed documentation destination](#32-proposed-documentation-destination-and-consolidation).
+- [x] Consolidate the current guides: architecture, operating guidance, PR lifecycle, and issue resolution. Migration checklists remain in this campaign; obsolete procedures were retired. [Proposed documentation destination](#32-proposed-documentation-destination-and-consolidation).
 
 The tables below retain the detailed plan and decision boundaries; use the checklist above to find the current status.
 
 | Detailed plan | Current disposition |
 | --- | --- |
-| [1.4.4. Migration to B](#36-migration-to-b--accepted-deferred) | Accepted future architecture; implementation deferred. |
+| [1.4.4. Migration to B](#36-migration-to-b--accepted-deferred) | Accepted future direction; production implementation not authorized. |
 | [2.4.2. Credential migration](#34-credential-migration-and-completion-checks) | Codex–Architrino explicit PAT route verified through publication and cleanup; Codex–MyLists publication reported successful by its task. Claude–Architrino has a reported PAT-backed PR lifecycle with independently inspected merge and cleanup outcomes; Claude–MyLists has reported setup and an operator-reported real push. Explicit command routing, desktop limitations, ownership, and acceptance of the shared-account limitation are recorded. Setup migration closed for the current workflow by operator confirmation on September 8, 2026. Renewal and first-use checks remain ongoing, with the evidence limits retained in section 3.7. |
 | [2.6.1.3. Coordinated publication migration](#35-coordinated-publication-migration) | Agreed future workflow; cross-vendor automation remains to be implemented and verified. |
 | [2.8.3. Worktree evaluation](../../op/git/git-github-operating-guide.md#283-how-we-would-evaluate-a-worktree-workflow) | Open decision, deferred by the operator. Blanket restrictions remain removed, but neither a shared integration branch nor separate PRs per task has been selected. Revisit when the operator is ready. |
@@ -60,8 +64,8 @@ The tables below retain the detailed plan and decision boundaries; use the check
 | □ Open — coverage trace | Establish current coverage | Trace a representative equation through source records, dependencies, actual test selection, validation receipts, and publication. Distinguish observed behavior from intended policy and unverified coverage. |
 | ✓ Done — initial owner review; dispositions in 3.1.2 | Review existing owners | Compare the standard Git process, experimental review-time development, startup routing, hooks, and hosting/retention policy against the accepted outcomes. Identify which owner needs each change and which references consume it. |
 | □ Queued — separate owner | Review public participation guidance | Complete the definite [GitHub Presence and Community review task](../aaa-operations/work-queue.md#ops-026--github-presence-and-community-guidance-review). Examine contribution guidance and checkpoint examples in their public-contributor context; distinguish them from agent authority in a shared checkout. |
-| ○ Deferred | Migrate to B — accepted, deferred | Follow section 1.4.4 after higher-priority work: map existing records, verify JSON-LD/Python/RDFLib, prove one complete chain, integrate publication checks, then expand and retire replaced machinery. |
-| ◐ Partial — see steps 2, 4, 5 in 2.4.2 | Separate GitHub authorization — partially implemented | Execute and verify the migration in section 2.4.2. Track each of the four tool/repository contexts in section 2.4.1; token creation alone does not close the work. |
+| ○ Deferred | Migrate to B — production decision pending | Follow section 3.6: map existing records, verify JSON-LD/Python/RDFLib, prove one complete chain, integrate publication checks, then expand and retire replaced machinery. |
+| ✓ Done — current workflow setup closed | Separate GitHub authorization | Four dedicated contexts are operational with attributed publication evidence and operator-confirmed ninety-day lifetimes. Renewal and first-use checks remain ongoing; see section 3.4. |
 | ○ Deferred | Introduce coordinated publication — agreed, deferred | Follow section 2.6.1: establish cross-vendor readiness and pause acknowledgments, one publisher, validated candidate protection, explicit release, and failure recovery. Integrate the protocol into the existing publication owner before routine automation. |
 | ○ Deferred — operator still merges | Delegate PR review, merge, and lifecycle completion — planned, not enabled | Follow section 3.3. Decide whether Codex, Claude, or both may perform the operator’s current middle handoff, define the permitted scope and review requirements, and explicitly activate that authority after verification. |
 | ✓ Done — first complete lifecycle verified | Adopt ordinary merge commits — first lifecycle verified | The recovery/publication PR preserved the reviewed commits and completed guarded cleanup and rollover. Continue this procedure; agent merge authority remains a separate explicit decision. |
@@ -166,9 +170,11 @@ Closure covers the current supported workflow: dedicated command routes, success
 
 This plan authorizes documenting the future workflow. Building the protocol, changing hooks or permissions, starting a publication, and delegating merge authority are separate implementation or execution steps.
 
-### 3.6. Migration to B — accepted, deferred
+<a id="36-migration-to-b--accepted-deferred"></a>
 
-**Status:** planned, not started. Schedule this after higher-priority operational work; no deadline or immediate installation is implied. A remains the current implementation until the relevant replacement is verified.
+### 3.6. Migration to B — accepted direction, production deferred
+
+**Status:** production migration remains deferred. The operator authorized fictitious prototypes and comparisons, not production implementation. An agent briefly recorded and dispatched production authorization in error; the operator corrected that interpretation and the instruction was withdrawn. The prototype informs the decision but does not establish production readiness. A remains operational. The phases below are a proposed migration plan, not execution authority.
 
 | Status | Phase | Work | Completion evidence |
 | --- | --- | --- | --- |

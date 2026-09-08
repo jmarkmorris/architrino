@@ -1,0 +1,12 @@
+{
+  "@vocab": "https://example.invalid/option-b-real-chain/",
+  "kind": {
+    "@type": "@id"
+  },
+  "fromObject": {
+    "@type": "@id"
+  },
+  "toObject": {
+    "@type": "@id"
+  }
+}

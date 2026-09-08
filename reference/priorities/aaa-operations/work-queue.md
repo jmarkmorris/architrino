@@ -648,7 +648,7 @@ The reference builder follows the write authority of the executing queue item. A
 
 ### OPS-026 — GitHub Presence and Community guidance review
 
-- **Status:** Queued. Explicitly requested by the operator during the Git-process discussion.
+- **Status:** Review complete; awaiting operator disposition. The [clarity and alignment review](../development-process-review/analysis/public-community-guidance-review.md) records proposed edits; public guidance remains unchanged.
 - **Priority object:** `github_presence_and_community_guidance_review`
 - **Scope:** Inspect [GitHub Presence and Community](../../../content/markdown/aaa/archie/github-presence-and-community.md), including Discussions, issues, pull requests, and optional checkpoint/tag examples. Compare its public-contributor scope with the live [Git Lifecycle procedures](../../op/git/README.md), shared-checkout agent permissions, and outcomes accepted through the [process guide](../development-process-review/processes-git-codex-claude.md).
 - **Required analysis:** Identify concrete contradictions, ambiguous audiences, outdated claims, or missing routing. Distinguish independent contributors from agents sharing the operator's checkout; a difference in scope is not itself a defect. Inspect related README guidance where needed to assess consistency.

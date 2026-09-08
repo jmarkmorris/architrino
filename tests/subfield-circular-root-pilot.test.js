@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
-import { mkdtempSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, realpathSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -153,6 +153,15 @@ test("closed runtime loader rejects a newly introduced uncaptured file import", 
   finally { snapshot.close(); }
 });
 
-test("the pre-taxonomy recorded build receipt fails closed before any EOM launch", () => {
-  assert.throws(() => pilotFileOperation({ kind: "build", root: ROOT }), /build receipt authority differs/u);
+test("reviewed current build binds before execution and substituted receipt fails closed", () => {
+  const result = pilotFileOperation({ kind: "build", root: ROOT });
+  assert.equal(result.buildReceipt.sha256, "c80526d097c81627186cbbfcea7e0005d9d73288e331f4535f07982cc2bef944");
+  assert.ok(result.checkedBindingCount > 0);
+  const root = mkdtempSync(path.join(os.tmpdir(), "circular-wrong-build-"));
+  try {
+    const target = path.join(root, path.relative(ROOT, result.buildReceipt.path));
+    mkdirSync(path.dirname(target), { recursive: true });
+    writeFileSync(target, "{}\n");
+    assert.throws(() => pilotFileOperation({ kind: "build", root }), /reviewed build receipt bytes differ/u);
+  } finally { rmSync(root, { recursive: true, force: true }); }
 });

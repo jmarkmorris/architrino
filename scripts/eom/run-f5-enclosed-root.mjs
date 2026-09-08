@@ -222,7 +222,7 @@ function readNdjson(filename) {
     entries: bytes.toString("utf8").split("\n").filter((line) => line.trim()).map((line) => JSON.parse(line)) };
 }
 
-export async function runF5(argv) {
+export async function runF5(argv, { admitCurrentBuild } = {}) {
   const args = parseRunArgs(argv);
   const preparationPath = scopedPath(args["--preparation"], BASE);
   const apiPath = scopedPath(args["--api-proof"], BASE);
@@ -239,9 +239,16 @@ export async function runF5(argv) {
   if (!equal(nominalInput.binding, preparation.conformance)) throw new Error("nominal certificate bytes differ from preparation");
   validateProofReceipt(nominalInput.value, preparation.historyManifest.sha256, preparation.campaignId, preparation.runId);
   validateApiReceipt(apiProof, preparation);
+  let toolchainInput, toolchain, actualCompiler, currentAdmission;
+  if (admitCurrentBuild) {
+    currentAdmission = await admitCurrentBuild({ root: ROOT, preparationInput, apiInput });
+    ({ toolchainInput, toolchain, actualCompiler } = currentAdmission);
+    verifyBindings(currentAdmission.dependencies);
+  } else {
   verifyBindings([...apiProof.instrumentBindings, ...apiProof.subjectApiBindings]);
-  const toolchainPath = path.join(path.dirname(preparationPath), "toolchain.json"), toolchainInput = readBoundJson(toolchainPath);
-  const toolchain = toolchainInput.value;
+  const toolchainPath = path.join(path.dirname(preparationPath), "toolchain.json");
+  toolchainInput = readBoundJson(toolchainPath);
+  toolchain = toolchainInput.value;
   if (toolchainInput.binding.sha256 !== REVIEWED_TOOLCHAIN_HASH) throw new Error("toolchain is not the independently reviewed build generation");
   if (JSON.stringify(toolchain.sources) !== JSON.stringify(preparation.sources)) throw new Error("build/source binding mismatch");
   const buildDir = path.dirname(path.join(ROOT, toolchain.built[0].path));
@@ -252,10 +259,11 @@ export async function runF5(argv) {
     : toolchain.compiler.realPath;
   const compilerVersion = execFileSync(resolvedCompiler, ["--version"], { encoding: "utf8", timeout: 10000 });
   if (compilerVersion !== toolchain.compiler.version) throw new Error("resolved compiler version differs from recorded driver");
-  const actualCompiler = { path: resolvedCompiler, realPath: realpathSync(resolvedCompiler), sha256: sha(readFileSync(resolvedCompiler)), version: compilerVersion };
+  actualCompiler = { path: resolvedCompiler, realPath: realpathSync(resolvedCompiler), sha256: sha(readFileSync(resolvedCompiler)), version: compilerVersion };
+  }
   const dependencies = [...preparation.sources, ...toolchain.built, ...toolchain.externalLibraries, toolchain.compiler,
     actualCompiler, preparation.proofInterpreter, preparation.historyManifest, preparation.conformance,
-    ...apiProof.instrumentBindings, ...apiProof.subjectApiBindings, preparationInput.binding, apiInput.binding,
+    ...apiProof.instrumentBindings, ...(currentAdmission ? currentAdmission.dependencies : apiProof.subjectApiBindings), preparationInput.binding, apiInput.binding,
     toolchainInput.binding, bind(path.join(ROOT, SELF))];
   if (process.platform === "darwin") dependencies.push({ path: "/usr/bin/time", sha256: sha(readFileSync("/usr/bin/time")) });
   verifyBindings(dependencies);
@@ -277,7 +285,8 @@ export async function runF5(argv) {
     const reviewedBuildPath = path.join(output, "reviewed-build.json");
     const reviewedBuildBinding = writeJson(reviewedBuildPath, { schema: "braid-program/f5-reviewed-build.v1", toolchain: toolchainInput.binding,
       preparation: preparationInput.binding, nominalConformance: preparation.conformance, apiConformance: apiInput.binding,
-      resolvedCompiler: compilerBinding, adapterSourceSha256: CPP_HASH,
+      resolvedCompiler: compilerBinding, adapterSourceSha256: currentAdmission?.adapterSourceSha256 ?? CPP_HASH,
+      ...(currentAdmission ? { currentApplicability: currentAdmission.applicability } : {}),
       review: "separate read-only source/algebra/token/build review; no source defect found",
       runtimePremises: receipt.runtimePremises, dependencies });
     const bySuffix = (suffix) => {

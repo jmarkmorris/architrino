@@ -1,0 +1,53 @@
+{
+  "commit": "e0afd98e5c032d14dcbb053a5636a0454bb94285",
+  "approval": "not-established-exploratory",
+  "mappingProvenance": "authored during this pilot; not present in historical Git snapshot",
+  "files": {
+    "content/markdown/aaa/dynamics/master-equation.md": {
+      "sha256": "dbb88e073d51b5980e0520c0720439e803eeab35b350c49b3dd67adc3f036a3d",
+      "bytes": 302697,
+      "gitEntry": "100644 blob 825a756819566a238546ba5e45bd6210b74d98d4\tcontent/markdown/aaa/dynamics/master-equation.md"
+    },
+    "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md": {
+      "sha256": "c30f14fd2efc4d8c14dcff01e5df07e5444815ea36c2010c8a198eaaf4affba2",
+      "bytes": 53383,
+      "gitEntry": "100644 blob 0e9126b5f79ba0837df202b0c04efb8b6f12d8f0\treference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md"
+    },
+    "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": {
+      "sha256": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+      "bytes": 12576,
+      "gitEntry": "100644 blob a6b5dca2b72d385e9d23c3ddecd447a340d7889e\tscripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs"
+    },
+    "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": {
+      "sha256": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+      "bytes": 16100,
+      "gitEntry": "100644 blob db1964f24052a771472afeb4cb4318cfe836cfea\tscripts/equation-mapping/verify-receiver-wake-gradient.mjs"
+    },
+    "tests/moving-single-root-scalar-gradient-verifier.test.mjs": {
+      "sha256": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08",
+      "bytes": 1716,
+      "gitEntry": "100644 blob c85e2c4d38b4cd71ba4adc1ed54fa93984560356\ttests/moving-single-root-scalar-gradient-verifier.test.mjs"
+    },
+    "reference/priorities/development-process-review/evidence/final-validation/additional-check-results.json": {
+      "sha256": "8e6dfb4bd98ef8f62d36e6dc61996787fd9218ad1350ee88e6c5c6b61f92ad02",
+      "bytes": 9589,
+      "gitEntry": "100644 blob 6ffff5d4d9b5539beecadce0e10f96c511e078e9\treference/priorities/development-process-review/evidence/final-validation/additional-check-results.json"
+    },
+    "reference/priorities/master-equation-closure/work-log.md": {
+      "sha256": "11f2e3e0d5053d546f37d856d9ae42142f5815cdd9b7f255a2db9854632efbde",
+      "bytes": 34480,
+      "gitEntry": "100644 blob 92f52e743850366335b7fe62f9d6dbd09232c420\treference/priorities/master-equation-closure/work-log.md"
+    }
+  },
+  "recordsSha256": "ba75ce9fca51bb0e3c8f9807e6da23babeaa15b62bc9a9b57c3211ee76d8a066",
+  "contextSha256": "249e794fc632f63bf3546593a96f2a4cab8d2def6d21bfe4d41be150412837d0",
+  "liveComparedToGit": {
+    "content/markdown/aaa/dynamics/master-equation.md": true,
+    "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md": true,
+    "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": true,
+    "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": true,
+    "tests/moving-single-root-scalar-gradient-verifier.test.mjs": true,
+    "reference/priorities/development-process-review/evidence/final-validation/additional-check-results.json": true,
+    "reference/priorities/master-equation-closure/work-log.md": true
+  }
+}

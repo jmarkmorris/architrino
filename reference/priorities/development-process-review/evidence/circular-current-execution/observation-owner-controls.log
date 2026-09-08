@@ -1,0 +1,94 @@
+TAP version 13
+# Subtest: current entry parser admits exact known shape and rejects extra or escaping options
+ok 1 - current entry parser admits exact known shape and rejects extra or escaping options
+  ---
+  duration_ms: 1.165666
+  type: 'test'
+  ...
+# Subtest: captured entry rejects invalid profile and promptly closes startup guard before any workload
+ok 2 - captured entry rejects invalid profile and promptly closes startup guard before any workload
+  ---
+  duration_ms: 88.583916
+  type: 'test'
+  ...
+# Subtest: process parser passes known identity and byte conversion before actual probes
+ok 3 - process parser passes known identity and byte conversion before actual probes
+  ---
+  duration_ms: 2.09975
+  type: 'test'
+  ...
+# Subtest: actual probes bind runtime, birth, wait4 closure and nonzero resource accounting
+ok 4 - actual probes bind runtime, birth, wait4 closure and nonzero resource accounting
+  ---
+  duration_ms: 245.02275
+  type: 'test'
+  ...
+# Subtest: stubborn TERM is escalated through actual exit and close
+ok 5 - stubborn TERM is escalated through actual exit and close
+  ---
+  duration_ms: 761.714291
+  type: 'test'
+  ...
+# Subtest: final serialization remains inside the helper deadline
+ok 6 - final serialization remains inside the helper deadline
+  ---
+  duration_ms: 685.200417
+  type: 'test'
+  ...
+# Subtest: unexpected cache artifact rejects cleanup and final admission
+ok 7 - unexpected cache artifact rejects cleanup and final admission
+  ---
+  duration_ms: 265.189666
+  type: 'test'
+  ...
+# Subtest: runtime inventory enforces resident ceiling before any table probe
+ok 8 - runtime inventory enforces resident ceiling before any table probe
+  ---
+  duration_ms: 97.775125
+  type: 'test'
+  ...
+# Subtest: blocked probe rejects after actual child/stream closure and retains cost
+ok 9 - blocked probe rejects after actual child/stream closure and retains cost
+  ---
+  duration_ms: 682.793125
+  type: 'test'
+  ...
+# Subtest: failed probe rejects after actual child/stream closure and retains cost
+ok 10 - failed probe rejects after actual child/stream closure and retains cost
+  ---
+  duration_ms: 280.409
+  type: 'test'
+  ...
+# Subtest: output-growth probe rejects after actual child/stream closure and retains cost
+ok 11 - output-growth probe rejects after actual child/stream closure and retains cost
+  ---
+  duration_ms: 229.855625
+  type: 'test'
+  ...
+# Subtest: interruption cancels actual open probe and rejects admission
+ok 12 - interruption cancels actual open probe and rejects admission
+  ---
+  duration_ms: 180.271417
+  type: 'test'
+  ...
+# Subtest: changed source rejects before another probe and at final recheck
+ok 13 - changed source rejects before another probe and at final recheck
+  ---
+  duration_ms: 100.221208
+  type: 'test'
+  ...
+# Subtest: changed captured runtime dependency rejects before ps and final admission
+ok 14 - changed captured runtime dependency rejects before ps and final admission
+  ---
+  duration_ms: 118.542583
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3904.453583

@@ -47,7 +47,7 @@ The core community standard is simple: critique ideas professionally, and people
 
 Claims, assumptions, derivations, definitions, and evidence should be challenged directly where needed. Personal attacks, comments on another person's intelligence or motives, and low-grade hostility do not belong here. Strong disagreement is welcome. Personal disrespect is not.
 
-Creativity is welcome, but relevance matters. Extensions of the theory, novel mechanisms, and speculative refinements are appropriate subjects for discussion when they are meaningfully connected to this framework. Alternative ontologies or unrelated replacement world-models do not belong here by default. If a contributor believes that an unusual proposal is relevant, they should make that relevance explicit. In particular, if they can present a strong state-of-the-art AI assessment showing that the proposal bears directly on this theory, then the discussion is appropriate here.
+Creativity is welcome, but relevance matters. Extensions of the theory, novel mechanisms, and speculative refinements are appropriate subjects for discussion when they are meaningfully connected to this framework. Alternative ontologies or unrelated replacement world-models do not belong here by default. If a contributor believes that an unusual proposal is relevant, they should make that relevance explicit.
 
 For even general posts, contributors are encouraged to run their wording by AI in the context of this theory before posting. The point is not artificial polish for its own sake. The point is to reduce avoidable ambiguity and make the discussion easier to evaluate.
 

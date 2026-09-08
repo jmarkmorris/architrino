@@ -1,0 +1,152 @@
+{
+  "schema": "braid-program/f5-enclosed-root-prefix-reduction.v1",
+  "accepted": true,
+  "h3EvidenceEligible": false,
+  "status": "genuine-prefix-ledger-checks-passed",
+  "completeLadder": false,
+  "resourceContact": false,
+  "heartbeatSeconds": 15,
+  "limitSeconds": 1800,
+  "authority": "source-and-byte-bound-frozen-validator-prefix-composition",
+  "campaignId": "f5-enclosed-root-restart-20260826-v1",
+  "runId": "current-acceptance-a",
+  "rungOrder": [
+    8
+  ],
+  "totalRows": 1152,
+  "historyManifestSha256": "bbfb55e2c789b5e6f034745c8e7e1b3a7d502b97082862558fb8eb4c6a707749",
+  "rawHistoryManifest": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-acceptance-a/history-manifest.json",
+    "sha256": "bbfb55e2c789b5e6f034745c8e7e1b3a7d502b97082862558fb8eb4c6a707749"
+  },
+  "rawRungFiles": [
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/acceptance-20260908-a/.local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/rung-8.json",
+      "sha256": "a6232aed1c5f97b27367193ad9c71282acba2a5e44102782a75281c1faa9ae95",
+      "rungSamples": 8
+    }
+  ],
+  "reducerSource": {
+    "path": "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs",
+    "sha256": "1b5051928406482ffa3fecfaa60b1e94d3f1372ed87ea2ea5e7442523ddc8fd0"
+  },
+  "exportAppendix": {
+    "sha256": "1399ee788e554642ac53a31635c2e91cc51de966089fa5a6e8ce85aaf458d786",
+    "utf8": "\nexport { validateConfigAndPilot, validateEnclosureReport, expectedMembersFromConfig, validateHistoryManifest, validateRungPacket, validateRepeatedReceptionRoots, repositoryReader };\n"
+  },
+  "executedAugmentedReducerSha256": "f305630b65053a872646901df61884b1741089aaede95fb30f675561e77b5a50",
+  "bridgeSource": {
+    "path": "scripts/eom/verify-f5-enclosed-root-prefix.mjs",
+    "sha256": "c5894a68aaad645a68b3d74d146c8f23ada96a4e28eb21721a33344aad09f6da"
+  },
+  "sourceBindings": [
+    {
+      "id": "approved-config",
+      "path": "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
+      "sha256": "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb"
+    },
+    {
+      "id": "pilot-fixture",
+      "path": "reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json",
+      "sha256": "bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344"
+    },
+    {
+      "id": "restart-predeclaration",
+      "path": "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md",
+      "sha256": "1bc458d0b80c0a4f9e5b5c22e83d7e360306f020526296a937ae26742a6296e5"
+    },
+    {
+      "id": "enclosure-evidence",
+      "path": "reference/priorities/braid-program/evidence/2026-08-26-f5-independent-interpolation-enclosure.md",
+      "sha256": "931f5d88a209648bde63dfbdd1f24303b7a33e101e11565e75fd608be347d496"
+    },
+    {
+      "id": "accepted-enclosure-report",
+      "path": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure/accepted-enclosure-report.v1.json",
+      "sha256": "2f8fa7bdd40df643a661b2efae4a1007683120077d074165f8f506a4b9941bd9"
+    }
+  ],
+  "implementationBindings": [
+    {
+      "id": "adapter-source",
+      "path": "src/eom/native/eom_f5_enclosed_root_cli.cpp",
+      "sha256": "16a067847d77348b4c4d809dbaece8a4a80b91a6e9568198603b0338407d38f6",
+      "descriptor": "reviewed F5 adapter-source"
+    },
+    {
+      "id": "adapter-executable",
+      "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-captured-build/eom_f5_enclosed_root_cli",
+      "sha256": "1cd947cd74d3d547bc2e6e3c52727170196be7e4b4f63eb42128d582ede90bc1",
+      "descriptor": "reviewed F5 adapter-executable"
+    },
+    {
+      "id": "exact-pair-header",
+      "path": "src/eom/include/architrino/eom/ExactPairBatch.hpp",
+      "sha256": "bc4e09892c01f6b855bd4b1378c90999aefda0a747fdd5a816d86283a0e8d751",
+      "descriptor": "reviewed F5 exact-pair-header"
+    },
+    {
+      "id": "exact-pair-source",
+      "path": "src/eom/src/ExactPairBatch.cpp",
+      "sha256": "c82b71c8335bd02a98941439d26a17ba3fc452318adb91cb5f42a015933e23c1",
+      "descriptor": "reviewed F5 exact-pair-source"
+    },
+    {
+      "id": "eom-library",
+      "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-captured-build/libeom_native.a",
+      "sha256": "bce96a62038838a03e41fc27efb35e4e00e695e56769e77c6fa9c242996d5add",
+      "descriptor": "reviewed F5 eom-library"
+    },
+    {
+      "id": "reducer-source",
+      "path": "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs",
+      "sha256": "1b5051928406482ffa3fecfaa60b1e94d3f1372ed87ea2ea5e7442523ddc8fd0",
+      "descriptor": "reviewed F5 reducer-source"
+    },
+    {
+      "id": "compiler",
+      "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/resolved-compiler.json",
+      "sha256": "c06305a83710b2df9abf9628afef2c270c32954c7cee4d10d7069b8f29c5a4ce",
+      "descriptor": "reviewed F5 compiler"
+    },
+    {
+      "id": "toolchain",
+      "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-ladder-acceptance-a/reviewed-build.json",
+      "sha256": "f32c63792bb6e50cb9f06024782c1224620d2669a4054ca00d8b62ad20dbf75d",
+      "descriptor": "reviewed F5 toolchain"
+    }
+  ],
+  "rungSummaries": [
+    {
+      "campaignId": "f5-enclosed-root-restart-20260826-v1",
+      "runId": "current-acceptance-a",
+      "rungSamples": 8,
+      "rowCount": 1152,
+      "rawSha256": "a6232aed1c5f97b27367193ad9c71282acba2a5e44102782a75281c1faa9ae95",
+      "scientificLedgerSha256": "1d07faeb33ecf0dfb428fe41c3fd06fa91e02c1ed6cc540a0d280e36e7041fd3",
+      "maximumVisitedCells": 52,
+      "maximumPrecisionBits": 53,
+      "ordinaryRootCount": 1056,
+      "bindingSetSha256": "5654cb3773cfe5ff452ca12be9c874baf00e28a4b20afd5613e04846e8dca5c5",
+      "implementationBindingSetSha256": "98cb7b2816944f968cdfc78986664d6a5bb839bed005d38566963c19d608a1bb",
+      "memberSetSha256": "2e63eedc8c3639925b0f2ade7e3895c36c0c2a0b53e4a9606e39d5802aa7a640",
+      "controlSetSha256": "4a80ac63b5535446e6a70f063236401aac2100b89d68bbc68dc76dce698ab4c1"
+    }
+  ],
+  "checks": {
+    "frozenBindings": "passed",
+    "implementationBindings": "passed",
+    "enclosureAuthority": "passed",
+    "exactHistoryManifest": "passed",
+    "exactCensus": "passed",
+    "selfRows": "passed",
+    "partnerRows": "passed",
+    "factorMargins": "passed",
+    "rootFreeComplements": "passed",
+    "resourceLimits": "passed",
+    "prefixIdentity": "passed",
+    "repeatedReceptionRoots": "passed"
+  },
+  "claimBoundary": "Only the supplied genuine prefix passed the frozen ledger, serialization, identity and byte checks. The executing reducer module is the captured original source plus the disclosed export-only appendix. No missing rung is constructed or inferred. Independent actual-cubic/API-domain conformance and reviewed build provenance remain separate prerequisites; final three-rung reduction uses the original public entrypoint. No H3, evolution, retention, stability, binding, score, or physical claim.",
+  "elapsedWallSeconds": 1.12
+}
