@@ -1,0 +1,28 @@
+.E....
+======================================================================
+ERROR: test_current_bridge_publishes_both_stages_and_retracts_failed_publication (test_f6c_acceleration_execution.SyntheticExecution.test_current_bridge_publishes_both_stages_and_retracts_failed_publication)
+Artificial numerical callbacks test transport, never scientific truth.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/tests/test_f6c_acceleration_execution.py", line 137, in test_current_bridge_publishes_both_stages_and_retracts_failed_publication
+    completion=run(['--stage','consumer','--out',str(target),'--git-binary',git])
+  File "/Users/markmorris/vibe/architrino/tests/test_f6c_acceleration_execution.py", line 135, in run
+    with patch.object(sys,'argv',common+args),patch.object(s,'instrument',controlled_instrument),redirect_stdout(stdout):s.main()
+                                                                                                                         ~~~~~~^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/execute-f6c-acceleration.py", line 201, in main
+    m.authenticate_receipts(docs['export'], docs['manifest'], docs['comparison'], docs['admission'], docs['reconstruction'], docs['guards'], prior_plan=docs['priorPlan'], bindings=fixed)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/prepare-f6c-continuous-reception-acceleration.py", line 377, in authenticate_receipts
+    same(comparison['fixedBindings'][role],role)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/prepare-f6c-continuous-reception-acceleration.py", line 372, in same
+    require(binding(item)==bindings[role],'original evidence binding differs: '+role)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/prepare-f6c-continuous-reception-acceleration.py", line 84, in require
+    raise ValueError(message)
+ValueError: original evidence binding differs: rootTheorem
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.107s
+
+FAILED (errors=1)

@@ -1,0 +1,13 @@
+file:///Users/markmorris/vibe/architrino/scripts/eom/run-f6c-acceleration-pilot.mjs:74
+export const check=(ok,message)=>{if(!ok)throw new Error(message);};
+                                               ^
+
+Error: prior externally observed closure
+    at check (file:///Users/markmorris/vibe/architrino/scripts/eom/run-f6c-acceleration-pilot.mjs:74:48)
+    at Module.validatePlan (file:///Users/markmorris/vibe/architrino/scripts/eom/run-f6c-acceleration-pilot.mjs:138:3)
+    at file:///Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/acceleration-migration/prepare-current-plan.mjs:23:3
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:646:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v26.3.0

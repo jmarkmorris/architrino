@@ -1,0 +1,113 @@
+Traceback (most recent call last):
+  File "<string>", line 14, in <module>
+    exec(compile(raw,filename,'exec',dont_inherit=True),globals())
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/execute-f6c-acceleration.py", line 263, in <module>
+    main()
+    ~~~~^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/execute-f6c-acceleration.py", line 204, in main
+    m.authenticate_receipts(docs['export'],docs['manifest'],docs['comparison'],docs['admission'],docs['reconstruction'],docs['guards'],prior_plan=docs['priorPlan'],bindings=fixed)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/prepare-f6c-continuous-reception-acceleration.py", line 392, in authenticate_receipts
+    require(contract['verifierSha256']=='3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            and contract['declarationSha256']=='520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba', 'cached prior reference contract differs')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/prepare-f6c-continuous-reception-acceleration.py", line 84, in require
+    raise ValueError(message)
+ValueError: cached prior reference contract differs
+node:internal/errors:998
+  const err = new Error(message);
+              ^
+
+Error: Command failed: /Users/markmorris/vibe/.venv/bin/python -I -B -c import os,sys,stat,hashlib,resource as _accounting,json as _json
+filename,expected=sys.argv[1:3];sys.argv=[filename,*sys.argv[3:]]
+fd=os.open(filename,os.O_RDONLY|os.O_NONBLOCK|getattr(os,'O_NOFOLLOW',0))
+try:
+ before=os.fstat(fd);assert stat.S_ISREG(before.st_mode) and 0<before.st_size<=67108864
+ parts=[];size=0
+ while size<before.st_size:
+  part=os.read(fd,min(65536,before.st_size-size));assert part;parts.append(part);size+=len(part)
+ raw=b''.join(parts);after=os.fstat(fd);current=os.stat(filename,follow_symlinks=False)
+ identity=lambda s:(s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns)
+ assert identity(before)==identity(after)==identity(current) and hashlib.sha256(raw).hexdigest()==expected
+finally:os.close(fd)
+globals()['__file__']=filename
+exec(compile(raw,filename,'exec',dont_inherit=True),globals())
+_self=_accounting.getrusage(_accounting.RUSAGE_SELF);_children=_accounting.getrusage(_accounting.RUSAGE_CHILDREN)
+print(_json.dumps({'kind':'f6c-range-python-process-resources','userSeconds':_self.ru_utime,'systemSeconds':_self.ru_stime,'waitedChildUserSeconds':_children.ru_utime,'waitedChildSystemSeconds':_children.ru_stime,'maximumIndividualResidentBytes':_self.ru_maxrss if sys.platform=='darwin' else _self.ru_maxrss*1024}),file=sys.stderr,flush=True)
+ /Users/markmorris/vibe/architrino/scripts/eom/execute-f6c-acceleration.py 7b7d072484a7d716c7061617ea615827f4dd153e4c4c4b9584e5736b99f1d6e0 --check-plan --stage consumer --bridge-sha256 7b7d072484a7d716c7061617ea615827f4dd153e4c4c4b9584e5736b99f1d6e0 --plan /Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/acceleration-migration/acceleration-launch.v2.json --plan-sha256 6a828de3f4b94f33e1ea01aa1984ded6062e0d7bdda72472f66741adb47c7887 --out /Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/acceleration-migration/unused --budget-seconds 30
+Traceback (most recent call last):
+  File "<string>", line 14, in <module>
+    exec(compile(raw,filename,'exec',dont_inherit=True),globals())
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/execute-f6c-acceleration.py", line 263, in <module>
+    main()
+    ~~~~^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/execute-f6c-acceleration.py", line 204, in main
+    m.authenticate_receipts(docs['export'],docs['manifest'],docs['comparison'],docs['admission'],docs['reconstruction'],docs['guards'],prior_plan=docs['priorPlan'],bindings=fixed)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/prepare-f6c-continuous-reception-acceleration.py", line 392, in authenticate_receipts
+    require(contract['verifierSha256']=='3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            and contract['declarationSha256']=='520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba', 'cached prior reference contract differs')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/prepare-f6c-continuous-reception-acceleration.py", line 84, in require
+    raise ValueError(message)
+ValueError: cached prior reference contract differs
+
+    at genericNodeError (node:internal/errors:998:15)
+    at wrappedFn (node:internal/errors:543:14)
+    at checkExecSyncError (node:child_process:926:11)
+    at execFileSync (node:child_process:962:15)
+    at file:///Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/acceleration-migration/prepare-current-plan.mjs:29:15
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:646:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+  status: 1,
+  signal: null,
+  output: [
+    null,
+    '',
+    'Traceback (most recent call last):\n' +
+      '  File "<string>", line 14, in <module>\n' +
+      "    exec(compile(raw,filename,'exec',dont_inherit=True),globals())\n" +
+      '    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n' +
+      '  File "/Users/markmorris/vibe/architrino/scripts/eom/execute-f6c-acceleration.py", line 263, in <module>\n' +
+      '    main()\n' +
+      '    ~~~~^^\n' +
+      '  File "/Users/markmorris/vibe/architrino/scripts/eom/execute-f6c-acceleration.py", line 204, in main\n' +
+      "    m.authenticate_receipts(docs['export'],docs['manifest'],docs['comparison'],docs['admission'],docs['reconstruction'],docs['guards'],prior_plan=docs['priorPlan'],bindings=fixed)\n" +
+      '    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n' +
+      '  File "/Users/markmorris/vibe/architrino/scripts/eom/prepare-f6c-continuous-reception-acceleration.py", line 392, in authenticate_receipts\n' +
+      "    require(contract['verifierSha256']=='3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'\n" +
+      '    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n' +
+      "            and contract['declarationSha256']=='520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba', 'cached prior reference contract differs')\n" +
+      '            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n' +
+      '  File "/Users/markmorris/vibe/architrino/scripts/eom/prepare-f6c-continuous-reception-acceleration.py", line 84, in require\n' +
+      '    raise ValueError(message)\n' +
+      'ValueError: cached prior reference contract differs\n'
+  ],
+  pid: 79330,
+  stdout: '',
+  stderr: 'Traceback (most recent call last):\n' +
+    '  File "<string>", line 14, in <module>\n' +
+    "    exec(compile(raw,filename,'exec',dont_inherit=True),globals())\n" +
+    '    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n' +
+    '  File "/Users/markmorris/vibe/architrino/scripts/eom/execute-f6c-acceleration.py", line 263, in <module>\n' +
+    '    main()\n' +
+    '    ~~~~^^\n' +
+    '  File "/Users/markmorris/vibe/architrino/scripts/eom/execute-f6c-acceleration.py", line 204, in main\n' +
+    "    m.authenticate_receipts(docs['export'],docs['manifest'],docs['comparison'],docs['admission'],docs['reconstruction'],docs['guards'],prior_plan=docs['priorPlan'],bindings=fixed)\n" +
+    '    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n' +
+    '  File "/Users/markmorris/vibe/architrino/scripts/eom/prepare-f6c-continuous-reception-acceleration.py", line 392, in authenticate_receipts\n' +
+    "    require(contract['verifierSha256']=='3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7'\n" +
+    '    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n' +
+    "            and contract['declarationSha256']=='520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba', 'cached prior reference contract differs')\n" +
+    '            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n' +
+    '  File "/Users/markmorris/vibe/architrino/scripts/eom/prepare-f6c-continuous-reception-acceleration.py", line 84, in require\n' +
+    '    raise ValueError(message)\n' +
+    'ValueError: cached prior reference contract differs\n'
+}
+
+Node.js v26.3.0

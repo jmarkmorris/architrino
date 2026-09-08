@@ -48,7 +48,7 @@ The canonical series index, counts, registry status, and concrete registry files
 
 ## Shared-Checkout Coordination
 
-This repository normally uses one direct shared checkout. Multiple agents may edit, validate, commit, and push coordinated work on the same active branch. Git worktrees are not the default isolation mechanism here and must not be proposed merely because several agents are active.
+The publication runner identifies the actual checkout, branch, candidate, and active writers before operating. Multiple agents may contribute coordinated work; publication remains assigned to the explicitly designated runner.
 
 - Define PR scope from the committed branch-tip diff and the operator's active directions, not from which agent made a commit or whether commits from several workstreams interleave.
 - A combined PR is acceptable when its included workstreams can be stated plainly, its complete diff is reviewable together, and validation covers the resulting exact state. A coordinator should write that combined scope into the PR body.

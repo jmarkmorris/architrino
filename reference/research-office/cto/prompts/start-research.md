@@ -43,7 +43,7 @@ Give every Specialist:
 - the required validation;
 - the requested report form and stop condition.
 
-Specialists work directly in the user's shared main checkout unless the user explicitly authorizes a worktree. They preserve unrelated staged and unstaged changes and do not stage, commit, push, reset, stash, or regenerate without explicit authority. Repository edits are allowed only when the assigned task authorizes them, and then only within the named scope and normal implementation steps.
+Specialists preserve unrelated staged and unstaged changes and do not stage, commit, push, reset, stash, or regenerate without explicit authority. Repository edits are allowed only when the assigned task authorizes them, and then only within the named scope and normal implementation steps.
 
 Require every Specialist to return the evidence obtained, exact files changed, scoped validation, unresolved blockers, and whether work continues. Between the scope above and this return contract, every Specialist should leave the briefing knowing four things: what question it owns, what it may touch, what would count as evidence, and where to stop.
 
@@ -81,7 +81,7 @@ Inspect first:
 - [other necessary evidence]
 
 Authority:
-- Checkout: shared main checkout; no worktree unless explicitly authorized
+- Checkout: identify the task’s actual working directory and integration destination
 - Writes: [read-only, or exact allowed files and change]
 - Git/regeneration: no stage, commit, push, reset, stash, or regeneration unless explicitly authorized
 - Preserve unrelated work

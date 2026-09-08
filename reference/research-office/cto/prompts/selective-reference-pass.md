@@ -2,7 +2,7 @@ Examine the reader-facing Architrino corpus for reference opportunities that mee
 
 # Selective Reference Discovery Pass
 
-Use the `aaa-corpus-advancement` skill in audit/report mode. This is a deliberately narrow source-selection task, not a theory-development campaign or a mandate to add citations. Work as one agent in the existing checkout. Do not create subagents, another task, or a worktree.
+Use the `aaa-corpus-advancement` skill in audit/report mode. This is a deliberately narrow source-selection task, not a theory-development campaign or a mandate to add citations. Work as one agent in the assigned checkout. Do not create subagents or another task.
 
 ## Authority and Policy
 

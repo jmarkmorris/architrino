@@ -12,6 +12,9 @@ This is the canonical execution ledger for repo-wide deployment, hosting, cost, 
 6. `archie_mcp_tool_contract_fixture_drift` — [OPS-023](#ops-023--archie-mcp-tool-contract-fixture-drift). Status: `Queued`.
 7. `post_campaign_binding_corruption_sweep` — [OPS-024](#ops-024--post-campaign-binding-corruption-sweep). Status: `In progress`; every non-environmental failure in the full sweep is classified and either repaired or routed to a named decision.
 
+8. `internal_reference_section_numbering` — [OPS-025](#ops-025--internal-reference-section-numbering). Status: `Queued`; define the convention and roll out by document type from the operator-approved trial.
+9. `github_presence_and_community_guidance_review` — [OPS-026](#ops-026--github-presence-and-community-guidance-review). Status: `Queued`; review public GitHub guidance against agreed operating practices.
+
 ## Queued task records
 
 ### OPS-018 — Layout-pass digest-pin attribution
@@ -107,6 +110,8 @@ test_prescribed_acceleration_response_publication.py ::     raise ValueError(mes
 ```
 
 Manual classification of the full failure text gives 0 `native-build`, 10 `frozen-hash`, and 3 `other`. The literal `frozen` match includes failing test names and traceback identifiers: `parent_prefrozen_closedforms` and `streamed_leaf_frozen_driver_controls` appear in the verification and streamed-session tracebacks respectively. A digest assertion without any of the specified text markers remains `other`; its pinned input is still recorded below. The first error lines for those three `other` files are `AssertionError: 'db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc' != 'f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68'` for cached root cover, `AssertionError` for parent-emission refinement, and `ImportError: Failed to import test module: test_f6c_parent_emission_refinement_conformance` for its conformance test, whose traceback ends in `AssertionError` at the `PROOF_SHA` comparison.
+
+**Historical method, superseded:** the last-commit classification below is retained as an investigation record, not an active attribution rule. The September 6 ruling in “Attribution rule and closure” supersedes it. Use the last matching / first mismatching transition and inspect its cause; last-touch metadata alone cannot establish which change introduced a failure.
 
 | file | class | pinned input | last commit | verdict |
 | --- | --- | --- | --- | --- |
@@ -627,6 +632,29 @@ The reference builder follows the write authority of the executing queue item. A
 
 - **Evidence / blocker:** The implementation facts above are `measured` by direct reading of the named files and line numbers. Not established: whether the viewer can resolve symbols for a document that carries no injected chips, or whether the line-708 write path can be constrained to an explicit reference target set; work item 4 must establish both modes in `src/apps/equation-mapping/`. No blocker beyond that.
 - **Completion:** A reference registry builds, validates, and is `--check` gated; reference documents render with resolvable symbols; any reference-source update requires declared write mode, an explicit target set, and validation; and no link from `content/markdown/aaa` into `reference/` is created.
+
+### OPS-025 — Internal reference section numbering
+
+- **Status:** Queued. Operator requested this work after finding the numbered process-guide trial useful during joint voice and rendered-document review. Queue capture is authorized; a repository-wide rewrite is not started.
+- **Priority object:** `internal_reference_section_numbering`
+- **Request / acceptance:** Establish a maintainable hierarchical section-numbering convention for suitable internal reference and explanatory documents, then apply it in bounded, reviewed batches by document type. The numbers must be visible in the Markdown rendering used by the operator so a spoken section reference reliably locates the same passage.
+- **Starting evidence:** The [Git, Codex, and Claude process guide](../development-process-review/processes-git-codex-claude.md) is the operator-approved trial. Its headings carry explicit hierarchical numbers; the operator reported materially easier navigation. This is user feedback from one document, not a measured navigation benchmark.
+- **Required depth:** Support at least three numbered levels, such as `1`, `1.1`, and `1.1.1`, and continue numbering at deeper Markdown heading levels wherever they occur. Follow the actual heading hierarchy rather than imposing a three-level cap. In the current trial, the document title (`#`) is unnumbered; every section heading from `##` through `######` receives its corresponding hierarchical number, supporting up to five numbered levels beneath the title. Hash characters in code fences or ordinary text are not headings and must not trigger numbering.
+- **Design scope:** Select eligible document types and a maintainable renumbering method consistent with the required depth; preserve link targets or update their consumers; distinguish section numbering from already-numbered work-queue items. Consider priority explainers individually rather than imposing an additional hierarchy on every queue. Put the accepted convention in the existing writing/procedure owner rather than creating competing guidance.
+- **Promotion boundary:** Internal numbering must be removed or mapped as appropriate when material is promoted into the established reader-facing format. Preserve the existing reader-facing chapter/section numbering and rendering pipeline; this task does not authorize changing that working pipeline.
+- **Preservation:** Inventory source fingerprints, generated indexes and evidence bindings before each batch. Preserve content and mathematical meaning; protected evidence and generated files keep their existing edit constraints.
+- **Completion:** The operator accepts the convention and chosen document classes; bounded examples render correctly, spoken section references locate them, applicable links and content checks pass, and promotion handling is demonstrated without changing reader-facing numbering behavior. Wider rollout scope is recorded explicitly.
+- **Owner:** operations, with the live academic-style and operator-explanation owners.
+
+### OPS-026 — GitHub Presence and Community guidance review
+
+- **Status:** Queued. Explicitly requested by the operator during the Git-process discussion.
+- **Priority object:** `github_presence_and_community_guidance_review`
+- **Scope:** Inspect [GitHub Presence and Community](../../../content/markdown/aaa/archie/github-presence-and-community.md), including Discussions, issues, pull requests, and optional checkpoint/tag examples. Compare its public-contributor scope with the live [Git Lifecycle procedures](../../op/git/README.md), shared-checkout agent permissions, and outcomes accepted through the [process guide](../development-process-review/processes-git-codex-claude.md).
+- **Required analysis:** Identify concrete contradictions, ambiguous audiences, outdated claims, or missing routing. Distinguish independent contributors from agents sharing the operator's checkout; a difference in scope is not itself a defect. Inspect related README guidance where needed to assess consistency.
+- **Action boundary:** Review and propose the exact changes needed. Queue capture does not authorize changing public guidance, executing its Git examples, or changing publication policy.
+- **Completion:** Record findings with source passages, proposed edits or an evidence-supported no-change conclusion, and the operator's disposition. Route accepted changes to their existing owners and verify relevant links and behavior when implemented.
+- **Owner:** operations, coordinating with the public-community document owner.
 
 ## In progress
 

@@ -1,0 +1,2633 @@
+{
+  "measuredAt": "2026-09-08T04:37:44.766Z",
+  "instrument": "git ls-files -c -o --exclude-standard -z plus known-case-tested path classification",
+  "boundary": "Candidate filenames only. CMake registrations, package scripts, nested entrypoints, test-level skips and workflow jobs require semantic reconciliation before this is complete coverage.",
+  "candidates": [
+    {
+      "path": ".github/workflows/content-integrity.yml",
+      "kind": "github-workflow",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": ".github/workflows/pages.yml",
+      "kind": "github-workflow",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/check-fixture-mcp-sdk-conformance.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/check-fixture-mcp-server.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/check-fixture-service-stub.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/check-full-corpus-mcp-server.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/check-loopback-mcp-http-sdk-conformance.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/check-mcp-deterministic-recall-benchmark.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/check-rollback.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/check-secret-boundary.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/validate-action-broker-sandbox.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/validate-contracts.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/validate-endpoint-responses.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/validate-issue-mining-sandbox.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/validate-mcp-remote-deployment-contract.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/validate-mcp-tool-contracts.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/validate-negative-validators.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/validate-provider-gateway.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/validate-provider-sandbox.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/validate-render-contracts.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/archie-service/validate-token-ledger-sandbox.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/check-animator-runtime-wiring.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/check-borg-scientific-status-projection.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/check-braid-taxonomy-terminology.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/check-browser-performance-budget.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/check-content-integrity.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/check-deployment-budget.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/check-foundational-impact.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/check-master-equation-terminology-migration.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/check-owned-compute-launch-policy.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/check-pdg-architecture.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/check-polarity-notation-drift.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/check-potential-consumer-publication-contract.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/check-potential-live-timespace-pipeline-contract.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/check-reader-facing-publication-boundary.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/check-transmitter-factor-clean-slate.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/check-validation-script-paths.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/check-webapp-release-gate.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/eom/check-f5-evolution-dynamics.py",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/eom/check-planar-three-binary-circular-release.py",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/eom/check-stella-octangula-short-release-accepted-ledger.py",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/eom/check-stella-octangula-short-release.py",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/eom/validate-attractor-resume-gate.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/eom/validate-campaign1-binary-workload.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/equation-mapping/check-emit-02-04-contract.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/equation-mapping/check-same-branch-chart-identity.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/validate-content.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/validate-equation-mapping-links.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/validate-machine-artifact-retention.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "scripts/validate-priority-ranking.mjs",
+      "kind": "standalone-check-candidate",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "src/eom/CMakeLists.txt",
+      "kind": "cmake-registration",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/aaa-core-accepted-history-stream-v0.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/aaa-core-client-v0.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/aaa-core-codec-registry-v0.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/aaa-core-path-interchange-v0.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/aaa-core-potential-v1.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/aaa-core-query-transform-publication-v0.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/adaptive-cubic-background-packet.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/adaptive-cubic-medium-kinematics.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/adaptive-cubic-site-local-release-analysis.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/all-candidate-analytical-rebuild.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/analytical-campaign-database.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/analytical-campaign-pipeline-benchmark.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-app-mode.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-app-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-assembly-authoring-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-assembly-list-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-assembly-structure-bridge.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-assembly-structure-mutation.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-authoring-helpers-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-canvas-bootstrap-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-catalog-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-delayed-hit-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-document-workspace-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-dom-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-draft-scaffold-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-editor-store-facade.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-field-shell-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-motion-source-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-pdgedit-import.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-planar-viewport-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-prescribed-scene-handoff.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-receiver-path-descriptors.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-recorded-playback-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-recorded-playback-worker-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-scene-document-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-simulation-dataset-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-simulation-frame-buffer-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-simulation-playback-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-structure-geometry-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-timeline-overlay-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-trail-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-viewport-display-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/animator-viewport-framing.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/app-director.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/app-inline-math-katex.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/app-scene-chrome-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/archie-service-contracts.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/archie-service-fixture-mcp-server.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/archie-service-full-corpus-source-index.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "slow"
+    },
+    {
+      "path": "tests/archie-service-mcp-loopback-http.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/archie-service-mcp-remote-deployment-contract.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/archie-service-mcp-secure-tunnel-deployment.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/archie-service-mcp-tool-contract.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/archie-service-source-index-snapshot.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/assembly-scientific-identity.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/assembly-view-collection.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/assembly-view-record.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-assembly-record-catalog.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-assembly-registry.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-assembly-view-scene.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-assembly-view-session.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-circle-occupancy.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-configuration-geometry-records.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-diagnostics-panel.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-eom-history-evaluation.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-eom-migration.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-eom-runtime-contract.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-eom-wake-boundary-products.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-home-entry.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-initial-conditions.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-library-preview.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-library-radii.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-library-variants.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-library.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-live-playback-controller.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-live-run-retention-policy.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-measured-run-presets.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-orbit-trails.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-path-trails.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-platonic-relationships.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-polarity-diagnostics.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-prescribed-analysis-projection.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-prescribed-display-branch.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-prescribed-translation.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-record-byte-identity.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-runtime-modules.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-scientific-status.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-taxonomy-publication-surfaces.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-timeline-control.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-velocity-ray.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-velocity-sampling-result.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/borg-workspace-state.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/bp010-historical-routing.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/bp011-bp014-asymptotic-checkers.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/bp012-bounded-schedule.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/bp013-local-d4-cell-certificate.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/braid-search-borg-navigation.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/braid-search-static.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/braid-taxonomy-terminology.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/branding-and-marketing.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/browser-import-graph-node-builtins.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/browser-performance-budget.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/causal-delay-feedback-eom-replay-adapter.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/causal-delay-feedback-inverse-square.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/causal-delay-feedback-modes.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/causal-delay-feedback-roots-mode.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/causal-delay-feedback-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/causal-delay-feedback-stage0-baseline.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/causal-delay-feedback-superposition.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/causal-wake-birth-lineage-candidate.test.mjs",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/causal-wake-update-law.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/circular-history-conformance.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/circular-self-hit-binary-analysis.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/coincident-axis-and-two-component-circular-configuration.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/coincident-axis-three-binary-complete-cycle-probe-protocol.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/coincident-axis-three-binary-streaming-reductions.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "slow"
+    },
+    {
+      "path": "tests/coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/coincident-midpoint-common-frequency-continuous-root-interval-certifier.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/coincident-midpoint-common-frequency-history-policy-extension-independent-verifier.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/coincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/coincident-midpoint-common-frequency-outer-radius-band-expansion.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/coincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/coincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/coincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "slow"
+    },
+    {
+      "path": "tests/coincident-midpoint-common-frequency-receiver-phase-projection-monotonicity.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/coincident-midpoint-common-frequency-root-sheet-monotonic-enclosure-certifier.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/compact-analytical-campaign-database.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/compact-configuration-sweep-analyzer.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/compact-monte-carlo-campaign.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/compact-monte-carlo-storage-benchmark.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/compact-sweep-dashboard-data.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/compact-sweep-dashboard-exporter.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/confinement-functional-source-target-check.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/content-integrity-reporting.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/current-launch-bindings.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/deployment-budget.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/dev-server-http-cache.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/effective-frw-handoff-residual.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/effective-metric-weak-field-residual.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/endpoint-residual-search-campaign.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/eom-application-workflow-metadata.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/eom-binary-breather-analyzer.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/eom-recorded-playback-handoff.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/eq11-20-shared-constitutive-residual.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/eq11-weak-gravity-constitutive-residual.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/eq20-pressure-effective-lambda-residual.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/eq21-growth-transfer-child-residual.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/eq21-halo-cluster-transfer-child-residual.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "slow"
+    },
+    {
+      "path": "tests/eq21-lensing-transfer-child-residual.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/eq21-matter-power-transfer-child-residual.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/eq21-nonlinear-transfer-child-residual.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "slow"
+    },
+    {
+      "path": "tests/eq21-shear-rsd-transfer-child-residual.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "slow"
+    },
+    {
+      "path": "tests/eq32-galaxy-response-child-residual.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/equation-mapping-corpus.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/equation-mapping-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/equation-mapping-sidebar.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/equation-mapping-symbol-tooltip.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/evolved-neutral-twelve-worldline-us-relationship.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f5-batch-renewal.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f5-enclosed-root-prefix.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f5-enclosed-root-preparation.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f5-enclosed-root-run.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f5-independent-interpolation-enclosure.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f5-ordinary-evolution-runner.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f5-phase-varying-campaign-spec.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f5-phase-varying-history-independent-conformance.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f5-phase-varying-worldline-operator.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f5-prehistory-handoff-build-launch.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f5-prehistory-handoff-build-startup.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f5-prehistory-handoff-build.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f5-prehistory-restriction-producer.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6b-prescribed-kernel-diagnostic.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-acceleration-pilot-process.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-acceleration-pilot.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-bounded-operation-closure.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-bounded-operation.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-cached-root-cover-full-process.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-cached-root-cover-full.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-cached-root-cover-pilot-process.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-cubic-lattice-o0-analysis.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-emission-refinement-pilot-process.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-emission-refinement-pilot.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-evidence-packaging.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-identity-return-group.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-nonlinear-return-map-search.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-parent-emission-refinement-pilot.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-parent-refinement-batch-preparation.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-refined-acceleration-pilot-process.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-refined-acceleration-pilot.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-relative-equilibrium-search.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-root-cover-pilot-process.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-root-cover-pilot.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-speed-budget.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-streamed-historical-inputs.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/f6c-streamed-leaf-diagnostic.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/file-source-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/fixed-law-source-continuation.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/fixed-point-cloud-residual.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/greek-letter-match-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/hyde-supplemental-arc.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/ideal-braid-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/inline-math-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/interaction-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/ios-textbook-link-routing.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/iron-group-binding-cusp-toy-sweep.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/lattice-lab-bcc-neighbor-graph.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/lattice-lab-ledger-presentation.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/lattice-lab-periodic-gallery.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/lattice-lab-random-finite.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/lattice-lab-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/machine-artifact-retention.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/markdown-column-pagination-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/markdown-equation-map-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/markdown-node-builder-layout.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/markdown-runtime-layout.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/markdown-scene-registry.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/math-preview.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/mec005-two-history-causal-root-ledger-verifier.test.mjs",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/mermaid-markdown-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/molecule-element-navigation-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/moving-single-root-scalar-gradient-verifier.test.mjs",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/node-factory-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/noether-sea-density-compression-output-projection.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/noether-sea-density-compression-provider-intake.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/noether-sea-response-source-target-check.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/nucleon-branch-interface-source-target-check.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/octahedral-nine-channel-edge-axis.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/operations-observability-policy.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/operations-public-security-policy.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/ordinary-evolution-request-preparation.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/orthogonal-plane-weave-balance.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/orthogonal-plane-weave-fold-limit.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/owned-compute-launch-policy.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/owned-compute-stop-hook.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/owned-compute-supervisor.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pages-image-assets.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pdg-architecture-audit.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pdg-live-artifact-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pdg_refresh_live_artifacts_test.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/pdgedit-app-mode.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pdgedit-app-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pdgedit-contracts.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pdgedit-document-edit-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pdgedit-document-layout-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pdgedit-generator-drift.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pdgedit-renderer-drift.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pdgedit-review-export.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pdgedit-review-groups.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pdgedit-surface-geometry-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pdgedit-template-catalog.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pdgedit-tile-catalog.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pdgfeed_cli_test.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/pdgfeed_live_matching_test.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/pdgfeed_manifest_test.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/pdgfeed_registry_audit_test.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/pdgsolve-contracts.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pdgsolve_cli_test.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/photon-runtime-orchestration.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/photon-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/planar-co-rotating-ring-balance.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/planar-three-binary-circular-release-preparation.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pointwise-summed-acceleration-reducer.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/potential-consumer-publication-contract.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/potential-live-timespace-pipeline-contract.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pr-branch-process-conformance.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pr-validation-receipt.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/pre-push-gate-policy.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/prescribed-absolute-history-facade.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/prescribed-braid-record.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "slow"
+    },
+    {
+      "path": "tests/prescribed-lattice-spec.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/prescribed-orbit-causal-roots.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/prescribed-response-pilot-entry.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/prescribed-response-pilot-launch.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/prescribed-response-pilot-process.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/prescribed-sea-model.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/prescribed-source-wake-evaluator.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/prescribed-worldline-independent-conformance.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/public-feedback-intake.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/reader-facing-publication-boundary.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/receiver-wake-gradient-verifier.test.mjs",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/reference-surface-math-rendering.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/regular-polarity-orbit-manifest.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/regular-polarity-shard-pipeline.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/regular-polarity-shared-kernel.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/ring-layout-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/runtime-asset-build.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/runtime-asset-fresh-checkout.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "slow"
+    },
+    {
+      "path": "tests/scene-hud-toolbar-order.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/scene-hud-tooltip-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/scene-label-sizing-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/scene-repository-palette.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/scene-search-ui-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/scene-sphere-action-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/scene-state-hash-service.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/scene-viewport-fit-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/shared-observation-residual.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/solver-gpu-harness-navigation.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/solver-gpu-harness-static.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/standalone-app-launch.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/standalone-app-navigation-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/stella-octangula-catalog-endpoint-balance.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/stella-octangula-short-release.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/stella-octangula-stationary-release.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/subfield-circular-history-manifest.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/subfield-circular-phase-ledger-worker.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/subfield-circular-phase-process.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/subfield-circular-root-adapter.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/subfield-circular-root-dispatch.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/subfield-circular-root-launcher.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "slow"
+    },
+    {
+      "path": "tests/subfield-circular-root-ledger-reducer.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/subfield-circular-root-pilot.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/subfield-circular-root-preparation.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/subfield-circular-root-reference.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/subfield-circular-root-rung.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/test_bp017_private_cube_shrink_family.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_childrens_book_exports.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_borg_native_process.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_continuous_reception_acceleration.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_continuous_reception_roots.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_continuous_reception_roots_cached.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_correlated_history_enclosure.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_decimal_interval.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_evolution_centered_radius.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_merged_root_width_invariant.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_native_acceleration.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_native_coupled_evolution.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_native_history_layer.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_oracle_certified_acceleration.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_oracle_certified_evolution.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_oracle_phase4_acceptance.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_oracle_reference_kernel.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_oracle_root_certification.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_performance_architecture_baseline.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_recursive_block_exclusion.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_eom_root_width_exactness.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f5_actual_cubic_conformance.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f5_api_domain_conformance.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f5_evolution_dynamics_checker.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f5_history_manifest_conformance.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f5_ordinary_evolution_outcome.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f5_prehistory_handoff.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f5_prehistory_handoff_producer.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f5_prehistory_restriction.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_acceleration_execution.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_accepted_frame_reconstruction.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_cached_continuous_reception_root_cover.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_continuous_reception_acceleration.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_continuous_reception_acceleration_preparation.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_continuous_reception_root_cover.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_continuous_reception_root_cover_preparation.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_correlated_residual_enclosure.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_emission_refinement.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_emission_refinement_conformance.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_emission_refinement_preparation.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_evidence_package.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_gk13_protocol.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_historical_archive_contract.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_leaf_continuation.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_leaf_evidence_codec.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_leaf_stream_publication.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement_conformance.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement_preparation.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement_verification.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_parent_evidence_inventory.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_parent_snapshot.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_reception_geometry_restriction.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_refined_acceleration.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_refined_acceleration_conformance.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_refined_acceleration_preparation.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_residual_integral_supremum.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_retained_history_compatibility.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_retained_history_export.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_retained_history_guards.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_single_leaf_diagnostic.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_streamed_leaf_session.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_f6c_variable_cell_adapter.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_field_speed_ceiling_circular_binary_all_root_certificate.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_field_speed_ceiling_t0_mpmath_oracle.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_lattice_lab_stationary_oracle.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_mec007_stationary_mirror_incoming_oracle.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_octahedral_antipodal_generic_axis_edges.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_octahedral_antipodal_generic_axis_scout.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_octahedral_word_axis_reduction.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_orthogonal_plane_weave_fold_limit_certificate.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_orthogonal_plane_weave_interval_oracle.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_prescribed_acceleration_response.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_prescribed_acceleration_response_consumer.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/test_prescribed_acceleration_response_publication.py",
+      "kind": "python-test",
+      "status": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/textbook-page-navigation-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/textbook-toc-navigation-service.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/textbook-toc-numbering-service.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/three-binary-five-coordinate-eom-comparison.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/three-binary-five-coordinate-initialization-ledger.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/three-binary-orbiting-endpoint-geometry.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/top-dynamic-control-bar-runtime.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/topo-circular-binary-scenario.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/topo-interaction-contract.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/topo-sampled-field-contours.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "slow"
+    },
+    {
+      "path": "tests/transport-control-icons.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/validation-script-paths.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/vendored-commonjs-bundle-loader.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/weak-channel-source-target-check.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/webapp-release-gate.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    },
+    {
+      "path": "tests/website-analytics-opt-out.test.js",
+      "kind": "javascript-test",
+      "status": "not-yet-reconciled",
+      "nodeSweepSelection": "normal"
+    }
+  ]
+}

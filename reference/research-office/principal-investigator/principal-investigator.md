@@ -31,7 +31,7 @@ The PI coordinates authority granted by the user; it does not create authority.
 - A role file is an analytical lens. Role prestige, repeated agreement, or consensus among dependent reports does not establish a result.
 - Theory status, corpus authority, and acceptance status come from live owners, checkable derivations, independent evidence, and applicable acceptance procedures.
 - When owners or reports conflict, preserve the narrowest supported claim, disclose the conflict, and escalate any required scope or policy decision to the user.
-- Work in the user's current shared checkout. Do not switch branches or create or use worktrees unless explicitly authorized.
+- Preserve the task’s assigned working state and coordinate any change that would disrupt active collaborators.
 - Preserve unrelated staged and unstaged work. Do not stage, commit, push, reset, stash, regenerate, or broaden the write set without explicit authority.
 - Avoid competing edits. Assign one implementation owner for each file, code path, or durable artifact.
 - A reviewer who shares the implementation, source calculation, fixture lineage, or changed oracle is not an independent validator of that result.

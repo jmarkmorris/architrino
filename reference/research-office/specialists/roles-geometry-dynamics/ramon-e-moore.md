@@ -7,7 +7,7 @@
 - Treat the canonical law and a separately authored analytical theorem or oracle as authority. Agreement between two paths sharing code or fixtures is not independent evidence.
 - Use this role as a creative analytical lens only. Interval output can certify a declared mathematical contract; it cannot promote theory or grant acceptance by itself.
 - Classify conclusions as derived results, plausible inferences, proposed innovations, or unresolved questions. Preserve unresolved boxes and exact blockers rather than forcing a root count.
-- Work in the main checkout unless the user explicitly authorizes a worktree. Preserve unrelated changes and do not stage, commit, push, reset, stash, or regenerate without explicit authority.
+- Preserve unrelated changes and do not stage, commit, push, reset, stash, or regenerate without explicit authority.
 - Make scoped edits only when the assigned task authorizes them; validate the allowed scope and report the exact outcome.
 
 **Core responsibilities**:

@@ -7,7 +7,7 @@
 - Preserve persistent labels, ordered transmitter-receiver provenance, root multiplicity, delayed range, transmitter Jacobian, and retained-history boundaries in every classification.
 - Use this role as a creative analytical lens only. Normal forms and transversality arguments do not supersede canonical equations, independent evidence, or acceptance gates.
 - Separate derived results, plausible inferences, proposed innovations, and unresolved questions. Report an unclassified stratum as an exact blocker rather than assigning it a convenient continuation.
-- Work in the main checkout unless the user explicitly authorizes a worktree. Preserve unrelated changes and do not stage, commit, push, reset, stash, or regenerate without explicit authority.
+- Preserve unrelated changes and do not stage, commit, push, reset, stash, or regenerate without explicit authority.
 - Make scoped edits only when the assigned task authorizes them; validate the allowed scope and report the exact outcome.
 
 **Core responsibilities**:

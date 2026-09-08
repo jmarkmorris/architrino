@@ -5,7 +5,7 @@
 - Read AGENTS.md, the assigned live field-speed packet, and its work log before relying on this role summary.
 - Use this role as a creative analytical lens, never as theory, historical, or acceptance authority. The historical name does not authenticate a premise, result, quotation, or selected law.
 - Distinguish derived kinematics, proposed response principles, conditional consequences, and unresolved questions. Preserve the narrowest supported claim.
-- Work in the main checkout unless the user explicitly authorizes a worktree. Preserve unrelated changes and do not stage, commit, push, reset, stash, or regenerate without explicit authority.
+- Preserve unrelated changes and do not stage, commit, push, reset, stash, or regenerate without explicit authority.
 - Make scoped edits only when the assigned task authorizes them. Validate the allowed scope and report exact blockers rather than inventing closure.
 
 **Primary mandate**: Accept the field-speed/worldline-speed bound as the assigned axiom, and review only whether a declared ideal velocity-boundary constraint plus a separately declared variational or d'Alembert-style acceleration-response principle could describe the proposed wash-over map after complete ordinary wake summation.

@@ -1,0 +1,696 @@
+{
+  "measuredAt": "2026-09-08T05:04:47.752Z",
+  "boundary": "Entrypoint discovery only, no test pass statuses. Dynamic test skips, scientific prerequisites and standalone CLI dispositions remain open.",
+  "sourceBindings": [
+    {
+      "path": "scripts/run-test-sweep.mjs",
+      "sha256": "722c90911ef99a41d3b91c23088cd927ce08067aba7eb0c05669f5c8c7746924"
+    },
+    {
+      "path": "scripts/config/test-sweep-slow-list.json",
+      "sha256": "22c150382d8623244c68e7f0591ae9c2e62731543140564f699086042439318d"
+    },
+    {
+      "path": "scripts/check-content-integrity.mjs",
+      "sha256": "6b42eb39e05c2fe526ac384a58872066cb02438a7856671569b3b49d2e0f7088"
+    },
+    {
+      "path": "package.json",
+      "sha256": "f734c0f05d29509c429145781d24ca83e51620754fe944c54379662d67384884"
+    },
+    {
+      "path": "src/eom/CMakeLists.txt",
+      "sha256": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4"
+    },
+    {
+      "path": ".github/workflows/content-integrity.yml",
+      "sha256": "65c4103c0b0bc4fc649fb5815ca7811b79f9efa2cb7a505eff76eb8d3b9d8802"
+    },
+    {
+      "path": ".github/workflows/pages.yml",
+      "sha256": "49d774333978138257649a38e46f92f49aeb3e8937f595bc6a5fe6a6a6fcfa34"
+    }
+  ],
+  "node": {
+    "normal": [
+      "tests/aaa-core-accepted-history-stream-v0.test.js",
+      "tests/aaa-core-client-v0.test.js",
+      "tests/aaa-core-codec-registry-v0.test.js",
+      "tests/aaa-core-path-interchange-v0.test.js",
+      "tests/aaa-core-potential-v1.test.js",
+      "tests/aaa-core-query-transform-publication-v0.test.js",
+      "tests/adaptive-cubic-background-packet.test.js",
+      "tests/adaptive-cubic-medium-kinematics.test.js",
+      "tests/adaptive-cubic-site-local-release-analysis.test.js",
+      "tests/all-candidate-analytical-rebuild.test.js",
+      "tests/analytical-campaign-database.test.js",
+      "tests/analytical-campaign-pipeline-benchmark.test.js",
+      "tests/animator-app-mode.test.js",
+      "tests/animator-app-runtime.test.js",
+      "tests/animator-assembly-authoring-runtime.test.js",
+      "tests/animator-assembly-list-runtime.test.js",
+      "tests/animator-assembly-structure-bridge.test.js",
+      "tests/animator-assembly-structure-mutation.test.js",
+      "tests/animator-authoring-helpers-runtime.test.js",
+      "tests/animator-canvas-bootstrap-runtime.test.js",
+      "tests/animator-catalog-runtime.test.js",
+      "tests/animator-delayed-hit-runtime.test.js",
+      "tests/animator-document-workspace-runtime.test.js",
+      "tests/animator-dom-runtime.test.js",
+      "tests/animator-draft-scaffold-runtime.test.js",
+      "tests/animator-editor-store-facade.test.js",
+      "tests/animator-field-shell-runtime.test.js",
+      "tests/animator-motion-source-runtime.test.js",
+      "tests/animator-pdgedit-import.test.js",
+      "tests/animator-planar-viewport-runtime.test.js",
+      "tests/animator-prescribed-scene-handoff.test.js",
+      "tests/animator-receiver-path-descriptors.test.js",
+      "tests/animator-recorded-playback-runtime.test.js",
+      "tests/animator-recorded-playback-worker-runtime.test.js",
+      "tests/animator-scene-document-runtime.test.js",
+      "tests/animator-simulation-dataset-runtime.test.js",
+      "tests/animator-simulation-frame-buffer-runtime.test.js",
+      "tests/animator-simulation-playback-runtime.test.js",
+      "tests/animator-structure-geometry-runtime.test.js",
+      "tests/animator-timeline-overlay-runtime.test.js",
+      "tests/animator-trail-runtime.test.js",
+      "tests/animator-viewport-display-runtime.test.js",
+      "tests/animator-viewport-framing.test.js",
+      "tests/app-director.test.js",
+      "tests/app-inline-math-katex.test.js",
+      "tests/app-scene-chrome-runtime.test.js",
+      "tests/archie-service-contracts.test.js",
+      "tests/archie-service-fixture-mcp-server.test.js",
+      "tests/archie-service-mcp-loopback-http.test.js",
+      "tests/archie-service-mcp-remote-deployment-contract.test.js",
+      "tests/archie-service-mcp-secure-tunnel-deployment.test.js",
+      "tests/archie-service-mcp-tool-contract.test.js",
+      "tests/archie-service-source-index-snapshot.test.js",
+      "tests/assembly-scientific-identity.test.js",
+      "tests/assembly-view-collection.test.js",
+      "tests/assembly-view-record.test.js",
+      "tests/borg-assembly-record-catalog.test.js",
+      "tests/borg-assembly-registry.test.js",
+      "tests/borg-assembly-view-scene.test.js",
+      "tests/borg-assembly-view-session.test.js",
+      "tests/borg-circle-occupancy.test.js",
+      "tests/borg-configuration-geometry-records.test.js",
+      "tests/borg-diagnostics-panel.test.js",
+      "tests/borg-eom-history-evaluation.test.js",
+      "tests/borg-eom-migration.test.js",
+      "tests/borg-eom-runtime-contract.test.js",
+      "tests/borg-eom-wake-boundary-products.test.js",
+      "tests/borg-home-entry.test.js",
+      "tests/borg-initial-conditions.test.js",
+      "tests/borg-library-preview.test.js",
+      "tests/borg-library-radii.test.js",
+      "tests/borg-library-variants.test.js",
+      "tests/borg-library.test.js",
+      "tests/borg-live-playback-controller.test.js",
+      "tests/borg-live-run-retention-policy.test.js",
+      "tests/borg-measured-run-presets.test.js",
+      "tests/borg-orbit-trails.test.js",
+      "tests/borg-path-trails.test.js",
+      "tests/borg-platonic-relationships.test.js",
+      "tests/borg-polarity-diagnostics.test.js",
+      "tests/borg-prescribed-analysis-projection.test.js",
+      "tests/borg-prescribed-display-branch.test.js",
+      "tests/borg-prescribed-translation.test.js",
+      "tests/borg-record-byte-identity.test.js",
+      "tests/borg-runtime-modules.test.js",
+      "tests/borg-scientific-status.test.js",
+      "tests/borg-taxonomy-publication-surfaces.test.js",
+      "tests/borg-timeline-control.test.js",
+      "tests/borg-velocity-ray.test.js",
+      "tests/borg-velocity-sampling-result.test.js",
+      "tests/borg-workspace-state.test.js",
+      "tests/bp010-historical-routing.test.js",
+      "tests/bp011-bp014-asymptotic-checkers.test.js",
+      "tests/bp012-bounded-schedule.test.js",
+      "tests/bp013-local-d4-cell-certificate.test.js",
+      "tests/braid-search-borg-navigation.test.js",
+      "tests/braid-search-static.test.js",
+      "tests/braid-taxonomy-terminology.test.js",
+      "tests/branding-and-marketing.test.js",
+      "tests/browser-import-graph-node-builtins.test.js",
+      "tests/browser-performance-budget.test.js",
+      "tests/causal-delay-feedback-eom-replay-adapter.test.js",
+      "tests/causal-delay-feedback-inverse-square.test.js",
+      "tests/causal-delay-feedback-modes.test.js",
+      "tests/causal-delay-feedback-roots-mode.test.js",
+      "tests/causal-delay-feedback-runtime.test.js",
+      "tests/causal-delay-feedback-stage0-baseline.test.js",
+      "tests/causal-delay-feedback-superposition.test.js",
+      "tests/causal-wake-birth-lineage-candidate.test.mjs",
+      "tests/causal-wake-update-law.test.js",
+      "tests/circular-history-conformance.test.js",
+      "tests/circular-self-hit-binary-analysis.test.js",
+      "tests/coincident-axis-and-two-component-circular-configuration.test.js",
+      "tests/coincident-axis-three-binary-complete-cycle-probe-protocol.test.js",
+      "tests/coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.test.js",
+      "tests/coincident-midpoint-common-frequency-continuous-root-interval-certifier.test.js",
+      "tests/coincident-midpoint-common-frequency-history-policy-extension-independent-verifier.test.js",
+      "tests/coincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js",
+      "tests/coincident-midpoint-common-frequency-outer-radius-band-expansion.test.js",
+      "tests/coincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js",
+      "tests/coincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js",
+      "tests/coincident-midpoint-common-frequency-receiver-phase-projection-monotonicity.test.js",
+      "tests/coincident-midpoint-common-frequency-root-sheet-monotonic-enclosure-certifier.test.js",
+      "tests/compact-analytical-campaign-database.test.js",
+      "tests/compact-configuration-sweep-analyzer.test.js",
+      "tests/compact-monte-carlo-campaign.test.js",
+      "tests/compact-monte-carlo-storage-benchmark.test.js",
+      "tests/compact-sweep-dashboard-data.test.js",
+      "tests/compact-sweep-dashboard-exporter.test.js",
+      "tests/confinement-functional-source-target-check.test.js",
+      "tests/content-integrity-reporting.test.js",
+      "tests/current-launch-bindings.test.js",
+      "tests/deployment-budget.test.js",
+      "tests/dev-server-http-cache.test.js",
+      "tests/effective-frw-handoff-residual.test.js",
+      "tests/effective-metric-weak-field-residual.test.js",
+      "tests/endpoint-residual-search-campaign.test.js",
+      "tests/eom-application-workflow-metadata.test.js",
+      "tests/eom-binary-breather-analyzer.test.js",
+      "tests/eom-recorded-playback-handoff.test.js",
+      "tests/eq11-20-shared-constitutive-residual.test.js",
+      "tests/eq11-weak-gravity-constitutive-residual.test.js",
+      "tests/eq20-pressure-effective-lambda-residual.test.js",
+      "tests/eq21-growth-transfer-child-residual.test.js",
+      "tests/eq21-lensing-transfer-child-residual.test.js",
+      "tests/eq21-matter-power-transfer-child-residual.test.js",
+      "tests/eq32-galaxy-response-child-residual.test.js",
+      "tests/equation-mapping-corpus.test.js",
+      "tests/equation-mapping-runtime.test.js",
+      "tests/equation-mapping-sidebar.test.js",
+      "tests/equation-mapping-symbol-tooltip.test.js",
+      "tests/evolved-neutral-twelve-worldline-us-relationship.test.js",
+      "tests/f5-batch-renewal.test.js",
+      "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "tests/f5-enclosed-root-prefix.test.js",
+      "tests/f5-enclosed-root-preparation.test.js",
+      "tests/f5-enclosed-root-run.test.js",
+      "tests/f5-independent-interpolation-enclosure.test.js",
+      "tests/f5-ordinary-evolution-runner.test.js",
+      "tests/f5-phase-varying-campaign-spec.test.js",
+      "tests/f5-phase-varying-history-independent-conformance.test.js",
+      "tests/f5-phase-varying-worldline-operator.test.js",
+      "tests/f5-prehistory-handoff-build-launch.test.js",
+      "tests/f5-prehistory-handoff-build-startup.test.js",
+      "tests/f5-prehistory-handoff-build.test.js",
+      "tests/f5-prehistory-restriction-producer.test.js",
+      "tests/f6b-prescribed-kernel-diagnostic.test.js",
+      "tests/f6c-acceleration-pilot-process.test.js",
+      "tests/f6c-acceleration-pilot.test.js",
+      "tests/f6c-bounded-operation-closure.test.js",
+      "tests/f6c-bounded-operation.test.js",
+      "tests/f6c-cached-root-cover-full-process.test.js",
+      "tests/f6c-cached-root-cover-full.test.js",
+      "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+      "tests/f6c-cached-root-cover-pilot-process.test.js",
+      "tests/f6c-cubic-lattice-o0-analysis.test.js",
+      "tests/f6c-emission-refinement-pilot-process.test.js",
+      "tests/f6c-emission-refinement-pilot.test.js",
+      "tests/f6c-evidence-packaging.test.js",
+      "tests/f6c-identity-return-group.test.js",
+      "tests/f6c-nonlinear-return-map-search.test.js",
+      "tests/f6c-parent-emission-refinement-pilot.test.js",
+      "tests/f6c-parent-refinement-batch-preparation.test.js",
+      "tests/f6c-refined-acceleration-pilot-process.test.js",
+      "tests/f6c-refined-acceleration-pilot.test.js",
+      "tests/f6c-relative-equilibrium-search.test.js",
+      "tests/f6c-root-cover-pilot-process.test.js",
+      "tests/f6c-root-cover-pilot.test.js",
+      "tests/f6c-speed-budget.test.js",
+      "tests/f6c-streamed-historical-inputs.test.js",
+      "tests/f6c-streamed-leaf-diagnostic.test.js",
+      "tests/file-source-runtime.test.js",
+      "tests/fixed-law-source-continuation.test.js",
+      "tests/fixed-point-cloud-residual.test.js",
+      "tests/greek-letter-match-runtime.test.js",
+      "tests/hyde-supplemental-arc.test.js",
+      "tests/ideal-braid-runtime.test.js",
+      "tests/inline-math-runtime.test.js",
+      "tests/interaction-runtime.test.js",
+      "tests/ios-textbook-link-routing.test.js",
+      "tests/iron-group-binding-cusp-toy-sweep.test.js",
+      "tests/lattice-lab-bcc-neighbor-graph.test.js",
+      "tests/lattice-lab-ledger-presentation.test.js",
+      "tests/lattice-lab-periodic-gallery.test.js",
+      "tests/lattice-lab-random-finite.test.js",
+      "tests/lattice-lab-runtime.test.js",
+      "tests/machine-artifact-retention.test.js",
+      "tests/markdown-column-pagination-runtime.test.js",
+      "tests/markdown-equation-map-runtime.test.js",
+      "tests/markdown-node-builder-layout.test.js",
+      "tests/markdown-runtime-layout.test.js",
+      "tests/markdown-scene-registry.test.js",
+      "tests/math-preview.test.js",
+      "tests/mec005-two-history-causal-root-ledger-verifier.test.mjs",
+      "tests/mermaid-markdown-runtime.test.js",
+      "tests/molecule-element-navigation-runtime.test.js",
+      "tests/moving-single-root-scalar-gradient-verifier.test.mjs",
+      "tests/node-factory-runtime.test.js",
+      "tests/noether-sea-density-compression-output-projection.test.js",
+      "tests/noether-sea-density-compression-provider-intake.test.js",
+      "tests/noether-sea-response-source-target-check.test.js",
+      "tests/nucleon-branch-interface-source-target-check.test.js",
+      "tests/octahedral-nine-channel-edge-axis.test.js",
+      "tests/operations-observability-policy.test.js",
+      "tests/operations-public-security-policy.test.js",
+      "tests/ordinary-evolution-request-preparation.test.js",
+      "tests/orthogonal-plane-weave-balance.test.js",
+      "tests/orthogonal-plane-weave-fold-limit.test.js",
+      "tests/owned-compute-launch-policy.test.js",
+      "tests/owned-compute-stop-hook.test.js",
+      "tests/owned-compute-supervisor.test.js",
+      "tests/pages-image-assets.test.js",
+      "tests/pdg-architecture-audit.test.js",
+      "tests/pdg-live-artifact-runtime.test.js",
+      "tests/pdgedit-app-mode.test.js",
+      "tests/pdgedit-app-runtime.test.js",
+      "tests/pdgedit-contracts.test.js",
+      "tests/pdgedit-document-edit-runtime.test.js",
+      "tests/pdgedit-document-layout-runtime.test.js",
+      "tests/pdgedit-generator-drift.test.js",
+      "tests/pdgedit-renderer-drift.test.js",
+      "tests/pdgedit-review-export.test.js",
+      "tests/pdgedit-review-groups.test.js",
+      "tests/pdgedit-surface-geometry-runtime.test.js",
+      "tests/pdgedit-template-catalog.test.js",
+      "tests/pdgedit-tile-catalog.test.js",
+      "tests/pdgsolve-contracts.test.js",
+      "tests/photon-runtime-orchestration.test.js",
+      "tests/photon-runtime.test.js",
+      "tests/planar-co-rotating-ring-balance.test.js",
+      "tests/planar-three-binary-circular-release-preparation.test.js",
+      "tests/pointwise-summed-acceleration-reducer.test.js",
+      "tests/potential-consumer-publication-contract.test.js",
+      "tests/potential-live-timespace-pipeline-contract.test.js",
+      "tests/pr-branch-process-conformance.test.js",
+      "tests/pr-validation-receipt.test.js",
+      "tests/pre-push-gate-policy.test.js",
+      "tests/prescribed-absolute-history-facade.test.js",
+      "tests/prescribed-lattice-spec.test.js",
+      "tests/prescribed-orbit-causal-roots.test.js",
+      "tests/prescribed-response-pilot-entry.test.js",
+      "tests/prescribed-response-pilot-launch.test.js",
+      "tests/prescribed-response-pilot-process.test.js",
+      "tests/prescribed-sea-model.test.js",
+      "tests/prescribed-source-wake-evaluator.test.js",
+      "tests/prescribed-worldline-independent-conformance.test.js",
+      "tests/public-feedback-intake.test.js",
+      "tests/reader-facing-publication-boundary.test.js",
+      "tests/receiver-wake-gradient-verifier.test.mjs",
+      "tests/reference-surface-math-rendering.test.js",
+      "tests/regular-polarity-orbit-manifest.test.js",
+      "tests/regular-polarity-shard-pipeline.test.js",
+      "tests/regular-polarity-shared-kernel.test.js",
+      "tests/ring-layout-runtime.test.js",
+      "tests/runtime-asset-build.test.js",
+      "tests/scene-hud-toolbar-order.test.js",
+      "tests/scene-hud-tooltip-runtime.test.js",
+      "tests/scene-label-sizing-runtime.test.js",
+      "tests/scene-repository-palette.test.js",
+      "tests/scene-search-ui-runtime.test.js",
+      "tests/scene-sphere-action-runtime.test.js",
+      "tests/scene-state-hash-service.test.js",
+      "tests/scene-viewport-fit-runtime.test.js",
+      "tests/shared-observation-residual.test.js",
+      "tests/solver-gpu-harness-navigation.test.js",
+      "tests/solver-gpu-harness-static.test.js",
+      "tests/standalone-app-launch.test.js",
+      "tests/standalone-app-navigation-runtime.test.js",
+      "tests/stella-octangula-catalog-endpoint-balance.test.js",
+      "tests/stella-octangula-short-release.test.js",
+      "tests/stella-octangula-stationary-release.test.js",
+      "tests/subfield-circular-history-manifest.test.js",
+      "tests/subfield-circular-phase-ledger-worker.test.js",
+      "tests/subfield-circular-phase-process.test.js",
+      "tests/subfield-circular-root-adapter.test.js",
+      "tests/subfield-circular-root-dispatch.test.js",
+      "tests/subfield-circular-root-ledger-reducer.test.js",
+      "tests/subfield-circular-root-pilot.test.js",
+      "tests/subfield-circular-root-preparation.test.js",
+      "tests/subfield-circular-root-reference.test.js",
+      "tests/subfield-circular-root-rung.test.js",
+      "tests/textbook-page-navigation-runtime.test.js",
+      "tests/textbook-toc-navigation-service.test.js",
+      "tests/textbook-toc-numbering-service.test.js",
+      "tests/three-binary-five-coordinate-eom-comparison.test.js",
+      "tests/three-binary-five-coordinate-initialization-ledger.test.js",
+      "tests/three-binary-orbiting-endpoint-geometry.test.js",
+      "tests/top-dynamic-control-bar-runtime.test.js",
+      "tests/topo-circular-binary-scenario.test.js",
+      "tests/topo-interaction-contract.test.js",
+      "tests/transport-control-icons.test.js",
+      "tests/validation-script-paths.test.js",
+      "tests/vendored-commonjs-bundle-loader.test.js",
+      "tests/weak-channel-source-target-check.test.js",
+      "tests/webapp-release-gate.test.js",
+      "tests/website-analytics-opt-out.test.js"
+    ],
+    "slow": [
+      "tests/archie-service-full-corpus-source-index.test.js",
+      "tests/coincident-axis-three-binary-streaming-reductions.test.js",
+      "tests/coincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js",
+      "tests/eq21-halo-cluster-transfer-child-residual.test.js",
+      "tests/eq21-nonlinear-transfer-child-residual.test.js",
+      "tests/eq21-shear-rsd-transfer-child-residual.test.js",
+      "tests/prescribed-braid-record.test.js",
+      "tests/runtime-asset-fresh-checkout.test.js",
+      "tests/subfield-circular-root-launcher.test.js",
+      "tests/topo-sampled-field-contours.test.js"
+    ],
+    "outside": [],
+    "undiscovered": []
+  },
+  "contentIntegrity": {
+    "invocations": [
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/prepare-runtime-assets.mjs",
+          "--write"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/borg/verify-assembly-record-byte-identity.mjs",
+          "--check"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/validate-content.mjs",
+          "--check",
+          "--strict"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/check-reader-facing-publication-boundary.mjs"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/build-scene-graph.mjs",
+          "--check",
+          "--strict"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/check-webapp-release-gate.mjs"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/check-browser-performance-budget.mjs"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/check-deployment-budget.mjs"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/check-owned-compute-launch-policy.mjs"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/archie-service/manage-secure-mcp-tunnel.mjs",
+          "--check"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "--test",
+          "tests/owned-compute-stop-hook.test.js"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/check-potential-consumer-publication-contract.mjs"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/check-potential-live-timespace-pipeline-contract.mjs"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/build-equation-mapping-corpus.mjs",
+          "--check"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/audit-title-filename-sync.mjs"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/build-agent-startup-orientation.mjs",
+          "--check"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/build-claude-bootstrap-floor.mjs",
+          "--check"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/build-textbook-md-pdf.mjs",
+          "--check"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/validate-machine-artifact-retention.mjs"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "--test",
+          "tests/machine-artifact-retention.test.js",
+          "tests/runtime-asset-build.test.js"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "--test",
+          "tests/archie-service-mcp-secure-tunnel-deployment.test.js"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/check-master-equation-terminology-migration.mjs"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/check-transmitter-factor-clean-slate.mjs"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/check-polarity-notation-drift.mjs"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/check-braid-taxonomy-terminology.mjs"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/check-validation-script-paths.mjs"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "scripts/smoke-option3.mjs"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "--test",
+          "tests/pre-push-gate-policy.test.js"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "--test",
+          "tests/pr-branch-process-conformance.test.js"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "--test",
+          "tests/pr-validation-receipt.test.js"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "--test",
+          "tests/content-integrity-reporting.test.js"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "--test",
+          "tests/current-launch-bindings.test.js"
+        ]
+      },
+      {
+        "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+        "args": [
+          "--test",
+          "tests/reader-facing-publication-boundary.test.js"
+        ]
+      }
+    ],
+    "omitted": [
+      {
+        "label": "35/35 Sweep test files outside the declared slow list (reporting until promoted)",
+        "reason": "opt-in; set AAA_TEST_SWEEP=run to run it"
+      }
+    ],
+    "reportingOnly": [],
+    "execution": "injected recording callback only; no child process spawned"
+  },
+  "packageScripts": {
+    "dev": "node scripts/dev/start-local-dev.mjs",
+    "prepare:runtime": "node scripts/prepare-runtime-assets.mjs --write",
+    "pretest": "node scripts/prepare-runtime-assets.mjs --write",
+    "test": "node --test",
+    "build:site": "node scripts/build-static-site.mjs"
+  },
+  "ctest": [
+    {
+      "name": "eom_native_fixture",
+      "command": [
+        "eom_native_fixture_cli",
+        "all"
+      ]
+    },
+    {
+      "name": "eom_native_acceleration_fixture",
+      "command": [
+        "eom_native_acceleration_fixture_cli",
+        "all"
+      ]
+    },
+    {
+      "name": "eom_history_pin_lifetime",
+      "command": [
+        "eom_history_profile_cli",
+        "pin-lifetime"
+      ]
+    },
+    {
+      "name": "eom_history_terminal_state_equivalence",
+      "command": [
+        "eom_history_profile_cli",
+        "terminal-state-equivalence"
+      ]
+    },
+    {
+      "name": "eom_native_evolution_fixture",
+      "command": [
+        "eom_native_evolution_fixture_cli",
+        "all"
+      ]
+    },
+    {
+      "name": "eom_stationary_joint_frontier_fixture",
+      "command": [
+        "eom_stationary_joint_frontier_fixture_cli"
+      ]
+    },
+    {
+      "name": "eom_borg_shadow_protocol_version",
+      "command": [
+        "eom_borg_shadow_cli",
+        "print-protocol-version"
+      ]
+    }
+  ],
+  "github": [
+    {
+      "workflow": ".github/workflows/content-integrity.yml",
+      "job": "validate-content",
+      "environment": "Ubuntu; Node 22",
+      "commands": [
+        "npm audit --package-lock-only --audit-level=moderate --omit=dev",
+        "node scripts/check-content-integrity.mjs"
+      ],
+      "status": "not-run-for-current-changes"
+    },
+    {
+      "workflow": ".github/workflows/pages.yml",
+      "job": "build",
+      "environment": "Ubuntu; Node 22",
+      "commands": [
+        "node scripts/check-content-integrity.mjs",
+        "node --test tests/pages-image-assets.test.js",
+        "node --test tests/runtime-asset-fresh-checkout.test.js",
+        "node scripts/build-static-site.mjs --out .tmp/site",
+        "node scripts/borg/verify-assembly-record-byte-identity.mjs --check"
+      ],
+      "additionalActions": [
+        "upload Pages artifact"
+      ],
+      "status": "not-run-for-current-changes"
+    },
+    {
+      "workflow": ".github/workflows/pages.yml",
+      "job": "deploy",
+      "requires": "Successful main build on push or workflow_dispatch; ARCHITRINO_PAGES_DEPLOY_ENABLED true; Pages publishing mode workflow",
+      "status": "not-applicable-before-authorized-main-publication"
+    }
+  ]
+}

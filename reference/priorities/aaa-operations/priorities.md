@@ -54,7 +54,13 @@ Two further recommendations remain available for operator selection:
 
 These two recommendations are not accepted implementation tasks. OPS-018 remains removed from the active queue because its original document-review scope is complete; its chronology and the authorized follow-up remain in the [work log](work-log.md).
 
+## Internal Reference Navigation
+
+The operator requested an internal section-numbering convention after the numbered process-guide trial improved joint reading and spoken navigation. [The queued numbering work](work-queue.md#ops-025--internal-reference-section-numbering) will define suitable document classes and a maintainable method, then support gradual adoption. Work-queue item numbers remain distinct. Promotion must use the established reader-facing format, with its existing numbering and rendering pipeline preserved.
+
 ## Work Queue
+
+The operator also requested a definite [review of GitHub Presence and Community](work-queue.md#ops-026--github-presence-and-community-guidance-review) as part of integrating the Git-process discussion with existing guidance. Review the public contribution and checkpoint examples before deciding whether the page needs changes; preserve the distinction between contributor guidance and shared-checkout agent authority.
 
 The locally ranked operational tasks, measurement requirements, and completion boundaries live in [work-queue.md](work-queue.md).
 

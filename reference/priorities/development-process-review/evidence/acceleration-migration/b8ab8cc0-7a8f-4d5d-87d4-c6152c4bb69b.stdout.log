@@ -1,0 +1,36 @@
+✔ run-f6c-root-cover-pilot: current repository bindings reject changed bytes (4.375834ms)
+✔ run-f6c-cached-root-cover-pilot: current repository bindings reject changed bytes (3.78775ms)
+✔ run-f6c-cached-root-cover-full: current repository bindings reject changed bytes (4.065917ms)
+✔ run-prescribed-response-pilot: current repository bindings reject changed bytes (3.792667ms)
+✔ run-f6c-acceleration-pilot: current repository bindings reject changed bytes (3.361ms)
+✔ all scientific implementation/control pins remain the separately accepted source generation (2.134583ms)
+✔ closed plan has no invented runtime/default fields and exact operational closure (2.532875ms)
+✔ duplicate JSON keys unsafe numbers malformed UTF8 and excessive nesting fail closed (0.573459ms)
+✔ bounded source read and write preserve exact bytes and reject symlink/overwrite (12.165375ms)
+✔ pure helper capture refuses changed bytes and exposes only operational functions used here (0.284667ms)
+✔ data/outer siblings are distinct and stage CLI preserves original candidate and deadline (2.810833ms)
+✔ captured Python wrapper reports real target CPU separately and rejects changed source (50.140458ms)
+✔ metadata inventory closes lazy large-integer division dependencies without scientific imports (53.737625ms)
+✔ synthetic consumer admission needs exact closed gate candidate census and binding chain (100.107541ms)
+✔ synthetic checker admission binds original candidate complete analysis and unpromoted flags (127.768958ms)
+✔ stage piping uses one detached registered target and rejects failure and log overflow (5.460083ms)
+✔ metadata timeout waits for killed child closure (7.75175ms)
+✔ shared exclusion recognizes old/cached/full/root/range and both F5 stages (3.313541ms)
+✔ explicit runtime launch options reject extras missing values unsafe hash and traversal (0.364667ms)
+✔ reused safeguards enforce first-to-last RSS interval host thresholds and stdout flush (12.510209ms)
+✔ captured file worker timeout is bounded and finalization requires complete closed stages (13.930041ms)
+✔ final diagnostics drain waits for queued writes and rejects stalled or late callbacks (11.807708ms)
+✔ final diagnostics EPIPE and callback failures reject and close only owned stream (0.528584ms)
+✔ late durable final publication returns no admissible result and never overwrites earlier data (5.587625ms)
+✔ failed attempt diagnostic epilogue cannot strand an unread stderr stream (11.839333ms)
+✔ CLI failure epilogue invokes only nonzero exit after bounded diagnostics or sink throw (10.470916ms)
+✔ failed stage projection retains unresolved process identities and cleanup failures without closure promotion (0.2555ms)
+✔ current acceleration transport rejects old plans and changed or executable archive routes (0.94025ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 525.090375

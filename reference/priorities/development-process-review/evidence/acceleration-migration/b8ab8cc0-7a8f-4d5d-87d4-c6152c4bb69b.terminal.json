@@ -1,0 +1,54 @@
+{
+  "schema": "architrino.owned-compute-lease.v1",
+  "runId": "b8ab8cc0-7a8f-4d5d-87d4-c6152c4bb69b",
+  "status": "completed",
+  "requestedAtUtc": "2026-09-08T04:57:42.058Z",
+  "startedAtUtc": "2026-09-08T04:57:42.137Z",
+  "deadlineAtUtc": "2026-09-08T04:59:42.059Z",
+  "heartbeatAtUtc": "2026-09-08T04:57:42.138Z",
+  "heartbeatMs": 15000,
+  "terminationGraceMs": 5000,
+  "owner": {
+    "task": "01a07cbc-b8ac-7ae3-8f49-1635827ab34b",
+    "threadId": null
+  },
+  "ownerHistory": [],
+  "command": "node",
+  "args": [
+    "--input-type=module",
+    "-e",
+    "import {spawnSync} from \"node:child_process\";const runs=[[process.env.AAA_VENV?process.env.AAA_VENV+\"/bin/python\":\"../.venv/bin/python\",[\"-B\",\"-m\",\"unittest\",\"discover\",\"-s\",\"tests\",\"-p\",\"test_f6c_acceleration_execution.py\"]],[process.execPath,[\"--test\",\"tests/f6c-acceleration-pilot.test.js\",\"tests/current-launch-bindings.test.js\"]]];for(const [command,args] of runs){const r=spawnSync(command,args,{stdio:\"inherit\"});if(r.error)throw r.error;if(r.status!==0)process.exit(r.status??1)}"
+  ],
+  "cwd": "/Users/markmorris/vibe/architrino",
+  "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/b8ab8cc0-7a8f-4d5d-87d4-c6152c4bb69b.stdout.log",
+  "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/b8ab8cc0-7a8f-4d5d-87d4-c6152c4bb69b.stderr.log",
+  "stdoutBytes": 2959,
+  "stderrBytes": 105,
+  "lastOutputAtUtc": "2026-09-08T04:57:44.180Z",
+  "sidecarIdentity": {
+    "pid": 80810,
+    "ppid": 80809,
+    "pgid": 80810,
+    "started": "Tue Sep 8 00:57:42 2026",
+    "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node /Users/markmorris/vibe/architrino/scripts/dev/owned-compute-supervisor.mjs __sidecar b8ab8cc0-7a8f-4d5d-87d4-c6152c4bb69b"
+  },
+  "targetIdentity": {
+    "pid": 80813,
+    "ppid": 80810,
+    "pgid": 80813,
+    "started": "Tue Sep 8 00:57:42 2026",
+    "command": "node --input-type=module -e import {spawnSync} from \"node:child_process\";const runs=[[process.env.AAA_VENV?process.env.AAA_VENV+\"/bin/python\":\"../.venv/bin/python\",[\"-B\",\"-m\",\"unittest\",\"discover\",\"-s\",\"tests\",\"-p\",\"test_f6c_acceleration_execution.py\"]],[process.execPath,[\"--test\",\"tests/f6c-acceleration-pilot.test.js\",\"tests/current-launch-bindings.test.js\"]]];for(const [command,args] of runs){const r=spawnSync(command,args,{stdio:\"inherit\"});if(r.error)throw r.error;if(r.status!==0)process.exit(r.status??1)}"
+  },
+  "control": {
+    "host": "127.0.0.1",
+    "port": 51272
+  },
+  "claimBoundary": "Operational process ownership only; scientific validity and acceptance remain with the target's declared instruments and owners.",
+  "finishedAtUtc": "2026-09-08T04:57:44.186Z",
+  "elapsedWallSeconds": 2.062,
+  "exitCode": 0,
+  "exitSignal": null,
+  "error": null,
+  "stopReason": null,
+  "processGroupClosed": true
+}

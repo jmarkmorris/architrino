@@ -77,7 +77,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 156 | `b9f1d8c672fb87ba` |
+| [AGENTS.md](../../AGENTS.md) | 156 | `b5c055f1408460dc` |
 | [README.md](../../README.md) | 220 | `81b723567a77aae0` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 24 | `ea8da8bb87d4206f` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 38 | `3666ac9286628a8e` |
@@ -89,14 +89,14 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `286eeca87711d763` |
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 60 | `421e58e6c3ced0d5` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `45f14795d91a7703` |
-| [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md) | 803 | `9a80eafdd7fad819` |
+| [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md) | 803 | `02c48b56b6f66875` |
 | [reference/priorities/README.md](../priorities/README.md) | 124 | `13f5e68cb419ca30` |
 | [reference/research-office/cto/prompts/README.md](../research-office/cto/prompts/README.md) | 59 | `7a13f638727952da` |
-| [reference/research-office/cto/prompts/start-pi.md](../research-office/cto/prompts/start-pi.md) | 72 | `e2189b99c805d2ad` |
-| [reference/research-office/cto/prompts/start-research.md](../research-office/cto/prompts/start-research.md) | 102 | `6bc67e3dcddc6b1e` |
+| [reference/research-office/cto/prompts/start-pi.md](../research-office/cto/prompts/start-pi.md) | 72 | `1b72deebe03eae34` |
+| [reference/research-office/cto/prompts/start-research.md](../research-office/cto/prompts/start-research.md) | 102 | `b8baaff1670aa363` |
 | [reference/research-office/cto/prompts/convergence-campaign.md](../research-office/cto/prompts/convergence-campaign.md) | 575 | `52db7f1fc8203b9d` |
 | [reference/research-office/cto/prompts/corpus-reviewer.md](../research-office/cto/prompts/corpus-reviewer.md) | 108 | `43b06ff65ea3671b` |
-| [reference/research-office/cto/prompts/selective-reference-pass.md](../research-office/cto/prompts/selective-reference-pass.md) | 65 | `5119059e702734fd` |
+| [reference/research-office/cto/prompts/selective-reference-pass.md](../research-office/cto/prompts/selective-reference-pass.md) | 65 | `2447411668f02ebe` |
 | [reference/research-office/cto/prompts/integrator-reviewer.md](../research-office/cto/prompts/integrator-reviewer.md) | 113 | `7c21c30e5018aeb5` |
 | [reference/research-office/cto/prompts/review-comment-assessor.md](../research-office/cto/prompts/review-comment-assessor.md) | 58 | `6b005882b0be3b11` |
 | [reference/research-office/cto/prompts/review-closure-verifier.md](../research-office/cto/prompts/review-closure-verifier.md) | 56 | `ba7d1c22cc9857ec` |

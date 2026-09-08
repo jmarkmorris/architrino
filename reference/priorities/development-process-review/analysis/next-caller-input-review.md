@@ -1,6 +1,6 @@
 # Acceleration and prescribed-response input review
 
-The prescribed-response input migration is now implemented below. The acceleration interface remains the next object; the original review records why a shared launcher hash change alone cannot repair it.
+The prescribed-response input migration is now implemented below. The [acceleration interface](acceleration-current-migration.md) now passes its scoped current transport controls; the original review below records why a shared launcher hash change alone could not repair it.
 
 The next caller migration cannot use the root-cover schema change unchanged. The root-cover Python contract ignores the outer operational schema; the acceleration subject and verifier both require `braid-program/f6c-continuous-reception-acceleration-launch.v1`, and the verifier independently fixes the declaration digest. Prescribed response fixes three original input identities inside its Python consumer as well as its JavaScript entry. These are executable requirements, not comments that can be refreshed with current helper hashes.
 

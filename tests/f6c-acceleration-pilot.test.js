@@ -18,15 +18,15 @@ const binding=(p,sha256=H,bytes=1)=>({path:p,sha256,bytes});
 const falseFlags=names=>Object.fromEntries(names.map(n=>[n,false]));
 const write=(p,v)=>{mkdirSync(path.dirname(p),{recursive:true});return E.writeNew(p,v);};
 function directory(){const dir=realpathSync(mkdtempSync(path.join(tmpdir(),'f6c-range-ops-control-')));mkdirSync(path.join(dir,E.LANE),{recursive:true});return dir;}
-function planFixture(){return {schema:'braid-program/f6c-continuous-reception-acceleration-launch.v1',scope:E.SCOPE,
+function planFixture(){return {historicalInputs:E.HISTORICAL.map(([role,originalPath,sha256,bytes])=>({role,originalPath,sha256,bytes,path:'reference/'+role+'.source'})),schema:'braid-program/f6c-continuous-reception-acceleration-launch.v2',executionBridge:binding(E.BRIDGE,E.PINS[E.BRIDGE]),declarationInput:{originalPath:E.DECLARATION,path:'reference/synthetic.source',sha256:E.PINS[E.DECLARATION],bytes:1},scope:E.SCOPE,
   consumer:binding(E.CONSUMER,E.PINS[E.CONSUMER]),controls:binding(E.CONSUMER_TESTS,E.PINS[E.CONSUMER_TESTS]),
   declaration:binding(E.DECLARATION,E.PINS[E.DECLARATION]),rangeVerifier:binding(E.CHECKER,E.CHECKER_SHA),
   runtimeBindings:[binding(pythonReal),binding(path.join(path.dirname(path.dirname(python)),'pyvenv.cfg')),binding(git)],
-  operationalBindings:[E.ENTRY,E.LAUNCHER,E.TESTS,E.PROCESS_TESTS,E.HELPERS,E.OUTER,E.CHECKER_TESTS,'/bin/ps','/usr/bin/memory_pressure',node].map(p=>binding(p,E.PINS[p]??H)),
+  operationalBindings:[E.BRIDGE,E.BRIDGE_TESTS,E.ENTRY,E.LAUNCHER,E.TESTS,E.PROCESS_TESTS,E.HELPERS,E.OUTER,E.CHECKER_TESTS,'/bin/ps','/usr/bin/memory_pressure',node].map(p=>binding(p,E.PINS[p]??H)),
   limits:{...E.LIMITS},priorCoverClosure:{authority:'externally-reviewed-caller-observation',ownerSha256:E.FIXED[9][2],admissionSha256:E.FIXED[5][2],matchingFreshCompletionObserved:true,exitCode:0,elapsedSeconds:'8.534247625',processesClosed:true,independentAuditAccepted:true}};}
 
 test('all scientific implementation/control pins remain the separately accepted source generation',()=>{
-  for(const p of [E.CONSUMER,E.CONSUMER_TESTS,E.DECLARATION,E.CHECKER,E.CHECKER_TESTS,E.HELPERS,E.OUTER,...E.FIXED.filter(([,p])=>!p.startsWith('.local-data')).map(([,p])=>p)])
+  for(const p of [E.CONSUMER,E.CONSUMER_TESTS,E.BRIDGE,E.CHECKER,E.CHECKER_TESTS,E.HELPERS,E.OUTER,...E.FIXED.filter(([,p])=>!p.startsWith('.local-data')).map(([,p])=>p)])
     assert.equal(hash(readFileSync(p)),E.PINS[p],p);
   assert.equal(E.FIXED.length,16);assert.equal(E.CHECKER_SHA,'23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d');
 });
@@ -42,7 +42,7 @@ test('closed plan has no invented runtime/default fields and exact operational c
     const changed=structuredClone(plan);mutate(changed);assert.throws(()=>E.validatePlan(changed,root,H,H,python,actualGit));
   }
   const bindings=E.planBindings(plan,root);assert.equal(new Set(bindings.map(b=>b.path)).size,bindings.length);
-  for(const [role,p,h] of E.FIXED)assert.equal(bindings.find(b=>b.path===path.join(root,p)).sha256,h,role);
+  for(const [role,p,h] of E.FIXED){const r=plan.historicalInputs.find(r=>r.role===role);assert.equal(bindings.find(b=>b.path===path.join(root,r?.path??p)).sha256,r?.sha256??h,role);}
 });
 test('duplicate JSON keys unsafe numbers malformed UTF8 and excessive nesting fail closed',()=>{
   for(const s of ['{"a":1,"a":2}','{"x":1e999}','{"x":9007199254740993}','{} true','['.repeat(130)+']'.repeat(130)])assert.throws(()=>E.decode(Buffer.from(s)));
@@ -66,7 +66,7 @@ test('data/outer siblings are distinct and stage CLI preserves original candidat
   const common={plan,root:dir,output,planBinding,python,git,budget:'12.345678901'};
   const consumer=E.stageSpec({...common,stage:'consumer'});
   assert.deepEqual(consumer.args.slice(0,3),['-I','-B','-c']);assert.equal(consumer.command,python);
-  assert.equal(consumer.args[consumer.args.indexOf('--out-dir')+1],output);
+  assert.equal(consumer.args[consumer.args.indexOf('--out')+1],paths.candidate);assert.equal(consumer.args[consumer.args.indexOf('--stage')+1],'consumer');
   const candidate=binding(paths.candidate),checker=E.stageSpec({...common,stage:'comparison',candidate});
   assert.equal(checker.args[checker.args.indexOf('--candidate-sha256')+1],H);
   assert.equal(checker.args[checker.args.indexOf('--out')+1],paths.comparison);
@@ -117,8 +117,8 @@ print(json.dumps({'postExerciseUnlistedFiles':sorted(late),'observedHelperPaths'
 
 function admissionFixture(stage){
   const dir=directory(),output=path.join(dir,E.LANE,'synthetic'),paths=E.outputPaths(dir,output),plan=planFixture();mkdirSync(paths.operations);
-  const sources=E.FIXED.map(([,p])=>write(path.join(dir,p),{syntheticFixedBytes:true}));
-  const fixed=Object.fromEntries(E.FIXED.map(([role,p])=>[role,sources.find(b=>b.path===path.join(dir,p))]));
+  const sources=E.FIXED.map(([role,p])=>write(path.join(dir,plan.historicalInputs.find(r=>r.role===role)?.path??p),{syntheticFixedBytes:true}));
+  const fixed=Object.fromEntries(E.FIXED.map(([role,p])=>[role,{...sources.find(b=>b.path===path.join(dir,plan.historicalInputs.find(r=>r.role===role)?.path??p)),path:path.join(dir,p)}]));
   const planBinding=write(path.join(dir,'plan.json'),plan),subjectSources=Object.fromEntries(['consumer','controls','declaration','rangeVerifier'].map(k=>[k,{...plan[k],path:path.join(dir,plan[k].path)}]));
   const candidateRecord={schema:'braid-program/f6c-continuous-reception-acceleration-candidate.v1',scope:E.SCOPE,accepted:false,status:'conditional-range-candidate',
     census:E.CENSUS,fixedBindings:fixed,launchPlan:planBinding,consumer:subjectSources.consumer,declaration:plan.declaration,rangeVerifier:plan.rangeVerifier,
@@ -239,4 +239,13 @@ test('failed stage projection retains unresolved process identities and cleanup 
   for(const field of ['processesClosed','runner','exit','failure','cleanupFailure','cancellationObservedPidsAbsent','cancellationUnverifiedPids','gates'])assert.deepEqual(result[field],source.process[field]);
   assert.equal(result.processesClosed,false);assert.equal(result.accepted,undefined);
   const absent=L.rejectedStageSummaries([{stage:'comparison',process:{}}])[0];assert.equal(absent.processesClosed,false);assert.equal(absent.cleanupFailure,null);assert.equal(absent.cancellationUnverifiedPids,null);
+});
+
+test('current acceleration transport rejects old plans and changed or executable archive routes',()=>{
+  const plan=planFixture(),g=realpathSync('/usr/bin/git');plan.runtimeBindings[2]=binding(g);
+  for(const mutate of [p=>p.schema=p.schema.replace('.v2','.v1'),p=>p.declarationInput.originalPath=E.CONSUMER,p=>p.declarationInput.path='scripts/evil.source',p=>p.declarationInput.path='reference/../evil.source',p=>p.declarationInput.sha256=H,p=>p.executionBridge.sha256=H]){
+    const changed=structuredClone(plan);mutate(changed);assert.throws(()=>E.validatePlan(changed,root,H,H,python,g));
+  }
+  const rows=E.planBindings(plan,root);assert.equal(rows.some(b=>b.path===path.join(root,E.DECLARATION)),false);
+  assert.equal(rows.find(b=>b.path===path.join(root,'reference/synthetic.source')).sha256,E.PINS[E.DECLARATION]);
 });
