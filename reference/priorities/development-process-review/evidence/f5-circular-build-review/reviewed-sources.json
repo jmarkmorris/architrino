@@ -1,0 +1,42 @@
+[
+  {
+    "path": "tests/test_eom_native_coupled_evolution.py",
+    "sha256": "e794afeab1a1ae087bb498f5a98ed1de02b7e992ef875a1a685dd0e2ff620f90",
+    "bytes": 71043
+  },
+  {
+    "path": "scripts/eom/oracle/certified_evolution.py",
+    "sha256": "00567dfef3163d40634dd5790d5eeb667cff8698394831130e8cb91937ddc80a",
+    "bytes": 47772
+  },
+  {
+    "path": "scripts/eom/oracle/phase4_acceptance.py",
+    "sha256": "65ef8ff4ef9915d5d28dcd8712cd7b58a94636277d4445e40874f1d395d2ce88",
+    "bytes": 58511
+  },
+  {
+    "path": "scripts/eom/oracle/certified_history.py",
+    "sha256": "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7",
+    "bytes": 50352
+  },
+  {
+    "path": "scripts/eom/prepare-f5-prehistory-handoff.py",
+    "sha256": "4c9a5d724cb4d0e24fa35dd3cefed661448d0ff69077171f9d6adc869f8a079c",
+    "bytes": 22906
+  },
+  {
+    "path": "scripts/eom/verify-f5-prehistory-handoff.py",
+    "sha256": "6c94b0ca16dfe20bed4841a547adca349f2f36cdd5ec04211341d6b060032a68",
+    "bytes": 36147
+  },
+  {
+    "path": "src/eom/native/eom_f5_prehistory_inspector.cpp",
+    "sha256": "b9aeb71f6ca48d77e6b22e2ba06b0adb91884b4569399d4c6fc1acd642298b36",
+    "bytes": 10042
+  },
+  {
+    "path": "src/eom/native/eom_subfield_circular_root_cli.cpp",
+    "sha256": "42dc7eaa74a36f019ff126215754785f9b8418dd998d9850c2c70dc5cb03bd41",
+    "bytes": 47455
+  }
+]

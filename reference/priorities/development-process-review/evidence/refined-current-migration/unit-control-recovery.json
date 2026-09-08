@@ -1,0 +1,11 @@
+{
+  "knownControlPassed": true,
+  "commitsConsidered": 1,
+  "recovery": {
+    "commit": "0fb575921783188ce528a45c671090e9ecc00464",
+    "path": "tests/f6c-emission-refinement-pilot.test.js",
+    "archive": "reference/priorities/development-process-review/evidence/refined-current-migration/f6c-emission-refinement-pilot.test.js.b7b91ae569b2.source",
+    "sha256": "b7b91ae569b20a1a53e7c37a63de3edc65e844019ee5a8bae03bc84d2d9dd277",
+    "bytes": 31325
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "head": "b5e45d141426e833b42dbad97e355c818a0205c0",
+  "instrumentControls": "SHA abc and computed-key literal extraction passed before target",
+  "results": [
+    {
+      "owner": "scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+      "path": "src/eom/src/History.cpp",
+      "expected": "cd732843db488de66798953278d1e3b15151163c826b9d5b93eed98363a8b4c5",
+      "current": "cd732843db488de66798953278d1e3b15151163c826b9d5b93eed98363a8b4c5",
+      "match": true
+    },
+    {
+      "owner": "scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+      "path": "src/eom/src/Interval.cpp",
+      "expected": "5da66e8473f78439dbb075857918af85b7789b2749e5046c83d9b58d944023a5",
+      "current": "5da66e8473f78439dbb075857918af85b7789b2749e5046c83d9b58d944023a5",
+      "match": true
+    },
+    {
+      "owner": "scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+      "path": "src/eom/include/architrino/eom/Decimal.hpp",
+      "expected": "8126e685d9be5a2d4935d29eaa12d1aa995822781c198d48d809c0f0b6ddad7f",
+      "current": "8126e685d9be5a2d4935d29eaa12d1aa995822781c198d48d809c0f0b6ddad7f",
+      "match": true
+    },
+    {
+      "owner": "scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+      "path": "src/eom/include/architrino/eom/History.hpp",
+      "expected": "0e326f15c70a0b0dc5786b1c14a2f2378324754c28cc597b92d82c0c1da3c8f3",
+      "current": "0e326f15c70a0b0dc5786b1c14a2f2378324754c28cc597b92d82c0c1da3c8f3",
+      "match": true
+    },
+    {
+      "owner": "scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+      "path": "src/eom/src/CoupledEvolution.cpp",
+      "expected": "88935fa4410f626d25200597a2fb5ba1ad4cb7a8c68324cf452affd4643c9194",
+      "current": "6fa61e458ec337982932a7882090a875ff045e0da10b405c221bc671a68a4d0d",
+      "match": false,
+      "states": [
+        {
+          "commit": "00710092e165486f072c9dfe6cd8af4e8e99d343",
+          "sha256": "6fa61e458ec337982932a7882090a875ff045e0da10b405c221bc671a68a4d0d"
+        },
+        {
+          "commit": "bfbb3ea3e7175e70e6d0707fef9b0a200f9fe845",
+          "sha256": "b84a5b3abc0fe6516c2d137290f5fc9a0ff27245500f88a1635544cebc380360"
+        },
+        {
+          "commit": "0fb575921783188ce528a45c671090e9ecc00464",
+          "sha256": "fe1c0b7a3f130c88634f111b842a6c87cbc5d6343255ae05a2d429550c487915"
+        },
+        {
+          "commit": "f0ad6328b6bb59dfb865f1508d73240bda676818",
+          "sha256": "88935fa4410f626d25200597a2fb5ba1ad4cb7a8c68324cf452affd4643c9194"
+        }
+      ],
+      "lastMatchingCommit": "f0ad6328b6bb59dfb865f1508d73240bda676818",
+      "diffFile": "a0fa789f4492.diff",
+      "transitions": [
+        {
+          "commit": "0fb575921783188ce528a45c671090e9ecc00464",
+          "parentSha256": "88935fa4410f626d25200597a2fb5ba1ad4cb7a8c68324cf452affd4643c9194",
+          "afterSha256": "fe1c0b7a3f130c88634f111b842a6c87cbc5d6343255ae05a2d429550c487915"
+        },
+        {
+          "commit": "bfbb3ea3e7175e70e6d0707fef9b0a200f9fe845",
+          "parentSha256": "fe1c0b7a3f130c88634f111b842a6c87cbc5d6343255ae05a2d429550c487915",
+          "afterSha256": "b84a5b3abc0fe6516c2d137290f5fc9a0ff27245500f88a1635544cebc380360"
+        },
+        {
+          "commit": "00710092e165486f072c9dfe6cd8af4e8e99d343",
+          "parentSha256": "b84a5b3abc0fe6516c2d137290f5fc9a0ff27245500f88a1635544cebc380360",
+          "afterSha256": "6fa61e458ec337982932a7882090a875ff045e0da10b405c221bc671a68a4d0d"
+        }
+      ]
+    },
+    {
+      "owner": "scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+      "path": "scripts/eom/prepare-f5-prehistory-handoff.py",
+      "expected": "4c9a5d724cb4d0e24fa35dd3cefed661448d0ff69077171f9d6adc869f8a079c",
+      "current": "4c9a5d724cb4d0e24fa35dd3cefed661448d0ff69077171f9d6adc869f8a079c",
+      "match": true
+    },
+    {
+      "owner": "scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+      "path": "src/eom/native/eom_f5_prehistory_inspector.cpp",
+      "expected": "b9aeb71f6ca48d77e6b22e2ba06b0adb91884b4569399d4c6fc1acd642298b36",
+      "current": "b9aeb71f6ca48d77e6b22e2ba06b0adb91884b4569399d4c6fc1acd642298b36",
+      "match": true
+    },
+    {
+      "owner": "scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+      "path": "tests/test_f5_prehistory_handoff_producer.py",
+      "expected": "ec1d99b6919fd2c666dd1dd157388f9577f054070744db3e38a4cc4b56062770",
+      "current": "ec1d99b6919fd2c666dd1dd157388f9577f054070744db3e38a4cc4b56062770",
+      "match": true
+    },
+    {
+      "owner": "scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+      "path": "scripts/eom/verify-f5-prehistory-handoff.py",
+      "expected": "6c94b0ca16dfe20bed4841a547adca349f2f36cdd5ec04211341d6b060032a68",
+      "current": "6c94b0ca16dfe20bed4841a547adca349f2f36cdd5ec04211341d6b060032a68",
+      "match": true
+    },
+    {
+      "owner": "scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+      "path": "tests/test_f5_prehistory_handoff.py",
+      "expected": "111e828c8ea3c26996ce51c83496ff7850d48b52cf7e874982c67e882ad6cadf",
+      "current": "111e828c8ea3c26996ce51c83496ff7850d48b52cf7e874982c67e882ad6cadf",
+      "match": true
+    },
+    {
+      "owner": "scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+      "path": "scripts/eom/prepare-subfield-circular-root.mjs",
+      "expected": "59b579f4aa32b56210a9853d51313c48f732f0512bcde1c5eded8de067dad9bc",
+      "current": "59b579f4aa32b56210a9853d51313c48f732f0512bcde1c5eded8de067dad9bc",
+      "match": true
+    },
+    {
+      "owner": "scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+      "path": "scripts/eom/prepare-f5-enclosed-root.mjs",
+      "expected": "ba154c0a8c63bd390ae1e16de005fd5d52000fedec352619b60b9465a2f813f5",
+      "current": "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9",
+      "match": false,
+      "states": [
+        {
+          "commit": "b97703d989319aca877bb418cdc8b18b2fe104ec",
+          "sha256": "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9"
+        },
+        {
+          "commit": "897fe1aa79be7ae1e77144d52ef396d209645323",
+          "sha256": "357b6725ad9a60a67c7a7fc07e8f3c9b9bc05201642706a66aec9b1411c22db1"
+        },
+        {
+          "commit": "0fb575921783188ce528a45c671090e9ecc00464",
+          "sha256": "ba154c0a8c63bd390ae1e16de005fd5d52000fedec352619b60b9465a2f813f5"
+        }
+      ],
+      "lastMatchingCommit": "0fb575921783188ce528a45c671090e9ecc00464",
+      "diffFile": "cd82cc437b7c.diff",
+      "transitions": [
+        {
+          "commit": "897fe1aa79be7ae1e77144d52ef396d209645323",
+          "parentSha256": "ba154c0a8c63bd390ae1e16de005fd5d52000fedec352619b60b9465a2f813f5",
+          "afterSha256": "357b6725ad9a60a67c7a7fc07e8f3c9b9bc05201642706a66aec9b1411c22db1"
+        },
+        {
+          "commit": "b97703d989319aca877bb418cdc8b18b2fe104ec",
+          "parentSha256": "357b6725ad9a60a67c7a7fc07e8f3c9b9bc05201642706a66aec9b1411c22db1",
+          "afterSha256": "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9"
+        }
+      ]
+    },
+    {
+      "owner": "scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+      "path": "src/eom/CMakeLists.txt",
+      "expected": "e4b3a8bdfc91c756eb00e4c37e872bcbebfe1f7b406a551e3aa630f8818d2bdd",
+      "current": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4",
+      "match": false,
+      "states": [
+        {
+          "commit": "897fe1aa79be7ae1e77144d52ef396d209645323",
+          "sha256": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4"
+        },
+        {
+          "commit": "0fb575921783188ce528a45c671090e9ecc00464",
+          "sha256": "e4b3a8bdfc91c756eb00e4c37e872bcbebfe1f7b406a551e3aa630f8818d2bdd"
+        }
+      ],
+      "lastMatchingCommit": "0fb575921783188ce528a45c671090e9ecc00464",
+      "diffFile": "d8bb2d580b28.diff",
+      "transitions": [
+        {
+          "commit": "897fe1aa79be7ae1e77144d52ef396d209645323",
+          "parentSha256": "e4b3a8bdfc91c756eb00e4c37e872bcbebfe1f7b406a551e3aa630f8818d2bdd",
+          "afterSha256": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4"
+        }
+      ]
+    },
+    {
+      "owner": "scripts/eom/prepare-subfield-circular-root.mjs",
+      "path": "src/eom/native/eom_subfield_circular_root_cli.cpp",
+      "expected": "42dc7eaa74a36f019ff126215754785f9b8418dd998d9850c2c70dc5cb03bd41",
+      "current": "42dc7eaa74a36f019ff126215754785f9b8418dd998d9850c2c70dc5cb03bd41",
+      "match": true
+    },
+    {
+      "owner": "scripts/eom/prepare-subfield-circular-root.mjs",
+      "path": "src/eom/CMakeLists.txt",
+      "expected": "e4b3a8bdfc91c756eb00e4c37e872bcbebfe1f7b406a551e3aa630f8818d2bdd",
+      "current": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4",
+      "match": false,
+      "states": [
+        {
+          "commit": "897fe1aa79be7ae1e77144d52ef396d209645323",
+          "sha256": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4"
+        },
+        {
+          "commit": "0fb575921783188ce528a45c671090e9ecc00464",
+          "sha256": "e4b3a8bdfc91c756eb00e4c37e872bcbebfe1f7b406a551e3aa630f8818d2bdd"
+        }
+      ],
+      "lastMatchingCommit": "0fb575921783188ce528a45c671090e9ecc00464",
+      "diffFile": "f8697ff69836.diff",
+      "transitions": [
+        {
+          "commit": "897fe1aa79be7ae1e77144d52ef396d209645323",
+          "parentSha256": "e4b3a8bdfc91c756eb00e4c37e872bcbebfe1f7b406a551e3aa630f8818d2bdd",
+          "afterSha256": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4"
+        }
+      ]
+    },
+    {
+      "owner": "scripts/eom/prepare-subfield-circular-root.mjs",
+      "path": "scripts/eom/prepare-f5-enclosed-root.mjs",
+      "expected": "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9",
+      "current": "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9",
+      "match": true
+    }
+  ]
+}

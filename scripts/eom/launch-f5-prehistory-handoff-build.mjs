@@ -12,11 +12,11 @@ const SELF = "scripts/eom/launch-f5-prehistory-handoff-build.mjs";
 const ENTRY = "scripts/eom/prepare-f5-prehistory-handoff-build.mjs";
 const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs";
 const PINS = Object.freeze({
-  [ENTRY]: "8bc5b2964920073e1e6c3e8ae9f013c63514e8a8cfe40c7e800e282402331ac3",
-  "scripts/eom/prepare-subfield-circular-root.mjs": "59b579f4aa32b56210a9853d51313c48f732f0512bcde1c5eded8de067dad9bc",
-  "scripts/eom/prepare-f5-enclosed-root.mjs": "ba154c0a8c63bd390ae1e16de005fd5d52000fedec352619b60b9465a2f813f5",
-  [OUTER]: "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826",
-  "/usr/bin/memory_pressure": "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56",
+  [ENTRY]: "4f15971f623578b78e7cf9f7db4e824e62cfb334e5a85ccdec407b1890143996",
+  "scripts/eom/prepare-subfield-circular-root.mjs": "deb5feae8e0827ab0f094ab08dd729350e81b6510bbf319b35e89df53f3d8907",
+  "scripts/eom/prepare-f5-enclosed-root.mjs": "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9",
+  [OUTER]: "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c",
+  "/usr/bin/memory_pressure": "ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da",
 });
 const absolute = value => path.resolve(ROOT, value);
 const sha = value => createHash("sha256").update(value).digest("hex");

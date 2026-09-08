@@ -46,6 +46,14 @@ The canonical series index, counts, registry status, and concrete registry files
 - If a git command in the cleanup or rollover sequence fails, stop and resolve that exact failure before continuing to the next git step.
 - In sandboxed environments, some local ref-updating commands may require escalation because Git needs to create lockfiles under `.git/refs`.
 
+## Merge Method and Repository Settings
+
+Use ordinary merge commits for future PRs. The operator selects **Create a merge commit** after reviewing the exact published head. The runner's publication invocation does not grant merge authority. Preserve individual branch commits and their identities in main's ancestry; do not squash, rebase, rewrite existing history, or enable automatic merging as part of this procedure.
+
+Required repository settings: merge commits enabled; squash and rebase merging disabled; automatic head-branch deletion disabled. Preserve PR requirements, force-push protection, and deletion protection. A linear-history requirement conflicts with this method and requires an explicit operator decision rather than a bypass. Verify settings through the assigned repository credential route before the review handoff.
+
+Branch retirement remains the runner's responsibility after the second handoff and verified cleanup. The non-ancestry forced-deletion fallback below is limited to verified legacy squash or rebase merges. It must not bypass missing ancestry after an ordinary merge.
+
 ## Shared-Checkout Coordination
 
 The publication runner identifies the actual checkout, branch, candidate, and active writers before operating. Multiple agents may contribute coordinated work; publication remains assigned to the explicitly designated runner.
@@ -625,6 +633,8 @@ git rev-parse --short origin/main
 ```
 
 The two printed SHAs must match. If local `main` has drifted unexpectedly, stop and resolve that deliberately. Do not force-reset as part of the normal process.
+
+Before cleanup after an ordinary merge, retrieve the actual merge commit using `gh pr view <pr-number> --json mergeCommit,headRefOid`. After fetching and synchronizing main, inspect it with `git rev-list --parents -n 1 <mergeCommitOid>`. Require exactly two parents and require the second parent to equal the reviewed head recorded in the publish receipt. Verify both `git merge-base --is-ancestor <mergeCommitOid> main` and `git merge-base --is-ancestor <reviewedHeadOid> main` succeed. A newer PR head does not establish that it was reviewed. Record the merge commit and verification results in the post-merge receipt. Any mismatch stops cleanup; preserve the branch and investigate rather than forcing deletion. Identify a legacy squash or rebase merge explicitly before applying the existing conditional non-ancestry fallback.
 
 ### 4. Delete the previous working branch locally
 

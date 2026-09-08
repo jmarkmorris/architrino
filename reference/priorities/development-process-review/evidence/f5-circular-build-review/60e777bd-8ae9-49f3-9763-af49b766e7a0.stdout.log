@@ -1,0 +1,258 @@
+TAP version 13
+# Subtest: preparation requires explicit fresh scoped output and build directories
+ok 1 - preparation requires explicit fresh scoped output and build directories
+  ---
+  duration_ms: 2.03125
+  type: 'test'
+  ...
+# Subtest: frozen F5 references match the reviewed prerequisite generation
+not ok 2 - frozen F5 references match the reviewed prerequisite generation
+  ---
+  duration_ms: 0.47775
+  type: 'test'
+  location: '/Users/markmorris/vibe/architrino/tests/f5-enclosed-root-preparation.test.js:19:1'
+  failureType: 'testCodeFailure'
+  error: 'frozen reference drift: reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    file:///Users/markmorris/vibe/architrino/scripts/eom/prepare-f5-enclosed-root.mjs:48:43
+    Array.map (<anonymous>)
+    verifyFrozenReferences (file:///Users/markmorris/vibe/architrino/scripts/eom/prepare-f5-enclosed-root.mjs:46:42)
+    TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f5-enclosed-root-preparation.test.js:20:20)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# {"stage":"test-control","command":"/opt/homebrew/Cellar/node/26.3.0/bin/node","args":["-e","process.stdout.write('control\\\\n')"],"code":0,"signal":null,"timedOut":false,"interrupted":false,"descendantsAfterClose":false,"processGroupClosed":true,"elapsedWallSeconds":0.060772041,"logBytes":8}
+# Subtest: supervisor records child output and never overwrites a log
+ok 3 - supervisor records child output and never overwrites a log
+  ---
+  duration_ms: 63.100042
+  type: 'test'
+  ...
+# {"stage":"test-deadline","pid":50311,"elapsedWallSeconds":0.05155445900000001,"logBytes":0,"lastOutput":""}
+# {"stage":"test-deadline","pid":50311,"elapsedWallSeconds":0.10099479200000001,"logBytes":0,"lastOutput":""}
+# {"stage":"test-deadline","command":"/opt/homebrew/Cellar/node/26.3.0/bin/node","args":["-e","while(true){}"],"code":null,"signal":"SIGTERM","timedOut":true,"interrupted":false,"descendantsAfterClose":false,"processGroupClosed":true,"elapsedWallSeconds":0.10214279200000001,"logBytes":0}
+# Subtest: outer deadline stops a child that never finishes a synchronous call
+ok 4 - outer deadline stops a child that never finishes a synchronous call
+  ---
+  duration_ms: 102.77325
+  type: 'test'
+  ...
+# Subtest: spawn failure remains a failure and closes the create-exclusive log
+ok 5 - spawn failure remains a failure and closes the create-exclusive log
+  ---
+  duration_ms: 0.861625
+  type: 'test'
+  ...
+# {"stage":"test-descendant","command":"/opt/homebrew/Cellar/node/26.3.0/bin/node","args":["-e","require('node:child_process').spawn(process.execPath,['-e','while(true){}'],{stdio:['ignore',1,2]});process.exit(0)"],"code":0,"signal":null,"timedOut":true,"interrupted":false,"descendantsAfterClose":false,"processGroupClosed":true,"elapsedWallSeconds":0.1525365,"logBytes":0}
+# Subtest: deadline still closes the owned group after its driver exits
+ok 6 - deadline still closes the owned group after its driver exits
+  ---
+  duration_ms: 153.109833
+  type: 'test'
+  ...
+# {"stage":"test-hidden-descendant","command":"/opt/homebrew/Cellar/node/26.3.0/bin/node","args":["-e","const c=require('node:child_process').spawn(process.execPath,['-e',\\"process.on('SIGTERM',()=>{});setInterval(()=>{},1000);process.send('ready')\\"],{stdio:['ignore','ignore','ignore','ipc']});c.on('message',()=>process.exit(0))"],"code":0,"signal":null,"timedOut":false,"interrupted":false,"descendantsAfterClose":true,"processGroupClosed":true,"elapsedWallSeconds":0.21606983300000002,"logBytes":0}
+# Subtest: ignored-output descendant is killed even after the driver closes
+ok 7 - ignored-output descendant is killed even after the driver closes
+  ---
+  duration_ms: 216.828083
+  type: 'test'
+  ...
+# Subtest: existing build directory is rejected before starting preparation
+ok 8 - existing build directory is rejected before starting preparation
+  ---
+  duration_ms: 1.981709
+  type: 'test'
+  ...
+# Subtest: accepted-looking proof must report the exact executed reference and complete census
+not ok 9 - accepted-looking proof must report the exact executed reference and complete census
+  ---
+  duration_ms: 0.2275
+  type: 'test'
+  location: '/Users/markmorris/vibe/architrino/tests/f5-enclosed-root-preparation.test.js:86:1'
+  failureType: 'testCodeFailure'
+  error: 'frozen reference drift: reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    file:///Users/markmorris/vibe/architrino/scripts/eom/prepare-f5-enclosed-root.mjs:48:43
+    Array.map (<anonymous>)
+    verifyFrozenReferences (file:///Users/markmorris/vibe/architrino/scripts/eom/prepare-f5-enclosed-root.mjs:46:42)
+    TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f5-enclosed-root-preparation.test.js:87:18)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: resource admission has separate launch and running thresholds
+ok 10 - resource admission has separate launch and running thresholds
+  ---
+  duration_ms: 1.496375
+  type: 'test'
+  ...
+# Subtest: bounded binding and exclusive output reject substitutions
+ok 11 - bounded binding and exclusive output reject substitutions
+  ---
+  duration_ms: 1.412583
+  type: 'test'
+  ...
+# Subtest: synthetic build admission requires exact gate and completion census
+ok 12 - synthetic build admission requires exact gate and completion census
+  ---
+  duration_ms: 39.34975
+  type: 'test'
+  ...
+# Subtest: final publication enforces deadline and does not overwrite
+ok 13 - final publication enforces deadline and does not overwrite
+  ---
+  duration_ms: 20.680792
+  type: 'test'
+  ...
+# Subtest: finalization keeps monitoring and stores captured source closure
+ok 14 - finalization keeps monitoring and stores captured source closure
+  ---
+  duration_ms: 0.195833
+  type: 'test'
+  ...
+# Subtest: aborted inspection rejects once, then leaves real inspection available for cleanup
+ok 15 - aborted inspection rejects once, then leaves real inspection available for cleanup
+  ---
+  duration_ms: 0.960917
+  type: 'test'
+  ...
+# Subtest: interruption during first inspection creates no bootstrap or target ACK
+ok 16 - interruption during first inspection creates no bootstrap or target ACK
+  ---
+  duration_ms: 21.16725
+  type: 'test'
+  ...
+# Subtest: interruption at bootstrap inspection prevents target ACK and permits validated owned cleanup
+ok 17 - interruption at bootstrap inspection prevents target ACK and permits validated owned cleanup
+  ---
+  duration_ms: 10155.469416
+  type: 'test'
+  ...
+# Subtest: interruption at first target gate inspection prevents target ACK and permits validated owned cleanup
+ok 18 - interruption at first target gate inspection prevents target ACK and permits validated owned cleanup
+  ---
+  duration_ms: 541.469625
+  type: 'test'
+  ...
+# Subtest: build arguments preserve explicit fresh lane and runtime
+ok 19 - build arguments preserve explicit fresh lane and runtime
+  ---
+  duration_ms: 0.79875
+  type: 'test'
+  ...
+# Subtest: build rejects missing, repeated, unknown, escaping and unbound inputs
+ok 20 - build rejects missing, repeated, unknown, escaping and unbound inputs
+  ---
+  duration_ms: 0.175792
+  type: 'test'
+  ...
+# Subtest: minimal binding matches producer closed file-record shape
+ok 21 - minimal binding matches producer closed file-record shape
+  ---
+  duration_ms: 0.909209
+  type: 'test'
+  ...
+# Subtest: source snapshot binds fresh builder, whole EOM owners and frozen references
+not ok 22 - source snapshot binds fresh builder, whole EOM owners and frozen references
+  ---
+  duration_ms: 4.294833
+  type: 'test'
+  location: '/Users/markmorris/vibe/architrino/tests/f5-prehistory-handoff-build.test.js:33:1'
+  failureType: 'testCodeFailure'
+  error: 'reviewed source drift: src/eom/src/CoupledEvolution.cpp'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    snapshot (file:///Users/markmorris/vibe/architrino/scripts/eom/prepare-f5-prehistory-handoff-build.mjs:74:13)
+    TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f5-prehistory-handoff-build.test.js:34:19)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: build source uses two compilation workers and no data invocation
+ok 23 - build source uses two compilation workers and no data invocation
+  ---
+  duration_ms: 0.256542
+  type: 'test'
+  ...
+# Subtest: sub-field circular build preparation accepts only a fresh scoped directory argument
+ok 24 - sub-field circular build preparation accepts only a fresh scoped directory argument
+  ---
+  duration_ms: 1.06825
+  type: 'test'
+  ...
+# Subtest: observed source inventory binds full solver tree and reviewed adapter/CMake/supervisor
+not ok 25 - observed source inventory binds full solver tree and reviewed adapter/CMake/supervisor
+  ---
+  duration_ms: 4.173292
+  type: 'test'
+  location: '/Users/markmorris/vibe/architrino/tests/subfield-circular-root-preparation.test.js:20:1'
+  failureType: 'testCodeFailure'
+  error: 'reviewed source drift: src/eom/CMakeLists.txt'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    sourceSnapshot (file:///Users/markmorris/vibe/architrino/scripts/eom/prepare-subfield-circular-root.mjs:61:86)
+    TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/subfield-circular-root-preparation.test.js:21:19)
+    Test.runInAsyncScope (node:async_hooks:226:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: reference inventory binds seven frozen references and sixteen exact candidate sources
+ok 26 - reference inventory binds seven frozen references and sixteen exact candidate sources
+  ---
+  duration_ms: 10.576958
+  type: 'test'
+  ...
+# Subtest: snapshot equality rejects hashes, paths, byte counts, missing files and added files
+ok 27 - snapshot equality rejects hashes, paths, byte counts, missing files and added files
+  ---
+  duration_ms: 0.263834
+  type: 'test'
+  ...
+# Subtest: compile command tokenizer preserves quoted paths without invoking shell syntax
+ok 28 - compile command tokenizer preserves quoted paths without invoking shell syntax
+  ---
+  duration_ms: 0.7925
+  type: 'test'
+  ...
+# Subtest: compiler dependency parser retains system headers, continuation and escaped spaces
+ok 29 - compiler dependency parser retains system headers, continuation and escaped spaces
+  ---
+  duration_ms: 0.138334
+  type: 'test'
+  ...
+# Subtest: compile plan rejects altered flags and separates only input/output from fixed compiler arguments
+ok 30 - compile plan rejects altered flags and separates only input/output from fixed compiler arguments
+  ---
+  duration_ms: 0.260958
+  type: 'test'
+  ...
+# Subtest: multicall invocation preserves alias while its identity hashes the underlying executable
+ok 31 - multicall invocation preserves alias while its identity hashes the underlying executable
+  ---
+  duration_ms: 0.612125
+  type: 'test'
+  ...
+1..31
+# tests 31
+# suites 0
+# pass 27
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 11762.321584

@@ -15,6 +15,8 @@ Plainly: this page tells you which file to open. Opening a file here does not pu
 | [continuous-development-during-pr-review.md](continuous-development-during-pr-review.md) | Reference for prior experimental successor work; ordinary development now pauses through review, merge, and rollover. | Inactive; reactivation requires a new operator decision |
 | [codex-pr-unattended-verification.md](codex-pr-unattended-verification.md) | Reading how the unattended-execution correction was raised and closed. It imposes no current obligation. | Closed 2026-09-05 |
 
+The live publication procedure specifies [ordinary merge commits](codex-pr-branch.md#merge-method-and-repository-settings), operator-controlled merging, and verified branch cleanup. Automatic head-branch deletion remains disabled.
+
 ## Branch Series
 
 Branch tokens come from the committed registries. [branch-series/registry.md](branch-series/registry.md) is the index that names the active series, the configured counts, and the rollover order; the individual registries hold the tokens.

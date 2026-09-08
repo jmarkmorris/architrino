@@ -18,3 +18,4 @@ content/generated/pdf/**/*.pdf binary
 # Preserve whitespace in captured process output and unified-diff evidence.
 reference/priorities/development-process-review/evidence/next-caller-inputs/*.source.diff whitespace=-blank-at-eol,-blank-at-eof
 reference/priorities/development-process-review/evidence/root-cover-migration/memory-pressure*.stdout.log whitespace=-blank-at-eol
+reference/priorities/development-process-review/evidence/f5-circular-build-review/*.diff whitespace=-blank-at-eol,-blank-at-eof

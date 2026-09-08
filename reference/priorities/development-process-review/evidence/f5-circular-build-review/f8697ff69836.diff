@@ -1,0 +1,11 @@
+diff --git a/src/eom/CMakeLists.txt b/src/eom/CMakeLists.txt
+index bd812a3db..861b0e96e 100644
+--- a/src/eom/CMakeLists.txt
++++ b/src/eom/CMakeLists.txt
+@@ -150,5 +150,5 @@ add_test(
+ )
+ set_tests_properties(
+   eom_borg_shadow_protocol_version
+-  PROPERTIES PASS_REGULAR_EXPRESSION "^EOM_BORG_NATIVE_V10"
++  PROPERTIES PASS_REGULAR_EXPRESSION "^EOM_BORG_NATIVE_V11"
+ )

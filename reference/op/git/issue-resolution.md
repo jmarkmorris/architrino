@@ -56,13 +56,13 @@ Steps:
    - too broad for the current pass;
    - blocked by another issue or PR.
 3. Choose an execution strategy:
-   - one PR per issue when the fixes are independent;
-   - one PR for a tightly coupled set when the same code path and validation cover all issues;
+   - one combined PR for the operator-authorized set of accumulated changes when the work is ready, understandable, and validated together, including changes across different subject areas;
+   - separate PRs only when the operator chooses independent review or release, or a concrete readiness problem requires a scope decision;
    - triage-only when the set is not implementation-ready.
 4. For each fixed issue, include a closure keyword in the PR body.
 5. For each deferred issue, add a GitHub comment that states the reason it remains open and the next concrete action.
 
-Do not silently merge multiple unrelated issue fixes into one branch. If the set contains mixed domains, split the work.
+The accepted publication approach is a combined PR after editing stops. Different subject areas alone do not require separate branches or PRs. Preserve issue-level scope and closure evidence within the combined PR, and do not expand the authorized implementation scope merely because publication is combined. If some work is unfinished or cannot be reviewed and validated together, explain the concrete problem to the operator before changing publication scope.
 
 ### Open-Ended Scan For Fixable Issues
 

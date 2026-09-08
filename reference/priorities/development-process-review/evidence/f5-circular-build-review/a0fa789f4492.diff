@@ -1,0 +1,469 @@
+diff --git a/src/eom/src/CoupledEvolution.cpp b/src/eom/src/CoupledEvolution.cpp
+index ea823be8d..e9bc69a6e 100644
+--- a/src/eom/src/CoupledEvolution.cpp
++++ b/src/eom/src/CoupledEvolution.cpp
+@@ -516,6 +516,16 @@ std::vector<NativeHistoryFingerprint> fingerprints(
+   return result;
+ }
+ 
++std::vector<NativeHistoryFingerprint> joint_fingerprints(
++    const std::map<std::string, JointAffineRetainedHistory>& histories) {
++  std::vector<NativeHistoryFingerprint> result;
++  result.reserve(histories.size());
++  for (const auto& [path_id, history] : histories) {
++    result.push_back({path_id, history.provenance_fingerprint()});
++  }
++  return result;
++}
++
+ bool same_history_segment_record(
+     const CubicHistorySegment& left,
+     const CubicHistorySegment& right) {
+@@ -560,6 +570,45 @@ bool publication_extension_is_atomic(
+   return true;
+ }
+ 
++bool same_joint_history_segment_record(
++    const JointAffineCubicSegment& left,
++    const JointAffineCubicSegment& right) {
++  return left.start_time == right.start_time &&
++      left.end_time == right.end_time &&
++      left.position_coefficients == right.position_coefficients &&
++      left.position_remainder_radii == right.position_remainder_radii &&
++      left.velocity_remainder_radii == right.velocity_remainder_radii;
++}
++
++bool joint_publication_extension_is_atomic(
++    const std::map<std::string, JointAffineRetainedHistory>& input_histories,
++    const std::map<std::string, JointAffineRetainedHistory>&
++        published_histories,
++    const std::string& accepted_time) {
++  if (input_histories.empty()) return published_histories.empty();
++  if (input_histories.size() != published_histories.size()) return false;
++  const double accepted = scalar_token(accepted_time);
++  for (const auto& [path_id, input] : input_histories) {
++    const auto published_found = published_histories.find(path_id);
++    if (published_found == published_histories.end()) return false;
++    const auto& published = published_found->second;
++    if (input.path_id() != published.path_id() ||
++        input.symbol_registry() != published.symbol_registry() ||
++        published.segments().size() < input.segments().size() ||
++        published.segments().back().end_time != accepted) {
++      return false;
++    }
++    for (std::size_t segment = 0U;
++         segment < input.segments().size(); ++segment) {
++      if (!same_joint_history_segment_record(
++              input.segments()[segment], published.segments()[segment])) {
++        return false;
++      }
++    }
++  }
++  return true;
++}
++
+ std::array<double, 3> midpoints(const IntervalVector& vector) {
+   return {vector[0].midpoint(), vector[1].midpoint(), vector[2].midpoint()};
+ }
+@@ -1194,6 +1243,30 @@ bool snapshot_evaluation_succeeded(
+   return snapshot.status == "certified_complete";
+ }
+ 
++void discard_warm_root_cells(
++    NativeAccelerationSnapshotCertificate& snapshot) {
++  for (auto& row : snapshot.root_certificates) {
++    std::vector<NativeRootFreeCell>().swap(row.certificate.root_free_cells);
++  }
++}
++
++void compact_completed_step_diagnostics(
++    NativeAtomicStepCertificate& step,
++    bool preserve_accepted_warm_start) {
++  for (auto& substep : step.substeps) {
++    discard_warm_root_cells(substep.start_snapshot);
++    if (substep.endpoint_snapshot.has_value()) {
++      discard_warm_root_cells(*substep.endpoint_snapshot);
++    }
++  }
++  if (step.recertification_snapshot.has_value()) {
++    discard_warm_root_cells(*step.recertification_snapshot);
++  }
++  if (step.accepted_snapshot.has_value() && !preserve_accepted_warm_start) {
++    discard_warm_root_cells(*step.accepted_snapshot);
++  }
++}
++
+ bool step_contains_caustic_entry_trigger(
+     const NativeAtomicStepCertificate& step) {
+   const auto snapshot_contains_trigger = [](const auto& snapshot) {
+@@ -4143,6 +4216,15 @@ void validate_request(const NativeCoupledEvolutionRequest& request) {
+        !request.use_adaptive_step_growth)) {
+     throw std::invalid_argument("invalid adaptive step controller policy");
+   }
++  if ((request.initial_consecutive_growth_headroom_steps != 0U &&
++       (!request.use_adaptive_step_growth ||
++        request.use_continuous_adaptive_step)) ||
++      request.initial_consecutive_growth_headroom_steps >
++          std::numeric_limits<std::size_t>::max() - request.max_step_attempts) {
++    // At most one increment is possible per attempt. Reserve that whole
++    // capacity before work rather than wrap or saturate the exact memory.
++    throw std::invalid_argument("invalid adaptive growth restart memory");
++  }
+   if (!(multirate_fraction > 0.0 && multirate_fraction <= 1.0)) {
+     throw std::invalid_argument("invalid multirate synchronization fraction");
+   }
+@@ -4174,6 +4256,13 @@ void validate_request(const NativeCoupledEvolutionRequest& request) {
+     throw std::invalid_argument(
+         "coupled evolution resource limits must be positive");
+   }
++  if (request.initial_accepted_step_count > request.max_step_attempts ||
++      request.initial_rejected_step_count > request.max_rejected_steps ||
++      request.initial_rejected_step_count >
++          request.max_step_attempts - request.initial_accepted_step_count) {
++    throw std::invalid_argument(
++        "coupled evolution restart counters exceed run resource limits");
++  }
+ }
+ 
+ void validate_step_inputs(
+@@ -4218,8 +4307,13 @@ NativeAtomicStepCertificate rejected_step(
+     std::optional<NativeAccelerationSnapshotCertificate>
+         recertification_snapshot = std::nullopt) {
+   const auto input_fingerprints = fingerprints(input_histories);
+-  const bool publication_atomic = publication_extension_is_atomic(
+-      input_histories, input_histories, start_time);
++  const auto input_joint_fingerprints = joint_fingerprints(
++      request.joint_histories);
++  const bool publication_atomic =
++      publication_extension_is_atomic(
++          input_histories, input_histories, start_time) &&
++      joint_publication_extension_is_atomic(
++          request.joint_histories, request.joint_histories, start_time);
+   std::optional<double> correction_residual;
+   if (failure_code == "coupled_correction_failed") {
+     for (auto substep = substeps.rbegin(); substep != substeps.rend();
+@@ -4241,8 +4335,10 @@ NativeAtomicStepCertificate rejected_step(
+       .attempted_end = end_time,
+       .accepted_time = start_time,
+       .input_history_fingerprints = input_fingerprints,
++      .input_joint_history_fingerprints = input_joint_fingerprints,
+       .published_histories = input_histories,
+       .published_joint_histories = request.joint_histories,
++      .published_joint_history_fingerprints = input_joint_fingerprints,
+       .diagnostic_candidate_histories =
+           request.retain_diagnostic_candidate_histories &&
+                   candidate_histories.has_value()
+@@ -6582,22 +6678,21 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
+           pair.precision_escalation_attempt_count;
+     }
+   };
+-  if (request.chart_policy == "sharp_with_finite_width_fallback") {
+-    bool retry_acceleration = false;
+-    for (std::size_t pair_index = 0;
+-         pair_index < acceleration.pair_certificates.size(); ++pair_index) {
+-      const auto& pair = acceleration.pair_certificates[pair_index];
+-      if (pair.status == "uncertified" && pair.chart == "sharp" &&
+-          pair.failure_code ==
+-              "sharp acceleration enclosure exceeds the declared tolerance" &&
+-          !root_certificates[pair_index].memory_boundary_contact) {
+-        bool refined_sharp_certified = false;
+-        double refined_root_tolerance =
+-            scalar_token(root_certificates[pair_index].root_tolerance);
+-        for (std::size_t level = 0; level < 2U; ++level) {
+-          refined_root_tolerance *= 0.1;
+-          const auto refined_root_timing_start = SteadyClock::now();
+-          const auto refined_root = certify_exact_pair({
++  bool retry_acceleration = false;
++  for (std::size_t pair_index = 0;
++       pair_index < acceleration.pair_certificates.size(); ++pair_index) {
++    const auto& pair = acceleration.pair_certificates[pair_index];
++    if (pair.status == "uncertified" && pair.chart == "sharp" &&
++        pair.failure_code ==
++            "sharp acceleration enclosure exceeds the declared tolerance" &&
++        !root_certificates[pair_index].memory_boundary_contact) {
++      bool refined_sharp_certified = false;
++      double refined_root_tolerance =
++          scalar_token(root_certificates[pair_index].root_tolerance);
++      for (std::size_t level = 0; level < 2U; ++level) {
++        refined_root_tolerance *= 0.1;
++        const auto refined_root_timing_start = SteadyClock::now();
++        const auto refined_root = certify_exact_pair({
+               .row_id = root_certificates[pair_index].row_id +
+                   "/acceleration-refinement-" + std::to_string(level + 1U),
+               .receiver = pair_requests[pair_index].receiver_history,
+@@ -6613,48 +6708,48 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
+               .maximum_mpfr_bits = request.maximum_mpfr_bits,
+               .force_precision_escalation = false,
+           });
+-          timing.exact_root_batch_wall_seconds +=
+-              elapsed_seconds(refined_root_timing_start);
+-          ++timing.root_pair_count;
+-          timing.root_reevaluated_cells += refined_root.reevaluated_cells;
+-          timing.root_warm_excluded_cells += refined_root.warm_excluded_cells;
+-          timing.root_binary64_worker_wall_seconds +=
+-              refined_root.binary64_worker_wall_seconds;
+-          timing.root_mpfr_worker_wall_seconds +=
+-              refined_root.mpfr_worker_wall_seconds;
+-          timing.root_mpfr_pair_count +=
+-              refined_root.mpfr_attempt_count > 0U ? 1U : 0U;
+-          timing.root_mpfr_attempt_count += refined_root.mpfr_attempt_count;
+-          timing.root_mpfr_escalation_worker_wall_seconds +=
+-              refined_root.mpfr_escalation_worker_wall_seconds;
+-          timing.root_mpfr_escalation_attempt_count +=
+-              refined_root.mpfr_escalation_attempt_count;
+-          if (refined_root.status != "certified_complete" ||
+-              !refined_root.root_free_complement ||
+-              refined_root.memory_boundary_contact) {
+-            break;
+-          }
+-          root_certificates[pair_index] = refined_root;
+-          const auto refined_pair =
+-              certify_pair_acceleration(pair_requests[pair_index]);
+-          if (refined_pair.status != "uncertified") {
+-            refined_sharp_certified = true;
+-            break;
+-          }
++        timing.exact_root_batch_wall_seconds +=
++            elapsed_seconds(refined_root_timing_start);
++        ++timing.root_pair_count;
++        timing.root_reevaluated_cells += refined_root.reevaluated_cells;
++        timing.root_warm_excluded_cells += refined_root.warm_excluded_cells;
++        timing.root_binary64_worker_wall_seconds +=
++            refined_root.binary64_worker_wall_seconds;
++        timing.root_mpfr_worker_wall_seconds +=
++            refined_root.mpfr_worker_wall_seconds;
++        timing.root_mpfr_pair_count +=
++            refined_root.mpfr_attempt_count > 0U ? 1U : 0U;
++        timing.root_mpfr_attempt_count += refined_root.mpfr_attempt_count;
++        timing.root_mpfr_escalation_worker_wall_seconds +=
++            refined_root.mpfr_escalation_worker_wall_seconds;
++        timing.root_mpfr_escalation_attempt_count +=
++            refined_root.mpfr_escalation_attempt_count;
++        if (refined_root.status != "certified_complete" ||
++            !refined_root.root_free_complement ||
++            refined_root.memory_boundary_contact) {
++          break;
+         }
+-        if (!refined_sharp_certified) {
+-          pair_requests[pair_index].chart = "finite_width";
++        root_certificates[pair_index] = refined_root;
++        const auto refined_pair =
++            certify_pair_acceleration(pair_requests[pair_index]);
++        if (refined_pair.status != "uncertified") {
++          refined_sharp_certified = true;
++          break;
+         }
+-        root_rows[pair_index].certificate = root_certificates[pair_index];
+-        retry_acceleration = true;
+       }
+-    }
+-    if (retry_acceleration) {
+-      accumulate_acceleration_detail(acceleration);
+-      acceleration = certify_acceleration_reconstruction(
+-          path_ids(request), pair_requests, request.thread_count);
++      if (!refined_sharp_certified &&
++          request.chart_policy == "sharp_with_finite_width_fallback") {
++        pair_requests[pair_index].chart = "finite_width";
++      }
++      root_rows[pair_index].certificate = root_certificates[pair_index];
++      retry_acceleration = true;
+     }
+   }
++  if (retry_acceleration) {
++    accumulate_acceleration_detail(acceleration);
++    acceleration = certify_acceleration_reconstruction(
++        path_ids(request), pair_requests, request.thread_count);
++  }
+   accumulate_acceleration_detail(acceleration);
+   timing.acceleration_wall_seconds +=
+       elapsed_seconds(acceleration_timing_start);
+@@ -6697,7 +6792,21 @@ NativeAccelerationSnapshotCertificate certify_native_acceleration_snapshot(
+           [](const auto& root) { return root.memory_boundary_contact; })) {
+     failure_code = "insufficient_history_depth";
+   } else if (acceleration.status != "certified_complete") {
+-    failure_code = "root_completeness_not_certified";
++    const bool roots_complete = std::all_of(
++        root_certificates.begin(), root_certificates.end(),
++        [](const auto& root) {
++          return root.status == "certified_complete" &&
++              root.root_free_complement && !root.memory_boundary_contact;
++        });
++    const bool sharp_width_failure = std::any_of(
++        acceleration.pair_certificates.begin(),
++        acceleration.pair_certificates.end(), [](const auto& pair) {
++          return pair.failure_code ==
++              "sharp acceleration enclosure exceeds the declared tolerance";
++        });
++    failure_code = roots_complete && sharp_width_failure
++        ? "acceleration_enclosure_not_certified"
++        : "root_completeness_not_certified";
+   }
+   timing.total_wall_seconds = elapsed_seconds(total_timing_start);
+   return {
+@@ -7024,6 +7133,8 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
+ 
+   std::vector<NativeHistoryFingerprint> input_fingerprints;
+   std::vector<NativeHistoryFingerprint> candidate_fingerprints;
++  std::vector<NativeHistoryFingerprint> input_joint_fingerprints;
++  std::vector<NativeHistoryFingerprint> published_joint_fingerprints;
+   bool publication_atomic = false;
+   measure_history_phase(
+       &timing->history, &timing->history_copy_hash_wall_seconds,
+@@ -7032,8 +7143,14 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
+       [&] {
+         input_fingerprints = fingerprints(histories);
+         candidate_fingerprints = fingerprints(accepted_histories);
++        input_joint_fingerprints = joint_fingerprints(request.joint_histories);
++        published_joint_fingerprints = joint_fingerprints(
++            accepted_joint_histories);
+         publication_atomic = publication_extension_is_atomic(
+-            histories, accepted_histories, end_time);
++            histories, accepted_histories, end_time) &&
++            joint_publication_extension_is_atomic(
++                request.joint_histories, accepted_joint_histories,
++                end_time);
+       });
+   // Acceptance moves accepted_histories directly into the published field;
+   // atomicity is structural rather than a same-vector replay comparison.
+@@ -7046,8 +7163,11 @@ NativeAtomicStepCertificate certify_native_atomic_coupled_step_impl(
+       .attempted_end = end_time,
+       .accepted_time = end_time,
+       .input_history_fingerprints = input_fingerprints,
++      .input_joint_history_fingerprints = input_joint_fingerprints,
+       .published_histories = std::move(accepted_histories),
+       .published_joint_histories = std::move(accepted_joint_histories),
++      .published_joint_history_fingerprints =
++          published_joint_fingerprints,
+       .diagnostic_candidate_histories = std::nullopt,
+       .candidate_history_fingerprints = candidate_fingerprints,
+       .substeps = std::move(substeps),
+@@ -7297,10 +7417,16 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
+         .accepted_end_time = request.start_time,
+         .histories = std::move(histories),
+         .joint_histories = std::move(joint_histories),
++        .joint_state_fallback_applied =
++            request.joint_state_fallback_already_applied,
+         .steps = {},
+-        .accepted_step_count = 0U,
+-        .rejected_step_count = 0U,
++        .accepted_step_count = request.initial_accepted_step_count,
++        .rejected_step_count = request.initial_rejected_step_count,
+         .controller_step_size = request.initial_step,
++        .controller_certificate_cost_cooldown_remaining =
++            request.certificate_cost_initial_cooldown_steps,
++        .controller_consecutive_growth_headroom_steps =
++            request.initial_consecutive_growth_headroom_steps,
+         .halt_code = "memory_budget_exhausted",
+         .evidence_status = "failed",
+         .memory_budget_bytes = request.memory_budget_bytes,
+@@ -7317,11 +7443,18 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
+       ? step_size
+       : scalar_token(request.maximum_step);
+   std::vector<NativeAtomicStepCertificate> steps;
+-  std::size_t accepted_count = 0;
+-  std::size_t rejected_count = 0;
++  const std::size_t initial_accepted_count =
++      request.initial_accepted_step_count;
++  const std::size_t initial_rejected_count =
++      request.initial_rejected_step_count;
++  const std::size_t initial_attempt_count =
++      initial_accepted_count + initial_rejected_count;
++  std::size_t accepted_count = initial_accepted_count;
++  std::size_t rejected_count = initial_rejected_count;
+   std::string halt_code;
+   std::string current_time_token = request.start_time;
+-  std::size_t consecutive_growth_headroom_steps = 0U;
++  std::size_t consecutive_growth_headroom_steps =
++      request.initial_consecutive_growth_headroom_steps;
+   std::size_t certificate_cost_probe_adjustments = 0U;
+   std::set<std::pair<std::string, std::string>>
+       adjudicated_finite_width_pairs(
+@@ -7340,8 +7473,18 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
+ 
+   while (current_time < requested_end &&
+          (request.diagnostic_maximum_accepted_steps == 0U ||
+-          accepted_count < request.diagnostic_maximum_accepted_steps)) {
+-    if (steps.size() >= request.max_step_attempts) {
++          accepted_count - initial_accepted_count <
++              request.diagnostic_maximum_accepted_steps)) {
++    const bool at_resumable_accepted_boundary =
++        steps.empty() || steps.back().status == "accepted";
++    if (at_resumable_accepted_boundary &&
++        request.cancellation_requested &&
++        request.cancellation_requested()) {
++      halt_code = "cancelled_at_accepted_boundary";
++      break;
++    }
++    if (steps.size() >=
++        request.max_step_attempts - initial_attempt_count) {
+       halt_code = "numeric_resource_limit_exhausted";
+       break;
+     }
+@@ -7391,7 +7534,8 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
+         adjudicated_finite_width_pairs.begin(),
+         adjudicated_finite_width_pairs.end());
+     auto step = certify_native_atomic_coupled_step(
+-        step_request, histories, steps.size(), current_time_token, attempted_end,
++        step_request, histories, initial_attempt_count + steps.size(),
++        current_time_token, attempted_end,
+         reusable_start_snapshot, certificate_cost_probe);
+     const CertificateCostSignal cost_signal = certificate_cost_signal(step);
+     step.certificate_cost_probe = certificate_cost_probe;
+@@ -7434,6 +7578,10 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
+       certificate_cost_probe_adjustments = 0U;
+       step.certificate_cost_cooldown_remaining =
+           certificate_cost_cooldown_remaining;
++      for (auto& prior_step : steps) {
++        compact_completed_step_diagnostics(prior_step, false);
++      }
++      compact_completed_step_diagnostics(step, true);
+       steps.push_back(std::move(step));
+       if (request.accepted_step_callback) {
+         request.accepted_step_callback(accepted_count, current_time_token);
+@@ -7487,6 +7635,7 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
+     if (step.failure_code == "coupled_correction_failed") {
+       step.correction_retry_scale = retry_scale;
+     }
++    compact_completed_step_diagnostics(step, false);
+     steps.push_back(std::move(step));
+     if (ordinary_joint_event_fallback_retry) {
+       if (rejected_count > request.max_rejected_steps) {
+@@ -7581,6 +7730,10 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
+       } else if (
+           steps.back().failure_code == "root_completeness_not_certified") {
+         halt_code = "root_completeness_not_certified";
++      } else if (
++          steps.back().failure_code ==
++              "acceleration_enclosure_not_certified") {
++        halt_code = "acceleration_enclosure_not_certified";
+       } else if (
+           steps.back().failure_code == "coupled_correction_failed") {
+         halt_code = "coupled_correction_failed";
+@@ -7594,13 +7747,17 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
+   const bool completed = current_time == requested_end;
+   const bool diagnostic_step_limit_reached =
+       !completed && request.diagnostic_maximum_accepted_steps > 0U &&
+-      accepted_count >= request.diagnostic_maximum_accepted_steps;
++      accepted_count - initial_accepted_count >=
++          request.diagnostic_maximum_accepted_steps;
+   if (diagnostic_step_limit_reached) {
+     halt_code = "diagnostic_accepted_step_limit_reached";
+   }
+   const bool all_atomic = std::all_of(
+       steps.begin(), steps.end(),
+       [](const auto& step) { return step.publication_atomic; });
++  for (auto& step : steps) {
++    compact_completed_step_diagnostics(step, false);
++  }
+   NativeEvolutionTiming timing = summarize_evolution_timing(steps);
+   timing.total_wall_seconds = elapsed_seconds(timing_start);
+   return {
+@@ -7619,6 +7776,8 @@ NativeCoupledEvolutionCertificate evolve_native_coupled_histories(
+       .controller_step_size = decimal_token(step_size),
+       .controller_certificate_cost_cooldown_remaining =
+           certificate_cost_cooldown_remaining,
++      .controller_consecutive_growth_headroom_steps =
++          consecutive_growth_headroom_steps,
+       .halt_code = completed ? "" : halt_code,
+       .evidence_status =
+           completed ? "executable_architecture_evidence" : "failed",

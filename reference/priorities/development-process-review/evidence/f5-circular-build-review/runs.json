@@ -1,0 +1,153 @@
+{
+  "runs": [
+    {
+      "runId": "60e777bd-8ae9-49f3-9763-af49b766e7a0",
+      "status": "failed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "tests/f5-prehistory-handoff-build.test.js",
+        "tests/subfield-circular-root-preparation.test.js",
+        "tests/f5-prehistory-handoff-build-launch.test.js",
+        "tests/f5-prehistory-handoff-build-startup.test.js",
+        "tests/f5-enclosed-root-preparation.test.js"
+      ],
+      "startedAtUtc": "2026-09-08T15:23:35.264Z",
+      "finishedAtUtc": "2026-09-08T15:23:47.089Z",
+      "elapsedWallSeconds": 11.838,
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "path": "60e777bd-8ae9-49f3-9763-af49b766e7a0.stdout.log",
+          "sha256": "2e1b65178518a20678f8682273dfcc718f316082b8291f9e7dd80af49d386dd7",
+          "bytes": 12282
+        },
+        "stderr": {
+          "path": "60e777bd-8ae9-49f3-9763-af49b766e7a0.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "runId": "e133f6c1-00a4-4565-ad90-6bd4726052af",
+      "status": "completed",
+      "command": "bash",
+      "args": [
+        "-c",
+        "\"${AAA_VENV:-../.venv}/bin/python\" -m unittest discover -s tests -p test_eom_native_coupled_evolution.py -v"
+      ],
+      "startedAtUtc": "2026-09-08T15:23:21.238Z",
+      "finishedAtUtc": "2026-09-08T15:24:49.710Z",
+      "elapsedWallSeconds": 88.486,
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "path": "e133f6c1-00a4-4565-ad90-6bd4726052af.stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "stderr": {
+          "path": "e133f6c1-00a4-4565-ad90-6bd4726052af.stderr.log",
+          "sha256": "3928693929df50f1d52b348d0fbd24eeef7d52aed05d698c39581d5d36e54b3f",
+          "bytes": 8683
+        }
+      }
+    },
+    {
+      "runId": "17367640-d128-4af4-a3ca-8cc256a37164",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "tests/f5-prehistory-handoff-build.test.js",
+        "tests/subfield-circular-root-preparation.test.js",
+        "tests/f5-prehistory-handoff-build-launch.test.js",
+        "tests/f5-prehistory-handoff-build-startup.test.js"
+      ],
+      "startedAtUtc": "2026-09-08T15:33:39.037Z",
+      "finishedAtUtc": "2026-09-08T15:33:50.191Z",
+      "elapsedWallSeconds": 11.166,
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "path": "17367640-d128-4af4-a3ca-8cc256a37164.stdout.log",
+          "sha256": "0349c98d4c6e445eecded10ce63e15f1cb2e3a3e3cab7ce7f0bb761612a94aab",
+          "bytes": 5010
+        },
+        "stderr": {
+          "path": "17367640-d128-4af4-a3ca-8cc256a37164.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "runId": "5f638d69-b72b-4142-babb-5e7baea140e7",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "scripts/eom/launch-f5-prehistory-handoff-build.mjs",
+        "--out",
+        ".local-data/braid-analysis/f5-prehistory-handoff-build-20260827/review-current-20260908",
+        "--python",
+        "/Users/markmorris/vibe/.venv/bin/python",
+        "--launcher-sha256",
+        "ba397b94d109a394fd64aa36b74e63b7881273cd2cdc13ffab8f9ae541216c26"
+      ],
+      "startedAtUtc": "2026-09-08T15:35:24.316Z",
+      "finishedAtUtc": "2026-09-08T15:35:48.898Z",
+      "elapsedWallSeconds": 24.595,
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "path": "5f638d69-b72b-4142-babb-5e7baea140e7.stdout.log",
+          "sha256": "f217bc4ebbe63ef608e459f34df187c2490c1949bc3f584bbb51489bbcaede65",
+          "bytes": 1082
+        },
+        "stderr": {
+          "path": "5f638d69-b72b-4142-babb-5e7baea140e7.stderr.log",
+          "sha256": "da05881b936658691b7454d2a00935fa589be12d048df8fc37963fdff615363b",
+          "bytes": 1099
+        }
+      }
+    },
+    {
+      "runId": "1562cbf9-cf51-4015-8f97-ea32538eb4be",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "tests/f5-prehistory-handoff-build-launch.test.js",
+        "tests/f5-prehistory-handoff-build-startup.test.js"
+      ],
+      "startedAtUtc": "2026-09-08T15:36:17.015Z",
+      "finishedAtUtc": "2026-09-08T15:36:28.035Z",
+      "elapsedWallSeconds": 11.032,
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "path": "1562cbf9-cf51-4015-8f97-ea32538eb4be.stdout.log",
+          "sha256": "4f2332d864ebfb74f7d777f21b06a516577bd51e686ff6b41af040d516a64951",
+          "bytes": 2071
+        },
+        "stderr": {
+          "path": "1562cbf9-cf51-4015-8f97-ea32538eb4be.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    }
+  ]
+}
