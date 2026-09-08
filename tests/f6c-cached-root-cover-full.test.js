@@ -17,7 +17,7 @@ const binding=(p,h="1".repeat(64))=>({path:p,sha256:h,bytes:1});
 function plan() {
   const python=path.resolve(process.env.AAA_VENV??"../.venv","bin/python"),node=realpathSync(process.execPath);
   const sources=[R.CONSUMER,"scripts/eom/oracle/continuous_reception_roots_cached.py","scripts/eom/oracle/certified_history.py","scripts/eom/oracle/decimal_interval.py"];
-  return {schema:"braid-program/f6c-cached-root-cover-full-launch.v1",scope:"full",resourcePlan:binding(R.RESOURCE_PLAN,R.PINS[R.RESOURCE_PLAN]),
+  return {schema:"braid-program/f6c-cached-root-cover-full-launch.v2",scope:"full",resourcePlan:binding(R.RESOURCE_PLAN,R.PINS[R.RESOURCE_PLAN]),
     python,pythonRealPath:realpathSync(python),git:realpathSync("/usr/bin/git"),node,
     comparisonContract:{declarationSha256:R.PINS["reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md"],verifierSha256:R.PINS[R.COMPARISON],scope:"full",
       subjectSourceBindings:sources.map(p=>binding(p,R.PINS[p])),runtimeBindings:[binding(realpathSync(python)),binding(realpathSync("/usr/bin/git")),binding(path.resolve(python,"../../pyvenv.cfg"))]},
@@ -310,6 +310,7 @@ test("all pilot and full addresses share the unchanged exclusion and lock lane",
 });
 test("full machine plan refuses pilot scope and prior resource plan without relaxing operational limits",()=>{
   for(const patch of [
+    p=>p.schema="braid-program/f6c-cached-root-cover-full-launch.v1",
     p=>p.schema="braid-program/f6c-cached-root-cover-pilot-launch.v1",
     p=>p.scope="pilot-cell-0",p=>p.comparisonContract.scope="pilot-cell-0",
     p=>p.resourcePlan.path="reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md",
@@ -588,19 +589,19 @@ const FULL_EXTRA_PIN_LINES="  \"reference/priorities/braid-program/evidence/2026
 const retarget=(s,pairs)=>{for(const[a,b]of pairs)s=s.replaceAll(a,b);return s;};
 const frozen=(p,h)=>{const raw=readFileSync(p);assert.equal(digest(raw),h,p);return raw.toString("utf8");};
 test("full composition differs from frozen pilot only by declared addresses scope census and resource bindings",()=>{
-  const entry=frozen("scripts/eom/run-f6c-cached-root-cover-pilot.mjs","83aa60e7c665793283fa6b327abb4d20e226329e350df36d239056db786010a2");
+  const entry=frozen("reference/priorities/development-process-review/evidence/root-cover-migration/run-f6c-cached-root-cover-pilot.mjs.e03e8ae0f17c.source","e03e8ae0f17c04aa2e15361078f5f258d0c4bee887b4aaf7257f52c09a745cef");
   let expected=retarget(retarget(entry,FULL_COMMON_REPLACEMENTS),FULL_ENTRY_REPLACEMENTS);
   expected=expected.replace('});\nexport const check',FULL_EXTRA_PIN_LINES+'});\nexport const check');
-  assert.equal(readFileSync(R.ENTRY,"utf8"),expected);
-  const launcher=frozen("scripts/eom/launch-f6c-cached-root-cover-pilot.mjs","664278c0a67fd8499cb5ab4645a104f0bebec6e3558ede704cf6336f7f7a1903");
-  assert.equal(readFileSync(R.LAUNCHER,"utf8"),retarget(retarget(launcher,FULL_COMMON_REPLACEMENTS),FULL_LAUNCHER_REPLACEMENTS));
+  assert.equal(frozen("reference/priorities/development-process-review/evidence/full-root-cover-migration/run-f6c-cached-root-cover-full.mjs.20c8d44ee55f.source","20c8d44ee55fe77de2e6fb5f394739fe71c806562542c22632789d59dd0734b7"),expected);
+  const launcher=frozen("reference/priorities/development-process-review/evidence/root-cover-migration/launch-f6c-cached-root-cover-pilot.mjs.cd7722428105.source","cd772242810517aa65d7a8d720e322890002435df28fea002be0253ed2cf8d2f");
+  assert.equal(frozen("reference/priorities/development-process-review/evidence/full-root-cover-migration/launch-f6c-cached-root-cover-full.mjs.d2e1966c83fc.source","d2e1966c83fcbf0667678c4c2d948b28e5f2f52c55a491e9e0c3fd81ffd27123"),retarget(retarget(launcher,FULL_COMMON_REPLACEMENTS),FULL_LAUNCHER_REPLACEMENTS));
 });
 test("all32 original operational obligations survive full scope retargeting unchanged",()=>{
-  const prior=frozen("tests/f6c-cached-root-cover-pilot-launcher.test.js","b1768e32edf47b3905ea3d895c2bee996f64147f525aab4fa3728ed88a6502c9").split("\n// Cached successor binding controls;")[0];
+  const prior=frozen("reference/priorities/development-process-review/evidence/root-cover-migration/f6c-cached-root-cover-pilot-launcher.test.js.7075322e83ad.source","7075322e83ad4dce350ace413be572f8a32b0512c3cea3696a16c89cffa94400").split("\n// Cached successor binding controls;")[0];
   assert.equal(prior.match(/^test\(/gmu)?.length,26);
-  const actual=readFileSync("tests/f6c-cached-root-cover-full.test.js","utf8").split("\n// Full-scope binding/census controls;")[0];
+  const actual=frozen("reference/priorities/development-process-review/evidence/full-root-cover-migration/f6c-cached-root-cover-full.test.js.09ce766c3965.source","09ce766c39654afe12381060eefda95b018df0c130e12361a583186b6d8199b3").split("\n// Full-scope binding/census controls;")[0];
   assert.equal(actual,retarget(prior,FULL_TEST_REPLACEMENTS));
-  const process=frozen("tests/f6c-cached-root-cover-pilot-process.test.js","72a68ac029d0ef269daa4c1508ee122a4548953e1238d237c7de5518556ea736");
+  const process=frozen("tests/f6c-cached-root-cover-pilot-process.test.js","433452397ac00c2deaa6a9300b84510f553943c491fd49c965a7573a691b0cf7");
   assert.equal(process.match(/^test\(/gmu)?.length,6);
   assert.equal(readFileSync("tests/f6c-cached-root-cover-full-process.test.js","utf8"),retarget(process,FULL_COMMON_REPLACEMENTS));
 });

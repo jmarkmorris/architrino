@@ -1,0 +1,36 @@
+{
+  "runId": "014b221c-3b1f-4c15-85e7-7b4767e6fb73",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-timeout=15000",
+    "tests/subfield-circular-phase-process.test.js"
+  ],
+  "summary": {
+    "tests": 18,
+    "pass": 18,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 5787.893042
+  },
+  "failures": [],
+  "failedFiles": [],
+  "skippedResults": [],
+  "diagnosticCount": 0,
+  "nativeFailureCount": 0,
+  "log": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/014b221c-3b1f-4c15-85e7-7b4767e6fb73.stdout.log",
+    "sha256": "7d5f116bc3d4650c76bd2dd49aa85c84c1088785de4048d94eef277287ba591c",
+    "bytes": 35390
+  },
+  "terminal": {
+    "status": "completed",
+    "exitCode": 0,
+    "processGroupClosed": true,
+    "elapsedWallSeconds": 5.862
+  },
+  "boundary": "The recorded command defines the Node selection in the shared working checkout. Concurrent documentation edits occurred; this is not an exact final-candidate publication receipt. Native totals and extracted diagnostic blocks are separate quantities; parent failures may duplicate nested failures."
+}

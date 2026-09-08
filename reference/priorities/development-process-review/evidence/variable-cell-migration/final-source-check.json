@@ -1,0 +1,53 @@
+{
+  "knownCase": "SHA-256 abc before target",
+  "finalResultMatchesCurrentSources": true,
+  "current": [
+    {
+      "role": "adapter",
+      "path": "scripts/eom/f6c_variable_cell_adapter.py",
+      "sha256": "2f0b9ea1ff9ed60a8dacf1b8447ea2a075f482a2d9b505de46e24b1dafb16a25",
+      "bytes": 141499
+    },
+    {
+      "role": "adapterControls",
+      "path": "tests/test_f6c_variable_cell_adapter.py",
+      "sha256": "1fe6838fc63b10cd8e0051ce03039db05b7ea8370c0b8f065beb3e59492df6c2",
+      "bytes": 140272
+    },
+    {
+      "role": "diagnosticControls",
+      "path": "tests/test_f6c_single_leaf_diagnostic.py",
+      "sha256": "47d502100d4f92e8c803f5f0dad7c248874f493ed0df9ef43e1e956e8e9bf71c",
+      "bytes": 62290
+    },
+    {
+      "role": "streamControls",
+      "path": "tests/test_f6c_streamed_leaf_session.py",
+      "sha256": "8fd4f300db43fcd67eda052677ee1f004efda464db7b51eea40d69c6169cd39b",
+      "bytes": 22827
+    }
+  ],
+  "archiveRoutesVerified": 36,
+  "existingArchiveFilesPreserved": 19,
+  "archivedBytes": 893726,
+  "oldClosureSourcesPreserved": [
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/independent_parent_batch_closure.py",
+      "sha256": "3eefbb8767a0337024066f8949770fbf47f39edc308aaf598372cf95b3dba223"
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/independent_parent_batch_closure_controls.py",
+      "sha256": "f45ccfb0ff9609fe267f25c1ba2521ec58134f9caf7d128b09e0adfde9e6a979"
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/fresh-parent-batch-closure-validator-expectations.md",
+      "sha256": "7132bcf6db99bef0b2255418f656e3fb5900eb23fac9d1400d294d5ba8fd2eed"
+    }
+  ],
+  "mathematicalReferenceChanges": [],
+  "unresolvedDiagnostic": {
+    "path": "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
+    "expected": "7a1f5571827225d1529f73a3f0b905be75e81e2f7d11c2670b697e0599d65e71",
+    "actual": "042684de5b23216a8af4a8187e02db3236206249d0f857215dc47a89b8c62d47"
+  }
+}

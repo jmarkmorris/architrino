@@ -1,0 +1,2 @@
+Known SHA-256 abc passed before target capture.
+{"bindings":204,"results":[{"metadataValidated":true,"scientificCalls":0,"stage":"producer","bindings":213},{"metadataValidated":true,"scientificCalls":0,"stage":"comparison","bindings":213}],"scientificCalls":0}

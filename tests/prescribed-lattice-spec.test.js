@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import {deriveAssemblyScientificIdentity} from "../src/prescribed-geometry/AssemblyScientificIdentity.mjs";
 
 import {
   materializePrescribedAssemblySpec,
@@ -18,16 +19,15 @@ function assemblyFixture({ positions, polarities, lattice }) {
     constituentId: `member-${index}`,
     operator: { kind: "stationary.v1", epochTime: 0, position },
   }));
-  return {
-    schema: "prescribed-assembly-spec.v2",
-    specId: "prescribed-lattice-test-fixture-v2",
+  const spec = {
+    schema: "prescribed-assembly-spec.v3",
+    specId: "prescribed-lattice-test-fixture-v3",
     label: "Prescribed lattice test fixture",
     provenanceDescription: "Test-only lattice declaration bound to explicit stationary worldlines.",
     claimGrade: "chart-hypothesis",
     evidenceStatus: "display-only",
     date: "2026-08-25",
     identity: {
-      candidateId: "test-lattice",
       displayLabel: "Prescribed lattice test fixture",
       status: "test-only",
       geometryOwner: "tests/prescribed-lattice-spec.test.js",
@@ -66,8 +66,10 @@ function assemblyFixture({ positions, polarities, lattice }) {
       validators: [],
       speedGuard: { normalizedFieldSpeed: 1, maximumExclusive: 1, policy: "reject" },
     },
-    compatibility: { retainedIdentifiers: [] },
   };
+  const {assemblyId, modelRevisionSha256} = deriveAssemblyScientificIdentity(spec);
+  Object.assign(spec.identity, {assemblyId, modelRevisionSha256});
+  return spec;
 }
 
 function translationLattice() {

@@ -1,0 +1,238 @@
+✔ literal positive: external closure is a distinct non-scientific result (2.340708ms)
+✔ pending-only, bad exit, late completion, guard and lock gaps reject (0.629541ms)
+✔ wrong invocation, incomplete stage and substituted sources/outputs reject (0.481167ms)
+✔ escaped stage/observer processes and retained owned groups reject (0.790458ms)
+✔ resource, host capacity, missing guard acknowledgement and log loss reject (0.417917ms)
+✔ real same-descriptor capture rejects wrong bytes and identical replacement (1.534666ms)
+✔ process snapshot parser requires complete unambiguous identity rows (0.318167ms)
+✔ immutable exact resource limits and inert stage plan (3.625167ms)
+✔ source union retains exact generations and unchanged physical limits (1.032709ms)
+✔ source capture rejects source replacement and duplicate hardlinks (2.8475ms)
+✔ first plan/self/helper captures remain original through later capture (1.2435ms)
+✔ every physical output counted and only explicit publication alias accepted (3.424542ms)
+✔ output count, byte, disappearance, directory and symlink controls (2.229791ms)
+✔ empty stage logs hash successfully without becoming valid source bindings (0.714875ms)
+✔ output directory identity and finite file census are retained (63.122875ms)
+✔ registered descendants are distinguished from competing science (0.3955ms)
+✔ prior stdout dataflow binds one predecessor and counts appended arguments (0.346375ms)
+✔ write-once operation receipt retains foreign bytes and obeys deadline callback (11.378958ms)
+✔ production entries reject absent or invented actual lifetime before any work (0.460083ms)
+✔ direct CLI has exact flags, absolute plan and explicit hashes (0.104458ms)
+✔ created receipt cannot be replaced with byte-identical foreign output (0.8285ms)
+✔ one public file cannot satisfy both sides of a publication alias (1.171292ms)
+✔ pure hook guards block ordinary and low-level process creation (0.363625ms)
+✔ renewed-clock cleanup interface has no unguarded fallback (0.059583ms)
+✔ writer optional original identity is exact and default binding remains clean (20.200125ms)
+✔ writer rejects every non-Boolean option before opening output (0.6415ms)
+✔ initial output fstat exception closes original descriptor and retains path (1.289459ms)
+✔ publication original token is inserted before first observation and cannot be replaced (1.910041ms)
+✔ literal inherited clock cutoffs and conservative bridge use no real worker (0.958459ms)
+✔ ready acknowledgment is exact and failure never turns back into work success (0.777625ms)
+✔ full H worker promise remains pending through termination and rejected closure stays unresolved (1.429083ms)
+✔ fixed control profile contracts every nested cutoff without altering science limits (0.629542ms)
+✔ finite control CLI accepts no arbitrary duration or mixed-mode fallback (0.370708ms)
+✔ actual unexpected guard-exit event marks local failure and only exits self (0.3825ms)
+✔ scoped stderr charges outward copies and waits for actual callbacks (0.427959ms)
+✔ verified empty output log has an identity without becoming a positive-byte source (0.498958ms)
+✔ lost RSS gap remains failure while a bounded cleanup observation is scheduled (0.329834ms)
+✔ publication and raw rejection log quotas reject before output creation (0.369375ms)
+✔ v2 prior declaration is closed and may name its already captured plan (0.95275ms)
+✔ prior context derives literal byte totals and rejects aliases and uncaptured identities (0.18025ms)
+✔ prior files remain inputs across repeated census and exact generation checks (11.847917ms)
+✔ literal combined limits include old bytes and current outward traffic without accumulation (2.782584ms)
+✔ combined path reserve precedes initial logs, publication and registered logs (0.399083ms)
+✔ fixed math census/limits and source pins remain unchanged (1.569625ms)
+✔ closed JSON parser rejects duplicate keys/trailing syntax/unsafe integers (0.546667ms)
+✔ data-only planmaker gives exact3/4/5 producer/comparison order and alias layout (0.569542ms)
+✔ data-only parent plans preserve every original mathematical/ancestry token (0.671791ms)
+✔ batch validates explicit order and rejects changed stages/aliases/roots (2.475208ms)
+✔ registered args require original deadline, captured plan and immediate prior context (0.293708ms)
+✔ duration transfer cannot reset original1800s or compare epochs (0.111333ms)
+✔ hook leaves completion binding ownership to frozen coordinator (0.209375ms)
+✔ exact historical tuples are separate logical/physical bindings (0.452667ms)
+✔ eight publication paths count four inodes; replacement/third alias reject (3.836584ms)
+✔ original metadata retains nonuniform exact endpoint tokens (2.17075ms)
+✔ thin batch source contains no legacy supervisor or output deletion (0.162542ms)
+✔ exact CLI flags and hashes; captured imports do not execute CLI (0.805458ms)
+✔ pure plan preparation yields original3/4/5 tokens and40MiB commitment (39.648916ms)
+✔ closed source/configuration/identity/schema/census mutations reject (49.791458ms)
+✔ only actually consumed exact historical document routes admit (34.932833ms)
+✔ expanded runtime cannot exceed downstream one-MiB plan consumer bound (92.501542ms)
+✔ exclusive publication retains original descriptors until closure (7.368375ms)
+✔ byte-identical replacement and final callback replacement reject and retain (11.75875ms)
+✔ deadline/callback failures retain bytes and close all owned descriptors (5.60975ms)
+✔ post-open fstat failure closes unregistered file and directory descriptors (0.967583ms)
+✔ literal retained selection includes exact nonexecuting physical source (1.4215ms)
+✔ archive/runtime confusion, substitution, omitted and duplicate sources reject (0.320291ms)
+✔ distinct historical generations at one logical path remain distinct (0.083833ms)
+✔ missing original environment is explicit metadata, never a physical source exemption (0.089292ms)
+✔ fresh closure authority is the separately accepted pure checker generation (0.855375ms)
+✔ fresh source selection checks pinned transport without executing an authority (2.173667ms)
+✔ reviewed dependencies remain byte-exact (1.0105ms)
+✔ genuine two-refined-parent provider connects to frozen stream and codec (4881.950917ms)
+✔ original-clock duration rejects renewal and exhaustion (0.243292ms)
+✔ literal Python duration supports unrelated clock epochs (29.98675ms)
+✔ canonical spec rejects duplicate and trailing records (0.2225ms)
+✔ read identity catches byte-identical path replacement (1.272666ms)
+✔ closed spec caps and parent selection reject before target creation (86.146667ms)
+✔ complete input union includes combined runtime, metadata and invocation bounds (1.805208ms)
+✔ publication retains original inode through callbacks and preserves foreign replacements (21.274416ms)
+✔ publication identity option preserves default three-field transport and original five-field identity (23.686291ms)
+✔ publication identity option rejects non-Booleans before opening an output (0.356333ms)
+✔ publication file-worker returns original identity without promoting the operation (5.477792ms)
+✔ competitor coverage includes coordinated F5, F6c packaging and EOM measurement tools (0.464792ms)
+✔ every late publication callback preserves original identity and foreign evidence (47.904ms)
+✔ package selection preserves logical descriptors and removes only admitted physical inputs (51.545291ms)
+✔ parent-two historical wrapper routes require the exact original plan and six literal tuples (41.730625ms)
+✔ generic descriptors preserve exact archives, derived inventory and invocation-bound readiness (63.699708ms)
+✔ fresh metadata inventory includes existing lazy integer helper without science (0.113541ms)
+✔ two explicit nonexecuting ancestry documents retain exact historical tuples (40.961416ms)
+✔ shared competitor guard excludes only own descendants (0.119917ms)
+✔ unique inode quota does not double count one hard-linked stream (1.25575ms)
+✔ retraction preserves a foreign public replacement and private prefix (1.268334ms)
+✔ final layout preserves original directory names and identities, not only public bytes (47.002333ms)
+✔ growing private data is charged before public-link creation (0.654167ms)
+✔ frozen observer limits and final observation gap remain unchanged (0.331667ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-KZ8lj4
+✔ synthetic host inputs reach unchanged real threshold admission (1508.17575ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-llg8Ig
+✔ synthetic low launch-memory is rejected by unchanged host guard (420.882375ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-Hgxsu6
+✔ synthetic low running-memory is rejected by unchanged host guard (1279.191375ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-S6sV0w
+✔ synthetic low launch-disk is rejected by unchanged host guard (420.737375ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-k9K3tZ
+✔ synthetic low running-disk is rejected by unchanged host guard (1348.797209ms)
+✔ attempt-lifetime diagnostic guard retains asynchronous EPIPE (13.476416ms)
+✔ late final stdout callback cannot accept an expired observation (0.54925ms)
+✔ worker expires before reading source and admission requires closed target (0.14875ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-zVoXtv
+✔ actual captured Python + frozen stream/codec/publication: normal (1508.078042ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-U3PRBv
+✔ actual captured Python + frozen stream/codec/publication: exhausted (1505.0545ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-16ZEi8
+✔ actual captured Python + frozen stream/codec/publication: archives (1510.201333ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-Olplp4
+✔ actual captured Python + frozen stream/codec/publication: multi-occupant-archives (1554.189583ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-64bpOb
+✔ synthetic package transport keeps source/runtime distinction: package (1511.911875ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-eFEM3D
+✔ synthetic package transport keeps source/runtime distinction: package-runtime (1202.60275ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-GRptAN
+✔ literal Python rejects and preserves only private evidence: missing-runtime (1195.360334ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-CqEdFi
+✔ literal Python rejects and preserves only private evidence: runtime-in-provenance (1197.361292ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-6g8NvC
+✔ literal Python rejects and preserves only private evidence: archive-runtime (1199.022541ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-E3vJtv
+✔ literal Python rejects and preserves only private evidence: late-runtime (1194.784416ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-wQxOKl
+✔ literal Python rejects and preserves only private evidence: source-count-overflow (1270.844584ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-DKvQG6
+✔ literal Python rejects and preserves only private evidence: source-hardlink (498.039375ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-rfG6t7
+✔ literal Python rejects and preserves only private evidence: cleanup-replacement (1273.324209ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-0TagSt
+✔ literal Python rejects and preserves only private evidence: module-cleanup (1348.804125ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-SzTA70
+✔ literal Python rejects and preserves only private evidence: postpublish (1354.40075ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-W2Ww0G
+✔ literal Python rejects and preserves only private evidence: trailing (1269.797167ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-6voNqF
+✔ literal Python rejects and preserves only private evidence: final-cleanup (1503.061ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-LJ55OB
+✔ active stubborn synthetic target is reaped after cancellation (1347.061834ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-tX5Z02
+✔ active stubborn synthetic target is reaped after diagnostic EPIPE (16144.7265ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-0oib9F
+✔ poststdout failure is exit1, retracts public stream and invalidates operation (1504.968ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-9r1UMW
+✔ original private directory rename rejects at cleanup with invalid new name (16116.300167ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-MoA8GF
+✔ original private directory rename rejects at cleanup with valid new name (16190.171125ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-wWcUPF
+✔ original private directory rename rejects at prestdout with invalid new name (16118.15975ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-RWIaea
+✔ original private directory rename rejects at prestdout with valid new name (16165.68525ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-WYySJG
+✔ original private directory rename rejects at poststdout with invalid new name (16100.342375ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-GEy78f
+✔ original private directory rename rejects at poststdout with valid new name (16187.11475ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-C9TCIN
+✔ active monitor rejection retains first failure after owned cancellation (1347.020292ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-uagXhq
+✔ active private-growth rejection retains first failure after owned cancellation (16128.530375ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-ULzQXu
+✔ final bound log 0 append after stdout rejects (1508.811334ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-XMdp1C
+✔ final bound log 0 identity replacement after stdout rejects (16160.039875ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-vDsIxU
+✔ final bound log 1 append after stdout rejects (1505.137459ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-9xcizU
+✔ final bound log 1 identity replacement after stdout rejects (16159.353542ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-h9bW9a
+✔ version-five retained selection reaches adapter and frozen stream metadata (1560.961833ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-AHEDwm
+✔ unconsumed retained physical source rejects before first provider call (1184.976167ms)
+✔ launcher arguments require reviewed bytes and fresh scoped output (0.8355ms)
+✔ identity table parsing and transitive owned-group closure exclude unrelated rows (0.876334ms)
+✔ completed or reused historical group identities are permanently retired from signal authority (0.310917ms)
+✔ shared summary mentioning every phase receipt is charged only to its exact summary output role (0.386708ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33260,"elapsedWallSeconds":0.24343691699999997,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ registered normal child preserves output, original arguments, clean exit and measured gate overhead (427.8765ms)
+✔ natural module return closes runner and watchdog without forced successful exit (238.194334ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33277,"elapsedWallSeconds":0.236301917,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ referenced timer after module return closes runner and watchdog without forced successful exit (300.896625ms)
+✔ pending output drain closes runner and watchdog without forced successful exit (237.279958ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33291,"elapsedWallSeconds":0.23557725000000004,"registeredGates":0,"stdoutBytes":0,"stderrBytes":516,"stopping":true,"h3EvidenceEligible":false}
+✔ import error closes runner and watchdog without forced successful exit (348.206416ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33302,"elapsedWallSeconds":0.23744487500000014,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33302,"elapsedWallSeconds":0.43966516699999986,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33302,"elapsedWallSeconds":0.6405482079999999,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33302,"elapsedWallSeconds":0.841047875,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33302,"elapsedWallSeconds":1.0429367920000001,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33302,"elapsedWallSeconds":1.2449455,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ watchdog IPC loss still kills a live runner within its bounded exit observation (1359.519625ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33314,"elapsedWallSeconds":0.18680525000000034,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33314,"elapsedWallSeconds":0.33884887500000016,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33314,"elapsedWallSeconds":0.4909502080000002,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33314,"elapsedWallSeconds":0.6430285000000003,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33314,"elapsedWallSeconds":0.7949251250000002,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33314,"elapsedWallSeconds":0.9475715,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ blocked runner and detached target are stopped, while an unrelated process survives (986.125625ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33334,"elapsedWallSeconds":0.23505520899999965,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ parent exit before registration never starts its target (331.482875ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33346,"elapsedWallSeconds":0.18410475000000043,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33346,"elapsedWallSeconds":0.3360217500000008,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33346,"elapsedWallSeconds":0.48811654200000065,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33346,"elapsedWallSeconds":0.639176625,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ inspection failure after STOP uses self-owned cancellation and returns bounded unverified closure (776.583ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33358,"elapsedWallSeconds":0.18639679199999956,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33358,"elapsedWallSeconds":0.3383407079999997,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33358,"elapsedWallSeconds":0.4904330829999999,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33358,"elapsedWallSeconds":0.6425010419999999,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33358,"elapsedWallSeconds":0.794561917,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33358,"elapsedWallSeconds":0.946296792,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ inspection failure after CONT uses self-owned cancellation and preserves an unrelated process (961.790208ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33377,"elapsedWallSeconds":0.18404891700000006,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33377,"elapsedWallSeconds":0.33585683400000016,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33377,"elapsedWallSeconds":0.4879575839999998,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33377,"elapsedWallSeconds":0.6400425839999998,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ inspection failure before STOP uses self-owned cancellation without stale signal authority (703.289584ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33387,"elapsedWallSeconds":0.23580216599999948,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33387,"elapsedWallSeconds":0.43635499999999955,"registeredGates":1,"stdoutBytes":23,"stderrBytes":0,"stopping":true,"h3EvidenceEligible":false}
+✔ parent exit after acknowledgement retains and cleans the detached target group (524.329209ms)
+✔ deadline guard terminates a host with an unresolved final admission callback after child exit (15673.523417ms)
+✔ existing output is never overwritten and does not launch a bootstrap (19.862917ms)
+✔ final publication rechecks actual log bytes and refuses an already expired deadline (1.000917ms)
+✔ failure publication preserves rejected operational evidence without granting acceptance (0.389042ms)
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":33423,"elapsedWallSeconds":0.2460303329999988,"registeredGates":0,"stdoutBytes":0,"stderrBytes":0,"stopping":false,"h3EvidenceEligible":false}
+✔ captured-source commands above 64 KiB retain exact bounded ownership evidence (443.124042ms)
+ℹ tests 158
+ℹ suites 0
+ℹ pass 158
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 228131.790292

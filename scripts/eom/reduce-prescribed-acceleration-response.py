@@ -211,8 +211,9 @@ class Capture:
                 'input descriptor/path generation changed')
         require(sha(self._read()) == self.expected, 'input bytes changed')
 
-    def binding(self, role):
-        return dict(role=role, path=str(self.path), sha256=self.expected, bytes=self.before.st_size)
+    def binding(self, role, original_path=None):
+        return dict(role=role, path=str(self.path), originalPath=str(original_path or self.path),
+                    sha256=self.expected, bytes=self.before.st_size)
 
     def __exit__(self, *_):
         if self.fd is not None: os.close(self.fd)
@@ -618,7 +619,7 @@ def validate_output_bindings(bindings):
     pinned.update(predeclaration=PREDECLARATION_SHA, reference=REFERENCE_SHA, referenceTests=REFERENCE_TESTS_SHA)
     pinned.update(dict((*IMPORTS, *FORMULAS)))
     for row, role in zip(bindings, expected_roles):
-        keys(row, ('role', 'path', 'sha256', 'bytes'))
+        keys(row, ('role', 'path', 'originalPath', 'sha256', 'bytes'))
         require(row['role'] == role and type(row['path']) is str and Path(row['path']).is_absolute()
                 and type(row['sha256']) is str and HASH.fullmatch(row['sha256']), 'ordered exact original binding required')
         integer(row['bytes'], 0, JSON_LIMIT)
@@ -632,7 +633,16 @@ def validate_output_bindings(bindings):
     paths.update({p: p for p, _ in (*IMPORTS, *FORMULAS)})
     for row in bindings:
         if row['role'] in paths:
-            require(row['path'] == str(root/paths[row['role']]), 'original fixed binding path differs')
+            require(row['originalPath'] == str(root/paths[row['role']]), 'original fixed binding path differs')
+        else:
+            require(row['originalPath'] == row['path'], 'runtime identity cannot be redirected')
+        physical = Path(row['path'])
+        require(str(physical.absolute()) == row['path'] and '..' not in physical.parts,
+                'canonical physical binding path required')
+        if row['path'] != row['originalPath']:
+            require(row['role'] in ('approvedSource', 'scientificFixture', 'predeclaration')
+                    and physical.is_relative_to(root/'reference') and physical.suffix == '.source',
+                    'only declared original data may select a preserved source')
 
 
 def assemble_response(candidate_bytes, candidate_sha256, completion, execution, expected_bindings, expected_watcher_sha256):
@@ -653,7 +663,7 @@ def assemble_response(candidate_bytes, candidate_sha256, completion, execution, 
     candidate = decode(candidate_bytes)
     validate_output_bindings(expected_bindings)
     keys(candidate, ('schema', 'accepted', 'admissible', 'subject', 'bindings', 'referenceResult', 'referenceResultSha256', 'watcherSha256'))
-    require(candidate['schema'] == 'braid-program/prescribed-acceleration-response-private.v1'
+    require(candidate['schema'] == 'braid-program/prescribed-acceleration-response-private.v2'
             and candidate['accepted'] is False and candidate['admissible'] is False and candidate['subject'] == SUBJECT
             and candidate['bindings'] == expected_bindings and candidate['watcherSha256'] == expected_watcher_sha256,
             'private candidate generation/scope differs')
@@ -680,7 +690,7 @@ def assemble_response(candidate_bytes, candidate_sha256, completion, execution, 
             'external execution lacks accepted closure/resources')
     require(type(completion['elapsedSeconds']) in (int, float) and math.isfinite(completion['elapsedSeconds'])
             and 0 <= completion['elapsedSeconds'] <= execution['elapsedSeconds'], 'compute completion/external compute-stage time differs')
-    result = dict(schema='braid-program/prescribed-acceleration-response.v1', accepted=True,
+    result = dict(schema='braid-program/prescribed-acceleration-response.v2', accepted=True,
                 status='accepted-prescribed-response-enclosure', subject=candidate['subject'], bindings=candidate['bindings'],
                 referenceResult=candidate['referenceResult'], execution=dict(execution), claims={k: False for k in FALSE_CLAIMS},
                 newRootSearches=0, failures=[])
@@ -706,7 +716,7 @@ def contribution_progress(reference, watch):
 
 def compute(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    for flag in ('repo-root', 'consumer-sha256', 'consumer-tests-sha256', 'python-sha256', 'watcher-sha256', 'budget-seconds', 'out-dir'):
+    for flag in ('repo-root', 'consumer-sha256', 'consumer-tests-sha256', 'python-sha256', 'watcher-sha256', 'budget-seconds', 'out-dir', 'original-bindings'):
         parser.add_argument('--'+flag, required=True)
     args = parser.parse_args(argv)
     root, output = Path(args.repo_root).absolute(), Path(args.out_dir).absolute()
@@ -715,6 +725,9 @@ def compute(argv=None):
     for value in (args.consumer_sha256, args.consumer_tests_sha256, args.python_sha256, args.watcher_sha256):
         require(HASH.fullmatch(value), 'reviewed source/runtime/watcher hashes required')
     watch = Watch(args.budget_seconds)
+    selected = decode(args.original_bindings.encode())
+    validate_output_bindings(selected)
+    selected = {row['role']: row for row in selected}
     output.mkdir()
     candidate_binding = None
     try:
@@ -727,9 +740,13 @@ def compute(argv=None):
             captured, bindings = {}, []
             total = 0
             for role, filename, digest in specifications:
-                capture = stack.enter_context(Capture(root/filename, digest, progress=watch.bytes))
+                row = selected[role]
+                require(row['originalPath'] == str(root/filename) and row['sha256'] == digest,
+                        'selected original differs from executing source contract')
+                capture = stack.enter_context(Capture(row['path'], digest, progress=watch.bytes))
+                require(capture.before.st_size == row['bytes'], 'selected original size differs')
                 captured[role] = capture
-                bindings.append(capture.binding(role))
+                bindings.append(capture.binding(role, root/filename))
                 if role in {r for r, _, _ in SCIENCE}:
                     total += len(capture.data); require(total <= TOTAL_LIMIT, 'total original scientific input bound')
             verify_executing_consumer(captured['consumer'].data)
@@ -744,7 +761,7 @@ def compute(argv=None):
                     result = reference.evaluate_response(request).to_record()
                 watch.state['contributions'] = len(result['contributions'])
                 validate_reference_result(result)
-                candidate = dict(schema='braid-program/prescribed-acceleration-response-private.v1', accepted=False,
+                candidate = dict(schema='braid-program/prescribed-acceleration-response-private.v2', accepted=False,
                     admissible=False, subject=SUBJECT, bindings=bindings, referenceResult=result,
                     referenceResultSha256=sha(canonical(result)), watcherSha256=args.watcher_sha256)
                 watch.state['stage'] = 'private-publication'

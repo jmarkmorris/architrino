@@ -1,0 +1,146 @@
+{
+  "schema": "braid-program/subfield-circular-pilot-outer-process.v1",
+  "accepted": true,
+  "h3EvidenceEligible": false,
+  "authority": "registered-process-supervision-and-external-terminal-admission-only",
+  "startedAt": "2026-09-07T04:46:19.892Z",
+  "limitMs": 20000,
+  "scope": "direct-superviseRegisteredPilot-only; caller preparation/publication not guarded",
+  "budget": {
+    "startedAtMs": 107.054084,
+    "entryAtMs": 107.054584,
+    "workEndMs": 5107.054083999999,
+    "completionEndMs": 20107.054084,
+    "reserveMs": 15000
+  },
+  "inspectionAuthority": "explicit callback; its bounded probe lifetime and complete resource accounting require external review",
+  "spawnPlumbing": "captured-owned-bootstrap-intercepts-spawn; registered-gate-launches-original-command-in-owned-group",
+  "bootstrapSha256": "ab7a0a2418c1032493c4f035e1b311235ca87a7844cc3c0706ec344c622ad6ad",
+  "gateSha256": "a140ac54859e5c14ca3c2f564589be5a2397472eaf822c116da3f65b98f7800e",
+  "rootGuardSha256": "0f0116e8b39b2012dc368c758c1aa8e969cf6891794c93e2cef1324b33583c0a",
+  "gates": [],
+  "snapshots": [
+    {
+      "reason": "registered-root-guard",
+      "elapsedMilliseconds": 182.05958300000003,
+      "processes": [
+        {
+          "pid": 74929,
+          "ppid": 74925,
+          "pgid": 74929,
+          "started": "Mon Sep 7 00:46:19 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        },
+        {
+          "pid": 74930,
+          "ppid": 74929,
+          "pgid": 74930,
+          "started": "Mon Sep 7 00:46:19 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        }
+      ],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "runner-before-bootstrap",
+      "elapsedMilliseconds": 209.05458300000004,
+      "processes": [
+        {
+          "pid": 74929,
+          "ppid": 74925,
+          "pgid": 74929,
+          "started": "Mon Sep 7 00:46:19 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        },
+        {
+          "pid": 74930,
+          "ppid": 74929,
+          "pgid": 74930,
+          "started": "Mon Sep 7 00:46:19 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        }
+      ],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "runner-exit-census",
+      "elapsedMilliseconds": 238.425208,
+      "processes": [],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "final-complete-group-census",
+      "elapsedMilliseconds": 263.233916,
+      "processes": [],
+      "complete": true,
+      "truncated": false
+    }
+  ],
+  "signals": [],
+  "processesClosed": true,
+  "autonomousGateCancellation": "immutable self-owned target and runner-group behavior; no new reaction-time guarantee",
+  "guard": {
+    "sourceSha256": "ead24dec510af8a4e8e5732585e98693dccfec7df91a3c45102c2a3dfef2fb0e",
+    "bridgeNanoseconds": "693029969269416",
+    "bridgeMilliseconds": 107.864084,
+    "workDeadlineNanoseconds": "693034968459416",
+    "completionDeadlineNanoseconds": "693049968459416",
+    "ready": true,
+    "closed": true,
+    "schedulingBoundary": "independently schedulable worker and OS; no suspension/uninterruptible-OS guarantee",
+    "exitCode": 1
+  },
+  "outputReserved": true,
+  "rootGuard": {
+    "identity": {
+      "pid": 74930,
+      "ppid": 74929,
+      "pgid": 74930,
+      "started": "Mon Sep 7 00:46:19 2026",
+      "state": "Ss",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    "acknowledged": true,
+    "actualCommand": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+    "actualSourceSha256": "0f0116e8b39b2012dc368c758c1aa8e969cf6891794c93e2cef1324b33583c0a",
+    "registeredAtMilliseconds": 157.2575
+  },
+  "runner": {
+    "pid": 74929,
+    "ppid": 74925,
+    "pgid": 74929,
+    "started": "Mon Sep 7 00:46:19 2026",
+    "state": "Ss",
+    "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+  },
+  "exit": {
+    "code": 0,
+    "signal": null
+  },
+  "admission": {
+    "accepted": true,
+    "h3EvidenceEligible": false,
+    "scope": "synthetic operational control only"
+  },
+  "stdoutLog": {
+    "path": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/dpr-supervision-yFJIBq/attempt/runner-stdout.log",
+    "bytes": 18,
+    "sha256": "34e66c3baab8101e63c09a299f8641493f3d276e045ddc514d9202e57e72a142"
+  },
+  "stderrLog": {
+    "path": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/dpr-supervision-yFJIBq/attempt/runner-stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdoutDroppedBytes": 0,
+  "stderrDroppedBytes": 0,
+  "guardClosed": true,
+  "elapsedWallSeconds": 0.264108833
+}

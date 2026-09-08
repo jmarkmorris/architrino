@@ -1,0 +1,301 @@
+{
+  "knownCase": "passed before target",
+  "runs": [
+    {
+      "runId": "a1180874-99e0-46ad-8c7e-0640d14fe82a",
+      "status": "failed",
+      "command": "../.venv/bin/python",
+      "args": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_f6c_parent_emission_refinement_verification.py",
+        "-v"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "requestedAtUtc": "2026-09-07T06:37:50.544Z",
+      "startedAtUtc": "2026-09-07T06:37:50.618Z",
+      "finishedAtUtc": "2026-09-07T06:38:30.891Z",
+      "elapsedWallSeconds": 40.285,
+      "exitCode": 1,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "stopReason": null,
+      "stdout": "a1180874-99e0-46ad-8c7e-0640d14fe82a.stdout.log",
+      "stderr": "a1180874-99e0-46ad-8c7e-0640d14fe82a.stderr.log"
+    },
+    {
+      "runId": "13d835b5-23ba-45bf-b93a-9e3836515c21",
+      "status": "failed",
+      "command": "../.venv/bin/python",
+      "args": [
+        "reference/priorities/development-process-review/evidence/contract-implementation/check-historical-evidence.py"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "requestedAtUtc": "2026-09-07T06:40:53.442Z",
+      "startedAtUtc": "2026-09-07T06:40:53.514Z",
+      "finishedAtUtc": "2026-09-07T06:40:53.551Z",
+      "elapsedWallSeconds": 0.048,
+      "exitCode": 1,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "stopReason": null,
+      "stdout": "13d835b5-23ba-45bf-b93a-9e3836515c21.stdout.log",
+      "stderr": "13d835b5-23ba-45bf-b93a-9e3836515c21.stderr.log"
+    },
+    {
+      "runId": "3d8028c5-d48e-4717-a513-9cf621974a76",
+      "status": "failed",
+      "command": "../.venv/bin/python",
+      "args": [
+        "reference/priorities/development-process-review/evidence/contract-implementation/check-historical-evidence.py"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "requestedAtUtc": "2026-09-07T06:41:29.244Z",
+      "startedAtUtc": "2026-09-07T06:41:29.313Z",
+      "finishedAtUtc": "2026-09-07T06:41:29.663Z",
+      "elapsedWallSeconds": 0.361,
+      "exitCode": 1,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "stopReason": null,
+      "stdout": "3d8028c5-d48e-4717-a513-9cf621974a76.stdout.log",
+      "stderr": "3d8028c5-d48e-4717-a513-9cf621974a76.stderr.log"
+    },
+    {
+      "runId": "2bf248d6-8ff2-479f-8573-fb45b9aa4e1a",
+      "status": "completed",
+      "command": "../.venv/bin/python",
+      "args": [
+        "reference/priorities/development-process-review/evidence/contract-implementation/check-historical-evidence.py"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "requestedAtUtc": "2026-09-07T06:42:12.754Z",
+      "startedAtUtc": "2026-09-07T06:42:12.824Z",
+      "finishedAtUtc": "2026-09-07T06:42:14.807Z",
+      "elapsedWallSeconds": 1.994,
+      "exitCode": 0,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "stopReason": null,
+      "stdout": "2bf248d6-8ff2-479f-8573-fb45b9aa4e1a.stdout.log",
+      "stderr": "2bf248d6-8ff2-479f-8573-fb45b9aa4e1a.stderr.log"
+    },
+    {
+      "runId": "22352abc-806c-4851-b161-1690eb6bd4ee",
+      "status": "failed",
+      "command": "../.venv/bin/python",
+      "args": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_f6c_parent_emission_refinement_preparation.py",
+        "-v"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "requestedAtUtc": "2026-09-07T06:42:46.473Z",
+      "startedAtUtc": "2026-09-07T06:42:46.542Z",
+      "finishedAtUtc": "2026-09-07T06:43:19.740Z",
+      "elapsedWallSeconds": 33.208,
+      "exitCode": 1,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "stopReason": null,
+      "stdout": "22352abc-806c-4851-b161-1690eb6bd4ee.stdout.log",
+      "stderr": "22352abc-806c-4851-b161-1690eb6bd4ee.stderr.log"
+    },
+    {
+      "runId": "b386b5b1-a305-468e-b01e-b93d0005941e",
+      "status": "failed",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/contract-implementation/exercise-observer.mjs"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "requestedAtUtc": "2026-09-07T07:00:35.482Z",
+      "startedAtUtc": "2026-09-07T07:00:35.552Z",
+      "finishedAtUtc": "2026-09-07T07:00:35.780Z",
+      "elapsedWallSeconds": 0.24,
+      "exitCode": 1,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "stopReason": null,
+      "stdout": "b386b5b1-a305-468e-b01e-b93d0005941e.stdout.log",
+      "stderr": "b386b5b1-a305-468e-b01e-b93d0005941e.stderr.log"
+    },
+    {
+      "runId": "822eb1d6-a7ba-4580-a948-c890e3076383",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/contract-implementation/exercise-observer.mjs"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "requestedAtUtc": "2026-09-07T07:02:51.622Z",
+      "startedAtUtc": "2026-09-07T07:02:51.692Z",
+      "finishedAtUtc": "2026-09-07T07:02:53.251Z",
+      "elapsedWallSeconds": 1.57,
+      "exitCode": 0,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "stopReason": null,
+      "stdout": "822eb1d6-a7ba-4580-a948-c890e3076383.stdout.log",
+      "stderr": "822eb1d6-a7ba-4580-a948-c890e3076383.stderr.log"
+    },
+    {
+      "runId": "8bc8e06a-9ffb-40f4-ab41-a59727db6c21",
+      "status": "failed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-timeout=60000",
+        "tests/f6c-bounded-operation.test.js",
+        "tests/f6c-bounded-operation-closure.test.js",
+        "tests/f6c-parent-emission-refinement-pilot.test.js",
+        "tests/f6c-parent-refinement-batch-preparation.test.js",
+        "tests/owned-compute-supervisor.test.js"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "requestedAtUtc": "2026-09-07T07:04:53.468Z",
+      "startedAtUtc": "2026-09-07T07:04:53.536Z",
+      "finishedAtUtc": "2026-09-07T07:04:57.279Z",
+      "elapsedWallSeconds": 3.753,
+      "exitCode": 1,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "stopReason": null,
+      "stdout": "8bc8e06a-9ffb-40f4-ab41-a59727db6c21.stdout.log",
+      "stderr": "8bc8e06a-9ffb-40f4-ab41-a59727db6c21.stderr.log"
+    },
+    {
+      "runId": "860531bd-27dc-4c3f-8417-5149ca035e63",
+      "status": "completed",
+      "command": "../.venv/bin/python",
+      "args": [
+        "-m",
+        "unittest",
+        "tests.test_f6c_parent_emission_refinement_preparation",
+        "tests.test_f6c_parent_emission_refinement_verification",
+        "tests.test_f6c_historical_archive_contract"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "requestedAtUtc": "2026-09-07T07:04:58.138Z",
+      "startedAtUtc": "2026-09-07T07:04:58.207Z",
+      "finishedAtUtc": "2026-09-07T07:06:11.861Z",
+      "elapsedWallSeconds": 73.664,
+      "exitCode": 0,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "stopReason": null,
+      "stdout": "860531bd-27dc-4c3f-8417-5149ca035e63.stdout.log",
+      "stderr": "860531bd-27dc-4c3f-8417-5149ca035e63.stderr.log"
+    },
+    {
+      "runId": "d2f0e207-d15b-4efc-95e1-63ecfffefe3a",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-timeout=60000",
+        "tests/f6c-bounded-operation.test.js",
+        "tests/f6c-bounded-operation-closure.test.js",
+        "tests/f6c-parent-emission-refinement-pilot.test.js",
+        "tests/f6c-parent-refinement-batch-preparation.test.js",
+        "tests/owned-compute-supervisor.test.js"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "requestedAtUtc": "2026-09-07T07:06:49.825Z",
+      "startedAtUtc": "2026-09-07T07:06:49.895Z",
+      "finishedAtUtc": "2026-09-07T07:06:53.402Z",
+      "elapsedWallSeconds": 3.518,
+      "exitCode": 0,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "stopReason": null,
+      "stdout": "d2f0e207-d15b-4efc-95e1-63ecfffefe3a.stdout.log",
+      "stderr": "d2f0e207-d15b-4efc-95e1-63ecfffefe3a.stderr.log"
+    },
+    {
+      "runId": "3464cbd3-29bd-48c5-bc7b-2029bba93e09",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/contract-implementation/exercise-observer.mjs"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "requestedAtUtc": "2026-09-07T07:07:51.980Z",
+      "startedAtUtc": "2026-09-07T07:07:52.050Z",
+      "finishedAtUtc": "2026-09-07T07:07:53.610Z",
+      "elapsedWallSeconds": 1.571,
+      "exitCode": 0,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "stopReason": null,
+      "stdout": "3464cbd3-29bd-48c5-bc7b-2029bba93e09.stdout.log",
+      "stderr": "3464cbd3-29bd-48c5-bc7b-2029bba93e09.stderr.log"
+    },
+    {
+      "runId": "f731fdad-6d43-4653-8d52-7f69bc2be4a5",
+      "status": "completed",
+      "command": "../.venv/bin/python",
+      "args": [
+        "reference/priorities/development-process-review/evidence/contract-implementation/check-historical-evidence.py"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "requestedAtUtc": "2026-09-07T07:11:43.167Z",
+      "startedAtUtc": "2026-09-07T07:11:43.235Z",
+      "finishedAtUtc": "2026-09-07T07:11:45.167Z",
+      "elapsedWallSeconds": 1.942,
+      "exitCode": 0,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "stopReason": null,
+      "stdout": "f731fdad-6d43-4653-8d52-7f69bc2be4a5.stdout.log",
+      "stderr": "f731fdad-6d43-4653-8d52-7f69bc2be4a5.stderr.log"
+    },
+    {
+      "runId": "5e2c1283-1190-4ae0-b2b3-a5ef9eed2e5b",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/contract-implementation/exercise-observer.mjs"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "requestedAtUtc": "2026-09-07T07:12:13.692Z",
+      "startedAtUtc": "2026-09-07T07:12:13.762Z",
+      "finishedAtUtc": "2026-09-07T07:12:15.314Z",
+      "elapsedWallSeconds": 1.563,
+      "exitCode": 0,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "stopReason": null,
+      "stdout": "5e2c1283-1190-4ae0-b2b3-a5ef9eed2e5b.stdout.log",
+      "stderr": "5e2c1283-1190-4ae0-b2b3-a5ef9eed2e5b.stderr.log"
+    },
+    {
+      "runId": "184a3600-2bf3-4d92-9185-220268187959",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/contract-implementation/exercise-observer.mjs"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "requestedAtUtc": "2026-09-07T07:16:07.535Z",
+      "startedAtUtc": "2026-09-07T07:16:07.603Z",
+      "finishedAtUtc": "2026-09-07T07:16:09.157Z",
+      "elapsedWallSeconds": 1.564,
+      "exitCode": 0,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "stopReason": null,
+      "stdout": "184a3600-2bf3-4d92-9185-220268187959.stdout.log",
+      "stderr": "184a3600-2bf3-4d92-9185-220268187959.stderr.log"
+    }
+  ]
+}

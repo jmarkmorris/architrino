@@ -1,0 +1,282 @@
+TAP version 13
+# {"kind":"host-resource","stage":"preflight","elapsedSeconds":0.072322083,"freePercent":100,"availableDiskBytes":"939007184896","atLaunch":true}
+# {"kind":"host-resource","stage":"producer","elapsedSeconds":0.546648208,"freePercent":100,"availableDiskBytes":"939007127552","atLaunch":false}
+# {"kind":"host-resource","stage":"comparison","elapsedSeconds":1.0203437080000002,"freePercent":100,"availableDiskBytes":"939007086592","atLaunch":false}
+# {"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.078587791,"freePercent":100,"availableDiskBytes":"939007086592","atLaunch":false}
+# {"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.1028508750000001,"freePercent":100,"availableDiskBytes":"939006951424","atLaunch":false}
+# Subtest: captured launcher worker entry and Python wrapper close two synthetic stages with measured CPU
+ok 1 - captured launcher worker entry and Python wrapper close two synthetic stages with measured CPU
+  ---
+  duration_ms: 1175.877
+  type: 'test'
+  ...
+# {"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05878629100000012,"freePercent":100,"availableDiskBytes":"939006935040","atLaunch":true}
+# Subtest: first Python failure closes owned groups and leaves data absent without checker dispatch
+ok 2 - first Python failure closes owned groups and leaves data absent without checker dispatch
+  ---
+  duration_ms: 750.225042
+  type: 'test'
+  ...
+# {"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05856920799999989,"freePercent":100,"availableDiskBytes":"939006881792","atLaunch":true}
+# {"kind":"host-resource","stage":"producer","elapsedSeconds":0.5526081669999998,"freePercent":100,"availableDiskBytes":"939006808064","atLaunch":false}
+# Subtest: checker failure after publication cannot promote its existing synthetic file
+ok 3 - checker failure after publication cannot promote its existing synthetic file
+  ---
+  duration_ms: 1298.278167
+  type: 'test'
+  ...
+# {"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05789649999999983,"freePercent":100,"availableDiskBytes":"939006767104","atLaunch":true}
+# {"kind":"host-resource","stage":"producer","elapsedSeconds":0.5371171249999998,"freePercent":100,"availableDiskBytes":"939006709760","atLaunch":false}
+# {"kind":"host-resource","stage":"comparison","elapsedSeconds":1.0192257919999996,"freePercent":100,"availableDiskBytes":"939006689280","atLaunch":false}
+# {"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.074698667,"freePercent":100,"availableDiskBytes":"939006689280","atLaunch":false}
+# {"kind":"host-resource","stage":"final-admission","elapsedSeconds":3.1008687919999995,"freePercent":100,"availableDiskBytes":"939006533632","atLaunch":false}
+# Subtest: slow final publication stays observed through worker termination
+ok 4 - slow final publication stays observed through worker termination
+  ---
+  duration_ms: 3168.250709
+  type: 'test'
+  ...
+# {"kind":"host-resource","stage":"preflight","elapsedSeconds":0.060986833000000844,"freePercent":100,"availableDiskBytes":"939005460480","atLaunch":true}
+# {"kind":"host-resource","stage":"producer","elapsedSeconds":0.5885323330000001,"freePercent":100,"availableDiskBytes":"939005284352","atLaunch":false}
+# {"kind":"host-resource","stage":"comparison","elapsedSeconds":1.0754199580000003,"freePercent":100,"availableDiskBytes":"939005177856","atLaunch":false}
+# {"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.1314029580000007,"freePercent":100,"availableDiskBytes":"939005280256","atLaunch":false}
+# Subtest: late final publication failure preserves failed attempt and closed stage identities
+ok 5 - late final publication failure preserves failed attempt and closed stage identities
+  ---
+  duration_ms: 1164.597459
+  type: 'test'
+  ...
+# Subtest: startup interruption creates no target and releases owned common lock
+ok 6 - startup interruption creates no target and releases owned common lock
+  ---
+  duration_ms: 51.795584
+  type: 'test'
+  ...
+# {"kind":"host-resource","stage":"preflight","elapsedSeconds":0.0593973330000008,"freePercent":100,"availableDiskBytes":"939005202432","atLaunch":true}
+# Subtest: lost monitor cancels stubborn Python and prevents checker dispatch
+ok 7 - lost monitor cancels stubborn Python and prevents checker dispatch
+  ---
+  duration_ms: 516.455334
+  type: 'test'
+  ...
+# {"kind":"host-resource","stage":"preflight","elapsedSeconds":0.06545491599999968,"freePercent":100,"availableDiskBytes":"939005149184","atLaunch":true}
+# Subtest: monitor sink failure cancels stubborn Python and prevents checker dispatch
+ok 8 - monitor sink failure cancels stubborn Python and prevents checker dispatch
+  ---
+  duration_ms: 586.002167
+  type: 'test'
+  ...
+# {"kind":"host-resource","stage":"preflight","elapsedSeconds":0.0592096249999995,"freePercent":100,"availableDiskBytes":"939005112320","atLaunch":true}
+# Subtest: fresh stdout binding mismatch prevents comparison and retains closed first stage
+ok 9 - fresh stdout binding mismatch prevents comparison and retains closed first stage
+  ---
+  duration_ms: 552.051625
+  type: 'test'
+  ...
+# Subtest: real unread diagnostic pipe fails final drain then closes without a success completion
+ok 10 - real unread diagnostic pipe fails final drain then closes without a success completion
+  ---
+  duration_ms: 168.807833
+  type: 'test'
+  ...
+# Subtest: real unread diagnostics close on early failure without a success completion
+ok 11 - real unread diagnostics close on early failure without a success completion
+  ---
+  duration_ms: 177.792875
+  type: 'test'
+  ...
+# Subtest: real active-target diagnostic EPIPE cancels owned group releases lock and emits no accepted completion
+ok 12 - real active-target diagnostic EPIPE cancels owned group releases lock and emits no accepted completion
+  ---
+  duration_ms: 635.314
+  type: 'test'
+  ...
+# Subtest: all scientific implementation/control pins remain their separately frozen source generations
+ok 13 - all scientific implementation/control pins remain their separately frozen source generations
+  ---
+  duration_ms: 2.481708
+  type: 'test'
+  ...
+# Subtest: closed plan has no invented runtime/default fields and exact operational closure
+ok 14 - closed plan has no invented runtime/default fields and exact operational closure
+  ---
+  duration_ms: 4.137542
+  type: 'test'
+  ...
+# Subtest: duplicate JSON keys unsafe numbers malformed UTF8 and excessive nesting fail closed
+ok 15 - duplicate JSON keys unsafe numbers malformed UTF8 and excessive nesting fail closed
+  ---
+  duration_ms: 0.520334
+  type: 'test'
+  ...
+# Subtest: bounded source read and write preserve exact bytes and reject symlink/overwrite
+ok 16 - bounded source read and write preserve exact bytes and reject symlink/overwrite
+  ---
+  duration_ms: 7.572416
+  type: 'test'
+  ...
+# Subtest: pure helper capture refuses changed bytes and exposes only operational functions used here
+ok 17 - pure helper capture refuses changed bytes and exposes only operational functions used here
+  ---
+  duration_ms: 0.253334
+  type: 'test'
+  ...
+# Subtest: four data outputs and outer sibling are distinct and stages bind original manifest plus deadline
+ok 18 - four data outputs and outer sibling are distinct and stages bind original manifest plus deadline
+  ---
+  duration_ms: 0.67075
+  type: 'test'
+  ...
+# Subtest: captured Python wrapper reports real target CPU separately and rejects changed source
+ok 19 - captured Python wrapper reports real target CPU separately and rejects changed source
+  ---
+  duration_ms: 50.208292
+  type: 'test'
+  ...
+# Subtest: metadata inventory closes lazy large-integer division dependencies without scientific imports
+ok 20 - metadata inventory closes lazy large-integer division dependencies without scientific imports
+  ---
+  duration_ms: 55.218
+  type: 'test'
+  ...
+# Subtest: synthetic producer admission needs exact closed gate four-file census and binding chain
+ok 21 - synthetic producer admission needs exact closed gate four-file census and binding chain
+  ---
+  duration_ms: 114.481
+  type: 'test'
+  ...
+# Subtest: synthetic checker admission binds original streams complete replay and copied candidate claims
+ok 22 - synthetic checker admission binds original streams complete replay and copied candidate claims
+  ---
+  duration_ms: 127.007584
+  type: 'test'
+  ...
+# Subtest: rebound malformed manifest census domain algorithm and restrictions never acquire authority
+ok 23 - rebound malformed manifest census domain algorithm and restrictions never acquire authority
+  ---
+  duration_ms: 1513.753792
+  type: 'test'
+  ...
+# Subtest: rebound checker changed count stream binding restriction or authority fails closed
+ok 24 - rebound checker changed count stream binding restriction or authority fails closed
+  ---
+  duration_ms: 1119.987208
+  type: 'test'
+  ...
+# Subtest: each original stream is rehashed and truncation is rejected before either admission
+ok 25 - each original stream is rehashed and truncation is rejected before either admission
+  ---
+  duration_ms: 706.502542
+  type: 'test'
+  ...
+# Subtest: stage piping uses one detached registered target and rejects failure and log overflow
+ok 26 - stage piping uses one detached registered target and rejects failure and log overflow
+  ---
+  duration_ms: 7.546875
+  type: 'test'
+  ...
+# Subtest: metadata timeout waits for killed child closure
+ok 27 - metadata timeout waits for killed child closure
+  ---
+  duration_ms: 8.603166
+  type: 'test'
+  ...
+# Subtest: shared exclusion recognizes old/cached/full/root/range and both F5 stages
+ok 28 - shared exclusion recognizes old/cached/full/root/range and both F5 stages
+  ---
+  duration_ms: 1.300208
+  type: 'test'
+  ...
+# Subtest: explicit runtime launch options reject extras missing values unsafe hash and traversal
+ok 29 - explicit runtime launch options reject extras missing values unsafe hash and traversal
+  ---
+  duration_ms: 0.678834
+  type: 'test'
+  ...
+# Subtest: reused safeguards enforce first-to-last RSS interval host thresholds and stdout flush
+ok 30 - reused safeguards enforce first-to-last RSS interval host thresholds and stdout flush
+  ---
+  duration_ms: 16.821208
+  type: 'test'
+  ...
+# Subtest: captured file worker timeout is bounded and finalization requires complete closed stages
+ok 31 - captured file worker timeout is bounded and finalization requires complete closed stages
+  ---
+  duration_ms: 15.113834
+  type: 'test'
+  ...
+# Subtest: final diagnostics drain waits for queued writes and rejects stalled or late callbacks
+ok 32 - final diagnostics drain waits for queued writes and rejects stalled or late callbacks
+  ---
+  duration_ms: 12.786958
+  type: 'test'
+  ...
+# Subtest: final diagnostics EPIPE and callback failures reject and close only owned stream
+ok 33 - final diagnostics EPIPE and callback failures reject and close only owned stream
+  ---
+  duration_ms: 0.566875
+  type: 'test'
+  ...
+# Subtest: late durable final publication returns no admissible result and never overwrites earlier data
+ok 34 - late durable final publication returns no admissible result and never overwrites earlier data
+  ---
+  duration_ms: 6.971542
+  type: 'test'
+  ...
+# Subtest: failed attempt diagnostic epilogue cannot strand an unread stderr stream
+ok 35 - failed attempt diagnostic epilogue cannot strand an unread stderr stream
+  ---
+  duration_ms: 13.134375
+  type: 'test'
+  ...
+# Subtest: CLI failure epilogue invokes only nonzero exit after bounded diagnostics or sink throw
+ok 36 - CLI failure epilogue invokes only nonzero exit after bounded diagnostics or sink throw
+  ---
+  duration_ms: 11.518792
+  type: 'test'
+  ...
+# Subtest: failed stage projection retains unresolved process identities and cleanup failures without closure promotion
+ok 37 - failed stage projection retains unresolved process identities and cleanup failures without closure promotion
+  ---
+  duration_ms: 0.2715
+  type: 'test'
+  ...
+# Subtest: exact subject15 and operational12 closure rejects missing decimal controls and contradictory duplicates
+ok 38 - exact subject15 and operational12 closure rejects missing decimal controls and contradictory duplicates
+  ---
+  duration_ms: 0.886833
+  type: 'test'
+  ...
+# Subtest: private four-file publication monitor rejects repeat folders foreign files symlinks and oversized files
+ok 39 - private four-file publication monitor rejects repeat folders foreign files symlinks and oversized files
+  ---
+  duration_ms: 39.382292
+  type: 'test'
+  ...
+# Subtest: source capture and shutdown algorithms retain the accepted range generation
+ok 40 - source capture and shutdown algorithms retain the accepted range generation
+  ---
+  duration_ms: 0.523583
+  type: 'test'
+  ...
+# Subtest: attempt diagnostic guard retains first async or callback failure and remains attached through cleanup
+ok 41 - attempt diagnostic guard retains first async or callback failure and remains attached through cleanup
+  ---
+  duration_ms: 1.550041
+  type: 'test'
+  ...
+# Subtest: diagnostic guard waits for queued callbacks and bounds stalled failed cleanup without leaking healthy listeners
+ok 42 - diagnostic guard waits for queued callbacks and bounds stalled failed cleanup without leaking healthy listeners
+  ---
+  duration_ms: 10.767208
+  type: 'test'
+  ...
+1..42
+# tests 42
+# suites 0
+# pass 42
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14265.167083

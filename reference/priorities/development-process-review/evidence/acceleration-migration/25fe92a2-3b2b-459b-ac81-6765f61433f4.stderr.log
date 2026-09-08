@@ -1,0 +1,2 @@
+{"kind": "f6c-range-python-process-resources", "userSeconds": 0.095734, "systemSeconds": 0.021363999999999998, "waitedChildUserSeconds": 0.0, "waitedChildSystemSeconds": 0.0, "maximumIndividualResidentBytes": 92323840}
+{"kind": "f6c-range-python-process-resources", "userSeconds": 0.09000699999999999, "systemSeconds": 0.020796, "waitedChildUserSeconds": 0.0, "waitedChildSystemSeconds": 0.0, "maximumIndividualResidentBytes": 91176960}

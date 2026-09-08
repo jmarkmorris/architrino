@@ -18,6 +18,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 
 ## Efficiency
 
+- [*] Complete larger connected development batches per turn, including routine dependent repairs and validation, instead of returning after each small step (operator direction, 2026-09-07).
 - [*] Keep substantial sessions centered on one core geometrical closure target before app, prose, presentation, or infrastructure work.
 - [*] Start each substantial session with one closure objective, likely files in scope, and a definition of done.
 - [ ] Give the expected verification command, app path, or rendered target when that target is not obvious.
@@ -45,6 +46,8 @@ This is the living feedback backlog for improving the shared operator/developer 
 - [x] Require repository-controlled detached compute to carry an owner lease, deadline, heartbeat, authenticated handoff/stop control, and closeout check; reject new detached-launch paths through the owned-compute policy inventory.
 
 ## Clarity
+
+- [ ] Make long internal references easy to navigate by spoken section number; implement the [queued numbering convention](../priorities/aaa-operations/work-queue.md#ops-025--internal-reference-section-numbering) while preserving reader-facing numbering and promotion format.
 
 - [ ] Use [math-preview](../../.agents/skills/math-preview/SKILL.md) for substantial mathematics whose normal view is inadequate, with verified KaTeX, the project theme, and unchanged source.
 - [ ] Agent response shape — leading with the decision, explanation density, question format, live priority capture, and recommended next actions — is owned by [operator-explanation-standard.md](operator-explanation-standard.md) and is not tracked as backlog here. Items below concern how the operator frames requests, not how the agent answers. Free-association brainstorming remains welcome when no immediate decision is needed.

@@ -114,7 +114,7 @@ export function validationContractHash() {
       schema: RECEIPT_SCHEMA,
       commands: VALIDATION_COMMANDS,
       fingerprint:
-        "staged-index+unstaged-binary-diff+untracked-content+base+toolchain",
+        "staged-index+unstaged-binary-diff+untracked-content+base+toolchain+reject-partially-staged-paths",
     }),
   ]);
 }
@@ -154,6 +154,13 @@ export function captureValidationState({
     platform: process.platform,
     architecture: process.arch,
   };
+}
+
+export function assertStagedFilesMatchWorktree({ cwd = process.cwd() } = {}) {
+  const names = args => String(runGit(args, { cwd })).split("\0").filter(Boolean);
+  const staged = new Set(names(["diff", "--cached", "--no-ext-diff", "--no-renames", "--name-only", "-z", "--"]));
+  const partial = names(["diff", "--no-ext-diff", "--no-renames", "--name-only", "-z", "--"]).filter(name => staged.has(name));
+  if (partial.length) throw new Error(`staged files differ from tested working files: ${partial.join(", ")}`);
 }
 
 export function compareValidationStates(expected, actual) {
@@ -245,6 +252,11 @@ export function verifyValidationReceipt({
       current,
     };
   }
+  try {
+    assertStagedFilesMatchWorktree({ cwd });
+  } catch (error) {
+    return { valid: false, reason: error.message, receipt, current };
+  }
   return { valid: true, reason: "exact validation state match", receipt, current };
 }
 
@@ -283,6 +295,7 @@ export function runValidationAndWriteReceipt({
   runCommands = runValidationCommands,
 } = {}) {
   removeValidationReceipt({ cwd, receiptPath });
+  assertStagedFilesMatchWorktree({ cwd });
   const before = captureState({ cwd, baseRef });
   runCommands({ cwd, baseRef });
   const after = captureState({ cwd, baseRef });
@@ -293,6 +306,7 @@ export function runValidationAndWriteReceipt({
     );
   }
 
+  assertStagedFilesMatchWorktree({ cwd });
   writeValidationReceipt({ cwd, receiptPath, state: after });
   const finalState = captureState({ cwd, baseRef });
   const stableAfterWrite = compareValidationStates(after, finalState);
@@ -301,6 +315,12 @@ export function runValidationAndWriteReceipt({
     throw new Error(
       `repository state changed while writing receipt: ${stableAfterWrite.mismatch}`
     );
+  }
+  try {
+    assertStagedFilesMatchWorktree({ cwd });
+  } catch (error) {
+    removeValidationReceipt({ cwd, receiptPath });
+    throw error;
   }
   return after;
 }

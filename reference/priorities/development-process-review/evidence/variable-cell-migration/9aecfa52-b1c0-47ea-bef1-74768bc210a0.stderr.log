@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/check-retained-adapter.py", line 46, in <module>
+    with a.open_adapter(ROOT,adapter_sha256=bind(ROOT/a.SELF)['sha256'],controls_sha256=bind(ROOT/a.CONTROLS)['sha256'],
+         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            closure_owner_sha256=owner['sha256'],deadline=time.monotonic()+100,historical_evidence=selection)as obj:
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/markmorris/vibe/architrino/scripts/eom/f6c_variable_cell_adapter.py", line 1898, in open_adapter
+    reference.authenticate_prior(old,ancestry)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-continuous-reception-acceleration.py", line 413, in authenticate_prior
+    require(contract['verifierSha256']=='3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7' and
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        contract['declarationSha256']=='520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba' and
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        c['verifier']['sha256']==contract['verifierSha256'], 'prior oracle generation differs')
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-continuous-reception-acceleration.py", line 87, in require
+    raise ValueError(message)
+ValueError: prior oracle generation differs

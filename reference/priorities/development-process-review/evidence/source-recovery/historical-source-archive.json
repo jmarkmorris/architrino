@@ -1,0 +1,156 @@
+{
+  "claim": "Exact historical byte recovery only. Sources are data, not current execution dependencies.",
+  "knownCase": "SHA-256 abc passed before target",
+  "sources": [
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/launch-abc-enclosed-root-pilot.mjs",
+      "sha256": "5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa",
+      "bytes": 39465,
+      "file": "launch-abc-enclosed-root-pilot.mjs.source",
+      "gitBlob": "211eb505b7f61f223c39d55357b3a93a3fc67bf0"
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py",
+      "sha256": "af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386",
+      "bytes": 38160,
+      "file": "prepare-f6c-cached-continuous-reception-root-cover.py.source",
+      "gitBlob": "61d2ee829d83c7fc61b4c43d0ea269bc36c3a3e3"
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py",
+      "sha256": "19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132",
+      "bytes": 41336,
+      "file": "verify-f6c-cached-continuous-reception-root-cover.py.source",
+      "gitBlob": "b408f9ebcb62fc1220ca1a482ce64efae8a54926"
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md",
+      "sha256": "daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b",
+      "bytes": 10021,
+      "file": "2026-08-27-f6c-cached-root-cover-full-resource-plan.md.source",
+      "gitBlob": "baf743a3891739e833c0c7ad6b8c0683217453d3"
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
+      "sha256": "9abc7c3a80ad670e7bc7ad9f94a95f1fcd8924de425991032d6d26bba3372427",
+      "bytes": 11113,
+      "file": "test_f6c_cached_continuous_reception_root_cover_preparation.py.source",
+      "gitBlob": "834627d92cc01b839a1ba4dc43acdc5c7b2c325c"
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/tests/test_f6c_cached_continuous_reception_root_cover.py",
+      "sha256": "2fd2080b3b4facdc80b85cdc65610c2bfeefdd8eab5f7234e207d3d4908bc117",
+      "bytes": 11096,
+      "file": "test_f6c_cached_continuous_reception_root_cover.py.source",
+      "gitBlob": "f29d933da83ba19d6722775283325c5c3d68cf47"
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md",
+      "sha256": "7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4",
+      "bytes": 12103,
+      "file": "2026-08-27-f6c-cached-root-cover-predeclaration.md.source",
+      "gitBlob": "53dcd974361376f343653d2e409f258d09a09f25"
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md",
+      "sha256": "f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",
+      "bytes": 28340,
+      "file": "2026-08-27-f6c-continuous-reception-enclosure-contract.md.source",
+      "gitBlob": "865cfd618eeb39b19886d0692f1c779ed8721ce0"
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md",
+      "sha256": "6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936",
+      "bytes": 21031,
+      "file": "2026-08-27-f6c-accepted-frame-history-reconstruction.md.source",
+      "gitBlob": "653cd8f4baa9c9389310a3129cb4d978faeaa353"
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/tests/test_eom_continuous_reception_roots.py",
+      "sha256": "473cba3b039027879eeea6987515261faaadcf0833f3e4d2864fc610f5b7a144",
+      "bytes": 32501,
+      "file": "test_eom_continuous_reception_roots.py.source",
+      "gitBlob": "f79c824f90de0b9b8299a30f38cbd8eb2ef3aa5c"
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-accepted-frame-reconstruction.py",
+      "sha256": "80a96ebd0b306148b3eb96cb12e797c5cf80942e52ea457a8c6a72d58e8618a0",
+      "bytes": 31153,
+      "file": "verify-f6c-accepted-frame-reconstruction.py.source",
+      "gitBlob": "78a97ead17b93f1c66752d5ed5ec96b27770f6de"
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-retained-history-guards.py",
+      "sha256": "efaed33a6d6e55be5788ffb7e4e6f596fbc0381466a8308154dbd550743896b9",
+      "bytes": 31651,
+      "file": "verify-f6c-retained-history-guards.py.source",
+      "gitBlob": "935566449ffc4162a42d75e7c3cc7b483aa6bb8a"
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md",
+      "sha256": "765e6663cdd60323f84b9e1af52ba1399345322eb747727f2a0898b4dd0fd079",
+      "bytes": 25546,
+      "file": "2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md.source",
+      "gitBlob": "03c45fd7b1bffb9fa8e1f07701a9bdc44a80a302"
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-continuous-reception-root-cover.py",
+      "sha256": "2d25103e0fb6ab584485b7954465afe0fa5de556b3a7e111c56d20156b7011fd",
+      "bytes": 39929,
+      "file": "verify-f6c-continuous-reception-root-cover.py.source",
+      "gitBlob": "aa46cd746f0ede55a569a5a368e82e6f4f3a9902"
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md",
+      "sha256": "798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3",
+      "bytes": 10933,
+      "file": "2026-08-27-f6c-call-local-state-cache-equivalence.md.source",
+      "gitBlob": "6940d5d8416ec2b0594043a697727548ede53526"
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md",
+      "sha256": "46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef",
+      "bytes": 13021,
+      "file": "2026-08-27-f6c-root-cover-full-resource-plan.md.source",
+      "gitBlob": "2166adcfc0b4fb82057341337e751a2a8b5f8c72"
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md",
+      "sha256": "36b72681c116cedf1803cc89ead8b48a7d9604bae7f9bffd7b0f95b33c3bb9b4",
+      "bytes": 6754,
+      "file": "2026-08-27-f6c-root-cover-pilot-resource-plan.md.source",
+      "gitBlob": "257332b06d1ddaa2fc90abf397b620f70ecda117"
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/run-f6c-cached-root-cover-full.mjs",
+      "sha256": "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b",
+      "bytes": 27166,
+      "file": "original-full-entry.mjs.source",
+      "gitBlob": "53db9db24faeebb297f166a89c463cd77540f827"
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/launch-f6c-cached-root-cover-full.mjs",
+      "sha256": "0f11fe5e51ef52f95c02605b776fe6b94c72a67a4a5f2b69671870f5f548ae17",
+      "bytes": 26659,
+      "file": "launch-f6c-cached-root-cover-full.mjs.source",
+      "gitBlob": "0bb7e3521203d67a61c584ff8816ad5eb91e15a4"
+    }
+  ],
+  "unrecovered": [
+    {
+      "path": "/usr/bin/memory_pressure",
+      "sha256": "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56",
+      "bytes": 135248
+    },
+    {
+      "path": "/usr/bin/git",
+      "sha256": "179301dcb41ea78accc3fa0048a7e6f6710d891945a751a34addd622020c1818",
+      "bytes": 118928
+    },
+    {
+      "path": "/bin/ps",
+      "sha256": "472992c470606d28f577590decfecd7f4a20f832fd92c671bebc6d44790b5d02",
+      "bytes": 170816
+    }
+  ]
+}

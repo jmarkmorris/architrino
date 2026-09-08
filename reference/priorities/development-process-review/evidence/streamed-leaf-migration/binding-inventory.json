@@ -1,0 +1,124 @@
+{
+  "knownCase": "SHA-256 abc passed before inventory",
+  "currentDependencies": [
+    {
+      "role": "operationCoordinator",
+      "path": "scripts/eom/f6c-bounded-operation.mjs",
+      "expected": "d89bc20d6026ec5893047490a75aabe6f441a88a44b2a4e04c2baf2ae51678c4",
+      "actual": "f3bbaf59b3fec7340a3b68097d6745fef589c777273558a71cfd8744cfeeb13a"
+    },
+    {
+      "role": "operationCoordinatorControls",
+      "path": "tests/f6c-bounded-operation.test.js",
+      "expected": "0738e5134680c2cd0e927b764e5a65ab9b13b3a8e87b65048b56384bc7ae3302",
+      "actual": "0738e5134680c2cd0e927b764e5a65ab9b13b3a8e87b65048b56384bc7ae3302"
+    },
+    {
+      "role": "adapter",
+      "path": "scripts/eom/f6c_variable_cell_adapter.py",
+      "expected": "2f0b9ea1ff9ed60a8dacf1b8447ea2a075f482a2d9b505de46e24b1dafb16a25",
+      "actual": "2f0b9ea1ff9ed60a8dacf1b8447ea2a075f482a2d9b505de46e24b1dafb16a25"
+    },
+    {
+      "role": "adapterControls",
+      "path": "tests/test_f6c_variable_cell_adapter.py",
+      "expected": "1fe6838fc63b10cd8e0051ce03039db05b7ea8370c0b8f065beb3e59492df6c2",
+      "actual": "1fe6838fc63b10cd8e0051ce03039db05b7ea8370c0b8f065beb3e59492df6c2"
+    },
+    {
+      "role": "diagnostic",
+      "path": "scripts/eom/f6c_single_leaf_diagnostic.py",
+      "expected": "88b8fece4d8facc4943b01ebb5eb1cac2fe1061fecc86cae157a5d3ba4658a1e",
+      "actual": "88b8fece4d8facc4943b01ebb5eb1cac2fe1061fecc86cae157a5d3ba4658a1e"
+    },
+    {
+      "role": "diagnosticControls",
+      "path": "tests/test_f6c_single_leaf_diagnostic.py",
+      "expected": "47d502100d4f92e8c803f5f0dad7c248874f493ed0df9ef43e1e956e8e9bf71c",
+      "actual": "47d502100d4f92e8c803f5f0dad7c248874f493ed0df9ef43e1e956e8e9bf71c"
+    },
+    {
+      "role": "stream",
+      "path": "scripts/eom/f6c_streamed_leaf_session.py",
+      "expected": "12503e98995464abdca6b1c54616c27797f7ba8849d12217e8677fab7825e46a",
+      "actual": "12503e98995464abdca6b1c54616c27797f7ba8849d12217e8677fab7825e46a"
+    },
+    {
+      "role": "streamControls",
+      "path": "tests/test_f6c_streamed_leaf_session.py",
+      "expected": "8fd4f300db43fcd67eda052677ee1f004efda464db7b51eea40d69c6169cd39b",
+      "actual": "8fd4f300db43fcd67eda052677ee1f004efda464db7b51eea40d69c6169cd39b"
+    },
+    {
+      "role": "continuation",
+      "path": "scripts/eom/f6c_leaf_continuation.py",
+      "expected": "b98cce1a5dc1a1e3903146de39e8ff25d4bae996bd9bcd99ca4205fcb2ee6b0a",
+      "actual": "b98cce1a5dc1a1e3903146de39e8ff25d4bae996bd9bcd99ca4205fcb2ee6b0a"
+    },
+    {
+      "role": "continuationControls",
+      "path": "tests/test_f6c_leaf_continuation.py",
+      "expected": "ec3e156d1d1f71729c6649cbaf43db40779d873e37cfa0d1dd223966bde91743",
+      "actual": "ec3e156d1d1f71729c6649cbaf43db40779d873e37cfa0d1dd223966bde91743"
+    },
+    {
+      "role": "codec",
+      "path": "scripts/eom/f6c_leaf_evidence_codec.py",
+      "expected": "371f6eff5a7a50514816b9af04c98fdae18084cc364b35b565fc53acae76a79f",
+      "actual": "371f6eff5a7a50514816b9af04c98fdae18084cc364b35b565fc53acae76a79f"
+    },
+    {
+      "role": "codecControls",
+      "path": "tests/test_f6c_leaf_evidence_codec.py",
+      "expected": "af39c302680ce1a9d55c5539dfa3084f20132a12113d9b6285d6abbec074c648",
+      "actual": "af39c302680ce1a9d55c5539dfa3084f20132a12113d9b6285d6abbec074c648"
+    },
+    {
+      "role": "storage",
+      "path": "scripts/eom/f6c_leaf_stream_publication.py",
+      "expected": "5a638da1aa91ce80b9dcdfe503f4e2193a981c43e903719e4e18b5bb17c9658e",
+      "actual": "5a638da1aa91ce80b9dcdfe503f4e2193a981c43e903719e4e18b5bb17c9658e"
+    },
+    {
+      "role": "storageControls",
+      "path": "tests/test_f6c_leaf_stream_publication.py",
+      "expected": "b1c8e0a789ec2215d12a20e601dfc5175df3516c450373a624c8049b060d49ae",
+      "actual": "b1c8e0a789ec2215d12a20e601dfc5175df3516c450373a624c8049b060d49ae"
+    },
+    {
+      "role": "readiness",
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md",
+      "expected": null,
+      "actual": "771a92a875847b67458059e4c9353b0c883dd53aadf115fe3bf1fb0b8fcdad03"
+    },
+    {
+      "role": "transport",
+      "path": "scripts/eom/verify-f6c-refined-acceleration.py",
+      "expected": "e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae",
+      "actual": "e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae"
+    },
+    {
+      "role": "helpers",
+      "path": "scripts/eom/launch-prescribed-response-pilot.mjs",
+      "expected": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31",
+      "actual": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31"
+    },
+    {
+      "role": "outer",
+      "path": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+      "expected": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826",
+      "actual": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+    },
+    {
+      "role": "diagnostics",
+      "path": "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
+      "expected": "7a1f5571827225d1529f73a3f0b905be75e81e2f7d11c2670b697e0599d65e71",
+      "actual": "042684de5b23216a8af4a8187e02db3236206249d0f857215dc47a89b8c62d47"
+    }
+  ],
+  "editConsumers": [
+    "tests/f6c-streamed-leaf-diagnostic.test.js",
+    "scripts/eom/f6c-bounded-operation.mjs (loads invocation-selected caller; no caller digest literal)"
+  ],
+  "historicalPolicy": "Do not alter historical invocations or scientific reference bytes."
+}

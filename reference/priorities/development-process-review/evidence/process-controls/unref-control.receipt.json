@@ -1,0 +1,197 @@
+{
+  "schema": "braid-program/subfield-circular-pilot-outer-process.v1",
+  "accepted": false,
+  "h3EvidenceEligible": false,
+  "authority": "registered-process-supervision-and-external-terminal-admission-only",
+  "startedAt": "2026-09-07T04:35:02.337Z",
+  "limitMs": 20000,
+  "scope": "direct-superviseRegisteredPilot-only; caller preparation/publication not guarded",
+  "budget": {
+    "startedAtMs": 114.089208,
+    "entryAtMs": 114.089792,
+    "workEndMs": 5114.089208000001,
+    "completionEndMs": 20114.089208,
+    "reserveMs": 15000
+  },
+  "inspectionAuthority": "explicit callback; its bounded probe lifetime and complete resource accounting require external review",
+  "spawnPlumbing": "captured-owned-bootstrap-intercepts-spawn; registered-gate-launches-original-command-in-owned-group",
+  "bootstrapSha256": "80dcb9bf0bb9f5c37bfd73ea623ad6260b3626f6338e5964d401f9e16ef20a44",
+  "gateSha256": "a140ac54859e5c14ca3c2f564589be5a2397472eaf822c116da3f65b98f7800e",
+  "rootGuardSha256": "530629de944e1988bd38db47d90679d3640a5cedd7ecf8dc5f56a02bb14c9408",
+  "gates": [],
+  "snapshots": [
+    {
+      "reason": "registered-root-guard",
+      "elapsedMilliseconds": 182.333959,
+      "processes": [
+        {
+          "pid": 74481,
+          "ppid": 74477,
+          "pgid": 74481,
+          "started": "Mon Sep 7 00:35:02 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        },
+        {
+          "pid": 74482,
+          "ppid": 74481,
+          "pgid": 74482,
+          "started": "Mon Sep 7 00:35:02 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        }
+      ],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "runner-before-bootstrap",
+      "elapsedMilliseconds": 211.004209,
+      "processes": [
+        {
+          "pid": 74481,
+          "ppid": 74477,
+          "pgid": 74481,
+          "started": "Mon Sep 7 00:35:02 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        },
+        {
+          "pid": 74482,
+          "ppid": 74481,
+          "pgid": 74482,
+          "started": "Mon Sep 7 00:35:02 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        }
+      ],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "cleanup-owned-tree",
+      "elapsedMilliseconds": 243.60000000000002,
+      "processes": [],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "fresh-before-SIGSTOP",
+      "elapsedMilliseconds": 267.887625,
+      "processes": [],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "fresh-before-SIGTERM",
+      "elapsedMilliseconds": 292.09725000000003,
+      "processes": [],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "fresh-before-SIGCONT",
+      "elapsedMilliseconds": 316.53141700000003,
+      "processes": [],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "cleanup-census",
+      "elapsedMilliseconds": 340.340167,
+      "processes": [],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "final-complete-group-census",
+      "elapsedMilliseconds": 365.137667,
+      "processes": [],
+      "complete": true,
+      "truncated": false
+    }
+  ],
+  "signals": [],
+  "processesClosed": true,
+  "autonomousGateCancellation": "immutable self-owned target and runner-group behavior; no new reaction-time guarantee",
+  "guard": {
+    "sourceSha256": "ead24dec510af8a4e8e5732585e98693dccfec7df91a3c45102c2a3dfef2fb0e",
+    "bridgeNanoseconds": "692352415121958",
+    "bridgeMilliseconds": 114.922667,
+    "workDeadlineNanoseconds": "692357414288499",
+    "completionDeadlineNanoseconds": "692372414288499",
+    "ready": true,
+    "closed": true,
+    "schedulingBoundary": "independently schedulable worker and OS; no suspension/uninterruptible-OS guarantee",
+    "exitCode": 1
+  },
+  "outputReserved": true,
+  "rootGuard": {
+    "identity": {
+      "pid": 74482,
+      "ppid": 74481,
+      "pgid": 74482,
+      "started": "Mon Sep 7 00:35:02 2026",
+      "state": "Ss",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    "acknowledged": true,
+    "actualCommand": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+    "actualSourceSha256": "530629de944e1988bd38db47d90679d3640a5cedd7ecf8dc5f56a02bb14c9408",
+    "registeredAtMilliseconds": 156.724292
+  },
+  "runner": {
+    "pid": 74481,
+    "ppid": 74477,
+    "pgid": 74481,
+    "started": "Mon Sep 7 00:35:02 2026",
+    "state": "Ss",
+    "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+  },
+  "exit": {
+    "code": null,
+    "signal": "SIGKILL"
+  },
+  "firstFailure": {
+    "message": "runner did not exit cleanly",
+    "elapsedMilliseconds": 216.368917,
+    "afterAbort": false,
+    "evidence": {
+      "rows": [
+        {
+          "pid": 74481,
+          "ppid": 74477,
+          "pgid": 74481,
+          "started": "Mon Sep 7 00:35:02 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        },
+        {
+          "pid": 74482,
+          "ppid": 74481,
+          "pgid": 74482,
+          "started": "Mon Sep 7 00:35:02 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        }
+      ],
+      "complete": true,
+      "truncated": false
+    }
+  },
+  "stdoutLog": {
+    "path": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/dpr-supervision-lwQR38/attempt/runner-stdout.log",
+    "bytes": 18,
+    "sha256": "34e66c3baab8101e63c09a299f8641493f3d276e045ddc514d9202e57e72a142"
+  },
+  "stderrLog": {
+    "path": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/dpr-supervision-lwQR38/attempt/runner-stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdoutDroppedBytes": 0,
+  "stderrDroppedBytes": 0,
+  "guardClosed": true,
+  "elapsedWallSeconds": 0.365990792,
+  "failure": "runner did not exit cleanly"
+}

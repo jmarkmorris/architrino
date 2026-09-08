@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { spawn } from "node:child_process";
+import { spawn, execFile } from "node:child_process";
 import { createHash } from "node:crypto";
 import { existsSync, mkdtempSync, readFileSync, realpathSync, writeFileSync } from "node:fs";
 import os from "node:os";
@@ -118,6 +118,51 @@ test("registered normal child preserves output, original arguments, clean exit a
   assert.match(readFileSync(receipt.stderrLog.path, "utf8"), /synthetic-target-stderr/u);
   assert.equal(sha(readFileSync(receipt.stdoutLog.path)), receipt.stdoutLog.sha256);
   gone(Number(readFileSync(marker, "utf8"))); gone(receipt.runner.pid); gone(gate.identity.pid);
+});
+
+for (const [label, script, succeeds, stdout] of [
+  ["natural module return", "process.stdout.write('done');", true, "done"],
+  ["referenced timer after module return", "setTimeout(()=>process.stdout.write('later'),60);", true, "later"],
+  ["pending output drain", "process.stdout.write('x'.repeat(2*1024*1024));", true, "x".repeat(2*1024*1024)],
+  ["import error", "throw Error('synthetic import failure');", false, ""],
+]) {
+  test(`${label} closes runner and watchdog without forced successful exit`, async () => {
+    const { options } = fixture();
+    const bytes = Buffer.from(script);
+    options.sources = [{ path: options.entry, bytes, sha256: sha(bytes) }];
+    const receipt = succeeds ? await superviseRegisteredPilot(options) : await rejection(options);
+    assert.equal(receipt.accepted, succeeds);
+    assert.equal(receipt.processesClosed, true);
+    assert.equal(receipt.exit.code, succeeds ? 0 : 1);
+    assert.equal(receipt.exit.signal, null);
+    assert.equal(readFileSync(receipt.stdoutLog.path, "utf8"), stdout);
+    if (!succeeds) assert.match(readFileSync(receipt.stderrLog.path, "utf8"), /synthetic import failure/);
+    gone(receipt.runner.pid); gone(receipt.rootGuard.identity.pid);
+  });
+}
+
+test("watchdog IPC loss still kills a live runner within its bounded exit observation", async () => {
+  const filename = new URL("../scripts/eom/launch-subfield-circular-root-pilot.mjs", import.meta.url);
+  const source = readFileSync(filename, "utf8");
+  const site = "rootGuard.unref();rootGuard.channel?.unref();";
+  assert.equal(source.split(site).length, 2, "one explicit fault-injection site");
+  // Fault injection closes a real IPC channel; the watchdog implementation,
+  // signalling rules, and expected process observations are unchanged.
+  const injected = source.replace(site, "rootGuard.disconnect();");
+  const { superviseRegisteredPilot: supervise } = await import("data:text/javascript;base64," + Buffer.from(injected).toString("base64"));
+  const { options } = fixture();
+  const bytes = Buffer.from("setInterval(()=>{},1000);");
+  options.sources = [{ path: options.entry, bytes, sha256: sha(bytes) }];
+  const began = performance.now();
+  await assert.rejects(supervise(options), error => {
+    const receipt = error.outerReceipt;
+    assert.equal(receipt.accepted, false);
+    assert.equal(receipt.exit.signal, "SIGKILL");
+    assert.equal(receipt.processesClosed, true);
+    gone(receipt.runner.pid); gone(receipt.rootGuard.identity.pid);
+    assert.ok(performance.now() - began < 2500);
+    return true;
+  });
 });
 
 test("blocked runner and detached target are stopped, while an unrelated process survives", async () => {
@@ -249,4 +294,15 @@ test("failure publication preserves rejected operational evidence without granti
   assert.equal(written.accepted, false); assert.equal(written.h3EvidenceEligible, false);
   assert.match(written.publicationScope, /never-acceptance/u);
   await assert.rejects(outerWorkerOperation({ kind: "failure-publication", output: root, receipt: {} }), /exist/u);
+});
+
+test("captured-source commands above 64 KiB retain exact bounded ownership evidence", async () => {
+ const {options}=fixture();
+ options.inspectProcesses=async()=>parseOwnedProcessTable(await new Promise((resolve,reject)=>execFile('/bin/ps',['-axo','pid=,ppid=,pgid=,lstart=,stat=,args='],{encoding:'utf8',timeout:2000,maxBuffer:8*1024**2,env:{...process.env,LC_ALL:'C'}},(e,out)=>e?reject(e):resolve(out))));
+ const source=options.sources[0];source.bytes=Buffer.concat([source.bytes,Buffer.from('\n//'+ 'x'.repeat(55000))]);source.sha256=sha(source.bytes);
+ const receipt=await superviseRegisteredPilot(options);
+ assert.equal(receipt.accepted,true);assert.equal(receipt.processesClosed,true);assert.equal(receipt.guardClosed,true);
+ const commands=receipt.snapshots.flatMap(s=>s.processes).map(p=>p.command??'');
+ assert(commands.some(c=>c.length>65536),'long captured command was actually observed');
+ assert(receipt.snapshots.every(s=>s.complete&&!s.truncated));gone(receipt.runner.pid);
 });

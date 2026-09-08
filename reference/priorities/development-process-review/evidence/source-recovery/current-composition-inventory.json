@@ -1,0 +1,100 @@
+{
+  "scope": "exact paths from the source-generation test, after the preparation pin correction",
+  "rows": [
+    {
+      "path": "scripts/eom/prepare-f6c-refined-acceleration.py",
+      "expected": "cb7bbef900b620d908cbcf3803793826c87cbf41e7f42d75c8fd26cf59ca5b8b",
+      "actual": "cb7bbef900b620d908cbcf3803793826c87cbf41e7f42d75c8fd26cf59ca5b8b"
+    },
+    {
+      "path": "tests/test_f6c_refined_acceleration_preparation.py",
+      "expected": "28ac5b67e594f52ea151fa00ddb04dabbbe8a522108a7421ec56550b70e87252",
+      "actual": "28ac5b67e594f52ea151fa00ddb04dabbbe8a522108a7421ec56550b70e87252"
+    },
+    {
+      "path": "scripts/eom/verify-f6c-refined-acceleration.py",
+      "expected": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015",
+      "actual": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015"
+    },
+    {
+      "path": "tests/test_f6c_refined_acceleration.py",
+      "expected": "4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a",
+      "actual": "d65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-refined-cover-acceleration-projection.md",
+      "expected": "c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d",
+      "actual": "a9d871a35e6e9f00e96ba07182798cb87f546eabe0664e7f170b67c820bb43fc"
+    },
+    {
+      "path": "scripts/eom/oracle/f6c_refined_acceleration_conformance.py",
+      "expected": "7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e",
+      "actual": "7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e"
+    },
+    {
+      "path": "tests/test_f6c_refined_acceleration_conformance.py",
+      "expected": "147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921",
+      "actual": "147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921"
+    },
+    {
+      "path": "scripts/eom/oracle/continuous_reception_acceleration.py",
+      "expected": "abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8",
+      "actual": "abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8"
+    },
+    {
+      "path": "tests/test_eom_continuous_reception_acceleration.py",
+      "expected": "26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823",
+      "actual": "26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823"
+    },
+    {
+      "path": "scripts/eom/verify-f6c-continuous-reception-acceleration.py",
+      "expected": "23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d",
+      "actual": "23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d"
+    },
+    {
+      "path": "tests/test_f6c_continuous_reception_acceleration.py",
+      "expected": "13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed",
+      "actual": "13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed"
+    },
+    {
+      "path": "scripts/eom/launch-prescribed-response-pilot.mjs",
+      "expected": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31",
+      "actual": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31"
+    },
+    {
+      "path": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+      "expected": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826",
+      "actual": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json",
+      "expected": "5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86",
+      "actual": "5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md",
+      "expected": "8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378",
+      "actual": "8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md",
+      "expected": "8d2c7819962db6bac0e1ea0939292992145dbe342a28b51928efb81e74478179",
+      "actual": "8d2c7819962db6bac0e1ea0939292992145dbe342a28b51928efb81e74478179"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md",
+      "expected": "7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc",
+      "actual": "7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md",
+      "expected": "db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc",
+      "actual": "db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md",
+      "expected": "710279f5c348a81fd36d58c6ca704730b3fa70da729ca30b9c92ae4e1cc6734b",
+      "actual": "710279f5c348a81fd36d58c6ca704730b3fa70da729ca30b9c92ae4e1cc6734b"
+    }
+  ]
+}

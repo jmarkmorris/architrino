@@ -1,0 +1,47 @@
+[
+  {
+    "path": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+    "before": "543fe61726d799e482681b1f32a7cb553c38a81b6ff2cd04649e9d8805e4074a",
+    "after": "7075322e83ad4dce350ace413be572f8a32b0512c3cea3696a16c89cffa94400",
+    "bindings": [
+      {
+        "dependency": "tests/f6c-root-cover-pilot-process.test.js",
+        "before": "cc0cac9ea3059239463e36f09f9d289146b6be92443daeda0136a16b6ecf6629",
+        "after": "159244ee6d45bc92463ff5e27ac60d416114820b187a6ab767983ec01e228c6b"
+      }
+    ],
+    "lines": [
+      {
+        "line": 351,
+        "text": "  const proc=frozen(\"tests/f6c-root-cover-pilot-process.test.js\",\"cc0cac9ea3059239463e36f09f9d289146b6be92443daeda0136a16b6ecf6629\");"
+      }
+    ]
+  },
+  {
+    "path": "tests/f6c-cached-root-cover-full.test.js",
+    "before": "96e0a15f2a689e39c7087d6ac7b79784e8d3da0b25b5204b9b87e6a9d6b7c3a7",
+    "after": "6a56f99cf906832a03b161cc877e8bdec3250bce78eac8e8c3e027d212f52eb8",
+    "bindings": [
+      {
+        "dependency": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+        "before": "543fe61726d799e482681b1f32a7cb553c38a81b6ff2cd04649e9d8805e4074a",
+        "after": "7075322e83ad4dce350ace413be572f8a32b0512c3cea3696a16c89cffa94400"
+      },
+      {
+        "dependency": "tests/f6c-cached-root-cover-pilot-process.test.js",
+        "before": "72a68ac029d0ef269daa4c1508ee122a4548953e1238d237c7de5518556ea736",
+        "after": "433452397ac00c2deaa6a9300b84510f553943c491fd49c965a7573a691b0cf7"
+      }
+    ],
+    "lines": [
+      {
+        "line": 599,
+        "text": "  const prior=frozen(\"tests/f6c-cached-root-cover-pilot-launcher.test.js\",\"543fe61726d799e482681b1f32a7cb553c38a81b6ff2cd04649e9d8805e4074a\").split(\"\\n// Cached successor binding controls;\")[0];"
+      },
+      {
+        "line": 603,
+        "text": "  const process=frozen(\"tests/f6c-cached-root-cover-pilot-process.test.js\",\"72a68ac029d0ef269daa4c1508ee122a4548953e1238d237c7de5518556ea736\");"
+      }
+    ]
+  }
+]

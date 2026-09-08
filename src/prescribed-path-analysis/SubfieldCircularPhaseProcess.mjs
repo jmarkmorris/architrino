@@ -99,7 +99,14 @@ export async function runSubfieldCircularPhaseProcess(options) {
   const groupExists = () => {
     if (!child?.pid) return false;
     try { process.kill(-child.pid, 0); return true; }
-    catch (error) { if (error.code === "ESRCH") return false; throw error; }
+    catch (error) {
+      if (error.code === "ESRCH") return false;
+      receipt.groupProbeError = error.message;
+      fail(error);
+      // A denied probe cannot establish absence. Keep the bounded cleanup
+      // active and require a later ESRCH before reporting group closure.
+      return true;
+    }
   };
   const signalGroup = (signal) => {
     if (!child?.pid) return;

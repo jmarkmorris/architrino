@@ -85,7 +85,20 @@ function cancel(){
 // This sidecar remains outside the runner group so it is schedulable when that
 // group is stopped. It signals only its still-live parent group, never a
 // historical or reparented PID.
-process.on('disconnect',cancel);
+// IPC closes while the parent is exiting, before reparenting is necessarily
+// visible. Allow that exit to finish; a parent that stays alive after losing
+// IPC is still cancelled within one second. The supervisor channel and
+// explicit cancellation remain armed throughout this bounded observation.
+process.on('disconnect',()=>{
+ const end=performance.now()+1000;
+ function observe(){
+  if(finished)return;
+  if(process.ppid!==data.runnerPid){finished=true;clearTimeout(timeout);process.exit(0);}
+  if(performance.now()>=end){cancel();return;}
+  setTimeout(observe,10);
+ }
+ observe();
+});
 connection.on('error',cancel);
 connection.on('close',cancel);
 for(const signal of ['SIGTERM','SIGINT'])process.on(signal,cancel);
@@ -138,8 +151,14 @@ rootGuard.once('message',guardMessage=>{
  process.once('message',async message=>{
   if(message?.event!=='bootstrap-start'||message.secret!==data.secret)process.exit(125);
   process.argv=[process.execPath,path.resolve(data.root,data.entry),...data.args];
-  try{await import(pathToFileURL(process.argv[1]).href);if(process.connected)process.disconnect()}
-  catch(error){console.error(error.stack);process.exitCode=1;if(process.connected)process.disconnect()}
+  try{await import(pathToFileURL(process.argv[1]).href)}
+  catch(error){console.error(error.stack);process.exitCode=1}
+  finally{
+   // The watchdog observes lifetime; it must not extend the workload's event
+   // loop. Referenced workload handles and pending output still drain normally.
+   rootGuard.unref();rootGuard.channel?.unref();
+   if(process.connected)process.disconnect();
+  }
  });
  process.send({event:'bootstrap-ready',pid:process.pid,rootGuardPid:rootGuard.pid});
 });
@@ -449,7 +468,10 @@ export async function superviseRegisteredPilot({ root, entry, args, sources, out
       if (boundedRows.length >= 4096) { truncated = true; break; }
       const value = {};
       for (const key of Object.keys(row)) if (typeof row[key] === "string") {
-        value[key] = row[key].slice(0, 65536); if (value[key] !== row[key]) truncated = true;
+        // Captured-source bootstrap arguments can exceed 64 KiB. Preserve
+        // exact strings; the complete row and snapshot byte caps below still
+        // reject oversized evidence rather than silently shortening identity.
+        value[key] = row[key];
       } else if (row[key] === null || ["number", "boolean"].includes(typeof row[key])) value[key] = row[key];
       const n = Buffer.byteLength(JSON.stringify(value));
       if (bytes + n > cap) { truncated = true; break; }
@@ -807,7 +829,17 @@ arm();parentPort.postMessage({event:'ready',self,work:String(work),end:String(en
     receipt.exit = await bounded(() => rootClosed, "runner close");
     await bounded(() => Promise.all([...jobs]), "registration and stdio jobs");
     requireThat(receipt.exit.code === 0 && !receipt.exit.signal, "runner did not exit cleanly");
-    const remainingRows = ownedRows(await inspect(false)); remember("runner-exit-census", remainingRows);
+    let remainingRows = ownedRows(await inspect(false));
+    // Runner close and the sidecar's observation of parent exit are distinct
+    // events. Wait only for that authenticated watchdog, never for unexplained
+    // workload descendants, and retain the original work deadline.
+    const guardExitEnd = Math.min(workEnd, performance.now() + 1000);
+    while (remainingRows.length && remainingRows.every(row => row.pid === rootGuardRecord?.identity?.pid)) {
+      requireThat(performance.now() < guardExitEnd, "root guard remained after runner exit");
+      await pause(false, 10);
+      remainingRows = ownedRows(await inspect(false));
+    }
+    remember("runner-exit-census", remainingRows);
     requireThat(!remainingRows.length, "runner exited with owned descendants");
     receipt.processesClosed = !receipt.firstOwnershipFailure;
     requireThat(receipt.gates.every(gate => gate.acknowledged && gate.target && gate.measurement &&

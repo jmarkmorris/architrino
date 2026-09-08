@@ -1,0 +1,47 @@
+{
+  "schema": "architrino.owned-compute-lease.v1",
+  "runId": "0bc7155c-1803-4983-9540-c191788ba224",
+  "status": "stopping",
+  "requestedAtUtc": "2026-09-07T16:59:14.835Z",
+  "startedAtUtc": "2026-09-07T16:59:14.905Z",
+  "deadlineAtUtc": "2026-09-07T17:14:14.836Z",
+  "heartbeatAtUtc": "2026-09-07T16:59:44.910Z",
+  "heartbeatMs": 15000,
+  "terminationGraceMs": 5000,
+  "owner": {
+    "task": "01a07cbc-b8ac-7ae3-8f49-1635827ab34b",
+    "threadId": null
+  },
+  "ownerHistory": [],
+  "command": "node",
+  "args": [
+    "scripts/pr-validation-receipt.mjs",
+    "run",
+    "--base",
+    "origin/main"
+  ],
+  "cwd": "/Users/markmorris/vibe/architrino",
+  "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/0bc7155c-1803-4983-9540-c191788ba224.stdout.log",
+  "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/0bc7155c-1803-4983-9540-c191788ba224.stderr.log",
+  "stdoutBytes": 155681,
+  "stderrBytes": 0,
+  "lastOutputAtUtc": "2026-09-07T16:59:44.532Z",
+  "sidecarIdentity": {
+    "pid": 43262,
+    "ppid": 43261,
+    "pgid": 43262,
+    "started": "Mon Sep 7 12:59:14 2026",
+    "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node /Users/markmorris/vibe/architrino/scripts/dev/owned-compute-supervisor.mjs __sidecar 0bc7155c-1803-4983-9540-c191788ba224"
+  },
+  "targetIdentity": {
+    "pid": 43265,
+    "ppid": 43262,
+    "pgid": 43265,
+    "started": "Mon Sep 7 12:59:14 2026",
+    "command": "node scripts/pr-validation-receipt.mjs run --base origin/main"
+  },
+  "claimBoundary": "Operational process ownership only; scientific validity and acceptance remain with the target's declared instruments and owners.",
+  "elapsedWallSeconds": 30.016,
+  "stopReason": "Finalize raw-evidence whitespace attributes before exact-state validation",
+  "stopRequestedAtUtc": "2026-09-07T16:59:48.351Z"
+}

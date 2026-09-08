@@ -1,0 +1,817 @@
+{
+  "knownCases": "passed before target reads",
+  "scope": "seven named commits; whole-file equality after replacing lowercase 64-digit hexadecimal tokens; hash-only is syntactic, not semantic approval",
+  "records": [
+    {
+      "revision": "730940e16eb8ab51519a338e29f35c8a762fc122",
+      "files": [
+        {
+          "file": "reference/op/session-root-self-test.md",
+          "classification": "other-change"
+        },
+        {
+          "file": "reference/priorities/aaa-operations/work-log.md",
+          "classification": "other-change"
+        },
+        {
+          "file": "reference/priorities/aaa-operations/work-queue.md",
+          "classification": "other-change"
+        },
+        {
+          "file": "reference/priorities/braid-program/work-queue.md",
+          "classification": "other-change"
+        }
+      ]
+    },
+    {
+      "revision": "295a24ce27c272580a5c9fa857b69cb4d6e94927",
+      "files": [
+        {
+          "file": "reference/priorities/aaa-operations/work-queue.md",
+          "classification": "other-change"
+        },
+        {
+          "file": "reference/priorities/braid-program/work-queue.md",
+          "classification": "other-change"
+        },
+        {
+          "file": "scripts/eom/f6c_parent_emission_refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/f6c_variable_cell_adapter.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/oracle/f6c_emission_refinement_conformance.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/oracle/f6c_refined_acceleration_conformance.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f6c-continuous-reception-acceleration.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f6c-continuous-reception-root-cover.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f6c-emission-refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f6c-parent-emission-refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f6c-refined-acceleration.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-acceleration-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-cached-root-cover-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-emission-refinement-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-evidence-packaging.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-refined-acceleration-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-root-cover-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-accepted-frame-reconstruction.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-continuous-reception-acceleration.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-continuous-reception-root-cover.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-emission-refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-parent-emission-refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-refined-acceleration.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-retained-history-guards.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/f6c-acceleration-pilot.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/f6c-cached-root-cover-full.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/f6c-evidence-packaging.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/f6c-refined-acceleration-pilot.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/fixtures/f6c-lossless-packaging-expectations.v1.json",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_eom_continuous_reception_roots.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_cached_continuous_reception_root_cover.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_continuous_reception_acceleration.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_continuous_reception_acceleration_preparation.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_emission_refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_evidence_package.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_parent_emission_refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_parent_emission_refinement_conformance.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_refined_acceleration_conformance.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_refined_acceleration_preparation.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_single_leaf_diagnostic.py",
+          "classification": "hash-only"
+        }
+      ]
+    },
+    {
+      "revision": "590ddc942b3427f1b0f2b5caeaf0205a292c6146",
+      "files": [
+        {
+          "file": "reference/priorities/braid-program/work-queue.md",
+          "classification": "other-change"
+        },
+        {
+          "file": "scripts/eom/f6c_parent_emission_refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/f6c_variable_cell_adapter.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/oracle/f6c_emission_refinement_conformance.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/oracle/f6c_refined_acceleration_conformance.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f6c-continuous-reception-acceleration.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f6c-continuous-reception-root-cover.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f6c-emission-refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f6c-parent-emission-refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f6c-refined-acceleration.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-acceleration-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-cached-root-cover-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-emission-refinement-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-evidence-packaging.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-refined-acceleration-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-root-cover-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-accepted-frame-reconstruction.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-continuous-reception-acceleration.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-continuous-reception-root-cover.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-emission-refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-parent-emission-refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-refined-acceleration.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/f6c-acceleration-pilot.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/f6c-cached-root-cover-full.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/f6c-evidence-packaging.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/f6c-parent-emission-refinement-pilot.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/f6c-parent-refinement-batch-preparation.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/f6c-refined-acceleration-pilot.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/fixtures/f6c-lossless-packaging-expectations.v1.json",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_cached_continuous_reception_root_cover.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_continuous_reception_acceleration.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_continuous_reception_acceleration_preparation.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_emission_refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_evidence_package.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_parent_emission_refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_parent_emission_refinement_conformance.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_parent_emission_refinement_preparation.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_parent_emission_refinement_verification.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_refined_acceleration_conformance.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_refined_acceleration_preparation.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_single_leaf_diagnostic.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_variable_cell_adapter.py",
+          "classification": "hash-only"
+        }
+      ]
+    },
+    {
+      "revision": "582efe4bff7e89db05dfa50d41f0e5e421bae3a5",
+      "files": [
+        {
+          "file": "reference/priorities/braid-program/work-queue.md",
+          "classification": "other-change"
+        },
+        {
+          "file": "scripts/eom/dispatch-subfield-circular-root-ladder.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/f6c-bounded-operation.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/f6c_variable_cell_adapter.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/launch-f5-prehistory-handoff-build.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/launch-f6c-acceleration-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/launch-f6c-cached-root-cover-full.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/launch-f6c-cached-root-cover-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/launch-f6c-refined-acceleration-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/launch-f6c-root-cover-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/launch-prescribed-response-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/oracle/f5_api_domain_conformance.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f5-enclosed-root.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f6c-emission-refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f6c-parent-emission-refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f6c-refined-acceleration.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-subfield-circular-root.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/publish-prescribed-acceleration-response.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f5-enclosed-root.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-acceleration-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-cached-root-cover-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-emission-refinement-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-refined-acceleration-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-root-cover-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-prescribed-response-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-subfield-circular-root-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-subfield-circular-root-rung.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-parent-emission-refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-refined-acceleration.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/f5-prehistory-handoff-build-startup.test.js",
+          "classification": "other-change"
+        },
+        {
+          "file": "tests/f6c-cached-root-cover-full.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/f6c-refined-acceleration-pilot.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_parent_emission_refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_single_leaf_diagnostic.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_streamed_leaf_session.py",
+          "classification": "hash-only"
+        }
+      ]
+    },
+    {
+      "revision": "959247191a8758086459177bb1c3ce23cb2cc365",
+      "files": [
+        {
+          "file": "scripts/eom/dispatch-subfield-circular-root-ladder.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/f6c-bounded-operation.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/f6c_variable_cell_adapter.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/launch-f5-prehistory-handoff-build.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/launch-f6c-acceleration-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/launch-f6c-cached-root-cover-full.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/launch-f6c-cached-root-cover-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/launch-f6c-refined-acceleration-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/launch-f6c-root-cover-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/launch-prescribed-response-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f5-enclosed-root.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f6c-emission-refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f6c-parent-emission-refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-f6c-refined-acceleration.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/prepare-subfield-circular-root.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/publish-prescribed-acceleration-response.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/reduce-prescribed-acceleration-response.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f5-enclosed-root.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-acceleration-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-cached-root-cover-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-emission-refinement-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-refined-acceleration-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-root-cover-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-prescribed-response-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-subfield-circular-root-pilot.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/run-subfield-circular-root-rung.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f5-enclosed-root-prefix.mjs",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-parent-emission-refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "scripts/eom/verify-f6c-refined-acceleration.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/f6c-cached-root-cover-full.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/f6c-refined-acceleration-pilot.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_parent_emission_refinement.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_single_leaf_diagnostic.py",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/test_f6c_streamed_leaf_session.py",
+          "classification": "hash-only"
+        }
+      ]
+    },
+    {
+      "revision": "bb9d82d94744eaa602e948998d86ceb90bf16271",
+      "files": [
+        {
+          "file": "reference/priorities/aaa-operations/work-queue.md",
+          "classification": "other-change"
+        },
+        {
+          "file": "reference/priorities/braid-program/work-queue.md",
+          "classification": "other-change"
+        }
+      ]
+    },
+    {
+      "revision": "36d34a26244cedd5fe103c9f836090bd2438b9ad",
+      "files": [
+        {
+          "file": "reference/op/README-op.md",
+          "classification": "other-change"
+        },
+        {
+          "file": "reference/priorities/aaa-operations/work-queue.md",
+          "classification": "other-change"
+        },
+        {
+          "file": "reference/priorities/braid-program/work-queue.md",
+          "classification": "other-change"
+        },
+        {
+          "file": "reference/priorities/field-speed-ceiling/work-queue.md",
+          "classification": "other-change"
+        },
+        {
+          "file": "reference/priorities/operator-document-style-conversion-ledger.md",
+          "classification": "other-change"
+        },
+        {
+          "file": "tests/f5-independent-interpolation-enclosure.test.js",
+          "classification": "hash-only"
+        },
+        {
+          "file": "tests/markdown-runtime-layout.test.js",
+          "classification": "other-change"
+        }
+      ]
+    }
+  ]
+}

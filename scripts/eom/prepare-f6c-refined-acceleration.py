@@ -78,12 +78,12 @@ TOKEN = re.compile(r'-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?\Z')
 HEX = re.compile(r'[0-9a-f]{64}\Z')
 
 # Shared protocol literals only; no checker implementation is imported.
-DECLARATION_SHA='c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d'
+DECLARATION_SHA='a9d871a35e6e9f00e96ba07182798cb87f546eabe0664e7f170b67c820bb43fc'
 CORE='scripts/eom/oracle/f6c_refined_acceleration_conformance.py'
 CORE_SHA='7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e'
 NAMED={
  'consumer':(SELF,None),'consumerControls':(CONTROLS,None),
- 'verifier':('scripts/eom/verify-f6c-refined-acceleration.py','545173faecf58ee82af7e95dccdc853fc0803bf21ca22685a9c242b495212421'),'verifierControls':('tests/test_f6c_refined_acceleration.py','4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a'),
+ 'verifier':('scripts/eom/verify-f6c-refined-acceleration.py','e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae'),'verifierControls':('tests/test_f6c_refined_acceleration.py','d65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd'),
  'declaration':(DECLARATION,DECLARATION_SHA),
  'comparisonCore':(CORE,CORE_SHA),
  'comparisonCoreControls':('tests/test_f6c_refined_acceleration_conformance.py','147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921'),
@@ -120,8 +120,8 @@ OPERATIONS=('scripts/eom/run-f6c-refined-acceleration-pilot.mjs',
  'tests/f6c-refined-acceleration-pilot.test.js','tests/f6c-refined-acceleration-pilot-process.test.js',
  'scripts/eom/launch-prescribed-response-pilot.mjs','scripts/eom/launch-subfield-circular-root-pilot.mjs',
  '/bin/ps','/usr/bin/memory_pressure')
-OP_PINS={'scripts/eom/launch-prescribed-response-pilot.mjs':'7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7',
- 'scripts/eom/launch-subfield-circular-root-pilot.mjs':'3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a',
+OP_PINS={'scripts/eom/launch-prescribed-response-pilot.mjs':'f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31',
+ 'scripts/eom/launch-subfield-circular-root-pilot.mjs':'35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826',
  '/usr/bin/memory_pressure':'a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56'}
 PLAN_KEYS=('schema','scope',*NAMED,'runtimeBindings','operationalBindings','limits','priorRefinementClosure')
 CANDIDATE_KEYS=tuple('schema scope status accepted launchPlan consumer declaration verifier sourceBindings ancestryBindings refinementBindings runtimeBindings operationalBindings priorRefinementClosure projection ranges census claims publicationRequires'.split())

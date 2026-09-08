@@ -1,0 +1,2 @@
+35b260cf0003c0584901fbed35d2a8e350641f9fd380bc093a4df3203ac3b878  scripts/dev/owned-compute-supervisor.mjs
+3051d146ac1e52e2abb41850abfedea69241a300f94d197ca8c0b8588ccc918e  tests/owned-compute-supervisor.test.js

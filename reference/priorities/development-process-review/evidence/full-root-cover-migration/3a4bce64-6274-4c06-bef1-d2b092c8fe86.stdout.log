@@ -1,0 +1,61 @@
+{"kind":"host-resource","elapsedSeconds":0.08587491700000001,"atLaunch":true,"freePercent":100,"availableDiskBytes":"943747100672"}
+{"kind":"host-resource","elapsedSeconds":0.6460785000000001,"atLaunch":false,"freePercent":100,"availableDiskBytes":"943746736128"}
+{"kind":"host-resource","elapsedSeconds":1.143591417,"atLaunch":false,"freePercent":100,"availableDiskBytes":"943746125824"}
+{"kind":"host-resource","elapsedSeconds":1.192100709,"atLaunch":false,"freePercent":100,"availableDiskBytes":"943746117632"}
+{"kind":"host-resource","elapsedSeconds":1.214886,"atLaunch":false,"freePercent":100,"availableDiskBytes":"943745990656"}
+✔ two captured synthetic stages register and close separately before final admission (1310.511542ms)
+{"kind":"host-resource","elapsedSeconds":0.052639290999999956,"atLaunch":true,"freePercent":100,"availableDiskBytes":"943745982464"}
+✔ first synthetic target failure closes owned groups and prevents comparison dispatch (730.423791ms)
+{"kind":"host-resource","elapsedSeconds":0.05334033400000044,"atLaunch":true,"freePercent":100,"availableDiskBytes":"943745953792"}
+{"kind":"host-resource","elapsedSeconds":0.5436664170000004,"atLaunch":false,"freePercent":100,"availableDiskBytes":"943745916928"}
+{"kind":"host-resource","elapsedSeconds":1.0218305840000004,"atLaunch":false,"freePercent":100,"availableDiskBytes":"943745900544"}
+{"kind":"host-resource","elapsedSeconds":1.070361042,"atLaunch":false,"freePercent":100,"availableDiskBytes":"943745896448"}
+{"kind":"host-resource","elapsedSeconds":3.594499625,"atLaunch":false,"freePercent":100,"availableDiskBytes":"943745765376"}
+✔ slow final publication remains sampled through captured worker closure (3654.73025ms)
+✔ startup interruption launches no target and releases its owned lock (42.431625ms)
+{"kind":"host-resource","elapsedSeconds":0.05362391699999989,"atLaunch":true,"freePercent":100,"availableDiskBytes":"943745732608"}
+✔ lost process monitoring cancels a stubborn owned target with honest unverified closure (512.510375ms)
+{"kind":"host-resource","elapsedSeconds":0.05322541699999965,"atLaunch":true,"freePercent":100,"availableDiskBytes":"943745703936"}
+✔ monitor log failure cancels a stubborn owned target before any comparison (573.233ms)
+✔ machine plan is full-only and binds complete frozen sources/environment (3.449042ms)
+✔ all frozen hashes and comparison schema match disk without reading scientific data (4.74225ms)
+✔ source capture rejects replacement, symlinks, byte bound and overwrite (1.02775ms)
+✔ stage controls retain exact hash/manifest and full-only arguments (1.161208ms)
+✔ captured Python bootstrap executes a synthetic byte-bound program and measures CPU (80.740667ms)
+✔ synthetic mechanical handoff checks exact output/gate/resource census (41.155459ms)
+✔ synthetic comparison admission requires authenticated preceding output and exact claims (28.070375ms)
+✔ single-stage piping rejects child failure and log overflow without a second dispatch (2.889541ms)
+✔ metadata-only inventory has bounded timeout and awaits its killed child closure (28.007084ms)
+✔ host minima equality is accepted and fractional/malformed/low values fail (0.363ms)
+✔ RSS samples enforce aggregate sum, exact2GiB stop and conservative <=1s timing (0.174167ms)
+✔ late synchronous teardown cannot hide an observation-to-closure gap (0.080125ms)
+✔ final stdout is awaited and a stalled flush is destroyed within its remaining deadline (50.288834ms)
+✔ stdout callback failure and a callback past the RSS-gap deadline cannot admit (0.849291ms)
+✔ metadata runtime inventory includes the loaded future-feature source and cache (76.370417ms)
+✔ process observations retain birth identity, RSS and complete command line (0.383041ms)
+✔ owned RSS tracks detached group after parent exit, excluding unrelated and PS probe (0.336875ms)
+✔ startup abort is consumed once and cleanup inspection remains available (0.126791ms)
+✔ exclusive lock cannot steal stale/replaced lock or remove another inode (11.405416ms)
+✔ competing pilot is rejected but own captured stage descendants are allowed (0.185292ms)
+✔ bounded log and partial progress retain raw bytes and reject backwards counts (0.481875ms)
+✔ worker deadline and abort reject hung captured file operation and close worker (57.18725ms)
+✔ file worker executes captured generation, not changed on-disk source (13.915708ms)
+✔ final publication needs completed stages and live inclusive clock (5.333959ms)
+✔ launcher CLI requires all exact hashes and rejects path traversal (0.2105ms)
+✔ source composition pins unchanged registered bootstrap and sequential stages (0.174583ms)
+✔ full consumer admits only the exact complete 160-cell census, never a pilot or prefix (342.082458ms)
+✔ full comparison authenticates every full census and rejects fresh wrong-count receipts (333.145291ms)
+✔ full progress accepts beyond the pilot through10240 and rejects overflow, reversal and noninteger counts (1.543583ms)
+✔ all pilot and full addresses share the unchanged exclusion and lock lane (0.297958ms)
+✔ full machine plan refuses pilot scope and prior resource plan without relaxing operational limits (0.864875ms)
+✔ full composition differs from frozen pilot only by declared addresses scope census and resource bindings (1.279833ms)
+✔ all32 original operational obligations survive full scope retargeting unchanged (0.899041ms)
+✔ measured full resource rule and every frozen pilot input are mandatory source bindings (0.565041ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6907.274666

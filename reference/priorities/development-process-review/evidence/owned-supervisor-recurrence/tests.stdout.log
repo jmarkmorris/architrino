@@ -1,0 +1,42 @@
+✔ exact CLI flags and hashes; captured imports do not execute CLI (1.098875ms)
+✔ pure plan preparation yields original3/4/5 tokens and40MiB commitment (50.876083ms)
+✔ closed source/configuration/identity/schema/census mutations reject (62.793459ms)
+✔ only actually consumed exact historical document routes admit (41.039542ms)
+✔ expanded runtime cannot exceed downstream one-MiB plan consumer bound (130.650708ms)
+✔ exclusive publication retains original descriptors until closure (11.43275ms)
+✔ byte-identical replacement and final callback replacement reject and retain (31.32975ms)
+✔ deadline/callback failures retain bytes and close all owned descriptors (13.379ms)
+✔ post-open fstat failure closes unregistered file and directory descriptors (1.080125ms)
+✔ accepted detached-launch inventory names every current specialized owner (124.308375ms)
+✔ an unregistered detached launch fails closed (1.226291ms)
+✔ project Stop hook invokes the canonical owner-aware closeout adapter (0.799292ms)
+✔ Stop hook uses the stable session id as the owner-task label (0.734125ms)
+✔ Stop hook fails closed when the task identity is absent (0.063ms)
+✔ Stop hook fails closed on a malformed successful closeout report (0.101834ms)
+✔ Stop hook continues the turn while its owner has live compute (742.404583ms)
+✔ programmatic foreground ownership returns the same closed lease without changing caller exit status (174.322167ms)
+✔ foreground compute records exact ownership and closes its process group (323.09975ms)
+✔ an invalid command produces an immediate closed failure lease (291.516042ms)
+✔ detached compute supports authenticated handoff and controlled stop (685.0125ms)
+✔ a detached run cannot outlive its declared deadline (1076.426625ms)
+✔ a lost supervisor leaves an exactly identifiable group that can be reconciled (378.913709ms)
+✔ a missing leader cannot clear a surviving group or sidecar (702.914792ms)
+✔ foreground wait reports lost supervision before the target deadline (310.5055ms)
+✔ stop reports observed closure when its supervisor dies after acknowledging stop (550.158375ms)
+✔ identity mismatch refuses a historical or reused PID (70.340958ms)
+✔ prune applies only to old closed terminal records (68.624792ms)
+✔ prune is a dry-run unless apply is explicit (68.205291ms)
+✔ prune requires an explicit age threshold (63.326917ms)
+✔ prune retains terminal records newer than the explicit age (67.572583ms)
+✔ prune retains nonterminal records (71.525792ms)
+✔ prune refuses a declared log path outside owned-compute state (68.60725ms)
+✔ prune refuses a symlinked deletion target (68.012792ms)
+✔ prune retains identity-uncertain compute without signaling it (71.209583ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5799.651125

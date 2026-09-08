@@ -1,0 +1,59 @@
+{
+  "classification": "terminal",
+  "lease": {
+    "schema": "architrino.owned-compute-lease.v1",
+    "runId": "e3e840e6-bbbc-4853-8b82-f8226a29a20d",
+    "status": "completed",
+    "requestedAtUtc": "2026-09-07T22:32:01.390Z",
+    "startedAtUtc": "2026-09-07T22:32:01.458Z",
+    "deadlineAtUtc": "2026-09-07T22:35:01.390Z",
+    "heartbeatAtUtc": "2026-09-07T22:32:06.461Z",
+    "heartbeatMs": 5000,
+    "terminationGraceMs": 5000,
+    "owner": {
+      "task": "01a07cbc-b8ac-7ae3-8f49-1635827ab34b",
+      "threadId": null
+    },
+    "ownerHistory": [],
+    "command": "node",
+    "args": [
+      "--test",
+      "tests/prescribed-response-pilot-entry.test.js",
+      "tests/prescribed-response-pilot-launcher.test.js",
+      "tests/prescribed-response-pilot-process.test.js"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/e3e840e6-bbbc-4853-8b82-f8226a29a20d.stdout.log",
+    "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/e3e840e6-bbbc-4853-8b82-f8226a29a20d.stderr.log",
+    "stdoutBytes": 4672,
+    "stderrBytes": 0,
+    "lastOutputAtUtc": "2026-09-07T22:32:07.629Z",
+    "sidecarIdentity": {
+      "pid": 52148,
+      "ppid": 52147,
+      "pgid": 52148,
+      "started": "Mon Sep 7 18:32:01 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node /Users/markmorris/vibe/architrino/scripts/dev/owned-compute-supervisor.mjs __sidecar e3e840e6-bbbc-4853-8b82-f8226a29a20d"
+    },
+    "targetIdentity": {
+      "pid": 52151,
+      "ppid": 52148,
+      "pgid": 52151,
+      "started": "Mon Sep 7 18:32:01 2026",
+      "command": "node --test tests/prescribed-response-pilot-entry.test.js tests/prescribed-response-pilot-launcher.test.js tests/prescribed-response-pilot-process.test.js"
+    },
+    "claimBoundary": "Operational process ownership only; scientific validity and acceptance remain with the target's declared instruments and owners.",
+    "elapsedWallSeconds": 6.184,
+    "finishedAtUtc": "2026-09-07T22:32:07.632Z",
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "control": {
+      "host": "127.0.0.1",
+      "port": 62370,
+      "authentication": "token-redacted"
+    }
+  }
+}

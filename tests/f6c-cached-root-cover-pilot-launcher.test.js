@@ -17,7 +17,7 @@ const binding=(p,h="1".repeat(64))=>({path:p,sha256:h,bytes:1});
 function plan() {
   const python=path.resolve(process.env.AAA_VENV??"../.venv","bin/python"),node=realpathSync(process.execPath);
   const sources=[R.CONSUMER,"scripts/eom/oracle/continuous_reception_roots_cached.py","scripts/eom/oracle/certified_history.py","scripts/eom/oracle/decimal_interval.py"];
-  return {schema:"braid-program/f6c-cached-root-cover-pilot-launch.v1",scope:"pilot-cell-0",resourcePlan:binding(R.RESOURCE_PLAN,R.PINS[R.RESOURCE_PLAN]),
+  return {schema:"braid-program/f6c-cached-root-cover-pilot-launch.v2",scope:"pilot-cell-0",resourcePlan:binding(R.RESOURCE_PLAN,R.PINS[R.RESOURCE_PLAN]),
     python,pythonRealPath:realpathSync(python),git:realpathSync("/usr/bin/git"),node,
     comparisonContract:{declarationSha256:R.PINS["reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md"],verifierSha256:R.PINS[R.COMPARISON],scope:"pilot-cell-0",
       subjectSourceBindings:sources.map(p=>binding(p,R.PINS[p])),runtimeBindings:[binding(realpathSync(python)),binding(realpathSync("/usr/bin/git")),binding(path.resolve(python,"../../pyvenv.cfg"))]},
@@ -26,7 +26,7 @@ function plan() {
 }
 test("machine plan is pilot-only and binds complete frozen sources/environment",()=>{
   const p=plan();assert.equal(R.validatePlan(p,root,"1".repeat(64),"1".repeat(64)),p);
-  for(const mutate of [p=>p.scope="full",p=>p.comparisonContract.scope="full",p=>p.operationalBindings.pop(),
+  for(const mutate of [p=>p.schema=p.schema.replace(".v2",".v1"),p=>p.scope="full",p=>p.comparisonContract.scope="full",p=>p.operationalBindings.pop(),
     p=>p.comparisonContract.subjectSourceBindings.pop(),p=>p.comparisonContract.runtimeBindings.pop(),
     p=>p.resourcePlan.sha256="0".repeat(64),p=>p.extra=true,p=>p.pythonRealPath=p.python,p=>p.controlBindings[0].sha256="0".repeat(64)]) {
     const bad=structuredClone(p);mutate(bad);assert.throws(()=>R.validatePlan(bad,root,"1".repeat(64),"1".repeat(64)));
@@ -267,8 +267,8 @@ const CACHED_PATH_REPLACEMENTS=[
     "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md"
   ],
   [
-    "braid-program/f6c-root-cover-pilot-launch.v1",
-    "braid-program/f6c-cached-root-cover-pilot-launch.v1"
+    "braid-program/f6c-root-cover-pilot-launch.v2",
+    "braid-program/f6c-cached-root-cover-pilot-launch.v2"
   ],
   [
     "braid-program/f6c-root-cover-pilot-admission.v1",
@@ -303,7 +303,7 @@ const CACHED_HASH_REPLACEMENTS=[
 ];
 const CACHED_EXTRA_PINS="  \"tests/test_eom_continuous_reception_roots_cached.py\": \"a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md\": \"3b20e5d7bce4b57dfd41c0d1efcc34f9242dcd41a02b35676f45ba0984499578\",\n  \"scripts/eom/oracle/continuous_reception_roots.py\": \"f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c\",\n  \"scripts/eom/verify-f6c-continuous-reception-root-cover.py\": \"1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36\",\n  \"tests/test_f6c_continuous_reception_root_cover.py\": \"5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md\": \"a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md\": \"2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40\",\n";
 const CACHED_EXPECTED_PINS={
-  "scripts/eom/launch-subfield-circular-root-pilot.mjs": "3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a",
+  "scripts/eom/launch-subfield-circular-root-pilot.mjs": "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c",
   "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py": "7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5",
   "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py": "3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7",
   "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md": "1a6327933b0060905aec97022e87c243b54f353af8c7aec83712967b285b010d",
@@ -321,7 +321,7 @@ const CACHED_EXPECTED_PINS={
   ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json": "f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1",
   ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json": "7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43",
   ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json": "86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880",
-  "/usr/bin/memory_pressure": "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56",
+  "/usr/bin/memory_pressure": "ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da",
   "tests/test_eom_continuous_reception_roots_cached.py": "a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb",
   "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md": "3b20e5d7bce4b57dfd41c0d1efcc34f9242dcd41a02b35676f45ba0984499578",
   "scripts/eom/oracle/continuous_reception_roots.py": "f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c",
@@ -333,22 +333,22 @@ const CACHED_EXPECTED_PINS={
 const CACHED_REGEX_REPLACEMENT=["/reduce-prescribed-acceleration-response\\.py|(?:run|launch)-f6c-root-cover-pilot\\.mjs|prepare-f6c-continuous-reception-root-cover\\.py/u","/reduce-prescribed-acceleration-response\\.py|(?:run|launch)-f6c(?:-cached)?-root-cover-pilot\\.mjs|prepare-f6c(?:-cached)?-continuous-reception-root-cover\\.py/u"];
 const replacePaths=source=>{for(const[a,b]of CACHED_PATH_REPLACEMENTS)source=source.split(a).join(b);return source;};
 const frozen=(p,h)=>{const bytes=readFileSync(p);assert.equal(digest(bytes),h,p);return bytes.toString("utf8");};
-test("cached composition exact source delta is binding/address-only, not operational logic",()=>{
-  const oldEntry=frozen("scripts/eom/run-f6c-root-cover-pilot.mjs","c01c6a6bfaee2bd49ee693e896686298de011c2db5365174d80d869b3da2630c");
+test("current cached composition exact source delta is binding/address-only, not operational logic",()=>{
+  const oldEntry=frozen("scripts/eom/run-f6c-root-cover-pilot.mjs","47725e154ab54da14ab272c9293374dc67ed531bd02ecc892842ea8f52a5059b");
   let expected=replacePaths(oldEntry);
   for(const[a,b]of CACHED_HASH_REPLACEMENTS){assert.equal(expected.split(a).length,2);expected=expected.replace(a,b);}
-  const marker='  "/usr/bin/memory_pressure": "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56",\n';
+  const marker='  "/usr/bin/memory_pressure": "ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da",\n';
   assert.equal(expected.split(marker).length,2);expected=expected.replace(marker,marker+CACHED_EXTRA_PINS);
   assert.equal(readFileSync(R.ENTRY,"utf8"),expected);
-  const oldLauncher=frozen("scripts/eom/launch-f6c-root-cover-pilot.mjs","af4e71ec25e9e615abf117b02f7793e6a9ede0274c7b8ade1bd7e408c411c412");
+  const oldLauncher=frozen("scripts/eom/launch-f6c-root-cover-pilot.mjs","940409097ff39365effef47c7ce46a77b9212b14adf2f15f69baa0a2865edb34");
   expected=replacePaths(oldLauncher);
   const[a,b]=CACHED_REGEX_REPLACEMENT;assert.equal(expected.split(a).length,2);expected=expected.replace(a,b);
   assert.equal(readFileSync(R.LAUNCHER,"utf8"),expected);
   assert.deepEqual(R.PINS,CACHED_EXPECTED_PINS);
 });
 test("all32 original entry/launcher/process control obligations survive exact retargeting",()=>{
-  const unit=frozen("tests/f6c-root-cover-pilot.test.js","a4122c03d8aa0d1cd506df63b6f7074674f2a1a7b79d631052c89b0000df6541");
-  const proc=frozen("tests/f6c-root-cover-pilot-process.test.js","cc0cac9ea3059239463e36f09f9d289146b6be92443daeda0136a16b6ecf6629");
+  const unit=frozen("tests/f6c-root-cover-pilot.test.js","00e9c947ef8082e596bca7c1bb8d4c61fd9029cbf136ee9d7910b765ca3cec9d");
+  const proc=frozen("tests/f6c-root-cover-pilot-process.test.js","159244ee6d45bc92463ff5e27ac60d416114820b187a6ab767983ec01e228c6b");
   assert.equal((unit.match(/^test\(/gmu)??[]).length,26);
   assert.equal((proc.match(/^test\(/gmu)??[]).length,6);
   const actual=readFileSync("tests/f6c-cached-root-cover-pilot-launcher.test.js","utf8");
@@ -357,7 +357,7 @@ test("all32 original entry/launcher/process control obligations survive exact re
 });
 test("old or mixed launch bindings cannot select the cached composition",()=>{
   for(const mutate of [
-    p=>p.schema="braid-program/f6c-root-cover-pilot-launch.v1",
+    p=>p.schema="braid-program/f6c-root-cover-pilot-launch.v2",
     p=>p.comparisonContract.declarationSha256="3b20e5d7bce4b57dfd41c0d1efcc34f9242dcd41a02b35676f45ba0984499578",
     p=>p.comparisonContract.verifierSha256="1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36",
     p=>p.comparisonContract.subjectSourceBindings[0].path="scripts/eom/prepare-f6c-continuous-reception-root-cover.py",

@@ -1,0 +1,8 @@
+4745308	.git
+106768616	.local-data
+20383328	.tmp
+27820	scripts
+11620	tests
+417672	reference
+22620	src
+849560	content

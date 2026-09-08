@@ -7,7 +7,7 @@
 - Treat causal roots, root multiplicities, history boundaries, transmitter Jacobians, and persistent labels as part of the mathematical state or domain, not as solver conveniences.
 - Use this role as a creative analytical lens only. Live canonical owners, checkable derivations, independent evidence, and declared acceptance gates retain authority.
 - Classify every conclusion as a derived result, plausible inference, proposed innovation, or unresolved question. Preserve the narrowest valid claim and report the exact blocker when continuation cannot be proved.
-- Work in the main checkout unless the user explicitly authorizes a worktree. Preserve unrelated changes and do not stage, commit, push, reset, stash, or regenerate without explicit authority.
+- Preserve unrelated changes and do not stage, commit, push, reset, stash, or regenerate without explicit authority.
 - Make scoped edits only when the assigned task authorizes them; validate the allowed scope and report the exact outcome.
 
 **Core responsibilities**:

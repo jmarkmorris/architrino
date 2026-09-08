@@ -1,0 +1,894 @@
+{
+  "runId": "8b6ae0db-0cf1-49f8-9225-7842916252a5",
+  "sourceCommit": "6a637f574c6455db8567f08a2d4e93b1cf9f189a",
+  "sourceBoundary": "Clean working tree observed before launch; no source edits during the run. This record is a baseline, not certification of later changes.",
+  "command": "node scripts/run-test-sweep.mjs",
+  "selectedFiles": 316,
+  "summary": {
+    "tests": 2595,
+    "pass": 2486,
+    "fail": 92,
+    "cancelled": 0,
+    "skipped": 17,
+    "todo": 0,
+    "duration_ms": 251490.289541
+  },
+  "failedFiles": [
+    "tests/all-candidate-analytical-rebuild.test.js",
+    "tests/analytical-campaign-database.test.js",
+    "tests/archie-service-contracts.test.js",
+    "tests/archie-service-fixture-mcp-server.test.js",
+    "tests/archie-service-mcp-loopback-http.test.js",
+    "tests/archie-service-mcp-remote-deployment-contract.test.js",
+    "tests/archie-service-mcp-tool-contract.test.js",
+    "tests/borg-configuration-geometry-records.test.js",
+    "tests/borg-eom-migration.test.js",
+    "tests/borg-home-entry.test.js",
+    "tests/borg-library.test.js",
+    "tests/coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.test.js",
+    "tests/endpoint-residual-search-campaign.test.js",
+    "tests/f5-enclosed-root-ledger-reducer.test.js",
+    "tests/f5-enclosed-root-prefix.test.js",
+    "tests/f5-enclosed-root-preparation.test.js",
+    "tests/f5-independent-interpolation-enclosure.test.js",
+    "tests/f5-phase-varying-campaign-spec.test.js",
+    "tests/f5-prehistory-handoff-build.test.js",
+    "tests/f6b-prescribed-kernel-diagnostic.test.js",
+    "tests/f6c-acceleration-pilot-process.test.js",
+    "tests/f6c-emission-refinement-pilot-process.test.js",
+    "tests/f6c-emission-refinement-pilot.test.js",
+    "tests/f6c-refined-acceleration-pilot-process.test.js",
+    "tests/f6c-refined-acceleration-pilot.test.js",
+    "tests/f6c-relative-equilibrium-search.test.js",
+    "tests/pdgedit-generator-drift.test.js",
+    "tests/pdgedit-renderer-drift.test.js",
+    "tests/prescribed-lattice-spec.test.js",
+    "tests/prescribed-response-pilot-process.test.js",
+    "tests/prescribed-sea-model.test.js",
+    "tests/subfield-circular-root-preparation.test.js",
+    "tests/subfield-circular-root-rung.test.js"
+  ],
+  "failures": [
+    {
+      "path": "tests/all-candidate-analytical-rebuild.test.js",
+      "line": 74,
+      "column": 1,
+      "test": "✖ all-candidate registry binds its complete analytical cohort to exact Borg leaves (32.899417ms)",
+      "error": "Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/all-candidate-analytical-rebuild.test.js",
+      "line": 118,
+      "column": 1,
+      "test": "✖ methodology coverage is exact and a methodology byte change does not advance (0.67875ms)",
+      "error": "Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/all-candidate-analytical-rebuild.test.js",
+      "line": 186,
+      "column": 1,
+      "test": "✖ cohort sensitivity creates a new exact identity and preserves the equal-radius constraint (24.344875ms)",
+      "error": "Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/all-candidate-analytical-rebuild.test.js",
+      "line": 214,
+      "column": 1,
+      "test": "✖ coaxial separated planar braids have the declared geometry and exact envelope (13.778708ms)",
+      "error": "Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/all-candidate-analytical-rebuild.test.js",
+      "line": 267,
+      "column": 1,
+      "test": "✖ check is nonpublishing, post-swap failure rolls back, and success swaps atomically (19.859833ms)",
+      "error": "Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/analytical-campaign-database.test.js",
+      "line": 191,
+      "column": 1,
+      "test": "✖ independent acceptance derives gates from raw ledgers and covers no-root rows (61.108125ms)",
+      "error": "Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/analytical-campaign-database.test.js",
+      "line": 297,
+      "column": 1,
+      "test": "✖ failed independent preflight writes no campaign artifacts (14.071083ms)",
+      "error": "Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/analytical-campaign-database.test.js",
+      "line": 343,
+      "column": 1,
+      "test": "✖ interrupted ingestion resumes after the last committed batch without duplication (18.439875ms)",
+      "error": "Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/analytical-campaign-database.test.js",
+      "line": 406,
+      "column": 1,
+      "test": "✖ generated campaign import is idempotent and deterministic export reproduces every staged byte (13.1895ms)",
+      "error": "Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/analytical-campaign-database.test.js",
+      "line": 590,
+      "column": 1,
+      "test": "✖ verified compressed raw import preserves baseline bytes and verification (20.612958ms)",
+      "error": "Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/analytical-campaign-database.test.js",
+      "line": 686,
+      "column": 1,
+      "test": "✖ bounded raw-artifact transactions preserve output and resume after interruption (13.992042ms)",
+      "error": "Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/analytical-campaign-database.test.js",
+      "line": 768,
+      "column": 1,
+      "test": "✖ verified compressed raw import rejects a file changed after preflight (12.511583ms)",
+      "error": "Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/archie-service-contracts.test.js",
+      "line": 25,
+      "column": 1,
+      "test": "✖ Archie MCP tool contracts stay bounded and fixture-backed (119.726625ms)",
+      "error": "AssertionError [ERR_ASSERTION]:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/archie-service-contracts.test.js",
+      "line": 35,
+      "column": 1,
+      "test": "✖ Archie fixture MCP server completes the local stdio protocol smoke (335.440542ms)",
+      "error": "AssertionError [ERR_ASSERTION]:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/archie-service-fixture-mcp-server.test.js",
+      "line": 86,
+      "column": 1,
+      "test": "✖ fixture MCP stdio process completes the owned local smoke transcript (267.429084ms)",
+      "error": "AssertionError [ERR_ASSERTION]:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/archie-service-mcp-loopback-http.test.js",
+      "line": 212,
+      "column": 1,
+      "test": "✖ full-corpus loopback launcher starts outside the repository without changing stdio (1301.469875ms)",
+      "error": "Error: loopback launcher exited before startup: code=1 signal=null file:///Users/markmorris/vibe/architrino/src/archie-service/mcp/loopback-streamable-http-adapter.mjs:588",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/archie-service-mcp-remote-deployment-contract.test.js",
+      "line": 16,
+      "column": 1,
+      "test": "✖ remote deployment contract is valid but deliberately not remote-ready (3.092583ms)",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/archie-service-mcp-tool-contract.test.js",
+      "line": 16,
+      "column": 1,
+      "test": "✖ mcp-tool-contract/v1 fixtures match the pure snapshot query engine (9.747625ms)",
+      "error": "AssertionError [ERR_ASSERTION]: mcp-search-public-first-page-001",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/borg-configuration-geometry-records.test.js",
+      "line": 35,
+      "column": 1,
+      "test": "✖ the static stella octangula is exactly two tetrahedra and remains unclassified as a braid (6.021208ms)",
+      "error": "AssertionError [ERR_ASSERTION]: 0.8164965809423974 vs 0.816496580927726",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/borg-configuration-geometry-records.test.js",
+      "line": 111,
+      "column": 1,
+      "test": "✖ rotating regular vertex sets preserve independently known edge graphs (26.530792ms)",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/borg-eom-migration.test.js",
+      "line": 473,
+      "column": 1,
+      "test": "✖ Borg live contract and certified-budget records match the runtime identities (2.589834ms)",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/borg-home-entry.test.js",
+      "line": 51,
+      "column": 1,
+      "test": "✖ Borg workbench receives the selected home-page record summary (2.206042ms)",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /librarySummary: createBorgWorkbenchRecordSummary/. Input:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/borg-library.test.js",
+      "line": 92,
+      "column": 1,
+      "test": "✖ seed provider covers all current records and exact preview pins (2882.47625ms)",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/borg-library.test.js",
+      "line": 128,
+      "column": 1,
+      "test": "✖ seed provider exposes one 100-variant balance card and exact variant drill-down (2668.092208ms)",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.test.js",
+      "line": 71,
+      "column": 1,
+      "test": "✖ current producer, full protocol, and coverage protocol match frozen identities (31.792542ms)",
+      "error": "Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.test.js",
+      "line": 127,
+      "column": 1,
+      "test": "✖ surface ladder preserves all three grids, radii, thresholds, and R1/R2 pair (16.423292ms)",
+      "error": "Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/endpoint-residual-search-campaign.test.js",
+      "line": 13,
+      "column": 1,
+      "test": "✖ endpoint-only search is deterministic, complete-inventory gated, and root-audited (30.294042ms)",
+      "error": "Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/endpoint-residual-search-campaign.test.js",
+      "line": 76,
+      "column": 1,
+      "test": "✖ endpoint-only search records sampling failures as unknown (12.018541ms)",
+      "error": "Error: methodology hash 611b89ce6a099571a54acbf76730925a9238438754c0f7c2c61419cfa3ee83bc requires an explicit analytical coverage impact review.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "line": 372,
+      "column": 1,
+      "test": "✖ synthetic complete census is structurally valid but cannot grant evidence authority (4.571ms)",
+      "error": "Error: F5 enclosed-root ledger rejected: approved config and pilot fixture differ at constituents.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "line": 384,
+      "column": 1,
+      "test": "✖ the exact cell limit is admissible and precision provenance is coherent (0.906833ms)",
+      "error": "Error: F5 enclosed-root ledger rejected: approved config and pilot fixture differ at constituents.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "line": 409,
+      "column": 1,
+      "test": "✖ enclosure, elapsed time, projection, and phase-token declarations are mandatory (3.4425ms)",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /analyticInterpolationErrorBounded/u. Input:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "line": 432,
+      "column": 1,
+      "test": "✖ history manifest rejects altered widths, coefficient chains, and coverage (46.954083ms)",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /positionErrors.*wrong exact value/u. Input:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "line": 452,
+      "column": 1,
+      "test": "✖ root and warm-cache diagnostics reject impossible serialization (1.047083ms)",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /transmitter_segment_indices/u. Input:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "line": 503,
+      "column": 1,
+      "test": "✖ cited segments and repeated reception phases must describe the same roots (2.514333ms)",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /not covered by its cited segment intervals/u. Input:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "line": 524,
+      "column": 1,
+      "test": "✖ eligible warm-start drift does not require successful cache reuse (0.250875ms)",
+      "error": "Error: F5 enclosed-root ledger rejected: approved config and pilot fixture differ at constituents.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "line": 534,
+      "column": 1,
+      "test": "✖ all repeated-rung brackets share compatible intersections, not only adjacent overlap (0.391417ms)",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /common reception.*inconsistent root brackets/u. Input:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "line": 552,
+      "column": 1,
+      "test": "✖ binary64 cache boundaries accept only identical-carrier alternate decimal spellings (0.316ms)",
+      "error": "Error: F5 enclosed-root ledger rejected: approved config and pilot fixture differ at constituents.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "line": 566,
+      "column": 1,
+      "test": "✖ scientific ledger hash excludes run labels and runtime projections (0.229125ms)",
+      "error": "Error: F5 enclosed-root ledger rejected: approved config and pilot fixture differ at constituents.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "line": 609,
+      "column": 1,
+      "test": "✖ reducer rejects frozen-binding, control, and resource drift (0.552542ms)",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /frozen path and hash/u. Input:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "line": 627,
+      "column": 1,
+      "test": "✖ reducer rejects missing, extra, reordered, and mistimed rows (0.487583ms)",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /exactly 1152 rows/u. Input:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "line": 644,
+      "column": 1,
+      "test": "✖ reducer rejects invalid self and partner root semantics (0.268333ms)",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /self row has an ordinary root/u. Input:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "line": 674,
+      "column": 1,
+      "test": "✖ reducer rejects factor, complement, boundary, status, and resource failures (0.248417ms)",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /contains zero/u. Input:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "line": 719,
+      "column": 1,
+      "test": "✖ reducer rejects malformed brackets and incomplete certificate schema (0.658375ms)",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /bracket|root tolerance/u. Input:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "line": 735,
+      "column": 1,
+      "test": "✖ reducer accepts a complete MPFR certificate without warm-reuse cells (2.285625ms)",
+      "error": "Error: F5 enclosed-root ledger rejected: approved config and pilot fixture differ at constituents.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-prefix.test.js",
+      "line": 119,
+      "column": 1,
+      "test": "✖ fresh production CLI reaches frozen manifest validation and rejects incomplete evidence (191.592917ms)",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /history manifest.*missing schema/u. Input:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-preparation.test.js",
+      "line": 19,
+      "column": 1,
+      "test": "✖ frozen F5 references match the reviewed prerequisite generation (1.006083ms)",
+      "error": "Error: frozen reference drift: reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-enclosed-root-preparation.test.js",
+      "line": 86,
+      "column": 1,
+      "test": "✖ accepted-looking proof must report the exact executed reference and complete census (0.241542ms)",
+      "error": "Error: frozen reference drift: reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-independent-interpolation-enclosure.test.js",
+      "line": 15,
+      "column": 1,
+      "test": "✖ F5 independent instrument reproduces the accepted interpolation enclosure (116.807917ms)",
+      "error": "AssertionError [ERR_ASSERTION]: file:///Users/markmorris/vibe/architrino/scripts/eom/derive-f5-independent-interpolation-enclosure.mjs:33",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-independent-interpolation-enclosure.test.js",
+      "line": 47,
+      "column": 1,
+      "test": "✖ F5 independent enclosure output remains create-exclusive (102.12725ms)",
+      "error": "AssertionError [ERR_ASSERTION]: file:///Users/markmorris/vibe/architrino/scripts/eom/derive-f5-independent-interpolation-enclosure.mjs:33",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-phase-varying-campaign-spec.test.js",
+      "line": 32,
+      "column": 1,
+      "test": "✖ the approved F5 display source preserves the frozen pilot's scientific row (2.152333ms)",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f5-prehistory-handoff-build.test.js",
+      "line": 33,
+      "column": 1,
+      "test": "✖ source snapshot binds fresh builder, whole EOM owners and frozen references (17.542583ms)",
+      "error": "Error: reviewed source drift: src/eom/src/CoupledEvolution.cpp",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6b-prescribed-kernel-diagnostic.test.js",
+      "line": 5,
+      "column": 1,
+      "test": "✖ F6b diagnostic rejects shared circles and preserves polarity-resolved tangent structure (231.183ms)",
+      "error": "Error: Command failed: /opt/homebrew/Cellar/node/26.3.0/bin/node scripts/mapping-electromagnetism/f6b-prescribed-kernel-diagnostic.mjs",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-acceleration-pilot-process.test.js",
+      "line": 123,
+      "column": 1,
+      "test": "✖ late final publication failure preserves failed attempt and closed stage identities (57.742834ms)",
+      "error": "AssertionError [ERR_ASSERTION]: intended failure stage must actually be exercised",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-acceleration-pilot-process.test.js",
+      "line": 124,
+      "column": 1,
+      "test": "✖ startup interruption creates no target and releases owned common lock (67.614792ms)",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /interrupted/. Input:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-acceleration-pilot-process.test.js",
+      "line": 125,
+      "column": 1,
+      "test": "✖ lost monitor cancels stubborn Python and prevents checker dispatch (53.871875ms)",
+      "error": "AssertionError [ERR_ASSERTION]: intended failure stage must actually be exercised",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-acceleration-pilot-process.test.js",
+      "line": 126,
+      "column": 1,
+      "test": "✖ monitor sink failure cancels stubborn Python and prevents checker dispatch (62.260125ms)",
+      "error": "AssertionError [ERR_ASSERTION]: intended failure stage must actually be exercised",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-acceleration-pilot-process.test.js",
+      "line": 127,
+      "column": 1,
+      "test": "✖ fresh stdout binding mismatch prevents comparison and retains closed first stage (68.454916ms)",
+      "error": "AssertionError [ERR_ASSERTION]: intended failure stage must actually be exercised",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-emission-refinement-pilot-process.test.js",
+      "line": 131,
+      "column": 1,
+      "test": "✖ late final publication failure preserves failed attempt and closed stage identities (88.649708ms)",
+      "error": "AssertionError [ERR_ASSERTION]: intended failure stage must actually be exercised",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-emission-refinement-pilot-process.test.js",
+      "line": 132,
+      "column": 1,
+      "test": "✖ startup interruption creates no target and releases owned common lock (70.052667ms)",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /interrupted/. Input:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-emission-refinement-pilot-process.test.js",
+      "line": 133,
+      "column": 1,
+      "test": "✖ lost monitor cancels stubborn Python and prevents checker dispatch (77.225583ms)",
+      "error": "AssertionError [ERR_ASSERTION]: intended failure stage must actually be exercised",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-emission-refinement-pilot-process.test.js",
+      "line": 134,
+      "column": 1,
+      "test": "✖ monitor sink failure cancels stubborn Python and prevents checker dispatch (60.907167ms)",
+      "error": "AssertionError [ERR_ASSERTION]: intended failure stage must actually be exercised",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-emission-refinement-pilot-process.test.js",
+      "line": 135,
+      "column": 1,
+      "test": "✖ fresh stdout binding mismatch prevents comparison and retains closed first stage (65.309959ms)",
+      "error": "AssertionError [ERR_ASSERTION]: intended failure stage must actually be exercised",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-emission-refinement-pilot-process.test.js",
+      "line": 160,
+      "column": 1,
+      "test": "✖ real active-target diagnostic EPIPE cancels owned group releases lock and emits no accepted completion (257.361375ms)",
+      "error": "AssertionError [ERR_ASSERTION]: AssertionError [ERR_ASSERTION]: The input did not match the regular expression /EPIPE/. Input:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-emission-refinement-pilot.test.js",
+      "line": 28,
+      "column": 1,
+      "test": "✖ all scientific implementation/control pins remain their separately frozen source generations (2.784375ms)",
+      "error": "AssertionError [ERR_ASSERTION]: reference/priorities/braid-program/evidence/2026-08-27-f6c-emission-refinement-predeclaration.md",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-refined-acceleration-pilot-process.test.js",
+      "line": 127,
+      "column": 1,
+      "test": "✖ captured launcher worker entry and Python wrapper close two synthetic stages with measured CPU (18.89775ms)",
+      "error": "Error: registered supervisor generation differs",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-refined-acceleration-pilot-process.test.js",
+      "line": 128,
+      "column": 1,
+      "test": "✖ first Python failure closes owned groups and leaves data absent without checker dispatch (9.8005ms)",
+      "error": "Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-refinement-registered-control-RnCn3l/.local-data/braid-analysis/f6c-refined-acceleration-20260827/attempt-outer/pilot-rejection.json'",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-refined-acceleration-pilot-process.test.js",
+      "line": 129,
+      "column": 1,
+      "test": "✖ checker failure after publication cannot promote its existing synthetic file (10.439667ms)",
+      "error": "Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-refinement-registered-control-9vL1lK/.local-data/braid-analysis/f6c-refined-acceleration-20260827/attempt-outer/pilot-rejection.json'",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-refined-acceleration-pilot-process.test.js",
+      "line": 130,
+      "column": 1,
+      "test": "✖ slow final publication stays observed through worker termination (9.058458ms)",
+      "error": "Error: registered supervisor generation differs",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-refined-acceleration-pilot-process.test.js",
+      "line": 131,
+      "column": 1,
+      "test": "✖ late final publication failure preserves failed attempt and closed stage identities (9.070292ms)",
+      "error": "Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-refinement-registered-control-dydMz1/.local-data/braid-analysis/f6c-refined-acceleration-20260827/attempt-outer/pilot-rejection.json'",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-refined-acceleration-pilot-process.test.js",
+      "line": 132,
+      "column": 1,
+      "test": "✖ startup interruption creates no target and releases owned common lock (5.718333ms)",
+      "error": "Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-refinement-registered-control-abPRux/.local-data/braid-analysis/f6c-refined-acceleration-20260827/attempt-outer/pilot-rejection.json'",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-refined-acceleration-pilot-process.test.js",
+      "line": 133,
+      "column": 1,
+      "test": "✖ lost monitor cancels stubborn Python and prevents checker dispatch (5.127167ms)",
+      "error": "Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-refinement-registered-control-mKRCpR/.local-data/braid-analysis/f6c-refined-acceleration-20260827/attempt-outer/pilot-rejection.json'",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-refined-acceleration-pilot-process.test.js",
+      "line": 134,
+      "column": 1,
+      "test": "✖ monitor sink failure cancels stubborn Python and prevents checker dispatch (16.360875ms)",
+      "error": "Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-refinement-registered-control-1pLNBe/.local-data/braid-analysis/f6c-refined-acceleration-20260827/attempt-outer/pilot-rejection.json'",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-refined-acceleration-pilot-process.test.js",
+      "line": 135,
+      "column": 1,
+      "test": "✖ fresh stdout binding mismatch prevents comparison and retains closed first stage (5.178917ms)",
+      "error": "Error: ENOENT: no such file or directory, open '/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-refinement-registered-control-xTawIT/.local-data/braid-analysis/f6c-refined-acceleration-20260827/attempt-outer/pilot-rejection.json'",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-refined-acceleration-pilot-process.test.js",
+      "line": 160,
+      "column": 1,
+      "test": "✖ real active-target diagnostic EPIPE cancels owned group releases lock and emits no accepted completion (116.098417ms)",
+      "error": "AssertionError [ERR_ASSERTION]: AssertionError [ERR_ASSERTION]: The input did not match the regular expression /EPIPE/. Input:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-refined-acceleration-pilot.test.js",
+      "line": 1,
+      "column": 1,
+      "test": "✖ tests/f6c-refined-acceleration-pilot.test.js (124.080708ms)",
+      "error": "'test failed'",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/f6c-relative-equilibrium-search.test.js",
+      "line": 5,
+      "column": 1,
+      "test": "✖ F6c bounded search keeps one coefficient per row and rejects a near-uniform orbit (143.714917ms)",
+      "error": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/pdgedit-generator-drift.test.js",
+      "line": 161,
+      "column": 1,
+      "test": "✖ committed pdgedit reference svg filenames match the shared catalogs exactly (8.1915ms)",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/pdgedit-generator-drift.test.js",
+      "line": 168,
+      "column": 1,
+      "test": "✖ glyph.py regenerates the committed pdgedit reference svg set and canonical artifacts without drift (25273.964083ms)",
+      "error": "Error: ENOENT: no such file or directory, open '/Users/markmorris/vibe/architrino/scripts/glyphs/pdgedit-tile-pro-noether-braid-glyph.svg'",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/pdgedit-renderer-drift.test.js",
+      "line": 205,
+      "column": 1,
+      "test": "✖ the JS pdgedit tile renderer stays aligned with representative committed reference SVG artifacts (989.105125ms)",
+      "error": "Error: ENOENT: no such file or directory, open '/Users/markmorris/vibe/architrino/scripts/glyphs/pdgedit-tile-pro-noether-braid-glyph.svg'",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/prescribed-lattice-spec.test.js",
+      "line": 102,
+      "column": 1,
+      "test": "✖ translation lattices bind every generated motif site to one explicit constituent worldline (2.660375ms)",
+      "error": "TypeError: prescribed assembly specification requires schema prescribed-assembly-spec.v3.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/prescribed-lattice-spec.test.js",
+      "line": 120,
+      "column": 1,
+      "test": "✖ seeded random sites are reproducible and retain explicit sample-to-worldline bindings (0.304583ms)",
+      "error": "TypeError: prescribed assembly specification requires schema prescribed-assembly-spec.v3.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/prescribed-lattice-spec.test.js",
+      "line": 160,
+      "column": 1,
+      "test": "✖ template-only lattices state unmaterialized continuation without inventing constituents (0.133667ms)",
+      "error": "TypeError: prescribed assembly specification requires schema prescribed-assembly-spec.v3.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/prescribed-lattice-spec.test.js",
+      "line": 176,
+      "column": 1,
+      "test": "✖ lattice validation fails closed on incomplete bindings, position drift, and unknown generators (1.435458ms)",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /bind all 2 generated/. Input:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/prescribed-response-pilot-process.test.js",
+      "line": 93,
+      "column": 1,
+      "test": "✖ synthetic compute closes before private job and publisher, then whole admission (93.293166ms)",
+      "error": "Error: competing response/root-cover pilot observed",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/prescribed-response-pilot-process.test.js",
+      "line": 94,
+      "column": 1,
+      "test": "✖ first target failure closes owned groups without publisher (67.677834ms)",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/prescribed-response-pilot-process.test.js",
+      "line": 95,
+      "column": 1,
+      "test": "✖ slow final publication remains sampled while worker is active (69.326834ms)",
+      "error": "Error: competing response/root-cover pilot observed",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/prescribed-sea-model.test.js",
+      "line": 121,
+      "column": 1,
+      "test": "✖ a sea groups pro and anti braid assemblies independently of lattice sites (1.274542ms)",
+      "error": "TypeError: prescribed assembly specification requires schema prescribed-assembly-spec.v3.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/prescribed-sea-model.test.js",
+      "line": 172,
+      "column": 1,
+      "test": "✖ the same sea contract admits photon and neutrino passers, including group-v=0 (0.198584ms)",
+      "error": "TypeError: prescribed assembly specification requires schema prescribed-assembly-spec.v3.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/prescribed-sea-model.test.js",
+      "line": 236,
+      "column": 1,
+      "test": "✖ template-only seas preserve an assembly population idea without inventing members (0.074375ms)",
+      "error": "TypeError: prescribed assembly specification requires schema prescribed-assembly-spec.v3.",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/prescribed-sea-model.test.js",
+      "line": 246,
+      "column": 1,
+      "test": "✖ sea validation fails closed on member reuse, centroid drift, and unknown models (1.785708ms)",
+      "error": "AssertionError [ERR_ASSERTION]: The input did not match the regular expression /reuses constituent member-0/. Input:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/subfield-circular-root-preparation.test.js",
+      "line": 20,
+      "column": 1,
+      "test": "✖ observed source inventory binds full solver tree and reviewed adapter/CMake/supervisor (12.697292ms)",
+      "error": "Error: reviewed source drift: src/eom/CMakeLists.txt",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    },
+    {
+      "path": "tests/subfield-circular-root-rung.test.js",
+      "line": 100,
+      "column": 1,
+      "test": "✖ captured frozen runtime import exposes the exact APIs used by the composition (1.296625ms)",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:",
+      "status": "failed",
+      "disposition": "not-yet-reconciled"
+    }
+  ],
+  "log": {
+    "path": ".local-data/owned-compute/logs/8b6ae0db-0cf1-49f8-9225-7842916252a5.stdout.log",
+    "sha256": "9254dfb15d8c0cb0b2592d8e074a9afb9784afcffb55dd86d70dbe532556e9cd",
+    "bytes": 765297,
+    "lines": 4904
+  },
+  "terminal": {
+    "status": "failed",
+    "exitCode": 1,
+    "processGroupClosed": true,
+    "elapsedWallSeconds": 251.704
+  },
+  "scope": "Normal Node selection only. No Python, slow selection, standalone-check or GitHub all-pass claim."
+}

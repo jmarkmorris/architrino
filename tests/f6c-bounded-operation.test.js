@@ -97,6 +97,8 @@ test('registered descendants are distinguished from competing science',()=>{
   const rows=[{pid:10,ppid:1,command:'coordinator'},{pid:11,ppid:10,command:'run-f6c-synthetic-child'},{pid:12,ppid:11,command:'eom_native_test_cli'}];
   C.noCompetitor(rows,10);assert.throws(()=>C.noCompetitor([...rows,{pid:20,ppid:1,command:'run-f5-evolution'}],10));
   assert.throws(()=>C.noCompetitor([...rows,{pid:20,ppid:1,command:'f6c-bounded-operation'}],10));
+  assert.throws(()=>C.noCompetitor([...rows,{pid:20,ppid:1,command:'node /repo/scripts/eom/f6c-bounded-operation.mjs --plan /plan'}],10));
+  C.noCompetitor([...rows,{pid:20,ppid:1,command:'node --test tests/f6c-bounded-operation.test.js'}],10);
 });
 
 test('prior stdout dataflow binds one predecessor and counts appended arguments',()=>{

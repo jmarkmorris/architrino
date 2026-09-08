@@ -1,0 +1,16 @@
+[
+  {
+    "control": "normal-return",
+    "passed": true,
+    "directory": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7",
+    "error": null,
+    "elapsedMilliseconds": 759.630333
+  },
+  {
+    "control": "intentional-stage-failure",
+    "passed": true,
+    "directory": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-OH7kZu",
+    "error": "coordinator did not close successfully",
+    "elapsedMilliseconds": null
+  }
+]

@@ -1,0 +1,66 @@
+{
+  "scope": "build-only",
+  "changes": [
+    {
+      "path": "scripts/eom/prepare-subfield-circular-root.mjs",
+      "beforeSha256": "59b579f4aa32b56210a9853d51313c48f732f0512bcde1c5eded8de067dad9bc",
+      "afterSha256": "deb5feae8e0827ab0f094ab08dd729350e81b6510bbf319b35e89df53f3d8907",
+      "replacements": [
+        [
+          "e4b3a8bdfc91c756eb00e4c37e872bcbebfe1f7b406a551e3aa630f8818d2bdd",
+          "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4"
+        ]
+      ]
+    },
+    {
+      "path": "scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+      "beforeSha256": "8bc5b2964920073e1e6c3e8ae9f013c63514e8a8cfe40c7e800e282402331ac3",
+      "afterSha256": "4f15971f623578b78e7cf9f7db4e824e62cfb334e5a85ccdec407b1890143996",
+      "replacements": [
+        [
+          "88935fa4410f626d25200597a2fb5ba1ad4cb7a8c68324cf452affd4643c9194",
+          "6fa61e458ec337982932a7882090a875ff045e0da10b405c221bc671a68a4d0d"
+        ],
+        [
+          "ba154c0a8c63bd390ae1e16de005fd5d52000fedec352619b60b9465a2f813f5",
+          "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9"
+        ],
+        [
+          "e4b3a8bdfc91c756eb00e4c37e872bcbebfe1f7b406a551e3aa630f8818d2bdd",
+          "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4"
+        ],
+        [
+          "59b579f4aa32b56210a9853d51313c48f732f0512bcde1c5eded8de067dad9bc",
+          "deb5feae8e0827ab0f094ab08dd729350e81b6510bbf319b35e89df53f3d8907"
+        ]
+      ]
+    },
+    {
+      "path": "scripts/eom/launch-f5-prehistory-handoff-build.mjs",
+      "beforeSha256": "c1093dbc27b5b7efd6b59fefbf047e3a633091be5273a133f2c033069527635c",
+      "afterSha256": "ba397b94d109a394fd64aa36b74e63b7881273cd2cdc13ffab8f9ae541216c26",
+      "replacements": [
+        [
+          "8bc5b2964920073e1e6c3e8ae9f013c63514e8a8cfe40c7e800e282402331ac3",
+          "4f15971f623578b78e7cf9f7db4e824e62cfb334e5a85ccdec407b1890143996"
+        ],
+        [
+          "59b579f4aa32b56210a9853d51313c48f732f0512bcde1c5eded8de067dad9bc",
+          "deb5feae8e0827ab0f094ab08dd729350e81b6510bbf319b35e89df53f3d8907"
+        ],
+        [
+          "ba154c0a8c63bd390ae1e16de005fd5d52000fedec352619b60b9465a2f813f5",
+          "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9"
+        ],
+        [
+          "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826",
+          "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c"
+        ],
+        [
+          "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56",
+          "ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da"
+        ]
+      ]
+    }
+  ]
+}

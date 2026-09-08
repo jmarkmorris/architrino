@@ -1,0 +1,35 @@
+{
+  "scope": "Current wrappers and their operational controls; mathematical references and archived evidence remain unchanged.",
+  "files": [
+    {
+      "file": "scripts/eom/prepare-f6c-parent-emission-refinement.py",
+      "baselineSha256": "b61e3ff13aa686e462e300da2bd22a166181d7918bdd50700e446f6f1cd2b8c8",
+      "bytes": 65587
+    },
+    {
+      "file": "scripts/eom/verify-f6c-parent-emission-refinement.py",
+      "baselineSha256": "2e27bae084e2e35b28dd7a6f6a5675c8c418dbda762d9ebb72ffeae952b7fec6",
+      "bytes": 53150
+    },
+    {
+      "file": "scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs",
+      "baselineSha256": "31b120ef488abc05750587329adab499c06c6dd5f48649bcdea3328d2910edf1",
+      "bytes": 54175
+    },
+    {
+      "file": "scripts/eom/prepare-f6c-parent-refinement-batch.mjs",
+      "baselineSha256": "9ed0471216c62c27bc46700912359141fdda4b00657253a5c2572b0180103c06",
+      "bytes": 17721
+    },
+    {
+      "file": "tests/test_f6c_parent_emission_refinement_preparation.py",
+      "baselineSha256": "870311ed9b306dffb01025878e9fc1eaa882a81061aae9271b326daff662a494",
+      "bytes": 45717
+    },
+    {
+      "file": "tests/test_f6c_parent_emission_refinement_verification.py",
+      "baselineSha256": "0bfbb1c82cde0a3cc3d5cbc96a45712453d87b099349b87e34c427679a4dc49f",
+      "bytes": 43749
+    }
+  ]
+}

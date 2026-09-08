@@ -11,6 +11,9 @@ import { closeSync, constants, existsSync, fstatSync, fsyncSync, lstatSync, open
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+export const HISTORICAL=[["rootTheorem","reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md","f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",28340],["reconstructionTheorem","reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md","6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936",21031]];
+export const BRIDGE='scripts/eom/execute-f6c-acceleration.py';
+export const BRIDGE_TESTS='tests/test_f6c_acceleration_execution.py';
 export const ENTRY='scripts/eom/run-f6c-acceleration-pilot.mjs';
 export const LAUNCHER='scripts/eom/launch-f6c-acceleration-pilot.mjs';
 export const TESTS='tests/f6c-acceleration-pilot.test.js';
@@ -61,14 +64,14 @@ export const FIXED=Object.freeze([
   ['rootTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md','db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc'],
   ['reconstructionTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md','710279f5c348a81fd36d58c6ca704730b3fa70da729ca30b9c92ae4e1cc6734b'],
 ].map(Object.freeze));
-export const PINS=Object.freeze({...Object.fromEntries(FIXED.map(([,p,h])=>[p,h])),
+export const PINS=Object.freeze({[BRIDGE]:'c67359fbf8ffeee9bb6d6fc2887c4a35dc7bf4b6af7da4d7577ef017e42ce789',...Object.fromEntries(FIXED.map(([,p,h])=>[p,h])),
   [CONSUMER]:'8fa7a73487a2658814dc130f3f6d0827bd4066bad23ab95bf88935b264efc618',
   [CONSUMER_TESTS]:'45f40e2c6580fa09a614a471e7375615c8d54e3fc295a68dbdb8ad2167b7690b',
   [DECLARATION]:'3ef8fb9020bae71833b1e06a119672b49a4beb5395f697dcb3d037d088e7891e',
-  [OUTER]:'3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a',
-  [HELPERS]:'7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7',
+  [OUTER]:'58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c',
+  [HELPERS]:'9af9a6a33b3b1c5889550953496be13d0698e5d24e9033dbdd5ffcb82deeafe2',
   [CHECKER]:CHECKER_SHA,[CHECKER_TESTS]:CHECKER_TESTS_SHA,
-  '/usr/bin/memory_pressure':'a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56'});
+  '/usr/bin/memory_pressure':'ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da'});
 export const check=(ok,message)=>{if(!ok)throw new Error(message);};
 export const sha=b=>createHash('sha256').update(b).digest('hex');
 export const clean=({data,...b})=>b;
@@ -115,23 +118,32 @@ function bindings(rows){check(Array.isArray(rows)&&rows.length>0&&rows.length<=2
 const absolute=(b,root)=>({...b,path:path.resolve(root,b.path)});
 export function validatePlan(plan,root,launcherSha,entrySha,python,git) {
   check(hash(CHECKER_SHA)&&hash(CHECKER_TESTS_SHA),'independent checker review/pins incomplete');
-  closed(plan,['schema','scope','consumer','controls','declaration','rangeVerifier','runtimeBindings','operationalBindings','limits','priorCoverClosure'],'plan');
-  check(plan.schema==='braid-program/f6c-continuous-reception-acceleration-launch.v1'&&plan.scope===SCOPE&&equal(plan.limits,LIMITS),'fixed scope/limits');
+  closed(plan,['schema','scope','consumer','controls','declaration','rangeVerifier','runtimeBindings','operationalBindings','limits','priorCoverClosure','declarationInput','executionBridge','historicalInputs'],'plan');
+  check(plan.schema==='braid-program/f6c-continuous-reception-acceleration-launch.v2'&&plan.scope===SCOPE&&equal(plan.limits,LIMITS),'fixed scope/limits');
   for(const [key,p] of [['consumer',CONSUMER],['controls',CONSUMER_TESTS],['declaration',DECLARATION],['rangeVerifier',CHECKER]]){binding(plan[key]);check(plan[key].path===p&&plan[key].sha256===PINS[p],'reviewed subject/checker binding');}
+  binding(plan.executionBridge);check(plan.executionBridge.path===BRIDGE&&plan.executionBridge.sha256===PINS[BRIDGE],'reviewed bridge required');
+  const route=plan.declarationInput;closed(route,['originalPath','path','sha256','bytes'],'declaration route');
+  const {originalPath,...physical}=route;binding(physical);
+  check(originalPath===DECLARATION&&physical.sha256===PINS[DECLARATION]&&physical.bytes===plan.declaration.bytes,'original declaration identity');
+  check(!path.isAbsolute(physical.path)&&path.normalize(physical.path)===physical.path&&!physical.path.split('/').includes('..')&&physical.path.startsWith('reference/')&&physical.path.endsWith('.source'),'nonexecuting declaration archive');
+  check(Array.isArray(plan.historicalInputs)&&plan.historicalInputs.length===HISTORICAL.length,'exact historical theorem routes');
+  plan.historicalInputs.forEach((r,i)=>{closed(r,['role','originalPath','path','sha256','bytes'],'historical route');const [role,p,h,n]=HISTORICAL[i];check(r.role===role&&r.originalPath===p&&r.sha256===h&&r.bytes===n,'original theorem identity');check(typeof r.path==='string'&&!path.isAbsolute(r.path)&&path.normalize(r.path)===r.path&&!r.path.split('/').includes('..')&&r.path.startsWith('reference/')&&r.path.endsWith('.source'),'nonexecuting theorem archive');});
+  check(new Set([plan.declarationInput.path,...plan.historicalInputs.map(r=>r.path)]).size===HISTORICAL.length+1,'conflicting archive routes');
   bindings(plan.runtimeBindings);bindings(plan.operationalBindings);
+  check(plan.operationalBindings.filter(b=>equal(b,plan.executionBridge)).length===1,'bridge execution census');
   check(realpathSync(root)===root&&hash(entrySha)&&hash(launcherSha),'canonical reviewed composition');
   check(path.isAbsolute(python)&&path.resolve(python)===python&&path.isAbsolute(git)&&realpathSync(git)===git,'explicit interpreter/Git invocation');
   const runtime=plan.runtimeBindings.map(b=>path.resolve(root,b.path));
   check(runtime.includes(realpathSync(python))&&runtime.includes(path.join(path.dirname(path.dirname(python)),'pyvenv.cfg'))&&runtime.includes(git),'shared interpreter/venv/Git absent');
   const node=realpathSync(process.execPath);
-  const ops=[ENTRY,LAUNCHER,TESTS,PROCESS_TESTS,HELPERS,OUTER,CHECKER_TESTS,'/bin/ps','/usr/bin/memory_pressure',node];
+  const ops=[BRIDGE,BRIDGE_TESTS,ENTRY,LAUNCHER,TESTS,PROCESS_TESTS,HELPERS,OUTER,CHECKER_TESTS,'/bin/ps','/usr/bin/memory_pressure',node];
   check(equal(plan.operationalBindings.map(b=>b.path).sort(),ops.sort()),'exact operational source/control closure');
   for(const b of plan.operationalBindings){const expected=b.path===ENTRY?entrySha:b.path===LAUNCHER?launcherSha:PINS[b.path];if(expected)check(b.sha256===expected,'operational generation differs');}
   check(equal(plan.priorCoverClosure,{authority:'externally-reviewed-caller-observation',ownerSha256:PINS[FIXED[9][1]],admissionSha256:PINS[FIXED[5][1]],
     matchingFreshCompletionObserved:true,exitCode:0,elapsedSeconds:'8.534247625',processesClosed:true,independentAuditAccepted:true}),'prior externally observed closure');return plan;
 }
 export function planBindings(plan,root) {
-  const rows=[...FIXED.map(([,p,h])=>({path:path.join(root,p),sha256:h})),...['consumer','controls','declaration','rangeVerifier'].map(k=>absolute(plan[k],root)),
+  const rows=[...FIXED.map(([role,p,h])=>{const r=plan.historicalInputs.find(r=>r.role===role);return r?{path:path.join(root,r.path),sha256:r.sha256,bytes:r.bytes}:{path:path.join(root,p),sha256:h};}),...['consumer','controls','rangeVerifier'].map(k=>absolute(plan[k],root)),absolute({path:plan.declarationInput.path,sha256:plan.declarationInput.sha256,bytes:plan.declarationInput.bytes},root),
     ...plan.runtimeBindings.map(b=>absolute(b,root)),...plan.operationalBindings.map(b=>absolute(b,root))],map=new Map();
   for(const row of rows){const old=map.get(row.path);check(!old||(old.sha256===row.sha256&&(old.bytes===undefined||row.bytes===undefined||old.bytes===row.bytes)),'conflicting binding');map.set(row.path,{...old,...row});}return [...map.values()];
 }
@@ -170,11 +182,10 @@ print(json.dumps({'schema':'braid-program/f6c-acceleration-python-runtime-invent
 `;
 export function stageSpec({stage,plan,planBinding,root,output,python,git,candidate,budget}) {
   check(stage==='consumer'||stage==='comparison','unknown stage');check(typeof budget==='string'&&/^(?:0|[1-9]\d*)(?:\.\d+)?$/u.test(budget)&&Number(budget)>0&&Number(budget)<=1800,'positive stage budget');
-  const paths=outputPaths(root,output),source=stage==='consumer'?CONSUMER:CHECKER,digest=stage==='consumer'?PINS[CONSUMER]:plan.rangeVerifier.sha256;
-  const args=['-I','-B','-c',PYTHON_BOOTSTRAP,path.join(root,source),digest,'--plan',planBinding.path,'--plan-sha256',planBinding.sha256,
-    stage==='consumer'?'--consumer-sha256':'--verifier-sha256',digest];
-  if(stage==='consumer')args.push('--out-dir',output,'--git-binary',git);
-  else{binding(candidate);check(candidate.path===paths.candidate,'preceding exact candidate required');args.push('--candidate',candidate.path,'--candidate-sha256',candidate.sha256,'--out',paths.comparison);}
+  const paths=outputPaths(root,output);
+  const args=['-I','-B','-c',PYTHON_BOOTSTRAP,path.join(root,BRIDGE),PINS[BRIDGE],'--stage',stage,'--bridge-sha256',PINS[BRIDGE],'--plan',planBinding.path,'--plan-sha256',planBinding.sha256,'--out',stage==='consumer'?paths.candidate:paths.comparison];
+  if(stage==='consumer')args.push('--git-binary',git);
+  else{binding(candidate);check(candidate.path===paths.candidate,'preceding exact candidate required');args.push('--candidate',candidate.path,'--candidate-sha256',candidate.sha256);}
   args.push('--budget-seconds',budget);return {command:python,args};
 }
 export async function runSingleStage(spec,{root=process.cwd(),out=process.stdout,err=process.stderr,spawnImpl=spawn,timeoutMs}={}) {
@@ -187,7 +198,7 @@ export async function runSingleStage(spec,{root=process.cwd(),out=process.stdout
   check(!failure&&result.code===0&&result.signal===null,failure?.message??'target did not close cleanly');return {completed:true,accepted:false,logBytes:count};
 }
 const falseClaims=(o,names)=>{closed(o,names,'claim set');check(names.every(k=>o[k]===false),'promoted claim');};
-function sourceMap(job){const byPath=new Map(job.sources.map(b=>[b.path,b]));return Object.fromEntries(FIXED.map(([role,p])=>{const b=byPath.get(path.join(job.root,p));check(b,'missing fixed source');return [role,b];}));}
+function sourceMap(job){const byPath=new Map(job.sources.map(b=>[b.path,b]));return Object.fromEntries(FIXED.map(([role,p])=>{const r=job.plan.historicalInputs.find(r=>r.role===role);const b=byPath.get(path.join(job.root,r?.path??p));check(b,'missing fixed source');return [role,{...b,path:path.join(job.root,p)}];}));}
 function resourceEvents(filename){const raw=readBound(filename,undefined,true,LOG_LIMIT),events=raw.data.toString('utf8').split('\n').flatMap(line=>{try{return [JSON.parse(line)];}catch{return [];}});
   const one=kind=>{const matches=events.filter(x=>x?.kind===kind);check(matches.length===1,'single resource event required');return matches[0];};
   const python=one('f6c-range-python-process-resources'),entry=one('f6c-range-entry-process-resources');

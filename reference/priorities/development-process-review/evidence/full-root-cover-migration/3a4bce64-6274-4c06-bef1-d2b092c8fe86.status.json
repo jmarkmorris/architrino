@@ -1,0 +1,58 @@
+{
+  "classification": "terminal",
+  "lease": {
+    "schema": "architrino.owned-compute-lease.v1",
+    "runId": "3a4bce64-6274-4c06-bef1-d2b092c8fe86",
+    "status": "completed",
+    "requestedAtUtc": "2026-09-07T22:26:28.450Z",
+    "startedAtUtc": "2026-09-07T22:26:28.528Z",
+    "deadlineAtUtc": "2026-09-07T22:29:28.451Z",
+    "heartbeatAtUtc": "2026-09-07T22:26:33.531Z",
+    "heartbeatMs": 5000,
+    "terminationGraceMs": 5000,
+    "owner": {
+      "task": "01a07cbc-b8ac-7ae3-8f49-1635827ab34b",
+      "threadId": null
+    },
+    "ownerHistory": [],
+    "command": "node",
+    "args": [
+      "--test",
+      "tests/f6c-cached-root-cover-full.test.js",
+      "tests/f6c-cached-root-cover-full-process.test.js"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/3a4bce64-6274-4c06-bef1-d2b092c8fe86.stdout.log",
+    "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/3a4bce64-6274-4c06-bef1-d2b092c8fe86.stderr.log",
+    "stdoutBytes": 5654,
+    "stderrBytes": 0,
+    "lastOutputAtUtc": "2026-09-07T22:26:35.493Z",
+    "sidecarIdentity": {
+      "pid": 51659,
+      "ppid": 51658,
+      "pgid": 51659,
+      "started": "Mon Sep 7 18:26:28 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node /Users/markmorris/vibe/architrino/scripts/dev/owned-compute-supervisor.mjs __sidecar 3a4bce64-6274-4c06-bef1-d2b092c8fe86"
+    },
+    "targetIdentity": {
+      "pid": 51662,
+      "ppid": 51659,
+      "pgid": 51662,
+      "started": "Mon Sep 7 18:26:28 2026",
+      "command": "node --test tests/f6c-cached-root-cover-full.test.js tests/f6c-cached-root-cover-full-process.test.js"
+    },
+    "claimBoundary": "Operational process ownership only; scientific validity and acceptance remain with the target's declared instruments and owners.",
+    "elapsedWallSeconds": 6.98,
+    "finishedAtUtc": "2026-09-07T22:26:35.496Z",
+    "exitCode": 0,
+    "exitSignal": null,
+    "error": null,
+    "stopReason": null,
+    "processGroupClosed": true,
+    "control": {
+      "host": "127.0.0.1",
+      "port": 62288,
+      "authentication": "token-redacted"
+    }
+  }
+}

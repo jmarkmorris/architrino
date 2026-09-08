@@ -1,0 +1,4 @@
+Known SHA-256 case passed before target capture.
+Known host parser threshold cases passed before host observation: scripts/eom/run-f6c-root-cover-pilot.mjs
+Known host parser threshold cases passed before host observation: scripts/eom/run-f6c-cached-root-cover-pilot.mjs
+[{"entry":"scripts/eom/run-f6c-root-cover-pilot.mjs","bindings":181,"host":{"freePercent":71,"availableDiskBytes":"944197500928","atLaunch":true},"scientificCalls":0},{"entry":"scripts/eom/run-f6c-cached-root-cover-pilot.mjs","bindings":188,"host":{"freePercent":71,"availableDiskBytes":"944197447680","atLaunch":true},"scientificCalls":0}]

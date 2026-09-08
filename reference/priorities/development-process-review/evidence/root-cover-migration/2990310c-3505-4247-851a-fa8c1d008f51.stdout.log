@@ -1,0 +1,46 @@
+{"kind":"host-resource","elapsedSeconds":0.060915332999999995,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944203005952"}
+{"kind":"host-resource","elapsedSeconds":0.529429167,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944202944512"}
+{"kind":"host-resource","elapsedSeconds":0.97210675,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944202944512"}
+{"kind":"host-resource","elapsedSeconds":1.0170519580000001,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944202940416"}
+{"kind":"host-resource","elapsedSeconds":1.039547583,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944202813440"}
+✔ two captured synthetic stages register and close separately before final admission (1100.763792ms)
+{"kind":"host-resource","elapsedSeconds":0.049367417000000156,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944202801152"}
+✔ first synthetic target failure closes owned groups and prevents comparison dispatch (661.287167ms)
+{"kind":"host-resource","elapsedSeconds":0.04997562500000004,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944202772480"}
+{"kind":"host-resource","elapsedSeconds":0.494707625,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944202735616"}
+{"kind":"host-resource","elapsedSeconds":0.9288517499999999,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944202719232"}
+{"kind":"host-resource","elapsedSeconds":0.9726524169999998,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944202715136"}
+{"kind":"host-resource","elapsedSeconds":3.496261167,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944202579968"}
+✔ slow final publication remains sampled through captured worker closure (3564.369166ms)
+✔ startup interruption launches no target and releases its owned lock (39.255292ms)
+{"kind":"host-resource","elapsedSeconds":0.04866170899999998,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944202551296"}
+✔ lost process monitoring cancels a stubborn owned target with honest unverified closure (515.003625ms)
+{"kind":"host-resource","elapsedSeconds":0.0620634170000003,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944202522624"}
+✔ monitor log failure cancels a stubborn owned target before any comparison (578.205708ms)
+{"kind":"host-resource","elapsedSeconds":0.056913874999999996,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944202493952"}
+{"kind":"host-resource","elapsedSeconds":0.5122735,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944202457088"}
+{"kind":"host-resource","elapsedSeconds":0.9488724590000001,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944202440704"}
+{"kind":"host-resource","elapsedSeconds":0.9930770419999999,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944202436608"}
+{"kind":"host-resource","elapsedSeconds":1.014257834,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944202305536"}
+✔ two captured synthetic stages register and close separately before final admission (1074.356625ms)
+{"kind":"host-resource","elapsedSeconds":0.049286041000000065,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944202293248"}
+✔ first synthetic target failure closes owned groups and prevents comparison dispatch (659.841333ms)
+{"kind":"host-resource","elapsedSeconds":0.0499926660000001,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944202264576"}
+{"kind":"host-resource","elapsedSeconds":0.4976337910000002,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944202231808"}
+{"kind":"host-resource","elapsedSeconds":0.9353317080000002,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944202215424"}
+{"kind":"host-resource","elapsedSeconds":0.9795372080000002,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944202211328"}
+{"kind":"host-resource","elapsedSeconds":3.50323225,"atLaunch":false,"freePercent":100,"availableDiskBytes":"944201953280"}
+✔ slow final publication remains sampled through captured worker closure (3567.231833ms)
+✔ startup interruption launches no target and releases its owned lock (38.892083ms)
+{"kind":"host-resource","elapsedSeconds":0.04905879199999981,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944201928704"}
+✔ lost process monitoring cancels a stubborn owned target with honest unverified closure (515.6355ms)
+{"kind":"host-resource","elapsedSeconds":0.06065191600000071,"atLaunch":true,"freePercent":100,"availableDiskBytes":"944201891840"}
+✔ monitor log failure cancels a stubborn owned target before any comparison (579.932292ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13039.106416

@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import {deriveAssemblyScientificIdentity} from "../src/prescribed-geometry/AssemblyScientificIdentity.mjs";
 
 import {
   materializePrescribedAssemblySpec,
@@ -23,16 +24,15 @@ function assemblyFixture({ members, sea }) {
       velocity: member.velocity,
     },
   }));
-  return {
-    schema: "prescribed-assembly-spec.v2",
-    specId: "prescribed-sea-test-fixture-v2",
+  const spec = {
+    schema: "prescribed-assembly-spec.v3",
+    specId: "prescribed-sea-test-fixture-v3",
     label: "Prescribed sea test fixture",
     provenanceDescription: "Test-only sea declaration bound to explicit constituent worldlines.",
     claimGrade: "chart-hypothesis",
     evidenceStatus: "display-only",
     date: "2026-08-25",
     identity: {
-      candidateId: "test-sea",
       displayLabel: "Prescribed sea test fixture",
       status: "test-only",
       geometryOwner: "tests/prescribed-sea-model.test.js",
@@ -71,8 +71,10 @@ function assemblyFixture({ members, sea }) {
       validators: [],
       speedGuard: { normalizedFieldSpeed: 1, maximumExclusive: 1, policy: "reject" },
     },
-    compatibility: { retainedIdentifiers: [] },
   };
+  const {assemblyId, modelRevisionSha256} = deriveAssemblyScientificIdentity(spec);
+  Object.assign(spec.identity, {assemblyId, modelRevisionSha256});
+  return spec;
 }
 
 function seaModel({ templates, instances, status = "explicit-finite" }) {

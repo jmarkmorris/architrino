@@ -1,0 +1,59 @@
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.06408812500000001,"freePercent":100,"availableDiskBytes":"944629436416","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.546271458,"freePercent":100,"availableDiskBytes":"944629387264","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.9824876659999999,"freePercent":100,"availableDiskBytes":"944629370880","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.0300995830000002,"freePercent":100,"availableDiskBytes":"944629370880","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.054391875,"freePercent":100,"availableDiskBytes":"944629219328","atLaunch":false}
+✔ captured launcher worker entry and Python wrapper close two synthetic stages with measured CPU (1118.299667ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.052504249999999954,"freePercent":100,"availableDiskBytes":"944629202944","atLaunch":true}
+✔ first Python failure closes owned groups and leaves data absent without checker dispatch (671.147416ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05219495900000015,"freePercent":100,"availableDiskBytes":"944629149696","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.4871769589999999,"freePercent":100,"availableDiskBytes":"944629104640","atLaunch":false}
+✔ checker failure after publication cannot promote its existing synthetic file (1108.279833ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.050705292000000096,"freePercent":100,"availableDiskBytes":"944629051392","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.49090229200000024,"freePercent":100,"availableDiskBytes":"944629006336","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.93331275,"freePercent":100,"availableDiskBytes":"944628994048","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":0.9805375840000001,"freePercent":100,"availableDiskBytes":"944628989952","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":3.005225375,"freePercent":100,"availableDiskBytes":"944628838400","atLaunch":false}
+✔ slow final publication stays observed through worker termination (3065.66625ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05155045900000005,"freePercent":100,"availableDiskBytes":"944628817920","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.49962337500000015,"freePercent":100,"availableDiskBytes":"944628772864","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.9536107500000007,"freePercent":100,"availableDiskBytes":"944628756480","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.0019522500000002,"freePercent":100,"availableDiskBytes":"944628756480","atLaunch":false}
+✔ late final publication failure preserves failed attempt and closed stage identities (1039.35025ms)
+✔ startup interruption creates no target and releases owned common lock (40.35275ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05223462500000005,"freePercent":100,"availableDiskBytes":"944628690944","atLaunch":true}
+✖ lost monitor cancels stubborn Python and prevents checker dispatch (372.898625ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05295116700000017,"freePercent":100,"availableDiskBytes":"944628649984","atLaunch":true}
+✔ monitor sink failure cancels stubborn Python and prevents checker dispatch (426.771ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05341675000000032,"freePercent":100,"availableDiskBytes":"944628609024","atLaunch":true}
+✔ fresh stdout binding mismatch prevents comparison and retains closed first stage (537.807833ms)
+✔ real unread diagnostic pipe fails final drain then closes without a success completion (169.692084ms)
+✔ real unread diagnostics close on early failure without a success completion (181.033208ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 10
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8824.413417
+
+✖ failing tests:
+
+test at tests/f6c-acceleration-pilot-process.test.js:123:1
+✖ lost monitor cancels stubborn Python and prevents checker dispatch (372.898625ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /interruption/. Input:
+  
+  'synthetic monitor lost'
+  
+      at runFixture (file:///Users/markmorris/vibe/architrino/tests/f6c-acceleration-pilot-process.test.js:97:14)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'synthetic monitor lost',
+    expected: /interruption/,
+    operator: 'match',
+    diff: 'simple'
+  }

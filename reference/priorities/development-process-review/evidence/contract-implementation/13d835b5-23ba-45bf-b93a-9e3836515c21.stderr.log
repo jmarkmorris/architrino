@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/contract-implementation/check-historical-evidence.py", line 37, in <module>
+    pool=v.Pool(stack,w,ROOT,live);pool.routes=v.historical_routes(routes,ROOT,w);pool.unavailable=v.validate_environment(missing,ROOT,w)
+                                               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-parent-emission-refinement.py", line 258, in historical_routes
+    require(old['path'] not in result and physical['path'] not in {r['physical']['path'] for r in result.values()},'duplicate archive route')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-parent-emission-refinement.py", line 108, in require
+    if not value: raise ValueError(message)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: duplicate archive route

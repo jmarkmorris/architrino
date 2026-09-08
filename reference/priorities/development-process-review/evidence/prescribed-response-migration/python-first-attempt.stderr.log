@@ -1,0 +1,19 @@
+...................................E......................................
+======================================================================
+ERROR: test_capture_reports_logical_identity_but_rechecks_physical_file (test_prescribed_acceleration_response_consumer.ConsumerTests.test_capture_reports_logical_identity_but_rechecks_physical_file)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/tests/test_prescribed_acceleration_response_consumer.py", line 222, in test_capture_reports_logical_identity_but_rechecks_physical_file
+    with C.Capture(target, C.sha(b'abc')) as captured:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/reduce-prescribed-acceleration-response.py", line 186, in __enter__
+    require(self.path.resolve() == self.path, 'symlinked input path refused')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/reduce-prescribed-acceleration-response.py", line 116, in require
+    raise Rejected(reason)
+response_consumer_under_test.Rejected: symlinked input path refused
+
+----------------------------------------------------------------------
+Ran 74 tests in 1.805s
+
+FAILED (errors=1)

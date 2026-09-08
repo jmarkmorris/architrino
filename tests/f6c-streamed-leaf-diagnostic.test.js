@@ -1,16 +1,16 @@
 // Synthetic transport/lifecycle controls plus an explicit genuine stationary
 // adapter/driver bridge. No original histories or actual-data numerical work.
-// SOURCE-ONLY MIGRATION: whole-process fixtures are NOT RUN READY. A separately
-// reviewed bounded external ending/closure envelope is still required for the
-// negative cases whose original lock and whole guard intentionally remain held.
-// Keep every case: this fail-closed guard is neither test.skip nor a passing run.
+// Every whole-process fixture uses the unchanged owned supervisor with a hard
+// deadline. Conditional stdout never substitutes for externally observed exit
+// and group closure. Unresolved fixture directories are retained.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {spawn,spawnSync} from 'node:child_process';
+import {spawn,spawnSync,execFile} from 'node:child_process';
 import {once} from 'node:events';
 import {createHash} from 'node:crypto';
-import {existsSync,mkdtempSync,mkdirSync,readFileSync,realpathSync,rmSync,rmdirSync,statSync,writeFileSync,renameSync,linkSync,openSync,closeSync,ftruncateSync} from 'node:fs';
+import {existsSync,mkdtempSync,mkdirSync,readFileSync,realpathSync,rmSync,rmdirSync,statSync,statfsSync,writeFileSync,renameSync,linkSync,openSync,closeSync,ftruncateSync} from 'node:fs';
 import os from 'node:os';
+import {pathToFileURL} from 'node:url';
 import path from 'node:path';
 import {Writable} from 'node:stream';
 import * as C from '../scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs';
@@ -21,7 +21,7 @@ const load=async([p,h])=>{const raw=readFileSync(path.join(root,p));assert.equal
 const H=await load(C.PINS.helpers),D=await load(C.PINS.diagnostics);
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
 const absent=pid=>{try{process.kill(pid,0);return false;}catch(e){return e.code==='ESRCH';}};
-const WHOLE_PROCESS_FIXTURES_READY=false;
+
 const rejectedExit=r=>assert(r.code!==0||r.signal!==null,'actual nonzero/terminated exit, never successful completion');
 const replaceOnce=(source,needle,replacement,label)=>{
  assert.equal(source.split(needle).length,2,label+' exact single source boundary');
@@ -136,6 +136,11 @@ def open_adapter(root,**kw):
  call_counts=dict(projections=0,evaluations=0,residuals=0,root_queries=0,emission_refinements=0),
  geometry_accounting=dict(restriction_calls=0,completed_restrictions=0,history_state_evaluations=0,restricted_projections=0))
  extras=[]
+ if MODE.startswith('retained'):
+  selection=kw['historical_evidence'];assert selection['schema']=='braid-program/variable-cell-historical-evidence.v1'
+  for route in selection['routes']:
+   b=route['physical'];raw=pathlib.Path(b['path']).read_bytes();assert hashlib.sha256(raw).hexdigest()==b['sha256'] and len(raw)==b['bytes'];extras.append(SourceBinding(**b))
+  a.historical_evidence_verification={'schema':'synthetic-retained-verification','fullOriginalEnvironmentVerified':False}
  for d in kw['parent_refinements']:
   extras.extend(getattr(d,k)for k in ('plan','manifest','comparison','operation','launcher_log','resource_log'))
   extras.extend(r.archive for r in d.archived_sources)
@@ -231,6 +236,7 @@ class LeafResponseSession:
 `;
 function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64n*1024n**3n,runDisk=64n*1024n**3n}={}){
  const dir=realpathSync(mkdtempSync(path.join(os.tmpdir(),'f6c-stream-'))),output=path.join(dir,C.LANE,'synthetic');
+ const supervisor=path.join(dir,'scripts/dev/owned-compute-supervisor.mjs');mkdirSync(path.dirname(supervisor),{recursive:true});writeFileSync(supervisor,readFileSync(path.join(root,'scripts/dev/owned-compute-supervisor.mjs')));
  mkdirSync(path.dirname(output),{recursive:true});mkdirSync(path.dirname(path.join(dir,C.LOCK)),{recursive:true});
  const entry=path.join(dir,C.SELF),controls=path.join(dir,C.CONTROL);mkdirSync(path.dirname(entry),{recursive:true});mkdirSync(path.dirname(controls),{recursive:true});writeFileSync(controls,'synthetic controls\n');
  const events=path.join(dir,'events'),pidfile=path.join(dir,'target.pid'),pins={};
@@ -257,8 +263,12 @@ function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64
     'checkMode();captureUnion([...s.sourceMap.values()],s.sourceIdentities,()=>s.live());',
     "throw Error('synthetic final cleanup');",'ordinary cleanup boundary');
    if(mode==='poststdout')wholeSource=replaceOnce(wholeSource,
-    "s.diagnostics.check();await s.bounded(()=>s.diagnostics.close(s.began),'diagnostic callback closure');terminal();",
+    "s.diagnostics.check();await s.bounded(()=>s.diagnostics.close(s.began),'diagnostic callback closure');restoreLifetimeStderr(s);terminal();",
     "s.diagnostics.check();await s.bounded(()=>s.diagnostics.close(s.began),'diagnostic callback closure');throw Error('synthetic poststdout failure');",'poststdout boundary');
+   if(launchFree<40||runFree<20||launchDisk<64n*1024n**3n||runDisk<16n*1024n**3n){
+    wholeSource=replaceOnce(wholeSource,"import {closeSync,constants,","import {writeFileSync,closeSync,constants,",'host failure witness import');
+    wholeSource=replaceOnce(wholeSource,"s.H.parseHostResource(result.text,disk.bavail*disk.bsize,launch)","(()=>{try{return s.H.parseHostResource(result.text,disk.bavail*disk.bsize,launch);}catch(e){writeFileSync("+JSON.stringify(path.join(dir,'host-failure.json'))+",JSON.stringify({message:e.message,launch}));throw e;}})()",'unchanged host guard witnessed at rejection');
+   }
    raw=wholeSource;
   }
   writeFileSync(filename,raw);pins[key]=[rel,hash(raw)];
@@ -278,7 +288,7 @@ function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64
   const alias=path.join(dir,'adapter-hardlink');linkSync(bindings.adapter.path,alias);runtimeList.push(bind(alias));
  }
  if(mode==='missing-runtime'||mode==='runtime-in-provenance')runtimeList.splice(runtimeList.findIndex(b=>b.path.endsWith('/_pylong.py')),1);
- const spec={schema:'braid-program/f6c-streamed-leaf-invocation.v4',scope:C.SCOPE,root:dir,output,python,git:'/usr/bin/git',bindings,runtimeBindings:runtimeList,parentRefinements:[],evidencePackage:null,acceptedParentEvidence:[],continuation:null,maxAdvances:maximum,limits:C.LIMITS};
+ const spec={schema:'braid-program/f6c-streamed-leaf-invocation.v5',scope:C.SCOPE,root:dir,output,python,git:'/usr/bin/git',bindings,runtimeBindings:runtimeList,parentRefinements:[],evidencePackage:null,acceptedParentEvidence:[],historicalEvidence:null,continuation:null,maxAdvances:maximum,limits:C.LIMITS};
  if(mode==='archives'||mode==='multi-occupant-archives'||mode==='archive-runtime'){
   const prior={};for(const k of['plan','manifest','comparison','operation','launcher_log','resource_log']){const p=path.join(dir,'prior-'+k);writeFileSync(p,'prior '+k);prior[k]=bind(p);}
   const archive=path.join(dir,mode==='archive-runtime'?'scripts/eom/archived-owner.py':'owner-archive');writeFileSync(archive,'prior-v1');const ar=bind(archive),original={...ar,path:bindings.readiness.path};
@@ -288,6 +298,11 @@ function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64
    for(const k of ['plan','manifest','comparison','operation','launcher_log','resource_log']){const p=path.join(dir,'second-'+k);writeFileSync(p,'second '+k);next[k]=bind(p);}
    next.closure.operation=next.operation;spec.parentRefinements.push(next);
   }
+ }
+ if(mode.startsWith('retained')){
+  const physical=path.join(dir,'evidence','original.source');mkdirSync(path.dirname(physical),{recursive:true});writeFileSync(physical,'inert historical bytes');const b=bind(physical);
+  spec.historicalEvidence={selection:{schema:'braid-program/variable-cell-historical-evidence.v1',routes:[{original:{...b,path:path.join(dir,'original.py')},physical:b}],unavailableHistoricalEnvironment:[]},sourceBindings:[bindings.adapter,b]};
+  if(mode==='retained-extra'){const extra=path.join(dir,'extra.source');writeFileSync(extra,'not consumed');spec.historicalEvidence.sourceBindings.push(bind(extra));}
  }
  const specPath=path.join(dir,'invocation.json');writeFileSync(specPath,JSON.stringify(spec)+'\n');
  // check-ignore needs only a portable ignored synthetic checkout, never repo outputs.
@@ -317,23 +332,60 @@ function packageFixture(mode='package'){
  f.spec.bindings.coordinator=bind(f.entry);f.selfSha=f.spec.bindings.coordinator.sha256;f.spec.parentRefinements=descriptors;f.spec.evidencePackage=selection;
  writeFileSync(f.specPath,JSON.stringify(f.spec)+'\n');f.specSha=bind(f.specPath).sha256;return f;
 }
-async function runFixture(f,{interrupt=false,epipe=false}={}){
- assert.equal(WHOLE_PROCESS_FIXTURES_READY,true,'NOT RUN READY: independent bounded negative-ending and complete external closure envelope required');
- const child=spawn(process.execPath,[f.wholeEntry,'--streamed','--spec',f.specPath,'--spec-sha256',f.specSha,'--caller-sha256',f.selfSha,'--self-sha256',f.wholeSha],{cwd:f.dir,stdio:['ignore','pipe','pipe']});
- let out='',err='';child.stdout.on('data',b=>{out+=b;assert(out.length<2*1024**2,'bounded completion');});
- if(!epipe)child.stderr.on('data',b=>{err+=b;if(err.length>4*1024**2)err=err.slice(-(1024**2));});
- // The removed old20s parent-only kill was not descendant/guard closure.
- // Do not enable this fixture until the root-owned external ending is reviewed.
- const close=once(child,'close');
- if(interrupt||epipe){
-  for(let n=0;n<1000&&!existsSync(f.pidfile)&&child.exitCode===null;n++)await pause(10);
-  assert(existsSync(f.pidfile),'owned target actually started: '+err.slice(-500));
-  if(epipe)child.stderr.destroy();else child.kill('SIGTERM');
- }
- const[code,signal]=await close;
- return{code,signal,out,err,childPid:child.pid};
+function enrollObserved(rows,rootPid,known){
+ const ids=new Set([rootPid,...known.keys()]),groups=new Set([...known.values()].map(r=>r.pgid));
+ let changed=true;while(changed){changed=false;for(const r of rows)if(ids.has(r.pid)||ids.has(r.ppid)||groups.has(r.pgid)){
+  if(!ids.has(r.pid)){ids.add(r.pid);changed=true;}groups.add(r.pgid);
+  const previous=known.get(r.pid);assert(!previous||previous.started===r.started,'observed PID birth changed');known.set(r.pid,r);
+ }}
 }
-function cleanup(f){rmSync(f.dir,{recursive:true,force:true});}
+// Known graph and reparented-group controls precede any host observation.
+{
+ const known=new Map();enrollObserved([{pid:10,ppid:1,pgid:10,started:'a'},{pid:11,ppid:10,pgid:11,started:'b'},{pid:12,ppid:11,pgid:11,started:'c'},{pid:99,ppid:1,pgid:99,started:'z'}],10,known);
+ assert.deepEqual([...known.keys()],[10,11,12]);enrollObserved([{pid:13,ppid:1,pgid:11,started:'d'}],10,known);assert(known.has(13));
+ assert.throws(()=>enrollObserved([{pid:11,ppid:1,pgid:11,started:'reused'}],10,known),/birth/);
+}
+const observeTable=()=>new Promise((resolve,reject)=>execFile('/bin/ps',['-axo','pid=,ppid=,pgid=,lstart=,stat=,comm='],{encoding:'utf8',timeout:1000,maxBuffer:8*1024**2,env:{...process.env,LC_ALL:'C'}},(error,raw)=>{
+ if(error){reject(error);return;}try{resolve(raw.trim().split('\n').map(line=>{const m=/^\s*(\d+)\s+(\d+)\s+(\d+)\s+(.{24})\s+(\S+)\s+(.+)$/u.exec(line);assert(m,'complete external process row');return{pid:Number(m[1]),ppid:Number(m[2]),pgid:Number(m[3]),started:m[4].replace(/\s+/gu,' '),command:m[6]};}));}catch(e){reject(e);}
+}));
+async function runFixture(f,{interrupt=false,epipe=false}={}){
+ // A separate, unchanged owner bounds the complete coordinator process group.
+ // The adapter and registered guards retain their own stronger obligations.
+ const {runOwned}=await import(pathToFileURL(path.join(f.dir,'scripts/dev/owned-compute-supervisor.mjs')));
+ const hostText=await new Promise((resolve,reject)=>execFile('/usr/bin/memory_pressure',[],{encoding:'utf8',timeout:2000,maxBuffer:1024**2},(e,out)=>e?reject(e):resolve(out)));
+ const disk=statfsSync(f.dir,{bigint:true});H.parseHostResource(hostText,disk.bavail*disk.bsize,true);
+ const wrapper=path.join(f.dir,'fixture-envelope.mjs'),pidPath=path.join(f.dir,'coordinator.pid');
+ const args=[f.wholeEntry,'--streamed','--spec',f.specPath,'--spec-sha256',f.specSha,'--caller-sha256',f.selfSha,'--self-sha256',f.wholeSha];
+ writeFileSync(wrapper,`import {spawn} from 'node:child_process';import {writeFileSync,existsSync} from 'node:fs';
+ const child=spawn(process.execPath,${JSON.stringify(args)},{stdio:['ignore','pipe','pipe']});
+ writeFileSync(${JSON.stringify(pidPath)},String(child.pid));
+ child.stdout.pipe(process.stdout);child.stderr.pipe(process.stderr);
+ child.on('close',(code,signal)=>{process.exitCode=code??1;});
+ ${interrupt||epipe?`const timer=setInterval(()=>{if(existsSync(${JSON.stringify(f.pidfile)})){clearInterval(timer);${epipe?"child.stderr.destroy();":"child.kill('SIGTERM');"}}else if(child.exitCode!==null)clearInterval(timer);},10);`:''}
+ `);
+ f.started=true;
+ const observed=new Map();let observing=true,observationFailure;
+ const observer=(async()=>{try{while(observing){if(existsSync(pidPath))enrollObserved(await observeTable(),Number(readFileSync(pidPath,'utf8')),observed);await pause(50);}}catch(e){observationFailure=e;}})();
+ let lease;try{lease=await runOwned(['--owner-task',process.env.CODEX_SESSION_ID??'streamed-fixture','--deadline-seconds','15','--termination-grace-seconds','1','--heartbeat-seconds','5','--',process.execPath,wrapper]);}finally{observing=false;await observer;}
+ if(observationFailure)throw observationFailure;
+ const out=readFileSync(lease.stdoutPath,'utf8'),err=readFileSync(lease.stderrPath,'utf8');
+ assert.equal(lease.processGroupClosed,true,'external owner must observe group closure');
+ const childPid=Number(readFileSync(pidPath,'utf8'));
+ assert(absent(childPid),'coordinator absent before cleanup');
+ if(existsSync(f.pidfile)){
+  const target=Number(readFileSync(f.pidfile,'utf8'));
+  for(let n=0;n<500&&(!absent(target)||!absent(-target));n++)await pause(10);
+  assert(absent(target)&&absent(-target),'registered target and group closed before cleanup');
+ }
+ for(let n=0;n<100&&[...observed.values()].some(r=>!absent(r.pid)||!absent(-r.pgid));n++)await pause(50);
+ assert(observed.size>0,'external ownership observer actually saw coordinator');
+ for(const row of observed.values())assert(absent(row.pid)&&absent(-row.pgid),'observed process/group remains: '+row.pid);
+ writeFileSync(path.join(f.dir,'external-closure.json'),JSON.stringify({processGroupClosed:lease.processGroupClosed,status:lease.status,exitCode:lease.exitCode,exitSignal:lease.exitSignal,observed:[...observed.values()],allObservedAbsent:true,mathematicalAcceptance:false})+'\n');
+ f.closed=true;
+ if(process.env.AAA_RETAIN_FIXTURES==='1')console.error('retained fixture '+f.dir);
+ return{code:lease.exitCode,signal:lease.exitSignal,out,err,childPid,lease};
+}
+function cleanup(f){assert(!f.started||f.closed,'unresolved fixture retained for investigation: '+f.dir);if(process.env.AAA_RETAIN_FIXTURES!=='1')rmSync(f.dir,{recursive:true,force:true});}
 function alterFixture(f,change){
  const before=readFileSync(f.entry,'utf8'),after=change(before);assert.notEqual(after,before,'specific bounded injection applied');
  writeFileSync(f.entry,after);f.spec.bindings.coordinator=bind(f.entry);writeFileSync(f.specPath,JSON.stringify(f.spec)+'\n');
@@ -688,7 +740,7 @@ for(const [name,inputs,started] of[
  ['launch-disk',{launchDisk:64n*1024n**3n-1n},false],['running-disk',{runDisk:16n*1024n**3n-1n},true]]){
  test('synthetic low '+name+' is rejected by unchanged host guard',async()=>{
   const f=fixture('normal',1,inputs);try{
-   const r=await runFixture(f);assert.equal(r.code,1);assert.equal(r.out,'');assert.match(r.err,/host memory\/disk resource stop/);
+   const r=await runFixture(f);assert.equal(r.code,1);assert.equal(r.out,'');assert.match(JSON.parse(readFileSync(path.join(f.dir,'host-failure.json'))).message,/host memory\/disk resource stop/);
    assert.equal(existsSync(f.events),started,'launch failure precedes provide; later failure follows target');
    assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));
   }finally{cleanup(f);}
@@ -731,7 +783,7 @@ d.finish();h=first['header'];print(json.dumps(dict(spec=h['spec'],archives=h['so
 `;
     const result=spawnSync(python,['-I','-B','-c',decode,path.join(root,C.PINS.codec[0]),C.PINS.codec[1],stream],{encoding:'utf8',timeout:3000,maxBuffer:1024**2});
     assert.equal(result.status,0,result.stderr);const header=JSON.parse(result.stdout);
-    assert.deepEqual(header.spec,{binding:bind(f.specPath),maxAdvances:f.spec.maxAdvances,parentRefinements:f.spec.parentRefinements,evidencePackage:f.spec.evidencePackage,acceptedParentEvidence:f.spec.acceptedParentEvidence});
+    assert.deepEqual(header.spec,{binding:bind(f.specPath),maxAdvances:f.spec.maxAdvances,parentRefinements:f.spec.parentRefinements,evidencePackage:f.spec.evidencePackage,acceptedParentEvidence:f.spec.acceptedParentEvidence,historicalEvidence:f.spec.historicalEvidence});
     assert.deepEqual(header.archives,C.archiveRelations(f.spec));assert.equal(header.archives.length,1);assert.equal(header.accepted,false);
    }
    assert.equal(C.inspectStreamLayout(f.output).bytes,statSync(stream).size);
@@ -802,7 +854,7 @@ for(const stage of ['cleanup','prestdout','poststdout'])for(const validName of [
    const mutation=`renameSync(path.dirname(s.streamOwner.privatePath),path.join(path.dirname(s.streamOwner.publicPath),${JSON.stringify(validName?'.leaf-stream-private-renamed':'invalid-private-name')}));`;
    alterWholeFixture(f,s=>{
     s=replaceOnce(s,'import {closeSync,constants,','import {renameSync,closeSync,constants,','synthetic rename import');
-    const anchor=stage==='cleanup'?'checkMode();captureUnion([...s.sourceMap.values()],s.sourceIdentities,()=>s.live());':stage==='prestdout'?'terminal();\n    const result=':"s.diagnostics.check();await s.bounded(()=>s.diagnostics.close(s.began),'diagnostic callback closure');terminal();";
+    const anchor=stage==='cleanup'?'checkMode();captureUnion([...s.sourceMap.values()],s.sourceIdentities,()=>s.live());':stage==='prestdout'?'terminal();\n    const result=':"s.diagnostics.check();await s.bounded(()=>s.diagnostics.close(s.began),'diagnostic callback closure');restoreLifetimeStderr(s);terminal();";
     return replaceOnce(s,anchor,stage==='poststdout'?anchor.replace('terminal();',mutation+'terminal();'):mutation+anchor,'specific shared final boundary');
    });
    const r=await runFixture(f);rejectedExit(r);
@@ -829,10 +881,14 @@ for(const mode of ['monitor','private-growth']){
     const source=readFileSync(p,'utf8').replace("if MODE=='stubborn':","if MODE=='stubborn':\n   target=next(pathlib.Path("+JSON.stringify(f.output)+").glob('.leaf-stream-private-*/leaf-evidence.ndjson'))\n   with target.open('r+b')as file:file.truncate(67108865)");
     writeFileSync(p,source);f.spec.bindings.diagnostic=bind(p);alterFixture(f,s=>s.replaceAll(old,f.spec.bindings.diagnostic.sha256));
    }
-   const r=await runFixture(f);assert.equal(r.code,1);assert.equal(r.out,'');
+   const r=await runFixture(f);rejectedExit(r);assert.equal(r.out,'');
    assert(existsSync(f.pidfile),r.err.slice(-2000));const pid=Number(readFileSync(f.pidfile,'utf8'));assert(absent(pid));assert(absent(-pid));assert(absent(r.childPid));
-   assert(!existsSync(path.join(f.dir,C.LOCK)));assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));
-   const rejection=JSON.parse(readFileSync(path.join(f.output+'-outer','rejection.json')));assert.match(rejection.failure,new RegExp(expected));
+   assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));
+   if(mode==='private-growth'){
+    assert(existsSync(path.join(f.dir,C.LOCK)),'over-quota layout retains original lock');
+    assert.throws(()=>C.inspectStreamLayout(f.output),/quota/);
+    assert(!existsSync(path.join(f.output+'-outer','rejection.json')),'over-quota layout cannot authorize another publication');
+   }else{assert(!existsSync(path.join(f.dir,C.LOCK)));const rejection=JSON.parse(readFileSync(path.join(f.output+'-outer','rejection.json')));assert.match(rejection.failure,new RegExp(expected));}
   }finally{cleanup(f);}
  });
 }
@@ -842,7 +898,7 @@ for(const index of [0,1])for(const replacement of [false,true]){
    const mutation=replacement?"const raw=readBound(target,undefined,true).data,other=target+'.swap';{const fd=openSync(other,'wx');try{writeSync(fd,raw);fsyncSync(fd);}finally{closeSync(fd);}}renameSync(other,target);":"const fd=openSync(target,'a');try{writeSync(fd,Buffer.from(' '));fsyncSync(fd);}finally{closeSync(fd);}";
    alterWholeFixture(f,s=>{
     s=replaceOnce(s,'import {closeSync,constants,','import {renameSync,closeSync,constants,','synthetic log rename import');
-    const anchor="s.diagnostics.check();await s.bounded(()=>s.diagnostics.close(s.began),'diagnostic callback closure');terminal();";
+    const anchor="s.diagnostics.check();await s.bounded(()=>s.diagnostics.close(s.began),'diagnostic callback closure');restoreLifetimeStderr(s);terminal();";
     return replaceOnce(s,anchor,anchor.replace('terminal();','{const target='+(index===0?'s.logPath':'s.rssPath')+';'+mutation+'}terminal();'),'poststdout log mutation');
    });
    const r=await runFixture(f);rejectedExit(r);assert(r.out,r.err.slice(-2000));conditionalCompletion(JSON.parse(r.out));
@@ -859,3 +915,29 @@ for(const index of [0,1])for(const replacement of [false,true]){
   }finally{cleanup(f);}
  });
 }
+
+test('version-five retained selection reaches adapter and frozen stream metadata',async()=>{
+ const f=fixture('retained');try{
+  const r=await runFixture(f);assert.equal(r.code,0,r.err);conditionalCompletion(JSON.parse(r.out));
+  const line=readFileSync(path.join(f.output,'leaf-evidence.ndjson'),'utf8').split('\n')[0];
+  const decoded=JSON.parse(line);assert(line.includes('synthetic-retained-verification'));assert(line.includes('fullOriginalEnvironmentVerified'));assert(line.includes('historicalEvidence'));
+  const checkHeader=String.raw`import hashlib,json,pathlib,sys,types
+p=pathlib.Path(sys.argv[1]);raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()==sys.argv[2]
+m=types.ModuleType('frozen_header');exec(compile(raw,str(p),'exec'),m.__dict__)
+d=m.StreamDecoder()
+with pathlib.Path(sys.argv[3]).open('rb')as source:
+ first=d.feed(next(source))
+ for line in source:d.feed(line)
+d.finish();h=first['header'];assert h['accepted']is False
+assert h['sourceBindings']['historicalEvidenceVerification']=={'schema':'synthetic-retained-verification','fullOriginalEnvironmentVerified':False}
+assert h['spec']['historicalEvidence']==json.loads(pathlib.Path(sys.argv[4]).read_text())['historicalEvidence']
+`;
+  const result=spawnSync(python,['-I','-B','-c',checkHeader,path.join(root,C.PINS.codec[0]),C.PINS.codec[1],path.join(f.output,'leaf-evidence.ndjson'),f.specPath],{encoding:'utf8',timeout:3000,maxBuffer:1024**2});assert.equal(result.status,0,result.stderr);
+ }finally{cleanup(f);}
+});
+test('unconsumed retained physical source rejects before first provider call',async()=>{
+ const f=fixture('retained-extra');try{
+  const r=await runFixture(f);rejectedExit(r);assert.equal(r.out,'');assert(!existsSync(f.events));
+  assert.match(readFileSync(path.join(f.output+'-outer','process','runner-stderr.log'),'utf8'),/exact retained physical source union/);
+ }finally{cleanup(f);}
+});

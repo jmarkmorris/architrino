@@ -61,8 +61,8 @@ export const ORIGINALS = Object.freeze([
   ['predeclaration','reference/priorities/braid-program/evidence/2026-08-27-prescribed-acceleration-response-predeclaration.md','c08d7f53616fc2843b3a192f7e3c10229f9a9fe7abc1a8670ddb1706d95756ef'],
   ['reference','scripts/eom/oracle/prescribed_acceleration_response.py','e630c2f4c48c9fcfc56866166e8b5977d70ab83c6ca3f2b08ad9ea4f3f5e910c'],
   ['referenceTests','tests/test_prescribed_acceleration_response.py','4b0e66feb308544aa6294b126a05f6a3c9fbb403580e8193d3140a7b52c370f1'],
-  ['consumer',CONSUMER,'2485f14b44ccd8a5a6294f6e8290f819a7eab35ce82991b0cbb95fd6cc04fe71'],
-  ['consumerTests','tests/test_prescribed_acceleration_response_consumer.py','2d97ad74c5a4ad1c33bf587ea4050cf4f028179e55ba1c817404714346cdb6d1'],
+  ['consumer',CONSUMER,'e5b6ce3274f0cfdef107c03a966508896f8e7874372c4735fcd8ad55a339cd16'],
+  ['consumerTests','tests/test_prescribed_acceleration_response_consumer.py','eeb85745d0175fabc3306e3a00e5b6dc3df3418b29fe40df9b89b765ac468875'],
   ['pythonExecutable',null,null],
   ['scripts/eom/oracle/decimal_interval.py','scripts/eom/oracle/decimal_interval.py','fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'],
   ['scripts/eom/oracle/certified_history.py','scripts/eom/oracle/certified_history.py','ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'],
@@ -71,9 +71,9 @@ export const ORIGINALS = Object.freeze([
   ['scripts/eom/oracle/certified_acceleration.py','scripts/eom/oracle/certified_acceleration.py','62787f1bb0d14329c0ad1f3586ef1f1cbeb666fe8c11f8831f7ad761d7c42b83'],
 ].map(row=>Object.freeze(row)));
 export const PINS = Object.freeze({...Object.fromEntries(ORIGINALS.filter(r=>r[1]).map(r=>[r[1],r[2]])),
-  [OUTER]:'3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a',
-  [PUBLISHER]:'f69014d90ce17696fbd9940cf37129d5203f4629051b45be11c0a9f9c9587734',
-  'tests/test_prescribed_acceleration_response_publication.py':'c5805819a7e54f68b4ad63757752afd48efba8c2d01f7caed7ace3b048bb7dd1'});
+  [OUTER]:'58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c',
+  [PUBLISHER]:'dc9d6db86b564297c0b21b5cf79afefd150b0eeb55d0bbedc71621eee0c30be4',
+  'tests/test_prescribed_acceleration_response_publication.py':'fe57d4ed40110d530044b0d6aecb7a17da865b4d56d6186a3ad14497282e217f'});
 export const check = (ok,message)=>{if(!ok)throw new Error(message);};
 export const sha = bytes=>createHash('sha256').update(bytes).digest('hex');
 export const clean = ({data,...binding})=>binding;
@@ -125,18 +125,19 @@ export function writeNew(filename,value,limit=FILE_LIMIT,live=()=>{}) {
   const directory=openSync(path.dirname(filename),'r');try{fsyncSync(directory);}finally{closeSync(directory);}live();
   return readBound(filename,sha(bytes),false,limit,live);
 }
-function binding(row,role=false){closed(row,role?['role','path','sha256','bytes']:['path','sha256','bytes'],'file binding');
+function binding(row,role=false){closed(row,role?['role','path','originalPath','sha256','bytes']:['path','sha256','bytes'],'file binding');
   check(typeof row.path==='string'&&path.isAbsolute(row.path)&&path.resolve(row.path)===row.path&&hash(row.sha256)&&positive(row.bytes,1024**3),'exact bounded binding');}
 function bindingList(rows,role=false){check(Array.isArray(rows)&&rows.length>0&&rows.length<=4096,'bounded binding list');for(const b of rows)binding(b,role);check(new Set(rows.map(b=>b.path)).size===rows.length,'duplicate binding path');}
 export function validatePlan(plan,root,launcherSha,entrySha) {
   closed(plan,['schema','scope','originalBindings','operationalBindings','runtimeBindings','python','pythonRealPath','node','limits','platformTrust'],'machine plan');
-  check(plan.schema==='braid-program/prescribed-response-pilot-launch.v1'&&plan.scope==='f5-release'&&equal(plan.limits,LIMITS),'fixed first-pilot scope/limits');
+  check(plan.schema==='braid-program/prescribed-response-pilot-launch.v2'&&plan.scope==='f5-release'&&equal(plan.limits,LIMITS),'current first-pilot scope/limits');
   check(plan.platformTrust==='host OS and macOS shared-cache libraries; explicitly listed file-backed runtime dependencies only','explicit platform trust required');
   check(realpathSync(root)===root&&hash(launcherSha)&&hash(entrySha),'canonical reviewed composition required');
   for(const key of ['python','pythonRealPath','node'])check(typeof plan[key]==='string'&&path.isAbsolute(plan[key])&&path.resolve(plan[key])===plan[key],'absolute runtime path');
   check(realpathSync(plan.python)===plan.pythonRealPath&&realpathSync(plan.node)===plan.node&&plan.node===realpathSync(process.execPath),'runtime invocation differs');
   bindingList(plan.originalBindings,true);check(plan.originalBindings.length===19,'exact nineteen original bindings');
-  ORIGINALS.forEach(([role,file,digest],i)=>{const b=plan.originalBindings[i];check(b.role===role&&b.path===(file?path.join(root,file):plan.pythonRealPath)&&(!digest||b.sha256===digest)&&b.bytes<=FILE_LIMIT,'frozen original role/path/hash differs');});
+  ORIGINALS.forEach(([role,file,digest],i)=>{const b=plan.originalBindings[i];check(b.role===role&&b.originalPath===(file?path.join(root,file):plan.pythonRealPath)&&(!digest||b.sha256===digest)&&b.bytes<=FILE_LIMIT,'frozen original role/path/hash differs');
+    if(b.path!==b.originalPath)check(['approvedSource','scientificFixture','predeclaration'].includes(role)&&b.path.startsWith(path.join(root,'reference')+path.sep)&&b.path.endsWith('.source'),'only declared original data may select a preserved source');});
   check(plan.originalBindings.slice(0,8).reduce((n,b)=>n+b.bytes,0)<=256*1024**2,'scientific input total bound');
   bindingList(plan.runtimeBindings);bindingList(plan.operationalBindings);
   const python=plan.originalBindings[13],cfg=path.join(path.dirname(path.dirname(plan.python)),'pyvenv.cfg');
@@ -146,7 +147,7 @@ export function validatePlan(plan,root,launcherSha,entrySha) {
   for(const b of plan.operationalBindings){const local=path.relative(root,b.path),expected=local===ENTRY?entrySha:local===LAUNCHER?launcherSha:PINS[local];if(expected)check(b.sha256===expected,'operational source hash differs');}
   return plan;
 }
-const cleanRole = ({role,...b})=>b;
+const cleanRole = ({role,originalPath,...b})=>b;
 export function planBindings(plan,root) {
   const map=new Map();for(const row of [...plan.originalBindings.map(cleanRole),...plan.operationalBindings,...plan.runtimeBindings]){
     const prev=map.get(row.path);check(!prev||equal(prev,row),'conflicting repeated source binding');map.set(row.path,row);}
@@ -160,7 +161,7 @@ export function stageSpec({stage,plan,root,output,budget,publicationJob,launcher
   check(hash(launcherSha256),'reviewed watcher hash required');
   const args=['-I','-B',path.join(root,stage==='compute'?CONSUMER:PUBLISHER),'--repo-root',root,'--watcher-sha256',launcherSha256];
   if(stage==='compute')args.push('--consumer-sha256',PINS[CONSUMER],'--consumer-tests-sha256',PINS['tests/test_prescribed_acceleration_response_consumer.py'],
-    '--python-sha256',plan.originalBindings[13].sha256,'--out-dir',output);
+    '--python-sha256',plan.originalBindings[13].sha256,'--out-dir',output,'--original-bindings',JSON.stringify(plan.originalBindings));
   else{binding(publicationJob);check(publicationJob.path===output+'-outer/publisher-job.json','original publisher job required');
     args.push('--publisher-sha256',PINS[PUBLISHER],'--job',publicationJob.path,'--job-sha256',publicationJob.sha256);}
   args.push('--budget-seconds',budget);return {command:plan.python,args};
@@ -190,7 +191,7 @@ function referenceMetadata(reference){check(reference?.schema==='braid-program/p
 function candidateData(b,job,live){binding(b);check(b.path===path.join(job.output,'private-candidate.json')&&b.bytes<=OUTPUT_LIMIT,'fixed private candidate path');
   const raw=readBound(b.path,b.sha256,true,OUTPUT_LIMIT,live);check(raw.bytes===b.bytes,'candidate bytes differ');const candidate=decode(raw.data,OUTPUT_LIMIT);
   closed(candidate,['schema','accepted','admissible','subject','bindings','referenceResult','referenceResultSha256','watcherSha256'],'private candidate');
-  check(candidate.schema==='braid-program/prescribed-acceleration-response-private.v1'&&candidate.accepted===false&&candidate.admissible===false&&
+  check(candidate.schema==='braid-program/prescribed-acceleration-response-private.v2'&&candidate.accepted===false&&candidate.admissible===false&&
     equal(candidate.subject,SUBJECT)&&equal(candidate.bindings,job.plan.originalBindings)&&candidate.watcherSha256===job.launcherSha256,'candidate generation/scope mismatch');
   referenceMetadata(candidate.referenceResult);
   // Reference serialization contains only exact strings/integers and ASCII keys.
@@ -220,7 +221,7 @@ export function admitStage(job,live=()=>{}) {
     const candidate=candidateData(publication.candidate,job,live);binding(completion.output);check(completion.output.path===path.join(job.output,'response.json')&&completion.output.bytes<=OUTPUT_LIMIT,'final response identity required');
     const raw=readBound(completion.output.path,completion.output.sha256,true,OUTPUT_LIMIT,live);check(raw.bytes===completion.output.bytes,'published byte count differs');const final=decode(raw.data,OUTPUT_LIMIT);
     closed(final,['schema','accepted','status','subject','bindings','referenceResult','execution','claims','newRootSearches','failures'],'final response');
-    check(final.schema==='braid-program/prescribed-acceleration-response.v1'&&final.accepted===true&&final.status==='accepted-prescribed-response-enclosure'&&
+    check(final.schema==='braid-program/prescribed-acceleration-response.v2'&&final.accepted===true&&final.status==='accepted-prescribed-response-enclosure'&&
       equal(final.subject,candidate.subject)&&equal(final.bindings,candidate.bindings)&&equal(final.referenceResult,candidate.referenceResult)&&
       equal(final.claims,Object.fromEntries(FALSE_CLAIMS.map(k=>[k,false])))&&final.newRootSearches===0&&equal(final.failures,[])&&
       equal(final.execution,{...publication.execution,outputBytes:raw.bytes}),'published payload differs from closed compute');outputs=[completion.output];
@@ -239,7 +240,7 @@ export function validateComputeExecution(execution,completion,watcherSha){
     execution.outputBytes===0&&execution.watcherSha256===watcherSha,'actual closed-compute observations required');
 }
 function validatePublicationJob(pj,job){closed(pj,['schema','embeddedExecutionScope','candidate','completion','execution','expectedBindings','watcherSha256','output'],'publication job');
-  check(pj.schema==='braid-program/prescribed-response-publication-job.v1'&&pj.embeddedExecutionScope===EXECUTION_SCOPE&&
+  check(pj.schema==='braid-program/prescribed-response-publication-job.v2'&&pj.embeddedExecutionScope===EXECUTION_SCOPE&&
     equal(pj.expectedBindings,job.plan.originalBindings)&&pj.watcherSha256===job.launcherSha256&&pj.output===path.join(job.output,'response.json')&&
     equal(pj.candidate,pj.completion.candidate)&&equal(pj.completion,job.compute.completion),'original completed-compute job required');
   validateComputeExecution(pj.execution,pj.completion,job.launcherSha256);
@@ -258,7 +259,7 @@ export function fileOperation(job){const live=()=>check(process.hrtime.bigint()<
       equal(job.closedProcess.stdoutLog,job.compute.completionLog)&&equal(job.closedProcess.admission,job.compute),'outer admitted compute required');
     authenticateContext(job,live);
     candidateData(job.compute.outputs[0],job,live);checkBindings([job.compute.completionLog,...job.sources],live);
-    const payload={schema:'braid-program/prescribed-response-publication-job.v1',embeddedExecutionScope:EXECUTION_SCOPE,
+    const payload={schema:'braid-program/prescribed-response-publication-job.v2',embeddedExecutionScope:EXECUTION_SCOPE,
       candidate:job.compute.outputs[0],completion:job.compute.completion,execution:job.execution,expectedBindings:job.plan.originalBindings,
       watcherSha256:job.launcherSha256,output:path.join(job.output,'response.json')};validatePublicationJob(payload,job);
     const binding=writeNew(job.output+'-outer/publisher-job.json',payload,OUTPUT_LIMIT,live);live();return binding;

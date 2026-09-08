@@ -1,0 +1,222 @@
+{
+  "schema": "braid-program/f6c-bounded-operation-external-closure.v1",
+  "accepted": true,
+  "authority": "independently observed operational closure only",
+  "invocation": {
+    "schema": "braid-program/observed-bounded-invocation.v1",
+    "root": "/Users/markmorris/vibe/architrino",
+    "coordinator": {
+      "path": "/Users/markmorris/vibe/architrino/scripts/eom/f6c-bounded-operation.mjs",
+      "sha256": "f3bbaf59b3fec7340a3b68097d6745fef589c777273558a71cfd8744cfeeb13a",
+      "bytes": 81416
+    },
+    "node": {
+      "path": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+      "sha256": "56694c81b093cc8da273fa017cf91765b3653e5f64f16727976ffaa87b2b6b31",
+      "bytes": 68384
+    },
+    "plan": {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/plan.json",
+      "sha256": "40c8113b1e61d8913591bda505fc87a5789b841dbcbc31b88cb490b4de18c00e",
+      "bytes": 1982
+    },
+    "control": true
+  },
+  "operation": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/operation/operation.json",
+    "sha256": "b59161a6c7d0b726d745ae635abc7373bb005e0506fb9e346b7918178f6a364e",
+    "bytes": 55175
+  },
+  "elapsedMilliseconds": 759.630333,
+  "processesClosed": true,
+  "wholeGuardClosed": true,
+  "lockReleased": true,
+  "sourceBindings": [
+    {
+      "path": "/Users/markmorris/vibe/architrino/scripts/eom/f6c-bounded-operation.mjs",
+      "sha256": "f3bbaf59b3fec7340a3b68097d6745fef589c777273558a71cfd8744cfeeb13a",
+      "bytes": 81416
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/scripts/eom/launch-prescribed-response-pilot.mjs",
+      "sha256": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31",
+      "bytes": 28310
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/scripts/eom/launch-subfield-circular-root-pilot.mjs",
+      "sha256": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826",
+      "bytes": 65600
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
+      "sha256": "042684de5b23216a8af4a8187e02db3236206249d0f857215dc47a89b8c62d47",
+      "bytes": 24898
+    },
+    {
+      "path": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+      "sha256": "56694c81b093cc8da273fa017cf91765b3653e5f64f16727976ffaa87b2b6b31",
+      "bytes": 68384
+    },
+    {
+      "path": "/bin/ps",
+      "sha256": "3bbba882e30d91fc4ff6e6844ca7c59fef4351b9a3fea35dca55708d6d487d1c",
+      "bytes": 170432
+    },
+    {
+      "path": "/usr/bin/memory_pressure",
+      "sha256": "ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da",
+      "bytes": 134960
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/tests/f6c-bounded-operation.test.js",
+      "sha256": "0738e5134680c2cd0e927b764e5a65ab9b13b3a8e87b65048b56384bc7ae3302",
+      "bytes": 35673
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/scripts/dev/owned-compute-supervisor.mjs",
+      "sha256": "a7d504d413d8cd870ea4117c8ef2e11cf28b09cd0ff0bdbeb665f5ae78693979",
+      "bytes": 37401
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/hook.mjs",
+      "sha256": "a5ddcac40538d0f65e3795a987497c55b5f4666451d101f112f3163e3aeb6f24",
+      "bytes": 407
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/tests/f6c-bounded-operation-closure.test.js",
+      "sha256": "53ded755076a4c9f8b22754aecb8d163959a534219287ea0d6301d3e0b0e5241",
+      "bytes": 8059
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/entry.mjs",
+      "sha256": "3156846c7198e3b1df47b1b5d6e4a8710a52177c5bf25e4774a86b9ef21df3d9",
+      "bytes": 62
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/plan.json",
+      "sha256": "40c8113b1e61d8913591bda505fc87a5789b841dbcbc31b88cb490b4de18c00e",
+      "bytes": 1982
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/operation/operation.json",
+      "sha256": "b59161a6c7d0b726d745ae635abc7373bb005e0506fb9e346b7918178f6a364e",
+      "bytes": 55175
+    }
+  ],
+  "sourceIdentities": {
+    "/Users/markmorris/vibe/architrino/scripts/eom/f6c-bounded-operation.mjs": "16777234:192173075:81416:1788764531485121811:1788764531485121811",
+    "/Users/markmorris/vibe/architrino/scripts/eom/launch-prescribed-response-pilot.mjs": "16777234:192173085:28310:1788756594023882890:1788756594023882890",
+    "/Users/markmorris/vibe/architrino/scripts/eom/launch-subfield-circular-root-pilot.mjs": "16777234:192173086:65600:1788756374330455157:1788756374330455157",
+    "/Users/markmorris/vibe/architrino/scripts/eom/launch-f6c-emission-refinement-pilot.mjs": "16777234:192173082:24898:1788756594025496476:1788756594025496476",
+    "/opt/homebrew/Cellar/node/26.3.0/bin/node": "16777234:152416920:68384:1781640421078061826:1781640422131619643",
+    "/bin/ps": "16777234:1152921500312571399:170432:1786589515000000000:1786589515000000000",
+    "/usr/bin/memory_pressure": "16777234:1152921500312572380:134960:1786589515000000000:1786589515000000000",
+    "/Users/markmorris/vibe/architrino/tests/f6c-bounded-operation.test.js": "16777234:188796041:35673:1787998194013036931:1787998194013036931",
+    "/Users/markmorris/vibe/architrino/scripts/dev/owned-compute-supervisor.mjs": "16777234:190897657:37401:1788764380135350961:1788764380135350961",
+    "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/hook.mjs": "16777234:192212951:407:1788765367660717194:1788765367660717194",
+    "/Users/markmorris/vibe/architrino/tests/f6c-bounded-operation-closure.test.js": "16777234:192205251:8059:1788764667724046017:1788764667724046017",
+    "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/entry.mjs": "16777234:192212950:62:1788765367660627236:1788765367660627236",
+    "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/plan.json": "16777234:192212952:1982:1788765367661456937:1788765367661456937",
+    "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/operation/operation.json": "16777234:192212969:55175:1788765368315490554:1788765368315490554"
+  },
+  "outputBindings": [
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/operation/launcher-stderr.log",
+      "sha256": "136a2bc474260c578ae1cb931587bb5b5622d4a6c34339d869c946f9015a3e4c",
+      "bytes": 1393
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/operation/operation.json",
+      "sha256": "b59161a6c7d0b726d745ae635abc7373bb005e0506fb9e346b7918178f6a364e",
+      "bytes": 55175
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/operation/resource-observations.ndjson",
+      "sha256": "7bf78ee8d8280a15859d0fb373023920067bacb93ca15af7b4727c9d1cb325a0",
+      "bytes": 13482
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/operation/stages/synthetic/runner-stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/operation/stages/synthetic/runner-stdout.log",
+      "sha256": "cee51631a9250196b2242046b6f325490a706769f05f2ad28f1eebd679e00a0e",
+      "bytes": 36
+    }
+  ],
+  "outputIdentities": {
+    "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/operation/launcher-stderr.log": "16777234:192212961:1393:1788765368294937116:1788765368294937116",
+    "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/operation/operation.json": "16777234:192212969:55175:1788765368315490554:1788765368315490554",
+    "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/operation/resource-observations.ndjson": "16777234:192212962:13482:1788765368348027174:1788765368348027174",
+    "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/operation/stages/synthetic/runner-stderr.log": "16777234:192212968:0:1788765367929390284:1788765367929402951",
+    "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/operation/stages/synthetic/runner-stdout.log": "16777234:192212967:36:1788765368121761696:1788765368121761696"
+  },
+  "observedProcessIds": [
+    4145,
+    4147,
+    4148,
+    4149,
+    4150,
+    4151,
+    4152,
+    4153,
+    4154,
+    4155,
+    4156,
+    4157,
+    4158,
+    4159,
+    4160
+  ],
+  "observedProcessGroups": [
+    4145,
+    4150,
+    4151
+  ],
+  "h3EvidenceEligible": false,
+  "physicalClaims": false,
+  "mathematicalAcceptance": false,
+  "observer": {
+    "path": "/Users/markmorris/vibe/architrino/scripts/eom/observe-parent-batch.mjs",
+    "sha256": "f8d03048a3e8ac8c984f0e1eb3308c6711f03c7644f33983fae4e5487c4249b3",
+    "bytes": 7600
+  },
+  "checker": {
+    "path": "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-bounded-operation-closure.mjs",
+    "sha256": "bd40d9617c321e66ad4f5f6943ee85361cfa8163545780fa9c7d389063204509",
+    "bytes": 12331
+  },
+  "supervisor": {
+    "path": "/Users/markmorris/vibe/architrino/scripts/dev/owned-compute-supervisor.mjs",
+    "sha256": "a7d504d413d8cd870ea4117c8ef2e11cf28b09cd0ff0bdbeb665f5ae78693979",
+    "bytes": 37401
+  },
+  "processObserver": {
+    "path": "/bin/ps",
+    "sha256": "3bbba882e30d91fc4ff6e6844ca7c59fef4351b9a3fea35dca55708d6d487d1c",
+    "bytes": 170432
+  },
+  "conditionalStdout": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/a52599d6-6e3e-47d0-b265-4d7b86753d41.stdout.log",
+    "sha256": "ab0d4821f4e1c072e32cbd712af06ba038ef5da7920bc9f9f94bf4f6f8510b34",
+    "bytes": 10558
+  },
+  "externalStderr": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/a52599d6-6e3e-47d0-b265-4d7b86753d41.stderr.log",
+    "sha256": "136a2bc474260c578ae1cb931587bb5b5622d4a6c34339d869c946f9015a3e4c",
+    "bytes": 1393
+  },
+  "lease": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/observer/owned-exit.json",
+    "sha256": "525d7f5befa3059cc63aacd0995f744e998d36999d29cf61e8c4635f4b9290d2",
+    "bytes": 2532
+  },
+  "processSnapshot": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-b8lEO7/observer/process-snapshot.txt",
+    "sha256": "5491e1951128350d43f288416b2501ed53ab72bc6a2c59bd381a0b7e8f166c74",
+    "bytes": 88508
+  },
+  "trustBoundary": "trusted host and externally selected observer/checker generations; operational closure only"
+}

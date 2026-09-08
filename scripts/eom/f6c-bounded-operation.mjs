@@ -39,9 +39,9 @@ export const LIMITS=Object.freeze({inclusiveMilliseconds:1800000,aggregateRSSByt
   outputFiles:512,serialWorkers:1,startFreePercent:40,startDiskBytes:68719476736,
   stopFreePercent:20,stopDiskBytes:17179869184});
 export const PINS=Object.freeze({
-  helpers:['scripts/eom/launch-prescribed-response-pilot.mjs','7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7'],
-  outer:['scripts/eom/launch-subfield-circular-root-pilot.mjs','3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a'],
-  diagnostics:['scripts/eom/launch-f6c-emission-refinement-pilot.mjs','7a1f5571827225d1529f73a3f0b905be75e81e2f7d11c2670b697e0599d65e71'],
+  helpers:['scripts/eom/launch-prescribed-response-pilot.mjs','9af9a6a33b3b1c5889550953496be13d0698e5d24e9033dbdd5ffcb82deeafe2'],
+  outer:['scripts/eom/launch-subfield-circular-root-pilot.mjs','58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c'],
+  diagnostics:['scripts/eom/launch-f6c-emission-refinement-pilot.mjs','42cff90c1d7fab71a3e826c5e9da4185363b6d2ab48ba7d826ef1ac3f9e9427c'],
 });
 const check=(ok,message)=>{if(!ok)throw Error(message);};
 const sha=raw=>createHash('sha256').update(raw).digest('hex');
@@ -124,7 +124,7 @@ export function originalIdentities(captured){
 
 export function noCompetitor(table,ownPid){
   const own=new Set([ownPid]);let changed;do{changed=false;for(const row of table)if(own.has(row.ppid)&&!own.has(row.pid)){own.add(row.pid);changed=true;}}while(changed);
-  const program=/(?:run|launch)-(?:f5|f6c)|(?:prepare|verify|reduce)-(?:f5|f6c)|(?:reduce|publish)-prescribed-acceleration|eom_native_.*(?:cli|fixture)|f6c-bounded-operation/u;
+  const program=/(?:run|launch)-(?:f5|f6c)|(?:prepare|verify|reduce)-(?:f5|f6c)|(?:reduce|publish)-prescribed-acceleration|eom_native_.*(?:cli|fixture)|f6c-bounded-operation(?:\.mjs)?(?:\s|$)/u;
   check(!table.some(row=>!own.has(row.pid)&&program.test(row.command)),'competing numerical or packaging operation');
 }
 

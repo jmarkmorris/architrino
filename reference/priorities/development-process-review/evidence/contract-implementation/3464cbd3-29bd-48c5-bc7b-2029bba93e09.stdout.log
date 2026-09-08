@@ -1,0 +1,4 @@
+Known canonical JSON control passed before target.
+{"accepted":true,"receipt":{"path":"/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-d2BoxH/observer/closure.json","sha256":"24ca9a1b9c92688be715e72eedc59d38c4225e92a8b288f955b2072467f59db8","bytes":10772},"mathematicalAcceptance":false}
+{"control":"normal-return","passed":true,"directory":"/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-d2BoxH","error":null,"elapsedMilliseconds":735.11275}
+{"control":"intentional-stage-failure","passed":true,"directory":"/Users/markmorris/vibe/architrino/.local-data/braid-analysis/external-observer-control-cGkmRT","error":"coordinator did not close successfully","elapsedMilliseconds":null}

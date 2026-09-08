@@ -1,0 +1,39 @@
+{
+  "knownCases": "passed before recovery",
+  "claim": "Byte identity only. No recovered code executed; no scientific acceptance or historical replay.",
+  "sources": [
+    {
+      "file": "original-full-entry.mjs.source",
+      "logicalPath": "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+      "recovery": {
+        "gitBlob": "53db9db24faeebb297f166a89c463cd77540f827"
+      },
+      "independentBinding": {
+        "receipt": ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/full-admission.json",
+        "receiptSha256": "8fe8f0f9651fd8de15467a69f0534f08bbe19e0e3fdb64a86c6422be857eb77f"
+      },
+      "sha256": "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b",
+      "bytes": 27166,
+      "lines": 299
+    },
+    {
+      "file": "intermediate-preparation.py.source",
+      "logicalPath": "scripts/eom/prepare-f6c-refined-acceleration.py",
+      "recovery": {
+        "parent": "baa3e732343db99d0b16dbb920fd9839ad09c942^",
+        "replace": {
+          "before": "a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9",
+          "after": "9eb1afb84a175b143020610c153f9fef6dabb50efce9f956991feca3fbc0d5c2"
+        }
+      },
+      "independentBinding": {
+        "commit": "baa3e732343db99d0b16dbb920fd9839ad09c942",
+        "path": "scripts/eom/run-f6c-refined-acceleration-pilot.mjs",
+        "role": "PINS[CONSUMER]"
+      },
+      "sha256": "738c716f95c419d49c14ffd533ba3bde4b6bfe666521f363db15c6212a52842c",
+      "bytes": 64441,
+      "lines": 966
+    }
+  ]
+}

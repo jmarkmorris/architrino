@@ -1,0 +1,31 @@
+.E....
+======================================================================
+ERROR: test_current_bridge_publishes_both_stages_and_retracts_failed_publication (test_f6c_acceleration_execution.SyntheticExecution.test_current_bridge_publishes_both_stages_and_retracts_failed_publication)
+Artificial numerical callbacks test transport, never scientific truth.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/tests/test_f6c_acceleration_execution.py", line 131, in test_current_bridge_publishes_both_stages_and_retracts_failed_publication
+    completion=run(['--stage','consumer','--out',str(target),'--git-binary',git])
+  File "/Users/markmorris/vibe/architrino/tests/test_f6c_acceleration_execution.py", line 129, in run
+    with patch.object(sys,'argv',common+args),patch.object(s,'instrument',controlled_instrument),redirect_stdout(stdout):s.main()
+                                                                                                                         ~~~~~~^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/execute-f6c-acceleration.py", line 179, in main
+    obj = capture(root/b['path'], b['sha256'], limit=1024**3)
+  File "/Users/markmorris/vibe/architrino/scripts/eom/execute-f6c-acceleration.py", line 156, in capture
+    obj = stack.enter_context(Capture(p, h, **kw))
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 530, in enter_context
+    result = _enter(cm)
+  File "/Users/markmorris/vibe/architrino/scripts/eom/execute-f6c-acceleration.py", line 72, in __enter__
+    self.data = self.scan(self.collect)
+                ~~~~~~~~~^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/execute-f6c-acceleration.py", line 62, in scan
+    require(digest.hexdigest() == self.expected, 'capture digest differs')
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/execute-f6c-acceleration.py", line 37, in require
+    raise ValueError(message)
+ValueError: capture digest differs
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.071s
+
+FAILED (errors=1)

@@ -7,7 +7,7 @@
 - Set $c_f=1$ in every new numerical instantiation. Preserve exact canonical root signs, labels, history provenance, and branch boundaries.
 - Use this role as a creative analytical lens only. Numerical convergence supports only the declared discrete-to-continuum claim and does not select a boundary rule or confer theory acceptance.
 - Separate derived results, plausible inferences, proposed innovations, and unresolved questions. Report nonconvergence, order reduction, or an ill-posed target as exact blockers.
-- Work in the main checkout unless the user explicitly authorizes a worktree. Preserve unrelated changes and do not stage, commit, push, reset, stash, or regenerate without explicit authority.
+- Preserve unrelated changes and do not stage, commit, push, reset, stash, or regenerate without explicit authority.
 - Make scoped edits only when the assigned task authorizes them; validate the allowed scope and report the exact outcome.
 
 **Core responsibilities**:

@@ -41,7 +41,7 @@ The Research Lead, CTO, CSO, Principal Investigator, and Specialists are operati
 
 ## Repository authority
 
-Coordinating research does not expand write authority, and it does not license repository operations unrelated to the brief. Work directly in the user's shared main checkout unless the user explicitly authorizes a worktree. Preserve unrelated staged and unstaged changes. Make edits only when the research brief authorizes them and keep those edits within the named scope. Do not stage, commit, push, reset, stash, or regenerate without explicit authority.
+Coordinating research does not expand write authority, and it does not license repository operations unrelated to the brief. Preserve unrelated staged and unstaged changes. Make edits only when the research brief authorizes them and keep those edits within the named scope. Do not stage, commit, push, reset, stash, or regenerate without explicit authority.
 
 Run the required scoped validation for every authorized edit. If a generated-artifact check reports drift and regeneration is not authorized, report the drift and exact repair command without running it.
 

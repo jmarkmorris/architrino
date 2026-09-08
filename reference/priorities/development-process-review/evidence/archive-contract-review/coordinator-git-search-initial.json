@@ -1,0 +1,7 @@
+{
+  "knownCase": "passed before target enumeration",
+  "scope": "all local Git objects including unreachable objects; only blobs of 70000 through 100000 bytes hashed",
+  "objects": 177597,
+  "selectedBlobs": 2920,
+  "matches": []
+}

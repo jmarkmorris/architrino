@@ -1,0 +1,42 @@
+[
+  {
+    "path": "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
+    "sourcePath": "reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json",
+    "ref": "897fe1aa7^",
+    "expected": "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
+    "recovered": "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
+    "current": "64416c2b57feca1ae06bc177f8809abf91c4a8736ec4fa29b13838428afec269",
+    "matches": true,
+    "archive": "reference/priorities/development-process-review/evidence/next-caller-inputs/phase-varying-prescribed-display-history.v3.json.e92e450c8ea8.source"
+  },
+  {
+    "path": "reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json",
+    "sourcePath": "reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json",
+    "ref": "897fe1aa7^",
+    "expected": "bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344",
+    "recovered": "bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344",
+    "current": "93b295b9bd99280c194323dd0bb3daf838d9c857b36d16881b6da379a4984e35",
+    "matches": true,
+    "archive": "reference/priorities/development-process-review/evidence/next-caller-inputs/2026-08-26-f5-phase-varying-root-pilot-source.v2.json.bda39fe695e8.source"
+  },
+  {
+    "path": "reference/priorities/braid-program/evidence/2026-08-27-prescribed-acceleration-response-predeclaration.md",
+    "sourcePath": "reference/priorities/braid-program/evidence/2026-08-27-prescribed-acceleration-response-predeclaration.md",
+    "ref": "897fe1aa7^",
+    "expected": "c08d7f53616fc2843b3a192f7e3c10229f9a9fe7abc1a8670ddb1706d95756ef",
+    "recovered": "c08d7f53616fc2843b3a192f7e3c10229f9a9fe7abc1a8670ddb1706d95756ef",
+    "current": "650096a38645e30d3a2acf44914af3ae6bf4563314675fa9f26f71f16fe2c994",
+    "matches": true,
+    "archive": "reference/priorities/development-process-review/evidence/next-caller-inputs/2026-08-27-prescribed-acceleration-response-predeclaration.md.c08d7f53616f.source"
+  },
+  {
+    "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md",
+    "sourcePath": "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md",
+    "ref": "897fe1aa7^",
+    "expected": "3ef8fb9020bae71833b1e06a119672b49a4beb5395f697dcb3d037d088e7891e",
+    "recovered": "3ef8fb9020bae71833b1e06a119672b49a4beb5395f697dcb3d037d088e7891e",
+    "current": "7c949bbec3e67c77bfa5c9e235aa7b680dab135bb109000700094e5dfbfdacbc",
+    "matches": true,
+    "archive": "reference/priorities/development-process-review/evidence/next-caller-inputs/2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md.3ef8fb9020ba.source"
+  }
+]

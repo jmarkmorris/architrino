@@ -56,7 +56,7 @@ CONTROLS='tests/test_f6c_refined_acceleration.py'
 CONSUMER='scripts/eom/prepare-f6c-refined-acceleration.py'
 CONSUMER_CONTROLS='tests/test_f6c_refined_acceleration_preparation.py'
 DECLARATION='reference/priorities/braid-program/evidence/2026-08-27-f6c-refined-cover-acceleration-projection.md'
-DECLARATION_SHA='c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d'
+DECLARATION_SHA='a9d871a35e6e9f00e96ba07182798cb87f546eabe0664e7f170b67c820bb43fc'
 CORE='scripts/eom/oracle/f6c_refined_acceleration_conformance.py'
 CORE_SHA='7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e'
 REFERENCE='scripts/eom/verify-f6c-continuous-reception-acceleration.py'
@@ -112,8 +112,8 @@ OPERATIONS=('scripts/eom/run-f6c-refined-acceleration-pilot.mjs',
  'tests/f6c-refined-acceleration-pilot.test.js','tests/f6c-refined-acceleration-pilot-process.test.js',
  'scripts/eom/launch-prescribed-response-pilot.mjs','scripts/eom/launch-subfield-circular-root-pilot.mjs',
  '/bin/ps','/usr/bin/memory_pressure')
-OP_PINS={'scripts/eom/launch-prescribed-response-pilot.mjs':'7a2bd6bc5556ad18c0fd3acdb0490895c91f5e315ff534f0f2ac8f6799f433e7',
- 'scripts/eom/launch-subfield-circular-root-pilot.mjs':'3f6026b029d5e1d90354213f34f3305e71f19e9d4020fc4f2ea0a56983bcc85a',
+OP_PINS={'scripts/eom/launch-prescribed-response-pilot.mjs':'f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31',
+ 'scripts/eom/launch-subfield-circular-root-pilot.mjs':'35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826',
  '/usr/bin/memory_pressure':'a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56'}
 PLAN_KEYS=('schema','scope',*NAMED,'runtimeBindings','operationalBindings','limits','priorRefinementClosure')
 CANDIDATE_KEYS=tuple('schema scope status accepted launchPlan consumer declaration verifier sourceBindings ancestryBindings refinementBindings runtimeBindings operationalBindings priorRefinementClosure projection ranges census claims publicationRequires'.split())

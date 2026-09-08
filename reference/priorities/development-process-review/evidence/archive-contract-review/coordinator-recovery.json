@@ -1,0 +1,20 @@
+{
+  "knownCase": "SHA-256 abc passed before target",
+  "baseline": "6bddaa9802684c96ea51a5483733b3f21ff4fc15",
+  "original": {
+    "path": ".local-data/braid-analysis/f6c-whole-history-20260828/continuation-source-archives/f6c-bounded-operation.mjs.5428e4b89736730cdae1671f39b3fd5b0067be781fbfb8cda774347a9890b885.before-whole-attempt-repair.archive",
+    "sha256": "5428e4b89736730cdae1671f39b3fd5b0067be781fbfb8cda774347a9890b885",
+    "bytes": 36641,
+    "gitBlob": "96ae77dd1ec18f4ee7862d46196a4d8598862d7f"
+  },
+  "current": {
+    "path": "scripts/eom/f6c-bounded-operation.mjs",
+    "sha256": "47c2828c918c008c9f183e341d8f0ba677d79f3cb003bbb375d8a01d718a4098",
+    "bytes": 81416
+  },
+  "promotionReview": {
+    "path": ".local-data/braid-analysis/f6c-whole-history-20260828/packaging-review/canonical-c-promotion-independent-acceptance-v1.md",
+    "sha256": "f596aefd0b70a12ef2e331c0f283df5f21965841a24302252f315986e9d91ab3",
+    "claim": "Verified preserved report bytes; its historical observations remain attributed to that report."
+  }
+}

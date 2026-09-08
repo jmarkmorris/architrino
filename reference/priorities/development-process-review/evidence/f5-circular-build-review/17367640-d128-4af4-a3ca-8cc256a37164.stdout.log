@@ -1,0 +1,142 @@
+TAP version 13
+# Subtest: resource admission has separate launch and running thresholds
+ok 1 - resource admission has separate launch and running thresholds
+  ---
+  duration_ms: 0.846375
+  type: 'test'
+  ...
+# Subtest: bounded binding and exclusive output reject substitutions
+ok 2 - bounded binding and exclusive output reject substitutions
+  ---
+  duration_ms: 1.240958
+  type: 'test'
+  ...
+# Subtest: synthetic build admission requires exact gate and completion census
+ok 3 - synthetic build admission requires exact gate and completion census
+  ---
+  duration_ms: 23.789792
+  type: 'test'
+  ...
+# Subtest: final publication enforces deadline and does not overwrite
+ok 4 - final publication enforces deadline and does not overwrite
+  ---
+  duration_ms: 12.431791
+  type: 'test'
+  ...
+# Subtest: finalization keeps monitoring and stores captured source closure
+ok 5 - finalization keeps monitoring and stores captured source closure
+  ---
+  duration_ms: 0.170708
+  type: 'test'
+  ...
+# Subtest: aborted inspection rejects once, then leaves real inspection available for cleanup
+ok 6 - aborted inspection rejects once, then leaves real inspection available for cleanup
+  ---
+  duration_ms: 0.82925
+  type: 'test'
+  ...
+# Subtest: interruption during first inspection creates no bootstrap or target ACK
+ok 7 - interruption during first inspection creates no bootstrap or target ACK
+  ---
+  duration_ms: 18.211917
+  type: 'test'
+  ...
+# Subtest: interruption at bootstrap inspection prevents target ACK and permits validated owned cleanup
+ok 8 - interruption at bootstrap inspection prevents target ACK and permits validated owned cleanup
+  ---
+  duration_ms: 10169.367583
+  type: 'test'
+  ...
+# Subtest: interruption at first target gate inspection prevents target ACK and permits validated owned cleanup
+ok 9 - interruption at first target gate inspection prevents target ACK and permits validated owned cleanup
+  ---
+  duration_ms: 528.531583
+  type: 'test'
+  ...
+# Subtest: build arguments preserve explicit fresh lane and runtime
+ok 10 - build arguments preserve explicit fresh lane and runtime
+  ---
+  duration_ms: 0.761417
+  type: 'test'
+  ...
+# Subtest: build rejects missing, repeated, unknown, escaping and unbound inputs
+ok 11 - build rejects missing, repeated, unknown, escaping and unbound inputs
+  ---
+  duration_ms: 0.167167
+  type: 'test'
+  ...
+# Subtest: minimal binding matches producer closed file-record shape
+ok 12 - minimal binding matches producer closed file-record shape
+  ---
+  duration_ms: 1.124625
+  type: 'test'
+  ...
+# Subtest: source snapshot binds fresh builder, whole EOM owners and frozen references
+ok 13 - source snapshot binds fresh builder, whole EOM owners and frozen references
+  ---
+  duration_ms: 13.877958
+  type: 'test'
+  ...
+# Subtest: build source uses two compilation workers and no data invocation
+ok 14 - build source uses two compilation workers and no data invocation
+  ---
+  duration_ms: 0.210708
+  type: 'test'
+  ...
+# Subtest: sub-field circular build preparation accepts only a fresh scoped directory argument
+ok 15 - sub-field circular build preparation accepts only a fresh scoped directory argument
+  ---
+  duration_ms: 0.879417
+  type: 'test'
+  ...
+# Subtest: observed source inventory binds full solver tree and reviewed adapter/CMake/supervisor
+ok 16 - observed source inventory binds full solver tree and reviewed adapter/CMake/supervisor
+  ---
+  duration_ms: 4.447
+  type: 'test'
+  ...
+# Subtest: reference inventory binds seven frozen references and sixteen exact candidate sources
+ok 17 - reference inventory binds seven frozen references and sixteen exact candidate sources
+  ---
+  duration_ms: 9.505583
+  type: 'test'
+  ...
+# Subtest: snapshot equality rejects hashes, paths, byte counts, missing files and added files
+ok 18 - snapshot equality rejects hashes, paths, byte counts, missing files and added files
+  ---
+  duration_ms: 0.303208
+  type: 'test'
+  ...
+# Subtest: compile command tokenizer preserves quoted paths without invoking shell syntax
+ok 19 - compile command tokenizer preserves quoted paths without invoking shell syntax
+  ---
+  duration_ms: 0.749834
+  type: 'test'
+  ...
+# Subtest: compiler dependency parser retains system headers, continuation and escaped spaces
+ok 20 - compiler dependency parser retains system headers, continuation and escaped spaces
+  ---
+  duration_ms: 0.1375
+  type: 'test'
+  ...
+# Subtest: compile plan rejects altered flags and separates only input/output from fixed compiler arguments
+ok 21 - compile plan rejects altered flags and separates only input/output from fixed compiler arguments
+  ---
+  duration_ms: 0.24575
+  type: 'test'
+  ...
+# Subtest: multicall invocation preserves alias while its identity hashes the underlying executable
+ok 22 - multicall invocation preserves alias while its identity hashes the underlying executable
+  ---
+  duration_ms: 0.570334
+  type: 'test'
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 11092.996292

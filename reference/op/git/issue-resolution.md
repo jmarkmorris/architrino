@@ -15,9 +15,9 @@ This procedure operates within the current task authority. A request to inspect 
 ## Operating Principles
 
 - Resolve the repository and issue scope before acting.
-- Use the GitHub connector first for structured issue and pull request metadata when it is available.
+- Use GitHub CLI (`gh`) for issue and pull request metadata through the verified PAT- or OAuth-authenticated route assigned to the tool and repository. GitHub connectors are excluded from the selected operating workflow; do not fall back to one because it is available.
 - Use local `git` for checkout state, diffs, branches, commits, and local validation.
-- Use `gh` where the connector is not sufficient, especially for current-branch PR discovery, GitHub Actions logs, issue comments, and issue closure.
+- Use `gh` for current-branch PR discovery, GitHub Actions logs, and authorized issue comments and closure. Verify the actual identity, repository, and permissions before relying on the route; a PAT or OAuth label alone does not establish the required authorization boundary.
 - Inspect the live worktree before changing files.
 - Do not overwrite unrelated local changes.
 - Keep one issue fix narrow unless the operator/developer explicitly asks for a batch.
@@ -56,13 +56,13 @@ Steps:
    - too broad for the current pass;
    - blocked by another issue or PR.
 3. Choose an execution strategy:
-   - one PR per issue when the fixes are independent;
-   - one PR for a tightly coupled set when the same code path and validation cover all issues;
+   - one combined PR for the operator-authorized set of accumulated changes when the work is ready, understandable, and validated together, including changes across different subject areas;
+   - separate PRs only when the operator chooses independent review or release, or a concrete readiness problem requires a scope decision;
    - triage-only when the set is not implementation-ready.
 4. For each fixed issue, include a closure keyword in the PR body.
 5. For each deferred issue, add a GitHub comment that states the reason it remains open and the next concrete action.
 
-Do not silently merge multiple unrelated issue fixes into one branch. If the set contains mixed domains, split the work.
+The accepted publication approach is a combined PR after editing stops. Different subject areas alone do not require separate branches or PRs. Preserve issue-level scope and closure evidence within the combined PR, and do not expand the authorized implementation scope merely because publication is combined. If some work is unfinished or cannot be reviewed and validated together, explain the concrete problem to the operator before changing publication scope.
 
 ### Open-Ended Scan For Fixable Issues
 

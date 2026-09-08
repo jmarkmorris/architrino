@@ -16,7 +16,7 @@ The strongest safe use is therefore not "this maps to $\mathbb{A}\mathbb{A}\math
 4. define the residual that would count as recovery,
 5. name the failure mode that would show the mapping has overreached.
 
-the inherited theory can tell the program what must be recovered, but it cannot tell the program what the world is made of.
+The inherited theory can tell the program what must be recovered, but it cannot tell the program what the world is made of.
 
 ## Transfer Record
 
@@ -276,7 +276,7 @@ A historical audit of prize-recognized discoveries reinforces the same rule: mid
 
 Proof route: a verbal or diagrammatic mapping establishes only a relation between labels. Benchmark recovery requires an output comparison. Implementation closure requires a generator. If the generator is not declared, the concept still sits at the comparison layer. If the generator changes between benchmark families, the result is hidden tuning. If the generator is native and shared across the relevant sectors, then the inherited concept has been recovered as an effective limit rather than merely named.
 
-a map is not a mechanism. A mechanism is a native record that keeps working after the comparison target changes.
+A map is not a mechanism. A mechanism is a native record that keeps working after the comparison target changes.
 
 ## Reasoning Provenance Below Existing Theory
 

@@ -1,0 +1,257 @@
+{
+  "runId": "1503e3dd-6386-424f-8b12-e18f6ac2be91",
+  "boundary": "Each native failed test is retained under a file/owner disposition. Owner assignment is not closure or acceptance. Earlier baseline counts are not used as current results.",
+  "files": [
+    {
+      "file": "tests/all-candidate-analytical-rebuild.test.js",
+      "failedTests": 5,
+      "group": "analytical-coverage",
+      "owner": "reference/priorities/braid-program/work-queue.md#routed-methodology-coverage-review-from-ops-018",
+      "state": "unmet-scientific-review-prerequisite",
+      "reason": "Actual gate requires analytical coverage impact review before accepting the current methodology identity."
+    },
+    {
+      "file": "tests/analytical-campaign-database.test.js",
+      "failedTests": 7,
+      "group": "analytical-coverage",
+      "owner": "reference/priorities/braid-program/work-queue.md#routed-methodology-coverage-review-from-ops-018",
+      "state": "unmet-scientific-review-prerequisite",
+      "reason": "Actual gate requires analytical coverage impact review before accepting the current methodology identity."
+    },
+    {
+      "file": "tests/archie-service-contracts.test.js",
+      "failedTests": 3,
+      "group": "archie-contracts",
+      "owner": "reference/priorities/aaa-operations/work-queue.md#ops-023--archie-mcp-tool-contract-fixture-drift",
+      "state": "open-owner-adjudication",
+      "reason": "Contract/fixture disagreements and loopback startup failure remain; shared cause is not established for every assertion."
+    },
+    {
+      "file": "tests/archie-service-fixture-mcp-server.test.js",
+      "failedTests": 1,
+      "group": "archie-contracts",
+      "owner": "reference/priorities/aaa-operations/work-queue.md#ops-023--archie-mcp-tool-contract-fixture-drift",
+      "state": "open-owner-adjudication",
+      "reason": "Contract/fixture disagreements and loopback startup failure remain; shared cause is not established for every assertion."
+    },
+    {
+      "file": "tests/archie-service-mcp-loopback-http.test.js",
+      "failedTests": 1,
+      "group": "archie-contracts",
+      "owner": "reference/priorities/aaa-operations/work-queue.md#ops-023--archie-mcp-tool-contract-fixture-drift",
+      "state": "open-owner-adjudication",
+      "reason": "Contract/fixture disagreements and loopback startup failure remain; shared cause is not established for every assertion."
+    },
+    {
+      "file": "tests/archie-service-mcp-remote-deployment-contract.test.js",
+      "failedTests": 1,
+      "group": "archie-contracts",
+      "owner": "reference/priorities/aaa-operations/work-queue.md#ops-023--archie-mcp-tool-contract-fixture-drift",
+      "state": "open-owner-adjudication",
+      "reason": "Contract/fixture disagreements and loopback startup failure remain; shared cause is not established for every assertion."
+    },
+    {
+      "file": "tests/archie-service-mcp-tool-contract.test.js",
+      "failedTests": 1,
+      "group": "archie-contracts",
+      "owner": "reference/priorities/aaa-operations/work-queue.md#ops-023--archie-mcp-tool-contract-fixture-drift",
+      "state": "open-owner-adjudication",
+      "reason": "Contract/fixture disagreements and loopback startup failure remain; shared cause is not established for every assertion."
+    },
+    {
+      "file": "tests/archie-service-source-index-snapshot.test.js",
+      "failedTests": 2,
+      "group": "archie-generated-snapshot",
+      "owner": "reference/priorities/aaa-operations/work-queue.md#ops-023--archie-mcp-tool-contract-fixture-drift",
+      "state": "open-generated-snapshot-drift",
+      "reason": "Current readingCopies digest differs from the stored source-index snapshot; related standalone check also fails."
+    },
+    {
+      "file": "tests/borg-configuration-geometry-records.test.js",
+      "failedTests": 2,
+      "group": "borg-behavior",
+      "owner": "reference/priorities/app-borg/work-queue.md",
+      "state": "open-owner-adjudication",
+      "reason": "Geometry values, record loading and home-source expectation disagree. These require behavior-specific review; no pin-only repair is asserted."
+    },
+    {
+      "file": "tests/borg-eom-migration.test.js",
+      "failedTests": 1,
+      "group": "borg-eom-binding",
+      "owner": "reference/priorities/aaa-operations/work-queue.md#ops-024--post-campaign-binding-corruption-sweep",
+      "state": "open-owner-adjudication",
+      "reason": "Existing OPS-024 decision row routes the live EOM contract binding to its owner and regeneration procedure."
+    },
+    {
+      "file": "tests/borg-home-entry.test.js",
+      "failedTests": 1,
+      "group": "borg-behavior",
+      "owner": "reference/priorities/app-borg/work-queue.md",
+      "state": "open-owner-adjudication",
+      "reason": "Geometry values, record loading and home-source expectation disagree. These require behavior-specific review; no pin-only repair is asserted."
+    },
+    {
+      "file": "tests/borg-library.test.js",
+      "failedTests": 2,
+      "group": "borg-behavior",
+      "owner": "reference/priorities/app-borg/work-queue.md",
+      "state": "open-owner-adjudication",
+      "reason": "Geometry values, record loading and home-source expectation disagree. These require behavior-specific review; no pin-only repair is asserted."
+    },
+    {
+      "file": "tests/coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.test.js",
+      "failedTests": 2,
+      "group": "analytical-coverage",
+      "owner": "reference/priorities/braid-program/work-queue.md#routed-methodology-coverage-review-from-ops-018",
+      "state": "unmet-scientific-review-prerequisite",
+      "reason": "Actual gate requires analytical coverage impact review before accepting the current methodology identity."
+    },
+    {
+      "file": "tests/endpoint-residual-search-campaign.test.js",
+      "failedTests": 2,
+      "group": "analytical-coverage",
+      "owner": "reference/priorities/braid-program/work-queue.md#routed-methodology-coverage-review-from-ops-018",
+      "state": "unmet-scientific-review-prerequisite",
+      "reason": "Actual gate requires analytical coverage impact review before accepting the current methodology identity."
+    },
+    {
+      "file": "tests/f5-enclosed-root-ledger-reducer.test.js",
+      "failedTests": 16,
+      "group": "f5-input-and-build",
+      "owner": "reference/priorities/development-process-review/analysis/shared-helper-caller-audit.md",
+      "state": "open-step-4-contract",
+      "reason": "Original configuration/fixture composition, reviewed solver/build source pins and complete circular runtime composition need their separate obligations satisfied."
+    },
+    {
+      "file": "tests/f5-enclosed-root-prefix.test.js",
+      "failedTests": 1,
+      "group": "f5-input-and-build",
+      "owner": "reference/priorities/development-process-review/analysis/shared-helper-caller-audit.md",
+      "state": "open-step-4-contract",
+      "reason": "Original configuration/fixture composition, reviewed solver/build source pins and complete circular runtime composition need their separate obligations satisfied."
+    },
+    {
+      "file": "tests/f5-enclosed-root-preparation.test.js",
+      "failedTests": 2,
+      "group": "f5-input-and-build",
+      "owner": "reference/priorities/development-process-review/analysis/shared-helper-caller-audit.md",
+      "state": "open-step-4-contract",
+      "reason": "Original configuration/fixture composition, reviewed solver/build source pins and complete circular runtime composition need their separate obligations satisfied."
+    },
+    {
+      "file": "tests/f5-independent-interpolation-enclosure.test.js",
+      "failedTests": 2,
+      "group": "f5-input-and-build",
+      "owner": "reference/priorities/development-process-review/analysis/shared-helper-caller-audit.md",
+      "state": "open-step-4-contract",
+      "reason": "Original configuration/fixture composition, reviewed solver/build source pins and complete circular runtime composition need their separate obligations satisfied."
+    },
+    {
+      "file": "tests/f5-phase-varying-campaign-spec.test.js",
+      "failedTests": 1,
+      "group": "f5-input-and-build",
+      "owner": "reference/priorities/development-process-review/analysis/shared-helper-caller-audit.md",
+      "state": "open-step-4-contract",
+      "reason": "Original configuration/fixture composition, reviewed solver/build source pins and complete circular runtime composition need their separate obligations satisfied."
+    },
+    {
+      "file": "tests/f5-prehistory-handoff-build.test.js",
+      "failedTests": 1,
+      "group": "f5-input-and-build",
+      "owner": "reference/priorities/development-process-review/analysis/shared-helper-caller-audit.md",
+      "state": "open-step-4-contract",
+      "reason": "Original configuration/fixture composition, reviewed solver/build source pins and complete circular runtime composition need their separate obligations satisfied."
+    },
+    {
+      "file": "tests/f6b-prescribed-kernel-diagnostic.test.js",
+      "failedTests": 1,
+      "group": "diagnostic-source-identity",
+      "owner": "reference/priorities/braid-program/work-queue.md",
+      "state": "open-owner-adjudication",
+      "reason": "F6b source record omits exact identity; F6c bestRows assertion fails and its constructed records also omit identity. Canonical diagnostic source identity must be supplied without inventing scientific provenance; shared causality is not yet verified by rerun."
+    },
+    {
+      "file": "tests/f6c-emission-refinement-pilot.test.js",
+      "failedTests": 1,
+      "group": "emission-contract",
+      "owner": "reference/priorities/development-process-review/analysis/shared-helper-caller-audit.md",
+      "state": "open-step-4-contract",
+      "reason": "Unit check rejects original declaration mismatch; process failures include overlap and still require isolated validation. New-run producer contract remains open."
+    },
+    {
+      "file": "tests/f6c-refined-acceleration-pilot.test.js",
+      "failedTests": 1,
+      "group": "refined-contract",
+      "owner": "reference/priorities/development-process-review/analysis/shared-helper-caller-audit.md",
+      "state": "open-step-4-contract",
+      "reason": "Old operational helper/supervisor generations fail before intended stage assertions; full producer/verifier interface migration remains open."
+    },
+    {
+      "file": "tests/f6c-relative-equilibrium-search.test.js",
+      "failedTests": 1,
+      "group": "diagnostic-source-identity",
+      "owner": "reference/priorities/braid-program/work-queue.md",
+      "state": "open-owner-adjudication",
+      "reason": "F6b source record omits exact identity; F6c bestRows assertion fails and its constructed records also omit identity. Canonical diagnostic source identity must be supplied without inventing scientific provenance; shared causality is not yet verified by rerun."
+    },
+    {
+      "file": "tests/f6c-streamed-leaf-diagnostic.test.js",
+      "failedTests": 1,
+      "group": "streamed-fixture-supervisor-loss",
+      "owner": "reference/priorities/development-process-review/work-queue.md",
+      "state": "open-intermittent-process-control",
+      "reason": "Private-growth fixture retained its lease in stopping after supervisor loss. Later scoped OS probes found all recorded coordinator, target/group and sidecar identities absent. The isolated unchanged control passed; the failure remains unresolved and is not subtracted from this sweep."
+    },
+    {
+      "file": "tests/pdgedit-generator-drift.test.js",
+      "failedTests": 2,
+      "group": "pdg-renderer-assets",
+      "owner": "reference/priorities/aaa-operations/work-queue.md#ops-024--post-campaign-binding-corruption-sweep",
+      "state": "open-owner-adjudication",
+      "reason": "Catalog/glyph expected assets disagree, including missing noether-braid SVGs. Existing renderer-owner regeneration decision is not silently discharged by updating expected values."
+    },
+    {
+      "file": "tests/pdgedit-renderer-drift.test.js",
+      "failedTests": 1,
+      "group": "pdg-renderer-assets",
+      "owner": "reference/priorities/aaa-operations/work-queue.md#ops-024--post-campaign-binding-corruption-sweep",
+      "state": "open-owner-adjudication",
+      "reason": "Catalog/glyph expected assets disagree, including missing noether-braid SVGs. Existing renderer-owner regeneration decision is not silently discharged by updating expected values."
+    },
+    {
+      "file": "tests/subfield-circular-root-preparation.test.js",
+      "failedTests": 1,
+      "group": "f5-input-and-build",
+      "owner": "reference/priorities/development-process-review/analysis/shared-helper-caller-audit.md",
+      "state": "open-step-4-contract",
+      "reason": "Original configuration/fixture composition, reviewed solver/build source pins and complete circular runtime composition need their separate obligations satisfied."
+    },
+    {
+      "file": "tests/subfield-circular-root-rung.test.js",
+      "failedTests": 1,
+      "group": "f5-input-and-build",
+      "owner": "reference/priorities/development-process-review/analysis/shared-helper-caller-audit.md",
+      "state": "open-step-4-contract",
+      "reason": "Original configuration/fixture composition, reviewed solver/build source pins and complete circular runtime composition need their separate obligations satisfied."
+    }
+  ],
+  "skippedResults": [
+    "ok 897 - sealed 660-row active sweep retains the dashboard regression facts # SKIP sealed local compact sweep is not present",
+    "ok 1222 - bounded process control: TERM-ignoring child closes after sampler failure # SKIP",
+    "ok 1223 - bounded process control: TERM-ignoring child closes after logging failure # SKIP",
+    "ok 1224 - bounded process control: missing executable closes descriptors and reports spawn failure # SKIP",
+    "ok 1225 - bounded process control: finalization after deadline is not successful # SKIP",
+    "ok 1231 - bounded registered gate preserves input/output bytes and genuine target exit two # SKIP",
+    "ok 1232 - bounded registered gate rechecks admission after ACK and never launches rejected target # SKIP",
+    "ok 1233 - schedule is rechecked after asynchronous host admission and rejects without target launch # SKIP",
+    "ok 1234 - actual watched schedule includes nonzero preflight in the complete stage envelope # SKIP",
+    "ok 1235 - bounded gate enforces its own deadline while controller remains alive # SKIP",
+    "ok 2427 - sub-field circular subject help and syntax controls require a fresh explicitly selected binary # SKIP",
+    "ok 2428 - six-member actual manifest preserves exact grid, source order, errors, endpoint bits and EOM fingerprints # SKIP",
+    "ok 2429 - repeated reception across rungs has identical original manifest bytes # SKIP",
+    "ok 2430 - twelve-member arbitrary-vector candidate preserves final pilot reception and full coverage # SKIP",
+    "ok 2431 - existing output cannot be overwritten and semantic-only manifest equality is insufficient # SKIP",
+    "ok 2432 - unaccepted conformance receipt cannot open the root execution path # SKIP",
+    "ok 2433 - FIFO manifest without a writer rejects without entering a blocking read or root call # SKIP"
+  ]
+}

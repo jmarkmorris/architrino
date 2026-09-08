@@ -1,0 +1,177 @@
+{
+  "knownCase": "passed before target enumeration",
+  "scope": "all local Git objects including unreachable objects; only blobs of 1000 through 200000 bytes hashed",
+  "objects": 177685,
+  "selectedBlobs": 51757,
+  "matches": [
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/tests/test_f6c_emission_refinement.py",
+        "sha256": "1d3af80d89834b31968cfe5dd7fb016bb0ac4eee6ce77fbabaeea21a9a905bc7",
+        "bytes": 31668
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/test_f6c_emission_refinement.py.source",
+        "sha256": "1d3af80d89834b31968cfe5dd7fb016bb0ac4eee6ce77fbabaeea21a9a905bc7",
+        "bytes": 31668
+      },
+      "gitBlob": "02c7c312bcb93fba053f444a952326038ecc3b73"
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/prepare-f6c-emission-refinement.py",
+        "sha256": "bb9e1a287552483f7ad0fc1431162c1fbdb2da84fd862bc9b1c4799eef993600",
+        "bytes": 39849
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/prepare-f6c-emission-refinement.py.source",
+        "sha256": "bb9e1a287552483f7ad0fc1431162c1fbdb2da84fd862bc9b1c4799eef993600",
+        "bytes": 39849
+      },
+      "gitBlob": "50317400717493c3a07a7feec83a170c13256ad6"
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-emission-refinement.py",
+        "sha256": "1b3e39eea14c2a21be76ab2a3fe2bdbcc055b5a73325d03de9734c79a8017c33",
+        "bytes": 38678
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/verify-f6c-emission-refinement.py.source",
+        "sha256": "1b3e39eea14c2a21be76ab2a3fe2bdbcc055b5a73325d03de9734c79a8017c33",
+        "bytes": 38678
+      },
+      "gitBlob": "58eafffbf9f192fae9819d339a07eb2f03f5a16a"
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/f6c_emission_refinement_conformance.py",
+        "sha256": "ec0eaaeae3da4ffb597ac92ff3ac1a5700a8cf88916144a7d994912270c4157a",
+        "bytes": 16703
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/f6c_emission_refinement_conformance.py.source",
+        "sha256": "ec0eaaeae3da4ffb597ac92ff3ac1a5700a8cf88916144a7d994912270c4157a",
+        "bytes": 16703
+      },
+      "gitBlob": "62a52a304393f60fb55606a119b3fa3347a65a1e"
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md",
+        "sha256": "c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f",
+        "bytes": 17211
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-continuous-reception-acceleration-reference.md.source",
+        "sha256": "c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f",
+        "bytes": 17211
+      },
+      "gitBlob": "6c2edc19a2d35af71c94894221b362d0e3be4f1b"
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/launch-f6c-cached-root-cover-pilot.mjs",
+        "sha256": "03ef68dbdc9e578402771490c274ab246f02688c443f8ecba8d3006f3d35a5ec",
+        "bytes": 26639
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/launch-f6c-cached-root-cover-pilot.mjs.03ef68dbdc9e.source",
+        "sha256": "03ef68dbdc9e578402771490c274ab246f02688c443f8ecba8d3006f3d35a5ec",
+        "bytes": 26639
+      },
+      "gitBlob": "70c28bbfd51f333fdf4f60976f4a997004d994b8"
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
+        "sha256": "89b23af09f57aa50e3ebfc0780189f2f0d1a409a7e13004af0cb48167894b944",
+        "bytes": 24893
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/launch-f6c-emission-refinement-pilot.mjs.source",
+        "sha256": "89b23af09f57aa50e3ebfc0780189f2f0d1a409a7e13004af0cb48167894b944",
+        "bytes": 24893
+      },
+      "gitBlob": "87d3fda62cb50ad4625f891d3ce374074cb604e6"
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/run-f6c-cached-root-cover-pilot.mjs",
+        "sha256": "51cd543f9f28d87299a59614805cdbf949dceabcabad1a64a701b0b2b8ea6c57",
+        "bytes": 25508
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/run-f6c-cached-root-cover-pilot.mjs.51cd543f9f28.source",
+        "sha256": "51cd543f9f28d87299a59614805cdbf949dceabcabad1a64a701b0b2b8ea6c57",
+        "bytes": 25508
+      },
+      "gitBlob": "95f57d131c06453248faff9fd6d606040fbe867a"
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/run-f6c-emission-refinement-pilot.mjs",
+        "sha256": "20466a4540dc972c248d30b8dd1987a19b00ca59a4f883752ec1c7c8b96d68ac",
+        "bytes": 36995
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/run-f6c-emission-refinement-pilot.mjs.source",
+        "sha256": "20466a4540dc972c248d30b8dd1987a19b00ca59a4f883752ec1c7c8b96d68ac",
+        "bytes": 36995
+      },
+      "gitBlob": "a7910f773fbd58d132134c6fec0d665bee62af11"
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/launch-prescribed-response-pilot.mjs",
+        "sha256": "a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9",
+        "bytes": 28305
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/launch-prescribed-response-pilot.mjs.source",
+        "sha256": "a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9",
+        "bytes": 28305
+      },
+      "gitBlob": "b11c6f2976113f096686288bb3e42fcb5664f2c6"
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md",
+        "sha256": "c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853",
+        "bytes": 16985
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md.source",
+        "sha256": "c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853",
+        "bytes": 16985
+      },
+      "gitBlob": "b3b8889e946f45ad6a7acd9ad136a7d9ec143128"
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/tests/f6c-emission-refinement-pilot-process.test.js",
+        "sha256": "ee3f86b5fd29a2547a13dde7733c38ed3bcf4a95ffcbb9d17019fc94f4ee287e",
+        "bytes": 18422
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/f6c-emission-refinement-pilot-process.test.js.source",
+        "sha256": "ee3f86b5fd29a2547a13dde7733c38ed3bcf4a95ffcbb9d17019fc94f4ee287e",
+        "bytes": 18422
+      },
+      "gitBlob": "df37a35930b1d18113253d5dce14aedceb6bd627"
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-emission-refinement-predeclaration.md",
+        "sha256": "53f3398ba083218948c9efd93f10db09cbf5d617bc0270988f5adea24c48f037",
+        "bytes": 21345
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-emission-refinement-predeclaration.md.source",
+        "sha256": "53f3398ba083218948c9efd93f10db09cbf5d617bc0270988f5adea24c48f037",
+        "bytes": 21345
+      },
+      "gitBlob": "e2c9a683313b365b9717a65ce336aa83fb22b65d"
+    }
+  ]
+}

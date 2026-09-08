@@ -1,0 +1,22 @@
+.............................................E........................................................................................
+======================================================================
+ERROR: test_complete_generic_authentication_without_numerical_calls (test_f6c_variable_cell_adapter.GenericParentTests.test_complete_generic_authentication_without_numerical_calls)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/tests/test_f6c_variable_cell_adapter.py", line 1722, in test_complete_generic_authentication_without_numerical_calls
+    selected,relations=subject._authenticate_parent(*args)
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/f6c_variable_cell_adapter.py", line 1533, in _authenticate_parent
+    require(w.equal(w.source_map(p['originalBindings'].values(),pool.root),w.source_map(expected_original.values(),pool.root))
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        and set(p['originalBindings'])==set(expected_original),'parent exact original sources')
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/f6c_variable_cell_adapter.py", line 321, in require
+    if not ok: raise ValueError(message)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: parent exact original sources
+
+----------------------------------------------------------------------
+Ran 134 tests in 4.184s
+
+FAILED (errors=1)

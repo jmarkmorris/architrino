@@ -1,0 +1,339 @@
+{
+  "schema": "braid-program/subfield-circular-pilot-outer-process.v1",
+  "accepted": false,
+  "h3EvidenceEligible": false,
+  "authority": "registered-process-supervision-and-external-terminal-admission-only",
+  "startedAt": "2026-09-07T04:33:58.343Z",
+  "limitMs": 20000,
+  "scope": "direct-superviseRegisteredPilot-only; caller preparation/publication not guarded",
+  "budget": {
+    "startedAtMs": 109.7525,
+    "entryAtMs": 109.753041,
+    "workEndMs": 5109.752499999999,
+    "completionEndMs": 20109.7525,
+    "reserveMs": 15000
+  },
+  "inspectionAuthority": "explicit callback; its bounded probe lifetime and complete resource accounting require external review",
+  "spawnPlumbing": "captured-owned-bootstrap-intercepts-spawn; registered-gate-launches-original-command-in-owned-group",
+  "bootstrapSha256": "44e820cd7496c1bfb1b8549d16fba9eee5cb9e4afa8320ae486596b3a0f1b6df",
+  "gateSha256": "a140ac54859e5c14ca3c2f564589be5a2397472eaf822c116da3f65b98f7800e",
+  "rootGuardSha256": "530629de944e1988bd38db47d90679d3640a5cedd7ecf8dc5f56a02bb14c9408",
+  "gates": [],
+  "snapshots": [
+    {
+      "reason": "registered-root-guard",
+      "elapsedMilliseconds": 183.288833,
+      "processes": [
+        {
+          "pid": 74441,
+          "ppid": 74437,
+          "pgid": 74441,
+          "started": "Mon Sep 7 00:33:58 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        },
+        {
+          "pid": 74442,
+          "ppid": 74441,
+          "pgid": 74442,
+          "started": "Mon Sep 7 00:33:58 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        }
+      ],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "runner-before-bootstrap",
+      "elapsedMilliseconds": 210.64216599999997,
+      "processes": [
+        {
+          "pid": 74441,
+          "ppid": 74437,
+          "pgid": 74441,
+          "started": "Mon Sep 7 00:33:58 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        },
+        {
+          "pid": 74442,
+          "ppid": 74441,
+          "pgid": 74442,
+          "started": "Mon Sep 7 00:33:58 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        }
+      ],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "cleanup-owned-tree",
+      "elapsedMilliseconds": 5051.290666000001,
+      "processes": [
+        {
+          "pid": 74441,
+          "ppid": 74437,
+          "pgid": 74441,
+          "started": "Mon Sep 7 00:33:58 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        },
+        {
+          "pid": 74442,
+          "ppid": 74441,
+          "pgid": 74442,
+          "started": "Mon Sep 7 00:33:58 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        }
+      ],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "fresh-before-SIGSTOP",
+      "elapsedMilliseconds": 5082.588208,
+      "processes": [
+        {
+          "pid": 74441,
+          "ppid": 74437,
+          "pgid": 74441,
+          "started": "Mon Sep 7 00:33:58 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        }
+      ],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "cleanup-owned-tree",
+      "elapsedMilliseconds": 5111.654208000001,
+      "processes": [
+        {
+          "pid": 74441,
+          "ppid": 74437,
+          "pgid": 74441,
+          "started": "Mon Sep 7 00:33:58 2026",
+          "state": "Ts",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        },
+        {
+          "pid": 74442,
+          "ppid": 74441,
+          "pgid": 74442,
+          "started": "Mon Sep 7 00:33:58 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        }
+      ],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "fresh-before-SIGSTOP",
+      "elapsedMilliseconds": 5140.159166,
+      "processes": [
+        {
+          "pid": 74441,
+          "ppid": 74437,
+          "pgid": 74441,
+          "started": "Mon Sep 7 00:33:58 2026",
+          "state": "Ts",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        }
+      ],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "fresh-before-SIGTERM",
+      "elapsedMilliseconds": 5167.784291000001,
+      "processes": [
+        {
+          "pid": 74441,
+          "ppid": 74437,
+          "pgid": 74441,
+          "started": "Mon Sep 7 00:33:58 2026",
+          "state": "Ts",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        }
+      ],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "fresh-before-SIGCONT",
+      "elapsedMilliseconds": 5197.049875000001,
+      "processes": [
+        {
+          "pid": 74441,
+          "ppid": 74437,
+          "pgid": 74441,
+          "started": "Mon Sep 7 00:33:58 2026",
+          "state": "Ts",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        }
+      ],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "cleanup-census",
+      "elapsedMilliseconds": 5226.578,
+      "processes": [
+        {
+          "pid": 74442,
+          "ppid": 1,
+          "pgid": 74442,
+          "started": "Mon Sep 7 00:33:58 2026",
+          "state": "Rs",
+          "command": "(node)"
+        }
+      ],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "cleanup-census",
+      "elapsedMilliseconds": 5280.844583,
+      "processes": [],
+      "complete": true,
+      "truncated": false
+    },
+    {
+      "reason": "final-complete-group-census",
+      "elapsedMilliseconds": 5308.216375,
+      "processes": [],
+      "complete": true,
+      "truncated": false
+    }
+  ],
+  "signals": [
+    {
+      "pgid": 74441,
+      "signal": "SIGSTOP",
+      "original": {
+        "pid": 74441,
+        "pgid": 74441,
+        "started": "Mon Sep 7 00:33:58 2026"
+      },
+      "elapsedMilliseconds": 5082.6755410000005
+    },
+    {
+      "pgid": 74441,
+      "signal": "SIGSTOP",
+      "original": {
+        "pid": 74441,
+        "pgid": 74441,
+        "started": "Mon Sep 7 00:33:58 2026"
+      },
+      "elapsedMilliseconds": 5140.194958
+    },
+    {
+      "pgid": 74441,
+      "signal": "SIGTERM",
+      "original": {
+        "pid": 74441,
+        "pgid": 74441,
+        "started": "Mon Sep 7 00:33:58 2026"
+      },
+      "elapsedMilliseconds": 5167.824458
+    },
+    {
+      "pgid": 74441,
+      "signal": "SIGCONT",
+      "original": {
+        "pid": 74441,
+        "pgid": 74441,
+        "started": "Mon Sep 7 00:33:58 2026"
+      },
+      "elapsedMilliseconds": 5197.083208
+    }
+  ],
+  "processesClosed": true,
+  "autonomousGateCancellation": "immutable self-owned target and runner-group behavior; no new reaction-time guarantee",
+  "guard": {
+    "sourceSha256": "ead24dec510af8a4e8e5732585e98693dccfec7df91a3c45102c2a3dfef2fb0e",
+    "bridgeNanoseconds": "692288421306458",
+    "bridgeMilliseconds": 110.749375,
+    "workDeadlineNanoseconds": "692293420309582",
+    "completionDeadlineNanoseconds": "692308420309583",
+    "ready": true,
+    "closed": true,
+    "schedulingBoundary": "independently schedulable worker and OS; no suspension/uninterruptible-OS guarantee",
+    "exitCode": 1
+  },
+  "outputReserved": true,
+  "rootGuard": {
+    "identity": {
+      "pid": 74442,
+      "ppid": 74441,
+      "pgid": 74442,
+      "started": "Mon Sep 7 00:33:58 2026",
+      "state": "Ss",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+    },
+    "acknowledged": true,
+    "actualCommand": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+    "actualSourceSha256": "530629de944e1988bd38db47d90679d3640a5cedd7ecf8dc5f56a02bb14c9408",
+    "registeredAtMilliseconds": 157.529
+  },
+  "runner": {
+    "pid": 74441,
+    "ppid": 74437,
+    "pgid": 74441,
+    "started": "Mon Sep 7 00:33:58 2026",
+    "state": "Ss",
+    "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+  },
+  "pendingCallbackObserved": true,
+  "firstFailure": {
+    "message": "runner close exceeded original allowance",
+    "elapsedMilliseconds": 5000.782458000001,
+    "afterAbort": false,
+    "evidence": {
+      "rows": [
+        {
+          "pid": 74441,
+          "ppid": 74437,
+          "pgid": 74441,
+          "started": "Mon Sep 7 00:33:58 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        },
+        {
+          "pid": 74442,
+          "ppid": 74441,
+          "pgid": 74442,
+          "started": "Mon Sep 7 00:33:58 2026",
+          "state": "Ss",
+          "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node"
+        }
+      ],
+      "complete": true,
+      "truncated": false
+    }
+  },
+  "exit": {
+    "code": null,
+    "signal": "SIGTERM"
+  },
+  "stdoutLog": {
+    "path": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/dpr-supervision-3QIeUC/attempt/runner-stdout.log",
+    "bytes": 18,
+    "sha256": "34e66c3baab8101e63c09a299f8641493f3d276e045ddc514d9202e57e72a142"
+  },
+  "stderrLog": {
+    "path": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/dpr-supervision-3QIeUC/attempt/runner-stderr.log",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdoutDroppedBytes": 0,
+  "stderrDroppedBytes": 0,
+  "guardClosed": true,
+  "elapsedWallSeconds": 5.309109625,
+  "failure": "runner close exceeded original allowance"
+}

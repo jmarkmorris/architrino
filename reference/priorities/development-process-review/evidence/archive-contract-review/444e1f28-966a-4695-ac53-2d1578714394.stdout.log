@@ -1,0 +1,88 @@
+✔ immutable exact resource limits and inert stage plan (4.646667ms)
+✔ source union retains exact generations and unchanged physical limits (1.032958ms)
+✔ source capture rejects source replacement and duplicate hardlinks (3.055291ms)
+✔ first plan/self/helper captures remain original through later capture (2.127708ms)
+✔ every physical output counted and only explicit publication alias accepted (6.133625ms)
+✔ output count, byte, disappearance, directory and symlink controls (2.522458ms)
+✔ empty stage logs hash successfully without becoming valid source bindings (0.7935ms)
+✔ output directory identity and finite file census are retained (71.56525ms)
+✔ registered descendants are distinguished from competing science (0.450833ms)
+✔ prior stdout dataflow binds one predecessor and counts appended arguments (0.40375ms)
+✔ write-once operation receipt retains foreign bytes and obeys deadline callback (15.573875ms)
+✔ production entries reject absent or invented actual lifetime before any work (0.567084ms)
+✔ direct CLI has exact flags, absolute plan and explicit hashes (0.128375ms)
+✔ created receipt cannot be replaced with byte-identical foreign output (1.057375ms)
+✔ one public file cannot satisfy both sides of a publication alias (1.394916ms)
+✔ pure hook guards block ordinary and low-level process creation (0.501958ms)
+✔ renewed-clock cleanup interface has no unguarded fallback (0.115791ms)
+✔ writer optional original identity is exact and default binding remains clean (19.33625ms)
+✔ writer rejects every non-Boolean option before opening output (1.074709ms)
+✔ initial output fstat exception closes original descriptor and retains path (1.454791ms)
+✔ publication original token is inserted before first observation and cannot be replaced (1.9245ms)
+✔ literal inherited clock cutoffs and conservative bridge use no real worker (0.974209ms)
+✔ ready acknowledgment is exact and failure never turns back into work success (0.682708ms)
+✔ full H worker promise remains pending through termination and rejected closure stays unresolved (1.921208ms)
+✔ fixed control profile contracts every nested cutoff without altering science limits (0.4735ms)
+✔ finite control CLI accepts no arbitrary duration or mixed-mode fallback (0.421209ms)
+✔ actual unexpected guard-exit event marks local failure and only exits self (0.420292ms)
+✔ scoped stderr charges outward copies and waits for actual callbacks (0.48425ms)
+✔ verified empty output log has an identity without becoming a positive-byte source (0.662ms)
+✔ lost RSS gap remains failure while a bounded cleanup observation is scheduled (0.407084ms)
+✔ publication and raw rejection log quotas reject before output creation (0.395167ms)
+✔ v2 prior declaration is closed and may name its already captured plan (1.084333ms)
+✔ prior context derives literal byte totals and rejects aliases and uncaptured identities (0.203333ms)
+✔ prior files remain inputs across repeated census and exact generation checks (14.134083ms)
+✔ literal combined limits include old bytes and current outward traffic without accumulation (2.984542ms)
+✔ combined path reserve precedes initial logs, publication and registered logs (0.491541ms)
+✖ fixed math census/limits and source pins remain unchanged (2.999875ms)
+✔ closed JSON parser rejects duplicate keys/trailing syntax/unsafe integers (0.7195ms)
+✔ data-only planmaker gives exact3/4/5 producer/comparison order and alias layout (0.638875ms)
+✔ data-only parent plans preserve every original mathematical/ancestry token (0.768875ms)
+✔ batch validates explicit order and rejects changed stages/aliases/roots (2.943208ms)
+✔ registered args require original deadline, captured plan and immediate prior context (0.329666ms)
+✔ duration transfer cannot reset original1800s or compare epochs (0.123959ms)
+✔ hook leaves completion binding ownership to frozen coordinator (0.250458ms)
+✔ exact historical tuples are separate logical/physical bindings (0.368833ms)
+✔ eight publication paths count four inodes; replacement/third alias reject (7.06075ms)
+✔ original metadata retains nonuniform exact endpoint tokens (3.224041ms)
+✔ thin batch source contains no legacy supervisor or output deletion (0.356209ms)
+✔ exact CLI flags and hashes; captured imports do not execute CLI (1.199625ms)
+✔ pure plan preparation yields original3/4/5 tokens and40MiB commitment (48.490792ms)
+✔ closed source/configuration/identity/schema/census mutations reject (57.521ms)
+✔ only actually consumed exact historical document routes admit (37.747084ms)
+✔ expanded runtime cannot exceed downstream one-MiB plan consumer bound (103.451333ms)
+✔ exclusive publication retains original descriptors until closure (7.558791ms)
+✔ byte-identical replacement and final callback replacement reject and retain (11.589542ms)
+✔ deadline/callback failures retain bytes and close all owned descriptors (5.686375ms)
+✔ post-open fstat failure closes unregistered file and directory descriptors (0.848125ms)
+ℹ tests 57
+ℹ suites 0
+ℹ pass 56
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 370.769167
+
+✖ failing tests:
+
+test at tests/f6c-parent-emission-refinement-pilot.test.js:21:1
+✖ fixed math census/limits and source pins remain unchanged (2.999875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '47c2828c918c008c9f183e341d8f0ba677d79f3cb003bbb375d8a01d718a4098'
+  - '5428e4b89736730cdae1671f39b3fd5b0067be781fbfb8cda774347a9890b885'
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-parent-emission-refinement-pilot.test.js:26:9)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '47c2828c918c008c9f183e341d8f0ba677d79f3cb003bbb375d8a01d718a4098',
+    expected: '5428e4b89736730cdae1671f39b3fd5b0067be781fbfb8cda774347a9890b885',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

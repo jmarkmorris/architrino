@@ -76,12 +76,12 @@ def bindings():
         ('referenceTests', C.REFERENCE_TESTS, C.REFERENCE_TESTS_SHA), ('consumer', C.SELF, '1'*64),
         ('consumerTests', C.TESTS, '2'*64), ('pythonExecutable', '/synthetic/python', '3'*64),
         *((p, p, h) for p, h in (*C.IMPORTS, *C.FORMULAS))]
-    return [dict(role=r, path=str(Path('/synthetic/root')/p), sha256=h, bytes=1) for r, p, h in rows]
+    return [dict(role=r, path=str(Path('/synthetic/root')/p), originalPath=str(Path('/synthetic/root')/p), sha256=h, bytes=1) for r, p, h in rows]
 
 
 def assembly_fixture():
     result = conditional_record()
-    candidate = dict(schema='braid-program/prescribed-acceleration-response-private.v1', accepted=False, admissible=False,
+    candidate = dict(schema='braid-program/prescribed-acceleration-response-private.v2', accepted=False, admissible=False,
         subject=C.SUBJECT.copy(), bindings=bindings(), referenceResult=result, referenceResultSha256=C.sha(C.canonical(result)), watcherSha256='4'*64)
     raw = C.canonical(candidate)+b'\n'
     completion = dict(completed=True, accepted=False,
@@ -90,7 +90,7 @@ def assembly_fixture():
     execution = dict(startedAt='2026-08-27T12:00:00Z', elapsedSeconds=2, exitCode=0, processesClosed=True,
         heartbeatSeconds=15, maximumSampledGroupRssBytes=1000000, rssSampleIntervalSeconds=1,
         outputBytes=1, logBytes=1000, watcherSha256='4'*64, publicationComplete=True)
-    expected = dict(schema='braid-program/prescribed-acceleration-response.v1', accepted=True,
+    expected = dict(schema='braid-program/prescribed-acceleration-response.v2', accepted=True,
         status='accepted-prescribed-response-enclosure', subject=candidate['subject'], bindings=candidate['bindings'],
         referenceResult=result, execution=execution, claims={k: False for k in C.FALSE_CLAIMS}, newRootSearches=0, failures=[])
     for _ in range(8):
@@ -192,6 +192,40 @@ def chain_fixture():
 
 
 class ConsumerTests(unittest.TestCase):
+    def test_historical_data_binding_keeps_original_identity_and_physical_provenance(self):
+        rows = bindings()
+        for row in rows:
+            if row['role'] in ('approvedSource', 'scientificFixture', 'predeclaration'):
+                row['path'] = '/synthetic/root/reference/archive/'+row['role']+'.source'
+        C.validate_output_bindings(rows)
+        self.assertNotEqual(rows[6]['path'], rows[6]['originalPath'])
+        self.assertEqual(rows[6]['sha256'], C.SCIENCE[6][2])
+
+    def test_historical_selection_refuses_executable_routes_aliases_and_wrong_originals(self):
+        for kind in ('executable', 'outside', 'extension', 'original', 'digest', 'alias', 'traversal', 'extra'):
+            rows = bindings()
+            if kind == 'executable': rows[11]['path'] = '/synthetic/root/reference/consumer.source'
+            elif kind == 'outside': rows[6]['path'] = '/outside/data.source'
+            elif kind == 'extension': rows[6]['path'] = '/synthetic/root/reference/archive.json'
+            elif kind == 'original': rows[6]['originalPath'] = '/synthetic/root/reference/wrong.json'
+            elif kind == 'digest': rows[6]['sha256'] = '0'*64
+            elif kind == 'alias': rows[7]['path'] = rows[6]['path']
+            elif kind == 'traversal': rows[6]['path'] = '/synthetic/root/reference/../data.source'
+            else: rows.append(rows[6].copy())
+            with self.subTest(kind=kind), self.assertRaises(C.Rejected):
+                C.validate_output_bindings(rows)
+
+    def test_capture_reports_logical_identity_but_rechecks_physical_file(self):
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory).resolve()/'original.source'
+            target.write_bytes(b'abc')
+            with C.Capture(target, C.sha(b'abc')) as captured:
+                row = captured.binding('predeclaration', '/logical/original.md')
+                self.assertEqual(row['path'], str(target))
+                self.assertEqual(row['originalPath'], '/logical/original.md')
+                target.write_bytes(b'abd')
+                with self.assertRaises(C.Rejected): captured.recheck()
+
     def test_inherited_chain_checks_complete_metadata_without_running_proofs(self):
         data, root = chain_fixture()
         before = deepcopy(data)

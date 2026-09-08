@@ -1,0 +1,3 @@
+{"event":"known-command-capture-pass","mode":"unref-control"}
+{"event":"probe-start","mode":"unref-control","root":"/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/dpr-supervision-lwQR38","node":"v26.3.0"}
+{"event":"probe-result","mode":"unref-control","root":"/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/dpr-supervision-lwQR38","rejected":true,"accepted":false,"failure":"runner did not exit cleanly","seconds":0.370268042,"processesClosed":true,"stdout":"WORKLOAD_COMPLETE\n","observations":[{"pid":74481,"present":false},{"pid":74482,"present":false}]}

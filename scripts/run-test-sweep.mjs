@@ -5,6 +5,8 @@
 // on the declared slow list; `--slow` runs only the slow list; `--list`
 // prints the selected files without running them. The exit status is the
 // `node --test` exit status, so the caller decides whether it gates.
+// Files run serially: process fixtures exercise host-wide exclusion guards,
+// so overlapping files can reject one another before reaching their assertions.
 //
 // Every test runs under a `--test-timeout` so a test that blocks becomes a
 // reported failure instead of an open-ended wait: on 2026-09-07 the pilot-
@@ -90,6 +92,14 @@ export function selectTestFiles({ slow = false } = {}) {
   return slow ? all.filter((file) => slowPaths.has(file)) : all.filter((file) => !slowPaths.has(file));
 }
 
+export function runTestFiles(files, { testTimeoutMs, execute = spawnSync, stdio = "inherit" }) {
+  return execute(process.execPath, ["--test", "--test-concurrency=1", `--test-timeout=${testTimeoutMs}`, ...files], {
+    cwd: ROOT_DIR,
+    env: process.env,
+    stdio,
+  });
+}
+
 const isMain = process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url);
 
 if (isMain) {
@@ -105,11 +115,7 @@ if (isMain) {
     process.exit(0);
   }
   const startedAt = Date.now();
-  const result = spawnSync(process.execPath, ["--test", `--test-timeout=${testTimeoutMs}`, ...selected], {
-    cwd: ROOT_DIR,
-    env: process.env,
-    stdio: "inherit",
-  });
+  const result = runTestFiles(selected, { testTimeoutMs });
   const seconds = ((Date.now() - startedAt) / 1000).toFixed(1);
   if (result.error) {
     console.error(`[test-sweep] failed to start node --test: ${result.error.message}`);

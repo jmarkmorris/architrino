@@ -1,0 +1,62 @@
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.06907441600000001,"freePercent":100,"availableDiskBytes":"939389423616","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.5496922909999999,"freePercent":100,"availableDiskBytes":"939389120512","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.9998032910000001,"freePercent":100,"availableDiskBytes":"939389091840","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.072002166,"freePercent":100,"availableDiskBytes":"939389091840","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":1.095460166,"freePercent":100,"availableDiskBytes":"939388964864","atLaunch":false}
+✔ captured launcher worker entry and Python wrapper close two synthetic stages with measured CPU (1158.299208ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.052817833999999945,"freePercent":100,"availableDiskBytes":"939388948480","atLaunch":true}
+✔ first Python failure closes owned groups and leaves data absent without checker dispatch (690.034333ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.054058041,"freePercent":100,"availableDiskBytes":"939388895232","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.49774145799999997,"freePercent":100,"availableDiskBytes":"939388850176","atLaunch":false}
+✔ checker failure after publication cannot promote its existing synthetic file (1139.500625ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05350579199999993,"freePercent":100,"availableDiskBytes":"939388796928","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.497298667,"freePercent":100,"availableDiskBytes":"939388727296","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.945026875,"freePercent":100,"availableDiskBytes":"939388682240","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":0.9933282920000002,"freePercent":100,"availableDiskBytes":"939388678144","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":3.0190127920000003,"freePercent":100,"availableDiskBytes":"939388575744","atLaunch":false}
+✔ slow final publication stays observed through worker termination (3083.070417ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.053168790999999146,"freePercent":100,"availableDiskBytes":"939388555264","atLaunch":true}
+{"kind":"host-resource","stage":"consumer","elapsedSeconds":0.497632791,"freePercent":100,"availableDiskBytes":"939388514304","atLaunch":false}
+{"kind":"host-resource","stage":"comparison","elapsedSeconds":0.9463351659999999,"freePercent":100,"availableDiskBytes":"939388489728","atLaunch":false}
+{"kind":"host-resource","stage":"final-admission","elapsedSeconds":0.9963924579999993,"freePercent":100,"availableDiskBytes":"939388489728","atLaunch":false}
+✔ late final publication failure preserves failed attempt and closed stage identities (1041.087416ms)
+✔ startup interruption creates no target and releases owned common lock (41.555583ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05259166600000026,"freePercent":100,"availableDiskBytes":"939388428288","atLaunch":true}
+✔ lost monitor cancels stubborn Python and prevents checker dispatch (512.311875ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.06006020800000079,"freePercent":100,"availableDiskBytes":"939388379136","atLaunch":true}
+✔ monitor sink failure cancels stubborn Python and prevents checker dispatch (585.593833ms)
+{"kind":"host-resource","stage":"preflight","elapsedSeconds":0.05847733400000107,"freePercent":100,"availableDiskBytes":"939388325888","atLaunch":true}
+✔ fresh stdout binding mismatch prevents comparison and retains closed first stage (543.015ms)
+✔ real unread diagnostic pipe fails final drain then closes without a success completion (165.756959ms)
+✔ real unread diagnostics close on early failure without a success completion (182.157042ms)
+✔ all scientific implementation/control pins remain the separately accepted source generation (2.028667ms)
+✔ closed plan has no invented runtime/default fields and exact operational closure (3.478042ms)
+✔ duplicate JSON keys unsafe numbers malformed UTF8 and excessive nesting fail closed (0.463834ms)
+✔ bounded source read and write preserve exact bytes and reject symlink/overwrite (8.865833ms)
+✔ pure helper capture refuses changed bytes and exposes only operational functions used here (0.278667ms)
+✔ data/outer siblings are distinct and stage CLI preserves original candidate and deadline (4.280458ms)
+✔ captured Python wrapper reports real target CPU separately and rejects changed source (54.537792ms)
+✔ metadata inventory closes lazy large-integer division dependencies without scientific imports (57.911875ms)
+✔ synthetic consumer admission needs exact closed gate candidate census and binding chain (100.407541ms)
+✔ synthetic checker admission binds original candidate complete analysis and unpromoted flags (99.103375ms)
+✔ stage piping uses one detached registered target and rejects failure and log overflow (3.206166ms)
+✔ metadata timeout waits for killed child closure (8.12425ms)
+✔ shared exclusion recognizes old/cached/full/root/range and both F5 stages (2.183292ms)
+✔ explicit runtime launch options reject extras missing values unsafe hash and traversal (0.244ms)
+✔ reused safeguards enforce first-to-last RSS interval host thresholds and stdout flush (13.151208ms)
+✔ captured file worker timeout is bounded and finalization requires complete closed stages (12.703791ms)
+✔ final diagnostics drain waits for queued writes and rejects stalled or late callbacks (12.65275ms)
+✔ final diagnostics EPIPE and callback failures reject and close only owned stream (0.406375ms)
+✔ late durable final publication returns no admissible result and never overwrites earlier data (5.505917ms)
+✔ failed attempt diagnostic epilogue cannot strand an unread stderr stream (12.959834ms)
+✔ CLI failure epilogue invokes only nonzero exit after bounded diagnostics or sink throw (10.816958ms)
+✔ failed stage projection retains unresolved process identities and cleanup failures without closure promotion (0.192542ms)
+✔ current acceleration transport rejects old plans and changed or executable archive routes (0.595583ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9228.918208

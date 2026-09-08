@@ -1,0 +1,32 @@
+# Canonical C promotion: independent source-identity acceptance
+
+Closure goal: Verify the exact authorized two-file source promotion and protected-source preservation, without importing or executing the promoted coordinator.
+
+## Independent observation
+
+At `2026-08-28T10:03:22.299Z`, the independent read-only filesystem/hash observation in tool `f80c14` completed with exit 0. It used only standard filesystem, digest and assertion facilities, no subject import, test, worker or scientific call. Every file was read through its own original descriptor, with original five-field identity checked against the descriptor and pathname after reading; canonical real paths were required.
+
+The exact author transaction receipt is `../continuation-source-archives/canonical-c-source-promotion-v1.json`, SHA-256 `f2659f29f4290e0bc98a137d2d685f4579fc3b3674c673459a3aba25beab8182`, 42,773 bytes, observed identity `16777234:188569448:42773:1787911345402783772:1787911345402783772`. Its protected preflight is `canonical-c-promotion-protected-preflight-v1.json` in the same directory, SHA-256 `858261ab04305865dd22e16e7ebbf62258403e9cdd15ffd2710b6d71b740eae4`, 19,793 bytes, identity `16777234:188569295:19793:1787911115580952150:1787911115580952150`.
+
+The full 65-entry current set matched the transaction's exact after records. The 63 non-target files matched the preflight original hashes, sizes and all five identity fields. A separate directory enumeration confirmed the exact 57-file `src/eom` inventory, with no added, missing or symlinked entry. Readiness, H, K, D, streamed caller and streamed caller controls were all in that unchanged protected set. The SHA-256 of `JSON.stringify(current)` for the independent observation's ordered 65 clean `{path,bytes,sha256,identity}` records is `41934fe64f81098c889c3ec33f42d198f359177d35b3a6c323f095c13afed726`.
+
+Plainly: Only the two authorized files changed. The recorded EOM solver sources and shared protected files still have their original exact contents and identities.
+
+## Exact promoted targets and preserved originals
+
+- `scripts/eom/f6c-bounded-operation.mjs`: current SHA-256 `0e0f728b79f32c3a8c03021748902dca3b450fac6b450d73ce1868b32ae61228`, 81,411 bytes, identity `16777234:188373832:81411:1787911321980594014:1787911321980594014`. Its bytes equal the independently source-admitted private candidate exactly. Original canonical SHA-256 `5428e4b89736730cdae1671f39b3fd5b0067be781fbfb8cda774347a9890b885`, 36,641 bytes, original identity `16777234:188373832:36641:1787881169302681122:1787881169302681122` remains recorded in the preflight/transaction.
+- `tests/f6c-bounded-operation.test.js`: current SHA-256 `0738e5134680c2cd0e927b764e5a65ab9b13b3a8e87b65048b56384bc7ae3302`, 35,673 bytes, identity `16777234:188375258:35673:1787911322084441078:1787911322084441078`. Its bytes equal the frozen private controls exactly. Original canonical SHA-256 `36a40f31587792dcccfc8141fff591e87d9f07a66a9f587ec69bc7a97cd69f50`, 11,979 bytes, original identity `16777234:188375258:11979:1787881169474216575:1787881169474216575` remains recorded separately.
+
+Both original byte archives named in the authenticated transaction were independently reread and match the corresponding original SHA-256/size exactly. Their current archive identities also match the transaction: C archive `16777234:188551581:36641:1787906874384300841:1787906874384300841`; controls archive `16777234:188551582:11979:1787906874478897821:1787906874478897821`. These are archive identities, not relabeled original canonical identities. Both private candidates, the independently authored source review `16cc377b7a0e7cb921bf61cf1a916400e34a4e8354c7565ffa399dc2dac02f01`, and source freeze `6071643b131ddf7ea3fe017474a487d2211df4e35809c4fa3cf41784a2874dbe` were also independently reauthenticated against their complete transaction bindings.
+
+The shared `.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/.pilot.lock` was absent at this independent observation. This is a current filesystem fact, not proof of any previous or future process closure.
+
+Plainly: Historical bytes remain recoverable under their original hashes, and their archive locations have separate honest identities. The new canonical bytes are exactly the reviewed candidate, not an unreviewed edit.
+
+## Disposition and next action
+
+**The authorized source promotion is independently accepted.** This receipt does not establish executable correctness, resource cost, process ownership, numerical accuracy or scientific acceptance. All 36 author control groups remain unrun by this reviewer. No whole suite, private candidate execution or scientific launch is authorized here.
+
+The next action is independent admission of the exact one-stage v2 first-positive plan and its fresh complete runtime/source/artifact identities, followed only by root's separately coordinated actual invocation. Any subsequent source/identity change invalidates reuse of this observation for launch admission and requires fresh checking. Exact external final tool records, elapsed-time scope, process/group and lock closure, outputs and costs remain separate actual-run obligations.
+
+Closure goal: Canonical source identity and preservation are established; runtime and whole-history numerical closure remain open.

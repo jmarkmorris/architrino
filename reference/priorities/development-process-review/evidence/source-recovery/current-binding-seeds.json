@@ -1,0 +1,35 @@
+{
+  "scope": "Current declaration and current transport controls only; historical refinedClosure and fullEntry unchanged",
+  "edits": [
+    {
+      "path": "scripts/eom/f6c_variable_cell_adapter.py",
+      "before": "d6e9d68735a85d0b6aa6a04a1168628dea5bd05de30ba6bff3e8920a45a1c951",
+      "after": "5b3c694c43c7146fc8acf36215b742ac96aba316e7f468532bbd31d759f59508"
+    },
+    {
+      "path": "scripts/eom/prepare-f6c-refined-acceleration.py",
+      "before": "cb7bbef900b620d908cbcf3803793826c87cbf41e7f42d75c8fd26cf59ca5b8b",
+      "after": "a93761a2437ee7e6f67db4603dc5dba31771cb1675c84416ec0dc5235c32264a"
+    },
+    {
+      "path": "scripts/eom/prepare-f6c-parent-emission-refinement.py",
+      "before": "bfac926b01dbd4a4bf060cc80b5aef4df95cd28d14fc0e34ebdd4ea73c4ea4af",
+      "after": "d77701556d9bdf3d0a4b68478f6f295541834432bc09cdda8bba6ae8db0ff69a"
+    },
+    {
+      "path": "scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs",
+      "before": "935e1e2e104672d79a41458d51ce663ef3c2c97b37742ec80431b2b3d0d80d53",
+      "after": "ba71f24f866c5d1760ba7d4c40e0ed131b3ef28ec9a4fb377a12ae1b2ec2dcf6"
+    },
+    {
+      "path": "scripts/eom/verify-f6c-parent-emission-refinement.py",
+      "before": "fd57cf85365ea5bfc9db279dc4fee1454a971335fd4aea02e94220906eb8d578",
+      "after": "483aee78be53842ac7cc1e6f2ebf2c9c33ff3fa349ff74537805e6f15e5e935a"
+    },
+    {
+      "path": "scripts/eom/verify-f6c-refined-acceleration.py",
+      "before": "35c60e7e4cc502bc4c5193ca93a154a5aee64276587548abf7fd7dd1c337d015",
+      "after": "e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae"
+    }
+  ]
+}

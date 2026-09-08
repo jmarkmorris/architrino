@@ -56,9 +56,10 @@ def plan_fixture():
     p['originalBindings']={k:binding(v[0],v[1],v[2] if len(v)==3 else 1) for k,v in s.ORIGINAL.items()}
     p.update(acceptanceOwner=binding(s.OWNER),priorCoverClosure=s.closure_premise(),
         runtimeBindings=[binding('/synthetic/python'),binding('/synthetic/pyvenv.cfg')],operationalBindings=[binding('synthetic/operation')],limits=deepcopy(w.LIMITS))
-    p['historicalDocumentRoutes']=[dict(original=binding(s.PREFIX+name,h,n),physical=binding('/synthetic/archive-'+h+'.json',h,n)) for name,h,n in (
-        ('2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc',16985),
-        ('historical-resource-plan.json','2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40',13021))]
+    p['unavailableHistoricalEnvironment']=[]
+    p['historicalDocumentRoutes']=[dict(original=binding(s.PREFIX+name,h,n),physical=binding('/synthetic/archive-'+h+'.source',h,n)) for name,h,n in (
+        ('2026-08-27-f6c-cached-root-cover-full-resource-plan.md','daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b',10021),
+        ('2026-08-27-f6c-root-cover-full-resource-plan.md','46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021))]
     return p
 
 
@@ -80,7 +81,7 @@ def candidate_fixture(velocity=F(0)):
     packet=dict(schema=s.MANIFEST_SCHEMA,scope=s.parent_scope(1),status='conditional_complete',accepted=False,launchPlan=launch,
         producer=streams['producer'],verifier=streams['verifier'],declaration=streams['declaration'],parent=parent,
         members=[{k:h[k] for k in ('id','pathKey','polarity','charge','historyFingerprint')} for h in hs],originalBindings=originals,
-        acceptanceOwner=streams['acceptanceOwner'],priorCoverClosure=p['priorCoverClosure'],historicalSourceBindings=historical,
+        acceptanceOwner=streams['acceptanceOwner'],priorCoverClosure=p['priorCoverClosure'],historicalSourceBindings=historical,historicalEvidenceVerification=s.historical_evidence([]),
         subjectSourceBindings=streams['subjectSourceBindings'],runtimeBindings=streams['runtimeBindings'],operationalBindings=streams['operationalBindings'],
         algorithm=deepcopy(s.ALGORITHM),restrictions=restrictions,census=deepcopy(s.CENSUS),helperCalls=deepcopy(s.CALLS),
         queries=streams['queries'],rows=streams['rows'],pieces=streams['pieces'],libraryFlags=deepcopy(s.LIBRARY_FLAGS),claims=deepcopy(s.CLAIMS),publicationRequires=s.PUBLICATION_REQUIRES)
@@ -93,7 +94,7 @@ def check_fixture(values,core=c):return s.compare_manifest(w,core,r,*values)
 class InterfaceTests(unittest.TestCase):
     def test_closed_plan_and_exact_role_counts(self):
         p=plan_fixture();self.assertIs(s.validate_plan(w,p,H,ROOT),p)
-        self.assertEqual((len(p),len(s.NAMED),len(p['dependencies']),len(p['originalBindings'])),(20,9,14,12))
+        self.assertEqual((len(p),len(s.NAMED),len(p['dependencies']),len(p['originalBindings'])),(21,9,14,12))
         self.assertNotEqual(p['verifierControls']['path'],p['proposalReferenceControls']['path'])
     def test_all_explicit_parent_scopes_and_rejected_index_types(self):
         for parent_index in range(160):
@@ -140,7 +141,7 @@ class InterfaceTests(unittest.TestCase):
             if isinstance(node,ast.For) and isinstance(node.target,ast.Name) and node.target.id=='role' and isinstance(node.iter,ast.Tuple):
                 roles.extend(v.value for v in node.iter.elts if isinstance(v,ast.Constant))
         self.assertIn('comparisonReference',roles);self.assertNotIn('proposalReference',roles)
-        self.assertEqual(set(s.REPORT_KEYS),set('schema scope accepted authority manifest queries rows pieces launchPlan verifier sourceBindings historicalSourceBindings originalBindings acceptanceOwner priorCoverClosure parent analysis candidateClaims publicationRequires elapsedSecondsBeforePublication'.split()))
+        self.assertEqual(set(s.REPORT_KEYS),set('schema scope accepted authority manifest queries rows pieces launchPlan verifier sourceBindings historicalSourceBindings historicalEvidenceVerification originalBindings acceptanceOwner priorCoverClosure parent analysis candidateClaims publicationRequires elapsedSecondsBeforePublication'.split()))
 
 
 class ComparisonTests(unittest.TestCase):
@@ -339,23 +340,23 @@ class FileAndPublicationTests(unittest.TestCase):
         path,private,packet=self.layout();(path.parent/'extra').write_bytes(b'x')
         with ExitStack() as stack,self.assertRaises(ValueError):s.candidate_layout(path,packet,s.Pool(stack,w,self.root,lambda:None),manifest_binding=raw_binding(path,b'{}\n'))
     def test_frozen_entry_pin_parser_reads_code_without_running_it(self):
-        path,h=s.ORIGINAL['fullEntry'];raw=(ROOT/path).read_bytes();self.assertEqual(s.sha(raw),h)
+        path,h=s.ORIGINAL['fullEntry'];raw=(ROOT/'reference/priorities/development-process-review/evidence/source-recovery/original-full-entry.mjs.source').read_bytes();self.assertEqual(s.sha(raw),h)
         pins=s.entry_pins(raw);self.assertEqual(len(pins),35);self.assertEqual(pins[s.DEPENDENCIES['rootLibrary'][0]],s.DEPENDENCIES['rootLibrary'][1])
         with self.assertRaises(ValueError):s.entry_pins(raw.replace(b'export const PINS = Object.freeze({',b'export const OTHER = Object.freeze({'))
 
 
 def full_chain_fixture():
     """Fictional receipt chain with independently constructed198-source union."""
-    root=Path('/synthetic-full');entry=(ROOT/s.ORIGINAL['fullEntry'][0]).read_bytes();pins=s.entry_pins(entry);paths=list(pins)
+    root=Path('/synthetic-full');entry=(ROOT/'reference/priorities/development-process-review/evidence/source-recovery/original-full-entry.mjs.source').read_bytes();pins=s.entry_pins(entry);paths=list(pins)
     original={k:binding(root/v[0],v[1],v[2] if len(v)==3 else 1) for k,v in s.ORIGINAL.items()}
     pinbindings=[binding(root/p,h) for p,h in pins.items()]
-    contract=dict(declarationSha256=r.DECLARATION_SHA,verifierSha256=s.DEPENDENCIES['independentRootReference'][1],scope='full',
+    contract=dict(declarationSha256='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4',verifierSha256='19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132',scope='full',
         subjectSourceBindings=pinbindings[:4],runtimeBindings=[binding('/synthetic-runtime/'+str(i)) for i in range(158)])
     plan=dict(schema='braid-program/f6c-cached-root-cover-full-launch.v1',scope='full',resourcePlan=pinbindings[0],comparisonContract=contract,
         operationalBindings=pinbindings[4:6]+[binding('/synthetic-ops/'+str(i)) for i in range(4)],controlBindings=pinbindings[6:8],python='unused',pythonRealPath='unused',git='unused',node='unused')
     expected={b['path']:b for b in [*pinbindings,*contract['runtimeBindings'],*plan['operationalBindings'],original['fullPlan']]}
     assert len(expected)==198
-    manifest=dict(rows=original['fullRows'],pieces=original['fullPieces'],launchPlan=original['fullPlan'])
+    manifest=dict(fixedBindings=[],rows=original['fullRows'],pieces=original['fullPieces'],launchPlan=original['fullPlan'])
     comparison=dict(schema=r.REPORT_SCHEMA,scope='full',accepted=True,rows=original['fullRows'],pieces=original['fullPieces'],manifest=original['fullManifest'],launchPlan=original['fullPlan'],
         claims=dict(conditionalRootCoverValidated=True,reconstructedFamilyApplicabilityAuthenticated=True,historicalTrajectoryIdentityEstablished=False,rootExecutionAuthorized=False,metricsAvailable=False,h3EvidenceEligible=False,scoreAuthorized=False,eomExecuted=False),
         analysis=dict(accepted=False,conditionalEnclosuresConformant=True,cellCount=160,pairCellCertificates=10240,ordinaryNonselfRows=8960,selfExclusionRows=1280,distinctNonselfFaceChecks=17920,pieceRecordCount=17920,recordedGeometryPieceVisits=14639800))
@@ -376,16 +377,16 @@ def full_chain_fixture():
         hostObservationsBeforePublication=hosts[:-1],observationsBeforePublication=dict(samples=3444,maximumSampledRSSBytes=1))
     docs=dict(fullPlan=plan,fullManifest=manifest,fullComparison=comparison,fullAdmission=admission,export={},reconstruction={},guards={},
         fullLauncherLog=b''.join(encode(x) for x in hosts),fullResourceLog=b''.join(encode(x) for x in rss))
-    owner=('### Independently Accepted Actual Full F6c Conditional Cover\noriginal caller session `13512`, final completion chunk `c21aa7`, exit zero, `862.951823625`, Independent post-closure review accepts all 160\n'+s.FULL_BASE+'\n'+
+    owner=('### Independently Accepted Actual Full asymmetric counter-breathing representative Conditional Cover\noriginal caller session `13512`, final completion chunk `c21aa7`, exit zero, `862.951823625`, Independent post-closure review accepts all 160\n'+s.FULL_BASE+'\n'+
         '\n'.join(h+' '+str(n) for k,(_,h,n) in s.FULL.items() if k!='fullPlan')).encode()
     class MemoryPool:
-        def __init__(self):self.root=root;self.live=lambda:None;self.visited=[];self.routes={};self.used_routes=set()
+        def __init__(self):self.root=root;self.live=lambda:None;self.visited=[];self.routes={};self.used_routes=set();self.unavailable={};self.used_unavailable=set()
         def historical(self,b):return self.read_binding(b)
         def capture(self,path,digest):
             b=binding(root/path,digest);self.visited.append(b['path']);return SimpleNamespace(binding=lambda:b)
         def read_binding(self,b,*,data=False):
             b=w.normalized(b,root);self.visited.append(b['path']);return logs[b['path']] if data else b
-    ref=SimpleNamespace(DECLARATION_SHA=r.DECLARATION_SHA,REPORT_SCHEMA=r.REPORT_SCHEMA,validate_premises=lambda *a:([],[],[]),validate_manifest=lambda *a:160)
+    ref=SimpleNamespace(FIXED=[],DECLARATION_SHA=r.DECLARATION_SHA,REPORT_SCHEMA=r.REPORT_SCHEMA,validate_premises=lambda *a:([],[],[]),validate_manifest=lambda *a:160)
     return docs,original,entry,owner,MemoryPool(),ref,logs
 
 
@@ -428,6 +429,8 @@ class MainFlowTests(unittest.TestCase):
         class FakePool:
             def __init__(self,stack,transport,path,live):self.root=path;self.live=live;self.w=transport;self.files={};stack.callback(self.close)
             def admit_operation(self,*args):pass
+            def historical_file(self,b,*,data=False):
+                return SimpleNamespace(data=self.read_binding(b,data=True))
             def capture(self,path,digest,*,data=False,limit=s.MAX_SOURCE_BYTES):
                 p=self.root/path
                 if p==out:

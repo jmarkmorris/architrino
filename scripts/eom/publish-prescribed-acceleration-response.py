@@ -24,8 +24,8 @@ import types
 _EXECUTING_CODE = sys._getframe().f_code
 SELF = 'scripts/eom/publish-prescribed-acceleration-response.py'
 CONSUMER = 'scripts/eom/reduce-prescribed-acceleration-response.py'
-CONSUMER_SHA = '2485f14b44ccd8a5a6294f6e8290f819a7eab35ce82991b0cbb95fd6cc04fe71'
-JOB_SCHEMA = 'braid-program/prescribed-response-publication-job.v1'
+CONSUMER_SHA = 'e5b6ce3274f0cfdef107c03a966508896f8e7874372c4735fcd8ad55a339cd16'
+JOB_SCHEMA = 'braid-program/prescribed-response-publication-job.v2'
 EXECUTION_SCOPE = 'completed-compute-stage-through-private-candidate-publication-and-process-closure'
 HASH = re.compile(r'[0-9a-f]{64}\Z')
 MAX_BYTES = 16*1024**2
@@ -137,7 +137,7 @@ def assemble_payload(consumer, candidate_bytes, job):
     """Derive serialization size only; measured counters are never synthesized."""
     candidate = consumer.decode(candidate_bytes)
     execution = dict(job['execution'])
-    result = dict(schema='braid-program/prescribed-acceleration-response.v1', accepted=True,
+    result = dict(schema='braid-program/prescribed-acceleration-response.v2', accepted=True,
                   status='accepted-prescribed-response-enclosure', subject=candidate['subject'],
                   bindings=candidate['bindings'], referenceResult=candidate['referenceResult'],
                   execution=execution, claims={key: False for key in consumer.FALSE_CLAIMS},

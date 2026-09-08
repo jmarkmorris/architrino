@@ -1,0 +1,3268 @@
+{
+  "boundary": "AST-declared methods/imports/exclusions/direct subprocess syntax only; no imports, test execution, dynamic-discovery claim or prerequisite satisfaction.",
+  "records": [
+    {
+      "path": "tests/pdg_refresh_live_artifacts_test.py",
+      "sha256": "a39de982ab7925b30060c50c9545c3a63c348cbe53b2b7b9814bf28d8ec0d92c",
+      "status": "static-discovery-only",
+      "imports": [
+        "json",
+        "pathlib",
+        "pdgfeed_test_fakes",
+        "scripts.pdg.pdg_refresh_live_artifacts",
+        "tempfile",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "PdgRefreshLiveArtifactsTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 1
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/pdgfeed_cli_test.py",
+      "sha256": "69ba1fcc1d248acca64f970fa70f85be1af19457fbcfe13645405444658ba798",
+      "status": "static-discovery-only",
+      "imports": [
+        "contextlib",
+        "io",
+        "json",
+        "pathlib",
+        "pdgfeed",
+        "pdgfeed_test_fakes",
+        "scripts.pdg",
+        "tempfile",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "PdgfeedCliTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 9
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/pdgfeed_live_matching_test.py",
+      "sha256": "ffd8d65379e65d03692957c611db8a6487a3b41744f765cff01d8dbb22131b45",
+      "status": "static-discovery-only",
+      "imports": [
+        "pdgfeed",
+        "pdgfeed_test_fakes",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "PdgfeedLiveTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 7
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/pdgfeed_manifest_test.py",
+      "sha256": "0b77345ce46f3e7dbf530d424aad975a19c7e7f25b912122493bfd972a7413d0",
+      "status": "static-discovery-only",
+      "imports": [
+        "pdgfeed",
+        "pdgfeed_test_fakes",
+        "pdgsolve",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "PdgfeedContractTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 20
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/pdgfeed_registry_audit_test.py",
+      "sha256": "62db97b4a7640d4bd97bd19c2f16f05f4f8d9f0b7d7253115d7e1f63bef25b2e",
+      "status": "static-discovery-only",
+      "imports": [
+        "collections",
+        "scripts.pdg.pdgfeed_registry",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "PdgfeedRegistryAuditTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 8
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/pdgsolve_cli_test.py",
+      "sha256": "585fec47484f9efb599596387cd7d771c5dc7f7e2fd66f73abce2c7adf2dbcd1",
+      "status": "static-discovery-only",
+      "imports": [
+        "collections",
+        "contextlib",
+        "io",
+        "json",
+        "pathlib",
+        "pdgsolve",
+        "scripts.pdg",
+        "tempfile",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "PdgsolveCliTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 20
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_bp017_private_cube_shrink_family.py",
+      "sha256": "e35cbb8d9e30c215b68a9e40bf66b75d58c01f9998d21953bf8ebaa2df0793c3",
+      "status": "static-discovery-only",
+      "imports": [
+        "fractions",
+        "importlib.util",
+        "pathlib",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "PrivateCubeShrinkFamilyTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 2
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_childrens_book_exports.py",
+      "sha256": "7c966e3edab52b811a76cedf4dfc64d5528b4e5817502633eb357ddfdbad1382",
+      "status": "static-discovery-only",
+      "imports": [
+        "PIL",
+        "build_generation_manifest",
+        "build_review_bundle",
+        "contextlib",
+        "copy",
+        "io",
+        "json",
+        "pathlib",
+        "pilot_appearance",
+        "pypdf",
+        "render_book_pages",
+        "sys",
+        "tempfile",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "ChildrensBookExportsTest",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 15
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_eom_borg_native_process.py",
+      "sha256": "37ad898cc4cad15c4a4a64a499686487658f3f18c3239dbc60fa5bfb7fb39ee3",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "json",
+        "pathlib",
+        "struct",
+        "subprocess",
+        "tempfile",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "NativeBorgProcessTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 27
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 64,
+          "expression": "subprocess.run(['cmake', '-S', str(ROOT / 'src/eom'), '-B', str(cls.build), '-DCMAKE_BUILD_TYPE=Release'], check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 78,
+          "expression": "subprocess.run(['cmake', '--build', str(cls.build), '--parallel', '4'], check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 92,
+          "expression": "subprocess.run([str(self.binary), 'print-protocol-version'], check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 121,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0', '--inspect-request-only'], input=protocol, check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 238,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0'], input=protocol, check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 371,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0'], input=protocol, check=False, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 474,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0'], input='\\n'.join(rows), check=False, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 520,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0'], input=protocol, check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 570,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0'], input=protocol, check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 609,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0'], input=protocol, check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 623,
+          "expression": "subprocess.Popen([str(self.binary), 'borg-shadow-server-v0'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=ROOT, text=True)"
+        },
+        {
+          "line": 694,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0'], input=protocol, check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 749,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0'], input=protocol, check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 784,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0'], input=protocol, check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 812,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0'], input=protocol, check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 835,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0'], input=f'{PROTOCOL_MAGIC}\\n{under_length_run}\\n', check=False, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 850,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0'], input='EOM_BORG_NATIVE_V3\\n', check=False, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 876,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0'], input=protocol, check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 908,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0'], input=protocol, check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 934,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-server-v0'], input=request('persistent-0') + request('persistent-1'), check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 961,
+          "expression": "subprocess.Popen([str(self.binary), 'borg-shadow-server-v0'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=ROOT, text=True)"
+        },
+        {
+          "line": 1019,
+          "expression": "subprocess.Popen([str(self.binary), 'borg-shadow-server-v0'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=ROOT, text=True)"
+        },
+        {
+          "line": 1078,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0'], input='\\n'.join(cold_rows), check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 1109,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-server-v0'], input=request('throws', '0') + request('recovers', '1'), check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 1166,
+          "expression": "subprocess.Popen([str(self.binary), 'borg-shadow-server-v0'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=ROOT, text=True)"
+        },
+        {
+          "line": 1197,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0'], input=second_protocol, check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 177,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0', '--inspect-request-only', f'--shadow-affine-diagnostic={target}'], input=protocol, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 193,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0', *options], input=protocol, check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 701,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0', f'--shadow-affine-diagnostic={sidecar}'], input=protocol, check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 1243,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-v0'], input=first_request, check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 1248,
+          "expression": "subprocess.Popen([str(self.binary), 'borg-shadow-server-v0', f'--history-temp-root={storage}', '--history-disk-limit-bytes=1099511627776', '--history-cache-blocks-per-thread=2'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=ROOT, text=True)"
+        },
+        {
+          "line": 1366,
+          "expression": "subprocess.Popen([str(self.binary), 'borg-shadow-server-v0', f'--history-temp-root={storage}', '--history-disk-limit-bytes=1099511627776', '--history-cache-blocks-per-thread=2'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=ROOT, text=True)"
+        },
+        {
+          "line": 1450,
+          "expression": "subprocess.run([str(self.binary), 'borg-shadow-server-v0', f'--history-temp-root={storage}', '--history-disk-limit-bytes=1'], input=protocol, check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 169,
+          "expression": "subprocess.run([str(self.binary), *arguments], input=supplied, cwd=ROOT, capture_output=True, text=True)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_eom_continuous_reception_acceleration.py",
+      "sha256": "26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823",
+      "status": "static-discovery-only",
+      "imports": [
+        "dataclasses",
+        "decimal",
+        "fractions",
+        "inspect",
+        "json",
+        "oracle",
+        "pathlib",
+        "random",
+        "sys",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "RangeReferenceTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 30
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_eom_continuous_reception_roots.py",
+      "sha256": "81de0ebc74a6e2e2a6c66e96cd3a7856806b7e41f775e3e2f184caf5bd1158ac",
+      "status": "static-discovery-only",
+      "imports": [
+        "collections.abc",
+        "dataclasses",
+        "decimal",
+        "fractions",
+        "hashlib",
+        "pathlib",
+        "scripts.eom.oracle",
+        "scripts.eom.oracle.certified_history",
+        "scripts.eom.oracle.decimal_interval",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "AnalyticRootBoxes",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 6
+        },
+        {
+          "className": "FailClosedControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 14
+        },
+        {
+          "className": "ConsumerCapacityControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 4
+        },
+        {
+          "className": "SnapshotControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        },
+        {
+          "className": "ImmutablePremiseControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 3
+        },
+        {
+          "className": "NoSamplingProofControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 3
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_eom_continuous_reception_roots_cached.py",
+      "sha256": "a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb",
+      "status": "static-discovery-only",
+      "imports": [
+        "ast",
+        "collections.abc",
+        "dataclasses",
+        "decimal",
+        "fractions",
+        "hashlib",
+        "json",
+        "pathlib",
+        "scripts.eom.oracle",
+        "scripts.eom.oracle.certified_history",
+        "scripts.eom.oracle.decimal_interval",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "IndependentAffineControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 4
+        },
+        {
+          "className": "CacheIdentityControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 12
+        },
+        {
+          "className": "CoverAndParityControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 12
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_eom_correlated_history_enclosure.py",
+      "sha256": "becf4f4c0e9390a23bf851bbb143430ac0500ba5e11020607c480c982039de80",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "decimal",
+        "fractions",
+        "scripts.eom.oracle.certified_history",
+        "scripts.eom.oracle.decimal_interval",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "CorrelatedHistoryEnclosureTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 13
+        },
+        {
+          "className": "ExactDerivativeAndJoinTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 7
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_eom_decimal_interval.py",
+      "sha256": "22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44",
+      "status": "static-discovery-only",
+      "imports": [
+        "decimal",
+        "fractions",
+        "math",
+        "pathlib",
+        "scripts.eom.oracle.decimal_interval",
+        "sys",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "DecimalIntervalEnclosureTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_eom_evolution_centered_radius.py",
+      "sha256": "493f561cb3cf60a5194b67fb4146c943679c62683a520dbde4653672bcbeeea4",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "decimal",
+        "fractions",
+        "scripts.eom.oracle.certified_evolution",
+        "scripts.eom.oracle.certified_history",
+        "scripts.eom.oracle.decimal_interval",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "EvolutionCenteredRadiusTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 7
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_eom_merged_root_width_invariant.py",
+      "sha256": "9afc3e370808fc7747cc72f53f7e62cc879cbc5dbc805ef2c5e0a3d0dcf36ef6",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "decimal",
+        "fractions",
+        "scripts.eom.oracle.certified_history",
+        "scripts.eom.oracle.decimal_interval",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "MergedRootWidthInvariantTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_eom_native_acceleration.py",
+      "sha256": "a604b92ccce1934a10a863f7571b3533e4fed8621ae549079658616b09a36d16",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "decimal",
+        "json",
+        "mpmath",
+        "pathlib",
+        "scripts.eom.oracle.certified_acceleration",
+        "scripts.eom.oracle.certified_history",
+        "subprocess",
+        "tempfile",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "NativeAccelerationTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 12
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 103,
+          "expression": "subprocess.run(['cmake', '-S', str(ROOT / 'src/eom'), '-B', str(cls.build), '-DCMAKE_BUILD_TYPE=Release'], check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 117,
+          "expression": "subprocess.run(['cmake', '--build', str(cls.build), '--parallel', '4'], check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 133,
+          "expression": "subprocess.run([str(cls.binary), 'all'], check=True, cwd=ROOT, capture_output=True, text=True)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_eom_native_coupled_evolution.py",
+      "sha256": "e794afeab1a1ae087bb498f5a98ed1de02b7e992ef875a1a685dd0e2ff620f90",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "decimal",
+        "fractions",
+        "json",
+        "math",
+        "pathlib",
+        "scripts.eom.oracle.certified_evolution",
+        "scripts.eom.oracle.certified_history",
+        "scripts.eom.oracle.phase4_acceptance",
+        "subprocess",
+        "tempfile",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "NativeCoupledEvolutionTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 43
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 158,
+          "expression": "subprocess.run(['cmake', '-S', str(ROOT / 'src/eom'), '-B', str(cls.build), '-DCMAKE_BUILD_TYPE=Release'], check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 172,
+          "expression": "subprocess.run(['cmake', '--build', str(cls.build), '--target', 'eom_native_evolution_fixture_cli', '--parallel', '2'], check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 199,
+          "expression": "subprocess.run([str(cls.binary), mode], check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 1287,
+          "expression": "subprocess.run([str(self.binary), 'certified-correction-retry'], check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 927,
+          "expression": "subprocess.run([str(self.binary), mode], check=True, cwd=ROOT, capture_output=True)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_eom_native_history_layer.py",
+      "sha256": "f98ebbb8ffd26816b8fb9fc1b0bb742d6dab46347af906e64803d51a9d83ab46",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "decimal",
+        "json",
+        "pathlib",
+        "scripts.eom.oracle.certified_history",
+        "scripts.eom.oracle.decimal_interval",
+        "subprocess",
+        "tempfile",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "NativeHistoryLayerTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 35
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 78,
+          "expression": "subprocess.run(['cmake', '-S', str(ROOT / 'src/eom'), '-B', str(cls.build), '-DCMAKE_BUILD_TYPE=Release'], check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 92,
+          "expression": "subprocess.run(['cmake', '--build', str(cls.build), '--parallel', '4'], check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 108,
+          "expression": "subprocess.run([str(cls.binary), 'all'], check=True, cwd=ROOT, capture_output=True, text=True)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_eom_oracle_certified_acceleration.py",
+      "sha256": "62e71cb5ea8a60966dd3ff71ce1a9b8619d78e40cd87227c06b93884a584fc2c",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "decimal",
+        "scripts.eom.oracle.certified_acceleration",
+        "scripts.eom.oracle.certified_history",
+        "scripts.eom.oracle.decimal_interval",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "CertifiedAccelerationTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 12
+        },
+        {
+          "className": "AllPairAccelerationReconstructionTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 4
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_eom_oracle_certified_evolution.py",
+      "sha256": "22a989a84e1995e09bfa19ad72b3465e4bd7bc61752f2d8de5b0d29c144b7759",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "decimal",
+        "scripts.eom.oracle.certified_evolution",
+        "scripts.eom.oracle.certified_history",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "CertifiedCoupledEvolutionTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 10
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_eom_oracle_phase4_acceptance.py",
+      "sha256": "730b05461fe4fedfd39a3f07b63790cae4cee963928084f49ceaad10bb8b5fec",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "decimal",
+        "hashlib",
+        "scripts.eom.oracle.certified_evolution",
+        "scripts.eom.oracle.certified_history",
+        "scripts.eom.oracle.phase4_acceptance",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "RootContinuationControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 2
+        },
+        {
+          "className": "FoldCausticImpulseControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 2
+        },
+        {
+          "className": "CheckpointAndRefinementControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        },
+        {
+          "className": "Phase4MatrixControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 3
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_eom_oracle_reference_kernel.py",
+      "sha256": "ba88a0e7f42eed6d1ab61bfb8282fa35f0c3f77a987bda1c62366e04a3c6209e",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "mpmath",
+        "scripts.eom.oracle.reference_kernel",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "EomOracleReferenceKernelTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 6
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_eom_oracle_root_certification.py",
+      "sha256": "2e39e76fba9e98fed056d2acfbf6658a93ad5684aa8e60c20476ae53692e2d19",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "decimal",
+        "scripts.eom.oracle.certified_history",
+        "scripts.eom.oracle.decimal_interval",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "DecimalIntervalTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 2
+        },
+        {
+          "className": "CertifiedRetainedHistoryRootTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 21
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_eom_performance_architecture_baseline.py",
+      "sha256": "7eaffcd7f1f8e20e1b03bb40209c53d0153ce9d67d05e9e0a1484ac2cbe32cd0",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "scripts.eom.performance.architecture_baseline",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "PerformanceArchitectureBaselineTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_eom_recursive_block_exclusion.py",
+      "sha256": "5a5bfca0fea77e3da28d99dba19b3a11162b528104ebf04148ce4fef8a0c8499",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "json",
+        "pathlib",
+        "subprocess",
+        "tempfile",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "RecursiveBlockExclusionTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 9
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 18,
+          "expression": "subprocess.run(['cmake', '-S', str(ROOT / 'src/eom'), '-B', str(cls.build), '-DCMAKE_BUILD_TYPE=Release'], check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 32,
+          "expression": "subprocess.run(['cmake', '--build', str(cls.build), '--parallel', '4'], check=True, cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 54,
+          "expression": "subprocess.run([str(cls.binary), route, kind, str(population), str(threads), str(maximum_exact_pairs)], check=True, cwd=ROOT, capture_output=True, text=True)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_eom_root_width_exactness.py",
+      "sha256": "9fdd547823fe9980492e7e91fa731164af19876eeb48b78f937c51b50236159d",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "decimal",
+        "fractions",
+        "scripts.eom.oracle.certified_history",
+        "scripts.eom.oracle.decimal_interval",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "ExactRootWidthTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 7
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f5_actual_cubic_conformance.py",
+      "sha256": "beae294ba20c2aeb6687220f7a7d54c0d421b7e35e4a70f0684783e2ef285a0e",
+      "status": "static-discovery-only",
+      "imports": [
+        "decimal",
+        "fractions",
+        "json",
+        "pathlib",
+        "scripts.eom.oracle.decimal_interval",
+        "scripts.eom.oracle.f5_actual_cubic_conformance",
+        "sys",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "F5ActualCubicProofTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 8
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f5_api_domain_conformance.py",
+      "sha256": "5fce3ea7c46e48073e5b7e038a858590e647997fdcfa71da58a3f282c663c788",
+      "status": "static-discovery-only",
+      "imports": [
+        "decimal",
+        "fractions",
+        "json",
+        "math",
+        "pathlib",
+        "scripts.eom.oracle",
+        "struct",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "F5ApiDomainTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 18
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 229,
+          "expression": "subprocess.run(command, capture_output=True, text=True, timeout=15)"
+        },
+        {
+          "line": 236,
+          "expression": "subprocess.run(command, capture_output=True, text=True, timeout=15)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f5_evolution_dynamics_checker.py",
+      "sha256": "c582879d5f83810df4c5f3bf02e6f485d221b9038573da73bcc66d13e05d4998",
+      "status": "static-discovery-only",
+      "imports": [
+        "copy",
+        "decimal",
+        "importlib.util",
+        "json",
+        "pathlib",
+        "subprocess",
+        "tempfile",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "F5DynamicsWrapperTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 14
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 118,
+          "expression": "subprocess.run(['node', '--input-type=module', '-e', code], input=json.dumps(request), text=True, cwd=ROOT, capture_output=True, timeout=10)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f5_history_manifest_conformance.py",
+      "sha256": "b927ab51af36bf1a449645ec3f43ce7b0428e83db2d1ebba02675437ab91cc29",
+      "status": "static-discovery-only",
+      "imports": [
+        "copy",
+        "decimal",
+        "json",
+        "pathlib",
+        "scripts.eom.oracle.f5_history_manifest_conformance",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "F5ManifestConformanceTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 14
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 147,
+          "expression": "subprocess.run([sys.executable, '-c', program], cwd=ROOT, capture_output=True, text=True)"
+        },
+        {
+          "line": 199,
+          "expression": "subprocess.run(command, cwd=ROOT, capture_output=True, text=True)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f5_ordinary_evolution_outcome.py",
+      "sha256": "b0dd0cdde0c63a0b099c1156e341b367f684c269939db5dd3d1a00db02176806",
+      "status": "static-discovery-only",
+      "imports": [
+        "contextlib",
+        "copy",
+        "fractions",
+        "hashlib",
+        "importlib.util",
+        "io",
+        "json",
+        "math",
+        "pathlib",
+        "random",
+        "tempfile",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "ArithmeticControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 8
+        },
+        {
+          "className": "ProtocolControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 23
+        },
+        {
+          "className": "CaptureControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 2
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f5_prehistory_handoff.py",
+      "sha256": "111e828c8ea3c26996ce51c83496ff7850d48b52cf7e874982c67e882ad6cadf",
+      "status": "static-discovery-only",
+      "imports": [
+        "contextlib",
+        "copy",
+        "decimal",
+        "fractions",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "math",
+        "pathlib",
+        "random",
+        "signal",
+        "struct",
+        "tempfile",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "ArithmeticControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 9
+        },
+        {
+          "className": "DataControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 18
+        },
+        {
+          "className": "CapturePublicationControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 9
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f5_prehistory_handoff_producer.py",
+      "sha256": "ec1d99b6919fd2c666dd1dd157388f9577f054070744db3e38a4cc4b56062770",
+      "status": "static-discovery-only",
+      "imports": [
+        "copy",
+        "decimal",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "os",
+        "pathlib",
+        "signal",
+        "sys",
+        "tempfile",
+        "time",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "Plumbing",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 13
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f5_prehistory_restriction.py",
+      "sha256": "0f2c3b64d93b5a79831224849eb75b4696630c8ae8d4fb568896dca2ebe8bd7e",
+      "status": "static-discovery-only",
+      "imports": [
+        "contextlib",
+        "copy",
+        "fractions",
+        "hashlib",
+        "importlib.util",
+        "io",
+        "json",
+        "os",
+        "pathlib",
+        "signal",
+        "struct",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "time",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "RestrictionTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 13
+        },
+        {
+          "className": "BindingAndPublicationTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 11
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 327,
+          "expression": "subprocess.run(command, capture_output=True, timeout=2)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_acceleration_execution.py",
+      "sha256": "c56c0962f1ef40644c75a5799e6aa2d5d11f926297cbf502cc4f4539a62e36d6",
+      "status": "static-discovery-only",
+      "imports": [
+        "contextlib",
+        "copy",
+        "dataclasses",
+        "hashlib",
+        "importlib.util",
+        "io",
+        "json",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "Transport",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 4
+        },
+        {
+          "className": "CurrentContract",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 2
+        },
+        {
+          "className": "SyntheticExecution",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 1
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_accepted_frame_reconstruction.py",
+      "sha256": "ba0ff0f2ba4d1a0a124ce7de9e22d05348767877b778de4a39bab334a1e7d10e",
+      "status": "static-discovery-only",
+      "imports": [
+        "decimal",
+        "fractions",
+        "importlib.util",
+        "json",
+        "os",
+        "pathlib",
+        "signal",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "ExactMathematics",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 11
+        },
+        {
+          "className": "StructuralControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 6
+        },
+        {
+          "className": "BindingAndPublication",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 8
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 275,
+          "expression": "subprocess.run(command, capture_output=True, text=True, timeout=10)"
+        },
+        {
+          "line": 303,
+          "expression": "subprocess.run([sys.executable, '-B', str(script), '--history-export', str(root / 'absent'), '--out', str(output)], capture_output=True, text=True, timeout=10)"
+        },
+        {
+          "line": 288,
+          "expression": "subprocess.run(command, capture_output=True, timeout=10)"
+        },
+        {
+          "line": 290,
+          "expression": "subprocess.run(command + ['--expected-sha256', '0' * 64], capture_output=True, timeout=10)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_cached_continuous_reception_root_cover.py",
+      "sha256": "09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3",
+      "status": "static-discovery-only",
+      "imports": [
+        "ast",
+        "copy",
+        "hashlib",
+        "importlib.util",
+        "pathlib",
+        "types",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "SuccessorBindingTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 7
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
+      "sha256": "3bee7599b03f2500ede6eeeea31c46e1aac82410f456e967102c13e820b93221",
+      "status": "static-discovery-only",
+      "imports": [
+        "ast",
+        "hashlib",
+        "pathlib",
+        "sys",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "CachedBindingTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 8
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_continuous_reception_acceleration.py",
+      "sha256": "13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "ast",
+        "contextlib",
+        "copy",
+        "decimal",
+        "fractions",
+        "hashlib",
+        "importlib.util",
+        "io",
+        "json",
+        "os",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "ExactMathematics",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 10
+        },
+        {
+          "className": "OriginalMapping",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 8
+        },
+        {
+          "className": "StrictCapture",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 6
+        },
+        {
+          "className": "PlanAndPublication",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 6
+        },
+        {
+          "className": "ActualCliPlumbing",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 6
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_continuous_reception_acceleration_preparation.py",
+      "sha256": "45f40e2c6580fa09a614a471e7375615c8d54e3fc295a68dbdb8ad2167b7690b",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "contextlib",
+        "copy",
+        "dataclasses",
+        "decimal",
+        "fractions",
+        "importlib.util",
+        "io",
+        "json",
+        "os",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "ProjectionControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 11
+        },
+        {
+          "className": "InputAndPlanControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 8
+        },
+        {
+          "className": "PublicationControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 6
+        },
+        {
+          "className": "MainWiringControl",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 1
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_continuous_reception_root_cover.py",
+      "sha256": "5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5",
+      "status": "static-discovery-only",
+      "imports": [
+        "contextlib",
+        "copy",
+        "decimal",
+        "fractions",
+        "hashlib",
+        "importlib.util",
+        "io",
+        "json",
+        "os",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "time",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "AlgebraTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 11
+        },
+        {
+          "className": "RowContractTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 9
+        },
+        {
+          "className": "ManifestTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        },
+        {
+          "className": "BoundaryTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 10
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 386,
+          "expression": "subprocess.run([sys.executable, str(SOURCE), '--manifest', 'missing', '--manifest-sha256', '0' * 64, '--plan', 'missing', '--plan-sha256', '0' * 64, '--verifier-sha256', '0' * 64, '--out', '/definitely-missing/f6c.json', '--budget-seconds', budget], capture_output=True, timeout=5)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_continuous_reception_root_cover_preparation.py",
+      "sha256": "68a940c40b2e3b463555b95858031f96796e2ac94963a86b3a9ae6fd74dc3742",
+      "status": "static-discovery-only",
+      "imports": [
+        "contextlib",
+        "copy",
+        "dataclasses",
+        "decimal",
+        "fractions",
+        "hashlib",
+        "importlib.util",
+        "io",
+        "json",
+        "os",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "time",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "CellTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 7
+        },
+        {
+          "className": "CaptureTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 4
+        },
+        {
+          "className": "ContractTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 7
+        },
+        {
+          "className": "PublicationTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 7
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 386,
+          "expression": "subprocess.run([sys.executable, str(SOURCE), *argv('0')], capture_output=True, timeout=5)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_correlated_residual_enclosure.py",
+      "sha256": "327b1be489baa06d5785de9c306c06ffbe2f5c825700abfd87ac18345a9ac9ff",
+      "status": "static-discovery-only",
+      "imports": [
+        "dataclasses",
+        "decimal",
+        "fractions",
+        "importlib.util",
+        "pathlib",
+        "sys",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "EnvelopeControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 17
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_emission_refinement.py",
+      "sha256": "f0f788018cc801949596bdd1556fe70399c49e8cbcea9152519485d6d8e35558",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "ast",
+        "contextlib",
+        "copy",
+        "decimal",
+        "fractions",
+        "hashlib",
+        "importlib.util",
+        "io",
+        "json",
+        "os",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "OriginalMappingAndSchema",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        },
+        {
+          "className": "StrictCapture",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        },
+        {
+          "className": "PlanAndPublication",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 4
+        },
+        {
+          "className": "PlanAndCapturedGeneration",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 6
+        },
+        {
+          "className": "ActualCliPlumbing",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 6
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_emission_refinement_conformance.py",
+      "sha256": "bac7357186fb05c5b7ea35154c5564e7527075a9a94177a8b600f9a02119adb5",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "copy",
+        "dataclasses",
+        "decimal",
+        "fractions",
+        "hashlib",
+        "importlib.util",
+        "pathlib",
+        "sys",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "RefinementConformance",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 17
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_emission_refinement_preparation.py",
+      "sha256": "c238f49b3316e43244ee0db3fdf3263b2390b4f6f91a67f6a6b7133ccfff000b",
+      "status": "static-discovery-only",
+      "imports": [
+        "contextlib",
+        "copy",
+        "decimal",
+        "fractions",
+        "importlib.util",
+        "io",
+        "json",
+        "os",
+        "pathlib",
+        "signal",
+        "sys",
+        "tempfile",
+        "time",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "Controls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 32
+        },
+        {
+          "className": "ReceiptParserControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_evidence_package.py",
+      "sha256": "f2c52fd510cad3da99f65ab2497dde754f8842d18004c3e1ae98d1bbdcb6d3d8",
+      "status": "static-discovery-only",
+      "imports": [
+        "dataclasses",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "os",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "time",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "EvidencePackageTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 16
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_gk13_protocol.py",
+      "sha256": "4b53d57f19de401348830b809600f01a9ae0c0c88d19d406a6a85e5ac8c5a241",
+      "status": "static-discovery-only",
+      "imports": [
+        "dataclasses",
+        "decimal",
+        "fractions",
+        "importlib.util",
+        "pathlib",
+        "sys",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "RuleControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 10
+        },
+        {
+          "className": "StateControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 12
+        },
+        {
+          "className": "RejectionControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 10
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_historical_archive_contract.py",
+      "sha256": "5285f41a7851ea1dd4bc4484784a17d3598f6f0c6679950626a51acebacf3104",
+      "status": "static-discovery-only",
+      "imports": [
+        "contextlib",
+        "copy",
+        "hashlib",
+        "importlib.util",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "HistoricalArchiveContract",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 4
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_leaf_continuation.py",
+      "sha256": "ec3e156d1d1f71729c6649cbaf43db40779d873e37cfa0d1dd223966bde91743",
+      "status": "static-discovery-only",
+      "imports": [
+        "dataclasses",
+        "fractions",
+        "hashlib",
+        "json",
+        "pathlib",
+        "sys",
+        "types",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "ReplayTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 10
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_leaf_evidence_codec.py",
+      "sha256": "af39c302680ce1a9d55c5539dfa3084f20132a12113d9b6285d6abbec074c648",
+      "status": "static-discovery-only",
+      "imports": [
+        "copy",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "pathlib",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "DagControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 9
+        },
+        {
+          "className": "StreamControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 19
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_leaf_stream_publication.py",
+      "sha256": "b1c8e0a789ec2215d12a20e601dfc5175df3516c450373a624c8049b060d49ae",
+      "status": "static-discovery-only",
+      "imports": [
+        "copy",
+        "dataclasses",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "os",
+        "pathlib",
+        "stat",
+        "sys",
+        "tempfile",
+        "time",
+        "types",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "PublicationTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 33
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement.py",
+      "sha256": "64e1f215789099d72ba34523dc4b0919d00e9a4b52464e442d6b245c4b7da28c",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "ast",
+        "contextlib",
+        "copy",
+        "dataclasses",
+        "decimal",
+        "fractions",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "pathlib",
+        "sys",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "ParentProposerTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 25
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement_conformance.py",
+      "sha256": "2eafcd7551a6d64c5f6c7bc6923507da8d27084af74bc5742583d63eb708aebb",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "ast",
+        "copy",
+        "dataclasses",
+        "decimal",
+        "fractions",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "pathlib",
+        "sys",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "ParentRefinementTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 33
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement_preparation.py",
+      "sha256": "54897aa0a891fe61159a776f3d175eab84adf590c872606a4e15bdd773911cf8",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "ast",
+        "bisect",
+        "contextlib",
+        "copy",
+        "decimal",
+        "fractions",
+        "hashlib",
+        "importlib.util",
+        "io",
+        "json",
+        "os",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "ProjectionTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 9
+        },
+        {
+          "className": "PlanTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 7
+        },
+        {
+          "className": "CaptureTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 7
+        },
+        {
+          "className": "PublicationTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 8
+        },
+        {
+          "className": "HistoricalChainTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 3
+        },
+        {
+          "className": "MainPathTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 6
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_parent_emission_refinement_verification.py",
+      "sha256": "99a29b5df829c60cadf277a57a6c9393131528448813d06a726e5bd65116e724",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "ast",
+        "contextlib",
+        "copy",
+        "decimal",
+        "fractions",
+        "hashlib",
+        "importlib.util",
+        "io",
+        "json",
+        "os",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "InterfaceTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 8
+        },
+        {
+          "className": "ComparisonTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 3
+        },
+        {
+          "className": "OriginalMappingTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 4
+        },
+        {
+          "className": "FileAndPublicationTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 10
+        },
+        {
+          "className": "FullChainTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 2
+        },
+        {
+          "className": "MainFlowTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 4
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_parent_evidence_inventory.py",
+      "sha256": "369091d5a0996fb547a70ba8e9aa8b3fe5570cf046863872bfaeb491bd0cf551",
+      "status": "static-discovery-only",
+      "imports": [
+        "copy",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "pathlib",
+        "sys",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "InventoryTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 6
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_parent_snapshot.py",
+      "sha256": "bb4a55b6e48bbf1ba3c25bb9cd3943816c1686ee57d3d2fd674f9599f4627d49",
+      "status": "static-discovery-only",
+      "imports": [
+        "copy",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "pathlib",
+        "sys",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "EncodingControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 7
+        },
+        {
+          "className": "MaterializationControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 16
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_reception_geometry_restriction.py",
+      "sha256": "b6c4b4e6a82a11b4ee84c782bf208df4b141860bb8d01f1ad2b2a1ca749a6c7b",
+      "status": "static-discovery-only",
+      "imports": [
+        "dataclasses",
+        "decimal",
+        "fractions",
+        "hashlib",
+        "importlib.util",
+        "pathlib",
+        "scripts.eom",
+        "scripts.eom.oracle",
+        "sys",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "GeometryTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 14
+        },
+        {
+          "className": "RejectionTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 16
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_refined_acceleration.py",
+      "sha256": "d65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "contextlib",
+        "copy",
+        "decimal",
+        "hashlib",
+        "importlib.util",
+        "io",
+        "json",
+        "os",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "ChainTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 13
+        },
+        {
+          "className": "CapturePublicationTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 9
+        },
+        {
+          "className": "InterfaceTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        },
+        {
+          "className": "MetadataTransportTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 6
+        },
+        {
+          "className": "MainFlowTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 2
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 219,
+          "expression": "subprocess.run([sys.executable, '-I', '-B', str(source), '--candidate', str(candidate), '--candidate-sha256', s.sha(b'{}'), '--plan', str(plan), '--plan-sha256', s.sha(b'{}'), '--verifier-sha256', H, '--out', str(o / 'comparison.json'), '--budget-seconds', '5', '--repo-root', str(tr)], capture_output=True, timeout=10)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_refined_acceleration_conformance.py",
+      "sha256": "147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "copy",
+        "dataclasses",
+        "decimal",
+        "fractions",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "pathlib",
+        "sys",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "CoreTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 20
+        },
+        {
+          "className": "ParserTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 4
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_refined_acceleration_preparation.py",
+      "sha256": "28ac5b67e594f52ea151fa00ddb04dabbbe8a522108a7421ec56550b70e87252",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "ast",
+        "contextlib",
+        "copy",
+        "dataclasses",
+        "decimal",
+        "fractions",
+        "importlib.util",
+        "io",
+        "json",
+        "os",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "ProjectionControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 11
+        },
+        {
+          "className": "InputAndPlanControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 8
+        },
+        {
+          "className": "PublicationControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 6
+        },
+        {
+          "className": "RefinedMappingControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 4
+        },
+        {
+          "className": "TransportBoundaryControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 6
+        },
+        {
+          "className": "RefinedProvenanceControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 4
+        },
+        {
+          "className": "MainWiringControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_residual_integral_supremum.py",
+      "sha256": "d80ca8bab38bface925fbdee1530f43919c83b331a878f004ef1601b2cf09b24",
+      "status": "static-discovery-only",
+      "imports": [
+        "dataclasses",
+        "decimal",
+        "fractions",
+        "importlib.util",
+        "pathlib",
+        "sys",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "AggregationControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 16
+        },
+        {
+          "className": "RoundingControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 4
+        },
+        {
+          "className": "PolynomialControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 11
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_retained_history_compatibility.py",
+      "sha256": "cb42c4b80e6e07b2f912e72031c52d76de0c355a4c3e24e4e96b4a872ca60a2e",
+      "status": "static-discovery-only",
+      "imports": [
+        "decimal",
+        "fractions",
+        "importlib.util",
+        "json",
+        "os",
+        "pathlib",
+        "signal",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "ExactMathematicalControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 9
+        },
+        {
+          "className": "StructureControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        },
+        {
+          "className": "ByteAndAuthorityControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 13
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 391,
+          "expression": "subprocess.run(command, capture_output=True, text=True, timeout=10)"
+        },
+        {
+          "line": 409,
+          "expression": "subprocess.run(command, capture_output=True, text=True, timeout=10)"
+        },
+        {
+          "line": 412,
+          "expression": "subprocess.run(command + ['--expected-sha256', '0' * 64], capture_output=True, text=True, timeout=10)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_retained_history_export.py",
+      "sha256": "014036159078a68c5a5746319bd8cb329f682e45d17ef4dab44c27aa5f03dd38",
+      "status": "static-discovery-only",
+      "imports": [
+        "copy",
+        "decimal",
+        "fractions",
+        "importlib.util",
+        "json",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "ExactTokenControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        },
+        {
+          "className": "SegmentControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        },
+        {
+          "className": "FrameControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 3
+        },
+        {
+          "className": "FileBoundaryControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 3
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 178,
+          "expression": "subprocess.run([sys.executable, str(SCRIPT), '--repo-root', directory, '--out', str(output)], capture_output=True, timeout=5)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_retained_history_guards.py",
+      "sha256": "ec7b05ae5d983387db657a54c036ba12c9c1d8d4818eefea3599dde7817a2b62",
+      "status": "static-discovery-only",
+      "imports": [
+        "copy",
+        "decimal",
+        "fractions",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "os",
+        "pathlib",
+        "signal",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "time",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "PolynomialControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 4
+        },
+        {
+          "className": "UniformGuardControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 11
+        },
+        {
+          "className": "StructureControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 4
+        },
+        {
+          "className": "CaptureControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 4
+        },
+        {
+          "className": "PublicationControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 303,
+          "expression": "subprocess.run([sys.executable, str(SCRIPT), '--history-export', str(source), '--out', str(output)], capture_output=True, text=True, timeout=10)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_f6c_single_leaf_diagnostic.py",
+      "sha256": "47d502100d4f92e8c803f5f0dad7c248874f493ed0df9ef43e1e956e8e9bf71c",
+      "status": "static-discovery-only",
+      "imports": [
+        "ast",
+        "copy",
+        "dataclasses",
+        "decimal",
+        "fractions",
+        "hashlib",
+        "pathlib",
+        "sys",
+        "types",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "SingleLeafTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 9
+        },
+        {
+          "className": "RestrictedSingleLeafTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 9
+        },
+        {
+          "className": "BisectedTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 15
+        },
+        {
+          "className": "LeafResponseSessionTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 18
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_streamed_leaf_session.py",
+      "sha256": "8fd4f300db43fcd67eda052677ee1f004efda464db7b51eea40d69c6169cd39b",
+      "status": "static-discovery-only",
+      "imports": [
+        "dataclasses",
+        "fractions",
+        "hashlib",
+        "json",
+        "pathlib",
+        "sys",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "ConversionTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        },
+        {
+          "className": "LifecycleTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 19
+        },
+        {
+          "className": "GenuineBridgeTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 1
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_f6c_variable_cell_adapter.py",
+      "sha256": "1fe6838fc63b10cd8e0051ce03039db05b7ea8370c0b8f065beb3e59492df6c2",
+      "status": "static-discovery-only",
+      "imports": [
+        "contextlib",
+        "copy",
+        "dataclasses",
+        "decimal",
+        "f6c_evidence_package",
+        "f6c_reception_geometry_restriction",
+        "f6c_variable_cell_adapter",
+        "fractions",
+        "gc",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "oracle",
+        "os",
+        "pathlib",
+        "sys",
+        "tempfile",
+        "time",
+        "types",
+        "unittest",
+        "unittest.mock",
+        "weakref"
+      ],
+      "classes": [
+        {
+          "className": "MappingTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 22
+        },
+        {
+          "className": "RestrictedProjectionTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 15
+        },
+        {
+          "className": "AncestryArchiveTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 7
+        },
+        {
+          "className": "HistoricalEvidenceTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 9
+        },
+        {
+          "className": "PackageRoutingTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 10
+        },
+        {
+          "className": "FreshEvidenceRoutingTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 8
+        },
+        {
+          "className": "OwnershipLifetimeTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 13
+        },
+        {
+          "className": "CaptureTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 20
+        },
+        {
+          "className": "ParentRefinementTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 15
+        },
+        {
+          "className": "GenericParentTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 7
+        },
+        {
+          "className": "ExactParentTwoArchiveTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        },
+        {
+          "className": "FreshImmutableMetadataControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 2
+        },
+        {
+          "className": "FreshPhysicalAttributionControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 3
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_field_speed_ceiling_circular_binary_all_root_certificate.py",
+      "sha256": "4252b58415aa0e80276f7d88ea4c528450395da640857a5ed5cd5684cfc1b0ce",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "decimal",
+        "hashlib",
+        "json",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "CircularBinaryAllRootCertificateTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 4
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 27,
+          "expression": "subprocess.run([str(Path(sys.executable)), str(ORACLE), '--input', str(INPUT)], check=True, cwd=ROOT, capture_output=True, text=True)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_field_speed_ceiling_t0_mpmath_oracle.py",
+      "sha256": "48b084dfcca6a95707ad4d25afdf41c60c70440bc25174e5bd2ac8d1ef239d25",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "decimal",
+        "hashlib",
+        "json",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "FieldSpeedCeilingT0MpmathOracleTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 38,
+          "expression": "subprocess.run([str(PYTHON), str(ORACLE), '--input', str(INPUT)], check=True, cwd=ROOT, capture_output=True, text=True)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_lattice_lab_stationary_oracle.py",
+      "sha256": "1264385cf21b55684e05e02ff8422abb49df55536e25ea31664ba33bace379e0",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "mpmath",
+        "scripts.eom.oracle.reference_kernel",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "LatticeLabStationaryOracleTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 2
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_mec007_stationary_mirror_incoming_oracle.py",
+      "sha256": "b33dc89d8c8b4a7273ca48f41df49700648ef1a91f9fa31715be8f7387aa155b",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "decimal",
+        "hashlib",
+        "json",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "Mec007StationaryMirrorIncomingOracleTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 3
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 31,
+          "expression": "subprocess.run([sys.executable, str(ORACLE), '--verify-receipt', str(RECEIPT)], cwd=ROOT, check=True, capture_output=True, text=True)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_octahedral_antipodal_generic_axis_edges.py",
+      "sha256": "ade9ef918e8b62e3a231ef7b8f24bb8080321c8967cb6245d4a5aea5104d7e70",
+      "status": "static-discovery-only",
+      "imports": [
+        "certify_octahedral_antipodal_generic_axis_edges",
+        "pathlib",
+        "sys",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "GenericAxisEdgeCertificateTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 2
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_octahedral_antipodal_generic_axis_scout.py",
+      "sha256": "998aaba2a0d770b75ab58123456f1b11f17bec424c97612c173e4c0201522fa7",
+      "status": "static-discovery-only",
+      "imports": [
+        "importlib.util",
+        "pathlib",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "GenericAxisScoutTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 2
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_octahedral_word_axis_reduction.py",
+      "sha256": "b101792999f28dcfa0f99fdc0d31ffeec2e7e5f3fef8f20d63a46c31bb21ba05",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "importlib.util",
+        "pathlib",
+        "sympy",
+        "sys",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "OctahedralWordAxisReductionTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_orthogonal_plane_weave_fold_limit_certificate.py",
+      "sha256": "0d08c7ef7af6807e658caa83c4a21e02d58bfbe4df40c9f5426467e5cf849f33",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "decimal",
+        "hashlib",
+        "json",
+        "pathlib",
+        "subprocess",
+        "tempfile",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "OrthogonalPlaneWeaveFoldLimitCertificateTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 7
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": [
+        {
+          "line": 127,
+          "expression": "subprocess.run([str(REPO_ROOT.parent / '.venv/bin/python'), str(CERTIFICATE_PATH), '--write-receipt', str(output)], cwd=REPO_ROOT, check=True)"
+        }
+      ]
+    },
+    {
+      "path": "tests/test_orthogonal_plane_weave_interval_oracle.py",
+      "sha256": "1b52c78d64870c74829936b8e4e5f5f194c36cbc03be753718bbb181f3c65a2d",
+      "status": "static-discovery-only",
+      "imports": [
+        "__future__",
+        "decimal",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "pathlib",
+        "sys",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "OrthogonalPlaneWeaveIntervalOracleTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 6
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_prescribed_acceleration_response.py",
+      "sha256": "4b0e66feb308544aa6294b126a05f6a3c9fbb403580e8193d3140a7b52c370f1",
+      "status": "static-discovery-only",
+      "imports": [
+        "dataclasses",
+        "decimal",
+        "fractions",
+        "math",
+        "random",
+        "scripts.eom.oracle",
+        "scripts.eom.oracle.decimal_interval",
+        "struct",
+        "unittest"
+      ],
+      "classes": [
+        {
+          "className": "ExactControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 8
+        },
+        {
+          "className": "BinaryMapping",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 5
+        },
+        {
+          "className": "FailClosedControls",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 18
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_prescribed_acceleration_response_consumer.py",
+      "sha256": "eeb85745d0175fabc3306e3a00e5b6dc3df3418b29fe40df9b89b765ac468875",
+      "status": "static-discovery-only",
+      "imports": [
+        "copy",
+        "decimal",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "os",
+        "pathlib",
+        "signal",
+        "sys",
+        "tempfile",
+        "types",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "ConsumerTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 28
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    },
+    {
+      "path": "tests/test_prescribed_acceleration_response_publication.py",
+      "sha256": "fe57d4ed40110d530044b0d6aecb7a17da865b4d56d6186a3ad14497282e217f",
+      "status": "static-discovery-only",
+      "imports": [
+        "copy",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "os",
+        "pathlib",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "time",
+        "unittest",
+        "unittest.mock"
+      ],
+      "classes": [
+        {
+          "className": "PublicationTests",
+          "bases": [
+            "unittest.TestCase"
+          ],
+          "declaredTestMethods": 15
+        }
+      ],
+      "exclusions": [],
+      "directSubprocessCalls": []
+    }
+  ]
+}

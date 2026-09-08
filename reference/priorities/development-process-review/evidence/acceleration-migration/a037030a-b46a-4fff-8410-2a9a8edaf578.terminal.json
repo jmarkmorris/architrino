@@ -1,0 +1,52 @@
+{
+  "schema": "architrino.owned-compute-lease.v1",
+  "runId": "a037030a-b46a-4fff-8410-2a9a8edaf578",
+  "status": "completed",
+  "requestedAtUtc": "2026-09-08T04:57:15.744Z",
+  "startedAtUtc": "2026-09-08T04:57:15.827Z",
+  "deadlineAtUtc": "2026-09-08T04:59:15.745Z",
+  "heartbeatAtUtc": "2026-09-08T04:57:15.827Z",
+  "heartbeatMs": 15000,
+  "terminationGraceMs": 5000,
+  "owner": {
+    "task": "01a07cbc-b8ac-7ae3-8f49-1635827ab34b",
+    "threadId": null
+  },
+  "ownerHistory": [],
+  "command": "node",
+  "args": [
+    "reference/priorities/development-process-review/evidence/acceleration-migration/prepare-current-plan.mjs"
+  ],
+  "cwd": "/Users/markmorris/vibe/architrino",
+  "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/a037030a-b46a-4fff-8410-2a9a8edaf578.stdout.log",
+  "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/a037030a-b46a-4fff-8410-2a9a8edaf578.stderr.log",
+  "stdoutBytes": 761,
+  "stderrBytes": 460,
+  "lastOutputAtUtc": "2026-09-08T04:57:16.222Z",
+  "sidecarIdentity": {
+    "pid": 80642,
+    "ppid": 80632,
+    "pgid": 80642,
+    "started": "Tue Sep 8 00:57:15 2026",
+    "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node /Users/markmorris/vibe/architrino/scripts/dev/owned-compute-supervisor.mjs __sidecar a037030a-b46a-4fff-8410-2a9a8edaf578"
+  },
+  "targetIdentity": {
+    "pid": 80645,
+    "ppid": 80642,
+    "pgid": 80645,
+    "started": "Tue Sep 8 00:57:15 2026",
+    "command": "node reference/priorities/development-process-review/evidence/acceleration-migration/prepare-current-plan.mjs"
+  },
+  "control": {
+    "host": "127.0.0.1",
+    "port": 51256
+  },
+  "claimBoundary": "Operational process ownership only; scientific validity and acceptance remain with the target's declared instruments and owners.",
+  "finishedAtUtc": "2026-09-08T04:57:16.224Z",
+  "elapsedWallSeconds": 0.41,
+  "exitCode": 0,
+  "exitSignal": null,
+  "error": null,
+  "stopReason": null,
+  "processGroupClosed": true
+}

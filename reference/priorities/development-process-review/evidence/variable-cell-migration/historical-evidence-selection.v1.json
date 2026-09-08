@@ -1,0 +1,454 @@
+{
+  "schema": "braid-program/variable-cell-historical-evidence.v1",
+  "routes": [
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/launch-abc-enclosed-root-pilot.mjs",
+        "sha256": "5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa",
+        "bytes": 39465
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/launch-abc-enclosed-root-pilot.mjs.source",
+        "sha256": "5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa",
+        "bytes": 39465
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py",
+        "sha256": "af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386",
+        "bytes": 38160
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/prepare-f6c-cached-continuous-reception-root-cover.py.source",
+        "sha256": "af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386",
+        "bytes": 38160
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py",
+        "sha256": "19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132",
+        "bytes": 41336
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/verify-f6c-cached-continuous-reception-root-cover.py.source",
+        "sha256": "19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132",
+        "bytes": 41336
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md",
+        "sha256": "daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b",
+        "bytes": 10021
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-cached-root-cover-full-resource-plan.md.source",
+        "sha256": "daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b",
+        "bytes": 10021
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
+        "sha256": "9abc7c3a80ad670e7bc7ad9f94a95f1fcd8924de425991032d6d26bba3372427",
+        "bytes": 11113
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/test_f6c_cached_continuous_reception_root_cover_preparation.py.source",
+        "sha256": "9abc7c3a80ad670e7bc7ad9f94a95f1fcd8924de425991032d6d26bba3372427",
+        "bytes": 11113
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/tests/test_f6c_cached_continuous_reception_root_cover.py",
+        "sha256": "2fd2080b3b4facdc80b85cdc65610c2bfeefdd8eab5f7234e207d3d4908bc117",
+        "bytes": 11096
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/test_f6c_cached_continuous_reception_root_cover.py.source",
+        "sha256": "2fd2080b3b4facdc80b85cdc65610c2bfeefdd8eab5f7234e207d3d4908bc117",
+        "bytes": 11096
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md",
+        "sha256": "7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4",
+        "bytes": 12103
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-cached-root-cover-predeclaration.md.source",
+        "sha256": "7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4",
+        "bytes": 12103
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md",
+        "sha256": "f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",
+        "bytes": 28340
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-continuous-reception-enclosure-contract.md.source",
+        "sha256": "f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",
+        "bytes": 28340
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md",
+        "sha256": "6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936",
+        "bytes": 21031
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-accepted-frame-history-reconstruction.md.source",
+        "sha256": "6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936",
+        "bytes": 21031
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/tests/test_eom_continuous_reception_roots.py",
+        "sha256": "473cba3b039027879eeea6987515261faaadcf0833f3e4d2864fc610f5b7a144",
+        "bytes": 32501
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/test_eom_continuous_reception_roots.py.source",
+        "sha256": "473cba3b039027879eeea6987515261faaadcf0833f3e4d2864fc610f5b7a144",
+        "bytes": 32501
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-accepted-frame-reconstruction.py",
+        "sha256": "80a96ebd0b306148b3eb96cb12e797c5cf80942e52ea457a8c6a72d58e8618a0",
+        "bytes": 31153
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/verify-f6c-accepted-frame-reconstruction.py.source",
+        "sha256": "80a96ebd0b306148b3eb96cb12e797c5cf80942e52ea457a8c6a72d58e8618a0",
+        "bytes": 31153
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-retained-history-guards.py",
+        "sha256": "efaed33a6d6e55be5788ffb7e4e6f596fbc0381466a8308154dbd550743896b9",
+        "bytes": 31651
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/verify-f6c-retained-history-guards.py.source",
+        "sha256": "efaed33a6d6e55be5788ffb7e4e6f596fbc0381466a8308154dbd550743896b9",
+        "bytes": 31651
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md",
+        "sha256": "765e6663cdd60323f84b9e1af52ba1399345322eb747727f2a0898b4dd0fd079",
+        "bytes": 25546
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md.source",
+        "sha256": "765e6663cdd60323f84b9e1af52ba1399345322eb747727f2a0898b4dd0fd079",
+        "bytes": 25546
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-continuous-reception-root-cover.py",
+        "sha256": "2d25103e0fb6ab584485b7954465afe0fa5de556b3a7e111c56d20156b7011fd",
+        "bytes": 39929
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/verify-f6c-continuous-reception-root-cover.py.source",
+        "sha256": "2d25103e0fb6ab584485b7954465afe0fa5de556b3a7e111c56d20156b7011fd",
+        "bytes": 39929
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md",
+        "sha256": "798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3",
+        "bytes": 10933
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-call-local-state-cache-equivalence.md.source",
+        "sha256": "798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3",
+        "bytes": 10933
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md",
+        "sha256": "46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef",
+        "bytes": 13021
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-root-cover-full-resource-plan.md.source",
+        "sha256": "46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef",
+        "bytes": 13021
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md",
+        "sha256": "36b72681c116cedf1803cc89ead8b48a7d9604bae7f9bffd7b0f95b33c3bb9b4",
+        "bytes": 6754
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-root-cover-pilot-resource-plan.md.source",
+        "sha256": "36b72681c116cedf1803cc89ead8b48a7d9604bae7f9bffd7b0f95b33c3bb9b4",
+        "bytes": 6754
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/run-f6c-cached-root-cover-full.mjs",
+        "sha256": "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b",
+        "bytes": 27166
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/original-full-entry.mjs.source",
+        "sha256": "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b",
+        "bytes": 27166
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/launch-f6c-cached-root-cover-full.mjs",
+        "sha256": "0f11fe5e51ef52f95c02605b776fe6b94c72a67a4a5f2b69671870f5f548ae17",
+        "bytes": 26659
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/source-recovery/launch-f6c-cached-root-cover-full.mjs.source",
+        "sha256": "0f11fe5e51ef52f95c02605b776fe6b94c72a67a4a5f2b69671870f5f548ae17",
+        "bytes": 26659
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-residual-integral-supremum-enclosure.md",
+        "sha256": "945441097fdd2934434dd2ff6d9dd6f06a77898752db6bcac90745a76420eb4b",
+        "bytes": 27167
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-residual-integral-supremum-enclosure.md.source",
+        "sha256": "945441097fdd2934434dd2ff6d9dd6f06a77898752db6bcac90745a76420eb4b",
+        "bytes": 27167
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-correlated-residual-box-envelope.md",
+        "sha256": "4180faad5d631af4bdbaf9ebd11500b0cc158b50da6ccc81295cf4d84a82bd41",
+        "bytes": 16640
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-correlated-residual-box-envelope.md.source",
+        "sha256": "4180faad5d631af4bdbaf9ebd11500b0cc158b50da6ccc81295cf4d84a82bd41",
+        "bytes": 16640
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-gk13-execution-protocol.md",
+        "sha256": "66ec97315dd8caf08d0628e2b23326044ac0a2f5b86b29d7c2f5542dc879cc85",
+        "bytes": 18601
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-gk13-execution-protocol.md.source",
+        "sha256": "66ec97315dd8caf08d0628e2b23326044ac0a2f5b86b29d7c2f5542dc879cc85",
+        "bytes": 18601
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-refined-cover-acceleration-projection.md",
+        "sha256": "c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d",
+        "bytes": 30139
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-refined-cover-acceleration-projection.md.source",
+        "sha256": "c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d",
+        "bytes": 30139
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/tests/test_f6c_emission_refinement.py",
+        "sha256": "1d3af80d89834b31968cfe5dd7fb016bb0ac4eee6ce77fbabaeea21a9a905bc7",
+        "bytes": 31668
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/test_f6c_emission_refinement.py.source",
+        "sha256": "1d3af80d89834b31968cfe5dd7fb016bb0ac4eee6ce77fbabaeea21a9a905bc7",
+        "bytes": 31668
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/prepare-f6c-emission-refinement.py",
+        "sha256": "bb9e1a287552483f7ad0fc1431162c1fbdb2da84fd862bc9b1c4799eef993600",
+        "bytes": 39849
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/prepare-f6c-emission-refinement.py.source",
+        "sha256": "bb9e1a287552483f7ad0fc1431162c1fbdb2da84fd862bc9b1c4799eef993600",
+        "bytes": 39849
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-emission-refinement.py",
+        "sha256": "1b3e39eea14c2a21be76ab2a3fe2bdbcc055b5a73325d03de9734c79a8017c33",
+        "bytes": 38678
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/verify-f6c-emission-refinement.py.source",
+        "sha256": "1b3e39eea14c2a21be76ab2a3fe2bdbcc055b5a73325d03de9734c79a8017c33",
+        "bytes": 38678
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/f6c_emission_refinement_conformance.py",
+        "sha256": "ec0eaaeae3da4ffb597ac92ff3ac1a5700a8cf88916144a7d994912270c4157a",
+        "bytes": 16703
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/f6c_emission_refinement_conformance.py.source",
+        "sha256": "ec0eaaeae3da4ffb597ac92ff3ac1a5700a8cf88916144a7d994912270c4157a",
+        "bytes": 16703
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md",
+        "sha256": "c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f",
+        "bytes": 17211
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-continuous-reception-acceleration-reference.md.source",
+        "sha256": "c1a5358e1d887fab5b4753368dc14ec59ed220294f42d2afa4ac40f962ee537f",
+        "bytes": 17211
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/launch-f6c-cached-root-cover-pilot.mjs",
+        "sha256": "03ef68dbdc9e578402771490c274ab246f02688c443f8ecba8d3006f3d35a5ec",
+        "bytes": 26639
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/launch-f6c-cached-root-cover-pilot.mjs.03ef68dbdc9e.source",
+        "sha256": "03ef68dbdc9e578402771490c274ab246f02688c443f8ecba8d3006f3d35a5ec",
+        "bytes": 26639
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
+        "sha256": "89b23af09f57aa50e3ebfc0780189f2f0d1a409a7e13004af0cb48167894b944",
+        "bytes": 24893
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/launch-f6c-emission-refinement-pilot.mjs.source",
+        "sha256": "89b23af09f57aa50e3ebfc0780189f2f0d1a409a7e13004af0cb48167894b944",
+        "bytes": 24893
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/run-f6c-cached-root-cover-pilot.mjs",
+        "sha256": "51cd543f9f28d87299a59614805cdbf949dceabcabad1a64a701b0b2b8ea6c57",
+        "bytes": 25508
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/run-f6c-cached-root-cover-pilot.mjs.51cd543f9f28.source",
+        "sha256": "51cd543f9f28d87299a59614805cdbf949dceabcabad1a64a701b0b2b8ea6c57",
+        "bytes": 25508
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/run-f6c-emission-refinement-pilot.mjs",
+        "sha256": "20466a4540dc972c248d30b8dd1987a19b00ca59a4f883752ec1c7c8b96d68ac",
+        "bytes": 36995
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/run-f6c-emission-refinement-pilot.mjs.source",
+        "sha256": "20466a4540dc972c248d30b8dd1987a19b00ca59a4f883752ec1c7c8b96d68ac",
+        "bytes": 36995
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/scripts/eom/launch-prescribed-response-pilot.mjs",
+        "sha256": "a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9",
+        "bytes": 28305
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/launch-prescribed-response-pilot.mjs.source",
+        "sha256": "a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9",
+        "bytes": 28305
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md",
+        "sha256": "c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853",
+        "bytes": 16985
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md.source",
+        "sha256": "c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853",
+        "bytes": 16985
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/tests/f6c-emission-refinement-pilot-process.test.js",
+        "sha256": "ee3f86b5fd29a2547a13dde7733c38ed3bcf4a95ffcbb9d17019fc94f4ee287e",
+        "bytes": 18422
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/f6c-emission-refinement-pilot-process.test.js.source",
+        "sha256": "ee3f86b5fd29a2547a13dde7733c38ed3bcf4a95ffcbb9d17019fc94f4ee287e",
+        "bytes": 18422
+      }
+    },
+    {
+      "original": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/braid-program/evidence/2026-08-27-f6c-emission-refinement-predeclaration.md",
+        "sha256": "53f3398ba083218948c9efd93f10db09cbf5d617bc0270988f5adea24c48f037",
+        "bytes": 21345
+      },
+      "physical": {
+        "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-emission-refinement-predeclaration.md.source",
+        "sha256": "53f3398ba083218948c9efd93f10db09cbf5d617bc0270988f5adea24c48f037",
+        "bytes": 21345
+      }
+    }
+  ],
+  "unavailableHistoricalEnvironment": [
+    {
+      "path": "/usr/bin/git",
+      "sha256": "179301dcb41ea78accc3fa0048a7e6f6710d891945a751a34addd622020c1818",
+      "bytes": 118928
+    },
+    {
+      "path": "/bin/ps",
+      "sha256": "472992c470606d28f577590decfecd7f4a20f832fd92c671bebc6d44790b5d02",
+      "bytes": 170816
+    },
+    {
+      "path": "/usr/bin/memory_pressure",
+      "sha256": "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56",
+      "bytes": 135248
+    }
+  ]
+}

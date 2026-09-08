@@ -1,0 +1,30 @@
+{
+  "classification": "stale_closed",
+  "lease": {
+    "schema": "architrino.owned-compute-lease.v1",
+    "runId": "4ce43925-183a-43d7-b14f-4b2335099f5e",
+    "status": "launching",
+    "requestedAtUtc": "2026-09-07T11:15:07.383Z",
+    "deadlineAtUtc": "2026-09-07T11:17:07.384Z",
+    "owner": {
+      "task": "01a079d2-ee85-7f30-b9cd-ae850f35555a",
+      "threadId": null
+    },
+    "ownerHistory": [],
+    "command": "../.venv/bin/python",
+    "args": [
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-p",
+      "test_f6c_variable_cell_adapter.py"
+    ],
+    "cwd": "/Users/markmorris/vibe/architrino",
+    "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/4ce43925-183a-43d7-b14f-4b2335099f5e.stdout.log",
+    "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/4ce43925-183a-43d7-b14f-4b2335099f5e.stderr.log",
+    "control": null
+  },
+  "detail": "lease has no control endpoint"
+}

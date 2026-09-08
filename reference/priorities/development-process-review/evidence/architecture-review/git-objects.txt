@@ -1,0 +1,8 @@
+count: 57316
+size: 1261588
+in-pack: 124796
+packs: 10
+size-pack: 3480936
+prune-packable: 3749
+garbage: 28
+size-garbage: 3940

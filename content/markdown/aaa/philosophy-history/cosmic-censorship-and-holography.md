@@ -21,7 +21,7 @@ $$
 
 Here $Z_{\mathrm{grav}}$ denotes the bulk gravitational partition functional with boundary data $\phi_0$, while $Z_{\mathrm{CFT}}$ denotes the boundary conformal field theory's generating functional with the corresponding source. The equality is schematic: its use requires a specified pair of theories, matched boundary conditions, and the appropriate approximation and renormalization prescriptions. It is not an equality between the spatial inside and outside of a black hole.
 
-the two sides calculate corresponding observables using different descriptions. This chapter does not substitute architrino variables into that equality, because no native bulk-boundary dictionary has been derived.
+The two sides calculate corresponding observables using different descriptions. This chapter does not substitute architrino variables into that equality, because no native bulk-boundary dictionary has been derived.
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ View
 

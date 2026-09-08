@@ -1,0 +1,1629 @@
+[pr-validation] running Prepare ignored runtime assets...
+[runtime-assets] write: borg-records
+[runtime-assets] write: equation-corpus
+[runtime-assets] write: full-corpus-index
+[runtime-assets] write: reference-surface
+[pr-validation] running Foundational impact...
+[foundational-impact] mode: base:origin/main
+[foundational-impact] changed files: 380
+[foundational-impact] impacted contracts: 11/11; impact score: 47
+[foundational-impact] proof-program score: 18; impacted proof checks: 6; manifest proof coverage: 4/11
+
+[P0] architrino.polarity-force-sign: Polarity and primitive force-sign convention
+  score: 5
+  rationale: Polarity sign conventions feed reactions, particle inventories, primitive acceleration laws, weak-channel routing, and simulations.
+  changed files: reference/priorities/development-process-review/evidence/agent-01-pr-260-publication-incident-report.md, reference/priorities/development-process-review/evidence/agent-03-session-incident-report.md, reference/priorities/development-process-review/evidence/next-caller-inputs/2026-08-26-f5-phase-varying-root-pilot-source.v2.json.bda39fe695e8.source, reference/priorities/development-process-review/evidence/next-caller-inputs/2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md.3ef8fb9020ba.source, reference/priorities/development-process-review/evidence/next-caller-inputs/2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md.3ef8fb9020ba.source.diff, reference/priorities/development-process-review/evidence/next-caller-inputs/2026-08-27-prescribed-acceleration-response-predeclaration.md.c08d7f53616f.source, reference/priorities/development-process-review/evidence/next-caller-inputs/phase-varying-prescribed-display-history.v3.json.e92e450c8ea8.source, reference/priorities/development-process-review/evidence/next-caller-inputs/phase-varying-prescribed-display-history.v3.json.e92e450c8ea8.source.diff, reference/priorities/development-process-review/evidence/shared-helper-audit/publication-gate-first-attempt.log, reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-accepted-frame-history-reconstruction.md.source, reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-cached-root-cover-predeclaration.md.source, reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-continuous-reception-enclosure-contract.md.source, reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md.source, reference/priorities/development-process-review/evidence/source-recovery/7a396d7f-5518-4d9a-bd97-3bc7bccbb1c6.stderr.log, reference/priorities/development-process-review/evidence/source-recovery/intermediate-preparation.py.source, reference/priorities/development-process-review/evidence/source-recovery/prepare-f6c-cached-continuous-reception-root-cover.py.source, reference/priorities/development-process-review/evidence/source-recovery/verify-f6c-accepted-frame-reconstruction.py.source, reference/priorities/development-process-review/evidence/source-recovery/verify-f6c-cached-continuous-reception-root-cover.py.source, reference/priorities/development-process-review/evidence/source-recovery/verify-f6c-continuous-reception-root-cover.py.source, reference/priorities/development-process-review/evidence/source-recovery/verify-f6c-retained-history-guards.py.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-continuous-reception-acceleration-reference.md.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-emission-refinement-predeclaration.md.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-refined-cover-acceleration-projection.md.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-residual-integral-supremum-enclosure.md.source, reference/priorities/development-process-review/evidence/variable-cell-migration/f6c_emission_refinement_conformance.py.source, reference/priorities/development-process-review/evidence/variable-cell-migration/prepare-f6c-emission-refinement.py.source, reference/priorities/development-process-review/evidence/variable-cell-migration/run-f6c-emission-refinement-pilot.mjs.source, reference/priorities/development-process-review/evidence/variable-cell-migration/test_f6c_emission_refinement.py.source, reference/priorities/development-process-review/evidence/variable-cell-migration/verify-f6c-emission-refinement.py.source
+  match summary: literal:attract (3); literal:polarity (29)
+  proofPrograms: polarity phase retention witness, weak-channel source target check
+  simulations: Borg assembly-view replay
+  applications: molecule app, Borg Assembly Library, PDG edit surfaces
+  validation: polarity notation drift
+
+[P0] foundations.absolute-time-wake-law: Absolute time and finite-speed wake law
+  score: 5
+  rationale: The affine time class, delayed-only support, and field speed define the substrate causal cone used by Bell routing, simulations, Lorentz recovery, and apps.
+  changed files: reference/priorities/aaa-operations/work-queue.md, reference/priorities/development-process-review/analysis/consequential-repair-audit.md, reference/priorities/development-process-review/analysis/source-recovery-and-binding-repair.md, reference/priorities/development-process-review/evidence/contract-implementation/22352abc-806c-4851-b161-1690eb6bd4ee.stderr.log, reference/priorities/development-process-review/evidence/contract-implementation/a1180874-99e0-46ad-8c7e-0640d14fe82a.stderr.log, reference/priorities/development-process-review/evidence/contract-implementation/check-historical-evidence.py, reference/priorities/development-process-review/evidence/next-caller-inputs/2026-08-26-f5-phase-varying-root-pilot-source.v2.json.bda39fe695e8.source, reference/priorities/development-process-review/evidence/next-caller-inputs/2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md.3ef8fb9020ba.source, reference/priorities/development-process-review/evidence/next-caller-inputs/2026-08-27-prescribed-acceleration-response-predeclaration.md.c08d7f53616f.source, reference/priorities/development-process-review/evidence/next-caller-inputs/2026-08-27-prescribed-acceleration-response-predeclaration.md.c08d7f53616f.source.diff, reference/priorities/development-process-review/evidence/next-caller-inputs/phase-varying-prescribed-display-history.v3.json.e92e450c8ea8.source, reference/priorities/development-process-review/evidence/next-caller-inputs/phase-varying-prescribed-display-history.v3.json.e92e450c8ea8.source.diff, reference/priorities/development-process-review/evidence/shared-helper-audit/publication-gate-first-attempt.log, reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-accepted-frame-history-reconstruction.md.source, reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-call-local-state-cache-equivalence.md.source, reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-continuous-reception-enclosure-contract.md.source, reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md.source, reference/priorities/development-process-review/evidence/source-recovery/7a396d7f-5518-4d9a-bd97-3bc7bccbb1c6.stderr.log, reference/priorities/development-process-review/evidence/source-recovery/test_eom_continuous_reception_roots.py.source, reference/priorities/development-process-review/evidence/source-recovery/test_f6c_cached_continuous_reception_root_cover.py.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-continuous-reception-acceleration-reference.md.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-correlated-residual-box-envelope.md.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-emission-refinement-predeclaration.md.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-gk13-execution-protocol.md.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-refined-cover-acceleration-projection.md.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-residual-integral-supremum-enclosure.md.source, reference/priorities/development-process-review/evidence/variable-cell-migration/check-retained-adapter.py, reference/priorities/development-process-review/evidence/variable-cell-migration/f6c_emission_refinement_conformance.py.source, reference/priorities/development-process-review/evidence/variable-cell-migration/test_f6c_emission_refinement.py.source, reference/priorities/development-process-review/priorities.md, reference/priorities/development-process-review/work-log.md, tests/test_f6c_historical_archive_contract.py
+  match summary: literal:advanced (6); literal:affine (11); literal:c_f (25); literal:delayed-only; literal:field speed (6); literal:wake law
+  proofPrograms: special-relativity recovery proof route
+  simulations: causal-delay feedback
+  applications: Causal Delay Feedback app, Animator motion source
+  validation: content validation, receiver-normal clean slate
+
+[P0] master-equation.causal-root-geometry: Master Equation causal-root geometry
+  score: 5
+  rationale: The causal-hit constraint, emission-root selection, and delayed separation convention feed the EOM engine, proof programs, simulations, photon app, and causal-delay app.
+  changed files: reference/priorities/development-process-review/analysis/cross-report-findings.md, reference/priorities/development-process-review/analysis/review-and-repair-plan.md, reference/priorities/development-process-review/evidence/agent-03-session-incident-report.md, reference/priorities/development-process-review/evidence/contract-implementation/22352abc-806c-4851-b161-1690eb6bd4ee.stderr.log, reference/priorities/development-process-review/evidence/shared-helper-audit/publication-gate-first-attempt.log, reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-accepted-frame-history-reconstruction.md.source, reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-cached-root-cover-predeclaration.md.source, reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md.source, reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-root-cover-full-resource-plan.md.source, reference/priorities/development-process-review/evidence/source-recovery/7a396d7f-5518-4d9a-bd97-3bc7bccbb1c6.stderr.log, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md.source
+  match summary: literal:causal root; literal:delayed separation; literal:F_a (3); literal:Master Equation (9); literal:self-hit; regex:\bcausal[- ]delay\b
+  proofPrograms: prescribed-path causal-root analysis
+  simulations: action-energy delayed dynamics, causal-delay feedback runtime
+  applications: Photon app, Causal Delay Feedback app, Animator delayed-hit records
+  validation: strict content indexes, transmitter-factor clean slate
+
+[P0] master-equation.transmitter-factor: Transmitter-factor acceleration and signed root playback
+  score: 5
+  rationale: The acceleration multiplier is c_f/|D_t|, while D_r/D_t is retained only as signed root playback; conflating them changes solver semantics.
+  changed files: reference/priorities/development-process-review/evidence/agent-02-hash-pin-repair-incident-report.md, reference/priorities/development-process-review/evidence/agent-04-session-incident-report.md, reference/priorities/development-process-review/evidence/contract-implementation/22352abc-806c-4851-b161-1690eb6bd4ee.stderr.log, reference/priorities/development-process-review/evidence/contract-implementation/8bc8e06a-9ffb-40f4-ab41-a59727db6c21.stdout.log, reference/priorities/development-process-review/evidence/contract-implementation/a1180874-99e0-46ad-8c7e-0640d14fe82a.stderr.log, reference/priorities/development-process-review/evidence/contract-implementation/check-historical-evidence.py, reference/priorities/development-process-review/evidence/next-caller-inputs/2026-08-27-prescribed-acceleration-response-predeclaration.md.c08d7f53616f.source, reference/priorities/development-process-review/evidence/root-cover-migration/f6c-cached-root-cover-pilot-launcher.test.js.7075322e83ad.source, reference/priorities/development-process-review/evidence/shared-helper-audit/inventory.json, reference/priorities/development-process-review/evidence/shared-helper-audit/publication-gate-first-attempt.log, reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-call-local-state-cache-equivalence.md.source, reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-continuous-reception-enclosure-contract.md.source, reference/priorities/development-process-review/evidence/source-recovery/7a396d7f-5518-4d9a-bd97-3bc7bccbb1c6.stderr.log, reference/priorities/development-process-review/evidence/source-recovery/intermediate-preparation.py.source, reference/priorities/development-process-review/evidence/source-recovery/prepare-f6c-cached-continuous-reception-root-cover.py.source, reference/priorities/development-process-review/evidence/source-recovery/test_eom_continuous_reception_roots.py.source, reference/priorities/development-process-review/evidence/source-recovery/test_f6c_cached_continuous_reception_root_cover_preparation.py.source, reference/priorities/development-process-review/evidence/source-recovery/test_f6c_cached_continuous_reception_root_cover.py.source, reference/priorities/development-process-review/evidence/source-recovery/verify-f6c-cached-continuous-reception-root-cover.py.source, reference/priorities/development-process-review/evidence/source-recovery/verify-f6c-continuous-reception-root-cover.py.source, reference/priorities/development-process-review/evidence/streamed-leaf-migration/check-retained-transport.py, reference/priorities/development-process-review/evidence/streamed-leaf-migration/retained-transport-selection.json, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-continuous-reception-acceleration-reference.md.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-emission-refinement-predeclaration.md.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-refined-cover-acceleration-projection.md.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2f06b18d-74b2-401b-8f95-53cad063b3a5.stdout.log, reference/priorities/development-process-review/evidence/variable-cell-migration/86e64c43-6259-49f2-a66a-b753fb4b9cbb.stdout.log, reference/priorities/development-process-review/evidence/variable-cell-migration/c7dcc2d0-46bf-4b4b-b931-f61ab4fb2f97.stdout.log, reference/priorities/development-process-review/evidence/variable-cell-migration/check-retained-adapter.py, reference/priorities/development-process-review/evidence/variable-cell-migration/f6c_emission_refinement_conformance.py.source, reference/priorities/development-process-review/evidence/variable-cell-migration/prepare-f6c-emission-refinement.py.source, reference/priorities/development-process-review/evidence/variable-cell-migration/retained-adapter-construction.json, reference/priorities/development-process-review/evidence/variable-cell-migration/test_f6c_emission_refinement.py.source, reference/priorities/development-process-review/evidence/variable-cell-migration/verify-f6c-emission-refinement.py.source, scripts/eom/prepare-f6c-parent-emission-refinement.py, scripts/eom/verify-f6c-parent-emission-refinement.py, tests/f6c-streamed-leaf-diagnostic.test.js, tests/test_f6c_historical_archive_contract.py, tests/test_f6c_parent_emission_refinement_preparation.py, tests/test_f6c_parent_emission_refinement_verification.py, tests/test_f6c_variable_cell_adapter.py
+  match summary: literal:D_r (33); literal:D_t (14); literal:receiver_factor (6); literal:transmitter_factor (7)
+  applications: PhotonFormulaRuntime
+  validation: transmitter-factor clean slate
+
+[P0] noether-braid.exchange-statistics: Noether-braid exchange, chirality, and retained-history invariants
+  score: 5
+  rationale: Exchange classes, retained-history ledgers, chirality, and linking conventions feed statistics, particle identity, branch retention, and proof-program screens.
+  changed files: reference/priorities/development-process-review/evidence/agent-03-session-incident-report.md, reference/priorities/development-process-review/evidence/agent-05-session-incident-report.md, reference/priorities/development-process-review/evidence/shared-helper-audit/publication-gate-first-attempt.log, reference/priorities/development-process-review/evidence/source-recovery/verify-f6c-cached-continuous-reception-root-cover.py.source, reference/priorities/development-process-review/evidence/source-recovery/verify-f6c-continuous-reception-root-cover.py.source, reference/priorities/development-process-review/evidence/source-recovery/verify-f6c-retained-history-guards.py.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-refined-cover-acceleration-projection.md.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-residual-integral-supremum-enclosure.md.source
+  match summary: literal:chirality; literal:exchange (4); literal:linking (2); literal:retained history (5)
+  proofPrograms: matter-antimatter chirality retained-history target
+  simulations: Coincident-Midpoint Three-Axis Circular Lorentz Geometry runtime
+  applications: Coincident-Midpoint Three-Axis Circular Lorentz Geometry app, Animator, PDG edit surfaces
+  validation: frequency-triplet notation drift, content validation
+
+[P0] observer.bell-live-channel: Bell route and live finite-speed coordination
+  score: 5
+  rationale: The Bell route decides whether correlations are carried by local kernels, measurement-independence relaxation, or live c_f coordination.
+  changed files: reference/priorities/development-process-review/evidence/agent-02-hash-pin-repair-incident-report.md, reference/priorities/development-process-review/evidence/shared-helper-audit/publication-gate-first-attempt.log, reference/priorities/development-process-review/work-log.md
+  match summary: literal:Bell (3); literal:live finite-speed
+  proofPrograms: Bell-family residual harness, local-response contract adapter, source-measure replay
+  simulations: Bell-family record measure, Stern-Gerlach toy emitters
+  validation: content validation, quantum residual harness
+
+[P0] simulation.eom-record-and-app-surface-contract: EOM engine, recorded-dataset contract, and app display surfaces
+  score: 5
+  rationale: EOM engine, eom_evolution_contract/v0 record schema, and shared display-adapter changes can invalidate simulations, apps, proof fixtures, and recorded evidence replay.
+  changed files: reference/priorities/development-process-review/evidence/shared-helper-audit/publication-gate-first-attempt.log, scripts/eom/dispatch-subfield-circular-root-ladder.mjs, scripts/eom/f6c_variable_cell_adapter.py, scripts/eom/f6c-bounded-operation.mjs, scripts/eom/launch-f5-prehistory-handoff-build.mjs, scripts/eom/launch-f6c-acceleration-pilot.mjs, scripts/eom/launch-f6c-cached-root-cover-full.mjs, scripts/eom/launch-f6c-cached-root-cover-pilot.mjs, scripts/eom/launch-f6c-emission-refinement-pilot.mjs, scripts/eom/launch-f6c-refined-acceleration-pilot.mjs, scripts/eom/launch-f6c-root-cover-pilot.mjs, scripts/eom/launch-prescribed-response-pilot.mjs, scripts/eom/launch-subfield-circular-root-pilot.mjs, scripts/eom/observe-parent-batch.mjs, scripts/eom/prepare-f6c-emission-refinement.py, scripts/eom/prepare-f6c-parent-emission-refinement.py, scripts/eom/prepare-f6c-parent-refinement-batch.mjs, scripts/eom/prepare-f6c-refined-acceleration.py, scripts/eom/run-f6c-acceleration-pilot.mjs, scripts/eom/run-f6c-cached-root-cover-full.mjs, scripts/eom/run-f6c-cached-root-cover-pilot.mjs, scripts/eom/run-f6c-emission-refinement-pilot.mjs, scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs, scripts/eom/run-f6c-refined-acceleration-pilot.mjs, scripts/eom/run-f6c-root-cover-pilot.mjs, scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs, scripts/eom/run-prescribed-response-pilot.mjs, scripts/eom/run-subfield-circular-root-rung.mjs, scripts/eom/verify-f6c-bounded-operation-closure.mjs, scripts/eom/verify-f6c-parent-emission-refinement.py, scripts/eom/verify-f6c-refined-acceleration.py
+  match summary: literal:eom_evolution_contract; path:scripts/eom/** (30)
+  proofPrograms: recorded EOM evidence replay
+  simulations: Borg EOM record replay, causal-delay feedback EOM replay
+  applications: Animator, Photon, Coincident-Midpoint Three-Axis Circular Lorentz Geometry, Borg, Causal Delay Feedback
+  validation: Borg fixture quarantine labels, animator runtime wiring
+
+[P1] foundations.euclidean-void-symmetry: Euclidean void metric and orientation symmetry
+  score: 3
+  rationale: The spatial container's metric and orientation group constrain chirality, parity bookkeeping, angular momentum, and geometry bridges.
+  changed files: reference/priorities/development-process-review/evidence/shared-helper-audit/publication-gate-first-attempt.log, reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-call-local-state-cache-equivalence.md.source, reference/priorities/development-process-review/evidence/source-recovery/verify-f6c-accepted-frame-reconstruction.py.source, reference/priorities/development-process-review/evidence/source-recovery/verify-f6c-retained-history-guards.py.source
+  match summary: literal:chirality; literal:E(3) (3); literal:parity (2); literal:reflection
+  proofPrograms: matter-antimatter chirality retained-history target
+  applications: Coincident-Midpoint Three-Axis Circular Lorentz Geometry visual surfaces
+  validation: content validation
+
+[P1] mass-action.energy-ledger: Mass, action, and internal energy ledgers
+  score: 3
+  rationale: Energy/action/mass ledger changes affect particle-mass accounting, action-energy simulations, and validation ledgers.
+  changed files: reference/priorities/development-process-review/evidence/shared-helper-audit/publication-gate-first-attempt.log
+  match summary: literal:action-energy; literal:energy ledger
+  simulations: action-energy simulation family
+  applications: Borg Assembly Library, molecule app
+  validation: parameter ledger, closure scorecard
+
+[P1] noether-sea.effective-metric-response: Noether sea constitutive and effective-metric response
+  score: 3
+  rationale: Noether sea response and effective-metric mappings feed spacetime recovery, cosmology residuals, photon propagation, and mass-response work.
+  changed files: reference/priorities/development-process-review/analysis/archive-contract-and-coordinator-review.md, reference/priorities/development-process-review/analysis/shared-helper-caller-audit.md, reference/priorities/development-process-review/analysis/source-recovery-and-binding-repair.md, reference/priorities/development-process-review/contracts/historical-evidence-and-external-closure-v1.md, reference/priorities/development-process-review/evidence/archive-contract-review/coordinator-change.diff, reference/priorities/development-process-review/evidence/archive-contract-review/host-archive-search.json, reference/priorities/development-process-review/evidence/archive-contract-review/original-coordinator.mjs.source, reference/priorities/development-process-review/evidence/contract-implementation/2bf248d6-8ff2-479f-8573-fb45b9aa4e1a.stdout.log, reference/priorities/development-process-review/evidence/contract-implementation/exercise-observer.mjs, reference/priorities/development-process-review/evidence/contract-implementation/f731fdad-6d43-4653-8d52-7f69bc2be4a5.stdout.log, reference/priorities/development-process-review/evidence/contract-implementation/historical-evidence-verification.json, reference/priorities/development-process-review/evidence/contract-implementation/normal-return-closure.json, reference/priorities/development-process-review/evidence/root-cover-migration/current-plan-validation.json, reference/priorities/development-process-review/evidence/root-cover-migration/f6c-cached-root-cover-pilot-launch.v2.json, reference/priorities/development-process-review/evidence/root-cover-migration/f6c-cached-root-cover-pilot-launcher.test.js.7075322e83ad.source, reference/priorities/development-process-review/evidence/root-cover-migration/f6c-root-cover-pilot-launch.v2.json, reference/priorities/development-process-review/evidence/root-cover-migration/launch-f6c-cached-root-cover-pilot.mjs.cd7722428105.source, reference/priorities/development-process-review/evidence/root-cover-migration/prepare-current-plans.mjs, reference/priorities/development-process-review/evidence/root-cover-migration/run-f6c-cached-root-cover-pilot.mjs.e03e8ae0f17c.source, reference/priorities/development-process-review/evidence/shared-helper-audit/inventory.json, reference/priorities/development-process-review/evidence/shared-helper-audit/publication-gate-first-attempt.log, reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-root-cover-pilot-resource-plan.md.source, reference/priorities/development-process-review/evidence/source-recovery/historical-source-archive.json, reference/priorities/development-process-review/evidence/source-recovery/intermediate-preparation.py.source, reference/priorities/development-process-review/evidence/source-recovery/launch-f6c-cached-root-cover-full.mjs.source, reference/priorities/development-process-review/evidence/source-recovery/original-binding-inventory.json, reference/priorities/development-process-review/evidence/source-recovery/original-full-entry.mjs.source, reference/priorities/development-process-review/evidence/streamed-leaf-migration/retained-transport-selection.json, reference/priorities/development-process-review/evidence/variable-cell-migration/0d65f925-3b6f-41fd-896a-b61d948e95c9.stdout.log, reference/priorities/development-process-review/evidence/variable-cell-migration/2f06b18d-74b2-401b-8f95-53cad063b3a5.stdout.log, reference/priorities/development-process-review/evidence/variable-cell-migration/86e64c43-6259-49f2-a66a-b753fb4b9cbb.stdout.log, reference/priorities/development-process-review/evidence/variable-cell-migration/9aecfa52-b1c0-47ea-bef1-74768bc210a0.stdout.log, reference/priorities/development-process-review/evidence/variable-cell-migration/ba0b3b59-1788-4d91-a857-7b14fc06c22a.stdout.log, reference/priorities/development-process-review/evidence/variable-cell-migration/c5570b6a-e3fa-4a28-ba45-a4483be93e83.stdout.log, reference/priorities/development-process-review/evidence/variable-cell-migration/c7dcc2d0-46bf-4b4b-b931-f61ab4fb2f97.stdout.log, reference/priorities/development-process-review/evidence/variable-cell-migration/f6c-emission-refinement-pilot-process.test.js.source, reference/priorities/development-process-review/evidence/variable-cell-migration/historical-evidence-selection.v1.json, reference/priorities/development-process-review/evidence/variable-cell-migration/launch-f6c-cached-root-cover-pilot.mjs.03ef68dbdc9e.source, reference/priorities/development-process-review/evidence/variable-cell-migration/launch-f6c-emission-refinement-pilot.mjs.source, reference/priorities/development-process-review/evidence/variable-cell-migration/launch-prescribed-response-pilot.mjs.source, reference/priorities/development-process-review/evidence/variable-cell-migration/prepare-f6c-emission-refinement.py.source, reference/priorities/development-process-review/evidence/variable-cell-migration/retained-adapter-construction.json, reference/priorities/development-process-review/evidence/variable-cell-migration/retained-full-chain.json, reference/priorities/development-process-review/evidence/variable-cell-migration/run-f6c-cached-root-cover-pilot.mjs.51cd543f9f28.source, reference/priorities/development-process-review/evidence/variable-cell-migration/run-f6c-emission-refinement-pilot.mjs.source, scripts/eom/f6c_variable_cell_adapter.py, scripts/eom/prepare-f6c-parent-emission-refinement.py, scripts/eom/run-f6c-cached-root-cover-pilot.mjs, scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs, scripts/eom/run-f6c-root-cover-pilot.mjs, scripts/eom/verify-f6c-parent-emission-refinement.py, tests/f6c-cached-root-cover-pilot-launcher.test.js, tests/f6c-streamed-leaf-diagnostic.test.js
+  match summary: literal:compression (7); literal:constitutive; literal:effective metric; literal:Noether sea; literal:pressure (53)
+  proofPrograms: density compression provider intake, effective metric residual
+  simulations: cosmology shared residual fit, pressure effective lambda residual, galaxy response child residual
+  applications: cosmology scenes, photon app
+  validation: content validation, closure scorecard
+
+[P1] photon.channel-closure: Photon channel, speed, and polarization closure
+  score: 3
+  rationale: Photon branch geometry and speed/polarization recovery feed photon app runtime, proof diagnostics, and effective metric recovery.
+  changed files: reference/priorities/development-process-review/evidence/shared-helper-audit/publication-gate-first-attempt.log, reference/priorities/development-process-review/evidence/source-recovery/2026-08-27-f6c-accepted-frame-history-reconstruction.md.source, reference/priorities/development-process-review/evidence/variable-cell-migration/2026-08-27-f6c-correlated-residual-box-envelope.md.source
+  match summary: literal:c_0 (3); literal:helical; literal:photon; literal:polarization; literal:self-hit phase
+  simulations: photon self-hit sweep runtime
+  applications: Photon app
+  validation: content validation
+
+[foundational-impact] reevaluation commands
+- validation: node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
+  contracts: noether-braid.exchange-statistics
+  reason: Catch stale angular-momentum/frequency-triplet notation around braid invariants.
+- validation: node scripts/check-polarity-notation-drift.mjs
+  contracts: architrino.polarity-force-sign
+  reason: Primary guard for legacy polarity notation and inventory drift.
+- validation: node scripts/check-transmitter-factor-clean-slate.mjs
+  contracts: master-equation.causal-root-geometry, master-equation.transmitter-factor
+  reason: Catch stale receiver-playback acceleration wording and transmitter-side implementation drift. / Primary guard for stale receiver-playback acceleration wording and transmitter-side code drift.
+- validation: node scripts/validate-content.mjs --check --strict
+  contracts: architrino.polarity-force-sign, foundations.absolute-time-wake-law, foundations.euclidean-void-symmetry, mass-action.energy-ledger, master-equation.causal-root-geometry, master-equation.transmitter-factor, noether-braid.exchange-statistics, noether-sea.effective-metric-response, observer.bell-live-channel, photon.channel-closure
+  reason: Catch bridge and quantum document reference drift. / Catch canonical proof/dynamics reference drift. / Catch corpus drift after mass/action/energy ledger edits. / Catch corpus reference drift after braid/statistics edits. / Catch corpus reference drift after time/wake postulate changes. / Catch markdown/index drift after source equation or foundation prose changes. / Catch quantum/spacetime content drift after photon edits. / Catch reaction/foundation content drift. / Catch references after foundation geometry edits. / Catch spacetime/cosmology reference drift.
+- proofPrograms: node --test tests/noether-sea-density-compression-provider-intake.test.js tests/noether-sea-density-compression-output-projection.test.js tests/noether-sea-response-source-target-check.test.js tests/effective-metric-weak-field-residual.test.js
+  contracts: noether-sea.effective-metric-response
+  reason: Recheck Noether sea and effective metric proof/intake surfaces.
+- proofPrograms: node --test tests/prescribed-orbit-causal-roots.test.js
+  contracts: master-equation.causal-root-geometry
+  reason: Recheck prescribed-path causal-root analysis surfaces.
+- proofPrograms: node --test tests/weak-channel-source-target-check.test.js
+  contracts: architrino.polarity-force-sign
+  reason: Recheck sign-sensitive proof surfaces.
+- proofPrograms: node scripts/quantum/bell-family-residual-harness.mjs --candidate scripts/quantum/source-measure-joint-basin-candidate.json --scenario all --out /tmp/aaa-bell-family-residual-harness.json
+  contracts: observer.bell-live-channel
+  reason: Recheck Bell-family residual scenarios after route changes.
+- proofPrograms: node scripts/quantum/local-response-contract-adapter.mjs --input scripts/quantum/product-screened-axis-candidate.json --out /tmp/aaa-local-response-contract-adapter.json
+  contracts: observer.bell-live-channel
+  reason: Recheck local-response intake contract if local-kernel language changes.
+- proofPrograms: node scripts/quantum/source-measure-local-response-replay.mjs --candidate scripts/quantum/product-screened-axis-candidate.json --scenario all --out /tmp/aaa-source-measure-local-response-replay.json
+  contracts: observer.bell-live-channel
+  reason: Recheck product-screening negative control after Bell-route wording changes.
+- simulations: node --test tests/borg-assembly-view-session.test.js
+  contracts: architrino.polarity-force-sign
+  reason: Recheck inventory and assembly surfaces after polarity convention changes.
+- simulations: node --test tests/borg-eom-runtime-contract.test.js tests/ideal-braid-runtime.test.js tests/causal-delay-feedback-eom-replay-adapter.test.js
+  contracts: simulation.eom-record-and-app-surface-contract
+  reason: Recheck recorded-dataset simulation and replay paths.
+- simulations: node --test tests/eq11-20-shared-constitutive-residual.test.js tests/eq20-pressure-effective-lambda-residual.test.js tests/eq32-galaxy-response-child-residual.test.js tests/effective-frw-handoff-residual.test.js
+  contracts: noether-sea.effective-metric-response
+  reason: Recheck constitutive and cosmology residual simulations.
+- simulations: node --test tests/ideal-braid-runtime.test.js
+  contracts: noether-braid.exchange-statistics
+  reason: Recheck braid runtime surfaces.
+- simulations: node --test tests/photon-runtime.test.js
+  contracts: photon.channel-closure
+  reason: Recheck photon self-hit sweep runtime surfaces.
+- simulations: node --test tests/prescribed-orbit-causal-roots.test.js tests/causal-delay-feedback-runtime.test.js
+  contracts: foundations.absolute-time-wake-law, master-equation.causal-root-geometry
+  reason: Recheck delayed-root simulation and runtime surfaces. / Recheck simulation surfaces with absolute-time or delayed-hit assumptions.
+- simulations: node scripts/quantum/bell-family-residual-harness.mjs --candidate scripts/quantum/source-measure-joint-basin-candidate.json --scenario all --out /tmp/aaa-bell-family-record-measure.json
+  contracts: observer.bell-live-channel
+  reason: Recheck Bell-family record-measure simulation scaffold.
+- applications: node --test tests/borg-assembly-view-session.test.js
+  contracts: mass-action.energy-ledger
+  reason: Recheck assembly-facing mass/action display assumptions.
+- applications: node --test tests/borg-assembly-view-session.test.js tests/pdgedit-contracts.test.js
+  contracts: architrino.polarity-force-sign
+  reason: Recheck app surfaces that present polarity/inventory records.
+- applications: node --test tests/causal-delay-feedback-runtime.test.js tests/causal-delay-feedback-eom-replay-adapter.test.js tests/animator-motion-source-runtime.test.js
+  contracts: foundations.absolute-time-wake-law
+  reason: Recheck app surfaces that expose causal-delay behavior.
+- applications: node --test tests/ideal-braid-runtime.test.js
+  contracts: foundations.euclidean-void-symmetry
+  reason: Recheck orientation-sensitive braid display surfaces.
+- applications: node --test tests/ideal-braid-runtime.test.js tests/animator-field-shell-runtime.test.js tests/pdgedit-contracts.test.js
+  contracts: noether-braid.exchange-statistics
+  reason: Recheck app surfaces that render or consume braid records.
+- applications: node --test tests/photon-runtime.test.js
+  contracts: master-equation.transmitter-factor, photon.channel-closure
+  reason: Recheck app-facing transmitter-factor and root-playback fields. / Recheck photon app surfaces.
+- applications: node --test tests/photon-runtime.test.js tests/causal-delay-feedback-eom-replay-adapter.test.js
+  contracts: master-equation.causal-root-geometry
+  reason: Recheck application surfaces that display delayed-hit or Master Equation state.
+- applications: node --test tests/photon-runtime.test.js tests/causal-delay-feedback-runtime.test.js
+  contracts: noether-sea.effective-metric-response
+  reason: Recheck app surfaces that expose effective propagation assumptions.
+- applications: node --test tests/photon-runtime.test.js tests/ideal-braid-runtime.test.js tests/borg-eom-runtime-contract.test.js tests/causal-delay-feedback-eom-replay-adapter.test.js
+  contracts: simulation.eom-record-and-app-surface-contract
+  reason: Recheck app runtimes that display recorded EOM datasets.
+- applications: node scripts/check-animator-runtime-wiring.mjs
+  contracts: simulation.eom-record-and-app-surface-contract
+  reason: Recheck animator runtime wiring after display-adapter changes.
+
+[foundational-impact] running 27 impacted command(s)
+
+[foundational-impact] run 1/27 (validation)
+[foundational-impact] $ node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
+[frequency-triplet-notation] scanned 973 files; legacy outer-normalized triplet notation is clean
+
+[foundational-impact] run 2/27 (validation)
+[foundational-impact] $ node scripts/check-polarity-notation-drift.mjs
+[polarity-notation] scanned 973 files; polarity inventory and braid-conjugation terminology are clean
+
+[foundational-impact] run 3/27 (validation)
+[foundational-impact] $ node scripts/check-transmitter-factor-clean-slate.mjs
+[transmitter-factor-clean-slate] passed
+
+[foundational-impact] run 4/27 (validation)
+[foundational-impact] $ node scripts/validate-content.mjs --check --strict
+validate-content mode: check (strict)
+- Scene config files discovered: 391
+- Markdown files discovered: 199
+- Repo markdown files audited: 1353
+- Non-scene JSON ignored: 1
+
+content/scenes/scenes_index.json
+
+content/markdown/markdown_index.json
+
+notes:
+- Ignored non-scene JSON under content/scenes: content/scenes/chemistry/periodic_table.json
+- Comic release image audit: 16 approved square single-panel comic(s).
+- Stable ID/label lock coverage: 17 scene file(s).
+- No incoming scene links (115) excluding root content/scenes/architrino_assembly_architecture.json
+- no-incoming-link: content/scenes/archie/braid_search.json
+- no-incoming-link: content/scenes/elements/ac.json
+- no-incoming-link: content/scenes/elements/ag.json
+- no-incoming-link: content/scenes/elements/al.json
+- no-incoming-link: content/scenes/elements/am.json
+- no-incoming-link: content/scenes/elements/ar.json
+- no-incoming-link: content/scenes/elements/as.json
+- no-incoming-link: content/scenes/elements/at.json
+- no-incoming-link: content/scenes/elements/au.json
+- no-incoming-link: content/scenes/elements/b.json
+- no-incoming-link: content/scenes/elements/ba.json
+- no-incoming-link: content/scenes/elements/be.json
+- no-incoming-link: content/scenes/elements/bh.json
+- no-incoming-link: content/scenes/elements/bi.json
+- no-incoming-link: content/scenes/elements/bk.json
+- no-incoming-link: content/scenes/elements/br.json
+- no-incoming-link: content/scenes/elements/c.json
+- no-incoming-link: content/scenes/elements/ca.json
+- no-incoming-link: content/scenes/elements/cd.json
+- no-incoming-link: content/scenes/elements/ce.json
+- no-incoming-link: content/scenes/elements/cf.json
+- no-incoming-link: content/scenes/elements/cl.json
+- no-incoming-link: content/scenes/elements/cm.json
+- no-incoming-link: content/scenes/elements/cn.json
+- no-incoming-link: content/scenes/elements/co.json
+- no-incoming-link: ... 90 more
+
+summary: 0 error(s), 0 warning(s), 30 note(s)
+
+[foundational-impact] run 5/27 (proofPrograms)
+[foundational-impact] $ node --test tests/noether-sea-density-compression-provider-intake.test.js tests/noether-sea-density-compression-output-projection.test.js tests/noether-sea-response-source-target-check.test.js tests/effective-metric-weak-field-residual.test.js
+✔ accepted theta_W weak-field input populates the effective-metric residual (103.459083ms)
+✔ theta_W attempt stays blocked at missing accepted theta_W (62.757584ms)
+✔ theta_W coordination-source negative control is rejected as non-evidence (61.678792ms)
+✔ accepted-looking theta_W rows must cite theta_W evidence (58.813042ms)
+✔ provider-backed output projection evidence is accepted (6.874042ms)
+✔ provider-backed surface slice projects weak-gravity outputs and delta_a_star (75.232958ms)
+✔ projected downstream outputs require accepted output-projection evidence (73.56ms)
+✔ theta_sea_rho_NS provider intake reports accepted non-fixture provider (3.272708ms)
+✔ theta_sea_rho_NS provider intake require-accepted succeeds (60.23525ms)
+✔ provider-backed density-compression surface slice is populated (66.048458ms)
+✔ density-compression runner rejects generic durable JSON as theta_sea_rho_NS evidence (62.970667ms)
+✔ current Noether sea provider accepts Fe/Ni toy response rows (3.150917ms)
+✔ Noether sea checker does not advance when acoustic-elastic agreement drifts (0.638208ms)
+✔ Noether sea checker does not advance when a toy-bound row is not accepted (0.239209ms)
+✔ CLI require-accepted passes for the current Noether sea provider (59.885959ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 363.937625
+
+[foundational-impact] run 6/27 (proofPrograms)
+[foundational-impact] $ node --test tests/prescribed-orbit-causal-roots.test.js
+✔ moving circular absolute-history roots use transmitter-side acceleration (1.2745ms)
+✔ same-transmitter root emits signed root playback; fixed-frequency circle stays reflection-locked at m=+1 (1.659667ms)
+✔ accelerating same-transmitter history yields negative root playback past the field-speed hinge (1.553584ms)
+✔ zero angular acceleration is exactly backward-compatible with the fixed-omega circle (0.549958ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 116.544834
+
+[foundational-impact] run 7/27 (proofPrograms)
+[foundational-impact] $ node --test tests/weak-channel-source-target-check.test.js
+✔ current weak-channel target accepts ledger, projection, quotient, and exposure but blocks downstream rows (5.542083ms)
+✔ weak-channel source-acquisition map clears when target rows are accepted (0.593917ms)
+✔ weak-channel checker does not advance when a weak proof target loses conservation rows (0.775458ms)
+✔ weak-channel checker does not advance when the V-A proof target loses chirality selection rows (0.426417ms)
+✔ weak-channel checker does not advance when a weak proof target loses event-balance rows (0.363459ms)
+✔ weak-channel checker does not advance on hidden domain split (0.470458ms)
+✔ weak-channel checker does not advance on downstream accepted-looking row without source evidence (0.408541ms)
+✔ weak-channel checker records malformed source-acquisition target shape (0.417125ms)
+✔ CLI require-accepted fails while current weak rows remain attempt-level (57.096208ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 138.398417
+
+[foundational-impact] run 8/27 (proofPrograms)
+[foundational-impact] $ node scripts/quantum/bell-family-residual-harness.mjs --candidate scripts/quantum/source-measure-joint-basin-candidate.json --scenario all --out /tmp/aaa-bell-family-residual-harness.json
+
+[foundational-impact] run 9/27 (proofPrograms)
+[foundational-impact] $ node scripts/quantum/local-response-contract-adapter.mjs --input scripts/quantum/product-screened-axis-candidate.json --out /tmp/aaa-local-response-contract-adapter.json
+
+[foundational-impact] run 10/27 (proofPrograms)
+[foundational-impact] $ node scripts/quantum/source-measure-local-response-replay.mjs --candidate scripts/quantum/product-screened-axis-candidate.json --scenario all --out /tmp/aaa-source-measure-local-response-replay.json
+
+[foundational-impact] run 11/27 (simulations)
+[foundational-impact] $ node --test tests/borg-assembly-view-session.test.js
+✔ Borg assembly-view collection preserves raw records, source ids, source order, and string path ids (2.05025ms)
+✔ optional S3 navigation grouping requires source-carried keys and never replaces the raw selection (0.496166ms)
+✔ collection filters consume only source-carried values and preserve source order (0.286417ms)
+✔ comparison does not advance when either sealed record lacks ratified transforms (0.298333ms)
+✔ comparison uses declared time and unit transforms and reports canonical overlap (0.166042ms)
+✔ external collection manifest preserves declared source order and exact identities (0.258833ms)
+✔ presentation labels chart and evolved records distinctly without upgrading evidence (0.271209ms)
+✔ presentation exposes source-owned field speed and kinematic vector rows (0.223042ms)
+✔ presentation exposes individual constituent and worldline identities for nonbinary prescribed records (0.553583ms)
+✔ prescribed chart trails use the source-defined number of full rotations (0.256125ms)
+✔ record trails stay positive when a valid record declares zero delay horizon (0.100708ms)
+✔ play and scrub attempts outside recorded coverage do not advance (0.140917ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 79.015208
+
+[foundational-impact] run 12/27 (simulations)
+[foundational-impact] $ node --test tests/borg-eom-runtime-contract.test.js tests/ideal-braid-runtime.test.js tests/causal-delay-feedback-eom-replay-adapter.test.js
+✔ Borg path history is on and visible by default (0.771417ms)
+✔ all Borg trails use exact endpoint polarity colors (0.099458ms)
+✔ Borg timeline uses a fixed-width hours-minutes-seconds clock (0.079167ms)
+✔ Borg replay interpolation preserves source worldline identity (0.133208ms)
+✔ Borg selected certified budget atomically owns its step controller (0.249959ms)
+✔ Borg app manifest is design-owned policy and passes validation (0.363292ms)
+✔ Borg uses the canonical unit field speed (0.090209ms)
+✔ Borg ships no stored trajectory data; runs are computed from seeded initial conditions (0.162333ms)
+✔ Borg record replay chunks carry recorded frames with record provenance (1.832542ms)
+✔ Borg display-oversamples prescribed cubic records by four without changing the record (6.045333ms)
+✔ Borg record replay never upgrades authority from producer-asserted evidence status (0.179583ms)
+✔ Borg record replay never extends past recorded coverage (0.1565ms)
+✔ Borg record replay applies measured target and chunk limits within the window (0.122625ms)
+✔ Borg record replay does not advance on foreign or ungraded records (0.110917ms)
+✔ Borg orthographic camera fits the limiting viewport dimension without depth scaling (0.099791ms)
+✔ Borg path-history renderer joins replay rows without visual smoothing curves (10.37875ms)
+✔ Borg surface keeps EOM-native policy requiring verification for advancement (0.115583ms)
+✔ Borg presents exact configuration identity without a family or alias surface (0.519208ms)
+✔ eom replay adapter normalizes a recorded dataset into the runtime replay shape (2.660875ms)
+✔ eom display projection keeps positrino above electrino without changing recorded roles (0.236ms)
+✔ eom replay retained-history points span the trail with mock-compatible semantics (0.193125ms)
+✔ eom replay adapter honors explicit worldline role overrides (0.162292ms)
+✔ eom replay adapter rejects ambiguous automatic worldline roles (0.27175ms)
+✔ eom replay adapter validates explicit role polarity and identity (0.147ms)
+✔ eom replay adapter rejects allocation counts above the declared bounds (0.135416ms)
+✔ eom replay adapter does not advance without both polarities (0.090458ms)
+✔ eom replay adapter does not advance without a record (0.126125ms)
+✔ eom replay adapter rejects canvas-edit recompute requests (0.118167ms)
+✔ eom replay adapter resolves records through an async loader (0.199541ms)
+✔ shared EOM history dataset does not advance on foreign contract ids (0.068375ms)
+✔ shared EOM history dataset does not advance without a claim grade (0.053958ms)
+✔ shared EOM history dataset does not advance on non-contiguous segments (0.104125ms)
+✔ shared EOM history dataset refuses evaluation outside recorded coverage (0.104917ms)
+✔ normalizeCausalDelayFeedbackEomReplay accepts a pre-built shared dataset (0.090625ms)
+✔ Coincident-Midpoint Three-Axis Circular Lorentz Geometry model preserves stable ids and exposes indexed labels (1.80025ms)
+✔ standalone Coincident-Midpoint Three-Axis Circular Lorentz Geometry home navigation returns to the main webapp (0.122833ms)
+✔ surface sample poles align with assembly momentum (0.697834ms)
+✔ full potential is the prescribed-path analysis six-emission superposition (0.854792ms)
+✔ Lorentz energy ledger separates rest, movement, and total energy (0.119375ms)
+✔ Lorentz energy ledger treats beta equals one as a limit state (0.052959ms)
+✔ Lorentz alignment tilts binary angular momentum normals toward assembly momentum (0.31575ms)
+✔ assembly momentum contraction preserves the final shared orbit plane (0.103542ms)
+✔ orbit path tint profiles distinguish inner middle and outer binaries (0.243083ms)
+✔ super-field profile expands from a cached prescribed circular self-hit row (0.123084ms)
+✔ real prescribed-path analysis converges the super-field circular self-hit span (0.483375ms)
+✔ Coincident-Midpoint Three-Axis Circular Lorentz Geometry circular self-hit spans can be batched through the prescribed-path analysis (0.156958ms)
+✔ surface scheduler uses the model field speed, documented softening, and no probe column (3.333792ms)
+✔ surface scheduler reports failures and enforces retry backoff across state changes (0.495417ms)
+✔ guide links open their target document and reset/focus the markdown panel (1.435708ms)
+✔ bootstrap failure produces a visible Coincident-Midpoint Three-Axis Circular Lorentz Geometry error banner (0.119625ms)
+✔ mount smoke test binds the authored DOM and destroy releases listeners and scene assets (42.937583ms)
+✔ document and canvas titles use the facts-first public name (0.158583ms)
+✔ Lorentz Geometry panels enforce a 12px minimum and render the field-speed subscript (0.342291ms)
+✔ Lorentz Geometry omits dedicated Reset and Focus buttons while retaining canvas keyboard controls (0.232833ms)
+✔ Lorentz Geometry places an icon-only play-pause control below the sphere (0.18ms)
+✔ Lorentz Geometry uses one widened left panel and hides its equation subsection in compact layouts (0.2825ms)
+✔ Lorentz Geometry stacks information and controls in a scrollable left rail (0.231292ms)
+✔ Lorentz Geometry selector text matches the Controls heading size (0.254292ms)
+✔ Lorentz Geometry uses the canonical navigation runtime and no panel home button (0.271125ms)
+ℹ tests 59
+ℹ suites 0
+ℹ pass 59
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 156.519209
+
+[foundational-impact] run 13/27 (simulations)
+[foundational-impact] $ node --test tests/eq11-20-shared-constitutive-residual.test.js tests/eq20-pressure-effective-lambda-residual.test.js tests/eq32-galaxy-response-child-residual.test.js tests/effective-frw-handoff-residual.test.js
+✔ accepted theta_cos handoff populates the effective-FRW residual (77.605125ms)
+✔ effective-FRW attempt fixture stays blocked at missing accepted theta_cos (64.997208ms)
+✔ effective-FRW priority-source negative control is rejected as non-evidence (62.884625ms)
+✔ effective-FRW self-reference negative control is rejected as non-evidence (61.505959ms)
+✔ accepted-looking effective-FRW row must cite parseable handoff evidence (72.333875ms)
+✔ shared EQ-11/EQ-20 constitutive residual consumes accepted upstream records (74.212625ms)
+✔ shared EQ-11/EQ-20 residual rejects priority-source theta_11_20 rows (69.92775ms)
+✔ shared EQ-11/EQ-20 residual rejects split effective coupling (71.436083ms)
+✔ shared EQ-11/EQ-20 residual rejects hidden retune residual (74.3565ms)
+✔ theta_sea_rho_NS source-attempt computes outer-binary pressure diagnostics while score-neutral (65.404333ms)
+✔ provider-backed EQ-20 slice consumes accepted density provider and retained delta_P_eff report (69.266083ms)
+✔ EQ-20 priority-source negative control remains rejected as retained evidence (64.45025ms)
+✔ accepted-looking EQ-20 theta_sea_rho_NS row must cite accepted provider object (65.996916ms)
+✔ accepted-looking EQ-20 pressure row must cite retained delta_P_eff pressure report (67.981791ms)
+✔ accepted-looking EQ-20 packet must still supply outer-binary strain diagnostics (65.579708ms)
+✔ EQ-32 galaxy-response evidence is accepted (11.900292ms)
+✔ accepted EQ-32 galaxy-response child populates RAR and BTFR readouts (254.394584ms)
+✔ EQ-32 galaxy-response attempt stays blocked at missing child row (70.196792ms)
+✔ EQ-32 galaxy-response priority-source control is rejected as non-evidence (71.441ms)
+✔ accepted-looking EQ-32 galaxy rows must cite galaxy-response evidence (119.471625ms)
+✔ EQ-32 galaxy-response child rejects hidden retune of inherited shared keys (235.0215ms)
+✔ EQ-32 galaxy-response child requires the accepted shared-observation parent (232.346625ms)
+✔ EQ-32 galaxy-response child requires accepted delta_a_star output projection (234.190583ms)
+✔ EQ-32 galaxy-response child requires low and high acceleration samples (232.70225ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1543.043208
+
+[foundational-impact] run 14/27 (simulations)
+[foundational-impact] $ node --test tests/ideal-braid-runtime.test.js
+✔ Coincident-Midpoint Three-Axis Circular Lorentz Geometry model preserves stable ids and exposes indexed labels (1.662666ms)
+✔ standalone Coincident-Midpoint Three-Axis Circular Lorentz Geometry home navigation returns to the main webapp (0.116375ms)
+✔ surface sample poles align with assembly momentum (0.677583ms)
+✔ full potential is the prescribed-path analysis six-emission superposition (0.835167ms)
+✔ Lorentz energy ledger separates rest, movement, and total energy (0.11575ms)
+✔ Lorentz energy ledger treats beta equals one as a limit state (0.05075ms)
+✔ Lorentz alignment tilts binary angular momentum normals toward assembly momentum (0.271583ms)
+✔ assembly momentum contraction preserves the final shared orbit plane (0.107167ms)
+✔ orbit path tint profiles distinguish inner middle and outer binaries (0.241166ms)
+✔ super-field profile expands from a cached prescribed circular self-hit row (0.122583ms)
+✔ real prescribed-path analysis converges the super-field circular self-hit span (0.473458ms)
+✔ Coincident-Midpoint Three-Axis Circular Lorentz Geometry circular self-hit spans can be batched through the prescribed-path analysis (0.146167ms)
+✔ surface scheduler uses the model field speed, documented softening, and no probe column (3.243ms)
+✔ surface scheduler reports failures and enforces retry backoff across state changes (0.5955ms)
+✔ guide links open their target document and reset/focus the markdown panel (1.326667ms)
+✔ bootstrap failure produces a visible Coincident-Midpoint Three-Axis Circular Lorentz Geometry error banner (0.109875ms)
+✔ mount smoke test binds the authored DOM and destroy releases listeners and scene assets (40.538833ms)
+✔ document and canvas titles use the facts-first public name (0.15725ms)
+✔ Lorentz Geometry panels enforce a 12px minimum and render the field-speed subscript (0.313291ms)
+✔ Lorentz Geometry omits dedicated Reset and Focus buttons while retaining canvas keyboard controls (0.213875ms)
+✔ Lorentz Geometry places an icon-only play-pause control below the sphere (0.163ms)
+✔ Lorentz Geometry uses one widened left panel and hides its equation subsection in compact layouts (0.2785ms)
+✔ Lorentz Geometry stacks information and controls in a scrollable left rail (0.223ms)
+✔ Lorentz Geometry selector text matches the Controls heading size (0.2365ms)
+✔ Lorentz Geometry uses the canonical navigation runtime and no panel home button (0.266875ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 141.011542
+
+[foundational-impact] run 15/27 (simulations)
+[foundational-impact] $ node --test tests/photon-runtime.test.js
+✔ default photon state encodes trailing and leading braid convention (1.786916ms)
+✔ photon Lorentz-factor speed mode derives signal and photon speeds (0.164292ms)
+✔ photon plot duration spans three middle-layer cycles (0.165583ms)
+✔ left braid angles advance counter-clockwise while right braid angles advance clockwise (0.098167ms)
+✔ Photon causal roots can be routed through the prescribed-path analysis for linear segments (0.264167ms)
+✔ Photon circular-transmitter analysis request preserves transmitter orbit geometry (0.276125ms)
+✔ Photon absolute-history transmitter roots route through the moving-circular prescribed-path analysis (1.29925ms)
+✔ prescribed-path observer field does not advance without complete receiver-side root-playback records (0.361083ms)
+✔ Photon absolute-history field routes through the moving-circular prescribed-path run (3.47825ms)
+✔ absolute-history contributions stay paired with root identities after delay sorting (0.346958ms)
+✔ absolute-history Delta x diagnostic classifies root age in reference cycles (0.419291ms)
+✔ Photon helical same-transmitter roots route through the moving-circular prescribed-path analysis (8.949958ms)
+✔ Photon self-hit span requests use absolute photon plus orbital speed ratios (0.237541ms)
+✔ Photon self-hit diagnostics route same-transmitter causal hits through the prescribed-path analysis (1.314458ms)
+✔ Photon self-hit diagnostics use prescribed span analysis when circular-transmitter roots are injected (1.108667ms)
+✔ Photon self-hit roots fail closed across singular, Jacobian, and transversality boundaries (0.2955ms)
+✔ Photon helical self-hit phase-lock sweep summarizes sampled cases (3.720333ms)
+✔ Photon circular-transmitter roots, hits, and ledger entries can be routed through the prescribed-path analysis (0.196ms)
+✔ Photon delayed emission field can use absolute-history moving-circular analysis roots (0.771583ms)
+✔ Photon delayed emission field can be assembled from prescribed-path analysis circular-transmitter roots (0.7745ms)
+✔ physical co-moving field pipeline pins a nonzero transverse value (0.578875ms)
+✔ Photon formula and plot APIs expose central prescribed-path analysis results (20.666709ms)
+✔ plot helpers expose sample counts and the small forward now gap (0.079084ms)
+✔ photon stage keeps face-on braid spacing fixed while side view separation changes (0.216667ms)
+✔ photon face-on radius edits move the edited orbit without rescaling the braid (0.111125ms)
+✔ photon side-view height follows the largest enabled binary (0.046333ms)
+✔ Virtual Observer slider zero helpers mark and snap near zero (0.079ms)
+✔ phase controls snap near 45 degree sticky spots (0.055834ms)
+✔ playback speed slider centers the default multiplier (0.068458ms)
+✔ separation log ticks cover mantissas 1 through 9 for each decade (0.198625ms)
+✔ separation scientific-notation picker maps coefficient and decade to log ticks (0.117791ms)
+✔ frequency controls use powers of two (0.042208ms)
+✔ layer metadata exposes user-facing orbit names (0.034292ms)
+✔ layer radius edits are scoped to the addressed braid (0.032916ms)
+✔ layer radius edits cannot pass neighboring orbits (0.064958ms)
+✔ state normalization clamps illegal outer and neighboring radii (0.04725ms)
+✔ layer radius edits preserve absolute pair separation (0.039958ms)
+✔ named photon presets expose the required candidate configurations (0.170875ms)
+✔ configuration search can score and compare settings through the prescribed-path analysis (37.209ms)
+✔ configuration search compares co-moving and absolute-history analysis results when available (18.692875ms)
+✔ deep configuration comparison filters candidates, yields progress, and exports provenance (32.206875ms)
+✔ Photon diagnostics expose the active prescribed-path analysis library (11.933458ms)
+✔ configuration search results export and import full settings (39.8365ms)
+✔ separation reference radius follows the largest enabled radius (0.117042ms)
+✔ photon state normalization preserves configured values (0.090167ms)
+✔ formula summary reports a derived prescribed-path-analysis polarization fit (9.726292ms)
+✔ I/M/O branch sums close to the co-moving transverse harmonic ledger (5.823459ms)
+✔ polarization fitter classifies a one-axis signal as linear (0.147ms)
+✔ analyzer common-period fraction uses a ratio of accumulated energies (0.0655ms)
+✔ polarization fitter classifies equal quadrature amplitudes as circular (0.100792ms)
+✔ polarization fitter classifies unequal quadrature amplitudes as elliptical (0.09275ms)
+✔ derived prescribed-path-analysis polarization trace uses the fitted current field (1.730292ms)
+✔ derived prescribed-path-analysis polarization inset trace is centered on the oscillating component (1.768125ms)
+✔ derived prescribed-path-analysis polarization ellipse fit stays stable while the current point advances (3.621834ms)
+✔ polarization inset current vector follows display time between analysis snapshots (1.815875ms)
+✔ photon animation keeps braid time continuous while plot time wraps (0.063584ms)
+✔ spacebar playback shortcut ignores editable controls (0.074833ms)
+ℹ tests 57
+ℹ suites 0
+ℹ pass 57
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 299.931333
+
+[foundational-impact] run 16/27 (simulations)
+[foundational-impact] $ node --test tests/prescribed-orbit-causal-roots.test.js tests/causal-delay-feedback-runtime.test.js
+✔ causal delay feedback readout summarizes selected path history point (6.390417ms)
+✔ causal delay feedback readout summarizes selected path line (1.791917ms)
+✔ causal delay feedback readout summarizes selected wake link (1.990042ms)
+✔ causal delay feedback wake readout includes engine diagnostics (1.141375ms)
+✔ causal delay feedback wake readout includes compact root ledger details (1.203875ms)
+✔ causal delay feedback wake readout and visual weight expose rejected solver links (1.224625ms)
+✔ causal delay feedback rejected wake readout reports solver root-status detail (1.098833ms)
+✔ causal delay feedback root-only wake readout reports inactive root detail (1.466166ms)
+✔ causal delay feedback invalid wake visual tiers distinguish inactive stale and rejected rows (0.855083ms)
+✔ causal delay feedback wake readout reports received rows after the hit time (0.966792ms)
+✔ causal delay feedback default readout stays hidden while aggregate feedback updates (2.3685ms)
+✔ causal delay feedback aggregate summary names a frame before live wake roots exist (2.031625ms)
+✔ causal delay feedback now scrubber pauses and moves replay time (2.316125ms)
+✔ causal delay feedback scrubber pointer drag and release redraw the held Story frame (2.869542ms)
+✔ Lesson One early pointer scrub immediately draws circular wakes from both sources (2.149666ms)
+✔ causal delay feedback scrubber keyboard value change redraws the visible Story scene (1.746667ms)
+✔ fresh Lesson One initialization synchronizes replay state, slider, held frame, and canvas (1.105958ms)
+✔ Laboratory entry and First Frame use the earliest reciprocal-visible state (36.154334ms)
+✔ Laboratory playback stops at and holds its final frame without looping (24.557209ms)
+✔ causal delay feedback now scrubber updates selected wake state (1.611083ms)
+✔ causal delay feedback reset resyncs now control and selected readout (1.628541ms)
+✔ causal delay feedback reduced motion preference starts paused but allows manual play (1.371667ms)
+✔ causal delay feedback path trails use one pure-color stroke (0.697333ms)
+✔ causal delay feedback edited path trails render as continuous curve strokes (4.264083ms)
+✔ causal delay feedback edited path uses one C1 spline for rendering and evaluation (20.328875ms)
+✔ causal delay feedback path trail smoothing uses Catmull-Rom cubic interpolation (1.653417ms)
+✔ causal delay feedback Catmull-Rom path uses centripetal parameter spacing (0.853625ms)
+✔ causal delay feedback background depth field remains an internal render option (1.240875ms)
+✔ causal delay feedback weak contribution cue always fades below-threshold wakes (0.678416ms)
+✔ causal delay feedback weak contribution cue affects live above-threshold wakes (1.268875ms)
+✔ causal delay feedback aggregate summary excludes rejected solver links (1.3285ms)
+✔ causal delay feedback wake-front separation is locked to the smaller gap (2.266125ms)
+✔ causal delay feedback wake display keeps Arcs and Full mutually exclusive (39.424791ms)
+✔ causal delay feedback live wake series back-solves one emission point per architrino (1.528375ms)
+✔ causal delay feedback mock paths span five to ninety-five percent of the time axis (1.04475ms)
+✔ causal delay feedback mock initial motion state spans retained path endpoints (0.26225ms)
+✔ causal delay feedback aggregate summary omits retained-link invalid root reasons (2.525417ms)
+✔ causal delay feedback aggregate summary omits solver constraint telemetry details (1.7905ms)
+✔ causal delay feedback uses one fixed learner display with no settings surface (1.462334ms)
+✔ causal delay feedback legend lozenges use the fixed canvas and trace colors (0.296459ms)
+✔ causal delay feedback bottom scrubber keeps every light effect keyboard-only (0.756792ms)
+✔ causal delay feedback toolbar exposes one mutually exclusive Arcs-or-Full control (0.301084ms)
+✔ Laboratory header mirrors the Story panel treatment (0.465584ms)
+✔ causal delay feedback keeps timeline-only transport and hides the Laboratory status ribbon (0.187833ms)
+✔ Laboratory hides only the learner status ribbon while retaining replay provenance (1.09525ms)
+✔ causal delay feedback shares one time-axis label position above the axis (0.316542ms)
+✔ causal delay feedback aligns the bottom rail to the transformed time axis (0.744083ms)
+✔ causal delay feedback Laboratory omits the redundant polarity legend and readout lozenge (0.112416ms)
+✔ causal delay feedback does not render a floating hover overlay (0.071875ms)
+✔ causal delay feedback retained depth setting filters history while live wake count stays continuous (2.682125ms)
+✔ causal delay feedback retained depth setting clears hidden selected rows (1.777459ms)
+✔ causal delay feedback learner surface omits retained point controls (0.124167ms)
+✔ Story 1 uses the shared eighty-percent wake-display rate (1.070167ms)
+✔ fresh Story navigation preserves the prior shared playback clock (33.103541ms)
+✔ navigating from fresh Lesson One gives Lesson Two both arcs and normal pacing (17.986709ms)
+✔ Story 1 renders only circles while Story 2 reuses the Sandbox partial-front primitive (17.252292ms)
+✔ transmission-point markers retain the internal open-ring baseline and use the solid-dot standard (1.415875ms)
+✔ Story and guided-mode transmission markers share the selected marker renderer (0.510084ms)
+✔ transmission-history dots use pale source colors while current-emission dots stay neutral (0.486333ms)
+✔ Story 2 trails stay receiver-centered on the shared time-axis mapping (4.399709ms)
+✔ Story 2 shows only the two active arc-origin dots through the time-axis midpoint handoff (18.435834ms)
+✔ Story 2 terminal frame exactly hands off to Story 3 synthesis (16.8475ms)
+✔ Story 4 renders all declared speed fixtures from one evaluator-backed geometry (1.494834ms)
+✔ Story 4 compression labels begin with a two-space gap and then follow wake separation (0.970625ms)
+✔ Story 4 labels follow the visible wake extents across speeds and frames (2.996666ms)
+✔ Story 4 compressed-front label follows the visible outer ring through playback (2.311542ms)
+✔ Story 4 speed changes reset playing, paused, and completed scenarios (2.507292ms)
+✔ dormant diagnostic history renderer preserves reciprocal geometry (1.64075ms)
+✔ Lesson Five starts at emission zero and visibly differs from Lesson One at equal body-wake speed (47.27225ms)
+✔ Lesson Five wakefronts stay circular on uphill and downhill path slopes (0.700584ms)
+✔ Lesson Six renders fixed halfway bodies with constant-rate expanding circular wakes and no rejected ornaments (2.71225ms)
+✔ Lesson Seven renders Lesson One labels and uniform clean-triangle white arrows through the full endpoint (3.505542ms)
+✔ Story replay restarts the stage even while playback is already running (0.751708ms)
+✔ Story graph viewport remains fixed from initial through mid-play and end-play (3.830958ms)
+✔ all Story steps use one desktop chart template despite different panel heights (2.117292ms)
+✔ Laboratory matches the Story chart frame at desktop and keeps a safe narrow frame (2.016709ms)
+✔ causal delay feedback does not keep a frame loop alive while paused (0.602084ms)
+✔ lesson playback advances its scene without polling dormant diagnostic panels (0.603875ms)
+✔ Lesson Eight draws retained causal history plus only the active arc pair (0.950833ms)
+✔ Lesson Eight reuses Lesson Two live fading-arc spacing without straight connectors or endpoint markers (1.290542ms)
+✔ causal delay feedback display sampler uses fixed path speed (0.511416ms)
+✔ causal delay feedback recorded EOM sampler preserves recorded time-position data (0.477041ms)
+✔ causal delay feedback live markers use fixed path speed (0.517833ms)
+✔ causal delay feedback replay keeps initial conditions synced to path start history (0.506084ms)
+✔ causal delay feedback eom normalization projects recorded worldlines onto the canvas (7.028583ms)
+✔ causal delay feedback does not expose initial velocity handles on the canvas (1.077334ms)
+✔ causal delay feedback does not expose a Virtual Observer handle (1.380958ms)
+✔ causal delay feedback exposes visible path lines only for path editing hits (1.15625ms)
+✔ causal delay feedback wheel zoom anchors on empty canvas background (1.490375ms)
+✔ causal delay feedback reuses one hit test during a wheel gesture (0.498042ms)
+✔ causal delay feedback wheel zoom treats removed history points as background (1.3255ms)
+✔ causal delay feedback wheel zoom ignores active drags (0.457209ms)
+✔ causal delay feedback pinch zoom anchors on empty canvas background (0.580542ms)
+✔ causal delay feedback pinch state clears as touch pointers release (0.467916ms)
+✔ causal delay feedback path line drag can start over removed history point positions (2.092334ms)
+✔ causal delay feedback runtime loads an async eom replay over the mock fallback (1.665083ms)
+✔ causal delay feedback status keeps raw recorded provenance out of learner-facing copy (0.722125ms)
+✔ causal delay feedback status does not expose dataset-level eom provenance fields (0.669125ms)
+✔ causal delay feedback status ignores legacy solver telemetry on eom datasets (0.661833ms)
+✔ causal delay feedback status reports plain recorded replay for non-eom recorded datasets (0.638375ms)
+✔ causal delay feedback recorded replay status ignores legacy path-constraint telemetry (0.660833ms)
+✔ causal delay feedback status remains plain when eom provenance is incomplete (0.641583ms)
+✔ causal delay feedback status treats legacy motion-policy datasets as plain recorded replay (0.64325ms)
+✔ causal delay feedback eom replay adapter rejects draft-preview recompute requests (5.992792ms)
+✔ causal delay feedback runtime keeps the mock replay when eom replay loading fails (1.248209ms)
+✔ causal delay feedback direct edit remains a local draft without calling the replay adapter (11.443875ms)
+✔ causal delay feedback runtime ignores stale async replay responses (1.217125ms)
+✔ causal delay feedback page uses eom replay by default with a mock escape hatch (1.578417ms)
+✔ causal delay feedback page builds eom replay options from scope and record URLs (0.125916ms)
+✔ causal delay feedback page accepts eom replay review URL options (0.118541ms)
+✔ causal delay feedback page and direct runtime share one default learner mode (1.74ms)
+✔ causal delay feedback mode history restores Roots without replacing the app runtime (0.903042ms)
+✔ causal delay feedback page leaves absent replay request options unset (0.051083ms)
+✔ causal delay feedback eom replay adapter requires a recorded dataset (5.342667ms)
+✔ causal delay feedback page eom replay uses configured record from scope (5.490708ms)
+✔ causal delay feedback wake fronts and receiver markers synchronize for every retained link (1.2825ms)
+✔ causal delay feedback partial wake arc series disappears after reception until the loop restarts (1.084375ms)
+✔ causal delay feedback partial wake arc fronts keep radial sector boundaries (1.233583ms)
+✔ causal delay feedback full circular wakes keep expanding after retained receptions (66.923875ms)
+✔ causal delay feedback full circular wakes are emitted from moving path origins (84.734792ms)
+✔ causal delay feedback Full mode draws full circles and their emission lines without arc wakes (36.219125ms)
+✔ causal delay feedback full circle emission lines render above paths without endpoint ornaments (1.647875ms)
+✔ causal delay feedback Sandbox draws emission markers from exact live wake sources after path drag (21.000541ms)
+✔ causal delay feedback shared axes stop at both arrowhead bases (0.609792ms)
+✔ causal delay feedback wake display cannot deselect its active mode (1.349416ms)
+✔ causal delay feedback solver hit diagnostics do not desynchronize receiver-point arrivals (0.938958ms)
+✔ causal delay feedback hit testing does not expose retained reception points (1.41225ms)
+✔ causal delay feedback Laboratory omits endpoint ornaments while preserving endpoint interaction (2.077542ms)
+✔ causal delay feedback path endpoint handles are selectable (1.593584ms)
+✔ causal delay feedback endpoint editing remains available under lower retained wake depth (11.240334ms)
+✔ causal delay feedback does not expose an initial-position canvas hit (0.479041ms)
+✔ causal delay feedback retained start constraint updates the initial condition (10.474916ms)
+✔ causal delay feedback retained end constraint updates the final path point (10.423625ms)
+✔ causal delay feedback velocity endpoint is not a canvas hit target (0.480125ms)
+✔ causal delay feedback velocity selection does not draw a canvas highlight (1.425792ms)
+✔ causal delay feedback does not expose path-history insertion entry points (0.444583ms)
+✔ causal delay feedback path line drag deforms the visible path without adding fixed points (1.785666ms)
+✔ causal delay feedback path line drag keeps path endpoints fixed (2.558958ms)
+✔ causal delay feedback path line drag has no visible one-sided tangent kink (1.486958ms)
+✔ causal delay feedback near-start backward drags preserve endpoint continuity and displayed time order (9.354375ms)
+✔ causal delay feedback aggressive interior drag cannot fold displayed time backward (4.498959ms)
+✔ causal delay feedback path drag uses a curvature-smooth truthful falloff (56.246708ms)
+✔ causal delay feedback pointer drag on path line updates the path preview (2.632792ms)
+✔ causal delay feedback cancels a pending replay only when a direct edit begins (2.406625ms)
+✔ causal delay feedback pointer drag on endpoint handle moves the endpoint (11.889292ms)
+✔ causal delay feedback retained point drag deforms the path and updates wake endpoints (10.585792ms)
+✔ causal delay feedback retained point drag rebuilds a smooth path through the moved point (10.626833ms)
+✔ causal delay feedback retained start point drag updates the initial condition (10.689333ms)
+✔ causal delay feedback retained end point drag updates the path endpoint (10.678959ms)
+✔ causal delay feedback retained point drag preserves wake and receiver arrival synchronization (9.983208ms)
+✔ causal delay feedback draft path edits mark prior solver wake diagnostics stale (10.836792ms)
+✔ causal delay feedback aggregate summary separates stale solver rows from rejected rows (29.042084ms)
+✔ causal delay feedback retained point drag marks the replay as a draft preview (10.826417ms)
+✔ causal delay feedback path start history drag updates setup and replay preview (4.455958ms)
+✔ causal delay feedback initial velocity drag updates setup and bends the preview path (1.363541ms)
+✔ causal delay feedback edit release keeps a local draft and never invokes the replay adapter (1.705917ms)
+✔ causal delay feedback no-op retained point drag does not mark a draft preview (0.525708ms)
+✔ causal delay feedback live marker follows the edited replay path (2.665833ms)
+✔ causal delay feedback live marker reaches retained path point at the point time (0.516917ms)
+✔ causal delay feedback live marker labels are centered above and below the moving dots (1.053666ms)
+✔ causal delay feedback path deformation updates detached frame samples (2.689041ms)
+✔ causal delay feedback spacebar toggles play state (0.592042ms)
+✔ causal delay feedback play-pause toggle follows the shared transport state (0.7545ms)
+✔ causal delay feedback destroy removes every runtime listener and invalidates pending loads (0.603666ms)
+✔ causal delay feedback spacebar leaves native controls alone (0.501542ms)
+✔ causal delay feedback spacebar toggles play even when a toolbar button has focus (0.504458ms)
+✔ causal delay feedback arrow keys pause and step solver replay frames (1.19425ms)
+✔ causal delay feedback arrow keys leave native controls alone (0.63725ms)
+✔ causal delay feedback ignores removed display-setting query parameters (0.50325ms)
+✔ moving circular absolute-history roots use transmitter-side acceleration (1.343208ms)
+✔ same-transmitter root emits signed root playback; fixed-frequency circle stays reflection-locked at m=+1 (1.822ms)
+✔ accelerating same-transmitter history yields negative root playback past the field-speed hinge (1.71475ms)
+✔ zero angular acceleration is exactly backward-compatible with the fixed-omega circle (0.6715ms)
+ℹ tests 173
+ℹ suites 0
+ℹ pass 173
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1020.413375
+
+[foundational-impact] run 17/27 (simulations)
+[foundational-impact] $ node scripts/quantum/bell-family-residual-harness.mjs --candidate scripts/quantum/source-measure-joint-basin-candidate.json --scenario all --out /tmp/aaa-bell-family-record-measure.json
+
+[foundational-impact] run 18/27 (applications)
+[foundational-impact] $ node --test tests/borg-assembly-view-session.test.js
+✔ Borg assembly-view collection preserves raw records, source ids, source order, and string path ids (1.976583ms)
+✔ optional S3 navigation grouping requires source-carried keys and never replaces the raw selection (0.476708ms)
+✔ collection filters consume only source-carried values and preserve source order (0.280334ms)
+✔ comparison does not advance when either sealed record lacks ratified transforms (0.280416ms)
+✔ comparison uses declared time and unit transforms and reports canonical overlap (0.157375ms)
+✔ external collection manifest preserves declared source order and exact identities (0.241291ms)
+✔ presentation labels chart and evolved records distinctly without upgrading evidence (0.524583ms)
+✔ presentation exposes source-owned field speed and kinematic vector rows (0.212125ms)
+✔ presentation exposes individual constituent and worldline identities for nonbinary prescribed records (0.197041ms)
+✔ prescribed chart trails use the source-defined number of full rotations (0.20325ms)
+✔ record trails stay positive when a valid record declares zero delay horizon (0.087666ms)
+✔ play and scrub attempts outside recorded coverage do not advance (0.124541ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 78.789459
+
+[foundational-impact] run 19/27 (applications)
+[foundational-impact] $ node --test tests/borg-assembly-view-session.test.js tests/pdgedit-contracts.test.js
+✔ Borg assembly-view collection preserves raw records, source ids, source order, and string path ids (2.117416ms)
+✔ optional S3 navigation grouping requires source-carried keys and never replaces the raw selection (0.5215ms)
+✔ collection filters consume only source-carried values and preserve source order (0.279875ms)
+✔ comparison does not advance when either sealed record lacks ratified transforms (0.288958ms)
+✔ comparison uses declared time and unit transforms and reports canonical overlap (0.171958ms)
+✔ external collection manifest preserves declared source order and exact identities (0.266708ms)
+✔ presentation labels chart and evolved records distinctly without upgrading evidence (0.281417ms)
+✔ presentation exposes source-owned field speed and kinematic vector rows (0.312917ms)
+✔ presentation exposes individual constituent and worldline identities for nonbinary prescribed records (0.233583ms)
+✔ prescribed chart trails use the source-defined number of full rotations (0.246959ms)
+✔ record trails stay positive when a valid record declares zero delay horizon (0.103959ms)
+✔ play and scrub attempts outside recorded coverage do not advance (0.134667ms)
+✔ pdgedit example documents match the versioned pdgedit schema (2.375209ms)
+✔ pdgedit manifest test case matches the versioned manifest schema (0.46675ms)
+✔ pdgedit example assemblies use exact four-tile payloads drawn from the shared tile catalog (2.085375ms)
+✔ pdgedit document assembly rows come directly from tiles instead of semantic inference (0.147917ms)
+✔ pdgedit example links and composite labels stay within the explicit boundary model (0.447291ms)
+✔ pdgedit examples include at least one explicit assembly payload for every current single-row four-tile review row (0.60375ms)
+✔ pdgedit manifest defaults to its declared starter document (0.291917ms)
+✔ pdgedit manifest selection prefers the declared default, then the first entry (0.1335ms)
+✔ pdgedit library manifest preserves unsolved live entries as a distinct source kind (0.058792ms)
+✔ pdgedit library manifest preserves live picker probability and residue metadata (0.115292ms)
+✔ pdgedit main bootstrap seed stays contract-first and separate from the review harness (2.615625ms)
+✔ pdgedit bootstrap opens an explicit launch payload without reconstructing solver data (0.97ms)
+✔ pdgedit bootstrap merges the live exact-reaction manifest into the picker manifest (0.54475ms)
+✔ pdgedit standalone surface keeps the link overlay transparent while preserving link hit targets (0.786875ms)
+✔ pdgedit keeps its fixed-width reaction strip inside the surface scroller (0.21825ms)
+✔ pdgedit document picker keeps a dedicated touch-scroll option list (0.255667ms)
+✔ pdgedit document picker exposes Exact 0:0 and Probability filters for live reaction search (0.083584ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 90.335917
+
+[foundational-impact] run 20/27 (applications)
+[foundational-impact] $ node --test tests/causal-delay-feedback-runtime.test.js tests/causal-delay-feedback-eom-replay-adapter.test.js tests/animator-motion-source-runtime.test.js
+✔ animator motion source summary labels solver-derived fixture motion (2.783084ms)
+✔ animator motion source helpers drive source visibility controls (0.129833ms)
+✔ animator motion source summary separates authored and mixed motion (0.080333ms)
+✔ eom replay adapter normalizes a recorded dataset into the runtime replay shape (2.885958ms)
+✔ eom display projection keeps positrino above electrino without changing recorded roles (0.263875ms)
+✔ eom replay retained-history points span the trail with mock-compatible semantics (0.200042ms)
+✔ eom replay adapter honors explicit worldline role overrides (0.17875ms)
+✔ eom replay adapter rejects ambiguous automatic worldline roles (0.294125ms)
+✔ eom replay adapter validates explicit role polarity and identity (0.140625ms)
+✔ eom replay adapter rejects allocation counts above the declared bounds (0.138042ms)
+✔ eom replay adapter does not advance without both polarities (0.091209ms)
+✔ eom replay adapter does not advance without a record (0.13425ms)
+✔ eom replay adapter rejects canvas-edit recompute requests (0.119583ms)
+✔ eom replay adapter resolves records through an async loader (0.169166ms)
+✔ shared EOM history dataset does not advance on foreign contract ids (0.067292ms)
+✔ shared EOM history dataset does not advance without a claim grade (0.061834ms)
+✔ shared EOM history dataset does not advance on non-contiguous segments (0.105416ms)
+✔ shared EOM history dataset refuses evaluation outside recorded coverage (0.104584ms)
+✔ normalizeCausalDelayFeedbackEomReplay accepts a pre-built shared dataset (0.090167ms)
+✔ causal delay feedback readout summarizes selected path history point (6.431708ms)
+✔ causal delay feedback readout summarizes selected path line (1.7535ms)
+✔ causal delay feedback readout summarizes selected wake link (1.974375ms)
+✔ causal delay feedback wake readout includes engine diagnostics (1.142708ms)
+✔ causal delay feedback wake readout includes compact root ledger details (1.174375ms)
+✔ causal delay feedback wake readout and visual weight expose rejected solver links (1.07275ms)
+✔ causal delay feedback rejected wake readout reports solver root-status detail (1.006167ms)
+✔ causal delay feedback root-only wake readout reports inactive root detail (1.49075ms)
+✔ causal delay feedback invalid wake visual tiers distinguish inactive stale and rejected rows (0.8535ms)
+✔ causal delay feedback wake readout reports received rows after the hit time (1.015709ms)
+✔ causal delay feedback default readout stays hidden while aggregate feedback updates (2.375417ms)
+✔ causal delay feedback aggregate summary names a frame before live wake roots exist (2.101708ms)
+✔ causal delay feedback now scrubber pauses and moves replay time (2.335583ms)
+✔ causal delay feedback scrubber pointer drag and release redraw the held Story frame (2.886959ms)
+✔ Lesson One early pointer scrub immediately draws circular wakes from both sources (2.051667ms)
+✔ causal delay feedback scrubber keyboard value change redraws the visible Story scene (1.656416ms)
+✔ fresh Lesson One initialization synchronizes replay state, slider, held frame, and canvas (1.065667ms)
+✔ Laboratory entry and First Frame use the earliest reciprocal-visible state (36.213ms)
+✔ Laboratory playback stops at and holds its final frame without looping (24.581459ms)
+✔ causal delay feedback now scrubber updates selected wake state (1.603542ms)
+✔ causal delay feedback reset resyncs now control and selected readout (1.616041ms)
+✔ causal delay feedback reduced motion preference starts paused but allows manual play (1.347125ms)
+✔ causal delay feedback path trails use one pure-color stroke (0.699ms)
+✔ causal delay feedback edited path trails render as continuous curve strokes (4.289125ms)
+✔ causal delay feedback edited path uses one C1 spline for rendering and evaluation (20.647125ms)
+✔ causal delay feedback path trail smoothing uses Catmull-Rom cubic interpolation (1.446958ms)
+✔ causal delay feedback Catmull-Rom path uses centripetal parameter spacing (0.872083ms)
+✔ causal delay feedback background depth field remains an internal render option (1.119833ms)
+✔ causal delay feedback weak contribution cue always fades below-threshold wakes (0.713792ms)
+✔ causal delay feedback weak contribution cue affects live above-threshold wakes (1.19675ms)
+✔ causal delay feedback aggregate summary excludes rejected solver links (1.270708ms)
+✔ causal delay feedback wake-front separation is locked to the smaller gap (2.302292ms)
+✔ causal delay feedback wake display keeps Arcs and Full mutually exclusive (38.411209ms)
+✔ causal delay feedback live wake series back-solves one emission point per architrino (1.4355ms)
+✔ causal delay feedback mock paths span five to ninety-five percent of the time axis (0.992625ms)
+✔ causal delay feedback mock initial motion state spans retained path endpoints (0.258541ms)
+✔ causal delay feedback aggregate summary omits retained-link invalid root reasons (2.409125ms)
+✔ causal delay feedback aggregate summary omits solver constraint telemetry details (1.67275ms)
+✔ causal delay feedback uses one fixed learner display with no settings surface (0.356209ms)
+✔ causal delay feedback legend lozenges use the fixed canvas and trace colors (0.278667ms)
+✔ causal delay feedback bottom scrubber keeps every light effect keyboard-only (0.753625ms)
+✔ causal delay feedback toolbar exposes one mutually exclusive Arcs-or-Full control (0.291792ms)
+✔ Laboratory header mirrors the Story panel treatment (0.449458ms)
+✔ causal delay feedback keeps timeline-only transport and hides the Laboratory status ribbon (0.171333ms)
+✔ Laboratory hides only the learner status ribbon while retaining replay provenance (0.965333ms)
+✔ causal delay feedback shares one time-axis label position above the axis (0.350166ms)
+✔ causal delay feedback aligns the bottom rail to the transformed time axis (0.722709ms)
+✔ causal delay feedback Laboratory omits the redundant polarity legend and readout lozenge (0.116833ms)
+✔ causal delay feedback does not render a floating hover overlay (0.073167ms)
+✔ causal delay feedback retained depth setting filters history while live wake count stays continuous (2.576208ms)
+✔ causal delay feedback retained depth setting clears hidden selected rows (1.716083ms)
+✔ causal delay feedback learner surface omits retained point controls (0.119042ms)
+✔ Story 1 uses the shared eighty-percent wake-display rate (1.013542ms)
+✔ fresh Story navigation preserves the prior shared playback clock (32.568375ms)
+✔ navigating from fresh Lesson One gives Lesson Two both arcs and normal pacing (17.942834ms)
+✔ Story 1 renders only circles while Story 2 reuses the Sandbox partial-front primitive (17.754ms)
+✔ transmission-point markers retain the internal open-ring baseline and use the solid-dot standard (1.445583ms)
+✔ Story and guided-mode transmission markers share the selected marker renderer (0.500417ms)
+✔ transmission-history dots use pale source colors while current-emission dots stay neutral (0.479708ms)
+✔ Story 2 trails stay receiver-centered on the shared time-axis mapping (4.342ms)
+✔ Story 2 shows only the two active arc-origin dots through the time-axis midpoint handoff (17.695875ms)
+✔ Story 2 terminal frame exactly hands off to Story 3 synthesis (16.795291ms)
+✔ Story 4 renders all declared speed fixtures from one evaluator-backed geometry (1.384125ms)
+✔ Story 4 compression labels begin with a two-space gap and then follow wake separation (0.964125ms)
+✔ Story 4 labels follow the visible wake extents across speeds and frames (3.073958ms)
+✔ Story 4 compressed-front label follows the visible outer ring through playback (2.354417ms)
+✔ Story 4 speed changes reset playing, paused, and completed scenarios (2.777958ms)
+✔ dormant diagnostic history renderer preserves reciprocal geometry (1.761542ms)
+✔ Lesson Five starts at emission zero and visibly differs from Lesson One at equal body-wake speed (46.51525ms)
+✔ Lesson Five wakefronts stay circular on uphill and downhill path slopes (0.687125ms)
+✔ Lesson Six renders fixed halfway bodies with constant-rate expanding circular wakes and no rejected ornaments (2.669333ms)
+✔ Lesson Seven renders Lesson One labels and uniform clean-triangle white arrows through the full endpoint (3.349ms)
+✔ Story replay restarts the stage even while playback is already running (0.708084ms)
+✔ Story graph viewport remains fixed from initial through mid-play and end-play (3.731709ms)
+✔ all Story steps use one desktop chart template despite different panel heights (2.075875ms)
+✔ Laboratory matches the Story chart frame at desktop and keeps a safe narrow frame (1.982083ms)
+✔ causal delay feedback does not keep a frame loop alive while paused (0.570584ms)
+✔ lesson playback advances its scene without polling dormant diagnostic panels (0.588333ms)
+✔ Lesson Eight draws retained causal history plus only the active arc pair (0.920583ms)
+✔ Lesson Eight reuses Lesson Two live fading-arc spacing without straight connectors or endpoint markers (1.215834ms)
+✔ causal delay feedback display sampler uses fixed path speed (0.493667ms)
+✔ causal delay feedback recorded EOM sampler preserves recorded time-position data (0.46925ms)
+✔ causal delay feedback live markers use fixed path speed (0.503209ms)
+✔ causal delay feedback replay keeps initial conditions synced to path start history (0.498833ms)
+✔ causal delay feedback eom normalization projects recorded worldlines onto the canvas (8.180334ms)
+✔ causal delay feedback does not expose initial velocity handles on the canvas (0.574125ms)
+✔ causal delay feedback does not expose a Virtual Observer handle (1.350833ms)
+✔ causal delay feedback exposes visible path lines only for path editing hits (1.134ms)
+✔ causal delay feedback wheel zoom anchors on empty canvas background (1.471ms)
+✔ causal delay feedback reuses one hit test during a wheel gesture (0.512209ms)
+✔ causal delay feedback wheel zoom treats removed history points as background (1.331875ms)
+✔ causal delay feedback wheel zoom ignores active drags (0.476792ms)
+✔ causal delay feedback pinch zoom anchors on empty canvas background (0.5875ms)
+✔ causal delay feedback pinch state clears as touch pointers release (0.463208ms)
+✔ causal delay feedback path line drag can start over removed history point positions (2.253166ms)
+✔ causal delay feedback runtime loads an async eom replay over the mock fallback (1.599459ms)
+✔ causal delay feedback status keeps raw recorded provenance out of learner-facing copy (0.717792ms)
+✔ causal delay feedback status does not expose dataset-level eom provenance fields (0.667875ms)
+✔ causal delay feedback status ignores legacy solver telemetry on eom datasets (0.659666ms)
+✔ causal delay feedback status reports plain recorded replay for non-eom recorded datasets (0.639208ms)
+✔ causal delay feedback recorded replay status ignores legacy path-constraint telemetry (0.660709ms)
+✔ causal delay feedback status remains plain when eom provenance is incomplete (0.635667ms)
+✔ causal delay feedback status treats legacy motion-policy datasets as plain recorded replay (0.639625ms)
+✔ causal delay feedback eom replay adapter rejects draft-preview recompute requests (6.045542ms)
+✔ causal delay feedback runtime keeps the mock replay when eom replay loading fails (1.3175ms)
+✔ causal delay feedback direct edit remains a local draft without calling the replay adapter (11.570792ms)
+✔ causal delay feedback runtime ignores stale async replay responses (1.216542ms)
+✔ causal delay feedback page uses eom replay by default with a mock escape hatch (1.571625ms)
+✔ causal delay feedback page builds eom replay options from scope and record URLs (0.132125ms)
+✔ causal delay feedback page accepts eom replay review URL options (0.119458ms)
+✔ causal delay feedback page and direct runtime share one default learner mode (1.756833ms)
+✔ causal delay feedback mode history restores Roots without replacing the app runtime (0.910417ms)
+✔ causal delay feedback page leaves absent replay request options unset (0.053042ms)
+✔ causal delay feedback eom replay adapter requires a recorded dataset (5.888708ms)
+✔ causal delay feedback page eom replay uses configured record from scope (6.055625ms)
+✔ causal delay feedback wake fronts and receiver markers synchronize for every retained link (1.285083ms)
+✔ causal delay feedback partial wake arc series disappears after reception until the loop restarts (1.081958ms)
+✔ causal delay feedback partial wake arc fronts keep radial sector boundaries (0.946875ms)
+✔ causal delay feedback full circular wakes keep expanding after retained receptions (68.135417ms)
+✔ causal delay feedback full circular wakes are emitted from moving path origins (85.04825ms)
+✔ causal delay feedback Full mode draws full circles and their emission lines without arc wakes (34.860292ms)
+✔ causal delay feedback full circle emission lines render above paths without endpoint ornaments (1.620625ms)
+✔ causal delay feedback Sandbox draws emission markers from exact live wake sources after path drag (20.698709ms)
+✔ causal delay feedback shared axes stop at both arrowhead bases (0.591625ms)
+✔ causal delay feedback wake display cannot deselect its active mode (1.307834ms)
+✔ causal delay feedback solver hit diagnostics do not desynchronize receiver-point arrivals (0.908541ms)
+✔ causal delay feedback hit testing does not expose retained reception points (1.374958ms)
+✔ causal delay feedback Laboratory omits endpoint ornaments while preserving endpoint interaction (2.023667ms)
+✔ causal delay feedback path endpoint handles are selectable (1.600958ms)
+✔ causal delay feedback endpoint editing remains available under lower retained wake depth (11.088625ms)
+✔ causal delay feedback does not expose an initial-position canvas hit (0.477041ms)
+✔ causal delay feedback retained start constraint updates the initial condition (10.985208ms)
+✔ causal delay feedback retained end constraint updates the final path point (10.716125ms)
+✔ causal delay feedback velocity endpoint is not a canvas hit target (0.484ms)
+✔ causal delay feedback velocity selection does not draw a canvas highlight (1.497417ms)
+✔ causal delay feedback does not expose path-history insertion entry points (0.474292ms)
+✔ causal delay feedback path line drag deforms the visible path without adding fixed points (1.833958ms)
+✔ causal delay feedback path line drag keeps path endpoints fixed (2.598834ms)
+✔ causal delay feedback path line drag has no visible one-sided tangent kink (1.493541ms)
+✔ causal delay feedback near-start backward drags preserve endpoint continuity and displayed time order (9.232667ms)
+✔ causal delay feedback aggressive interior drag cannot fold displayed time backward (4.426625ms)
+✔ causal delay feedback path drag uses a curvature-smooth truthful falloff (56.2615ms)
+✔ causal delay feedback pointer drag on path line updates the path preview (2.6215ms)
+✔ causal delay feedback cancels a pending replay only when a direct edit begins (2.494542ms)
+✔ causal delay feedback pointer drag on endpoint handle moves the endpoint (11.595791ms)
+✔ causal delay feedback retained point drag deforms the path and updates wake endpoints (10.248917ms)
+✔ causal delay feedback retained point drag rebuilds a smooth path through the moved point (10.547834ms)
+✔ causal delay feedback retained start point drag updates the initial condition (10.211667ms)
+✔ causal delay feedback retained end point drag updates the path endpoint (10.590792ms)
+✔ causal delay feedback retained point drag preserves wake and receiver arrival synchronization (10.121042ms)
+✔ causal delay feedback draft path edits mark prior solver wake diagnostics stale (10.442542ms)
+✔ causal delay feedback aggregate summary separates stale solver rows from rejected rows (29.037ms)
+✔ causal delay feedback retained point drag marks the replay as a draft preview (10.490042ms)
+✔ causal delay feedback path start history drag updates setup and replay preview (4.42875ms)
+✔ causal delay feedback initial velocity drag updates setup and bends the preview path (1.329667ms)
+✔ causal delay feedback edit release keeps a local draft and never invokes the replay adapter (1.694709ms)
+✔ causal delay feedback no-op retained point drag does not mark a draft preview (0.502458ms)
+✔ causal delay feedback live marker follows the edited replay path (2.606917ms)
+✔ causal delay feedback live marker reaches retained path point at the point time (0.493083ms)
+✔ causal delay feedback live marker labels are centered above and below the moving dots (1.024ms)
+✔ causal delay feedback path deformation updates detached frame samples (2.7595ms)
+✔ causal delay feedback spacebar toggles play state (0.5835ms)
+✔ causal delay feedback play-pause toggle follows the shared transport state (0.759959ms)
+✔ causal delay feedback destroy removes every runtime listener and invalidates pending loads (0.607625ms)
+✔ causal delay feedback spacebar leaves native controls alone (0.505708ms)
+✔ causal delay feedback spacebar toggles play even when a toolbar button has focus (0.509542ms)
+✔ causal delay feedback arrow keys pause and step solver replay frames (1.208209ms)
+✔ causal delay feedback arrow keys leave native controls alone (0.643958ms)
+✔ causal delay feedback ignores removed display-setting query parameters (0.504666ms)
+ℹ tests 188
+ℹ suites 0
+ℹ pass 188
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1014.696792
+
+[foundational-impact] run 21/27 (applications)
+[foundational-impact] $ node --test tests/ideal-braid-runtime.test.js
+✔ Coincident-Midpoint Three-Axis Circular Lorentz Geometry model preserves stable ids and exposes indexed labels (1.685834ms)
+✔ standalone Coincident-Midpoint Three-Axis Circular Lorentz Geometry home navigation returns to the main webapp (0.115542ms)
+✔ surface sample poles align with assembly momentum (0.682958ms)
+✔ full potential is the prescribed-path analysis six-emission superposition (0.825125ms)
+✔ Lorentz energy ledger separates rest, movement, and total energy (0.117958ms)
+✔ Lorentz energy ledger treats beta equals one as a limit state (0.048584ms)
+✔ Lorentz alignment tilts binary angular momentum normals toward assembly momentum (0.271041ms)
+✔ assembly momentum contraction preserves the final shared orbit plane (0.096916ms)
+✔ orbit path tint profiles distinguish inner middle and outer binaries (0.234417ms)
+✔ super-field profile expands from a cached prescribed circular self-hit row (0.128833ms)
+✔ real prescribed-path analysis converges the super-field circular self-hit span (0.462042ms)
+✔ Coincident-Midpoint Three-Axis Circular Lorentz Geometry circular self-hit spans can be batched through the prescribed-path analysis (0.140667ms)
+✔ surface scheduler uses the model field speed, documented softening, and no probe column (3.169083ms)
+✔ surface scheduler reports failures and enforces retry backoff across state changes (0.579208ms)
+✔ guide links open their target document and reset/focus the markdown panel (1.499ms)
+✔ bootstrap failure produces a visible Coincident-Midpoint Three-Axis Circular Lorentz Geometry error banner (0.13525ms)
+✔ mount smoke test binds the authored DOM and destroy releases listeners and scene assets (45.062875ms)
+✔ document and canvas titles use the facts-first public name (0.166084ms)
+✔ Lorentz Geometry panels enforce a 12px minimum and render the field-speed subscript (0.323083ms)
+✔ Lorentz Geometry omits dedicated Reset and Focus buttons while retaining canvas keyboard controls (0.226166ms)
+✔ Lorentz Geometry places an icon-only play-pause control below the sphere (0.168917ms)
+✔ Lorentz Geometry uses one widened left panel and hides its equation subsection in compact layouts (0.283292ms)
+✔ Lorentz Geometry stacks information and controls in a scrollable left rail (0.244875ms)
+✔ Lorentz Geometry selector text matches the Controls heading size (0.248917ms)
+✔ Lorentz Geometry uses the canonical navigation runtime and no panel home button (0.257625ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 151.577875
+
+[foundational-impact] run 22/27 (applications)
+[foundational-impact] $ node --test tests/ideal-braid-runtime.test.js tests/animator-field-shell-runtime.test.js tests/pdgedit-contracts.test.js
+✔ animator field shells expand as 3D spherical shell samples over time (1.441833ms)
+✔ animator field shell colors keep white neutral semantics (0.066334ms)
+✔ animator field shell opacity fades after the display window (0.060584ms)
+✔ continuous animator field shells keep expanding after the display window (0.079875ms)
+✔ solver-derived field shells are continuous even without upgraded metadata (0.054458ms)
+✔ animator field shells resolve transmitter paths by exact id then charge sign (0.1655ms)
+✔ animator field shell instances preserve solver timing while targeting architrino transmitters (0.100875ms)
+✔ Coincident-Midpoint Three-Axis Circular Lorentz Geometry model preserves stable ids and exposes indexed labels (1.746709ms)
+✔ standalone Coincident-Midpoint Three-Axis Circular Lorentz Geometry home navigation returns to the main webapp (0.115834ms)
+✔ surface sample poles align with assembly momentum (0.697667ms)
+✔ full potential is the prescribed-path analysis six-emission superposition (0.834292ms)
+✔ Lorentz energy ledger separates rest, movement, and total energy (0.11675ms)
+✔ Lorentz energy ledger treats beta equals one as a limit state (0.049583ms)
+✔ Lorentz alignment tilts binary angular momentum normals toward assembly momentum (0.272792ms)
+✔ assembly momentum contraction preserves the final shared orbit plane (0.099084ms)
+✔ orbit path tint profiles distinguish inner middle and outer binaries (0.236416ms)
+✔ super-field profile expands from a cached prescribed circular self-hit row (0.12325ms)
+✔ real prescribed-path analysis converges the super-field circular self-hit span (0.474083ms)
+✔ Coincident-Midpoint Three-Axis Circular Lorentz Geometry circular self-hit spans can be batched through the prescribed-path analysis (0.142375ms)
+✔ surface scheduler uses the model field speed, documented softening, and no probe column (3.271917ms)
+✔ surface scheduler reports failures and enforces retry backoff across state changes (0.587416ms)
+✔ guide links open their target document and reset/focus the markdown panel (1.43125ms)
+✔ bootstrap failure produces a visible Coincident-Midpoint Three-Axis Circular Lorentz Geometry error banner (0.117083ms)
+✔ mount smoke test binds the authored DOM and destroy releases listeners and scene assets (41.33525ms)
+✔ document and canvas titles use the facts-first public name (0.177ms)
+✔ Lorentz Geometry panels enforce a 12px minimum and render the field-speed subscript (0.347792ms)
+✔ Lorentz Geometry omits dedicated Reset and Focus buttons while retaining canvas keyboard controls (0.231ms)
+✔ Lorentz Geometry places an icon-only play-pause control below the sphere (0.183542ms)
+✔ Lorentz Geometry uses one widened left panel and hides its equation subsection in compact layouts (0.282417ms)
+✔ Lorentz Geometry stacks information and controls in a scrollable left rail (0.234292ms)
+✔ Lorentz Geometry selector text matches the Controls heading size (0.249417ms)
+✔ Lorentz Geometry uses the canonical navigation runtime and no panel home button (0.273333ms)
+✔ pdgedit example documents match the versioned pdgedit schema (1.873709ms)
+✔ pdgedit manifest test case matches the versioned manifest schema (0.157083ms)
+✔ pdgedit example assemblies use exact four-tile payloads drawn from the shared tile catalog (1.600791ms)
+✔ pdgedit document assembly rows come directly from tiles instead of semantic inference (0.172959ms)
+✔ pdgedit example links and composite labels stay within the explicit boundary model (0.240375ms)
+✔ pdgedit examples include at least one explicit assembly payload for every current single-row four-tile review row (0.582208ms)
+✔ pdgedit manifest defaults to its declared starter document (0.317792ms)
+✔ pdgedit manifest selection prefers the declared default, then the first entry (0.138584ms)
+✔ pdgedit library manifest preserves unsolved live entries as a distinct source kind (0.061917ms)
+✔ pdgedit library manifest preserves live picker probability and residue metadata (0.116792ms)
+✔ pdgedit main bootstrap seed stays contract-first and separate from the review harness (2.605042ms)
+✔ pdgedit bootstrap opens an explicit launch payload without reconstructing solver data (0.806042ms)
+✔ pdgedit bootstrap merges the live exact-reaction manifest into the picker manifest (0.538708ms)
+✔ pdgedit standalone surface keeps the link overlay transparent while preserving link hit targets (0.2795ms)
+✔ pdgedit keeps its fixed-width reaction strip inside the surface scroller (0.209375ms)
+✔ pdgedit document picker keeps a dedicated touch-scroll option list (0.263041ms)
+✔ pdgedit document picker exposes Exact 0:0 and Probability filters for live reaction search (0.087292ms)
+ℹ tests 49
+ℹ suites 0
+ℹ pass 49
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 152.2145
+
+[foundational-impact] run 23/27 (applications)
+[foundational-impact] $ node --test tests/photon-runtime.test.js
+✔ default photon state encodes trailing and leading braid convention (1.858458ms)
+✔ photon Lorentz-factor speed mode derives signal and photon speeds (0.163291ms)
+✔ photon plot duration spans three middle-layer cycles (0.170458ms)
+✔ left braid angles advance counter-clockwise while right braid angles advance clockwise (0.105042ms)
+✔ Photon causal roots can be routed through the prescribed-path analysis for linear segments (0.254042ms)
+✔ Photon circular-transmitter analysis request preserves transmitter orbit geometry (0.273666ms)
+✔ Photon absolute-history transmitter roots route through the moving-circular prescribed-path analysis (1.289167ms)
+✔ prescribed-path observer field does not advance without complete receiver-side root-playback records (0.365959ms)
+✔ Photon absolute-history field routes through the moving-circular prescribed-path run (3.623583ms)
+✔ absolute-history contributions stay paired with root identities after delay sorting (0.367625ms)
+✔ absolute-history Delta x diagnostic classifies root age in reference cycles (0.395042ms)
+✔ Photon helical same-transmitter roots route through the moving-circular prescribed-path analysis (8.978ms)
+✔ Photon self-hit span requests use absolute photon plus orbital speed ratios (0.242417ms)
+✔ Photon self-hit diagnostics route same-transmitter causal hits through the prescribed-path analysis (1.302042ms)
+✔ Photon self-hit diagnostics use prescribed span analysis when circular-transmitter roots are injected (1.164958ms)
+✔ Photon self-hit roots fail closed across singular, Jacobian, and transversality boundaries (0.308459ms)
+✔ Photon helical self-hit phase-lock sweep summarizes sampled cases (3.806125ms)
+✔ Photon circular-transmitter roots, hits, and ledger entries can be routed through the prescribed-path analysis (0.180042ms)
+✔ Photon delayed emission field can use absolute-history moving-circular analysis roots (0.748583ms)
+✔ Photon delayed emission field can be assembled from prescribed-path analysis circular-transmitter roots (0.747334ms)
+✔ physical co-moving field pipeline pins a nonzero transverse value (0.544ms)
+✔ Photon formula and plot APIs expose central prescribed-path analysis results (20.745334ms)
+✔ plot helpers expose sample counts and the small forward now gap (0.078209ms)
+✔ photon stage keeps face-on braid spacing fixed while side view separation changes (0.205792ms)
+✔ photon face-on radius edits move the edited orbit without rescaling the braid (0.103958ms)
+✔ photon side-view height follows the largest enabled binary (0.042333ms)
+✔ Virtual Observer slider zero helpers mark and snap near zero (0.070958ms)
+✔ phase controls snap near 45 degree sticky spots (0.054875ms)
+✔ playback speed slider centers the default multiplier (0.0635ms)
+✔ separation log ticks cover mantissas 1 through 9 for each decade (0.182875ms)
+✔ separation scientific-notation picker maps coefficient and decade to log ticks (0.108458ms)
+✔ frequency controls use powers of two (0.043ms)
+✔ layer metadata exposes user-facing orbit names (0.033ms)
+✔ layer radius edits are scoped to the addressed braid (0.030167ms)
+✔ layer radius edits cannot pass neighboring orbits (0.061791ms)
+✔ state normalization clamps illegal outer and neighboring radii (0.047041ms)
+✔ layer radius edits preserve absolute pair separation (0.037291ms)
+✔ named photon presets expose the required candidate configurations (0.170291ms)
+✔ configuration search can score and compare settings through the prescribed-path analysis (37.40825ms)
+✔ configuration search compares co-moving and absolute-history analysis results when available (18.889667ms)
+✔ deep configuration comparison filters candidates, yields progress, and exports provenance (32.984ms)
+✔ Photon diagnostics expose the active prescribed-path analysis library (11.9485ms)
+✔ configuration search results export and import full settings (35.679333ms)
+✔ separation reference radius follows the largest enabled radius (0.128458ms)
+✔ photon state normalization preserves configured values (0.101667ms)
+✔ formula summary reports a derived prescribed-path-analysis polarization fit (11.336791ms)
+✔ I/M/O branch sums close to the co-moving transverse harmonic ledger (5.884834ms)
+✔ polarization fitter classifies a one-axis signal as linear (0.166958ms)
+✔ analyzer common-period fraction uses a ratio of accumulated energies (0.0695ms)
+✔ polarization fitter classifies equal quadrature amplitudes as circular (0.114625ms)
+✔ polarization fitter classifies unequal quadrature amplitudes as elliptical (0.108417ms)
+✔ derived prescribed-path-analysis polarization trace uses the fitted current field (2.208333ms)
+✔ derived prescribed-path-analysis polarization inset trace is centered on the oscillating component (1.676166ms)
+✔ derived prescribed-path-analysis polarization ellipse fit stays stable while the current point advances (3.610208ms)
+✔ polarization inset current vector follows display time between analysis snapshots (1.721375ms)
+✔ photon animation keeps braid time continuous while plot time wraps (0.063458ms)
+✔ spacebar playback shortcut ignores editable controls (0.075417ms)
+ℹ tests 57
+ℹ suites 0
+ℹ pass 57
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 298.346833
+
+[foundational-impact] run 24/27 (applications)
+[foundational-impact] $ node --test tests/photon-runtime.test.js tests/causal-delay-feedback-eom-replay-adapter.test.js
+✔ eom replay adapter normalizes a recorded dataset into the runtime replay shape (2.653583ms)
+✔ eom display projection keeps positrino above electrino without changing recorded roles (0.231333ms)
+✔ eom replay retained-history points span the trail with mock-compatible semantics (0.188959ms)
+✔ eom replay adapter honors explicit worldline role overrides (0.162583ms)
+✔ eom replay adapter rejects ambiguous automatic worldline roles (0.268334ms)
+✔ eom replay adapter validates explicit role polarity and identity (0.147459ms)
+✔ eom replay adapter rejects allocation counts above the declared bounds (0.132917ms)
+✔ eom replay adapter does not advance without both polarities (0.088584ms)
+✔ eom replay adapter does not advance without a record (0.121292ms)
+✔ eom replay adapter rejects canvas-edit recompute requests (0.110541ms)
+✔ eom replay adapter resolves records through an async loader (0.164834ms)
+✔ shared EOM history dataset does not advance on foreign contract ids (0.065083ms)
+✔ shared EOM history dataset does not advance without a claim grade (0.048209ms)
+✔ shared EOM history dataset does not advance on non-contiguous segments (0.084958ms)
+✔ shared EOM history dataset refuses evaluation outside recorded coverage (0.103333ms)
+✔ normalizeCausalDelayFeedbackEomReplay accepts a pre-built shared dataset (0.096417ms)
+✔ default photon state encodes trailing and leading braid convention (1.909167ms)
+✔ photon Lorentz-factor speed mode derives signal and photon speeds (0.160208ms)
+✔ photon plot duration spans three middle-layer cycles (0.171125ms)
+✔ left braid angles advance counter-clockwise while right braid angles advance clockwise (0.094667ms)
+✔ Photon causal roots can be routed through the prescribed-path analysis for linear segments (0.266792ms)
+✔ Photon circular-transmitter analysis request preserves transmitter orbit geometry (0.278667ms)
+✔ Photon absolute-history transmitter roots route through the moving-circular prescribed-path analysis (1.310625ms)
+✔ prescribed-path observer field does not advance without complete receiver-side root-playback records (0.36825ms)
+✔ Photon absolute-history field routes through the moving-circular prescribed-path run (3.58225ms)
+✔ absolute-history contributions stay paired with root identities after delay sorting (0.347167ms)
+✔ absolute-history Delta x diagnostic classifies root age in reference cycles (0.4175ms)
+✔ Photon helical same-transmitter roots route through the moving-circular prescribed-path analysis (9.188542ms)
+✔ Photon self-hit span requests use absolute photon plus orbital speed ratios (0.239542ms)
+✔ Photon self-hit diagnostics route same-transmitter causal hits through the prescribed-path analysis (1.268833ms)
+✔ Photon self-hit diagnostics use prescribed span analysis when circular-transmitter roots are injected (1.195125ms)
+✔ Photon self-hit roots fail closed across singular, Jacobian, and transversality boundaries (0.323958ms)
+✔ Photon helical self-hit phase-lock sweep summarizes sampled cases (3.989458ms)
+✔ Photon circular-transmitter roots, hits, and ledger entries can be routed through the prescribed-path analysis (0.177958ms)
+✔ Photon delayed emission field can use absolute-history moving-circular analysis roots (0.770875ms)
+✔ Photon delayed emission field can be assembled from prescribed-path analysis circular-transmitter roots (0.803416ms)
+✔ physical co-moving field pipeline pins a nonzero transverse value (0.576959ms)
+✔ Photon formula and plot APIs expose central prescribed-path analysis results (21.065583ms)
+✔ plot helpers expose sample counts and the small forward now gap (0.089ms)
+✔ photon stage keeps face-on braid spacing fixed while side view separation changes (0.228875ms)
+✔ photon face-on radius edits move the edited orbit without rescaling the braid (0.109416ms)
+✔ photon side-view height follows the largest enabled binary (0.044083ms)
+✔ Virtual Observer slider zero helpers mark and snap near zero (0.070583ms)
+✔ phase controls snap near 45 degree sticky spots (0.054916ms)
+✔ playback speed slider centers the default multiplier (0.065625ms)
+✔ separation log ticks cover mantissas 1 through 9 for each decade (0.190584ms)
+✔ separation scientific-notation picker maps coefficient and decade to log ticks (0.110375ms)
+✔ frequency controls use powers of two (0.04275ms)
+✔ layer metadata exposes user-facing orbit names (0.034958ms)
+✔ layer radius edits are scoped to the addressed braid (0.031334ms)
+✔ layer radius edits cannot pass neighboring orbits (0.060416ms)
+✔ state normalization clamps illegal outer and neighboring radii (0.042542ms)
+✔ layer radius edits preserve absolute pair separation (0.042416ms)
+✔ named photon presets expose the required candidate configurations (0.161459ms)
+✔ configuration search can score and compare settings through the prescribed-path analysis (37.357625ms)
+✔ configuration search compares co-moving and absolute-history analysis results when available (19.287667ms)
+✔ deep configuration comparison filters candidates, yields progress, and exports provenance (33.930208ms)
+✔ Photon diagnostics expose the active prescribed-path analysis library (11.771292ms)
+✔ configuration search results export and import full settings (35.537292ms)
+✔ separation reference radius follows the largest enabled radius (0.113666ms)
+✔ photon state normalization preserves configured values (0.096125ms)
+✔ formula summary reports a derived prescribed-path-analysis polarization fit (11.394833ms)
+✔ I/M/O branch sums close to the co-moving transverse harmonic ledger (5.926875ms)
+✔ polarization fitter classifies a one-axis signal as linear (0.169ms)
+✔ analyzer common-period fraction uses a ratio of accumulated energies (0.070333ms)
+✔ polarization fitter classifies equal quadrature amplitudes as circular (0.110667ms)
+✔ polarization fitter classifies unequal quadrature amplitudes as elliptical (0.100417ms)
+✔ derived prescribed-path-analysis polarization trace uses the fitted current field (2.196792ms)
+✔ derived prescribed-path-analysis polarization inset trace is centered on the oscillating component (1.738584ms)
+✔ derived prescribed-path-analysis polarization ellipse fit stays stable while the current point advances (3.598542ms)
+✔ polarization inset current vector follows display time between analysis snapshots (1.80925ms)
+✔ photon animation keeps braid time continuous while plot time wraps (0.067042ms)
+✔ spacebar playback shortcut ignores editable controls (0.077ms)
+ℹ tests 73
+ℹ suites 0
+ℹ pass 73
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 301.483
+
+[foundational-impact] run 25/27 (applications)
+[foundational-impact] $ node --test tests/photon-runtime.test.js tests/causal-delay-feedback-runtime.test.js
+✔ causal delay feedback readout summarizes selected path history point (6.378916ms)
+✔ causal delay feedback readout summarizes selected path line (1.823458ms)
+✔ causal delay feedback readout summarizes selected wake link (2.0295ms)
+✔ causal delay feedback wake readout includes engine diagnostics (1.16525ms)
+✔ causal delay feedback wake readout includes compact root ledger details (1.250875ms)
+✔ causal delay feedback wake readout and visual weight expose rejected solver links (1.171708ms)
+✔ causal delay feedback rejected wake readout reports solver root-status detail (1.055667ms)
+✔ causal delay feedback root-only wake readout reports inactive root detail (1.323625ms)
+✔ causal delay feedback invalid wake visual tiers distinguish inactive stale and rejected rows (0.7785ms)
+✔ causal delay feedback wake readout reports received rows after the hit time (0.933792ms)
+✔ causal delay feedback default readout stays hidden while aggregate feedback updates (2.416459ms)
+✔ causal delay feedback aggregate summary names a frame before live wake roots exist (2.100167ms)
+✔ causal delay feedback now scrubber pauses and moves replay time (2.421125ms)
+✔ causal delay feedback scrubber pointer drag and release redraw the held Story frame (3.150584ms)
+✔ Lesson One early pointer scrub immediately draws circular wakes from both sources (2.124417ms)
+✔ causal delay feedback scrubber keyboard value change redraws the visible Story scene (1.814167ms)
+✔ fresh Lesson One initialization synchronizes replay state, slider, held frame, and canvas (1.192208ms)
+✔ Laboratory entry and First Frame use the earliest reciprocal-visible state (38.904875ms)
+✔ Laboratory playback stops at and holds its final frame without looping (25.928417ms)
+✔ causal delay feedback now scrubber updates selected wake state (1.673584ms)
+✔ causal delay feedback reset resyncs now control and selected readout (1.652584ms)
+✔ causal delay feedback reduced motion preference starts paused but allows manual play (1.6975ms)
+✔ causal delay feedback path trails use one pure-color stroke (0.919709ms)
+✔ causal delay feedback edited path trails render as continuous curve strokes (4.622167ms)
+✔ causal delay feedback edited path uses one C1 spline for rendering and evaluation (21.239875ms)
+✔ causal delay feedback path trail smoothing uses Catmull-Rom cubic interpolation (1.461125ms)
+✔ causal delay feedback Catmull-Rom path uses centripetal parameter spacing (0.917ms)
+✔ causal delay feedback background depth field remains an internal render option (0.838125ms)
+✔ causal delay feedback weak contribution cue always fades below-threshold wakes (1.135667ms)
+✔ causal delay feedback weak contribution cue affects live above-threshold wakes (1.270875ms)
+✔ causal delay feedback aggregate summary excludes rejected solver links (1.328125ms)
+✔ causal delay feedback wake-front separation is locked to the smaller gap (2.386792ms)
+✔ causal delay feedback wake display keeps Arcs and Full mutually exclusive (40.01075ms)
+✔ causal delay feedback live wake series back-solves one emission point per architrino (1.54825ms)
+✔ causal delay feedback mock paths span five to ninety-five percent of the time axis (1.0465ms)
+✔ causal delay feedback mock initial motion state spans retained path endpoints (0.276208ms)
+✔ causal delay feedback aggregate summary omits retained-link invalid root reasons (2.599125ms)
+✔ causal delay feedback aggregate summary omits solver constraint telemetry details (1.844ms)
+✔ causal delay feedback uses one fixed learner display with no settings surface (0.403791ms)
+✔ causal delay feedback legend lozenges use the fixed canvas and trace colors (0.295333ms)
+✔ causal delay feedback bottom scrubber keeps every light effect keyboard-only (0.774667ms)
+✔ causal delay feedback toolbar exposes one mutually exclusive Arcs-or-Full control (0.302875ms)
+✔ Laboratory header mirrors the Story panel treatment (0.473709ms)
+✔ causal delay feedback keeps timeline-only transport and hides the Laboratory status ribbon (0.1895ms)
+✔ Laboratory hides only the learner status ribbon while retaining replay provenance (1.0335ms)
+✔ causal delay feedback shares one time-axis label position above the axis (0.319625ms)
+✔ causal delay feedback aligns the bottom rail to the transformed time axis (0.7815ms)
+✔ causal delay feedback Laboratory omits the redundant polarity legend and readout lozenge (0.12225ms)
+✔ causal delay feedback does not render a floating hover overlay (0.072833ms)
+✔ causal delay feedback retained depth setting filters history while live wake count stays continuous (2.640583ms)
+✔ causal delay feedback retained depth setting clears hidden selected rows (1.786167ms)
+✔ causal delay feedback learner surface omits retained point controls (0.158458ms)
+✔ Story 1 uses the shared eighty-percent wake-display rate (1.041167ms)
+✔ fresh Story navigation preserves the prior shared playback clock (33.499917ms)
+✔ navigating from fresh Lesson One gives Lesson Two both arcs and normal pacing (19.294458ms)
+✔ Story 1 renders only circles while Story 2 reuses the Sandbox partial-front primitive (17.675792ms)
+✔ transmission-point markers retain the internal open-ring baseline and use the solid-dot standard (1.463583ms)
+✔ Story and guided-mode transmission markers share the selected marker renderer (0.505125ms)
+✔ transmission-history dots use pale source colors while current-emission dots stay neutral (0.5005ms)
+✔ Story 2 trails stay receiver-centered on the shared time-axis mapping (4.367708ms)
+✔ Story 2 shows only the two active arc-origin dots through the time-axis midpoint handoff (17.8125ms)
+✔ Story 2 terminal frame exactly hands off to Story 3 synthesis (16.718041ms)
+✔ Story 4 renders all declared speed fixtures from one evaluator-backed geometry (1.410208ms)
+✔ Story 4 compression labels begin with a two-space gap and then follow wake separation (0.948208ms)
+✔ Story 4 labels follow the visible wake extents across speeds and frames (3.000917ms)
+✔ Story 4 compressed-front label follows the visible outer ring through playback (2.314209ms)
+✔ Story 4 speed changes reset playing, paused, and completed scenarios (2.6755ms)
+✔ dormant diagnostic history renderer preserves reciprocal geometry (1.764917ms)
+✔ Lesson Five starts at emission zero and visibly differs from Lesson One at equal body-wake speed (47.523333ms)
+✔ Lesson Five wakefronts stay circular on uphill and downhill path slopes (0.688459ms)
+✔ Lesson Six renders fixed halfway bodies with constant-rate expanding circular wakes and no rejected ornaments (2.625833ms)
+✔ Lesson Seven renders Lesson One labels and uniform clean-triangle white arrows through the full endpoint (3.392125ms)
+✔ Story replay restarts the stage even while playback is already running (0.73075ms)
+✔ Story graph viewport remains fixed from initial through mid-play and end-play (3.769167ms)
+✔ all Story steps use one desktop chart template despite different panel heights (2.081625ms)
+✔ Laboratory matches the Story chart frame at desktop and keeps a safe narrow frame (2.090042ms)
+✔ causal delay feedback does not keep a frame loop alive while paused (0.596792ms)
+✔ lesson playback advances its scene without polling dormant diagnostic panels (0.612166ms)
+✔ Lesson Eight draws retained causal history plus only the active arc pair (0.955208ms)
+✔ Lesson Eight reuses Lesson Two live fading-arc spacing without straight connectors or endpoint markers (1.249917ms)
+✔ causal delay feedback display sampler uses fixed path speed (0.5265ms)
+✔ causal delay feedback recorded EOM sampler preserves recorded time-position data (0.4755ms)
+✔ causal delay feedback live markers use fixed path speed (0.511792ms)
+✔ causal delay feedback replay keeps initial conditions synced to path start history (0.513083ms)
+✔ causal delay feedback eom normalization projects recorded worldlines onto the canvas (8.167375ms)
+✔ causal delay feedback does not expose initial velocity handles on the canvas (0.563833ms)
+✔ causal delay feedback does not expose a Virtual Observer handle (1.358833ms)
+✔ causal delay feedback exposes visible path lines only for path editing hits (1.142917ms)
+✔ causal delay feedback wheel zoom anchors on empty canvas background (1.466458ms)
+✔ causal delay feedback reuses one hit test during a wheel gesture (0.500125ms)
+✔ causal delay feedback wheel zoom treats removed history points as background (1.334666ms)
+✔ causal delay feedback wheel zoom ignores active drags (0.453625ms)
+✔ causal delay feedback pinch zoom anchors on empty canvas background (0.585417ms)
+✔ causal delay feedback pinch state clears as touch pointers release (0.465083ms)
+✔ causal delay feedback path line drag can start over removed history point positions (2.068542ms)
+✔ causal delay feedback runtime loads an async eom replay over the mock fallback (1.672584ms)
+✔ causal delay feedback status keeps raw recorded provenance out of learner-facing copy (0.715667ms)
+✔ causal delay feedback status does not expose dataset-level eom provenance fields (0.673584ms)
+✔ causal delay feedback status ignores legacy solver telemetry on eom datasets (0.67ms)
+✔ causal delay feedback status reports plain recorded replay for non-eom recorded datasets (0.645167ms)
+✔ causal delay feedback recorded replay status ignores legacy path-constraint telemetry (0.672792ms)
+✔ causal delay feedback status remains plain when eom provenance is incomplete (0.650291ms)
+✔ causal delay feedback status treats legacy motion-policy datasets as plain recorded replay (0.654958ms)
+✔ causal delay feedback eom replay adapter rejects draft-preview recompute requests (5.90825ms)
+✔ causal delay feedback runtime keeps the mock replay when eom replay loading fails (1.308834ms)
+✔ causal delay feedback direct edit remains a local draft without calling the replay adapter (11.503167ms)
+✔ causal delay feedback runtime ignores stale async replay responses (1.212917ms)
+✔ causal delay feedback page uses eom replay by default with a mock escape hatch (1.575667ms)
+✔ causal delay feedback page builds eom replay options from scope and record URLs (0.124917ms)
+✔ causal delay feedback page accepts eom replay review URL options (0.119792ms)
+✔ causal delay feedback page and direct runtime share one default learner mode (1.779ms)
+✔ causal delay feedback mode history restores Roots without replacing the app runtime (0.916792ms)
+✔ causal delay feedback page leaves absent replay request options unset (0.052708ms)
+✔ causal delay feedback eom replay adapter requires a recorded dataset (5.851291ms)
+✔ causal delay feedback page eom replay uses configured record from scope (5.917334ms)
+✔ causal delay feedback wake fronts and receiver markers synchronize for every retained link (1.269416ms)
+✔ causal delay feedback partial wake arc series disappears after reception until the loop restarts (1.081458ms)
+✔ causal delay feedback partial wake arc fronts keep radial sector boundaries (0.908958ms)
+✔ causal delay feedback full circular wakes keep expanding after retained receptions (67.005208ms)
+✔ causal delay feedback full circular wakes are emitted from moving path origins (84.388625ms)
+✔ causal delay feedback Full mode draws full circles and their emission lines without arc wakes (35.408792ms)
+✔ causal delay feedback full circle emission lines render above paths without endpoint ornaments (1.617125ms)
+✔ causal delay feedback Sandbox draws emission markers from exact live wake sources after path drag (20.597583ms)
+✔ causal delay feedback shared axes stop at both arrowhead bases (0.590875ms)
+✔ causal delay feedback wake display cannot deselect its active mode (1.309083ms)
+✔ causal delay feedback solver hit diagnostics do not desynchronize receiver-point arrivals (0.916542ms)
+✔ causal delay feedback hit testing does not expose retained reception points (1.397ms)
+✔ causal delay feedback Laboratory omits endpoint ornaments while preserving endpoint interaction (2.047959ms)
+✔ causal delay feedback path endpoint handles are selectable (1.588125ms)
+✔ causal delay feedback endpoint editing remains available under lower retained wake depth (12.192209ms)
+✔ causal delay feedback does not expose an initial-position canvas hit (0.488541ms)
+✔ causal delay feedback retained start constraint updates the initial condition (11.47275ms)
+✔ causal delay feedback retained end constraint updates the final path point (11.160792ms)
+✔ causal delay feedback velocity endpoint is not a canvas hit target (0.485542ms)
+✔ causal delay feedback velocity selection does not draw a canvas highlight (1.479458ms)
+✔ causal delay feedback does not expose path-history insertion entry points (0.466542ms)
+✔ causal delay feedback path line drag deforms the visible path without adding fixed points (1.804875ms)
+✔ causal delay feedback path line drag keeps path endpoints fixed (2.575ms)
+✔ causal delay feedback path line drag has no visible one-sided tangent kink (1.490458ms)
+✔ causal delay feedback near-start backward drags preserve endpoint continuity and displayed time order (9.153ms)
+✔ causal delay feedback aggressive interior drag cannot fold displayed time backward (4.372ms)
+✔ causal delay feedback path drag uses a curvature-smooth truthful falloff (55.846791ms)
+✔ causal delay feedback pointer drag on path line updates the path preview (2.596834ms)
+✔ causal delay feedback cancels a pending replay only when a direct edit begins (2.509583ms)
+✔ causal delay feedback pointer drag on endpoint handle moves the endpoint (11.486667ms)
+✔ causal delay feedback retained point drag deforms the path and updates wake endpoints (10.070167ms)
+✔ causal delay feedback retained point drag rebuilds a smooth path through the moved point (10.295333ms)
+✔ causal delay feedback retained start point drag updates the initial condition (9.904792ms)
+✔ causal delay feedback retained end point drag updates the path endpoint (10.374917ms)
+✔ causal delay feedback retained point drag preserves wake and receiver arrival synchronization (9.951292ms)
+✔ causal delay feedback draft path edits mark prior solver wake diagnostics stale (10.127584ms)
+✔ causal delay feedback aggregate summary separates stale solver rows from rejected rows (28.572583ms)
+✔ causal delay feedback retained point drag marks the replay as a draft preview (10.816875ms)
+✔ causal delay feedback path start history drag updates setup and replay preview (4.530042ms)
+✔ causal delay feedback initial velocity drag updates setup and bends the preview path (1.362458ms)
+✔ causal delay feedback edit release keeps a local draft and never invokes the replay adapter (1.716584ms)
+✔ causal delay feedback no-op retained point drag does not mark a draft preview (0.504625ms)
+✔ causal delay feedback live marker follows the edited replay path (2.574375ms)
+✔ causal delay feedback live marker reaches retained path point at the point time (0.517375ms)
+✔ causal delay feedback live marker labels are centered above and below the moving dots (1.035042ms)
+✔ causal delay feedback path deformation updates detached frame samples (2.720334ms)
+✔ causal delay feedback spacebar toggles play state (0.593708ms)
+✔ causal delay feedback play-pause toggle follows the shared transport state (0.770625ms)
+✔ causal delay feedback destroy removes every runtime listener and invalidates pending loads (0.607417ms)
+✔ causal delay feedback spacebar leaves native controls alone (0.503083ms)
+✔ causal delay feedback spacebar toggles play even when a toolbar button has focus (0.510375ms)
+✔ causal delay feedback arrow keys pause and step solver replay frames (1.206666ms)
+✔ causal delay feedback arrow keys leave native controls alone (0.649708ms)
+✔ causal delay feedback ignores removed display-setting query parameters (0.502833ms)
+✔ default photon state encodes trailing and leading braid convention (1.895ms)
+✔ photon Lorentz-factor speed mode derives signal and photon speeds (0.161708ms)
+✔ photon plot duration spans three middle-layer cycles (0.181209ms)
+✔ left braid angles advance counter-clockwise while right braid angles advance clockwise (0.102708ms)
+✔ Photon causal roots can be routed through the prescribed-path analysis for linear segments (0.257292ms)
+✔ Photon circular-transmitter analysis request preserves transmitter orbit geometry (0.279584ms)
+✔ Photon absolute-history transmitter roots route through the moving-circular prescribed-path analysis (1.325458ms)
+✔ prescribed-path observer field does not advance without complete receiver-side root-playback records (0.371416ms)
+✔ Photon absolute-history field routes through the moving-circular prescribed-path run (3.7205ms)
+✔ absolute-history contributions stay paired with root identities after delay sorting (0.348375ms)
+✔ absolute-history Delta x diagnostic classifies root age in reference cycles (0.432042ms)
+✔ Photon helical same-transmitter roots route through the moving-circular prescribed-path analysis (9.540667ms)
+✔ Photon self-hit span requests use absolute photon plus orbital speed ratios (0.251334ms)
+✔ Photon self-hit diagnostics route same-transmitter causal hits through the prescribed-path analysis (1.325791ms)
+✔ Photon self-hit diagnostics use prescribed span analysis when circular-transmitter roots are injected (1.391875ms)
+✔ Photon self-hit roots fail closed across singular, Jacobian, and transversality boundaries (0.368083ms)
+✔ Photon helical self-hit phase-lock sweep summarizes sampled cases (4.074833ms)
+✔ Photon circular-transmitter roots, hits, and ledger entries can be routed through the prescribed-path analysis (0.20175ms)
+✔ Photon delayed emission field can use absolute-history moving-circular analysis roots (0.830417ms)
+✔ Photon delayed emission field can be assembled from prescribed-path analysis circular-transmitter roots (0.853417ms)
+✔ physical co-moving field pipeline pins a nonzero transverse value (0.75925ms)
+✔ Photon formula and plot APIs expose central prescribed-path analysis results (22.277958ms)
+✔ plot helpers expose sample counts and the small forward now gap (0.086375ms)
+✔ photon stage keeps face-on braid spacing fixed while side view separation changes (0.222792ms)
+✔ photon face-on radius edits move the edited orbit without rescaling the braid (0.1185ms)
+✔ photon side-view height follows the largest enabled binary (0.047ms)
+✔ Virtual Observer slider zero helpers mark and snap near zero (0.079791ms)
+✔ phase controls snap near 45 degree sticky spots (0.0585ms)
+✔ playback speed slider centers the default multiplier (0.071334ms)
+✔ separation log ticks cover mantissas 1 through 9 for each decade (0.201584ms)
+✔ separation scientific-notation picker maps coefficient and decade to log ticks (0.117667ms)
+✔ frequency controls use powers of two (0.037375ms)
+✔ layer metadata exposes user-facing orbit names (0.033958ms)
+✔ layer radius edits are scoped to the addressed braid (0.037334ms)
+✔ layer radius edits cannot pass neighboring orbits (0.0675ms)
+✔ state normalization clamps illegal outer and neighboring radii (0.042333ms)
+✔ layer radius edits preserve absolute pair separation (0.034042ms)
+✔ named photon presets expose the required candidate configurations (0.178417ms)
+✔ configuration search can score and compare settings through the prescribed-path analysis (43.230084ms)
+✔ configuration search compares co-moving and absolute-history analysis results when available (19.839583ms)
+✔ deep configuration comparison filters candidates, yields progress, and exports provenance (34.727166ms)
+✔ Photon diagnostics expose the active prescribed-path analysis library (12.697125ms)
+✔ configuration search results export and import full settings (37.987375ms)
+✔ separation reference radius follows the largest enabled radius (0.115625ms)
+✔ photon state normalization preserves configured values (0.0925ms)
+✔ formula summary reports a derived prescribed-path-analysis polarization fit (11.907708ms)
+✔ I/M/O branch sums close to the co-moving transverse harmonic ledger (6.898667ms)
+✔ polarization fitter classifies a one-axis signal as linear (0.172708ms)
+✔ analyzer common-period fraction uses a ratio of accumulated energies (0.070542ms)
+✔ polarization fitter classifies equal quadrature amplitudes as circular (0.111583ms)
+✔ polarization fitter classifies unequal quadrature amplitudes as elliptical (0.096083ms)
+✔ derived prescribed-path-analysis polarization trace uses the fitted current field (2.352ms)
+✔ derived prescribed-path-analysis polarization inset trace is centered on the oscillating component (1.86575ms)
+✔ derived prescribed-path-analysis polarization ellipse fit stays stable while the current point advances (3.778334ms)
+✔ polarization inset current vector follows display time between analysis snapshots (1.852667ms)
+✔ photon animation keeps braid time continuous while plot time wraps (0.067083ms)
+✔ spacebar playback shortcut ignores editable controls (0.081916ms)
+ℹ tests 226
+ℹ suites 0
+ℹ pass 226
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1022.55975
+
+[foundational-impact] run 26/27 (applications)
+[foundational-impact] $ node --test tests/photon-runtime.test.js tests/ideal-braid-runtime.test.js tests/borg-eom-runtime-contract.test.js tests/causal-delay-feedback-eom-replay-adapter.test.js
+✔ Borg path history is on and visible by default (0.788208ms)
+✔ all Borg trails use exact endpoint polarity colors (0.103875ms)
+✔ Borg timeline uses a fixed-width hours-minutes-seconds clock (0.080875ms)
+✔ Borg replay interpolation preserves source worldline identity (0.134125ms)
+✔ Borg selected certified budget atomically owns its step controller (0.266042ms)
+✔ Borg app manifest is design-owned policy and passes validation (0.371167ms)
+✔ Borg uses the canonical unit field speed (0.095625ms)
+✔ Borg ships no stored trajectory data; runs are computed from seeded initial conditions (0.210541ms)
+✔ Borg record replay chunks carry recorded frames with record provenance (1.886291ms)
+✔ Borg display-oversamples prescribed cubic records by four without changing the record (6.460709ms)
+✔ Borg record replay never upgrades authority from producer-asserted evidence status (0.17925ms)
+✔ Borg record replay never extends past recorded coverage (0.166542ms)
+✔ Borg record replay applies measured target and chunk limits within the window (0.12725ms)
+✔ Borg record replay does not advance on foreign or ungraded records (0.099292ms)
+✔ Borg orthographic camera fits the limiting viewport dimension without depth scaling (0.101208ms)
+✔ Borg path-history renderer joins replay rows without visual smoothing curves (9.713458ms)
+✔ Borg surface keeps EOM-native policy requiring verification for advancement (0.107333ms)
+✔ Borg presents exact configuration identity without a family or alias surface (0.537958ms)
+✔ eom replay adapter normalizes a recorded dataset into the runtime replay shape (2.729792ms)
+✔ eom display projection keeps positrino above electrino without changing recorded roles (0.231875ms)
+✔ eom replay retained-history points span the trail with mock-compatible semantics (0.199292ms)
+✔ eom replay adapter honors explicit worldline role overrides (0.167459ms)
+✔ eom replay adapter rejects ambiguous automatic worldline roles (0.275875ms)
+✔ eom replay adapter validates explicit role polarity and identity (0.151542ms)
+✔ eom replay adapter rejects allocation counts above the declared bounds (0.135541ms)
+✔ eom replay adapter does not advance without both polarities (0.090917ms)
+✔ eom replay adapter does not advance without a record (0.129916ms)
+✔ eom replay adapter rejects canvas-edit recompute requests (0.123ms)
+✔ eom replay adapter resolves records through an async loader (0.157833ms)
+✔ shared EOM history dataset does not advance on foreign contract ids (0.067125ms)
+✔ shared EOM history dataset does not advance without a claim grade (0.054417ms)
+✔ shared EOM history dataset does not advance on non-contiguous segments (0.081042ms)
+✔ shared EOM history dataset refuses evaluation outside recorded coverage (0.114166ms)
+✔ normalizeCausalDelayFeedbackEomReplay accepts a pre-built shared dataset (0.1345ms)
+✔ Coincident-Midpoint Three-Axis Circular Lorentz Geometry model preserves stable ids and exposes indexed labels (1.829542ms)
+✔ standalone Coincident-Midpoint Three-Axis Circular Lorentz Geometry home navigation returns to the main webapp (0.121167ms)
+✔ surface sample poles align with assembly momentum (0.77875ms)
+✔ full potential is the prescribed-path analysis six-emission superposition (0.899875ms)
+✔ Lorentz energy ledger separates rest, movement, and total energy (0.1285ms)
+✔ Lorentz energy ledger treats beta equals one as a limit state (0.054917ms)
+✔ Lorentz alignment tilts binary angular momentum normals toward assembly momentum (0.284375ms)
+✔ assembly momentum contraction preserves the final shared orbit plane (0.103625ms)
+✔ orbit path tint profiles distinguish inner middle and outer binaries (0.254833ms)
+✔ super-field profile expands from a cached prescribed circular self-hit row (0.131625ms)
+✔ real prescribed-path analysis converges the super-field circular self-hit span (0.490042ms)
+✔ Coincident-Midpoint Three-Axis Circular Lorentz Geometry circular self-hit spans can be batched through the prescribed-path analysis (0.154458ms)
+✔ surface scheduler uses the model field speed, documented softening, and no probe column (3.626375ms)
+✔ surface scheduler reports failures and enforces retry backoff across state changes (0.684208ms)
+✔ guide links open their target document and reset/focus the markdown panel (1.641208ms)
+✔ bootstrap failure produces a visible Coincident-Midpoint Three-Axis Circular Lorentz Geometry error banner (0.138417ms)
+✔ mount smoke test binds the authored DOM and destroy releases listeners and scene assets (53.226125ms)
+✔ document and canvas titles use the facts-first public name (0.216292ms)
+✔ Lorentz Geometry panels enforce a 12px minimum and render the field-speed subscript (0.357583ms)
+✔ Lorentz Geometry omits dedicated Reset and Focus buttons while retaining canvas keyboard controls (0.226792ms)
+✔ Lorentz Geometry places an icon-only play-pause control below the sphere (0.17325ms)
+✔ Lorentz Geometry uses one widened left panel and hides its equation subsection in compact layouts (0.285042ms)
+✔ Lorentz Geometry stacks information and controls in a scrollable left rail (0.237334ms)
+✔ Lorentz Geometry selector text matches the Controls heading size (0.249792ms)
+✔ Lorentz Geometry uses the canonical navigation runtime and no panel home button (0.26275ms)
+✔ default photon state encodes trailing and leading braid convention (1.962625ms)
+✔ photon Lorentz-factor speed mode derives signal and photon speeds (0.16375ms)
+✔ photon plot duration spans three middle-layer cycles (0.179042ms)
+✔ left braid angles advance counter-clockwise while right braid angles advance clockwise (0.103ms)
+✔ Photon causal roots can be routed through the prescribed-path analysis for linear segments (0.277ms)
+✔ Photon circular-transmitter analysis request preserves transmitter orbit geometry (0.340875ms)
+✔ Photon absolute-history transmitter roots route through the moving-circular prescribed-path analysis (1.363458ms)
+✔ prescribed-path observer field does not advance without complete receiver-side root-playback records (0.381292ms)
+✔ Photon absolute-history field routes through the moving-circular prescribed-path run (3.811917ms)
+✔ absolute-history contributions stay paired with root identities after delay sorting (0.386625ms)
+✔ absolute-history Delta x diagnostic classifies root age in reference cycles (0.464167ms)
+✔ Photon helical same-transmitter roots route through the moving-circular prescribed-path analysis (9.7195ms)
+✔ Photon self-hit span requests use absolute photon plus orbital speed ratios (0.262667ms)
+✔ Photon self-hit diagnostics route same-transmitter causal hits through the prescribed-path analysis (1.377375ms)
+✔ Photon self-hit diagnostics use prescribed span analysis when circular-transmitter roots are injected (1.463708ms)
+✔ Photon self-hit roots fail closed across singular, Jacobian, and transversality boundaries (0.385667ms)
+✔ Photon helical self-hit phase-lock sweep summarizes sampled cases (4.619833ms)
+✔ Photon circular-transmitter roots, hits, and ledger entries can be routed through the prescribed-path analysis (0.20525ms)
+✔ Photon delayed emission field can use absolute-history moving-circular analysis roots (0.861542ms)
+✔ Photon delayed emission field can be assembled from prescribed-path analysis circular-transmitter roots (0.863208ms)
+✔ physical co-moving field pipeline pins a nonzero transverse value (0.600208ms)
+✔ Photon formula and plot APIs expose central prescribed-path analysis results (23.56725ms)
+✔ plot helpers expose sample counts and the small forward now gap (0.095084ms)
+✔ photon stage keeps face-on braid spacing fixed while side view separation changes (0.238292ms)
+✔ photon face-on radius edits move the edited orbit without rescaling the braid (0.12225ms)
+✔ photon side-view height follows the largest enabled binary (0.048958ms)
+✔ Virtual Observer slider zero helpers mark and snap near zero (0.080208ms)
+✔ phase controls snap near 45 degree sticky spots (0.060292ms)
+✔ playback speed slider centers the default multiplier (0.072084ms)
+✔ separation log ticks cover mantissas 1 through 9 for each decade (0.208959ms)
+✔ separation scientific-notation picker maps coefficient and decade to log ticks (0.119833ms)
+✔ frequency controls use powers of two (0.043208ms)
+✔ layer metadata exposes user-facing orbit names (0.040083ms)
+✔ layer radius edits are scoped to the addressed braid (0.035125ms)
+✔ layer radius edits cannot pass neighboring orbits (0.066958ms)
+✔ state normalization clamps illegal outer and neighboring radii (0.046959ms)
+✔ layer radius edits preserve absolute pair separation (0.036833ms)
+✔ named photon presets expose the required candidate configurations (0.35175ms)
+✔ configuration search can score and compare settings through the prescribed-path analysis (39.843041ms)
+✔ configuration search compares co-moving and absolute-history analysis results when available (19.07025ms)
+✔ deep configuration comparison filters candidates, yields progress, and exports provenance (32.719375ms)
+✔ Photon diagnostics expose the active prescribed-path analysis library (11.907625ms)
+✔ configuration search results export and import full settings (36.315459ms)
+✔ separation reference radius follows the largest enabled radius (0.11025ms)
+✔ photon state normalization preserves configured values (0.093458ms)
+✔ formula summary reports a derived prescribed-path-analysis polarization fit (10.485375ms)
+✔ I/M/O branch sums close to the co-moving transverse harmonic ledger (7.188916ms)
+✔ polarization fitter classifies a one-axis signal as linear (0.161917ms)
+✔ analyzer common-period fraction uses a ratio of accumulated energies (0.068959ms)
+✔ polarization fitter classifies equal quadrature amplitudes as circular (0.109292ms)
+✔ polarization fitter classifies unequal quadrature amplitudes as elliptical (0.100875ms)
+✔ derived prescribed-path-analysis polarization trace uses the fitted current field (1.821959ms)
+✔ derived prescribed-path-analysis polarization inset trace is centered on the oscillating component (2.16525ms)
+✔ derived prescribed-path-analysis polarization ellipse fit stays stable while the current point advances (3.553583ms)
+✔ polarization inset current vector follows display time between analysis snapshots (1.954041ms)
+✔ photon animation keeps braid time continuous while plot time wraps (0.063791ms)
+✔ spacebar playback shortcut ignores editable controls (0.076833ms)
+ℹ tests 116
+ℹ suites 0
+ℹ pass 116
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 315.22725
+
+[foundational-impact] run 27/27 (applications)
+[foundational-impact] $ node scripts/check-animator-runtime-wiring.mjs
+animator runtime wiring check passed.
+
+[foundational-impact] run summary: 27 passed, 0 failed, 0 not run
+[pr-validation] running Content Integrity...
+[content-integrity] 1/33 Prepare ignored runtime assets from canonical sources
+[runtime-assets] write: borg-records

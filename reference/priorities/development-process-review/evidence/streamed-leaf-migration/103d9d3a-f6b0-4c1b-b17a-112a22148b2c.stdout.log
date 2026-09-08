@@ -1,0 +1,199 @@
+✔ fresh closure authority is the separately accepted pure checker generation (1.421792ms)
+✔ fresh source selection checks pinned transport without executing an authority (2.334375ms)
+✔ reviewed dependencies remain byte-exact (1.050292ms)
+✔ genuine two-refined-parent provider connects to frozen stream and codec (4816.035917ms)
+✔ original-clock duration rejects renewal and exhaustion (0.258875ms)
+✔ literal Python duration supports unrelated clock epochs (29.868917ms)
+✔ canonical spec rejects duplicate and trailing records (0.192125ms)
+✔ read identity catches byte-identical path replacement (2.160375ms)
+✔ closed spec caps and parent selection reject before target creation (84.7895ms)
+✔ complete input union includes combined runtime, metadata and invocation bounds (1.819958ms)
+✔ publication retains original inode through callbacks and preserves foreign replacements (16.441166ms)
+✔ publication identity option preserves default three-field transport and original five-field identity (18.01975ms)
+✔ publication identity option rejects non-Booleans before opening an output (0.420459ms)
+✔ publication file-worker returns original identity without promoting the operation (6.038333ms)
+✔ competitor coverage includes coordinated F5, F6c packaging and EOM measurement tools (0.454667ms)
+✔ every late publication callback preserves original identity and foreign evidence (32.58525ms)
+✔ package selection preserves logical descriptors and removes only admitted physical inputs (51.61825ms)
+✔ parent-two historical wrapper routes require the exact original plan and six literal tuples (37.620541ms)
+✔ generic descriptors preserve exact archives, derived inventory and invocation-bound readiness (65.412542ms)
+✔ fresh metadata inventory includes existing lazy integer helper without science (0.124375ms)
+✔ two explicit nonexecuting ancestry documents retain exact historical tuples (40.82475ms)
+✔ shared competitor guard excludes only own descendants (0.107416ms)
+✔ unique inode quota does not double count one hard-linked stream (1.368333ms)
+✔ retraction preserves a foreign public replacement and private prefix (1.409334ms)
+✔ final layout preserves original directory names and identities, not only public bytes (47.545292ms)
+✔ growing private data is charged before public-link creation (0.6045ms)
+✔ frozen observer limits and final observation gap remain unchanged (0.288959ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-kXh7F0
+✔ synthetic host inputs reach unchanged real threshold admission (1398.7845ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-MGKExT
+✖ synthetic low launch-memory is rejected by unchanged host guard (399.733917ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-wQ5an4
+✖ synthetic low running-memory is rejected by unchanged host guard (1231.02325ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-XqI8fq
+✖ synthetic low launch-disk is rejected by unchanged host guard (400.420167ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-9ZYKWy
+✖ synthetic low running-disk is rejected by unchanged host guard (1237.026875ms)
+✔ attempt-lifetime diagnostic guard retains asynchronous EPIPE (12.889167ms)
+✔ late final stdout callback cannot accept an expired observation (0.468041ms)
+✔ worker expires before reading source and admission requires closed target (0.111334ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-9aX2AG
+✔ actual captured Python + frozen stream/codec/publication: normal (1441.52625ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-0tcv2q
+✔ actual captured Python + frozen stream/codec/publication: exhausted (1389.422209ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-BPScGw
+✔ actual captured Python + frozen stream/codec/publication: archives (1383.089292ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-79oWMj
+✔ actual captured Python + frozen stream/codec/publication: multi-occupant-archives (1430.644125ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-teQGk7
+✔ synthetic package transport keeps source/runtime distinction: package (1390.64825ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-IXMkps
+✔ synthetic package transport keeps source/runtime distinction: package-runtime (1128.920667ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-gCIoIS
+✔ literal Python rejects and preserves only private evidence: missing-runtime (1124.009541ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-pRl7RY
+✔ literal Python rejects and preserves only private evidence: runtime-in-provenance (1125.976666ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-SuGDki
+✔ literal Python rejects and preserves only private evidence: archive-runtime (1125.108083ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-5vqMQE
+✔ literal Python rejects and preserves only private evidence: late-runtime (1122.567416ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-7kh1JA
+✔ literal Python rejects and preserves only private evidence: source-count-overflow (1177.45175ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-n7KsNi
+✔ literal Python rejects and preserves only private evidence: source-hardlink (454.566125ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-GVx3Yb
+✔ literal Python rejects and preserves only private evidence: cleanup-replacement (1174.1135ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-cmtG0d
+✔ literal Python rejects and preserves only private evidence: module-cleanup (1226.987709ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-ZgL2jO
+✔ literal Python rejects and preserves only private evidence: postpublish (1285.575ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-9BHjm5
+✔ literal Python rejects and preserves only private evidence: trailing (1174.97425ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-pC78W4
+✔ literal Python rejects and preserves only private evidence: final-cleanup (1433.033709ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-Uzzw0J
+✔ active stubborn synthetic target is reaped after cancellation (1286.195542ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-UCqk3Y
+✔ active stubborn synthetic target is reaped after diagnostic EPIPE (16098.087083ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-sbLhNw
+✔ poststdout failure is exit1, retracts public stream and invalidates operation (1465.3ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-ZX3Arg
+✔ original private directory rename rejects at cleanup with invalid new name (16110.010041ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-VccCCq
+✔ original private directory rename rejects at cleanup with valid new name (16123.411417ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-z8M71N
+✔ original private directory rename rejects at prestdout with invalid new name (16134.9125ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-W9fDvm
+✔ original private directory rename rejects at prestdout with valid new name (16147.099375ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-bc6n1V
+✔ original private directory rename rejects at poststdout with invalid new name (16159.522333ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-srS1C3
+✔ original private directory rename rejects at poststdout with valid new name (16133.781459ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-uCStYg
+✔ active monitor rejection retains first failure after owned cancellation (1617.738833ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-7vpbnr
+✖ active private-growth rejection retains first failure after owned cancellation (16091.952583ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-oPMgFY
+✔ final bound log 0 append after stdout rejects (1455.478959ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-z3Bsi0
+✔ final bound log 0 identity replacement after stdout rejects (16098.2345ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-gU3Roa
+✔ final bound log 1 append after stdout rejects (1453.121875ms)
+retained fixture /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-B35r4e
+✔ final bound log 1 identity replacement after stdout rejects (16097.808083ms)
+ℹ tests 67
+ℹ suites 0
+ℹ pass 62
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 199092.903708
+
+✖ failing tests:
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:702:2
+✖ synthetic low launch-memory is rejected by unchanged host guard (399.733917ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /host memory\/disk resource stop/. Input:
+  
+  ''
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:704:85)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /host memory\/disk resource stop/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:702:2
+✖ synthetic low running-memory is rejected by unchanged host guard (1231.02325ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /host memory\/disk resource stop/. Input:
+  
+  '{"kind":"host-resource","elapsedSeconds":0.06857625,"atLaunch":true,"stdout":"System-wide memory free percentage: 40%\\n","freePercent":40,"availableDiskBytes":"68719476736"}\n'
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:704:85)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '{"kind":"host-resource","elapsedSeconds":0.06857625,"atLaunch":true,"stdout":"System-wide memory free percentage: 40%\\n","freePercent":40,"availableDiskBytes":"68719476736"}\n',
+    expected: /host memory\/disk resource stop/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:702:2
+✖ synthetic low launch-disk is rejected by unchanged host guard (400.420167ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /host memory\/disk resource stop/. Input:
+  
+  ''
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:704:85)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '',
+    expected: /host memory\/disk resource stop/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:702:2
+✖ synthetic low running-disk is rejected by unchanged host guard (1237.026875ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /host memory\/disk resource stop/. Input:
+  
+  '{"kind":"host-resource","elapsedSeconds":0.063352375,"atLaunch":true,"stdout":"System-wide memory free percentage: 40%\\n","freePercent":40,"availableDiskBytes":"68719476736"}\n'
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:704:85)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '{"kind":"host-resource","elapsedSeconds":0.063352375,"atLaunch":true,"stdout":"System-wide memory free percentage: 40%\\n","freePercent":40,"availableDiskBytes":"68719476736"}\n',
+    expected: /host memory\/disk resource stop/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/f6c-streamed-leaf-diagnostic.test.js:835:2
+✖ active private-growth rejection retains first failure after owned cancellation (16091.952583ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  null !== 1
+  
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/f6c-streamed-leaf-diagnostic.test.js:845:39)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

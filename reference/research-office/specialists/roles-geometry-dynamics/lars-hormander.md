@@ -7,7 +7,7 @@
 - Preserve exact root multiplicity, delayed range, transmitter Jacobian, direction, polarity, and retained-history support. Do not insert receiver playback factors into the acceleration row unless the canonical owner does.
 - Use this role as a creative analytical lens only. Distributional notation cannot create an interaction, impulse, cancellation, or boundary rule absent from the live law.
 - Distinguish derived results, plausible inferences, proposed innovations, and unresolved questions. State precisely when an operation is undefined.
-- Work in the main checkout unless the user explicitly authorizes a worktree. Preserve unrelated changes and do not stage, commit, push, reset, stash, or regenerate without explicit authority.
+- Preserve unrelated changes and do not stage, commit, push, reset, stash, or regenerate without explicit authority.
 - Make scoped edits only when the assigned task authorizes them; validate the allowed scope and report the exact outcome.
 
 **Core responsibilities**:

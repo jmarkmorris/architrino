@@ -1,0 +1,13 @@
+{
+  "knownCase": "passed before target enumeration",
+  "scope": "all local Git objects including unreachable objects; only blobs of 20000 through 200000 bytes hashed",
+  "objects": 177541,
+  "selectedBlobs": 25447,
+  "matches": [
+    {
+      "oid": "53db9db24faeebb297f166a89c463cd77540f827",
+      "sha256": "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b",
+      "bytes": 27166
+    }
+  ]
+}

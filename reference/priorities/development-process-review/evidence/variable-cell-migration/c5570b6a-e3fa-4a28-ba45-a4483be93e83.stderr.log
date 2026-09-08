@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/variable-cell-migration/check-retained-adapter.py", line 45, in <module>
+    with a.open_adapter(ROOT,adapter_sha256=bind(ROOT/a.SELF)['sha256'],controls_sha256=bind(ROOT/a.CONTROLS)['sha256'],
+         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            closure_owner_sha256=owner['sha256'],deadline=time.monotonic()+100,historical_evidence=selection)as obj:
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/markmorris/vibe/architrino/scripts/eom/f6c_variable_cell_adapter.py", line 1886, in open_adapter
+    source={role:(pool if role=='fullEntry' else physical_pool).capture(path,digest,data=role in module_roles+('fullEntry','geometryHistory','geometryRoots','geometryIntervals'))for role,path,digest in SOURCES}
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/f6c_variable_cell_adapter.py", line 858, in capture
+    found=self.stack.enter_context(self.w.BoundFile(path,digest,capture=data,limit=MAX_BYTES if data else 1024**3,live=self.live))
+  File "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 530, in enter_context
+    result = _enter(cm)
+  File "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-refined-acceleration.py", line 258, in __enter__
+    self.data,digest=self.scan(self.capture);require(digest==self.digest,'input hash differs');self.check_path();return self
+                                             ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/markmorris/vibe/architrino/scripts/eom/verify-f6c-refined-acceleration.py", line 131, in require
+    if not ok:raise ValueError(message)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: input hash differs

@@ -110,7 +110,7 @@ test("children's-book pilot exports stay local and optional during routine PRs",
   }
 });
 
-test("PR procedure makes unattended execution measurable and requires verification for advancement", () => {
+test("PR procedure retains permission diagnostics without obsolete acceptance obligations", () => {
   const procedure = read("reference/op/git/codex-pr-branch.md");
   const verification = read(
     "reference/op/git/codex-pr-unattended-verification.md"
@@ -137,11 +137,11 @@ test("PR procedure makes unattended execution measurable and requires verificati
   assert.match(procedure, /Record the post-merge handoff receipt/);
   assert.match(
     procedure,
-    /whether the first handoff qualifies under the zero\/zero prompt budget/
+    /any observed permission friction during the first handoff/
   );
   assert.match(
     procedure,
-    /whether the second handoff and the full lifecycle qualify/
+    /any observed permission friction during the second handoff/
   );
   assert.match(
     procedure,
@@ -154,6 +154,9 @@ test("PR procedure makes unattended execution measurable and requires verificati
   assert.match(procedure, /correction closed on 2026-09-05 by operator disposition/);
   assert.match(procedure, /live diagnostics rather than an acceptance gate/);
   assert.doesNotMatch(procedure, /resets the qualifying count to zero/);
+  assert.doesNotMatch(procedure, /whether .*hand.*qualif|Update the unattended-verification ledger|treat the correction as reopened/);
+  assert.match(procedure, /routine publication does not require updating the closed unattended-verification ledger/);
+  assert.match(procedure, /nonzero or unknown counts do not invalidate a successfully verified Git handoff/);
 
   assert.match(verification, /Corrective-action status: `closed`/);
   assert.match(verification, /Closure route actually used: operator acceptance/);

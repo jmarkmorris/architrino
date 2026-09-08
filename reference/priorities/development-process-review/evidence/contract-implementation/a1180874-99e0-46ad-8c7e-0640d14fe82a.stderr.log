@@ -1,0 +1,94 @@
+test_manifest_identity_and_claims_checked_before_comparison (test_f6c_parent_emission_refinement_verification.ComparisonTests.test_manifest_identity_and_claims_checked_before_comparison) ... ok
+test_stationary_and_affine_known_answers (test_f6c_parent_emission_refinement_verification.ComparisonTests.test_stationary_and_affine_known_answers) ... ok
+test_wrong_query_local_pointer_and_retained_proof_fail (test_f6c_parent_emission_refinement_verification.ComparisonTests.test_wrong_query_local_pointer_and_retained_proof_fail) ... ok
+test_bootstrap_and_private_module_cleanup (test_f6c_parent_emission_refinement_verification.FileAndPublicationTests.test_bootstrap_and_private_module_cleanup) ... ok
+test_exclusive_publication_and_retained_failed_output (test_f6c_parent_emission_refinement_verification.FileAndPublicationTests.test_exclusive_publication_and_retained_failed_output) ... ok
+test_explicit_stage_allowance_and_original_fd_closure (test_f6c_parent_emission_refinement_verification.FileAndPublicationTests.test_explicit_stage_allowance_and_original_fd_closure) ... ok
+test_final_bounded_recapture_preserves_original_identity_after_close (test_f6c_parent_emission_refinement_verification.FileAndPublicationTests.test_final_bounded_recapture_preserves_original_identity_after_close) ... ok
+test_final_recapture_mutation_growth_and_alias_rejected (test_f6c_parent_emission_refinement_verification.FileAndPublicationTests.test_final_recapture_mutation_growth_and_alias_rejected) ... ok
+test_frozen_entry_pin_parser_reads_code_without_running_it (test_f6c_parent_emission_refinement_verification.FileAndPublicationTests.test_frozen_entry_pin_parser_reads_code_without_running_it) ... ok
+test_layout_closed_hardlink_generation_and_logical_quota (test_f6c_parent_emission_refinement_verification.FileAndPublicationTests.test_layout_closed_hardlink_generation_and_logical_quota) ... ok
+test_layout_extra_file_and_foreign_private_fail (test_f6c_parent_emission_refinement_verification.FileAndPublicationTests.test_layout_extra_file_and_foreign_private_fail) ... ok
+test_pool_real_fd_late_growth_and_replacement (test_f6c_parent_emission_refinement_verification.FileAndPublicationTests.test_pool_real_fd_late_growth_and_replacement) ... ok
+test_pool_rejects_symlink_and_hardlink_source_alias (test_f6c_parent_emission_refinement_verification.FileAndPublicationTests.test_pool_rejects_symlink_and_hardlink_source_alias) ... ok
+test_derived198_not_receipt_self_membership (test_f6c_parent_emission_refinement_verification.FullChainTests.test_derived198_not_receipt_self_membership) ... ok
+test_missing_sources_stage_closure_stream_logs_and_false_claims (test_f6c_parent_emission_refinement_verification.FullChainTests.test_missing_sources_stage_closure_stream_logs_and_false_claims) ... ok
+test_all_explicit_parent_scopes_and_rejected_index_types (test_f6c_parent_emission_refinement_verification.InterfaceTests.test_all_explicit_parent_scopes_and_rejected_index_types) ... ok
+test_budget_is_lexically_bounded_before_fraction (test_f6c_parent_emission_refinement_verification.InterfaceTests.test_budget_is_lexically_bounded_before_fraction) ... ok
+test_closed_plan_and_exact_role_counts (test_f6c_parent_emission_refinement_verification.InterfaceTests.test_closed_plan_and_exact_role_counts) ... ok
+test_no_production_oracle_import_or_execution (test_f6c_parent_emission_refinement_verification.InterfaceTests.test_no_production_oracle_import_or_execution) ... ok
+test_owner_hash_is_selected_by_reviewed_plan_not_current_file (test_f6c_parent_emission_refinement_verification.InterfaceTests.test_owner_hash_is_selected_by_reviewed_plan_not_current_file) ... ok
+test_plan_mutations_and_normalized_aliases_reject (test_f6c_parent_emission_refinement_verification.InterfaceTests.test_plan_mutations_and_normalized_aliases_reject) ... ok
+test_semantic_receipt_parser_classes (test_f6c_parent_emission_refinement_verification.InterfaceTests.test_semantic_receipt_parser_classes) ... ok
+test_stream_eof_is_not_null_or_blank_or_extra (test_f6c_parent_emission_refinement_verification.InterfaceTests.test_stream_eof_is_not_null_or_blank_or_extra) ... ok
+test_full_main_all_late_failures_retain (test_f6c_parent_emission_refinement_verification.MainFlowTests.test_full_main_all_late_failures_retain) ... ok
+test_full_main_positive_exact_contract (test_f6c_parent_emission_refinement_verification.MainFlowTests.test_full_main_positive_exact_contract) ... FAIL
+test_selected_parent_two_reaches_projection_report_and_completion (test_f6c_parent_emission_refinement_verification.MainFlowTests.test_selected_parent_two_reaches_projection_report_and_completion) ... FAIL
+test_silent_cleanup_changes_cannot_receive_successful_completion (test_f6c_parent_emission_refinement_verification.MainFlowTests.test_silent_cleanup_changes_cannot_receive_successful_completion) ... 
+  test_silent_cleanup_changes_cannot_receive_successful_completion (test_f6c_parent_emission_refinement_verification.MainFlowTests.test_silent_cleanup_changes_cannot_receive_successful_completion) (mode='silent-source-mutation') ... FAIL
+  test_silent_cleanup_changes_cannot_receive_successful_completion (test_f6c_parent_emission_refinement_verification.MainFlowTests.test_silent_cleanup_changes_cannot_receive_successful_completion) (mode='silent-source-replacement') ... FAIL
+  test_silent_cleanup_changes_cannot_receive_successful_completion (test_f6c_parent_emission_refinement_verification.MainFlowTests.test_silent_cleanup_changes_cannot_receive_successful_completion) (mode='silent-runtime-addition') ... FAIL
+  test_silent_cleanup_changes_cannot_receive_successful_completion (test_f6c_parent_emission_refinement_verification.MainFlowTests.test_silent_cleanup_changes_cannot_receive_successful_completion) (mode='silent-report-replacement') ... FAIL
+test_all_axis_and_scalar_tokens_participate_in_generation (test_f6c_parent_emission_refinement_verification.OriginalMappingTests.test_all_axis_and_scalar_tokens_participate_in_generation) ... ok
+test_all_original_tokens_global_to_local_and_closed_knots (test_f6c_parent_emission_refinement_verification.OriginalMappingTests.test_all_original_tokens_global_to_local_and_closed_knots) ... ok
+test_explicit_other_parent_mapping_with_independent_original_tokens (test_f6c_parent_emission_refinement_verification.OriginalMappingTests.test_explicit_other_parent_mapping_with_independent_original_tokens) ... ok
+test_full_census_and_original_membership_mutations (test_f6c_parent_emission_refinement_verification.OriginalMappingTests.test_full_census_and_original_membership_mutations) ... ok
+
+======================================================================
+FAIL: test_full_main_positive_exact_contract (test_f6c_parent_emission_refinement_verification.MainFlowTests.test_full_main_positive_exact_contract)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/tests/test_f6c_parent_emission_refinement_verification.py", line 510, in test_full_main_positive_exact_contract
+    out,events,stdout,stderr,error=self.flow();self.assertIsNone(error,str(error));self.assertTrue(out.is_file())
+                                               ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: AttributeError("'FakePool' object has no attribute 'historical_file'") is not None : 'FakePool' object has no attribute 'historical_file'
+
+======================================================================
+FAIL: test_selected_parent_two_reaches_projection_report_and_completion (test_f6c_parent_emission_refinement_verification.MainFlowTests.test_selected_parent_two_reaches_projection_report_and_completion)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/tests/test_f6c_parent_emission_refinement_verification.py", line 515, in test_selected_parent_two_reaches_projection_report_and_completion
+    out,events,stdout,stderr,error=self.flow(parent_index=2);self.assertIsNone(error,str(error))
+                                                             ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+AssertionError: AttributeError("'FakePool' object has no attribute 'historical_file'") is not None : 'FakePool' object has no attribute 'historical_file'
+
+======================================================================
+FAIL: test_silent_cleanup_changes_cannot_receive_successful_completion (test_f6c_parent_emission_refinement_verification.MainFlowTests.test_silent_cleanup_changes_cannot_receive_successful_completion) (mode='silent-source-mutation')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/tests/test_f6c_parent_emission_refinement_verification.py", line 529, in test_silent_cleanup_changes_cannot_receive_successful_completion
+    else:self.assertTrue(out.exists())
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_silent_cleanup_changes_cannot_receive_successful_completion (test_f6c_parent_emission_refinement_verification.MainFlowTests.test_silent_cleanup_changes_cannot_receive_successful_completion) (mode='silent-source-replacement')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/tests/test_f6c_parent_emission_refinement_verification.py", line 529, in test_silent_cleanup_changes_cannot_receive_successful_completion
+    else:self.assertTrue(out.exists())
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_silent_cleanup_changes_cannot_receive_successful_completion (test_f6c_parent_emission_refinement_verification.MainFlowTests.test_silent_cleanup_changes_cannot_receive_successful_completion) (mode='silent-runtime-addition')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/tests/test_f6c_parent_emission_refinement_verification.py", line 529, in test_silent_cleanup_changes_cannot_receive_successful_completion
+    else:self.assertTrue(out.exists())
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_silent_cleanup_changes_cannot_receive_successful_completion (test_f6c_parent_emission_refinement_verification.MainFlowTests.test_silent_cleanup_changes_cannot_receive_successful_completion) (mode='silent-report-replacement')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/markmorris/vibe/architrino/tests/test_f6c_parent_emission_refinement_verification.py", line 528, in test_silent_cleanup_changes_cannot_receive_successful_completion
+    if mode=='silent-report-replacement':self.assertTrue(out.exists())  # Foreign replacement is not ours to unlink.
+                                         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 31 tests in 40.113s
+
+FAILED (failures=6)

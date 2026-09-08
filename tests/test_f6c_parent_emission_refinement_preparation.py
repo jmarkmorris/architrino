@@ -104,9 +104,10 @@ def plan_fixture(root):
         originalBindings={k:dict(path=v[0],sha256=v[1],bytes=v[2] if len(v)>2 else 1) for k,v in s.ORIGINAL.items()},
         acceptanceOwner=b(s.OWNER,'c'*64),priorCoverClosure=s.closure_premise(),runtimeBindings=[b(str(root/'python'),'d'*64)],
         operationalBindings=[b(str(root/'node'),'e'*64)],limits=dict(w.LIMITS))
-    plan['historicalDocumentRoutes']=[dict(original=dict(path=s.PREFIX+name,sha256=h,bytes=n),physical=dict(path=str(root/('archive-'+h+'.json')),sha256=h,bytes=n)) for name,h,n in (
-        ('2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc',16985),
-        ('historical-resource-plan.json','2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40',13021))]
+    plan['unavailableHistoricalEnvironment']=[]
+    plan['historicalDocumentRoutes']=[dict(original=dict(path=s.PREFIX+name,sha256=h,bytes=n),physical=dict(path=str(root/('archive-'+h+'.source')),sha256=h,bytes=n)) for name,h,n in (
+        ('2026-08-27-f6c-cached-root-cover-full-resource-plan.md','daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b',10021),
+        ('2026-08-27-f6c-root-cover-full-resource-plan.md','46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021))]
     return plan
 
 
@@ -193,7 +194,7 @@ class PlanTests(unittest.TestCase):
     def setUp(self):self.root=Path('/synthetic/repository');self.plan=plan_fixture(self.root)
     def test_closed_plan_subject_census_and_owner_is_plan_selected(self):
         sources,runtime,ops=s.validate_plan(self.plan,'a'*64,self.root,w)
-        self.assertEqual(len(sources),23);self.assertEqual(len(s.PLAN_KEYS),20);self.assertEqual(len(s.MANIFEST_KEYS),27);self.assertEqual(len(s.COMPLETION_KEYS),15)
+        self.assertEqual(len(sources),23);self.assertEqual(len(s.PLAN_KEYS),21);self.assertEqual(len(s.MANIFEST_KEYS),28);self.assertEqual(len(s.COMPLETION_KEYS),15)
         self.plan['acceptanceOwner']['sha256']='f'*64;s.validate_plan(self.plan,'a'*64,self.root,w)
         self.assertEqual(self.plan['priorCoverClosure']['originalCallerSession'],'13512')
     def test_closed_plan_changes_rejected(self):
@@ -409,8 +410,8 @@ class HistoricalChainTests(unittest.TestCase):
             def binding(self):return self.b
         files={role:File(dict(path=str(root/role),sha256='a'*64,bytes=1)) for role in s.ORIGINAL}
         files['fullPlan']=File(sources[-1]);files['fullEntry'].data=b'entry'
-        contract=dict(declarationSha256='520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba',
-            verifierSha256=s.DEPENDENCIES['independentRootReference'][1],scope='full',subjectSourceBindings=sources[193:197],runtimeBindings=sources[35:193])
+        contract=dict(declarationSha256='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4',
+            verifierSha256='19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132',scope='full',subjectSourceBindings=sources[193:197],runtimeBindings=sources[35:193])
         plan=dict(schema='braid-program/f6c-cached-root-cover-full-launch.v1',scope='full',resourcePlan=sources[8],comparisonContract=contract,
             operationalBindings=sources[:6],controlBindings=sources[6:8],python='x',pythonRealPath='x',git='x',node='x')
         manifest=dict(scope='full',status='conditional_complete',accepted=False,rows=files['fullRows'].binding(),pieces=files['fullPieces'].binding(),
@@ -439,7 +440,7 @@ class HistoricalChainTests(unittest.TestCase):
                 gates=[dict(retired=True,acknowledged=True,measurement=dict(code=0,signal=None))])
             admission['stages'].append(dict(stage=stage,process=proc,admission=ad))
         class Pool:
-            def __init__(self):self.root=root;self.routes={};self.used_routes=set()
+            def __init__(self):self.root=root;self.routes={};self.used_routes=set();self.unavailable={};self.used_unavailable=set()
             def capture(self,b):return File(b)
             def historical(self,b):return b
             def read_binding(self,b,*,capture=False):return blobs[b['path']] if capture else b
@@ -466,7 +467,7 @@ class HistoricalChainTests(unittest.TestCase):
             else:d['fullPlan']['comparisonContract']['runtimeBindings']=[]
             with self.subTest(mode=mode),self.assertRaises(ValueError):self.run_chain(fixture)
     def test_owner_is_attributed_versioned_whole_completion_not_prepublication(self):
-        tokens=['### Independently Accepted Actual Full F6c Conditional Cover\n','original caller session `13512`','final completion chunk `c21aa7`',
+        tokens=['### Independently Accepted Actual Full asymmetric counter-breathing representative Conditional Cover\n','original caller session `13512`','final completion chunk `c21aa7`',
             'exit zero','`862.951823625`','Independent post-closure review accepts all 160',s.FULL_BASE]
         tokens += [f'{dg} {size}' for role,(_,dg,size) in s.FULL.items() if role!='fullPlan']
         raw='\n'.join(tokens).encode();self.assertEqual(s.owner_declaration(raw),s.closure_premise())
@@ -493,6 +494,7 @@ class MainPathTests(unittest.TestCase):
                 def __init__(self,*args):self.root=ROOT;self.n=0
                 def admit_operation(self,*args):pass
                 def historical(self,b):return self.capture(b).binding()
+                def historical_file(self,b,*,data=False):return self.capture(b,data=data)
                 def capture(self,b,**kwargs):
                     path=s.binding(b,ROOT)['path']
                     raw=SOURCE.read_bytes() if path==str(SOURCE) else (json.dumps(fake_export).encode() if path==str(ROOT/s.ORIGINAL['export'][0]) else b'{}')
