@@ -12,8 +12,8 @@ const SELF = "scripts/eom/launch-f5-prehistory-handoff-build.mjs";
 const ENTRY = "scripts/eom/prepare-f5-prehistory-handoff-build.mjs";
 const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs";
 const PINS = Object.freeze({
-  [ENTRY]: "4f15971f623578b78e7cf9f7db4e824e62cfb334e5a85ccdec407b1890143996",
-  "scripts/eom/prepare-subfield-circular-root.mjs": "deb5feae8e0827ab0f094ab08dd729350e81b6510bbf319b35e89df53f3d8907",
+  [ENTRY]: "2f80d1d871825d4aa1f26db0f137e79330bf58294f9ad6b644ed8b51a9911d51",
+  "scripts/eom/prepare-subfield-circular-root.mjs": "3d372147742b1036bb3101b7a8b39fcfeb1b5cb7176c3c1f7edeaee5635b9802",
   "scripts/eom/prepare-f5-enclosed-root.mjs": "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9",
   [OUTER]: "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c",
   "/usr/bin/memory_pressure": "ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da",

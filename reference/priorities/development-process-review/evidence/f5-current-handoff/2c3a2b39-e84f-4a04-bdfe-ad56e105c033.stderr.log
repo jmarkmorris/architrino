@@ -1,0 +1,14 @@
+test_build_identity_census_and_review_negative_controls (test_f5_current_handoff.CurrentHandoff.test_build_identity_census_and_review_negative_controls) ... ok
+test_capture_sha_known_answer_then_replacement_rejection (test_f5_current_handoff.CurrentHandoff.test_capture_sha_known_answer_then_replacement_rejection) ... ok
+test_changed_numerical_data_is_rejected_by_unchanged_reference (test_f5_current_handoff.CurrentHandoff.test_changed_numerical_data_is_rejected_by_unchanged_reference) ... ok
+test_deadline_covers_cleanup_time (test_f5_current_handoff.CurrentHandoff.test_deadline_covers_cleanup_time) ... ok
+test_private_publication_has_no_public_file_after_late_deadline (test_f5_current_handoff.CurrentHandoff.test_private_publication_has_no_public_file_after_late_deadline) ... ok
+test_projection_does_not_hide_current_provenance_mismatch (test_f5_current_handoff.CurrentHandoff.test_projection_does_not_hide_current_provenance_mismatch) ... ok
+test_projection_preserves_independent_host_expected_data (test_f5_current_handoff.CurrentHandoff.test_projection_preserves_independent_host_expected_data) ... ok
+test_retraction_removes_only_this_attempts_inode (test_f5_current_handoff.CurrentHandoff.test_retraction_removes_only_this_attempts_inode) ... ok
+test_runtime_inventory_known_file_and_interpreter (test_f5_current_handoff.CurrentHandoff.test_runtime_inventory_known_file_and_interpreter) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.506s
+
+OK

@@ -1,0 +1,4 @@
+Known SHA-256 control passed before target bindings.
+{"stage":"manifest","status":"starting","rootRequests":0}
+{"stage":"independent-whole-manifest-proof","status":"starting","rootRequests":0}
+{"stage":"serve-eof-no-pairs","status":"starting","rootRequests":0}

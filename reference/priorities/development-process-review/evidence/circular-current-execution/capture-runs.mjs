@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';import{readFileSync,writeFileSync,copyFileSync}from'node:fs';import{createHash}from'node:crypto';
+const hash=b=>createHash('sha256').update(b).digest('hex');assert.equal(hash('abc'),'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');
+const tap=text=>Object.fromEntries([...text.matchAll(/^# (tests|pass|fail|skipped|cancelled) (\d+)$/gm)].map(m=>[m[1],Number(m[2])]));
+assert.deepEqual(tap('# tests 2\n# pass 1\n# fail 1\n# skipped 0\n'),{tests:2,pass:1,fail:1,skipped:0});console.log('Known SHA and failing native TAP summary controls passed before target.');
+const out='reference/priorities/development-process-review/evidence/circular-current-execution/';
+const ids=['6dc9fc5d-644e-4c8c-bf1b-19d2530e1328','703835fb-83a4-479d-8b11-93e9d0b777bf','21bcd832-f3aa-4f24-8f4d-342494169668','9f1aa65f-d108-40b7-a16b-8dabd23d5a59','0ee54313-b31d-423b-8783-396501e81e6d'];
+const records=ids.map(id=>{const lease=JSON.parse(readFileSync('.local-data/owned-compute/leases/'+id+'.json'));const keep=Object.fromEntries(['runId','status','command','args','startedAtUtc','finishedAtUtc','elapsedWallSeconds','exitCode','exitSignal','processGroupClosed'].map(k=>[k,lease[k]]));
+keep.logs={};for(const kind of['stdout','stderr']){const raw=readFileSync(lease[kind+'Path']),p=out+id+'.'+kind+'.log';writeFileSync(p,raw);keep.logs[kind]={path:p,sha256:hash(raw),bytes:raw.length};if(kind==='stdout'&&lease.args.includes('--test'))keep.nativeTap=tap(raw.toString());}return keep;});
+writeFileSync(out+'runs.json',JSON.stringify({knownControlsPassed:true,runs:records},null,2)+'\n');
+copyFileSync('.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-data-path-20260908/data-path-review.json',out+'data-path-review.json');
+console.log(JSON.stringify(records.map(r=>({id:r.runId,exit:r.exitCode,closed:r.processGroupClosed,tests:r.nativeTap}))));

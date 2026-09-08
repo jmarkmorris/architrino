@@ -1,0 +1,164 @@
+{
+  "knownControlsPassed": true,
+  "runs": [
+    {
+      "runId": "6dc9fc5d-644e-4c8c-bf1b-19d2530e1328",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "scripts/eom/prepare-subfield-circular-root.mjs",
+        "--out",
+        ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-build-20260908-execution-review"
+      ],
+      "startedAtUtc": "2026-09-08T17:51:00.675Z",
+      "finishedAtUtc": "2026-09-08T17:51:25.034Z",
+      "elapsedWallSeconds": 24.375,
+      "exitCode": 0,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "path": "reference/priorities/development-process-review/evidence/circular-current-execution/6dc9fc5d-644e-4c8c-bf1b-19d2530e1328.stdout.log",
+          "sha256": "2ab3c79ec19db492d1878562c1641dd124bdf554102b6c391e3717cc129d2890",
+          "bytes": 276
+        },
+        "stderr": {
+          "path": "reference/priorities/development-process-review/evidence/circular-current-execution/6dc9fc5d-644e-4c8c-bf1b-19d2530e1328.stderr.log",
+          "sha256": "c0a8d3c082158537b4ab2c152fc52c8d81df1912a2c1b5d57e73a249d69d104e",
+          "bytes": 28385
+        }
+      }
+    },
+    {
+      "runId": "703835fb-83a4-479d-8b11-93e9d0b777bf",
+      "status": "failed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "tests/subfield-circular-root-adapter.test.js",
+        "tests/subfield-circular-root-preparation.test.js",
+        "tests/subfield-circular-phase-process.test.js",
+        "tests/subfield-circular-root-rung.test.js"
+      ],
+      "startedAtUtc": "2026-09-08T17:56:07.639Z",
+      "finishedAtUtc": "2026-09-08T17:56:13.855Z",
+      "elapsedWallSeconds": 6.23,
+      "exitCode": 1,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "path": "reference/priorities/development-process-review/evidence/circular-current-execution/703835fb-83a4-479d-8b11-93e9d0b777bf.stdout.log",
+          "sha256": "24c40ea145bb660fbaf778d6376cba79ab8ee8d7df66a4479c68b80528694666",
+          "bytes": 52850
+        },
+        "stderr": {
+          "path": "reference/priorities/development-process-review/evidence/circular-current-execution/703835fb-83a4-479d-8b11-93e9d0b777bf.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      },
+      "nativeTap": {
+        "tests": 44,
+        "pass": 37,
+        "fail": 7,
+        "cancelled": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "runId": "21bcd832-f3aa-4f24-8f4d-342494169668",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "scripts/eom/prepare-subfield-circular-root.mjs",
+        "--out",
+        ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-v3-build-20260908-execution-review"
+      ],
+      "startedAtUtc": "2026-09-08T18:02:11.065Z",
+      "finishedAtUtc": "2026-09-08T18:02:34.223Z",
+      "elapsedWallSeconds": 23.169,
+      "exitCode": 0,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "path": "reference/priorities/development-process-review/evidence/circular-current-execution/21bcd832-f3aa-4f24-8f4d-342494169668.stdout.log",
+          "sha256": "79eb347b873ed5bf35a17cb040874ab34b0518e55e2e7e6a6c15fab35bc494ab",
+          "bytes": 285
+        },
+        "stderr": {
+          "path": "reference/priorities/development-process-review/evidence/circular-current-execution/21bcd832-f3aa-4f24-8f4d-342494169668.stderr.log",
+          "sha256": "351f56654c4e7cbed705ef1bd18489db8ab854daf7d1d24a7b2c536f882e2714",
+          "bytes": 28484
+        }
+      }
+    },
+    {
+      "runId": "9f1aa65f-d108-40b7-a16b-8dabd23d5a59",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-concurrency=1",
+        "--test-reporter=tap",
+        "tests/subfield-circular-root-adapter.test.js",
+        "tests/subfield-circular-root-preparation.test.js",
+        "tests/subfield-circular-phase-process.test.js"
+      ],
+      "startedAtUtc": "2026-09-08T18:03:28.569Z",
+      "finishedAtUtc": "2026-09-08T18:03:42.383Z",
+      "elapsedWallSeconds": 13.827,
+      "exitCode": 0,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "path": "reference/priorities/development-process-review/evidence/circular-current-execution/9f1aa65f-d108-40b7-a16b-8dabd23d5a59.stdout.log",
+          "sha256": "20a1847fcec3816c72354143ec91dd4e882ea8cc8b13e721363afae9a2f24b03",
+          "bytes": 39589
+        },
+        "stderr": {
+          "path": "reference/priorities/development-process-review/evidence/circular-current-execution/9f1aa65f-d108-40b7-a16b-8dabd23d5a59.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      },
+      "nativeTap": {
+        "tests": 33,
+        "pass": 33,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "runId": "0ee54313-b31d-423b-8783-396501e81e6d",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/circular-current-execution/run-data-path.mjs"
+      ],
+      "startedAtUtc": "2026-09-08T18:04:32.985Z",
+      "finishedAtUtc": "2026-09-08T18:04:36.369Z",
+      "elapsedWallSeconds": 3.396,
+      "exitCode": 0,
+      "exitSignal": null,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "path": "reference/priorities/development-process-review/evidence/circular-current-execution/0ee54313-b31d-423b-8783-396501e81e6d.stdout.log",
+          "sha256": "514f70413c560d9693b73e084e065686ba47fb933a9d31ad242e0484be485557",
+          "bytes": 261
+        },
+        "stderr": {
+          "path": "reference/priorities/development-process-review/evidence/circular-current-execution/0ee54313-b31d-423b-8783-396501e81e6d.stderr.log",
+          "sha256": "d65ea1b43883274033eb9e6470a2de92ad0ede96fc10b810ec98cc86b57c9c25",
+          "bytes": 2435
+        }
+      }
+    }
+  ]
+}

@@ -5,14 +5,18 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 const root = fileURLToPath(new URL('../../', import.meta.url));
 const helperPath = path.join(root, '.local-data/github-auth/keychain-token');
-const [client, ...args] = process.argv.slice(2);
 function fail(message) { console.error(message); process.exit(1); }
+const cli = process.argv.slice(2);
+let context = 'codex-architrino';
+if (cli[0] === '--context') { cli.shift(); context = cli.shift(); }
+if (!['codex-architrino', 'claude-architrino'].includes(context)) fail('Unknown Architrino context; no credential accessed.');
+const [client, ...args] = cli;
 if (!['git', 'gh'].includes(client) || !args.length) fail('Usage: node scripts/github-auth/run.mjs <git|gh> <arguments>');
 // Refuse common credential-disclosure and login-changing operations.
 if (client === 'git' && args.some(a => ['credential', 'credential-fill'].includes(a))) fail('Credential inspection is not supported.');
 if (client === 'gh' && args[0] === 'auth') fail('Shared-login and token-display commands are not supported. Use API identity checks.');
 if (args.some(a => ['--verbose', '--include'].includes(a))) fail('Verbose authentication output is not supported.');
-const selected = spawnSync(helperPath, ['credential', 'codex-architrino', 'get'], {
+const selected = spawnSync(helperPath, ['credential', context, 'get'], {
   input: 'protocol=https\nhost=github.com\npath=jmarkmorris/architrino.git\n\n', encoding: 'utf8',
 });
 if (selected.status !== 0) fail('Selected Keychain credential unavailable; no fallback attempted.');
@@ -24,7 +28,7 @@ for (const key of Object.keys(env)) {
 }
 // Hook subprocesses inherit this command-scoped Git credential routing too.
 const quote = value => "'" + value.replaceAll("'", "'\\''") + "'";
-const settings = [ ['credential.helper', ''], ['credential.helper', `!${quote(helperPath)} credential codex-architrino`], ['credential.useHttpPath', 'true'] ];
+const settings = [ ['credential.helper', ''], ['credential.helper', `!${quote(helperPath)} credential ${context}`], ['credential.useHttpPath', 'true'] ];
 env.GIT_CONFIG_COUNT = String(settings.length);
 settings.forEach(([key, value], i) => { env[`GIT_CONFIG_KEY_${i}`] = key; env[`GIT_CONFIG_VALUE_${i}`] = value; });
 const result = spawnSync(client, args, { cwd: root, env, stdio: 'inherit' });

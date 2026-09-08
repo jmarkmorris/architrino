@@ -1,0 +1,6 @@
+{"stage":"f5-handoff-build-resources","elapsedSeconds":0.042084625,"atLaunch":true,"accepted":true,"freePercent":45,"availableDiskBytes":"937217822720","notAggregateMemoryMeasurement":true}
+{"stage":"f5-handoff-build-running","elapsedSeconds":15.049680709,"resourceObservations":1}
+{"stage":"f5-handoff-build-resources","elapsedSeconds":15.049771125000001,"atLaunch":false,"accepted":true,"freePercent":46,"availableDiskBytes":"937211629568","notAggregateMemoryMeasurement":true}
+{"schema":"braid-program/subfield-circular-pilot-outer-heartbeat.v1","pid":64734,"elapsedWallSeconds":15.097572916999999,"registeredGates":36,"stdoutBytes":0,"stderrBytes":24387,"stopping":false,"h3EvidenceEligible":false}
+{"stage":"f5-handoff-build-resources","elapsedSeconds":21.880235584,"atLaunch":false,"accepted":true,"freePercent":46,"availableDiskBytes":"937201819648","notAggregateMemoryMeasurement":true}
+{"stage":"f5-handoff-build-resources","elapsedSeconds":21.908048334,"atLaunch":false,"accepted":true,"freePercent":46,"availableDiskBytes":"937201758208","notAggregateMemoryMeasurement":true}

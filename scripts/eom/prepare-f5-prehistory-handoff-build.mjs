@@ -26,7 +26,7 @@ const PINNED = Object.freeze({
   "tests/test_f5_prehistory_handoff_producer.py": "ec1d99b6919fd2c666dd1dd157388f9577f054070744db3e38a4cc4b56062770",
   "scripts/eom/verify-f5-prehistory-handoff.py": "6c94b0ca16dfe20bed4841a547adca349f2f36cdd5ec04211341d6b060032a68",
   "tests/test_f5_prehistory_handoff.py": "111e828c8ea3c26996ce51c83496ff7850d48b52cf7e874982c67e882ad6cadf",
-  "scripts/eom/prepare-subfield-circular-root.mjs": "deb5feae8e0827ab0f094ab08dd729350e81b6510bbf319b35e89df53f3d8907",
+  "scripts/eom/prepare-subfield-circular-root.mjs": "3d372147742b1036bb3101b7a8b39fcfeb1b5cb7176c3c1f7edeaee5635b9802",
   "scripts/eom/prepare-f5-enclosed-root.mjs": "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9",
   "src/eom/CMakeLists.txt": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4",
 });
