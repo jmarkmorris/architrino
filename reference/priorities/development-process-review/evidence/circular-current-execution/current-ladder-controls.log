@@ -1,0 +1,226 @@
+TAP version 13
+# Subtest: known cost boundary partitions enabled and returned candidates without increasing cap
+ok 1 - known cost boundary partitions enabled and returned candidates without increasing cap
+  ---
+  duration_ms: 0.782
+  type: 'test'
+  ...
+# Subtest: current pilot transport requires independently bound review and joint closure
+ok 2 - current pilot transport requires independently bound review and joint closure
+  ---
+  duration_ms: 0.148167
+  type: 'test'
+  ...
+# Subtest: known memory percentage and threshold boundary precede actual utility controls
+ok 3 - known memory percentage and threshold boundary precede actual utility controls
+  ---
+  duration_ms: 466.986709
+  type: 'test'
+  ...
+# Subtest: known helper failure rejects before actual utility controls
+ok 4 - known helper failure rejects before actual utility controls
+  ---
+  duration_ms: 206.708584
+  type: 'test'
+  ...
+# Subtest: actual memory query binds libpython and observes wait4 plus stream closure
+ok 5 - actual memory query binds libpython and observes wait4 plus stream closure
+  ---
+  duration_ms: 240.09225
+  type: 'test'
+  ...
+# Subtest: stubborn memory helper rejects after actual closure
+ok 6 - stubborn memory helper rejects after actual closure
+  ---
+  duration_ms: 771.125875
+  type: 'test'
+  ...
+# Subtest: growth memory helper rejects after actual closure
+ok 7 - growth memory helper rejects after actual closure
+  ---
+  duration_ms: 227.021542
+  type: 'test'
+  ...
+# Subtest: changed source and resource shortfall do not admit
+ok 8 - changed source and resource shortfall do not admit
+  ---
+  duration_ms: 325.032875
+  type: 'test'
+  ...
+# Subtest: dispatcher CLI requires exact external plan and code hashes plus fresh scoped output
+ok 9 - dispatcher CLI requires exact external plan and code hashes plus fresh scoped output
+  ---
+  duration_ms: 1.098084
+  type: 'test'
+  ...
+# Subtest: resource minima allow exact contact and reject strictly below or ambiguous observations
+ok 10 - resource minima allow exact contact and reject strictly below or ambiguous observations
+  ---
+  duration_ms: 0.322
+  type: 'test'
+  ...
+# Subtest: shared byte drift and observation failure stop dispatch; geometry row failure stays candidate-local
+ok 11 - shared byte drift and observation failure stop dispatch; geometry row failure stays candidate-local
+  ---
+  duration_ms: 0.073667
+  type: 'test'
+  ...
+# Subtest: four-slot pool runs each candidate ladder serially and never exceeds reviewed concurrency
+ok 12 - four-slot pool runs each candidate ladder serially and never exceeds reviewed concurrency
+  ---
+  duration_ms: 12.599708
+  type: 'test'
+  ...
+# Subtest: startup fatal cancellation waits another active worker's cleanup before pool rejection
+ok 13 - startup fatal cancellation waits another active worker's cleanup before pool rejection
+  ---
+  duration_ms: 26.314666
+  type: 'test'
+  ...
+# Subtest: candidate-local rejected rung ends that ladder but allows independent candidates
+ok 14 - candidate-local rejected rung ends that ladder but allows independent candidates
+  ---
+  duration_ms: 3.873625
+  type: 'test'
+  ...
+# Subtest: gate census assigns exact output roles and counts shared rung summary once
+ok 15 - gate census assigns exact output roles and counts shared rung summary once
+  ---
+  duration_ms: 0.7795
+  type: 'test'
+  ...
+# Subtest: captured file worker verifies exact bytes and rejects changed generations
+ok 16 - captured file worker verifies exact bytes and rejects changed generations
+  ---
+  duration_ms: 40.688417
+  type: 'test'
+  ...
+# Subtest: regular-file worker rejects FIFO without waiting for a writer
+ok 17 - regular-file worker rejects FIFO without waiting for a writer
+  ---
+  duration_ms: 22.290917
+  type: 'test'
+  ...
+# Subtest: cancelled and expired worker operations are terminated before returning
+ok 18 - cancelled and expired worker operations are terminated before returning
+  ---
+  duration_ms: 8.821792
+  type: 'test'
+  ...
+# Subtest: admission rejects an unaccepted rung before any mathematical or build claim
+ok 19 - admission rejects an unaccepted rung before any mathematical or build claim
+  ---
+  duration_ms: 3.073291
+  type: 'test'
+  ...
+# Subtest: successful synthetic rung admission carries authenticated plan into the next rung's prior chain
+ok 20 - successful synthetic rung admission carries authenticated plan into the next rung's prior chain
+  ---
+  duration_ms: 15.006125
+  type: 'test'
+  ...
+# Subtest: whole-rung deadline precedes prior preparation and terminates an overlong preparation worker
+ok 21 - whole-rung deadline precedes prior preparation and terminates an overlong preparation worker
+  ---
+  duration_ms: 32.388167
+  type: 'test'
+  ...
+# Subtest: whole-rung admission checks elapsed synchronous time and aborts observation/publication waits
+ok 22 - whole-rung admission checks elapsed synchronous time and aborts observation/publication waits
+  ---
+  duration_ms: 38.60775
+  type: 'test'
+  ...
+# Subtest: periodic resource log failure stops scheduling and waits an active sibling cleanup
+ok 23 - periodic resource log failure stops scheduling and waits an active sibling cleanup
+  ---
+  duration_ms: 21.240959
+  type: 'test'
+  ...
+# Subtest: dispatcher captured source rejects nonregular and oversized files without a second open
+ok 24 - dispatcher captured source rejects nonregular and oversized files without a second open
+  ---
+  duration_ms: 3.463417
+  type: 'test'
+  ...
+# Subtest: initial resource-log reservation failure leaves no heartbeat, signal handlers or live process
+ok 25 - initial resource-log reservation failure leaves no heartbeat, signal handlers or live process
+  ---
+  duration_ms: 75.8305
+  type: 'test'
+  ...
+# Subtest: only exact reviewed resource predicates and separately accepted cohort extension admit
+ok 26 - only exact reviewed resource predicates and separately accepted cohort extension admit
+  ---
+  duration_ms: 1.665583
+  type: 'test'
+  ...
+# Subtest: rung CLI rejects incomplete authority, changed rungs and output escape
+ok 27 - rung CLI rejects incomplete authority, changed rungs and output escape
+  ---
+  duration_ms: 0.182125
+  type: 'test'
+  ...
+# Subtest: all candidate ladders preserve canonical pair/phase counts and exact dyadic times
+ok 28 - all candidate ladders preserve canonical pair/phase counts and exact dyadic times
+  ---
+  duration_ms: 1.748333
+  type: 'test'
+  ...
+# Subtest: failed candidate retains passed phases and accounts for every unvisited ordered pair
+ok 29 - failed candidate retains passed phases and accounts for every unvisited ordered pair
+  ---
+  duration_ms: 0.160584
+  type: 'test'
+  ...
+# Subtest: repeat scheduling guard uses exact rational overlap, including closed endpoint contact
+ok 30 - repeat scheduling guard uses exact rational overlap, including closed endpoint contact
+  ---
+  duration_ms: 0.366083
+  type: 'test'
+  ...
+# Subtest: captured repeat worker rejects mismatch and interruption without calling EOM
+ok 31 - captured repeat worker rejects mismatch and interruption without calling EOM
+  ---
+  duration_ms: 44.010833
+  type: 'test'
+  ...
+# Subtest: authenticated prior chain covers pilot then complete8 and32 admissions, not caller labels
+ok 32 - authenticated prior chain covers pilot then complete8 and32 admissions, not caller labels
+  ---
+  duration_ms: 0.777792
+  type: 'test'
+  ...
+# Subtest: complete rung summary needs exact scope,census,phase order and hash chain
+ok 33 - complete rung summary needs exact scope,census,phase order and hash chain
+  ---
+  duration_ms: 0.657708
+  type: 'test'
+  ...
+# Subtest: captured frozen runtime import exposes the exact APIs used by the composition
+ok 34 - captured frozen runtime import exposes the exact APIs used by the composition
+  ---
+  duration_ms: 11.841917
+  type: 'test'
+  ...
+# Subtest: same-descriptor source capture rejects FIFO, oversized, truncated and changed inputs
+ok 35 - same-descriptor source capture rejects FIFO, oversized, truncated and changed inputs
+  ---
+  duration_ms: 4.168292
+  type: 'test'
+  ...
+# Subtest: named output accounting deduplicates paths and retains honest partial precision scope
+ok 36 - named output accounting deduplicates paths and retains honest partial precision scope
+  ---
+  duration_ms: 7.043042
+  type: 'test'
+  ...
+1..36
+# tests 36
+# suites 0
+# pass 36
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2945.787334

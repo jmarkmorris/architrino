@@ -45,6 +45,23 @@
         "lineCount": 125000,
         "byteCount": 14000000
       }
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence",
+      "sourceKind": "retained-recovery-evidence",
+      "owner": "Development-process recovery campaign",
+      "consumers": [
+        "reference/priorities/development-process-review/analysis/circular-current-execution.md",
+        "reference/priorities/development-process-review/analysis/source-recovery-and-binding-repair.md",
+        "reference/priorities/development-process-review/analysis/review-and-repair-plan.md"
+      ],
+      "regenerationCommand": "No single byte-identical regeneration command: use the per-run commands, original inputs and source identities retained in the linked recovery analyses and evidence receipts. Historical observations must not be regenerated and relabeled as originals.",
+      "retentionReason": "Operator-approved storage exception on 2026-09-08 for the paused recovery checkpoint: 189 machine files, 100152 lines, 5148110 bytes measured by validate-machine-artifact-retention.mjs. Preserve the current source-recovery, independent-review and execution records required to assess the repaired workflows. The exclusive line ceiling admits exactly this measured line count; the general byte, individual-file and branch limits remain unchanged.",
+      "compactAlternativeInsufficient": "A summary alone would omit the source identities, detailed review bindings and negative-control records used by the current recovery analyses. No independently verified lossless replacement for this collection has been established. Review consolidation when those consumers are retired; additional line growth requires another explicit storage decision.",
+      "budget": {
+        "lineCount": 100153,
+        "byteCount": 10485760
+      }
     }
   ]
 }

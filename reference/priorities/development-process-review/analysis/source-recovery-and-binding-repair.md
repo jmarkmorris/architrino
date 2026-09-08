@@ -2,6 +2,16 @@
 
 Date: 2026-09-07. The operator authorized this recovery after publishing the preceding process repair. `git --no-optional-locks status -sb` and `git show HEAD` establish the starting checkout as clean at `713c53a0acf5c8c78002873d9ebc8887bd8d4bcc`. This work distinguishes the bytes used by an earlier calculation from the sources selected for a new execution. A hash is a fingerprint of bytes; a pin is an expectation that a particular input has that fingerprint. Neither establishes mathematical correctness.
 
+Legend: ✓ Done, ◐ Partial, ○ Not done. The investigation below is historical; its original measurements are preserved. Current follow-through is:
+
+| Follow-through | Current status and evidence |
+| --- | --- |
+| Reconstruct the selected preparation generation | ✓ Done — exact reconstruction and controls below |
+| Implement parent historical-archive and external coordinator contracts | ✓ Done — [approved implementation](archive-contract-and-coordinator-review.md#approved-implementation-and-current-disposition) |
+| Migrate the fourth variable-cell historical binding | ✓ Done — [variable-cell migration](variable-cell-historical-migration.md) |
+| Recover the three original host utilities | ○ Not done — Blocked; [bounded recovery searches](../evidence/refined-current-migration/recoverability-review.md#wider-local-recovery-follow-through) require an exact additional source |
+| Complete refined current execution | ◐ Partial — Blocked; the [current caller contract](remaining-caller-contracts.md) retains its original-utility requirement |
+
 ## The preparation pin identified an intermediate edit
 
 The preparation generation expected by the refined-acceleration pilot was recovered exactly. `git show baa3e7323` introduces the expected `738c716f…52842c` pin while changing two dependency digests in the preparation source. Reconstructing the parent source with only its helper digest replaced yields that exact expected SHA-256. Applying both substitutions gives the bytes actually committed, whose fingerprint differs. Thus the pin selects an intermediate source state rather than the state in that commit. This is measured byte attribution; it does not establish which person or agent calculated the pin, or whether concurrent activity, edit ordering, or a stale calculation caused its publication.
@@ -46,9 +56,9 @@ The [focused-run record](../evidence/source-recovery/validation-runs.json) retai
 | Initial combined Python run | Incomplete at the selected 90-second outer deadline | Not a pass or diagnosis of a hang. The same six suites then finished under a 300-second hard bound with named-test output. |
 | Recovered original entry versus intact receipt | 35/35 pins agree | Literal-text inspection only. |
 
-Two measured failures remain, and both prevent claiming that the affected suite collection is green:
+Two measured failures remained at this historical handoff. Their later repairs do not change these original test outcomes:
 
-1. `tests/test_f6c_parent_emission_refinement_verification.py:342` expects the historical full entry at the current executable path. The current bytes are `20c8d44e…734b7`, its existing asserted tuple is `9e71ac12…3ee792`, and the intact historical receipt names `1398a005…73352b`. `git show HEAD:scripts/eom/run-f6c-cached-root-cover-full.mjs | shasum -a 256` confirms the same current value at this turn's starting commit. None of these three identities may be substituted for another. This failure is part of the unresolved archive contract above.
-2. `tests/f6c-parent-emission-refinement-pilot.test.js:26` rejects the generic coordinator: its expected generation is `5428e4b8…90b885`, while `git show HEAD:scripts/eom/f6c-bounded-operation.mjs | shasum -a 256` returns `47c2828c…8a4098`. That coordinator was not changed in this repair. Its generation mismatch is a separate current-source blocker needing exact-source attribution and contract review; its pin was not guessed or suppressed to make this run green.
+1. **✓ Done — Subsequent archive-contract repair, linked above.** Original finding: `tests/test_f6c_parent_emission_refinement_verification.py:342` expects the historical full entry at the current executable path. The current bytes are `20c8d44e…734b7`, its existing asserted tuple is `9e71ac12…3ee792`, and the intact historical receipt names `1398a005…73352b`. `git show HEAD:scripts/eom/run-f6c-cached-root-cover-full.mjs | shasum -a 256` confirms the same current value at this turn's starting commit. None of these three identities may be substituted for another. This failure is part of the unresolved archive contract above.
+2. **✓ Done — Subsequent external coordinator-contract repair, linked above.** Original finding: `tests/f6c-parent-emission-refinement-pilot.test.js:26` rejects the generic coordinator: its expected generation is `5428e4b8…90b885`, while `git show HEAD:scripts/eom/f6c-bounded-operation.mjs | shasum -a 256` returns `47c2828c…8a4098`. That coordinator was not changed in this repair. Its generation mismatch is a separate current-source blocker needing exact-source attribution and contract review; its pin was not guessed or suppressed to make this run green.
 
 These are not environmental exclusions. Passing current controls also does not approve the advanced historical comparison-contract predicates or authenticate an old scientific computation. The source-only streamed diagnostic's whole-process fixtures explicitly remain not run ready pending their external closure envelope; this pass ran its affected Python lifecycle controls, not those disabled whole-process fixtures. Final source-preservation, metadata, and ownership checks are recorded in the work log.

@@ -1,0 +1,39 @@
+✔ current rung accepts only complete explicit bounded output selection (0.787625ms)
+✖ changed profile digest and cap or source-census substitutions close before workload (3.080083ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 91.904292
+
+✖ failing tests:
+
+test at reference/priorities/development-process-review/evidence/circular-current-execution/current-rung-entry-review.test.mjs:14:1
+✖ changed profile digest and cap or source-census substitutions close before workload (3.080083ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /authority\/limit/. Input:
+  
+  'Error: canonical current-launch input required'
+  
+      at async TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/circular-current-execution/current-rung-entry-review.test.mjs:19:2)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: canonical current-launch input required
+        at demand (file:///Users/markmorris/vibe/architrino/scripts/eom/run-current-subfield-circular-root-rung.mjs:22:56)
+        at read (file:///Users/markmorris/vibe/architrino/scripts/eom/run-current-subfield-circular-root-rung.mjs:26:3)
+        at runCurrentCircularRung (file:///Users/markmorris/vibe/architrino/scripts/eom/run-current-subfield-circular-root-rung.mjs:81:80)
+        at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/circular-current-execution/current-rung-entry-review.test.mjs:19:23)
+        at Test.runInAsyncScope (node:async_hooks:226:14)
+        at Test.run (node:internal/test_runner/test:1382:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+        at Test.postRun (node:internal/test_runner/test:1522:19)
+        at Test.run (node:internal/test_runner/test:1447:12)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3),
+    expected: /authority\/limit/,
+    operator: 'rejects',
+    diff: 'simple'
+  }

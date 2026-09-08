@@ -1,0 +1,2 @@
+PASS SHA abc, CRLF/line selectors, literal selector, known graph closure, deleted dependency/coverage, stale rejection
+PASS literal result match, wrong-result rejection, missing/duplicate rejection

@@ -1,0 +1,2475 @@
+{
+  "schema": "circular-independent-current-rung-review.v1",
+  "accepted": true,
+  "h3EvidenceEligible": false,
+  "laterLadderAuthorized": false,
+  "candidateId": "coincident-midpoint-common-frequency",
+  "rung": 32,
+  "phaseCount": 32,
+  "rowCount": 1152,
+  "admission": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/current-admission.json",
+    "sha256": "f325501de27237181f86633f2c37a07159a6af79eb38dc5dc6af95a2fc2805d1",
+    "bytes": 805841
+  },
+  "profile": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-prior32-final-20260908-a/rung32-profile.json",
+    "sha256": "14d487f42533d74154fc53b153e6a514b75a398013a6ca9db864b6d521f99b37"
+  },
+  "plan": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-ladder-preflight-20260908-b/resource-plan.accepted.json",
+    "sha256": "340961b3c8e134fee9548442c439b2c32a11e61dddf9b774e8db5c788bdfc39b"
+  },
+  "planReview": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-prior32-preparation-20260908-a/next32-review.accepted.json",
+    "sha256": "1361d54a6d5aaf3e3de41cf579f0dd0b2a45f018e26e5b2b8c3ce44a9a8725e8"
+  },
+  "knownControlsPassedBeforeTarget": true,
+  "checkedUniqueBindings": 112,
+  "bindings": [
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/current-admission.json",
+      "sha256": "f325501de27237181f86633f2c37a07159a6af79eb38dc5dc6af95a2fc2805d1",
+      "bytes": 805841
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-prior32-final-20260908-a/rung32-profile.json",
+      "sha256": "14d487f42533d74154fc53b153e6a514b75a398013a6ca9db864b6d521f99b37",
+      "bytes": 7502
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/circular-current-execution/current-profile32-review.json",
+      "sha256": "1ff97dc52e8b0848a82623c3d07d4d6008361afa61f818478ec790f674b8363c",
+      "bytes": 1664
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/scripts/eom/run-current-subfield-circular-root-rung.mjs",
+      "sha256": "91218e1e4bd85fc614c5e270086bd62d766266cd02a51c06a047cef192984c81",
+      "bytes": 18157
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/src/prescribed-path-analysis/SubfieldCircularObservationOwner.mjs",
+      "sha256": "04a7abdc62324640ffa5e5764e3b750fc18bcf327087b0bd358d6e63f64d5920",
+      "bytes": 15233
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/scripts/eom/observe-subfield-circular-processes.py",
+      "sha256": "d2bc66a813507d37d3d9ff8312cabc76f179d75bdbd13c7e82c68f7983f074b3",
+      "bytes": 6997
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/scripts/eom/launch-subfield-circular-root-pilot.mjs",
+      "sha256": "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c",
+      "bytes": 65769
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/scripts/eom/run-subfield-circular-root-rung.mjs",
+      "sha256": "ad1ae4be73d69479ebe5d5cdedbc3c385bddb8c15e5ceab64e15ee29fd217de3",
+      "bytes": 38795
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/scripts/eom/dispatch-subfield-circular-root-ladder.mjs",
+      "sha256": "56e12f1cde9a7ae3b1bf0bc8e647d6d3e5889e4ecf69a3b5dffec6ed42e7f286",
+      "bytes": 34039
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/src/prescribed-path-analysis/SubfieldCircularMemoryOwner.mjs",
+      "sha256": "721c75a7fa1e6d62618f48e982432e941cefe77a44a785a7a57f68d5322e6f9b",
+      "bytes": 8795
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/scripts/eom/observe-subfield-circular-memory.py",
+      "sha256": "abe24baaf063ba5fe159a8c475816816ff812c912d8faab67156cc7f318cc220",
+      "bytes": 6980
+    },
+    {
+      "path": "/opt/homebrew/Cellar/node/26.3.0/bin/node",
+      "sha256": "56694c81b093cc8da273fa017cf91765b3653e5f64f16727976ffaa87b2b6b31",
+      "bytes": 68384
+    },
+    {
+      "path": "/opt/homebrew/Cellar/ada-url/3.4.4/lib/libada.3.4.4.dylib",
+      "sha256": "a55588fab581b41c9b918f4a5bab044e946091eb72cbed3bc82a8df00db189a2",
+      "bytes": 613248
+    },
+    {
+      "path": "/opt/homebrew/Cellar/brotli/1.2.0/lib/libbrotlicommon.1.2.0.dylib",
+      "sha256": "3426742c78df5c3b523071df603f07f2bb8dea6bd8e65c366a2c6adf2bf0a3ad",
+      "bytes": 167264
+    },
+    {
+      "path": "/opt/homebrew/Cellar/brotli/1.2.0/lib/libbrotlidec.1.2.0.dylib",
+      "sha256": "d7ac1e69b6c443341fb4302de0169d187489d58d8a641c8eadd6db9ca2cd0cbf",
+      "bytes": 87728
+    },
+    {
+      "path": "/opt/homebrew/Cellar/brotli/1.2.0/lib/libbrotlienc.1.2.0.dylib",
+      "sha256": "32e38a8ab06c8770ea4bfaf11ea324d7bcb6fe5f07eaff9d6260f93984ee6729",
+      "bytes": 653328
+    },
+    {
+      "path": "/opt/homebrew/Cellar/c-ares/1.34.6/lib/libcares.2.19.5.dylib",
+      "sha256": "e5595a0c640a2341e2df5a0fedaa63e7e9afe99b01c9880338064e0746414518",
+      "bytes": 243456
+    },
+    {
+      "path": "/opt/homebrew/Cellar/hdrhistogram_c/0.11.9/lib/libhdr_histogram.6.2.3.dylib",
+      "sha256": "d1f4ba22087781611f0187787217ffef1ef97b96cd76ff2af3fb600a4434bbb6",
+      "bytes": 75600
+    },
+    {
+      "path": "/opt/homebrew/Cellar/icu4c@78/78.3/lib/libicudata.78.3.dylib",
+      "sha256": "e7dafc3fe6613326daa30d1c930aa66219ab5524fe576b0e7b3039451652b6bf",
+      "bytes": 33195120
+    },
+    {
+      "path": "/opt/homebrew/Cellar/icu4c@78/78.3/lib/libicui18n.78.3.dylib",
+      "sha256": "f319e50c965a1a0065d2cc5595d8553ff60b0e78a2e76bc3173774fd112de9ed",
+      "bytes": 3168272
+    },
+    {
+      "path": "/opt/homebrew/Cellar/icu4c@78/78.3/lib/libicuuc.78.3.dylib",
+      "sha256": "177dab8ae0bf0b1357d7ec6404a1e145bcc3d927aa15c3064171d23b2a1fd263",
+      "bytes": 1866592
+    },
+    {
+      "path": "/opt/homebrew/Cellar/libffi/3.5.2/lib/libffi.8.dylib",
+      "sha256": "a2c53a56fc0107f4b98e81e81fcb619db9eaa83329f0d18ee4c05e33a5ecbd54",
+      "bytes": 137520
+    },
+    {
+      "path": "/opt/homebrew/Cellar/libnghttp2/1.69.0/lib/libnghttp2.14.dylib",
+      "sha256": "b56cd6b95765b0c608a6cb50ab44ffb4ab29303d627f0c2d96a028aa11688cc2",
+      "bytes": 201232
+    },
+    {
+      "path": "/opt/homebrew/Cellar/libnghttp3/1.16.0/lib/libnghttp3.9.7.0.dylib",
+      "sha256": "5cd76fedd92e4db6a022bbce9b845fba46e5e406dd80bdfe37f86b21950cd0d7",
+      "bytes": 200688
+    },
+    {
+      "path": "/opt/homebrew/Cellar/libngtcp2/1.23.0/lib/libngtcp2.16.dylib",
+      "sha256": "67f329d57b039c58c9cf3714fcfac79ef56d4a13ada72d21d0e2f7937bd9ec23",
+      "bytes": 366128
+    },
+    {
+      "path": "/opt/homebrew/Cellar/libuv/1.52.1/lib/libuv.1.0.0.dylib",
+      "sha256": "34d4e2cd30b56dca5bda539f4448667360f0994c6b337ffebc5d37d818bc15d5",
+      "bytes": 206320
+    },
+    {
+      "path": "/opt/homebrew/Cellar/llhttp/9.4.1/lib/libllhttp.9.4.1.dylib",
+      "sha256": "e8f9c65d7aff5633ca09ab643684500df8ff9125acc91f080056f97d85a50aa4",
+      "bytes": 95216
+    },
+    {
+      "path": "/opt/homebrew/Cellar/merve/1.2.2_1/lib/libmerve.1.2.2.dylib",
+      "sha256": "a39e3416af9b155ba8ab441f30b2ea58b853d5ae955cb35efd53bd72d299299f",
+      "bytes": 95328
+    },
+    {
+      "path": "/opt/homebrew/Cellar/nbytes/0.1.4/lib/libnbytes.dylib",
+      "sha256": "2ebb8415d537b47420fc46efb6d6271b93befd22b30ad2afba75ab5e2be55fcc",
+      "bytes": 52944
+    },
+    {
+      "path": "/opt/homebrew/Cellar/node/26.3.0/lib/libnode.147.dylib",
+      "sha256": "9f9751defe52e68e8140d622235bb1718824caf289d6fdb3e7bb5d5039f94148",
+      "bytes": 71318928
+    },
+    {
+      "path": "/opt/homebrew/Cellar/openssl@3/3.6.2/lib/libcrypto.3.dylib",
+      "sha256": "ef2239cec921003b54b61968f00489271e2a2805d7d1b4e69d632423f38efe1e",
+      "bytes": 4845712
+    },
+    {
+      "path": "/opt/homebrew/Cellar/openssl@3/3.6.2/lib/libssl.3.dylib",
+      "sha256": "26ecfd43c742914a142c8b414b1f308cefe0531fcc6e38b6d45021649850e758",
+      "bytes": 884560
+    },
+    {
+      "path": "/opt/homebrew/Cellar/simdjson/4.6.4/lib/libsimdjson.33.0.0.dylib",
+      "sha256": "9ac6d74a81c248a5a946fae44bc88ad0705f3a32a495aa1a906fb6a35fe3d258",
+      "bytes": 112704
+    },
+    {
+      "path": "/opt/homebrew/Cellar/simdutf/9.0.0/lib/libsimdutf.34.0.0.dylib",
+      "sha256": "9491fe37cead254d8fd5655699f6832606ae45fc885a42ddaa072560c27dc1fc",
+      "bytes": 238768
+    },
+    {
+      "path": "/opt/homebrew/Cellar/sqlite/3.53.2/lib/libsqlite3.3.53.2.dylib",
+      "sha256": "9e4ab895749ed559870520a40e4c0ead0ecffb27678e5186b30a6076e6de0b35",
+      "bytes": 1270496
+    },
+    {
+      "path": "/opt/homebrew/Cellar/uvwasi/0.0.23/lib/libuvwasi.dylib",
+      "sha256": "c922288c5179279316b32b2c83d5c50d7b87216b442473ada8c99ef4a58ba312",
+      "bytes": 83232
+    },
+    {
+      "path": "/opt/homebrew/Cellar/zstd/1.5.7_1/lib/libzstd.1.5.7.dylib",
+      "sha256": "e2847c4613b386683c234913ae3b7b04299254096caf7616e3b3cd9bb97a39ab",
+      "bytes": 649648
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-ladder-preflight-20260908-b/resource-plan.accepted.json",
+      "sha256": "340961b3c8e134fee9548442c439b2c32a11e61dddf9b774e8db5c788bdfc39b",
+      "bytes": 11820
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-prior32-preparation-20260908-a/next32-review.accepted.json",
+      "sha256": "1361d54a6d5aaf3e3de41cf579f0dd0b2a45f018e26e5b2b8c3ce44a9a8725e8",
+      "bytes": 96296
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-prior32-final-20260908-a/prior32.json",
+      "sha256": "6930989d57738a7cd13bcc546465dcfbe3efa1fe2473694eb8fd59e295c31966",
+      "bytes": 2972
+    },
+    {
+      "path": "/Users/markmorris/vibe/.venv/bin/python",
+      "sha256": "42f792544842512d02eb8a95a6009062591476558f09f07553c138661a0bca8e",
+      "bytes": 52640
+    },
+    {
+      "path": "/bin/ps",
+      "sha256": "3bbba882e30d91fc4ff6e6844ca7c59fef4351b9a3fea35dca55708d6d487d1c",
+      "bytes": 170432
+    },
+    {
+      "path": "/Users/markmorris/vibe/.venv/pyvenv.cfg",
+      "sha256": "88e31dc4e6670178b2ecbeb33ecb70074a2858883621c3f01f748bd9a5fa43f0",
+      "bytes": 384
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Python",
+      "sha256": "0836c5c0b7568e42b39517c8eb6a8244a25389ec46aebaf1d1ea7392a897b1a1",
+      "bytes": 5080224
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python",
+      "sha256": "8fea9a9c79967d080d79ba7957ef19b7940166225a589f825c61b9186e326a4e",
+      "bytes": 51584
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/bin/python3.13",
+      "sha256": "42f792544842512d02eb8a95a6009062591476558f09f07553c138661a0bca8e",
+      "bytes": 52640
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/_collections_abc.py",
+      "sha256": "2cfe340c4cf54077f054cd366a2c7a515e9ee8da7d8b3fa071251f280034756d",
+      "bytes": 32264
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/_sitebuiltins.py",
+      "sha256": "b9388bc1d6d12ed6be12da420ab1feca40f99c0e33ec315d92b1e01cb69b25bc",
+      "bytes": 3128
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/_weakrefset.py",
+      "sha256": "91895a451d06e9f521a1171b31b9b19bc9740f35af00d4fa106338ab7167c9ac",
+      "bytes": 5893
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/abc.py",
+      "sha256": "e558702a95cdce3febd289da021715d2b92bc43995b8a1bc58dfa1c3d8010287",
+      "bytes": 6538
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/codecs.py",
+      "sha256": "514b00fe93120b4face4508351aa9f1246ecc808c4da3e599dfee7430fe459f9",
+      "bytes": 36928
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/collections/__init__.py",
+      "sha256": "987b438cbfdd2f354a92e8a42655239ee5791c6869ab40c5d01cdb4cde229ad6",
+      "bytes": 52500
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py",
+      "sha256": "c1e0d67b2007de11ae93cd36cf6faf38d9ab32656a832d592a49325eec579f96",
+      "bytes": 27801
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/copyreg.py",
+      "sha256": "c8eda41f05c6bf95a4da4726a530409d2485ae060b8d019b3a8034389a15d3e9",
+      "bytes": 7614
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ctypes/__init__.py",
+      "sha256": "f09e342b0b32f979275ca571578c8bae6776e5c4f7ea3eab0907bc59e81f55be",
+      "bytes": 18782
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ctypes/_endian.py",
+      "sha256": "499773a028a41ee18153fedfe0a00a26efb2a650f568b9bc17e2f3a914a23468",
+      "bytes": 2557
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/encodings/__init__.py",
+      "sha256": "78c4744d407690f321565488710b5aaf6486b5afa8d185637aa1e7633ab59cd8",
+      "bytes": 5884
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/encodings/aliases.py",
+      "sha256": "cac92d68c7ea5bc0f05b448b9144e3bdf236d0b7d27ab66112e96d43aad15b3f",
+      "bytes": 15713
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/encodings/utf_8.py",
+      "sha256": "ba0cac060269583523ca9506473a755203037c57d466a11aa89a30a5f6756f3d",
+      "bytes": 1005
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/encodings/utf_8_sig.py",
+      "sha256": "1ef3da8d8aa08149e7f274dc64dbfce2155da812e5258ca8e8f832428d3b5c2d",
+      "bytes": 4133
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/enum.py",
+      "sha256": "5b8ea83cb9876d6699c2ef016a4312e739db090587a4177c9c29781418e6da13",
+      "bytes": 85442
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/functools.py",
+      "sha256": "b723e5cef13d0d2426068f8d594219f6e2d6bbcb944be7463dc7641ce909cebe",
+      "bytes": 39617
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/genericpath.py",
+      "sha256": "515ac740dc0c68fdc8003594b29ab69fc2f20c62eba76f12b67caadfbbfe4b8c",
+      "bytes": 5976
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/hashlib.py",
+      "sha256": "6dbdebf270868b391080e21dc9687eddfaf321c965ad979f68d3f5c423c613ab",
+      "bytes": 9349
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/_bootstrap_external.py",
+      "sha256": "bf2a271ee85fc78a28c08e919894785c04b7da3f6a6dca9534470144f6b34a4e",
+      "bytes": 73147
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/io.py",
+      "sha256": "7cec3cb8ac004058dd0a5af246e6d950fb59c7ddd0058fda48bcb3fcb98d8822",
+      "bytes": 3582
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/__init__.py",
+      "sha256": "d5d41e2c29049515d295d81a6d40b4890fbec8d8482cfb401630f8ef2f77e4d5",
+      "bytes": 14020
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/decoder.py",
+      "sha256": "6d95679fccf178f2af9e9eead42f8efb084c58735951dc47fce89aec11d44955",
+      "bytes": 12872
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/encoder.py",
+      "sha256": "3c9263358ba86870d71c52d64a64889ca968c54083ba690dd79c4c0e03f13e8d",
+      "bytes": 16074
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/json/scanner.py",
+      "sha256": "572958017eae8842eeddd0e3d18d3c56cc0a197348224915e1d87ce937841764",
+      "bytes": 2434
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/keyword.py",
+      "sha256": "18c2be738c04ad20ad375f6a71db34b3823c7f40b0340f5294d0e89f3c9b093b",
+      "bytes": 1073
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_blake2.cpython-313-darwin.so",
+      "sha256": "4cb0977dfb664d6186ff4e248587f800dfbcf6e47dd0a8253f666c1da55f7be1",
+      "bytes": 89488
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_ctypes.cpython-313-darwin.so",
+      "sha256": "80af96d164f6d0d311038ed170cf35fc70d0f302adb33affb6caab93000407e0",
+      "bytes": 161664
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_hashlib.cpython-313-darwin.so",
+      "sha256": "00df69dac58fd9fd0dd7db5ec30cb98d9ae3c04a3118988a262950c11f1562e0",
+      "bytes": 98192
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_json.cpython-313-darwin.so",
+      "sha256": "49debc16e31dd940437f3fb31cbd61e214a29daf17793bef7451c68b60720ee6",
+      "bytes": 90800
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_posixsubprocess.cpython-313-darwin.so",
+      "sha256": "6c5bd4da9e3f4a54a8b50395d0a622d6a93b2d4306b4fbedd6d0ab13f37af8ab",
+      "bytes": 72720
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/_struct.cpython-313-darwin.so",
+      "sha256": "a2d9bc1988e03aa41a11b6d80b1c4ee53d6b74485ecf98fd976f8bc3203046eb",
+      "bytes": 94944
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/fcntl.cpython-313-darwin.so",
+      "sha256": "432fa1b943e2878fffe9027046b695dee6f144d6f8597aef2b7f4a93aa831a6c",
+      "bytes": 70608
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/math.cpython-313-darwin.so",
+      "sha256": "cb4805a471f0addef98bc21ca065a5812e78b0b8be06b5de365253c2ee5e3c7c",
+      "bytes": 111792
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/resource.cpython-313-darwin.so",
+      "sha256": "1445934e50fbf19af57ce9b3c81a3de7567a359c21edcac80a0a20da952705cc",
+      "bytes": 70896
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/lib-dynload/select.cpython-313-darwin.so",
+      "sha256": "4413dd1d10291c4c07085321cd92f60cd44746ba602270bf2cce3811eb78db3b",
+      "bytes": 92912
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/linecache.py",
+      "sha256": "3a82129c1fb31e6cbb531553a8defb39557564623e2df590576cd53cdf4dade6",
+      "bytes": 6418
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/operator.py",
+      "sha256": "c048f8a6852832d5fa750d6ae772d7658c52c3511d261cb902f7edfd262e9127",
+      "bytes": 10980
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/os.py",
+      "sha256": "cf83304364b417fd2bd89a99247d4122a70f0696a7a0e932df3856692cf43623",
+      "bytes": 41554
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/posixpath.py",
+      "sha256": "8ee3f4fdb65631dea0e07a61f9904d557f122ce98614ad0dbd3f014618eb9aef",
+      "bytes": 17950
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/__init__.py",
+      "sha256": "dbe158a677c6aaacf717ea2abc23c56233453d38024aef75b7c3d93612cabb93",
+      "bytes": 17876
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/_casefix.py",
+      "sha256": "1b12d9136f23db6c3f6f26053fefc15ca964b886838c7b9c1fabf8d2efc1e5c8",
+      "bytes": 5444
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/_compiler.py",
+      "sha256": "83537237a82294d084d40abaa42e86149be33eef338a5ef028a7fd2fad0dafd5",
+      "bytes": 26290
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/_constants.py",
+      "sha256": "1dbe236d34fa934e3e7172ba9d6b0dcfab338ecf7717f370f1fd4a9d24b2ecdb",
+      "bytes": 5939
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/re/_parser.py",
+      "sha256": "c7a6c80b3b448f50684c320265a7b5efb5d0b1daf0a36fb5dee8dd83628359d7",
+      "bytes": 41237
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/reprlib.py",
+      "sha256": "af33116cdd0d8baf2d5d41d9e6eafa9f5a0b7fb5af7e7343218877a04965f2f3",
+      "bytes": 7192
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/selectors.py",
+      "sha256": "4b8a60cfbb619d080f87dffe1578372e56e8c0ac826f043224a154cf7b77606d",
+      "bytes": 19457
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/signal.py",
+      "sha256": "0363c964c90ac0b3e515de5749205e6e6454051a1211058375d84d91eab6071a",
+      "bytes": 2495
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/site.py",
+      "sha256": "90b78b1557dc9bf04a7ccaf1630faced1c08d59a0623869dd21dd4e6dab183ef",
+      "bytes": 25386
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/sitecustomize.py",
+      "sha256": "a011f7aec077507ca4674e342a6cc9e6dac3897dc375afaf0037d1b8233cd299",
+      "bytes": 3426
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/stat.py",
+      "sha256": "f76eaa7f02d6ef4a8c3c3e82cae34ed72870b643b8c94937a34c697d1e9d6ca2",
+      "bytes": 6147
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/struct.py",
+      "sha256": "9c231f9497caf513a22dee8f790b07f969b0e45854a0bdd6dd84b492e08c2856",
+      "bytes": 257
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/subprocess.py",
+      "sha256": "12b90fb770ceff2574d7fdcb6ef5fbe9a27ccc857a3c51cd87c96696990156f5",
+      "bytes": 89584
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/threading.py",
+      "sha256": "dbc5f71103224bac1b650da8c3c306a44a1963315bcdbd9bee8e3421f42fff00",
+      "bytes": 55167
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/types.py",
+      "sha256": "74516af714d270b59d67e5ae5e60a02cb4ff32ecdd373e165ad1d780fbfd2c5d",
+      "bytes": 11207
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/warnings.py",
+      "sha256": "5cc9b8e41a54e5bad7b09b11116d7d9f4dc3f442ecd80305ead48f9c51b90846",
+      "bytes": 26938
+    },
+    {
+      "path": "/opt/homebrew/Cellar/python@3.13/3.13.2/Frameworks/Python.framework/Versions/3.13/lib/python3.13/zipimport.py",
+      "sha256": "ec9f157ff6d4ebd26a6fd1715247578068b5af2799d07ecf06f2b531a5605e13",
+      "bytes": 32890
+    },
+    {
+      "path": "/usr/bin/memory_pressure",
+      "sha256": "ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da",
+      "bytes": 134960
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/scripts/eom/run-subfield-circular-root-pilot.mjs",
+      "sha256": "18479b39de068129423ecdffd103feb9c06a3f870648d55cbd7b0a3264926774",
+      "bytes": 38025
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/src/prescribed-path-analysis/SubfieldCircularPhaseProcess.mjs",
+      "sha256": "15a844adc1731a6ea47f0636f86d9e0d7196d6b15dd963006a278c129cc328f1",
+      "bytes": 25574
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/src/prescribed-path-analysis/SubfieldCircularPhaseLedgerWorker.mjs",
+      "sha256": "00cd8290a9929e0e099c91aeff03c52cf06ec5d9cad329ffad00092c61815e02",
+      "bytes": 5808
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/scripts/eom/prepare-f5-enclosed-root.mjs",
+      "sha256": "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9",
+      "bytes": 16428
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.mjs",
+      "sha256": "72935e3439b27cc27f2efcc1db5393cf0c8ce1eb0d2e9dc777755d4263d685b1",
+      "bytes": 53694
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/scripts/eom/reduce-subfield-circular-root-ledger.mjs",
+      "sha256": "2b3eb236b561c1901e6dfc58603f97f1104fc045e79d2d7a10d8879da02fd60a",
+      "bytes": 6307
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/scripts/eom/verify-subfield-circular-history.mjs",
+      "sha256": "b2fc83aa828ac9f175d7c3ae7bf43b66fcda54a702de6f2f80812852aebd5f38",
+      "bytes": 30692
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/7ccedb27-5e94-4d75-b3d2-104f191b403c.stdout.log",
+      "sha256": "c6f8126dce38f5a0426953f00b9b078fbb41c3c403d2772dbd88ea2f2582517a",
+      "bytes": 406
+    },
+    {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/7ccedb27-5e94-4d75-b3d2-104f191b403c.stderr.log",
+      "sha256": "beddf3ae0e8a08aae82b0a28c755ea6cba3f4a17ed9a09e9a4b6a55007b2bcc3",
+      "bytes": 4375
+    }
+  ],
+  "dispatcherRecomputedAdmission": {
+    "accepted": true,
+    "h3EvidenceEligible": false,
+    "authority": "external-complete-rung-ledger-and-process-admission-only",
+    "candidateId": "coincident-midpoint-common-frequency",
+    "rung": 32,
+    "plan": {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-ladder-preflight-20260908-b/resource-plan.accepted.json",
+      "sha256": "340961b3c8e134fee9548442c439b2c32a11e61dddf9b774e8db5c788bdfc39b"
+    },
+    "rungProcess": {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/rung-process.json",
+      "sha256": "c8a2fc643f66bc0d794ebdb38c9973a9b548ab284aa0b55d45975a4d771daf73",
+      "bytes": 1987672
+    },
+    "phaseReceipts": [
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-0/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-0/phase-ledger.json",
+        "sha256": "4ab514f2654291450abe8145de7e8050820264d0278a8480b44c409f6c75b017",
+        "bytes": 27161
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-1/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-1/phase-ledger.json",
+        "sha256": "8b6719b00ecc116482d39b143d589dc03d20eaf7a67aff90dbb983ed92aeea25",
+        "bytes": 27332
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-2/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-2/phase-ledger.json",
+        "sha256": "cc8a2d64ba32d6d0708710e1f2fdb9c3453c582e5f807ee32c915e6668f60d08",
+        "bytes": 27299
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-3/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-3/phase-ledger.json",
+        "sha256": "1e65a9431a9d8bba659e502c95f895c4bbd876968de620a00d98167c4370cda4",
+        "bytes": 27347
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-4/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-4/phase-ledger.json",
+        "sha256": "2195458401e6e35134540f61d968317bf570bd9841343a615e3025856c5833d9",
+        "bytes": 27246
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-5/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-5/phase-ledger.json",
+        "sha256": "d745e7018d7bf6ab782419cde14d6cd59b0cd96f68bef090a09475826b4c6af2",
+        "bytes": 27345
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-6/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-6/phase-ledger.json",
+        "sha256": "e5a6f7f52f25a7935d9e3d8e82fe251585ac667cc24cbffccd5b9aa2c9f5576d",
+        "bytes": 27299
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-7/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-7/phase-ledger.json",
+        "sha256": "6e0bb7743d6dc5de3e6aef0efa23d9815d57d0b14c1a14a89db3b4371fda950f",
+        "bytes": 27332
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-8/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-8/phase-ledger.json",
+        "sha256": "0ffd5fbcd55b70b3e7dbf835645aea4f6e0ff3c4b6bcd2effec3a151c90425e1",
+        "bytes": 27148
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-9/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-9/phase-ledger.json",
+        "sha256": "8533de7b64288cdec37e98e11c159e2bc34ac7cdf578bc9f674a21b8441c44dd",
+        "bytes": 27330
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-10/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-10/phase-ledger.json",
+        "sha256": "afe2d9cbded482193d865718f00f7e1a97a2abfec29427b5c80f632303d6538f",
+        "bytes": 27280
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-11/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-11/phase-ledger.json",
+        "sha256": "2b95b2ff0912239f7ffb126b6da6fc14204f1dc0c3c13b7e8d1af7c885cfa768",
+        "bytes": 27345
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-12/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-12/phase-ledger.json",
+        "sha256": "ca45a312ffe7c0b88765ff79a147ede7fa00d11cd383738fe1abee49a1e35f49",
+        "bytes": 27252
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-13/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-13/phase-ledger.json",
+        "sha256": "12054bee8a249ffedd5ca4a2bca2e5be175dfa6a46290d115af9d45bc7f4ea23",
+        "bytes": 27350
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-14/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-14/phase-ledger.json",
+        "sha256": "9481992ef020007dfd6d6c02f4d1d7fca7ee0cb483c6b1c47c7ec274dc2b2ec1",
+        "bytes": 27313
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-15/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-15/phase-ledger.json",
+        "sha256": "e60828223352771e69a780846de4210e023e857f5c7d3cecda6fec78a72ef168",
+        "bytes": 27327
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-16/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-16/phase-ledger.json",
+        "sha256": "2bb4f8b3795de9cc758dad4921fdde1304fb51d3424b6d51209d6b30e6483a23",
+        "bytes": 27169
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-17/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-17/phase-ledger.json",
+        "sha256": "b9504211b778e3eb3ab88dccab2dd74eee271a30350801b145ec1e9859ae8c5a",
+        "bytes": 27333
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-18/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-18/phase-ledger.json",
+        "sha256": "6cc8a432383b4925a05114dbbb6000a3aaef242638d162dbbac701d2297827fc",
+        "bytes": 27310
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-19/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-19/phase-ledger.json",
+        "sha256": "592da996169e7bcebea7773f77abb32a0879ed07d04cc7ad4bdcede5b2897655",
+        "bytes": 27357
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-20/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-20/phase-ledger.json",
+        "sha256": "205f68eded2f35629510901fab9c632dfbe624509e99d8b25a4b2a770e09e0fe",
+        "bytes": 27238
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-21/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-21/phase-ledger.json",
+        "sha256": "abe071f306a6aff551ea6d551930034f1e5b0d2d6103c7586c18f27aff9a6b3c",
+        "bytes": 27340
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-22/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-22/phase-ledger.json",
+        "sha256": "cf933a32e6dacfd2ab64c06393a0422973a24783c0404a8d5f3ce1d3fb5e0a52",
+        "bytes": 27291
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-23/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-23/phase-ledger.json",
+        "sha256": "193c9f78a4ee1b668514e284c04c9fc3841949a3469137ebeae6f0c01e3d8afb",
+        "bytes": 27337
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-24/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-24/phase-ledger.json",
+        "sha256": "c1bb57d9d236891a9ffc9856322ea9b2d0658748e3fc14d00e53088d8b95f841",
+        "bytes": 27157
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-25/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-25/phase-ledger.json",
+        "sha256": "cfe95d6c454014916a9288fe0f4da6905ae2a503396541778abd849fd5a31ec2",
+        "bytes": 27336
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-26/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-26/phase-ledger.json",
+        "sha256": "19ec3f7ae143b8e908bc44f97d3d51574fff2fee87ccd3ac8593c180388b7b8e",
+        "bytes": 27294
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-27/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-27/phase-ledger.json",
+        "sha256": "186677046dd0fd1f53c83dbb12410c747711e5125059d27fce05e02bd4c2e3c4",
+        "bytes": 27345
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-28/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-28/phase-ledger.json",
+        "sha256": "be9248c22aeb0e5f36ae69c82d6367c095099c7c4bacf4b05625b789728f85c7",
+        "bytes": 27261
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-29/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-29/phase-ledger.json",
+        "sha256": "658f4fcfcd156eb0c22f9e425c36842b76adddcec97884e60d25dda2b36cd308",
+        "bytes": 27350
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-30/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-30/phase-ledger.json",
+        "sha256": "bab53efb6f5c529a6b65fd416864022a0235949cbfeb7e192f9d1922d2fe6223",
+        "bytes": 27305
+      },
+      {
+        "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-31/phase-ledger.json",
+        "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-31/phase-ledger.json",
+        "sha256": "77365cba7605e834c692cbd218a2519061d0e3a2da2e07134221c01cfaf5a4b9",
+        "bytes": 27331
+      }
+    ],
+    "summary": {
+      "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/rung-ledger.json",
+      "realPath": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/rung-ledger.json",
+      "sha256": "0c0ddf7a56f931c72a59f027972213122e26790591b476ec9dde4f4c8cb5560f",
+      "bytes": 12301
+    },
+    "resources": {
+      "complete": true,
+      "measuredCPUSeconds": 296.64974600000016,
+      "maximumIndividualProcessResidentBytes": 365838336,
+      "rssScope": "individual-process-high-water-not-aggregate; gate/dispatcher-overhead-accounted-by-outer",
+      "outputBytes": 605538051,
+      "namedOutputCount": 328,
+      "namedOutputs": [
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/build-after.json",
+          "sha256": "37537cc83676bdf5fb8e76c5ca9d9afdadbc3fbe0eccd8551e80a8bb7d5b64df",
+          "bytes": 736285
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/build-before.json",
+          "sha256": "37537cc83676bdf5fb8e76c5ca9d9afdadbc3fbe0eccd8551e80a8bb7d5b64df",
+          "bytes": 736285
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/candidate-rung.log",
+          "sha256": "b20ca746a0b2b0c44803698c02341b6a965839e4eee8f21029172920ebfdaae4",
+          "bytes": 1092
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-0/conformance.log",
+          "sha256": "7c9b03080cf352b55575d589444101059ea85477ea9641cfd80349960062c8ee",
+          "bytes": 1171
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-0/history-conformance.json",
+          "sha256": "c5bb31eaf3fe08beae418e022b83a6d1369b010e04d13338c7f4fec9a585fae7",
+          "bytes": 8886
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-0/history-manifest.json",
+          "sha256": "bdadba4162c543e1b556df4575ee631d0ef3c9607fdcc4b93a793d564e454677",
+          "bytes": 5483471
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-0/manifest.log",
+          "sha256": "3d9633633c6bbc921abdd2d45791a4e25ae460b40b4881cb74ccbfd26b7d2e10",
+          "bytes": 4426
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-0/phase-ledger.json",
+          "sha256": "4ab514f2654291450abe8145de7e8050820264d0278a8480b44c409f6c75b017",
+          "bytes": 27161
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-0/phase-ledger.log",
+          "sha256": "be5aae24db89dee7288ce2d8f83b30e164e4235560159821e6fd2ef15ceb3892",
+          "bytes": 1090
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-0/phase-process.json",
+          "sha256": "b598444fcb6b01903156381fda02b8776b33502164ab34b61e3b8ca4b11d7375",
+          "bytes": 50752
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-0/root-stderr.log",
+          "sha256": "be98a685f900dc5ee98d439f90ec05ee1ec5993989edaf09488cdf400a0be329",
+          "bytes": 59224
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-0/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-0/rows.ndjson",
+          "sha256": "1b93552cbd5940c6cbb398e7ad23196fc04d3fc748cf13bf752da438be0dd345",
+          "bytes": 13037866
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-1/conformance.log",
+          "sha256": "59c902eb9a41e57c22ff5ffbe380686dd9bfed6264fb229ef78e8209208fcdd8",
+          "bytes": 1171
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-1/history-conformance.json",
+          "sha256": "8d224e5c3fb837cf471451c72482bc897203138cca59d3c32571ba17d49e1c3b",
+          "bytes": 8928
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-1/history-manifest.json",
+          "sha256": "2cd89e5da1d49a4d1eed4867d6e8ef595d5d281cd3225e0e59b59e7a49cb1e1a",
+          "bytes": 5485927
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-1/manifest.log",
+          "sha256": "5141ca5b61bca275ae9e73305afa982f13f8305b5d8cfe5296b97249d801c1ab",
+          "bytes": 4462
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-1/phase-ledger.json",
+          "sha256": "8b6719b00ecc116482d39b143d589dc03d20eaf7a67aff90dbb983ed92aeea25",
+          "bytes": 27332
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-1/phase-ledger.log",
+          "sha256": "8b2f4b2a0fc7fa695189dd8bd5ea04e3ec6ed5613f8b29b1e5b3f42f8fd4289f",
+          "bytes": 1090
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-1/phase-process.json",
+          "sha256": "1bae3823dd1e82a16588f1c8625a8e0040b62ad3debf58f1b87b88ef1f9012fd",
+          "bytes": 51858
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-1/root-stderr.log",
+          "sha256": "b0593ffe09b0c6b808b3adf77495ef08f52362a97910f3b8a5ba635ab537d763",
+          "bytes": 60046
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-1/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-1/rows.ndjson",
+          "sha256": "d4eb33621aed823820bfa42714d2c250afe4be453484b6568554b03777a7ff0b",
+          "bytes": 13056030
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-10/conformance.log",
+          "sha256": "e0ccbcce6cd3c96a8df6eb2a19104059a1a31e76fe1cc1ef2316d25ea250a71b",
+          "bytes": 1172
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-10/history-conformance.json",
+          "sha256": "cc7c66bdc28f8194ba0b0f8ac9aaa9bc98ca8373b7ad3689deaec49a680eae68",
+          "bytes": 8911
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-10/history-manifest.json",
+          "sha256": "fbe81cdbb415546ec723ab31b0e860d48ceb55d1ce2b3816349c3f6b70d6f215",
+          "bytes": 5483579
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-10/manifest.log",
+          "sha256": "97201044155674e4faeed26d1e87514f3257781df8deee876d0ee9241ff69580",
+          "bytes": 4448
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-10/phase-ledger.json",
+          "sha256": "afe2d9cbded482193d865718f00f7e1a97a2abfec29427b5c80f632303d6538f",
+          "bytes": 27280
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-10/phase-ledger.log",
+          "sha256": "057050d964472c29a44ac946ccdcba9f84d1aa0fce195c80faca7b8bcd414136",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-10/phase-process.json",
+          "sha256": "5cc4342862b0f037fe83c69ec034e5c12c359b08a114f2ca61088a21b60aafc8",
+          "bytes": 51756
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-10/root-stderr.log",
+          "sha256": "3622b56a63401bfaca5fe9f207f12a80ca4020047337346fdc798238110211c6",
+          "bytes": 59876
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-10/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-10/rows.ndjson",
+          "sha256": "302eef2dd84d37d461da01251f6c9db10412382b831d8abb3d5a5773038e9e7f",
+          "bytes": 13149394
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-11/conformance.log",
+          "sha256": "5fce5540b5d796b3cb975dde73395ffce59a284846967fe4ebf0c5977eb10215",
+          "bytes": 1171
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-11/history-conformance.json",
+          "sha256": "dd63e74f177867782a7571f83dbd03a6656d2a8ecbb313b314e53030ffc334aa",
+          "bytes": 8930
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-11/history-manifest.json",
+          "sha256": "5883ae2f28a34c0706fca00c798e7d882a12fd977deb0069b6ba421fb043b000",
+          "bytes": 5485895
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-11/manifest.log",
+          "sha256": "ac2b88f61e8c270ccb5746098d26438e4772a7065be890a872f8606c037fccb7",
+          "bytes": 4466
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-11/phase-ledger.json",
+          "sha256": "2b95b2ff0912239f7ffb126b6da6fc14204f1dc0c3c13b7e8d1af7c885cfa768",
+          "bytes": 27345
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-11/phase-ledger.log",
+          "sha256": "7ad9432e40b6416e976ecf7f26edffd6757107c9bafb48b7a3828a8107f01da7",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-11/phase-process.json",
+          "sha256": "a06158b7528f05103e0947437981d2282d77272d733b5a08399c785db4316a9e",
+          "bytes": 52019
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-11/root-stderr.log",
+          "sha256": "4ea48077cb91fe029a1cc69d5a0ead13f53332bae2475bc2caf13cd9d00e9612",
+          "bytes": 60082
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-11/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-11/rows.ndjson",
+          "sha256": "2430c336f21cef5cb95a2c3be3669cae5e00c5d96443a27f5534d5a4bbfffc22",
+          "bytes": 13165475
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-12/conformance.log",
+          "sha256": "5f5b5ec1f94fc3587ac3c7309ec5063f9c808adab02f213adc97e996cc7b29d1",
+          "bytes": 1172
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-12/history-conformance.json",
+          "sha256": "352d217ce1c6644cc69a630d9ac104663c2db42cf8de1cd97e192d4e874dce17",
+          "bytes": 8900
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-12/history-manifest.json",
+          "sha256": "d92b7b3bf99795bc981f41060ea845bd14952bcfcd5d428d35d5243c5bdf4c0c",
+          "bytes": 5483543
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-12/manifest.log",
+          "sha256": "331b577e52607d4a1d2649ff2c15fe827200b1579b96b5918cd9677856e10a6f",
+          "bytes": 4459
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-12/phase-ledger.json",
+          "sha256": "ca45a312ffe7c0b88765ff79a147ede7fa00d11cd383738fe1abee49a1e35f49",
+          "bytes": 27252
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-12/phase-ledger.log",
+          "sha256": "90ba62bce54931f29768744cf03fc494ffa0550d81a6013e9de20def49e7d005",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-12/phase-process.json",
+          "sha256": "8140e21ddf15cee2e7a3b08bb23c61148896aadeb43f1cbe3a759221105ddfe0",
+          "bytes": 51481
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-12/root-stderr.log",
+          "sha256": "4a41a63b7a50c733274477db61ab8b0dae85252edeae7d0c78404219768f45ab",
+          "bytes": 59661
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-12/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-12/rows.ndjson",
+          "sha256": "54d6d97e86c8f3f753f6aa85add107efd432c868dfe2cafe3703a59c77bb18f0",
+          "bytes": 13172148
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-13/conformance.log",
+          "sha256": "9db42c7d2581b5560869b23df6f07f39ba6dd5aa28d568e6087832649ee35d27",
+          "bytes": 1172
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-13/history-conformance.json",
+          "sha256": "5706c1671e6f0f5922a1ed53171efd4c8dabad7eab179b7fdb79d5821c3a9b4e",
+          "bytes": 8937
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-13/history-manifest.json",
+          "sha256": "8e457b654b94a84c1ee7f3fa15aba11cf18c52db2c708a6ad841272f247df06a",
+          "bytes": 5485863
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-13/manifest.log",
+          "sha256": "2ea4c5befbe1cbe70ea82eb9282c1bbdda8a3c30bae0dcb019c1730889bdf4e3",
+          "bytes": 4465
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-13/phase-ledger.json",
+          "sha256": "12054bee8a249ffedd5ca4a2bca2e5be175dfa6a46290d115af9d45bc7f4ea23",
+          "bytes": 27350
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-13/phase-ledger.log",
+          "sha256": "6e49622fe3af21c6caf321fa0eb1a3e9c48ce0efcb91a2b41914f9728a99fa46",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-13/phase-process.json",
+          "sha256": "b3fcd72e151d18d7e5f1eb583143d7640b9deb973773a65b8cc1cb64956685f3",
+          "bytes": 52023
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-13/root-stderr.log",
+          "sha256": "ccf8aebe888d98d608af5145c6fde9c72df32ca6c2f100af79269555cebe61d2",
+          "bytes": 60029
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-13/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-13/rows.ndjson",
+          "sha256": "30fe3264d30c6ec11ee11cb1e0e5f46db217ee55328eb9174ac6a020354d9285",
+          "bytes": 13187872
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-14/conformance.log",
+          "sha256": "1653fed4990e26f19b2daab4a61cce51903adefb318b091774804c7a036d79b2",
+          "bytes": 1172
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-14/history-conformance.json",
+          "sha256": "d50118aa4a7f9b11374742fed14cd47ed43f9277102bf27db29469dc85ec5a7f",
+          "bytes": 8910
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-14/history-manifest.json",
+          "sha256": "3746187d765777a5e4a3635e855333484ce3e1663f8b1c0f47a4ce0f5f303f9d",
+          "bytes": 5483435
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-14/manifest.log",
+          "sha256": "a8872c0b089ca0ea9394d023eab2047a24efee936d66bfd6208b41343ffab625",
+          "bytes": 4455
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-14/phase-ledger.json",
+          "sha256": "9481992ef020007dfd6d6c02f4d1d7fca7ee0cb483c6b1c47c7ec274dc2b2ec1",
+          "bytes": 27313
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-14/phase-ledger.log",
+          "sha256": "50ac27660ff3acdbfb85bd3ea9f26be06b8de3e9823c54b6c702634e7e6eb260",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-14/phase-process.json",
+          "sha256": "cb9b2a8e808404cff3cdb29515c8fe0860edc87cb7d96468adbca5c5a333c625",
+          "bytes": 51747
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-14/root-stderr.log",
+          "sha256": "79331b8cb49a30d5f2c7483c7f4f98008ebd89560ecf75755dce6fb7f6c6e3f7",
+          "bytes": 59871
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-14/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-14/rows.ndjson",
+          "sha256": "0a436b12fdc9f1c9bd5f620db21af887a1ef0ca4e514e9fc61ada6be9d327c12",
+          "bytes": 13194046
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-15/conformance.log",
+          "sha256": "a5113c431e7dac0298e8a056325a498492ccff460724c5bb906c7427f617b8cb",
+          "bytes": 1172
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-15/history-conformance.json",
+          "sha256": "a89b878dcd07c0d17f63adaef3c697c1e63ede70ae76f513d2e8ae99bcfe8355",
+          "bytes": 8930
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-15/history-manifest.json",
+          "sha256": "c668e9717a0fdf0d06bb168a6311fcde2c57201dc2014a615d6a0e607da32704",
+          "bytes": 5485983
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-15/manifest.log",
+          "sha256": "9c8eebaaae81302ec1adb61740bfed446231ad5c5b13546ef7f358ac755e2f44",
+          "bytes": 4456
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-15/phase-ledger.json",
+          "sha256": "e60828223352771e69a780846de4210e023e857f5c7d3cecda6fec78a72ef168",
+          "bytes": 27327
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-15/phase-ledger.log",
+          "sha256": "779205e729464f309dad4bd7bff3abbc3664681587af15faad1807f42cb176c6",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-15/phase-process.json",
+          "sha256": "a144df1fe34871d6bc399b9f03c635ca15dc2b96e9f605d9d2e1cb0b545bfd34",
+          "bytes": 51992
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-15/root-stderr.log",
+          "sha256": "ba7563f1a06036d5371046c9d22806cd5ac7fbbb176d2a9ebe60f651251cd435",
+          "bytes": 60083
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-15/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-15/rows.ndjson",
+          "sha256": "4684e52455561fdcd9a5204914818f49dd9299764148680f362ae56bd12927d7",
+          "bytes": 13209183
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-16/conformance.log",
+          "sha256": "80e3edb69843bf8b1b563a99147e56fad4ae121c69d44d1bac74b4a6983e296b",
+          "bytes": 1172
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-16/history-conformance.json",
+          "sha256": "2c22bcecd50f2c5ba534ac0873037e7ebf739fd682b187206eb80711c33cd71f",
+          "bytes": 8881
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-16/history-manifest.json",
+          "sha256": "d998388d8550580dc87aade1af08d8314c102ba26826aa28f6e48105ddc1a0e4",
+          "bytes": 5483277
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-16/manifest.log",
+          "sha256": "566c29019d7ce5e78a85924ef9acd3b7197ae63b586ee0e20107825a158cd6d3",
+          "bytes": 4456
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-16/phase-ledger.json",
+          "sha256": "2bb4f8b3795de9cc758dad4921fdde1304fb51d3424b6d51209d6b30e6483a23",
+          "bytes": 27169
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-16/phase-ledger.log",
+          "sha256": "b548d54e177171092da2f289f573a7f7c1d2b634451d88da355f75f3ad3f4637",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-16/phase-process.json",
+          "sha256": "8b036647e506cca83b6def5582ebd30a7377864f5be14fccb83a9737df82333a",
+          "bytes": 50973
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-16/root-stderr.log",
+          "sha256": "9f43786be70e70b421e6a4671dd8d4040a5868ad083b302ac58d3df22a21d1fe",
+          "bytes": 59235
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-16/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-16/rows.ndjson",
+          "sha256": "9d52dc57a01a3b1d31fd0809b15bcf840b362650c5c18c59ddec6803c8c6d085",
+          "bytes": 13214658
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-17/conformance.log",
+          "sha256": "6449e56d02750da5f4bcd8bfb7b0604ff3061ab916fd24cfec557df73846ac13",
+          "bytes": 1172
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-17/history-conformance.json",
+          "sha256": "a431496b989f031d27cd9c958f0ba4b30609888399b2c9fc811bf7c919c87c42",
+          "bytes": 8924
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-17/history-manifest.json",
+          "sha256": "2673c417e174f5b9fd929c80403f8b35d1bf52c2390b8f85b623f53e55ece77d",
+          "bytes": 5486031
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-17/manifest.log",
+          "sha256": "74b0e71dd4997ee8fb20317e9fef4442b2c6d4c3236880e41feac01279fb20ba",
+          "bytes": 4467
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-17/phase-ledger.json",
+          "sha256": "b9504211b778e3eb3ab88dccab2dd74eee271a30350801b145ec1e9859ae8c5a",
+          "bytes": 27333
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-17/phase-ledger.log",
+          "sha256": "5df329310132726bccb4aefe986f7da97f57e9d47db66ee795853e0b8bf6ee14",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-17/phase-process.json",
+          "sha256": "62a1e34c6780b310a3bfe45d0a62f8e53917e671b19a04740d9c164a8f80fd40",
+          "bytes": 52029
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-17/root-stderr.log",
+          "sha256": "441e190fbfdf77a3475f31cef2592abdb3b4a6ae8c2900c9f09ff1eb14439537",
+          "bytes": 60106
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-17/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-17/rows.ndjson",
+          "sha256": "77ff10b849ed2571c560437e361a2d577cdaf14945a079ff81eb0d20007f7211",
+          "bytes": 13220074
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-18/conformance.log",
+          "sha256": "a7922bbfc47fa57e689dcabfbab4f84700f1890cc05ff72eb10cd2a065176632",
+          "bytes": 1172
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-18/history-conformance.json",
+          "sha256": "8be258f5a21a82108d86ec6af54f643eda9292624a98b0c2c817cbca67c27e0e",
+          "bytes": 8918
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-18/history-manifest.json",
+          "sha256": "7a00dcb9e64ef10fff72e1a3ba12fb0d5120050301bce7a1adfaa0cc77021156",
+          "bytes": 5483331
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-18/manifest.log",
+          "sha256": "59f07512bb805c65f059462f1f7375fa438a7659b333bbcf88704c5a8f065348",
+          "bytes": 4444
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-18/phase-ledger.json",
+          "sha256": "6cc8a432383b4925a05114dbbb6000a3aaef242638d162dbbac701d2297827fc",
+          "bytes": 27310
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-18/phase-ledger.log",
+          "sha256": "70ba78953be3fb40e4e97144b912e222e458d97211871fe812100254fdee330b",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-18/phase-process.json",
+          "sha256": "28727496b1554be07475431703ae7cb501728f8d256b6ce8604785d0924f5594",
+          "bytes": 51754
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-18/root-stderr.log",
+          "sha256": "fc02af71c1bf62d6a60d8978cc099d206040fa2b1c8b7704899a7875169cdd4f",
+          "bytes": 59891
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-18/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-18/rows.ndjson",
+          "sha256": "cf2948cd183ddd334f7e6d00b7566e384b30ea1793be4bd2e2015edc767b3ad2",
+          "bytes": 13216189
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-19/conformance.log",
+          "sha256": "301a8c566d588f1e1261d8da9d896dc3272fefdb49c64e5b48cc5a031c76eab8",
+          "bytes": 1172
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-19/history-conformance.json",
+          "sha256": "9781230b61654e414eabae3ae76e0c7cd8de123706724637f72398681b75fdd2",
+          "bytes": 8932
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-19/history-manifest.json",
+          "sha256": "1d70ba2c09e3010284142dc379377b8db2199c45dd50aa2828901e4d3bb47470",
+          "bytes": 5485921
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-19/manifest.log",
+          "sha256": "5538bb59799eb080d1e6f1281f724d8d6d1aa02e4e5e0f480ca7004b593de0c9",
+          "bytes": 4467
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-19/phase-ledger.json",
+          "sha256": "592da996169e7bcebea7773f77abb32a0879ed07d04cc7ad4bdcede5b2897655",
+          "bytes": 27357
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-19/phase-ledger.log",
+          "sha256": "ea155f4df4af9a97fe786851f484434cd89e6068aef6ee686167bd0fa2f0c67c",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-19/phase-process.json",
+          "sha256": "155a55a11527a0d6217446df2acf9801cc423da3b7b16a5425de7db88f19430c",
+          "bytes": 51991
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-19/root-stderr.log",
+          "sha256": "2243df5b7b1add5c05a54231e3dc7ba2eaecb3ab09b4e786cc3bd9ffaaec9008",
+          "bytes": 60080
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-19/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-19/rows.ndjson",
+          "sha256": "3bd56eafc0f4fbf0fd29d1504d26af252c418236724dc89574edb74a9099a46d",
+          "bytes": 13221419
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-2/conformance.log",
+          "sha256": "fc17fb0908cc9d17da4c561699414183f7e74541d1696e588dfb37d031c7ccfb",
+          "bytes": 1171
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-2/history-conformance.json",
+          "sha256": "fb7e46a3c65837ca7c828749bb0c2b599153f4dd8ee34da9e282286f5eac6a71",
+          "bytes": 8918
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-2/history-manifest.json",
+          "sha256": "f7dbedda417d83fc047d87b4afdd98b1c0650d7127aa5754b7e625eb800131b2",
+          "bytes": 5483505
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-2/manifest.log",
+          "sha256": "a1e5995c27612e5b35c82c4eacff007dfb9f57480e8f37c87ed6f0a9b4c82ac2",
+          "bytes": 4468
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-2/phase-ledger.json",
+          "sha256": "cc8a2d64ba32d6d0708710e1f2fdb9c3453c582e5f807ee32c915e6668f60d08",
+          "bytes": 27299
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-2/phase-ledger.log",
+          "sha256": "7208599cc0550f003e45e03b2ca1f969d9c25171aab5a509c55c5808daee5296",
+          "bytes": 1090
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-2/phase-process.json",
+          "sha256": "95549e95c5403ba0ac366068c9c10d35e154bfef26bd9a28cfd205e39bcf26ae",
+          "bytes": 51644
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-2/root-stderr.log",
+          "sha256": "8119ef13dc9d8278d51bae5568b25101b5a9664a69e044aee05361fa21dece1b",
+          "bytes": 59943
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-2/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-2/rows.ndjson",
+          "sha256": "933e01f77d877d8c3ea5b2746fd9f6bfa4fb610e6ce5790315ccdd8bdcd554cc",
+          "bytes": 13061857
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-20/conformance.log",
+          "sha256": "74f134b9d7bd608a69ee570982d9494bb8b471003a44888fe3e2a5108d1f8020",
+          "bytes": 1171
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-20/history-conformance.json",
+          "sha256": "77a42c5928d68c337c6b3995a7f1dd5c976bf4bb49ad3c2847d127b69dd5c3ad",
+          "bytes": 8901
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-20/history-manifest.json",
+          "sha256": "2210f5bab22f9f66ea6b07e4a3641c5a9a8f5ea6e5bfe3de4814334cdfe27adf",
+          "bytes": 5483317
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-20/manifest.log",
+          "sha256": "901c545c4dbf00551a6251b33f70e1d9d5ddabeed1964ef2facaf56869ef25d7",
+          "bytes": 4459
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-20/phase-ledger.json",
+          "sha256": "205f68eded2f35629510901fab9c632dfbe624509e99d8b25a4b2a770e09e0fe",
+          "bytes": 27238
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-20/phase-ledger.log",
+          "sha256": "bc5101f8a3cb92460d281c32136b5f0f77e1a166b2df0c7de47a0c683c3d8d3f",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-20/phase-process.json",
+          "sha256": "3efc765f0d5e10f2510255de4f2cbf5d0c2eb406b64bc35db72bf72e836134d8",
+          "bytes": 51485
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-20/root-stderr.log",
+          "sha256": "935d04adb4fb6333bdffbacb62a4b81bcb687744127e0f5fbde62e49a162a850",
+          "bytes": 59611
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-20/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-20/rows.ndjson",
+          "sha256": "901f4b312c9dc8061b483f64d9ca6b2e4d9340c589a51bd64421f68652e8e2ec",
+          "bytes": 13217552
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-21/conformance.log",
+          "sha256": "ec8e70262abbaaa4f02a650848a57f431b9a54000dd0db15188cb9774580932f",
+          "bytes": 1172
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-21/history-conformance.json",
+          "sha256": "e9ef4a5e4dee06e3deb0d7fe8e18611d72d1085f3165189ad7dc02dedb1a4546",
+          "bytes": 8923
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-21/history-manifest.json",
+          "sha256": "43696c9f13f105215df2c832fe0cbbe98dc308ef76cc7257d8593d750ef7ba14",
+          "bytes": 5485963
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-21/manifest.log",
+          "sha256": "4d42c63d42823ca70dba137fa09f6dd0ff4fa790c66343191ddcca5bbc68dbba",
+          "bytes": 4458
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-21/phase-ledger.json",
+          "sha256": "abe071f306a6aff551ea6d551930034f1e5b0d2d6103c7586c18f27aff9a6b3c",
+          "bytes": 27340
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-21/phase-ledger.log",
+          "sha256": "e7f2ffd77695c4100f0369c7c7f19058b314a2b2775682b53e7db76f2ad05c55",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-21/phase-process.json",
+          "sha256": "ef6a3b4b5d38f528f263e33ea21b61222143e3bbb0f927dbf74848545770b3b2",
+          "bytes": 52009
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-21/root-stderr.log",
+          "sha256": "ccbc6e8e709ff2a7af63152267c545dc93e05f58c5e12ede2b907875b803656d",
+          "bytes": 60073
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-21/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-21/rows.ndjson",
+          "sha256": "772832a14817185b232e2208c5b0d3282097c73c5c5b788bea0cb70664bdeddc",
+          "bytes": 13221847
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-22/conformance.log",
+          "sha256": "faa4dd46c5a0f5879e71db2a689aa78fe8852a32aefbfda68c77b717a114b8b8",
+          "bytes": 1171
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-22/history-conformance.json",
+          "sha256": "c1e6393e697378d510e2fe5a98911c6ad0a7466b9e057da4c8f8696c997003f8",
+          "bytes": 8918
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-22/history-manifest.json",
+          "sha256": "3501bc6d6306d96be9acaf08092c6260d3bb32bfa876ec341cd9aa06bc1b2d5e",
+          "bytes": 5483231
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-22/manifest.log",
+          "sha256": "dc1fec274cd243fae8991dec5bad94d651939f3fd1f02d21af445dbdeb26627a",
+          "bytes": 4460
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-22/phase-ledger.json",
+          "sha256": "cf933a32e6dacfd2ab64c06393a0422973a24783c0404a8d5f3ce1d3fb5e0a52",
+          "bytes": 27291
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-22/phase-ledger.log",
+          "sha256": "c19bb729c01dcd197b4c3e3d3674379ed21cd102eac8db5f4f2f3ca4089a0329",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-22/phase-process.json",
+          "sha256": "6924ebbb9560b5e6e92c0891dc72477d630b42f50cdf655dd117814bdfc46aa9",
+          "bytes": 51761
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-22/root-stderr.log",
+          "sha256": "08dc0ec4258c846ea634e0fb356aeb485fdc0d75f9f0f3054e7040d62cf68ac1",
+          "bytes": 59862
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-22/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-22/rows.ndjson",
+          "sha256": "dde27ef29a1b4484ba6617694699f7db64857aa9f1f60c0c3ff7d208bfbb0fb0",
+          "bytes": 13216884
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-23/conformance.log",
+          "sha256": "19b8bbd886e4313e1a711df52821d4e96c6248bbb9104d1d7befed59104049f9",
+          "bytes": 1172
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-23/history-conformance.json",
+          "sha256": "6fa6549c2f6df7cfebe73f408eaae1db579f448324b2dc233d1c6797df5ff5c5",
+          "bytes": 8922
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-23/history-manifest.json",
+          "sha256": "0751beeacd0af69d7df2307a96912006b306dafce6132627b8ae97383535a42c",
+          "bytes": 5485923
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-23/manifest.log",
+          "sha256": "e4672dd615028ccda91bcfbcaa72040cd125ac2e264b134c9360bf88e1809f1d",
+          "bytes": 4467
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-23/phase-ledger.json",
+          "sha256": "193c9f78a4ee1b668514e284c04c9fc3841949a3469137ebeae6f0c01e3d8afb",
+          "bytes": 27337
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-23/phase-ledger.log",
+          "sha256": "0367b89774f46ae0152aa95b8424090e9f423c8b234ba061681857cda321b438",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-23/phase-process.json",
+          "sha256": "a603404410695576602919859b1de0294f9234586410953b0d4440f8dc46ff45",
+          "bytes": 52008
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-23/root-stderr.log",
+          "sha256": "274edbaba95a734db2856f947c0bfdd05a89e72251449dbc9ad5801648111a51",
+          "bytes": 60073
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-23/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-23/rows.ndjson",
+          "sha256": "75a7ddf6be4dd411463188bd25d30fb435a4b178df49236d0e60ef7edeb3bb2f",
+          "bytes": 13220951
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-24/conformance.log",
+          "sha256": "29b2f6d5a6160fd681e832cb2004094bcf8d89f3ddb5eb64fa519cdd02166ed0",
+          "bytes": 1172
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-24/history-conformance.json",
+          "sha256": "c9e11c0d1fdd904f431b9a81e74d250d729090763d52ea29fdf528b5ffe1b010",
+          "bytes": 8890
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-24/history-manifest.json",
+          "sha256": "65a3500d19165acddb06c8985a654c64eb8e3f0213917f204fa83b6f6df10508",
+          "bytes": 5483233
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-24/manifest.log",
+          "sha256": "23209382af275253faa2f0017ed8c66dc24122d41325900113c71c30f9e601a9",
+          "bytes": 4439
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-24/phase-ledger.json",
+          "sha256": "c1bb57d9d236891a9ffc9856322ea9b2d0658748e3fc14d00e53088d8b95f841",
+          "bytes": 27157
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-24/phase-ledger.log",
+          "sha256": "23a1fc313ac838ceea57f0c626702275d2f1709f8a8aee0335158793e1793889",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-24/phase-process.json",
+          "sha256": "c9d8b4a3d4be9549578f388e15aee731736346a914dbb11c562cde31884d72f2",
+          "bytes": 50960
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-24/root-stderr.log",
+          "sha256": "a71a376de592265f7391ca41660218749d67b62ca71eed607fdc4dc422568416",
+          "bytes": 59217
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-24/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-24/rows.ndjson",
+          "sha256": "6daed8d1be0203cc92c483da987f9137dc51aa01736643eeae295f77f940e232",
+          "bytes": 13215072
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-25/conformance.log",
+          "sha256": "3f8d63dad4264ae30f806a32907f7aa46877c07df15a5bfbcef2b980f53848ce",
+          "bytes": 1172
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-25/history-conformance.json",
+          "sha256": "052aea9a0e94e45026faa0e07cbfbe8410a637459aab6fce3f1ebbf0b7c0f474",
+          "bytes": 8926
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-25/history-manifest.json",
+          "sha256": "5ae1273583dce61ffd8f11de386d9f0a1c85609a42ab2612afc58c935a02b1b4",
+          "bytes": 5485903
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-25/manifest.log",
+          "sha256": "0ccae8b20429c67e79ead4cf39b7d711d6c44e3780f9ca7b62e61d3380648de9",
+          "bytes": 4463
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-25/phase-ledger.json",
+          "sha256": "cfe95d6c454014916a9288fe0f4da6905ae2a503396541778abd849fd5a31ec2",
+          "bytes": 27336
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-25/phase-ledger.log",
+          "sha256": "756eb883053af185bec3a78ec2282333024cd600e2a8a6361cee5a892614d497",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-25/phase-process.json",
+          "sha256": "2b98d2dd738af6710894f1718c8a7cceca7f968b0d58e56b95ed86d200f3f64a",
+          "bytes": 52003
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-25/root-stderr.log",
+          "sha256": "5eadd91d90d4fe44c8330796f6e04d0b868b0f2a1a1dab53f5f50bbf5754660c",
+          "bytes": 60074
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-25/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-25/rows.ndjson",
+          "sha256": "be0d91538b83a16d6ad284bf802e1adc601fd8656a6b76c28e4138ffe5daa91a",
+          "bytes": 13220787
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-26/conformance.log",
+          "sha256": "769b498ecc5bf5b0520efdad0f0dad9ddc2b2cc3a835b1367f327e67f6bd670f",
+          "bytes": 1172
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-26/history-conformance.json",
+          "sha256": "76650e6da6395c38ec6f0fe809ea07564e0da93b9818d899a9d1b724f48cd638",
+          "bytes": 8916
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-26/history-manifest.json",
+          "sha256": "7d0c7e802f3aded2ce424e740a80094d3c9c3ee52c760078ddfb37cf91eb2ddb",
+          "bytes": 5483203
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-26/manifest.log",
+          "sha256": "c6861ed740dcd446aeeadcce3d00ffd79ac14cb97eb9a46c33a9694eee3583ad",
+          "bytes": 4466
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-26/phase-ledger.json",
+          "sha256": "19ec3f7ae143b8e908bc44f97d3d51574fff2fee87ccd3ac8593c180388b7b8e",
+          "bytes": 27294
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-26/phase-ledger.log",
+          "sha256": "ceb772f037f97a7d8850ba8d5ccbe86924e621e61c14135c8feb9168072713af",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-26/phase-process.json",
+          "sha256": "9cc5392d9f1a9d778bb25ae281953fe1d5e34ef0e70606bee359db42a42f36a6",
+          "bytes": 51744
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-26/root-stderr.log",
+          "sha256": "6cfbb2345dcf5587d8accbc99b5461e3c2089e67a15b8d07b9ad2c2982aa6836",
+          "bytes": 59880
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-26/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-26/rows.ndjson",
+          "sha256": "22146b9c6bfa9c3b51e2604d83ddceb75208b41fc016d964fd5fe08a9bf60b22",
+          "bytes": 13215592
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-27/conformance.log",
+          "sha256": "1871cd7fa67228e770aad257891f1461206d9bcbe95fc571d314e899fbe01fdd",
+          "bytes": 1172
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-27/history-conformance.json",
+          "sha256": "984dc1b0003640caffbfa520698993e4e623501267345ed3a31b4996c7488334",
+          "bytes": 8924
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-27/history-manifest.json",
+          "sha256": "0cffeaebfddf13494c2d78298936666bb3819c6e5e556a589045845945d7e511",
+          "bytes": 5485969
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-27/manifest.log",
+          "sha256": "de3358dbe63fe822a9191b9012c7fd2c5a5a93ce7886be730ffe4a37f3917737",
+          "bytes": 4456
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-27/phase-ledger.json",
+          "sha256": "186677046dd0fd1f53c83dbb12410c747711e5125059d27fce05e02bd4c2e3c4",
+          "bytes": 27345
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-27/phase-ledger.log",
+          "sha256": "e12dc1ef15f969cb915833398ebc2416920c9af21d2a9b64646240766785aab9",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-27/phase-process.json",
+          "sha256": "72953a0a42a19486081c3be62a1c5edce19e1519e726976f69e4c5991f52f5ae",
+          "bytes": 51991
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-27/root-stderr.log",
+          "sha256": "97356795134bb7222fe2a7e31ffd9031a2f28a378f7b498fdb5deaac7850f8ab",
+          "bytes": 60117
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-27/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-27/rows.ndjson",
+          "sha256": "42880b741f88b0d89afea56338324ca91f97e721a20866becea91220e54f5352",
+          "bytes": 13220185
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-28/conformance.log",
+          "sha256": "9018357b4169c1bae7cb5e11f6ee44de6580fd67d801d5dfae88e8edcfc9b75b",
+          "bytes": 1171
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-28/history-conformance.json",
+          "sha256": "f8628183e006d28253331f4ee366d489d4f768eaf5bb1b29db22dbe463d979bb",
+          "bytes": 8896
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-28/history-manifest.json",
+          "sha256": "8fc179a567622ae0f3864ae9ef1de82ce2e51e42ec929fd606db8e99c7c3d4ae",
+          "bytes": 5483161
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-28/manifest.log",
+          "sha256": "e83ac2f9b39f79f7c1e28ee1237849cd7f98c1b98d443a407f5785bb4f1142de",
+          "bytes": 4448
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-28/phase-ledger.json",
+          "sha256": "be9248c22aeb0e5f36ae69c82d6367c095099c7c4bacf4b05625b789728f85c7",
+          "bytes": 27261
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-28/phase-ledger.log",
+          "sha256": "a1f16721226641799f71d92b085ea5a85e078e28324c9224f5c7f9e98877c986",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-28/phase-process.json",
+          "sha256": "cfdb747fa0ec40a55b1c341cb662334c36588ff12b09ae3ad61597e377f53887",
+          "bytes": 51498
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-28/root-stderr.log",
+          "sha256": "2430193cb8036d7cb37e21de8c49a5f61d6a08fc0b1fc851aa4293cc86ea010c",
+          "bytes": 59653
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-28/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-28/rows.ndjson",
+          "sha256": "9d1fe796fb7d2289339c2c3732feb8770c903d137356069ed9f28b947fa8831f",
+          "bytes": 13216377
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-29/conformance.log",
+          "sha256": "7fcd322ca2e58f2872d9eb953b4f36b3963417b1f05bebedeac700dbe3163f2e",
+          "bytes": 1172
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-29/history-conformance.json",
+          "sha256": "df7ce05f31a49877b4b32d6ec239c0b7d2520c0a24beaa6bef130b22bc432f4b",
+          "bytes": 8924
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-29/history-manifest.json",
+          "sha256": "b396a611726590c803342126308d88ddd82cd7610d16c0929033872783f3afa0",
+          "bytes": 5486047
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-29/manifest.log",
+          "sha256": "28a9a36326cbc2d698b8c2f79b80f235cab0bce0330d7fb42f4083b1383e7cd2",
+          "bytes": 4466
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-29/phase-ledger.json",
+          "sha256": "658f4fcfcd156eb0c22f9e425c36842b76adddcec97884e60d25dda2b36cd308",
+          "bytes": 27350
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-29/phase-ledger.log",
+          "sha256": "ebfa12aa1e5bea95f3931a9034edd2e1a0e75e3b2b89bf17dfc26345ef45f8a0",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-29/phase-process.json",
+          "sha256": "a4c3505ae13a21c4a4ab989c3f1a09fe52f64e61610827bb566323be8b908b09",
+          "bytes": 52020
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-29/root-stderr.log",
+          "sha256": "61d130fabba036a84fe96731d75c38c2542a9617083acfd07c45de4d777b1fde",
+          "bytes": 60040
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-29/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-29/rows.ndjson",
+          "sha256": "9c211fb598a9cd52e4cdcfaa0c48d3037ec81418dc736857bb9e8e3c231e1d27",
+          "bytes": 13220808
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-3/conformance.log",
+          "sha256": "be46bc978953894bc18bbbbe36ca0b4c3f270278f40692cc360e9913ed0d4d65",
+          "bytes": 1170
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-3/history-conformance.json",
+          "sha256": "4f40f9e55f5aeed3332d589c41484233662f13c5bbd3e3ec9b351ef7f48d8984",
+          "bytes": 8921
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-3/history-manifest.json",
+          "sha256": "9d8b48d1ce0267d34bc6a91a55cfd605a7d2d671d38a2058c98148cbd937c298",
+          "bytes": 5485961
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-3/manifest.log",
+          "sha256": "be014a8ff600e754a84da647f3d046a4d933844299eb06c7b14cba20fe19ad08",
+          "bytes": 4446
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-3/phase-ledger.json",
+          "sha256": "1e65a9431a9d8bba659e502c95f895c4bbd876968de620a00d98167c4370cda4",
+          "bytes": 27347
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-3/phase-ledger.log",
+          "sha256": "0bd678920c1d8e7aafe5e940dac252c27435352be89031913bac35eb6b95b82a",
+          "bytes": 1090
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-3/phase-process.json",
+          "sha256": "a67b69cdeae11a19530c67822bda2382aad453a3ac1d366b7b4729622c7bae59",
+          "bytes": 51963
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-3/root-stderr.log",
+          "sha256": "0ef4406faf42d50a0c0b03cf8c73028489709e02f8dfb9fb2e63ac5d0aaa9e25",
+          "bytes": 60092
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-3/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-3/rows.ndjson",
+          "sha256": "a1aef46b7695784aa5d037243008c944782000ee762c14615dd7bd51f0132a20",
+          "bytes": 13079029
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-30/conformance.log",
+          "sha256": "578dc668297b25b1bec66ebcefeb709b76c9aece4b7f1019e280ab5249737073",
+          "bytes": 1172
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-30/history-conformance.json",
+          "sha256": "ae9840678bc1fff579474b1ec20174967086ec4d8df8d7d5c89e3e7bbf019023",
+          "bytes": 8914
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-30/history-manifest.json",
+          "sha256": "11c47f17fe8be7a4277b687cf1009446457148c79493175d80901447898a6786",
+          "bytes": 5483269
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-30/manifest.log",
+          "sha256": "4acea4a9a0ed745e3ca256ace5a9a2236fca7fac95dafe718f0a639d0ef3c804",
+          "bytes": 4455
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-30/phase-ledger.json",
+          "sha256": "bab53efb6f5c529a6b65fd416864022a0235949cbfeb7e192f9d1922d2fe6223",
+          "bytes": 27305
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-30/phase-ledger.log",
+          "sha256": "18318ac6be9dbe0c7f78d0d825d1220ab53dd63571cb7df92e215099dbfdc382",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-30/phase-process.json",
+          "sha256": "1dc5a654b2114331adf0f6b6a30f687e67470f69a8a462a0eae598c69d424749",
+          "bytes": 51748
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-30/root-stderr.log",
+          "sha256": "abe17b8496887a9f9007afab023e9deed4366191fc225945bf848395d59de7e4",
+          "bytes": 59882
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-30/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-30/rows.ndjson",
+          "sha256": "b3c315360831338dcd924c002798616348ad0b4ab439e6677230b220ae7c90c6",
+          "bytes": 13215888
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-31/conformance.log",
+          "sha256": "798c260a72a3ba3c4dd2b0a18030f882edc56dcce794ce9595f8d4a0764805a3",
+          "bytes": 1172
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-31/history-conformance.json",
+          "sha256": "155809d67c51f0f70aa491264cee8743fea18589c90422d3e69bf2dfdc0e9eb7",
+          "bytes": 8917
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-31/history-manifest.json",
+          "sha256": "e719fdc7613c70e39f80caadf6499e5a7b64d606a21630d7c7c921fcf71906c7",
+          "bytes": 5485913
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-31/manifest.log",
+          "sha256": "8f4757c63dbfc857fae83f1a15952a9ff4a8ac8eabf64d510cbc53cf8b7c7711",
+          "bytes": 4447
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-31/phase-ledger.json",
+          "sha256": "77365cba7605e834c692cbd218a2519061d0e3a2da2e07134221c01cfaf5a4b9",
+          "bytes": 27331
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-31/phase-ledger.log",
+          "sha256": "ad984c02a38a6065b6c037eac3a75b5c7ddd2e11d219d7a625b3e6ef73f8d7a9",
+          "bytes": 1091
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-31/phase-process.json",
+          "sha256": "a0dcee53221f7b77103965dcc096c13211a308eedc2dc60658b5acf0c25b0a13",
+          "bytes": 52009
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-31/root-stderr.log",
+          "sha256": "4cd63b0afbecb05b9ca9247f3034b3a2900d5c23476151a14da230551a60d5d2",
+          "bytes": 60085
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-31/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-31/rows.ndjson",
+          "sha256": "3fddd0461cf9ae62a17b56cfbef9d8a059ab40bd918e6ffdc98150cecfc18c9a",
+          "bytes": 13220219
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-4/conformance.log",
+          "sha256": "a525c6add61ac6a51daa35a07ea3e6c4f159fdb7407250d3542913738b76c60e",
+          "bytes": 1170
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-4/history-conformance.json",
+          "sha256": "18388e977e505b6aad905d63368a81b4b46768e7b1add4f9f51cee6cd581882a",
+          "bytes": 8899
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-4/history-manifest.json",
+          "sha256": "195853e58a59e4f9cd7e764f38668c05d7d9540915aa47456ea0d82b6a0f009b",
+          "bytes": 5483459
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-4/manifest.log",
+          "sha256": "f0e633b6a809db9b3bb40332a34c7c87e1ac2eefebc3227b9d87f279b1927fd5",
+          "bytes": 4461
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-4/phase-ledger.json",
+          "sha256": "2195458401e6e35134540f61d968317bf570bd9841343a615e3025856c5833d9",
+          "bytes": 27246
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-4/phase-ledger.log",
+          "sha256": "889aca793e13599c907eee1f8aab2762430cae3136040ce9a5b8a5b93d33d051",
+          "bytes": 1090
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-4/phase-process.json",
+          "sha256": "34f125571696064bdfbf1cc2974db945224d8c180e1cdabee9409dca0539c5b1",
+          "bytes": 51431
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-4/root-stderr.log",
+          "sha256": "33c89454063b74f64c0ea1dabccdb430aa78ce77ec296cdb8a79cc9baf15627e",
+          "bytes": 59733
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-4/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-4/rows.ndjson",
+          "sha256": "8e24664d8994f91662b571b849f4e463a11d1c131f6c2fecbb7f2ffcce516776",
+          "bytes": 13084815
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-5/conformance.log",
+          "sha256": "a28d3c0c75d8e2b2e32f4f364ec210308dd0995b42b0107f2074d96e33c1e6b2",
+          "bytes": 1171
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-5/history-conformance.json",
+          "sha256": "3a2646f39164d6d3a6b9ae7c17c9e416bda9cc6f8f0724623e6135fc4ebfab17",
+          "bytes": 8929
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-5/history-manifest.json",
+          "sha256": "697a155cedaebbf330eeebc5196513175d55611a06d6e98e552a90c5fd44f696",
+          "bytes": 5485989
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-5/manifest.log",
+          "sha256": "90163f549ff2f29319ea3d0e2a7aaa1e6f6fdd35a1714ee4e88d300c31a4c002",
+          "bytes": 4467
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-5/phase-ledger.json",
+          "sha256": "d745e7018d7bf6ab782419cde14d6cd59b0cd96f68bef090a09475826b4c6af2",
+          "bytes": 27345
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-5/phase-ledger.log",
+          "sha256": "bf1f5e244954f7acd0ec9ac33f446b57f88438863a9b1635b3f0d2fabbd2d20b",
+          "bytes": 1090
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-5/phase-process.json",
+          "sha256": "7c61fe129c6093a0055fa7a3de1bcfcebc6c6a5d7a586b159c49e620f307ebf4",
+          "bytes": 51942
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-5/root-stderr.log",
+          "sha256": "ab54e41086f53a730c33ed3adc54781cc98f52590dea27bbb73ebff4c8e932b3",
+          "bytes": 60080
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-5/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-5/rows.ndjson",
+          "sha256": "75e8a1f178304277e7feccabd54b7b6aeb4c546ffba8423b66cda9651b904a07",
+          "bytes": 13101779
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-6/conformance.log",
+          "sha256": "804ca47f9d4bbac94f556c7eb4c919a1994950b1c32febea60c8a1e665c6ca12",
+          "bytes": 1171
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-6/history-conformance.json",
+          "sha256": "5c4bb1eb173d0cbe48c465dd240f2261ceb7c73528412a800f8a381fb12d0137",
+          "bytes": 8907
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-6/history-manifest.json",
+          "sha256": "67aa08bd580b1530afcca53105f78f83815d2e9d33d624c821e7379aabc49866",
+          "bytes": 5483525
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-6/manifest.log",
+          "sha256": "7921f076eaa52df80ba6f9f09ba7113915f53ab4169c14f8fdeda74eb3f87506",
+          "bytes": 4463
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-6/phase-ledger.json",
+          "sha256": "e5a6f7f52f25a7935d9e3d8e82fe251585ac667cc24cbffccd5b9aa2c9f5576d",
+          "bytes": 27299
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-6/phase-ledger.log",
+          "sha256": "44cdb9476869e6e5aacfba95b5e89eeb7e553980b9ccc09a95127be70aea3955",
+          "bytes": 1090
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-6/phase-process.json",
+          "sha256": "634b1a11aee0a670198b1e0b96993c03e70894e8e2ec289de3b4364287abad09",
+          "bytes": 51694
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-6/root-stderr.log",
+          "sha256": "544a624d9313ea3ff888cd7f5bd681af574360f0a55ae475ef0593caeee821ae",
+          "bytes": 59872
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-6/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-6/rows.ndjson",
+          "sha256": "4cb0d6c81c0ced4748223c3287c8073977ad6dd05a229e8406a5ad84cddd1749",
+          "bytes": 13106546
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-7/conformance.log",
+          "sha256": "a163c29477a9052ecf29293a010fe0c96e84a65e55f2a8bb30a75648b1a047bd",
+          "bytes": 1171
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-7/history-conformance.json",
+          "sha256": "161c39282bf77776c07d31a0fc8035e39219026313f6384ae36dd3cba1c652fa",
+          "bytes": 8930
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-7/history-manifest.json",
+          "sha256": "0a49b9731cf9a5891cdf22151a7e04407b826bedd8a845c011c1735045a9e2b1",
+          "bytes": 5486019
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-7/manifest.log",
+          "sha256": "ff315471c6031db0e479746ad552454c47c89a8bcfce0201e79564c14d5029e6",
+          "bytes": 4461
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-7/phase-ledger.json",
+          "sha256": "6e0bb7743d6dc5de3e6aef0efa23d9815d57d0b14c1a14a89db3b4371fda950f",
+          "bytes": 27332
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-7/phase-ledger.log",
+          "sha256": "7cb9f5d9bd58d6ce211e900d16427c485e64f79f94fe7f2dd90dd11bbadbf951",
+          "bytes": 1090
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-7/phase-process.json",
+          "sha256": "b28c466254d8852e512026ff755569d19c58044c49712f9a9f708d1dd06839db",
+          "bytes": 51987
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-7/root-stderr.log",
+          "sha256": "d8a1032a5bed482047537ca15e1bff49ebe6aecc7ee7019c6f26cd1dd8ac1f63",
+          "bytes": 60027
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-7/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-7/rows.ndjson",
+          "sha256": "f04aa0c821d44b1286e6e5292e62b0fbbb95b9ea67dce4666a03fbba533e3b69",
+          "bytes": 13122910
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-8/conformance.log",
+          "sha256": "fc038a5d123193fde839ea1cb676b048861460d11f59463a1fb4d366aeb8c69e",
+          "bytes": 1170
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-8/history-conformance.json",
+          "sha256": "1937d752ec45eab5328c119fc664ea0a6694784758eca64c8ad6fb0071fe8ab1",
+          "bytes": 8886
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-8/history-manifest.json",
+          "sha256": "3943cdde6f286977c6189b471fe04c6f42f02dfc097426558b6862e77aaf3648",
+          "bytes": 5483487
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-8/manifest.log",
+          "sha256": "225230f35446f6ef79211e6ec4caa24a939585eccd7ff4a451c196466768dfa8",
+          "bytes": 4456
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-8/phase-ledger.json",
+          "sha256": "0ffd5fbcd55b70b3e7dbf835645aea4f6e0ff3c4b6bcd2effec3a151c90425e1",
+          "bytes": 27148
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-8/phase-ledger.log",
+          "sha256": "5c1faf1a494f6ae3487c631eff247c92541b8208dae7e4fd1258df2d83472f9c",
+          "bytes": 1090
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-8/phase-process.json",
+          "sha256": "c2f33607d246eb8ea7debd87032b5c005bd211d674369d74c47b38bacb0c4134",
+          "bytes": 50929
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-8/root-stderr.log",
+          "sha256": "3f081b87a247d2fc89b528a240b49f4d886d9c5eeb37c625f8d06f5cdab015e6",
+          "bytes": 59204
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-8/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-8/rows.ndjson",
+          "sha256": "8895b2d9a033bab889db2eba236bab62e2b0fd41b9f745afd5afd3eff0380877",
+          "bytes": 13126356
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-9/conformance.log",
+          "sha256": "96c9d1669c1d22859ae43ff86c15ff21db5040da647509f4d4f01f1e412091b4",
+          "bytes": 1170
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-9/history-conformance.json",
+          "sha256": "12b829e6b3323ca5dbab504d16967d44137cdfc707c7ac6de296e36bd55d6503",
+          "bytes": 8927
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-9/history-manifest.json",
+          "sha256": "baec4e7faaa88af4da0016faadf628fa55b5bdf065c20e2aef0f8c1cc7ffb70b",
+          "bytes": 5485943
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-9/manifest.log",
+          "sha256": "5e6d31258a834703d4840dfa0416eeae42b3d7cc85583662e41a55408a45b750",
+          "bytes": 4458
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-9/phase-ledger.json",
+          "sha256": "8533de7b64288cdec37e98e11c159e2bc34ac7cdf578bc9f674a21b8441c44dd",
+          "bytes": 27330
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-9/phase-ledger.log",
+          "sha256": "61f220163aeeb5f652ef51f6a1cfbddd6169154028f24b29c619c8269c5b0362",
+          "bytes": 1090
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-9/phase-process.json",
+          "sha256": "b99d48b11340843a7bc86fc4b9877ddaa9462c39f8c1c026db4a56ffc1a0dcf8",
+          "bytes": 51949
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-9/root-stderr.log",
+          "sha256": "ff9990885b7180f2fec379bf94be51a5d0d00e27927829e21efafd846a9a1094",
+          "bytes": 60108
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-9/root-stdout.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/phase-9/rows.ndjson",
+          "sha256": "3a4e606456d85afef09aa02d4cfac92a92d233bb8376bbac0f7071d6348a5128",
+          "bytes": 13144342
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/rung-ledger.json",
+          "sha256": "0c0ddf7a56f931c72a59f027972213122e26790591b476ec9dde4f4c8cb5560f",
+          "bytes": 12301
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/rung/rung-process.json",
+          "sha256": "c8a2fc643f66bc0d794ebdb38c9973a9b548ab284aa0b55d45975a4d771daf73",
+          "bytes": 1987672
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/supervision/runner-stderr.log",
+          "sha256": "b5a77f11757eac161af5c02244d1a99f107135a7d55e9369af3f9b25f9d4edd9",
+          "bytes": 113192
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/supervision/runner-stdout.log",
+          "sha256": "959f336f9ac2abf898254c85179970ef746ed3892bbf49c98176e29eb7d36573",
+          "bytes": 108
+        },
+        {
+          "path": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-prior32-final-20260908-a/prior32.json",
+          "sha256": "6930989d57738a7cd13bcc546465dcfbe3efa1fe2473694eb8fd59e295c31966",
+          "bytes": 2972
+        }
+      ],
+      "maximumPrecisionBits": 53,
+      "outputBytesScope": "deduplicated-named-current-candidate-output-bindings; excludes shared-build-source-reference-pilot-resource-log and self-publication or unnamed-partial files",
+      "gateCount": 129,
+      "gateCPUSeconds": 8.423727000000001,
+      "maximumGateResidentBytes": 53002240,
+      "notAggregateSimultaneousMemory": true,
+      "totalMeasuredCPUIncludingGates": 305.07347300000015
+    },
+    "checkedEvidenceBindings": 337
+  },
+  "externalOwner": {
+    "runId": "7ccedb27-5e94-4d75-b3d2-104f191b403c",
+    "exitCode": 0,
+    "processGroupClosed": true,
+    "elapsedWallSeconds": 307.203
+  },
+  "closedProcessProbes": 136,
+  "closedMemoryProbes": 23,
+  "resourceObservations": 22,
+  "boundary": "Independent operational source/closure/scope review plus re-execution of the unchanged declared admission instrument. Re-execution is deterministic transport evidence; numerical correctness remains with the unchanged independent references. No later rung or H3 authorization."
+}

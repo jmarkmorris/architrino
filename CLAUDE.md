@@ -24,7 +24,7 @@ This is a compact pre-read safety projection, not an independent policy source. 
 - **Operator communication.** [The operator explanation standard](reference/op/operator-explanation-standard.md) is the sole authority. Until it is read, in chat assume the operator knows $\mathbb{A}\mathbb{A}\mathbb{A}$, define imported apparatus in place, write plainly, and do not compress away necessary explanation. Present the result and necessary reasoning in chat; maintain the full academic treatment in its subject owner for an eventual reader independently of the thread. Capture substantive discussion as it develops and index it in the relevant priorities, respecting explicit read-only boundaries. Ready material may go directly to an authorized reader-facing destination. End substantive final responses with numbered next possible actions and a recommendation and reason for each.
 - **Python.** Use the shared venv at `$AAA_VENV`, falling back to `../.venv`. If it does not resolve or cannot execute, do not run Python at all; system `python3` is not a fallback. The shared venv is a macOS build and cannot run in a Linux sandbox however it is mounted, so in a sandbox hand every Python step to the operator.
 
-<!-- Source fingerprints: AGENTS.md=1782a92156ad8941; reference/op/operator-explanation-standard.md=f45f3c74e3d07fb3; content/markdown/aaa/archie/academic-style-guide.md=f7e80e2b9436568f -->
+<!-- Source fingerprints: AGENTS.md=1782a92156ad8941; reference/op/operator-explanation-standard.md=e30bbee84e33e769; content/markdown/aaa/archie/academic-style-guide.md=f7e80e2b9436568f -->
 
 ## Scope note
 

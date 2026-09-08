@@ -1,0 +1,35 @@
+[
+  {
+    "argv": [
+      "/opt/homebrew/bin/node",
+      "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs"
+    ],
+    "cwd": "/private/tmp/option-b-corrected-run3/baseline",
+    "exitCode": 0,
+    "stdoutSha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "inputs": {
+      "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+      "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+      "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+    },
+    "environmentSha256": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99"
+  },
+  {
+    "argv": [
+      "/opt/homebrew/bin/node",
+      "--test",
+      "tests/moving-single-root-scalar-gradient-verifier.test.mjs"
+    ],
+    "cwd": "/private/tmp/option-b-corrected-run3/baseline",
+    "exitCode": 0,
+    "stdoutSha256": "8ed2da08ee1a92970ca0443456785984bbc993752da8e12ce6e50fc3f4e3b025",
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "inputs": {
+      "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+      "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+      "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+    },
+    "environmentSha256": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99"
+  }
+]

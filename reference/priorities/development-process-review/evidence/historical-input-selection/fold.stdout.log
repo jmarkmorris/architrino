@@ -1,0 +1,8 @@
+{"command":"/Users/markmorris/vibe/.venv/bin/python","args":["--version"],"cwd":"/Users/markmorris/vibe/architrino","selection":"fold","scientificAcceptance":false}
+Python 3.13.2
+{"command":"/opt/homebrew/Cellar/node/26.3.0/bin/node","args":["reference/priorities/development-process-review/evidence/owner-failure-recovery/run-original-fold-regression.mjs"],"cwd":"/Users/markmorris/vibe/architrino","selection":"fold","scientificAcceptance":false}
+Known SHA-256 control passed before original-input authentication.
+{"input":"ordinaryCertificate","path":"reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-fold-separated-interval.v1.json","sha256":"d65d556bd25ed6b40d8281aad53d6138daab042e80deb120cb97ae244a1b7b27","sizeBytes":452093}
+{"input":"ordinaryOracle","path":"scripts/prescribed-path-analysis/oracle/orthogonal_plane_weave_interval_oracle.py","sha256":"b54a5ae488edb49dca8d58fbed8627f3edf912358dd4f4599e077b5136ffdec1","sizeBytes":36323}
+{"input":"masterEquation","path":"content/markdown/aaa/dynamics/master-equation.md","sha256":"0e8219c7a3cc750747c43030d5b998ddbf2de525a5469d32fa5e52fbae5ec63f","sizeBytes":297950}
+{"input":"sixWorldlineSubject","path":"src/prescribed-path-analysis/OrthogonalPlaneWeaveBalance.mjs","sha256":"109094c43b2df92dbe22338412dd2761e1933cf202b8e4957385d8716da252be","sizeBytes":27245}

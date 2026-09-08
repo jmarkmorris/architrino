@@ -1,0 +1,35 @@
+{
+  "scope": "Prospective owned edits and generated fixture dependencies before changes; SHA known control passed first.",
+  "files": [
+    {
+      "path": "reference/priorities/development-process-review/analysis/owner-failure-recovery.md",
+      "sha256": "cfd80e3735695212ec14d58debcc7b3360641023553574efac63010e1b155e1b"
+    },
+    {
+      "path": "tests/archie-service-source-index-snapshot.test.js",
+      "sha256": "2d01b07e3428bc25fa781b8d31edad9e107bb019cc2da20ffd5ca4e3f73ae494"
+    },
+    {
+      "path": "tests/archie-service/fixtures/source-index/source-index-snapshot.v1.json",
+      "sha256": "c5b16ed68501aacc366115853b2906a942ab3356d803aee60c9f4f3dabd06b81"
+    },
+    {
+      "path": "tests/archie-service/fixtures/mcp/mcp-tool-contract.v1.json",
+      "sha256": "322fe0c289d7a35b704182b8f223279db65d4127cbf514dad58d03b119788d3c"
+    },
+    {
+      "path": "tests/archie-service/fixtures/mcp/mcp-stdio-smoke.v1.json",
+      "sha256": "7d3f6405f016f3a492360db7f2cb268f502bb9704e7b113f55748cf1e80fccd6"
+    },
+    {
+      "path": "tests/archie-service/fixtures/mcp/mcp-remote-deployment-contract.v1.json",
+      "sha256": "a70cf80db62da97bccf03e91e032f5928b84997f831485dd25c80f70d46379ff"
+    }
+  ],
+  "binders": [
+    "Source-index fixture generator reads live generated artifact digests and six declared source records.",
+    "Tool contract and stdio fixtures embed snapshot/selection hashes and source text.",
+    "Remote deployment contract selects full-corpus snapshot identity.",
+    "Owner recovery document linked by campaign plan, queue, priorities, coverage and work log; no exact-byte binder found by basename search across reference/scripts/tests authored Markdown/JS."
+  ]
+}

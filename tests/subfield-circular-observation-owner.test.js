@@ -5,6 +5,7 @@ import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {captureCircularFile, createCircularObservationOwner, parseCircularObservation} from '../src/prescribed-path-analysis/SubfieldCircularObservationOwner.mjs';
 
+const hostTest = (name, fn) => test(name, {skip: process.platform !== 'darwin' && 'Actual observation requires the reviewed macOS shared-venv runtime'}, fn);
 const root = process.cwd(), original = path.join(root, 'scripts/eom/observe-subfield-circular-processes.py');
 const python = path.resolve(process.env.AAA_VENV ?? '../.venv', 'bin/python');
 const sample = ' 101 100 101 Tue Sep 8 12:00:00 2026 R 20 /bin/ps\n';
@@ -26,7 +27,7 @@ function fixture(injection = '', transform = value => value, overrides = {}) {
   const context = () => ({remainingMs:3000,originalDeadlineMs:began+15000,workDeadlineMs:began+12000,cleanup:false});
   return {directory,helper,owner,context,controller};
 }
-test('actual probes bind runtime, birth, wait4 closure and nonzero resource accounting', async () => {
+hostTest('actual probes bind runtime, birth, wait4 closure and nonzero resource accounting', async () => {
   const f = fixture();
   try {
     const first = await f.owner.initialize();
@@ -40,7 +41,7 @@ test('actual probes bind runtime, birth, wait4 closure and nonzero resource acco
     const row = receipt.probes[1]; assert(row.psClosed); assert(row.psResourceUsage.maximumResidentBytes > 0); assert(row.identity.started);
   } finally { rmSync(f.directory, {recursive:true}); }
 });
-test('stubborn TERM is escalated through actual exit and close', async () => {
+hostTest('stubborn TERM is escalated through actual exit and close', async () => {
   const f = fixture('    if plan.get("mode") == "table":\n        signal.signal(signal.SIGTERM, signal.SIG_IGN)\n        time.sleep(5)\n');
   try {
     await f.owner.initialize(); await assert.rejects(f.owner.inspect(f.context()), /observer/);
@@ -48,14 +49,14 @@ test('stubborn TERM is escalated through actual exit and close', async () => {
     assert.equal(f.owner.snapshot().probes.at(-1).closed, true);
   } finally { rmSync(f.directory,{recursive:true}); }
 });
-test('final serialization remains inside the helper deadline', async () => {
+hostTest('final serialization remains inside the helper deadline', async () => {
   const f = fixture('', source => source.replace('        print(json.dumps(result), flush=True)', '        time.sleep(5)\n        print(json.dumps(result), flush=True)'));
   try {
     await f.owner.initialize(); await assert.rejects(f.owner.inspect(f.context()), /observer/);
     assert.equal(f.owner.snapshot().probes.at(-1).closed, true);
   } finally { rmSync(f.directory,{recursive:true}); }
 });
-test('unexpected cache artifact rejects cleanup and final admission', async () => {
+hostTest('unexpected cache artifact rejects cleanup and final admission', async () => {
   const f = fixture('    if plan.get("mode") == "table":\n        with open(os.path.join(sys.pycache_prefix, "unexpected"), "w") as output: output.write("x")\n');
   try {
     await f.owner.initialize(); await assert.rejects(f.owner.inspect(f.context()), /cache/);
@@ -63,7 +64,7 @@ test('unexpected cache artifact rejects cleanup and final admission', async () =
     assert.equal(f.owner.snapshot().probes.at(-1).closed, true);
   } finally { rmSync(f.directory,{recursive:true}); }
 });
-test('runtime inventory enforces resident ceiling before any table probe', async () => {
+hostTest('runtime inventory enforces resident ceiling before any table probe', async () => {
   const f = fixture('',undefined,{maximumSampledResidentBytes:1});
   try {
     await assert.rejects(f.owner.initialize(), /ceiling/);
@@ -74,7 +75,7 @@ for (const [name, injection] of [
   ['blocked', '    if plan.get("mode") == "table": time.sleep(5)\n'],
   ['failed', '    if plan.get("mode") == "table": raise ValueError("synthetic probe failure")\n'],
   ['output-growth', '    if plan.get("mode") == "table":\n        sys.stdout.write("x" * (20 * 1024 * 1024)); sys.stdout.flush()\n'],
-]) test(name + ' probe rejects after actual child/stream closure and retains cost', async () => {
+]) hostTest(name + ' probe rejects after actual child/stream closure and retains cost', async () => {
   const f = fixture(injection);
   try {
     await f.owner.initialize(); await assert.rejects(f.owner.inspect(f.context()), /observer/);
@@ -84,7 +85,7 @@ for (const [name, injection] of [
     if (name === 'output-growth') assert(row.droppedBytes > 0);
   } finally { rmSync(f.directory, {recursive:true}); }
 });
-test('interruption cancels actual open probe and rejects admission', async () => {
+hostTest('interruption cancels actual open probe and rejects admission', async () => {
   const f = fixture('    if plan.get("mode") == "table": time.sleep(5)\n');
   try {
     await f.owner.initialize(); const actual = f.owner.inspect(f.context());
@@ -93,7 +94,7 @@ test('interruption cancels actual open probe and rejects admission', async () =>
     assert.equal(f.owner.snapshot().probes.at(-1).cancellation, 'owner-interrupted');
   } finally { rmSync(f.directory, {recursive:true}); }
 });
-test('changed source rejects before another probe and at final recheck', async () => {
+hostTest('changed source rejects before another probe and at final recheck', async () => {
   const f = fixture();
   try {
     await f.owner.initialize(); writeFileSync(f.helper, 'changed source');
@@ -102,7 +103,7 @@ test('changed source rejects before another probe and at final recheck', async (
     assert.equal(f.owner.snapshot().probes.length, 1);
   } finally { rmSync(f.directory, {recursive:true}); }
 });
-test('changed captured runtime dependency rejects before ps and final admission', async()=>{
+hostTest('changed captured runtime dependency rejects before ps and final admission', async()=>{
   const directory=realpathSync(mkdtempSync(path.join(tmpdir(),'circular-runtime-control-')));
   const library=path.join(directory,'known-runtime-dependency');writeFileSync(library,'known runtime bytes');
   const f=fixture('',source=>source.replace('    paths = {os.path.realpath(sys.executable)}',`    paths = {os.path.realpath(sys.executable), ${JSON.stringify(library)}}`));

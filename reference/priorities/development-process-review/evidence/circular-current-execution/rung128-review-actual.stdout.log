@@ -1,0 +1,2 @@
+Known SHA, complete scoped-envelope positive, and eight failure/deadline/scope/closure negatives passed before any target read.
+{"accepted":true,"phaseCount":128,"rowCount":4608,"checkedUniqueBindings":113,"laterLadderAuthorized":false}

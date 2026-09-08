@@ -1,0 +1,78 @@
+{
+  "unchanged": {
+    "review": "unchanged-exploratory",
+    "selectedChecks": []
+  },
+  "stale-sign": {
+    "consistency": "reject"
+  },
+  "changed-sign": {
+    "review": "required",
+    "contains": [
+      "sign",
+      "proof",
+      "identity",
+      "calculation"
+    ],
+    "selectedChecks": [
+      "prose-check",
+      "scientific-check"
+    ]
+  },
+  "deleted-proof-sign": {
+    "review": "required",
+    "contains": [
+      "proof",
+      "identity",
+      "calculation"
+    ],
+    "selectedChecks": [
+      "prose-check",
+      "scientific-check"
+    ]
+  },
+  "deleted-prose-coverage": {
+    "review": "required",
+    "contains": [
+      "measured-prose"
+    ],
+    "selectedChecks": [
+      "prose-check"
+    ]
+  },
+  "changed-scalar-edge": {
+    "review": "required",
+    "contains": [
+      "scalar",
+      "proof",
+      "identity",
+      "calculation"
+    ],
+    "selectedChecks": [
+      "prose-check",
+      "scientific-check"
+    ]
+  },
+  "wrong-displayed-result": {
+    "review": "required",
+    "contains": [
+      "measured-prose"
+    ],
+    "selectedChecks": [
+      "prose-check",
+      "scientific-check"
+    ],
+    "result": "reject"
+  },
+  "duplicate-displayed-result": {
+    "consistency": "reject",
+    "result": "reject"
+  },
+  "outside-selector-comment": {
+    "review": "required",
+    "selectedChecks": [
+      "prose-check",
+      "scientific-check"
+    ]
+  }
+}

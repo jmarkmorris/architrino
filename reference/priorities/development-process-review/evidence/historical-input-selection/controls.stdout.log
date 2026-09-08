@@ -1,0 +1,12 @@
+✔ regular-byte capture passes a known byte and digest control before real inputs (6.072542ms)
+✔ exact original routes reject byte substitutions, false sizes and path traversal (3.723042ms)
+✔ missing, duplicate, wrong-identity and unsafe destinations cannot create an execution root (0.239958ms)
+✔ execution-root check rejects omitted census and changed captured bytes (60.264166ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 158.420167

@@ -1,0 +1,258 @@
+{
+  "runs": [
+    {
+      "label": "prior32-decoder-controls",
+      "runId": "0623223b-ebe0-446f-b5e5-3c8342abc40c",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/circular-current-execution/review-current-prior32.mjs",
+        "--controls"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "elapsedWallSeconds": 0.088,
+      "logs": {
+        "stdout": {
+          "path": "prior32-decoder-controls.stdout.log",
+          "sha256": "28f76081a8bdacffb17a8c2a18c450647648c06dd57d1196367776b40a4906f4",
+          "bytes": 95
+        },
+        "stderr": {
+          "path": "prior32-decoder-controls.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "label": "prior32-linkage",
+      "runId": "67638b74-400a-45da-9261-84b86fb858c0",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/circular-current-execution/review-current-prior32.mjs",
+        ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-prior32-preparation-20260908-a/next32-review.pending.json",
+        ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-prior32-preparation-20260908-a/next32-review.accepted.json"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "elapsedWallSeconds": 0.091,
+      "logs": {
+        "stdout": {
+          "path": "prior32-linkage.stdout.log",
+          "sha256": "51069fced2406dd613b45db71f34a9643d9ef9520893b489d48cf431072276d1",
+          "bytes": 1274
+        },
+        "stderr": {
+          "path": "prior32-linkage.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "label": "profile32-review",
+      "runId": "3981e92f-cede-4b12-9062-730ac4c22b31",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/circular-current-execution/review-current-profile32.mjs"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "elapsedWallSeconds": 0.206,
+      "logs": {
+        "stdout": {
+          "path": "profile32-review.stdout.log",
+          "sha256": "68801ee77a8cf024c14f3584bb67bfc64aed3f65ded4b30f21b88d153330c365",
+          "bytes": 1626
+        },
+        "stderr": {
+          "path": "profile32-review.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "label": "rung32-controls",
+      "runId": "526d0dd4-5210-4c4f-86d3-f2ba87407efe",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/circular-current-execution/review-current-rung32.mjs",
+        "--controls"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "elapsedWallSeconds": 0.093,
+      "logs": {
+        "stdout": {
+          "path": "rung32-controls.stdout.log",
+          "sha256": "c72af8b595a29f7c89f52cc0bb38ae22f8dd28e814cce72c2d04ac365303f88c",
+          "bytes": 128
+        },
+        "stderr": {
+          "path": "rung32-controls.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "label": "rung32-actual",
+      "runId": "e57b9153-8f09-4d01-b541-b01fc3396a89",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/circular-current-execution/review-current-rung32.mjs",
+        "7ccedb27-5e94-4d75-b3d2-104f191b403c",
+        ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-owned-rung32-20260908-a/current-admission.json"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "elapsedWallSeconds": 0.592,
+      "logs": {
+        "stdout": {
+          "path": "rung32-actual.stdout.log",
+          "sha256": "706ddff6737b0f6029e87ca3fd32b4b533c2e2c65b9abf64655cfe1581334045",
+          "bytes": 236
+        },
+        "stderr": {
+          "path": "rung32-actual.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "label": "prior128-controls",
+      "runId": "0c229b7d-1ec9-458b-8199-eab38dca0464",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/circular-current-execution/review-current-prior128.mjs",
+        "--controls"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "elapsedWallSeconds": 0.092,
+      "logs": {
+        "stdout": {
+          "path": "prior128-controls.stdout.log",
+          "sha256": "28f76081a8bdacffb17a8c2a18c450647648c06dd57d1196367776b40a4906f4",
+          "bytes": 95
+        },
+        "stderr": {
+          "path": "prior128-controls.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "label": "prior128-linkage",
+      "runId": "d4a2cf67-c917-4408-83f6-fe0e9e2b48aa",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/circular-current-execution/review-current-prior128.mjs",
+        ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-prior128-preparation-20260908-a/next128-review.pending.json",
+        ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-prior128-preparation-20260908-a/next128-review.accepted.json"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "elapsedWallSeconds": 0.099,
+      "logs": {
+        "stdout": {
+          "path": "prior128-linkage.stdout.log",
+          "sha256": "eabf3893dd6b4ffbf386e8b7a55596c505a3747d1ea773d6be0da1d7991ea56a",
+          "bytes": 1283
+        },
+        "stderr": {
+          "path": "prior128-linkage.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "label": "profile128-controls",
+      "runId": "ee05450d-8726-458d-bc3e-5d7aa64ce039",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/circular-current-execution/review-current-profile128.mjs",
+        "--controls"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "elapsedWallSeconds": 0.083,
+      "logs": {
+        "stdout": {
+          "path": "profile128-controls.stdout.log",
+          "sha256": "2ee27992bc951d13f470713699623af329d11bf731a48b5d061707ef6af8eeff",
+          "bytes": 100
+        },
+        "stderr": {
+          "path": "profile128-controls.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "label": "profile128-review",
+      "runId": "c5e38322-668b-4aed-9454-01181bd44f44",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/circular-current-execution/review-current-profile128.mjs",
+        ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-prior128-final-20260908-a/rung128-profile.json",
+        "2f8de6267c7e897ee1516f6068917f462adef62f87243541f1b5bbdf556f8ad4"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "elapsedWallSeconds": 0.196,
+      "logs": {
+        "stdout": {
+          "path": "profile128-review.stdout.log",
+          "sha256": "027c7b9e782673cb0b409d03d538ff78d208ccfae928387de236da880fd77de6",
+          "bytes": 1636
+        },
+        "stderr": {
+          "path": "profile128-review.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    },
+    {
+      "label": "rung128-controls",
+      "runId": "8b5f4056-f54b-46d3-a35f-0baf0abc02bc",
+      "command": "node",
+      "args": [
+        "reference/priorities/development-process-review/evidence/circular-current-execution/review-current-rung128.mjs",
+        "--controls"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "elapsedWallSeconds": 0.087,
+      "logs": {
+        "stdout": {
+          "path": "rung128-controls.stdout.log",
+          "sha256": "c72af8b595a29f7c89f52cc0bb38ae22f8dd28e814cce72c2d04ac365303f88c",
+          "bytes": 128
+        },
+        "stderr": {
+          "path": "rung128-controls.stderr.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        }
+      }
+    }
+  ],
+  "scientificAcceptance": false
+}

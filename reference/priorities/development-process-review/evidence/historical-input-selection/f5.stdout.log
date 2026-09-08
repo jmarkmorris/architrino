@@ -1,0 +1,60 @@
+{"command":"/Users/markmorris/vibe/.venv/bin/python","args":["--version"],"cwd":"/Users/markmorris/vibe/architrino","selection":"f5","scientificAcceptance":false}
+Python 3.13.2
+{"command":"/opt/homebrew/Cellar/node/26.3.0/bin/node","args":["--test","--test-concurrency=1","tests/f5-enclosed-root-preparation.test.js","tests/f5-enclosed-root-prefix.test.js","tests/f5-enclosed-root-ledger-reducer.test.js"],"cwd":"/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/coverage-1788904728324-14188","selection":"f5","scientificAcceptance":false}
+✔ synthetic complete census is structurally valid but cannot grant evidence authority (973.431333ms)
+✔ the exact cell limit is admissible and precision provenance is coherent (1693.745792ms)
+✔ enclosure, elapsed time, projection, and phase-token declarations are mandatory (893.362083ms)
+✔ history manifest rejects altered widths, coefficient chains, and coverage (208.708375ms)
+✔ root and warm-cache diagnostics reject impossible serialization (1336.234917ms)
+✔ production reduction rejects the former file-verification bypass (0.365917ms)
+✔ cited segments and repeated reception phases must describe the same roots (1383.699791ms)
+✔ eligible warm-start drift does not require successful cache reuse (968.638417ms)
+✔ all repeated-rung brackets share compatible intersections, not only adjacent overlap (912.612375ms)
+✔ binary64 cache boundaries accept only identical-carrier alternate decimal spellings (1139.476458ms)
+✔ scientific ledger hash excludes run labels and runtime projections (1881.341458ms)
+✔ implementation verification hashes every bound file and catches mutation (2.450333ms)
+✔ reducer rejects frozen-binding, control, and resource drift (664.623125ms)
+✔ reducer rejects missing, extra, reordered, and mistimed rows (880.843ms)
+✔ reducer rejects invalid self and partner root semantics (882.02125ms)
+✔ reducer rejects factor, complement, boundary, status, and resource failures (1549.888292ms)
+✔ reducer rejects malformed brackets and incomplete certificate schema (658.279625ms)
+✔ reducer accepts a complete MPFR certificate without warm-reuse cells (1028.600042ms)
+✔ reducer output is create-exclusive (1.113833ms)
+✔ reducer has no adapter, operator, EOM, or enclosure-instrument imports (1.140208ms)
+✔ frozen original and export-only appendix retain the agreed exact hashes (2.133125ms)
+✔ captured augmentation exposes original functions without invoking a validator (4.215375ms)
+✔ only genuine initial rung orders are admissible (0.273459ms)
+✔ summary composition succeeds without returning acceptance authority (0.370458ms)
+✔ campaign and run must match every rung and the original manifest (0.334834ms)
+✔ all four checked binding-summary identities must agree (0.291458ms)
+✔ ordinary or cached imports cannot grant production acceptance (0.567667ms)
+✔ fresh production CLI rejects unsupported rung order, never fabricates missing rungs (106.282167ms)
+✔ fresh production CLI reaches frozen manifest validation and rejects incomplete evidence (109.977625ms)
+✔ create-exclusive output preserves an existing rejection byte for byte (79.262791ms)
+✔ ambiguous CLI singleton overrides are rejected (84.708584ms)
+✔ copied bridge cannot claim another checkout's executing source identity (104.549083ms)
+✔ preparation requires explicit fresh scoped output and build directories (1.782ms)
+✔ frozen F5 references match the reviewed prerequisite generation (1.980667ms)
+{"stage":"test-control","command":"/opt/homebrew/Cellar/node/26.3.0/bin/node","args":["-e","process.stdout.write('control\\n')"],"code":0,"signal":null,"timedOut":false,"interrupted":false,"descendantsAfterClose":false,"processGroupClosed":true,"elapsedWallSeconds":0.059811375000000014,"logBytes":8}
+✔ supervisor records child output and never overwrites a log (62.867334ms)
+{"stage":"test-deadline","pid":14275,"elapsedWallSeconds":0.05151012499999999,"logBytes":0,"lastOutput":""}
+{"stage":"test-deadline","pid":14275,"elapsedWallSeconds":0.102153708,"logBytes":0,"lastOutput":""}
+{"stage":"test-deadline","command":"/opt/homebrew/Cellar/node/26.3.0/bin/node","args":["-e","while(true){}"],"code":null,"signal":"SIGTERM","timedOut":true,"interrupted":false,"descendantsAfterClose":false,"processGroupClosed":true,"elapsedWallSeconds":0.10228783300000001,"logBytes":0}
+✔ outer deadline stops a child that never finishes a synchronous call (103.097042ms)
+✔ spawn failure remains a failure and closes the create-exclusive log (0.941875ms)
+{"stage":"test-descendant","command":"/opt/homebrew/Cellar/node/26.3.0/bin/node","args":["-e","require('node:child_process').spawn(process.execPath,['-e','while(true){}'],{stdio:['ignore',1,2]});process.exit(0)"],"code":0,"signal":null,"timedOut":true,"interrupted":false,"descendantsAfterClose":false,"processGroupClosed":true,"elapsedWallSeconds":0.152057042,"logBytes":0}
+✔ deadline still closes the owned group after its driver exits (154.257ms)
+{"stage":"test-hidden-descendant","command":"/opt/homebrew/Cellar/node/26.3.0/bin/node","args":["-e","const c=require('node:child_process').spawn(process.execPath,['-e',\"process.on('SIGTERM',()=>{});setInterval(()=>{},1000);process.send('ready')\"],{stdio:['ignore','ignore','ignore','ipc']});c.on('message',()=>process.exit(0))"],"code":0,"signal":null,"timedOut":false,"interrupted":false,"descendantsAfterClose":true,"processGroupClosed":true,"elapsedWallSeconds":0.22071633299999996,"logBytes":0}
+✔ ignored-output descendant is killed even after the driver closes (222.366042ms)
+✔ existing build directory is rejected before starting preparation (0.956958ms)
+✔ accepted-looking proof must report the exact executed reference and complete census (1.250666ms)
+ℹ tests 41
+ℹ suites 0
+ℹ pass 41
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20927.835375
+{"command":"/Users/markmorris/vibe/.venv/bin/python","args":["-B","-m","unittest","discover","-s","tests","-p","test_f5_*conformance.py"],"cwd":"/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/coverage-1788904728324-14188","selection":"f5","scientificAcceptance":false}
+{"executionRoot":"/Users/markmorris/vibe/architrino/.local-data/f5-original-input-trees/coverage-1788904728324-14188","postExecutionInputTreeChecked":true}

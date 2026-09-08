@@ -1,0 +1,160 @@
+TAP version 13
+# Subtest: known lossless gzip bytes and SHA precede target preparation
+ok 1 - known lossless gzip bytes and SHA precede target preparation
+  ---
+  duration_ms: 2.127042
+  type: 'test'
+  ...
+# Subtest: known 8 prior produces complete 32 chain only after review
+ok 2 - known 8 prior produces complete 32 chain only after review
+  ---
+  duration_ms: 1.183042
+  type: 'test'
+  ...
+# Subtest: known 32 prior produces complete 128 chain only after review
+ok 3 - known 32 prior produces complete 128 chain only after review
+  ---
+  duration_ms: 0.71625
+  type: 'test'
+  ...
+# Subtest: wrong closure, evidence digest, secret projection, scope and projection reject
+ok 4 - wrong closure, evidence digest, secret projection, scope and projection reject
+  ---
+  duration_ms: 1.1785
+  type: 'test'
+  ...
+# Subtest: finalizer rejects changed embedded terminal and phase evidence and oversized review
+ok 5 - finalizer rejects changed embedded terminal and phase evidence and oversized review
+  ---
+  duration_ms: 1.004334
+  type: 'test'
+  ...
+# Subtest: known cost boundary partitions enabled and returned candidates without increasing cap
+ok 6 - known cost boundary partitions enabled and returned candidates without increasing cap
+  ---
+  duration_ms: 0.823625
+  type: 'test'
+  ...
+# Subtest: current pilot transport requires independently bound review and joint closure
+ok 7 - current pilot transport requires independently bound review and joint closure
+  ---
+  duration_ms: 0.168209
+  type: 'test'
+  ...
+# Subtest: known memory percentage and threshold boundary precede actual utility controls
+ok 8 - known memory percentage and threshold boundary precede actual utility controls
+  ---
+  duration_ms: 458.522542
+  type: 'test'
+  ...
+# Subtest: known helper failure rejects before actual utility controls
+ok 9 - known helper failure rejects before actual utility controls
+  ---
+  duration_ms: 207.472917
+  type: 'test'
+  ...
+# Subtest: actual memory query binds libpython and observes wait4 plus stream closure
+ok 10 - actual memory query binds libpython and observes wait4 plus stream closure
+  ---
+  duration_ms: 240.598833
+  type: 'test'
+  ...
+# Subtest: stubborn memory helper rejects after actual closure
+ok 11 - stubborn memory helper rejects after actual closure
+  ---
+  duration_ms: 769.093708
+  type: 'test'
+  ...
+# Subtest: growth memory helper rejects after actual closure
+ok 12 - growth memory helper rejects after actual closure
+  ---
+  duration_ms: 208.071625
+  type: 'test'
+  ...
+# Subtest: changed source and resource shortfall do not admit
+ok 13 - changed source and resource shortfall do not admit
+  ---
+  duration_ms: 340.214916
+  type: 'test'
+  ...
+# Subtest: process parser passes known identity and byte conversion before actual probes
+ok 14 - process parser passes known identity and byte conversion before actual probes
+  ---
+  duration_ms: 1.976959
+  type: 'test'
+  ...
+# Subtest: actual probes bind runtime, birth, wait4 closure and nonzero resource accounting
+ok 15 - actual probes bind runtime, birth, wait4 closure and nonzero resource accounting
+  ---
+  duration_ms: 244.423125
+  type: 'test'
+  ...
+# Subtest: stubborn TERM is escalated through actual exit and close
+ok 16 - stubborn TERM is escalated through actual exit and close
+  ---
+  duration_ms: 762.524416
+  type: 'test'
+  ...
+# Subtest: final serialization remains inside the helper deadline
+ok 17 - final serialization remains inside the helper deadline
+  ---
+  duration_ms: 661.069417
+  type: 'test'
+  ...
+# Subtest: unexpected cache artifact rejects cleanup and final admission
+ok 18 - unexpected cache artifact rejects cleanup and final admission
+  ---
+  duration_ms: 242.636708
+  type: 'test'
+  ...
+# Subtest: runtime inventory enforces resident ceiling before any table probe
+ok 19 - runtime inventory enforces resident ceiling before any table probe
+  ---
+  duration_ms: 105.164875
+  type: 'test'
+  ...
+# Subtest: blocked probe rejects after actual child/stream closure and retains cost
+ok 20 - blocked probe rejects after actual child/stream closure and retains cost
+  ---
+  duration_ms: 672.397083
+  type: 'test'
+  ...
+# Subtest: failed probe rejects after actual child/stream closure and retains cost
+ok 21 - failed probe rejects after actual child/stream closure and retains cost
+  ---
+  duration_ms: 211.786916
+  type: 'test'
+  ...
+# Subtest: output-growth probe rejects after actual child/stream closure and retains cost
+ok 22 - output-growth probe rejects after actual child/stream closure and retains cost
+  ---
+  duration_ms: 308.73175
+  type: 'test'
+  ...
+# Subtest: interruption cancels actual open probe and rejects admission
+ok 23 - interruption cancels actual open probe and rejects admission
+  ---
+  duration_ms: 176.354208
+  type: 'test'
+  ...
+# Subtest: changed source rejects before another probe and at final recheck
+ok 24 - changed source rejects before another probe and at final recheck
+  ---
+  duration_ms: 95.92475
+  type: 'test'
+  ...
+# Subtest: changed captured runtime dependency rejects before ps and final admission
+ok 25 - changed captured runtime dependency rejects before ps and final admission
+  ---
+  duration_ms: 117.875791
+  type: 'test'
+  ...
+1..25
+# tests 25
+# suites 0
+# pass 25
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6171.409709

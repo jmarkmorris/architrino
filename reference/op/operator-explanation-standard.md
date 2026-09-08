@@ -110,6 +110,12 @@ Keep substantive ideas discoverable from the relevant `priorities.md` with enoug
 
 Keep open questions, alternatives, operational status, decisions, and validation history clearly separated from the academic treatment. Subsequent authorized promotion preserves prepared explanation at its honest claim level and leaves development records in their appropriate working locations. Academic prose alone does not establish mathematical or evidentiary readiness for promotion.
 
+## Action-item status display
+
+In operator-facing plans and checklists, show a status marker beside every current actionable item, including detailed table rows and nested tasks, rather than only in a summary checklist. Use a short legend: ✓ Done, ◐ Partial, ○ Not done. Add an explicit Deferred or Blocked label when applicable; these are not completion states. Pair the marker with readable status text so meaning does not depend on the symbol alone. Keep the underlying queue lifecycle vocabulary and required removal of completed live tasks intact. Retained completion records may show ✓ Done.
+
+Mark an item done only when its full stated scope and completion evidence are satisfied. For a partial item, name the remaining condition and link to the evidence where useful. Keep detailed items and summaries consistent as work advances. Standing rules and explanatory paragraphs are not actionable items and do not need status markers.
+
 ## Next possible actions
 
 End every substantive final response with `Next possible actions:` followed by a numbered list. Each item states a concrete action, the agent’s recommendation for that action, and a brief reason. Put the preferred immediate action first. Recommendations may be to proceed, review, discuss, defer until a named condition, or take no further action.

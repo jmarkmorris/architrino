@@ -2,6 +2,8 @@
 
 Date: 2026-09-07. The operator authorized both the normal-completion/cancellation repair and the consequential repair audit. The [audit](consequential-repair-audit.md) records the separate historical-binding findings and remaining source-generation blocker.
 
+Legend: ✓ Done, ◐ Partial, ○ Not done. **✓ Done — this bounded process repair.** Subsequent [source recovery and archive/coordinator work](source-recovery-and-binding-repair.md) resolve the preparation and parent-contract follow-ups recorded below. **✓ Done — bounded startup-deadline repair** is recorded in [supervision follow-through](supervision-and-omitted-coverage.md); **◐ Partial — the separate historical lost-supervisor recurrence** remains open there. The dated measurements and earlier blocker statements below are historical, not the current action list.
+
 ## Result and contract
 
 The shared registered supervisor now allows a workload to return naturally and drain its referenced timers and output. The watchdog's child-process and IPC references no longer keep an otherwise finished runner alive. When its parent IPC channel closes, the watchdog observes parent departure for at most one second; it exits without signalling after reparenting, or cancels its still-live parent group if the parent remains. Its supervisor connection, explicit cancellation, and signal handlers stay armed during that observation. No historical PID becomes signalling authority.
@@ -32,7 +34,7 @@ Monitor faults previously depended on the sixth process-table query. That count 
 
 Monitor loss may be observed first by the outer resource monitor or the registered supervisor. The three Python composition fixtures now accept only the exact injected monitor error or the supervisor's explicit interruption error, while still requiring failure, started targets, no comparison dispatch, and cleanup. Log/diagnostic failure can leave process inspection available: in that case a complete cleanup census is stronger than the fallback PID-only observation. Tests accept either explicitly reported cleanup route and retain independent process-absence assertions. They do not interpret missing fields alone as success.
 
-## Remaining blocker: preparation pin
+## Historical blocker: preparation pin
 
 **Subsequent recovery, 2026-09-07:** the [source recovery investigation](source-recovery-and-binding-repair.md) reconstructs the exact expected intermediate edit, repairs the current composition, and identifies the distinct remaining historical archive gap. The paragraphs below preserve what was known at the preceding repair handoff; the preparation version is no longer unrecovered.
 

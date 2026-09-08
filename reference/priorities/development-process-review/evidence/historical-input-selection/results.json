@@ -1,0 +1,102 @@
+{
+  "knownShaControlPassedBeforeCapture": true,
+  "runs": [
+    {
+      "label": "controls",
+      "runId": "ba441d61-8024-485f-8cd6-268894f6db45",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "--test",
+        "--test-concurrency=1",
+        "tests/f5-original-input-tree.test.js"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "elapsedWallSeconds": 0.239,
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "path": "controls.stdout.log",
+          "bytes": 505,
+          "sha256": "38effdae785b5ec62d27f01677c6135f9e87564c239aa3d7fb97f85b741bf83f"
+        },
+        "stderr": {
+          "path": "controls.stderr.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    },
+    {
+      "label": "f5",
+      "runId": "5f3dcba7-9751-424c-a77c-7f48736cae7c",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "scripts/run-historical-input-tests.mjs",
+        "f5"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "elapsedWallSeconds": 26.379,
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "path": "f5.stdout.log",
+          "bytes": 6341,
+          "sha256": "dc120cd54ebfa2427fc26f6fb7176ce8f34c142ffe88df728427926a4592e443"
+        },
+        "stderr": {
+          "path": "f5.stderr.log",
+          "bytes": 131,
+          "sha256": "9334ed48a968557d47f947bcbc4b77b2ad3b882ff9acd7b530090ded952b5897"
+        }
+      }
+    },
+    {
+      "label": "fold",
+      "runId": "596c9a81-f88b-45fe-b06f-70251cac2895",
+      "status": "completed",
+      "command": "node",
+      "args": [
+        "scripts/run-historical-input-tests.mjs",
+        "fold"
+      ],
+      "cwd": "/Users/markmorris/vibe/architrino",
+      "elapsedWallSeconds": 4.285,
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "logs": {
+        "stdout": {
+          "path": "fold.stdout.log",
+          "bytes": 1350,
+          "sha256": "d7d430624e3525dc29d64c7dd650766f85b74232b6c5fd3d931c0cae32e16182"
+        },
+        "stderr": {
+          "path": "fold.stderr.log",
+          "bytes": 105,
+          "sha256": "50f7289c8fda23da831e61dc6a046f65b0eb3c14eaf15bec959db32cb7fb2c30"
+        }
+      }
+    }
+  ],
+  "sources": [
+    {
+      "path": "scripts/run-historical-input-tests.mjs",
+      "sha256": "b29f7092eeb3844185cbd5e03c7ff9b2b3ad48e4f53fc017df85b8223cf21fb7",
+      "bytes": 2256
+    },
+    {
+      "path": "scripts/eom/prepare-f5-original-input-tree.mjs",
+      "sha256": "881ffd557e8459f259f948613a44e1c36e3b27804919c0e9468a541e25f09373",
+      "bytes": 10180
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/owner-failure-recovery/run-original-fold-regression.mjs",
+      "sha256": "8e8cfd4c4fdd7fbd1328ee65d1dac3d5dd6bf5876320461b141ef629e8211e87",
+      "bytes": 2530
+    }
+  ],
+  "scientificAcceptance": false
+}

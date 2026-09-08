@@ -1,0 +1,11 @@
+tests/subfield-circular-root-dispatch.test.js
+tests/subfield-circular-root-rung.test.js
+scripts/eom/run-subfield-circular-root-rung.mjs
+reference/priorities/braid-program/work-queue.md
+scripts/eom/dispatch-subfield-circular-root-ladder.mjs
+reference/priorities/development-process-review/evidence/repair-audit/commit-change-inventory.json
+reference/priorities/development-process-review/evidence/repair-audit/operational-binding-update.json
+reference/priorities/development-process-review/evidence/shared-helper-audit/inventory.json
+reference/priorities/development-process-review/evidence/streamed-leaf-migration/remaining-generation-occurrences.txt
+reference/priorities/development-process-review/analysis/f5-circular-build-review.md
+reference/priorities/development-process-review/analysis/shared-helper-caller-audit.md

@@ -1,0 +1,13 @@
+{
+  "expectedCount": 147,
+  "actualCount": 141,
+  "missing": [
+    "pdgedit-group-anti-noether-braid.svg",
+    "pdgedit-group-pro-noether-braid.svg",
+    "pdgedit-tile-anti-noether-braid-glyph.svg",
+    "pdgedit-tile-anti-noether-braid.svg",
+    "pdgedit-tile-pro-noether-braid-glyph.svg",
+    "pdgedit-tile-pro-noether-braid.svg"
+  ],
+  "extra": []
+}
