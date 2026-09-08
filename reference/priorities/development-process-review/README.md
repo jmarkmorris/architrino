@@ -6,6 +6,8 @@ Start with the [hash and pin recovery campaign](analysis/review-and-repair-plan.
 
 The [operator's concerns](analysis/operator-concerns.md) define the questions and intended outcomes of this review separately from the agents' incident reports.
 
+The September 8 [recovery test coverage](analysis/final-test-coverage.md#baseline-review-and-recovery-execution-september-8) reports the completed baselines, fresh CTest, standalone checks, complete normal Node rerun and explicit failures/skips. The [remaining caller contracts](analysis/remaining-caller-contracts.md) explains the operational repairs, recovered original F5 inputs and still-open new-run interfaces and build-acceptance prerequisites. Start with these two records for the current technical status; passing subsets do not establish overall recovery.
+
 The [first bounded process investigation](analysis/first-process-investigation.md) now supplies local synthetic controls, raw outputs, receipts, and a reproducible diagnostic instrument. The subsequently authorized [process repair and validation](analysis/process-repair-validation.md) records 85 passing process regressions; the [consequential repair audit](analysis/consequential-repair-audit.md) separates historical-binding errors and a remaining preparation-pin failure from that repair.
 
 The subsequent [source recovery and binding repair](analysis/source-recovery-and-binding-repair.md) reconstructs the exact intermediate preparation version, preserves all 19 changed or missing repository sources from the historical full-run receipt, and repairs the reviewed current composition. It identifies the separate archive-contract gap and three unrecovered historical host utilities; historical authentication remains open.

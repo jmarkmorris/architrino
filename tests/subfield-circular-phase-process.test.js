@@ -197,6 +197,46 @@ test("driver exit with ignored-output descendants escalates scoped group cleanup
   assert.ok(error.phaseReceipt.sigkillRequestedAtSeconds >= error.phaseReceipt.terminationRequestedAtSeconds);
 });
 
+for (const persistent of [false, true]) {
+test(`a ${persistent ? "persistently" : "transiently"} denied group probe retains failure and releases monitoring`, async (t) => {
+  const { options } = fixture("descendant");
+  options.heartbeatMs = 20;
+  const kill = process.kill.bind(process), interval = globalThis.setInterval;
+  const intervals = [];
+  let killedGroup, denied = false;
+  t.mock.method(globalThis, "setInterval", (...args) => {
+    const timer = interval(...args); intervals.push(timer); return timer;
+  });
+  t.mock.method(process, "kill", (pid, signal) => {
+    if (signal === "SIGKILL") killedGroup = pid;
+    if (signal === 0 && pid === killedGroup && (persistent || !denied)) {
+      denied = true;
+      throw Object.assign(new Error("synthetic group probe denied"), { code: "EPERM" });
+    }
+    return kill(pid, signal);
+  });
+  try {
+    let error;
+    try { await runSubfieldCircularPhaseProcess(options); }
+    catch (cause) { error = cause; }
+    assert.ok(error?.phaseReceipt, error?.stack);
+    assert.equal(error.phaseReceipt.status, "failed");
+    assert.equal(error.phaseReceipt.processGroupClosed, !persistent);
+    assert.equal(error.phaseReceipt.h3EvidenceEligible, false);
+    assert.equal(denied, true);
+    assert.match(error.phaseReceipt.groupProbeError, /synthetic group probe denied/u);
+    assert.throws(() => kill(killedGroup, 0), (cause) => cause.code === "ESRCH");
+    const count = error.phaseReceipt.heartbeatCount;
+    await new Promise((resolve) => setTimeout(resolve, 60));
+    assert.equal(error.phaseReceipt.heartbeatCount, count);
+  } finally {
+    // Also release the old implementation's leaked timer in the negative control.
+    for (const timer of intervals) clearInterval(timer);
+    t.mock.restoreAll();
+  }
+});
+}
+
 test("output reuse and duplicate pair schedules reject before any child starts", async () => {
   const { config, options } = fixture();
   writeFileSync(config.raw, "preserved", { flag: "wx" });

@@ -1,0 +1,49 @@
+[
+  {
+    "role": "approved-config",
+    "originalPath": "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
+    "physicalPath": "reference/priorities/development-process-review/evidence/next-caller-inputs/phase-varying-prescribed-display-history.v3.json.e92e450c8ea8.source",
+    "expected": "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
+    "actual": "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
+    "bytes": 17369,
+    "matches": true
+  },
+  {
+    "role": "pilot-fixture",
+    "originalPath": "reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json",
+    "physicalPath": "reference/priorities/development-process-review/evidence/next-caller-inputs/2026-08-26-f5-phase-varying-root-pilot-source.v2.json.bda39fe695e8.source",
+    "expected": "bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344",
+    "actual": "bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344",
+    "bytes": 17028,
+    "matches": true
+  },
+  {
+    "role": "restart-predeclaration",
+    "originalPath": "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md",
+    "physicalPath": "reference/priorities/development-process-review/evidence/final-validation/2026-08-26-f5-enclosed-root-restart-predeclaration.md.1bc458d0b80c.source",
+    "expected": "1bc458d0b80c0a4f9e5b5c22e83d7e360306f020526296a937ae26742a6296e5",
+    "actual": "1bc458d0b80c0a4f9e5b5c22e83d7e360306f020526296a937ae26742a6296e5",
+    "bytes": 6049,
+    "matches": true,
+    "gitRef": "0fb575921783188ce528a45c671090e9ecc00464"
+  },
+  {
+    "role": "enclosure-evidence",
+    "originalPath": "reference/priorities/braid-program/evidence/2026-08-26-f5-independent-interpolation-enclosure.md",
+    "physicalPath": "reference/priorities/development-process-review/evidence/final-validation/2026-08-26-f5-independent-interpolation-enclosure.md.931f5d88a209.source",
+    "expected": "931f5d88a209648bde63dfbdd1f24303b7a33e101e11565e75fd608be347d496",
+    "actual": "931f5d88a209648bde63dfbdd1f24303b7a33e101e11565e75fd608be347d496",
+    "bytes": 4826,
+    "matches": true,
+    "gitRef": "0fb575921783188ce528a45c671090e9ecc00464"
+  },
+  {
+    "role": "accepted-enclosure-report",
+    "originalPath": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure/accepted-enclosure-report.v1.json",
+    "physicalPath": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure/accepted-enclosure-report.v1.json",
+    "expected": "2f8fa7bdd40df643a661b2efae4a1007683120077d074165f8f506a4b9941bd9",
+    "actual": "2f8fa7bdd40df643a661b2efae4a1007683120077d074165f8f506a4b9941bd9",
+    "bytes": 201871,
+    "matches": true
+  }
+]

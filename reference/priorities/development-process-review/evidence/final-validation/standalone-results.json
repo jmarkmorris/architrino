@@ -1,0 +1,384 @@
+{
+  "selected": [
+    [
+      "scripts/archie-service/check-fixture-mcp-server.mjs",
+      "--check"
+    ],
+    [
+      "scripts/archie-service/check-fixture-service-stub.mjs",
+      "--check"
+    ],
+    [
+      "scripts/archie-service/check-mcp-deterministic-recall-benchmark.mjs",
+      "--check"
+    ],
+    [
+      "scripts/archie-service/check-rollback.mjs",
+      "--check"
+    ],
+    [
+      "scripts/archie-service/check-secret-boundary.mjs",
+      "--check"
+    ],
+    [
+      "scripts/archie-service/validate-action-broker-sandbox.mjs",
+      "--check"
+    ],
+    [
+      "scripts/archie-service/validate-endpoint-responses.mjs",
+      "--check"
+    ],
+    [
+      "scripts/archie-service/validate-issue-mining-sandbox.mjs",
+      "--check"
+    ],
+    [
+      "scripts/archie-service/validate-mcp-tool-contracts.mjs",
+      "--check"
+    ],
+    [
+      "scripts/archie-service/validate-negative-validators.mjs",
+      "--check"
+    ],
+    [
+      "scripts/archie-service/validate-provider-gateway.mjs",
+      "--check"
+    ],
+    [
+      "scripts/archie-service/validate-provider-sandbox.mjs",
+      "--check"
+    ],
+    [
+      "scripts/archie-service/validate-render-contracts.mjs",
+      "--check"
+    ],
+    [
+      "scripts/archie-service/validate-token-ledger-sandbox.mjs",
+      "--check"
+    ],
+    [
+      "scripts/archie-service/check-full-corpus-mcp-server.mjs"
+    ],
+    [
+      "scripts/archie-service/validate-contracts.mjs"
+    ],
+    [
+      "scripts/archie-service/validate-mcp-remote-deployment-contract.mjs"
+    ],
+    [
+      "scripts/check-animator-runtime-wiring.mjs"
+    ],
+    [
+      "scripts/check-borg-scientific-status-projection.mjs"
+    ],
+    [
+      "scripts/check-pdg-architecture.mjs"
+    ],
+    [
+      "scripts/validate-equation-mapping-links.mjs"
+    ],
+    [
+      "scripts/validate-priority-ranking.mjs"
+    ],
+    [
+      "scripts/check-foundational-impact.mjs",
+      "--working",
+      "--json"
+    ]
+  ],
+  "results": [
+    {
+      "args": [
+        "scripts/archie-service/check-fixture-mcp-server.mjs",
+        "--check"
+      ],
+      "sourceSha256": "6d735a895b860c13d83d6b4b54ba09b1cb1d44e57f567836f30f3e0cfb053aa1",
+      "runId": "1a88b52d-db9a-4a9d-9a32-7d7bbbf4e72c",
+      "status": "failed",
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1a88b52d-db9a-4a9d-9a32-7d7bbbf4e72c.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1a88b52d-db9a-4a9d-9a32-7d7bbbf4e72c.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/check-fixture-service-stub.mjs",
+        "--check"
+      ],
+      "sourceSha256": "24e9831ff4759c56392542e04339a5a877e95d087f5d3327fa13fc507946cfb7",
+      "runId": "43a22dcf-5937-4a83-8f72-96283cd6ed8e",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/43a22dcf-5937-4a83-8f72-96283cd6ed8e.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/43a22dcf-5937-4a83-8f72-96283cd6ed8e.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/check-mcp-deterministic-recall-benchmark.mjs",
+        "--check"
+      ],
+      "sourceSha256": "a57d60411ce4918c3a33979c8d00e421f3c253d39fd4486823bf377f25379e8a",
+      "runId": "d3d2cb8e-c988-4f6c-b9f3-1317801d7340",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/d3d2cb8e-c988-4f6c-b9f3-1317801d7340.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/d3d2cb8e-c988-4f6c-b9f3-1317801d7340.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/check-rollback.mjs",
+        "--check"
+      ],
+      "sourceSha256": "89477f1ee38966319b798fa9cfccee4b540db932981198f39c9cc5825a2e6fcf",
+      "runId": "424fe993-35f1-444e-a9ad-9a1cf07360ad",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/424fe993-35f1-444e-a9ad-9a1cf07360ad.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/424fe993-35f1-444e-a9ad-9a1cf07360ad.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/check-secret-boundary.mjs",
+        "--check"
+      ],
+      "sourceSha256": "b09e69249773c78f3253a8e72e961772c9b4e2ea0ecc888e428a6855d33122b4",
+      "runId": "1f2590e4-1d72-473f-bfd7-e8a7db31c0ff",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1f2590e4-1d72-473f-bfd7-e8a7db31c0ff.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1f2590e4-1d72-473f-bfd7-e8a7db31c0ff.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/validate-action-broker-sandbox.mjs",
+        "--check"
+      ],
+      "sourceSha256": "d3bffefb9e133286299dd499d596b8312857ed36e8d033a4b2d95b37b38d6466",
+      "runId": "b708140a-dcac-42b5-82aa-72fc6c695273",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/b708140a-dcac-42b5-82aa-72fc6c695273.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/b708140a-dcac-42b5-82aa-72fc6c695273.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/validate-endpoint-responses.mjs",
+        "--check"
+      ],
+      "sourceSha256": "07e9eccafd9366459f1903bcc672e9df533645fe196b2d08d2485f5537ea30c1",
+      "runId": "725a7996-ed62-4d0a-aff0-438e0000302f",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/725a7996-ed62-4d0a-aff0-438e0000302f.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/725a7996-ed62-4d0a-aff0-438e0000302f.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/validate-issue-mining-sandbox.mjs",
+        "--check"
+      ],
+      "sourceSha256": "e0d9a9c49ea80c06c17e91a122c31ec11cb40561dd630180540ec85bb25d1a8c",
+      "runId": "402c0596-1d35-40bc-a2a9-c51ca9cebd8b",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/402c0596-1d35-40bc-a2a9-c51ca9cebd8b.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/402c0596-1d35-40bc-a2a9-c51ca9cebd8b.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/validate-mcp-tool-contracts.mjs",
+        "--check"
+      ],
+      "sourceSha256": "436ec62abc9800bf8434c8fe897cfc5ad19cfce4322fb863b5f7eb99dcb09163",
+      "runId": "41d1dea1-20a9-4117-aa1d-f615a569aef7",
+      "status": "failed",
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/41d1dea1-20a9-4117-aa1d-f615a569aef7.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/41d1dea1-20a9-4117-aa1d-f615a569aef7.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/validate-negative-validators.mjs",
+        "--check"
+      ],
+      "sourceSha256": "da5d9928c66bf721538b96056ce1efbbe6bfc711b56683ee927569862b102b37",
+      "runId": "be5e318a-ef7b-49c7-bbaa-d95c59144c49",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/be5e318a-ef7b-49c7-bbaa-d95c59144c49.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/be5e318a-ef7b-49c7-bbaa-d95c59144c49.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/validate-provider-gateway.mjs",
+        "--check"
+      ],
+      "sourceSha256": "b684c3cd731ca0746974e4c4ca26ee9e811a8e5b27c0ec79f4c603f5ad49b750",
+      "runId": "8a2fe7de-c32d-4880-a53b-3b75613ff764",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/8a2fe7de-c32d-4880-a53b-3b75613ff764.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/8a2fe7de-c32d-4880-a53b-3b75613ff764.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/validate-provider-sandbox.mjs",
+        "--check"
+      ],
+      "sourceSha256": "04841a939059fc921cbd78fc7f9c62ec25096ea21c1a58ef27fa993518953e06",
+      "runId": "859ba5f1-fd30-4a4d-80bd-7c0c6703cd67",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/859ba5f1-fd30-4a4d-80bd-7c0c6703cd67.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/859ba5f1-fd30-4a4d-80bd-7c0c6703cd67.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/validate-render-contracts.mjs",
+        "--check"
+      ],
+      "sourceSha256": "cde9ea5769d4a9eeb030605b4f0e530887aa9468739d572b4773e2c5ad46c6da",
+      "runId": "cb6cc468-2f63-49c5-8944-3bdda7a1b00e",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/cb6cc468-2f63-49c5-8944-3bdda7a1b00e.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/cb6cc468-2f63-49c5-8944-3bdda7a1b00e.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/validate-token-ledger-sandbox.mjs",
+        "--check"
+      ],
+      "sourceSha256": "ce992db25499c0e8f7d3f78125dff19c2c65d2b5a4ea635a9077d839512fe600",
+      "runId": "0237d799-ee94-4fb8-83b2-5bed2e1bf03a",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/0237d799-ee94-4fb8-83b2-5bed2e1bf03a.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/0237d799-ee94-4fb8-83b2-5bed2e1bf03a.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/check-full-corpus-mcp-server.mjs"
+      ],
+      "sourceSha256": "086735ed98adc9ab02035394f065886d7fab79200f7a404a41859e1fe7ccd43f",
+      "runId": "ac45cd7b-1332-40db-9667-14972682266e",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/ac45cd7b-1332-40db-9667-14972682266e.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/ac45cd7b-1332-40db-9667-14972682266e.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/validate-contracts.mjs"
+      ],
+      "sourceSha256": "a591ed80d0baf3a679d5864040c863c019ebe75c8b51380330698a05d34d8117",
+      "runId": "3d027ac3-72f1-4791-9a09-1f9b99f18fbd",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/3d027ac3-72f1-4791-9a09-1f9b99f18fbd.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/3d027ac3-72f1-4791-9a09-1f9b99f18fbd.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/archie-service/validate-mcp-remote-deployment-contract.mjs"
+      ],
+      "sourceSha256": "168c14371522d9ba9ad1a2ac520439857d69a14d0ddfe1f08b7fabb6f49d2545",
+      "runId": "2672a9a2-977f-46da-9d25-29756c63ea25",
+      "status": "failed",
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/2672a9a2-977f-46da-9d25-29756c63ea25.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/2672a9a2-977f-46da-9d25-29756c63ea25.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/check-animator-runtime-wiring.mjs"
+      ],
+      "sourceSha256": "5a28c1cae90e514dbc3a2aad09ba34feac98664566fee1fabd995e495a1810aa",
+      "runId": "01d8df41-f080-45f0-b982-35c5cb44db0b",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/01d8df41-f080-45f0-b982-35c5cb44db0b.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/01d8df41-f080-45f0-b982-35c5cb44db0b.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/check-borg-scientific-status-projection.mjs"
+      ],
+      "sourceSha256": "7a6c271cb7d5fd4d9bdb985fa4d93724bef523e46cef5b29237e69c47d1fb932",
+      "runId": "63a1319f-3fc2-481c-a54a-a044f41279a2",
+      "status": "failed",
+      "exitCode": 1,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/63a1319f-3fc2-481c-a54a-a044f41279a2.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/63a1319f-3fc2-481c-a54a-a044f41279a2.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/check-pdg-architecture.mjs"
+      ],
+      "sourceSha256": "f93a3fbd0abac063c312cebaa0d7e657aebcea0cfc45ca60c9bc9dcb8f3d5740",
+      "runId": "370f9c55-71ab-4629-b32e-2b077e7da759",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/370f9c55-71ab-4629-b32e-2b077e7da759.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/370f9c55-71ab-4629-b32e-2b077e7da759.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/validate-equation-mapping-links.mjs"
+      ],
+      "sourceSha256": "a608eea42878945ce6d8de03598355b8887fefc34809871d09ddbec2f430883d",
+      "runId": "8035ab14-48a1-4ed8-b1a8-c7f637e05cc9",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/8035ab14-48a1-4ed8-b1a8-c7f637e05cc9.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/8035ab14-48a1-4ed8-b1a8-c7f637e05cc9.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/validate-priority-ranking.mjs"
+      ],
+      "sourceSha256": "08eac441087253a154fbde22e94f648431c4d97213f97e53cdee37895fa1a402",
+      "runId": "2d1e7c3d-05f5-4964-89cd-0fa53945d6bb",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/2d1e7c3d-05f5-4964-89cd-0fa53945d6bb.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/2d1e7c3d-05f5-4964-89cd-0fa53945d6bb.stderr.log"
+    },
+    {
+      "args": [
+        "scripts/check-foundational-impact.mjs",
+        "--working",
+        "--json"
+      ],
+      "sourceSha256": "eaf15b9f27cf6cc79ed1948cd2e842b46d2d9f6f94bada37ebf60d58358d870f",
+      "runId": "abdf19ec-3758-4a30-a16a-c835130c3fc3",
+      "status": "completed",
+      "exitCode": 0,
+      "processGroupClosed": true,
+      "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/abdf19ec-3758-4a30-a16a-c835130c3fc3.stdout.log",
+      "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/abdf19ec-3758-4a30-a16a-c835130c3fc3.stderr.log"
+    }
+  ],
+  "status": "completed"
+}

@@ -1,0 +1,294 @@
+{
+  "boundary": "Original 49 check/validate candidates only; unselected scientific inputs and SDK-dependent checks remain unexecuted, not passes.",
+  "records": [
+    {
+      "path": "scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs",
+      "disposition": "executed-in-content-integrity",
+      "runId": "a8e3351d-a31f-433d-8d45-b3b0997ae2e3"
+    },
+    {
+      "path": "scripts/archie-service/check-fixture-mcp-sdk-conformance.mjs",
+      "disposition": "requires-explicit-input-selection",
+      "runId": null,
+      "prerequisite": "Explicit installed SDK root and version required by CLI; not supplied by this campaign.",
+      "owner": "aaa-operations / OPS-023"
+    },
+    {
+      "path": "scripts/archie-service/check-fixture-mcp-server.mjs",
+      "disposition": "executed-standalone",
+      "runId": "1a88b52d-db9a-4a9d-9a32-7d7bbbf4e72c",
+      "exitCode": 1
+    },
+    {
+      "path": "scripts/archie-service/check-fixture-service-stub.mjs",
+      "disposition": "executed-standalone",
+      "runId": "43a22dcf-5937-4a83-8f72-96283cd6ed8e",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/archie-service/check-full-corpus-mcp-server.mjs",
+      "disposition": "executed-standalone",
+      "runId": "ac45cd7b-1332-40db-9667-14972682266e",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/archie-service/check-loopback-mcp-http-sdk-conformance.mjs",
+      "disposition": "requires-explicit-input-selection",
+      "runId": null,
+      "prerequisite": "Explicit installed SDK root and version required by CLI; not supplied by this campaign.",
+      "owner": "aaa-operations / OPS-023"
+    },
+    {
+      "path": "scripts/archie-service/check-mcp-deterministic-recall-benchmark.mjs",
+      "disposition": "executed-standalone",
+      "runId": "d3d2cb8e-c988-4f6c-b9f3-1317801d7340",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/archie-service/check-rollback.mjs",
+      "disposition": "executed-standalone",
+      "runId": "424fe993-35f1-444e-a9ad-9a1cf07360ad",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/archie-service/check-secret-boundary.mjs",
+      "disposition": "executed-standalone",
+      "runId": "1f2590e4-1d72-473f-bfd7-e8a7db31c0ff",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/archie-service/validate-action-broker-sandbox.mjs",
+      "disposition": "executed-standalone",
+      "runId": "b708140a-dcac-42b5-82aa-72fc6c695273",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/archie-service/validate-contracts.mjs",
+      "disposition": "executed-standalone",
+      "runId": "3d027ac3-72f1-4791-9a09-1f9b99f18fbd",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/archie-service/validate-endpoint-responses.mjs",
+      "disposition": "executed-standalone",
+      "runId": "725a7996-ed62-4d0a-aff0-438e0000302f",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/archie-service/validate-issue-mining-sandbox.mjs",
+      "disposition": "executed-standalone",
+      "runId": "402c0596-1d35-40bc-a2a9-c51ca9cebd8b",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/archie-service/validate-mcp-remote-deployment-contract.mjs",
+      "disposition": "executed-standalone",
+      "runId": "2672a9a2-977f-46da-9d25-29756c63ea25",
+      "exitCode": 1
+    },
+    {
+      "path": "scripts/archie-service/validate-mcp-tool-contracts.mjs",
+      "disposition": "executed-standalone",
+      "runId": "41d1dea1-20a9-4117-aa1d-f615a569aef7",
+      "exitCode": 1
+    },
+    {
+      "path": "scripts/archie-service/validate-negative-validators.mjs",
+      "disposition": "executed-standalone",
+      "runId": "be5e318a-ef7b-49c7-bbaa-d95c59144c49",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/archie-service/validate-provider-gateway.mjs",
+      "disposition": "executed-standalone",
+      "runId": "8a2fe7de-c32d-4880-a53b-3b75613ff764",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/archie-service/validate-provider-sandbox.mjs",
+      "disposition": "executed-standalone",
+      "runId": "859ba5f1-fd30-4a4d-80bd-7c0c6703cd67",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/archie-service/validate-render-contracts.mjs",
+      "disposition": "executed-standalone",
+      "runId": "cb6cc468-2f63-49c5-8944-3bdda7a1b00e",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/archie-service/validate-token-ledger-sandbox.mjs",
+      "disposition": "executed-standalone",
+      "runId": "0237d799-ee94-4fb8-83b2-5bed2e1bf03a",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/check-animator-runtime-wiring.mjs",
+      "disposition": "executed-standalone",
+      "runId": "01d8df41-f080-45f0-b982-35c5cb44db0b",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/check-borg-scientific-status-projection.mjs",
+      "disposition": "executed-standalone",
+      "runId": "63a1319f-3fc2-481c-a54a-a044f41279a2",
+      "exitCode": 1
+    },
+    {
+      "path": "scripts/check-braid-taxonomy-terminology.mjs",
+      "disposition": "executed-in-content-integrity",
+      "runId": "a8e3351d-a31f-433d-8d45-b3b0997ae2e3"
+    },
+    {
+      "path": "scripts/check-browser-performance-budget.mjs",
+      "disposition": "executed-in-content-integrity",
+      "runId": "a8e3351d-a31f-433d-8d45-b3b0997ae2e3"
+    },
+    {
+      "path": "scripts/check-content-integrity.mjs",
+      "disposition": "executed-gate",
+      "runId": "a8e3351d-a31f-433d-8d45-b3b0997ae2e3",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/check-deployment-budget.mjs",
+      "disposition": "executed-in-content-integrity",
+      "runId": "a8e3351d-a31f-433d-8d45-b3b0997ae2e3"
+    },
+    {
+      "path": "scripts/check-foundational-impact.mjs",
+      "disposition": "executed-standalone",
+      "runId": "abdf19ec-3758-4a30-a16a-c835130c3fc3",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/check-master-equation-terminology-migration.mjs",
+      "disposition": "executed-in-content-integrity",
+      "runId": "a8e3351d-a31f-433d-8d45-b3b0997ae2e3"
+    },
+    {
+      "path": "scripts/check-owned-compute-launch-policy.mjs",
+      "disposition": "executed-in-content-integrity",
+      "runId": "a8e3351d-a31f-433d-8d45-b3b0997ae2e3"
+    },
+    {
+      "path": "scripts/check-pdg-architecture.mjs",
+      "disposition": "executed-standalone",
+      "runId": "370f9c55-71ab-4629-b32e-2b077e7da759",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/check-polarity-notation-drift.mjs",
+      "disposition": "executed-in-content-integrity",
+      "runId": "a8e3351d-a31f-433d-8d45-b3b0997ae2e3"
+    },
+    {
+      "path": "scripts/check-potential-consumer-publication-contract.mjs",
+      "disposition": "executed-in-content-integrity",
+      "runId": "a8e3351d-a31f-433d-8d45-b3b0997ae2e3"
+    },
+    {
+      "path": "scripts/check-potential-live-timespace-pipeline-contract.mjs",
+      "disposition": "executed-in-content-integrity",
+      "runId": "a8e3351d-a31f-433d-8d45-b3b0997ae2e3"
+    },
+    {
+      "path": "scripts/check-reader-facing-publication-boundary.mjs",
+      "disposition": "executed-in-content-integrity",
+      "runId": "a8e3351d-a31f-433d-8d45-b3b0997ae2e3"
+    },
+    {
+      "path": "scripts/check-transmitter-factor-clean-slate.mjs",
+      "disposition": "executed-in-content-integrity",
+      "runId": "a8e3351d-a31f-433d-8d45-b3b0997ae2e3"
+    },
+    {
+      "path": "scripts/check-validation-script-paths.mjs",
+      "disposition": "executed-in-content-integrity",
+      "runId": "a8e3351d-a31f-433d-8d45-b3b0997ae2e3"
+    },
+    {
+      "path": "scripts/check-webapp-release-gate.mjs",
+      "disposition": "executed-in-content-integrity",
+      "runId": "a8e3351d-a31f-433d-8d45-b3b0997ae2e3"
+    },
+    {
+      "path": "scripts/eom/check-f5-evolution-dynamics.py",
+      "disposition": "requires-explicit-input-selection",
+      "runId": null,
+      "prerequisite": "Select the owner-approved scientific input records required by the CLI; regression tests do not authorize new scientific acceptance.",
+      "owner": "app-solver / braid-program"
+    },
+    {
+      "path": "scripts/eom/check-planar-three-binary-circular-release.py",
+      "disposition": "requires-explicit-input-selection",
+      "runId": null,
+      "prerequisite": "Select the owner-approved scientific input records required by the CLI; regression tests do not authorize new scientific acceptance.",
+      "owner": "app-solver / braid-program"
+    },
+    {
+      "path": "scripts/eom/check-stella-octangula-short-release-accepted-ledger.py",
+      "disposition": "requires-explicit-input-selection",
+      "runId": null,
+      "prerequisite": "Select the owner-approved scientific input records required by the CLI; regression tests do not authorize new scientific acceptance.",
+      "owner": "app-solver / braid-program"
+    },
+    {
+      "path": "scripts/eom/check-stella-octangula-short-release.py",
+      "disposition": "requires-explicit-input-selection",
+      "runId": null,
+      "prerequisite": "Select the owner-approved scientific input records required by the CLI; regression tests do not authorize new scientific acceptance.",
+      "owner": "app-solver / braid-program"
+    },
+    {
+      "path": "scripts/eom/validate-attractor-resume-gate.mjs",
+      "disposition": "requires-explicit-input-selection",
+      "runId": null,
+      "prerequisite": "Select the owner-approved scientific input records required by the CLI; regression tests do not authorize new scientific acceptance.",
+      "owner": "app-solver / braid-program"
+    },
+    {
+      "path": "scripts/eom/validate-campaign1-binary-workload.mjs",
+      "disposition": "requires-explicit-input-selection",
+      "runId": null,
+      "prerequisite": "Select the owner-approved scientific input records required by the CLI; regression tests do not authorize new scientific acceptance.",
+      "owner": "app-solver / braid-program"
+    },
+    {
+      "path": "scripts/equation-mapping/check-emit-02-04-contract.mjs",
+      "disposition": "requires-explicit-input-selection",
+      "runId": null,
+      "prerequisite": "Select the owner-approved scientific input records required by the CLI; regression tests do not authorize new scientific acceptance.",
+      "owner": "equation-mapping"
+    },
+    {
+      "path": "scripts/equation-mapping/check-same-branch-chart-identity.mjs",
+      "disposition": "requires-explicit-input-selection",
+      "runId": null,
+      "prerequisite": "Select the owner-approved scientific input records required by the CLI; regression tests do not authorize new scientific acceptance.",
+      "owner": "equation-mapping"
+    },
+    {
+      "path": "scripts/validate-content.mjs",
+      "disposition": "executed-in-content-integrity",
+      "runId": "a8e3351d-a31f-433d-8d45-b3b0997ae2e3"
+    },
+    {
+      "path": "scripts/validate-equation-mapping-links.mjs",
+      "disposition": "executed-standalone",
+      "runId": "8035ab14-48a1-4ed8-b1a8-c7f637e05cc9",
+      "exitCode": 0
+    },
+    {
+      "path": "scripts/validate-machine-artifact-retention.mjs",
+      "disposition": "executed-in-content-integrity",
+      "runId": "a8e3351d-a31f-433d-8d45-b3b0997ae2e3"
+    },
+    {
+      "path": "scripts/validate-priority-ranking.mjs",
+      "disposition": "executed-standalone",
+      "runId": "2d1e7c3d-05f5-4964-89cd-0fa53945d6bb",
+      "exitCode": 0
+    }
+  ]
+}

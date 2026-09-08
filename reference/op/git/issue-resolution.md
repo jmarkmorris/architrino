@@ -15,9 +15,9 @@ This procedure operates within the current task authority. A request to inspect 
 ## Operating Principles
 
 - Resolve the repository and issue scope before acting.
-- Use the GitHub connector first for structured issue and pull request metadata when it is available.
+- Use GitHub CLI (`gh`) for issue and pull request metadata through the verified PAT- or OAuth-authenticated route assigned to the tool and repository. GitHub connectors are excluded from the selected operating workflow; do not fall back to one because it is available.
 - Use local `git` for checkout state, diffs, branches, commits, and local validation.
-- Use `gh` where the connector is not sufficient, especially for current-branch PR discovery, GitHub Actions logs, issue comments, and issue closure.
+- Use `gh` for current-branch PR discovery, GitHub Actions logs, and authorized issue comments and closure. Verify the actual identity, repository, and permissions before relying on the route; a PAT or OAuth label alone does not establish the required authorization boundary.
 - Inspect the live worktree before changing files.
 - Do not overwrite unrelated local changes.
 - Keep one issue fix narrow unless the operator/developer explicitly asks for a batch.

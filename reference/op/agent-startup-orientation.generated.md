@@ -77,7 +77,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 156 | `b5c055f1408460dc` |
+| [AGENTS.md](../../AGENTS.md) | 157 | `8ba607fcba2c13d0` |
 | [README.md](../../README.md) | 220 | `81b723567a77aae0` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 24 | `ea8da8bb87d4206f` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 38 | `3666ac9286628a8e` |
@@ -89,7 +89,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `286eeca87711d763` |
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 60 | `421e58e6c3ced0d5` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `45f14795d91a7703` |
-| [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md) | 803 | `02c48b56b6f66875` |
+| [reference/op/git/codex-pr-branch.md](git/codex-pr-branch.md) | 808 | `a7dad00a4d6ede00` |
 | [reference/priorities/README.md](../priorities/README.md) | 124 | `13f5e68cb419ca30` |
 | [reference/research-office/cto/prompts/README.md](../research-office/cto/prompts/README.md) | 59 | `7a13f638727952da` |
 | [reference/research-office/cto/prompts/start-pi.md](../research-office/cto/prompts/start-pi.md) | 72 | `1b72deebe03eae34` |

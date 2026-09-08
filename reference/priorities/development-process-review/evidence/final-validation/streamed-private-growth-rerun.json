@@ -1,0 +1,36 @@
+{
+  "runId": "99f423da-7b11-4df7-a8d7-5bd8602c63e3",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-name-pattern=active private-growth rejection",
+    "tests/f6c-streamed-leaf-diagnostic.test.js"
+  ],
+  "summary": {
+    "tests": 1,
+    "pass": 1,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 16375.704875
+  },
+  "failures": [],
+  "failedFiles": [],
+  "skippedResults": [],
+  "diagnosticCount": 0,
+  "nativeFailureCount": 0,
+  "log": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/99f423da-7b11-4df7-a8d7-5bd8602c63e3.stdout.log",
+    "sha256": "2cc072f8f1c1eb64ed4806ad4131474698b41371f825008b4d04157253f7dc83",
+    "bytes": 352
+  },
+  "terminal": {
+    "status": "completed",
+    "exitCode": 0,
+    "processGroupClosed": true,
+    "elapsedWallSeconds": 16.452
+  },
+  "boundary": "The recorded command defines the Node selection in the shared working checkout. Concurrent documentation edits occurred; this is not an exact final-candidate publication receipt. Native totals and extracted diagnostic blocks are separate quantities; parent failures may duplicate nested failures."
+}

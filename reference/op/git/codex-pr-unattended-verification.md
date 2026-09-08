@@ -14,7 +14,7 @@ The original closure rule required three consecutive completed two-handoff lifec
 
 What closed this correction is the operator's observation that the intended workflow now runs as intended. What remains unestablished is the measured prompt budget of any individual lifecycle. Both statements are true and neither substitutes for the other.
 
-The falsifier is direct: if a routine `run codex-pr-branch.md` or `merged, continue` invocation again produces interactive operator decision prompts or host permission prompts on the healthy path, this correction should reopen, and the counters defined under [Permission measurement](codex-pr-branch.md#permission-measurement) become the instrument for diagnosing it.
+Current operating disposition: unexpected interactive prompts during routine publication are workflow friction to investigate using the counters defined under [Permission measurement](codex-pr-branch.md#permission-measurement). They do not automatically reopen this closed correction or invalidate an otherwise verified Git handoff. Routine runs record diagnostics in their handoff receipts without adding entries to this historical ledger. The retained closure evidence below is unchanged.
 
 ## Counter Contract
 

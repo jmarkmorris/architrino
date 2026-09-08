@@ -2,7 +2,7 @@
 
 ## Status
 
-Experimental procedure. This documents a controlled test of continuing new work while a parent pull request is under operator review. It does not replace [codex-pr-branch.md](codex-pr-branch.md). Promote it into that standard procedure only after repeated successful use demonstrates that it preserves review clarity, commit identity, and the shared-checkout workflow.
+Inactive experiment, retained for reference. The operator decided to pause ordinary development through PR review, merge, cleanup, and successor preparation. Follow [codex-pr-branch.md](codex-pr-branch.md). The experimental steps below are not active instructions; reactivation requires a new operator decision and review of their merge-method assumptions. Preserve any already-existing successor work through the standard lifecycle's recovery exception.
 
 ## Purpose
 
@@ -10,7 +10,7 @@ After a parent PR is ready for review, create its named successor from the paren
 
 ## When To Use This Procedure
 
-Use only when the operator explicitly asks to continue implementation while a ready parent PR is under review. Otherwise use the ordinary publish, merge, and rollover lifecycle in [codex-pr-branch.md](codex-pr-branch.md).
+Do not use this experiment under the current workflow. An operator decision to reconsider continuous development must first settle its integration and verification requirements; a routine publication request does not reactivate it.
 
 This procedure needs one shared-checkout coordination pause before the branch switch. All local agents must finish, commit, or intentionally carry their changes so the checkout can switch without overwriting work.
 

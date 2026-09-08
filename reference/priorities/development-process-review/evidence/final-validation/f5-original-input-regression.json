@@ -1,0 +1,216 @@
+{
+  "boundary": "Original tests and current unchanged numerical oracle bytes in a temporary source tree with exact recovered historical data. This does not repair live-path loading or certify a new scientific run.",
+  "directory": "/private/tmp/f5-original-input-regression-8sFTwF",
+  "inputs": [
+    {
+      "original": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/next-caller-inputs/phase-varying-prescribed-display-history.v3.json.e92e450c8ea8.source",
+      "target": "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
+      "sha256": "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
+      "bytes": 17369
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/next-caller-inputs/2026-08-26-f5-phase-varying-root-pilot-source.v2.json.bda39fe695e8.source",
+      "target": "reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json",
+      "sha256": "bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344",
+      "bytes": 17028
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/final-validation/2026-08-26-f5-enclosed-root-restart-predeclaration.md.1bc458d0b80c.source",
+      "target": "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md",
+      "sha256": "1bc458d0b80c0a4f9e5b5c22e83d7e360306f020526296a937ae26742a6296e5",
+      "bytes": 6049
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/final-validation/2026-08-26-f5-independent-interpolation-enclosure.md.931f5d88a209.source",
+      "target": "reference/priorities/braid-program/evidence/2026-08-26-f5-independent-interpolation-enclosure.md",
+      "sha256": "931f5d88a209648bde63dfbdd1f24303b7a33e101e11565e75fd608be347d496",
+      "bytes": 4826
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/.local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure/accepted-enclosure-report.v1.json",
+      "target": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure/accepted-enclosure-report.v1.json",
+      "sha256": "2f8fa7bdd40df643a661b2efae4a1007683120077d074165f8f506a4b9941bd9",
+      "bytes": 201871
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/__init__.py",
+      "target": "scripts/eom/oracle/__init__.py",
+      "sha256": "de6f7aeb0acfc97c996d601059ad243b886d9381247fbf9541acacc74bac3ae1",
+      "bytes": 47
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/certified_acceleration.py",
+      "target": "scripts/eom/oracle/certified_acceleration.py",
+      "sha256": "62787f1bb0d14329c0ad1f3586ef1f1cbeb666fe8c11f8831f7ad761d7c42b83",
+      "bytes": 35429
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/certified_evolution.py",
+      "target": "scripts/eom/oracle/certified_evolution.py",
+      "sha256": "00567dfef3163d40634dd5790d5eeb667cff8698394831130e8cb91937ddc80a",
+      "bytes": 47772
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/certified_history.py",
+      "target": "scripts/eom/oracle/certified_history.py",
+      "sha256": "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7",
+      "bytes": 50352
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/continuous_reception_acceleration.py",
+      "target": "scripts/eom/oracle/continuous_reception_acceleration.py",
+      "sha256": "abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8",
+      "bytes": 19379
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/continuous_reception_roots.py",
+      "target": "scripts/eom/oracle/continuous_reception_roots.py",
+      "sha256": "f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c",
+      "bytes": 25473
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/continuous_reception_roots_cached.py",
+      "target": "scripts/eom/oracle/continuous_reception_roots_cached.py",
+      "sha256": "daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf",
+      "bytes": 28521
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/decimal_interval.py",
+      "target": "scripts/eom/oracle/decimal_interval.py",
+      "sha256": "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a",
+      "bytes": 11321
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/f5_actual_cubic_conformance.py",
+      "target": "scripts/eom/oracle/f5_actual_cubic_conformance.py",
+      "sha256": "4a90227cd79a4acfe319c723a05b711df1947953cc229f87114c4bc7babf6e09",
+      "bytes": 17091
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/f5_api_domain_conformance.py",
+      "target": "scripts/eom/oracle/f5_api_domain_conformance.py",
+      "sha256": "d33d90d1b292466e03846c86017a2444e6228c45927ddd3bb49e28c3daf500d3",
+      "bytes": 21038
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/f5_history_manifest_conformance.py",
+      "target": "scripts/eom/oracle/f5_history_manifest_conformance.py",
+      "sha256": "c34cd3f368398fd1ecd3a227c8026508efd319e9219b0ae8819eb4dfab646c74",
+      "bytes": 18010
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/f6c_correlated_residual_enclosure.py",
+      "target": "scripts/eom/oracle/f6c_correlated_residual_enclosure.py",
+      "sha256": "b86907236e849124f3fa9c6bcad0f65492ecc6fbeb1b51a27438655c45b037b1",
+      "bytes": 7830
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/f6c_emission_refinement_conformance.py",
+      "target": "scripts/eom/oracle/f6c_emission_refinement_conformance.py",
+      "sha256": "0f21d676f4f50702e8375f7ba9c1f362cca82ad3d636316e7121ab819a2dbc7b",
+      "bytes": 16703
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/f6c_gk13_protocol.py",
+      "target": "scripts/eom/oracle/f6c_gk13_protocol.py",
+      "sha256": "a70a15481f793e913440628068f9c53bab611fe9d92f36206a401c01e91478eb",
+      "bytes": 24388
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py",
+      "target": "scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py",
+      "sha256": "9bca879b94386d033597bb9d1e3a4ceeb9943925615c916299feb91e482391ad",
+      "bytes": 21854
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/f6c_refined_acceleration_conformance.py",
+      "target": "scripts/eom/oracle/f6c_refined_acceleration_conformance.py",
+      "sha256": "7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e",
+      "bytes": 20730
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/f6c_residual_integral_supremum.py",
+      "target": "scripts/eom/oracle/f6c_residual_integral_supremum.py",
+      "sha256": "fc170a91b2747923bda89ef00b58d529c98bf96b01cc7b2c05c035042fc79c5a",
+      "bytes": 20129
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/phase4_acceptance.py",
+      "target": "scripts/eom/oracle/phase4_acceptance.py",
+      "sha256": "65ef8ff4ef9915d5d28dcd8712cd7b58a94636277d4445e40874f1d395d2ce88",
+      "bytes": 58511
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/prescribed_acceleration_response.py",
+      "target": "scripts/eom/oracle/prescribed_acceleration_response.py",
+      "sha256": "e630c2f4c48c9fcfc56866166e8b5977d70ab83c6ca3f2b08ad9ea4f3f5e910c",
+      "bytes": 35432
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/scripts/eom/oracle/reference_kernel.py",
+      "target": "scripts/eom/oracle/reference_kernel.py",
+      "sha256": "a3b94301b2994c29e1107de44d627db9566abe9cda60ec8e00b89d9351a275f6",
+      "bytes": 7827
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/tests/test_f5_api_domain_conformance.py",
+      "target": "tests/test_f5_api_domain_conformance.py",
+      "sha256": "5fce3ea7c46e48073e5b7e038a858590e647997fdcfa71da58a3f282c663c788",
+      "bytes": 13280
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/tests/test_f5_history_manifest_conformance.py",
+      "target": "tests/test_f5_history_manifest_conformance.py",
+      "sha256": "b927ab51af36bf1a449645ec3f43ce7b0428e83db2d1ebba02675437ab91cc29",
+      "bytes": 10394
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/src/eom/native/eom_f5_enclosed_root_cli.cpp",
+      "target": "src/eom/native/eom_f5_enclosed_root_cli.cpp",
+      "sha256": "16a067847d77348b4c4d809dbaece8a4a80b91a6e9568198603b0338407d38f6",
+      "bytes": 46324
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/src/eom/CMakeLists.txt",
+      "target": "src/eom/CMakeLists.txt",
+      "sha256": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4",
+      "bytes": 4907
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/src/eom/src/History.cpp",
+      "target": "src/eom/src/History.cpp",
+      "sha256": "cd732843db488de66798953278d1e3b15151163c826b9d5b93eed98363a8b4c5",
+      "bytes": 72320
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/src/eom/src/Interval.cpp",
+      "target": "src/eom/src/Interval.cpp",
+      "sha256": "5da66e8473f78439dbb075857918af85b7789b2749e5046c83d9b58d944023a5",
+      "bytes": 11812
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/src/eom/include/architrino/eom/History.hpp",
+      "target": "src/eom/include/architrino/eom/History.hpp",
+      "sha256": "0e326f15c70a0b0dc5786b1c14a2f2378324754c28cc597b92d82c0c1da3c8f3",
+      "bytes": 15845
+    },
+    {
+      "original": "/Users/markmorris/vibe/architrino/src/eom/include/architrino/eom/Interval.hpp",
+      "target": "src/eom/include/architrino/eom/Interval.hpp",
+      "sha256": "880a98273244c65f85ebcce2e08026a177c4af633633b8e29078948b54143dd9",
+      "bytes": 2708
+    }
+  ],
+  "results": [
+    {
+      "name": "test_f5_api_domain_conformance.py",
+      "exitCode": 0,
+      "error": null
+    },
+    {
+      "name": "test_f5_history_manifest_conformance.py",
+      "exitCode": 0,
+      "error": null
+    }
+  ]
+}

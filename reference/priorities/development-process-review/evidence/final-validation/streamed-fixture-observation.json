@@ -1,0 +1,66 @@
+{
+  "fixture": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-JOogR1",
+  "observedAtUtc": "2026-09-08T14:38:28.684Z",
+  "instrument": "process.kill(recorded id, 0), host execution",
+  "probes": [
+    {
+      "pid": 38537,
+      "result": "ESRCH"
+    },
+    {
+      "pid": 38558,
+      "result": "ESRCH"
+    },
+    {
+      "pid": -38558,
+      "result": "ESRCH"
+    },
+    {
+      "pid": 38534,
+      "result": "ESRCH"
+    },
+    {
+      "pid": -38534,
+      "result": "ESRCH"
+    },
+    {
+      "pid": 38532,
+      "result": "ESRCH"
+    }
+  ],
+  "lease": {
+    "runId": "e4335026-cafc-4440-a1ee-687f5b74195b",
+    "status": "stopping",
+    "startedAtUtc": "2026-09-08T14:29:14.325Z",
+    "heartbeatAtUtc": "2026-09-08T14:29:29.332Z",
+    "stopReason": "deadline_exceeded",
+    "stopRequestedAtUtc": "2026-09-08T14:29:29.248Z",
+    "targetIdentity": {
+      "pid": 38534,
+      "ppid": 38532,
+      "pgid": 38534,
+      "started": "Tue Sep 8 10:29:14 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-JOogR1/fixture-envelope.mjs"
+    },
+    "sidecarIdentity": {
+      "pid": 38532,
+      "ppid": 35400,
+      "pgid": 38532,
+      "started": "Tue Sep 8 10:29:14 2026",
+      "command": "/opt/homebrew/Cellar/node/26.3.0/bin/node /private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-JOogR1/scripts/dev/owned-compute-supervisor.mjs __sidecar e4335026-cafc-4440-a1ee-687f5b74195b"
+    }
+  },
+  "logs": [
+    {
+      "path": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-JOogR1/.local-data/owned-compute/logs/e4335026-cafc-4440-a1ee-687f5b74195b.stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/private/var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/f6c-stream-JOogR1/.local-data/owned-compute/logs/e4335026-cafc-4440-a1ee-687f5b74195b.stderr.log",
+      "bytes": 175,
+      "sha256": "884adfefd5cc470a60432b025795d4aebd8fe5ec445a2b0b6b2379db7c0ada5b"
+    }
+  ],
+  "boundary": "Later absence of these recorded identities only; no successful terminal result or original failure attribution is inferred."
+}

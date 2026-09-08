@@ -1,0 +1,1665 @@
+{
+  "controls": "Failure, zero-test, skip and absent summary cases passed before target reads.",
+  "runs": [
+    {
+      "input": ".local-data/owned-compute/python-baseline-compiled-2026-09-08T05-43-38-374Z.json",
+      "sha256": "f1130054cc189c675515e7d55dd9e29ccb92c00e8168e3d0bd013dbc35983aaf",
+      "status": "completed",
+      "compiledMode": true,
+      "selected": [
+        "tests/test_eom_borg_native_process.py",
+        "tests/test_eom_native_acceleration.py",
+        "tests/test_eom_native_coupled_evolution.py",
+        "tests/test_eom_native_history_layer.py",
+        "tests/test_eom_recursive_block_exclusion.py"
+      ],
+      "results": [
+        {
+          "path": "tests/test_eom_borg_native_process.py",
+          "sourceSha256Before": "37ad898cc4cad15c4a4a64a499686487658f3f18c3239dbc60fa5bfb7fb39ee3",
+          "sourceSha256After": "37ad898cc4cad15c4a4a64a499686487658f3f18c3239dbc60fa5bfb7fb39ee3",
+          "runId": "710e6886-c984-45e3-8ab3-c421450eea21",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 17.123,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/710e6886-c984-45e3-8ab3-c421450eea21.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/710e6886-c984-45e3-8ab3-c421450eea21.stderr.log",
+          "unittest": {
+            "tests": 27,
+            "seconds": 17.071,
+            "result": "OK"
+          },
+          "stderrSha256": "ab8d13797357fa8b1fa127c2cd62ae8f5a8d1f40d1be6bea8646570f807ee1c8",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_eom_native_acceleration.py",
+          "sourceSha256Before": "a604b92ccce1934a10a863f7571b3533e4fed8621ae549079658616b09a36d16",
+          "sourceSha256After": "a604b92ccce1934a10a863f7571b3533e4fed8621ae549079658616b09a36d16",
+          "runId": "75905f69-d5af-4482-b52c-cc809b5a2310",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 119.596,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/75905f69-d5af-4482-b52c-cc809b5a2310.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/75905f69-d5af-4482-b52c-cc809b5a2310.stderr.log",
+          "unittest": {
+            "tests": 12,
+            "seconds": 119.507,
+            "result": "OK"
+          },
+          "stderrSha256": "b606e0f73d175dab899add35040a09cd52b6d8de8ad6dba5a2da2aae5f199534",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_eom_native_coupled_evolution.py",
+          "sourceSha256Before": "e794afeab1a1ae087bb498f5a98ed1de02b7e992ef875a1a685dd0e2ff620f90",
+          "sourceSha256After": "e794afeab1a1ae087bb498f5a98ed1de02b7e992ef875a1a685dd0e2ff620f90",
+          "runId": "46531ae8-ff7e-4b94-b91a-fbffec3fcdcc",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 91.674,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/46531ae8-ff7e-4b94-b91a-fbffec3fcdcc.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/46531ae8-ff7e-4b94-b91a-fbffec3fcdcc.stderr.log",
+          "unittest": {
+            "tests": 43,
+            "seconds": 91.593,
+            "result": "OK"
+          },
+          "stderrSha256": "52df2d7fbe8de390388b79f8db00a44818c9f0c979273e50fc4194b9f7d30da3",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_eom_native_history_layer.py",
+          "sourceSha256Before": "f98ebbb8ffd26816b8fb9fc1b0bb742d6dab46347af906e64803d51a9d83ab46",
+          "sourceSha256After": "f98ebbb8ffd26816b8fb9fc1b0bb742d6dab46347af906e64803d51a9d83ab46",
+          "runId": "25aaa87c-39f8-4604-a5fe-5529f4d5b858",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 18.372,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/25aaa87c-39f8-4604-a5fe-5529f4d5b858.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/25aaa87c-39f8-4604-a5fe-5529f4d5b858.stderr.log",
+          "unittest": {
+            "tests": 35,
+            "seconds": 18.305,
+            "result": "OK"
+          },
+          "stderrSha256": "7cd01866207afe14631939220109b1344fb9ec82809b6b5bc85f5fe524e498ec",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_eom_recursive_block_exclusion.py",
+          "sourceSha256Before": "5a5bfca0fea77e3da28d99dba19b3a11162b528104ebf04148ce4fef8a0c8499",
+          "sourceSha256After": "5a5bfca0fea77e3da28d99dba19b3a11162b528104ebf04148ce4fef8a0c8499",
+          "runId": "2d824f97-6e30-48c8-a1a6-a5652d80a611",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 19.638,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/2d824f97-6e30-48c8-a1a6-a5652d80a611.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/2d824f97-6e30-48c8-a1a6-a5652d80a611.stderr.log",
+          "unittest": {
+            "tests": 9,
+            "seconds": 19.579,
+            "result": "OK"
+          },
+          "stderrSha256": "9352d868e76684325da209004b24e70768a14cde24c2340f5268764e4dbe4854",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    },
+    {
+      "input": ".local-data/owned-compute/python-baseline-ordinary-2026-09-08T05-41-00-097Z.json",
+      "sha256": "ba6b0adff95a8d6832e3703729abbbdf9c2e2c4ffd46084c75f40c776f9be26b",
+      "status": "completed",
+      "compiledMode": false,
+      "selected": [
+        "tests/pdg_refresh_live_artifacts_test.py",
+        "tests/pdgfeed_cli_test.py",
+        "tests/pdgfeed_live_matching_test.py",
+        "tests/pdgfeed_manifest_test.py",
+        "tests/pdgfeed_registry_audit_test.py",
+        "tests/pdgsolve_cli_test.py",
+        "tests/test_bp017_private_cube_shrink_family.py",
+        "tests/test_childrens_book_exports.py",
+        "tests/test_eom_continuous_reception_acceleration.py",
+        "tests/test_eom_continuous_reception_roots.py",
+        "tests/test_eom_continuous_reception_roots_cached.py",
+        "tests/test_eom_correlated_history_enclosure.py",
+        "tests/test_eom_decimal_interval.py",
+        "tests/test_eom_evolution_centered_radius.py",
+        "tests/test_eom_merged_root_width_invariant.py",
+        "tests/test_eom_oracle_certified_acceleration.py",
+        "tests/test_eom_oracle_certified_evolution.py",
+        "tests/test_eom_oracle_phase4_acceptance.py",
+        "tests/test_eom_oracle_reference_kernel.py",
+        "tests/test_eom_oracle_root_certification.py",
+        "tests/test_eom_performance_architecture_baseline.py",
+        "tests/test_eom_root_width_exactness.py",
+        "tests/test_f5_actual_cubic_conformance.py",
+        "tests/test_f5_api_domain_conformance.py",
+        "tests/test_f5_evolution_dynamics_checker.py",
+        "tests/test_f5_history_manifest_conformance.py",
+        "tests/test_f5_ordinary_evolution_outcome.py",
+        "tests/test_f5_prehistory_handoff.py",
+        "tests/test_f5_prehistory_handoff_producer.py",
+        "tests/test_f5_prehistory_restriction.py",
+        "tests/test_f6c_acceleration_execution.py",
+        "tests/test_f6c_accepted_frame_reconstruction.py",
+        "tests/test_f6c_cached_continuous_reception_root_cover.py",
+        "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
+        "tests/test_f6c_continuous_reception_acceleration.py",
+        "tests/test_f6c_continuous_reception_acceleration_preparation.py",
+        "tests/test_f6c_continuous_reception_root_cover.py",
+        "tests/test_f6c_continuous_reception_root_cover_preparation.py",
+        "tests/test_f6c_correlated_residual_enclosure.py",
+        "tests/test_f6c_emission_refinement.py",
+        "tests/test_f6c_emission_refinement_conformance.py",
+        "tests/test_f6c_emission_refinement_preparation.py",
+        "tests/test_f6c_evidence_package.py",
+        "tests/test_f6c_gk13_protocol.py",
+        "tests/test_f6c_historical_archive_contract.py",
+        "tests/test_f6c_leaf_continuation.py",
+        "tests/test_f6c_leaf_evidence_codec.py",
+        "tests/test_f6c_leaf_stream_publication.py",
+        "tests/test_f6c_parent_emission_refinement.py",
+        "tests/test_f6c_parent_emission_refinement_conformance.py",
+        "tests/test_f6c_parent_emission_refinement_preparation.py",
+        "tests/test_f6c_parent_emission_refinement_verification.py",
+        "tests/test_f6c_parent_evidence_inventory.py",
+        "tests/test_f6c_parent_snapshot.py",
+        "tests/test_f6c_reception_geometry_restriction.py",
+        "tests/test_f6c_refined_acceleration.py",
+        "tests/test_f6c_refined_acceleration_conformance.py",
+        "tests/test_f6c_refined_acceleration_preparation.py",
+        "tests/test_f6c_residual_integral_supremum.py",
+        "tests/test_f6c_retained_history_compatibility.py",
+        "tests/test_f6c_retained_history_export.py",
+        "tests/test_f6c_retained_history_guards.py",
+        "tests/test_f6c_single_leaf_diagnostic.py",
+        "tests/test_f6c_streamed_leaf_session.py",
+        "tests/test_f6c_variable_cell_adapter.py",
+        "tests/test_field_speed_ceiling_circular_binary_all_root_certificate.py",
+        "tests/test_field_speed_ceiling_t0_mpmath_oracle.py",
+        "tests/test_lattice_lab_stationary_oracle.py",
+        "tests/test_mec007_stationary_mirror_incoming_oracle.py",
+        "tests/test_octahedral_antipodal_generic_axis_edges.py",
+        "tests/test_octahedral_antipodal_generic_axis_scout.py",
+        "tests/test_octahedral_word_axis_reduction.py",
+        "tests/test_orthogonal_plane_weave_fold_limit_certificate.py",
+        "tests/test_orthogonal_plane_weave_interval_oracle.py",
+        "tests/test_prescribed_acceleration_response.py",
+        "tests/test_prescribed_acceleration_response_consumer.py",
+        "tests/test_prescribed_acceleration_response_publication.py"
+      ],
+      "results": [
+        {
+          "path": "tests/pdg_refresh_live_artifacts_test.py",
+          "sourceSha256Before": "a39de982ab7925b30060c50c9545c3a63c348cbe53b2b7b9814bf28d8ec0d92c",
+          "sourceSha256After": "a39de982ab7925b30060c50c9545c3a63c348cbe53b2b7b9814bf28d8ec0d92c",
+          "runId": "b831326c-270f-4ffa-acac-99a062634e20",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.123,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/b831326c-270f-4ffa-acac-99a062634e20.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/b831326c-270f-4ffa-acac-99a062634e20.stderr.log",
+          "unittest": {
+            "tests": 1,
+            "seconds": 0.013,
+            "result": "OK"
+          },
+          "stderrSha256": "a9737d36e97e253c4c5c8c2c01ccfbe550909d17b13e2615aff5689762cb559b",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/pdgfeed_cli_test.py",
+          "sourceSha256Before": "69ba1fcc1d248acca64f970fa70f85be1af19457fbcfe13645405444658ba798",
+          "sourceSha256After": "69ba1fcc1d248acca64f970fa70f85be1af19457fbcfe13645405444658ba798",
+          "runId": "902fdce0-6959-4957-84d7-fc71d6c8abc1",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.103,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/902fdce0-6959-4957-84d7-fc71d6c8abc1.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/902fdce0-6959-4957-84d7-fc71d6c8abc1.stderr.log",
+          "unittest": {
+            "tests": 9,
+            "seconds": 0.01,
+            "result": "OK"
+          },
+          "stderrSha256": "eab4281419f49474c6773f172eab4705e82da9e9196e5418e92a366609bcb99e",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/pdgfeed_live_matching_test.py",
+          "sourceSha256Before": "ffd8d65379e65d03692957c611db8a6487a3b41744f765cff01d8dbb22131b45",
+          "sourceSha256After": "ffd8d65379e65d03692957c611db8a6487a3b41744f765cff01d8dbb22131b45",
+          "runId": "e378ba5b-ac81-4c21-b7a8-feb3187738c3",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.053,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/e378ba5b-ac81-4c21-b7a8-feb3187738c3.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/e378ba5b-ac81-4c21-b7a8-feb3187738c3.stderr.log",
+          "unittest": {
+            "tests": 7,
+            "seconds": 0.001,
+            "result": "OK"
+          },
+          "stderrSha256": "83166b089fbcb82fac63f22522fa6ae99bb5e46368cd35d756277fd463dd6346",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/pdgfeed_manifest_test.py",
+          "sourceSha256Before": "0b77345ce46f3e7dbf530d424aad975a19c7e7f25b912122493bfd972a7413d0",
+          "sourceSha256After": "0b77345ce46f3e7dbf530d424aad975a19c7e7f25b912122493bfd972a7413d0",
+          "runId": "22a159ff-e007-4e1d-af2f-635ce080deb7",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.089,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/22a159ff-e007-4e1d-af2f-635ce080deb7.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/22a159ff-e007-4e1d-af2f-635ce080deb7.stderr.log",
+          "unittest": {
+            "tests": 20,
+            "seconds": 0.012,
+            "result": "OK"
+          },
+          "stderrSha256": "31503230e36d8e43e62ace46f2caf83387e5a1dff128bbd85d8ac4daa732ad6a",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/pdgfeed_registry_audit_test.py",
+          "sourceSha256Before": "62db97b4a7640d4bd97bd19c2f16f05f4f8d9f0b7d7253115d7e1f63bef25b2e",
+          "sourceSha256After": "62db97b4a7640d4bd97bd19c2f16f05f4f8d9f0b7d7253115d7e1f63bef25b2e",
+          "runId": "be7e215d-2efa-441f-8c93-a146d4ccb499",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.05,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/be7e215d-2efa-441f-8c93-a146d4ccb499.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/be7e215d-2efa-441f-8c93-a146d4ccb499.stderr.log",
+          "unittest": {
+            "tests": 8,
+            "seconds": 0.001,
+            "result": "OK"
+          },
+          "stderrSha256": "698d16d7b93c4bd9707d3cfacda6fb1e0fea99ed0cda6e69bedc42772940540a",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/pdgsolve_cli_test.py",
+          "sourceSha256Before": "585fec47484f9efb599596387cd7d771c5dc7f7e2fd66f73abce2c7adf2dbcd1",
+          "sourceSha256After": "585fec47484f9efb599596387cd7d771c5dc7f7e2fd66f73abce2c7adf2dbcd1",
+          "runId": "7c2d8758-8471-48e1-af71-091a3adf0111",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.136,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/7c2d8758-8471-48e1-af71-091a3adf0111.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/7c2d8758-8471-48e1-af71-091a3adf0111.stderr.log",
+          "unittest": {
+            "tests": 20,
+            "seconds": 0.06,
+            "result": "OK"
+          },
+          "stderrSha256": "80f35ee1382d14f0b82e2fa0d35a3a58aaabcf8c486bd165fdfa0e7b95029e1a",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_bp017_private_cube_shrink_family.py",
+          "sourceSha256Before": "e35cbb8d9e30c215b68a9e40bf66b75d58c01f9998d21953bf8ebaa2df0793c3",
+          "sourceSha256After": "e35cbb8d9e30c215b68a9e40bf66b75d58c01f9998d21953bf8ebaa2df0793c3",
+          "runId": "eb4bd087-e45b-4fc5-8eac-d51914958b0c",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.079,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/eb4bd087-e45b-4fc5-8eac-d51914958b0c.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/eb4bd087-e45b-4fc5-8eac-d51914958b0c.stderr.log",
+          "unittest": {
+            "tests": 2,
+            "seconds": 0.028,
+            "result": "OK"
+          },
+          "stderrSha256": "ff0d9d76afc3dbb79c6b38117df28de76fbde4ee2cb805be51be5cfb3e97579d",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_childrens_book_exports.py",
+          "sourceSha256Before": "7c966e3edab52b811a76cedf4dfc64d5528b4e5817502633eb357ddfdbad1382",
+          "sourceSha256After": "7c966e3edab52b811a76cedf4dfc64d5528b4e5817502633eb357ddfdbad1382",
+          "runId": "282e9f0c-dfef-4256-ac06-90da86f08187",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.534,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/282e9f0c-dfef-4256-ac06-90da86f08187.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/282e9f0c-dfef-4256-ac06-90da86f08187.stderr.log",
+          "unittest": {
+            "tests": 15,
+            "seconds": 0.341,
+            "result": "OK"
+          },
+          "stderrSha256": "6ca0ec8aa22a73f09ec3fe0c3807f718865ee1cc087544a65324927f547d0cf6",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_eom_continuous_reception_acceleration.py",
+          "sourceSha256Before": "26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823",
+          "sourceSha256After": "26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823",
+          "runId": "29f1c7f7-a66d-40aa-8bc7-8cdd1d8ceab4",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.173,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/29f1c7f7-a66d-40aa-8bc7-8cdd1d8ceab4.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/29f1c7f7-a66d-40aa-8bc7-8cdd1d8ceab4.stderr.log",
+          "unittest": {
+            "tests": 30,
+            "seconds": 0.119,
+            "result": "OK"
+          },
+          "stderrSha256": "6e85aec34d359a48a78dfa328e4612f9a3aea664682e25c71fe691c658b03cbe",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_eom_continuous_reception_roots.py",
+          "sourceSha256Before": "81de0ebc74a6e2e2a6c66e96cd3a7856806b7e41f775e3e2f184caf5bd1158ac",
+          "sourceSha256After": "81de0ebc74a6e2e2a6c66e96cd3a7856806b7e41f775e3e2f184caf5bd1158ac",
+          "runId": "b60b9df6-9365-4954-af02-96cb21426da5",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.86,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/b60b9df6-9365-4954-af02-96cb21426da5.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/b60b9df6-9365-4954-af02-96cb21426da5.stderr.log",
+          "unittest": {
+            "tests": 35,
+            "seconds": 0.779,
+            "result": "OK"
+          },
+          "stderrSha256": "5ebc8092dbb71555f90b560427113f70480246f6f2aa18813df12b7e7e29ec38",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_eom_continuous_reception_roots_cached.py",
+          "sourceSha256Before": "a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb",
+          "sourceSha256After": "a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb",
+          "runId": "a02209a8-a76a-4ead-8bf9-15afa13d05f1",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.272,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/a02209a8-a76a-4ead-8bf9-15afa13d05f1.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/a02209a8-a76a-4ead-8bf9-15afa13d05f1.stderr.log",
+          "unittest": {
+            "tests": 28,
+            "seconds": 0.193,
+            "result": "OK"
+          },
+          "stderrSha256": "321486a26077f1a2879248eb53578484c51b491720468a420628683c40e8df40",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_eom_correlated_history_enclosure.py",
+          "sourceSha256Before": "becf4f4c0e9390a23bf851bbb143430ac0500ba5e11020607c480c982039de80",
+          "sourceSha256After": "becf4f4c0e9390a23bf851bbb143430ac0500ba5e11020607c480c982039de80",
+          "runId": "470b0792-c92a-4a18-8c3f-d5a7790d9b00",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.117,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/470b0792-c92a-4a18-8c3f-d5a7790d9b00.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/470b0792-c92a-4a18-8c3f-d5a7790d9b00.stderr.log",
+          "unittest": {
+            "tests": 20,
+            "seconds": 0.064,
+            "result": "OK"
+          },
+          "stderrSha256": "63d803e8c8b6c49be0cd6b2dde5254d1c89a22e8c72a3337b19422fa80a7d6ac",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_eom_decimal_interval.py",
+          "sourceSha256Before": "22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44",
+          "sourceSha256After": "22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44",
+          "runId": "1600d4d1-ddca-4fa7-83d5-19efec8716a8",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.057,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1600d4d1-ddca-4fa7-83d5-19efec8716a8.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1600d4d1-ddca-4fa7-83d5-19efec8716a8.stderr.log",
+          "unittest": {
+            "tests": 5,
+            "seconds": 0.005,
+            "result": "OK"
+          },
+          "stderrSha256": "2d014bb427120fb1a5014d7499096989061fd0fdf40acb471c2e2667de60e71e",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_eom_evolution_centered_radius.py",
+          "sourceSha256Before": "493f561cb3cf60a5194b67fb4146c943679c62683a520dbde4653672bcbeeea4",
+          "sourceSha256After": "493f561cb3cf60a5194b67fb4146c943679c62683a520dbde4653672bcbeeea4",
+          "runId": "611b5481-30da-41a9-9793-96e5683f93c8",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.087,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/611b5481-30da-41a9-9793-96e5683f93c8.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/611b5481-30da-41a9-9793-96e5683f93c8.stderr.log",
+          "unittest": {
+            "tests": 7,
+            "seconds": 0.009,
+            "result": "OK"
+          },
+          "stderrSha256": "4190e6532da5d52050bd5ea71ff40310f4ffe0846610b4b159650675a5a9c2b2",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_eom_merged_root_width_invariant.py",
+          "sourceSha256Before": "9afc3e370808fc7747cc72f53f7e62cc879cbc5dbc805ef2c5e0a3d0dcf36ef6",
+          "sourceSha256After": "9afc3e370808fc7747cc72f53f7e62cc879cbc5dbc805ef2c5e0a3d0dcf36ef6",
+          "runId": "caaa547d-b225-4054-b700-330f1d5428a2",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.081,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/caaa547d-b225-4054-b700-330f1d5428a2.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/caaa547d-b225-4054-b700-330f1d5428a2.stderr.log",
+          "unittest": {
+            "tests": 5,
+            "seconds": 0.009,
+            "result": "OK"
+          },
+          "stderrSha256": "533131dad8973c589ae697ab1dd346cc55caa134cd1e536cedf26f1b057c0f1f",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_eom_oracle_certified_acceleration.py",
+          "sourceSha256Before": "62e71cb5ea8a60966dd3ff71ce1a9b8619d78e40cd87227c06b93884a584fc2c",
+          "sourceSha256After": "62e71cb5ea8a60966dd3ff71ce1a9b8619d78e40cd87227c06b93884a584fc2c",
+          "runId": "8accdb8b-b8c0-45c9-830e-325051f72b59",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 34.011,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/8accdb8b-b8c0-45c9-830e-325051f72b59.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/8accdb8b-b8c0-45c9-830e-325051f72b59.stderr.log",
+          "unittest": {
+            "tests": 16,
+            "seconds": 33.954,
+            "result": "OK"
+          },
+          "stderrSha256": "2fffb065e9f620e1f80c9c4d576d818c2d75b27c6ebb1bff8d5d994326447997",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_eom_oracle_certified_evolution.py",
+          "sourceSha256Before": "22a989a84e1995e09bfa19ad72b3465e4bd7bc61752f2d8de5b0d29c144b7759",
+          "sourceSha256After": "22a989a84e1995e09bfa19ad72b3465e4bd7bc61752f2d8de5b0d29c144b7759",
+          "runId": "b5ccf60b-0776-4492-bf52-0d392b0780ab",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 6.485,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/b5ccf60b-0776-4492-bf52-0d392b0780ab.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/b5ccf60b-0776-4492-bf52-0d392b0780ab.stderr.log",
+          "unittest": {
+            "tests": 10,
+            "seconds": 6.424,
+            "result": "OK"
+          },
+          "stderrSha256": "5612276e34d7526932aaeda529bea63f12331f0d44eb038992c9571391b8d6a4",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_eom_oracle_phase4_acceptance.py",
+          "sourceSha256Before": "730b05461fe4fedfd39a3f07b63790cae4cee963928084f49ceaad10bb8b5fec",
+          "sourceSha256After": "730b05461fe4fedfd39a3f07b63790cae4cee963928084f49ceaad10bb8b5fec",
+          "runId": "ebec174c-f1f2-46c0-b8b0-aa2e243995bc",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 12.663,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/ebec174c-f1f2-46c0-b8b0-aa2e243995bc.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/ebec174c-f1f2-46c0-b8b0-aa2e243995bc.stderr.log",
+          "unittest": {
+            "tests": 12,
+            "seconds": 12.6,
+            "result": "OK"
+          },
+          "stderrSha256": "98298b6caf9ff45374c8b2cbad1536d815802d88805304c1b387bda1d9b70a21",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_eom_oracle_reference_kernel.py",
+          "sourceSha256Before": "ba88a0e7f42eed6d1ab61bfb8282fa35f0c3f77a987bda1c62366e04a3c6209e",
+          "sourceSha256After": "ba88a0e7f42eed6d1ab61bfb8282fa35f0c3f77a987bda1c62366e04a3c6209e",
+          "runId": "57af336f-dc3c-479a-8863-d7989e1a0589",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.263,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/57af336f-dc3c-479a-8863-d7989e1a0589.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/57af336f-dc3c-479a-8863-d7989e1a0589.stderr.log",
+          "unittest": {
+            "tests": 6,
+            "seconds": 0.192,
+            "result": "OK"
+          },
+          "stderrSha256": "872b54560783508bb4a7a0f6128a6c75fb42468bd8760cf3480150dc5d270301",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_eom_oracle_root_certification.py",
+          "sourceSha256Before": "2e39e76fba9e98fed056d2acfbf6658a93ad5684aa8e60c20476ae53692e2d19",
+          "sourceSha256After": "2e39e76fba9e98fed056d2acfbf6658a93ad5684aa8e60c20476ae53692e2d19",
+          "runId": "715356cd-0490-4ad7-a72e-cd23ba954e71",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 34.638,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/715356cd-0490-4ad7-a72e-cd23ba954e71.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/715356cd-0490-4ad7-a72e-cd23ba954e71.stderr.log",
+          "unittest": {
+            "tests": 23,
+            "seconds": 34.584,
+            "result": "OK"
+          },
+          "stderrSha256": "4ab15a31b181f31707caaa86050218d0a84bf86b9b882b50bc77101f25bf8234",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_eom_performance_architecture_baseline.py",
+          "sourceSha256Before": "7eaffcd7f1f8e20e1b03bb40209c53d0153ce9d67d05e9e0a1484ac2cbe32cd0",
+          "sourceSha256After": "7eaffcd7f1f8e20e1b03bb40209c53d0153ce9d67d05e9e0a1484ac2cbe32cd0",
+          "runId": "de3a6f15-ca00-49a0-ba81-72a64e7a5b48",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.155,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/de3a6f15-ca00-49a0-ba81-72a64e7a5b48.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/de3a6f15-ca00-49a0-ba81-72a64e7a5b48.stderr.log",
+          "unittest": {
+            "tests": 5,
+            "seconds": 0.001,
+            "result": "OK"
+          },
+          "stderrSha256": "6273232de4d3ef7acd4ecafa5c86beeeb974f56586b21089a2990b3f72facbe6",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_eom_root_width_exactness.py",
+          "sourceSha256Before": "9fdd547823fe9980492e7e91fa731164af19876eeb48b78f937c51b50236159d",
+          "sourceSha256After": "9fdd547823fe9980492e7e91fa731164af19876eeb48b78f937c51b50236159d",
+          "runId": "ceeed8d6-7138-4aab-b0cd-5fa4da569bbf",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.173,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/ceeed8d6-7138-4aab-b0cd-5fa4da569bbf.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/ceeed8d6-7138-4aab-b0cd-5fa4da569bbf.stderr.log",
+          "unittest": {
+            "tests": 7,
+            "seconds": 0.12,
+            "result": "OK"
+          },
+          "stderrSha256": "0c8cd66d94ef666e75f12571101c142660f4d6a44676b7ecc6ce30569b692fcc",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f5_actual_cubic_conformance.py",
+          "sourceSha256Before": "beae294ba20c2aeb6687220f7a7d54c0d421b7e35e4a70f0684783e2ef285a0e",
+          "sourceSha256After": "beae294ba20c2aeb6687220f7a7d54c0d421b7e35e4a70f0684783e2ef285a0e",
+          "runId": "c52195b3-81c1-45f3-979e-d26a77402f48",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.177,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/c52195b3-81c1-45f3-979e-d26a77402f48.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/c52195b3-81c1-45f3-979e-d26a77402f48.stderr.log",
+          "unittest": {
+            "tests": 8,
+            "seconds": 0.127,
+            "result": "OK"
+          },
+          "stderrSha256": "8f995b9ff015107c1f92c6fd8c7b8065308955913874a8e321adbd21768d5077",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f5_api_domain_conformance.py",
+          "sourceSha256Before": "5fce3ea7c46e48073e5b7e038a858590e647997fdcfa71da58a3f282c663c788",
+          "sourceSha256After": "5fce3ea7c46e48073e5b7e038a858590e647997fdcfa71da58a3f282c663c788",
+          "runId": "1e6c38e1-aa32-492d-8200-dcef416ad9eb",
+          "status": "failed",
+          "exitCode": 1,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.2,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1e6c38e1-aa32-492d-8200-dcef416ad9eb.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1e6c38e1-aa32-492d-8200-dcef416ad9eb.stderr.log",
+          "unittest": {
+            "tests": 18,
+            "seconds": 0.111,
+            "result": "FAILED (errors=2)"
+          },
+          "stderrSha256": "774963649cc8bde9009780887cc087c46190ba06963fb8aee9777a4e78d309af",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f5_evolution_dynamics_checker.py",
+          "sourceSha256Before": "c582879d5f83810df4c5f3bf02e6f485d221b9038573da73bcc66d13e05d4998",
+          "sourceSha256After": "c582879d5f83810df4c5f3bf02e6f485d221b9038573da73bcc66d13e05d4998",
+          "runId": "353bb0f5-291c-45b6-8577-86e7955f2056",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.18,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/353bb0f5-291c-45b6-8577-86e7955f2056.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/353bb0f5-291c-45b6-8577-86e7955f2056.stderr.log",
+          "unittest": {
+            "tests": 14,
+            "seconds": 0.121,
+            "result": "OK"
+          },
+          "stderrSha256": "487ac2994d6793e4f22e25e9e10782029e499578d5aa345f163b58090be1dfb0",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f5_history_manifest_conformance.py",
+          "sourceSha256Before": "b927ab51af36bf1a449645ec3f43ce7b0428e83db2d1ebba02675437ab91cc29",
+          "sourceSha256After": "b927ab51af36bf1a449645ec3f43ce7b0428e83db2d1ebba02675437ab91cc29",
+          "runId": "0c4037c8-80d2-40f6-ba58-06b8984b8e05",
+          "status": "failed",
+          "exitCode": 5,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.08,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/0c4037c8-80d2-40f6-ba58-06b8984b8e05.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/0c4037c8-80d2-40f6-ba58-06b8984b8e05.stderr.log",
+          "unittest": {
+            "tests": 0,
+            "seconds": 0,
+            "result": "FAILED (errors=1)"
+          },
+          "stderrSha256": "cd654546965f854756cb8d9073c3e0b993a866dcbb9ab5fcf7a38445aeeec289",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f5_ordinary_evolution_outcome.py",
+          "sourceSha256Before": "b0dd0cdde0c63a0b099c1156e341b367f684c269939db5dd3d1a00db02176806",
+          "sourceSha256After": "b0dd0cdde0c63a0b099c1156e341b367f684c269939db5dd3d1a00db02176806",
+          "runId": "c0c882a3-9904-4359-9fa7-baeeab846290",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 8.038,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/c0c882a3-9904-4359-9fa7-baeeab846290.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/c0c882a3-9904-4359-9fa7-baeeab846290.stderr.log",
+          "unittest": {
+            "tests": 33,
+            "seconds": 7.965,
+            "result": "OK"
+          },
+          "stderrSha256": "dcbc3f77a494c458a3c8098737a2d45e24ca033ec55a307294adc6738f73a4d7",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f5_prehistory_handoff.py",
+          "sourceSha256Before": "111e828c8ea3c26996ce51c83496ff7850d48b52cf7e874982c67e882ad6cadf",
+          "sourceSha256After": "111e828c8ea3c26996ce51c83496ff7850d48b52cf7e874982c67e882ad6cadf",
+          "runId": "31ab4c26-364b-46e4-8ed1-d559e28edee4",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 1.309,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/31ab4c26-364b-46e4-8ed1-d559e28edee4.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/31ab4c26-364b-46e4-8ed1-d559e28edee4.stderr.log",
+          "unittest": {
+            "tests": 36,
+            "seconds": 1.232,
+            "result": "OK"
+          },
+          "stderrSha256": "0b562a8f39cbe18c12daf14e3d7959c10f6e34d46d4cffba060f4230b844339a",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f5_prehistory_handoff_producer.py",
+          "sourceSha256Before": "ec1d99b6919fd2c666dd1dd157388f9577f054070744db3e38a4cc4b56062770",
+          "sourceSha256After": "ec1d99b6919fd2c666dd1dd157388f9577f054070744db3e38a4cc4b56062770",
+          "runId": "d2c7858c-8d09-4609-a617-c809a739e24f",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.608,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/d2c7858c-8d09-4609-a617-c809a739e24f.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/d2c7858c-8d09-4609-a617-c809a739e24f.stderr.log",
+          "unittest": {
+            "tests": 13,
+            "seconds": 0.513,
+            "result": "OK"
+          },
+          "stderrSha256": "f7ec4de220694a827bf79113ec49c10660b3dce1e2df445f0c705ab0e830fcb0",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f5_prehistory_restriction.py",
+          "sourceSha256Before": "0f2c3b64d93b5a79831224849eb75b4696630c8ae8d4fb568896dca2ebe8bd7e",
+          "sourceSha256After": "0f2c3b64d93b5a79831224849eb75b4696630c8ae8d4fb568896dca2ebe8bd7e",
+          "runId": "fe5eda1c-d210-4125-967f-d9c852537a5f",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 1.119,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/fe5eda1c-d210-4125-967f-d9c852537a5f.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/fe5eda1c-d210-4125-967f-d9c852537a5f.stderr.log",
+          "unittest": {
+            "tests": 24,
+            "seconds": 1.03,
+            "result": "OK"
+          },
+          "stderrSha256": "614bd6a445e52cf7ecf29aa07b76d9061964ea94bd991352abaef4c0c73e2c6e",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_acceleration_execution.py",
+          "sourceSha256Before": "c56c0962f1ef40644c75a5799e6aa2d5d11f926297cbf502cc4f4539a62e36d6",
+          "sourceSha256After": "c56c0962f1ef40644c75a5799e6aa2d5d11f926297cbf502cc4f4539a62e36d6",
+          "runId": "2d6b9504-e66e-4467-aedd-33b68a51358e",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 1.329,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/2d6b9504-e66e-4467-aedd-33b68a51358e.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/2d6b9504-e66e-4467-aedd-33b68a51358e.stderr.log",
+          "unittest": {
+            "tests": 7,
+            "seconds": 1.241,
+            "result": "OK"
+          },
+          "stderrSha256": "6bb1b56e7bbcd403adf491284b35d9dd3f2f0f288b317e20ea69047f399f5645",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_accepted_frame_reconstruction.py",
+          "sourceSha256Before": "ba0ff0f2ba4d1a0a124ce7de9e22d05348767877b778de4a39bab334a1e7d10e",
+          "sourceSha256After": "ba0ff0f2ba4d1a0a124ce7de9e22d05348767877b778de4a39bab334a1e7d10e",
+          "runId": "8e134573-0c3a-4f11-a912-831187b1d09a",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.303,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/8e134573-0c3a-4f11-a912-831187b1d09a.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/8e134573-0c3a-4f11-a912-831187b1d09a.stderr.log",
+          "unittest": {
+            "tests": 25,
+            "seconds": 0.224,
+            "result": "OK"
+          },
+          "stderrSha256": "6ae2e48c6ada4a1300a7bf16b83cd9585d641917046167a154b48640a3661d56",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_cached_continuous_reception_root_cover.py",
+          "sourceSha256Before": "09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3",
+          "sourceSha256After": "09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3",
+          "runId": "9a6946dd-61da-4cf9-8a3e-19f302c4f6f5",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.53,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/9a6946dd-61da-4cf9-8a3e-19f302c4f6f5.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/9a6946dd-61da-4cf9-8a3e-19f302c4f6f5.stderr.log",
+          "unittest": {
+            "tests": 42,
+            "seconds": 0.447,
+            "result": "OK"
+          },
+          "stderrSha256": "5a19ca2bb0e8d87e1b83bbd2e3b560ef3ee0c76251bfe37db48d6267d2d3f8b7",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
+          "sourceSha256Before": "3bee7599b03f2500ede6eeeea31c46e1aac82410f456e967102c13e820b93221",
+          "sourceSha256After": "3bee7599b03f2500ede6eeeea31c46e1aac82410f456e967102c13e820b93221",
+          "runId": "b9d82584-4e06-41ae-8db3-990d8da8a395",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.575,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/b9d82584-4e06-41ae-8db3-990d8da8a395.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/b9d82584-4e06-41ae-8db3-990d8da8a395.stderr.log",
+          "unittest": {
+            "tests": 33,
+            "seconds": 0.479,
+            "result": "OK"
+          },
+          "stderrSha256": "e14340f1a26255d944274cb0bef8d36bd342c532f518050d04d1f2b71a6342d9",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_continuous_reception_acceleration.py",
+          "sourceSha256Before": "13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed",
+          "sourceSha256After": "13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed",
+          "runId": "45de7cb0-5b95-4dd2-8046-62de96bc76a5",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 9.951,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/45de7cb0-5b95-4dd2-8046-62de96bc76a5.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/45de7cb0-5b95-4dd2-8046-62de96bc76a5.stderr.log",
+          "unittest": {
+            "tests": 36,
+            "seconds": 9.851,
+            "result": "OK"
+          },
+          "stderrSha256": "3d6f26b052505e7584ae1a367a1327de3f143a4bbd5a14be290e0831d017700f",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_continuous_reception_acceleration_preparation.py",
+          "sourceSha256Before": "45f40e2c6580fa09a614a471e7375615c8d54e3fc295a68dbdb8ad2167b7690b",
+          "sourceSha256After": "45f40e2c6580fa09a614a471e7375615c8d54e3fc295a68dbdb8ad2167b7690b",
+          "runId": "48a1c0d8-f80f-481b-b4d9-6f0349b61a88",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.37,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/48a1c0d8-f80f-481b-b4d9-6f0349b61a88.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/48a1c0d8-f80f-481b-b4d9-6f0349b61a88.stderr.log",
+          "unittest": {
+            "tests": 26,
+            "seconds": 0.288,
+            "result": "OK"
+          },
+          "stderrSha256": "0c5f74e7c84046c71c4c0c3ae55ccb251f81f3bfa67f4d0f487912f57adf1d6d",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_continuous_reception_root_cover.py",
+          "sourceSha256Before": "5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5",
+          "sourceSha256After": "5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5",
+          "runId": "ca6d558c-0c89-4714-89d4-069c11acbce9",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.465,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/ca6d558c-0c89-4714-89d4-069c11acbce9.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/ca6d558c-0c89-4714-89d4-069c11acbce9.stderr.log",
+          "unittest": {
+            "tests": 35,
+            "seconds": 0.386,
+            "result": "OK"
+          },
+          "stderrSha256": "04b36929c3eda63d6a59df3597ad7bd61ba883158c055d0f4b388ce1e114f196",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_continuous_reception_root_cover_preparation.py",
+          "sourceSha256Before": "68a940c40b2e3b463555b95858031f96796e2ac94963a86b3a9ae6fd74dc3742",
+          "sourceSha256After": "68a940c40b2e3b463555b95858031f96796e2ac94963a86b3a9ae6fd74dc3742",
+          "runId": "02074f24-9553-423b-9f27-4df1f836ad40",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 1.603,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/02074f24-9553-423b-9f27-4df1f836ad40.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/02074f24-9553-423b-9f27-4df1f836ad40.stderr.log",
+          "unittest": {
+            "tests": 25,
+            "seconds": 1.518,
+            "result": "OK"
+          },
+          "stderrSha256": "ede0a86d997cd100c1cc2da9f5788791b97a7fadadc036f9342d9bc8c4810be2",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_correlated_residual_enclosure.py",
+          "sourceSha256Before": "327b1be489baa06d5785de9c306c06ffbe2f5c825700abfd87ac18345a9ac9ff",
+          "sourceSha256After": "327b1be489baa06d5785de9c306c06ffbe2f5c825700abfd87ac18345a9ac9ff",
+          "runId": "1755e3b7-9e69-4033-b7d4-68f7c252e0ac",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.066,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1755e3b7-9e69-4033-b7d4-68f7c252e0ac.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1755e3b7-9e69-4033-b7d4-68f7c252e0ac.stderr.log",
+          "unittest": {
+            "tests": 17,
+            "seconds": 0.012,
+            "result": "OK"
+          },
+          "stderrSha256": "0c3fe67f9d59ad109e3efced6a6340d3b46aaca6771b6442cb694313a2e9c14d",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_emission_refinement.py",
+          "sourceSha256Before": "f0f788018cc801949596bdd1556fe70399c49e8cbcea9152519485d6d8e35558",
+          "sourceSha256After": "f0f788018cc801949596bdd1556fe70399c49e8cbcea9152519485d6d8e35558",
+          "runId": "416e2fd7-0183-423b-9966-a868924502a2",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 4.338,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/416e2fd7-0183-423b-9966-a868924502a2.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/416e2fd7-0183-423b-9966-a868924502a2.stderr.log",
+          "unittest": {
+            "tests": 26,
+            "seconds": 4.239,
+            "result": "OK"
+          },
+          "stderrSha256": "18e7419022dd1f61ba6d6fc3b42efe0e2d477ecbc2e8322f04430112b474ad27",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_emission_refinement_conformance.py",
+          "sourceSha256Before": "bac7357186fb05c5b7ea35154c5564e7527075a9a94177a8b600f9a02119adb5",
+          "sourceSha256After": "bac7357186fb05c5b7ea35154c5564e7527075a9a94177a8b600f9a02119adb5",
+          "runId": "9c7a4c8f-6f70-45d4-a48a-e0964564282e",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 7.194,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/9c7a4c8f-6f70-45d4-a48a-e0964564282e.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/9c7a4c8f-6f70-45d4-a48a-e0964564282e.stderr.log",
+          "unittest": {
+            "tests": 17,
+            "seconds": 7.133,
+            "result": "OK"
+          },
+          "stderrSha256": "ff17a758ccfe65d882bdab122fc702f302645b61114c8262a26e056055a5632e",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_emission_refinement_preparation.py",
+          "sourceSha256Before": "c238f49b3316e43244ee0db3fdf3263b2390b4f6f91a67f6a6b7133ccfff000b",
+          "sourceSha256After": "c238f49b3316e43244ee0db3fdf3263b2390b4f6f91a67f6a6b7133ccfff000b",
+          "runId": "ff3f42c5-e295-4ba8-a3dc-cdb63e552dd1",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 2.455,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/ff3f42c5-e295-4ba8-a3dc-cdb63e552dd1.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/ff3f42c5-e295-4ba8-a3dc-cdb63e552dd1.stderr.log",
+          "unittest": {
+            "tests": 37,
+            "seconds": 2.376,
+            "result": "OK"
+          },
+          "stderrSha256": "f8c7c4f91d60cf787695e3c2fd1c3af2361227f6f7ec715cf238647df8c38d23",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_evidence_package.py",
+          "sourceSha256Before": "f2c52fd510cad3da99f65ab2497dde754f8842d18004c3e1ae98d1bbdcb6d3d8",
+          "sourceSha256After": "f2c52fd510cad3da99f65ab2497dde754f8842d18004c3e1ae98d1bbdcb6d3d8",
+          "runId": "4a541516-f703-499a-a5aa-a4ff812bb80d",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.648,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/4a541516-f703-499a-a5aa-a4ff812bb80d.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/4a541516-f703-499a-a5aa-a4ff812bb80d.stderr.log",
+          "unittest": {
+            "tests": 16,
+            "seconds": 0.573,
+            "result": "OK"
+          },
+          "stderrSha256": "ecb30f598e753fbe4c8336a3c782b57d8674ae91d4832d829fb47df1b89b3570",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_gk13_protocol.py",
+          "sourceSha256Before": "4b53d57f19de401348830b809600f01a9ae0c0c88d19d406a6a85e5ac8c5a241",
+          "sourceSha256After": "4b53d57f19de401348830b809600f01a9ae0c0c88d19d406a6a85e5ac8c5a241",
+          "runId": "74d7f9a5-f5e9-4f93-b550-678261cf04d4",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 11.013,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/74d7f9a5-f5e9-4f93-b550-678261cf04d4.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/74d7f9a5-f5e9-4f93-b550-678261cf04d4.stderr.log",
+          "unittest": {
+            "tests": 32,
+            "seconds": 10.937,
+            "result": "OK"
+          },
+          "stderrSha256": "060d77dabeabc4c8c79fc87652e2f31e9a39da6cd37ac2ed3be1aabb3ce3b3d3",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_historical_archive_contract.py",
+          "sourceSha256Before": "5285f41a7851ea1dd4bc4484784a17d3598f6f0c6679950626a51acebacf3104",
+          "sourceSha256After": "5285f41a7851ea1dd4bc4484784a17d3598f6f0c6679950626a51acebacf3104",
+          "runId": "3099bd74-e944-4f21-811a-79261bb66803",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.055,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/3099bd74-e944-4f21-811a-79261bb66803.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/3099bd74-e944-4f21-811a-79261bb66803.stderr.log",
+          "unittest": {
+            "tests": 4,
+            "seconds": 0.002,
+            "result": "OK"
+          },
+          "stderrSha256": "d094b1bd2c8318c96097f80c50da282add5b2972970a77046de8db6c8935f6ca",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_leaf_continuation.py",
+          "sourceSha256Before": "ec3e156d1d1f71729c6649cbaf43db40779d873e37cfa0d1dd223966bde91743",
+          "sourceSha256After": "ec3e156d1d1f71729c6649cbaf43db40779d873e37cfa0d1dd223966bde91743",
+          "runId": "424b21d3-826b-48d0-868f-ccfa2587a6b5",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 39.288,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/424b21d3-826b-48d0-868f-ccfa2587a6b5.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/424b21d3-826b-48d0-868f-ccfa2587a6b5.stderr.log",
+          "unittest": {
+            "tests": 10,
+            "seconds": 39.205,
+            "result": "OK"
+          },
+          "stderrSha256": "23f80e70bae2e62e8c19a17dfdc981492c893c7ffeadad5ed059c963942bf933",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_leaf_evidence_codec.py",
+          "sourceSha256Before": "af39c302680ce1a9d55c5539dfa3084f20132a12113d9b6285d6abbec074c648",
+          "sourceSha256After": "af39c302680ce1a9d55c5539dfa3084f20132a12113d9b6285d6abbec074c648",
+          "runId": "3dde400c-10c5-464f-b045-efa6a6e49aec",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.711,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/3dde400c-10c5-464f-b045-efa6a6e49aec.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/3dde400c-10c5-464f-b045-efa6a6e49aec.stderr.log",
+          "unittest": {
+            "tests": 28,
+            "seconds": 0.641,
+            "result": "OK"
+          },
+          "stderrSha256": "51e90fc23ed52e1816a93d494423b82ef1584a24b7a00e09d190b0d8d83ad262",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_leaf_stream_publication.py",
+          "sourceSha256Before": "b1c8e0a789ec2215d12a20e601dfc5175df3516c450373a624c8049b060d49ae",
+          "sourceSha256After": "b1c8e0a789ec2215d12a20e601dfc5175df3516c450373a624c8049b060d49ae",
+          "runId": "4f9007c1-7c02-419e-999f-64234f16fbac",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.419,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/4f9007c1-7c02-419e-999f-64234f16fbac.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/4f9007c1-7c02-419e-999f-64234f16fbac.stderr.log",
+          "unittest": {
+            "tests": 33,
+            "seconds": 0.342,
+            "result": "OK"
+          },
+          "stderrSha256": "9cdea07996010964f7a1b6a4e795008157eb6a7963f83b0525bfc6ccb499cc46",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_parent_emission_refinement.py",
+          "sourceSha256Before": "64e1f215789099d72ba34523dc4b0919d00e9a4b52464e442d6b245c4b7da28c",
+          "sourceSha256After": "64e1f215789099d72ba34523dc4b0919d00e9a4b52464e442d6b245c4b7da28c",
+          "runId": "a0b9ffd3-4905-4439-a328-1a45b7a40d88",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 47.153,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/a0b9ffd3-4905-4439-a328-1a45b7a40d88.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/a0b9ffd3-4905-4439-a328-1a45b7a40d88.stderr.log",
+          "unittest": {
+            "tests": 25,
+            "seconds": 47.053,
+            "result": "OK"
+          },
+          "stderrSha256": "733ca7416a2ddaee12f1a5c016879caa42abbafeefeac976e2857245176a5c9b",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_parent_emission_refinement_conformance.py",
+          "sourceSha256Before": "2eafcd7551a6d64c5f6c7bc6923507da8d27084af74bc5742583d63eb708aebb",
+          "sourceSha256After": "2eafcd7551a6d64c5f6c7bc6923507da8d27084af74bc5742583d63eb708aebb",
+          "runId": "e2541ab5-f3f6-4925-b71b-44ab83c040c3",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 37.856,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/e2541ab5-f3f6-4925-b71b-44ab83c040c3.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/e2541ab5-f3f6-4925-b71b-44ab83c040c3.stderr.log",
+          "unittest": {
+            "tests": 33,
+            "seconds": 37.776,
+            "result": "OK"
+          },
+          "stderrSha256": "7aed2ad8e653884e70b8bf1071f75a75a1b8d8fb788aac15b95d303376db449e",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_parent_emission_refinement_preparation.py",
+          "sourceSha256Before": "54897aa0a891fe61159a776f3d175eab84adf590c872606a4e15bdd773911cf8",
+          "sourceSha256After": "54897aa0a891fe61159a776f3d175eab84adf590c872606a4e15bdd773911cf8",
+          "runId": "311d59e6-9c19-46d2-9097-4bf92b70a34c",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 38.048,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/311d59e6-9c19-46d2-9097-4bf92b70a34c.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/311d59e6-9c19-46d2-9097-4bf92b70a34c.stderr.log",
+          "unittest": {
+            "tests": 40,
+            "seconds": 37.873,
+            "result": "OK"
+          },
+          "stderrSha256": "cdaf1aebc3feeee1bfa05a78132c278424561b84cdc5b46a3cb8335402423690",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_parent_emission_refinement_verification.py",
+          "sourceSha256Before": "99a29b5df829c60cadf277a57a6c9393131528448813d06a726e5bd65116e724",
+          "sourceSha256After": "99a29b5df829c60cadf277a57a6c9393131528448813d06a726e5bd65116e724",
+          "runId": "aab17337-3d7c-48e7-bdba-4896dd2b7380",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 44.432,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/aab17337-3d7c-48e7-bdba-4896dd2b7380.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/aab17337-3d7c-48e7-bdba-4896dd2b7380.stderr.log",
+          "unittest": {
+            "tests": 31,
+            "seconds": 44.3,
+            "result": "OK"
+          },
+          "stderrSha256": "78b7d79b3b860d20488d31b5940cf4012a1e25de73a7e471f6be692fcab800b3",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_parent_evidence_inventory.py",
+          "sourceSha256Before": "369091d5a0996fb547a70ba8e9aa8b3fe5570cf046863872bfaeb491bd0cf551",
+          "sourceSha256After": "369091d5a0996fb547a70ba8e9aa8b3fe5570cf046863872bfaeb491bd0cf551",
+          "runId": "2393c372-dea2-4b0b-a289-4fea22ecfaf6",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.076,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/2393c372-dea2-4b0b-a289-4fea22ecfaf6.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/2393c372-dea2-4b0b-a289-4fea22ecfaf6.stderr.log",
+          "unittest": {
+            "tests": 6,
+            "seconds": 0.022,
+            "result": "OK"
+          },
+          "stderrSha256": "484819fc6115ded4f95980c301dc1cb3bd42b75d97061c070633332d47142c79",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_parent_snapshot.py",
+          "sourceSha256Before": "bb4a55b6e48bbf1ba3c25bb9cd3943816c1686ee57d3d2fd674f9599f4627d49",
+          "sourceSha256After": "bb4a55b6e48bbf1ba3c25bb9cd3943816c1686ee57d3d2fd674f9599f4627d49",
+          "runId": "5a6bcbe9-b4de-4069-9658-928f14d5cce8",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 2.506,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/5a6bcbe9-b4de-4069-9658-928f14d5cce8.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/5a6bcbe9-b4de-4069-9658-928f14d5cce8.stderr.log",
+          "unittest": {
+            "tests": 23,
+            "seconds": 2.435,
+            "result": "OK"
+          },
+          "stderrSha256": "92c65429b1deb8cb8ef8fb314b07c3cfada762b23e433fe99436ad012e282aef",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_reception_geometry_restriction.py",
+          "sourceSha256Before": "b6c4b4e6a82a11b4ee84c782bf208df4b141860bb8d01f1ad2b2a1ca749a6c7b",
+          "sourceSha256After": "b6c4b4e6a82a11b4ee84c782bf208df4b141860bb8d01f1ad2b2a1ca749a6c7b",
+          "runId": "6b6221c0-e153-438f-88c3-c56e5d01585a",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 1.012,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/6b6221c0-e153-438f-88c3-c56e5d01585a.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/6b6221c0-e153-438f-88c3-c56e5d01585a.stderr.log",
+          "unittest": {
+            "tests": 30,
+            "seconds": 0.922,
+            "result": "OK"
+          },
+          "stderrSha256": "8efe1b12cbf351f31cfa5f0bb56cd156bae5e7a651f22bd73975d63d9edecb32",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_refined_acceleration.py",
+          "sourceSha256Before": "d65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd",
+          "sourceSha256After": "d65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd",
+          "runId": "1f6d8273-0fe8-4591-aef9-93bf0197cd96",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 1.135,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1f6d8273-0fe8-4591-aef9-93bf0197cd96.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1f6d8273-0fe8-4591-aef9-93bf0197cd96.stderr.log",
+          "unittest": {
+            "tests": 35,
+            "seconds": 1.05,
+            "result": "OK"
+          },
+          "stderrSha256": "538b0689d1e1e7e5028f1ebeb9723f0e400cddf6c0042311a9a931b6e58af810",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_refined_acceleration_conformance.py",
+          "sourceSha256Before": "147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921",
+          "sourceSha256After": "147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921",
+          "runId": "37f14b74-43a4-4bf9-b5d9-80e72f1d552f",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 29.635,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/37f14b74-43a4-4bf9-b5d9-80e72f1d552f.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/37f14b74-43a4-4bf9-b5d9-80e72f1d552f.stderr.log",
+          "unittest": {
+            "tests": 24,
+            "seconds": 29.404,
+            "result": "OK"
+          },
+          "stderrSha256": "b9806c9b6d0641eb253e18d9952393505515c988feb302e0738c501e89aa8c07",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_refined_acceleration_preparation.py",
+          "sourceSha256Before": "28ac5b67e594f52ea151fa00ddb04dabbbe8a522108a7421ec56550b70e87252",
+          "sourceSha256After": "28ac5b67e594f52ea151fa00ddb04dabbbe8a522108a7421ec56550b70e87252",
+          "runId": "6963a825-c54e-4c06-a17d-f7add93c5df9",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 1.08,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/6963a825-c54e-4c06-a17d-f7add93c5df9.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/6963a825-c54e-4c06-a17d-f7add93c5df9.stderr.log",
+          "unittest": {
+            "tests": 44,
+            "seconds": 0.958,
+            "result": "OK"
+          },
+          "stderrSha256": "08f6834292be5caad8fb427175b12bce21152cca44653365d68ec6ae099417ca",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_residual_integral_supremum.py",
+          "sourceSha256Before": "d80ca8bab38bface925fbdee1530f43919c83b331a878f004ef1601b2cf09b24",
+          "sourceSha256After": "d80ca8bab38bface925fbdee1530f43919c83b331a878f004ef1601b2cf09b24",
+          "runId": "f84d2002-2d5d-4eb1-9381-238a161a5af5",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.321,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/f84d2002-2d5d-4eb1-9381-238a161a5af5.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/f84d2002-2d5d-4eb1-9381-238a161a5af5.stderr.log",
+          "unittest": {
+            "tests": 31,
+            "seconds": 0.242,
+            "result": "OK"
+          },
+          "stderrSha256": "00458fee1452913d8d0e44ad8138f0c78605c66e8753757663e98a60ff05efcc",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_retained_history_compatibility.py",
+          "sourceSha256Before": "cb42c4b80e6e07b2f912e72031c52d76de0c355a4c3e24e4e96b4a872ca60a2e",
+          "sourceSha256After": "cb42c4b80e6e07b2f912e72031c52d76de0c355a4c3e24e4e96b4a872ca60a2e",
+          "runId": "789434f7-d525-4e04-a7f2-c7913273b09b",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.217,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/789434f7-d525-4e04-a7f2-c7913273b09b.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/789434f7-d525-4e04-a7f2-c7913273b09b.stderr.log",
+          "unittest": {
+            "tests": 27,
+            "seconds": 0.14,
+            "result": "OK"
+          },
+          "stderrSha256": "c65018d33e6c8eae5574c856e5b156f368374c4c1cea731a86b9520eb3b1161b",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_retained_history_export.py",
+          "sourceSha256Before": "014036159078a68c5a5746319bd8cb329f682e45d17ef4dab44c27aa5f03dd38",
+          "sourceSha256After": "014036159078a68c5a5746319bd8cb329f682e45d17ef4dab44c27aa5f03dd38",
+          "runId": "3a6c6e67-d701-428d-aa58-c44846fb5739",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.095,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/3a6c6e67-d701-428d-aa58-c44846fb5739.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/3a6c6e67-d701-428d-aa58-c44846fb5739.stderr.log",
+          "unittest": {
+            "tests": 16,
+            "seconds": 0.036,
+            "result": "OK"
+          },
+          "stderrSha256": "f0c79ce6dc83e2fb10ea0f89a87b9acd70f8b8d0c1da65db952928491752af3f",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_retained_history_guards.py",
+          "sourceSha256Before": "ec7b05ae5d983387db657a54c036ba12c9c1d8d4818eefea3599dde7817a2b62",
+          "sourceSha256After": "ec7b05ae5d983387db657a54c036ba12c9c1d8d4818eefea3599dde7817a2b62",
+          "runId": "4707eff5-5264-4091-a131-021f24e47f3d",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.242,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/4707eff5-5264-4091-a131-021f24e47f3d.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/4707eff5-5264-4091-a131-021f24e47f3d.stderr.log",
+          "unittest": {
+            "tests": 28,
+            "seconds": 0.136,
+            "result": "OK"
+          },
+          "stderrSha256": "d510b1ff285d4e26b0fb1b4483167f7b87c79004602a4e3b0d961441e45dc804",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_single_leaf_diagnostic.py",
+          "sourceSha256Before": "47d502100d4f92e8c803f5f0dad7c248874f493ed0df9ef43e1e956e8e9bf71c",
+          "sourceSha256After": "47d502100d4f92e8c803f5f0dad7c248874f493ed0df9ef43e1e956e8e9bf71c",
+          "runId": "732d5c3d-5340-466e-87be-a5ec95812a1d",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 24.529,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/732d5c3d-5340-466e-87be-a5ec95812a1d.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/732d5c3d-5340-466e-87be-a5ec95812a1d.stderr.log",
+          "unittest": {
+            "tests": 51,
+            "seconds": 24.365,
+            "result": "OK"
+          },
+          "stderrSha256": "1205b47ff5629ab295a18577d4c34ce1a952eb9f8a1b2f8b02320a6d2f58d08a",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_streamed_leaf_session.py",
+          "sourceSha256Before": "8fd4f300db43fcd67eda052677ee1f004efda464db7b51eea40d69c6169cd39b",
+          "sourceSha256After": "8fd4f300db43fcd67eda052677ee1f004efda464db7b51eea40d69c6169cd39b",
+          "runId": "6086a8ff-00e2-4a9e-923e-ea69bbae69d9",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 9.344,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/6086a8ff-00e2-4a9e-923e-ea69bbae69d9.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/6086a8ff-00e2-4a9e-923e-ea69bbae69d9.stderr.log",
+          "unittest": {
+            "tests": 25,
+            "seconds": 9.254,
+            "result": "OK"
+          },
+          "stderrSha256": "801e27bc3d42bcfb0a21d68efdb68636be460395d3e9859f5fc8a2989d193c53",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_f6c_variable_cell_adapter.py",
+          "sourceSha256Before": "1fe6838fc63b10cd8e0051ce03039db05b7ea8370c0b8f065beb3e59492df6c2",
+          "sourceSha256After": "1fe6838fc63b10cd8e0051ce03039db05b7ea8370c0b8f065beb3e59492df6c2",
+          "runId": "28f71c14-46b1-4046-b8fb-ae8bb61a748b",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 5.85,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/28f71c14-46b1-4046-b8fb-ae8bb61a748b.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/28f71c14-46b1-4046-b8fb-ae8bb61a748b.stderr.log",
+          "unittest": {
+            "tests": 136,
+            "seconds": 5.717,
+            "result": "OK"
+          },
+          "stderrSha256": "47d5d93becbbcff37f19dbe124b0f3a2856dfd6ff50b474111e01bf3b791aaf8",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_field_speed_ceiling_circular_binary_all_root_certificate.py",
+          "sourceSha256Before": "4252b58415aa0e80276f7d88ea4c528450395da640857a5ed5cd5684cfc1b0ce",
+          "sourceSha256After": "4252b58415aa0e80276f7d88ea4c528450395da640857a5ed5cd5684cfc1b0ce",
+          "runId": "c8fae79a-26c2-46c3-ba9b-3e23728b0e12",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.121,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/c8fae79a-26c2-46c3-ba9b-3e23728b0e12.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/c8fae79a-26c2-46c3-ba9b-3e23728b0e12.stderr.log",
+          "unittest": {
+            "tests": 4,
+            "seconds": 0.058,
+            "result": "OK"
+          },
+          "stderrSha256": "b975f21fc36900d09e02e66ed5b8b90f29685e9d834e49485dc354245946626f",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_field_speed_ceiling_t0_mpmath_oracle.py",
+          "sourceSha256Before": "48b084dfcca6a95707ad4d25afdf41c60c70440bc25174e5bd2ac8d1ef239d25",
+          "sourceSha256After": "48b084dfcca6a95707ad4d25afdf41c60c70440bc25174e5bd2ac8d1ef239d25",
+          "runId": "080e1b7b-1b06-4404-a561-d889ee35cb6c",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.59,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/080e1b7b-1b06-4404-a561-d889ee35cb6c.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/080e1b7b-1b06-4404-a561-d889ee35cb6c.stderr.log",
+          "unittest": {
+            "tests": 5,
+            "seconds": 0.536,
+            "result": "OK"
+          },
+          "stderrSha256": "7d9368ff5c520c54f80ab9b83e4823cd8d1bb8d3cc465dff6614b6d810fb9ee6",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_lattice_lab_stationary_oracle.py",
+          "sourceSha256Before": "1264385cf21b55684e05e02ff8422abb49df55536e25ea31664ba33bace379e0",
+          "sourceSha256After": "1264385cf21b55684e05e02ff8422abb49df55536e25ea31664ba33bace379e0",
+          "runId": "0f7cc021-acb9-4872-8203-b832be6fe68d",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 1.787,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/0f7cc021-acb9-4872-8203-b832be6fe68d.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/0f7cc021-acb9-4872-8203-b832be6fe68d.stderr.log",
+          "unittest": {
+            "tests": 2,
+            "seconds": 1.702,
+            "result": "OK"
+          },
+          "stderrSha256": "0cea5dd72d51a9231136ad747b45821a9ee026d59231475efda32bf6c937f83b",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_mec007_stationary_mirror_incoming_oracle.py",
+          "sourceSha256Before": "b33dc89d8c8b4a7273ca48f41df49700648ef1a91f9fa31715be8f7387aa155b",
+          "sourceSha256After": "b33dc89d8c8b4a7273ca48f41df49700648ef1a91f9fa31715be8f7387aa155b",
+          "runId": "f8438640-72aa-4fc6-a014-1564e141c3bc",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.112,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/f8438640-72aa-4fc6-a014-1564e141c3bc.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/f8438640-72aa-4fc6-a014-1564e141c3bc.stderr.log",
+          "unittest": {
+            "tests": 3,
+            "seconds": 0.055,
+            "result": "OK"
+          },
+          "stderrSha256": "903a371054920cecf53d6e8054f10298ffa960bbb71e7c70d5f2485c5a7350d9",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_octahedral_antipodal_generic_axis_edges.py",
+          "sourceSha256Before": "ade9ef918e8b62e3a231ef7b8f24bb8080321c8967cb6245d4a5aea5104d7e70",
+          "sourceSha256After": "ade9ef918e8b62e3a231ef7b8f24bb8080321c8967cb6245d4a5aea5104d7e70",
+          "runId": "fd387a11-e31f-4e00-aa9d-79bb5df76b2c",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.32,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/fd387a11-e31f-4e00-aa9d-79bb5df76b2c.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/fd387a11-e31f-4e00-aa9d-79bb5df76b2c.stderr.log",
+          "unittest": {
+            "tests": 2,
+            "seconds": 0.253,
+            "result": "OK"
+          },
+          "stderrSha256": "4b04acf4938e2a7b6c57ce542152d40df6c5e9b439867cff31d7211a09b7df31",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_octahedral_antipodal_generic_axis_scout.py",
+          "sourceSha256Before": "998aaba2a0d770b75ab58123456f1b11f17bec424c97612c173e4c0201522fa7",
+          "sourceSha256After": "998aaba2a0d770b75ab58123456f1b11f17bec424c97612c173e4c0201522fa7",
+          "runId": "626cb02a-8e37-4d5b-9fc1-341665b1fca0",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.269,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/626cb02a-8e37-4d5b-9fc1-341665b1fca0.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/626cb02a-8e37-4d5b-9fc1-341665b1fca0.stderr.log",
+          "unittest": {
+            "tests": 2,
+            "seconds": 0.22,
+            "result": "OK"
+          },
+          "stderrSha256": "fd760fd350fcf7cec8d3586753ddff938b3c898b4574a5735aa5851b6fab0af1",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_octahedral_word_axis_reduction.py",
+          "sourceSha256Before": "b101792999f28dcfa0f99fdc0d31ffeec2e7e5f3fef8f20d63a46c31bb21ba05",
+          "sourceSha256After": "b101792999f28dcfa0f99fdc0d31ffeec2e7e5f3fef8f20d63a46c31bb21ba05",
+          "runId": "94ba48a3-c05a-49b0-bbde-caf5e51e8f93",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.389,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/94ba48a3-c05a-49b0-bbde-caf5e51e8f93.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/94ba48a3-c05a-49b0-bbde-caf5e51e8f93.stderr.log",
+          "unittest": {
+            "tests": 5,
+            "seconds": 0.12,
+            "result": "OK"
+          },
+          "stderrSha256": "1ba217cf53379915310da875e646d945a20c01c77e244e4e51128487cf3b8b69",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_orthogonal_plane_weave_fold_limit_certificate.py",
+          "sourceSha256Before": "0d08c7ef7af6807e658caa83c4a21e02d58bfbe4df40c9f5426467e5cf849f33",
+          "sourceSha256After": "0d08c7ef7af6807e658caa83c4a21e02d58bfbe4df40c9f5426467e5cf849f33",
+          "runId": "915606f0-cf6e-41ec-94a6-826914a6d964",
+          "status": "failed",
+          "exitCode": 1,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.113,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/915606f0-cf6e-41ec-94a6-826914a6d964.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/915606f0-cf6e-41ec-94a6-826914a6d964.stderr.log",
+          "unittest": {
+            "tests": 7,
+            "seconds": 0.056,
+            "result": "FAILED (failures=1, errors=1)"
+          },
+          "stderrSha256": "99e5b58f0b1a3f7664ea2025c0fc9391b2e4978bd9e63c500e3e04e4e715c54f",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_orthogonal_plane_weave_interval_oracle.py",
+          "sourceSha256Before": "1b52c78d64870c74829936b8e4e5f5f194c36cbc03be753718bbb181f3c65a2d",
+          "sourceSha256After": "1b52c78d64870c74829936b8e4e5f5f194c36cbc03be753718bbb181f3c65a2d",
+          "runId": "1cbfbb76-ad80-4765-ad0f-9a57389c2eaf",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.073,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1cbfbb76-ad80-4765-ad0f-9a57389c2eaf.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1cbfbb76-ad80-4765-ad0f-9a57389c2eaf.stderr.log",
+          "unittest": {
+            "tests": 6,
+            "seconds": 0.02,
+            "result": "OK"
+          },
+          "stderrSha256": "b52fd2030bf92de4dd39dd804082b2d46694302b3e58cf9795e8231d2f98f7c2",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_prescribed_acceleration_response.py",
+          "sourceSha256Before": "4b0e66feb308544aa6294b126a05f6a3c9fbb403580e8193d3140a7b52c370f1",
+          "sourceSha256After": "4b0e66feb308544aa6294b126a05f6a3c9fbb403580e8193d3140a7b52c370f1",
+          "runId": "995a3236-4a3b-46fd-b3e7-06ac8d4215cf",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.326,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/995a3236-4a3b-46fd-b3e7-06ac8d4215cf.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/995a3236-4a3b-46fd-b3e7-06ac8d4215cf.stderr.log",
+          "unittest": {
+            "tests": 31,
+            "seconds": 0.261,
+            "result": "OK"
+          },
+          "stderrSha256": "fc5d5ac9829ad75f5943d585d370975d913e59711104295c5677d348a15d7a6c",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_prescribed_acceleration_response_consumer.py",
+          "sourceSha256Before": "eeb85745d0175fabc3306e3a00e5b6dc3df3418b29fe40df9b89b765ac468875",
+          "sourceSha256After": "eeb85745d0175fabc3306e3a00e5b6dc3df3418b29fe40df9b89b765ac468875",
+          "runId": "eb9c6c95-e17f-448b-9337-ef658ead4a61",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 1.08,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/eb9c6c95-e17f-448b-9337-ef658ead4a61.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/eb9c6c95-e17f-448b-9337-ef658ead4a61.stderr.log",
+          "unittest": {
+            "tests": 28,
+            "seconds": 1.002,
+            "result": "OK"
+          },
+          "stderrSha256": "035a8fda84ee118723d56d97bb098a42ff890f75719b9de7f0260266a6e222cb",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "tests/test_prescribed_acceleration_response_publication.py",
+          "sourceSha256Before": "fe57d4ed40110d530044b0d6aecb7a17da865b4d56d6186a3ad14497282e217f",
+          "sourceSha256After": "fe57d4ed40110d530044b0d6aecb7a17da865b4d56d6186a3ad14497282e217f",
+          "runId": "3db42172-acc6-444f-a06b-20e01a6326af",
+          "status": "completed",
+          "exitCode": 0,
+          "processGroupClosed": true,
+          "elapsedWallSeconds": 0.714,
+          "stdoutPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/3db42172-acc6-444f-a06b-20e01a6326af.stdout.log",
+          "stderrPath": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/3db42172-acc6-444f-a06b-20e01a6326af.stderr.log",
+          "unittest": {
+            "tests": 15,
+            "seconds": 0.638,
+            "result": "OK"
+          },
+          "stderrSha256": "9d183d9b8220489a44c035416c2f2d851dbfc26ad934b7157f1bcf86a2f0c12b",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ]
+    }
+  ]
+}

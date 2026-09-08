@@ -1,0 +1,36 @@
+{
+  "runId": "1d9d75b3-9443-4cbe-8a95-a3079eea9929",
+  "command": [
+    "node",
+    "--test",
+    "--test-reporter=tap",
+    "--test-timeout=20000",
+    "tests/f5-ordinary-evolution-runner.test.js"
+  ],
+  "summary": {
+    "tests": 35,
+    "pass": 35,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 10765.841708
+  },
+  "failures": [],
+  "failedFiles": [],
+  "skippedResults": [],
+  "diagnosticCount": 0,
+  "nativeFailureCount": 0,
+  "log": {
+    "path": "/Users/markmorris/vibe/architrino/.local-data/owned-compute/logs/1d9d75b3-9443-4cbe-8a95-a3079eea9929.stdout.log",
+    "sha256": "e081f23818b39414abbe3e04e5eafed6d5c6b18f114e119f965c3fab25e88611",
+    "bytes": 9083
+  },
+  "terminal": {
+    "status": "completed",
+    "exitCode": 0,
+    "processGroupClosed": true,
+    "elapsedWallSeconds": 10.848
+  },
+  "boundary": "The recorded command defines the Node selection in the shared working checkout. Concurrent documentation edits occurred; this is not an exact final-candidate publication receipt. Native totals and extracted diagnostic blocks are separate quantities; parent failures may duplicate nested failures."
+}
