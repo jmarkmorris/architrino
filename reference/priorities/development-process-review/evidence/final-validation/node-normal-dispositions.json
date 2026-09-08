@@ -1,0 +1,140 @@
+{
+  "baselineRunId": "8b6ae0db-0cf1-49f8-9225-7842916252a5",
+  "boundary": "Every baseline failure is assigned; unresolved owner decisions remain failures, not passing or waived checks. Scoped reruns are separate states, not a replacement full sweep.",
+  "groups": [
+    {
+      "id": "analytical-coverage",
+      "owner": "reference/priorities/braid-program/work-queue.md#routed-methodology-coverage-review-from-ops-018",
+      "state": "unmet-scientific-review-prerequisite",
+      "reason": "Actual gate requires analytical coverage impact review before accepting the current methodology identity.",
+      "files": [
+        "tests/all-candidate-analytical-rebuild.test.js",
+        "tests/analytical-campaign-database.test.js",
+        "tests/coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.test.js",
+        "tests/endpoint-residual-search-campaign.test.js"
+      ],
+      "baselineFailedAssertions": 16
+    },
+    {
+      "id": "archie-contracts",
+      "owner": "reference/priorities/aaa-operations/work-queue.md#ops-023--archie-mcp-tool-contract-fixture-drift",
+      "state": "open-owner-adjudication",
+      "reason": "Contract/fixture disagreements and loopback startup failure remain; shared cause is not established for every assertion.",
+      "files": [
+        "tests/archie-service-contracts.test.js",
+        "tests/archie-service-fixture-mcp-server.test.js",
+        "tests/archie-service-mcp-loopback-http.test.js",
+        "tests/archie-service-mcp-remote-deployment-contract.test.js",
+        "tests/archie-service-mcp-tool-contract.test.js"
+      ],
+      "baselineFailedAssertions": 6
+    },
+    {
+      "id": "borg-behavior",
+      "owner": "reference/priorities/app-borg/work-queue.md",
+      "state": "open-owner-adjudication",
+      "reason": "Geometry values, record loading and home-source expectation disagree. These require behavior-specific review; no pin-only repair is asserted.",
+      "files": [
+        "tests/borg-configuration-geometry-records.test.js",
+        "tests/borg-home-entry.test.js",
+        "tests/borg-library.test.js"
+      ],
+      "baselineFailedAssertions": 5
+    },
+    {
+      "id": "borg-eom-binding",
+      "owner": "reference/priorities/aaa-operations/work-queue.md#ops-024--post-campaign-binding-corruption-sweep",
+      "state": "open-owner-adjudication",
+      "reason": "Existing OPS-024 decision row routes the live EOM contract binding to its owner and regeneration procedure.",
+      "files": [
+        "tests/borg-eom-migration.test.js"
+      ],
+      "baselineFailedAssertions": 1
+    },
+    {
+      "id": "f5-input-and-build",
+      "owner": "reference/priorities/development-process-review/analysis/shared-helper-caller-audit.md",
+      "state": "open-step-4-contract",
+      "reason": "Original configuration/fixture composition, reviewed solver/build source pins and complete circular runtime composition need their separate obligations satisfied.",
+      "files": [
+        "tests/f5-enclosed-root-ledger-reducer.test.js",
+        "tests/f5-enclosed-root-prefix.test.js",
+        "tests/f5-enclosed-root-preparation.test.js",
+        "tests/f5-independent-interpolation-enclosure.test.js",
+        "tests/f5-phase-varying-campaign-spec.test.js",
+        "tests/f5-prehistory-handoff-build.test.js",
+        "tests/subfield-circular-root-preparation.test.js",
+        "tests/subfield-circular-root-rung.test.js"
+      ],
+      "baselineFailedAssertions": 25
+    },
+    {
+      "id": "mutable-v3-test-inputs",
+      "owner": "reference/priorities/development-process-review/analysis/final-test-coverage.md",
+      "state": "repaired-in-scoped-rerun",
+      "reason": "Test-only lattice/sea inputs now use current v3 schema and derive exact identity from their unchanged payloads. Eight existing tests pass; numerical validators and negative assertions unchanged.",
+      "runId": "e2af373b-741a-46ae-9c00-a6bb81372e83",
+      "files": [
+        "tests/prescribed-lattice-spec.test.js",
+        "tests/prescribed-sea-model.test.js"
+      ],
+      "baselineFailedAssertions": 8
+    },
+    {
+      "id": "diagnostic-source-identity",
+      "owner": "reference/priorities/braid-program/work-queue.md",
+      "state": "open-owner-adjudication",
+      "reason": "F6b source record omits exact identity; F6c bestRows assertion fails and its constructed records also omit identity. Canonical diagnostic source identity must be supplied without inventing scientific provenance; shared causality is not yet verified by rerun.",
+      "files": [
+        "tests/f6b-prescribed-kernel-diagnostic.test.js",
+        "tests/f6c-relative-equilibrium-search.test.js"
+      ],
+      "baselineFailedAssertions": 2
+    },
+    {
+      "id": "process-test-overlap",
+      "owner": "reference/priorities/development-process-review/analysis/final-test-coverage.md",
+      "state": "repaired-in-scoped-rerun",
+      "reason": "Host-wide production exclusion guards rejected overlapping sibling test fixtures. All 19 tests in the two suites pass serially; sweep and npm test now serialize files, with a passing shared-resource integration control.",
+      "runId": "e8269b78-86cf-4fb4-8dc9-aebb7a8f6a19",
+      "files": [
+        "tests/f6c-acceleration-pilot-process.test.js",
+        "tests/prescribed-response-pilot-process.test.js"
+      ],
+      "baselineFailedAssertions": 8
+    },
+    {
+      "id": "emission-contract",
+      "owner": "reference/priorities/development-process-review/analysis/shared-helper-caller-audit.md",
+      "state": "open-step-4-contract",
+      "reason": "Unit check rejects original declaration mismatch; process failures include overlap and still require isolated validation. New-run producer contract remains open.",
+      "files": [
+        "tests/f6c-emission-refinement-pilot-process.test.js",
+        "tests/f6c-emission-refinement-pilot.test.js"
+      ],
+      "baselineFailedAssertions": 7
+    },
+    {
+      "id": "refined-contract",
+      "owner": "reference/priorities/development-process-review/analysis/shared-helper-caller-audit.md",
+      "state": "open-step-4-contract",
+      "reason": "Old operational helper/supervisor generations fail before intended stage assertions; full producer/verifier interface migration remains open.",
+      "files": [
+        "tests/f6c-refined-acceleration-pilot-process.test.js",
+        "tests/f6c-refined-acceleration-pilot.test.js"
+      ],
+      "baselineFailedAssertions": 11
+    },
+    {
+      "id": "pdg-renderer-assets",
+      "owner": "reference/priorities/aaa-operations/work-queue.md#ops-024--post-campaign-binding-corruption-sweep",
+      "state": "open-owner-adjudication",
+      "reason": "Catalog/glyph expected assets disagree, including missing noether-braid SVGs. Existing renderer-owner regeneration decision is not silently discharged by updating expected values.",
+      "files": [
+        "tests/pdgedit-generator-drift.test.js",
+        "tests/pdgedit-renderer-drift.test.js"
+      ],
+      "baselineFailedAssertions": 3
+    }
+  ]
+}

@@ -640,6 +640,12 @@ A trial would also check runtime arrangements: dependencies, ignored generated a
 
 Before adoption, adapt the publication owner, validation receipts, task-directory guidance, and cleanup procedure to the proposed arrangement. Confirm that a runner validates the integrated state rather than treating separate task passes as proof of the combined result. Preserve unfinished work during handoffs and verify accepted integration before retiring a worktree. Worktrees would reduce the scope of editing pauses; they would not eliminate publication ownership or coordination around shared repository state.
 
+#### 2.8.3.1. Codex permanent worktrees
+
+Codex distinguishes task-oriented managed worktrees from permanent worktrees. Its [official worktree documentation](https://learn.chatgpt.com/docs/environments/git-worktrees) describes creating a permanent worktree from the project menu in the sidebar: it appears as its own project, can host multiple tasks, and is excluded from automatic worktree deletion. This describes a durable working environment, not a new Git storage format or an automatic backup guarantee.
+
+A permanent worktree may suit a long-lived development environment whose setup should survive individual tasks. Its tasks still share that worktree's files and staging area when they work directly there, so permanence does not provide per-task editing isolation. It also retains the usual shared Git metadata and need for explicit integration with other worktrees. Evaluate directory visibility, branch ownership, setup and credential routing, task isolation, storage growth, and deliberate cleanup before choosing it as our standard arrangement. This is an evaluation item; no permanent worktree has been created by this documentation change.
+
 #### 2.8.4. Merge method: agreed future direction
 
 Squash merging places the branch's combined change in one new commit on the base branch, so intermediate commit identities are not preserved in that merged ancestry. It does not establish that all original objects immediately disappear. Whether required evidence remains recoverable depends on retained references and archives. See [GitHub merge methods](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/configuring-pull-request-merges/about-merge-methods-on-github).
@@ -679,6 +685,7 @@ This section is the overall migration and rollout hub. The detailed plans below 
 | Migrate to B — accepted, deferred | Follow section 1.4.4 after higher-priority work: map existing records, verify JSON-LD/Python/RDFLib, prove one complete chain, integrate publication checks, then expand and retire replaced machinery. |
 | Separate GitHub authorization — agreed, planned | Execute and verify the migration in section 2.4.2. Track each of the four tool/repository contexts in section 2.4.1; token creation alone does not close the work. |
 | Introduce coordinated publication — agreed, deferred | Follow section 2.6.1: establish cross-vendor readiness and pause acknowledgments, one publisher, validated candidate protection, explicit release, and failure recovery. Integrate the protocol into the existing publication owner before routine automation. |
+| Delegate PR review, merge, and lifecycle completion — planned, not enabled | Follow section 3.3. Decide whether Codex, Claude, or both may perform the operator’s current middle handoff, define the permitted scope and review requirements, and explicitly activate that authority after verification. |
 | Adopt ordinary merge commits — agreed, deferred | Coordinate merge settings, branch rules, publication/rollover guidance, and squash-dependent successor workflows before switching. Preserve existing history. Agent authority to perform merges requires a separate explicit operator decision. |
 | Evaluate worktrees — permitted, outcome open | Follow section 2.8.3. Verify task directories, shared runtime state, integration, validation, and cleanup during a bounded trial. Permission to use worktrees is not evidence that every handoff path is reliable. |
 | Prepare bounded changes | Propose the smallest coherent change addressing the verified gap, with its data model, affected consumers, preservation needs, and validation identified. Integrate accepted rules into existing owners; keep this guide as the explanatory map. |
@@ -737,6 +744,16 @@ The current division has useful boundaries. The recommended destination is one o
 
 Before consolidation, inventory incoming links, startup routing, tests that inspect document text, and generated fingerprints for each proposed move or rewrite. The conformance test already reads the publication procedure and closed ledger by path; the startup generator fingerprints the publication procedure. A filename-only cleanup can therefore break executable consumers. Migrate content to its chosen owner, update those consumers in the same scoped change, verify the new routing and behavior, and remove redundant live instructions only after their replacement is established. Retain a single current source for each rule; use links rather than permanent duplicate copies.
 
+
+### 3.3. Future delegation of PR review and merge
+
+- [ ] **Transfer the operator’s middle handoff to designated agents when ready.** The operator requested a migration item to allow Codex, Claude, or both to review and approve eligible PRs, merge them, and complete the existing post-merge verification, cleanup, and successor rollover. This records a future delegation decision; no agent gains merge authority from this checklist item.
+
+Before enabling it, define which agents and repositories are eligible, whether authorization covers individual PRs or a bounded recurring class, which changes still require operator judgment, and how delegation can be withdrawn. Distinguish an agent’s substantive review from a GitHub approval event and the permission to merge. Separate tokens belonging to one account do not create independent reviewer identities; verify the actual account, required-review rules, and supported operations without bypassing them.
+
+Integrate the accepted delegation into the canonical publication procedure and its startup references. Preserve review of the exact candidate, required checks and mergeability, reconsideration after new commits, one designated runner, protection of concurrent work, verified merge outcome, and checks for unmerged work before branch cleanup. If an independent reviewer is required, define and verify that role separately from the author and publisher.
+
+Demonstrate the complete delegated lifecycle on a bounded PR under explicit operator authorization, including refusal or escalation when a required check, review, identity, or scope condition is missing. Completion means the operator has accepted the delegation boundaries, the live owners reflect them, the authorized route has been verified, and the final report establishes merge and rollover outcomes. Until then, the existing operator merge gate remains in force.
 
 ## 4. Appendix — Background on checks, Git history, and provenance
 

@@ -1,0 +1,114 @@
+[
+  {
+    "role": "f5-source-owner",
+    "path": "src/eom/src/History.cpp",
+    "expected": "cd732843db488de66798953278d1e3b15151163c826b9d5b93eed98363a8b4c5",
+    "actual": "cd732843db488de66798953278d1e3b15151163c826b9d5b93eed98363a8b4c5",
+    "bytes": 72320,
+    "matches": true
+  },
+  {
+    "role": "f5-source-owner",
+    "path": "src/eom/src/Interval.cpp",
+    "expected": "5da66e8473f78439dbb075857918af85b7789b2749e5046c83d9b58d944023a5",
+    "actual": "5da66e8473f78439dbb075857918af85b7789b2749e5046c83d9b58d944023a5",
+    "bytes": 11812,
+    "matches": true
+  },
+  {
+    "role": "f5-source-owner",
+    "path": "src/eom/include/architrino/eom/Decimal.hpp",
+    "expected": "8126e685d9be5a2d4935d29eaa12d1aa995822781c198d48d809c0f0b6ddad7f",
+    "actual": "8126e685d9be5a2d4935d29eaa12d1aa995822781c198d48d809c0f0b6ddad7f",
+    "bytes": 1320,
+    "matches": true
+  },
+  {
+    "role": "f5-source-owner",
+    "path": "src/eom/include/architrino/eom/History.hpp",
+    "expected": "0e326f15c70a0b0dc5786b1c14a2f2378324754c28cc597b92d82c0c1da3c8f3",
+    "actual": "0e326f15c70a0b0dc5786b1c14a2f2378324754c28cc597b92d82c0c1da3c8f3",
+    "bytes": 15845,
+    "matches": true
+  },
+  {
+    "role": "f5-source-owner",
+    "path": "src/eom/src/CoupledEvolution.cpp",
+    "expected": "88935fa4410f626d25200597a2fb5ba1ad4cb7a8c68324cf452affd4643c9194",
+    "actual": "6fa61e458ec337982932a7882090a875ff045e0da10b405c221bc671a68a4d0d",
+    "bytes": 345378,
+    "matches": false
+  },
+  {
+    "role": "circular-pilot",
+    "path": "scripts/eom/run-subfield-circular-root-pilot.mjs",
+    "expected": "e6d6fb08d6e33b8ada60e36b7552fadc97bb4e6f8907bab6273bebdd8109b1fc",
+    "actual": "e6d6fb08d6e33b8ada60e36b7552fadc97bb4e6f8907bab6273bebdd8109b1fc",
+    "bytes": 38009,
+    "matches": true
+  },
+  {
+    "role": "circular-outer",
+    "path": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+    "expected": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826",
+    "actual": "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c",
+    "bytes": 65769,
+    "matches": false
+  },
+  {
+    "role": "circular-helper",
+    "path": "src/prescribed-path-analysis/SubfieldCircularPhaseProcess.mjs",
+    "expected": "1b96160ceee1d9a98374d84e9f15b1823572486a6b53546d922294a51cd3d982",
+    "actual": "1b96160ceee1d9a98374d84e9f15b1823572486a6b53546d922294a51cd3d982",
+    "bytes": 25343,
+    "matches": true
+  },
+  {
+    "role": "circular-bridge",
+    "path": "src/prescribed-path-analysis/SubfieldCircularPhaseLedgerWorker.mjs",
+    "expected": "00cd8290a9929e0e099c91aeff03c52cf06ec5d9cad329ffad00092c61815e02",
+    "actual": "00cd8290a9929e0e099c91aeff03c52cf06ec5d9cad329ffad00092c61815e02",
+    "bytes": 5808,
+    "matches": true
+  },
+  {
+    "role": "circular-watch",
+    "path": "scripts/eom/prepare-f5-enclosed-root.mjs",
+    "expected": "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9",
+    "actual": "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9",
+    "bytes": 16428,
+    "matches": true
+  },
+  {
+    "role": "circular-reducer",
+    "path": "src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.mjs",
+    "expected": "1b146e7efbc05f000f37d313f8e5ee353e802ddf00738dbcdaa543165f001bb8",
+    "actual": "1b146e7efbc05f000f37d313f8e5ee353e802ddf00738dbcdaa543165f001bb8",
+    "bytes": 51396,
+    "matches": true
+  },
+  {
+    "role": "circular-cli",
+    "path": "scripts/eom/reduce-subfield-circular-root-ledger.mjs",
+    "expected": "2b3eb236b561c1901e6dfc58603f97f1104fc045e79d2d7a10d8879da02fd60a",
+    "actual": "2b3eb236b561c1901e6dfc58603f97f1104fc045e79d2d7a10d8879da02fd60a",
+    "bytes": 6307,
+    "matches": true
+  },
+  {
+    "role": "circular-proof",
+    "path": "scripts/eom/verify-subfield-circular-history.mjs",
+    "expected": "b2fc83aa828ac9f175d7c3ae7bf43b66fcda54a702de6f2f80812852aebd5f38",
+    "actual": "b2fc83aa828ac9f175d7c3ae7bf43b66fcda54a702de6f2f80812852aebd5f38",
+    "bytes": 30692,
+    "matches": true
+  },
+  {
+    "role": "circular-build-receipt",
+    "path": ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/recorded-build-20260827-v2/preparation.json",
+    "expected": "be6f2e43cc2c608a568d128c79535eacc628ea80cfc62cfe273af7c434243866",
+    "actual": "be6f2e43cc2c608a568d128c79535eacc628ea80cfc62cfe273af7c434243866",
+    "bytes": 4987469,
+    "matches": true
+  }
+]

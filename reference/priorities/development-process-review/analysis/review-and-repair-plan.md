@@ -10,7 +10,7 @@ The [consequential repair audit](consequential-repair-audit.md) and [source reco
 
 ## Priority and execution order
 
-This campaign's plan ends at step 5. The retained step numbers remain stable so earlier instructions and records remain intelligible. Completed investigations are not instructions to repeat them. The architecture explanation and later operating-design topics belong to the separate campaign.
+This campaign's plan ends at step 5. Steps 6–9 have been removed at the operator's direction because they moved to another campaign. The retained step numbers remain stable so earlier instructions and records remain intelligible. Completed investigations are not instructions to repeat them. The architecture explanation and later operating-design topics belong to the separate campaign.
 
 | Original step | Recovery responsibility and completion boundary |
 | --- | --- |
