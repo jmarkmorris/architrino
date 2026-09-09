@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-09 — Authorized insight-recovery entry improvements and constitutive comparison
+
+Completed the two approved entry improvements in [Lattice Lab brainstorming](../app-lattice-lab/brainstorming.md#established-ownership) and [FSC brainstorming](../field-speed-ceiling/brainstorming.md#two-lobe-return-map-result), preserving the underlying proof documents, equations, review provenance, and decision. Read the full pressure-dependent Noether sea constitutive-response packet and the MC-04/MC-06 source passages, checked their BP-005 dispositions, and compared the MEC owner and EMAP-004. The [follow-up assessment](evidence/research-insight-recovery-pilot-2026-09-09.md#authorized-follow-up-constitutive-response-and-entry-improvements) explains why the static pressure test does not settle periodically driven or collective transport, with elementary comparison calculations and exact proposed scope paragraphs. Those paragraphs remain for discussion; the pressure packet and scientific queues were not edited. No simulation, promotion, relocation, deletion, or additional agent/task was undertaken.
+
+### 2026-09-09 — Research insight recovery first assessment
+
+Completed the explicitly bounded discovery pilot and saved its [assessment](evidence/research-insight-recovery-pilot-2026-09-09.md) and [path inventory](evidence/research-insight-recovery-source-inventory-2026-09-09.txt). The inventory command enumerated 832 nonignored priority Markdown paths before capture; path classification is not semantic coverage. Deep reading was limited to the named pilot documents and FSC passage range, followed by targeted owner/corpus checks. The report preserves whole-document maturity, topic collections, prior triage, and negative results; it proposes selective entry explanations for discussion and pauses before further work. Only this receipt, the report, inventory snapshot, and a discovery pointer in `priorities.md` were written; original scientific sources and queue states were preserved.
+
 ### 2026-09-05 — Theory consolidated into `analysis/`, and the rule that bounds it
 
 The operator asked for one place to look for theory: every document carrying theory work, an insight, an advance in $\mathbb{A}\mathbb{A}\mathbb{A}$, or material that could become reader-facing corpus content belongs in a lane's `analysis/`, while internal operations material keeps its existing home. Sixty-six documents moved, and `analysis/` now holds 185 across seventeen lanes.
