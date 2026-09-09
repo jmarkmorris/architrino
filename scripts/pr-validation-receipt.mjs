@@ -32,6 +32,12 @@ export const VALIDATION_COMMANDS = [
     name: "Animator runtime wiring",
     args: ["scripts/check-animator-runtime-wiring.mjs"],
   },
+  {
+    name: "Option B moving-single-root trial (report-only)",
+    args: ["scripts/equation-mapping/check-moving-single-root-map.mjs"],
+    reportOnly: true,
+    reportPath: ".local-data/option-b-trial/report.json",
+  },
 ];
 
 function sha256(parts) {
@@ -192,6 +198,7 @@ export function writeValidationReceipt({
   cwd = process.cwd(),
   receiptPath = DEFAULT_RECEIPT_PATH,
   state,
+  reportOnly = [],
 }) {
   const absolutePath = resolveReceiptPath(cwd, receiptPath);
   fs.mkdirSync(path.dirname(absolutePath), { recursive: true });
@@ -200,6 +207,7 @@ export function writeValidationReceipt({
     schema: RECEIPT_SCHEMA,
     createdAt: new Date().toISOString(),
     state,
+    reportOnly,
   };
   fs.writeFileSync(temporaryPath, `${JSON.stringify(receipt, null, 2)}\n`);
   fs.renameSync(temporaryPath, absolutePath);
@@ -262,7 +270,7 @@ export function verifyValidationReceipt({
 
 function concreteValidationCommands(baseRef) {
   return VALIDATION_COMMANDS.map((command) => ({
-    name: command.name,
+    ...command,
     args: command.args.map((arg) => (arg === "<base-ref>" ? baseRef : arg)),
   }));
 }
@@ -270,14 +278,35 @@ function concreteValidationCommands(baseRef) {
 export function runValidationCommands({
   cwd = process.cwd(),
   baseRef = "origin/main",
+  spawn = spawnSync,
 } = {}) {
+  const reportingResults = [];
   for (const command of concreteValidationCommands(baseRef)) {
     console.log(`[pr-validation] running ${command.name}...`);
-    const result = spawnSync(process.execPath, command.args, {
-      cwd,
-      env: childEnvironment(),
-      stdio: "inherit",
-    });
+    let result;
+    try {
+      // A previous B report must never stand in for an unexecuted invocation.
+      if (command.reportOnly) fs.rmSync(resolveInsideRoot(cwd, command.reportPath), { force: true });
+      result = spawn(process.execPath, command.args, {
+        cwd,
+        env: childEnvironment(),
+        stdio: "inherit",
+      });
+    } catch (error) { result = { status: null, error }; }
+    if (command.reportOnly) {
+      const outcome = { name: command.name, status: "error", exitCode: result.status ?? null, reportPath: command.reportPath };
+      try {
+        const raw = fs.readFileSync(resolveInsideRoot(cwd, command.reportPath));
+        const report = JSON.parse(raw);
+        outcome.reportSha256 = sha256([raw]);
+        outcome.reportedStatus = report.status;
+        if (!result.error && result.status === 0 && ["pass", "review-required"].includes(report.status)) outcome.status = report.status;
+      } catch (error) { outcome.error = `report unavailable: ${error.message}`; }
+      if (result.error) outcome.error = result.error.message;
+      reportingResults.push(outcome);
+      console.log(`[pr-validation] REPORT-ONLY ${outcome.status}: ${command.name}; ${command.reportPath}. Existing required checks retain authority.`);
+      continue;
+    }
     if (result.error) {
       throw result.error;
     }
@@ -285,6 +314,7 @@ export function runValidationCommands({
       throw new Error(`${command.name} failed with exit ${result.status ?? 1}`);
     }
   }
+  return reportingResults;
 }
 
 export function runValidationAndWriteReceipt({
@@ -297,7 +327,7 @@ export function runValidationAndWriteReceipt({
   removeValidationReceipt({ cwd, receiptPath });
   assertStagedFilesMatchWorktree({ cwd });
   const before = captureState({ cwd, baseRef });
-  runCommands({ cwd, baseRef });
+  const reportOnly = runCommands({ cwd, baseRef }) ?? [];
   const after = captureState({ cwd, baseRef });
   const stableDuringChecks = compareValidationStates(before, after);
   if (!stableDuringChecks.equal) {
@@ -307,7 +337,7 @@ export function runValidationAndWriteReceipt({
   }
 
   assertStagedFilesMatchWorktree({ cwd });
-  writeValidationReceipt({ cwd, receiptPath, state: after });
+  writeValidationReceipt({ cwd, receiptPath, state: after, reportOnly });
   const finalState = captureState({ cwd, baseRef });
   const stableAfterWrite = compareValidationStates(after, finalState);
   if (!stableAfterWrite.equal) {

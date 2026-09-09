@@ -1,0 +1,104 @@
+{
+  "schema": "option-b-post-merge-scenario-summary/v1",
+  "sourceReceiptSha256": "77570d24f098017373b043bdf5d0c87879804b281148bb0fcef0ea7b7ce715d9",
+  "sourceReceipt": "/private/tmp/option-b-post-merge-replay1/outcomes.json",
+  "reproduction": "Run the unchanged retained run_candidate.py at merge 83da8fb83f984e36ac44279e5399e219e887953e with the supported Python/RDFLib environment; see post-merge-verification.json. Run-specific receipt bytes need not reproduce.",
+  "coverage": "All nine fixed expected assertions passed; this compact summary omits duplicated per-case source digests and runtime records, not unique scientific output.",
+  "cases": {
+    "unchanged": {
+      "consistency": "pass",
+      "review": "unchanged-exploratory",
+      "approval": "not-granted",
+      "selectedChecks": [],
+      "executionExitCodes": [
+        0,
+        0
+      ]
+    },
+    "stale-sign": {
+      "consistency": "reject",
+      "approval": "not-granted"
+    },
+    "changed-sign": {
+      "consistency": "pass",
+      "review": "required",
+      "approval": "not-granted",
+      "selectedChecks": [
+        "prose-check",
+        "scientific-check"
+      ],
+      "executionExitCodes": [
+        0,
+        0
+      ]
+    },
+    "deleted-proof-sign": {
+      "consistency": "pass",
+      "review": "required",
+      "approval": "not-granted",
+      "selectedChecks": [
+        "prose-check",
+        "scientific-check"
+      ],
+      "executionExitCodes": [
+        0,
+        0
+      ]
+    },
+    "deleted-prose-coverage": {
+      "consistency": "pass",
+      "review": "required",
+      "approval": "not-granted",
+      "selectedChecks": [
+        "prose-check"
+      ],
+      "executionExitCodes": [
+        0,
+        0
+      ]
+    },
+    "changed-scalar-edge": {
+      "consistency": "pass",
+      "review": "required",
+      "approval": "not-granted",
+      "selectedChecks": [
+        "prose-check",
+        "scientific-check"
+      ],
+      "executionExitCodes": [
+        0,
+        0
+      ]
+    },
+    "wrong-displayed-result": {
+      "consistency": "pass",
+      "review": "required",
+      "approval": "not-granted",
+      "selectedChecks": [
+        "prose-check",
+        "scientific-check"
+      ],
+      "executionExitCodes": [
+        0,
+        0
+      ]
+    },
+    "duplicate-displayed-result": {
+      "consistency": "reject",
+      "approval": "not-granted"
+    },
+    "outside-selector-comment": {
+      "consistency": "pass",
+      "review": "required",
+      "approval": "not-granted",
+      "selectedChecks": [
+        "prose-check",
+        "scientific-check"
+      ],
+      "executionExitCodes": [
+        0,
+        0
+      ]
+    }
+  }
+}

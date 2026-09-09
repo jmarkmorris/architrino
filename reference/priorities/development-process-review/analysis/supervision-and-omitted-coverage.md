@@ -27,7 +27,7 @@ The SDK environment is now selected and both previously omitted conformance comm
 | Command | Measured outcome | Remaining responsibility |
 | --- | --- | --- |
 | `check-fixture-mcp-sdk-conformance.mjs --sdk-root <isolated SDK 1.30.0>` | ✓ Done — Run `12093e6e-7e04-42e7-9e8f-29e04425f70b` passes initialization, the five bounded tools, missing-source error and ping; exit zero, 0.227 seconds, closed group. | This concrete SDK/stdio profile is exercised. |
-| `check-loopback-mcp-http-sdk-conformance.mjs --sdk-root <isolated SDK 1.30.0>` | ◐ Partial — Run `062af4a3-19fe-4a97-af81-abd29e603f3e` exits one with `deployment contract rejected: SNAPSHOT_IDENTITY_MISMATCH`; 0.943 seconds, closed group. It fails before listening. | Blocked until the Archie owner repairs the source contract and the actual SDK HTTP profile passes; the SDK environment is available. |
+| `check-loopback-mcp-http-sdk-conformance.mjs --sdk-root <isolated SDK 1.30.0>` | ✓ Done — Run `71f1372c-0c87-44e8-abb0-098b8ee17b92` passes initialization, five tools, missing-source error, ping, readiness and safe-log assertions; exit zero, 10.586 seconds, closed group. | Actual loopback SDK 1.30.0 profile accepted after authored snapshot identity repair and request pacing; no remote deployment authorization. |
 
 An earlier explicitly selected SDK 1.17.5 environment rejects the server's `2025-11-25` protocol (`c2f95dbd-bdf0-487d-b5ab-b3bb0da41a5d`); its HTTP attempt also encounters the snapshot mismatch (`578810bf-3874-4f64-94fe-4082eb556ab0`). That unsupported protocol pairing is preserved as an environment result, not counted as a defect in the supported 1.30.0 stdio profile. Both installations and their lockfiles remain separate.
 

@@ -8,7 +8,31 @@ This document defines the standard repo process for ending a work session, publi
 
 This procedure is available to every repository agent as awareness of how deferred generation, validation, commits, pull requests, cleanup, and branch rollover are eventually handled. Reading this file, reaching it through the startup router, following a link to it, citing it, or noticing work that the procedure will later consume does not invoke the procedure and creates no obligation to execute any of its steps.
 
-Only an explicit instruction from Op to a specific agent to `run pr-lifecycle.md`, including the equivalent linked-file instruction defined below, designates that agent as the procedure runner for the applicable handoff. Unless separately designated by Op, every other reading or editing agent stays within its own task and does not regenerate for this procedure, stage, commit, push, create or update a pull request, verify a merge, clean up a branch, or roll over to a successor branch. Encountering generated drift outside an active invocation means reporting the drift and its owning command, then leaving execution to the designated runner.
+An explicit operator instruction selecting an invocation mode below, or `run pr-lifecycle.md` including its equivalent linked-file instruction, designates that agent as the procedure runner for the applicable handoff. Unless separately designated by Op, every other reading or editing agent stays within its own task and does not regenerate for this procedure, stage, commit, push, create or update a pull request, verify a merge, clean up a branch, or roll over to a successor branch. Encountering generated drift outside an active invocation means reporting the drift and its owning command, then leaving execution to the designated runner.
+
+## Operator invocation modes
+
+These modes apply equally to Claude and Codex. The operator selects the review pause and merge authority for one scoped candidate; discussion or general trust alone does not invoke publication.
+
+| Operator directive | Runner behavior |
+| --- | --- |
+| **Prepare the PR for my review** | Prepare the candidate and intentional title/body. Show the write-up in rendered Markdown preview in the right-hand panel, with relevant changes and validation status accessible. Pause before publication for approval, rejection or edits. Approval to finish that candidate authorizes publication, checks, ordinary merge, cleanup and successor preparation. |
+| **Complete the entire PR lifecycle without a review pause** | Explicitly delegates merge and post-merge authority for the scoped candidate. Run all required validation, publish, merge, verify cleanup and prepare the successor without another routine review pause. |
+| **Open a PR** | Publish and verify a ready PR, then stop before merging. This remains the default for a plain instruction to run this procedure. |
+
+A commit-and-push request retains its narrower stopping point. In review mode, “go ahead” authorizes completion only when it clearly refers to the presented candidate and full lifecycle. Rejection stops publication and preserves the work. Requested edits update the preview; material candidate changes after approval require renewed approval. Delegation does not extend to later PRs or unrelated work.
+
+Use the application's normal rendered Markdown preview, including equations when present. Do not create a PDF merely to display the write-up. If rendered preview is unavailable, state that limitation and provide the exact write-up in the conversation without claiming the panel was rendered.
+
+### Delegated merge and continuous handoff
+
+Every mode retains the local exact-state gate, required remote checks, mergeability verification, writer pause and mandatory stop conditions. A report-only trial remains report-only. Before merging, record the operator's invocation or candidate approval and recheck the exact approved head, base and successful checks. Through the assigned credential route, use `gh pr merge <pr-number> --merge --match-head-commit <approvedHeadOid>`. Do not use admin bypass, squash, rebase or automatic merge. Stop on changed or unverified candidate state.
+
+After GitHub confirms MERGED, perform the existing second-handoff ancestry checks, main synchronization, exact-branch retirement and successor rollover without asking for “merged, continue” again. Preserve both handoff receipts. Host permissions and all stop conditions still apply.
+
+### Cross-tool verification
+
+Authority and verification are separate. Both tools may receive these explicit instructions, but a successful run by one tool does not verify the other's credential route, preview controls or merge/cleanup behavior. For the first Claude delegated-merge trial, recommend the review-pause mode on a small real candidate: inspect the actual write-up here, approve that exact candidate, then verify merge parents, preserved commits, cleanup and successor publication. Existing Claude publication and cleanup evidence does not establish its newly delegated merge operation. Record that operation as untested until exercised; do not manufacture a throwaway PR or claim a dry run proves write access.
 
 ## Branch Naming Convention
 
@@ -62,7 +86,7 @@ The runner must use only the token assigned to its own tool and the repository b
 
 ## Merge Method and Repository Settings
 
-Use ordinary merge commits for future PRs. The operator selects **Create a merge commit** after reviewing the exact published head. The runner's publication invocation does not grant merge authority. Preserve individual branch commits and their identities in main's ancestry; do not squash, rebase, rewrite existing history, or enable automatic merging as part of this procedure.
+Use ordinary merge commits for future PRs. The operator may select **Create a merge commit** or explicitly delegate the guarded merge through the invocation modes above. Default publication authority does not include merging. Preserve individual branch commits and their identities in main's ancestry; do not squash, rebase, rewrite existing history, or enable automatic merging as part of this procedure.
 
 Required repository settings: merge commits enabled; squash and rebase merging disabled; automatic head-branch deletion disabled. Preserve PR requirements, force-push protection, and deletion protection. A linear-history requirement conflicts with this method and requires an explicit operator decision rather than a bypass. Verify settings through the assigned repository credential route before the review handoff.
 
@@ -89,7 +113,7 @@ The runner derives the explicit staging paths from that reviewed inventory, vali
 
 Once Op explicitly instructs a specific agent to run this procedure, that invocation authorizes the healthy path all the way to the operator's PR-review handoff. Do not re-ask for approval for routine inspection, deterministic whitespace or generated-file repair, validation and retry, deliberate staging of the declared branch-tip scope, commit, ordinary non-force push, PR title/body preparation, PR creation or update, draft-to-ready transition, remote-check watching, or mergeability verification.
 
-Ask only for a new decision: a semantic or product-design change not already directed, uncertain file ownership or destructive overlap, a non-deterministic validation failure, force push/history rewrite/rebase/reset/stash/discard, branch deletion outside the verified post-merge path, or merging the PR. Host permission dialogs remain host-controlled; request the narrow reusable approval needed by the documented command rather than asking the operator to re-authorize the repository step.
+Ask only for a new decision: a semantic or product-design change not already directed, uncertain file ownership or destructive overlap, a non-deterministic validation failure, force push/history rewrite/rebase/reset/stash/discard, branch deletion outside the verified post-merge path, or merging the PR without explicit delegated authority. Host permission dialogs remain host-controlled; request the narrow reusable approval needed by the documented command rather than asking the operator to re-authorize the repository step.
 
 ## Two-Handoff Invocation Contract
 
@@ -113,7 +137,7 @@ The explicit instruction `run pr-lifecycle.md`, including the equivalent linked-
 
 This authorization covers routine retry after a transient, non-semantic failure, such as refreshing stale remote refs and repeating a check against the new refs. It does not authorize changing theory, EOM solver semantics, evidence authority, canon policy, or product design merely to make a check pass.
 
-The operator/developer remains the merge gate. This invocation does not authorize the agent to merge, close, or abandon the PR.
+The operator remains the source of merge authority. This default invocation does not authorize merging, closing or abandoning the PR; the explicit full-lifecycle modes additionally authorize guarded merge and the second handoff.
 
 ### Second handoff: verify, clean up, and roll over
 
@@ -770,7 +794,7 @@ The detailed sections above own the commands. This table defines the allowed sta
 | --- | --- | --- |
 | Scoped working branch | Intended files identified; ambient edits isolated; required local gate passes | Stage intended paths, commit, and push the literal branch |
 | Published branch tip | Local `HEAD` equals `origin/<current-branch>`; branch has commits beyond `origin/main`; `git merge-tree --write-tree` passes | Create or update the intentionally titled and described PR |
-| Ready review handoff | Remote checks pass; GitHub reports mergeable; publish handoff receipt is recorded | Return the exact PR to the operator/developer for the sole merge decision |
+| Ready review handoff | Remote checks pass; GitHub reports mergeable; publish handoff receipt is recorded | Return the exact PR for the default merge decision, or perform the explicitly delegated guarded merge and second handoff |
 | Verified merged PR | Exact PR reports `MERGED`; branch name and base match; local branch tip equals `headRefOid` | Fast-forward and verify local `main` |
 | Synchronized `main` | Local `main` equals `origin/main`; exact merged branch identity remains verified | Delete only that local and remote branch |
 | Retired merged branch | Previous branch is absent locally and remotely; next registry token is unambiguous | Create the successor from synchronized `main`, publish it, and set its upstream |

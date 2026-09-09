@@ -53,13 +53,15 @@
       "consumers": [
         "reference/priorities/development-process-review/analysis/circular-current-execution.md",
         "reference/priorities/development-process-review/analysis/source-recovery-and-binding-repair.md",
-        "reference/priorities/development-process-review/analysis/review-and-repair-plan.md"
+        "reference/priorities/development-process-review/analysis/review-and-repair-plan.md",
+        "reference/priorities/development-process-review/analysis/option-b-post-merge-verification.md",
+        "reference/priorities/development-process-review/analysis/option-b-integration-readiness.md"
       ],
       "regenerationCommand": "No single byte-identical regeneration command: use the per-run commands, original inputs and source identities retained in the linked recovery analyses and evidence receipts. Historical observations must not be regenerated and relabeled as originals.",
-      "retentionReason": "Operator-approved storage exception on 2026-09-08 for the paused recovery checkpoint: 189 machine files, 100152 lines, 5148110 bytes measured by validate-machine-artifact-retention.mjs. Preserve the current source-recovery, independent-review and execution records required to assess the repaired workflows. The exclusive line ceiling admits exactly this measured line count; the general byte, individual-file and branch limits remain unchanged.",
-      "compactAlternativeInsufficient": "A summary alone would omit the source identities, detailed review bindings and negative-control records used by the current recovery analyses. No independently verified lossless replacement for this collection has been established. Review consolidation when those consumers are retired; additional line growth requires another explicit storage decision.",
+      "retentionReason": "Operator-approved collection-specific 125000-line ceiling on 2026-09-08 for active recovery and Option B verification. At approval review the collection measured 193 machine files, 100540 lines and 5163492 bytes. Preserve compact source-recovery, independent-review, execution and Option B verification records required by the named consumers; provide bounded headroom for continued verification. The 10485760-byte limit and general individual-file, collection and branch limits remain unchanged.",
+      "compactAlternativeInsufficient": "A summary alone would omit the source identities, detailed review bindings and negative-control records used by current recovery and Option B analyses. Keep new receipts compact and tied to current consumers; no independently verified replacement for the retained evidence collection has been established. Review consolidation when its consumers retire. Growth reaching either collection ceiling requires a new explicit storage decision.",
       "budget": {
-        "lineCount": 100153,
+        "lineCount": 125000,
         "byteCount": 10485760
       }
     }

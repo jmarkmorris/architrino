@@ -1,0 +1,14 @@
+✔ PR procedure executable blocks preserve commands required for advancement verification (1.016834ms)
+✔ PR procedure, pre-push hook, and CI share the aggregate gate (1.420375ms)
+✔ routine PR validation excludes on-demand iOS package freshness without dropping web checks (0.362583ms)
+✔ routine notation validation ignores a saved iOS snapshot but rejects authored notation drift (123.935458ms)
+✔ children's-book pilot exports stay local and optional during routine PRs (2.423125ms)
+✔ PR procedure retains permission diagnostics without obsolete acceptance obligations (0.746708ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 211.009416

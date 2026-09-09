@@ -34,3 +34,9 @@ Git's [housekeeping documentation](https://git-scm.com/docs/git-gc) describes pa
 ## Proposed follow-up
 
 ○ Deferred — while braid research remains active. At an operator-selected later milestone, inventory current consumers and retention obligations of the circular-root pilot family and propose explicit keep/archive/rebuild/delete dispositions. This is a recommendation, not an accepted deletion or history-maintenance task. Verify actual backup/retrieval before discarding the last valuable copy. The scope should stay on the largest local-output family first; rewriting Git history or trimming explanatory prose is not the starting point.
+
+## Collection budget review, September 8
+
+The operator approved retaining the new Option B verification records and requested assessment of the ceiling. The fresh retention validator measured 193 collection files, 100,540 physical lines and 5,163,492 bytes, nine lines above the prior task report. The bounded registry allowance now uses an exclusive 100,541-line ceiling; the 10,485,760-byte ceiling and individual-file and branch limits remain unchanged.
+
+Operator accepted and implemented: give this active evidence collection a 125,000-line ceiling while retaining its existing byte ceiling and all file/branch checks. Exact-count allowances trigger new decisions for small legitimate receipts and encourage formatting-driven compaction rather than useful retention review. A collection-specific allowance provides headroom without raising repository-wide limits or admitting bulk local outputs. Continue requiring named current consumers and compact records; review consolidation at an operator-selected research milestone. A line budget measures review volume imperfectly, since whitespace and serialization affect it; byte and consumer checks remain necessary. Only this collection ceiling is changed; repository-wide thresholds remain unchanged.

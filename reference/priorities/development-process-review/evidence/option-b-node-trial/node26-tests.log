@@ -1,0 +1,57 @@
+✔ known controls precede retained map; unchanged selected set is empty (31.222667ms)
+✔ stale sign rejects before query; refreshed sign keeps both obligations (95.475959ms)
+✔ deleted sign dependency retains old downstream impact (60.067208ms)
+✔ deleted result coverage cannot remove its own review obligation (53.738375ms)
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Foundational impact...
+[pr-validation] running Content Integrity...
+[pr-validation] running Animator runtime wiring...
+[pr-validation] running Option B moving-single-root trial (report-only)...
+[option-b-trial] known controls passed: SHA, byte selector, hand closure, deleted dependency/coverage, stale binding, displayed match/wrong/missing/duplicate
+[option-b-trial] REPORT-ONLY review-required: required; /var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/option-b-dispatch-LR9sVX/.local-data/option-b-trial/report.json
+[pr-validation] REPORT-ONLY review-required: Option B moving-single-root trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+✔ unsupported scalar dependency remains visible for human semantic review (65.719208ms)
+✔ outside-selector source edit retains conservative source review (19.177833ms)
+✔ displayed match, wrong, missing and duplicate result controls (0.229417ms)
+✔ unknown contexts, fields, duplicate IDs, paths, endpoints and revision reuse reject (34.495958ms)
+✔ actual CLI writes bounded execution evidence and replaces success on missing map (1264.607792ms)
+✔ actual publication command dispatcher executes B after the unchanged A commands (780.1295ms)
+✔ actual CLI rejects refreshed wrong display after science and duplicate display before query (1342.776375ms)
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Foundational impact...
+[pr-validation] running Content Integrity...
+[pr-validation] running Animator runtime wiring...
+[pr-validation] running Option B moving-single-root trial (report-only)...
+[pr-validation] REPORT-ONLY error: Option B moving-single-root trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Foundational impact...
+[pr-validation] running Content Integrity...
+[pr-validation] running Animator runtime wiring...
+[pr-validation] running Option B moving-single-root trial (report-only)...
+[pr-validation] REPORT-ONLY error: Option B moving-single-root trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+✔ validation receipt verifies only the exact staged and overlay state (248.873291ms)
+✔ publication validation refuses partially staged files before running checks (95.407625ms)
+✔ a matching snapshot cannot authorize an untested staged version (150.390042ms)
+✔ validation receipt invalidates when the comparison base moves (147.120125ms)
+✔ validation receipt does not cross branch identity (145.460166ms)
+✔ validation receipt rejects schema and contract mismatch (140.999958ms)
+✔ validation runner writes only when repository state stays fixed (296.611375ms)
+✔ validation state comparison names the first mismatched field (0.778916ms)
+✔ report-only B errors stay visible and do not change the required A command policy (1.258167ms)
+✔ publication receipt preserves B error explicitly alongside successful required checks (230.466125ms)
+✔ a zero-exit B invocation with no new report cannot reuse an old success (1.309625ms)
+✔ pre-push parser does not advance on empty or malformed input (1.565916ms)
+✔ pre-push policy skips one or more pure ref deletions (0.121958ms)
+✔ pre-push policy skips a new codex branch at exact origin/main (0.074875ms)
+✔ pre-push policy runs for content-bearing, existing, or non-codex refs (0.1045ms)
+✔ pre-push policy runs for mixed deletion and successor creation (0.06925ms)
+✔ pre-push policy runs when origin/main cannot be verified (0.050334ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5846.198334

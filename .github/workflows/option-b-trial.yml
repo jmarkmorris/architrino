@@ -1,0 +1,60 @@
+name: Option B report-only trial
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: option-b-trial-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  moving-single-root-report:
+    name: B moving-single-root (report-only)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    continue-on-error: true
+    outputs:
+      trial-status: ${{ steps.summary.outputs.status }}
+    steps:
+      - name: Checkout candidate and reviewed baseline history
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: Setup supported Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22"
+      - name: Install locked dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Verify B controls and real entrypoints
+        run: node --test --test-concurrency=1 tests/equation-dependency-map.test.mjs
+      - name: Run B candidate trial
+        run: node scripts/equation-mapping/check-moving-single-root-map.mjs
+      - name: Expose B outcome independently of A
+        id: summary
+        if: always()
+        env:
+          PRIOR_JOB_STATUS: ${{ job.status }}
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          let report;
+          try { report = JSON.parse(fs.readFileSync('.local-data/option-b-trial/report.json', 'utf8')); }
+          catch { report = { status: 'error', error: 'B report unavailable; inspect install, controls and trial steps.' }; }
+          const status = process.env.PRIOR_JOB_STATUS === 'success' ? report.status : 'error';
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `status=${status}\n`);
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## Option B: ${status}\n\nReport-only moving-single-root trial. Existing A checks retain authority.\n\n\`\`\`json\n${JSON.stringify(report, null, 2)}\n\`\`\`\n`);
+          JS
+      - name: Retain explicit B report and execution outputs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: option-b-moving-single-root-${{ github.run_id }}-${{ github.run_attempt }}
+          path: .local-data/option-b-trial/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 14
