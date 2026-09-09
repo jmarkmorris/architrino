@@ -1,6 +1,16 @@
 # Recovery task archive-readiness review
 
-**Current verdict: not ready to declare a complete handoff.** The accepted finite operational repair scope is complete through G8. The residual obligations are durable in this repository, but several receiving queues do not yet point to their final recovery disposition, and named workstream destinations do not constitute accepted reassignment. Betty requested this navigation review; no archive, reassignment, scientific execution, evidence change, regeneration or publication is performed.
+**Current disposition: operator-authorized task archive; receiving-workstream handoff remains incomplete.** On September 9, Mark directed the coordinator to record remaining follow-ups and archive Veronica - recovery. Betty - coordination retains coordination custody through this review and the recovery queue until concrete receiving routes are resolved. The accepted finite operational repair scope is complete through G8. Task archival does not complete, retire, or activate any blocked or deferred scientific obligation, and named destinations do not constitute accepted reassignment. The navigation findings below retain their original review scope.
+
+## Coordinator follow-ups after task archival
+
+The following work belongs to Betty - coordination; no active scientific executor is assigned by this record. The recovery queue remains the interim discovery owner, so none of these obligations depends on keeping Veronica visible in the sidebar.
+
+1. **○ Not done — receiving navigation:** reconcile the Braid current-disposition backlink and calibration history label, then the App Solver deferred scientific/verification backlink, against the live receiving queues before editing them.
+2. **○ Not done — receiving-owner decisions:** resolve concrete owners for G6 scene/renderer, I5 compact database, and S7/S8 equation mapping. Until accepted, retain them in recovery queue custody with their existing activation conditions; bring any necessary scope decision to Mark with a recommendation.
+3. **○ Not done — final handoff verification:** verify receiving links and the process-side P/V9/V10 dispositions. Preserve the exact original-input requirements, resource limits, deferred validation and scientific acceptance boundaries. Do not repeat exhausted searches or start deferred runs without their stated prerequisites and authorization.
+
+The original readiness review below is evidence for this follow-up list, not a current prohibition on the archive Mark expressly requested. Archival preserves the task history and repository evidence; it is not deletion or a declaration of overall recovery health.
 
 ## Review boundary and completed scope
 

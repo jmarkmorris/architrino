@@ -102,6 +102,8 @@ The first target is `pressure_dependent_noether_sea_constitutive_response/v0`:
 
 This packet protects one live derivation route and does not create a separate validation gate.
 
+The small pressure difference tests the declared response along one perturbation direction. A zero limiting coefficient does not exclude higher-order response or a cycle-averaged response to periodic driving. A claim about either requires a declared perturbation or drive and the corresponding response observable on an accepted retained state with the same causal wake accounts. The present packet supplies neither that dynamic calculation nor a nonzero transport result.
+
 ## Consumer Routing
 
 | Consumer | Allowed use |
@@ -111,6 +113,8 @@ This packet protects one live derivation route and does not create a separate va
 | Condensed matter | Test reversible pressure/strain response separately from dissipative transport or branch transition. |
 | Equation mapping | Project the shared state into observer-level rows without upgrading coefficients before acceptance. |
 | Cosmology | Use the same constitutive state for effective metric, pressure, growth, and low-acceleration projections; no sector-local retuning. |
+
+An isolated constituent's bounded far field does not by itself determine the response of a populated medium. A collective-transport conclusion requires the complete populated histories, interactions, and account flux under a declared boundary convention. Keep any isolated diagnostic as a control; it cannot replace the same-state populated response or establish a universal transport negative.
 
 ## Polarization-Resolved Strong-Loading Bridge
 

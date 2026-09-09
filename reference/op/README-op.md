@@ -10,6 +10,8 @@ This is the living feedback backlog for improving the shared operator/developer 
 
 ## Method
 
+- [ ] During participation/role reviews, check first-class human and AI collaborator framing under common evidence standards and distinguish audience relevance from public visibility; follow the [existing review practice](../priorities/development-process-review/analysis/public-community-guidance-review.md#continuing-review-practice).
+
 - [ ] Keep each item to one observable workflow behavior that would reduce friction or accelerate closure.
 - [ ] Treat a checked item as "improved in practice" rather than permanently closed.
 - [ ] Let the agent uncheck a checked item only when the same workflow friction recurs, adding a short dated note if useful.
@@ -69,6 +71,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 
 ## Multi-Agent Use
 
+- [ ] Distinguish unassigned standby from returned work awaiting integration or an operator decision; the coordinator follows through on authorized work and promptly reminds the operator of concrete pending decisions with a recommendation.
 - [x] Split parallel agents by disjoint write ownership, not just broad topic.
 - [x] Give each worker a file ownership boundary and nearby files to avoid.
 - [x] Use explorer agents for read-only codebase questions whose answers can unblock later work.

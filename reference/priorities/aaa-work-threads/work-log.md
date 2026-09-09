@@ -6,6 +6,10 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-09 — Approved pressure-packet scope integration
+
+Integrated both approved scope paragraphs into the [pressure-dependent Noether sea constitutive-response packet](../master-equation-closure/analysis/pressure-dependent-noether-sea-constitutive-response.md), at the ends of `First Executable Packet` and `Consumer Routing`. The operator-approved refinement uses “a declared perturbation or drive and the corresponding response observable” because higher-order response need not be transport. The [integration record](evidence/research-insight-recovery-pilot-2026-09-09.md#approved-pressure-packet-integration) records accepted dispositions, full-document editorial self-review, preservation checks, and validation. The retained-state blocker and candidate claim grade remain open; no simulation, new queue, corpus promotion, generator write, or publication was performed.
+
 ### 2026-09-09 — Authorized insight-recovery entry improvements and constitutive comparison
 
 Completed the two approved entry improvements in [Lattice Lab brainstorming](../app-lattice-lab/brainstorming.md#established-ownership) and [FSC brainstorming](../field-speed-ceiling/brainstorming.md#two-lobe-return-map-result), preserving the underlying proof documents, equations, review provenance, and decision. Read the full pressure-dependent Noether sea constitutive-response packet and the MC-04/MC-06 source passages, checked their BP-005 dispositions, and compared the MEC owner and EMAP-004. The [follow-up assessment](evidence/research-insight-recovery-pilot-2026-09-09.md#authorized-follow-up-constitutive-response-and-entry-improvements) explains why the static pressure test does not settle periodically driven or collective transport, with elementary comparison calculations and exact proposed scope paragraphs. Those paragraphs remain for discussion; the pressure packet and scientific queues were not edited. No simulation, promotion, relocation, deletion, or additional agent/task was undertaken.

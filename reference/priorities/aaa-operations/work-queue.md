@@ -13,7 +13,7 @@ This is the canonical execution ledger for repo-wide deployment, hosting, cost, 
 7. `post_campaign_binding_corruption_sweep` — [OPS-024](#ops-024--post-campaign-binding-corruption-sweep). Status: `In progress`; every non-environmental failure in the full sweep is classified and either repaired or routed to a named decision.
 
 8. `internal_reference_section_numbering` — [OPS-025](#ops-025--internal-reference-section-numbering). Status: `Queued`; define the convention and roll out by document type from the operator-approved trial.
-9. `github_presence_and_community_guidance_review` — [OPS-026](#ops-026--github-presence-and-community-guidance-review). Status: `Awaiting verification`; review completed; approved sentence deletion, discussion-to-issue and PR guidance applied; remaining edits await operator disposition.
+9. `github_presence_and_community_guidance_review` — [OPS-026](#ops-026--github-presence-and-community-guidance-review). Status: `Awaiting verification`; review completed; approved sentence deletion, discussion-to-issue and PR guidance applied; collaborator/review and development-discovery edits applied; awaiting verification.
 
 ## Queued task records
 
@@ -650,7 +650,7 @@ The reference builder follows the write authority of the executing queue item. A
 
 ### OPS-026 — GitHub Presence and Community guidance review
 
-- **Status:** ◐ Partial — Awaiting verification / operator disposition. The [clarity and alignment review](../development-process-review/analysis/public-community-guidance-review.md) is complete; the operator-approved AI-assessment sentence deletion, actionable discussion-to-issue wording and coherent PR contribution guidance are applied; optional checkpoint-tag advice is removed. The other proposed edits remain unapproved.
+- **Status:** ◐ Partial — Awaiting verification. The [clarity and alignment review](../development-process-review/analysis/public-community-guidance-review.md) is complete; the operator-approved AI-assessment sentence deletion, actionable discussion-to-issue wording and coherent PR contribution guidance are applied; optional checkpoint-tag advice is removed. First-class human/AI collaboration, substantive cross/adversarial review and bounded development-discovery links are now approved and applied. The earlier audience sentence is superseded by the clarified audience scope and discovery links; no public-edit approval remains pending.
 - **Priority object:** `github_presence_and_community_guidance_review`
 - **Scope:** Inspect [GitHub Presence and Community](../../../content/markdown/aaa/archie/github-presence-and-community.md), including Discussions, issues, pull requests, and optional checkpoint/tag examples. Compare its public-contributor scope with the live [Git Lifecycle procedures](../../op/git/README.md), shared-checkout agent permissions, and outcomes accepted through the [process guide](../development-process-review/processes-git-codex-claude.md).
 - **Required analysis:** Identify concrete contradictions, ambiguous audiences, outdated claims, or missing routing. Distinguish independent contributors from agents sharing the operator's checkout; a difference in scope is not itself a defect. Inspect related README guidance where needed to assess consistency.

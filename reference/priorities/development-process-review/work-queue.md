@@ -12,6 +12,8 @@ No executable repair remains in the accepted finite closeout. G8's reviewed hist
 
 The [archive-readiness review](analysis/archive-readiness-review.md) inventories receiving-owner links and missing acknowledgements. Until those gaps are resolved, this recovery queue remains the durable discovery route; a named destination is not a completed transfer.
 
+**Coordinator custody after operator-authorized task archive:** Mark directed archival of Veronica - recovery on September 9 after recording outstanding work. Betty - coordination owns the [remaining receiving-navigation, owner-decision and handoff-verification follow-ups](analysis/archive-readiness-review.md#coordinator-follow-ups-after-task-archival). This queue retains interim custody of unresolved destinations. Archival does not complete or reactivate the blocked and deferred work below.
+
 ## Blocked prerequisites
 
 1. **○ Not done — Blocked: recover the three exact original macOS utility objects.** The [recoverability record](evidence/refined-current-migration/recoverability-review.md#wider-local-recovery-follow-through) identifies required hashes/sizes and the completed local-search limits. No matching original utility has been recovered. An accessible original backup or other exact source is required; current utility bytes cannot replace historical evidence.
