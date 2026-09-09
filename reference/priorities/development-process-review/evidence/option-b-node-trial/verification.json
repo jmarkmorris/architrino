@@ -1,0 +1,121 @@
+{
+  "schema": "option-b-integration-evidence/v1",
+  "claim": "measured bounded implementation and entrypoint behavior; no remote new-workflow execution claim",
+  "tests": {
+    "node26-tests.log": {
+      "tests": 28,
+      "pass": 28,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "node22-tests.log": {
+      "tests": 28,
+      "pass": 28,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "pr-conformance.log": {
+      "tests": 6,
+      "pass": 6,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    }
+  },
+  "audit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "versions": {
+    "localNode": "v26.3.0",
+    "supportedNodeTested": "v22.23.2",
+    "jsonld": "9.0.0",
+    "n3": "2.7.12",
+    "@comunica/query-sparql-rdfjs": "5.3.0"
+  },
+  "commands": [
+    "node --test --test-concurrency=1 tests/equation-dependency-map.test.mjs tests/pr-validation-receipt.test.js tests/pre-push-gate-policy.test.js",
+    "npm --cache /private/tmp/option-b-npm-cache exec --yes --package=node@22 -- node --test --test-concurrency=1 tests/equation-dependency-map.test.mjs tests/pr-validation-receipt.test.js tests/pre-push-gate-policy.test.js",
+    "node --test tests/pr-branch-process-conformance.test.js",
+    "npm audit --package-lock-only --audit-level=moderate --omit=dev",
+    "node scripts/equation-mapping/check-moving-single-root-map.mjs --output-dir /private/tmp/option-b-node-final-report"
+  ],
+  "developmentCorrections": [
+    "Known safe-mode control exposed selector kind @id coercion dropping relative values; current schema uses @vocab.",
+    "First real CLI test exposed wrong displayed-result source; current comparator reads the master equation occurrence.",
+    "Isolated negative CLI exposed /var versus /private/var entry-guard mismatch; CLI uses realpath.",
+    "Report-only dispatcher deletes prior report before invocation; known zero-exit-without-report control cannot reuse success."
+  ],
+  "retained": [
+    {
+      "name": "existing-scientific-test.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "existing-scientific-test.stdout",
+      "bytes": 206,
+      "sha256": "a493abc43d88c397dd38d6a08ad43f81a8ff05c47c25684d52ff74bf95a140ed"
+    },
+    {
+      "name": "node22-tests.log",
+      "bytes": 7665,
+      "sha256": "e03dae790add7ab336d1fe57d5797ba40d8db6836a29a16a0539759be8c16e76"
+    },
+    {
+      "name": "node26-tests.log",
+      "bytes": 4243,
+      "sha256": "ff2c3f919d8dd32304bb3ee5b926d1cddbfac1a37c54ce5fbdc3e297a6bf789b"
+    },
+    {
+      "name": "post-merge-outcomes.json",
+      "bytes": 2667,
+      "sha256": "0aa8cb51c427969f5c03c727f8a8d7d46a00390900ed9a60a2fae367e079f4ff"
+    },
+    {
+      "name": "post-merge-verification.json",
+      "bytes": 2532,
+      "sha256": "ebd79db687d679953f5bd532c03447b8ca1b9c21b02d2282731085aaf5881689"
+    },
+    {
+      "name": "pr-conformance.log",
+      "bytes": 708,
+      "sha256": "0eac90f79f83ace863bc9aeffcd55774f163845ef602e52d5973e9eb2862c0ac"
+    },
+    {
+      "name": "report.json",
+      "bytes": 5635,
+      "sha256": "bad078d36d7c6b1594c919e7c5f80f1ab12c5cd064a49a47ae01e54eb9c71ff0"
+    },
+    {
+      "name": "scientific-check.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "scientific-check.stdout",
+      "bytes": 7689,
+      "sha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad"
+    }
+  ],
+  "additionalVerification": [
+    "Known fenced-link and YAML controls preceded target reads; all updated document links and unfiltered report-only workflow shape passed.",
+    "Actual workflow summary script returned review-required on a good report, error on prior job failure despite a pass report, and error on missing report.",
+    "Retained Python map/source/artifact/pilot identities verified again after edits."
+  ],
+  "integrationBoundary": {
+    "retention": "Current shared evidence-family check fails; coordinated parent owner informed.",
+    "measuredFamilyLines": 100531,
+    "thisTrialJsonLines": 379,
+    "otherFamilyLines": 100152,
+    "exclusiveLineThreshold": 100000,
+    "existingLockfilePackageVersions": "No existing package version changed and no prior package path removed by HEAD-versus-working package map comparison.",
+    "newGitHubWorkflow": "Configured and locally verified; first remote PR run not yet observed."
+  }
+}

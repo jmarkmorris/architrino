@@ -1,0 +1,1434 @@
+{
+  "@context": {
+    "@vocab": "https://example.invalid/option-b-corrected/",
+    "kind": {
+      "@type": "@vocab"
+    },
+    "fromObject": {
+      "@type": "@id"
+    },
+    "toObject": {
+      "@type": "@id"
+    }
+  },
+  "schemaVersion": "option-b-map/v1",
+  "scope": "moving-single-root-only",
+  "approval": "not-granted",
+  "sourceCommit": "e0afd98e5c032d14dcbb053a5636a0454bb94285",
+  "@graph": [
+    {
+      "@id": "https://example.invalid/option-b-corrected/assumptions",
+      "alias": "assumptions",
+      "@type": "Assumption",
+      "revisionId": "candidate-2c64153885f5d90fec1f",
+      "sourceBindings": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "lines",
+            "first": 1556,
+            "last": 1556
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "62396c4a950d5a66d23193f2470af9ada078e84f9f952bb6ae1847d2ecfac4a7"
+        },
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "lines",
+            "first": 1572,
+            "last": 1576
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "533595d9f7bbc1ac57a01b75662b2d509025194bd4392a975bd81b1455af14b5"
+        }
+      ],
+      "scope": "Fixed reception/history, selected differentiable root, positive separation, nonzero D; connected chart."
+    },
+    {
+      "@id": "https://architrino.com/equation-mapping.html#corpus-equation-f320108876777c46",
+      "alias": "definitions",
+      "@type": "EquationOccurrence",
+      "revisionId": "candidate-c3f93b5f7336e1568b2c",
+      "sourceBindings": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "lines",
+            "first": 1558,
+            "last": 1570
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "63ef42ce257b705d424f2d0bfd358f4fff0126e83f41b5c4a00b33a4441cd46c"
+        }
+      ],
+      "scope": "Selected geometric definitions; fixed source occurrence."
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/constraint",
+      "alias": "constraint",
+      "@type": "EquationOccurrence",
+      "revisionId": "candidate-77b7e81a060eb2f56767",
+      "sourceBindings": [
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 444,
+            "last": 450
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "02a355254e893d8785dd72876b20497eff2a0cee0993e4d6e71513c3491a9a4d"
+        }
+      ],
+      "scope": "Selected causal equation; no new corpus occurrence identity."
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/coupling",
+      "alias": "coupling",
+      "@type": "Assumption",
+      "revisionId": "candidate-bfe6681ed7c929bebda5",
+      "sourceBindings": [
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "literal",
+            "text": "The signed coupling $C_b$ is fixed for that admitted row."
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "acb9f6e694311529ea32e5e47ff8ecfc4ea1a70713f7f932ffb89b2958e1f043"
+        }
+      ],
+      "scope": "C is constant for the selected row."
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/sign",
+      "alias": "sign",
+      "@type": "Derivation",
+      "revisionId": "candidate-6fdf64818963c90ad48a",
+      "sourceBindings": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "lines",
+            "first": 1598,
+            "last": 1598
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "98d3743709edd49c6e27ee522848c182ece0211bc40b64bf74a34aeed99c14a3"
+        },
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 469,
+            "last": 469
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "b70357c7b2ebcc4031e97521e4420419e4e06683aba8ec121883fb28cbd10162"
+        }
+      ],
+      "scope": "Continuity and nonzero D on connected U imply one constant sign; componentwise limit explicit."
+    },
+    {
+      "@id": "https://architrino.com/equation-mapping.html#corpus-equation-0d1e584019eb76b1",
+      "alias": "root-derivative",
+      "@type": "EquationOccurrence",
+      "revisionId": "candidate-0dfe7cff47a9b6bb3fa7",
+      "sourceBindings": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "lines",
+            "first": 1580,
+            "last": 1594
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "92b4f541ca0f965833ec56529ba9cf4a695b0c88b1b4e384c56c8831b860bbfc"
+        }
+      ],
+      "scope": "Differentiation at fixed reception/history."
+    },
+    {
+      "@id": "https://architrino.com/equation-mapping.html#corpus-equation-4c68e6145352e9dc",
+      "alias": "scalar",
+      "@type": "EquationOccurrence",
+      "revisionId": "candidate-4b58fb11c84368f0c5d9",
+      "sourceBindings": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "lines",
+            "first": 1600,
+            "last": 1606
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "b1cc4d703d792d7a25906b03c6749feebabf79b0644a5ce1d20ff0d1d75b74ef"
+        }
+      ],
+      "scope": "Definition only; no dependency on root derivative."
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/canonical-row",
+      "alias": "canonical-row",
+      "@type": "EquationOccurrence",
+      "revisionId": "candidate-55189ecf55d22dc3cb0f",
+      "sourceBindings": [
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 48,
+            "last": 86
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "82451b8cd5fbbdcbb17a2f437fba589b837499893d2180b33370d9cddbcdf8f5"
+        }
+      ],
+      "scope": "Declared canonical acceleration row; boundary input from existing law, not derived from scalar identity."
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/proof",
+      "alias": "proof",
+      "@type": "Derivation",
+      "revisionId": "candidate-d087eb0cc0d3c879db3d",
+      "sourceBindings": [
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 477,
+            "last": 499
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "ffcf886d970972392411c647e4113f702e8559adc0c67e28c0538b514f2fb047"
+        }
+      ],
+      "scope": "Local gradient proof only; excludes following measurements/action discussion."
+    },
+    {
+      "@id": "https://architrino.com/equation-mapping.html#corpus-equation-193390fd300cb6a5",
+      "alias": "identity",
+      "@type": "EquationOccurrence",
+      "revisionId": "candidate-18374c679ce5c7fccd97",
+      "sourceBindings": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "lines",
+            "first": 1608,
+            "last": 1620
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "5dee81630ce1d111ab9b5aef91e8f5c885770111782adde6c1a1354ea1e58001"
+        }
+      ],
+      "scope": "Conclusion occurrence with proof support, not a numerical theorem."
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/numerical-spec",
+      "alias": "numerical-spec",
+      "@type": "CalculationSpecification",
+      "revisionId": "candidate-ed6fa35655b98315aa7f",
+      "sourceBindings": [
+        {
+          "path": "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 10,
+            "last": 30
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "b7289e16831af01c01d8946c72a51dd34f5cb6052a3879e3440de9bca8b56b8f"
+        },
+        {
+          "path": "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 86,
+            "last": 93
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "941c0df694fe4b47dbd59e92111ae6e3da94815a9b91c33de9d1027391373dcf"
+        },
+        {
+          "path": "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 124,
+            "last": 194
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "9284a458c43a965760ac341cb928281ea7383ba0de60b3c35e7e6adc22ff6845"
+        },
+        {
+          "path": "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 197,
+            "last": 213
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "8d12909c48a866fb35442ec9fd6b3afc4ac4f95e312685dcfd2e360a12028108"
+        }
+      ],
+      "scope": "One positive-D circular control; central-point stencils, five refinements, chart bounds/sample checks."
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/reference-inputs",
+      "alias": "reference-inputs",
+      "@type": "CalculationSpecification",
+      "revisionId": "candidate-713f15aa00d01d9c1cdd",
+      "sourceBindings": [
+        {
+          "path": "scripts/equation-mapping/verify-receiver-wake-gradient.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 548,
+            "last": 579
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "5a7ffae98b38d84fbdd43214369f2c08f697a152a282afb168320f269035ee12"
+        }
+      ],
+      "scope": "Retained circular history, direction, root, bracket, c_f and coupling used by reference; matching subject configuration reviewed separately."
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/reference",
+      "alias": "reference",
+      "@type": "CalculationSpecification",
+      "revisionId": "candidate-778a034c4e644703fffb",
+      "sourceBindings": [
+        {
+          "path": "scripts/equation-mapping/verify-receiver-wake-gradient.mjs",
+          "selector": {
+            "kind": "whole"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d"
+        }
+      ],
+      "scope": "Unchanged separately coded bracketed root record; all R controls execute. Common canonical model is not independent."
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/calculation",
+      "alias": "calculation",
+      "@type": "CalculationSpecification",
+      "revisionId": "candidate-a57a4a4a497628485dfe",
+      "sourceBindings": [
+        {
+          "path": "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs",
+          "selector": {
+            "kind": "whole"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba"
+        }
+      ],
+      "scope": "Numerical scalar versus reconstructed ledger; no analytic gradient import."
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/measured-prose",
+      "alias": "measured-prose",
+      "@type": "Result",
+      "revisionId": "candidate-4019c58a4cc891510cc0",
+      "sourceBindings": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "literal",
+            "text": "Across five step refinements, the largest component residual was $2.12\\times10^{-12}$"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "8637fad62b66f0b356f4cc7b7d9a4d74571fbc5762710e48cd39b46add1a17d8"
+        }
+      ],
+      "scope": "Only displayed maximum; historical generating activity not authenticated. New run is comparison evidence, not its historical producer."
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/theorem-claim",
+      "alias": "theorem-claim",
+      "@type": "Result",
+      "revisionId": "candidate-0a5961227d075af2f5e9",
+      "sourceBindings": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "literal",
+            "text": "Claim grade: derived for the identity on one connected regular moving-simple-root chart;"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "7fcbf1a40dae3eb337b1f7be00f56eec95aa1fac6f3afa15e7ce0670f9b5a817"
+        }
+      ],
+      "scope": "Derived claim separated from measurement."
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/scientific-check",
+      "alias": "scientific-check",
+      "@type": "CheckObligation",
+      "revisionId": "candidate-bd1b6ea33956a6046991",
+      "sourceBindings": [
+        {
+          "path": "tests/moving-single-root-scalar-gradient-verifier.test.mjs",
+          "selector": {
+            "kind": "whole"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+        }
+      ],
+      "scope": "Existing numerical test; no Markdown parsing, general proof, negative-D control or arbitrary receiver coverage."
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/prose-check",
+      "alias": "prose-check",
+      "@type": "CheckObligation",
+      "revisionId": "node-trial-prose-comparison/v1",
+      "sourceBindings": [
+        {
+          "path": "scripts/equation-mapping/dependency-map-reader.mjs",
+          "selector": {
+            "kind": "whole"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "f7677dd6f4379d71c43c1efd8a39ae4714db56f04c3b52d809632c6691bc9ca1"
+        }
+      ],
+      "scope": "Current Node comparison of one uniquely displayed maximum with the fresh numerical verifier stdout; historic Python instrument remains in the reviewed baseline."
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/environment",
+      "alias": "environment",
+      "@type": "CalculationSpecification",
+      "revisionId": "candidate-f7c0df5476fc9b70940c",
+      "sourceBindings": [
+        {
+          "path": "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/environment.json",
+          "selector": {
+            "kind": "whole"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99"
+        }
+      ],
+      "scope": "Observed runtime metadata; not authenticated environment or dependency distribution lock."
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/run",
+      "alias": "run",
+      "@type": "CalculationRun",
+      "revisionId": "candidate-1d5471852b84f007b43a",
+      "sourceBindings": [
+        {
+          "path": "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/execution.json",
+          "selector": {
+            "kind": "whole"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "8e820fd17ff52b8141fa34857a53c1f03a1d8b97147d1880f40935982897a057"
+        }
+      ],
+      "scope": "Actual new isolated scalar and test executions; receipts not operator approval."
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/output",
+      "alias": "output",
+      "@type": "Result",
+      "revisionId": "candidate-2bb677da8fd66d8a1d60",
+      "sourceBindings": [
+        {
+          "path": "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/scientific-output.json",
+          "selector": {
+            "kind": "whole"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad"
+        }
+      ],
+      "scope": "Actual new numerical output; not original historical measurement."
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-definitions-assumptions",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-f320108876777c46",
+      "fromRevision": "candidate-c3f93b5f7336e1568b2c",
+      "toObject": "https://example.invalid/option-b-corrected/assumptions",
+      "toRevision": "candidate-2c64153885f5d90fec1f",
+      "role": "domain",
+      "meaning": "r and selected root need the declared domain.",
+      "justifications": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "lines",
+            "first": 1556,
+            "last": 1576
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "b23340642a432b0832360a1792b08f01ecb827bcf1e708604779042bb56604e1"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-constraint-definitions",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/constraint",
+      "fromRevision": "candidate-77b7e81a060eb2f56767",
+      "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-f320108876777c46",
+      "toRevision": "candidate-c3f93b5f7336e1568b2c",
+      "role": "mathematical",
+      "meaning": "Causal constraint uses separation r and emission time.",
+      "justifications": [
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 444,
+            "last": 465
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "a95abcbc3d44ea6104f11d0ef5ed53bffa0572405edcd6b8f6743cc8005c00cc"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-root-derivative-constraint",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-0d1e584019eb76b1",
+      "fromRevision": "candidate-0dfe7cff47a9b6bb3fa7",
+      "toObject": "https://example.invalid/option-b-corrected/constraint",
+      "toRevision": "candidate-77b7e81a060eb2f56767",
+      "role": "mathematical",
+      "meaning": "Differentiate g=0, not geometric notation alone.",
+      "justifications": [
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 444,
+            "last": 467
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "b10a6a446511a7f2456c698949b4bb13dada9b6f8873f4c88e7fe7b58b952a07"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-root-derivative-definitions",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-0d1e584019eb76b1",
+      "fromRevision": "candidate-0dfe7cff47a9b6bb3fa7",
+      "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-f320108876777c46",
+      "toRevision": "candidate-c3f93b5f7336e1568b2c",
+      "role": "mathematical",
+      "meaning": "D and n enter the differential.",
+      "justifications": [
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 444,
+            "last": 467
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "b10a6a446511a7f2456c698949b4bb13dada9b6f8873f4c88e7fe7b58b952a07"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-root-derivative-assumptions",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-0d1e584019eb76b1",
+      "fromRevision": "candidate-0dfe7cff47a9b6bb3fa7",
+      "toObject": "https://example.invalid/option-b-corrected/assumptions",
+      "toRevision": "candidate-2c64153885f5d90fec1f",
+      "role": "domain",
+      "meaning": "Fixed reception/history, differentiable root and nonzero D license differentiation/division.",
+      "justifications": [
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 420,
+            "last": 467
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "446d29a484177f836a06f27f23205564b08a1c05358f54e0bd046fb15ae24a37"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-sign-assumptions",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/sign",
+      "fromRevision": "candidate-6fdf64818963c90ad48a",
+      "toObject": "https://example.invalid/option-b-corrected/assumptions",
+      "toRevision": "candidate-2c64153885f5d90fec1f",
+      "role": "domain",
+      "meaning": "Continuity, nonvanishing and connectedness support one sign; continuity is stated here.",
+      "justifications": [
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 469,
+            "last": 469
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "b70357c7b2ebcc4031e97521e4420419e4e06683aba8ec121883fb28cbd10162"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-sign-definitions",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/sign",
+      "fromRevision": "candidate-6fdf64818963c90ad48a",
+      "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-f320108876777c46",
+      "toRevision": "candidate-c3f93b5f7336e1568b2c",
+      "role": "mathematical",
+      "meaning": "D is the transmitter factor whose sign is used.",
+      "justifications": [
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 431,
+            "last": 469
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "2e7e61301df3c56f0407f0d42dd54c014c3264ff46879ef2325feab06c332d74"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-scalar-definitions",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-4c68e6145352e9dc",
+      "fromRevision": "candidate-4b58fb11c84368f0c5d9",
+      "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-f320108876777c46",
+      "toRevision": "candidate-c3f93b5f7336e1568b2c",
+      "role": "mathematical",
+      "meaning": "Definition uses r and C, rather than a previously computed derivative.",
+      "justifications": [
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 469,
+            "last": 475
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "6e03fa6ffdbf1e1ce9d18d55462f30532ca4797062eae49ad6755d5c94a025aa"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-scalar-sign",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-4c68e6145352e9dc",
+      "fromRevision": "candidate-4b58fb11c84368f0c5d9",
+      "toObject": "https://example.invalid/option-b-corrected/sign",
+      "toRevision": "candidate-6fdf64818963c90ad48a",
+      "role": "mathematical",
+      "meaning": "The selected scalar uses the chart sign epsilon.",
+      "justifications": [
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 469,
+            "last": 475
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "6e03fa6ffdbf1e1ce9d18d55462f30532ca4797062eae49ad6755d5c94a025aa"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-proof-scalar",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/proof",
+      "fromRevision": "candidate-d087eb0cc0d3c879db3d",
+      "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-4c68e6145352e9dc",
+      "toRevision": "candidate-4b58fb11c84368f0c5d9",
+      "role": "mathematical",
+      "meaning": "Differentiate the defined scalar.",
+      "justifications": [
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 469,
+            "last": 495
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "6a5cd466acb3109e6cd80d17d026cb6e10f575ddb06b87b00e24eb0fa0dc83e7"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-proof-root-derivative",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/proof",
+      "fromRevision": "candidate-d087eb0cc0d3c879db3d",
+      "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-0d1e584019eb76b1",
+      "toRevision": "candidate-0dfe7cff47a9b6bb3fa7",
+      "role": "mathematical",
+      "meaning": "Substitute grad r from the causal derivative.",
+      "justifications": [
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 458,
+            "last": 495
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "22cb3f630ec62e77e18f1d9af4e19a20bf422bdbd09746a648543b714b76a8ba"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-proof-coupling",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/proof",
+      "fromRevision": "candidate-d087eb0cc0d3c879db3d",
+      "toObject": "https://example.invalid/option-b-corrected/coupling",
+      "toRevision": "candidate-bfe6681ed7c929bebda5",
+      "role": "mathematical",
+      "meaning": "Fixed coupling removes a gradient-of-C term.",
+      "justifications": [
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 442,
+            "last": 442
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "ee22ce6dddb86d06d19fa1b7b11fea20dfe068280b21cf449d42e3660bc0d91c"
+        },
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 479,
+            "last": 495
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "15f4d511921d1c256581ede8aea02b31ccbcd5123d36ed641706cd6d616c6a4c"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-proof-sign",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/proof",
+      "fromRevision": "candidate-d087eb0cc0d3c879db3d",
+      "toObject": "https://example.invalid/option-b-corrected/sign",
+      "toRevision": "candidate-6fdf64818963c90ad48a",
+      "role": "mathematical",
+      "meaning": "Constant sign removes its derivative; epsilon/D=1/abs(D).",
+      "justifications": [
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 469,
+            "last": 495
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "6a5cd466acb3109e6cd80d17d026cb6e10f575ddb06b87b00e24eb0fa0dc83e7"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-proof-assumptions",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/proof",
+      "fromRevision": "candidate-d087eb0cc0d3c879db3d",
+      "toObject": "https://example.invalid/option-b-corrected/assumptions",
+      "toRevision": "candidate-2c64153885f5d90fec1f",
+      "role": "domain",
+      "meaning": "Proof remains on the stated connected regular chart.",
+      "justifications": [
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 420,
+            "last": 426
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "c0e8e495e0c2c4c2e8d40ee2e9636d44703712689d2c02bdc1a8f99426864961"
+        },
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 497,
+            "last": 499
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "ec83ca70a190d3be9f2a91528abc6298626df463a4f2ece9eaae4bd6d1977e9e"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-proof-canonical-row",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/proof",
+      "fromRevision": "candidate-d087eb0cc0d3c879db3d",
+      "toObject": "https://example.invalid/option-b-corrected/canonical-row",
+      "toRevision": "candidate-55189ecf55d22dc3cb0f",
+      "role": "mathematical",
+      "meaning": "Final equality identifies the gradient with independently declared A.",
+      "justifications": [
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 48,
+            "last": 86
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "82451b8cd5fbbdcbb17a2f437fba589b837499893d2180b33370d9cddbcdf8f5"
+        },
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 479,
+            "last": 495
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "15f4d511921d1c256581ede8aea02b31ccbcd5123d36ed641706cd6d616c6a4c"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-identity-proof",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-193390fd300cb6a5",
+      "fromRevision": "candidate-18374c679ce5c7fccd97",
+      "toObject": "https://example.invalid/option-b-corrected/proof",
+      "toRevision": "candidate-d087eb0cc0d3c879db3d",
+      "role": "proof-support",
+      "meaning": "Canonical occurrence states the same local equality proved in D; reviewed correspondence, not a source import.",
+      "justifications": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "lines",
+            "first": 1608,
+            "last": 1620
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "5dee81630ce1d111ab9b5aef91e8f5c885770111782adde6c1a1354ea1e58001"
+        },
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 479,
+            "last": 499
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "be85e2bf13e88624c820b7f9596235569f75824e9e83bb499c11a3d07ae4343e"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-theorem-claim-identity",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/theorem-claim",
+      "fromRevision": "candidate-0a5961227d075af2f5e9",
+      "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-193390fd300cb6a5",
+      "toRevision": "candidate-18374c679ce5c7fccd97",
+      "role": "proof-support",
+      "meaning": "Derived claim refers to this equality only under its hypotheses.",
+      "justifications": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "lines",
+            "first": 1622,
+            "last": 1622
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "408565312ea8192da68b29a688b014bae09fb708e7c88b3ed148b0cd845b7c58"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-calculation-scalar",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/calculation",
+      "fromRevision": "candidate-a57a4a4a497628485dfe",
+      "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-4c68e6145352e9dc",
+      "toRevision": "candidate-4b58fb11c84368f0c5d9",
+      "role": "implementation",
+      "meaning": "Scalar values implement C*epsilon/r.",
+      "justifications": [
+        {
+          "path": "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 153,
+            "last": 160
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "36b7356f0ec6f6f219dbfbbd58c12ffc1d9b18cc436a5f6c6a1e0ff882be49f5"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-calculation-canonical-row",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/calculation",
+      "fromRevision": "candidate-a57a4a4a497628485dfe",
+      "toObject": "https://example.invalid/option-b-corrected/canonical-row",
+      "toRevision": "candidate-55189ecf55d22dc3cb0f",
+      "role": "implementation",
+      "meaning": "Ledger is reconstructed from canonical acceleration coefficient.",
+      "justifications": [
+        {
+          "path": "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 232,
+            "last": 256
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "d14675e1abe0f97addf226649d6695661642ac7650ab2078e10bf8a66ff22efa"
+        },
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 48,
+            "last": 60
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "5b714dba795e567969e46915b6f76e85a52f3cfb41d2acd3618dee0f4a3fc914"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-calculation-numerical-spec",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/calculation",
+      "fromRevision": "candidate-a57a4a4a497628485dfe",
+      "toObject": "https://example.invalid/option-b-corrected/numerical-spec",
+      "toRevision": "candidate-ed6fa35655b98315aa7f",
+      "role": "implementation",
+      "meaning": "Declared parameters, root solve and stencils determine this experiment.",
+      "justifications": [
+        {
+          "path": "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 124,
+            "last": 194
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "9284a458c43a965760ac341cb928281ea7383ba0de60b3c35e7e6adc22ff6845"
+        },
+        {
+          "path": "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 240,
+            "last": 265
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "0d1ff21dc1b6fd8feb022f1eb206424721f5ff23badad99e658256eaf872cc61"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-calculation-reference",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/calculation",
+      "fromRevision": "candidate-a57a4a4a497628485dfe",
+      "toObject": "https://example.invalid/option-b-corrected/reference",
+      "toRevision": "candidate-778a034c4e644703fffb",
+      "role": "implementation",
+      "meaning": "Calls reference verifier and consumes circular separation and transmitter factor.",
+      "justifications": [
+        {
+          "path": "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 216,
+            "last": 235
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "184108d15137def753e12a53bef7d248f428f47aeec74b3800fa581ad8a01ab1"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/verifies-calculation-identity",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/verifies",
+      "fromObject": "https://example.invalid/option-b-corrected/calculation",
+      "fromRevision": "candidate-a57a4a4a497628485dfe",
+      "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-193390fd300cb6a5",
+      "toRevision": "candidate-18374c679ce5c7fccd97",
+      "role": "verification-target",
+      "meaning": "Tests numerical implementation of the equality on its circular control; does not prove the theorem.",
+      "justifications": [
+        {
+          "path": "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 232,
+            "last": 256
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "d14675e1abe0f97addf226649d6695661642ac7650ab2078e10bf8a66ff22efa"
+        },
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 501,
+            "last": 503
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "ec294d16c5481386db93a41be582a8dabcee95c0f8a2f4fbe96782f4a744cea5"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-reference-canonical-row",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/reference",
+      "fromRevision": "candidate-778a034c4e644703fffb",
+      "toObject": "https://example.invalid/option-b-corrected/canonical-row",
+      "toRevision": "candidate-55189ecf55d22dc3cb0f",
+      "role": "implementation-premise",
+      "meaning": "Reference evaluates the same canonical model through separately coded roots.",
+      "justifications": [
+        {
+          "path": "scripts/equation-mapping/verify-receiver-wake-gradient.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 205,
+            "last": 242
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "994d380637fc07534759f2577ae273539711369ab0e7c969f78d5503d3ef044f"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-reference-reference-inputs",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/reference",
+      "fromRevision": "candidate-778a034c4e644703fffb",
+      "toObject": "https://example.invalid/option-b-corrected/reference-inputs",
+      "toRevision": "candidate-713f15aa00d01d9c1cdd",
+      "role": "implementation-input",
+      "meaning": "Circular request supplies reference history, geometry, root bracket and coupling.",
+      "justifications": [
+        {
+          "path": "scripts/equation-mapping/verify-receiver-wake-gradient.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 548,
+            "last": 590
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "1002d12a40315dbf055cc693ee02a1907665960f54ad5b17adc63169dc25b699"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-calculation-reference-inputs",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/calculation",
+      "fromRevision": "candidate-a57a4a4a497628485dfe",
+      "toObject": "https://example.invalid/option-b-corrected/reference-inputs",
+      "toRevision": "candidate-713f15aa00d01d9c1cdd",
+      "role": "comparison-requirement",
+      "meaning": "Comparison requires subject and reference circular configurations to correspond; this is a reviewed comparison requirement, not a source import.",
+      "justifications": [
+        {
+          "path": "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 10,
+            "last": 30
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "b7289e16831af01c01d8946c72a51dd34f5cb6052a3879e3440de9bca8b56b8f"
+        },
+        {
+          "path": "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 216,
+            "last": 235
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "184108d15137def753e12a53bef7d248f428f47aeec74b3800fa581ad8a01ab1"
+        },
+        {
+          "path": "scripts/equation-mapping/verify-receiver-wake-gradient.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 548,
+            "last": 579
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "5a7ffae98b38d84fbdd43214369f2c08f697a152a282afb168320f269035ee12"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-reference-constraint",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/reference",
+      "fromRevision": "candidate-778a034c4e644703fffb",
+      "toObject": "https://example.invalid/option-b-corrected/constraint",
+      "toRevision": "candidate-77b7e81a060eb2f56767",
+      "role": "implementation-premise",
+      "meaning": "Bracketed root solves causal residual.",
+      "justifications": [
+        {
+          "path": "scripts/equation-mapping/verify-receiver-wake-gradient.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 117,
+            "last": 169
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "d6d61f9b8b8460d46c26437e7126c805c8d94e1f8993d09a4439f314e4d03c68"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-measured-prose-calculation",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/measured-prose",
+      "fromRevision": "candidate-4019c58a4cc891510cc0",
+      "toObject": "https://example.invalid/option-b-corrected/calculation",
+      "toRevision": "candidate-a57a4a4a497628485dfe",
+      "role": "reporting-provenance",
+      "meaning": "The measured clause reports this calculation; original generating run remains unresolved.",
+      "justifications": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "lines",
+            "first": 1622,
+            "last": 1622
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "408565312ea8192da68b29a688b014bae09fb708e7c88b3ed148b0cd845b7c58"
+        },
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 501,
+            "last": 503
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "ec294d16c5481386db93a41be582a8dabcee95c0f8a2f4fbe96782f4a744cea5"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-scientific-check-calculation",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/scientific-check",
+      "fromRevision": "candidate-bd1b6ea33956a6046991",
+      "toObject": "https://example.invalid/option-b-corrected/calculation",
+      "toRevision": "candidate-a57a4a4a497628485dfe",
+      "role": "implementation",
+      "meaning": "Test imports and executes this verifier.",
+      "justifications": [
+        {
+          "path": "tests/moving-single-root-scalar-gradient-verifier.test.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 4,
+            "last": 9
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "cca054358905e2572b7f3b5c067b18259d7b842168df4de2b5c91b9e97f6ad63"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/checks-scientific-check-calculation",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/checks",
+      "fromObject": "https://example.invalid/option-b-corrected/scientific-check",
+      "fromRevision": "candidate-bd1b6ea33956a6046991",
+      "toObject": "https://example.invalid/option-b-corrected/calculation",
+      "toRevision": "candidate-a57a4a4a497628485dfe",
+      "role": "numerical-coverage",
+      "meaning": "Checks returned residual thresholds and controls on one declared circular experiment.",
+      "justifications": [
+        {
+          "path": "tests/moving-single-root-scalar-gradient-verifier.test.mjs",
+          "selector": {
+            "kind": "whole"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/checks-scientific-check-identity",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/checks",
+      "fromObject": "https://example.invalid/option-b-corrected/scientific-check",
+      "fromRevision": "candidate-bd1b6ea33956a6046991",
+      "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-193390fd300cb6a5",
+      "toRevision": "candidate-18374c679ce5c7fccd97",
+      "role": "bounded-verification",
+      "meaning": "Numerical implementation evidence only; no equation text read or proof.",
+      "justifications": [
+        {
+          "path": "tests/moving-single-root-scalar-gradient-verifier.test.mjs",
+          "selector": {
+            "kind": "lines",
+            "first": 26,
+            "last": 29
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "940d7686a0a12926427cd54e34e45776e7384fae7abecbb41e419d7bf92a9c45"
+        },
+        {
+          "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
+          "selector": {
+            "kind": "lines",
+            "first": 503,
+            "last": 503
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "ec09abf6c7c75b94b779ad6e1a22e784366a0314e9ff7b9cae450fdb137eb6e3"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/checks-prose-check-measured-prose",
+      "@type": "Relationship",
+      "revisionId": "node-trial-candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/checks",
+      "fromObject": "https://example.invalid/option-b-corrected/prose-check",
+      "fromRevision": "node-trial-prose-comparison/v1",
+      "toObject": "https://example.invalid/option-b-corrected/measured-prose",
+      "toRevision": "candidate-4019c58a4cc891510cc0",
+      "role": "record-accuracy",
+      "meaning": "Reads one unique displayed maximum; never delegated to existing numerical test.",
+      "justifications": [
+        {
+          "path": "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/result_record_check.py",
+          "selector": {
+            "kind": "whole"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "f0f0b540de25e170ffa43d09a1a645a8d9837d3eaf237feaa81262119039362d"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/checks-prose-check-output",
+      "@type": "Relationship",
+      "revisionId": "node-trial-candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/checks",
+      "fromObject": "https://example.invalid/option-b-corrected/prose-check",
+      "fromRevision": "node-trial-prose-comparison/v1",
+      "toObject": "https://example.invalid/option-b-corrected/output",
+      "toRevision": "candidate-2bb677da8fd66d8a1d60",
+      "role": "comparison-input",
+      "meaning": "Compares display against maximumAbsoluteResidualAcrossRows of the corresponding run.",
+      "justifications": [
+        {
+          "path": "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/result_record_check.py",
+          "selector": {
+            "kind": "whole"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "f0f0b540de25e170ffa43d09a1a645a8d9837d3eaf237feaa81262119039362d"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/usesInput-run-calculation",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/usesInput",
+      "fromObject": "https://example.invalid/option-b-corrected/run",
+      "fromRevision": "candidate-1d5471852b84f007b43a",
+      "toObject": "https://example.invalid/option-b-corrected/calculation",
+      "toRevision": "candidate-a57a4a4a497628485dfe",
+      "role": "execution-input",
+      "meaning": "Receipt binds actual calculation bytes.",
+      "justifications": [
+        {
+          "path": "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/execution.json",
+          "selector": {
+            "kind": "whole"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "8e820fd17ff52b8141fa34857a53c1f03a1d8b97147d1880f40935982897a057"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/usesInput-run-reference",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/usesInput",
+      "fromObject": "https://example.invalid/option-b-corrected/run",
+      "fromRevision": "candidate-1d5471852b84f007b43a",
+      "toObject": "https://example.invalid/option-b-corrected/reference",
+      "toRevision": "candidate-778a034c4e644703fffb",
+      "role": "execution-input",
+      "meaning": "Receipt binds unchanged imported reference.",
+      "justifications": [
+        {
+          "path": "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/execution.json",
+          "selector": {
+            "kind": "whole"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "8e820fd17ff52b8141fa34857a53c1f03a1d8b97147d1880f40935982897a057"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/usesInput-run-scientific-check",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/usesInput",
+      "fromObject": "https://example.invalid/option-b-corrected/run",
+      "fromRevision": "candidate-1d5471852b84f007b43a",
+      "toObject": "https://example.invalid/option-b-corrected/scientific-check",
+      "toRevision": "candidate-bd1b6ea33956a6046991",
+      "role": "execution-input",
+      "meaning": "Receipt also records existing test execution.",
+      "justifications": [
+        {
+          "path": "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/execution.json",
+          "selector": {
+            "kind": "whole"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "8e820fd17ff52b8141fa34857a53c1f03a1d8b97147d1880f40935982897a057"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/usesInput-run-environment",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/usesInput",
+      "fromObject": "https://example.invalid/option-b-corrected/run",
+      "fromRevision": "candidate-1d5471852b84f007b43a",
+      "toObject": "https://example.invalid/option-b-corrected/environment",
+      "toRevision": "candidate-f7c0df5476fc9b70940c",
+      "role": "execution-input",
+      "meaning": "Receipt records observed runtime metadata digest.",
+      "justifications": [
+        {
+          "path": "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/execution.json",
+          "selector": {
+            "kind": "whole"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "8e820fd17ff52b8141fa34857a53c1f03a1d8b97147d1880f40935982897a057"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/generatedBy-output-run",
+      "@type": "Relationship",
+      "revisionId": "candidate-1",
+      "kind": "https://example.invalid/option-b-corrected/generatedBy",
+      "fromObject": "https://example.invalid/option-b-corrected/output",
+      "fromRevision": "candidate-2bb677da8fd66d8a1d60",
+      "toObject": "https://example.invalid/option-b-corrected/run",
+      "toRevision": "candidate-1d5471852b84f007b43a",
+      "role": "generation",
+      "meaning": "Output belongs to this new observed run, not a historical accepted activity.",
+      "justifications": [
+        {
+          "path": "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/execution.json",
+          "selector": {
+            "kind": "whole"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "8e820fd17ff52b8141fa34857a53c1f03a1d8b97147d1880f40935982897a057"
+        }
+      ]
+    }
+  ]
+}

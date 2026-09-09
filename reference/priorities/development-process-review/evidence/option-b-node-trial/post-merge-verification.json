@@ -1,0 +1,51 @@
+{
+  "schema": "option-b-post-merge-verification/v1",
+  "merge": "83da8fb83f984e36ac44279e5399e219e887953e",
+  "pr": 263,
+  "head": "672e7d9609cfc56d8e09d75121058d1615667594",
+  "replayCases": [
+    "unchanged",
+    "stale-sign",
+    "changed-sign",
+    "deleted-proof-sign",
+    "deleted-prose-coverage",
+    "changed-scalar-edge",
+    "wrong-displayed-result",
+    "duplicate-displayed-result",
+    "outside-selector-comment"
+  ],
+  "directRetainedValidation": "candidate_reader.preflight then validate retained map against complete source-manifest; every artifact digest and protected source/pilot digest matched",
+  "retainedMapSha256": "01bc1c1c68c280c825361f6af93ae42711b4d460870c1c6e80111cd13aa2655d",
+  "replayBoundary": "run_candidate rebuilds its candidate; the direct retained-map validation is separate evidence",
+  "logs": {
+    "local-gate": {
+      "sha256": "13c3885cb793e4fe8f66f8a94d777e867b7dca14329d55c62ea8998366a696f1",
+      "bytes": 167223,
+      "bExecutionMentionsOutsideUploadAndChangedFileInventory": [],
+      "requiredSummary": [
+        "[content-integrity] required checks passed; 34 required passed, 0 required failed, 0 reporting-only failed, 1 skipped, 0 not reached (30.8s)"
+      ]
+    },
+    "content-ci": {
+      "sha256": "c261ace887b9ce560db8e529976b44a481dd2837fcb57ed030fc88fa7c3a251a",
+      "bytes": 130078,
+      "bExecutionMentionsOutsideUploadAndChangedFileInventory": [],
+      "requiredSummary": [
+        "validate-content\tRun Content Integrity gate\t2026-09-08T23:14:56.0146441Z [content-integrity] required checks passed; 34 required passed, 0 required failed, 0 reporting-only failed, 1 skipped, 0 not reached (56.4s)"
+      ]
+    },
+    "pages-ci": {
+      "sha256": "fe5319977c452e47c7e33cdf2125fa5ea32ebf3386b971f8c73f35a5776669f8",
+      "bytes": 999726,
+      "bExecutionMentionsOutsideUploadAndChangedFileInventory": [],
+      "requiredSummary": [
+        "build\tValidate source and generated assets\t2026-09-08T23:15:49.4817326Z [content-integrity] required checks passed; 34 required passed, 0 required failed, 0 reporting-only failed, 1 skipped, 0 not reached (55.8s)"
+      ]
+    }
+  },
+  "conclusion": "Merged PR263 did not execute B through publication/CI; local and CI required A coverage ran, while Pages uploaded retained B files as payload. Postmerge B replay was an explicit separate experiment.",
+  "retrieval": [
+    "node scripts/github-auth/run.mjs gh run view 34289585717 --log",
+    "node scripts/github-auth/run.mjs gh run view 34289585761 --log"
+  ]
+}

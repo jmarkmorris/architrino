@@ -4,6 +4,7 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { setTimeout as delay } from "node:timers/promises";
 import {
   createLoopbackStreamableHttpAdapter,
   createLoopbackRollbackFixture,
@@ -52,6 +53,7 @@ try {
   requireCondition(Boolean(client.getServerCapabilities()?.tools), "SDK did not negotiate tools");
   requireCondition(transport.sessionId === undefined, "stateless server unexpectedly assigned a session id");
 
+  await paceRequest();
   const listed = await client.listTools();
   const toolNames = listed.tools.map((tool) => tool.name);
   requireCondition(JSON.stringify(toolNames) === JSON.stringify(["search", "read", "topics", "neighbors", "walk"]), `unexpected tools: ${toolNames.join(", ")}`);
@@ -64,9 +66,11 @@ try {
   await call("neighbors", { topicOrRoute: firstTopic.sourceId });
   await call("walk", { topicOrRoute: firstTopic.sourceId, maxDepth: 2 });
 
+  await paceRequest();
   const missing = await client.callTool({ name: "read", arguments: { topicOrRoute: "missing-http-sdk-topic" } });
   requireCondition(missing.isError === true, "missing read did not return a tool-level error");
   requireCondition(missing.structuredContent?.error?.code === "SOURCE_NOT_FOUND", "missing read returned the wrong code");
+  await paceRequest();
   await client.ping();
   requireCondition(adapter.readiness().ready === true, "loopback readiness was not green after SDK calls");
 
@@ -103,12 +107,20 @@ try {
 }
 
 async function call(name, args) {
+  await paceRequest();
   const result = await client.callTool({ name, arguments: args });
   requireCondition(result.isError !== true, `${name} returned a tool-level error`);
   requireCondition(result.structuredContent?.schema === "archie-mcp-tool-response/v1", `${name} omitted the typed response`);
   requireCondition(result.structuredContent.status === "ok", `${name} returned ${result.structuredContent.status}`);
   calls.push({ name, status: result.structuredContent.status });
   return result;
+}
+
+async function paceRequest() {
+  // Exercise the real limiter with its published limits. SDK initialization also
+  // sends a notification and may probe GET, so an unpaced smoke run can exhaust
+  // the burst window even though every individual protocol request is valid.
+  await delay(Math.max(1100, Math.ceil(60000 / contract.limits.requestsPerMinutePerPrincipal) + 100));
 }
 
 function readArgument(name) {

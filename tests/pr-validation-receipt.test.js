@@ -209,3 +209,38 @@ test("validation state comparison names the first mismatched field", () => {
     { equal: false, mismatch: "worktreeOverlayHash" }
   );
 });
+
+test("report-only B errors stay visible and do not change the required A command policy", async (t) => {
+  const { runValidationCommands, VALIDATION_COMMANDS } = await import('../scripts/pr-validation-receipt.mjs');
+  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), 'option-b-receipt-'));
+  t.after(() => fs.rmSync(cwd, { recursive: true, force: true }));
+  const invoked = [];
+  const results = runValidationCommands({ cwd, spawn: (_node, args) => {
+    invoked.push(args[0]);
+    return args[0].includes('check-moving-single-root-map') ? { status: 1, error: new Error('known B launch failure') } : { status: 0 };
+  } });
+  assert.deepEqual(invoked.slice(0, 4), ['scripts/prepare-runtime-assets.mjs', 'scripts/check-foundational-impact.mjs', 'scripts/check-content-integrity.mjs', 'scripts/check-animator-runtime-wiring.mjs']);
+  assert.equal(invoked.length, 5);
+  assert.equal(results.length, 1); assert.equal(results[0].status, 'error'); assert.match(results[0].error, /known B launch failure/);
+  assert.equal(VALIDATION_COMMANDS.filter(c => c.reportOnly).length, 1);
+  assert.throws(() => runValidationCommands({ cwd, spawn: () => ({ status: 1 }) }), /Prepare ignored runtime assets failed/);
+});
+
+test("publication receipt preserves B error explicitly alongside successful required checks", t => {
+  const { cwd } = createRepository(t);
+  runValidationAndWriteReceipt({ cwd, runCommands: () => [{ name: 'Option B', status: 'error', exitCode: 1 }] });
+  const result = verifyValidationReceipt({ cwd });
+  assert.equal(result.valid, true);
+  assert.deepEqual(result.receipt.reportOnly, [{ name: 'Option B', status: 'error', exitCode: 1 }]);
+});
+
+
+test("a zero-exit B invocation with no new report cannot reuse an old success", async t => {
+  const { runValidationCommands } = await import('../scripts/pr-validation-receipt.mjs');
+  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), 'option-b-stale-report-'));
+  t.after(() => fs.rmSync(cwd, { recursive: true, force: true }));
+  fs.mkdirSync(path.join(cwd, '.local-data/option-b-trial'), { recursive: true });
+  fs.writeFileSync(path.join(cwd, '.local-data/option-b-trial/report.json'), JSON.stringify({ status: 'pass' }));
+  const results = runValidationCommands({ cwd, spawn: () => ({ status: 0 }) });
+  assert.equal(results[0].status, 'error'); assert.match(results[0].error, /report unavailable/);
+});
