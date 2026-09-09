@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   moving-single-root-report:
-    name: B moving-single-root (report-only)
+    name: B two bounded chains (report-only)
     runs-on: ubuntu-latest
     timeout-minutes: 10
     continue-on-error: true
@@ -47,13 +47,13 @@ jobs:
           catch { report = { status: 'error', error: 'B report unavailable; inspect install, controls and trial steps.' }; }
           const status = process.env.PRIOR_JOB_STATUS === 'success' ? report.status : 'error';
           fs.appendFileSync(process.env.GITHUB_OUTPUT, `status=${status}\n`);
-          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## Option B: ${status}\n\nReport-only moving-single-root trial. Existing A checks retain authority.\n\n\`\`\`json\n${JSON.stringify(report, null, 2)}\n\`\`\`\n`);
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## Option B: ${status}\n\nReport-only moving-single-root and finite-ledger trials. Existing A checks retain authority.\n\n\`\`\`json\n${JSON.stringify(report, null, 2)}\n\`\`\`\n`);
           JS
       - name: Retain explicit B report and execution outputs
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          name: option-b-moving-single-root-${{ github.run_id }}-${{ github.run_attempt }}
+          name: option-b-two-chains-${{ github.run_id }}-${{ github.run_attempt }}
           path: .local-data/option-b-trial/
           include-hidden-files: true
           if-no-files-found: warn

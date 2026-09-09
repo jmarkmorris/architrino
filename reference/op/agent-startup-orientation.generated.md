@@ -89,7 +89,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `286eeca87711d763` |
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 60 | `421e58e6c3ced0d5` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `45f14795d91a7703` |
-| [reference/op/git/pr-lifecycle.md](git/pr-lifecycle.md) | 856 | `0f2e5de261b4d0b4` |
+| [reference/op/git/pr-lifecycle.md](git/pr-lifecycle.md) | 858 | `f0e2f2204aedf8ad` |
 | [reference/priorities/README.md](../priorities/README.md) | 124 | `13f5e68cb419ca30` |
 | [reference/research-office/cto/prompts/README.md](../research-office/cto/prompts/README.md) | 59 | `7a13f638727952da` |
 | [reference/research-office/cto/prompts/start-pi.md](../research-office/cto/prompts/start-pi.md) | 72 | `1b72deebe03eae34` |

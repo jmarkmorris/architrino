@@ -33,7 +33,7 @@ export const VALIDATION_COMMANDS = [
     args: ["scripts/check-animator-runtime-wiring.mjs"],
   },
   {
-    name: "Option B moving-single-root trial (report-only)",
+    name: "Option B two-chain trial (report-only)",
     args: ["scripts/equation-mapping/check-moving-single-root-map.mjs"],
     reportOnly: true,
     reportPath: ".local-data/option-b-trial/report.json",

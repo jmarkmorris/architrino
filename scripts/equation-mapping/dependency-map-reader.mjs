@@ -59,7 +59,7 @@ export function migrateReviewedPilot(pilot) {
 export async function validate(files, document) {
   keys(document, ['@context', 'schemaVersion', 'scope', 'approval', 'sourceCommit', '@graph']);
   requireValue(isDeepStrictEqual(document['@context'], CONTEXT), 'Unsupported context');
-  requireValue(document.schemaVersion === 'option-b-map/v1' && document.scope === 'moving-single-root-only' && document.approval === 'not-granted', 'Unsupported schema, scope or approval');
+  requireValue(document.schemaVersion === 'option-b-map/v1' && ['moving-single-root-only', 'finite-ledger-superposition-only'].includes(document.scope) && document.approval === 'not-granted', 'Unsupported schema, scope or approval');
   requireValue(/^[a-f0-9]{40}$/u.test(document.sourceCommit), 'Invalid source commit');
   requireValue(Array.isArray(document['@graph']) && document['@graph'].length > 0, 'Empty graph');
   const objects = new Map(), relations = new Map(), aliases = new Set(), ids = new Set();
@@ -101,6 +101,7 @@ export async function affected(snapshot, seeds) {
   return result;
 }
 export async function compare(baseFiles, base, files, current) {
+  requireValue(base.scope === current.scope, 'Cross-scope comparison prohibited');
   const old = await validate(baseFiles, base), now = await validate(files, current);
   const oldRows = new Map(base['@graph'].map(r => [r['@id'], r]));
   for (const row of current['@graph']) {
@@ -116,7 +117,7 @@ export async function compare(baseFiles, base, files, current) {
   const selected = new Set();
   for (const row of [...old.relations.values(), ...now.relations.values()]) if (row.kind === NS + 'checks' && (impact.has(row.toObject) || changedFiles.length)) selected.add(row.fromObject);
   const objects = new Map([...old.objects, ...now.objects]); const aliases = ids => [...ids].map(id => objects.get(id)?.alias ?? id).sort();
-  return { consistency: 'pass', review: changedFiles.length || !isDeepStrictEqual(base, current) ? 'required' : 'unchanged-relative-to-reviewed-baseline', approval: 'not-granted', changedFiles, changedObjects: aliases(changedObjects), changedRelations: changedRelations.sort(), removedRelations: [...old.relations.keys()].filter(k => !now.relations.has(k)).sort(), addedRelations: [...now.relations.keys()].filter(k => !old.relations.has(k)).sort(), affected: aliases(impact), selectedChecks: aliases(selected), objects: now.objects.size, relationships: now.relations.size };
+  return { consistency: 'pass', review: changedFiles.length || !isDeepStrictEqual(base, current) ? 'required' : 'unchanged-relative-to-selected-baseline', approval: 'not-granted', changedFiles, changedObjects: aliases(changedObjects), changedRelations: changedRelations.sort(), removedRelations: [...old.relations.keys()].filter(k => !now.relations.has(k)).sort(), addedRelations: [...now.relations.keys()].filter(k => !old.relations.has(k)).sort(), affected: aliases(impact), selectedChecks: aliases(selected), objects: now.objects.size, relationships: now.relations.size };
 }
 export function compareDisplayedResult(text, output) {
   const matches = [...text.matchAll(/Across five step refinements, the largest component residual was \$(\d+\.\d+)\\times10\^\{(-?\d+)\}\$/gu)];
@@ -145,4 +146,14 @@ export async function preflight() {
   requireValue(compareDisplayedResult(display, { maximumAbsoluteResidualAcrossRows: 2.12e-12 }).status === 'pass' && compareDisplayedResult(display, { maximumAbsoluteResidualAcrossRows: 1 }).status === 'reject', 'Result controls');
   for (const value of ['', display + display]) { rejected = false; try { compareDisplayedResult(value, { maximumAbsoluteResidualAcrossRows: 1 }); } catch { rejected = true; } requireValue(rejected, 'Display uniqueness control'); }
   return 'passed: SHA, byte selector, hand closure, deleted dependency/coverage, stale binding, displayed match/wrong/missing/duplicate';
+}
+
+// A new chain has no accepted predecessor. Never compare it to itself as approval.
+export async function inspectNewChain(files, document) {
+  const snapshot = await validate(files, document);
+  return { consistency: 'pass', review: 'required', approval: 'not-granted', baseline: 'not-established', objects: snapshot.objects.size, relationships: snapshot.relations.size,
+    addedObjects: [...snapshot.objects.values()].map(row => row.alias).sort(),
+    addedRelations: [...snapshot.relations.keys()].sort(),
+    selectedChecks: [...new Set([...snapshot.relations.values()].filter(row => row.kind === NS + 'checks').map(row => snapshot.objects.get(row.fromObject).alias))].sort(),
+    limitation: 'Entire new chain requires review; deleted-edge comparison requires a separately accepted predecessor. No current-map self-baseline is used.' };
 }

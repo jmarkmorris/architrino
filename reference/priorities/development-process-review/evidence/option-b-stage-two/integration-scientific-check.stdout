@@ -1,0 +1,260 @@
+{
+  "schema": "moving_single_root_scalar_gradient_verification/v1",
+  "authority": "analytic theorem reference plus regular-chart numerical implementation check",
+  "status": "verified_regular_only",
+  "fieldSpeed": 1,
+  "theoremIdentity": "Phi_b=C_b*sign(D_b)/r_b implies -grad(Phi_b)=C_b*c_f*n_b/(r_b^2*abs(D_b)) on one connected simple-root chart",
+  "independence": "Scalar values use a safeguarded Newton root solve and numerical differentiation. The ledger vector uses the unchanged pre-existing circular-root verifier record and the canonical row. No analytic scalar gradient or EOM solver sensitivity is imported.",
+  "chartCertificate": {
+    "history": "uniform_circular_transmitter",
+    "receptionTime": 0,
+    "declaredRoot": -1.1,
+    "receiverPosition": [
+      1.0733261642539744,
+      -0.6281576255461998,
+      1.1026279441628826
+    ],
+    "chartRadius": 0.02,
+    "transmitterSpeed": 0.27999999999999997,
+    "analyticTransmitterFactorFloor": 0.72,
+    "rootShiftBound": 0.02777777777777778,
+    "certifiedRootInterval": [
+      -1.1277777777777778,
+      -1.0722222222222224
+    ],
+    "analyticSeparationFloor": 1.0722222222222224,
+    "proof": "The source speed is 0.28<1, so D_b>=1-0.28=0.72 and the causal residual is strictly increasing in emission time. A receiver displacement of norm at most 0.02 shifts the unique root by at most 0.02/0.72.",
+    "samples": [
+      {
+        "receiverOffset": [
+          0,
+          0,
+          0
+        ],
+        "emissionTime": -1.1,
+        "rootResidual": 0,
+        "separation": 1.1,
+        "transmitterFactor": 1.028293919623085
+      },
+      {
+        "receiverOffset": [
+          0.020000000000000018,
+          0,
+          0
+        ],
+        "emissionTime": -1.107949453736099,
+        "rootResidual": 0,
+        "separation": 1.107949453736099,
+        "transmitterFactor": 1.024928012309379
+      },
+      {
+        "receiverOffset": [
+          -0.020000000000000018,
+          0,
+          0
+        ],
+        "emissionTime": -1.0923908892649723,
+        "rootResidual": 0,
+        "separation": 1.0923908892649723,
+        "transmitterFactor": 1.0316265895331154
+      },
+      {
+        "receiverOffset": [
+          0,
+          0.020000000000000018,
+          0
+        ],
+        "emissionTime": -1.094304028229971,
+        "rootResidual": 0,
+        "separation": 1.094304028229971,
+        "transmitterFactor": 1.0245282796441397
+      },
+      {
+        "receiverOffset": [
+          0,
+          -0.020000000000000018,
+          0
+        ],
+        "emissionTime": -1.1059714151428917,
+        "rootResidual": 0,
+        "separation": 1.1059714151428917,
+        "transmitterFactor": 1.0319680173073176
+      },
+      {
+        "receiverOffset": [
+          0,
+          0,
+          0.020000000000000018
+        ],
+        "emissionTime": -1.1169118575766315,
+        "rootResidual": 0,
+        "separation": 1.1169118575766315,
+        "transmitterFactor": 1.0257643018295348
+      },
+      {
+        "receiverOffset": [
+          0,
+          0,
+          -0.020000000000000018
+        ],
+        "emissionTime": -1.083225760796473,
+        "rootResidual": 0,
+        "separation": 1.083225760796473,
+        "transmitterFactor": 1.0308796801612825
+      }
+    ],
+    "observedMinimumSeparation": 1.083225760796473,
+    "observedMinimumTransmitterFactor": 1.0245282796441397
+  },
+  "oracle": {
+    "sourceSchema": "receiver_wake_gradient_independent_verification/v1",
+    "sourceControl": "uniform_circular_history",
+    "emissionTime": -1.1000000000000019,
+    "separation": 1.1,
+    "transmitterFactor": 1.0282939196230847,
+    "ledgerAcceleration": [
+      -0.2893342608367064,
+      0.21700069562752974,
+      -0.6264270501744518
+    ],
+    "expectedScalarGradient": [
+      0.2893342608367064,
+      -0.21700069562752974,
+      0.6264270501744518
+    ]
+  },
+  "rows": [
+    {
+      "step": 0.002,
+      "richardson": [
+        0.2893342608359939,
+        -0.21700069562700466,
+        0.6264270501750527
+      ],
+      "fivePoint": [
+        0.28933426083600317,
+        -0.21700069562701393,
+        0.6264270501750621
+      ],
+      "scalarGradientVersusLedgerResidual": [
+        -7.124856260531942e-13,
+        5.250799794964678e-13,
+        6.009637232295972e-13
+      ],
+      "maximumAbsoluteResidual": 7.124856260531942e-13,
+      "maximumStencilDisagreement": 9.325873406851315e-15
+    },
+    {
+      "step": 0.001,
+      "richardson": [
+        0.289334260836475,
+        -0.21700069562750426,
+        0.6264270501744792
+      ],
+      "fivePoint": [
+        0.289334260836475,
+        -0.21700069562752278,
+        0.6264270501745347
+      ],
+      "scalarGradientVersusLedgerResidual": [
+        -2.313704783318826e-13,
+        2.5479618415147343e-14,
+        2.7422508708241367e-14
+      ],
+      "maximumAbsoluteResidual": 2.313704783318826e-13,
+      "maximumStencilDisagreement": 5.551115123125783e-14
+    },
+    {
+      "step": 0.0005,
+      "richardson": [
+        0.289334260836623,
+        -0.21700069562731925,
+        0.6264270501748307
+      ],
+      "fivePoint": [
+        0.289334260836623,
+        -0.21700069562728222,
+        0.6264270501747937
+      ],
+      "scalarGradientVersusLedgerResidual": [
+        -8.337774914934926e-14,
+        2.1049828546892968e-13,
+        3.7891911830456593e-13
+      ],
+      "maximumAbsoluteResidual": 3.7891911830456593e-13,
+      "maximumStencilDisagreement": 3.702593787124897e-14
+    },
+    {
+      "step": 0.00025,
+      "richardson": [
+        0.28933426083677105,
+        -0.2170006956286515,
+        0.6264270501746457
+      ],
+      "fivePoint": [
+        0.28933426083677105,
+        -0.21700069562887356,
+        0.6264270501749417
+      ],
+      "scalarGradientVersusLedgerResidual": [
+        6.467049118441537e-14,
+        -1.1217693440812582e-12,
+        1.9395596240201485e-13
+      ],
+      "maximumAbsoluteResidual": 1.1217693440812582e-12,
+      "maximumStencilDisagreement": 2.9598545836506673e-13
+    },
+    {
+      "step": 0.000125,
+      "richardson": [
+        0.289334260836623,
+        -0.21700069562842947,
+        0.6264270501765701
+      ],
+      "fivePoint": [
+        0.2893342608360309,
+        -0.2170006956285775,
+        0.6264270501767181
+      ],
+      "scalarGradientVersusLedgerResidual": [
+        -8.337774914934926e-14,
+        -8.997247391562269e-13,
+        2.1183055309847987e-12
+      ],
+      "maximumAbsoluteResidual": 2.1183055309847987e-12,
+      "maximumStencilDisagreement": 5.92081939032596e-13
+    }
+  ],
+  "finalMaximumAbsoluteResidual": 2.1183055309847987e-12,
+  "finalMaximumStencilDisagreement": 5.92081939032596e-13,
+  "maximumAbsoluteResidualAcrossRows": 2.1183055309847987e-12,
+  "maximumStencilDisagreementAcrossRows": 5.92081939032596e-13,
+  "negativeControls": {
+    "rawInverseSquareScalar": {
+      "status": "rejected_wrong_radial_scaling",
+      "gradient": [
+        0.5260622924293893,
+        -0.39454671932389235,
+        1.1389582730481074
+      ],
+      "residual": [
+        0.2367280315926829,
+        -0.1775460236963626,
+        0.5125312228736556
+      ],
+      "maximumAbsoluteResidual": 0.5125312228736556
+    },
+    "outsideCertifiedChart": {
+      "status": "not_advanced_outside_regular_chart"
+    }
+  },
+  "nonclaims": [
+    "global scalar existence",
+    "chart gluing",
+    "fold or coincidence continuation",
+    "self-diagonal continuation",
+    "action or conservation closure",
+    "EOM solver acceptance"
+  ],
+  "conclusion": "The moving simple-root scalar gradient reproduces the unchanged canonical acceleration ledger on the certified regular circular chart. Singular boundaries and global extension remain unresolved."
+}

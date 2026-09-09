@@ -1,0 +1,247 @@
+TAP version 13
+# Subtest: known controls precede retained map; unchanged selected set is empty
+ok 1 - known controls precede retained map; unchanged selected set is empty
+  ---
+  duration_ms: 37.377208
+  type: 'test'
+  ...
+# Subtest: stale sign rejects before query; refreshed sign keeps both obligations
+ok 2 - stale sign rejects before query; refreshed sign keeps both obligations
+  ---
+  duration_ms: 116.527708
+  type: 'test'
+  ...
+# Subtest: deleted sign dependency retains old downstream impact
+ok 3 - deleted sign dependency retains old downstream impact
+  ---
+  duration_ms: 69.234708
+  type: 'test'
+  ...
+# Subtest: deleted result coverage cannot remove its own review obligation
+ok 4 - deleted result coverage cannot remove its own review obligation
+  ---
+  duration_ms: 53.7235
+  type: 'test'
+  ...
+# [pr-validation] running Prepare ignored runtime assets...
+# [pr-validation] running Foundational impact...
+# [pr-validation] running Content Integrity...
+# [pr-validation] running Animator runtime wiring...
+# [pr-validation] running Option B two-chain trial (report-only)...
+# [option-b-trial] known controls passed: SHA, byte selector, hand closure, deleted dependency/coverage, stale binding, displayed match/wrong/missing/duplicate
+# [option-b-trial] REPORT-ONLY review-required: required; /var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/option-b-dispatch-qjFgP0/.local-data/option-b-trial/report.json
+# [pr-validation] REPORT-ONLY review-required: Option B two-chain trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+# Subtest: unsupported scalar dependency remains visible for human semantic review
+ok 5 - unsupported scalar dependency remains visible for human semantic review
+  ---
+  duration_ms: 55.601625
+  type: 'test'
+  ...
+# Subtest: outside-selector source edit retains conservative source review
+ok 6 - outside-selector source edit retains conservative source review
+  ---
+  duration_ms: 20.416042
+  type: 'test'
+  ...
+# Subtest: displayed match, wrong, missing and duplicate result controls
+ok 7 - displayed match, wrong, missing and duplicate result controls
+  ---
+  duration_ms: 0.212833
+  type: 'test'
+  ...
+# Subtest: unknown contexts, fields, duplicate IDs, paths, endpoints and revision reuse reject
+ok 8 - unknown contexts, fields, duplicate IDs, paths, endpoints and revision reuse reject
+  ---
+  duration_ms: 42.361625
+  type: 'test'
+  ...
+# Subtest: actual CLI writes bounded execution evidence and replaces success on missing map
+ok 9 - actual CLI writes bounded execution evidence and replaces success on missing map
+  ---
+  duration_ms: 1225.305084
+  type: 'test'
+  ...
+# Subtest: actual publication command dispatcher executes B after the unchanged A commands
+ok 10 - actual publication command dispatcher executes B after the unchanged A commands
+  ---
+  duration_ms: 745.24775
+  type: 'test'
+  ...
+# Subtest: actual CLI rejects wrong display after science and stale or duplicate selectors before query
+ok 11 - actual CLI rejects wrong display after science and stale or duplicate selectors before query
+  ---
+  duration_ms: 2027.874666
+  type: 'test'
+  ...
+# Subtest: corrected prose coverage names fresh output and binds actual Node source
+ok 12 - corrected prose coverage names fresh output and binds actual Node source
+  ---
+  duration_ms: 0.095041
+  type: 'test'
+  ...
+# Subtest: finite-ledger scope has no fabricated baseline; old/new controls retain review
+ok 13 - finite-ledger scope has no fabricated baseline; old/new controls retain review
+  ---
+  duration_ms: 108.42525
+  type: 'test'
+  ...
+# Subtest: PR procedure executable blocks preserve commands required for advancement verification
+ok 14 - PR procedure executable blocks preserve commands required for advancement verification
+  ---
+  duration_ms: 0.817208
+  type: 'test'
+  ...
+# Subtest: PR procedure, pre-push hook, and CI share the aggregate gate
+ok 15 - PR procedure, pre-push hook, and CI share the aggregate gate
+  ---
+  duration_ms: 1.333625
+  type: 'test'
+  ...
+# Subtest: routine PR validation excludes on-demand iOS package freshness without dropping web checks
+ok 16 - routine PR validation excludes on-demand iOS package freshness without dropping web checks
+  ---
+  duration_ms: 0.676083
+  type: 'test'
+  ...
+# Subtest: routine notation validation ignores a saved iOS snapshot but rejects authored notation drift
+ok 17 - routine notation validation ignores a saved iOS snapshot but rejects authored notation drift
+  ---
+  duration_ms: 56.6705
+  type: 'test'
+  ...
+# Subtest: children's-book pilot exports stay local and optional during routine PRs
+ok 18 - children's-book pilot exports stay local and optional during routine PRs
+  ---
+  duration_ms: 1.801042
+  type: 'test'
+  ...
+# Subtest: PR procedure retains permission diagnostics without obsolete acceptance obligations
+ok 19 - PR procedure retains permission diagnostics without obsolete acceptance obligations
+  ---
+  duration_ms: 0.693958
+  type: 'test'
+  ...
+# [pr-validation] running Prepare ignored runtime assets...
+# [pr-validation] running Foundational impact...
+# [pr-validation] running Content Integrity...
+# [pr-validation] running Animator runtime wiring...
+# [pr-validation] running Option B two-chain trial (report-only)...
+# [pr-validation] REPORT-ONLY error: Option B two-chain trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+# [pr-validation] running Prepare ignored runtime assets...
+# [pr-validation] running Prepare ignored runtime assets...
+# [pr-validation] running Foundational impact...
+# [pr-validation] running Content Integrity...
+# [pr-validation] running Animator runtime wiring...
+# [pr-validation] running Option B two-chain trial (report-only)...
+# [pr-validation] REPORT-ONLY error: Option B two-chain trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+# Subtest: validation receipt verifies only the exact staged and overlay state
+ok 20 - validation receipt verifies only the exact staged and overlay state
+  ---
+  duration_ms: 271.384417
+  type: 'test'
+  ...
+# Subtest: publication validation refuses partially staged files before running checks
+ok 21 - publication validation refuses partially staged files before running checks
+  ---
+  duration_ms: 106.38
+  type: 'test'
+  ...
+# Subtest: a matching snapshot cannot authorize an untested staged version
+ok 22 - a matching snapshot cannot authorize an untested staged version
+  ---
+  duration_ms: 161.666291
+  type: 'test'
+  ...
+# Subtest: validation receipt invalidates when the comparison base moves
+ok 23 - validation receipt invalidates when the comparison base moves
+  ---
+  duration_ms: 157.548541
+  type: 'test'
+  ...
+# Subtest: validation receipt does not cross branch identity
+ok 24 - validation receipt does not cross branch identity
+  ---
+  duration_ms: 159.9605
+  type: 'test'
+  ...
+# Subtest: validation receipt rejects schema and contract mismatch
+ok 25 - validation receipt rejects schema and contract mismatch
+  ---
+  duration_ms: 149.409959
+  type: 'test'
+  ...
+# Subtest: validation runner writes only when repository state stays fixed
+ok 26 - validation runner writes only when repository state stays fixed
+  ---
+  duration_ms: 320.70775
+  type: 'test'
+  ...
+# Subtest: validation state comparison names the first mismatched field
+ok 27 - validation state comparison names the first mismatched field
+  ---
+  duration_ms: 0.39
+  type: 'test'
+  ...
+# Subtest: report-only B errors stay visible and do not change the required A command policy
+ok 28 - report-only B errors stay visible and do not change the required A command policy
+  ---
+  duration_ms: 1.304541
+  type: 'test'
+  ...
+# Subtest: publication receipt preserves B error explicitly alongside successful required checks
+ok 29 - publication receipt preserves B error explicitly alongside successful required checks
+  ---
+  duration_ms: 247.037834
+  type: 'test'
+  ...
+# Subtest: a zero-exit B invocation with no new report cannot reuse an old success
+ok 30 - a zero-exit B invocation with no new report cannot reuse an old success
+  ---
+  duration_ms: 1.42225
+  type: 'test'
+  ...
+# Subtest: pre-push parser does not advance on empty or malformed input
+ok 31 - pre-push parser does not advance on empty or malformed input
+  ---
+  duration_ms: 0.757583
+  type: 'test'
+  ...
+# Subtest: pre-push policy skips one or more pure ref deletions
+ok 32 - pre-push policy skips one or more pure ref deletions
+  ---
+  duration_ms: 0.378541
+  type: 'test'
+  ...
+# Subtest: pre-push policy skips a new codex branch at exact origin/main
+ok 33 - pre-push policy skips a new codex branch at exact origin/main
+  ---
+  duration_ms: 0.105125
+  type: 'test'
+  ...
+# Subtest: pre-push policy runs for content-bearing, existing, or non-codex refs
+ok 34 - pre-push policy runs for content-bearing, existing, or non-codex refs
+  ---
+  duration_ms: 0.159833
+  type: 'test'
+  ...
+# Subtest: pre-push policy runs for mixed deletion and successor creation
+ok 35 - pre-push policy runs for mixed deletion and successor creation
+  ---
+  duration_ms: 0.097709
+  type: 'test'
+  ...
+# Subtest: pre-push policy runs when origin/main cannot be verified
+ok 36 - pre-push policy runs when origin/main cannot be verified
+  ---
+  duration_ms: 0.043916
+  type: 'test'
+  ...
+1..36
+# tests 36
+# suites 0
+# pass 36
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6750.796875

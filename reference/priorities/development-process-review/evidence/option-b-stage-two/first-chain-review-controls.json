@@ -1,0 +1,120 @@
+{
+  "status": "source-reviewed-candidate; operator acceptance absent",
+  "candidateMapSha256": "d040d275054d1e422c81837119aaf6f50ca72ac2c3a207b24993c4246ed822ce",
+  "sourceCommit": "16c25e9e95aad0ee3710f6ba7cb1f1b03e0889c2",
+  "sourceManifest": {
+    "content/markdown/aaa/dynamics/master-equation.md": "dbb88e073d51b5980e0520c0720439e803eeab35b350c49b3dd67adc3f036a3d",
+    "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md": "c30f14fd2efc4d8c14dcff01e5df07e5444815ea36c2010c8a198eaaf4affba2",
+    "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+    "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+    "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08",
+    "scripts/equation-mapping/dependency-map-reader.mjs": "f7677dd6f4379d71c43c1efd8a39ae4714db56f04c3b52d809632c6691bc9ca1",
+    "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/environment.json": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99",
+    "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/execution.json": "8e820fd17ff52b8141fa34857a53c1f03a1d8b97147d1880f40935982897a057",
+    "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/scientific-output.json": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+    "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/result_record_check.py": "f0f0b540de25e170ffa43d09a1a645a8d9837d3eaf237feaa81262119039362d",
+    "scripts/equation-mapping/check-moving-single-root-map.mjs": "c1664aa1ff85f3e7f42a536eb4cc3bb60f51a96a2a9a5192fccdc2091cdd9204"
+  },
+  "difference": {
+    "consistency": "pass",
+    "review": "required",
+    "approval": "not-granted",
+    "changedFiles": [],
+    "changedObjects": [
+      "fresh-output-contract",
+      "prose-check"
+    ],
+    "changedRelations": [
+      "https://example.invalid/option-b-corrected/checks-prose-check-fresh-output",
+      "https://example.invalid/option-b-corrected/checks-prose-check-measured-prose",
+      "https://example.invalid/option-b-corrected/checks-prose-check-output",
+      "https://example.invalid/option-b-corrected/dependsOn-fresh-output-calculation"
+    ],
+    "removedRelations": [
+      "https://example.invalid/option-b-corrected/checks-prose-check-output"
+    ],
+    "addedRelations": [
+      "https://example.invalid/option-b-corrected/checks-prose-check-fresh-output",
+      "https://example.invalid/option-b-corrected/dependsOn-fresh-output-calculation"
+    ],
+    "affected": [
+      "fresh-output-contract",
+      "measured-prose",
+      "output",
+      "prose-check"
+    ],
+    "selectedChecks": [
+      "prose-check"
+    ],
+    "objects": 22,
+    "relationships": 38
+  },
+  "controls": {
+    "quiet": {
+      "consistency": "pass",
+      "review": "unchanged-relative-to-reviewed-baseline",
+      "approval": "not-granted",
+      "changedFiles": [],
+      "changedObjects": [],
+      "changedRelations": [],
+      "removedRelations": [],
+      "addedRelations": [],
+      "affected": [],
+      "selectedChecks": [],
+      "objects": 22,
+      "relationships": 38
+    },
+    "deletion": {
+      "consistency": "pass",
+      "review": "required",
+      "approval": "not-granted",
+      "changedFiles": [],
+      "changedObjects": [],
+      "changedRelations": [
+        "https://example.invalid/option-b-corrected/checks-prose-check-fresh-output"
+      ],
+      "removedRelations": [
+        "https://example.invalid/option-b-corrected/checks-prose-check-fresh-output"
+      ],
+      "addedRelations": [],
+      "affected": [
+        "fresh-output-contract"
+      ],
+      "selectedChecks": [
+        "prose-check"
+      ],
+      "objects": 22,
+      "relationships": 37
+    },
+    "changedRelationship": {
+      "consistency": "pass",
+      "review": "required",
+      "approval": "not-granted",
+      "changedFiles": [],
+      "changedObjects": [],
+      "changedRelations": [
+        "https://example.invalid/option-b-corrected/dependsOn-proof-sign"
+      ],
+      "removedRelations": [],
+      "addedRelations": [],
+      "affected": [
+        "calculation",
+        "fresh-output-contract",
+        "identity",
+        "measured-prose",
+        "output",
+        "proof",
+        "run",
+        "scientific-check",
+        "theorem-claim"
+      ],
+      "selectedChecks": [
+        "prose-check",
+        "scientific-check"
+      ],
+      "objects": 22,
+      "relationships": 38
+    }
+  },
+  "quietBoundary": "This compares one inspected candidate to itself to test unchanged behavior; it is not an accepted baseline or approval receipt."
+}

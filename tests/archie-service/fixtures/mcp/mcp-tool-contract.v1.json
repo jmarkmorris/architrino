@@ -39,7 +39,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773",
+          "snapshotSha256": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -68,9 +68,9 @@
                 "visibility": "public",
                 "canonicalParent": null,
                 "claimLabelFloor": "published corpus",
-                "selectionSha256": "e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e"
+                "selectionSha256": "0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be"
               },
-              "teaser": "Ontology: Purpose and Scope ontological bedrock foundation levels absolute time architrino Euclidean void Noether sea Purpose and Scope This document establishes the ontological bedrock of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$: what fundamentall"
+              "teaser": "Ontology: Purpose and Scope ontological bedrock foundation levels absolute time architrino Euclidean void Noether sea Purpose and Scope This document establishes what fundamentally exists in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, what is emergen"
             }
           ]
         },
@@ -111,7 +111,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773",
+          "snapshotSha256": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -128,10 +128,10 @@
             "visibility": "public",
             "canonicalParent": null,
             "claimLabelFloor": "published corpus",
-            "selectionSha256": "e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e"
+            "selectionSha256": "0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be"
           },
           "contentType": "markdown",
-          "content": "## Purpose and Scope\n\nThis document establishes the ontological bedrock of $\\mathbb{A}\\mathbb{A}\\mathbb{A}$: what fundamentally exists, what is emergent, and what Physical Observers reconstruct from inside the system.\n\nIt defines six foundation routes:\n\n1.",
+          "content": "## Purpose and Scope\n\nThis document establishes what fundamentally exists in $\\mathbb{A}\\mathbb{A}\\mathbb{A}$, what is emergent, and what observers reconstruct from inside the system.\n\nIt defines six foundation routes:\n\n1. **The Substrate**: [absolute time",
           "contentOffset": 0,
           "contentComplete": false,
           "metadata": [
@@ -140,7 +140,7 @@
               "kind": "equation",
               "sourceId": "source.ontology-purpose",
               "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
-              "sourceSelectionSha256": "e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e",
+              "sourceSelectionSha256": "0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be",
               "tex": "$$\nS(T)\n\\xrightarrow{\\Pi_{\\mathrm{assembly}}}\n\\mathfrak B(T)\n\\xrightarrow{\\Pi_{\\mathrm{eff}}}\n\\big(A,B_{ij},g^{\\mathrm{eff}},\\Phi_{\\mathrm{eff}}\\big)\n\\xrightarrow{\\Pi_{\\mathrm{record}}}\n\\bar S(T).\n$$",
               "texSha256": "d553f0799da68ae1dedc68524a1d1ea3d50190df6bce58d575bbc038009be23c"
             }
@@ -183,7 +183,7 @@
         "status": "not_found",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773",
+          "snapshotSha256": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -222,7 +222,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773",
+          "snapshotSha256": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -240,7 +240,7 @@
               "visibility": "public",
               "canonicalParent": null,
               "claimLabelFloor": "published corpus",
-              "selectionSha256": "e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e"
+              "selectionSha256": "0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be"
             }
           ]
         },
@@ -281,7 +281,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773",
+          "snapshotSha256": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -298,7 +298,7 @@
             "visibility": "public",
             "canonicalParent": null,
             "claimLabelFloor": "published corpus",
-            "selectionSha256": "e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e"
+            "selectionSha256": "0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be"
           },
           "records": [
             {
@@ -316,7 +316,7 @@
                 "visibility": "public",
                 "canonicalParent": "source.ontology-purpose",
                 "claimLabelFloor": "unsupported",
-                "selectionSha256": "ee3e46701a43bd8e28246d3850aac50f7122e29c6c88715536d9819ce6d3f394"
+                "selectionSha256": "b470ef72cef4704bc2f591b73e698b7ad6ca5dd1ae9870a20251152307e1c370"
               }
             }
           ]
@@ -358,7 +358,7 @@
         "status": "excluded_visibility",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773",
+          "snapshotSha256": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -396,7 +396,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773",
+          "snapshotSha256": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -459,7 +459,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "95f2121fbfcaf915085f8b15c3a5dcd76f38d20663cb066cbca471cab688e773",
+          "snapshotSha256": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -476,7 +476,7 @@
             "visibility": "public",
             "canonicalParent": null,
             "claimLabelFloor": "published corpus",
-            "selectionSha256": "e12e960ec8b1eda50d9e2d58cc6931a42ad4f74d12ec1845591b56194f865a1e"
+            "selectionSha256": "0a579ec686a8f7384f300af07c1b399f089a38002b4c22a9b162af18187736be"
           },
           "maxDepth": 2,
           "traversalNodeLimit": 256,
@@ -504,7 +504,7 @@
                 "visibility": "public",
                 "canonicalParent": "source.ontology-purpose",
                 "claimLabelFloor": "unsupported",
-                "selectionSha256": "ee3e46701a43bd8e28246d3850aac50f7122e29c6c88715536d9819ce6d3f394"
+                "selectionSha256": "b470ef72cef4704bc2f591b73e698b7ad6ca5dd1ae9870a20251152307e1c370"
               }
             }
           ]

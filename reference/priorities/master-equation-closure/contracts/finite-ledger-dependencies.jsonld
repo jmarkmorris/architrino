@@ -1,0 +1,287 @@
+{
+  "@context": {
+    "@vocab": "https://example.invalid/option-b-corrected/",
+    "kind": {
+      "@type": "@vocab"
+    },
+    "fromObject": {
+      "@type": "@id"
+    },
+    "toObject": {
+      "@type": "@id"
+    }
+  },
+  "schemaVersion": "option-b-map/v1",
+  "scope": "finite-ledger-superposition-only",
+  "approval": "not-granted",
+  "sourceCommit": "16c25e9e95aad0ee3710f6ba7cb1f1b03e0889c2",
+  "@graph": [
+    {
+      "@id": "https://architrino.com/knowledge/finite-ledger/finite-common-chart",
+      "@type": "Assumption",
+      "alias": "finite-common-chart",
+      "revisionId": "draft/v1",
+      "sourceBindings": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "literal",
+            "text": "**Finite-ledger scalar-superposition theorem (conditional derivation).** Fix the retained histories, root selections, regularization, and boundary convention of that chart. If every row $b\\in\\mathcal B$ has a differentiable receiver-local scalar representative $\\Phi_b$ on the same chart satisfying"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "d970a0c4857d818258506688e2f3c58661bb520825482efdb2b28dd86d879689"
+        }
+      ],
+      "scope": "Finite number of differentiable row scalars on one shared chart with fixed histories, selected roots, regularization and boundary convention."
+    },
+    {
+      "@id": "https://architrino.com/equation-mapping.html#corpus-equation-2837fc9fb586113c",
+      "@type": "EquationOccurrence",
+      "alias": "per-row-gradient-premise",
+      "revisionId": "draft/v1",
+      "sourceBindings": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "literal",
+            "text": "\\mathbf A_b\n=\n-\\nabla_{\\mathbf X_r}\\Phi_b,"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "a77858aca5d5f37e3c211ce71829b6cfe4d459589cda1d63cbd0f6182418672b"
+        }
+      ],
+      "scope": "The per-row scalar identity is a premise; this theorem does not prove it for an arbitrary row."
+    },
+    {
+      "@id": "https://architrino.com/equation-mapping.html#corpus-equation-379c9faa834280a0",
+      "@type": "EquationOccurrence",
+      "alias": "finite-scalar-sum",
+      "revisionId": "draft/v1",
+      "sourceBindings": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "literal",
+            "text": "\\Phi_{\\mathcal B}\n=\n\\sum_{b\\in\\mathcal B}\\Phi_b."
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "d036daf0134e3c53fb7b1e6bf786fc392e56de630cb5bdf3461adc2eed03ad0f"
+        }
+      ],
+      "scope": "Definition of a finite sum only."
+    },
+    {
+      "@id": "https://architrino.com/knowledge/finite-ledger/gradient-linearity-proof",
+      "@type": "Derivation",
+      "alias": "gradient-linearity-proof",
+      "revisionId": "draft/v1",
+      "sourceBindings": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "literal",
+            "text": "Linearity of the receiver gradient then gives"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "7b309cb27ec12e1f15400ddd3ff569f92691c1e1ed2c18df5a04b9b868b8d2c2"
+        }
+      ],
+      "scope": "Finite differentiation distributes over addition; no infinite-sum interchange is asserted."
+    },
+    {
+      "@id": "https://architrino.com/equation-mapping.html#corpus-equation-fdd480956fb47265",
+      "@type": "EquationOccurrence",
+      "alias": "finite-ledger-identity",
+      "revisionId": "draft/v1",
+      "sourceBindings": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "literal",
+            "text": "\\mathbf A_{\\mathrm{total}}\n=\n\\sum_{b\\in\\mathcal B}\\mathbf A_b\n=\n-\\nabla_{\\mathbf X_r}\\Phi_{\\mathcal B}."
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "0e89e6dd6ae42c24e22194341e17c029f4b00313d58d076dccd52a0312e6136c"
+        }
+      ],
+      "scope": "Conditional total acceleration identity on the common chart."
+    },
+    {
+      "@id": "https://architrino.com/knowledge/finite-ledger/finite-ledger-polynomial-check",
+      "@type": "CheckObligation",
+      "alias": "finite-ledger-polynomial-check",
+      "revisionId": "draft/v1",
+      "sourceBindings": [
+        {
+          "path": "scripts/equation-mapping/verify-finite-ledger-superposition.mjs",
+          "selector": {
+            "kind": "whole"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "a2f41ada418a04ba7e20aa1d669bf56f627c0c2c24d9a3046fdf383d3b21d21a"
+        }
+      ],
+      "scope": "Three exact polynomial witnesses plus omitted-row negatives; validates finite-sum implementation on those examples, not existence of physical-row scalars."
+    },
+    {
+      "@id": "https://architrino.com/knowledge/finite-ledger/dependsOn-per-row-gradient-premise-finite-common-chart",
+      "@type": "Relationship",
+      "revisionId": "draft/v1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-2837fc9fb586113c",
+      "toObject": "https://architrino.com/knowledge/finite-ledger/finite-common-chart",
+      "fromRevision": "draft/v1",
+      "toRevision": "draft/v1",
+      "role": "domain",
+      "meaning": "The row identities hold together on the fixed common chart.",
+      "justifications": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "literal",
+            "text": "**Finite-ledger scalar-superposition theorem (conditional derivation).** Fix the retained histories, root selections, regularization, and boundary convention of that chart. If every row $b\\in\\mathcal B$ has a differentiable receiver-local scalar representative $\\Phi_b$ on the same chart satisfying"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "d970a0c4857d818258506688e2f3c58661bb520825482efdb2b28dd86d879689"
+        }
+      ]
+    },
+    {
+      "@id": "https://architrino.com/knowledge/finite-ledger/dependsOn-finite-scalar-sum-finite-common-chart",
+      "@type": "Relationship",
+      "revisionId": "draft/v1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-379c9faa834280a0",
+      "toObject": "https://architrino.com/knowledge/finite-ledger/finite-common-chart",
+      "fromRevision": "draft/v1",
+      "toRevision": "draft/v1",
+      "role": "domain",
+      "meaning": "A finite, fixed ledger indexes the scalar sum.",
+      "justifications": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "literal",
+            "text": "**Finite-ledger scalar-superposition theorem (conditional derivation).** Fix the retained histories, root selections, regularization, and boundary convention of that chart. If every row $b\\in\\mathcal B$ has a differentiable receiver-local scalar representative $\\Phi_b$ on the same chart satisfying"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "d970a0c4857d818258506688e2f3c58661bb520825482efdb2b28dd86d879689"
+        }
+      ]
+    },
+    {
+      "@id": "https://architrino.com/knowledge/finite-ledger/dependsOn-gradient-linearity-proof-finite-common-chart",
+      "@type": "Relationship",
+      "revisionId": "draft/v1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://architrino.com/knowledge/finite-ledger/gradient-linearity-proof",
+      "toObject": "https://architrino.com/knowledge/finite-ledger/finite-common-chart",
+      "fromRevision": "draft/v1",
+      "toRevision": "draft/v1",
+      "role": "mathematical",
+      "meaning": "Finiteness and differentiability license termwise differentiation.",
+      "justifications": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "literal",
+            "text": "**Finite-ledger scalar-superposition theorem (conditional derivation).** Fix the retained histories, root selections, regularization, and boundary convention of that chart. If every row $b\\in\\mathcal B$ has a differentiable receiver-local scalar representative $\\Phi_b$ on the same chart satisfying"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "d970a0c4857d818258506688e2f3c58661bb520825482efdb2b28dd86d879689"
+        }
+      ]
+    },
+    {
+      "@id": "https://architrino.com/knowledge/finite-ledger/dependsOn-gradient-linearity-proof-per-row-gradient-premise",
+      "@type": "Relationship",
+      "revisionId": "draft/v1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://architrino.com/knowledge/finite-ledger/gradient-linearity-proof",
+      "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-2837fc9fb586113c",
+      "fromRevision": "draft/v1",
+      "toRevision": "draft/v1",
+      "role": "mathematical",
+      "meaning": "Substitute the independently required per-row gradient identities.",
+      "justifications": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "literal",
+            "text": "\\mathbf A_b\n=\n-\\nabla_{\\mathbf X_r}\\Phi_b,"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "a77858aca5d5f37e3c211ce71829b6cfe4d459589cda1d63cbd0f6182418672b"
+        }
+      ]
+    },
+    {
+      "@id": "https://architrino.com/knowledge/finite-ledger/dependsOn-gradient-linearity-proof-finite-scalar-sum",
+      "@type": "Relationship",
+      "revisionId": "draft/v1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://architrino.com/knowledge/finite-ledger/gradient-linearity-proof",
+      "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-379c9faa834280a0",
+      "fromRevision": "draft/v1",
+      "toRevision": "draft/v1",
+      "role": "mathematical",
+      "meaning": "Differentiate the defined finite scalar sum.",
+      "justifications": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "literal",
+            "text": "\\Phi_{\\mathcal B}\n=\n\\sum_{b\\in\\mathcal B}\\Phi_b."
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "d036daf0134e3c53fb7b1e6bf786fc392e56de630cb5bdf3461adc2eed03ad0f"
+        }
+      ]
+    },
+    {
+      "@id": "https://architrino.com/knowledge/finite-ledger/dependsOn-finite-ledger-identity-gradient-linearity-proof",
+      "@type": "Relationship",
+      "revisionId": "draft/v1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-fdd480956fb47265",
+      "toObject": "https://architrino.com/knowledge/finite-ledger/gradient-linearity-proof",
+      "fromRevision": "draft/v1",
+      "toRevision": "draft/v1",
+      "role": "mathematical",
+      "meaning": "Finite linearity and the per-row premises yield the total identity.",
+      "justifications": [
+        {
+          "path": "content/markdown/aaa/dynamics/master-equation.md",
+          "selector": {
+            "kind": "literal",
+            "text": "\\mathbf A_{\\mathrm{total}}\n=\n\\sum_{b\\in\\mathcal B}\\mathbf A_b\n=\n-\\nabla_{\\mathbf X_r}\\Phi_{\\mathcal B}."
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "0e89e6dd6ae42c24e22194341e17c029f4b00313d58d076dccd52a0312e6136c"
+        }
+      ]
+    },
+    {
+      "@id": "https://architrino.com/knowledge/finite-ledger/checks-finite-ledger-polynomial-check-finite-ledger-identity",
+      "@type": "Relationship",
+      "revisionId": "draft/v1",
+      "kind": "https://example.invalid/option-b-corrected/checks",
+      "fromObject": "https://architrino.com/knowledge/finite-ledger/finite-ledger-polynomial-check",
+      "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-fdd480956fb47265",
+      "fromRevision": "draft/v1",
+      "toRevision": "draft/v1",
+      "role": "bounded-verification",
+      "meaning": "Polynomial cases test the finite-sum operation; no physical-row or global inference.",
+      "justifications": [
+        {
+          "path": "scripts/equation-mapping/verify-finite-ledger-superposition.mjs",
+          "selector": {
+            "kind": "whole"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "a2f41ada418a04ba7e20aa1d669bf56f627c0c2c24d9a3046fdf383d3b21d21a"
+        }
+      ]
+    }
+  ]
+}

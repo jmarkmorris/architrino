@@ -1,0 +1,41 @@
+{
+  "schema": "option-b-review-manifest/v1",
+  "approval": "not-granted",
+  "observedHead": "16c25e9e95aad0ee3710f6ba7cb1f1b03e0889c2",
+  "identityBoundary": "Exact scoped working bytes; an operator-accepted published head and verified merge are still required for baseline advancement.",
+  "maps": {
+    "moving-single-root": {
+      "path": "reference/priorities/master-equation-closure/contracts/moving-single-root-dependencies.jsonld",
+      "sha256": "d040d275054d1e422c81837119aaf6f50ca72ac2c3a207b24993c4246ed822ce"
+    },
+    "finite-ledger-superposition": {
+      "path": "reference/priorities/master-equation-closure/contracts/finite-ledger-dependencies.jsonld",
+      "sha256": "fb0d1c65cb377829284ac096beb1784f828e3ac0105afa9a84e8c9c5c6af66c8"
+    }
+  },
+  "files": {
+    "content/markdown/aaa/dynamics/master-equation.md": "dbb88e073d51b5980e0520c0720439e803eeab35b350c49b3dd67adc3f036a3d",
+    "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/environment.json": "4d2ce64b4a46e3f8a24e2140300562bcc45764153c206e401890b5d181b96c99",
+    "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/execution.json": "8e820fd17ff52b8141fa34857a53c1f03a1d8b97147d1880f40935982897a057",
+    "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/result_record_check.py": "f0f0b540de25e170ffa43d09a1a645a8d9837d3eaf237feaa81262119039362d",
+    "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/scientific-output.json": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+    "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md": "c30f14fd2efc4d8c14dcff01e5df07e5444815ea36c2010c8a198eaaf4affba2",
+    "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs": "ac2e04abb65924927c8135b15b6cd6913a609ce95722896eac61ef3ae6ff15ba",
+    "scripts/equation-mapping/verify-receiver-wake-gradient.mjs": "f62d06f094be9f85cf9b8018e20fce8332d07285f0d66548aa0f3193c4a2bd9d",
+    "tests/moving-single-root-scalar-gradient-verifier.test.mjs": "3f62205b55a601b5f96ef06f3fb710877bf7ef62b13ea77c91eec09fa3abea08",
+    "scripts/equation-mapping/check-moving-single-root-map.mjs": "a4cda9d916d21e985cf6ba06e05a6f1803564cb22fa67de3782029c691c3c7e4",
+    "scripts/equation-mapping/dependency-map-reader.mjs": "193ab4e37e69df2ad68a6a52b6f4ed069b1c1102c32186d14bf8211a959b4b24",
+    "scripts/equation-mapping/verify-finite-ledger-superposition.mjs": "a2f41ada418a04ba7e20aa1d669bf56f627c0c2c24d9a3046fdf383d3b21d21a",
+    "package.json": "27bcd57ac634c6c27eb6322201caa0667ac1eae443c02ee2f7998918da054ed7",
+    "package-lock.json": "f332c4307976378ed0c3d658b0b6bfa02164945cb0570526625e8b912e1798c4",
+    "reference/priorities/development-process-review/analysis/option-b-first-chain-baseline-review.md": "df425dd46064753a1c644ccae45492669ef706d5667e1329621a1e3e096671b8",
+    "tests/equation-dependency-map.test.mjs": "c4bd3c7311fd9b8d3c45f4999eb88606cfda15393c2b06991be77cccbfc9a334",
+    "tests/pr-validation-receipt.test.js": "35114f853bb2df3e81566054f687a9cd94c6cfa49451cd60d587825afb1a3766",
+    "scripts/pr-validation-receipt.mjs": "0a85ccc389aad45fe43b66946f2dc4210f9630c299dc8aa1b059c572cdd435cc",
+    ".github/workflows/option-b-trial.yml": "8dcb4613975c3daa1a9d706cd6abc8e1fc45d6db7d169f69f1bd4517b9952e9e",
+    "reference/priorities/master-equation-closure/contracts/moving-single-root-dependency-map.md": "ac6fce83bb4405ebf237439aec152070c94bac1a907c2742db03b4cc630a34ae",
+    "reference/priorities/master-equation-closure/contracts/finite-ledger-dependency-map.md": "26c88c947d8b236d8cff5f62613ff5aea6f4bf3cf3e64885886c8ffc83b7f71b",
+    "reference/priorities/master-equation-closure/contracts/moving-single-root-dependencies.jsonld": "d040d275054d1e422c81837119aaf6f50ca72ac2c3a207b24993c4246ed822ce",
+    "reference/priorities/master-equation-closure/contracts/finite-ledger-dependencies.jsonld": "fb0d1c65cb377829284ac096beb1784f828e3ac0105afa9a84e8c9c5c6af66c8"
+  }
+}

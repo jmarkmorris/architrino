@@ -12,6 +12,8 @@ An explicit operator instruction selecting an invocation mode below, or `run pr-
 
 ## Operator invocation modes
 
+Every PR mode must display the actual PR title and description in the right-hand rendered Markdown preview, including full-lifecycle mode without a review pause. Display before publication/merge and refresh it if the write-up changes; absence of a pause never waives display. Do not claim the preview appeared unless the presentation action succeeded.
+
 These modes apply equally to Claude and Codex. The operator selects the review pause and merge authority for one scoped candidate; discussion or general trust alone does not invoke publication.
 
 | Operator directive | Runner behavior |
