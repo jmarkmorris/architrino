@@ -1,0 +1,43 @@
+{
+  "grade": "measured; focused implementation verification only",
+  "approval": "not-granted",
+  "nodeTests": {
+    "files": [
+      "tests/equation-dependency-map.test.mjs",
+      "tests/pr-validation-receipt.test.js",
+      "tests/pre-push-gate-policy.test.js",
+      "tests/pr-branch-process-conformance.test.js"
+    ],
+    "node26": {
+      "tests": 36,
+      "pass": 36,
+      "fail": 0
+    },
+    "node22": {
+      "tests": 36,
+      "pass": 36,
+      "fail": 0
+    }
+  },
+  "additionalChecks": [
+    "Known fenced-link and YAML controls passed before live document/workflow inspection",
+    "Actual workflow summary script passed success, prior-failure and missing-report cases",
+    "Installed candidate verification passed retained source, artifact, pilot identities and owner-prefix preservation",
+    "node scripts/check-validation-script-paths.mjs: passed 16 references",
+    "node scripts/validate-machine-artifact-retention.mjs: index and working tree passed, 1508 machine files",
+    "git diff --check: passed"
+  ],
+  "artifacts": {
+    "integration-existing-scientific-test.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "integration-existing-scientific-test.stdout": "9f16f9fdb124df3642db75f412a49ef6edf10e6902ebf031cb0c5fc174de5a72",
+    "integration-finite-ledger-polynomial-check.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "integration-finite-ledger-polynomial-check.stdout": "7aa44c49eff37f2409aca5ef1bc4b55fe1cd92663cf5e18419d43068ded89584",
+    "integration-manifest.json": "cdae04816b6f144a3bc4729b428362b8247fce7039c2722032f478ef045d0388",
+    "integration-report.json": "c441c1da9857071055ea454edb9ad43d33a0c1e5ef4691a4194e686631a7f5cc",
+    "integration-scientific-check.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "integration-scientific-check.stdout": "f8df50fc1ea27ea76202aa76905ba03ac4dc5e676f52e5c87e3baeb52eb93aad",
+    "node22-tests.log": "ae6bb15041512a50b7b20c648b7e708df06093e5cb97eebad0fae0f87b36f438",
+    "node26-tests.log": "fc1e001374bcd27def1e084ecc64c43b60aa7f0c0d799db4809db80e8173cf30"
+  },
+  "falsifier": "A failed recorded assertion, changed scoped manifest byte, or failing focused test invalidates the corresponding measured claim; this record does not assert whole-repository health."
+}

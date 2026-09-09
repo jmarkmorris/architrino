@@ -384,18 +384,28 @@
       "@id": "https://example.invalid/option-b-corrected/prose-check",
       "alias": "prose-check",
       "@type": "CheckObligation",
-      "revisionId": "node-trial-prose-comparison/v1",
+      "revisionId": "reviewed-source-candidate/v2",
       "sourceBindings": [
         {
           "path": "scripts/equation-mapping/dependency-map-reader.mjs",
           "selector": {
-            "kind": "whole"
+            "kind": "literal",
+            "text": "export function compareDisplayedResult(text, output) {\n  const matches = [...text.matchAll(/Across five step refinements, the largest component residual was \\$(\\d+\\.\\d+)\\\\times10\\^\\{(-?\\d+)\\}\\$/gu)];\n  requireValue(matches.length === 1, 'Expected exactly one displayed maximum');\n  const [, mantissa, exponentText] = matches[0], exponent = Number(exponentText);\n  const displayed = Number(mantissa) * 10 ** exponent, tolerance = 10 ** (exponent - mantissa.split('.')[1].length) / 2;\n  const actual = output.maximumAbsoluteResidualAcrossRows; requireValue(Number.isFinite(actual) && Number.isFinite(displayed) && tolerance > 0, 'Invalid residual');\n  return { status: Math.abs(displayed - actual) <= tolerance ? 'pass' : 'reject', displayed, actual, tolerance, coverage: 'one displayed maximum only' };\n}\n"
           },
           "contract": "fixed-byte-selection/v1",
-          "sha256": "f7677dd6f4379d71c43c1efd8a39ae4714db56f04c3b52d809632c6691bc9ca1"
+          "sha256": "35961972df6776b74d696a91a6c10301a2f0643ae5cebdcadfbc1736151c61f3"
+        },
+        {
+          "path": "scripts/equation-mapping/check-moving-single-root-map.mjs",
+          "selector": {
+            "kind": "literal",
+            "text": "const result = reader.compareDisplayedResult(currentFiles.get(PROSE).toString('utf8'), JSON.parse(stdout));"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "29ac5093b4924def683a3e4d8934fd81b535379461c9ddea2f5e5e036e9b528b"
         }
       ],
-      "scope": "Current Node comparison of one uniquely displayed maximum with the fresh numerical verifier stdout; historic Python instrument remains in the reviewed baseline."
+      "scope": "Compares exactly one displayed maximum against the fresh verifier stdout; does not consume the retained historical output object."
     },
     {
       "@id": "https://example.invalid/option-b-corrected/environment",
@@ -1279,44 +1289,32 @@
     {
       "@id": "https://example.invalid/option-b-corrected/checks-prose-check-measured-prose",
       "@type": "Relationship",
-      "revisionId": "node-trial-candidate-1",
+      "revisionId": "source-reviewed-candidate/v2",
       "kind": "https://example.invalid/option-b-corrected/checks",
       "fromObject": "https://example.invalid/option-b-corrected/prose-check",
-      "fromRevision": "node-trial-prose-comparison/v1",
+      "fromRevision": "reviewed-source-candidate/v2",
       "toObject": "https://example.invalid/option-b-corrected/measured-prose",
       "toRevision": "candidate-4019c58a4cc891510cc0",
       "role": "record-accuracy",
       "meaning": "Reads one unique displayed maximum; never delegated to existing numerical test.",
       "justifications": [
         {
-          "path": "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/result_record_check.py",
+          "path": "scripts/equation-mapping/dependency-map-reader.mjs",
           "selector": {
-            "kind": "whole"
+            "kind": "literal",
+            "text": "export function compareDisplayedResult(text, output) {\n  const matches = [...text.matchAll(/Across five step refinements, the largest component residual was \\$(\\d+\\.\\d+)\\\\times10\\^\\{(-?\\d+)\\}\\$/gu)];\n  requireValue(matches.length === 1, 'Expected exactly one displayed maximum');\n  const [, mantissa, exponentText] = matches[0], exponent = Number(exponentText);\n  const displayed = Number(mantissa) * 10 ** exponent, tolerance = 10 ** (exponent - mantissa.split('.')[1].length) / 2;\n  const actual = output.maximumAbsoluteResidualAcrossRows; requireValue(Number.isFinite(actual) && Number.isFinite(displayed) && tolerance > 0, 'Invalid residual');\n  return { status: Math.abs(displayed - actual) <= tolerance ? 'pass' : 'reject', displayed, actual, tolerance, coverage: 'one displayed maximum only' };\n}\n"
           },
           "contract": "fixed-byte-selection/v1",
-          "sha256": "f0f0b540de25e170ffa43d09a1a645a8d9837d3eaf237feaa81262119039362d"
-        }
-      ]
-    },
-    {
-      "@id": "https://example.invalid/option-b-corrected/checks-prose-check-output",
-      "@type": "Relationship",
-      "revisionId": "node-trial-candidate-1",
-      "kind": "https://example.invalid/option-b-corrected/checks",
-      "fromObject": "https://example.invalid/option-b-corrected/prose-check",
-      "fromRevision": "node-trial-prose-comparison/v1",
-      "toObject": "https://example.invalid/option-b-corrected/output",
-      "toRevision": "candidate-2bb677da8fd66d8a1d60",
-      "role": "comparison-input",
-      "meaning": "Compares display against maximumAbsoluteResidualAcrossRows of the corresponding run.",
-      "justifications": [
+          "sha256": "35961972df6776b74d696a91a6c10301a2f0643ae5cebdcadfbc1736151c61f3"
+        },
         {
-          "path": "reference/priorities/development-process-review/evidence/option-b-corrected-candidate/result_record_check.py",
+          "path": "scripts/equation-mapping/check-moving-single-root-map.mjs",
           "selector": {
-            "kind": "whole"
+            "kind": "literal",
+            "text": "const result = reader.compareDisplayedResult(currentFiles.get(PROSE).toString('utf8'), JSON.parse(stdout));"
           },
           "contract": "fixed-byte-selection/v1",
-          "sha256": "f0f0b540de25e170ffa43d09a1a645a8d9837d3eaf237feaa81262119039362d"
+          "sha256": "29ac5093b4924def683a3e4d8934fd81b535379461c9ddea2f5e5e036e9b528b"
         }
       ]
     },
@@ -1427,6 +1425,97 @@
           },
           "contract": "fixed-byte-selection/v1",
           "sha256": "8e820fd17ff52b8141fa34857a53c1f03a1d8b97147d1880f40935982897a057"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/fresh-output-contract",
+      "@type": "CalculationSpecification",
+      "alias": "fresh-output-contract",
+      "revisionId": "candidate/v1",
+      "scope": "The fresh numerical verifier stdout supplies the maximum residual consumed by the prose comparator; this names the output field contract, not a retained run.",
+      "sourceBindings": [
+        {
+          "path": "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs",
+          "selector": {
+            "kind": "literal",
+            "text": "    maximumAbsoluteResidualAcrossRows,\n"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "ebc2da2fb2cf2b40258acd4fec8fc4a6b87241e33eff64a191bbd8e62045e0ef"
+        },
+        {
+          "path": "scripts/equation-mapping/check-moving-single-root-map.mjs",
+          "selector": {
+            "kind": "literal",
+            "text": "const result = reader.compareDisplayedResult(currentFiles.get(PROSE).toString('utf8'), JSON.parse(stdout));"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "29ac5093b4924def683a3e4d8934fd81b535379461c9ddea2f5e5e036e9b528b"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/checks-prose-check-fresh-output",
+      "@type": "Relationship",
+      "revisionId": "candidate/v1",
+      "kind": "https://example.invalid/option-b-corrected/checks",
+      "fromObject": "https://example.invalid/option-b-corrected/prose-check",
+      "toObject": "https://example.invalid/option-b-corrected/fresh-output-contract",
+      "fromRevision": "reviewed-source-candidate/v2",
+      "toRevision": "candidate/v1",
+      "role": "comparison-input",
+      "meaning": "The comparison reads maximumAbsoluteResidualAcrossRows from fresh numerical stdout; no historical Result is consumed.",
+      "justifications": [
+        {
+          "path": "scripts/equation-mapping/dependency-map-reader.mjs",
+          "selector": {
+            "kind": "literal",
+            "text": "export function compareDisplayedResult(text, output) {\n  const matches = [...text.matchAll(/Across five step refinements, the largest component residual was \\$(\\d+\\.\\d+)\\\\times10\\^\\{(-?\\d+)\\}\\$/gu)];\n  requireValue(matches.length === 1, 'Expected exactly one displayed maximum');\n  const [, mantissa, exponentText] = matches[0], exponent = Number(exponentText);\n  const displayed = Number(mantissa) * 10 ** exponent, tolerance = 10 ** (exponent - mantissa.split('.')[1].length) / 2;\n  const actual = output.maximumAbsoluteResidualAcrossRows; requireValue(Number.isFinite(actual) && Number.isFinite(displayed) && tolerance > 0, 'Invalid residual');\n  return { status: Math.abs(displayed - actual) <= tolerance ? 'pass' : 'reject', displayed, actual, tolerance, coverage: 'one displayed maximum only' };\n}\n"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "35961972df6776b74d696a91a6c10301a2f0643ae5cebdcadfbc1736151c61f3"
+        },
+        {
+          "path": "scripts/equation-mapping/check-moving-single-root-map.mjs",
+          "selector": {
+            "kind": "literal",
+            "text": "const result = reader.compareDisplayedResult(currentFiles.get(PROSE).toString('utf8'), JSON.parse(stdout));"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "29ac5093b4924def683a3e4d8934fd81b535379461c9ddea2f5e5e036e9b528b"
+        }
+      ]
+    },
+    {
+      "@id": "https://example.invalid/option-b-corrected/dependsOn-fresh-output-calculation",
+      "@type": "Relationship",
+      "revisionId": "candidate/v1",
+      "kind": "https://example.invalid/option-b-corrected/dependsOn",
+      "fromObject": "https://example.invalid/option-b-corrected/fresh-output-contract",
+      "toObject": "https://example.invalid/option-b-corrected/calculation",
+      "fromRevision": "candidate/v1",
+      "toRevision": "candidate-a57a4a4a497628485dfe",
+      "role": "output-contract",
+      "meaning": "The numerical verifier returns the maximum residual field consumed by the fresh comparison.",
+      "justifications": [
+        {
+          "path": "scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs",
+          "selector": {
+            "kind": "literal",
+            "text": "    maximumAbsoluteResidualAcrossRows,\n"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "ebc2da2fb2cf2b40258acd4fec8fc4a6b87241e33eff64a191bbd8e62045e0ef"
+        },
+        {
+          "path": "scripts/equation-mapping/check-moving-single-root-map.mjs",
+          "selector": {
+            "kind": "literal",
+            "text": "const result = reader.compareDisplayedResult(currentFiles.get(PROSE).toString('utf8'), JSON.parse(stdout));"
+          },
+          "contract": "fixed-byte-selection/v1",
+          "sha256": "29ac5093b4924def683a3e4d8934fd81b535379461c9ddea2f5e5e036e9b528b"
         }
       ]
     }

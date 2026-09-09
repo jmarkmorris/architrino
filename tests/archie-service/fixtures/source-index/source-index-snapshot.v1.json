@@ -19,7 +19,7 @@
   },
   "generatedArtifactDigests": {
     "markdownIndex": "43f2c5f5e1aa19e6088e518e1ffa459c9a3ad078aa2323a246e6c520ecae7611",
-    "readingCopies": "ddba881af6dab835ee431c50872ff6f395ca8e1947284fab83725b2570a6c977",
+    "readingCopies": "6d517a356bb7c64b27f3bcabb49e0a3e85047d6ea0556b15fbaa20713fbab677",
     "sceneGraph": "4444d446677a091f13c381e530a6eafb58bdcbfb7207bf21c71f98570f524d78",
     "textbookToc": "6f6b1d077aaa2db82fb50afc05d2ee737ac43bbf54f638a7ba328621ceb891b9"
   },
@@ -371,5 +371,5 @@
       "sha256": "6ce866fec72d0914e6118a319140fa9b174a7aa9847b7611ceb3ed02a4fe7698"
     }
   },
-  "snapshotSha256": "a997d4645a2246858fb579743b9614ab23021514926770f78debf66b34053350"
+  "snapshotSha256": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c"
 }

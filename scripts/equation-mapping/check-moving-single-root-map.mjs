@@ -7,6 +7,9 @@ import { fileURLToPath } from 'node:url';
 const ROOT = fileURLToPath(new URL('../../', import.meta.url));
 const hash = value => crypto.createHash('sha256').update(value).digest('hex');
 const CODE_PATHS = ['scripts/equation-mapping/dependency-map-reader.mjs', 'scripts/equation-mapping/check-moving-single-root-map.mjs', 'package.json', 'package-lock.json'];
+const FINITE_MAP = 'reference/priorities/master-equation-closure/contracts/finite-ledger-dependencies.jsonld';
+const FINITE_CHECK = 'scripts/equation-mapping/verify-finite-ledger-superposition.mjs';
+const REVIEW_PATHS = [FINITE_CHECK, 'reference/priorities/development-process-review/analysis/option-b-first-chain-baseline-review.md', 'tests/equation-dependency-map.test.mjs', 'tests/pr-validation-receipt.test.js', 'scripts/pr-validation-receipt.mjs', '.github/workflows/option-b-trial.yml', 'reference/priorities/master-equation-closure/contracts/moving-single-root-dependency-map.md', 'reference/priorities/master-equation-closure/contracts/finite-ledger-dependency-map.md'];
 const SCIENCE = 'scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs';
 const TEST = 'tests/moving-single-root-scalar-gradient-verifier.test.mjs';
 const PROSE = 'content/markdown/aaa/dynamics/master-equation.md';
@@ -31,27 +34,32 @@ export async function runTrial({ cwd = ROOT, outputDirectory = path.join(cwd, '.
   fs.mkdirSync(outputDirectory, { recursive: true });
   // Remove a prior report before any work: old success cannot represent this run.
   fs.rmSync(path.join(outputDirectory, 'report.json'), { force: true });
+  fs.rmSync(path.join(outputDirectory, 'review-manifest.json'), { force: true });
   const report = { schema: 'option-b-trial-report/v1', authority: 'report-only; existing A checks unchanged', status: 'error', approval: 'not-granted', startedAt: new Date().toISOString(), environment: { node: process.version, platform: process.platform, architecture: process.arch }, executedChecks: [] };
   try {
     const reader = await import('./dependency-map-reader.mjs');
     report.preflight = await reader.preflight(); console.log(`[option-b-trial] known controls ${report.preflight}`);
     const rawPilot = git(cwd, ['show', `${reader.BASELINE_COMMIT}:${reader.HISTORICAL}/candidate.jsonld`]);
     if (hash(rawPilot) !== EXPECTED_PILOT_HASH) throw new Error('Reviewed pilot identity mismatch');
-    report.baseline = { commit: reader.BASELINE_COMMIT, review: 'https://github.com/jmarkmorris/architrino/pull/263', pilotSha256: hash(rawPilot), migration: 'option-b-map/v1 fixed artifact-path resolution; original scientific IDs and bindings retained' };
+    report.baseline = { commit: reader.BASELINE_COMMIT, review: 'https://github.com/jmarkmorris/architrino/pull/263', pilotSha256: hash(rawPilot), scopeAcceptance: 'not-granted; historical comparison only', migration: 'option-b-map/v1 fixed artifact-path resolution; original scientific IDs and bindings retained' };
     const baseline = reader.migrateReviewedPilot(JSON.parse(rawPilot));
     const selectedMapPath = mapPath ?? reader.MAP_PATH; reader.safePath(selectedMapPath);
     const mapRaw = local(cwd, selectedMapPath), current = JSON.parse(mapRaw);
+    const finiteRaw = local(cwd, FINITE_MAP), finite = JSON.parse(finiteRaw);
+    if (current.scope !== 'moving-single-root-only' || finite.scope !== 'finite-ledger-superposition-only') throw new Error('Map does not match its assigned chain');
     report.candidate = { head: git(cwd, ['rev-parse', 'HEAD']).toString().trim(), mapPath: selectedMapPath, mapSha256: hash(mapRaw), inputs: {} };
     const baseFiles = new Map(reader.sourcePaths(baseline).map(name => [name, git(cwd, ['show', `${reader.BASELINE_COMMIT}:${name}`])]));
-    const paths = [...new Set([...reader.sourcePaths(baseline), ...reader.sourcePaths(current), ...CODE_PATHS, selectedMapPath])];
+    const paths = [...new Set([...reader.sourcePaths(baseline), ...reader.sourcePaths(current), ...reader.sourcePaths(finite), ...CODE_PATHS, ...REVIEW_PATHS, selectedMapPath, FINITE_MAP])];
     const before = new Map(paths.map(name => [name, local(cwd, name)]));
     report.candidate.inputs = Object.fromEntries([...before].map(([name, raw]) => [name, hash(raw)]));
     const currentFiles = new Map([...new Set([...reader.sourcePaths(baseline), ...reader.sourcePaths(current)])].map(name => [name, before.get(name)]));
     report.graph = await reader.compare(baseFiles, baseline, currentFiles, current);
+    const finiteFiles = new Map(reader.sourcePaths(finite).map(name => [name, before.get(name)]));
+    report.chains = { 'moving-single-root': report.graph, 'finite-ledger-superposition': await reader.inspectNewChain(finiteFiles, finite) };
     // Raw candidate bytes are recorded even when RDF/JSON semantics are unchanged.
     report.graph.rawMapDiffersFromMigratedBaseline = !mapRaw.equals(Buffer.from(JSON.stringify(baseline, null, 2) + '\n'));
     if (report.graph.rawMapDiffersFromMigratedBaseline) report.graph.review = 'required';
-    for (const [label, args] of [['scientific-check', [SCIENCE]], ['existing-scientific-test', ['--test', TEST]]]) {
+    for (const [label, args] of [['scientific-check', [SCIENCE]], ['existing-scientific-test', ['--test', TEST]], ['finite-ledger-polynomial-check', [FINITE_CHECK]]]) {
       const { stdout, ...record } = execute(cwd, args, outputDirectory, label); report.executedChecks.push(record);
       if (label === 'scientific-check' && record.status === 'pass') {
         const result = reader.compareDisplayedResult(currentFiles.get(PROSE).toString('utf8'), JSON.parse(stdout));
@@ -60,8 +68,15 @@ export async function runTrial({ cwd = ROOT, outputDirectory = path.join(cwd, '.
     }
     if (report.executedChecks.some(row => row.status !== 'pass')) throw new Error('One or more bounded checks failed');
     for (const [name, raw] of before) if (!raw.equals(local(cwd, name))) throw new Error(`Input changed during trial: ${name}`);
-    report.status = report.graph.review === 'required' ? 'review-required' : 'pass';
-    report.coverage = 'Declared moving-single-root chain, exact selectors, old/new dependency impact, existing numerical verifier/test and one displayed maximum. Historical run/output records remain historical. No proof or dependency-completeness claim.';
+    const reviewManifest = { schema: 'option-b-review-manifest/v1', approval: 'not-granted', observedHead: report.candidate.head,
+      identityBoundary: 'Exact scoped working bytes; an operator-accepted published head and verified merge are still required for baseline advancement.',
+      maps: { 'moving-single-root': { path: selectedMapPath, sha256: hash(mapRaw) }, 'finite-ledger-superposition': { path: FINITE_MAP, sha256: hash(finiteRaw) } },
+      files: report.candidate.inputs };
+    const manifestRaw = JSON.stringify(reviewManifest, null, 2) + '\n';
+    fs.writeFileSync(path.join(outputDirectory, 'review-manifest.json'), manifestRaw);
+    report.reviewManifest = { path: 'review-manifest.json', sha256: hash(manifestRaw), approval: 'not-granted' };
+    report.status = Object.values(report.chains).some(chain => chain.review === 'required') ? 'review-required' : 'pass';
+    report.coverage = 'Two bounded chains: moving-single-root exact selectors, old/new dependency impact, existing numerical verifier/test and one displayed maximum; finite-ledger conditional theorem with three polynomial witnesses and omitted-row negatives. Second-chain baseline not established. Historical run/output records remain historical. No proof or dependency-completeness claim.';
   } catch (error) { report.error = error.message; }
   report.finishedAt = new Date().toISOString();
   fs.writeFileSync(path.join(outputDirectory, 'report.json'), JSON.stringify(report, null, 2) + '\n');

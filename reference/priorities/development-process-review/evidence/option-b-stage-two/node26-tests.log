@@ -1,0 +1,65 @@
+✔ known controls precede retained map; unchanged selected set is empty (33.021833ms)
+✔ stale sign rejects before query; refreshed sign keeps both obligations (100.04875ms)
+✔ deleted sign dependency retains old downstream impact (71.939375ms)
+✔ deleted result coverage cannot remove its own review obligation (57.745333ms)
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Foundational impact...
+[pr-validation] running Content Integrity...
+[pr-validation] running Animator runtime wiring...
+[pr-validation] running Option B two-chain trial (report-only)...
+[option-b-trial] known controls passed: SHA, byte selector, hand closure, deleted dependency/coverage, stale binding, displayed match/wrong/missing/duplicate
+[option-b-trial] REPORT-ONLY review-required: required; /var/folders/y8/6b6hk2ld5rl_b9dh0xzf0yr00000gn/T/option-b-dispatch-8VphQO/.local-data/option-b-trial/report.json
+[pr-validation] REPORT-ONLY review-required: Option B two-chain trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+✔ unsupported scalar dependency remains visible for human semantic review (72.2745ms)
+✔ outside-selector source edit retains conservative source review (31.098958ms)
+✔ displayed match, wrong, missing and duplicate result controls (0.238209ms)
+✔ unknown contexts, fields, duplicate IDs, paths, endpoints and revision reuse reject (41.838667ms)
+✔ actual CLI writes bounded execution evidence and replaces success on missing map (1356.248333ms)
+✔ actual publication command dispatcher executes B after the unchanged A commands (842.431709ms)
+✔ actual CLI rejects wrong display after science and stale or duplicate selectors before query (2013.255666ms)
+✔ corrected prose coverage names fresh output and binds actual Node source (0.095125ms)
+✔ finite-ledger scope has no fabricated baseline; old/new controls retain review (137.483959ms)
+✔ PR procedure executable blocks preserve commands required for advancement verification (1.278834ms)
+✔ PR procedure, pre-push hook, and CI share the aggregate gate (1.383ms)
+✔ routine PR validation excludes on-demand iOS package freshness without dropping web checks (0.339833ms)
+✔ routine notation validation ignores a saved iOS snapshot but rejects authored notation drift (136.151459ms)
+✔ children's-book pilot exports stay local and optional during routine PRs (1.755333ms)
+✔ PR procedure retains permission diagnostics without obsolete acceptance obligations (0.966542ms)
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Foundational impact...
+[pr-validation] running Content Integrity...
+[pr-validation] running Animator runtime wiring...
+[pr-validation] running Option B two-chain trial (report-only)...
+[pr-validation] REPORT-ONLY error: Option B two-chain trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Foundational impact...
+[pr-validation] running Content Integrity...
+[pr-validation] running Animator runtime wiring...
+[pr-validation] running Option B two-chain trial (report-only)...
+[pr-validation] REPORT-ONLY error: Option B two-chain trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+✔ validation receipt verifies only the exact staged and overlay state (278.704333ms)
+✔ publication validation refuses partially staged files before running checks (99.628875ms)
+✔ a matching snapshot cannot authorize an untested staged version (157.162083ms)
+✔ validation receipt invalidates when the comparison base moves (142.1125ms)
+✔ validation receipt does not cross branch identity (146.996ms)
+✔ validation receipt rejects schema and contract mismatch (146.666292ms)
+✔ validation runner writes only when repository state stays fixed (292.819375ms)
+✔ validation state comparison names the first mismatched field (0.77975ms)
+✔ report-only B errors stay visible and do not change the required A command policy (1.297458ms)
+✔ publication receipt preserves B error explicitly alongside successful required checks (230.954375ms)
+✔ a zero-exit B invocation with no new report cannot reuse an old success (1.132625ms)
+✔ pre-push parser does not advance on empty or malformed input (1.466416ms)
+✔ pre-push policy skips one or more pure ref deletions (0.112375ms)
+✔ pre-push policy skips a new codex branch at exact origin/main (0.075875ms)
+✔ pre-push policy runs for content-bearing, existing, or non-codex refs (0.10225ms)
+✔ pre-push policy runs for mixed deletion and successor creation (0.066875ms)
+✔ pre-push policy runs when origin/main cannot be verified (0.054833ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7172.06975

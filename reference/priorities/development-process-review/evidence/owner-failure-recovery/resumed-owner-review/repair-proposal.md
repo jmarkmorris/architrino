@@ -15,3 +15,11 @@ Legend: ✓ Done — supported bounded work complete; ◐ Partial — preparatio
 The PDG Python entry now delegates to the same JavaScript reference renderer. Therefore regenerated SVG parity establishes reproducibility and catalog consistency, not independent rendering correctness. The older recovery report's proposed “independent JS renderer” comparison is superseded by this live source inspection. Canonical sample checks and separate authored rendering controls remain useful within their stated bounds.
 
 Evidence: `before-bindings.json`, `archie-proposed-response-changes.json`, `borg-projection-review.json`, and `pdg-inventory-review.json`. The current Borg live-model binding remains a separate semantic App Solver decision; it is excluded from this mechanical refresh authorization.
+
+## Current disposition after authored deployment repair
+
+The deployment row above records the original proposal. Its three authored identity fields, 12 HTTP/deployment controls, standalone deployment validator and actual SDK 1.30.0 HTTP selection are now complete, as recorded in [owner recovery](../../../analysis/owner-failure-recovery.md#resumed-authored-deployment-and-actual-sdk-http-repair). The combined source/tool/stdio selection still depends on the separately authorized generated fixture work; it is not marked complete by those deployment passes.
+
+## Authorized package execution
+
+The operator-delegated coordinator subsequently authorized G1–G5 regeneration and the disclosed manual projection refresh. These rows are now complete within the [mechanical checkpoint](../../../analysis/owner-failure-recovery.md#authorized-mechanical-closeout-checkpoint--september-8), including the three owner checks, 41 Archie tests, 20 Borg tests and four glyph tests. The original blocked labels above retain the proposal-time status; the current owner record supersedes them. The upstream generated router remains a separately owned freshness failure. G7/G8 are authorized once at stable closeout after evidence-impact inspection; they were not run here.

@@ -1,0 +1,84 @@
+{
+  "status": "prepared draft; not installed or accepted",
+  "quiet": {
+    "consistency": "pass",
+    "review": "unchanged-relative-to-reviewed-baseline",
+    "approval": "not-granted",
+    "changedFiles": [],
+    "changedObjects": [],
+    "changedRelations": [],
+    "removedRelations": [],
+    "addedRelations": [],
+    "affected": [],
+    "selectedChecks": [],
+    "objects": 6,
+    "relationships": 7
+  },
+  "deletion": {
+    "consistency": "pass",
+    "review": "required",
+    "approval": "not-granted",
+    "changedFiles": [],
+    "changedObjects": [],
+    "changedRelations": [
+      "https://architrino.com/knowledge/finite-ledger/dependsOn-gradient-linearity-proof-per-row-gradient-premise"
+    ],
+    "removedRelations": [
+      "https://architrino.com/knowledge/finite-ledger/dependsOn-gradient-linearity-proof-per-row-gradient-premise"
+    ],
+    "addedRelations": [],
+    "affected": [
+      "finite-ledger-identity",
+      "gradient-linearity-proof"
+    ],
+    "selectedChecks": [
+      "finite-ledger-polynomial-check"
+    ],
+    "objects": 6,
+    "relationships": 6
+  },
+  "alteration": {
+    "consistency": "pass",
+    "review": "required",
+    "approval": "not-granted",
+    "changedFiles": [],
+    "changedObjects": [],
+    "changedRelations": [
+      "https://architrino.com/knowledge/finite-ledger/dependsOn-gradient-linearity-proof-finite-common-chart"
+    ],
+    "removedRelations": [],
+    "addedRelations": [],
+    "affected": [
+      "finite-ledger-identity",
+      "gradient-linearity-proof"
+    ],
+    "selectedChecks": [
+      "finite-ledger-polynomial-check"
+    ],
+    "objects": 6,
+    "relationships": 7
+  },
+  "coverage": {
+    "consistency": "pass",
+    "review": "required",
+    "approval": "not-granted",
+    "changedFiles": [],
+    "changedObjects": [],
+    "changedRelations": [
+      "https://architrino.com/knowledge/finite-ledger/checks-finite-ledger-polynomial-check-finite-ledger-identity"
+    ],
+    "removedRelations": [
+      "https://architrino.com/knowledge/finite-ledger/checks-finite-ledger-polynomial-check-finite-ledger-identity"
+    ],
+    "addedRelations": [],
+    "affected": [
+      "finite-ledger-identity"
+    ],
+    "selectedChecks": [
+      "finite-ledger-polynomial-check"
+    ],
+    "objects": 6,
+    "relationships": 6
+  },
+  "readerBoundary": "Only scratch preview reader admits the second exact scope; live reader unchanged."
+}

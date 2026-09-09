@@ -26,7 +26,7 @@ function refresh(map, inputs) {
 }
 test('known controls precede retained map; unchanged selected set is empty', async () => {
   const report = await compare(files, baseline, files, baseline);
-  assert.equal(report.objects, 21); assert.equal(report.relationships, 37); assert.deepEqual(report.selectedChecks, []);
+  assert.equal(report.objects, 22); assert.equal(report.relationships, 38); assert.deepEqual(report.selectedChecks, []);
 });
 test('stale sign rejects before query; refreshed sign keeps both obligations', async () => {
   const modified = new Map(files), b = row(baseline, 'sign').sourceBindings[0];
@@ -82,10 +82,19 @@ test('actual CLI writes bounded execution evidence and replaces success on missi
   const run = extra => spawnSync(process.execPath, [cli, '--repo', root, '--output-dir', output, ...extra], { encoding: 'utf8', timeout: 120000 });
   const good = run([]); assert.equal(good.status, 0, good.stdout + good.stderr);
   let report = JSON.parse(fs.readFileSync(path.join(output, 'report.json'))); assert.equal(report.status, 'review-required');
-  assert.deepEqual(report.executedChecks.map(r => r.label), ['scientific-check', 'prose-check', 'existing-scientific-test']);
+  assert.deepEqual(report.executedChecks.map(r => r.label), ['scientific-check', 'prose-check', 'existing-scientific-test', 'finite-ledger-polynomial-check']);
   for (const item of report.executedChecks) assert.equal(item.status, 'pass');
+  assert.equal(report.chains['finite-ledger-superposition'].baseline, 'not-established');
+  assert.equal(report.chains['finite-ledger-superposition'].review, 'required');
+  const manifestRaw = fs.readFileSync(path.join(output, 'review-manifest.json'));
+  assert.equal(sha256(manifestRaw), report.reviewManifest.sha256);
+  const manifest = JSON.parse(manifestRaw); assert.equal(manifest.approval, 'not-granted');
+  assert.deepEqual(Object.keys(manifest.maps), ['moving-single-root', 'finite-ledger-superposition']);
+  for (const [name, digest] of Object.entries(manifest.files)) assert.equal(sha256(fs.readFileSync(path.join(root, name))), digest);
+
   const bad = run(['--map', 'missing-map.jsonld']); assert.equal(bad.status, 1);
   report = JSON.parse(fs.readFileSync(path.join(output, 'report.json'))); assert.equal(report.status, 'error'); assert.equal(report.executedChecks.length, 0);
+  assert.equal(fs.existsSync(path.join(output, 'review-manifest.json')), false);
 });
 test("actual publication command dispatcher executes B after the unchanged A commands", async t => {
   const { runValidationCommands } = await import('../scripts/pr-validation-receipt.mjs');
@@ -103,13 +112,13 @@ test("actual publication command dispatcher executes B after the unchanged A com
   assert.equal(executed, true); assert.equal(outcomes[0].status, 'review-required'); assert.match(outcomes[0].reportSha256, /^[a-f0-9]{64}$/);
 });
 
-test('actual CLI rejects refreshed wrong display after science and duplicate display before query', t => {
+test('actual CLI rejects wrong display after science and stale or duplicate selectors before query', t => {
   const fixture = fs.mkdtempSync(path.join(os.tmpdir(), 'option-b-negative-cli-'));
   t.after(() => fs.rmSync(fixture, { recursive: true, force: true }));
   // Read-only Git object access to the reviewed snapshot; fixture writes stay in tmp.
   fs.symlinkSync(path.join(root, '.git'), path.join(fixture, '.git'));
   fs.symlinkSync(path.join(root, 'node_modules'), path.join(fixture, 'node_modules'));
-  const extra = ['package.json', 'package-lock.json', 'scripts/equation-mapping/check-moving-single-root-map.mjs', 'scripts/equation-mapping/dependency-map-reader.mjs', 'reference/priorities/development-process-review/evidence/option-b-corrected-candidate/result_record_check.py'];
+  const extra = ['reference/priorities/development-process-review/analysis/option-b-first-chain-baseline-review.md', 'reference/priorities/master-equation-closure/contracts/finite-ledger-dependencies.jsonld', 'reference/priorities/master-equation-closure/contracts/moving-single-root-dependency-map.md', 'reference/priorities/master-equation-closure/contracts/finite-ledger-dependency-map.md', 'scripts/equation-mapping/verify-finite-ledger-superposition.mjs', 'tests/equation-dependency-map.test.mjs', 'tests/pr-validation-receipt.test.js', 'scripts/pr-validation-receipt.mjs', '.github/workflows/option-b-trial.yml', 'package.json', 'package-lock.json', 'scripts/equation-mapping/check-moving-single-root-map.mjs', 'scripts/equation-mapping/dependency-map-reader.mjs', 'reference/priorities/development-process-review/evidence/option-b-corrected-candidate/result_record_check.py'];
   for (const name of new Set([...sourcePaths(baseline), ...extra])) {
     fs.mkdirSync(path.dirname(path.join(fixture, name)), { recursive: true }); fs.copyFileSync(path.join(root, name), path.join(fixture, name));
   }
@@ -117,7 +126,7 @@ test('actual CLI rejects refreshed wrong display after science and duplicate dis
   const display = 'Across five step refinements, the largest component residual was $2.12\\times10^{-12}$';
   assert.equal(original.split(display).length, 2);
   fs.mkdirSync(path.dirname(path.join(fixture, MAP_PATH)), { recursive: true });
-  for (const [label, changed] of [['wrong-display', original.replace(display, display.replace('2.12', '9.99'))], ['duplicate-display', original + '\n' + display + '\n']]) {
+  for (const [label, changed] of [['wrong-display', original.replace(display, display.replace('2.12', '9.99'))], ['duplicate-display', original + '\n' + display + '\n'], ['finite-stale', original.replace('\\Phi_{\\mathcal B}\n=\n\\sum_{b\\in\\mathcal B}\\Phi_b.', '\\Phi_{\\mathcal B}\n=\nwrong_sum.')]]) {
     const inputs = new Map(files); inputs.set(name, Buffer.from(changed)); const map = clone();
     if (label === 'wrong-display') {
       for (const binding of bindingsOf(map)) if (binding.path === name && binding.selector.kind === 'literal') binding.selector.text = binding.selector.text.replace('2.12', '9.99');
@@ -136,4 +145,36 @@ test('actual CLI rejects refreshed wrong display after science and duplicate dis
       assert.match(report.error, /Missing or ambiguous literal/);
     }
   }
+});
+
+
+test('corrected prose coverage names fresh output and binds actual Node source', () => {
+  assert.equal(baseline['@graph'].some(r => r['@id'] === NS + 'checks-prose-check-output'), false);
+  const edge = baseline['@graph'].find(r => r['@id'] === NS + 'checks-prose-check-fresh-output');
+  assert.equal(edge.toObject, row(baseline, 'fresh-output-contract')['@id']);
+  assert.ok(edge.justifications.every(b => b.path.endsWith('.mjs')));
+});
+
+test('finite-ledger scope has no fabricated baseline; old/new controls retain review', async () => {
+  const { inspectNewChain } = await import('../scripts/equation-mapping/dependency-map-reader.mjs');
+  const finite = JSON.parse(fs.readFileSync(path.join(root, 'reference/priorities/master-equation-closure/contracts/finite-ledger-dependencies.jsonld')));
+  const inputs = new Map(sourcePaths(finite).map(name => [name, fs.readFileSync(path.join(root, name))]));
+  const pending = await inspectNewChain(inputs, finite);
+  assert.equal(pending.baseline, 'not-established'); assert.equal(pending.review, 'required'); assert.equal(pending.approval, 'not-granted');
+  assert.equal(pending.objects, 6); assert.equal(pending.relationships, 7);
+  const quiet = await compare(inputs, finite, inputs, finite);
+  assert.deepEqual(quiet.selectedChecks, []); assert.deepEqual(quiet.changedRelations, []);
+  assert.equal(quiet.review, 'unchanged-relative-to-selected-baseline'); assert.equal(quiet.approval, 'not-granted');
+  const ns = 'https://architrino.com/knowledge/finite-ledger/';
+  for (const id of ['dependsOn-gradient-linearity-proof-per-row-gradient-premise', 'checks-finite-ledger-polynomial-check-finite-ledger-identity']) {
+    const removed = structuredClone(finite); removed['@graph'] = removed['@graph'].filter(r => r['@id'] !== ns + id);
+    const result = await compare(inputs, finite, inputs, removed);
+    assert.equal(result.review, 'required'); assert.deepEqual(result.selectedChecks, ['finite-ledger-polynomial-check']); assert.equal(result.removedRelations.length, 1);
+  }
+  const changed = structuredClone(finite), edge = changed['@graph'].find(r => r['@id'] === ns + 'dependsOn-gradient-linearity-proof-finite-common-chart');
+  edge.meaning = 'known unsupported infinite-sum extension'; edge.revisionId = 'negative/v1';
+  assert.deepEqual((await compare(inputs, finite, inputs, changed)).selectedChecks, ['finite-ledger-polynomial-check']);
+  const stale = new Map(inputs); stale.set('content/markdown/aaa/dynamics/master-equation.md', Buffer.from('removed source'));
+  await assert.rejects(validate(stale, finite), /Missing or ambiguous literal/);
+  await assert.rejects(compare(files, baseline, inputs, finite), /Cross-scope comparison/);
 });
