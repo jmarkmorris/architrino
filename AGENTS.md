@@ -72,6 +72,12 @@ Before attempting the repository bootstrap reads, determine whether the current 
 - Follow [reference/op/long-running-test-heartbeats.md](reference/op/long-running-test-heartbeats.md) for long-running jobs: rebuild first, keep the job watched or observably detached, and emit a fixed-cadence heartbeat.
 - If you are working on a task in a priority list and you complete that task, remove it from the priority list and renumber any items that follow.
 
+#### Project file placement
+
+Keep agent-created Architrino work in this repository by default. Durable analyses, plans, teaching notes and decision records belong with their existing owner, normally the relevant directory under `reference/priorities/` during development. Put disposable task scratch files in `.tmp/<task>/`; use the established ignored `.local-data/` owners for runtime outputs, validation receipts and retained local evidence. Never treat scratch storage as the only home of a useful finding.
+
+Do not choose Documents, a projectless task output folder, or an external temporary directory as the default home for project deliverables merely because a task is separate. A separate task does not imply a separate checkout or authorize a worktree. Use an external location only when the operator requests it or a concrete tool/environment constraint requires it; explain that constraint and bring durable results back to their repository owner. This rule concerns agent-chosen file placement, not system-managed caches or tools' internal temporary files. Preserve existing evidence and check consumers before relocating earlier outputs.
+
 #### Generated Artifacts
 
 - Do not manually edit generated artifacts unless the generator is missing, stale, or broken and the manual edit is explicitly called out.

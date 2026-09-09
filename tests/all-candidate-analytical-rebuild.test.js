@@ -126,6 +126,12 @@ test("methodology coverage is exact and a methodology byte change does not advan
   ));
   const validated = validateMethodologyCoverageContract(coverage, methodology);
   assert.equal(validated.measureIds.length, 29);
+  const unreviewed = structuredClone(coverage);
+  unreviewed.methodology.impactReview = "unreviewed-source-change";
+  assert.throws(
+    () => validateMethodologyCoverageContract(unreviewed, methodology),
+    /requires an explicit analytical coverage impact review/,
+  );
   assert.throws(
     () => validateMethodologyCoverageContract(
       coverage,

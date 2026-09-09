@@ -13,7 +13,7 @@ This is the canonical execution ledger for repo-wide deployment, hosting, cost, 
 7. `post_campaign_binding_corruption_sweep` — [OPS-024](#ops-024--post-campaign-binding-corruption-sweep). Status: `In progress`; every non-environmental failure in the full sweep is classified and either repaired or routed to a named decision.
 
 8. `internal_reference_section_numbering` — [OPS-025](#ops-025--internal-reference-section-numbering). Status: `Queued`; define the convention and roll out by document type from the operator-approved trial.
-9. `github_presence_and_community_guidance_review` — [OPS-026](#ops-026--github-presence-and-community-guidance-review). Status: `Queued`; review public GitHub guidance against agreed operating practices.
+9. `github_presence_and_community_guidance_review` — [OPS-026](#ops-026--github-presence-and-community-guidance-review). Status: `Awaiting verification`; review completed; approved sentence deletion, discussion-to-issue and PR guidance applied; remaining edits await operator disposition.
 
 ## Queued task records
 
@@ -419,6 +419,8 @@ The ten slowest are two `eq21-*` transfer residuals that hit the 100 s cap, `coi
 
 ### OPS-024 — Post-campaign binding corruption sweep
 
+**Current disposition, September 8, 2026 — ◐ Partial; broader acceptance remains open.** The [live recovery queue](../development-process-review/work-queue.md) and [semantic closeout record](../development-process-review/analysis/semantic-closeout-review.md) record completion of the accepted finite operational repairs, including the subsequent G8 projection resolution. This does not close OPS-024: the full sweep and final same-candidate acceptance remain open/deferred under their recorded conditions. Blocked evidence/input obligations, calibration prerequisites and deferred scientific continuation remain preserved with their owners in those records. Earlier observations below are retained as history; they do not override these later scoped dispositions. This navigation update authorizes no new work, archive or reassignment.
+
 **Shared-helper caller audit, 2026-09-07.** The [caller audit](../development-process-review/analysis/shared-helper-caller-audit.md) documents 27 selected occurrences in 19 files and reproduces the cached-root binding-test failure. Git-source hashing attributes the new helper mismatches to the streamed repair at c86595d13; they matched at 21771de11. Seven inspected entry declarations also have separate input/host constraints. Classification is complete, while supported-profile migration remains open; the refined verifier is still a current historical-transport dependency and cannot be globally repinned or retired. The earlier 158 passing tests do not cover these launch regressions.
 
 **Streamed-leaf operational migration, 2026-09-07.** The [streamed migration](../development-process-review/analysis/streamed-leaf-launch-migration.md) resolves the diagnostic dependency/readiness defect and carries historical selection plus the exact physical source union in invocation version five. Final combined Node controls pass 158/158 with no skips or cancellations, including independent closure observations for 39 process fixtures. Long captured command strings now remain exact within unchanged aggregate evidence limits; the competitor scan distinguishes the test filename from the actual coordinator. Retained adapter construction uses 265 sources and 36 routes with zero numerical calls. The broader shared-helper caller audit remains open; old scientific records and references are preserved, and these controls grant no scientific acceptance.
@@ -648,7 +650,7 @@ The reference builder follows the write authority of the executing queue item. A
 
 ### OPS-026 — GitHub Presence and Community guidance review
 
-- **Status:** Review complete; awaiting operator disposition. The [clarity and alignment review](../development-process-review/analysis/public-community-guidance-review.md) records proposed edits; public guidance remains unchanged.
+- **Status:** ◐ Partial — Awaiting verification / operator disposition. The [clarity and alignment review](../development-process-review/analysis/public-community-guidance-review.md) is complete; the operator-approved AI-assessment sentence deletion, actionable discussion-to-issue wording and coherent PR contribution guidance are applied; optional checkpoint-tag advice is removed. The other proposed edits remain unapproved.
 - **Priority object:** `github_presence_and_community_guidance_review`
 - **Scope:** Inspect [GitHub Presence and Community](../../../content/markdown/aaa/archie/github-presence-and-community.md), including Discussions, issues, pull requests, and optional checkpoint/tag examples. Compare its public-contributor scope with the live [Git Lifecycle procedures](../../op/git/README.md), shared-checkout agent permissions, and outcomes accepted through the [process guide](../development-process-review/processes-git-codex-claude.md).
 - **Required analysis:** Identify concrete contradictions, ambiguous audiences, outdated claims, or missing routing. Distinguish independent contributors from agents sharing the operator's checkout; a difference in scope is not itself a defect. Inspect related README guidance where needed to assess consistency.

@@ -285,3 +285,72 @@ C1–C3 require comparison with the actual advertised interface and existing con
 The first selected mechanical package completes G1–G5 within the [recorded controls](analysis/owner-failure-recovery.md#authorized-mechanical-closeout-checkpoint--september-8): 41 Archie tests, 20 Borg tests and four glyph tests pass with closed process groups, alongside each fixture/projection owner check. Original inventory failures remain historical. Upstream router freshness remains with its process owner. Next package: G9/G10 statement-level review and C1–C3 supported-interface reconciliation.
 
 Checkpoint verification: priority ranking `831f4111-c355-4b37-b6e5-f74ce4fcf002` and retention `771d4b7a-36e7-4ff7-8f41-46e591fc4116` pass with closed groups; `git diff --check` passes. The earlier mistyped `check-machine-artifact-retention.mjs` command (`ed025755…`) failed before any validator ran and is not a retention failure. Initial sandbox process-spawn/probe attempts required supported-host execution. The first regeneration request was automatically rejected for missing explicit authorization evidence; after reading the coordinator's actual user delegation and repair decision, the same bounded request was accepted. No bypass or broader generation occurred. Final owner-filtered supervisor closeout reports `clear` after 760 leases. Writers and owned jobs are stopped at this mechanical package boundary.
+
+## 2026-09-08 — Veronica semantic closeout batch
+
+Start-state Git inspection identifies clean `codex/skylab` at `6efafe15b4f120638fe6938aa65c817eb293e4a8`. The [semantic review](analysis/semantic-closeout-review.md) records the exact source transitions, all 29 methodology dispositions, every EOM binding statement and the current single-rung versus full-dispatcher boundary. It records current admission repair, 26/27 methodology tests, 262 passing Borg/causal-wake tests, and passing circular controls. The remaining calibration implementation mismatch is identical at starting HEAD; no calibration evidence was repinned. Authorized G8 generation exposed historical/current projection differences; only the batch-generated three receipt writes were removed, preserving raw and pre-batch receipt bytes. No EOM or scientific campaign was run, and no publication occurred. Parent process/checklist changes observed during the batch remain untouched.
+
+Final selected verification: content-integrity `bd59bd09-d469-44cf-980b-a6ef649317e7` passes all 34 required checks, with the optional broad sweep explicitly skipped, closing in 31.201 seconds. Strict scene check `0a301284-3446-4c89-b124-557a4f3d4724` passes. The circular selection contains 19 passing tests. G7 generation/check `2037037f-a688-45e1-a244-d1ef3d1f0150` / `103bf6b4-0b4f-48e5-9735-9562a9f31f97` pass; output is ignored local navigation only. Final documentation capture changes its input metadata, so refresh/check once more after this capture under the same authorized command; this does not change scientific evidence. G10 is complete within its required selected checks. G9 retains its one distinct uninstantiated-calibration assertion and G8 retains the explicit provenance-mapping failure. No aggregate all-tests or scientific-acceptance claim is made.
+
+The finite operational verification action leaves the executable queue with G8’s exact provenance-mapping decision. G9’s statement-level review is complete but its original four-file success condition retains the independently identified calibration prerequisite under Braid Program. All original scientific and missing-input dispositions remain preserved.
+
+Final retention `e0129792-c48b-4952-ab18-1c7c888f7eeb` and priority-ranking `3a3e8efe-7764-4a31-a478-86e523689472` pass with closed groups. Final source review confirms only the EOM digest, dated methodology admission metadata/token and one wrong-token negative control change in production/test scope. Historical receipt changes have been removed. The local navigation output is regenerated/rechecked after this last authored capture; operational run records remain under ignored owned-compute storage.
+
+## 2026-09-08 — G8 projection resolution
+
+Operator “do 1” selected the last finite receipt-projection task. The [mapping and verification](analysis/semantic-closeout-review.md#g8-receipt-projection-resolution) preserve historical correction/claim wording and path/hash provenance, explicitly translate only the existing 12:12 configuration relation, and reject unreviewed source decisions. All four generated receipt checks and all 16 affected Node tests pass; raw hashes and every numerical receipt field remain unchanged by comparison against pre-edit snapshots. G8 leaves the active queue. Broader verification, unavailable inputs and scientific continuation retain their existing deferred/blocked status. No publication occurred.
+
+The unchanged orthogonal Python receipt consumer also passes all six tests under the shared venv (`ea8db19f-0c52-4c67-93b8-246725310ea8`, closed group). Retention checks pass for the 1,509-file measured machine inventory, and `git diff --check` passes. These checks remain scoped to G8 and its consumers.
+
+## 2026-09-08 — Process ownership reconciliation and Pages separation
+
+Reggie accepted the process checklist from Betty in the existing codex/skylab checkout. Cross-task coordination subsequently moved to the new Betty task. The campaign now distinguishes the completed credential/PR/documentation migrations, local Pages implementation, exact B-map and public-edit decisions, separately owned storage cleanup and deferred broader machinery at individual-item level. Recovery files and Jughead's lesson remain with their owners. The OPS-026 summary now agrees with its review: the approved sentence deletion is applied; remaining proposed edits await disposition.
+
+Pages PR and main deployment workflows share one local composite build action. All original validation commands, Node version and pinned Actions, build job identifier, artifact path/retention, main deployment guard, environment and preflight remain. The runtime-asset-build test consumer was adapted to the new paths without changing the original deployment truth-table expectations. Current hosting and navigation prose points to the two workflows. No branch/settings/publication operation occurred.
+
+Supervised serial verification b3629965-13e7-4fda-bcd5-3240b5ba0a75 passed 28 tests across pages-image-assets, runtime-asset-build, runtime-asset-fresh-checkout and pr-branch-process-conformance, with exit zero, no skips and process-group closure. Ruby parsed all three YAML files. A temporary link extractor first passed a known fenced-code/local/fragment/external fixture, then found no missing file targets among 179 local links across the seven edited Markdown owners; fragments were not checked. Priority-ranking validation and git diff --check passed. No whole-repository health or live deployment claim follows.
+
+The campaign's sections 3.9 and 3.10 record the remote acceptance boundary, inaccessible classic branch-protection read (HTTP 403), preserved build check contract and exact published two-map decision. The map comparison first passed the known abc SHA-256 case, then matched both live maps and both named Git commits to the retained integration manifest. No baseline was accepted or advanced. The archived source review and historical manifests remain byte-preserved. The panel open request was queued by Codex; rendered preview was not verified.
+
+## 2026-09-08 — Public guidance item 1 approved
+
+Betty relayed explicit operator approval for actionable discussion-to-issue routing. Both the Discussions Community passage and How Ideas Mature threshold now use actionable problems/proposals rather than undefined community support. The existing review records item 1 complete and the operator's equal-standing human/AI direction with the exact proposed replacement paragraph. Item 2 public wording remains unchanged pending disposition; other pending choices are preserved. Scoped diff inspection and git diff --check validate the editorial change; no application behavior or publication is claimed.
+
+## 2026-09-08 — Public guidance item 3 approved
+
+Betty relayed operator endorsement of the coherent theory-contribution paragraph, including explicit welcome for cogent falsification and demonstrations of defects. The public PR routing bullet and explanation now require reasoning, evidence, affected-material consistency and honest unresolved implications without requiring a complete replacement theory. Existing review and status summaries record item 3 complete. Item 2 and the checkpoint/audience proposals remain pending. Scoped diff inspection and git diff --check pass; no publication.
+
+## 2026-09-08 — Public guidance item 4 retired
+
+Operator-approved removal deleted both optional long-session checkpoint-tag paragraphs and commands. The existing review records the bounded reference/op/git search and relevant checkpoint passage inspection: no current need for this particular advice was established, so it was retired without relocation or a new artifact. Corrected the operating guide's public-page navigation description. Release/provenance tags and guarded publication rules remain outside scope. Scoped diff inspection and git diff --check pass; no publication.
+
+## Archive readiness navigation review
+
+Betty requested reconciliation only. The [archive-readiness review](analysis/archive-readiness-review.md) records every remaining G/C/I/N/S/V/P group, receiving links and revisit conditions, distinguishes Braid's existing calibration backlink from missing final receiver links, and identifies role-only G6/I5/S7–S8/integration custody. Recovery entry statuses now distinguish completed finite closeout from blocked/deferred work. No evidence, receiving-owner queue, process file, source, generator or test is changed or executed. Archive/reassignment remains unperformed pending Betty's receiving-owner review.
+
+## Publication handoff — Veronica paused
+
+Betty relayed the operator's explicit designation to publish accumulated work on `codex/skylab`. Veronica is ready at this bounded checkpoint and pauses repository writes pending publication completion. Publication does not close the blocked/deferred recovery obligations or authorize archive/reassignment. The [archive-readiness review](analysis/archive-readiness-review.md) preserves the remaining receiving-owner decisions; no further receiving-owner edit is included.
+
+Intended accumulated recovery files (repository-relative; shared-file contributions by other owners must also be preserved):
+
+- `reference/priorities/app-solver/contracts/master-eom-binding-v1.md`
+- `reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-complete-cycle.receipt.v1.json`
+- `reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-12-12-alternating.receipt.v1.json`
+- `reference/priorities/braid-program/evidence/2026-08-29-planar-co-rotating-n-n-circular-balance.receipt.v1.json`
+- `reference/priorities/braid-program/work-queue.md`
+- `reference/priorities/development-process-review/README.md`
+- `reference/priorities/development-process-review/analysis/archive-readiness-review.md`
+- `reference/priorities/development-process-review/analysis/owner-failure-recovery.md`
+- `reference/priorities/development-process-review/analysis/recovery-closeout-review.md`
+- `reference/priorities/development-process-review/analysis/review-and-repair-plan.md`
+- `reference/priorities/development-process-review/analysis/semantic-closeout-review.md`
+- `reference/priorities/development-process-review/priorities.md`
+- `reference/priorities/development-process-review/work-log.md`
+- `reference/priorities/development-process-review/work-queue.md`
+- `scripts/build-machine-artifact-receipts.mjs`
+- `src/prescribed-path-analysis/AllCandidateAnalyticalCampaign.mjs`
+- `src/prescribed-path-analysis/analytical-measure-coverage.v2.json`
+- `tests/all-candidate-analytical-rebuild.test.js`
+
+The records retain the earlier selected results: G9 26/27 with the frozen uninstantiated-calibration mismatch; G10 262 passes; circular 19 passes; 34 required content checks and strict scene check; G8 all four receipt checks, 16 Node and six Python passes, unchanged numerical fields/raw bindings, and retention pass. These belong to their recorded states, not Betty's final combined candidate. Readiness-only verification checks 39 local link targets after a known parser fixture; anchors remain unchecked. `git diff --check` passes at handoff. No new tests or scientific jobs ran for this documentation review. Ignored `.tmp/veronica-g8/` snapshots and `.local-data/` operational logs/raw evidence are excluded from publication; no incomplete draft is intended among the 18 files above. Betty owns generation and the exact-state publication gate. Other dirty files belong to their existing owners and are not excluded from Betty's separately authorized accumulated publication by this scoped list.

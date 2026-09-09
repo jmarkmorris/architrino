@@ -8,7 +8,7 @@ Use this index to find the owner for a question; opening a guide does not author
 
 ## Guides and campaign status
 
-- [Git-backed knowledge architecture](git-backed-knowledge-architecture.md) explains source history, checks, provenance, and the accepted but deferred option B.
+- [Git-backed knowledge architecture](git-backed-knowledge-architecture.md) explains source history, checks, provenance, and the bounded report-only option B integration and deferred wider adoption.
 - [Git and GitHub operating guide](git-github-operating-guide.md) explains repository setup, credentials, collaboration, and current versus deferred workflows.
 - [Development-process campaign checklist](../../priorities/development-process-review/processes-git-codex-claude.md#3-rollout-and-integration-plan) records completed, partial, open, and deferred implementation work.
 

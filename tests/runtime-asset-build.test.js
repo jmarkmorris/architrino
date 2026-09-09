@@ -171,35 +171,36 @@ test("local, CI, service, and Pages entrypoints explicitly prepare runtime outpu
   assert.match(read("scripts/check-content-integrity.mjs"), /verify-assembly-record-byte-identity\.mjs/);
   assert.match(read("scripts/pr-validation-receipt.mjs"), /prepare-runtime-assets\.mjs/);
   assert.match(read("scripts/archie-service/run-full-corpus-mcp-server.mjs"), /familyId: "full-corpus-index"/);
-  const workflow = read(".github/workflows/pages.yml");
-  assert.match(workflow, /pull_request:/);
-  assert.match(workflow, /github.ref == 'refs\/heads\/main'/);
-  assert.match(workflow, /vars.ARCHITRINO_PAGES_DEPLOY_ENABLED == 'true'/);
-  assert.match(workflow, /github.event_name == 'push' \|\| github.event_name == 'workflow_dispatch'/);
+  const workflow = read(".github/actions/build-pages/action.yml");
+  const deployment = read(".github/workflows/pages-deploy.yml");
+  assert.match(read(".github/workflows/pages.yml"), /pull_request:/);
+  assert.match(deployment, /github.ref == 'refs\/heads\/main'/);
+  assert.match(deployment, /vars.ARCHITRINO_PAGES_DEPLOY_ENABLED == 'true'/);
+  assert.match(deployment, /github.event_name == 'push' \|\| github.event_name == 'workflow_dispatch'/);
   assert.match(workflow, /node --test tests\/runtime-asset-fresh-checkout.test.js/);
   assert.match(workflow, /build-static-site\.mjs --out \.tmp\/site/);
   assert.match(workflow, /verify-assembly-record-byte-identity\.mjs --check/);
   assert.ok(workflow.indexOf("verify-assembly-record-byte-identity.mjs --check") < workflow.indexOf("uses: actions/upload-pages-artifact@"));
   assert.match(workflow, /retention-days: 1/);
-  assert.match(workflow, /needs: build/);
+  assert.match(deployment, /needs: build/);
   assert.match(read(".github/workflows/content-integrity.yml"), /fetch-depth: 0/);
 });
 
 test("Pages opt-in gates the entire deployment job, not builds or validation", () => {
-  const workflow = read(".github/workflows/pages.yml");
+  const workflow = read(".github/workflows/pages-deploy.yml");
   const [beforeDeploy, deployment] = workflow.split("\n  deploy:\n");
   assert.ok(deployment);
   assert.doesNotMatch(beforeDeploy, /ARCHITRINO_PAGES_DEPLOY_ENABLED|^    if:|pages: write|id-token: write/m);
-  assert.match(beforeDeploy, /^  push:\n    branches: \[main\]\n  pull_request:\n  workflow_dispatch:/m);
-  assert.match(beforeDeploy, /node scripts\/check-content-integrity.mjs/);
-  assert.match(beforeDeploy, /node --test tests\/runtime-asset-fresh-checkout.test.js/);
+  assert.match(beforeDeploy, /^  push:\n    branches: \[main\]\n  workflow_dispatch:/m);
+  assert.match(beforeDeploy, /uses: \.\/\.github\/actions\/build-pages/);
+  assert.doesNotMatch(beforeDeploy, /pull_request:/);
   assert.match(deployment, /^    needs: build$/m);
   assert.ok(deployment.indexOf("Require Actions publishing before deployment") < deployment.indexOf("uses: actions/configure-pages@"));
   assert.ok(deployment.indexOf("uses: actions/configure-pages@") < deployment.indexOf("uses: actions/deploy-pages@"));
 });
 
 test("Pages deployment expression rejects default/off settings, PRs and non-main refs", () => {
-  const deployment = read(".github/workflows/pages.yml").split("\n  deploy:\n")[1];
+  const deployment = read(".github/workflows/pages-deploy.yml").split("\n  deploy:\n")[1];
   const expression = deployment.match(/^    if: (.+)$/m)?.[1];
   assert.equal(expression, "vars.ARCHITRINO_PAGES_DEPLOY_ENABLED == 'true' && github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')");
   // Independently declared expectations; evaluate the actual workflow expression.
@@ -235,7 +236,7 @@ test("Pages deployment expression rejects default/off settings, PRs and non-main
 });
 
 test("Pages publishing-source preflight fails closed on legacy, missing metadata or API failure", () => {
-  const deployment = read(".github/workflows/pages.yml").split("\n  deploy:\n")[1];
+  const deployment = read(".github/workflows/pages-deploy.yml").split("\n  deploy:\n")[1];
   const preflight = deployment.split("      - name: Require Actions publishing before deployment\n")[1]?.split("      - uses:")[0];
   assert.ok(preflight);
   assert.match(preflight, /GH_TOKEN: \$\{\{ github.token \}\}/);
@@ -250,4 +251,28 @@ test("Pages publishing-source preflight fails closed on legacy, missing metadata
     });
     assert.equal(result.status, expectedStatus, JSON.stringify({ buildType, apiStatus, stderr: result.stderr }));
   }
+});
+
+test("PR Pages check has no deployment job and both workflows use the same build", () => {
+  const pr = read(".github/workflows/pages.yml");
+  assert.match(pr, /^on:\n  pull_request:\n/m);
+  assert.doesNotMatch(pr, /deploy:|push:|workflow_dispatch:|pages: write|id-token: write|needs:|if:/);
+  for (const workflow of [pr, read(".github/workflows/pages-deploy.yml")]) {
+    assert.match(workflow, /^  build:\n/m);
+    assert.match(workflow, /timeout-minutes: 30/);
+    assert.match(workflow, /fetch-depth: 0/);
+    assert.ok(workflow.indexOf("uses: actions/checkout@") < workflow.indexOf("uses: ./.github/actions/build-pages"));
+    assert.match(workflow, /uses: \.\/\.github\/actions\/build-pages/);
+  }
+  const action = read(".github/actions/build-pages/action.yml");
+  assert.match(action, /using: composite/);
+  const commands = [...action.matchAll(/^      run: (.+)$/gm)].map(match => match[1]);
+  assert.deepEqual(commands, [
+    "node scripts/check-content-integrity.mjs",
+    "node --test tests/pages-image-assets.test.js",
+    "node --test tests/runtime-asset-fresh-checkout.test.js",
+    "node scripts/build-static-site.mjs --out .tmp/site",
+    "node scripts/borg/verify-assembly-record-byte-identity.mjs --check",
+  ]);
+  assert.equal([...action.matchAll(/^      shell: bash$/gm)].length, commands.length);
 });

@@ -51,7 +51,7 @@ Creativity is welcome, but relevance matters. Extensions of the theory, novel me
 
 For even general posts, contributors are encouraged to run their wording by AI in the context of this theory before posting. The point is not artificial polish for its own sake. The point is to reduce avoidable ambiguity and make the discussion easier to evaluate.
 
-Posts of up to around one page of text are welcome. Markdown is preferred. Clear markdown makes threads easier to read, easier to quote, and easier to convert into more formal work items when appropriate. If a discussion reaches enough weighted community support, it may become the basis for a fix request or an enhancement request. In that case, a concise markdown post can be handed directly to AI for analysis, synthesis, and recommendation.
+Posts of up to around one page of text are welcome. Markdown is preferred. Clear markdown makes threads easier to read, easier to quote, and easier to convert into more formal work items when appropriate. A discussion may lead to an issue when it identifies a concrete, actionable problem or proposal. Community responses can inform prioritization; support alone does not establish correctness. In that case, a concise markdown post can be handed directly to AI for analysis, synthesis, and recommendation.
 
 ## AI-Assisted Participation
 
@@ -74,13 +74,11 @@ The repository works best when different contribution types are routed to the ri
 
 - Discussions should hold questions, conceptual criticism, exploratory proposals, clarification requests, and early extension ideas.
 - Issues should hold concrete defects, missing explanations, documentation fixes, and enhancement requests that are ready to be tracked.
-- Pull requests should hold actual edits or tightly scoped implementation changes.
+- Pull requests propose coherent improvements to the theory, its exposition, or its supporting tools.
 
 This separation helps preserve both clarity and momentum. It keeps the issue tracker from being overloaded with speculative conversation while still allowing strong discussions to mature into actionable work.
 
-As a practical workflow suggestion rather than a requirement, contributors working through a long session or a large in-progress refactor may find lightweight annotated tags useful as named checkpoints between pull requests. That can be a good way to preserve meaningful intermediate states without forcing a full branch-reset and pull-request cycle every time the amount of change becomes substantial. Pull requests should still remain the normal unit of review and integration. Tags are better understood here as optional bookmarks inside a larger working arc.
-
-For example, a contributor who wants to preserve a named checkpoint can create an annotated tag with a command such as `git tag -a pdgedit-checkpoint-1 -m "pdgedit spec checkpoint before runtime work"`. If that checkpoint should also exist on the remote, it can then be pushed with `git push origin pdgedit-checkpoint-1`.
+Explain the problem addressed, the reasoning and evidence supporting the change, and its relationship to existing material. Include the related revisions needed to keep definitions, derivations, references, and implementation consistent. Cogent falsification arguments and demonstrations that part of the theory is broken are welcome. A proposal that challenges an existing conclusion should identify that conclusion, explain its known consequences for affected material, and distinguish reconciled changes from unresolved implications. Identifying a valid defect does not require supplying a complete replacement theory. Keep the submission organized so reviewers can assess its claims and consequences.
 
 ## Editorial and Moderation Principles
 
@@ -100,7 +98,7 @@ Moderation should protect seriousness without turning the space into a closed ch
 
 One useful way to think about the GitHub presence is as a pipeline for intellectual refinement.
 
-An idea may begin as a question, objection, or speculative note in Discussions. If the conversation sharpens the point and enough informed participants judge it worthwhile, the result can be turned into an issue or enhancement request. At that stage, AI can help summarize the thread, identify the central claims, compare them against existing documents, and recommend revisions or next steps. Only after that stage should the idea normally enter the core text through an editorial change.
+An idea may begin as a question, objection, or speculative note in Discussions. If the conversation identifies an actionable point, the result can be turned into an issue or enhancement request. At that stage, AI can help summarize the thread, identify the central claims, compare them against existing documents, and recommend revisions or next steps. Only after that stage should the idea normally enter the core text through an editorial change.
 
 This does not guarantee correctness. It does improve traceability and quality control.
 
