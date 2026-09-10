@@ -388,3 +388,7 @@ These themes overlap conceptually with live $\mathbb{A}\mathbb{A}\mathbb{A}$ que
 - [mapping-quantum](../../mapping-quantum/priorities.md)
 - [source-mining](../../source-mining/priorities.md)
 - angular-momentum-spin
+
+## Manuscript
+
+The [comparison manuscript](manuscript.md) integrates the local record-formation discussion and conditional eligibility mathematics. Its [source coverage](analysis/manuscript-source-coverage.md) and [separate fidelity review](analysis/manuscript-fidelity-review.md) preserve primary-reading gaps, correspondence provenance and all deferred tasks. This editorial synthesis does not reactivate source mining, send correspondence or promote corpus material.

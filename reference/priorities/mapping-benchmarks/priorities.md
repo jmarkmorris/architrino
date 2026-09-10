@@ -129,3 +129,7 @@ This projection is a provenance channel from detector signals to benchmark varia
 - angular-momentum-spin
 - [mapping-cosmology](../dormant-deferred/mapping-cosmology/priorities.md)
 - [mapping-strong-field](../mapping-strong-field/priorities.md)
+
+## Integrated manuscript
+
+The [manuscript](manuscript.md) develops the benchmark cases through clock and signal comparisons, shared weak-field response, cosmological transfer, radiation, statistical measures, electromagnetic behavior and detector reconstruction. It is accepted as an editorial campaign draft after the [independent fidelity review](analysis/manuscript-fidelity-review.md) and the Bell upper-bound repair. The [source coverage](analysis/manuscript-source-coverage.md) preserves supporting details, source conflicts and verification limits. This synthesis changes no scientific queue state: the clock specification still lacks its native prediction, and other cases retain their own missing carriers.

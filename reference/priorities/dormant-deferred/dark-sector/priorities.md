@@ -91,3 +91,7 @@ where $A_{\mathrm{int}}$ is the internal action or assembly record, $\mathcal{B}
 - [radiation](../../../../content/markdown/aaa/reactions/radiation.md)
 - [nested-shell-braid-dynamics](../../../../content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics)
 - [noether-sea-pro-anti-coupling](../../../../content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md)
+
+## Manuscript
+
+The [Dark Sector manuscript](manuscript.md) integrates the candidate families, conditional thresholds and observer-level comparisons. Its [source coverage](analysis/manuscript-source-coverage.md) and [independent fidelity review](analysis/manuscript-fidelity-review.md) preserve the source limitations and unresolved physical claims. All five scientific objects remain deferred/blocked.

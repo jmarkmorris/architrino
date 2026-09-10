@@ -84,3 +84,7 @@ Use this bucket when the question is naturally about a physical assembly above t
 - [condensed-matter](../../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md)
 - [radiation](../../../../content/markdown/aaa/reactions/radiation.md)
 - [reaction-ledger](../../../../content/markdown/aaa/validation/reaction-ledger.md)
+
+## Developed manuscript
+
+The [Nuclear, Atomic, and Molecular manuscript](manuscript.md) integrates the lane's nuclear, orbital, molecular and biochemical explanations. Its [source coverage](analysis/manuscript-source-coverage.md) and [independent fidelity review](analysis/manuscript-fidelity-review.md) record editorial acceptance, preserved support and unresolved scientific claims. This navigation does not reactivate the dormant tasks or accept a physical recovery.

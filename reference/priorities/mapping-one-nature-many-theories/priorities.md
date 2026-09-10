@@ -51,3 +51,7 @@ Reader-facing promotion is complete at `content/markdown/aaa/philosophy-history/
 - [Nuclear, Atomic, and Molecular Closure](../dormant-deferred/mapping-nuclear-atomic-molecular/priorities.md) for QCD-to-hadron and downstream matter bridges.
 - [Cosmology Closure](../dormant-deferred/mapping-cosmology/priorities.md) for cosmological transfer functions and observer inference.
 - [Source Mining](../source-mining/priorities.md) for external-source acquisition and traceability.
+
+## Manuscript campaign disposition
+
+The [whole-lane source coverage](analysis/manuscript-source-coverage.md) retains the existing reader-facing chapter as the developed exposition after [independent fidelity review](analysis/manuscript-fidelity-review.md). The detailed bridge certificates, history and provisional ideas remain supporting sources. Formal domain, inventory and fiber qualifications remain open; this editorial disposition changes no scientific recovery or execution state.

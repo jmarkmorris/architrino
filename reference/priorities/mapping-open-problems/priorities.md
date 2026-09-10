@@ -82,3 +82,7 @@ If any item is missing, the chapter should be marked `direction-ready`, `appendi
 - [mapping-standard-model](../mapping-standard-model/priorities.md)
 - braid program
 - [simulation protocol routing index](../../op/simulation-protocol-routing-index.md)
+
+## Manuscript campaign disposition
+
+The [accepted existing-chapter disposition](analysis/manuscript-source-coverage.md) retains the deployed paper as this lane's developed exposition and the complete claim/test audits as support. The [independent fidelity review](analysis/manuscript-fidelity-review.md) records the inherited scope qualifications. This editorial disposition does not advance scientific closure or the execution queue.

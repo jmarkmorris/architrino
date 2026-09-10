@@ -70,3 +70,7 @@ If the PDG workstream is resumed:
 - verify schemas, examples, manifests, and tests before changing any behavior;
 - resume from the explicit stage boundaries documented in the component notes rather than from memory of the old queue;
 - and introduce any new work as a small, explicit queue after the frozen baseline has been revalidated.
+
+## Integrated manuscript
+
+The [manuscript](manuscript.md) develops the retained subject with explicit evidence limits. The [coverage record](analysis/manuscript-source-coverage.md) and [separate fidelity review](analysis/manuscript-fidelity-review.md) preserve source dispositions and review boundaries. This editorial synthesis does not reactivate the deferred scientific workstream.

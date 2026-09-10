@@ -63,7 +63,7 @@ Operation order is part of the proposal. At a boundary direction $\mathbf e_x$, 
 
 The finite-ledger response has an existence result of its own. This is the first analytic step toward a delayed evolution theorem: it determines velocity when the acceleration input has already been supplied. The separate task of obtaining that input from a changing history remains visible throughout the argument.
 
-For a supplied integrable ledger $\mathbf f$, the fixed-ball inclusion has a unique absolutely continuous response. The constructive scheme is
+For a supplied integrable ledger $\mathbf f$ on a fixed interval beginning at $T_0$ and fixed initial velocity $\mathbf V(T_0)=\mathbf V_0\in\mathcal B_{c_a}$, the fixed-ball inclusion has a unique absolutely continuous response. Starting from that same $\mathbf V_0$, the constructive scheme is
 
 $$
 \mathbf V_{k+1}=\Pi_{\mathcal B_{c_a}}\left(\mathbf V_k+\int_{T_k}^{T_{k+1}}\mathbf f(T)\,dT\right)
@@ -71,7 +71,7 @@ $$
 
 Projection nonexpansiveness bounds the velocity increment by the integral of $\|\mathbf f\|$ and gives a constant-one comparison estimate. Local averaging supplies uniform integrability for the limit argument; the projection inequality is passed in integrated form. Integrable input gives equi-absolute continuity, whereas bounded input additionally gives an equi-Lipschitz bound. This solves the supplied-input response problem, not the coupled delayed-history problem.
 
-The distinction matters because the pointwise response is discontinuous across the boundary when the raw forward component is positive. Taking $\mathbf V_n=(1-1/n)\mathbf e_x$ and $\mathbf A^{\mathrm{ord}}=\mathbf e_x$ gives interior response $\mathbf e_x$ but boundary response zero. Coupled existence must use the monotone evolution response, not claim that this pointwise map is globally smooth.
+The distinction matters because the pointwise response is discontinuous across the boundary when the raw forward component is positive. With $c_a=c_f=1$, taking $\mathbf V_n=(1-1/n)\mathbf e_x$ and $\mathbf A^{\mathrm{ord}}=\mathbf e_x$ gives interior response $\mathbf e_x$ but boundary response zero. Coupled existence must use the monotone evolution response, not claim that this pointwise map is globally smooth.
 
 ## 2. Causal geometry and acceleration measures
 
@@ -118,7 +118,13 @@ $$
 
 Positive range and a positive receiver-factor floor can make a pointwise $1/D_t$ spike integrable. The branch and clock hypotheses are essential: this is not permission to evaluate $dS/D_r$ as $0/0$ on a frozen interval.
 
-For the normalized mirror approach, let first ceiling arrival occur at $T_\ast$ with half-separation $q_\ast>0$. The proposed response gives the straight inward cap $q(T)=q_\ast-(T-T_\ast)$ until $T_c=T_\ast+q_\ast$. The one ordinary partner root moves through the pre-ceiling history, with playback $dS/dT=2/(1-u(S))$, where $u(S)$ is the positive inward source speed. The cap-emitted partner family has not yet arrived. If $u$ reaches one with nonzero slope, root arrival at $T_\ast$ has square-root rather than Lipschitz contact in receiver time.
+For the normalized mirror approach, let first ceiling arrival occur at $T_\ast$ with half-separation $q_\ast>0$. The proposed response gives the straight inward cap $q(T)=q_\ast-(T-T_\ast)$ until $T_c=T_\ast+q_\ast$. The one ordinary partner root moves through the pre-ceiling history, with playback $dS/dT=2/(1-u(S))$, where $u(S)$ is the positive inward source speed. The cap-emitted partner family has not yet arrived. If $u$ is left-$C^1$ at $T_\ast$ with $\alpha=u'(T_\ast^-)>0$, then $S(T)\uparrow T_\ast$ as the later receiver time $T\uparrow T_c$, with
+
+$$
+T_\ast-S(T)=\frac{2}{\sqrt\alpha}\sqrt{T_c-T}+o\!\left(\sqrt{T_c-T}\right).
+$$
+
+The emission-time deficit has square-root rather than Lipschitz dependence on the remaining receiver time. This open-segment asymptotic supplies no endpoint measure or event update.
 
 The [endpoint reanalysis](analysis/capped-collinear-endpoint-reanalysis.md) gives the complete open-cap raw integral
 
@@ -405,16 +411,16 @@ A common period requires integer windings $\omega_iP=2\pi k_i$ and corresponding
 
 ### 6.2 A complete census with failed acceleration closure
 
-The [quarantined reference calculation](analysis/quarantined-hypotheses-and-prescribed-reference-cases.md) fixes three equal-radius antipodal pairs in orthogonal planes with phases $0,2\pi/3,4\pi/3$ and normalized $c_f=R=\omega=1$. Its geometry theorem gives thirty ordinary distinct-label roots at every reception time and no self root. That complete census does not make it a solution. The retained [time-zero coordinate receipt](evidence/fsc-004-t0-six-path-mpmath-receipt.v1.json), produced at 100-digit precision, records these necessary-condition failures:
+The [quarantined reference calculation](analysis/quarantined-hypotheses-and-prescribed-reference-cases.md) fixes three equal-radius antipodal pairs in orthogonal planes with phases $0,2\pi/3,4\pi/3$ and normalized $c_f=R=\omega=1$. Its geometry theorem gives thirty ordinary distinct-label roots at every reception time and no self root. That complete census does not make it a solution. Write $\lambda=\kappa q_0^2>0$ for the common coupling, so the unit-coupling total $\mathbf A^{(0)}$ satisfies $\mathbf A^{\mathrm{ord}}=\lambda\mathbf A^{(0)}$. The retained [time-zero coordinate receipt](evidence/fsc-004-t0-six-path-mpmath-receipt.v1.json), produced at 100-digit precision, records these unit-coupling necessary-condition failures:
 
 | Relative polarity orientation | Receiver and failed quantity | Recorded value, rounded |
 | --- | --- | --- |
-| $(1,1,1)$ | $1+$, $\mathbf V\cdot\mathbf A^{\mathrm{ord}}$ | $-0.3655392199$ |
-| $(1,1,-1)$ | $1+$, $\mathbf V\cdot\mathbf A^{\mathrm{ord}}$ | $-0.3655392199$ |
-| $(1,-1,1)$ | $1+$, binormal component after response | $+0.8925757279$ |
-| $(1,-1,-1)$ | $2+$, $\mathbf V\cdot\mathbf A^{\mathrm{ord}}$ | $-0.3301014266$ |
+| $(1,1,1)$ | $1+$, $\mathbf V\cdot\mathbf A^{(0)}$ | $-0.3655392199$ |
+| $(1,1,-1)$ | $1+$, $\mathbf V\cdot\mathbf A^{(0)}$ | $-0.3655392199$ |
+| $(1,-1,1)$ | $1+$, binormal component of the response to $\mathbf A^{(0)}$ | $+0.8925757279$ |
+| $(1,-1,-1)$ | $2+$, $\mathbf V\cdot\mathbf A^{(0)}$ | $-0.3301014266$ |
 
-All four orientations fail under the minimal response. This is a measured negative for the prescribed geometry, supported by a time-zero arithmetic instrument; it is not an interval theorem about all other geometries or a test of an unselected redirection law. The separate 2,881-time sample scan is diagnostic, not a certified all-time floor. The antipodal labels share spatial carrier circles and the orthogonal circles intersect, so this object is a loop in labeled configuration space, not a six-component spatial link.
+Positive common coupling scales both the ordinary total and its minimal projected response by $\lambda$; it changes these magnitudes while preserving the negative forward signs and nonzero binormal component. All four orientations therefore fail under the minimal response for every $\lambda>0$. This is a measured negative for the prescribed geometry, supported by a time-zero arithmetic instrument together with the response's positive homogeneity; it is not an interval theorem about all other geometries or a test of an unselected redirection law. The separate 2,881-time sample scan is diagnostic, not a certified all-time floor. The antipodal labels share spatial carrier circles and the orthogonal circles intersect, so this object is a loop in labeled configuration space, not a six-component spatial link.
 
 ### 6.3 The cycle diagnostic is not an action account
 

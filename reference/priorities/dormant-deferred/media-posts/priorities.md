@@ -28,3 +28,7 @@ Preserve post-format ideas without letting exploratory media work outrank curren
 - Promote a post concept from [brainstorming.md](brainstorming.md) only when it has a concrete publication target, claim level, and owner.
 - Keep theory claims downstream of accepted corpus and validation material.
 - Create focused sibling files only when a selected post packet needs a stable brief, campaign plan, caption set, or publication checklist.
+
+## Manuscript disposition
+
+The [reviewed source disposition](analysis/manuscript-source-coverage.md) retains the existing strategy, brainstorming and work log at this snapshot. A separate manuscript becomes appropriate when a developed concept, selected brief or substantive result supplies a subject to synthesize. The production-selection task remains queued. See the [independent fidelity review](analysis/manuscript-fidelity-review.md).

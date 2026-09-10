@@ -63,3 +63,7 @@ Executable rows live in [work-queue.md](work-queue.md). Per-file conversion reco
 ## Promotion Map
 
 Nothing in this lane promotes. The corpus documents are already published; this campaign edits them in place. The lane's own artifacts — queue, ledger, notes — stay here permanently and are never promoted.
+
+## Manuscript synthesis
+
+The [manuscript](manuscript.md) develops claim-preserving editorial conversion, mathematical reduction, causal geometry, effective clocks and observer comparison. [Source coverage](analysis/manuscript-source-coverage.md) retains all original findings and operational provenance; the [independent fidelity review](analysis/manuscript-review.md) records the qualified editorial pass. This synthesis neither completes the remaining chapter reviews nor certifies physical recovery.

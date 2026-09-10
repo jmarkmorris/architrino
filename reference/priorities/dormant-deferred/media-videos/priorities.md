@@ -62,3 +62,7 @@ Its job is to turn reviewed scripts and visual plans into generated or assembled
 - `STEAM` expands `STEM` with the arts: Science, Technology, Engineering, Arts, and Mathematics.
 - `Educators` is the current term for recurring instructional characters.
 - Character identity details are design inputs for fictional characters, not instructions to imitate real people or reduce characters to demographic traits.
+
+## Manuscript
+
+The [Media Videos manuscript](manuscript.md) develops the instructional ensemble, prototype and production method. Its [source coverage](analysis/manuscript-source-coverage.md) and [independent fidelity review](analysis/manuscript-fidelity-review.md) preserve every open production decision and the equipment notes as historical support. Editorial acceptance does not select a toolchain or approve a video.

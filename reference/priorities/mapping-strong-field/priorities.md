@@ -522,3 +522,7 @@ Failure modes to retain:
 - [General Relativity](../../../content/markdown/aaa/spacetime/general-relativity.md)
 - [gravitational-waves](../../../content/markdown/aaa/spacetime/gravitational-waves.md)
 - [ppn-parameters](../../../content/markdown/aaa/spacetime/ppn-parameters.md)
+
+## Developed Manuscript
+
+The [Strong-Field manuscript](manuscript.md) integrates this lane and its High-Energy Astrophysics support, with [complete source coverage and qualifications](analysis/manuscript-source-coverage.md) and a separate [independent fidelity review](analysis/manuscript-fidelity-review.md). Editorial acceptance does not establish a horizon carrier, entropy count, observer prediction or release mechanism, and preserves every scientific queue state.

@@ -38,3 +38,9 @@ The locally ranked execution order, including deferred workflows, lives in [work
 ## Promotion Boundary
 
 Promote only stable, evidence-bound explanatory material into the corpus. Design notes, implementation obligations, and execution evidence remain in this priority directory and its linked queue.
+
+## Manuscript synthesis
+
+- [Manuscript](manuscript.md)
+- [Source coverage](analysis/manuscript-source-coverage.md)
+- [Independent fidelity review](analysis/manuscript-review.md)

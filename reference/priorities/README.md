@@ -41,7 +41,8 @@ The current preferred style for live priority docs is:
 - keep executable task rows only in `work-queue.md`, including the locally ranked next-object order, lifecycle state, request and acceptance boundary, evidence or blocker, and completion condition;
 - use `Queued`, `In progress`, `Awaiting verification`, `Verified`, `Superseded`, or `Withdrawn` as queue lifecycle states; keep blocked or intentionally postponed rows in a clearly labeled deferred/blocked section without presenting them as executable now;
 - use `Current` plus `Objective` rather than long migration diaries;
-- keep readable architecture notes, equation explanations, comparison matrices, conceptual maps, provisional insights, and draft corpus-promotable text in the sibling `brainstorming.md` file by default;
+- use `manuscript.md` for the lane's developed, coherent subject explanation, organized around scientific questions or the application's or operation's actual responsibilities; preserve established results, conditional arguments, proposals, negative findings, and unresolved alternatives at their supported grades;
+- use the sibling `brainstorming.md` for provisional reasoning and rapid idea capture; integrate developed explanations into `manuscript.md` while preserving original source and evidence bytes during the [priority manuscript campaign](aaa-operations/campaigns/priority-manuscript-synthesis.md);
 - keep chronological agent status, proof-attempt notes, checker narratives, handoffs, failed paths, and communication updates in the sibling `work-log.md` file;
 - every immediate priority workstream directory should carry a `work-log.md`, even when it only contains the standard purpose note;
 - let `priorities.md` reference `work-queue.md`, `brainstorming.md`, `work-log.md`, and focused support files instead of embedding task execution, explanation-first material, long status logs, or detailed proof packets;
@@ -62,7 +63,7 @@ A workstream directory holds three tiers of material, and they are not interchan
 
 The **control surface** is `priorities.md`, `work-queue.md`, `brainstorming.md`, and `work-log.md`, plus a `README.md` where the lane needs orientation beyond its tracker. These always sit at the top level. They are what the operator and an arriving agent read first, and nothing else competes with them for that position.
 
-**Durable subject owners** are the small number of documents that a reader returns to because they own a standing subject rather than a moment: a master registry, a settled decision, a live mathematics packet. These may sit at the top level, and `priorities.md` links them. Keep them few. A document earns this position by being the current answer to a question, not by being important when it was written.
+**Durable subject owners** are the small number of documents that a reader returns to because they own a standing subject rather than a moment: a master registry, a settled decision, a live mathematics packet, or the lane's integrated `manuscript.md`. These may sit at the top level, and `priorities.md` links them. The manuscript owns exposition, while contracts, detailed derivations and evidence retain their existing authority. Manuscript completion does not certify mathematics, activate dormant research, or authorize corpus promotion. Keep durable subject owners few. A document earns this position by being the current answer to a question, not by being important when it was written.
 
 Everything else is **supporting material**, and it is filed into a subdirectory:
 

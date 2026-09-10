@@ -272,3 +272,7 @@ The first prototype is useful when:
 - `molecule_entry_points`: defer until the first post-v1 planning pass.
 - `molecule_embed_or_bridge`: defer until visualization re-entry.
 - `molecule_tab_integration`: defer until the first post-v1 planning pass.
+
+## Manuscript
+
+The [iOS reader manuscript](manuscript.md) develops the textbook package, navigation, reader behavior and conditional release design. Its [source coverage](analysis/manuscript-source-coverage.md) and [independent fidelity review](analysis/manuscript-fidelity-review.md) preserve the unresolved glossary route, on-demand package policy and deferred release tasks. Editorial acceptance does not verify application behavior, device quality or current distribution policy.

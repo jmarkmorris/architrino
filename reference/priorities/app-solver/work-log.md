@@ -1,5 +1,9 @@
 # EOM Work Log
 
+## 2026-09-10 — Technical manuscript outline and expansion task
+
+The operator selected a brief [manuscript outline](manuscript.md) for the current campaign and requested a queue item for later development, especially when GPU acceleration begins. Added eight chapter outlines and [EOM-015](work-queue.md#eom-015--eom-solver-manuscript-development) with source reconciliation, independent review and GPU evidence requirements. EOM-007 remains the immediate task; the deferred GPU and scale tasks retain their execution status. This is documentation planning and changes no numerical or scientific acceptance.
+
 ## 2026-09-02 — EOM-005 deterministic CPU and SIMD disposition accepted
 
 - Added benchmark-only fine long-horizon fixture modes for one and four workers. Eleven alternating Apple M3 trials measured median wall times of `0.37` and `0.28` seconds respectively, a `1.321x` four-worker speedup, while median process CPU cost rose from `0.36` to `0.54` seconds.

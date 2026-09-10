@@ -80,3 +80,9 @@ The locally ranked service, interface, and candidate-mode execution objects live
 - Treat server-backed AI, speech, image intake, and durable user history as long-term platform features after theory closure and after source-authority, privacy, logging, cost, deployment, operations, and failure boundaries are explicit.
 - Do not route public-support, GitHub, PDF, comics, or app entry points behind a hidden or non-obvious branch.
 - Keep scene consolidation separate from public answer generation.
+
+## Manuscript synthesis
+
+- [Manuscript](manuscript.md)
+- [Source coverage](analysis/manuscript-source-coverage.md)
+- [Independent fidelity review](analysis/manuscript-review.md)

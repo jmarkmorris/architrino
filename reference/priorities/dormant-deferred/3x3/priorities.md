@@ -117,3 +117,7 @@ What it does **not** yet establish is that quark color can be read directly as `
 - [quarks](../../../../content/markdown/aaa/assemblies/fermions/quarks.md)
 - [color-charge-su3](../../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md)
 - [quantum-number-mapping](../../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md)
+
+## Developed Manuscript
+
+The [three-slot manuscript](manuscript.md) develops the finite count and its conditional physical interpretation. Its [coverage](analysis/manuscript-source-coverage.md) and [independent fidelity review](analysis/manuscript-fidelity-review.md) record editorial acceptance, the bounded quark-source reading and the unresolved radial/axis and dynamical constructions. This navigation does not reactivate the dormant lane.

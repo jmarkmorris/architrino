@@ -37,3 +37,7 @@ Dated organizational decisions remain in [work-log.md](work-log.md).
 Plainly: active electromagnetic integration now belongs in Mapping Electromagnetism, while its native assembly, medium, equation, and EOM evidence remain with their specialized owners. This parked packet should not be revived by default.
 
 Closure goal: preserve the useful electrodynamics and dyon insights without an active queue; revisit only when live assembly/EOM evidence supplies a concrete transverse-response question.
+
+## Manuscript
+
+The [Electrodynamics manuscript](manuscript.md) develops the delayed assembly-response question and the limits of primitive dyon comparisons. Its [source coverage](analysis/manuscript-source-coverage.md) and [independent fidelity review](analysis/manuscript-fidelity-review.md) preserve the intentionally empty queue, withdrawn planning objects and specialized scientific ownership. Editorial acceptance does not reactivate the packet.

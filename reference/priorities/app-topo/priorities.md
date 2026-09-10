@@ -69,3 +69,7 @@ Plainly: the binary controls change an authored comparison path and its display.
 This lane owns the Wake Topography interaction model, fixed-source camera, two-dimensional contour renderer, signed base-10 color mapping, scenario menu, and display-only validation. The canonical Master Equation owns the inverse-square and transmitter-side factors used by the v1 diagnostic composition. [AAA Core Potential](../app-aaa-core/contracts/potential-v1.md) owns the reusable computational and product boundary. The scientific lane that supplies any later observable owns its meaning and authority. The EOM solver remains the sole forward-evolution owner.
 
 No Wake Topography image establishes a wake law, field-speed ceiling, front or trailing enhancement, dynamics, stability, conservation, or physical validation. Those features may be displayed only when supplied by a declared mathematical product with matching authority.
+
+## Integrated manuscript
+
+The [manuscript](manuscript.md) develops prescribed-history geometry, scalar identities and display semantics with explicit evidence limits. The [coverage record](analysis/manuscript-source-coverage.md) and [separate fidelity review](analysis/manuscript-review.md) preserve source alternatives and review boundaries. This editorial synthesis does not settle the conflicting app contracts, complete scientific integration or activate a queue item.

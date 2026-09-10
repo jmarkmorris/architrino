@@ -62,3 +62,7 @@ No executable priority object is accepted. The first unresolved decision is whet
 ## Promotion Boundary
 
 Nothing in this packet is eligible for reader-facing corpus promotion merely because the umbrella name and working chain are accepted. Promotion requires a separately accepted destination and claim level. Legal statements require competent legal sourcing and jurisdiction-specific review; physical statements require existing corpus support or a declared proof burden.
+
+## Manuscript
+
+The [Cosmic Civics manuscript](manuscript.md) develops the distinction between passage, assertions, records and map views. Its [source coverage](analysis/manuscript-source-coverage.md) and [independent fidelity review](analysis/manuscript-fidelity-review.md) preserve the exploratory framework and deferred scenario assignment. Editorial acceptance does not establish legal authority, physical feasibility or an implemented registry.

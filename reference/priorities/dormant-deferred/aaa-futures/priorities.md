@@ -38,3 +38,7 @@ The lane is priority-only. It does not change the claim level of any $\mathbb{A}
 - [mapping-cosmology](../mapping-cosmology/priorities.md)
 - [source-mining](../../source-mining/priorities.md)
 - [media-videos](../media-videos/priorities.md)
+
+## Integrated manuscript
+
+The [manuscript](manuscript.md) develops the institutional proposals with explicit evidence dependencies. The [coverage record](manuscript-source-coverage.md) and [separate fidelity review](analysis/manuscript-fidelity-review.md) preserve the complete source dispositions and review limits. This editorial synthesis does not complete FUT-001 or FUT-002, promote public claims, or authorize institutional action.

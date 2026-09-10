@@ -33,3 +33,7 @@ Record findings in [recommendations.md](analysis/recommendations.md). A human or
 ## Current
 
 CD-002 completed the first bounded correlation pass and retained one untriaged terminology finding with exact paths and a bounded owner route. No inspected corpus or owner file changed. The lane now has no executable queue item; a later pass requires a newly accepted scope.
+
+## Manuscript
+
+The [Corpus Dragnet manuscript](manuscript.md) develops the method for evidence-backed relationships, source roles, scan boundaries and authorized editorial decisions. Its [source coverage](analysis/manuscript-source-coverage.md) and [independent fidelity review](analysis/manuscript-fidelity-review.md) preserve rejected candidates, historical survey limits and the empty current queue. Editorial acceptance does not restart a scan or verify the historical scientific and validation findings.

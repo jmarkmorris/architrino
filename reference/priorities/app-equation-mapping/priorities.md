@@ -89,3 +89,7 @@ The first useful version should let the operator:
 ## Related Priority Notes
 
 - [Equation Mapping](../mapping-equations/priorities.md)
+
+## Manuscript
+
+The [Equation Mapping app manuscript](manuscript.md) develops source occurrence identity, symbol access, static annotations and layout. Its [source coverage](analysis/manuscript-source-coverage.md) and [independent fidelity review](analysis/manuscript-fidelity-review.md) preserve authoring boundaries, source ambiguities and historical validation limits. Editorial acceptance does not verify runtime behavior or change equation evidence, derivation status or score.
