@@ -8,11 +8,11 @@ This operator-selected recovery campaign has no global research rank. The operat
 
 ## Ranked Next Objects
 
-1. **○ Not done — G9/G10 semantic impact review.** Review every methodology obligation and EOM binding statement against the actual source transitions. Owner: Braid Program / App Solver, recovery integration. Acceptance: justified current binding with meaningful controls or a precisely retained substantive obligation; no hash-only admission. See [remaining families](analysis/owner-failure-recovery.md#remaining-family-dispositions).
+No executable repair remains in the accepted finite closeout. G8's reviewed historical/current mapping, regeneration and affected-consumer checks are complete in the [semantic record](analysis/semantic-closeout-review.md#g8-receipt-projection-resolution). Blocked inputs and deferred work below retain their original conditions.
 
-2. **◐ Partial — C1–C3 advertised-interface and coverage reconciliation.** Compare supported current interfaces with retained dispatcher, prior, cancellation and resource controls. Repair only a concrete unsupported promise or essential missing composition, using the smallest meaningful positive/negative selection. Owner: circular recovery / OPS-024. Broader candidate execution stays in deferred scientific continuation below.
+The [archive-readiness review](analysis/archive-readiness-review.md) inventories receiving-owner links and missing acknowledgements. Until those gaps are resolved, this recovery queue remains the durable discovery route; a named destination is not a completed transfer.
 
-3. **○ Not done — stable-state freshness and selected operational reconciliation.** Inspect G7/G8 actual current effects, use their authorized owner writes/checks once, and reconcile the declared operational selection with historical selectors, skipped/input-blocked scientific checks and residuals. Owner: recovery integration; process owner retains router regeneration. Preserve full repository-health verification separately; no universal all-passed claim.
+**Coordinator custody after operator-authorized task archive:** Mark directed archival of Veronica - recovery on September 9 after recording outstanding work. Betty - coordination owns the [remaining receiving-navigation, owner-decision and handoff-verification follow-ups](analysis/archive-readiness-review.md#coordinator-follow-ups-after-task-archival). This queue retains interim custody of unresolved destinations. Archival does not complete or reactivate the blocked and deferred work below.
 
 ## Blocked prerequisites
 
@@ -29,7 +29,7 @@ This operator-selected recovery campaign has no global research rank. The operat
 ## Deferred scientific and maintenance work
 
 - **Circular cohort:** keep the accepted all-sixteen pilot, first 8/32/128 ladder and second eight-phase rung. Defer second32/128, eight unstarted within-cap ladders and six resource-blocked ladders to Braid Program / OPS-024. Every candidate, evidence link and activation condition remains in the [preservation map](analysis/recovery-closeout-review.md). Keep the 1,800-second limit; no scientific rerun is selected.
-- **G6 and C4:** heading/UI maintenance stays with scene/renderer owners for a rendered review; stronger generic profile/prior enforcement stays with circular architecture when that broader interface is selected. Both remain in the preservation map with their original negative evidence and revisit conditions.
+- **C1/C2 and G6/C4:** generic later-candidate preparation and full dispatcher lifetime composition remain unimplemented and deferred until that execution route is selected (circular / OPS-024). The reviewed current single-rung path and named C3 controls retain their bounded evidence. For G6/C4, heading/UI maintenance stays with scene/renderer owners for a rendered review; stronger generic profile/prior enforcement stays with circular architecture when that broader interface is selected. Both remain in the preservation map with their original negative evidence and revisit conditions.
 
 ## Deferred final verification
 
@@ -40,3 +40,5 @@ This operator-selected recovery campaign has no global research rank. The operat
 **✓ Done:** [F5 accepted build/API and complete 8/32/128 execution](analysis/f5-remaining-callers.md), [circular current pilot and observation owner](evidence/circular-current-execution/current-pilot-independent-review.md), [F5 data-only handoff](analysis/f5-current-handoff.md), [emission current transport](analysis/emission-current-migration.md), [acceleration current transport](analysis/acceleration-current-migration.md), [prescribed-response inputs](analysis/next-caller-input-review.md), current root-cover profiles, and scoped startup/reporting repairs have their recorded completion evidence. These completed substeps grant no broader numerical, H3, or overall test-health acceptance and are not reopened by this queue.
 
 The September 8 [bounded closeout review and preservation map](analysis/recovery-closeout-review.md) reconciles completed substeps, required repairs, blocked historical inputs, scientific continuation and final validation. The operator-delegated decision in priorities.md now accepts that finite operational boundary while preserving every deferred obligation.
+
+**✓ Done — selected operational reconciliation:** the [semantic record](analysis/semantic-closeout-review.md) records G9 admission, G10 completion, 19 circular controls, 34 required content checks, strict scene checks and G7 navigation verification, followed by G8 projection resolution. The separate uninstantiated calibration composition remains with its scientific owner. Complete repository-health verification remains deferred.

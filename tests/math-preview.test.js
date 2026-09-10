@@ -4,7 +4,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import http from "node:http";
-import { renderPreview, selectSection, writePreview, servePreview } from "../.agents/skills/math-preview/scripts/render-preview.mjs";
+import { renderPreview, selectSection, writePreview, servePreview } from "../.agents/skills/architrino-math-preview/scripts/render-preview.mjs";
 
 const mathCount = (html) => [...html.matchAll(/class="katex"/g)].length;
 const fixture = (t) => {

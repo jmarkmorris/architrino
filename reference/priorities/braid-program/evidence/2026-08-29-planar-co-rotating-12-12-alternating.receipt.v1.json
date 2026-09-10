@@ -1,6 +1,7 @@
 {
   "schema": "braid-program/planar-n-n-focused-extension-receipt.v1",
   "receiptId": "planar-co-rotating-12-12-alternating-2026-08-29-v1",
+  "projectionNote": "configurationRelation translates the raw taxonomyDecision into current configuration terminology without changing its geometric exclusion. Claim grades, excluded claims and falsifier retain historical wording; the raw artifact retains the original field names and verdict.",
   "compatibilityIdentifier": "aaa-corpus-advancement",
   "sourceRecord": {
     "schema": "braid-program/planar-n-n-focused-extension.v1",
@@ -134,9 +135,9 @@
     "crossTransmitterInstrument": "src/prescribed-path-analysis/AnalyticalBraidEvaluator.mjs",
     "sameTransmitterInstrument": "scripts/equation-mapping/analyze-circular-self-hit-binary.mjs"
   },
-  "claimGrade": "derived configuration relation plus bounded numerical regular-alternating search; candidate promotion requires the declared independent test",
+  "claimGrade": "derived taxonomy plus bounded numerical regular-alternating search; candidate promotion requires the declared independent test",
   "excludedClaims": [
-    "planar common-center three-binary constraint membership",
+    "B1.3 membership",
     "complete 12:12 polarity coverage",
     "nonuniform-phase coverage",
     "retention",
@@ -147,7 +148,7 @@
     "score increase",
     "scientific acceptance"
   ],
-  "falsifier": "A missing causal root, failed independent root or acceleration comparison, changed topology under refinement, receiver-incompatible scale, or residual above the declared tolerance overturns the balance verdict; a configuration-definition change would require a canonical inventory revision rather than this calculation.",
+  "falsifier": "A missing causal root, failed independent root or acceleration comparison, changed topology under refinement, receiver-incompatible scale, or residual above the declared tolerance overturns the balance verdict; a taxonomy change would require a canonical inventory revision rather than this calculation.",
   "execution": {
     "commandOptions": {
       "minimumBeta": 0.05,

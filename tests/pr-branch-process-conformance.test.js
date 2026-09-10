@@ -95,7 +95,7 @@ test("children's-book pilot exports stay local and optional during routine PRs",
   const procedure = read("reference/op/git/pr-lifecycle.md");
   const aggregate = read("scripts/check-content-integrity.mjs");
   const ignore = read(".gitignore");
-  const manifest = JSON.parse(read("reference/learning-office/childrens-books/production/generation-manifest.json"));
+  const manifest = JSON.parse(read("reference/office-of-learning/childrens-books/production/generation-manifest.json"));
   assert.match(procedure, /children's-book pilot exports are also on-demand and excluded from routine PR output/);
   // The whole local-runtime directory is ignored since 2026-09-06; the pilot exports live under it.
   assert.match(ignore, /^\/\.local-data\/$/m);

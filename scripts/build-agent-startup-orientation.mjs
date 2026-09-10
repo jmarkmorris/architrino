@@ -23,17 +23,17 @@ const SOURCE_PATHS = [
   "reference/op/source-mining-best-practice.md",
   "reference/op/git/pr-lifecycle.md",
   "reference/priorities/README.md",
-  "reference/research-office/cto/prompts/README.md",
-  "reference/research-office/cto/prompts/start-pi.md",
-  "reference/research-office/cto/prompts/start-research.md",
-  "reference/research-office/cto/prompts/convergence-campaign.md",
-  "reference/research-office/cto/prompts/corpus-reviewer.md",
-  "reference/research-office/cto/prompts/selective-reference-pass.md",
-  "reference/research-office/cto/prompts/integrator-reviewer.md",
-  "reference/research-office/cto/prompts/review-comment-assessor.md",
-  "reference/research-office/cto/prompts/review-closure-verifier.md",
-  "reference/research-office/cto/prompts/core-geometry-theorem-reviewer.md",
-  "reference/research-office/cto/prompts/priority-lane-resume.md",
+  "reference/office-of-research/cto/prompts/README.md",
+  "reference/office-of-research/cto/prompts/start-pi.md",
+  "reference/office-of-research/cto/prompts/start-research.md",
+  "reference/office-of-research/cto/prompts/convergence-campaign.md",
+  "reference/office-of-research/cto/prompts/corpus-reviewer.md",
+  "reference/office-of-research/cto/prompts/selective-reference-pass.md",
+  "reference/office-of-research/cto/prompts/integrator-reviewer.md",
+  "reference/office-of-research/cto/prompts/review-comment-assessor.md",
+  "reference/office-of-research/cto/prompts/review-closure-verifier.md",
+  "reference/office-of-research/cto/prompts/core-geometry-theorem-reviewer.md",
+  "reference/office-of-research/cto/prompts/priority-lane-resume.md",
   "content/markdown/aaa/archie/about-architrino.md",
   "content/markdown/aaa/archie/academic-style-guide.md",
   "content/markdown/aaa/archie/mathematics-style-guide.md",
@@ -57,8 +57,8 @@ const WORKFLOWS = [
     name: "Principal Investigator research",
     use: "Launch one Principal Investigator with a bounded brief, then select only the role-based Specialists needed for independent research or implementation.",
     read: [
-      "reference/research-office/cto/prompts/start-pi.md",
-      "reference/research-office/cto/prompts/start-research.md",
+      "reference/office-of-research/cto/prompts/start-pi.md",
+      "reference/office-of-research/cto/prompts/start-research.md",
       "relevant Foundations and live owner files",
     ],
     live: "Check active task status before dispatch, preserve claim boundaries, and treat every role as an analytical lens rather than theory or acceptance authority.",
@@ -67,7 +67,7 @@ const WORKFLOWS = [
     name: "Corpus convergence",
     use: "Move the corpus toward current canon by turning priority, source, or corpus signals into concrete mathematical artifacts and safe scoped edits when authority allows.",
     read: [
-      "reference/research-office/cto/prompts/convergence-campaign.md",
+      "reference/office-of-research/cto/prompts/convergence-campaign.md",
       "reference/op/theory-orientation.md",
       "relevant priority or corpus files",
     ],
@@ -78,7 +78,7 @@ const WORKFLOWS = [
     use: "Acquire and map source material into current AAA terminology, claim levels, proof routes, and corpus or priority destinations.",
     read: [
       "content/markdown/aaa/archie/about-architrino.md",
-      "reference/research-office/cto/prompts/convergence-campaign.md",
+      "reference/office-of-research/cto/prompts/convergence-campaign.md",
       "reference/op/source-mining-best-practice.md",
       "source-family addendum",
     ],
@@ -88,7 +88,7 @@ const WORKFLOWS = [
     name: "Corpus review",
     use: "Prepare a review-only pass across a directory in scene or textbook order, one file per turn.",
     read: [
-      "reference/research-office/cto/prompts/corpus-reviewer.md",
+      "reference/office-of-research/cto/prompts/corpus-reviewer.md",
       "content/markdown/aaa/archie/about-architrino.md",
       "reference/op/theory-orientation.md",
       "style and terminology guides listed by the prompt",
@@ -99,7 +99,7 @@ const WORKFLOWS = [
     name: "Review comment integration",
     use: "Classify review comments, integrate the valid ones, perform a full-document editorial self-review, and stage larger issues in priorities. Independent validation requires a separate mathematical reference or instrument.",
     read: [
-      "reference/research-office/cto/prompts/integrator-reviewer.md",
+      "reference/office-of-research/cto/prompts/integrator-reviewer.md",
       "target document",
       "nearby corpus and style authorities",
     ],
@@ -109,7 +109,7 @@ const WORKFLOWS = [
     name: "Priority lane resume",
     use: "Resume a named priority workstream from live state and make the next scoped progress step.",
     read: [
-      "reference/research-office/cto/prompts/priority-lane-resume.md",
+      "reference/office-of-research/cto/prompts/priority-lane-resume.md",
       "reference/priorities/README.md",
       "priorities.md, work-queue.md, brainstorming.md, and work-log.md",
     ],
@@ -119,7 +119,7 @@ const WORKFLOWS = [
     name: "Core geometry theorem review",
     use: "Request concentrated mathematical review of one theorem target, equation stack, branch certificate, or proof gap.",
     read: [
-      "reference/research-office/cto/prompts/core-geometry-theorem-reviewer.md",
+      "reference/office-of-research/cto/prompts/core-geometry-theorem-reviewer.md",
       "the exact theorem or packet under review",
       "nearby foundation, dynamics, and terminology files",
     ],
@@ -148,43 +148,43 @@ const WORKFLOWS = [
 
 const PROMPT_INDEX = [
   {
-    path: "reference/research-office/cto/prompts/start-pi.md",
+    path: "reference/office-of-research/cto/prompts/start-pi.md",
     use: "Launch one Principal Investigator with a bounded research brief and evidence contract.",
   },
   {
-    path: "reference/research-office/cto/prompts/start-research.md",
+    path: "reference/office-of-research/cto/prompts/start-research.md",
     use: "Select and launch only the necessary role-based Specialists, then integrate their reports.",
   },
   {
-    path: "reference/research-office/cto/prompts/convergence-campaign.md",
+    path: "reference/office-of-research/cto/prompts/convergence-campaign.md",
     use: "Shared AAA corpus convergence protocol.",
   },
   {
-    path: "reference/research-office/cto/prompts/corpus-reviewer.md",
+    path: "reference/office-of-research/cto/prompts/corpus-reviewer.md",
     use: "Review an operator-provided corpus directory, one file per turn.",
   },
   {
-    path: "reference/research-office/cto/prompts/selective-reference-pass.md",
+    path: "reference/office-of-research/cto/prompts/selective-reference-pass.md",
     use: "Find and verify qualifying reference opportunities for up to 48 elapsed hours; propose source notes without editing the corpus.",
   },
   {
-    path: "reference/research-office/cto/prompts/integrator-reviewer.md",
+    path: "reference/office-of-research/cto/prompts/integrator-reviewer.md",
     use: "Integrate supplied review comments and perform a full target-document closure review.",
   },
   {
-    path: "reference/research-office/cto/prompts/review-comment-assessor.md",
+    path: "reference/office-of-research/cto/prompts/review-comment-assessor.md",
     use: "Assess pasted review comments against current repo canon without editing.",
   },
   {
-    path: "reference/research-office/cto/prompts/review-closure-verifier.md",
+    path: "reference/office-of-research/cto/prompts/review-closure-verifier.md",
     use: "Verify whether another agent's edits resolved a specific review without editing.",
   },
   {
-    path: "reference/research-office/cto/prompts/core-geometry-theorem-reviewer.md",
+    path: "reference/office-of-research/cto/prompts/core-geometry-theorem-reviewer.md",
     use: "Review one theorem target, equation stack, branch certificate, or proof gap.",
   },
   {
-    path: "reference/research-office/cto/prompts/priority-lane-resume.md",
+    path: "reference/office-of-research/cto/prompts/priority-lane-resume.md",
     use: "Resume an existing priority workstream and make the next scoped progress step.",
   },
 ];

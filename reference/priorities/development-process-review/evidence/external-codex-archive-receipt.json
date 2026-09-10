@@ -1,0 +1,14 @@
+{
+  "archiveSha256": "99b8ddf9260d4ef73040650042caccf6b1c9589da3caf68dc7b59cb30930f200",
+  "archiveBytes": 192627,
+  "manifestSha256": "1047e2c0b72e8bf0d594246ef627e5988965055cacf03d155d9a62cd097a2f30",
+  "members": 92,
+  "uniqueBlobs": 91,
+  "verifiedFiles": 99,
+  "archive": ".local-data/option-b-trial/external-option-b-preservation/preservation-v1.tar.gz",
+  "manifest": "reference/priorities/development-process-review/evidence/external-codex-preservation-manifest.json",
+  "restoration": ".tmp/external-codex-storage-audit/archive-restore-eKJZ3I/verification",
+  "verifiedAt": "2026-09-09T02:30:00.886Z",
+  "independentBackup": false,
+  "scope": "Local package integrity and full source-path restoration only; no deletion or backup durability claim."
+}

@@ -71,6 +71,21 @@ function compactCandidate(candidate) {
   };
 }
 
+// Historical paths, correction reasons and grades are copied literally. Only this
+// consumer-facing relation is translated; an unknown historical verdict must be reviewed.
+function currentConfigurationRelation(historical) {
+  if (historical.verdict !== "outside-B1.3"
+      || historical.reason !== "B1.3 contains exactly six architrinos in three antipodal neutral binaries; this 12:12 record contains 24 architrinos and its alternating word has like-polarity antipodes."
+      || historical.familyCDecision !== "not C5/C6; the record has one common center, no positive component-center separation, and no antipodal-neutral B1.3 component decomposition.") {
+    throw new Error("unreviewed historical ring12 configuration relation");
+  }
+  return {
+    verdict: "outside-planar-three-binary-common-center",
+    reason: "planar common-center three-binary constraint contains exactly six architrinos in three antipodal neutral binaries; this 12:12 record contains 24 architrinos and its alternating word has like-polarity antipodes.",
+    twoComponentCircularDecision: "not a coaxial-separated two-planar-braid configuration; the record has one common center, no positive component-center separation, and no antipodal-neutral planar three-binary common-center component decomposition.",
+  };
+}
+
 function buildRingReceipt() {
   const versions = [1, 2, 3, 4].map((version) => readArtifact(
     `${RING_RAW_DIRECTORY}/${RING_BASENAME}.v${version}.json`,
@@ -80,6 +95,7 @@ function buildRingReceipt() {
   return {
     schema: "braid-program/planar-n-n-circular-balance-receipt.v1",
     receiptId: "planar-co-rotating-n-n-circular-balance-2026-08-29-v4",
+    projectionNote: "Correction history and claim grades retain the raw record's historical terminology; they are not current configuration identifiers.",
     compatibilityIdentifier: record.compatibilityIdentifier,
     sourceRecord: {
       schema: record.schema,
@@ -188,6 +204,7 @@ function buildOrthogonalReceipt() {
   return {
     schema: "braid-program/orthogonal-plane-weave-complete-cycle-receipt.v1",
     receiptId: "orthogonal-plane-weave-complete-cycle-2026-08-29-v1",
+    projectionNote: "Provenance paths identify historical source bytes at the recorded generating commit. They are not links to current sources, and their hashes must not be attached to renamed or revised current files.",
     sourceRecord: {
       schema: record.schema,
       date: record.date,
@@ -259,6 +276,7 @@ function buildRingTwelveReceipt() {
   return {
     schema: "braid-program/planar-n-n-focused-extension-receipt.v1",
     receiptId: "planar-co-rotating-12-12-alternating-2026-08-29-v1",
+    projectionNote: "configurationRelation translates the raw taxonomyDecision into current configuration terminology without changing its geometric exclusion. Claim grades, excluded claims and falsifier retain historical wording; the raw artifact retains the original field names and verdict.",
     compatibilityIdentifier: record.compatibilityIdentifier,
     sourceRecord: {
       schema: record.schema,
@@ -278,7 +296,7 @@ function buildRingTwelveReceipt() {
       requiredForTests: false,
     },
     declaredScope: record.declaredScope,
-    taxonomyDecision: record.taxonomyDecision,
+    configurationRelation: currentConfigurationRelation(record.taxonomyDecision),
     regularResult: {
       n: record.regularResult.n,
       phaseConfiguration: record.regularResult.phaseConfiguration,

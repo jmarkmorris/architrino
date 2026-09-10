@@ -16,7 +16,7 @@ Plainly: one local calculation succeeds, but the proposed complete action fails 
 
 The owning corpus discussions are [Exact Nonlocal Lagrangian](../../../../content/markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian), [Energy, Symmetry, and Conservation](../../../../content/markdown/aaa/dynamics/master-equation.md#energy-symmetry-and-conservation), and the [Causal Action Functional](../../../../content/markdown/aaa/dynamics/causal-action-functional.md). The competing or potentially complementary causal-state route is [Independent Causal Wake-State Closure](independent-causal-wake-state-closure.md), with its current obstruction proved in [Independent Causal Wake-State Minimum and Obstruction](analysis-independent-causal-wake-state.md).
 
-The [wake-reception review packet](../../../research-office/research-history/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md) supplies a conditional angular-pin falsifier for this packet's momentum chart. Execution remains owned by MEC-004 after MEC-005; this backlink does not supply an account map, conservation result, or action adjudication.
+The [wake-reception review packet](../../../office-of-research/research-history/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md) supplies a conditional angular-pin falsifier for this packet's momentum chart. Execution remains owned by MEC-004 after MEC-005; this backlink does not supply an account map, conservation result, or action adjudication.
 
 Plainly: the Master Equation chapter owns the equations summarized here. This file is the focused research packet: it explains what they mean, separates proof from proposal, and records why the action route was not promoted.
 
@@ -1556,7 +1556,7 @@ MEC-001 is complete negatively for `CT-FH-1`. Any cutoff, core kernel, subtracti
 
 Plainly: there is no remaining calculation that can turn the unchanged candidate into the accepted action. New action research must change the candidate and start a new adjudication record.
 
-MEC-002 remains the independent causal wake-state problem already isolated in [Independent Causal Wake-State Closure](independent-causal-wake-state-closure.md). Its next exact mathematical object is one predeclared reception map
+MEC-002 remains the independent causal wake-state problem already isolated in [Independent Causal Wake-State Closure](independent-causal-wake-state-closure.md). The next construction first owes allocation, state representation, and observation rules, in the order established by [the minimum-and-obstruction analysis](analysis-independent-causal-wake-state.md). Only after those inputs are declared can it supply the following predeclared reception map
 
 $$
 \left(

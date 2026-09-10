@@ -1,5 +1,7 @@
 # Receiver-Normal Wake-Action Factor
 
+> **Historical disposition — current consumers must use the transmitter-side law.** This packet preserves a withdrawn receiver-weighted proposal. Its historical statements that the receiver-weighted row is mandatory, canonical, or a restart prerequisite have no current authority. The current acceleration weight is $c_f/|D_t|$; $D_r/D_t$ is signed root playback only. A regular $D_r=0$ crossing need not make acceleration vanish or become singular. Use the [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md), [regular gradient owner](receiver-wake-gradient-closure.md), and [live queue](../work-queue.md) for current work. Historical equations, interface identifiers, and evidence below are retained for provenance, not offered as current acceleration or account inputs.
+
 Status. Mandatory model-change audit for master-equation closure, A1 outward constants, action/wake-history closure, and solver support. This packet records the receiver-normal factor required by the canonical Master EOM branch law. Rows without the receiver-normal numerator are not force/action evidence. Stationary, fixed-source, or fixed-receiver reductions must be recomputed from this identity inside the selected retained row.
 
 Claim level. Accepted correction to the Master EOM branch-strength law; exact geometry identity for smooth retained roots; downstream proof paths must restart their force/action rows from this law.

@@ -64,7 +64,7 @@ The current split is:
 
 ## Brainstorming Link 2026-06-29
 
-The source-path, photon speed, and field-speed hinge discussion capture moved to [brainstorming.md](../brainstorming.md#topological-causal-root-ledger-discussion-capture-2026-06-29). This proof target keeps the formal topology setup below.
+The source-path, photon speed, and field-speed hinge discussion capture moved to [brainstorming.md](../brainstorming.md#causal-root-correspondence). This proof target keeps the formal topology setup below.
 
 ## Torus Root Setup
 

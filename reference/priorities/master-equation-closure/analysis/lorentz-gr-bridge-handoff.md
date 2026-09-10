@@ -74,6 +74,8 @@ Q_{ab}^{(q)}(v)
 M_q=\sum_i m_i.
 $$
 
+Here $m_i$ denotes a fixed nonnegative geometric extraction weight, with $M_q>0$, not an architrino mass or a motion-account map. Keep those weights identical across the rest and moving comparison records; any physical weighting derived later must be justified separately.
+
 With group-velocity axis $\hat{\mathbf e}_{\parallel}$ and transverse projector $P_{\perp}^{ab}=\delta^{ab}-\hat e_{\parallel}^{a}\hat e_{\parallel}^{b}$, the extracted semiaxes are
 
 $$

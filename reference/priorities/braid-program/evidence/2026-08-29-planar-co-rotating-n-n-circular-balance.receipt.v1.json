@@ -1,6 +1,7 @@
 {
   "schema": "braid-program/planar-n-n-circular-balance-receipt.v1",
   "receiptId": "planar-co-rotating-n-n-circular-balance-2026-08-29-v4",
+  "projectionNote": "Correction history and claim grades retain the raw record's historical terminology; they are not current configuration identifiers.",
   "compatibilityIdentifier": "aaa-corpus-advancement",
   "sourceRecord": {
     "schema": "braid-program/planar-n-n-circular-balance-campaign.v1",
@@ -91,7 +92,7 @@
       "byteCount": 17333611,
       "lineCount": 491592,
       "correctionOfVersion": 3,
-      "correctionReason": "The third closed run preserved the regular planar common-center three-binary constraint chart point but did not retain every exact regular phase point in the general nonuniform charts; this packet adds those exact chart subloci while keeping every nonregular extension unresolved.",
+      "correctionReason": "The third closed run preserved the regular B1.3 chart point but did not retain every exact regular phase point in the general nonuniform charts; this packet adds those exact chart subloci while keeping every nonregular extension unresolved.",
       "elapsedSeconds": 158.017
     }
   ],
@@ -99,7 +100,7 @@
     "balancedCandidateCount": 5,
     "unresolvedSearchRowCount": 61,
     "verdict": "balanced-regular-subloci-found-with-broader-phase-search-unresolved",
-    "claimGrade": "mixed derived configuration relation, independently checked ledger implementation, and bounded numerical search",
+    "claimGrade": "mixed derived taxonomy, independently checked ledger implementation, and bounded numerical search",
     "excludedClaims": [
       "retention",
       "binding",

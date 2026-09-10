@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architrino Mathematical Preview"
+  short_description: "Render and inspect mathematical Markdown previews."
+  default_prompt: "Use $architrino-math-preview for the specified Architrino task, following its current instruction owner and my requested scope."

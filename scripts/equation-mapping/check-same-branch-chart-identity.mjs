@@ -1440,7 +1440,7 @@ function isEvidenceSourcePath(filePath) {
   }
   if (
     relative.startsWith(
-      `reference${path.sep}research-office${path.sep}`
+      `reference${path.sep}office-of-research${path.sep}`
     )
   ) {
     return false;

@@ -66,9 +66,9 @@ Direct communication between Claude and Codex is a desirable possible improvemen
 
 ## Whether Git worktrees fit the workflow
 
-The operator asks whether Git worktrees should be used, recalling a previous attempt that did not seem to work and uncertainty about whether the difficulty came from the approach or unfamiliarity with it. The spoken phrase "GitHub work trees" is understood here as Git worktrees, subject to clarification if a different feature was intended. Explain how separate working directories relate to branches, shared history, concurrent agents, and integration back into the published branch.
+**Current disposition — Rejected, September 8, 2026.** The operator rejects additional linked worktrees for this project: temporary/task-managed, permanent and teaching/evaluation experiments. Use the existing local checkout. The [operating decision](../../../op/git/git-github-operating-guide.md#283-how-we-would-evaluate-a-worktree-workflow) supersedes the earlier reopened suitability question and evaluation permission. This is a workflow decision, not proof that Git is defective or a retrospective attribution of the earlier difficulty. Preserve pre-existing state and its safeguards; no deletion or migration is authorized.
 
-The current repository workflow uses one shared checkout and does not make worktrees the default. The operator is explicitly reopening their suitability for discussion, not requesting creation or migration. Compare worktrees with coordinated work in the shared checkout against the operator's actual needs, including visibility of changes, access to both repositories, generated/runtime data, test environments, and the effort of combining work. Establish what failed in the earlier attempt if evidence is available; do not presume that the operator used them incorrectly or that worktrees would solve the incident. No worktree or branch changes are authorized by this capture.
+The earlier question concerned a prior unsatisfactory attempt, visibility of changes, branch/shared-history relationships, runtime data, test environments and integration effort. Those concerns remain historical context in this record and the [lesson](worktree-learning-and-experiment.md); they are not a pending experiment or adoption task.
 
 ## Meaning and suitability of the last touch rule
 

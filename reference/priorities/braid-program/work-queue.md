@@ -64,6 +64,8 @@ The detailed planar common-center three-binary constraint investigation is maint
 
 ### Routed methodology coverage review from OPS-018
 
+**September 8 disposition: ◐ Partial — statement review/current admission complete; separate frozen calibration prerequisite remains.** Veronica’s [29-row impact review](../development-process-review/analysis/semantic-closeout-review.md) retains every coverage definition/gate and records the dated review token. The four named files now pass 26 of 27 tests; the sole failure is the uninstantiated calibration implementation identity already mismatching at the batch’s starting HEAD. No calibration pin or receipt is advanced. The original routing history below is preserved; its methodology-review action is complete, while its all-four-files completion condition retains that separately scoped prerequisite.
+
 - **Status:** Queued; routed here on 2026-09-06 from [OPS-018](../aaa-operations/work-queue.md#ops-018--layout-pass-digest-pin-attribution), which established that it is a single pre-existing defect rather than a digest to refresh.
 - **Defect:** `src/prescribed-path-analysis/analytical-measure-coverage.v2.json` pins `content/markdown/aaa/noether-braid/braid-analysis-methodology.md` at `783c7b77…` with `impactReview: reviewed-for-exact-configuration-complete-cycle-campaign-v2`. That document now hashes to `611b89ce…`, last changed by `c973402b9`, and `validateMethodologyCoverageContract` refuses to proceed: *"methodology hash 611b89ce… requires an explicit analytical coverage impact review."* Four test files fail on this one gate: `all-candidate-analytical-rebuild`, `analytical-campaign-database`, `endpoint-residual-search-campaign`, and `coincident-midpoint-4-2-1-…-coverage-calibration`.
 - **Why it is routed here and not repaired in operations:** the gate exists to force a scientific judgment. When the methodology document changes, someone who understands the analytical measures must decide whether the change alters what any measure covers, and record that decision as the new `impactReview` token. Refreshing the hash without that review would convert the gate into a formality, which is exactly the shortcut [OPS-019](../aaa-operations/work-queue.md#ops-019--layout-pass-digest-pin-repair) excludes. The layout campaign did not touch the methodology document; `c973402b9` did.
@@ -102,7 +104,7 @@ The later complete-registry campaign supplies the materially repaired phase-vary
 
 ## Neutral-Atlas Review Action Register
 
-This register owns every deferred action from the [Neutral-Braid Configuration Atlas](../../research-office/research-history/review-packets/bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md). It creates no queue and changes no status.
+This register owns every deferred action from the [Neutral-Braid Configuration Atlas](../../office-of-research/research-history/review-packets/bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md). It creates no queue and changes no status.
 
 | Review item | Live owner and status | Acceptance action |
 | --- | --- | --- |

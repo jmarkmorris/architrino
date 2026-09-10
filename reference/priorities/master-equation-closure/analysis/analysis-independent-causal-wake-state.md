@@ -7,7 +7,7 @@
 - Result: necessary direction-resolved output obligations can be written, but no coordinate-minimal representation, coupling, or conserved accounts are determined by the current primitives. No finite accepted coincident same-transmitter transition follows.
 - Promotion: priority-only; no ontology, canon, or EOM solver change is licensed.
 
-Research provenance: [Causal Wake-State Closure Research Findings and Proposed Incorporation](../../../research-office/research-history/review-packets/terence-tao-causal-wake-state-closure-research-findings-and-proposed-incorporation-2026-07-28.md) supplies the weighted-integrability correction, representation forks, angular identities, well-posedness obligations, and kinetic-account scope used here. It is reference evidence only; it selects no constitutive update and establishes no conservation law, wake ontology, retained branch, stability, photon Gate B result, or EOM solver authority.
+Research provenance: [Causal Wake-State Closure Research Findings and Proposed Incorporation](../../../office-of-research/research-history/review-packets/terence-tao-causal-wake-state-closure-research-findings-and-proposed-incorporation-2026-07-28.md) supplies the weighted-integrability correction, representation forks, angular identities, well-posedness obligations, and kinetic-account scope used here. It is reference evidence only; it selects no constitutive update and establishes no conservation law, wake ontology, retained branch, stability, photon Gate B result, or EOM solver authority.
 
 ## Finding in plain language
 
@@ -399,6 +399,144 @@ The distinction fails exactly where the regular-root assumptions fail. At a fold
 Plainly: on an ordinary isolated root, re-solving is a local lookup. At a fold or birth, it really is a new branch problem, and MEC-006 assigns no derivative there.
 
 Claim grade: **derived local simple-root lemma and scope boundary**. The lemma is falsified by a certified isolated simple-root history for which direct differentiation of $F=0$ disagrees with the displayed $\delta s$, while the scope boundary is falsified by a separately proved singular continuation chart that supplies a unique derivative through $D_t=0$ or root birth. This result licenses no physical back-calculation and no singular value.
+
+### 2.5 Receiver-dependent sharing with a uniformly controlled observation
+
+A receiver-dependent allocation avoids the countability argument in Section 2.3 because adding receivers may reduce each assigned share. It still has to explain why a smaller share produces the same canonical acceleration. The following result isolates that additional requirement without identifying acceleration with energy or momentum. It permits fractional patches and nonlocal allocation, so it is not another singleton-measure argument.
+
+Fix the stationary source and equal-radius receiver control of Section 2.3, with $c_f=1$, an emission interval $I$ of length $L>0$, radius $R>0$, and identical nonzero receiver charge magnitudes. Let $F$ denote any finite compatible receiver set and $N=|F|$. The candidate source budget is a finite nonnegative measure $\mu_I$ on the emission-label space $\Lambda_I=I\times S^2$, with total $C_I$. Its units are declared account units; no energy interpretation is assumed. For each receiver $k\in F$, an allocation is a nonnegative submeasure $\nu_k^F$ satisfying
+
+$$
+\sum_{k\in F}\nu_k^F\leq\mu_I,
+\qquad
+d_k^F=\nu_k^F(\Lambda_I),
+\qquad
+\sum_{k\in F}d_k^F\leq C_I.
+$$
+
+The inequality between measures means that it holds on every measurable subset of $\Lambda_I$. Fractions may overlap geometrically provided their sum never exceeds the available measure. Both the fractions and their supports may depend on the whole present receiver set. This relaxes the receiver-independent debit assumption and the point-supported allocation restriction. Finite source capacity and aggregate no-double-booking remain in force. A replenishment budget can be included in $\mu_I$ only if it is independently specified, finite on this control, and does not grow when receivers are added.
+
+Representation comes next. A candidate may encode $\nu_k^F$ by densities, atoms, patches, or additional coordinates, but it must declare how that encoding yields the nonnegative allocation above. Required coupling, energy, and momentum outputs still do not establish a minimal number of stored coordinates. A signed or vector representation can also be tested with a separately declared positive budget controlling its total variation; the signed net value alone is not such a budget.
+
+The receiver observation is the vector measure $\boldsymbol\eta_k^F$ of integrated acceleration on $B=I+R$. Write $\|\boldsymbol\eta_k^F\|_{\mathrm{TV},B}$ for its total variation, the integral of acceleration magnitude over $B$. Assume the part of the observation claimed to be funded by the allocation obeys one population-independent bound
+
+$$
+\|\boldsymbol\eta_k^F\|_{\mathrm{TV},B}
+\leq\Omega(d_k^F),
+\qquad
+\Omega(0)=0,
+\qquad
+\lim_{x\downarrow0}\Omega(x)=0,
+$$
+
+where $\Omega$ is nonnegative and nondecreasing. It may depend on the fixed $I$, $R$, and local source parameters, but not on $N$, receiver direction, or reception ordering in this control. This bound says that exhausting an allocated account makes its funded acceleration observation vanish uniformly. It allows nonlinear observation and is weaker than requiring a bounded linear operator. It is an explicit hypothesis about the candidate architecture, not a consequence of the Master Equation. A nondepleting wake may produce nonzero acceleration at zero debit and therefore lies outside this hypothesis.
+
+**Theorem (finite sharing with uniformly vanishing funded observation).** No allocation and observation satisfying these assumptions reproduces every unchanged source-to-receiver row in the stationary arbitrary-$N$ control.
+
+Each row has constant direction and magnitude $A_*=|\kappa q_jq_k|/R^2>0$. Its required total variation is $a_I=L A_*>0$. Among $N$ shares, at least one satisfies $d_k^F\leq C_I/N$. Consequently
+
+$$
+0<a_I
+=\|\boldsymbol\eta_k^F\|_{\mathrm{TV},B}
+\leq\Omega(C_I/N)
+\longrightarrow0
+\quad\text{as }N\longrightarrow\infty,
+$$
+
+which is impossible. The case $C_I=0$ fails already for one receiver. The argument allows a different allocation for every $F$ and requires neither rotation covariance of that allocation nor continuity with respect to receiver placement.
+
+For a linear bound $\Omega(x)=Gx$, the contradiction has the quantitative form $Na_I\leq GC_I$. A population-dependent linear gain would therefore need
+
+$$
+G_N\geq\frac{Na_I}{C_I}
+\qquad(C_I>0).
+$$
+
+Thus receiver-dependent sharing alone does not repair the funded-observation architecture: it must also lose a common small-budget bound, enlarge the available budget with receiver count, restrict compatible receivers, or change the canonical observation. Equal shares $C_I/N$ with an observation that divides by the share exemplify the unbounded-gain escape algebraically, but provide no independently derived transfer or source capacity. A dynamically inert account attached to an unchanged observation also escapes this theorem; it owes a separate account derivation rather than a claim that acceleration has spent its capacity.
+
+Claim grade: **derived conditional impossibility theorem**. The proof uses the existing stationary prescribed-history control and the elementary minimum-share inequality. These are channel-level observations on supplied histories, not an EOM future or a proof of arbitrary receiver packing within an accepted population class. Falsifier: supply the measures and a common $\Omega$ with the stated zero limit for every finite compatible receiver set while retaining the nonzero rows, or derive a finite compatibility bound that removes the large-$N$ premise. The theorem does not rule out all account architectures or imply that acceleration magnitude is an energy cost. Opposing acceleration vectors cannot defeat it, because variation is assessed separately on each receiver channel before summing resource claims.
+
+### 2.6 Playback zero distinguishes observation from source-clock throughput
+
+The existing regular control varies present receiver velocity while keeping emission position, transmitter velocity, range, and direction fixed. Write $D_t=1-\mathbf V_t\cdot\mathbf n\ne0$ and $D_r=1-\mathbf V_r\cdot\mathbf n$, where $\mathbf n$ is the emission-site-to-receiver unit vector. Simple-root differentiation gives $ds/dT=D_r/D_t$. At $D_r=0$, the emission label momentarily stops moving while the root remains simple in emission time. Its canonical acceleration remains
+
+$$
+\mathbf A(T)=\frac{\kappa\sigma_{tr}|q_tq_r|}{R^2|D_t|}\mathbf n\ne\mathbf0.
+$$
+
+Consider the narrower reception-transfer rule that spends only newly traversed emission-time capacity. Let $b(s)$ be a locally bounded source-clock account density after angular allocation, and let the transfer output per allocated account unit be locally bounded. On a monotone root chart the available rate is bounded by
+
+$$
+b(s(T))\left|\frac{D_r}{D_t}\right|.
+$$
+
+It vanishes at playback zero, and cannot fund a continuous nonzero output there through a bounded observation. More robustly, let $T_0$ be a playback zero with differentiable root map and $s'(T_0)=0$. The traversed source length on a reception interval of half-width $h$ is bounded by $\int_{T_0-h}^{T_0+h}|s'(T)|\,dT=o(h)$ when $s'$ is continuous. Bounded density and bounded gain then supply $o(h)$ output. A continuous nonzero canonical row supplies $2h\|\mathbf A(T_0)\|+o(h)$ variation. This neighborhood comparison avoids treating a value at one instant as an integral discrepancy. If playback is zero on an interval, no new emission-time capacity is traversed anywhere on that interval.
+
+This derivation reuses the receiver-velocity diagnostic and the [independent shell-account attempt](diagonal-birth-lineage-causal-wake-candidate.md#6-independent-shell-account-attempt); it introduces no new prescribed trajectory. To recover a nonzero rate from source-clock throughput near zero requires an unbounded density or gain, typically a factor $1/|D_r|$. A preallocated atom could instead be spent during residence at one label, but that is a reception-time spending rule with a remaining-state variable and duration control. Merely placing an atom at the label does not select such a rule. Spending stored capacity while the label is stationary is outside the newly-traversed-capacity assumption and still faces receiver multiplicity.
+
+Claim grade: **derived conditional source-clock-throughput obstruction**. Falsifier: a locally bounded source density and locally bounded transfer gain yielding order-$h$ output from the order-$o(h)$ traversed source capacity in the stated regular chart. A separately derived residence-time spending rule changes the hypothesis rather than falsifying the proof. No nonzero physical energy or momentum transfer is inferred from nonzero acceleration: this result tests only a candidate that declares the output to be funded by source-clock throughput. Playback zero is a receiver-clock degeneracy, not transmitter-root birth, distinct-label contact, or singular continuation.
+
+### 2.7 Retained-boundary partition cannot create a second allocation
+
+A finite account can be represented consistently across a retained-history boundary before any physical conservation claim is available. Fix one finite cohort $\mu_I$. Let $D_T$ be its cumulative consumed submeasure up to time $T$, with $0\leq D_T\leq\mu_I$ and no relabeling of spent content. Let $K_T\subseteq\Lambda_I$ be the retained set of emission labels and directions, expressed in the original label coordinates. For the remaining measure $U_T=\mu_I-D_T$, define
+
+$$
+\mu_{\mathrm{ret},T}=U_T|_{K_T},
+\qquad
+\mu_{\mathrm{out},T}=U_T|_{\Lambda_I\setminus K_T}.
+$$
+
+Restrictions to disjoint measurable sets give the identity
+
+$$
+C_I=D_T(\Lambda_I)
++\mu_{\mathrm{ret},T}(\Lambda_I)
++\mu_{\mathrm{out},T}(\Lambda_I).
+$$
+
+This is an allocation identity in account units, not conservation of motion plus wake energy. Under free propagation between $T_0$ and $T_1$, with no spending and nested retained sets $K_{T_1}\subseteq K_{T_0}$, the boundary export is $U(K_{T_0}\setminus K_{T_1})$. For three nested sets its two successive exports add exactly to the direct export because the two removed sets are disjoint. With simultaneous spending, consumption and export need unique event ownership before this decomposition applies; assigning the same atom to both is double booking.
+
+Any nonnegative countably additive measure has the same value under a measurable repartition of one fixed retained set. This mathematical partition invariance does not select a physical population grouping or prove conditional signed-sum invariance. A signed or vector account requires finite total variation on the domain for the corresponding unrestricted finite-account interpretation. Its small net value cannot stand in for the positive allocation bound. If an exported account remains available to later receptions, it must remain in the complete state or have an exact independently justified representation; declaring it exported does not replenish $\mu_I$.
+
+Claim grade: **derived conditional partition and no-double-booking identities**. Falsifier: a finite measure with the stated restrictions for which disjoint partition sums differ, or a purported implementation whose direct and staged exports differ on the same cohort. These identities supply a mathematical boundary representation only. Physical boundary flux, post-boundary reception, and energy, momentum, and angular-momentum values still require declared account maps and a common update.
+
+### 2.8 Complete-past accumulation on the stationary source
+
+Reuse the isolated stationary source of Section 6 and suppose its account emission is uniform: each unit of emission time adds a positive amount $\varepsilon>0$, with normalized angular measure $d\boldsymbol\omega/(4\pi)$. Assume no reception, no sink, and free propagation preserving that amount. The measure on labels emitted during $(T-H,T]$ has total
+
+$$
+C_H=\int_{T-H}^{T}\int_{S^2}\varepsilon\,\frac{d\boldsymbol\omega}{4\pi}\,ds
+=\varepsilon H.
+$$
+
+Monotone exhaustion as $H\to\infty$ therefore gives infinite total account on the complete past. The result is exact for this conditional emission law. It does not forbid a locally finite measure on the noncompact label space: every bounded emission interval still has finite capacity, and its angular singleton still has zero diffuse measure.
+
+A finite retention horizon $h_0$ leaves $\varepsilon h_0$ retained and $\varepsilon(H-h_0)$ outside when $H\geq h_0$. The sum remains $\varepsilon H$; export removes neither the complete-state accumulation nor the need to represent old surfaces that may later be observed. Boundary partition therefore passes as an identity and fails as a proposed cure for finite global capacity.
+
+More generally, if a candidate declares a measurable nonnegative fraction $w(a)$ of each emission's account still present anywhere in the accounted system at age $a=T-s$, finite complete-past total requires and, for this uniform source, is equivalent to
+
+$$
+\varepsilon\int_0^\infty w(a)\,da<\infty.
+$$
+
+Homogeneous account-preserving transport has $w=1$ and fails. Suppression of acceleration at observation does not reduce this stored fraction unless a separate account update says so. If a sink merely moves the account to another sector, that sector must be included before testing the complete-state integral. Neither an age weight nor its scale is selected here. Alternatively, a theory may permit infinite global accounts and formulate finite local balances; it then owes local observation, flux, and exhaustion laws rather than a finite-global-account claim.
+
+Claim grade: **derived conditional accumulation theorem**. Falsifier: a finite complete-past nonnegative account agreeing with every truncated mass $\varepsilon H$ under uniform positive emission and account-preserving transport. A finite-emission past, integrable nonuniform emission, independently derived spending or conversion, or permission for infinite global capacity changes the assumptions. This is not a conclusion about infinite-population EOM admissibility, self-root reachability, or acceleration-tail summation.
+
+### 2.9 Allocation verdict and remaining constitutive dependency
+
+The scoped-negative result extends the point-debit obstruction to receiver-dependent, nonlocal, or fractional allocation whenever a finite shared budget uniformly controls the acceleration observation that it is said to fund. It also distinguishes two independent escape requirements: a reception-time rule is needed to spend existing content at playback zero, and a complete-past account law is needed to replace uniform undiminished positive accumulation if finite global capacity is required. Retained-boundary partition preserves bookkeeping but supplies neither requirement.
+
+| Proposed change to the point-debit assumptions | Derived consequence and remaining dependency |
+| --- | --- |
+| Let shares depend on the receiver set; allow patches or nonlocal fractions | Section 2.5 still excludes a finite aggregate budget with a common vanishing observation bound. A population-dependent or nonvanishing zero-budget response changes that additional hypothesis. |
+| Keep the acceleration carrier nondepleting; assign zero debit to observation | Escapes both funded-observation no-go theorems. A separate non-residual account and reception-transfer law remains unselected. |
+| Spend stored content in reception time, including at playback zero | Escapes the newly-traversed-source-clock obstruction. The autonomous spending, exhaustion, replenishment, and multi-receiver rules remain to be derived. |
+| Increase capacity with receivers or restrict their compatible number | Changes source-budget independence or the arbitrary finite receiver premise. Neither follows from the stationary channel control. |
+| Permit signed or infinite accounts | Removes the nonnegative finite-capacity premise. Signed acceleration cancellation supplies no positive budget; complete-past local balances and observation still need definition. |
+| Export old labels from a retained window | Preserves the partition identity only. It cannot duplicate a cohort, erase an unaccounted exterior sector, or derive a physical boundary law. |
+
+The next mathematical dependency is a predeclared Architrino-native account channel specifying whether canonical acceleration spends account content at all. If it does, the channel must identify which finite-budget, uniform-observation, receiver-compatibility, or source-clock-throughput assumption it replaces and derive the replacement before transfer is tested. If it does not, energy and momentum values cannot be supplied by negating motion residuals; their independent dynamics remain the missing construction. This assignment selects neither alternative. No conserved accounts are attempted, and MEC-002 remains `In progress` with its account-complete update open.
 
 ## 3. Coincident-birth requirement
 
@@ -1022,3 +1160,37 @@ The current primitives determine free propagation and the regular receiver accel
 The regular part of that statement now has an executable state reduction: `scripts/equation-mapping/derive-causal-wake-update-law.mjs` advances fixed emission-site centers and radii at $c_f$, derives the surface-normal line of action, and reproduces $c_f/|D_t|$ by fixed-reception source-time collapse. This closes the regular kinematic substate only. It does not supply any of the missing constitutive objects named above, so the obstruction and fail-closed disposition are unchanged.
 
 Promotion classification: **closed negatively under the current primitive set; retain as the first-ranked derivation target, with singular evolution fail closed**.
+
+## 10. Allocation assignment evidence and coordinator handoff
+
+### Bounded assignment and frozen inputs — 2026-09-09
+
+Revised campaign effort 2 used the scoped-negative acceptance route. The predeclaration in `.tmp/mec002-allocation-architecture/predeclaration.md` fixed finite positive aggregate capacity, receiver-dependent fractional/nonlocal allocation, and a common observation bound vanishing with allocated capacity. Sections 2.5–2.9 contain the complete mathematical output, including all additional hypotheses and the four requested controls. No new prescribed trajectory was introduced. The stationary arbitrary-receiver control, fixed-root receiver-velocity diagnostic, finite retained-boundary partition, and isolated stationary complete-past source were reused. Supplied histories remain distinct from EOM futures; none of these results asserts coordinate contact or same-transmitter self-root birth.
+
+Input snapshots were taken at `2026-09-09T22:03:17.419Z` into `.tmp/mec002-allocation-architecture/frozen/`. SHA-256 identities below identify the source bytes used, including the pre-edit subject. The independent candidate owner and mathematical/code references were not cochanged. The subject's frozen copy is a provenance record, not independent acceptance of the new theorem.
+
+| Frozen input | SHA-256 |
+| --- | --- |
+| `work-queue.md` | `d8ec132e3ba00c35cd8e16a90e7f2874c2f73b854204249c671276f1c45b1118` |
+| `analysis/analysis-independent-causal-wake-state.md` before this assignment | `f3e8e270ce6f10c03aa709411ffb0e002694705cd10ba834ced17a7632772879` |
+| `analysis/independent-causal-wake-state-closure.md` | `765736e62c97180b83a68be5b7623058c40a7a55764d81951b42c48047f95c7c` |
+| `analysis/diagonal-birth-lineage-causal-wake-candidate.md` | `172be639eabfa186ee30403511ba5a641f50a6968db9c5c6528e726c80b18978` |
+| `analysis/receiver-wake-gradient-closure.md` | `b570f79f1c276a8ff3652c5d1d31885e213ff6128759886db411faccfb071339` |
+| `scripts/equation-mapping/derive-causal-wake-update-law.mjs` | `3775ec07ee429428a6b2d7f4ebaace2737bd515ba119fd1d2938e47104c173fe` |
+| `scripts/equation-mapping/analyze-causal-wake-birth-lineage-candidate.mjs` | `831f88063d28fe36f64c2600741401c51b513b78156692e4111c9527d6f67d95` |
+
+The first five paths in the table are relative to the Master-Equation closure directory; the two script paths are repository-relative. Test sources were also frozen before execution in `input-manifest.json` and `supplemental-test-manifest.json` in the same scratch directory.
+
+### Validation and limits
+
+Claim grade: **measured**. `node --test tests/causal-wake-update-law.test.js tests/causal-wake-birth-lineage-candidate.test.mjs` passed all thirteen existing tests with zero failures; the output is retained in `.tmp/mec002-allocation-architecture/existing-tests.tap`. These tests check existing regular kinematics and the frozen candidate's bounded diagnostics, including its playback-zero rejection. They do not independently accept the new allocation theorem, and no subject or reference code was edited to obtain agreement. Falsifier: a failed rerun on the frozen test and implementation bytes, or an independently computed control contradicting the corresponding assertion.
+
+Claim grade: **measured**. The scratch `validate.mjs` passed a known two-expression Markdown control with fenced text excluded and invalid TeX rejected before inspecting the added mathematics. It then parsed all 84 expressions in Sections 2.5–2.9 using the existing `protectMath` reader and KaTeX 0.16.11 with strict errors, checked the added link's exact target heading, and compared the preserved pre-existing subject text byte for byte with the frozen input. SHA-256 comparison reported every listed non-subject input unchanged. These checks establish syntax, preservation, and input identity within that scope, not mathematical truth. The receipt is `.tmp/mec002-allocation-architecture/validation.txt`; falsifier is a failed corresponding assertion or hash comparison. `git diff --check -- reference/priorities/master-equation-closure/analysis/analysis-independent-causal-wake-state.md` returned no whitespace errors for the owned file.
+
+The proofs are author-derived conditional results awaiting independent adjudication. Their checkable references are the exact stationary channel formula, the minimum-share inequality, the regular identity for emission-time playback, disjoint restriction of one measure, and the exact truncated mass integral. No numerical EOM run, Python calculation, generator write, index write, publication, downstream dispatch, or edit to coordinator-owned synthesis was part of this assignment.
+
+### Proposed coordinator integration text
+
+For the closure summary and strategic tracker: “Allocation effort 2 derives a scoped extension of the positive point-debit no-go. Receiver-dependent fractions and nonlocal allocation also fail when one finite positive aggregate budget controls each funded acceleration observation through a population-independent bound vanishing at zero allocation. The existing stationary arbitrary-receiver control proves the contradiction without a new prescribed path. This additional observation hypothesis is explicit and is not inferred from the Master Equation; nondepleting observation and independently derived separate account channels remain outside the theorem. Source-clock-throughput funding fails near playback zero under bounded density and gain. Retained-boundary partition is additive but cannot cure the infinite complete-past accumulation of uniform positive undiminished emission. No account-complete candidate or conservation result is obtained.”
+
+For the completed effort record: “The bounded negative acceptance object for revised effort 2 is complete in Sections 2.5–2.9 of analysis-independent-causal-wake-state.md, with validation and frozen-input provenance in Section 10. Independent adjudication remains outstanding. MEC-002 remains In progress; MEC-003/MEC-004 and downstream account acceptance retain their prerequisites. The precise remaining dependency is a predeclared non-residual account channel stating whether acceleration observation spends capacity and deriving the replacement for the particular finite-budget, uniform-observation, receiver-compatibility, or source-clock-throughput assumption it changes, including complete-past and boundary semantics. Removing the bounded effort from the executable queue does not close that constitutive dependency.”

@@ -13,7 +13,9 @@ This is the canonical execution ledger for repo-wide deployment, hosting, cost, 
 7. `post_campaign_binding_corruption_sweep` — [OPS-024](#ops-024--post-campaign-binding-corruption-sweep). Status: `In progress`; every non-environmental failure in the full sweep is classified and either repaired or routed to a named decision.
 
 8. `internal_reference_section_numbering` — [OPS-025](#ops-025--internal-reference-section-numbering). Status: `Queued`; define the convention and roll out by document type from the operator-approved trial.
-9. `github_presence_and_community_guidance_review` — [OPS-026](#ops-026--github-presence-and-community-guidance-review). Status: `Queued`; review public GitHub guidance against agreed operating practices.
+9. `github_presence_and_community_guidance_review` — [OPS-026](#ops-026--github-presence-and-community-guidance-review). Status: `Awaiting verification`; review completed; approved sentence deletion, discussion-to-issue and PR guidance applied; collaborator/review and development-discovery edits applied; awaiting verification.
+
+10. `periodic_project_skill_maintenance` — [OPS-027](#ops-027--periodic-project-skill-maintenance). Status: ○ Not done — `Queued`.
 
 ## Queued task records
 
@@ -419,6 +421,8 @@ The ten slowest are two `eq21-*` transfer residuals that hit the 100 s cap, `coi
 
 ### OPS-024 — Post-campaign binding corruption sweep
 
+**Current disposition, September 8, 2026 — ◐ Partial; broader acceptance remains open.** The [live recovery queue](../development-process-review/work-queue.md) and [semantic closeout record](../development-process-review/analysis/semantic-closeout-review.md) record completion of the accepted finite operational repairs, including the subsequent G8 projection resolution. This does not close OPS-024: the full sweep and final same-candidate acceptance remain open/deferred under their recorded conditions. Blocked evidence/input obligations, calibration prerequisites and deferred scientific continuation remain preserved with their owners in those records. Earlier observations below are retained as history; they do not override these later scoped dispositions. This navigation update authorizes no new work, archive or reassignment.
+
 **Shared-helper caller audit, 2026-09-07.** The [caller audit](../development-process-review/analysis/shared-helper-caller-audit.md) documents 27 selected occurrences in 19 files and reproduces the cached-root binding-test failure. Git-source hashing attributes the new helper mismatches to the streamed repair at c86595d13; they matched at 21771de11. Seven inspected entry declarations also have separate input/host constraints. Classification is complete, while supported-profile migration remains open; the refined verifier is still a current historical-transport dependency and cannot be globally repinned or retired. The earlier 158 passing tests do not cover these launch regressions.
 
 **Streamed-leaf operational migration, 2026-09-07.** The [streamed migration](../development-process-review/analysis/streamed-leaf-launch-migration.md) resolves the diagnostic dependency/readiness defect and carries historical selection plus the exact physical source union in invocation version five. Final combined Node controls pass 158/158 with no skips or cancellations, including independent closure observations for 39 process fixtures. Long captured command strings now remain exact within unchanged aggregate evidence limits; the competitor scan distinguishes the test filename from the actual coordinator. Retained adapter construction uses 265 sources and 36 routes with zero numerical calls. The broader shared-helper caller audit remains open; old scientific records and references are preserved, and these controls grant no scientific acceptance.
@@ -567,7 +571,7 @@ Plainly: Claude and Codex each read guidance from several places, and only some 
 | Prompt template | [`codex-goal-seeking-prompt-template.md`](../../op/codex-goal-seeking-prompt-template.md) | Communication and reporting procedure | 2026-09-03 |
 | Corpus style authorities | `content/markdown/aaa/archie/`: `academic-style-guide.md`, `mathematics-style-guide.md`, `mathematics-terminology.md`, `terminology-usage.md`, `comparative-glossary.md` | Reader-facing corpus prose and notation | 2026-09-03 |
 | End-user language | `content/markdown/aaa/archie/`: `ui-guidelines.md`, `navigation-and-controls.md` | App-facing wording | 2026-09-03 |
-| Role prompts | `reference/research-office/cto/prompts/` — 14 prompts plus `README.md` | Per-role behavior for research, review, convergence, promotion, adjudication | 2026-09-03 |
+| Role prompts | `reference/office-of-research/cto/prompts/` — 14 prompts plus `README.md` | Per-role behavior for research, review, convergence, promotion, adjudication | 2026-09-03 |
 | Repository skills | `.agents/skills/` — `aaa-corpus-advancement`, `corpus-review-workflow`, `math-preview`, `research-exploration` | Discovery routers into the live procedures; three carry an `agents/openai.yaml` | 2026-09-03 |
 
 There is exactly one authored `AGENTS.md` and exactly one `CLAUDE.md` in the repository, both at the root. Other copies found under `.tmp/` belong to unrelated vendored checkouts and are not project policy.
@@ -604,7 +608,7 @@ This item held the migration away from the retired inline `Plainly:` tag while t
 
 Both of this item's blockers are discharged, and the record of that lives in CRW-004 rather than being restated here: the operator opened the corpus-wide rewrite, which was the readiness gate, and edition 1.0 settled the canon question of whether the reader-facing style authority should say anything about the tag.
 
-The measured census, the finding that the tag leaked into reader-facing prose without any reader-facing authority ever prescribing it, the tiering by reader visibility, and the discharged search-index dependency all moved with the item. Nothing was dropped in the move. The residual pass over the startup-path files in `reference/op`, `reference/research-office/cto/prompts`, and `.agents/skills` went there too, even though those are operations surfaces rather than corpus, because splitting one retirement across two queues would leave neither queue able to say when it is finished.
+The measured census, the finding that the tag leaked into reader-facing prose without any reader-facing authority ever prescribing it, the tiering by reader visibility, and the discharged search-index dependency all moved with the item. Nothing was dropped in the move. The residual pass over the startup-path files in `reference/op`, `reference/office-of-research/cto/prompts`, and `.agents/skills` went there too, even though those are operations surfaces rather than corpus, because splitting one retirement across two queues would leave neither queue able to say when it is finished.
 
 ### OPS-016 — Reference equation-mapping surface
 
@@ -648,13 +652,35 @@ The reference builder follows the write authority of the executing queue item. A
 
 ### OPS-026 — GitHub Presence and Community guidance review
 
-- **Status:** Review complete; awaiting operator disposition. The [clarity and alignment review](../development-process-review/analysis/public-community-guidance-review.md) records proposed edits; public guidance remains unchanged.
+- **Status:** ◐ Partial — Awaiting verification. The [clarity and alignment review](../development-process-review/analysis/public-community-guidance-review.md) is complete; the operator-approved AI-assessment sentence deletion, actionable discussion-to-issue wording and coherent PR contribution guidance are applied; optional checkpoint-tag advice is removed. First-class human/AI collaboration, substantive cross/adversarial review and bounded development-discovery links are now approved and applied. The earlier audience sentence is superseded by the clarified audience scope and discovery links; no public-edit approval remains pending.
 - **Priority object:** `github_presence_and_community_guidance_review`
 - **Scope:** Inspect [GitHub Presence and Community](../../../content/markdown/aaa/archie/github-presence-and-community.md), including Discussions, issues, pull requests, and optional checkpoint/tag examples. Compare its public-contributor scope with the live [Git Lifecycle procedures](../../op/git/README.md), shared-checkout agent permissions, and outcomes accepted through the [process guide](../development-process-review/processes-git-codex-claude.md).
 - **Required analysis:** Identify concrete contradictions, ambiguous audiences, outdated claims, or missing routing. Distinguish independent contributors from agents sharing the operator's checkout; a difference in scope is not itself a defect. Inspect related README guidance where needed to assess consistency.
 - **Action boundary:** Review and propose the exact changes needed. Queue capture does not authorize changing public guidance, executing its Git examples, or changing publication policy.
 - **Completion:** Record findings with source passages, proposed edits or an evidence-supported no-change conclusion, and the operator's disposition. Route accepted changes to their existing owners and verify relevant links and behavior when implemented.
 - **Owner:** operations, coordinating with the public-community document owner.
+
+### OPS-027 — Periodic project skill maintenance
+
+- **Status:** ○ Not done — Queued.
+- **Priority object:** `periodic_project_skill_maintenance`
+- **Architecture review:** Completed — the operator approved replacement of the four skills with the [nine-skill design](analysis/skills-architecture.md); the maintained instructions and discovery packages are migrated.
+- **Request / acceptance:** Perform periodic maintenance on the `SKILL.md` files for the project skills we have instantiated. Review their trigger descriptions, instructions, linked live owners, and supporting resources for accuracy and consistency with current repository procedures; correct stale guidance and broken references.
+- **Current nine Codex discovery paths:**
+  - `/Users/markmorris/vibe/architrino/.agents/skills/architrino-explore/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/architrino-converge/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/architrino-review/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/architrino-sources/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/architrino-resume/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/architrino-publish/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/architrino-compute/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/architrino-math-preview/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/architrino-coordinate/SKILL.md`
+- **Maintained instructions:** The [skills index](../../op/skills/README.md#canonical-definitions) lists the nine `reference/op/skills/skill-<name>.md` instruction owners. Review these owners together with their discovery pointers.
+- **Policy:** Follow the adopted [repository skills policy](../../op/skills/README.md), including descriptions, default prompts, references, and templates.
+- **Cadence:** Monthly and when referenced owners change. Initial policy-adoption pass completed 2026-09-09; next monthly pass due 2026-10-09, or sooner on a relevant change. This recurring row tracks the next pass, not the completed adoption work.
+- **Completion:** Each maintenance pass reviews the current instantiated project skills, verifies referenced paths and procedure alignment, and records corrections or a supported no-change result in the operations work log.
+- **Owner:** operations.
 
 ## In progress
 

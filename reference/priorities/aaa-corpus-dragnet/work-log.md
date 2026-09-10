@@ -64,7 +64,7 @@ CD-002 ran one bounded, read-only correlation pass and retained [CD-2026-001](an
 
 - **HEAD:** `897fe1aa79be7ae1e77144d52ef396d209645323`.
 - **Working set:** no modified tracked path fell inside the resolved scan set. One untracked Braid Program script existed and was outside this non-Braid/non-Borg pass.
-- **Tracked files scanned:** 1,038 total: 201 under `content/markdown/aaa/`, 5 under `reference/architectural-decisions/`, 41 under `reference/design/`, 319 under `reference/learning-office/`, 22 under `reference/op/`, 393 under included `reference/priorities/` paths, and 57 under `reference/research-office/`.
+- **Tracked files scanned:** 1,038 total: 201 under `content/markdown/aaa/`, 5 under `reference/architectural-decisions/`, 41 under `reference/design/`, 319 under `reference/office-of-learning/`, 22 under `reference/op/`, 393 under included `reference/priorities/` paths, and 57 under `reference/office-of-research/`.
 - **Resolved active priority-owner set:** 30 immediate owner directories had `priorities.md`. This pass excluded `app-borg` and `braid-program` at operator direction and excluded `aaa-corpus-dragnet` as its own control/output lane, leaving 27 active owner directories eligible within the priority root.
 - **Standing exclusions applied:** every generated, derived, historical, parked, Dragnet-control, implementation, validation, local, dependency, binary, and media exclusion declared by CD-001. The pass additionally excluded `reference/priorities/app-borg/` and `reference/priorities/braid-program/`; implementation evidence from those lanes was not opened.
 
@@ -102,7 +102,7 @@ CD-001 established the input and evidence contract below. This was boundary and 
 
 - **Snapshot rule:** scan tracked regular files as they exist in the current checkout. The pass receipt must record the `HEAD` commit, every modified tracked path inside the resolved scan set, and the date of the pass. Untracked and ignored files are outside the baseline.
 - **Published canonical root:** `content/markdown/aaa/`.
-- **Internal roots:** `reference/architectural-decisions/`, `reference/design/`, `reference/learning-office/`, `reference/op/`, `reference/priorities/`, and `reference/research-office/`.
+- **Internal roots:** `reference/architectural-decisions/`, `reference/design/`, `reference/office-of-learning/`, `reference/op/`, `reference/priorities/`, and `reference/office-of-research/`.
 - **Active priority-owner rule:** an active priority owner is an immediate child of `reference/priorities/` that contains `priorities.md`, excluding `reference/priorities/dormant-deferred/`; this is the same owner-set rule enforced by `scripts/validate-priority-ranking.mjs`. The pass receipt must record the resolved owner directories rather than assume that the set stayed unchanged.
 
 #### Source-role distinctions
@@ -115,7 +115,7 @@ CD-001 established the input and evidence contract below. This was boundary and 
 #### First-pass exclusions
 
 - Generated and derived surfaces: `content/generated/`, `content/graph/`, `reference/op/agent-startup-orientation.generated.md`, `reference/priorities/source-mining/analysis/legacy-architrino-wordpress-library-posts.md`, and `reference/priorities/source-mining/archive-analysis/legacy-architrino-wordpress-mining-queue.txt`.
-- Historical or parked surfaces: `content/archive/`, `reference/priorities/dormant-deferred/`, `reference/research-office/research-history/`, `reference/priorities/app-solver/archive/`, `reference/priorities/master-equation-closure/history/`, `reference/priorities/source-mining/archive-analysis/`, and `reference/design/banners/history/`.
+- Historical or parked surfaces: `content/archive/`, `reference/priorities/dormant-deferred/`, `reference/office-of-research/research-history/`, `reference/priorities/app-solver/archive/`, `reference/priorities/master-equation-closure/history/`, `reference/priorities/source-mining/archive-analysis/`, and `reference/design/banners/history/`.
 - Dragnet control and output files: `reference/priorities/aaa-corpus-dragnet/`; these define and record the pass rather than supply correlation candidates.
 - Implementation and validation surfaces: `apps/`, `scripts/`, `src/`, `tests/`, root web shells, and `.github/`. A pass may open an exact file from these paths only as secondary evidence for a candidate already found in the primary roots, and must label it `implementation evidence`, not a corpus owner.
 - Local, dependency, and binary surfaces: `.git/`, `.local-data/`, `.tmp/`, `tmp/`, `node_modules/`, `vendor/`, `attractor-ensemble-out/`, `content/assets/`, and other binary or media files.

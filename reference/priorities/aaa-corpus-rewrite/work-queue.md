@@ -120,7 +120,7 @@ Markdown only, excluding `.tmp`, `.local-data`, `.git`, and `node_modules`.
 | --- | ---: | ---: | --- |
 | `content/markdown/aaa` | 9 | 28 | Absorbed into CRW-003; tracked here |
 | `reference/op` | 4 | 9 | Convert — startup path |
-| `reference/research-office/cto/prompts` | 2 | 7 | Convert — startup path |
+| `reference/office-of-research/cto/prompts` | 2 | 7 | Convert — startup path |
 | `.agents/skills` | 1 | 2 | Convert — startup path |
 | `reference/priorities` | 352 | 4,198 | Leave — operator decision, 2026-09-03 |
 | `reference/architectural-decisions` | 2 | 4 | Leave — operator decision, 2026-09-03 |
@@ -142,7 +142,7 @@ Accordingly, this verified item schedules no corpus work. It retains the histori
 **18 occurrences across 7 files, now zero:**
 
 - `reference/op/simulation-protocol-routing-index.md`, `textbook-review-exports.md`, `machine-artifact-retention.md`; the former review-time development experiment was removed by operator direction
-- `reference/research-office/cto/prompts/start-research.md`, `start-pi.md`
+- `reference/office-of-research/cto/prompts/start-research.md`, `start-pi.md`
 - `.agents/skills/math-preview/SKILL.md`
 
 Small in volume, disproportionate in effect, and the reason is position rather than size. These are files a new session reads while routing itself at startup, before it has read the explanation standard. A retained `Plainly:` in one of them is a worked example of the retired pattern shown to the next agent as if it were current practice, so the convention teaches itself back into the repository faster than conversions remove it. Eighteen occurrences is a single short pass.
@@ -161,7 +161,7 @@ Claim grade for the reinstatement mechanism this pass was meant to stop: `inferr
 
 #### Working record — unconverted for now, by operator decision 2026-09-03
 
-`reference/priorities` (4,198 occurrences across 352 files), `reference/architectural-decisions` (4), `reference/research-office/research-history`, and the fixtures under `src` and `tests` keep the tag.
+`reference/priorities` (4,198 occurrences across 352 files), `reference/architectural-decisions` (4), `reference/office-of-research/research-history`, and the fixtures under `src` and `tests` keep the tag.
 
 **This is a decision, not a backlog item.** An agent finding the tag in these files should leave it there and should not open a sweep. The [operator explanation standard](../../op/operator-explanation-standard.md) already rules that a document written under a retired convention keeps its form and is converted only opportunistically, when it is under substantial revision for some other reason; that rule governs here and needs no separate item to enforce it.
 
@@ -290,9 +290,25 @@ A concurrent Codex pass was still running when these counts were taken, so figur
 
 ### Authority and coverage
 
-The operator requested a fresh complete review of every Markdown file under `content/markdown/aaa/foundations/`, in textbook order, with discussion after each small batch. This review assesses mathematics, conceptual coherence, evidence, exposition, and useful deductions under the current academic style guide, edition 1.1. It is separate from the historical edition-1.0 conversion and from CRW-005's 190-document assurance denominator. Historical conversion rows and acceptance records above remain unchanged. The live corpus-reviewer procedure governs this work, with the operator's batch instruction replacing its one-document default.
+The operator requested a fresh complete review of every Markdown file under `content/markdown/aaa/foundations/`, in textbook order. The 2026-09-09 coordination assignment specifies one complete document at a time, with discussion before accepted edits, followed by Dynamics in live textbook order. This supersedes the earlier small-batch cadence for future reviews. This review assesses mathematics, conceptual coherence, evidence, exposition, and useful deductions under the current academic style guide, edition 1.1. It is separate from the historical edition-1.0 conversion and from CRW-005's 190-document assurance denominator. Historical conversion rows and acceptance records above remain unchanged. The live corpus-reviewer procedure governs substantive review.
 
-The initial request authorized review records and discussion capture only. The operator subsequently accepted all batch-1 recommendations and directed their implementation before batch 2; the dated integration record below owns that acceptance and verification. Later dated receipts below record acceptance and verification through batch 3, including the supplemental quadrupole clarification. The current batch-4 findings remain discussion-only. Controlled canon, application changes, generated artifacts, and reactivation of deferred theory work remain outside this task. A later instruction to continue means the next review batch unless implementation is also requested.
+The initial request authorized review records and discussion capture only. The operator subsequently accepted the corrections through batch 4, including the supplemental quadrupole clarification; the dated integration receipts below own that acceptance and verification. F4-1 through F4-4 are accepted and verified at their correction scope. Controlled canon, application changes, generated artifacts, and reactivation of deferred theory work remain outside this task. A later instruction to continue means the next complete document review unless implementation is also requested.
+
+### Coordination handoff — 2026-09-09
+
+Assigned scientific review lead and lead brainstormer: **Sabrina - scientific review lead**, task `01a0841b-f878-7672-8a7e-809c00f4939f`. Continuity source: **astra high foundations review**, task `01a0712a-dde8-7f00-90c9-a533c64c8d7b`. The lead exercises substantive judgment across mathematics, geometry, dynamics, foundations, computational evidence, and scientific exposition using the live repository review lenses: challenge assumptions, investigate derivations and counterexamples, identify promising connections, and guide discussion while separating established results from provisional ideas. The requested doctoral-level breadth is a standard of rigor, not a claim of human credentials. The lead also maintains sequence, coverage, findings, operator decisions, and handoffs in this existing record, with the current synthesis in [priorities.md](priorities.md). This turn remains bounded to the handoff: substantive review is awaiting the operator, and the role clarification does not launch reviewers, change models, or authorize corpus edits. The recommended model allocation supplied with the assignment is Astra High for substantive review, Medium for ordinary discussion, and Extra High for specific difficult mathematical questions; it remains a recommendation.
+
+Select document-relevant perspectives from the live [specialist selection index](../../office-of-research/cto/prompts/start-research.md#discover-specialist-lenses), applying the [Specialist charter](../../office-of-research/specialists/specialist.md) and [Geometry and Dynamics role packet](../../office-of-research/specialists/roles-geometry-dynamics/system-prompt.md#role-lenses). The index identifies the geometry/dynamics and historical entourage directories; use their existing individual descriptions as analytical lenses, reading only those relevant to the current document. Synthesize their questions, mathematical checks, and evidence standards without creating duplicate personas or treating agreement among perspectives as independent validation. Role labels supply neither human credentials nor theory authority. The historical entourage system prompt remains excluded. No role agent is launched by this selection policy.
+
+Claim grade: measured for recorded continuity, by `read_thread` on the source task's latest two completed turns and direct inspection of this coverage table and the F4-4 closeout. They agree on six completed Foundations reviews with accepted corrections integrated, ending at Absolute Time Defense; three campaign targets remain unread. The earlier authority paragraph's discussion-only batch-4 status was stale and is reconciled above against the dated receipt. This establishes continuity of the recorded review, not a new scientific validation.
+
+Current-byte verification used `shasum -a 256 content/markdown/aaa/foundations/*.md`: five accepted chapter hashes match the six-chapter impact-assessment receipts, and all three unread chapter hashes match the initial inventory. Absolute Time Defense now hashes to `35742a23faf464df67f3d7cfcc9c2f11f4fa6481aa92ed2070ef8aa382b0d2d3`. Removing only the viewer link for `corpus-equation-bec62a39745a7416` and its following blank line in memory reproduces the accepted receipt hash `7f1416cb91707f0619634ab6f8034504d41c242946f4ed3a69271b3782dd72f5`; no file was changed for this check. The exact-link removal instrument passed a known string case before the chapter check. Thus the byte difference is confined to that navigation link, preserving the accepted prose and mathematics. Falsifier: a later source change or a comparison that no longer reproduces the receipt hash requires a fresh preservation assessment.
+
+The next target is [Detecting the Absolute Frame](../../../content/markdown/aaa/foundations/detecting-the-absolute-frame.md), alone; its current SHA-256 is `8a62ef2951e06ed1aa6586f2e2ca010f63368bc2cbdc6f256cd82d335d451d9b`. Constructing the Absolute Frame follows, then Emergence of Structure. A Node depth-first traversal of `content/graph/textbook_toc.json`, checked first against a known ordered fixture with duplicate and out-of-directory paths, confirms this sequence. The same traversal gives the six `dynamics/` Markdown targets in order: Master Equation, Energy, Entropy, Binary Dynamics, Causal Action Functional, Effective Lagrangian; `rg --files` under the two corpus directories agrees with the target inventories. The intervening Action-Energy scene branch is outside the `dynamics/` Markdown directory and is not silently added to the corpus review scope. Recheck the live TOC and target bytes before each authorized review and before the Dynamics transition.
+
+Carry forward the [six-chapter impact assessment](#impact-assessment-after-six-reviewed-chapters--2026-09-05) and the existing finding receipts. Physical response maps and sufficient statistics, Hamiltonian memory construction, phase extraction and clock universality, far-population convergence hypotheses, and the deferred Bell obligations retain their recorded open boundaries. The bounded earlier EOM assessment is historical evidence, not a fresh solver audit. After the remaining Foundations documents and their decisions, prepare the cross-document synthesis before beginning Dynamics. Each review reads the complete target, records its hash and exact finding locations, and stops for discussion; accepted implementation uses the live integrator procedure and full-document verification. Dependency reading does not count as completed target coverage. Keep context bounded to the current target, applicable canon, and relevant existing findings.
+
+### Campaign baseline and coverage
 
 Baseline Git HEAD: `d1eab6a51f20a2490031d77fd60f4563192a8f04`. Initial `git diff --check` passed. Foundations and this lane were clean at baseline and immediately before the first batch reading. Unrelated concurrent changes were present and were left untouched. Hashes below identify the actual source bytes; HEAD alone would not identify an independently modified working file.
 
@@ -318,10 +334,11 @@ All nine files occur in `content/graph/textbook_toc.json` and as Markdown nodes 
 | 2 | [Absolute Time](../../../content/markdown/aaa/foundations/absolute-time.md), [Euclidean Void](../../../content/markdown/aaa/foundations/euclidean-void.md) | Both read completely; all F2-1 through F2-7 accepted corrections verified; response-scalar insight under discussion |
 | 3 | [Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md) | F3-1 through F3-7 and supplemental quadrupole clarification accepted and verified |
 | 4 | [Absolute Time Defense](../../../content/markdown/aaa/foundations/absolute-time-defense.md) | Completely reviewed; all F4-1 through F4-4 accepted corrections verified |
-| 5 | [Detecting the Absolute Frame](../../../content/markdown/aaa/foundations/detecting-the-absolute-frame.md), [Constructing the Absolute Frame](../../../content/markdown/aaa/foundations/constructing-the-absolute-frame.md) | Not yet reviewed as campaign targets |
-| 6 | [Emergence of Structure](../../../content/markdown/aaa/foundations/emergence-of-structure.md) | Not yet reviewed; separate synthesis and branch-selection burden |
+| 5 | [Detecting the Absolute Frame](../../../content/markdown/aaa/foundations/detecting-the-absolute-frame.md) | ✓ Done — complete chapter review; F5-1 through F5-3 accepted, integrated, and verified |
+| 6 | [Constructing the Absolute Frame](../../../content/markdown/aaa/foundations/constructing-the-absolute-frame.md) | ○ Not done — follows Detecting the Absolute Frame |
+| 7 | [Emergence of Structure](../../../content/markdown/aaa/foundations/emergence-of-structure.md) | ○ Not done — separate synthesis and branch-selection burden |
 
-Reading a later chapter as a required foundation anchor does not count as its completed review. Coverage is 6 of 9 complete readings: 6 chapters with all recommended corrections accepted and verified, 0 wholly unimplemented chapters with findings awaiting decision, 0 partially integrated chapters awaiting correction decisions, 0 reviewed with no recommended change, 0 files explicitly deferred or blocked, and 3 not yet reviewed. F2-1 through F2-7 have verified corrections; the physical response identifications discussed in F2-2 and the supplemental batch-3 quadrupole assessment remain open recovery obligations. Scientific closure is not implied by any coverage status.
+Reading a later chapter as a required foundation anchor does not count as its completed review. Coverage is 7 of 9 complete readings: 7 chapters with all recommended corrections accepted and verified, 0 wholly unimplemented chapters with findings awaiting decision, 0 partially integrated chapters awaiting correction decisions, 0 reviewed with no recommended change, 0 files explicitly deferred or blocked, and 2 not yet reviewed. The [Detecting the Absolute Frame review](#foundations-document-7--detecting-the-absolute-frame-review-2026-09-09) records F5-1 through F5-3 and their completed integrations. F2-1 through F2-7 have verified corrections; the physical response identifications discussed in F2-2 and the supplemental batch-3 quadrupole assessment remain open recovery obligations. Scientific closure is not implied by any coverage status.
 
 | Path within Foundations | Baseline SHA-256 |
 | --- | --- |
@@ -1452,3 +1469,197 @@ Two corrections are particularly concrete. F4-1 changes the effective rate away 
 The most consequential conceptual correction is the information-loss issue raised by the operator. The physical history can remain the common source of several measurements while a particular tensor fails to retain enough of it. The repair leaves open which reduction is adequate; it does not establish that every tensor reduction is wrong or that one proposed quadrupole is physically sufficient. Later spacetime, matter, cosmology, and measurement arguments must inherit that boundary. Likewise, the corrected far-population proof and Bell discussion expose limitations on existing arguments rather than establish new physical impossibility results.
 
 Evidence and scope: the accepted batch receipts and the relevant live passages were inspected. All six live chapter hashes match their latest integration receipts: Ontology `48bf11bec4defceb1a317443928e43ecebfae28340aef02ac2f8c0754e47c43d`; Architrino `f91c2123169e3f1efd46a905769838f90a4da67cd268dc64d972a000d40f322d`; Absolute Time `fa03318d71b159e57c8bb2857540e8f49458859ced96da1d8b50b43d26a7ba42`; Euclidean Void `1b561ec1b1ad6ebbe40533b262c3c584abc5ac1813cb874dbcfa94d035022a02`; Absolute Timespace `6dfc68496c19792463d3093f1f160ebd519496e4149190bcded0c971c3d7c603`; Absolute Time Defense `7f1416cb91707f0619634ab6f8034504d41c242946f4ed3a69271b3782dd72f5`. The sampled current Master Equation hash is `dbb88e073d51b5980e0520c0720439e803eeab35b350c49b3dd67adc3f036a3d`; EOM evolution contract `e9813089f6223ed21952911071d3dbbcc6458ec172443437cf38260f2ab85170`; CertifiedAcceleration source `58f425847442aa8772a1d3a63bb09bbae8d0883c56fd60a3d300273dc5e68878`. This is an impact assessment using review provenance and bounded source inspection, not an exhaustive downstream dependency audit, independent mathematical validation, or a new solver run. The no-identified-kernel-change conclusion would need revision if an accepted correction changed a primitive kernel factor, or an actual consumer used one of the superseded effective formulas or sufficiency claims. No such kernel change is present in the accepted record. The next Foundations batch should use these corrected premises; broader propagation remains outside the present review coverage.
+
+### Foundations document 7 — Detecting the Absolute Frame review, 2026-09-09
+
+#### Scope, authority, and result
+
+Mark authorized the complete review of [Detecting the Absolute Frame](../../../content/markdown/aaa/foundations/detecting-the-absolute-frame.md) alone, with findings returned for discussion before corpus edits. The previous publication pause is superseded for this review; no publication or following-chapter review is authorized. The full 337-line target was read using `nl -ba`/`sed`. Its SHA-256 from `shasum -a 256` is `8a62ef2951e06ed1aa6586f2e2ca010f63368bc2cbdc6f256cd82d335d451d9b`, unchanged from the campaign inventory; review-start HEAD from `git rev-parse HEAD` is `5819c2731c960256b9805b3b90051091cfe8e69e`. Scoped `git --no-optional-locks status --short` showed no pending changes in Foundations or this review lane before capture. These are measured source-state facts, not scientific validation.
+
+The exact tagged-sphere argument is sound under the stated Euclidean geometry, absolute-time, emission-tag, and propagation assumptions. At the initial review, three findings required discussion: finite reconstruction conflates distinct inverse problems; spatial shape is confused with time-parameterized motion in one sentence and in a linked dependency; and the observer-hiding target needs an explicit comparison protocol and metric. None establishes that absolute rest is undefined or that operational Lorentz recovery is impossible. No corpus correction had been applied at that review stage. All three findings were subsequently accepted and integrated in the receipts below; the current chapter assignment is complete.
+
+The existing Lorentz, Cartan, and Moore role descriptions supplied bounded questions about observer maps, spatial identification, and inverse conditioning. Their perspectives were synthesized by this reviewer; no additional agent was launched and no persona agreement is counted as independent evidence. Mathematical support below is direct Euclidean algebra, explicit prescribed-path counterexamples, and elementary bounds. The numerical checks are supplementary floating-point evaluations of those derivations, not EOM solutions or interval certificates.
+
+Dependency inspection covered the current ontology's map-factorization and inverse-floor discussion; architrino provenance, propagation, and rest definitions; absolute-time symmetry and root-margin scope; Euclidean-void isometries; Absolute Timespace's additional connection data and boosted wake law; Constructing the Absolute Frame's ordered-tuple and cross-slice transport argument; the Master Equation's self-hit and symmetry sections; the Observer Framework's retained apparatus record; and Lorentz Kinematics' Theorem G. Constructing the Absolute Frame was read as a dependency, not reviewed as the next campaign target. The earlier accepted corrections and their open scientific obligations remain intact.
+
+| Finding | Classification and significance | Decision state |
+| --- | --- | --- |
+| F5-1 | High: the finite reconstruction acceptance statement is not a valid universal certificate as written | ✓ Done — accepted, integrated, and verified; [receipt](#f5-1-accepted-integration--2026-09-09) |
+| F5-2 | Moderate: straight accelerated motion is omitted, and the linked self-hit requirement conflicts with the root geometry | ✓ Done — accepted, integrated in both documents, and verified; [receipt](#f5-2-accepted-integration--2026-09-09) |
+| F5-3 | Moderate: the observer diameter is a schematic target until its protocol, output type, metric, and calibration are fixed | ✓ Done — accepted, integrated, and verified; [receipt](#f5-3-accepted-integration-and-chapter-closeout--2026-09-09) |
+
+#### F5-1 — Separate exact center recovery from finite inverse conditioning
+
+**Location:** target lines 98–153, especially 113, 131–153. The four-point Gram determinant correctly detects affine independence. The later text makes a positive solid-angle floor and the direction matrix $G_a$ into theorem-level acceptance conditions for any finite reconstruction without stating whether the radius is known, how discrete samples represent a patch, or whether local conditioning or global uniqueness is certified. Those distinctions change the mathematics.
+
+**A positive solid angle is not necessary for exact finite recovery.** Consider four unit-sphere vertices with coordinates $(1,1,1)/\sqrt3$, $(1,-1,-1)/\sqrt3$, $(-1,1,-1)/\sqrt3$, and $(-1,-1,1)/\sqrt3$. Their displacement Gram determinant is $256/27>0$, so their unique circumsphere is recoverable. Their finite direction set has spherical area zero. Interpreting $U_a$ as those observed points would therefore reject an exact, well-conditioned reconstruction under the stated positive-area rule. If $U_a$ instead denotes an instrument's continuous footprint, that footprint and its relation to the weighted samples must be declared. It is not the same object as a finite point set. This example does not refute a deliberately conservative instrument policy; it refutes presenting that policy as a mathematical necessity for every finite reconstruction.
+
+The exact center equations are obtained by subtracting squared-distance constraints. For $\mathbf d_\alpha=\mathbf Y_\alpha-\mathbf Y_0$ and unknown center $\mathbf z$,
+
+$$
+2\mathbf d_\alpha\cdot\mathbf z
+=\|\mathbf Y_\alpha\|^2-\|\mathbf Y_0\|^2,
+\qquad \alpha=1,2,3.
+$$
+
+The radius cancels. If the three displacement vectors span space, the linear system has exactly one center; the radius is then its distance to any sample. This supplies the independent algebraic reason for the four-point certificate. Positive determinant alone establishes exact rank, not a numerical error bound: a quantitative singular-value bound, coordinate scale, and measurement-error model are needed for a noisy fit.
+
+**The stated $G_a$ is a local known-radius matrix.** For radial residuals $r_k(\mathbf z,R)=\|\mathbf Y_k-\mathbf z\|-R$, let $\hat{\mathbf n}_k=(\mathbf Y_k-\mathbf z)/R$ at an exact fit, and choose positive weights normalized by $\sum_k w_k=1$. The differential is
+
+$$
+\delta r_k=-\hat{\mathbf n}_k\cdot\delta\mathbf z-\delta R.
+$$
+
+If $R=c_f(T-T_t)$ is fixed by exact tagged times, $\delta R=0$ and the center normal matrix is indeed $G=\sum_k w_k\hat{\mathbf n}_k\hat{\mathbf n}_k^T$. It controls local sensitivity near a selected solution. If radius is also fitted, eliminating its perturbation gives the center matrix
+
+$$
+C=G-\bar{\mathbf n}\bar{\mathbf n}^{T},
+\qquad
+\bar{\mathbf n}=\sum_k w_k\hat{\mathbf n}_k.
+$$
+
+To see why, minimizing $\sum_k w_k(\hat{\mathbf n}_k\cdot\delta\mathbf z+\delta R)^2$ over $\delta R$ sets $\delta R=-\bar{\mathbf n}\cdot\delta\mathbf z$. Substitution leaves $\delta\mathbf z^T C\delta\mathbf z$. The centered matrix, not $G$ alone, detects a tradeoff between center displacement and radius. Uncertain tagged times likewise require radius uncertainty to be propagated; treating the radius as exact is an additional measurement assumption.
+
+**An explicit ambiguity passes the $G$ test.** Set $c_f=1$, radius $R=1$, $a=\sqrt{2/3}$, and $b=1/\sqrt3$. Observe the four points $(a,0,0)$, $(0,a,0)$, $(-a,0,0)$, and $(0,-a,0)$. Both centers $(0,0,b)$ and $(0,0,-b)$ are distance one from every point. At either fit, equal weights give
+
+$$
+G=\frac13 I_3,
+\qquad
+C=\operatorname{diag}(1/3,1/3,0).
+$$
+
+The stated direction-rank test therefore passes both centers at any floor no greater than $1/3$. With fixed radius, it certifies local rank but does not choose between the two solutions. With free radius, centers can slide along the axis while radius changes, and the zero eigenvalue of $C$ detects that ambiguity. The four-point displacement determinant correctly rejects this coplanar example; it must not be replaced by $G$ as though the two certificates were equivalent. A small noncoplanar perturbation restores exact uniqueness while leaving the joint fit arbitrarily ill-conditioned as the perturbation tends to zero. This is why the text must retain the separate roles of exact uniqueness, local rank, and bounded uncertainty.
+
+**Smallest repair:** retain the exact full-sphere and four-point proofs; distinguish continuous footprint from discrete samples; specify positive normalized weights or a fixed weighting convention; explicitly make $G$ a local known-radius certificate; retain an independent global uniqueness or side-selection condition; and use the augmented Jacobian or $C$ when radius is uncertain. Present aperture thresholds as declared sufficient instrument criteria with their error model, not universal theorem-level necessities. This sharpens the current inverse argument without introducing a new physical postulate or a new gate.
+
+Claim grade: derived for the rank calculations and counterexamples. The numerical spot check is measured by `.tmp/sabrina-detecting-review/check-counterexamples.cjs`, which first passed known Gram/determinant and six-axis moment cases, then reproduced the two unit-radius centers, $G=I_3/3$, $C_{33}=0$, and the tetrahedral determinant within $10^{-12}$. The exact algebra above is the durable support; the script is disposable. Falsifier: an explicit local assumption that already fixes a unique center and supplies the correct radius/error treatment would narrow the repair; it would not turn a finite direction set into positive spherical area.
+
+#### F5-2 — Preserve the time parameter when classifying motion
+
+**Location:** target lines 55–64 and 185–201; linked dependency [Master Equation, Self-Hit Condition](../../../content/markdown/aaa/dynamics/master-equation.md#self-hit-condition), lines 2684–2687 at inspection. The sentence at line 57 says accelerated motion means a curved center history. Acceleration can instead change speed along a straight spatial line. The later paragraph at line 185 correctly says “accelerated or curved,” so the early summary is inconsistent with the more careful treatment.
+
+For a smooth prescribed path in normalized units, choose
+
+$$
+\mathbf X(T)=\left(\frac{T+T^2}{2},0,0\right),
+\qquad
+\mathbf V(T)=\left(\frac12+T,0,0\right),
+\qquad
+\mathbf A(T)=(1,0,0).
+$$
+
+On an interval containing $[0,1]$ and lying above $T=-1/2$, the path is regular and straight, with nonzero acceleration and zero spatial curvature. Its tagged centers lie on a line but are not traversed at constant rate. Thus a line of centers is insufficient for uniform motion; the absolute emission-time labels are essential. Rest means a constant center curve over the interval, while non-rest does not mean velocity is nonzero at every instant. At the stated absolute-continuity regularity, velocity identities hold almost everywhere unless stronger differentiability is supplied.
+
+**The linked dependency needs a separate disposition.** Detecting's lines 187 and 201 correctly avoid making curvature necessary for the geometric self-hit equality. The Master Equation's linked requirements instead say the worldline must curve and that straight-line motion admits no self-hits. The same prescribed path disproves that assertion as a general property of the root equation. At reception $T_r=1$ and emission $T_t=0$, displacement and delay are both one. For nearby emission time $s<1$,
+
+$$
+F(1,s)=\|\mathbf X(1)-\mathbf X(s)\|-(1-s)
+=\frac12s(1-s),
+\qquad
+\partial_sF(1,0)=\frac12.
+$$
+
+The root is noncoincident and simple; its transmitter factor is $D_t=1-1/2=1/2$ and the declared weight is $W^{\mathrm{acc}}=2$. This is not the degenerate constant-speed $c_f$ riding case. It is a direct root-geometry counterexample, not a demonstrated trajectory of the full EOM solver: no claim is made that the prescribed acceleration is produced by a complete interacting configuration. Restricting the dependency statement to full dynamically realized histories would require a separate theorem excluding this type of straight accelerated history; the scalar root condition does not provide one.
+
+**Smallest repair:** replace the target's summary by “uniform motion gives an affine center curve in absolute time; acceleration changes its time derivative and may change speed, direction, or both.” Retain the exact self-hit equality and its transversality distinction. Record the linked Master Equation's curvature requirement for explicit correction or later Dynamics adjudication; do not weaken the target's correct geometry to match that sentence. This dependency was inspected because the target relies on it; it does not count as a completed Master Equation review and is not authorization to edit that chapter.
+
+Claim grade: derived for the kinematics and root calculation. Falsifier: differentiating the displayed path or substituting it into the declared root function fails to give the stated nonzero acceleration and simple root. A future proof about dynamically realized histories would constrain realization, not undo the kinematic calculation. The operator decision is whether to accept the target clarification and how to route the dependency correction before subsequent claims rely on curvature as a necessary condition.
+
+#### F5-3 — Define what the observer-hiding diameter compares
+
+**Location:** target lines 315–337, with context at lines 17, 66–68, 251–263, and 295–299. The chapter correctly labels operational hiding as a recovery target, not a demonstrated result. Its final inequality is nevertheless underdefined as an operator-checkable target: $\operatorname{diam}_{\mathrm{obs}}$ needs a fixed output space and metric; $\mathcal O$ needs a specified, calibrated observable family; and “re-preparing the same experiment” needs a rule for apparatus, medium, nuisance data, and comparison across histories. A velocity range alone does not supply those choices.
+
+There are two distinct comparison problems. A deterministic matched-history statement compares calibrated outputs from a declared family of corresponding preparations. A statistical experimental statement compares record distributions or specified estimators across identically controlled preparation ensembles. In a deterministic substrate model, the ensemble describes unresolved preparation records; it is not a primitive probability postulate. Arbitrarily selecting one raw outcome at each velocity does not test either invariance claim. For example, identical unbiased binary-output laws at two velocities can yield one recorded 0 and one recorded 1, giving diameter one despite exact equality of the laws. Conversely, selecting matching outcomes from two different laws can give diameter zero. This is an abstract measurement-model counterexample, not an assumed architrino realization.
+
+Normalization matters independently. If a scalar readout $f$ is replaced by $\alpha f$, its numerical diameter scales by $|\alpha|$. The same physical criterion is preserved only when the metric and tolerance transform consistently, or when a calibrated dimensionless residual is fixed in advance. Without that declaration, the written inequality has no unique numerical interpretation. This is missing specification, not evidence that a physically defined leakage bound fails.
+
+The existing [Observer Framework](../../../content/markdown/aaa/spacetime/observer-framework.md) supplies the relevant retained-record vocabulary: readout, apparatus response, modulation protocol, calibration covariance, nuisance family, and boundary-wake data. [Theorem G](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure) likewise requires the clock, ruler, photon, and other channel residuals to come from the same retained branch and medium account. Those are appropriate dependencies for this chapter's target. They must be instantiated for the selected comparison rather than replaced by a universal raw-record diameter.
+
+**Smallest repair:** define $Q_{\mathrm{erase}}$ as the specified loss of inaccessible provenance; say explicitly whether the retained output is a deterministic matched observable, an estimator, or a record law; fix a calibrated metric or dimensionless channel residual and admissible family; and state which preparation and environment quantities remain controlled as $\mathbf w$ varies. The page can remain at theorem-target grade without supplying a numerical closure proof. Also distinguish an unproved bound from a violated bound in the closing sentence: lack of a derivation leaves recovery open, while a verified above-bound residual in the declared tested regime falsifies that particular recovery claim. The sentence at line 299 about a frame hidden by emergent geometry should retain the target status stated at lines 253 and 295.
+
+Claim grade: derived for the raw-outcome and rescaling counterexamples; inferred for the recommendation that the target needs this explicit type and protocol declaration. Falsifier: a local definition fixes the matched preparations, output type, calibration, and metric and the equation is explicitly restricted to that definition. Neither counterexample establishes observable preferred-frame leakage in the actual theory.
+
+#### What survives and a useful next derivation
+
+The exact sphere-center lemma survives. If two centers generated the same full sphere, subtracting their squared-distance equations would put that full sphere inside one affine plane unless the centers were identical, which is impossible for a positive-radius sphere. The transmitter tags therefore recover the center curve on the declared emission window. For an absolutely continuous curve, equal position functions give equal velocities almost everywhere. Retained identity and polarity must be part of the tagged record, as the proof states; untagged geometry alone cannot recover polarity. No conclusion extends to the unobserved history or to an observer-accessible decomposition of a summed signal.
+
+The diameter identity also survives: $D_a(I)=0$ exactly when every center is the same, and uniform motion has $D_a(I)=\|\mathbf V_a\|\Delta T_I$ on a bounded interval. This is a result within the fixed Euclidean spatial identification and absolute-time structure; it does not derive those substrate commitments. The boosted wake equation in Absolute Timespace explains why a time-dependent translation changes the propagation representation, while a fixed origin shift or rotation preserves center coincidence.
+
+The self-hit threshold remains a geometric necessary condition. Absolute continuity gives
+
+$$
+\|\mathbf X(T_r)-\mathbf X(T_t)\|
+\le\int_{T_t}^{T_r}\|\mathbf V(s)\|\,ds.
+$$
+
+A strict sub-wake-speed history cannot reach the required chord length. Constant straight motion with speed below or above $c_f$ has no positive-delay root; constant speed exactly $c_f$ has the degenerate riding equality rather than a simple-root chart. Variable-speed straight motion is the distinct case in F5-2. These statements neither prove binding nor supply a constitutive inertial response.
+
+The seven continuous generators follow from the declared $E(3)\times\mathbb R$ kinematic symmetry: three spatial translations, three rotations, and one time translation. Reflection is disconnected and adds no continuous generator. The target correctly retains conservation of the associated charges as conditional on an appropriate action and its history/boundary terms. The link to Theorem G supplies a recovery target, not proof that effective boost generators have already been constructed.
+
+A useful extension is an uncertainty statement for the rest diagnostic. Suppose every retained center estimate has position error at most $\eta_z$, and let $\widehat D$ be the diameter of the estimated centers at those emission times. Pairwise triangle inequalities give
+
+$$
+\max(0,\widehat D-2\eta_z)\le D_{\mathrm{sample}}
+\le\widehat D+2\eta_z.
+$$
+
+Thus $\widehat D>2\eta_z$ certifies non-rest at the sampled times; small estimated diameter does not certify exact rest. If a path speed bound $\|\mathbf V\|\le L$ is independently available, the emission samples include the interval endpoints, and the largest sample gap is $h$, then every time is within $h/2$ of a sample and
+
+$$
+\max(0,\widehat D-2\eta_z)\le D_a(I)
+\le\widehat D+2\eta_z+Lh.
+$$
+
+Each of two centers can move at most $Lh/2$ to its nearest sampled time, which proves the extra $Lh$ term. This is a derived conditional error bound, not a new measured instrument or a bound already available from the theory. Without a temporal regularity bound, excursions between identical samples can be missed. The extension would turn the chapter's warning about finite access into a precise limited statement once F5-1 supplies center-error bounds. Falsifier: the assumed error enclosure or speed bound fails, or the sample endpoints/gap condition is not met. It does not authorize approximate-rest claims from an uncalibrated reconstruction.
+
+#### External source and completion boundary
+
+The cited Nagel et al. 2015 result was checked against the [publisher's article](https://www.nature.com/articles/ncomms9174), abstract and Results/Analysis. It supports the stated orientation-dependent fractional-frequency constraint $(9.2\pm10.7)\times10^{-19}$ at 95% confidence. The apparatus used orthogonal cryogenic sapphire oscillators and analyzed rotation-related frequency modulation. The Discussion explicitly notes that its readout constrains a combination of photon and material effects. This supports the target's observer-level comparison and its insistence on an apparatus-dependent closure; it is not a direct bound on primitive $c_f$ or on arbitrary raw outputs. No new literature-mining campaign or claim about the latest experimental ceiling was made.
+
+Coverage after this complete target reading is 7 of 9 Foundations chapters: six with accepted corrections verified in the existing receipts, one with findings awaiting discussion, and two not yet reviewed. The findings above are unaccepted, and none was implemented in corpus sources. No physical response map, operational hiding theorem, full solver conformance, or new scientific closure is claimed. The next unread target remains Constructing the Absolute Frame, but it has not been started as a review. This turn stops for Mark's decisions on F5-1 through F5-3; no external or execution blocker prevented the review.
+
+Review-record validation: after correcting a scratch-only module import path, `.tmp/sabrina-detecting-review/check-review.cjs` passed its known extraction and KaTeX cases before checking the new review section. All 80 mathematical expressions parsed with vendored KaTeX, and its four local file-link targets exist. This verifies syntax and file existence, not visual rendering, fragment validity, or scientific correctness. `git diff --check -- reference/priorities/aaa-corpus-rewrite/work-queue.md reference/priorities/aaa-corpus-rewrite/priorities.md` passed. A final `shasum -a 256` returned the same reviewed target hash, so the reviewed corpus bytes remain unchanged. Only the two existing review records and disposable ignored scratch scripts were written.
+
+#### F5-1 accepted integration — 2026-09-09
+
+Mark explicitly accepted F5-1 after discussion and authorized its smallest complete correction in Detecting the Absolute Frame, followed by a complete chapter reread and verification. This acceptance covers exact uniqueness versus measurement-error sensitivity, continuous footprints versus discrete samples, positive normalized weights, known versus fitted or uncertain radius, and independent uniqueness or side selection. F5-2, F5-3, the Master Equation dependency, and subsequent chapter reviews remain outside edit authority.
+
+The integrated passage retains the full-sphere and four-point determinant statements and derives the center equations by subtracting squared distances. It explains the dimensional and error-model limits of a positive determinant, makes a footprint threshold an instrument-dependent sufficient criterion rather than a universal necessity, and defines the radial residual and its differential. The known-radius matrix controls local first-order sensitivity; eliminating a freely fitted radius gives the centered matrix. Constrained radius uncertainty must be propagated or included in a joint fit. The two-center example demonstrates why local rank does not select a global solution. The tagged-emission lemma now assumes unique center recovery from exact support data rather than an aperture threshold; this is the only correction outside the finite-reconstruction passage and is required to keep its proof consistent with F5-1.
+
+The mathematical grade is derived from the squared-distance subtraction and weighted residual minimization recorded above and now included in the chapter. The unchanged counterexample instrument was rerun after its known Gram, determinant, and six-axis cases passed: it again verified both unit-radius centers, the local and centered matrices, and the tetrahedral determinant within its floating-point tolerance. These calculations supplement the exact algebra; they do not constitute an EOM solution, interval certificate, or independent review. A full reread of the revised chapter using two contiguous `sed` ranges was editorial self-review. It retained the existing F5-2 and F5-3 findings without implementing them or claiming whole-chapter closure.
+
+Measured validation and preservation:
+
+- `shasum -a 256` verified the pre-edit chapter against reviewed hash `8a62ef2951e06ed1aa6586f2e2ca010f63368bc2cbdc6f256cd82d335d451d9b`; the resulting 361-line chapter measured by `wc -l` has SHA-256 `d70eefd394dbcc29864cc62727b6d4fa1e7cdd4fe888de12d7db06909c808cec`.
+- `.tmp/sabrina-detecting-review/check-integration.cjs` passed known extraction and KaTeX cases before its target run. All 103 chapter math expressions parsed with vendored KaTeX; all 29 local file-link occurrences have existing file targets. It verified that all 12 original display equations and the entire existing link list are unchanged; there are now 15 displays. It also compared the baseline prefix and suffix, allowing only the finite-reconstruction passage and the lemma assumption to differ. This checks syntax, file existence, and byte preservation, not rendered appearance, every fragment, or mathematical correctness.
+- `node scripts/validate-equation-mapping-links.mjs` passed for its 23 registered canonical equation links. This is the checker's registered scope, not all corpus links.
+- `node scripts/validate-content.mjs --check --strict` completed with zero errors and zero warnings. Scoped `git diff --check` passed for the chapter and these two review records.
+- `node scripts/build-equation-mapping-corpus.mjs --check` reported the three new displays without generated canonical source links and stale `content/generated/equation-mapping/corpus-equations.json`. Expected source-edit drift remains for `node scripts/build-equation-mapping-corpus.mjs --write` under the authorized regeneration/publication procedure. No generated files were edited.
+
+Falsifier and completion limit: a baseline comparison showing changes outside the stated passage and lemma assumption, a failed recorded check, or a failure of the displayed subtraction/minimization algebra would overturn this scoped completion claim. The accepted correction does not supply an apparatus error model, establish observer hiding, or resolve F5-2/F5-3. Current coverage remains seven complete Foundations readings: six chapters with all accepted corrections verified, one partially integrated chapter, and two not reviewed. The immediate next discussion is F5-2; F5-3 follows separately.
+
+#### F5-2 accepted integration — 2026-09-09
+
+Mark accepted the general explanatory correction and explicitly authorized both Detecting the Absolute Frame and the linked Master Equation Self-Hit Condition requirements. Mark explains that the curvature requirement escaped from an earlier constrained example; this is operator-provided historical context, not independently verified Git attribution. No historical commit attribution was attempted.
+
+Detecting now distinguishes a center curve affine in absolute emission time from a straight spatial path traversed at variable speed. Its displacement formula is explicitly scoped to uniform motion. The rest procedure distinguishes rest throughout an interval from non-rest without asserting nonzero velocity at every instant, and states the almost-everywhere velocity conclusion for absolutely continuous paths. The Master Equation requirements now distinguish constant-velocity straight motion, degenerate field-speed riding, and variable-speed straight histories with isolated simple roots. The prescribed quadratic path and direct root substitution establish the geometric counterexample at derived grade, explicitly without asserting dynamical realization or acceleration balance. Inspection of the immediate persistent-memory context found the same general curvature requirement in its concluding implication; that sentence was corrected while the valid curved-motion scenario and circular examples were preserved.
+
+Validation and scope: the complete Detecting chapter was reread after integration, supplementing the main `cat` output with `sed` for its truncated middle; the immediate Master Equation self-hit context was reread with `sed`. This was editorial self-review, not a full Master Equation review or independent scientific review. `.tmp/sabrina-detecting-review/check-f5-2.cjs` passed known extraction, polynomial-value, and boundary-selection cases before its final target run. It parsed all 105 mathematical expressions in Detecting and 43 in the immediate Master Equation self-hit context with vendored KaTeX. It compared all display equations and link lists in both full files and found them unchanged, and compared prefixes/suffixes to restrict changes to the approved prose passages. The first preservation run used an ambiguous abbreviated start marker that matched an earlier curvature item; the corrected exact marker passed after correcting an off-by-one expected position in its known-case fixture. These scratch-checker failures did not establish source defects. The final result verifies syntax and scoped byte preservation, not rendered appearance or solver behavior.
+
+`node scripts/validate-equation-mapping-links.mjs` passed for its 23 registered links, and `node scripts/validate-content.mjs --check --strict` completed with zero errors and zero warnings. Scoped `git diff --check` passed for the two corpus sources and two existing review records. The F5-1 generated-drift disposition remains unchanged; no generators were run in write mode. No solver code or acceleration kernel was edited.
+
+`shasum -a 256` measured Detecting before F5-2 as `d70eefd394dbcc29864cc62727b6d4fa1e7cdd4fe888de12d7db06909c808cec` and after as `9e2e70745995584bf365ef16184cd4fe64bc2f7b758a6093025f888306587b3c`; it measured the Master Equation before as `dbb88e073d51b5980e0520c0720439e803eeab35b350c49b3dd67adc3f036a3d` and after as `6a9675f6a6e193e939f20e78f11ed65a881b75bafde695677604656ab145d865`. Falsifier: a differing display equation, an out-of-scope baseline difference, or failed substitution/differentiation of the prescribed path would overturn the respective preservation or geometric claim. F5-1 and F5-2 are separately accepted and verified; F5-3 remains unapproved and unchanged. The next discussion is F5-3, and no following-chapter review has begun.
+
+#### F5-3 accepted integration and chapter closeout — 2026-09-09
+
+Mark accepted F5-3 and authorized completion of the current chapter assignment, stopping before Constructing the Absolute Frame. The correction defines the deterministic matched-history interpretation of the existing diameter target: a controlled apparatus and preparation rule, admissible environment and nuisance family, specified provenance erasure, fixed calibrated readout into a metric output space, and a metric/tolerance selected for the actual observable and empirical comparison. It separates statistical record or estimator distributions from individual deterministic outcomes and requires their own ensemble, distance, and uncertainty analysis. It corrects both the closing statement and the earlier experimental comparison to distinguish an unproved bound from a demonstrated violation; emergent hiding remains a derivation target.
+
+The live Observer Framework retained-record definition and Theorem G common-branch requirement ground the preparation, calibration, nuisance, and medium restrictions. Their source files were read as dependencies and not modified. No numerical tolerance, apparatus model, physical response, ensemble law, or hiding result was invented. This is a definition and claim-boundary repair, not a proof of observer-level recovery.
+
+The complete revised Detecting chapter was reread through contiguous `sed` ranges 1–180 and 181–390. This was editorial self-review. `.tmp/sabrina-detecting-review/check-f5-3.cjs` passed known extraction and KaTeX cases before checking the chapter: all 109 math expressions parsed, all 31 local file-link occurrences have existing file targets, and all 15 display equations are unchanged from the F5-2 baseline. It retained the existing links and verified byte preservation before the final target except for the two approved claim-boundary paragraphs. Thus F5-1 and F5-2 remain intact. These checks establish syntax, file existence, and bounded source preservation, not visual rendering, arbitrary link fragments, or scientific correctness.
+
+`node scripts/validate-equation-mapping-links.mjs` passed its 23 registered canonical links; `node scripts/validate-content.mjs --check --strict` completed with zero errors and zero warnings; scoped `git diff --check` passed for the two corpus sources and two review records. `shasum -a 256` measured the resulting Detecting source as `a0e851334dd06d929cc37261b34a58c1c9901b33e095cfa4164c3b8d719f7e30` and the unchanged F5-2 Master Equation source as `6a9675f6a6e193e939f20e78f11ed65a881b75bafde695677604656ab145d865`. F5-3 adds no display equations; the recorded F5-1 generated-drift disposition remains for its existing owner. No publication or regeneration was performed.
+
+Chapter completion: F5-1, F5-2, and F5-3 each have accepted, implemented, verified corrections. The current disposition table now records seven of nine Foundations chapters with their accepted corrections verified, zero partially integrated chapters, and two unread chapters. This closes the assigned Detecting review and its explicitly authorized F5-2 dependency correction; it does not count as a complete Master Equation review. Historical review-stage statements and earlier receipts retain their chronology.
+
+Remaining scientific obligations are apparatus-specific center-error and temporal-sampling bounds for finite rest diagnostics; dynamical realization of candidate histories rather than prescribed-path root geometry alone; and a common dynamics/medium derivation of clock, ruler, photon, and matter responses satisfying calibrated leakage bounds for declared deterministic or statistical comparison families. The existing conservation/action and physical-response obligations remain open. Falsifier: failure of the stated baseline/check results would invalidate the relevant integration receipt; a calibrated, uncertainty-controlled above-bound prediction in an admitted family would refute that particular hiding claim. No further correction decision remains for F5-1 through F5-3. Stop here; Constructing the Absolute Frame remains the next unread chapter and requires a subsequent assignment.

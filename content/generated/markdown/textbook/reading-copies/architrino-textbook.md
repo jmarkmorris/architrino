@@ -3647,16 +3647,16 @@ Consider a perspective with access to complete microdynamics — able to track e
 
 Why: it emits at $T_t$ from $\mathbf X_{\mathrm{em}}$, the surface expands centered on $\mathbf X_{\mathrm{em}}$, and if the architrino has not moved it is still at $\mathbf X_{\mathrm{em}}$ when the surface has grown to radius $c_f\Delta T$. Successive emissions produce perfectly **concentric** surfaces, nested like the layers of an onion around one shared point.
 
-If it moves instead: emission at $T_t$ from $\mathbf X_{\mathrm{em}}$, but by $T_1$ it has displaced to $\mathbf X_{\mathrm{em}}+\mathbf V\Delta T$. The first surface stays centered where it was emitted, later surfaces are centered on later positions along the path, and the centers are **not coincident**. This creates a source-motion asymmetry in the tagged geometry. Recovering an observer-level Doppler law from that asymmetry remains a signal and clock-channel derivation.
+For uniform motion with velocity $\mathbf V$, emission occurs at $T_t$ from $\mathbf X_{\mathrm{em}}$, but by $T_1$ the transmitter has displaced to $\mathbf X_{\mathrm{em}}+\mathbf V\Delta T$, where $\Delta T=T_1-T_t$. The first surface stays centered where it was emitted, later surfaces are centered on later positions along the path, and the centers are **not coincident** when $\mathbf V\ne\mathbf0$. This creates a source-motion asymmetry in the tagged geometry. Recovering an observer-level Doppler law from that asymmetry remains a signal and clock-channel derivation.
 
-That difference is the entire diagnostic. Rest means one repeated center. Uniform motion means a straight line of centers. Accelerated motion means a curved center history.
+Rest means one repeated center. Uniform motion means a center curve affine in absolute emission time: its velocity is constant. Acceleration changes that velocity and may change speed, direction, or both. A straight spatial line of centers can therefore describe variable-speed accelerated motion; the emission-time labels distinguish it from uniform motion.
 
 ##### The procedure
 
 Track the centers of all surfaces emitted by a target architrino over an interval, then test whether they coincide.
 
-- **All coincident:** $\mathbf V_{\text{abs}}=\mathbf{0}$ on that interval.
-- **Centers form a trajectory:** $\mathbf V_{\text{abs}}\neq\mathbf{0}$, and for a uniform segment the displacement per unit time gives the velocity directly, $\mathbf V_{\text{abs}}=\Delta\mathbf X/\Delta T$.
+- **All coincident:** the transmitter remains at rest throughout the interval; for an absolutely continuous history, $\mathbf V_{\text{abs}}=\mathbf{0}$ almost everywhere.
+- **Centers are not all coincident:** the transmitter is not at rest throughout the interval, although its velocity may vanish at individual times or on subintervals. For a uniform segment the displacement per unit time gives the velocity directly, $\mathbf V_{\text{abs}}=\Delta\mathbf X/\Delta T$.
 
 This is definitionally a *complete-state* test. It assumes transmitter identity, emission time, and surface support are already available in the provenance-bearing record. One unrestricted summed value at one event does not uniquely recover the tagged centers; extended arrays, time series, or a restricted source model define different inverse problems and may recover partial information.
 
@@ -3690,7 +3690,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9b2967e14028431c)
 
-In a finite sampled reconstruction, four support points $\mathbf Y_0,\ldots,\mathbf Y_3$ certify nondegeneracy when their displacement determinant stays away from zero:
+For exact finite samples, four support points $\mathbf Y_0,\ldots,\mathbf Y_3$ determine a unique sphere when they are affinely independent:
 
 $$
 \Delta_{\mathrm{sph}}
@@ -3705,11 +3705,21 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-98d283752f1455bc)
 
-This Gram determinant is the **square** of the parallelepiped volume spanned by the three displacements. It vanishes exactly when the four points are coplanar and therefore cannot determine a unique unconstrained sphere in three dimensions. It is the same determinant family as the signed-volume test in [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md): when the sampled points collapse toward a line, a plane, or a tiny patch, fitting a center stops being stable. Given the radius in advance, three non-collinear points plus a side convention can suffice, but the four-point certificate is safer.
+This Gram determinant is the **square** of the parallelepiped volume spanned by the three displacements. It vanishes exactly when the four points are coplanar and cannot determine a unique unconstrained sphere in three dimensions. To derive the uniqueness claim, subtract the squared-distance equation for $\mathbf Y_0$ from the other three. With $\mathbf d_\alpha=\mathbf Y_\alpha-\mathbf Y_0$ and unknown center $\mathbf z$, this gives
+
+$$
+2\mathbf d_\alpha\cdot\mathbf z
+=\|\mathbf Y_\alpha\|^2-\|\mathbf Y_0\|^2,
+\qquad \alpha=1,2,3.
+$$
+
+[View →](../../../../../equation-mapping.html#corpus-equation-99b1ff8486e53d57)
+
+Affine independence makes this linear system invertible; its center fixes the radius as $\|\mathbf Y_0-\mathbf z\|$. The determinant belongs to the same family as the signed-volume test in [Constructing the Absolute Frame](../../../../markdown/aaa/foundations/constructing-the-absolute-frame.md). Positivity proves exact uniqueness, but a determinant with dimensions of length to the sixth power does not by itself bound sensitivity to measurement error. That requires a scale, an error model, and a quantitative bound on the smallest singular value of the reconstruction matrix. If the radius is known in advance, three non-collinear points can leave two centers on opposite sides of their plane; a justified side selection can remove that ambiguity.
 
 ##### Finite apertures need their own floor
 
-For a full sphere, uniqueness is exact. A real reconstruction sees only a patch $U_a(T_t;T)\subset W_a(T_t;T)$, and fitting a center from a patch has its own conditioning problem. Define the **solid angle** the patch subtends, which is how much of the sky it covers as seen from the center:
+Exact uniqueness and sensitivity to measurement error are separate questions. If an instrument observes a continuous footprint $U_a(T_t;T)\subset W_a(T_t;T)$, define the **solid angle** that footprint subtends, which is how much of the sky it covers as seen from the center:
 
 $$
 \omega_a(T_t;T)
@@ -3723,7 +3733,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cbf26eb9bce2cdc5)
 
-The reconstruction is admissible only when
+An instrument may impose a footprint threshold
 
 $$
 \omega_a(T_t;T)\ge \omega_{\min} > 0
@@ -3731,9 +3741,17 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0ec92f269c9d25a5)
 
-Below that floor the center may remain formally unique in the full-sphere idealization while the finite problem becomes hopelessly ill-conditioned — a small arc of a large sphere looks almost flat, and almost any distant center fits it.
+as part of a sufficient recovery criterion justified for its sampling and measurement-error model. This is not a necessary condition for every exact reconstruction. A finite set of sample directions has spherical area zero, even when four sampled points determine a unique sphere. A continuous footprint and its discrete samples must therefore be distinguished. Nor does footprint area alone specify how observations are distributed or weighted within it. A small cap can leave a center fit poorly conditioned, especially when its radius is also fitted.
 
-The solid-angle floor is a practical stand-in for a rank condition. For sampled directions $\hat{\mathbf{n}}_k$ with weights $w_k$, define
+For a local sensitivity calculation, use radial residuals $r_k(\mathbf z,R)=\|\mathbf Y_k-\mathbf z\|-R$ with fixed positive weights $w_k$ normalized by $\sum_k w_k=1$. The weights define the relative contribution of each observation to the squared residual; an uncertainty interpretation also requires a declared measurement-error model. At an exact fit of positive radius, set $\hat{\mathbf n}_k=(\mathbf Y_k-\mathbf z)/R$. Holding the samples fixed, the first-order residual change is
+
+$$
+\delta r_k=-\hat{\mathbf n}_k\cdot\delta\mathbf z-\delta R.
+$$
+
+[View →](../../../../../equation-mapping.html#corpus-equation-3ccaca4fe20dbe83)
+
+If $R=c_f(T-T_t)$ is known exactly from the tagged times, then $\delta R=0$. The weighted squared residual change is $\delta\mathbf z^T G_a\delta\mathbf z$, where
 
 $$
 G_a=\sum_k w_k\,\hat{\mathbf{n}}_k\hat{\mathbf{n}}_k^{T}
@@ -3741,11 +3759,23 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-387e8ed2a2a758c3)
 
-which accumulates how much the sampled directions cover each spatial axis. The inverse is accepted only when its smallest eigenvalue satisfies $\lambda_{\min}(G_a)\ge\lambda_{\min}^{\mathrm{ctr}}>0$ — meaning no direction is left unconstrained. A direction cloud confined to a small cap or a nearly planar arc is deficient in exactly the way a near-collinear tuple is deficient in frame construction.
+Thus a bound $\lambda_{\min}(G_a)\ge\lambda_{\min}^{\mathrm{ctr}}>0$ controls first-order center sensitivity near a selected solution for the fixed-radius fit. Its numerical threshold must be tied to the required accuracy and error model. It does not prove global uniqueness or select between separated candidate centers.
 
-So $\omega_{\min}$ and the basis floor $\sin\theta_{\min}$ both condition geometric inversions. Separatrix regularity and the root transversality floor $\kappa_{\mathrm{hit}}$ guard different objects: a branch boundary and implicit root continuation. The shared discipline is to name the exact map and fail closed when its own nondegeneracy condition is lost.
+When radius is fitted as well, the residual Jacobian has rows $[-\hat{\mathbf n}_k^T,-1]$. Minimizing the weighted squared residual change over $\delta R$ gives $\delta R=-\bar{\mathbf n}\cdot\delta\mathbf z$, leaving the center matrix
 
-A finite reconstruction must **fail closed** — returning no verdict at all — when tags are missing, the aperture is too small, or the rank floor fails. These are theorem-level acceptance conditions for any future instrument; the ideal full-sphere result does not certify finite sampled recovery.
+$$
+C_a=G_a-\bar{\mathbf n}\bar{\mathbf n}^{T},
+\qquad
+\bar{\mathbf n}=\sum_k w_k\hat{\mathbf n}_k.
+$$
+
+[View →](../../../../../equation-mapping.html#corpus-equation-08fc6a7d8d3b7269)
+
+Indeed, substitution leaves $\sum_k w_k[(\hat{\mathbf n}_k-\bar{\mathbf n})\cdot\delta\mathbf z]^2=\delta\mathbf z^T C_a\delta\mathbf z$. The augmented Jacobian, or this centered matrix after eliminating radius, detects a tradeoff between center displacement and radius that $G_a$ alone misses. If radius is constrained but uncertain, including uncertainty in the tagged times, that uncertainty must enter the joint fit or be propagated into the center error bound. The fixed-radius matrix alone cannot justify treating it as zero.
+
+For example, in units with $c_f=1$, let $R=1$, $a=\sqrt{2/3}$, and $b=1/\sqrt3$. The four coplanar points $(\pm a,0,0)$ and $(0,\pm a,0)$ lie at unit distance from both $(0,0,b)$ and $(0,0,-b)$. Equal weights give $G_a=I_3/3$ at either center, so both fits have full local fixed-radius rank. Yet they are globally ambiguous. With free radius, the center can move continuously along their common axis while the radius changes; $C_a=\operatorname{diag}(1/3,1/3,0)$ detects that freedom. The four-point determinant correctly vanishes here. It and $G_a$ test different properties.
+
+A finite reconstruction therefore needs both an exact uniqueness argument or justified side selection and an error bound for its actual unknowns and measurements. It must **fail closed**, returning no definite center, when required tags are absent, candidate ambiguity remains unresolved, or the declared error bound cannot be met. Footprint thresholds can contribute to an instrument's sufficient criteria; they do not replace these mathematical obligations. The basis floor $\sin\theta_{\min}$ in frame construction, separatrix regularity, and the root transversality floor $\kappa_{\mathrm{hit}}$ concern other maps. Each condition must be justified for the inversion or continuation it actually controls.
 
 ##### The center curve
 
@@ -3855,11 +3885,11 @@ This is like sound in air. Once a speaker emits a wave, that wave travels at the
 
 The analogy also does not answer **Michelson–Morley**-type null results. Interferometric and modern rotating-resonator experiments compare propagation or resonance along differently oriented paths and report no significant preferred-frame anisotropy. Nagel and collaborators measured a relative orientation-dependent frequency change of $(9.2\pm10.7)\times10^{-19}$ at 95% confidence; see [*Direct terrestrial test of Lorentz symmetry in electrodynamics to $10^{-18}$* (2015)](https://doi.org/10.1038/ncomms9174). That observer-level burden belongs to the moving-assembly closure ladder, not to the complete-state diagnostic.
 
-The diagnostic operates on **tagged** centers: transmitter identity, emission time, and support geometry are part of its data. An interferometer samples a summed observer channel through physical clocks, rulers, mirrors, and photon transport. A null result does not contradict the geometric identity of tagged centers, but it constrains the theory that contains that identity: failure to derive leakage below the measured ceiling would falsify the proposed observer-hiding closure and require a different account.
+The diagnostic operates on **tagged** centers: transmitter identity, emission time, and support geometry are part of its data. An interferometer samples a summed observer channel through physical clocks, rulers, mirrors, and photon transport. A null result does not contradict the geometric identity of tagged centers, but it constrains the theory that contains that identity. An unproved leakage bound leaves observer-hiding recovery open. A demonstrated prediction above the empirical ceiling, using the same calibrated observable and controlled experimental conditions, would falsify that recovery claim in the tested regime.
 
 ##### Tagged-emission injectivity lemma
 
-Let $\mathcal{H}_{\mathrm{tag}}$ be an admissible tagged history record and $\mathcal{E}_{\mathrm{tag}}(\mathcal{H}_{\mathrm{tag}})$ its family of emitted supports on a declared window. Assume tags are retained, propagation is transmitter-motion independent after emission, the supports satisfy the aperture floor, and the worldlines are absolutely continuous. Then
+Let $\mathcal{H}_{\mathrm{tag}}$ be an admissible tagged history record and $\mathcal{E}_{\mathrm{tag}}(\mathcal{H}_{\mathrm{tag}})$ its family of emitted supports on a declared window. Assume tags are retained, propagation is transmitter-motion independent after emission, each emission's exact support data determine a unique center, and the worldlines are absolutely continuous. Full nondegenerate spheres satisfy the center assumption; partial support data require their own uniqueness argument as above. Then
 
 $$
 \mathcal{E}_{\mathrm{tag}}(\mathcal{H}_{\mathrm{tag}})
@@ -3891,7 +3921,7 @@ This places the theory in a **neo-Lorentzian** comparison class: absolute space 
 
 Shared with that tradition: absolute space and time are fundamental; operational Lorentz symmetry is a recovery target rather than a primitive symmetry; a preferred frame exists but must be operationally hidden.
 
-Differing from it: the Noether sea is an assembly network rather than a continuous classical ether or a coordinate grid; the frame is hidden by emergent effective geometry rather than by stipulation; and the framework states explicit closure targets and failure criteria for where symmetry-breaking signatures would appear.
+Differing from it: the Noether sea is an assembly network rather than a continuous classical ether or a coordinate grid; hiding the frame through emergent effective geometry is a derivation target; and the framework states explicit closure targets and failure criteria for where symmetry-breaking signatures would appear.
 
 #### Summary: The Detection Method
 
@@ -3913,7 +3943,11 @@ The risk-bearing claim is two-sided, and both sides can fail.
 
 It fails at the complete-state level if tagged centers cannot define one consistent rest-frame structure. It fails at the observer level if clocks, rulers, or photon channels retain preferred-frame leakage above the declared cavity, two-way anisotropy, or parameterized post-Newtonian ceilings after closure is applied. The framework is committed to a real complete-state frame **and** to a quantitatively hidden observer-sector leakage.
 
-In map language, the target pairs the injectivity lemma above with approximate observer invariance. The label-erasing map must make the preferred-frame spread small across the tested velocity family:
+In map language, the target pairs the injectivity lemma above with approximate observer invariance. First fix a controlled comparison as required by the [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md): apparatus, readout channels, modulation and timing protocol, calibration, nuisance model, and admitted medium and boundary-wake conditions. A matched preparation rule must specify how these correspond as absolute velocity $\mathbf w$ varies, including the clock, ruler, and signal responses whose recovery is being tested. Holding the operational protocol fixed does not assume that the underlying moving assemblies are undeformed. Their response must follow from the same dynamics and medium account, as required by [Theorem G](../../../../markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure), rather than being fitted separately at each velocity.
+
+For a deterministic matched-history comparison, let $\mathcal H_{\mathrm{tag}}^{(\mathbf w)}$ denote the resulting family of complete tagged histories. Define $Q_{\mathrm{erase}}$ as the specified loss of provenance inaccessible to the apparatus, and $\mathcal O$ as one fixed calibrated readout map, possibly collecting several channels into a vector. Its outputs lie in a declared metric space $(\mathcal Y_{\mathrm{obs}},d_{\mathrm{obs}})$. For a set $S$ of such outputs, $\operatorname{diam}_{\mathrm{obs}}S=\sup_{y,y'\in S}d_{\mathrm{obs}}(y,y')$. Fix the metric and tolerance $\epsilon_{\mathrm{PF}}$ from the observable's calibration and the empirical ceiling being compared, before evaluating the histories. A change of readout units must transform them consistently; it cannot change whether the same physical bound is met.
+
+For each admitted matched preparation and environment family defined over the stated velocity range, the recovery target is
 
 $$
 \operatorname{diam}_{\mathrm{obs}}
@@ -3927,9 +3961,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-50fa63b4aacb7a83)
 
-Here $\mathcal{H}_{\mathrm{tag}}^{(\mathbf w)}$ is the tagged record from re-preparing the same experiment at absolute velocity $\mathbf w$, and $\mathcal{O}$ the admitted observer functionals. Read it as: repeat the experiment at every velocity in the tested range, look at what an observer could measure each time, and require the spread across all of them to stay under $\epsilon_{\mathrm{PF}}$.
+The diameter compares velocities within one matched family, not unrelated preparations or arbitrary changes of environment. A claim covering several preparations, nuisance values, or medium states must specify that admissible family and establish the bound for each member. No universal numerical tolerance is supplied here: the appropriate residual, calibration uncertainties, and ceiling depend on the declared observer channel.
 
-The injectivity lemma makes the frame real in complete-state geometry. This bound is the recovery burden that makes it hidden from observers. Both are required, and each without the other would leave the theory either empty or falsified.
+A statistical experiment requires a different output type. Unresolved preparation histories define an ensemble under a declared preparation rule; this introduces no primitive randomness into the substrate law. One then compares the resulting record distributions, or specified estimator distributions, using a fixed statistical distance and an uncertainty or confidence procedure appropriate to that experiment. Arbitrarily chosen single outcomes at different velocities do not test equality of those distributions. The deterministic inequality above does not establish the statistical bound without this additional ensemble and measurement analysis.
+
+The injectivity lemma establishes tagged center recovery within complete-state geometry under its assumptions. The calibrated observer bound remains an unproved recovery target. Establishing it for a declared family would support hiding only for those observables and conditions; a demonstrated above-bound residual, with uncertainty controlled under the same comparison, would refute that particular recovery claim. Lack of a proof leaves the obligation open and is not itself a demonstrated violation.
 
 ### Constructing the Absolute Frame
 
@@ -7215,8 +7251,10 @@ $$
 
 **Requirements:**
 
-1. **Curvature**: The worldline must curve (straight-line motion admits no self-hits).
+1. **Emission-to-reception geometry**: The chord displacement must satisfy the self-hit equality above. Spatial curvature is not required. Constant-velocity straight motion has no noncoincident root when its speed differs from $c_f$; at speed $c_f$ it gives the degenerate riding case rather than an isolated simple root. Variable-speed straight motion can satisfy the equality at an isolated simple root.
 2. **Super-field-speed interval history**: the speed must exceed $c_f$ somewhere on the interval from emission to reception, except for the degenerate straight field-speed riding case excluded by the branch Jacobian condition.
+
+For a derived geometric counterexample to a curvature requirement, take the prescribed path $\mathbf X(T)=((T+T^2)/2,0,0)$ in units with $c_f=1$, on an interval containing $[0,1]$ and lying above $T=-1/2$. Its velocity is $(1/2+T,0,0)$ and its acceleration is $(1,0,0)$, so its spatial path is regular and straight. At $T_r=1$ and $T_t=0$, both displacement and delay equal one. With reception fixed, the root function is $F(1,s)=\|\mathbf X(1)-\mathbf X(s)\|-(1-s)=s(1-s)/2$ near $s=0$, and $\partial_sF(1,0)=1/2\ne0$. This proves that straight accelerated histories can have noncoincident simple self-hit roots. It does not establish that this prescribed path is realized by the full master equation; that requires acceleration balance with the complete interacting history.
 
 ###### Multiple Self-Hits (Plural)
 
@@ -7256,7 +7294,7 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 
 **Result:** Self-hit occurs at $T_3$ even though current velocity $\|\mathbf V(T_3)\| < c_f$.
 
-**Implication:** Self-hit is a **path-history memory effect**. The architrino's current acceleration depends on **whether it ever exceeded $c_f$ in the past and curved**, not just on its instantaneous state.
+**Implication:** Self-hit is a **path-history memory effect**. Its contribution to the architrino's current acceleration depends on which past emissions satisfy the self-hit equality and the applicable branch conditions, not just on its instantaneous state. Curvature is part of the scenario above, not a general requirement.
 
 **Non-Markovian nature:** Knowing $\mathbf X_i(T_r)$ and $\mathbf V_i(T_r)$ is insufficient to determine $\mathbf A_i(T_r)$. The **full past worldline** $\{\mathbf X_i(T') : T' < T_r\}$ is needed to identify all causal self-hit times $T_t \in \mathcal{C}_{ii}(T_r)$.
 

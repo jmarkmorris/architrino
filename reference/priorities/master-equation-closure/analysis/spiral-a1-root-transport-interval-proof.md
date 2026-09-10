@@ -10,7 +10,7 @@ I_\ast=\left[-\frac{\pi}{6},\frac{\pi}{6}\right].
 $$
 This packet consumes [spiral-a1-root-window-certificate](spiral-a1-root-window-certificate.md), [spiral-a1-restart](spiral-a1-restart.md), and the VP-1 template [spiral-vp1-root-transport-interval-proof](spiral-vp1-root-transport-interval-proof.md). It supplies no canonical action or conservation evidence.
 
-Claim level. Dependent analytic topology contract for the retained A1 chart. The root-transport row is not an independent interval obstruction once the same A1 active root tubes, nonzero active Jacobian floor, positive $b(\theta)$, and velocity-projection convention used in $J$ are certified. It is the differentiated causal-delay identity for the retained root equation. Repository theorem-grade status remains pending until a transmitter-side branch certificate consumes these records with accepted causal wake accounts.
+Claim level. Dependent analytic topology contract for the retained A1 chart. The root-transport row is not an independent interval obstruction once the same A1 active root tubes, nonzero active Jacobian floor, positive $b(\theta)$, and velocity-projection convention used in $J$ are certified. It is the differentiated causal-delay identity for the retained root equation. The geometric identity is conditional on the displayed simple-root hypotheses and needs no account map. An account-bearing physical branch promotion separately requires an EOM-consistent branch and accepted causal wake accounts; the geometric identity alone supplies neither.
 
 ## Fixed A1 Inputs
 

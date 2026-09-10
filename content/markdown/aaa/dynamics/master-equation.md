@@ -2683,8 +2683,10 @@ $$
 
 **Requirements:**
 
-1. **Curvature**: The worldline must curve (straight-line motion admits no self-hits).
+1. **Emission-to-reception geometry**: The chord displacement must satisfy the self-hit equality above. Spatial curvature is not required. Constant-velocity straight motion has no noncoincident root when its speed differs from $c_f$; at speed $c_f$ it gives the degenerate riding case rather than an isolated simple root. Variable-speed straight motion can satisfy the equality at an isolated simple root.
 2. **Super-field-speed interval history**: the speed must exceed $c_f$ somewhere on the interval from emission to reception, except for the degenerate straight field-speed riding case excluded by the branch Jacobian condition.
+
+For a derived geometric counterexample to a curvature requirement, take the prescribed path $\mathbf X(T)=((T+T^2)/2,0,0)$ in units with $c_f=1$, on an interval containing $[0,1]$ and lying above $T=-1/2$. Its velocity is $(1/2+T,0,0)$ and its acceleration is $(1,0,0)$, so its spatial path is regular and straight. At $T_r=1$ and $T_t=0$, both displacement and delay equal one. With reception fixed, the root function is $F(1,s)=\|\mathbf X(1)-\mathbf X(s)\|-(1-s)=s(1-s)/2$ near $s=0$, and $\partial_sF(1,0)=1/2\ne0$. This proves that straight accelerated histories can have noncoincident simple self-hit roots. It does not establish that this prescribed path is realized by the full master equation; that requires acceleration balance with the complete interacting history.
 
 #### Multiple Self-Hits (Plural)
 
@@ -2724,7 +2726,7 @@ Self-hit is **not** instantaneously tied to current velocity. An architrino that
 
 **Result:** Self-hit occurs at $T_3$ even though current velocity $\|\mathbf V(T_3)\| < c_f$.
 
-**Implication:** Self-hit is a **path-history memory effect**. The architrino's current acceleration depends on **whether it ever exceeded $c_f$ in the past and curved**, not just on its instantaneous state.
+**Implication:** Self-hit is a **path-history memory effect**. Its contribution to the architrino's current acceleration depends on which past emissions satisfy the self-hit equality and the applicable branch conditions, not just on its instantaneous state. Curvature is part of the scenario above, not a general requirement.
 
 **Non-Markovian nature:** Knowing $\mathbf X_i(T_r)$ and $\mathbf V_i(T_r)$ is insufficient to determine $\mathbf A_i(T_r)$. The **full past worldline** $\{\mathbf X_i(T') : T' < T_r\}$ is needed to identify all causal self-hit times $T_t \in \mathcal{C}_{ii}(T_r)$.
 

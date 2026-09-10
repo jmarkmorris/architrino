@@ -5,8 +5,8 @@ import path from "node:path";
 
 const DEFAULT_ROOTS = ["content/markdown/aaa"];
 const DEFAULT_SURFACE_ROOTS = [
-  "reference/research-office/specialists/roles-og-entourage",
-  "reference/research-office/specialists/roles-geometry-dynamics",
+  "reference/office-of-research/specialists/roles-og-entourage",
+  "reference/office-of-research/specialists/roles-geometry-dynamics",
   "content/scenes",
   "src",
 ];

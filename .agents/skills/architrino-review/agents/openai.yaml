@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architrino Corpus Review"
+  short_description: "Review corpus, assess feedback, and verify closure."
+  default_prompt: "Use $architrino-review for the specified Architrino task, following its current instruction owner and my requested scope."

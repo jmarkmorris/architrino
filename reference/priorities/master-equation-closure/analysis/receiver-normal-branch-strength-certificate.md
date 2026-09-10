@@ -1,5 +1,7 @@
 # Receiver-Normal Branch-Strength Certificate
 
+> **Historical disposition — current consumers must use the transmitter-side law.** This packet preserves a withdrawn receiver-weighted proposal. Its historical statements that the receiver-weighted row is mandatory, canonical, or a restart prerequisite have no current authority. The current acceleration weight is $c_f/|D_t|$; $D_r/D_t$ is signed root playback only. A regular $D_r=0$ crossing need not make acceleration vanish or become singular. Use the [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md), [regular gradient owner](receiver-wake-gradient-closure.md), and [live queue](../work-queue.md) for current work. Historical equations, interface identifiers, and evidence below are retained for provenance, not offered as current acceleration or account inputs.
+
 Status. Required certificate target for receiver-normal Master EOM force/action rows. This is a priority certificate target, not a branch pass by itself.
 
 Claim level. Minimum admissible branch-strength row for the receiver-normal Master EOM. A retained branch cannot supply force balance, action, power, Noether wake-history, A1 outward constants, breather margin, or pass/fail evidence until it reports the rows below on the same retained record.

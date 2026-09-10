@@ -8,7 +8,7 @@
 - Common architecture: [Shared Equation And Mapping Architecture](../../mapping/contracts/mapping-method.md)
 - Owned IDs: `EQ-02`, `EQ-03`, `EQ-04`
 - Related downstream ID: `EQ-04A`
-- Review synthesis: [EQ-02 Through EQ-04A Retained Point, Coframe, No-Retune, and Koide](../../../research-office/research-history/review-packets/eq02-04-retained-point-coframe-no-retune-koide-reconciliation-2026-07-29.md)
+- Review synthesis: [EQ-02 Through EQ-04A Retained Point, Coframe, No-Retune, and Koide](../../../office-of-research/research-history/review-packets/eq02-04-retained-point-coframe-no-retune-koide-reconciliation-2026-07-29.md)
 - Claim level: derivation/closure target and simulation target
 - Promotion status: priority-only
 
@@ -667,9 +667,9 @@ A validation box can prove one relative-periodic point; it is not an invariant c
 
 Shared support does not by itself prove no-retune. The no-retune target is frozen-source held-out parallelism: the clock, envelope, two-way signal, energy, momentum, mass-shell, phase, and Noether sea rows must be predictions of one source-identified connection over a held-out connected group-speed block, not separately tuned fibers above the same carrier label.
 
-Research input: [No-Retune Transport Beyond Drift-Only Holonomy](../../../research-office/research-history/review-packets/elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md) proposes a source-identified, frozen-source held-out transport test and a point-first dependency ladder. It is priority-only research guidance; it does not populate this packet's retained support, branch continuation, connection, or acceptance rows.
+Research input: [No-Retune Transport Beyond Drift-Only Holonomy](../../../office-of-research/research-history/review-packets/elie-cartan-eq02-04-no-retune-holonomy-guardrails-2026-07-28.md) proposes a source-identified, frozen-source held-out transport test and a point-first dependency ladder. It is priority-only research guidance; it does not populate this packet's retained support, branch continuation, connection, or acceptance rows.
 
-Research input: [Invariant-Cell Coframe Certificate](../../../research-office/research-history/review-packets/henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md) corrects the point theorem, proof order, support terminology, and dynamic identity obligation. It is reference evidence only; the coupled executable contract migration remains owned by `EQM-001`.
+Research input: [Invariant-Cell Coframe Certificate](../../../office-of-research/research-history/review-packets/henri-poincare-eq02-04-invariant-cell-coframe-certificate-2026-07-28.md) corrects the point theorem, proof order, support terminology, and dynamic identity obligation. It is reference evidence only; the coupled executable contract migration remains owned by `EQM-001`.
 
 Use the one-dimensional group-speed base
 

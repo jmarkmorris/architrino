@@ -26,7 +26,7 @@ The repo-local best-fit split for developer meta:
 - [reference/op/codex-authentication.md](./op/codex-authentication.md) for Codex authentication and operator-specific process notes;
 - `reference/priorities/` for live backlog and current-state tracking;
 - `reference/design/` for visual design assets and production guidance;
-- `reference/learning-office/` for learning-model standards, learning materials, public descriptions, channel planning, and message-testing material;
+- `reference/office-of-learning/` for learning-model standards, learning materials, public descriptions, channel planning, and message-testing material;
 - `reference/priorities` for issue tracker / project board for the live backlog.
 - `reference/architectural-decisions/` for Architecture Decision Records;
 - `content/` for app-facing content, not developer process;

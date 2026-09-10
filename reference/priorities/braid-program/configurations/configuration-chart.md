@@ -8,7 +8,7 @@ One coordinate system for every configuration the program screens or evolves, so
 
 The [Braid Candidate Registry](candidate-registry.md) is the master index of admitted and actively considered candidate names, concise status, dynamical claim boundary, and next action. This chart owns admitted coordinate scope; it does not duplicate the registry's routing role.
 
-Research input: [Neutral-Braid Configuration Atlas](../../../research-office/research-history/review-packets/bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md) proposes a stratified history-groupoid and certified finite-presentation architecture, with exact sharp-root bounds and explicit finite-width-tail authority limits. It is priority-only research guidance; it does not complete this chart or establish retention, stability, physical realization, solver preference, or particle identity.
+Research input: [Neutral-Braid Configuration Atlas](../../../office-of-research/research-history/review-packets/bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md) proposes a stratified history-groupoid and certified finite-presentation architecture, with exact sharp-root bounds and explicit finite-width-tail authority limits. It is priority-only research guidance; it does not complete this chart or establish retention, stability, physical realization, solver preference, or particle identity.
 
 Orthogonal-axis three-binary configurations, coincident-axis three-binary configurations, two-component circular configurations, their constrained coordinate loci, and every other admitted proposal remain finite ansatz subcharts. The chart adds a common scope-and-provenance overlay; it does not replace the factual taxonomy or turn any subchart into an exhaustive classification.
 
