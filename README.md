@@ -136,7 +136,7 @@ Important generated outputs include:
 
 The [iOS Reader](apps/ios/ArchitrinoReader/README.md) and its package exporter are retained development capabilities. Its textbook package is generated on demand, not refreshed or freshness-gated on every PR. App Store release is deferred until theory closure and an explicit operator release decision.
 
-The [children's-book pilot](reference/learning-office/childrens-books/production/README.md) likewise retains its sources and verified layout recipe. Its pages, PDFs, social derivatives, and review bundles are on-demand local exports, not routine PR or website outputs.
+The [children's-book pilot](reference/office-of-learning/childrens-books/production/README.md) likewise retains its sources and verified layout recipe. Its pages, PDFs, social derivatives, and review bundles are on-demand local exports, not routine PR or website outputs.
 
 ## Common Commands
 

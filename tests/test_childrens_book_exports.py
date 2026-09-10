@@ -14,7 +14,7 @@ from PIL import Image
 from pypdf import PdfReader, PdfWriter
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "reference/learning-office/childrens-books/tools"))
+sys.path.insert(0, str(ROOT / "reference/office-of-learning/childrens-books/tools"))
 import build_generation_manifest as manifest_builder
 import build_review_bundle as review
 import pilot_appearance as appearance

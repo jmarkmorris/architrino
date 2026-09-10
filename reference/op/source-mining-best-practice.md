@@ -13,7 +13,7 @@ Use the [Source Mining priority](../priorities/source-mining/priorities.md) for 
 ## Authority Map
 
 - [About Architrino](../../content/markdown/aaa/archie/about-architrino.md#sources-references-and-attribution) owns reference selection, omission, durable identification, and reader-facing presentation; its [AI-assisted research and review policy](../../content/markdown/aaa/archie/about-architrino.md#ai-assisted-research-and-review) owns source-checking and disclosure expectations. Apply those policies to every source family and prompt addendum below rather than treating acquisition as permission to cite.
-- The [convergence campaign](../research-office/cto/prompts/convergence-campaign.md) owns mode selection, edit authority, promotion triage, mathematics-first discipline, and convergence evidence requirements.
+- The [convergence campaign](../office-of-research/cto/prompts/convergence-campaign.md) owns mode selection, edit authority, promotion triage, mathematics-first discipline, and convergence evidence requirements.
 - The [operator explanation standard](operator-explanation-standard.md) owns responses, questions, follow-up prompts, and live discussion capture; the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md) owns explanatory prose in both working records and reader-facing material.
 - This guide is the source-intake specialization. It owns source-family acquisition, traceability, source maps, source-specific prompt addenda, mining-history routing, creative reframing, and external technique anchors.
 - The `aaa-corpus-advancement` skill is a thin router. It points source-mining work here after loading the shared convergence campaign protocol.
@@ -76,7 +76,7 @@ Source-family addendum:
 [PASTE OR SUMMARIZE THE RELEVANT SOURCE-FAMILY ADDENDUM BELOW]
 
 Required method:
-1. Read `reference/research-office/cto/prompts/convergence-campaign.md`.
+1. Read `reference/office-of-research/cto/prompts/convergence-campaign.md`.
 2. Read `reference/op/source-mining-best-practice.md` and the reference-selection and source-checking sections of `content/markdown/aaa/archie/about-architrino.md`; About controls which sources qualify as reader-facing references.
 3. Identify the source type or mixed source types.
 4. Apply the relevant source-family acquisition steps and traceability rules.

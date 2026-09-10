@@ -8,6 +8,8 @@ This packet is not a queue or status ledger. It owns the detailed mathematical p
 
 ## Current Theorem Order
 
+This is the downstream assembly program's dependency order. The currently authorized coincidence and population-admissibility campaign follows the [live work queue](../work-queue.md#coordinated-campaign-execution-order); none of the downstream coefficient targets below is a prerequisite for that investigation.
+
 The downstream branch-program root is the first certified braid. The causal-action theorem spine, signed delay-map theorem pack, circular obstruction, and forward-root-starvation propositions give the architecture a closed grammar, but they do not yet exhibit a stable assembly. Every downstream coefficient program inherits that absence: mass, Lorentz/GR coefficients, quantum Born weights, spin-statistics, and cosmology can develop forms and residual routing, but they cannot promote coefficient-level derivations until at least one certified braid exists.
 
 The immediate target is not a transmitter-side circular or spiral no-go. Circular and spiral records that do not carry $W^{\mathrm{acc}}=c_f/|D_t|$, separate signed playback, and the required causal wake accounts are topology or transversality diagnostics only. The preferred constructive search is still a collinear breather or a non-circular signed-sheet branch with $s\ge\pi/2$, where the negative self-sheet can supply an internal tangential cancellation channel. The branch-level cohomology target is
@@ -60,18 +62,18 @@ Practical condition: use `force_action_restart_required` wherever a row uses bra
 | `lorentz_gr_bridge` | [lorentz-gr-bridge-handoff](lorentz-gr-bridge-handoff.md) | [lorentz-kinematics](../../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../../content/markdown/aaa/spacetime/emergent-metric.md), and [proper-time-and-time-dilation](../../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Moving Noether braid contraction and clock retuning are extracted first; only after that independent moving-assembly packet closes may coarse-grained medium response be used for weak-field GR and PPN targets. |
 | `lorentz_test_residual_handoff` | [lorentz-test-residual-handoff](lorentz-test-residual-handoff.md) | [lorentz-kinematics](../../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../../content/markdown/aaa/spacetime/emergent-metric.md), and [lorentz-invariance-test-suite](../../mapping-benchmarks/analysis/lorentz-invariance-test-suite.md) | RMS, PPN, and SME-style residual rows are exported only after the Lorentz/GR bridge supplies one shared branch, clock, ruler, signal, and medium-response artifact. |
 
-## Available Action Kernel
+## Characteristic-Tail Identity And Action Boundary
 
-`characteristic_tail_noether_closure` is closed at the local action-kernel level. [master-equation](../../../../content/markdown/aaa/dynamics/master-equation.md) now fixes the endpoint-clear normalized delayed-interior characteristic-tail kernel, proves the receiver-gradient identity
+The [characteristic-tail adjudication](characteristic-tail.md) closes MEC-001 negatively for the frozen CT-FH-1 action. Its self-inclusive domain diverges and its full regular cross-worldline variation contains a future-transmitter response. The local receiver identity
 $$
 D_{ij}K_{\mathrm{eff}}^{(\eta)}
 =
 -
-\frac{\delta_\eta(g)}{r^2},
+\frac{\delta_\eta(g)}{r^2}
 $$
-and defines the corresponding energy, momentum, and angular-momentum wake-history increments across a time cut. [effective-lagrangian](../../../../content/markdown/aaa/dynamics/effective-lagrangian.md) and [nested-shell-braid-dynamics](../../../../content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#a1-dynamics) now consume that kernel as the available action-level repair rather than as a missing Noether-boundary placeholder.
+survives at its stated regular scalar-kernel scope. It does not supply an accepted action, a causal evolution law, or energy, momentum, and angular-momentum accounts. A new action candidate requires a separate identity and complete variation; downstream account pullbacks require the independently derived maps of MEC-002/MEC-004.
 
-This completion does not certify a branch or terminal label. Downstream consumers must still pull the increments back to their retained branch charts and prove closure of $K_{\mu}+E_{\mathrm{wake,eff}}^{(\eta)}$, $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake,eff}}^{(\eta)}$, and $\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake,eff}}^{(\eta)}$ with the same root-ledger, memory-depth, and Jacobian-floor conditions used by the Master EOM. The corpus now states this as a concrete branch-chart conservation test rather than as an open handoff phrase: the required output is the retained-chart pullback of the three Noether totals, with exact wake-history charges separated from work-integral and torque-projection diagnostics.
+Claim grade: the negative action disposition and retained scalar identity are recorded derived results of the linked owner. Falsifier: an independently checked complete variation of the frozen candidate eliminating both its self divergence and distinct-worldline future response under the same declared assumptions. No numerical evidence is recomputed here.
 
 `spiral_turning_conditions` remains active only as retained-root topology and turn-center context. The A1 acceleration-weight intervals and turn-center point diagnostic have now been rebuilt with $W^{\mathrm{acc}}=c_f/|D_t|$ and separate $D_r/D_t$ playback. Outward radial and tangential aggregates, action, and all three conserved accounts remain not advanced. VP-1 remains a transmitter-side rebuild target.
 
@@ -81,7 +83,7 @@ The A1 finite-collar continuation now starts from the derived acceleration-weigh
 
 - First accepted causal wake-state construction and first outward A1 aggregate certificate using transmitter-side acceleration and separate playback.
 - First certified-braid packet for a six-body Noether braid branch, preferably a collinear breather or non-circular signed-sheet branch rather than the bare circular MCB.
-- Numerical branch-chart evaluation of the normalized delayed-interior characteristic-tail kernel and its Noether wake-history boundary terms under the stated pullback contract.
+- After a separately accepted causal update or action supplies account maps, evaluate those same-record accounts on a certified branch. The rejected characteristic-tail action supplies no current Noether-account input.
 - Bare-void branch response tensor for isolated assemblies, computed from branch-chart momentum susceptibility before Noether sea dressing.
 - Full 3D translating three-binary NFDE / DDE control for emergent $\gamma$-scaling.
 - Transfer-operator and invariant-measure control for Born-rule emergence.
@@ -736,11 +738,11 @@ $$
 $$
 It fails if $\nu_J=0$, an inactive gap closes, near-coincidence self roots cannot be separated from $\Delta=0$, $h_{\mathrm{mem}}\ge h$, $\mathcal{T}_r(0)\le0$, or $\mathcal{D}_T(I_\ast)\ge0$. It also fails if the negative tangential verdict requires roots outside the certified chart. The comparison to circular asymptotics is only the circular obstruction: at $\theta_\ast=0$, both tangential numerators reduce to $\rho\sin\Delta$, so principal roots with $0<\Delta<\pi$ keep the circular positive-tangential sign.
 
-## Promotion Lemma
+## Promotion Certificate Target
 
-Lemma. If a candidate history $\Gamma$ has a branch-chart closure object $\mathfrak{B}(\Gamma,\mathcal{S};h,\eta,\epsilon_c)$ with positive active Jacobian floor, positive inactive-root gaps, finite memory depth, bounded returned-section residuals, and a stable returned section, then the candidate may support a master-equation closure claim on that chart.
+Positive root margins, complete inactive complements, finite retained memory, a small returned-section residual, and a local spectral estimate do not by themselves prove that an exact EOM orbit exists. A branch promotion must first establish an EOM-consistent invariant neighborhood and a validated fixed-point, trapping, or equivalent existence argument for the return map on that neighborhood. Stability is then assessed about the established orbit, using the appropriate history space and symmetry exclusions.
 
-Proof sketch. Positive floors make the branch list locally complete and differentiable; finite memory reduces the causal functional to the certified history window; bounded returned residuals put the candidate within the declared section tolerance; and section stability prevents the result from being only a transient root enumeration. The lemma does not prove global closure across folds, $\eta\to0$ limits, or other histories; it licenses promotion from a candidate ledger to a local theorem target.
+Claim grade: this is a proof target, not a completed promotion theorem. Falsifier for any proposed certificate: failure of the neighborhood to map into itself, an unresolved root or history boundary, absence of an exact return, or a stability calculation about a state that is not an EOM solution. Root geometry remains useful without upgrading it to orbit existence or conserved accounts.
 
 ## Maximum-Curvature Wall
 
@@ -794,6 +796,8 @@ Q_{ab}^{(q)}(v)
 \qquad
 M_q=\sum_i m_i.
 $$
+
+Here $m_i$ denotes a fixed nonnegative geometric extraction weight, with $M_q>0$, not an architrino mass or a motion-account map. Keep those weights identical across the rest and moving comparison records; any physical weighting derived later must be justified separately.
 Let $\hat{\mathbf e}_{\parallel}$ be the drift direction and let $P_{\perp}^{ab}=\delta^{ab}-\hat e_{\parallel}^a\hat e_{\parallel}^b$. The extracted semiaxes are
 $$
 a_{\parallel,q}(v)
@@ -1093,7 +1097,7 @@ Interface falsifier. If a downstream basin weight, shielding coefficient, or res
 
 ## Longer-Tail Dynamics Program
 
-1. Run a retained-branch simulation packet that evaluates the normalized Noether wake increments for energy, momentum, and angular momentum under the conservation-pullback contract.
+1. After MEC-002/MEC-004 provide accepted same-update account maps, evaluate energy, momentum, and angular momentum on a certified retained branch. Do not use the rejected characteristic-tail action to supply those maps.
 2. $\eta \to 0$ existence and uniqueness theory for the exact shell model.
 3. Controlled kinetic or coarse-grained equation from the master law.
 4. Lorentz-suppression emergence for moving assemblies in the full dynamics, ideally independent of axial-layer details.

@@ -6,6 +6,52 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-09 — Research coordination evaluated as ninth proposed skill
+
+The operator selected evaluation of research coordination after discussing serial and parallel skill composition. Added the proposed `architrino-coordinate` description and complete instruction body to the [architecture design](analysis/skills-architecture.md), with prospective proof-gap, accepted-result propagation, and computational-discrepancy workflows. The coordinator selects activities and dependencies while the existing PI, assignment, component-skill, scientific, and operational owners retain their responsibilities.
+
+An Astra-high reviewer simulated seven cases and recommended inclusion with three narrow refinements: respect read-only planning, wait or prepare when agent capacity is temporarily occupied, and honor publication already explicitly invoked as a later stage without redundant approval questions. Those refinements are applied in the proposal. The review performed no agent dispatch, research campaign, computation, publication, or native discovery test.
+
+Skill Creator accepted all nine staged definitions and proposed bodies under the shared venv. A temporary Markdown-It check passed its known fenced-example case before checking 50 proposed file links, resolving live or explicitly planned destinations; heading anchors were excluded. Scoped `git diff --check` passed. The proposal now contains nine skills; the original four remain active, and the operator's requirement to review before migration remains in effect.
+
+### 2026-09-09 — Skills architecture redesign prepared for review
+
+The operator requested a fresh architecture design with an Astra-high agent and subsequently clarified that migration should happen after review. The [complete design](analysis/skills-architecture.md) proposes eight consistently namespaced skills, explains why these outcomes merit discovery entries, identifies capabilities that remain ordinary procedures, and includes all proposed instruction bodies and migration dependencies. A `gpt-6-astra` agent at `high` independently recommended the architecture. A second Astra-high agent performed a simulated routing exercise against 18 requests without reading the design's expected outcomes; it found a single-claim versus corpus-wide reference-discovery ambiguity. The proposed source instructions were tightened, and the evaluator's reread found that ambiguity resolved. These are design judgments and simulated routing, not native discovery tests or measured productivity gains.
+
+Automatic approval review rejected replacing the active packages during a design request. The rejected patch was not retried; proposed instruction files were moved out of the live policy directory into task scratch and embedded in the durable design. `rg --files .agents/skills -g SKILL.md` confirmed the original four active discovery definitions remain. The operator intends to migrate but explicitly reserves activation until review and approval. A future migration must reread current files and preserve concurrent work, update live old-name consumers, and validate the relocated preview helper.
+
+Design validation: Skill Creator accepted all eight staged name/description definitions under the shared venv. A temporary Markdown-It link checker passed a known actual-link/fenced-example case before checking the proposed owner links and the design's prose links; local targets exist or are explicitly planned migration destinations, with heading anchors excluded. Scoped `git diff --check` passed. No Git publication, generator write, simulation, or skill activation occurred.
+
+### 2026-09-09 — Clarified skill instruction ownership
+
+The operator clarified that visible `reference/op/skills/skill-<name>.md` files should own the actual instructions, with Codex discovery files pointing to them. The earlier interpretation that this requested duplicate maintained copies was incorrect. This clarification supersedes the placement decision in the initial adoption entry below. The full bodies of all four skills now live in the [skills policy directory](../../op/skills/README.md); each `.agents/skills/<name>/SKILL.md` retains its original discovery metadata and a mandatory read pointer to that owner. Relative links to sibling instructions and the Math Preview helper were adjusted for the new location. Existing downstream procedure owners, skill names, UI metadata, and executable helper locations remain intact.
+
+Codex discovers repository `.agents/skills` directories and reads the selected `SKILL.md` on use, according to the [official skills documentation](https://learn.chatgpt.com/docs/build-skills). The pointer now requires reading the visible maintained instructions, which in turn select their live procedures. There is no manual paste or generated instruction copy in this arrangement. `git log --diff-filter=A --name-only -- .agents/skills/*/SKILL.md` records the three research/review definitions entering Git on 2026-07-29 and Math Preview on 2026-08-29; this establishes file history, not whether the original author used pasted text or a creation conversation.
+
+Validation: Skill Creator `quick_validate.py` passed for all four discovery packages. A temporary local-link check passed a known real-link/fenced-example case before confirming that file targets in all four pointers, all four maintained instruction files, and the policy index exist. `git diff --check` passed for the scoped changes. These checks establish discovery-file structure and local file reachability, not an independent runtime test of automatic skill selection. The maintained instruction bodies retain the previous pass's routing and workflow content apart from relative-link adjustments.
+
+### 2026-09-09 — Skills policy adoption and initial maintenance pass
+
+Adopted the [repository skills policy](../../op/skills/README.md), linked it from `AGENTS.md`, and replaced the proposal in operator brainstorming with a pointer. The policy directory indexes the canonical, Git-tracked `.agents/skills/<name>/SKILL.md` sources; it does not hold separately maintained copies. Monthly and change-triggered maintenance are recorded in OPS-027, with the next monthly pass due 2026-10-09. No scheduler was configured.
+
+Direct reading covered all four skill definitions and their UI metadata. Corpus advancement and research exploration already route to live owners and were retained. The review skill now reads cadence and action boundaries from the selected owner rather than repeating the directory-review quota. Math Preview now enters repository startup, follows project file placement, and describes appearance through the helper's current theme; its metadata no longer prescribes purple. The helper implementation and appearance were not changed. Concurrent links to `reference/office-of-research/` were preserved.
+
+Written routing walkthrough, performed by the editor against the live definitions and linked procedures:
+
+| Representative request | Selected skill and live owner | Scope assessment |
+| --- | --- | --- |
+| Review a corpus directory | Corpus Review Workflow → corpus-reviewer | Read current cadence and review authority from the owner |
+| Apply supplied review feedback | Corpus Review Workflow → integrator-reviewer | Integration follows the supplied task and live procedure |
+| Brainstorm an idea | Research Exploration → brainstorming | Provisional discussion and capture follow the owner |
+| Mine an external source | Corpus Advancement → convergence-campaign and source-mining-best-practice | Source-mining mode follows the request and both live owners |
+| Preview mathematical Markdown | Math Preview → its helper workflow after repository startup | Render the source using current helper options and inspect the result |
+
+This is a source-level walkthrough, not an independent agent execution or an automatic-routing benchmark. It establishes where the instructions send these requests; it does not prove future compliance. The review-quota duplication was removed by direct comparison with the live corpus-reviewer owner, which still supplies its current quota.
+
+Validation: the Skill Creator `quick_validate.py` passed for each of the four skill directories under the shared venv. A temporary local-link extractor first passed a known case retaining a real link and excluding a fenced example; it then found all local file-link targets in the four definitions and policy index present. PyYAML parsed all four UI metadata files, with description lengths and skill mentions checked. These checks do not validate linked heading anchors or scientific correctness. `git diff --check` passed for the scoped edits.
+
+Binding inventory before editing: `scripts/build-agent-startup-orientation.mjs` fingerprints `AGENTS.md` and `reference/op/brainstorming.md`; `scripts/build-claude-bootstrap-floor.mjs` fingerprints `AGENTS.md`. Their expected source drift is reserved for the authorized regeneration/publication procedure: `node scripts/build-agent-startup-orientation.mjs --write` and `node scripts/build-claude-bootstrap-floor.mjs --write`. The Math Preview test imports its unchanged helper. No generated artifact or historical evidence was edited by this maintenance pass.
+
 ### 2026-09-06 — OPS-018 verified and closed under a first-mismatch attribution rule
 
 An independent verification of the Codex Python-suite pass re-ran `git log -1` on all nine distinct pinned paths in its table and confirmed 12 of 13 verdicts; the one disagreement was the enclosure contract, which the table labelled `pre-existing` in one row and `layout pass` in two. Hashing that file at every commit in its history showed the pin last matched at `0fb575921` and was first broken by the `897fe1aa7` rename, before the layout pass touched it. The operator ruled that attribution follows first mismatch rather than last commit; the three rows now read `pre-existing`, the closure condition holds, and [OPS-018](work-queue.md#ops-018--layout-pass-digest-pin-attribution) is closed and removed from the ranked list. The pin refresh across its 22 holders is routed to the braid-program rename repair, not OPS-019. `node scripts/validate-priority-ranking.mjs` passed. No pin was refreshed, no generator was written, and nothing was staged or committed.
@@ -65,7 +111,7 @@ Plainly: one broken check was hiding four others, and the run now gets far enoug
 
 ### 2026-09-05 — Technical-brief verification and definitions refined
 
-Applied both accepted focused-review findings to the [technical brief](../../research-office/cto/technical-brief-master-equation.md). The proposed test now checks full vector dynamics with explicit interval and sampling scope, and the text defines the retained-branch and evidence terminology in place. The [review record](evidence/office-document-standards-review.md#authorized-refinements-completed) records resolution; the priority tracker no longer lists these as open refinements. Existing equations and historical material retain their prior scope.
+Applied both accepted focused-review findings to the [technical brief](../../office-of-research/cto/technical-brief-master-equation.md). The proposed test now checks full vector dynamics with explicit interval and sampling scope, and the text defines the retained-branch and evidence terminology in place. The [review record](evidence/office-document-standards-review.md#authorized-refinements-completed) records resolution; the priority tracker no longer lists these as open refinements. Existing equations and historical material retain their prior scope.
 
 ### 2026-09-05 — Optional feedback diagnostics
 

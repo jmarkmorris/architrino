@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import {
+  reconstructMec005AffineHistoryLedger,
+  verifyMec005AffineHistoryLedger,
   MEC005_LEDGER_SCHEMA,
   MEC005_VERIFICATION_SCHEMA,
   verifyMec005TwoHistoryCausalRootLedger,
@@ -486,4 +488,144 @@ test("a structural packet cannot claim a full-domain advance", () => {
   assert.ok(issueCodes(report).has("nonclaims_incomplete"));
   assert.equal(report.overall.mec005_status, "Queued");
   assert.equal(report.overall.consumer_ready, false);
+});
+
+// Closed-form controls are independent mathematical expectations. The original
+// structural fixtures and the existing Python acceptance reference stay fixed.
+function stationaryRaw() {
+  return { representation: "exact_collinear_piecewise_affine/v1", field_speed: "1",
+    memory_lower: "-4", reception_interval: ["0", "1"], histories: [
+      { label: "1", polarity: "-1", knots: [["-4", "0"], ["1", "0"]] },
+      { label: "2", polarity: "+1", knots: [["-4", "2"], ["1", "2"]] },
+    ] };
+}
+
+test("affine known case: stationary separation two has only s=T-2 partner roots", () => {
+  const ledger = reconstructMec005AffineHistoryLedger(stationaryRaw());
+  assert.equal(ledger.status, "reconstructed");
+  assert.deepEqual(ledger.ordered_bundles, ["1<-1", "1<-2", "2<-1", "2<-2"]);
+  assert.deepEqual(ledger.root_strata.map((r) => [r.bundle_id, r.emission_line,
+    r.receiver_interval, r.multiplicity, r.transmitter_factor]), [
+    ["1<-2", ["1", "-2"], ["0", "1"], 1, "1"],
+    ["2<-1", ["1", "-2"], ["0", "1"], 1, "1"],
+  ]);
+  assert.equal(ledger.boundary_strata.length, 4);
+  assert.equal(ledger.diagonal_carriers.length, 2);
+  assert.equal(ledger.complement_factors.length, 8);
+  assert.ok(ledger.diagonal_carriers.every((d) => d.semantics.consumer_allowed === false));
+});
+
+function foldedRaw() {
+  // Hand reference: x1=-4,2s,0 and x2=9/2,1/2-2s,1/2
+  // on [-8,-2],[-2,0],[0,1], respectively. These are prescribed
+  // continuous corner histories, not C1 histories or an EOM trajectory.
+  return { representation: "exact_collinear_piecewise_affine/v1", field_speed: "1",
+    memory_lower: "-8", reception_interval: ["0", "1"], histories: [
+      { label: "1", polarity: "-1", knots: [["-8", "-4"], ["-2", "-4"], ["0", "0"], ["1", "0"]] },
+      { label: "2", polarity: "+1", knots: [["-8", "9/2"], ["-2", "9/2"], ["0", "1/2"], ["1", "1/2"]] },
+    ] };
+}
+
+const geometryRows = (ledger) => ledger.root_strata.map((r) =>
+  [r.bundle_id, r.emission_line, r.receiver_interval, r.orientation, r.signed_playback])
+  .sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
+
+test("affine target: hand-derived ten branches include four self rows and corner incidence", () => {
+  const ledger = reconstructMec005AffineHistoryLedger(foldedRaw());
+  assert.equal(ledger.status, "reconstructed");
+  const expected = [];
+  for (const bundle of ["1<-1", "2<-2"]) {
+    expected.push([bundle, ["1", "-4"], ["0", "1"], 1, "1"]);
+    expected.push([bundle, ["-1", "0"], ["0", "1"], -1, "-1"]);
+  }
+  for (const bundle of ["1<-2", "2<-1"]) {
+    expected.push([bundle, ["1", "-9/2"], ["0", "1"], 1, "1"]);
+    expected.push([bundle, ["-1", "1/2"], ["1/2", "1"], -1, "-1"]);
+    expected.push([bundle, ["1", "-1/2"], ["1/2", "1"], 1, "1"]);
+  }
+  expected.sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
+  assert.deepEqual(geometryRows(ledger), expected);
+  assert.equal(ledger.incidence.length, 20);
+  assert.equal(ledger.boundary_strata.length, 18);
+  assert.equal(ledger.complement_factors.length, 24);
+  const corners = ledger.boundary_strata.filter((b) => b.point.join(",") === "1/2,0");
+  assert.equal(corners.length, 2); // distinct ordered-bundle events
+  for (const corner of corners) {
+    assert.deepEqual(corner.faces, ["transmitter_knot"]);
+    assert.equal(corner.incident_half_branches.length, 2);
+    assert.equal(corner.incident_half_branches.reduce((sum, h) => sum + h.orientation, 0), 0);
+    assert.ok(corner.incident_half_branches.every((h) => h.incidence_coefficient === -1));
+  }
+});
+
+test("affine raw comparison rejects omissions, duplicates, false multiplicity and swapped line coordinates", () => {
+  const raw = foldedRaw();
+  const ledger = reconstructMec005AffineHistoryLedger(raw);
+  // These replay-based mutations test rejection plumbing only, not correctness.
+  for (const mutate of [
+    (l) => l.root_strata.pop(),
+    (l) => l.root_strata.push(structuredClone(l.root_strata[0])),
+    (l) => l.boundary_strata.push(structuredClone(l.boundary_strata[0])),
+    (l) => l.incidence.pop(),
+    (l) => { l.root_strata[0].multiplicity = 2; },
+    (l) => l.root_strata[0].emission_line.reverse(),
+    (l) => l.complement_factors.pop(),
+    (l) => { l.diagonal_carriers[0].semantics.consumer_allowed = true; },
+  ]) {
+    const wrong = structuredClone(ledger);
+    mutate(wrong);
+    assert.equal(verifyMec005AffineHistoryLedger(raw, wrong).status, "failed_or_unresolved");
+  }
+});
+
+test("affine refinement correspondence is invariant under rational subdivision and traversal permutation", () => {
+  const raw = foldedRaw();
+  const before = reconstructMec005AffineHistoryLedger(raw);
+  raw.histories[0].knots.splice(1, 0, ["-5", "-4"]);
+  raw.histories[0].knots.splice(3, 0, ["-1", "-2"]);
+  raw.histories[1].knots.splice(1, 0, ["-5", "9/2"]);
+  raw.histories.reverse();
+  const after = reconstructMec005AffineHistoryLedger(raw);
+  assert.deepEqual(after, before);
+  const reordered = structuredClone(before);
+  reordered.root_strata.reverse();
+  reordered.incidence.reverse();
+  assert.equal(verifyMec005AffineHistoryLedger(raw, reordered).status, "bounded_geometry_matched");
+  reordered.root_strata.forEach((r, k) => { r.stratum_id = `rank-${k}`; });
+  assert.equal(verifyMec005AffineHistoryLedger(raw, reordered).status, "failed_or_unresolved");
+  const changed = foldedRaw();
+  changed.histories[0].knots[1][1] = "-3";
+  assert.equal(verifyMec005AffineHistoryLedger(changed, before).status, "failed_or_unresolved");
+});
+
+test("affine degeneracies and unsupported accumulated histories remain unresolved", () => {
+  const raw = stationaryRaw();
+  raw.histories[0].knots = [["-4", "-4"], ["1", "1"]];
+  const rail = reconstructMec005AffineHistoryLedger(raw);
+  assert.equal(rail.status, "unresolved");
+  assert.match(rail.reason, /root interval/u);
+  raw.representation = "smooth_history_with_accumulating_roots";
+  assert.equal(reconstructMec005AffineHistoryLedger(raw).status, "unresolved");
+  raw.representation = "exact_collinear_piecewise_affine/v1";
+  raw.histories[0].knots[0][0] = -4;
+  assert.equal(reconstructMec005AffineHistoryLedger(raw).status, "unresolved");
+});
+
+test("affine asymmetric control keeps receiver playback distinct and owns the memory endpoint", () => {
+  const raw = stationaryRaw();
+  raw.histories[1].knots = [["-4", "-5"], ["1", "5"]]; // x2=3+2t
+  const ledger = reconstructMec005AffineHistoryLedger(raw);
+  assert.equal(ledger.status, "reconstructed");
+  assert.deepEqual(geometryRows(ledger), [
+    ["1<-2", ["-1", "-3"], ["0", "1"], -1, "-1"],
+    ["1<-2", ["1/3", "-1"], ["0", "1"], 1, "1/3"],
+    ["2<-1", ["-1", "-3"], ["0", "1"], 1, "-1"],
+  ]);
+  assert.equal(ledger.root_strata.find((r) => r.signed_playback === "1/3").transmitter_factor, "3");
+  assert.equal(ledger.root_strata.find((r) => r.bundle_id === "2<-1").transmitter_factor, "1");
+  const edge = ledger.boundary_strata.find((b) => b.point.join(",") === "1,-4");
+  assert.deepEqual(edge.faces, ["receiver_end", "memory_edge"]);
+  assert.equal(edge.incident_half_branches.length, 1);
+  assert.equal(edge.unsigned_root_count_jump, -1);
+  assert.equal(edge.semantics.value_status, "not_derived");
 });

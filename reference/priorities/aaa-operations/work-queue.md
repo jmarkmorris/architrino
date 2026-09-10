@@ -15,6 +15,8 @@ This is the canonical execution ledger for repo-wide deployment, hosting, cost, 
 8. `internal_reference_section_numbering` — [OPS-025](#ops-025--internal-reference-section-numbering). Status: `Queued`; define the convention and roll out by document type from the operator-approved trial.
 9. `github_presence_and_community_guidance_review` — [OPS-026](#ops-026--github-presence-and-community-guidance-review). Status: `Awaiting verification`; review completed; approved sentence deletion, discussion-to-issue and PR guidance applied; collaborator/review and development-discovery edits applied; awaiting verification.
 
+10. `periodic_project_skill_maintenance` — [OPS-027](#ops-027--periodic-project-skill-maintenance). Status: ○ Not done — `Queued`.
+
 ## Queued task records
 
 ### OPS-018 — Layout-pass digest-pin attribution
@@ -569,7 +571,7 @@ Plainly: Claude and Codex each read guidance from several places, and only some 
 | Prompt template | [`codex-goal-seeking-prompt-template.md`](../../op/codex-goal-seeking-prompt-template.md) | Communication and reporting procedure | 2026-09-03 |
 | Corpus style authorities | `content/markdown/aaa/archie/`: `academic-style-guide.md`, `mathematics-style-guide.md`, `mathematics-terminology.md`, `terminology-usage.md`, `comparative-glossary.md` | Reader-facing corpus prose and notation | 2026-09-03 |
 | End-user language | `content/markdown/aaa/archie/`: `ui-guidelines.md`, `navigation-and-controls.md` | App-facing wording | 2026-09-03 |
-| Role prompts | `reference/research-office/cto/prompts/` — 14 prompts plus `README.md` | Per-role behavior for research, review, convergence, promotion, adjudication | 2026-09-03 |
+| Role prompts | `reference/office-of-research/cto/prompts/` — 14 prompts plus `README.md` | Per-role behavior for research, review, convergence, promotion, adjudication | 2026-09-03 |
 | Repository skills | `.agents/skills/` — `aaa-corpus-advancement`, `corpus-review-workflow`, `math-preview`, `research-exploration` | Discovery routers into the live procedures; three carry an `agents/openai.yaml` | 2026-09-03 |
 
 There is exactly one authored `AGENTS.md` and exactly one `CLAUDE.md` in the repository, both at the root. Other copies found under `.tmp/` belong to unrelated vendored checkouts and are not project policy.
@@ -606,7 +608,7 @@ This item held the migration away from the retired inline `Plainly:` tag while t
 
 Both of this item's blockers are discharged, and the record of that lives in CRW-004 rather than being restated here: the operator opened the corpus-wide rewrite, which was the readiness gate, and edition 1.0 settled the canon question of whether the reader-facing style authority should say anything about the tag.
 
-The measured census, the finding that the tag leaked into reader-facing prose without any reader-facing authority ever prescribing it, the tiering by reader visibility, and the discharged search-index dependency all moved with the item. Nothing was dropped in the move. The residual pass over the startup-path files in `reference/op`, `reference/research-office/cto/prompts`, and `.agents/skills` went there too, even though those are operations surfaces rather than corpus, because splitting one retirement across two queues would leave neither queue able to say when it is finished.
+The measured census, the finding that the tag leaked into reader-facing prose without any reader-facing authority ever prescribing it, the tiering by reader visibility, and the discharged search-index dependency all moved with the item. Nothing was dropped in the move. The residual pass over the startup-path files in `reference/op`, `reference/office-of-research/cto/prompts`, and `.agents/skills` went there too, even though those are operations surfaces rather than corpus, because splitting one retirement across two queues would leave neither queue able to say when it is finished.
 
 ### OPS-016 — Reference equation-mapping surface
 
@@ -657,6 +659,23 @@ The reference builder follows the write authority of the executing queue item. A
 - **Action boundary:** Review and propose the exact changes needed. Queue capture does not authorize changing public guidance, executing its Git examples, or changing publication policy.
 - **Completion:** Record findings with source passages, proposed edits or an evidence-supported no-change conclusion, and the operator's disposition. Route accepted changes to their existing owners and verify relevant links and behavior when implemented.
 - **Owner:** operations, coordinating with the public-community document owner.
+
+### OPS-027 — Periodic project skill maintenance
+
+- **Status:** ○ Not done — Queued.
+- **Priority object:** `periodic_project_skill_maintenance`
+- **Architecture review:** ◐ Partial — the [nine-skill design](analysis/skills-architecture.md) is prepared with Astra-high architecture and coordination reviews. The operator intends to migrate after reviewing it; replacement of the active four skills awaits that review and approval.
+- **Request / acceptance:** Perform periodic maintenance on the `SKILL.md` files for the project skills we have instantiated. Review their trigger descriptions, instructions, linked live owners, and supporting resources for accuracy and consistency with current repository procedures; correct stale guidance and broken references.
+- **Current four Codex discovery paths:**
+  - `/Users/markmorris/vibe/architrino/.agents/skills/aaa-corpus-advancement/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/corpus-review-workflow/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/research-exploration/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/math-preview/SKILL.md`
+- **Maintained instructions:** The [skills index](../../op/skills/README.md#canonical-definitions) lists the four `reference/op/skills/skill-<name>.md` instruction owners. Review these owners together with their discovery pointers.
+- **Policy:** Follow the adopted [repository skills policy](../../op/skills/README.md), including descriptions, default prompts, references, and templates.
+- **Cadence:** Monthly and when referenced owners change. Initial policy-adoption pass completed 2026-09-09; next monthly pass due 2026-10-09, or sooner on a relevant change. This recurring row tracks the next pass, not the completed adoption work.
+- **Completion:** Each maintenance pass reviews the current instantiated project skills, verifies referenced paths and procedure alignment, and records corrections or a supported no-change result in the operations work log.
+- **Owner:** operations.
 
 ## In progress
 

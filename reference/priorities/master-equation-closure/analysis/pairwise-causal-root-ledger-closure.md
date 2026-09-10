@@ -7,9 +7,10 @@
 - Claim level: `priority-only proof design`
 - Workstream: [master-equation-closure](../priorities.md)
 - Topology owner: [topological-causal-root-ledger-proof-target](topological-causal-root-ledger-proof-target.md)
-- Discussion inputs: [topological causal-root ledger capture](../brainstorming.md#topological-causal-root-ledger-discussion-capture-2026-06-29) and [universal conservation ledger capture](../brainstorming.md#universal-conservation-ledger-discussion-capture-2026-07-10)
-- Routed research input: [wake reception, transfer, and maturity](../../../research-office/research-history/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md) requires MEC-005 provenance before its cumulative-extraction and angular-pin account tests can run; it supplies no account values or conservation claim.
-- Certificate synthesis: [two-history causal-root ledger certificate](../../../research-office/research-history/review-packets/mec-005-two-history-causal-root-ledger-certificate-2026-07-29.md) supplies the prescription-neutral full-domain envelope integrated below; it supplies no root-finder, boundary value, account map, or status change.
+- Discussion inputs: [topological causal-root ledger capture](../brainstorming.md#causal-root-correspondence) and [universal conservation ledger capture](../brainstorming.md#conservation-as-slice-accounting)
+- Routed research input: [wake reception, transfer, and maturity](../../../office-of-research/research-history/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md) requires MEC-005 provenance before its cumulative-extraction and angular-pin account tests can run; it supplies no account values or conservation claim.
+- Certificate synthesis: [two-history causal-root ledger certificate](../../../office-of-research/research-history/review-packets/mec-005-two-history-causal-root-ledger-certificate-2026-07-29.md) supplies the prescription-neutral full-domain envelope integrated below; it supplies no root-finder, boundary value, account map, or status change.
+- Bounded mathematical advance: [exact raw-history affine reconstruction and lineage](#bounded-raw-history-reconstruction-and-lineage), derived on a prescribed continuous corner-history class; independent adjudication and full-envelope completion remain open.
 - Promotion status: not promoted
 
 ## Closure Question
@@ -572,6 +573,126 @@ Completed MEC-007 is the mirror close-approach boundary companion. It owns the s
 
 No MEC-006 derivative choice or MEC-007 encounter result can fill an MEC-004 row by itself. If a boundary update is later accepted, MEC-004 must derive its signed maps on exactly that update and MEC-005 must attribute each resulting boundary row once. A residual or a duplicated incident-root entry is not a signed-map derivation.
 
-Many-body superposition may be considered only after the pairwise construction passes P1–P6 for all four ordered bundles with positive-delay self-root admission and separately quarantined diagonal semantics. A many-body sum must then prove that shared emission provenance and shared boundary events are not copied across pair bundles. Pairwise closure cannot be inferred from a many-body residual that cancels only after aggregation.
+Many-body account/provenance closure requires the pairwise construction to pass P1–P6 for all four ordered bundles with positive-delay self-root admission and separately quarantined diagonal semantics. Mathematical investigation of a regular many-source acceleration sum may proceed before account closure, provided it proves its own complete root census, summation, and boundary assumptions and claims no conserved account. A many-body sum must then prove that shared emission provenance and shared boundary events are not copied across pair bundles. Pairwise closure cannot be inferred from a many-body residual that cancels only after aggregation.
 
 This packet is `priority-only`. Its intended corpus destination is the Master Equation accounting discussion only after a theorem-grade pairwise result and an independently derived account map exist.
+
+## Bounded Raw-History Reconstruction and Lineage
+
+A continuous collinear history with finitely many affine pieces admits an exact causal-root construction that does not rely on numerical root ranks. Each source piece gives at most two candidate straight lines in the emission–reception plane. Intersecting those lines with the complete causal domain identifies the regular branches, their endpoints, and the complement. This supplies a bounded mathematical stage for root provenance. It does not complete the full envelope or the account-bearing P1–P6 sequence.
+
+### Declared Class and Exact Factorization
+
+Set $c_f=1$. Take rational $L<T_0<T_1$, reception interval $I=[T_0,T_1]$, and both ordered copies of the full emission domain $L\le s\le T$. The two opposite-polarity histories have coordinates $\mathbf x_i(t)=x_i(t)\widehat{\mathbf e}_1$, where $x_i$ is continuous and piecewise affine on $[L,T_1]$, with finitely many rational knots and values. Each receiver history is affine throughout $I$. On one transmitter piece $[a,b]$, write
+
+$$
+x_i(T)=u_iT+d_i,
+\qquad
+x_j(s)=v_js+d_j.
+$$
+
+The class permits $|v_j|>1$; it imposes no universal path-speed ceiling. For this finite-branch instrument, require $v_j\ne\pm1$. Persistent roots on a genuine transmitter knot or on the memory edge, a receiver knot inside $I$, and persistent partner coincidence over $I$ are separately unresolved cases. Corners are admitted as prescribed continuous geometry, with their derivative and multiplicity semantics quarantined. The class is not an admitted $C^1$ EOM history class.
+
+For positive delay, the signed displacement has one definite direction $\eta\in\{-1,+1\}$. The causal equation is equivalent to exactly one of
+
+$$
+\eta\bigl(u_iT+d_i-v_js-d_j\bigr)=T-s,
+\qquad
+s<T.
+$$
+
+Solving this linear equation gives
+
+$$
+s=mT+k,
+\qquad
+m=\frac{1-\eta u_i}{1-\eta v_j},
+\qquad
+k=\frac{\eta(d_j-d_i)}{1-\eta v_j}.
+$$
+
+Intersect this line with $T_0\le T\le T_1$, $a\le s\le b$, and $s\le T$. Each inequality is affine in $T$, so its intersection is empty, one point, or a closed interval with rational endpoints. A nontrivial interval whose interior has $s<T$ and lies inside the transmitter piece defines one regular stratum. A point or an interval endpoint is a boundary event. The exact line $s=T$ is excluded from active roots; each self bundle retains its structural diagonal carrier and any incident diagonal point references that carrier. Candidate isolated partner-contact points are reconstructed from $x_1(T)=x_2(T)$ even when no positive-delay branch attaches.
+
+On a sign sector, the residual is the linear factor
+
+$$
+G_{ij}(T,s)
+=(1-\eta v_j)\bigl[s-(mT+k)\bigr].
+$$
+
+Thus the factor is nonzero at every point in that sector off its clipped zero line. At zero displacement with $s<T$, the original residual is $-(T-s)<0$. These identities prove the entire inactive complement, including cells omitted by a mere fixed-time census. They provide exact exclusion, rather than a positive uniform gap on a complement that approaches a root. The instrument stores both signed factors for every ordered source piece; it does not yet serialize a general two-dimensional partition tree.
+
+> Claim grade: derived. Under the declared finite piecewise-affine assumptions, every positive-delay root belongs to one clipped line or its explicitly retained boundary, and the remaining causal interior is root-free. Proof: split the absolute value by its displacement sign, solve the resulting nondegenerate linear equation, and intersect all domain inequalities exactly. No further root is possible because every domain point belongs to a source piece and either one displacement sign or the strictly negative zero-displacement case. Falsifier: a point with $L<s<T$ satisfying the original norm equation but neither a retained clipped line nor a boundary event; substitute that point in the displayed factor to check the contradiction.
+
+### Multiplicity, Incidence, and Refinement
+
+Inside a regular source piece,
+
+$$
+\partial_sG_{ij}=D_t=1-\eta v_j\ne0,
+\qquad
+\partial_TG_{ij}=-D_r=\eta u_i-1.
+$$
+
+Every open regular stratum therefore has multiplicity one and orientation $\operatorname{sgn}(D_t)$. Its signed playback is $ds/dT=D_r/D_t=m$. The transmitter acceleration weight would be $1/|D_t|$ on an otherwise admitted regular acceleration row; playback does not multiply that weight. This geometry instrument evaluates no acceleration or account map.
+
+Give every open branch the increasing-$T$ incidence convention: coefficient $-1$ at its initial endpoint and $+1$ at its final endpoint. Store one event per exact ordered-bundle coordinate $(T,s)$, and let every incident branch reference it. Record every face meeting there, rather than overwriting a simultaneous diagonal, history-knot, and receiver-edge attachment with one reason. The slice-count jump at an interior event is minus the sum of incident coefficients; the oriented jump is minus their orientation-weighted sum. At reception slab edges these quantities describe domain entry and exit, not an extrapolated external history. Boundary multiplicity is explicitly `not_assigned_at_boundary`; a corner with two branches is not declared an ordinary smooth fold.
+
+Normalize a raw history by merging adjacent pieces with exactly equal affine coefficients. Maximal affine pieces are uniquely determined by the continuous function: a genuine slope change cannot disappear under exact subdivision, and subdivision with no slope change introduces no new maximal piece. Canonical root descriptors use the normalized history and domain identities, ordered pair, maximal source interval, displacement direction, line coefficients, and exact reception endpoints. Event descriptors use the same domain identity, ordered pair, and exact event point. Record traversal and discovery rank do not enter either identity. The emission coordinate is the exact line $s=mT+k$ together with the transmitter label and maximal source interval; this is geometric provenance and assigns no source debit.
+
+> Claim grade: derived. Exact subdivision of an unchanged affine piece preserves the normalized histories, all canonical strata, and reciprocal incidence. Unique exact event coordinates prevent a payload from being duplicated across incident branches; distinct ordered bundles remain distinct owners even at simultaneous coordinates. Falsifier: a subdivision with unchanged positions changes the normalized maximal pieces or a canonical row, or one bundle-local event acquires two stored payloads. The focused tests exercise subdivision and record permutation, as well as malformed ownership and incidence.
+
+At $v_j=\eta$, the linear coefficient of $s$ vanishes. The equation becomes a condition on $T$ alone, which may produce an emission interval rather than a finite list of roots. The instrument returns an explicit unresolved root-interval route for every unit-slope transmitter piece; this is conservative and does not assert that every such piece actually contains an interval. Infinite-piece or accumulating-root history representations are outside its input class and remain unresolved. No finite list substitutes for either case. Root intervals, accumulation, smooth folds, and higher singularity multiplicities remain open strata for the wider MEC-005 program.
+
+### Exact Ten-Branch Control
+
+The bounded control has $L=-8$, $I=[0,1]$, and two reflected prescribed histories separated by $1/2$ on the reception interval:
+
+$$
+x_1(t)=
+\begin{cases}
+-4,&-8\le t\le-2,\\
+2t,&-2\le t\le0,\\
+0,&0\le t\le1,
+\end{cases}
+\qquad
+x_2(t)=\frac12-x_1(t).
+$$
+
+The source histories are continuous at both knots. Their ramp speeds have magnitude two, and their current receiver speeds are zero. Direct substitution gives the following complete open branches; reception endpoints belong to their boundary rows.
+
+| Ordered bundles | Emission line | Open reception interval | $D_t$ | Signed playback |
+| --- | --- | --- | --- | --- |
+| $1\leftarrow1$, $2\leftarrow2$ | $s=T-4$ | $(0,1)$ | $1$ | $1$ |
+| $1\leftarrow1$, $2\leftarrow2$ | $s=-T$ | $(0,1)$ | $-1$ | $-1$ |
+| $1\leftarrow2$, $2\leftarrow1$ | $s=T-9/2$ | $(0,1)$ | $1$ | $1$ |
+| $1\leftarrow2$, $2\leftarrow1$ | $s=1/2-T$ | $(1/2,1)$ | $-1$ | $-1$ |
+| $1\leftarrow2$, $2\leftarrow1$ | $s=T-1/2$ | $(1/2,1)$ | $1$ | $1$ |
+
+For example, the self shelf equation is $4=T-s$, while the self ramp equation is $-2s=T-s$. For the partner ramp it is $1/2-2s=T-s$, and the recent partner shelf gives $1/2=T-s$. Each remaining signed factor either has its root outside its source interval, has negative delay, or is the excluded exact diagonal. Reflection reverses the displacement direction and source velocity together, preserving the listed $D_t$ and playback in the opposite ordered bundle.
+
+The two partner branches meet at $(T,s)=(1/2,0)$ in each partner bundle. This event has two outgoing half-branches, orientations $-1$ and $+1$, unsigned count jump $+2$, and oriented count jump zero. There are two bundle-local events, each stored once. The self branch $s=-T$ attaches to the excluded diagonal at $(0,0)$ in each self bundle, while the old self branch remains distinct. The result has ten open strata, eighteen point-boundary events, twenty half-branch incidences, and two structural diagonal carriers. It includes twenty-four signed source-piece factors establishing the complement.
+
+The newest self branches demonstrate why a source-history knot and an excluded diagonal attachment must survive in provenance. They do not establish smooth diagonal-birth lineage for the quintic continuation candidate: the source corner is not a smooth birth chart, and the instrument does not evolve either history. Opposite topology signs at the partner corner express oriented root counting only; they do not prove cancellation of acceleration, wake capacity, or a physical account.
+
+> Claim grade: derived. The displayed ten branches and boundary attachments are the exact census on this prescribed class, by the signed equations and source-interval restrictions above. Falsifier: a root outside the table on $[0,1]\times[-8,T]$, a missing positive-delay self root, or a different corner incidence after direct substitution into the piecewise histories. This result supplies bounded P1–P4 geometry with quarantined corner multiplicity; it supplies neither the general P1–P4 theorem nor P5–P6 accounts.
+
+### Instrument Reach and Execution Record
+
+The existing [verifier](../../../../scripts/eom/verify-mec005-two-history-causal-root-ledger.mjs) exports `reconstructMec005AffineHistoryLedger` and `verifyMec005AffineHistoryLedger`. The latter independently recomputes the raw geometry before comparing a claimed ledger, and accepts record permutation while rejecting missing, duplicate, or geometrically changed records. Exact rational strings use integer or `numerator/denominator` syntax; no floating tolerance participates. Its optional CLI mode is `--affine <raw-history-and-ledger.json>`, with fields `raw_history` and `claimed_ledger`. A bounded match remains `Verification incomplete`, `Not advanced`, `Queued`, and consumer-disabled at the full MEC-005 level. The original `/v1` envelope structural path is preserved; its general mathematical stage remains unimplemented. The affine result is not silently injected into, or accepted as, that general envelope.
+
+The mathematical reference for the new instrument is the closed-form factorization and the explicitly derived control table above. No producer root finder, interpolator, or expected output is imported. However, the theorem and instrument were prepared in this effort, so their agreement is implementation support against explicit mathematics, not an independently adjudicated theorem certificate. A separate author alone would not change that boundary. The original acceptance oracle and its contract are held fixed, and were not run or adapted to the corner histories. In particular, its $C^1$ cubic-history acceptance scope is not borrowed for this continuous corner control.
+
+On 2026-09-09, before running the ten-branch target, `node --test --test-name-pattern='affine known case' tests/mec005-two-history-causal-root-ledger-verifier.test.mjs` passed the exact stationary separation-two control: two partner lines $s=T-2$, zero active self lines, four endpoint events, and two structural diagonal carriers. The working receipt is `.tmp/mec005-root-provenance/known-case.tap`. Only after that pass was recorded did the target test run.
+
+`node --test tests/mec005-two-history-causal-root-ledger-verifier.test.mjs` then passed 15/15 tests, including the original nine structural controls, the known case, the exact ten-branch table, omission/duplicate/multiplicity/coordinate/quarantine mutations, exact-subdivision and rank-permutation correspondence, explicit unresolved interval/unsupported-history routes, and an asymmetric moving-receiver/memory-edge control. Mutation and replay tests check validation behavior, not independent mathematical correctness. The receipt is `.tmp/mec005-root-provenance/focused.tap`; the durable evidence is the closed-form table and retained test source.
+
+A further asymmetric control uses $x_1(t)=0$ and $x_2(t)=3+2t$ on $[-4,1]$. Direct signed substitution gives two $1\leftarrow2$ roots, $s=T/3-1$ with $D_t=3$ and $s=-T-3$ with $D_t=-1$, and one $2\leftarrow1$ root $s=-T-3$ with $D_t=1$. The last two reach the memory edge at $(1,-4)$ under distinct bundle owners. The initial handwritten expectation omitted the older $1\leftarrow2$ root and failed; its receipt is `.tmp/mec005-root-provenance/asymmetric-incomplete-reference.tap`. Substitution gives $x_2(-T-3)=-2T-3$ and range $2T+3=T-(-T-3)$, independently establishing the missing root before the expectation was corrected. No reconstruction code or existing acceptance reference changed to obtain that agreement. This correction is exploratory reference development, not independent acceptance.
+
+> Claim grade: measured. The named Node test command establishes that the implementation satisfies these bounded exact controls and rejection cases. Falsifier: rerunning that command on the recorded sources fails, or a hand-derived geometry contradicts the reconstructed table. It does not certify arbitrary histories, full metadata/leaf binding, a general partition tree, smooth birth lineage, all fifteen general-envelope negative controls, EOM acceptance, or conserved accounts.
+
+### Remaining Dependencies and Coordinator Integration Proposal
+
+A full mathematical envelope still needs a frozen independently adjudicated input and geometry record, raw-history binding to the general certificate metadata, a general partition/complement representation, smooth receiver and transmitter charts, folds and higher singularity multiplicities, root-interval and accumulation dispositions, shared source-emission ownership across bundles, and lineage correspondence across genuine history-family changes. Exact subdivision invariance does not establish correspondence between different histories or an event law. The initial finite-encounter acceptance reference remains immutable. P5 and P6 additionally require independently derived signed maps on the identical accepted update; no map or account was introduced here.
+
+Proposed shared synthesis text for the coordinator: “Effort 3 supplies a derived exact collinear piecewise-affine root-factorization theorem and a bounded raw-history reconstruction mode. Its prescribed control contains ten open branches, four positive-delay self branches, complete signed-factor complements, eighteen uniquely owned point events, and refinement-stable incidence. Focused Node validation passed 15/15. This is a bounded geometry advance pending independent adjudication, with corner semantics quarantined; it does not supply smooth EOM birth lineage, the full `/v1` envelope, shared emission-account ownership, or P5–P6 accounts. MEC-005 remains Queued and consumer-disabled.”

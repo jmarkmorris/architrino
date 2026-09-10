@@ -1,6 +1,6 @@
 # Bill Thurston Field-Speed Ceiling Review and Response
 
-**Review identifier:** `FSC-001-BT-2026-08-01` **Reviewer:** Bill Thurston, using the existing [William Thurston specialist lens](../../../research-office/specialists/roles-geometry-dynamics/bill-thurston.md) **Review mode:** completed read-only geometry, topology, and dynamical-system review **Captured:** 2026-08-01 from the operator-supplied review **Response authority:** Field-Speed priority packet only **Theory status:** no ceiling, event law, continuation, contact measure, retained assembly, or canonical change adopted
+**Review identifier:** `FSC-001-BT-2026-08-01` **Reviewer:** Bill Thurston, using the existing [William Thurston specialist lens](../../../office-of-research/specialists/roles-geometry-dynamics/bill-thurston.md) **Review mode:** completed read-only geometry, topology, and dynamical-system review **Captured:** 2026-08-01 from the operator-supplied review **Response authority:** Field-Speed priority packet only **Theory status:** no ceiling, event law, continuation, contact measure, retained assembly, or canonical change adopted
 
 ## Review scope and provenance boundary
 

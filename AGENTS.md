@@ -32,7 +32,7 @@ This document distinguishes three audience scopes:
 
 ### Workspace Identity
 
-- The fuller CTO role description lives in [reference/research-office/cto/cto.md](reference/research-office/cto/cto.md).
+- The fuller CTO role description lives in [reference/office-of-research/cto/cto.md](reference/office-of-research/cto/cto.md).
 - For all Python work, including live PDG commands, use the shared venv exposed as `$AAA_VENV`, falling back to the repo-adjacent `../.venv`; prefer `VIRTUAL_ENV="${AAA_VENV:-../.venv}"` and `"${AAA_VENV:-../.venv}/bin/python"` over system `python` or `python3`.
 - **If the venv does not resolve, or resolves but cannot execute, do not run Python.** System `python3` is not a fallback: it lacks the pinned dependencies, and a result produced under it is not comparable with one produced under the venv. State that the venv is unavailable, say what was checked, and hand the Python step to the operator or to a session where it runs. Two facts about the shared venv settle this for sandboxed sessions: it is a macOS venv whose `bin/python` links to a Homebrew interpreter under `/opt/homebrew`, and its compiled packages are macOS builds. A Linux sandbox therefore cannot execute it even when the directory is mounted or symlinked into view, so Python verification for such sessions belongs to the operator's machine by construction, not by permission. On 2026-09-06 a sandbox ran the Python suites under `python3` for want of asking, and every failure then had to be re-classified by hand to separate missing dependencies from real defects; the same day a symlink and a parent-folder mount were both tried and both left the interpreter unrunnable.
 
@@ -54,6 +54,8 @@ This document distinguishes three audience scopes:
 - Maintain recurring operator/developer workflow feedback as one-line tasks in [README-op.md](reference/op/README-op.md); detailed procedures belong under `reference/op/`.
 
 ### Workspace Workflow
+
+Follow the [repository skills policy](reference/op/skills/README.md) when using, authoring, or maintaining project skills.
 
 #### Startup Access Gate
 
@@ -89,7 +91,7 @@ Do not choose Documents, a projectless task output folder, or an external tempor
 - If regeneration is performed, rerun the corresponding `--check` commands before reporting the work complete.
 - Runtime payloads declared in [scripts/config/generated-runtime-assets.json](scripts/config/generated-runtime-assets.json) are reproducible, ignored build outputs and must never be tracked or force-added. Local setup, tests, and Pages builds may prepare them with `node scripts/prepare-runtime-assets.mjs --write`; this command must not edit authored sources. Preserve their canonical sources and generators. The [machine-artifact retention policy](reference/op/machine-artifact-retention.md) owns file, collection, and branch growth limits and the Actions publishing contract.
 - The iOS textbook package is an on-demand development snapshot, not a routine PR output. Do not regenerate it or require its freshness during ordinary edits, full web-content regeneration, or the final branch/PR process unless the operator explicitly requests iOS packaging or iOS package work is in scope. Preserve the app and exporter; use the strict package checks in [apps/ios/ArchitrinoReader/README.md](apps/ios/ArchitrinoReader/README.md) for requested builds. App Store release is deferred until theory closure and an explicit operator release decision.
-- The children's-book pilot is an on-demand export workflow, not a shipped app surface or routine PR output. Preserve its manuscripts, original illustrations, exemplars, prompts, QA records, and appearance baseline; keep generated pages, PDFs, derivatives, and review bundles in ignored local storage. Follow [the pilot export procedure](reference/learning-office/childrens-books/production/README.md) only for requested exports or exporter verification. Do not regenerate source artwork or replace the appearance baseline as part of a normal export.
+- The children's-book pilot is an on-demand export workflow, not a shipped app surface or routine PR output. Preserve its manuscripts, original illustrations, exemplars, prompts, QA records, and appearance baseline; keep generated pages, PDFs, derivatives, and review bundles in ignored local storage. Follow [the pilot export procedure](reference/office-of-learning/childrens-books/production/README.md) only for requested exports or exporter verification. Do not regenerate source artwork or replace the appearance baseline as part of a normal export.
 
 ### Evidence Independence
 
@@ -118,7 +120,7 @@ This section governs every claim in this repository, at every tier, in code, pro
 ### Theory-Facing Routing
 
 - Use [reference/op/theory-orientation.md](reference/op/theory-orientation.md) for the current convergence frontier, document-selection path, mathematical-artifact bias, and durable-capture procedure.
-- Use [reference/research-office/cto/prompts/convergence-campaign.md](reference/research-office/cto/prompts/convergence-campaign.md) for corpus convergence modes, edit authority, promotion triage, and handoff format.
+- Use [reference/office-of-research/cto/prompts/convergence-campaign.md](reference/office-of-research/cto/prompts/convergence-campaign.md) for corpus convergence modes, edit authority, promotion triage, and handoff format.
 
 ### Authoring and Editorial Policy
 

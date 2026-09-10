@@ -132,11 +132,11 @@ $$
 \ge
 0.701469317243,
 $$
-at the sampled boundary $\theta=\pi/6$, $\Delta=1/2$. The directed interval certificate should target the conservative clearance
+at the sampled boundary $\theta=\pi/6$, $\Delta=1/2$. The sampled value is retained as diagnostic history. The current analytic bound in [the companion interval packet](spiral-vp1-interval-root-gap-proof.md) is $0.6794678492\ldots$; use the conservative certified target
 $$
-\frac{F_s(\theta,\Delta)}{\Delta}\ge0.70
+\frac{F_s(\theta,\Delta)}{\Delta}\ge0.67
 $$
-on this excluded-coincidence row.
+on this excluded-coincidence row. The former $0.70$ target is not established by that analytic bound.
 
 The self geometry has inactive spatial coincidences at full-turn offsets such as $\Delta=2\pi$ and at the endpoint $\Delta=4\pi$. These are not causal roots because $F_s<0$ there, but the inactive-gap evaluator must not ask for $J_{11}$ at those inactive points where $\Lambda_s=0$. They do not affect the active $S_1$ Jacobian floor because the retained self tube is separated from those spatial coincidences.
 
@@ -185,7 +185,7 @@ The active-root/Jacobian rows pass at theorem grade only if an outward-rounded i
 - each active tube has a sign-changing boundary row and a monotone derivative row using $F_\Delta=-J/b(\theta)$;
 - the active-tube Jacobian lower bound satisfies $\nu_J\ge1.50$;
 - every inactive complement has a positive $|F|$ gap;
-- the excluded self-coincidence row satisfies $F_s/\Delta\ge0.70$ for $0<\Delta\le1/2$;
+- the excluded self-coincidence row satisfies $F_s/\Delta\ge0.67$ for $0<\Delta\le1/2$;
 - active branch separation remains positive, with no same-class branch exchange;
 - the maximum retained root remains below the finite-memory bound.
 

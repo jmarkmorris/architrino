@@ -7,8 +7,8 @@
 - Priority object: `receiver_wake_gradient_closure`
 - Claim level: `complete at bounded regular-domain derivative scope; singular boundaries terminally quarantined`
 - Workstream: [master-equation-closure](../priorities.md)
-- Related queue items: [MEC-001 characteristic-tail action adjudication](../work-queue.md#mec-001--characteristic-tail-action-adjudication), [MEC-005 pairwise causal-root ledger closure](pairwise-causal-root-ledger-closure.md), and [MEC-007 mirror close-approach causal-root boundary](mirror-close-approach-causal-root-boundary.md)
-- Routed research input: [wake reception, transfer, and maturity](../../../research-office/research-history/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md) invokes MEC-006 only when a reception candidate actually consumes a receiver/self acceleration-gradient row; it is not a blanket gate on allocation research.
+- Related queue items: [MEC-001 characteristic-tail action adjudication](characteristic-tail.md), [MEC-005 pairwise causal-root ledger closure](pairwise-causal-root-ledger-closure.md), and [MEC-007 mirror close-approach causal-root boundary](mirror-close-approach-causal-root-boundary.md)
+- Routed research input: [wake reception, transfer, and maturity](../../../office-of-research/research-history/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md) invokes MEC-006 only when a reception candidate actually consumes a receiver/self acceleration-gradient row; it is not a blanket gate on allocation research.
 - External review evidence: operator-supplied independent mathematical audit of the regular fixed-reception Jacobian and singular-boundary extension problem, received 2026-07-29. No public source identity or durable external artifact was supplied.
 - Finite-width review input: operator-supplied mathematical review of constant-time emission and causal-defect mollification, received 2026-07-29. Its nonuniqueness argument is incorporated below with corrected regular-domain and coincident-boundary scope.
 - Current disposition: `COMPLETE AT BOUNDED SCOPE`

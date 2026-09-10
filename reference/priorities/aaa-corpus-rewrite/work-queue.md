@@ -120,7 +120,7 @@ Markdown only, excluding `.tmp`, `.local-data`, `.git`, and `node_modules`.
 | --- | ---: | ---: | --- |
 | `content/markdown/aaa` | 9 | 28 | Absorbed into CRW-003; tracked here |
 | `reference/op` | 4 | 9 | Convert — startup path |
-| `reference/research-office/cto/prompts` | 2 | 7 | Convert — startup path |
+| `reference/office-of-research/cto/prompts` | 2 | 7 | Convert — startup path |
 | `.agents/skills` | 1 | 2 | Convert — startup path |
 | `reference/priorities` | 352 | 4,198 | Leave — operator decision, 2026-09-03 |
 | `reference/architectural-decisions` | 2 | 4 | Leave — operator decision, 2026-09-03 |
@@ -142,7 +142,7 @@ Accordingly, this verified item schedules no corpus work. It retains the histori
 **18 occurrences across 7 files, now zero:**
 
 - `reference/op/simulation-protocol-routing-index.md`, `textbook-review-exports.md`, `machine-artifact-retention.md`; the former review-time development experiment was removed by operator direction
-- `reference/research-office/cto/prompts/start-research.md`, `start-pi.md`
+- `reference/office-of-research/cto/prompts/start-research.md`, `start-pi.md`
 - `.agents/skills/math-preview/SKILL.md`
 
 Small in volume, disproportionate in effect, and the reason is position rather than size. These are files a new session reads while routing itself at startup, before it has read the explanation standard. A retained `Plainly:` in one of them is a worked example of the retired pattern shown to the next agent as if it were current practice, so the convention teaches itself back into the repository faster than conversions remove it. Eighteen occurrences is a single short pass.
@@ -161,7 +161,7 @@ Claim grade for the reinstatement mechanism this pass was meant to stop: `inferr
 
 #### Working record — unconverted for now, by operator decision 2026-09-03
 
-`reference/priorities` (4,198 occurrences across 352 files), `reference/architectural-decisions` (4), `reference/research-office/research-history`, and the fixtures under `src` and `tests` keep the tag.
+`reference/priorities` (4,198 occurrences across 352 files), `reference/architectural-decisions` (4), `reference/office-of-research/research-history`, and the fixtures under `src` and `tests` keep the tag.
 
 **This is a decision, not a backlog item.** An agent finding the tag in these files should leave it there and should not open a sweep. The [operator explanation standard](../../op/operator-explanation-standard.md) already rules that a document written under a retired convention keeps its form and is converted only opportunistically, when it is under substantial revision for some other reason; that rule governs here and needs no separate item to enforce it.
 
@@ -298,7 +298,7 @@ The initial request authorized review records and discussion capture only. The o
 
 Assigned scientific review lead and lead brainstormer: **Sabrina - scientific review lead**, task `01a0841b-f878-7672-8a7e-809c00f4939f`. Continuity source: **astra high foundations review**, task `01a0712a-dde8-7f00-90c9-a533c64c8d7b`. The lead exercises substantive judgment across mathematics, geometry, dynamics, foundations, computational evidence, and scientific exposition using the live repository review lenses: challenge assumptions, investigate derivations and counterexamples, identify promising connections, and guide discussion while separating established results from provisional ideas. The requested doctoral-level breadth is a standard of rigor, not a claim of human credentials. The lead also maintains sequence, coverage, findings, operator decisions, and handoffs in this existing record, with the current synthesis in [priorities.md](priorities.md). This turn remains bounded to the handoff: substantive review is awaiting the operator, and the role clarification does not launch reviewers, change models, or authorize corpus edits. The recommended model allocation supplied with the assignment is Astra High for substantive review, Medium for ordinary discussion, and Extra High for specific difficult mathematical questions; it remains a recommendation.
 
-Select document-relevant perspectives from the live [specialist selection index](../../research-office/cto/prompts/start-research.md#discover-specialist-lenses), applying the [Specialist charter](../../research-office/specialists/specialist.md) and [Geometry and Dynamics role packet](../../research-office/specialists/roles-geometry-dynamics/system-prompt.md#role-lenses). The index identifies the geometry/dynamics and historical entourage directories; use their existing individual descriptions as analytical lenses, reading only those relevant to the current document. Synthesize their questions, mathematical checks, and evidence standards without creating duplicate personas or treating agreement among perspectives as independent validation. Role labels supply neither human credentials nor theory authority. The historical entourage system prompt remains excluded. No role agent is launched by this selection policy.
+Select document-relevant perspectives from the live [specialist selection index](../../office-of-research/cto/prompts/start-research.md#discover-specialist-lenses), applying the [Specialist charter](../../office-of-research/specialists/specialist.md) and [Geometry and Dynamics role packet](../../office-of-research/specialists/roles-geometry-dynamics/system-prompt.md#role-lenses). The index identifies the geometry/dynamics and historical entourage directories; use their existing individual descriptions as analytical lenses, reading only those relevant to the current document. Synthesize their questions, mathematical checks, and evidence standards without creating duplicate personas or treating agreement among perspectives as independent validation. Role labels supply neither human credentials nor theory authority. The historical entourage system prompt remains excluded. No role agent is launched by this selection policy.
 
 Claim grade: measured for recorded continuity, by `read_thread` on the source task's latest two completed turns and direct inspection of this coverage table and the F4-4 closeout. They agree on six completed Foundations reviews with accepted corrections integrated, ending at Absolute Time Defense; three campaign targets remain unread. The earlier authority paragraph's discussion-only batch-4 status was stale and is reconciled above against the dated receipt. This establishes continuity of the recorded review, not a new scientific validation.
 

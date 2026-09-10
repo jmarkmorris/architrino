@@ -1,5 +1,7 @@
 # VP-1 Inactive-Memory Proof Packet
 
+Current routing: [the interval-root-gap packet](spiral-vp1-interval-root-gap-proof.md) records the later active-tube and inactive-complement results, with analytic self clearance $0.6794678492\ldots$ and conservative target $0.67$. Its recorded interval numbers are not a fresh executable reproduction. [The root-transport packet](spiral-vp1-root-transport-interval-proof.md) proves transport as a dependent analytic consequence of the simple-root hypotheses; an additional numerical transport residual is a representation audit, not an independent mandatory theorem. Earlier seed values and statements that those companion results were unavailable are retained below as the earlier proof-stage record. Neither packet supplies an EOM orbit or conserved accounts.
+
 Status. Topology diagnostic for the VP-1 inactive-complement, finite-memory, self-coincidence, and root-transport lane. This packet stays inside the VP-1 candidate history and does not mark `spiral_branch_chart_test` complete.
 
 Claim level. Partial topology support. The finite-memory inequality and the near-coincidence self row are certified for the declared VP-1 equations with

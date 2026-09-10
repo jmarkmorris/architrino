@@ -39,7 +39,7 @@ The main architecture ring now routes the top-level `Archie` sphere to `content/
 3. public project entries: `Download Textbook PDF`, `Support Architrino Research`, and `GitHub Presence & Community`;
 4. public reader entries: `Comics` and `Reductionist Universe`.
 
-Active public reference material and public image assets now use Learning Office paths under `reference/learning-office/` and Archie image paths under `content/assets/images/archie/`. The retired `Outreach` scene, scene paths, markdown paths, and public-program asset/reference path names have been removed from the active route set.
+Active public reference material and public image assets now use Learning Office paths under `reference/office-of-learning/` and Archie image paths under `content/assets/images/archie/`. The retired `Outreach` scene, scene paths, markdown paths, and public-program asset/reference path names have been removed from the active route set.
 
 The first assistant behavior contract is captured in [assistant-mode-contract.md](assistant-mode-contract.md). It defines initial modes, source classes, claim labels, citation behavior, unsupported-answer behavior, the $\mathbb{A}\mathbb{A}\mathbb{A}$-native explanatory stance, multimodal outreach objectives, the System Card sphere disclosure model, and public UI blockers. No runtime AI answer generation is implemented yet.
 

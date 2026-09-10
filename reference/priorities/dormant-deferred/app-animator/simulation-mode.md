@@ -74,4 +74,4 @@ Offline and high-precision execution belongs to the EOM solver and Borg workflow
 - [run-protocols](../../../../content/markdown/aaa/validation/simulations/run-protocols.md)
 - [architrino](../../../../content/markdown/aaa/validation/simulations/architrino.md)
 - [about-the-webapp](../../../../content/markdown/aaa/archie/about-the-webapp.md)
-- [scene-taxonomy](../../../learning-office/design/scene-taxonomy.md)
+- [scene-taxonomy](../../../office-of-learning/design/scene-taxonomy.md)

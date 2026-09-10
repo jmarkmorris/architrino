@@ -104,7 +104,7 @@ The later complete-registry campaign supplies the materially repaired phase-vary
 
 ## Neutral-Atlas Review Action Register
 
-This register owns every deferred action from the [Neutral-Braid Configuration Atlas](../../research-office/research-history/review-packets/bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md). It creates no queue and changes no status.
+This register owns every deferred action from the [Neutral-Braid Configuration Atlas](../../office-of-research/research-history/review-packets/bill-thurston-neutral-braid-configuration-atlas-2026-07-28.md). It creates no queue and changes no status.
 
 | Review item | Live owner and status | Acceptance action |
 | --- | --- | --- |

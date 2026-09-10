@@ -35,7 +35,7 @@ node_modules/
 *.xcuserstate
 
 # Local CTO corpus-exploration coordination cards
-reference/research-office/cto/reports/corpus-exploration-claims/
+reference/office-of-research/cto/reports/corpus-exploration-claims/
 .fuse_hidden*
 
 # Local Python virtual environment, if one is ever created in-repo; never tracked

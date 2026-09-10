@@ -1,5 +1,7 @@
 # Receiver-Normal Master Equation Restart Ledger
 
+> **Historical disposition — current consumers must use the transmitter-side law.** This packet preserves a withdrawn receiver-weighted proposal. Its historical statements that the receiver-weighted row is mandatory, canonical, or a restart prerequisite have no current authority. The current acceleration weight is $c_f/|D_t|$; $D_r/D_t$ is signed root playback only. A regular $D_r=0$ crossing need not make acceleration vanish or become singular. Use the [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md), [regular gradient owner](receiver-wake-gradient-closure.md), and [live queue](../work-queue.md) for current work. Historical equations, interface identifiers, and evidence below are retained for provenance, not offered as current acceleration or account inputs.
+
 Status. Mandatory receiver-normal restart ledger. The canonical Master EOM uses the receiver-normal branch factor
 $$
 D_{s,ij}=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf v_j(s),

@@ -18,13 +18,13 @@ This file is not the authority. If this file conflicts with a source file, the s
 | Workflow | Use When | Minimal Live Read | Live Re-Read Trigger |
 | --- | --- | --- | --- |
 | Default thread startup | Choose the smallest live procedure that fits the requested work, then read only the linked files needed for that procedure. | [reference/op/brainstorming.md](brainstorming.md)<br>[reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md)<br>selected specialized procedure | Use the live source files when the task asks about policy, exact command order, branch state, validation, or source authority. |
-| Principal Investigator research | Launch one Principal Investigator with a bounded brief, then select only the role-based Specialists needed for independent research or implementation. | [reference/research-office/cto/prompts/start-pi.md](../research-office/cto/prompts/start-pi.md)<br>[reference/research-office/cto/prompts/start-research.md](../research-office/cto/prompts/start-research.md)<br>relevant Foundations and live owner files | Check active task status before dispatch, preserve claim boundaries, and treat every role as an analytical lens rather than theory or acceptance authority. |
-| Corpus convergence | Move the corpus toward current canon by turning priority, source, or corpus signals into concrete mathematical artifacts and safe scoped edits when authority allows. | [reference/research-office/cto/prompts/convergence-campaign.md](../research-office/cto/prompts/convergence-campaign.md)<br>[reference/op/theory-orientation.md](theory-orientation.md)<br>relevant priority or corpus files | Read the full protocol before running a campaign, because it owns modes, edit authority, handoff shape, and priority action prompts. |
-| Source mining | Acquire and map source material into current AAA terminology, claim levels, proof routes, and corpus or priority destinations. | [content/markdown/aaa/archie/about-architrino.md](../../content/markdown/aaa/archie/about-architrino.md)<br>[reference/research-office/cto/prompts/convergence-campaign.md](../research-office/cto/prompts/convergence-campaign.md)<br>[reference/op/source-mining-best-practice.md](source-mining-best-practice.md)<br>source-family addendum | About Architrino owns reference selection, presentation, and source-checking policy; use the mining guide for acquisition, traceability, and source-family procedures. |
-| Corpus review | Prepare a review-only pass across a directory in scene or textbook order, one file per turn. | [reference/research-office/cto/prompts/corpus-reviewer.md](../research-office/cto/prompts/corpus-reviewer.md)<br>[content/markdown/aaa/archie/about-architrino.md](../../content/markdown/aaa/archie/about-architrino.md)<br>[reference/op/theory-orientation.md](theory-orientation.md)<br>style and terminology guides listed by the prompt | Read the live target file and nearby canon before raising file-specific findings. |
-| Review comment integration | Classify review comments, integrate the valid ones, perform a full-document editorial self-review, and stage larger issues in priorities. Independent validation requires a separate mathematical reference or instrument. | [reference/research-office/cto/prompts/integrator-reviewer.md](../research-office/cto/prompts/integrator-reviewer.md)<br>target document<br>nearby corpus and style authorities | Review comments are input, not authority; verify against live canon before editing. |
-| Priority lane resume | Resume a named priority workstream from live state and make the next scoped progress step. | [reference/research-office/cto/prompts/priority-lane-resume.md](../research-office/cto/prompts/priority-lane-resume.md)<br>[reference/priorities/README.md](../priorities/README.md)<br>priorities.md, work-queue.md, brainstorming.md, and work-log.md | Do not rely on memory for queue state; read work-queue.md and its owning packet. |
-| Core geometry theorem review | Request concentrated mathematical review of one theorem target, equation stack, branch certificate, or proof gap. | [reference/research-office/cto/prompts/core-geometry-theorem-reviewer.md](../research-office/cto/prompts/core-geometry-theorem-reviewer.md)<br>the exact theorem or packet under review<br>nearby foundation, dynamics, and terminology files | Use live equations and local notation before making proof or closure claims. |
+| Principal Investigator research | Launch one Principal Investigator with a bounded brief, then select only the role-based Specialists needed for independent research or implementation. | [reference/office-of-research/cto/prompts/start-pi.md](../office-of-research/cto/prompts/start-pi.md)<br>[reference/office-of-research/cto/prompts/start-research.md](../office-of-research/cto/prompts/start-research.md)<br>relevant Foundations and live owner files | Check active task status before dispatch, preserve claim boundaries, and treat every role as an analytical lens rather than theory or acceptance authority. |
+| Corpus convergence | Move the corpus toward current canon by turning priority, source, or corpus signals into concrete mathematical artifacts and safe scoped edits when authority allows. | [reference/office-of-research/cto/prompts/convergence-campaign.md](../office-of-research/cto/prompts/convergence-campaign.md)<br>[reference/op/theory-orientation.md](theory-orientation.md)<br>relevant priority or corpus files | Read the full protocol before running a campaign, because it owns modes, edit authority, handoff shape, and priority action prompts. |
+| Source mining | Acquire and map source material into current AAA terminology, claim levels, proof routes, and corpus or priority destinations. | [content/markdown/aaa/archie/about-architrino.md](../../content/markdown/aaa/archie/about-architrino.md)<br>[reference/office-of-research/cto/prompts/convergence-campaign.md](../office-of-research/cto/prompts/convergence-campaign.md)<br>[reference/op/source-mining-best-practice.md](source-mining-best-practice.md)<br>source-family addendum | About Architrino owns reference selection, presentation, and source-checking policy; use the mining guide for acquisition, traceability, and source-family procedures. |
+| Corpus review | Prepare a review-only pass across a directory in scene or textbook order, one file per turn. | [reference/office-of-research/cto/prompts/corpus-reviewer.md](../office-of-research/cto/prompts/corpus-reviewer.md)<br>[content/markdown/aaa/archie/about-architrino.md](../../content/markdown/aaa/archie/about-architrino.md)<br>[reference/op/theory-orientation.md](theory-orientation.md)<br>style and terminology guides listed by the prompt | Read the live target file and nearby canon before raising file-specific findings. |
+| Review comment integration | Classify review comments, integrate the valid ones, perform a full-document editorial self-review, and stage larger issues in priorities. Independent validation requires a separate mathematical reference or instrument. | [reference/office-of-research/cto/prompts/integrator-reviewer.md](../office-of-research/cto/prompts/integrator-reviewer.md)<br>target document<br>nearby corpus and style authorities | Review comments are input, not authority; verify against live canon before editing. |
+| Priority lane resume | Resume a named priority workstream from live state and make the next scoped progress step. | [reference/office-of-research/cto/prompts/priority-lane-resume.md](../office-of-research/cto/prompts/priority-lane-resume.md)<br>[reference/priorities/README.md](../priorities/README.md)<br>priorities.md, work-queue.md, brainstorming.md, and work-log.md | Do not rely on memory for queue state; read work-queue.md and its owning packet. |
+| Core geometry theorem review | Request concentrated mathematical review of one theorem target, equation stack, branch certificate, or proof gap. | [reference/office-of-research/cto/prompts/core-geometry-theorem-reviewer.md](../office-of-research/cto/prompts/core-geometry-theorem-reviewer.md)<br>the exact theorem or packet under review<br>nearby foundation, dynamics, and terminology files | Use live equations and local notation before making proof or closure claims. |
 | Branch, commit, push, and PR | Run the explicit branch/PR process, including validation, scoped staging, push, PR state checks, and rollover when requested. | [reference/op/git/pr-lifecycle.md](git/pr-lifecycle.md)<br>[.githooks/pre-commit](../../.githooks/pre-commit)<br>[.githooks/pre-push](../../.githooks/pre-push) | Always re-read the live procedure before publishing or regenerating; command order and required checks are policy. |
 | Long-running job | Run, detach, monitor, resume, or hand off a long test, simulation, rebuild, or analytical campaign. | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md)<br>the exact build and run entrypoints | Rebuild first, keep the job watched or observably detached, and verify that its fixed-cadence heartbeat advances. |
 
@@ -44,16 +44,16 @@ This file is not the authority. If this file conflicts with a source file, the s
 
 | Prompt | Use |
 | --- | --- |
-| [reference/research-office/cto/prompts/start-pi.md](../research-office/cto/prompts/start-pi.md) | Launch one Principal Investigator with a bounded research brief and evidence contract. |
-| [reference/research-office/cto/prompts/start-research.md](../research-office/cto/prompts/start-research.md) | Select and launch only the necessary role-based Specialists, then integrate their reports. |
-| [reference/research-office/cto/prompts/convergence-campaign.md](../research-office/cto/prompts/convergence-campaign.md) | Shared AAA corpus convergence protocol. |
-| [reference/research-office/cto/prompts/corpus-reviewer.md](../research-office/cto/prompts/corpus-reviewer.md) | Review an operator-provided corpus directory, one file per turn. |
-| [reference/research-office/cto/prompts/selective-reference-pass.md](../research-office/cto/prompts/selective-reference-pass.md) | Find and verify qualifying reference opportunities for up to 48 elapsed hours; propose source notes without editing the corpus. |
-| [reference/research-office/cto/prompts/integrator-reviewer.md](../research-office/cto/prompts/integrator-reviewer.md) | Integrate supplied review comments and perform a full target-document closure review. |
-| [reference/research-office/cto/prompts/review-comment-assessor.md](../research-office/cto/prompts/review-comment-assessor.md) | Assess pasted review comments against current repo canon without editing. |
-| [reference/research-office/cto/prompts/review-closure-verifier.md](../research-office/cto/prompts/review-closure-verifier.md) | Verify whether another agent's edits resolved a specific review without editing. |
-| [reference/research-office/cto/prompts/core-geometry-theorem-reviewer.md](../research-office/cto/prompts/core-geometry-theorem-reviewer.md) | Review one theorem target, equation stack, branch certificate, or proof gap. |
-| [reference/research-office/cto/prompts/priority-lane-resume.md](../research-office/cto/prompts/priority-lane-resume.md) | Resume an existing priority workstream and make the next scoped progress step. |
+| [reference/office-of-research/cto/prompts/start-pi.md](../office-of-research/cto/prompts/start-pi.md) | Launch one Principal Investigator with a bounded research brief and evidence contract. |
+| [reference/office-of-research/cto/prompts/start-research.md](../office-of-research/cto/prompts/start-research.md) | Select and launch only the necessary role-based Specialists, then integrate their reports. |
+| [reference/office-of-research/cto/prompts/convergence-campaign.md](../office-of-research/cto/prompts/convergence-campaign.md) | Shared AAA corpus convergence protocol. |
+| [reference/office-of-research/cto/prompts/corpus-reviewer.md](../office-of-research/cto/prompts/corpus-reviewer.md) | Review an operator-provided corpus directory, one file per turn. |
+| [reference/office-of-research/cto/prompts/selective-reference-pass.md](../office-of-research/cto/prompts/selective-reference-pass.md) | Find and verify qualifying reference opportunities for up to 48 elapsed hours; propose source notes without editing the corpus. |
+| [reference/office-of-research/cto/prompts/integrator-reviewer.md](../office-of-research/cto/prompts/integrator-reviewer.md) | Integrate supplied review comments and perform a full target-document closure review. |
+| [reference/office-of-research/cto/prompts/review-comment-assessor.md](../office-of-research/cto/prompts/review-comment-assessor.md) | Assess pasted review comments against current repo canon without editing. |
+| [reference/office-of-research/cto/prompts/review-closure-verifier.md](../office-of-research/cto/prompts/review-closure-verifier.md) | Verify whether another agent's edits resolved a specific review without editing. |
+| [reference/office-of-research/cto/prompts/core-geometry-theorem-reviewer.md](../office-of-research/cto/prompts/core-geometry-theorem-reviewer.md) | Review one theorem target, equation stack, branch certificate, or proof gap. |
+| [reference/office-of-research/cto/prompts/priority-lane-resume.md](../office-of-research/cto/prompts/priority-lane-resume.md) | Resume an existing priority workstream and make the next scoped progress step. |
 
 ## Validation And Regeneration
 
@@ -77,31 +77,31 @@ A source hash change means this target should be regenerated and then skimmed fo
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 165 | `248f07e14349c360` |
-| [README.md](../../README.md) | 220 | `81b723567a77aae0` |
+| [AGENTS.md](../../AGENTS.md) | 167 | `d3d8faacc43e63b3` |
+| [README.md](../../README.md) | 220 | `36a303599a5a3c02` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 24 | `ea8da8bb87d4206f` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 38 | `3666ac9286628a8e` |
 | [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 285 | `6b42eb39e05c2fe5` |
-| [reference/op/brainstorming.md](brainstorming.md) | 371 | `56e725ce2a18e1ce` |
-| [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 200 | `e30bbee84e33e769` |
+| [reference/op/brainstorming.md](brainstorming.md) | 389 | `52d89aaa78c36763` |
+| [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 200 | `298f0139b9a2bcf9` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 190 | `2c685c5e25ca8643` |
 | [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 99 | `3205999b99d803a1` |
-| [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `286eeca87711d763` |
+| [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `6e7d85fadab80fc0` |
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 60 | `421e58e6c3ced0d5` |
-| [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `45f14795d91a7703` |
-| [reference/op/git/pr-lifecycle.md](git/pr-lifecycle.md) | 858 | `94c33051f84b6fdf` |
+| [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `7d4423e7bed439b3` |
+| [reference/op/git/pr-lifecycle.md](git/pr-lifecycle.md) | 858 | `343e0d618908a30d` |
 | [reference/priorities/README.md](../priorities/README.md) | 124 | `13f5e68cb419ca30` |
-| [reference/research-office/cto/prompts/README.md](../research-office/cto/prompts/README.md) | 59 | `7a13f638727952da` |
-| [reference/research-office/cto/prompts/start-pi.md](../research-office/cto/prompts/start-pi.md) | 72 | `1b72deebe03eae34` |
-| [reference/research-office/cto/prompts/start-research.md](../research-office/cto/prompts/start-research.md) | 102 | `b8baaff1670aa363` |
-| [reference/research-office/cto/prompts/convergence-campaign.md](../research-office/cto/prompts/convergence-campaign.md) | 575 | `0a78e6715b793c98` |
-| [reference/research-office/cto/prompts/corpus-reviewer.md](../research-office/cto/prompts/corpus-reviewer.md) | 108 | `43b06ff65ea3671b` |
-| [reference/research-office/cto/prompts/selective-reference-pass.md](../research-office/cto/prompts/selective-reference-pass.md) | 65 | `2447411668f02ebe` |
-| [reference/research-office/cto/prompts/integrator-reviewer.md](../research-office/cto/prompts/integrator-reviewer.md) | 113 | `7c21c30e5018aeb5` |
-| [reference/research-office/cto/prompts/review-comment-assessor.md](../research-office/cto/prompts/review-comment-assessor.md) | 58 | `6b005882b0be3b11` |
-| [reference/research-office/cto/prompts/review-closure-verifier.md](../research-office/cto/prompts/review-closure-verifier.md) | 56 | `ba7d1c22cc9857ec` |
-| [reference/research-office/cto/prompts/core-geometry-theorem-reviewer.md](../research-office/cto/prompts/core-geometry-theorem-reviewer.md) | 52 | `27a2322538682261` |
-| [reference/research-office/cto/prompts/priority-lane-resume.md](../research-office/cto/prompts/priority-lane-resume.md) | 61 | `a94d1c0f61b9db95` |
+| [reference/office-of-research/cto/prompts/README.md](../office-of-research/cto/prompts/README.md) | 59 | `e50285ff55dfc071` |
+| [reference/office-of-research/cto/prompts/start-pi.md](../office-of-research/cto/prompts/start-pi.md) | 72 | `4e0ff61a310d3916` |
+| [reference/office-of-research/cto/prompts/start-research.md](../office-of-research/cto/prompts/start-research.md) | 102 | `4190e93f3c346d41` |
+| [reference/office-of-research/cto/prompts/convergence-campaign.md](../office-of-research/cto/prompts/convergence-campaign.md) | 575 | `6cac2f7c92c4607f` |
+| [reference/office-of-research/cto/prompts/corpus-reviewer.md](../office-of-research/cto/prompts/corpus-reviewer.md) | 108 | `07d11f4dadb19c19` |
+| [reference/office-of-research/cto/prompts/selective-reference-pass.md](../office-of-research/cto/prompts/selective-reference-pass.md) | 65 | `0aec8b0dcfcb5cd0` |
+| [reference/office-of-research/cto/prompts/integrator-reviewer.md](../office-of-research/cto/prompts/integrator-reviewer.md) | 113 | `7c21c30e5018aeb5` |
+| [reference/office-of-research/cto/prompts/review-comment-assessor.md](../office-of-research/cto/prompts/review-comment-assessor.md) | 58 | `6b005882b0be3b11` |
+| [reference/office-of-research/cto/prompts/review-closure-verifier.md](../office-of-research/cto/prompts/review-closure-verifier.md) | 56 | `ba7d1c22cc9857ec` |
+| [reference/office-of-research/cto/prompts/core-geometry-theorem-reviewer.md](../office-of-research/cto/prompts/core-geometry-theorem-reviewer.md) | 52 | `27a2322538682261` |
+| [reference/office-of-research/cto/prompts/priority-lane-resume.md](../office-of-research/cto/prompts/priority-lane-resume.md) | 61 | `a94d1c0f61b9db95` |
 | [content/markdown/aaa/archie/about-architrino.md](../../content/markdown/aaa/archie/about-architrino.md) | 79 | `bab0a2cbe3a73eab` |
 | [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 518 | `f7e80e2b9436568f` |
 | [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 364 | `9b6b4c319d1db052` |

@@ -18,11 +18,11 @@ What is the smallest independently evolving wake state, derived from Architrino 
 
 This is a research program, not an accepted ontology change. The state must be derived before it can be promoted.
 
-The first full attempt is [Independent Causal Wake-State Minimum and Obstruction](analysis-independent-causal-wake-state.md). It derives directional surface resolution, a coupling or maturity variable, scalar wake energy, vector wake momentum, and explicit boundary flux as the smallest necessary state class. It also proves that the current primitives do not select the coincident-birth maturity law, the motion-account functions, an emission capacity, or a reception transfer. The route therefore remains not advanced until one new Architrino-native construction supplies all four together.
+The first full attempt is [Independent Causal Wake-State Minimum and Obstruction](analysis-independent-causal-wake-state.md). It derives necessary direction-resolved information and distinguishable coupling, energy, momentum, and boundary outputs. It does not prove a coordinate-minimal representation or that those outputs must be independent primitive state variables. It also proves that the current primitives do not select the coincident-birth maturity law, the motion-account functions, an emission capacity, or a reception transfer. The route therefore remains not advanced until one new Architrino-native construction supplies all four together.
 
 The first authorized new construction is [Diagonal-Birth-Lineage Causal-Wake Candidate](diagonal-birth-lineage-causal-wake-candidate.md). Its frozen cubic profile fails receiver-sensitivity integrability. Its separately frozen lineage-gated quintic successor passes the exact quadratic and arbitrary finite odd-order local magnitude and receiver-sensitivity tests while preserving ordinary folds by provenance. It remains priority-only because persistent tangencies, lineage certification, event-map uniqueness, regulator independence, and all three conserved accounts are unresolved.
 
-Research input: [Wake Reception Transfer, Motion Accounts, and Coincident-Birth Maturity](../../../research-office/research-history/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md) sharpens the allocation, account-measure, birth-integrability, regulator, extraction, and angular-booking questions. It is priority-only research guidance; it does not amend this closure status, select a constitutive update, or establish conservation or unique continuation.
+Research input: [Wake Reception Transfer, Motion Accounts, and Coincident-Birth Maturity](../../../office-of-research/research-history/review-packets/terence-tao-wake-reception-transfer-and-maturity-2026-07-28.md) sharpens the allocation, account-measure, birth-integrability, regulator, extraction, and angular-booking questions. It is priority-only research guidance; it does not amend this closure status, select a constitutive update, or establish conservation or unique continuation.
 
 ## Regular Kinematic Substate Result
 
@@ -138,3 +138,23 @@ The candidate fails if:
 ## Promotion Boundary
 
 Promotion requires an independent derivation or reference calculation for the regular control, the coincident transition, and all three accounts. Agreement between two implementations of the same assumed update checks implementation parity only. Until these gates pass, this packet remains priority-only and the EOM solver must continue not to advance at the unsupported coincident event.
+
+## First-wave integration: channel identity and provenance
+
+The [finite independent adjudication](mec-008-independent-adjudication.md) accepts distinct-label coordinate contact but excludes newborn near-diagonal self roots in that construction. It therefore leaves the same-transmitter MEC-008 target open. The lineage-gated quintic candidate does not apply to the contact's different-label newborn channels. The [affine raw-history control](pairwise-causal-root-ledger-closure.md#exact-ten-branch-control) supplies ten exactly reconstructed branches and unique corner incidence, pending independent adjudication. Prescribed corner attachment does not supply smooth EOM self-birth lineage or a continuation map. Allocation, source capacity, and all three same-update accounts remain unresolved; signed block summation in a population is not a capacity theorem.
+
+## Second-wave review integration
+
+The [independent affine review](mec-005-affine-independent-adjudication.md) accepts ten branches, four self branches, eighteen boundary points and complete complements/incidence at bounded prescribed-corner scope. It does not supply smooth EOM self-birth lineage, general-envelope certification or physical accounts.
+
+The allocation analysis derives a conditional finite-aggregate-budget obstruction even for receiver-dependent/nonlocal sharing, provided funded acceleration is bounded by a population-independent function vanishing at zero allocation. That observation assumption is additional, not a consequence of the Master Equation. Nondepleting observation and separate account channels remain open; independent review is now required.
+
+## Third-wave disposition
+
+The [allocation adjudication](allocation-independent-adjudication.md) accepts finite-sharing and playback-throughput obstructions, boundary additivity and complete-past accumulation at their stated conditional scope. These additional account-architecture assumptions are not EOM primitives. No conserved accounts or general impossibility of account construction follows. The new [summation candidate](population-delayed-summation.md) reports admissible small history changes causing signed block-sum divergence; the [derivative candidate](population-history-derivative.md) reports a discontinuity obstruction in the same reviewed norm. Both remain derived candidates pending independent xhigh adjudication. Population evolution and exhaustion must not proceed on assumed convergence or continuity.
+
+## Accepted self-delay floor and chord quantifiers
+
+The [independent self-delay adjudication](mec-008-self-delay-independent-adjudication.md) accepts a uniform positive delay floor for recent simple self roots on the declared sharp-EOM class: bounded velocity on recent chord intervals, a common forward cone, locally absolutely continuous receiver velocity, integrable negative projection of the actual remaining acceleration, complete finite simple recent-root sections, and regular initial/cutoff sections with positive entrance delay. No uniform root-count or transmitter-factor margin is assumed. This excludes isolated regular self-diagonal approach under those hypotheses. Singular lineages, uncontrolled opposing remainders, and endpoints without finite continuous velocity remain unresolved. MEC-007 and the finite distinct-label contact result retain their accepted scopes; general MEC-008 remains open.
+
+Fixed-reception self-root accumulation requires field speed and vanishing quadratic and cubic chord coefficients. Moving-reception accumulation instead satisfies the joint residual equation; continuous endpoint velocity requires field speed, and incoming C2 accumulation additionally requires zero endpoint speed derivative. Cubic vanishing is not generally necessary for a moving-reception sequence. These geometric conditions establish neither EOM reachability nor a universal speed ceiling.
