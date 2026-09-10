@@ -4,7 +4,7 @@
 
 - Kind: `priority`
 - Rank: `unranked / supporting`
-- Status: `idle-no-executable-object`
+- Status: `queued-bounded-scan-families`
 - Default execution mode: `scoped correlation action`
 - Default economical worker: `Codex Luna`, with explicit bounded prompts
 
@@ -32,7 +32,7 @@ Record findings in [recommendations.md](analysis/recommendations.md). A human or
 
 ## Current
 
-CD-002 completed the first bounded correlation pass and retained one untriaged terminology finding with exact paths and a bounded owner route. No inspected corpus or owner file changed. The lane now has no executable queue item; a later pass requires a newly accepted scope.
+CD-002 completed the first bounded correlation pass and retained one untriaged terminology finding with exact paths and a bounded owner route. No inspected corpus or owner file changed. The lane now has seven queued bounded objects covering six scan families and policy routing; a later pass requires explicit selection of the next family.
 
 ## Manuscript
 

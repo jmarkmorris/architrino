@@ -6,6 +6,20 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-10 — Operations manuscript created
+
+- Created [manuscript.md](manuscript.md) as the current explanatory account of the operations lane's policies, measured baselines, decisions and evidence boundaries.
+- Moved the operational facts formerly repeated in `priorities.md` into the manuscript, including current policies, guidance decisions, office-review disposition, skills and navigation decisions, release and feedback controls, and the latest measured baselines.
+- Reduced `priorities.md` to current considerations, future questions and routing to the work queue, contracts, evidence and campaign owners.
+- Kept completed work records, dated receipts, exact commands and task chronology in this work log, the evidence files, contracts and work queue rather than duplicating them in the manuscript.
+- Reviewed the dense priority-manuscript synthesis paragraph. It remains useful as a campaign control receipt and coverage index, but is not useful as manuscript prose; its detailed completion history belongs in the campaign record and work log.
+- No operational policy, baseline measurement, queue status or scientific claim was changed by this manuscript creation.
+
+### 2026-09-10 — OPS-026 and side-panel idea disposition updated
+
+- The GitHub Presence and Community guidance review was confirmed complete; OPS-026 is now marked `Verified` in the ranked queue and removed from current considerations.
+- Deleted the shelved side-panel response idea from `brainstorming.md` and removed its stale future-consideration reference from `priorities.md`.
+
 ### 2026-09-09 — Approved nine-skill migration completed
 
 The operator explicitly approved replacing the four project skills with the nine reviewed entry points. The [current skills index](../../op/skills/README.md) now links nine discovery packages to their visible maintained instructions. Updated live startup, research-prompt, source-work, preview, and operations consumers; retained former identifiers in historical evidence. OPS-027 continues to track monthly and change-triggered maintenance, with the next monthly pass due 2026-10-09.
