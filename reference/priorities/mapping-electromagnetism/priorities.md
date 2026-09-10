@@ -94,3 +94,7 @@ Priority discussion remains in [brainstorming.md](brainstorming.md), executable 
 - no accepted `theta_gamma_packet`, geometry-derived action period, or scheme-pinned `charge_exposure_row` for the fine-structure coupling map.
 
 Closure goal: recover observer-level electromagnetism from retained assembly geometry, causal wakes, boundary history, and any required Noether sea response while using solved electromagnetic cases as inverse constraints on braid and electron structure.
+
+## Integrated manuscript
+
+[Electromagnetic Recovery from Assembly Histories](manuscript.md) develops the lane's source, receiver, cubic-background, action, coupling and continuation material. Its [whole-lane source coverage](analysis/manuscript-source-coverage.md) and [independent fidelity review](analysis/manuscript-fidelity-review.md) retain the original evidence and scientific limits. Editorial acceptance supplies no retained source–sea–receiver family, Maxwell derivation, physical moment or newly executable scientific object.

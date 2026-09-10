@@ -113,3 +113,9 @@ The locally ranked equation objects, live blockers, and completion boundaries li
 - Photon, statistical, and source-carrier maps: [EQ-12 Theta-Gamma Packet Source Shell](analysis/eq-12-theta-gamma-packet-source-shell.md), [EQ-13 And EQ-28 e_gamma_e_0 Gate A Source-Field Map](analysis/eq-13-28-e-gamma-e0-gate-a-source-field-map.md), [EQ-14/EQ-30/EQ-31 Finite-Window W Source-Field Map](analysis/eq-14-30-31-finite-window-w-source-field-map.md), and [EQ-29 Radiation Source Carrier Source-Field Map](analysis/eq-29-radiation-source-carrier-source-field-map.md).
 - High-energy suffix packets: [EQ-07A Compact-Star Support And Collapse Scale Residual](analysis/eq-07a-compact-star-support-collapse-scale-residual.md), [EQ-07B Black-Hole Accretion, Jet Release, And Horizon Thermodynamics](analysis/eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md), [EQ-07C Black-Hole Horizon-Interface Noether Braid Map](analysis/eq-07c-black-hole-horizon-interface-noether-braid-map.md), [EQ-11A Gravitational-Wave Source Recovery](analysis/eq-11a-gravitational-wave-source-recovery.md), [EQ-22B Recombination And Acoustic Transfer](analysis/eq-22b-recombination-acoustic-transfer.md), [EQ-23A Stellar Explosive Nucleosynthesis And Shock-Driven Reaction Networks](analysis/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md), and [EQ-28A Path-Frequency Exchange](analysis/eq-28a-path-frequency-exchange.md).
 - Cross-workstream consumers: Equation-Map Bearing On Braid Configuration Search, [Mapping Benchmarks Priority Candidates](../mapping-benchmarks/priorities.md), [Cosmology Transfer-Function Closure](../dormant-deferred/mapping-cosmology/priorities.md), Noether-Core Stability and First Mass Map, Braid, and Geometry Bridge.
+
+## Manuscript synthesis
+
+- [Manuscript](manuscript.md)
+- [Source coverage](analysis/manuscript-source-coverage.md)
+- [Independent fidelity review](analysis/manuscript-review.md)

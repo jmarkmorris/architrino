@@ -84,3 +84,7 @@ The locally ranked execution order, current-state notes, blockers, and acceptanc
 - [about-the-webapp](../../../../content/markdown/aaa/archie/about-the-webapp.md)
 - [scene-taxonomy](../../../office-of-learning/design/scene-taxonomy.md)
 - [navigation-and-controls](../../../../content/markdown/aaa/archie/navigation-and-controls.md)
+
+## Manuscript
+
+The [Animator manuscript](manuscript.md) develops scene authoring, observer framing, visual grammar and recorded/prescribed handoffs. Its [source coverage](analysis/manuscript-source-coverage.md) and [independent fidelity review](analysis/manuscript-fidelity-review.md) preserve remaining tasks, source-time contracts and playback authority limits. Editorial acceptance does not verify application behavior or scientific output.

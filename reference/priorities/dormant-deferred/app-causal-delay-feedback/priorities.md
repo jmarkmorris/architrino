@@ -59,3 +59,7 @@ CDF-067 through CDF-071 remain `Deferred / blocked`. There is no executable row 
 - Do not infer solver correctness, physical acceleration law, measured magnitude, binding, stability, solved trajectory, retained-branch acceptance, or physics acceptance from the app.
 - Use Git history for discarded micro-fix narratives, superseded proposals, and old screenshot evidence.
 - Do not create a standalone Roots product route, runtime, state store, evaluator, or wake renderer. The supported direct link is the `mode=roots` query on `causal-delay-feedback.html`.
+
+## Manuscript
+
+The [teaching manuscript](manuscript.md) explains causal history, the accepted display and the conditional ordinary-fold lesson. [Source coverage](analysis/manuscript-source-coverage.md) and [independent fidelity review](analysis/manuscript-fidelity-review.md) retain exact learner copy, source conflicts, historical fixture scope and all five deferred tasks. This editorial synthesis does not reopen implementation or confer solver or scientific acceptance.

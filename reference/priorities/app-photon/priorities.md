@@ -553,3 +553,7 @@ The photon app is an exploratory diagnostic. It may visualize candidate planar-p
 - Planar-pair symbolic substrate instance
 - Photon event ledger balance diagnostic
 - [Malus' law](../mapping-benchmarks/analysis/malus-law.md)
+
+## Manuscript
+
+The [Photon manuscript](manuscript.md) integrates prescribed geometry, root admission, observer diagnostics, historical negatives and open physical boundaries. Its [source coverage](analysis/manuscript-source-coverage.md) and [separate fidelity review](analysis/manuscript-fidelity-review.md) retain all original contracts, historical findings and queue states. Editorial acceptance does not establish a retained photon, current runtime correctness or a local-speed constitutive law.

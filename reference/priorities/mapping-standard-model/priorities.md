@@ -722,3 +722,7 @@ Failure modes:
 - [nucleon-structure](../../../content/markdown/aaa/nuclear-atomic/nucleon-structure.md)
 - [atomic-structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md)
 - [mesons](../../../content/markdown/aaa/assemblies/mesons/mesons.md)
+
+## Integrated Manuscript
+
+The [Standard Model manuscript](manuscript.md) develops assembly histories, phase and ordered transport, weak/flavor geometry, confinement and detector comparisons with explicit evidence grades. Its [source coverage](analysis/manuscript-source-coverage.md) and [independent fidelity review](analysis/manuscript-fidelity-review.md) preserve detailed derivations, proposals and review limits. This is an accepted editorial synthesis; scientific queue states and recovery obligations remain unchanged.

@@ -22,6 +22,7 @@ This is the canonical execution ledger for accepted App Solver work. [priorities
 5. `gpu_multi_gpu_and_heterogeneous_execution` — [EOM-010](#eom-010--gpu-and-heterogeneous-execution). Status: `Deferred / blocked`.
 6. `distributed_history_streaming_and_restart` — [EOM-011](#eom-011--distributed-history-streaming-and-restart). Status: `Deferred / blocked`.
 7. `million_path_performance_and_acceptance_gate` — [EOM-012](#eom-012--million-path-performance-and-acceptance-gate). Status: `Deferred / blocked`.
+8. `eom_solver_manuscript_development` — [EOM-015](#eom-015--eom-solver-manuscript-development). Status: `Queued`; incremental documentation, especially alongside EOM-010.
 
 ## Discussion-scoped
 
@@ -45,6 +46,16 @@ Plainly: the task asks whether avoiding expensive close encounters is worth the 
 - **Request / acceptance:** Complete retained-history import, duration/step controls, precision display, progress, cancellation, checkpointing, convergence, failure diagnostics, and provenance for bounded populations.
 - **Evidence / blocker:** Borg already provides the current run-control consumer surface. Queue remaining surface work behind the coupled retained-history and precision acceptance boundary.
 - **Completion:** The run/inspect surface exposes no app-local solver path and passes focused consumer integration checks.
+
+### EOM-015 — EOM solver manuscript development
+
+- **Status:** Queued
+- **Priority object:** `eom_solver_manuscript_development`
+- **Request / acceptance:** Expand the operator-requested [brief manuscript outline](manuscript.md) into a coherent account of delayed-history computation, complete roots, coupled evolution, error and precision, independent validation, performance architecture and evidence interpretation. The 2026-09-10 operator decision accepts the outline for the current manuscript campaign and queues full development here.
+- **Timing / dependencies:** Develop incrementally as the implementation and evidence mature. Revisit the manuscript when EOM-008 or EOM-009 produces accepted architecture evidence and especially when EOM-010 GPU work starts; develop its GPU chapter alongside that work. This documentation task does not reactivate deferred accelerator or scale execution and does not displace EOM-007 as the immediate task.
+- **GPU emphasis:** Explain kernel decomposition, irregular root workloads, history and certificate layout, device memory, transfers, synchronization, deterministic reductions, precision escalation, CPU fallback and multi-GPU boundaries. Require independent references as well as CPU agreement, and report measured end-to-end wall time and resource use on matched workloads, including certification, transfer and fallback costs. Use $c_f=1$ in new numerical examples; do not present exploratory kernels as accepted EOM evolution.
+- **Evidence / blocker:** The outline is a plan, not a full source audit or capability claim. Before making implementation-status statements, reconcile live contracts, code and dated evidence, including historical compatibility language and negative results. Inventory source coverage and preserve established distinctions between numerical acceptance and physical conclusions.
+- **Completion / falsifier:** Produce the developed explanation with source coverage and independent fidelity review; identify each implemented, proposed and unresolved method at its supported grade. The GPU chapter must track the actual architecture and acceptance evidence, or state exactly which obligations remain open. Reopen any passage whose cited source version, independent control or measured performance envelope no longer supports it.
 
 ## Deferred / blocked
 

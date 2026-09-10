@@ -805,3 +805,7 @@ These rows are benchmark contracts. They do not say that Planck, DESI, SH0ES, Pa
 - [BBN-constraints](../../../../content/markdown/aaa/cosmology/BBN-constraints.md)
 - [structure-formation](../../../../content/markdown/aaa/cosmology/structure-formation.md)
 - [hubble-s8-tensions](../../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md)
+
+## Integrated Manuscript
+
+The [cosmology manuscript](manuscript.md) develops the common-history, transport, observer-measure and recycling arguments with explicit conditional and speculative grades. Its [source coverage](analysis/manuscript-source-coverage.md) and [separate fidelity review](analysis/manuscript-fidelity-review.md) preserve detailed supporting sources and review limits. This is an accepted editorial synthesis; all fourteen scientific rows remain dormant and non-executable.

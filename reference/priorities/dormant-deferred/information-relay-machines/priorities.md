@@ -36,3 +36,7 @@ Develop at least one paper and a reusable mapping method for how selected inform
 ## Claim-Level Boundary
 
 Treat this packet as an effective-to-native mapping method. A worked example may use standard engineering descriptions at the observer level, but any $\mathbb{A}\mathbb{A}\mathbb{A}$-native promotion must name the retained record, carrier assemblies, transduction interface, Noether sea or material response, and record-channel closure burden.
+
+## Manuscript
+
+The [Information Relay Machines manuscript](manuscript.md) develops the physical handoff example and a conditional reconstruction bound. Its [source coverage](analysis/manuscript-source-coverage.md) and [independent fidelity review](analysis/manuscript-fidelity-review.md) preserve the working terminology, original queue and engineering/physical limits. Editorial acceptance does not complete a queue object or validate an apparatus.

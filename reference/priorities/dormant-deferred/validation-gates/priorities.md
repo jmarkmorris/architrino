@@ -112,3 +112,7 @@ is nonempty. Local sector success is therefore not mature until at least one sha
 - [failure-criteria](../../../../content/markdown/aaa/validation/failure-criteria.md)
 - [closure-scorecard](../../../../content/markdown/aaa/validation/closure-scorecard.md)
 - [constraint-ledger](../../../../content/markdown/aaa/validation/constraint-ledger.md)
+
+## Manuscript
+
+The [Validation Gates manuscript](manuscript.md) explains shared sector acceptance, local extension and the limits of compatibility margins. Its [source coverage](analysis/manuscript-source-coverage.md) and [independent fidelity review](analysis/manuscript-fidelity-review.md) preserve the original metadata and unworked shared-record task. Editorial acceptance does not construct or accept a physical closure record.

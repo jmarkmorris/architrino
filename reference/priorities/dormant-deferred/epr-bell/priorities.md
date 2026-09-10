@@ -76,3 +76,7 @@ The complete retained-insight and disposition inventory lives in the [discussion
 ## Promotion Boundary
 
 A route may become a canonical Bell mechanism only after its variables, causal structure, changed Bell assumption, two-wing joint law, one-wing marginals, trial-selection rule, preferred-frame timing law where applicable, multipartite behavior, and operator-checkable falsifier are all explicit and its required upstream Quantum Closure objects are accepted.
+
+## Developed Manuscript
+
+The [EPR–Bell manuscript](manuscript.md) develops the conditional CHSH result, physical record requirements and unresolved causal routes. Its [coverage](analysis/manuscript-source-coverage.md) and [independent fidelity review](analysis/manuscript-fidelity-review.md) record editorial acceptance and external verification limits. No positive Bell mechanism is selected, and all eight scientific objects remain dormant.

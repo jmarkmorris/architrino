@@ -107,3 +107,7 @@ Plainly: this lane can describe and test how already-declared physical records r
 - [Causal Action Functional](../../../content/markdown/aaa/dynamics/causal-action-functional.md)
 - [Noether Braid](../../../content/markdown/aaa/noether-braid/noether-braid.md)
 - [Noether sea](../../../content/markdown/aaa/spacetime/noether-sea.md)
+
+## Integrated manuscript
+
+The [manuscript](manuscript.md) is the developed subject explanation, with its [source-coverage map](analysis/manuscript-source-coverage.md) and [separate fidelity review](analysis/manuscript-fidelity-review.md). The coordinator accepted it as a campaign draft after the review's omitted no-signaling qualification was restored and independently checked. The physical separating-pair gap, unverified topology lead, incomplete comparative case studies and non-rerun historical computational evidence remain explicit limitations. Editorial acceptance does not certify those mathematics or expand the physical role of category theory. This navigation addition preserves the preceding tracker content and leaves scientific queue status unchanged.

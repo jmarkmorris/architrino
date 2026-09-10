@@ -55,6 +55,7 @@ The future segment must be determined by the Master EOM. EOM must not accept a p
 
 ## Working Files
 
+- [manuscript.md](manuscript.md) is the operator-requested brief technical outline. [EOM-015](work-queue.md#eom-015--eom-solver-manuscript-development) owns incremental expansion, especially alongside GPU acceleration work; the outline does not establish an accelerator capability.
 - [application-and-engine-contract.md](./contracts/application-and-engine-contract.md) defines the first mathematical, numerical, performance, and application boundary.
 - [evolution-contract-v1.md](./contracts/evolution-contract-v1.md) is the frozen versioned requirement contract for requests, accepted-step semantics, output evidence, failures, validation, and the first binary-outcome gate.
 - [evolution-contract-v1-amendment-1-million-path-scale.md](./contracts/evolution-contract-v1-amendment-1-million-path-scale.md) is the frozen scale amendment requiring million-path manifests, complete compact pair accounting, certified sparse evolution, and dense-workload handling requiring verification before advancement.

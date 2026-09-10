@@ -30,3 +30,7 @@ The lane is also an external-contact opportunity: Lissajous and spherical-Lissaj
 - [shell-braid](../../../../content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md)
 - [nested-shell-braid](../../../../content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md)
 - [noether-braid-doubling-frequency-resonance-lock](../../../../content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md)
+
+## Developed Manuscript
+
+The [Lissajous manuscript](manuscript.md) develops the conditional geometry of phase return and its distinction from a complete braid history. Its [coverage](analysis/manuscript-source-coverage.md) and [independent fidelity review](analysis/manuscript-fidelity-review.md) record editorial acceptance, preserved historical support and the bounded outside reading. The physical correspondence, survey and admissible-mode catalog remain uncompleted scientific work.

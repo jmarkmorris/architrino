@@ -200,3 +200,9 @@ The routed next actions now live in [work-queue.md](work-queue.md). Each impleme
 - [failure-criteria](../../../content/markdown/aaa/validation/failure-criteria.md)
 - [software-architecture-and-maintenance](../../../content/markdown/aaa/archie/software-architecture-and-maintenance.md)
 - [research-notebook](../../../content/markdown/aaa/archie/research-notebook.md)
+
+## Manuscript synthesis
+
+- [Manuscript](manuscript.md)
+- [Source coverage](analysis/manuscript-source-coverage.md)
+- [Independent fidelity review](analysis/manuscript-review.md)

@@ -98,3 +98,9 @@ The completed target list lives in [source-mining-history](analysis/source-minin
 - [QCD confinement and hadronization recovery targets](../mapping-standard-model/analysis/qcd-confinement-hadronization-recovery-targets.md) captures PDG QCD, lattice-QCD, LEP event-shape, fragmentation-function, and LHC jet/hadron benchmark material for Standard Model closure without treating quarks, gluons, showers, or jets as directly observed substrate products.
 - [PDG particle mass, width, lifetime, and scheme benchmark map](analysis/pdg-particle-mass-width-lifetime-benchmark-map.md) captures scoped charged-lepton, selected light-hadron, $W/Z/H$, top, quark scheme, width, lifetime, and branching-ratio rows as downstream benchmark material without raw whole-catalog mining or standalone Koide work.
 - [Classical source-history electrodynamics](brainstorming.md) captures the Lienard-Wiechert, Jefimenko, Heaviside-Feynman, and Panofsky-Phillips comparison space for delayed source-history electrodynamics.
+
+## Manuscript synthesis
+
+- [Manuscript](manuscript.md)
+- [Source coverage](analysis/manuscript-source-coverage.md)
+- [Independent fidelity review](analysis/manuscript-review.md)

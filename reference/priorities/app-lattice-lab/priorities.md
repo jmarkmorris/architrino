@@ -36,3 +36,7 @@ The operator reactivated this owner on 2026-09-02. Four queued objects are execu
 
 - Keep app planning, geometry contracts, certificates, and display evidence in this priority folder.
 - Promote a reader-facing guide only after the relevant display cases and their evidence labels are stable.
+
+## Integrated manuscript
+
+The [manuscript](manuscript.md) develops stationary cancellation, finite ledgers and geometry with explicit evidence limits. The [coverage record](analysis/manuscript-source-coverage.md) and [separate fidelity review](analysis/manuscript-review.md) preserve source dispositions and review boundaries. This editorial synthesis does not execute, complete or reprioritize the active scientific or app queue.

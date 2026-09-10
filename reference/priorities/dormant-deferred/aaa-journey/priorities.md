@@ -84,3 +84,7 @@ Do not create a new reader-facing scene merely because a journey packet exists. 
 | [aaa-theory-history](aaa-theory-history.md) | [The Treasure Physics Overlooked](../../../../content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md) | Retrospective root-cause material about why simple constituent and substrate choices were missed. | Defer with blocker: promote only defensible pattern analysis, not proof-status claims. |
 
 The distributive rule is: history and missed-opportunity material goes to philosophy-history; first-person journey material remains priority-only unless a separate outreach or founder-narrative surface is explicitly selected.
+
+## Manuscript
+
+The [Journey manuscript](manuscript.md) develops the recorded history of ideas, changing terminology and perspective method. Its [source coverage](analysis/manuscript-source-coverage.md) and [independent fidelity review](analysis/manuscript-fidelity-review.md) preserve historical attribution, unread primary-source boundaries and remaining proof burdens. Editorial acceptance does not authenticate the reconstruction or certify its physical proposals.

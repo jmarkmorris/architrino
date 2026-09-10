@@ -28,3 +28,7 @@ Preserve image-format ideas without letting exploratory media work outrank curre
 - Promote an image concept from [brainstorming.md](brainstorming.md) only when it has a concrete production target, claim level, and owner.
 - Keep theory claims downstream of accepted corpus and validation material.
 - Create focused sibling files only when a selected image packet needs a stable production brief, prompt pack, diagram plan, or asset plan.
+
+## Manuscript disposition
+
+The [reviewed source disposition](analysis/manuscript-source-coverage.md) retains the existing strategy, brainstorming and work log at this snapshot. A separate manuscript becomes appropriate when a developed concept, selected brief or substantive result supplies a subject to synthesize. The production-selection task remains queued. See the [independent fidelity review](analysis/manuscript-fidelity-review.md).

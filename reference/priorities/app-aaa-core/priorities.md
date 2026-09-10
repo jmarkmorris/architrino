@@ -69,3 +69,7 @@ The [representative path workload matrix](contracts/representative-path-workload
 ## Promotion Boundary
 
 This lane owns shared application infrastructure and its measured software behavior. It does not grant EOM authority, derive a physical observable, promote an experimental comparison, or turn a display approximation into evidence. Those claims remain with their solver, scientific, or experimental owners.
+
+## Manuscript synthesis
+
+The [manuscript](manuscript.md) develops logical paths, encodings, accepted-history streams, source-bound products and the limits of local conformance. [Source coverage](analysis/manuscript-source-coverage.md) preserves all original dispositions and verification limits; the [independent fidelity review](analysis/manuscript-review.md) records the closed supporting correction. This editorial synthesis does not execute the deferred workloads or accept production or scientific capabilities.

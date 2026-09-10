@@ -54,3 +54,7 @@ MCP-001 named-client conformance, MCP-002 bounded higher-order graph traversal, 
 - Keep architecture decisions, tool contracts, deployment evidence, and implementation status in this priority folder until accepted.
 - Promote stable software-client integration instructions into Archie service documentation only after the service and client compatibility are verified.
 - Do not link reader-facing corpus prose to this priority packet. If a stable explanation belongs in the corpus, restate it in the owning reader-facing document.
+
+## Manuscript synthesis
+
+The [manuscript](manuscript.md) explains immutable source retrieval, bounded graph traversal, transport contracts and the limits of historical client conformance. [Source coverage](analysis/manuscript-source-coverage.md) preserves all original contracts, receipts and unresolved deployment boundaries; the [independent fidelity review](analysis/manuscript-review.md) records the closed benchmark-label correction. This editorial synthesis does not activate an endpoint or complete MCP-004.

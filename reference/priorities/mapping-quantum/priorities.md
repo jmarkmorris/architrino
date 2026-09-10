@@ -210,3 +210,7 @@ Preserved quantum side questions have been moved to [brainstorming.md](brainstor
 - [pilot-wave-character](../../../content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md)
 - [bell-theorem](../../../content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md)
 - [entanglement-nonlocality](../../../content/markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)
+
+## Developed Manuscript
+
+[Quantum Descriptions from Causal Histories](manuscript.md) provides the integrated explanation, with [complete source coverage and qualifications](analysis/manuscript-source-coverage.md) and a separate [independent fidelity review](analysis/manuscript-fidelity-review.md). Editorial acceptance preserves the scientific deferrals and the operator's unfinished learning task; it does not establish quantum recovery.

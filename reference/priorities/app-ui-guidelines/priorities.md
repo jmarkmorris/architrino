@@ -94,3 +94,7 @@ The locally ranked standardization tasks, dependencies, and acceptance boundarie
 - [Causal Delay Feedback App](../dormant-deferred/app-causal-delay-feedback/priorities.md)
 - [Photon App](../app-photon/priorities.md)
 - [Animator Design and Interfaces](../dormant-deferred/app-animator/design-and-interfaces.md)
+
+## Manuscript synthesis
+
+The [manuscript](manuscript.md) develops the shared navigation, panel ownership, transport controls and historical evidence boundaries. [Source coverage](analysis/manuscript-source-coverage.md) preserves the original-source dispositions and verification limits; the [independent fidelity review](analysis/manuscript-review.md) records the closed wording and provenance findings. This editorial synthesis does not reopen the accepted standard or change the executable queue.
