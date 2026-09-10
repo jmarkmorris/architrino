@@ -4,7 +4,7 @@
 
 **Current aim:** develop the [integrated manuscript](manuscript.md) while resolving the actual two-particle population release conditions and the existing quintic candidate's regulator question. Changed history classes and physical laws remain proposals.
 
-**Dispatched now:** none. The independent smooth first-response review is complete and accepts the bounded extension on the same smooth control. Research dispatch and the coordinator heartbeat are paused for the operator-requested commit and push. The quintic regulator formulation remains deferred.
+**Dispatched now:** none. The independent full-pulse review has returned; research dispatch and the coordinator heartbeat are paused for the operator-requested commit and push. Coordinator integration of that report remains next.
 
 ## Work to do
 
@@ -12,6 +12,7 @@ This is the only execution list. Read it from top to bottom. Dependencies use ta
 
 | Work | Status | What finishes it / what must happen first |
 | --- | --- | --- |
+| **1 — Integrate the full-pulse adjudication** | **Queued — after publication resumption** | Reconcile the [completed adjudication](analysis/smooth-two-particle-pulse-independent-adjudication.md) with the [submitted continuation and class obstruction](analysis/smooth-two-particle-pulse-continuation.md), including the review's endpoint correction, before updating the manuscript and selecting further evolution work. Preserve the original-class versus larger-domain distinction. |
 | **Specify a candidate regulator problem** | **○ Deferred — substantive formulation decision** | The [completed assessment](analysis/quintic-mirror-regulator-assessment.md) identifies missing parameterized quintic operators and their convergence interpretation. Existing canonical smoothing cannot be reused unchanged. Do not claim a limit or invent a regulator; resolve the formulation before dependent limit proofs. This does not block the two-particle release task. |
 | **Establish coupled population evolution** | Blocked on reviewed and selected population formulation | Prove local existence and uniqueness and preservation of the required regular history conditions; finite acceleration at release alone is insufficient. |
 | **Prove controlled finite-population approximation** | Blocked on population evolution | Complete pasts and a quantitative coupled trajectory-error bound, including the environmental response. |

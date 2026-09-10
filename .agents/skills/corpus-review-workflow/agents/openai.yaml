@@ -1,4 +1,0 @@
-interface:
-  display_name: "Corpus Review Workflow"
-  short_description: "Select review, feedback integration, or verification."
-  default_prompt: "Use $corpus-review-workflow for this Architrino review task."

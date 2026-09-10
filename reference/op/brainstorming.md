@@ -82,18 +82,9 @@ Baseline comparisons preserve mathematical spans in the edited procedure sources
 
 ### Current Organization
 
-A workflow defines how a class of work proceeds: its inputs, actions, authority boundaries, and expected result. A repository skill is a discoverable entry point containing instructions and, when needed, supporting scripts. Several related workflows can share one skill. The [CTO prompt library](../office-of-research/cto/prompts/README.md) owns the reusable research procedures; repository skills point to those live owners rather than copying their instructions.
+The [repository skills policy and index](skills/README.md) owns the current nine-skill catalog and its maintained instruction paths. Codex discovery files point to those visible owners, which select existing live procedures. The [architecture design](../priorities/aaa-operations/analysis/skills-architecture.md) records the rationale, reviewed instruction snapshots, and migration evidence. It is a design record, not a second current instruction owner.
 
-| Repository skill | Workflow coverage |
-| --- | --- |
-| [aaa-corpus-advancement](../../.agents/skills/aaa-corpus-advancement/SKILL.md) | Corpus convergence and source mining |
-| [corpus-review-workflow](../../.agents/skills/corpus-review-workflow/SKILL.md) | Corpus review, review comment assessment and integration, review closure verification, and core geometry theorem review |
-| [research-exploration](../../.agents/skills/research-exploration/SKILL.md) | Brainstorming and early idea capture |
-| [math-preview](../../.agents/skills/math-preview/SKILL.md) | Mathematical Markdown rendering and visual verification through KaTeX |
-
-The prompt library also includes Principal Investigator and specialist research, closure scorecard assessment, selective reference passes, priority lane resumption, corpus promotion, and adjudication. These procedures do not each have a dedicated repository skill. General-purpose skills supplied by the agent environment are a separate inventory; their availability is session-dependent and does not make them repository-owned procedures.
-
-### Accepted Routing Refinement
+### 2026-09-05 Routing Refinement (Historical)
 
 Skills remain small entry points into authoritative procedure owners. Their descriptions distinguish active convergence, review feedback, and provisional research discussion. The prompt library exposes the skill-to-workflow mapping, and the review skill selects its five owners by the requested outcome.
 
@@ -262,16 +253,16 @@ Each row below has one final disposition. Prior office review is reused for its 
 
 | File | Disposition | Finding or review focus |
 | --- | --- | --- |
-| [.agents/skills/aaa-corpus-advancement/SKILL.md](../../.agents/skills/aaa-corpus-advancement/SKILL.md) | Updated; source and workflow conformance reviewed | Routing and scope exercised within bounded tests |
-| [.agents/skills/aaa-corpus-advancement/agents/openai.yaml](../../.agents/skills/aaa-corpus-advancement/agents/openai.yaml) | Metadata updated and validated | Skill identity and discoverable purpose |
-| [.agents/skills/corpus-review-workflow/SKILL.md](../../.agents/skills/corpus-review-workflow/SKILL.md) | Updated; source and workflow conformance reviewed | Routing and scope exercised within bounded tests |
-| [.agents/skills/corpus-review-workflow/agents/openai.yaml](../../.agents/skills/corpus-review-workflow/agents/openai.yaml) | Metadata updated and validated | Skill identity and discoverable purpose |
-| [.agents/skills/math-preview/SKILL.md](../../.agents/skills/math-preview/SKILL.md) | Updated; source and workflow conformance reviewed | Routing and scope exercised within bounded tests |
-| [.agents/skills/math-preview/agents/openai.yaml](../../.agents/skills/math-preview/agents/openai.yaml) | Metadata reviewed and validated; retained | Skill identity and discoverable purpose |
-| [.agents/skills/math-preview/assets/preview.css](../../.agents/skills/math-preview/assets/preview.css) | Support implementation retained; preview tests passed | Ten tests and bounded browser rendering; no code changes |
-| [.agents/skills/math-preview/scripts/render-preview.mjs](../../.agents/skills/math-preview/scripts/render-preview.mjs) | Support implementation retained; preview tests passed | Ten tests and bounded browser rendering; no code changes |
-| [.agents/skills/research-exploration/SKILL.md](../../.agents/skills/research-exploration/SKILL.md) | Updated; source and workflow conformance reviewed | Routing and scope exercised within bounded tests |
-| [.agents/skills/research-exploration/agents/openai.yaml](../../.agents/skills/research-exploration/agents/openai.yaml) | Metadata updated and validated | Skill identity and discoverable purpose |
+| [.agents/skills/aaa-corpus-advancement/SKILL.md](../../.agents/skills/architrino-converge/SKILL.md) | Updated; source and workflow conformance reviewed | Routing and scope exercised within bounded tests |
+| [.agents/skills/aaa-corpus-advancement/agents/openai.yaml](../../.agents/skills/architrino-converge/agents/openai.yaml) | Metadata updated and validated | Skill identity and discoverable purpose |
+| [.agents/skills/corpus-review-workflow/SKILL.md](../../.agents/skills/architrino-review/SKILL.md) | Updated; source and workflow conformance reviewed | Routing and scope exercised within bounded tests |
+| [.agents/skills/corpus-review-workflow/agents/openai.yaml](../../.agents/skills/architrino-review/agents/openai.yaml) | Metadata updated and validated | Skill identity and discoverable purpose |
+| [.agents/skills/math-preview/SKILL.md](../../.agents/skills/architrino-math-preview/SKILL.md) | Updated; source and workflow conformance reviewed | Routing and scope exercised within bounded tests |
+| [.agents/skills/math-preview/agents/openai.yaml](../../.agents/skills/architrino-math-preview/agents/openai.yaml) | Metadata reviewed and validated; retained | Skill identity and discoverable purpose |
+| [.agents/skills/math-preview/assets/preview.css](../../.agents/skills/architrino-math-preview/assets/preview.css) | Support implementation retained; preview tests passed | Ten tests and bounded browser rendering; no code changes |
+| [.agents/skills/math-preview/scripts/render-preview.mjs](../../.agents/skills/architrino-math-preview/scripts/render-preview.mjs) | Support implementation retained; preview tests passed | Ten tests and bounded browser rendering; no code changes |
+| [.agents/skills/research-exploration/SKILL.md](../../.agents/skills/architrino-explore/SKILL.md) | Updated; source and workflow conformance reviewed | Routing and scope exercised within bounded tests |
+| [.agents/skills/research-exploration/agents/openai.yaml](../../.agents/skills/architrino-explore/agents/openai.yaml) | Metadata updated and validated | Skill identity and discoverable purpose |
 
 ##### Geometry and dynamics role dependencies
 

@@ -51,7 +51,7 @@ This is the living feedback backlog for improving the shared operator/developer 
 
 - [ ] Make long internal references easy to navigate by spoken section number; implement the [queued numbering convention](../priorities/aaa-operations/work-queue.md#ops-025--internal-reference-section-numbering) while preserving reader-facing numbering and promotion format.
 
-- [ ] Use [math-preview](../../.agents/skills/math-preview/SKILL.md) for substantial mathematics whose normal view is inadequate, with verified KaTeX, the project theme, and unchanged source.
+- [ ] Use [architrino-math-preview](../../.agents/skills/architrino-math-preview/SKILL.md) for substantial mathematics whose normal view is inadequate, with verified KaTeX, the project theme, and unchanged source.
 - [ ] Agent response shape — leading with the decision, explanation density, question format, live priority capture, and recommended next actions — is owned by [operator-explanation-standard.md](operator-explanation-standard.md) and is not tracked as backlog here. Items below concern how the operator frames requests, not how the agent answers. Free-association brainstorming remains welcome when no immediate decision is needed.
 - [ ] Treat an unresolved discussion-scoped priority as requiring an explicit accept, reject, or defer response; do not infer implementation authority from silence.
 - [ ] Name the canonical project term when a concept has multiple nearby aliases.

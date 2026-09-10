@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architrino Source Work"
+  short_description: "Acquire, verify, and mine sources for Architrino."
+  default_prompt: "Use $architrino-sources for the specified Architrino task, following its current instruction owner and my requested scope."

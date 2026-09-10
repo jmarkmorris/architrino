@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architrino Git Publication"
+  short_description: "Prepare and publish through the live Git procedure."
+  default_prompt: "Use $architrino-publish for the specified Architrino task, following its current instruction owner and my requested scope."

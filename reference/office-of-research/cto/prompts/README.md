@@ -33,10 +33,15 @@ Skills select these live procedures; they do not grant additional write authorit
 
 | Repository skill | Procedures selected |
 | --- | --- |
-| [Corpus Convergence and Source Mining](../../../../.agents/skills/aaa-corpus-advancement/SKILL.md) | Convergence campaigns, including their audit/report and exploration modes; source mining when requested |
-| [Corpus Review Workflow](../../../../.agents/skills/corpus-review-workflow/SKILL.md) | Directory review; assessment of supplied comments; integration of feedback; verification against a prior review; focused theorem review |
-| [Research Brainstorming](../../../../.agents/skills/research-exploration/SKILL.md) | Open-ended research discussion and provisional idea capture |
-| [Math Preview](../../../../.agents/skills/math-preview/SKILL.md) | On-demand KaTeX presentation and visual verification |
+| [Research Exploration](../../../../.agents/skills/architrino-explore/SKILL.md) | Provisional research reasoning and capture |
+| [Corpus Convergence](../../../../.agents/skills/architrino-converge/SKILL.md) | Convergence campaigns and their authorized modes |
+| [Corpus Review](../../../../.agents/skills/architrino-review/SKILL.md) | Assessment, integration, verification, directory review, and theorem review |
+| [Source Work](../../../../.agents/skills/architrino-sources/SKILL.md) | Acquisition, bounded verification, and source mining |
+| [Priority Resumption](../../../../.agents/skills/architrino-resume/SKILL.md) | Continue a named lane from its live queue |
+| [Research Coordination](../../../../.agents/skills/architrino-coordinate/SKILL.md) | Compose dependent research stages and permitted parallel work |
+| [Mathematical Preview](../../../../.agents/skills/architrino-math-preview/SKILL.md) | On-demand mathematical rendering and visual inspection |
+
+The complete [skills index](../../../op/skills/README.md) also exposes publication and managed computation through their operational owners.
 
 The remaining prompts can be selected directly from this library. They do not require a dedicated skill merely because they are distinct workflows. A link to an external source does not by itself request source mining, and a request to assess feedback does not request its implementation.
 

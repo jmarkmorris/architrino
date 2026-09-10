@@ -5,7 +5,7 @@ Starter prompt to paste into a new thread:
 ```text
 Converge the AAA corpus by turning priority, source, or corpus signals into concrete mathematical artifacts, safe scoped edits, and clear follow-up goals.
 
-Use the `aaa-corpus-advancement` skill in self-running mode.
+Use the `architrino-converge` skill in self-running mode.
 ```
 
 Optionally follow it with a specific lane, shard, priority area, or edit-batch instruction.
@@ -20,7 +20,7 @@ This file is the shared protocol authority for AAA corpus convergence. It owns t
 
 The durable rationale and operating vocabulary live in the [Theory Closure and Corpus Convergence decision](../../../architectural-decisions/theory-closure-and-corpus-convergence.md); this prompt supplies the reusable procedure.
 
-The installed `aaa-corpus-advancement` skill is only a router. It should trigger this protocol, choose the relevant mode, perform the required start, and preserve non-negotiable reminders without duplicating this file's detailed handoff, next-action list, math-first, or source-mining text.
+The installed `architrino-converge` skill is only a router. It should trigger this protocol, choose the relevant mode, perform the required start, and preserve non-negotiable reminders without duplicating this file's detailed handoff, next-action list, math-first, or source-mining text.
 
 The [source-mining best-practice guide](../../../op/source-mining-best-practice.md) is the source-intake specialization. It owns acquisition workflows, source-family templates, traceability expectations, mining history routing, creative reframing, and external technique anchors. When source mining is in scope, apply this shared protocol first, then apply the source-family specialization from that guide.
 

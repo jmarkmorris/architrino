@@ -60,7 +60,7 @@ The operator requested an internal section-numbering convention after the number
 
 ## Project Skills Maintenance
 
-The [skills architecture redesign](analysis/skills-architecture.md) proposes nine project-scoped skills: the eight recommended by the initial Astra-high architecture review plus research coordination, subsequently selected by the operator and evaluated by an Astra-high reviewer. The operator intends to migrate after reviewing the design; activation remains pending that review and approval. The document includes the catalog, exclusions, maintenance model, migration plan, and full proposed instruction bodies. The current four skills remain active.
+The operator-approved [skills architecture redesign](analysis/skills-architecture.md) is implemented as nine project-scoped skills, including research coordination. The [current catalog](../../op/skills/README.md#canonical-definitions) links each discovery package to its maintained instruction owner; the design retains the reviewed rationale and evaluation history.
 
 The adopted [repository skills policy](../../op/skills/README.md) keeps evolving knowledge and shared rules in live owners, covers discovery metadata and supporting resources, and requires monthly and change-triggered review. Its index links to full maintained instructions in `reference/op/skills/skill-<name>.md`; `.agents/skills/<name>/SKILL.md` contains only discovery metadata and a pointer to that owner. [OPS-027](work-queue.md#ops-027--periodic-project-skill-maintenance) tracks the next recurring pass; the [operations work log](work-log.md) records completed maintenance. This cadence does not create an automatic scheduled job.
 
@@ -135,3 +135,7 @@ After the Mermaid 11.17.2 vendor update, the Photon visual profile measured 4,56
 Separately, the shared browser GPU process peaked at 190,218,240 resident bytes, 34,635,776 bytes above its sampled baseline, and both measured origins reported zero storage use.
 
 The checker fails on stale app or instrument identity and on launch, transfer, interaction, frame, heap, storage, canvas-surface, or shared-GPU-process budget regression. The canvas result is a lower bound and the process result is shared; neither is exact per-page physical GPU allocation or a production-user measurement.
+
+## Priority manuscript synthesis pilot
+
+The operator requested a continuously synthesized manuscript in each priority lane, preserving all substantive discoveries and their qualifications. The [campaign plan](campaigns/priority-manuscript-synthesis.md) defines whole-lane source coverage, academic chapter hierarchy, independent omission review, and math preview. The operator approved both revised pilots, Field-Speed Ceiling and Category Theory; their writers have stopped editing. Separate fidelity audits remain outstanding. The operator requested commit and push before returning to the wider campaign. Existing evidence remains preserved, and manuscript creation does not adopt a theory or reactivate dormant research. Global directory-policy changes remain part of the planned rollout.

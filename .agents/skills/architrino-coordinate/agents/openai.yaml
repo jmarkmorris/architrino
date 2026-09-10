@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architrino Research Coordination"
+  short_description: "Coordinate research stages and integrate evidence."
+  default_prompt: "Use $architrino-coordinate for the specified Architrino task, following its current instruction owner and my requested scope."

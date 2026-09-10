@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architrino Priority Resumption"
+  short_description: "Resume a priority lane from its current queue."
+  default_prompt: "Use $architrino-resume for the specified Architrino task, following its current instruction owner and my requested scope."

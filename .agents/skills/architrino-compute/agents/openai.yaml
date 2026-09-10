@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architrino Managed Computation"
+  short_description: "Run and monitor owned computational jobs."
+  default_prompt: "Use $architrino-compute for the specified Architrino task, following its current instruction owner and my requested scope."

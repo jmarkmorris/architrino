@@ -24,7 +24,7 @@ In chat, established shared knowledge may shorten the explanation when comprehen
 
 When Codex or Claude presents a Markdown document to the operator in a side or right-hand panel, prefer the application’s rendered Markdown preview (pretty-print mode), including KaTeX-rendered equations, rather than the raw Markdown editor. Use the existing preview control when available; source view remains appropriate when the operator asks to inspect or edit markup. This is a presentation preference and does not authorize changing document content.
 
-Ordinary document viewing does not require creating a PDF, screenshot, HTML export, or separate rendering pipeline. Use those deliverables only when requested or when an established task needs them. The math-preview skill is for cases where the normal preview is inadequate, not an automatic step for every document containing equations. If the application does not expose a usable rendered preview or its equations do not render, state that specific limitation and offer the smallest suitable alternative; do not silently substitute a PDF or claim that opening a source file enabled preview.
+Ordinary document viewing does not require creating a PDF, screenshot, HTML export, or separate rendering pipeline. Use those deliverables only when requested or when an established task needs them. The architrino-math-preview skill is for cases where the normal preview is inadequate, not an automatic step for every document containing equations. If the application does not expose a usable rendered preview or its equations do not render, state that specific limitation and offer the smallest suitable alternative; do not silently substitute a PDF or claim that opening a source file enabled preview.
 
 ## Scope
 

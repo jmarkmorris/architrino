@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architrino Corpus Convergence"
+  short_description: "Advance corpus mathematics and reconcile current canon."
+  default_prompt: "Use $architrino-converge for the specified Architrino task, following its current instruction owner and my requested scope."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Architrino Research Exploration"
+  short_description: "Explore and capture provisional research ideas."
+  default_prompt: "Use $architrino-explore for the specified Architrino task, following its current instruction owner and my requested scope."

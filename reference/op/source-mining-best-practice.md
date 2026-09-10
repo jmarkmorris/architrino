@@ -16,7 +16,7 @@ Use the [Source Mining priority](../priorities/source-mining/priorities.md) for 
 - The [convergence campaign](../office-of-research/cto/prompts/convergence-campaign.md) owns mode selection, edit authority, promotion triage, mathematics-first discipline, and convergence evidence requirements.
 - The [operator explanation standard](operator-explanation-standard.md) owns responses, questions, follow-up prompts, and live discussion capture; the [academic style guide](../../content/markdown/aaa/archie/academic-style-guide.md) owns explanatory prose in both working records and reader-facing material.
 - This guide is the source-intake specialization. It owns source-family acquisition, traceability, source maps, source-specific prompt addenda, mining-history routing, creative reframing, and external technique anchors.
-- The `aaa-corpus-advancement` skill is a thin router. It points source-mining work here after loading the shared convergence campaign protocol.
+- The `architrino-sources` skill is a thin router. It points source-mining work here after loading the shared convergence campaign protocol.
 - Source-mining history remains in [source-mining-history.md](../priorities/source-mining/analysis/source-mining-history.md). This guide describes process; the history file records completed sources.
 
 If instructions overlap, apply workspace policy first, then the shared convergence campaign protocol, then this source-intake guide.
@@ -67,7 +67,7 @@ Use this skeleton for every source family. Add one source-family prompt addendum
 ```text
 Mine the supplied source for high-quality AAA insights, linkages, mappings, source leads, and theory-advancement candidates, then make safe scoped corpus edits when authorized.
 
-Use the `aaa-corpus-advancement` skill in the mode authorized by the request.
+Use the `architrino-sources` skill in the mode authorized by the request.
 
 Source:
 [PASTE LINK, FILE PATH, ARCHIVE ROOT, IDENTIFIER, OR ATTACHMENT DESCRIPTION]

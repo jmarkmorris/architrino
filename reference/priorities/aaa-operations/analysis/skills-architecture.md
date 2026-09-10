@@ -2,9 +2,9 @@
 
 ## Decision and Scope
 
-Status: design complete; activation awaits operator approval. The operator requested an Astra agent at high reasoning to redesign the architecture from first principles and explicitly welcomed restructuring and renaming. A `gpt-6-astra` agent at `high` independently reviewed the live workflows and recommended eight skills. The parent mapped live consumers and prepared the proposed instruction bodies below. Automatic approval review rejected replacing the active packages during this design request; the four current discovery definitions remain active. The rejected migration was not retried.
+Status: approved and implemented. After reviewing the design and ninth-skill evaluation, the operator explicitly approved replacing the four active skills with these nine. The [current catalog and instructions](../../../op/skills/README.md) are authoritative for use; this document preserves the design and its evaluation history.
 
-Propose nine project-scoped entry points, each named `architrino-<task>`. The initial independent architecture review recommended eight. The operator then selected evaluation of a ninth, research coordination, to make serial and parallel compositions reusable. Nine is a design recommendation based on distinct requested outcomes and existing procedure owners, not a measured optimum or a permanent target. The present four cover useful research/review/preview work but combine source work with convergence and omit discoverable priority resumption, publication, and computational job operation.
+Adopt nine project-scoped entry points, each named `architrino-<task>`. The initial independent architecture review recommended eight. The operator then selected evaluation of a ninth, research coordination, to make serial and parallel compositions reusable. Nine is a design recommendation based on distinct requested outcomes and existing procedure owners, not a measured optimum or a permanent target. The former four covered useful research/review/preview work but combine source work with convergence and omit discoverable priority resumption, publication, and computational job operation.
 
 ## Source Architecture
 
@@ -20,13 +20,13 @@ reference/op/skills/skill-<name>.md
 existing live procedures, corpus, queues, contracts, and tools
 ```
 
-The discovered file does not hold a copied procedure or a frozen theory summary. The visible instruction file selects the relevant live owner and adds only the orchestration needed to connect the request to it. Neither layer grants authority beyond the task. The [skills policy](../../../op/skills/README.md) remains the single policy owner; the proposed package names and activation are not current policy until migration is approved.
+The discovered file does not hold a copied procedure or a frozen theory summary. The visible instruction file selects the relevant live owner and adds only the orchestration needed to connect the request to it. Neither layer grants authority beyond the task. The [skills policy](../../../op/skills/README.md) remains the single policy owner; the current catalog records the approved package names.
 
 This architecture is deliberately selective. Shared rules for scientific claims, Python, generated files, communication, and concurrent work stay in their present owners. They do not become skills that must be guessed or invoked before ordinary work becomes correct.
 
-## Proposed Catalog
+## Approved Catalog
 
-| Proposed skill | Outcome and principal owner | Why it deserves an entry point |
+| Skill | Outcome and principal owner | Why it deserves an entry point |
 | --- | --- | --- |
 | `architrino-explore` | Provisional research reasoning and capture; [brainstorming](../../../office-of-research/cto/prompts/brainstorming.md) | A distinct intent that must remain distinguishable from accepted implementation |
 | `architrino-converge` | Reconcile and develop corpus material; [convergence campaign](../../../office-of-research/cto/prompts/convergence-campaign.md) | A reusable path from accepted ideas to supported mathematical and corpus advances |
@@ -54,7 +54,7 @@ A skill can instruct its executing agent to use other available skills in a spec
 
 For example, a research workflow can first acquire source material, then ask separate agents to examine independent sources or review distinct arguments, wait for their evidence, and have the coordinator integrate supported findings and prepare a mathematical preview. Serial dependencies should wait for the required artifact, while parallel assignments need distinct scopes, named input/output artifacts, permitted writes, and a coordinator responsible for conflicts, failed branches, and final integration. Giving several agents the same source or implementation does not make their agreement independent evidence.
 
-The operator selected research coordination for ninth-skill evaluation. The proposed `architrino-coordinate` entry point composes the other capabilities while keeping the existing PI and assignment procedures as its authority. It selects only needed stages and remains capable of a serial investigation when parallelism is unnecessary or unavailable. All nine proposed skills remain under operator review, and migration remains unapproved pending that review.
+The operator selected research coordination for ninth-skill evaluation. The proposed `architrino-coordinate` entry point composes the other capabilities while keeping the existing PI and assignment procedures as its authority. It selects only needed stages and remains capable of a serial investigation when parallelism is unnecessary or unavailable. The operator subsequently approved all nine skills for migration; their current definitions are linked from the skills index.
 
 ## Research Coordination: What We Could Do
 
@@ -153,7 +153,7 @@ The evaluator identified a real ambiguity between single-claim reference discove
 
 For a hypothetical stale-summary scenario, the evaluator selected the live owner's updated rule after reading its pointer and policy. This was a simulated choice, not execution against a changed live corpus or a controlled native discovery environment.
 
-Skill Creator `quick_validate.py`, run under the shared venv against staged metadata files, accepted all eight proposed names and descriptions. A temporary Markdown-It link checker first passed a known case excluding a fenced example, then checked 39 file links across the eight proposed instruction owners: targets were existing live files or explicitly planned owner/helper paths. Prose links in this design also resolved. Heading anchors and future installed paths were not runtime-verified. `rg --files .agents/skills -g SKILL.md` continued to enumerate the original four active definitions after the rejected migration. Installation validation and the preview test remain required after approved migration.
+Skill Creator `quick_validate.py`, run under the shared venv against staged metadata files, accepted all eight proposed names and descriptions. A temporary Markdown-It link checker first passed a known case excluding a fenced example, then checked 39 file links across the eight proposed instruction owners: targets were existing live files or explicitly planned owner/helper paths. Prose links in this design also resolved. Heading anchors and future installed paths were not runtime-verified. `rg --files .agents/skills -g SKILL.md` continued to enumerate the original four active definitions after the rejected migration. Installation validation and the preview test are recorded in the operations work log after approved migration.
 
 ### Ninth-Skill Evaluation
 

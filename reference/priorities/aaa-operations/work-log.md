@@ -6,6 +6,16 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-09 — Approved nine-skill migration completed
+
+The operator explicitly approved replacing the four project skills with the nine reviewed entry points. The [current skills index](../../op/skills/README.md) now links nine discovery packages to their visible maintained instructions. Updated live startup, research-prompt, source-work, preview, and operations consumers; retained former identifiers in historical evidence. OPS-027 continues to track monthly and change-triggered maintenance, with the next monthly pass due 2026-10-09.
+
+Measured validation: Skill Creator `quick_validate.py` under the shared venv accepted all nine installed definitions. A filesystem enumeration and YAML inspection confirmed exactly the nine approved packages, owner pointers, metadata lengths, and default-prompt names; byte comparisons confirmed the installed instruction bodies match the reviewed drafts. Comparison against the prior Git versions confirmed unchanged preview CSS and helper behavior, with only the helper's documented command path renamed. The existing `node --test tests/math-preview.test.js` suite passed 10/10. A Markdown-It file-link checker passed its known actual-link/fenced-example control before checking all 50 links in the nine installed owners and the design prose; heading anchors were excluded.
+
+`node scripts/validate-content.mjs --check --strict` reported zero errors and zero warnings. The relocated helper rendered the live mathematics terminology document: the browser DOM reported 457 KaTeX expressions, zero error elements, and loaded fonts; viewport inspection showed readable mathematical indices and table columns. This checks rendering and source preservation, not mathematical correctness or native Codex automatic skill selection. `git diff --check` passed. The disposable preview server was stopped after inspection.
+
+Generated startup fingerprints are affected by these authored changes. Regeneration remains with the publication procedure: `node scripts/build-agent-startup-orientation.mjs --write` and `node scripts/build-claude-bootstrap-floor.mjs --write`, followed by their check modes. No generator writes or Git publication were performed. The installed-path checks and preview suite are the repeatable falsifiers for this migration receipt; future routing behavior remains subject to representative real-task evaluation.
+
 ### 2026-09-09 — Research coordination evaluated as ninth proposed skill
 
 The operator selected evaluation of research coordination after discussing serial and parallel skill composition. Added the proposed `architrino-coordinate` description and complete instruction body to the [architecture design](analysis/skills-architecture.md), with prospective proof-gap, accepted-result propagation, and computational-discrepancy workflows. The coordinator selects activities and dependencies while the existing PI, assignment, component-skill, scientific, and operational owners retain their responsibilities.
@@ -361,3 +371,7 @@ The following feedback records were migrated from the retired `reference/op/code
 - `73594169-76cb-4bb1-9c84-956a0c8d3d8b`: add a visible Feedback button or menu entry; slash commands are not a substitute.
 - `c155751a-f2ba-47a6-97c9-7ad1b48a5a21`: make Commit and Push the default commit action.
 - No feedback ID received after three attempts: after a commit, the Action button changed to Create PR but did not return to Commit when files changed; switching away from and back to a thread refreshed it.
+
+## 2026-09-09 — Manuscript synthesis campaign planned; one pilot dispatched
+
+Saved campaigns/priority-manuscript-synthesis.md after the operator requested a parallel lane-by-lane synthesis process. Recommended Astra high drafting, medium mechanical inventory, and xhigh disputed mathematics/decisive scientific review as workload judgments. The operator then authorized one pilot before renewing capacity. Dispatched field_speed_manuscript at Astra high to write only the field-speed manuscript and coverage map, retaining existing sources. No reset redeemed and no broader wave dispatched. Source-to-chapter coverage, negative-result preservation and a later independent audit are explicit completion requirements.

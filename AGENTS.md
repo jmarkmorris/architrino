@@ -39,7 +39,7 @@ This document distinguishes three audience scopes:
 ### Math and TeX Rendering
 
 - The detailed authority is [content/markdown/aaa/archie/mathematics-style-guide.md](content/markdown/aaa/archie/mathematics-style-guide.md); the web-app rendering target is `KaTeX`.
-- For substantial mathematical explanations or notation tables whose normal view is inadequate, use the [math-preview skill](.agents/skills/math-preview/SKILL.md); preserve the source, apply the project theme, and verify the rendered document and image.
+- For substantial mathematical explanations or notation tables whose normal view is inadequate, use the [architrino-math-preview skill](.agents/skills/architrino-math-preview/SKILL.md); preserve the source, apply the project theme, and verify the rendered document and image.
 - Preserve TeX delimiters and content exactly (`$...$`, `$$...$$`, `\(...\)`, `\[...\]`).
 - Prefer `$...$` for inline math and reserve `$$...$$` for standalone equations; do not place display math inside sentences, headings, list labels, callouts, or preview text.
 - When using the TLA AAA in prose/math, always use the stylized form `$\mathbb{A}\mathbb{A}\mathbb{A}$` (code: `$\mathbb{A}\mathbb{A}\mathbb{A}$`), except in literal file paths or code identifiers.

@@ -318,6 +318,20 @@ For the existing two-target control with past disturbances supported in a common
 
 The result supplies a common short lifespan, not a certified numerical duration or an invariant population class. Its uniform bounds are relaxed bounds rather than preservation of every originally saturated constant. Later reception of newly generated emissions requires a coupled delayed estimate, and neither later continuation nor target contact follows from this first-interval theorem.
 
+### 6.5 The first nonstationary response
+
+For the same explicit smooth compatible history, a further derived result identifies the first reception of the past disturbance. If $\ell$ is the lattice spacing, the entire population remains stationary through
+
+$$
+T_*=(\sqrt2-11/8)\ell.
+$$
+
+The acceleration is still zero at this onset. On a sufficiently short positive interval afterward, exactly 24 environmental labels move: 16 have leading displacement of fifth order in elapsed time, and eight have leading displacement of sixth order. Both targets and all other labels remain stationary on this interval. These are conclusions about solutions of the receiver equations, including feedback from receiver displacement, rather than evaluations of the acceleration at fixed anchors.
+
+The extension preserves the smooth join, the original quantitative history bounds and the complete root census on a common short interval. All arriving emissions still precede the original release. Its existence therefore does not yet require reception of the newly generated source futures. The result remains conditional on the stated history and block-summation convention.
+
+This establishes a nonstationary smooth continuation after the waiting interval. It does not finish the received pulse. Because the receivers have moved, the end of that pulse must be determined from their actual causal equations. Later reception of postrelease emissions requires a separate coupled-history estimate; neither target contact nor a globally preserved population class follows.
+
 ## 7. Wake transport, action, and conserved accounts
 
 ### 7.1 Geometry does not determine an account value

@@ -8,10 +8,15 @@ Maintain each skill's full instructions here in `skill-<skill-name>.md`. Codex d
 
 | Skill | Maintained instructions | Codex discovery file |
 | --- | --- | --- |
-| Corpus convergence and source mining | [skill-aaa-corpus-advancement.md](skill-aaa-corpus-advancement.md) | [SKILL.md](../../../.agents/skills/aaa-corpus-advancement/SKILL.md) |
-| Corpus review and feedback | [skill-corpus-review-workflow.md](skill-corpus-review-workflow.md) | [SKILL.md](../../../.agents/skills/corpus-review-workflow/SKILL.md) |
-| Research brainstorming | [skill-research-exploration.md](skill-research-exploration.md) | [SKILL.md](../../../.agents/skills/research-exploration/SKILL.md) |
-| Mathematical preview | [skill-math-preview.md](skill-math-preview.md) | [SKILL.md](../../../.agents/skills/math-preview/SKILL.md) |
+| Research Exploration | [skill-architrino-explore.md](skill-architrino-explore.md) | [SKILL.md](../../../.agents/skills/architrino-explore/SKILL.md) |
+| Corpus Convergence | [skill-architrino-converge.md](skill-architrino-converge.md) | [SKILL.md](../../../.agents/skills/architrino-converge/SKILL.md) |
+| Corpus Review | [skill-architrino-review.md](skill-architrino-review.md) | [SKILL.md](../../../.agents/skills/architrino-review/SKILL.md) |
+| Source Work | [skill-architrino-sources.md](skill-architrino-sources.md) | [SKILL.md](../../../.agents/skills/architrino-sources/SKILL.md) |
+| Priority Resumption | [skill-architrino-resume.md](skill-architrino-resume.md) | [SKILL.md](../../../.agents/skills/architrino-resume/SKILL.md) |
+| Git Publication | [skill-architrino-publish.md](skill-architrino-publish.md) | [SKILL.md](../../../.agents/skills/architrino-publish/SKILL.md) |
+| Managed Computation | [skill-architrino-compute.md](skill-architrino-compute.md) | [SKILL.md](../../../.agents/skills/architrino-compute/SKILL.md) |
+| Mathematical Preview | [skill-architrino-math-preview.md](skill-architrino-math-preview.md) | [SKILL.md](../../../.agents/skills/architrino-math-preview/SKILL.md) |
+| Research Coordination | [skill-architrino-coordinate.md](skill-architrino-coordinate.md) | [SKILL.md](../../../.agents/skills/architrino-coordinate/SKILL.md) |
 
 ## Authoring and Authority
 

@@ -664,14 +664,19 @@ The reference builder follows the write authority of the executing queue item. A
 
 - **Status:** ○ Not done — Queued.
 - **Priority object:** `periodic_project_skill_maintenance`
-- **Architecture review:** ◐ Partial — the [nine-skill design](analysis/skills-architecture.md) is prepared with Astra-high architecture and coordination reviews. The operator intends to migrate after reviewing it; replacement of the active four skills awaits that review and approval.
+- **Architecture review:** Completed — the operator approved replacement of the four skills with the [nine-skill design](analysis/skills-architecture.md); the maintained instructions and discovery packages are migrated.
 - **Request / acceptance:** Perform periodic maintenance on the `SKILL.md` files for the project skills we have instantiated. Review their trigger descriptions, instructions, linked live owners, and supporting resources for accuracy and consistency with current repository procedures; correct stale guidance and broken references.
-- **Current four Codex discovery paths:**
-  - `/Users/markmorris/vibe/architrino/.agents/skills/aaa-corpus-advancement/SKILL.md`
-  - `/Users/markmorris/vibe/architrino/.agents/skills/corpus-review-workflow/SKILL.md`
-  - `/Users/markmorris/vibe/architrino/.agents/skills/research-exploration/SKILL.md`
-  - `/Users/markmorris/vibe/architrino/.agents/skills/math-preview/SKILL.md`
-- **Maintained instructions:** The [skills index](../../op/skills/README.md#canonical-definitions) lists the four `reference/op/skills/skill-<name>.md` instruction owners. Review these owners together with their discovery pointers.
+- **Current nine Codex discovery paths:**
+  - `/Users/markmorris/vibe/architrino/.agents/skills/architrino-explore/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/architrino-converge/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/architrino-review/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/architrino-sources/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/architrino-resume/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/architrino-publish/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/architrino-compute/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/architrino-math-preview/SKILL.md`
+  - `/Users/markmorris/vibe/architrino/.agents/skills/architrino-coordinate/SKILL.md`
+- **Maintained instructions:** The [skills index](../../op/skills/README.md#canonical-definitions) lists the nine `reference/op/skills/skill-<name>.md` instruction owners. Review these owners together with their discovery pointers.
 - **Policy:** Follow the adopted [repository skills policy](../../op/skills/README.md), including descriptions, default prompts, references, and templates.
 - **Cadence:** Monthly and when referenced owners change. Initial policy-adoption pass completed 2026-09-09; next monthly pass due 2026-10-09, or sooner on a relevant change. This recurring row tracks the next pass, not the completed adoption work.
 - **Completion:** Each maintenance pass reviews the current instantiated project skills, verifies referenced paths and procedure alignment, and records corrections or a supported no-change result in the operations work log.

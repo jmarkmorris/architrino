@@ -4,7 +4,7 @@
 Closure goal:
 Explore Maxwell's four equations directly as observer-level residuals of one finite, individually resolved collection of Noether braids, identifying the smallest braid, causal-history, exposure, and Noether sea records capable of producing each term without modeling a wire, capacitor, magnet, solenoid, or other bulk device.
 
-Use the `research-exploration` skill. Keep the pass report-only and capture worthwhile insights in `reference/priorities/mapping-electromagnetism/brainstorming.md`. Do not promote corpus claims, change equation scores, modify the EOM solver, or treat a prescribed braid as retained evidence.
+Use the `architrino-explore` skill. Keep the pass report-only and capture worthwhile insights in `reference/priorities/mapping-electromagnetism/brainstorming.md`. Do not promote corpus claims, change equation scores, modify the EOM solver, or treat a prescribed braid as retained evidence.
 
 Read first:
 - `AGENTS.md`
