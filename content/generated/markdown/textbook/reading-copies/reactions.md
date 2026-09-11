@@ -1654,7 +1654,7 @@ This is a radiative closure program, not yet a completed derivation of blackbody
 
 ## Atomic Transition Radiation
 
-Atomic transition radiation is the line-emission and line-absorption channel in which an electron-assembly envelope moves between effective atomic resonance basins and the excess action is routed through a photon planar-mode channel, recoil, medium excitation, or residual atomic energy.
+Atomic transition radiation is an exploratory mapping of the effective line-emission and line-absorption channel into AAA event records. In the target mapping, an effective electron-assembly envelope moves between recovered atomic resonance basins and the excess action is routed through a photon planar-mode channel, recoil, medium excitation, or residual atomic energy. The atomic labels and transition mechanism remain downstream recovery targets, not established substrate premises.
 
 This page specializes the shared routing skeleton in [Radiation](../../../../markdown/aaa/reactions/radiation.md). The envelope energies and spectral labels are inherited from [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), while photon ontology and Gate A/B/C closure requirements are inherited from [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface). Reaction provenance follows [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), and cosmology-facing photon records remain downstream of [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
 
@@ -2021,7 +2021,7 @@ If the mapping reproduces standard line data only by preserving the same indepen
 
 ## Bremsstrahlung
 
-Bremsstrahlung ("braking radiation") is electromagnetic emission generated when a charged particle is accelerated by another charge, typically an electron deflected by an ion or nucleus. Because the acceleration history spans many scattering angles and impact parameters, bremsstrahlung produces a broad continuum rather than a line spectrum. In practice it is a core process in nuclear and particle experiments, hot-plasma diagnostics, and high-energy astrophysical source modeling.
+Bremsstrahlung ("braking radiation") is the Standard Model comparison process in which electromagnetic emission accompanies the acceleration of a charged particle by another charge, typically an electron deflected by an ion or nucleus. Because the acceleration history spans many scattering angles and impact parameters, bremsstrahlung produces a broad continuum rather than a line spectrum. In practice it is a core process in nuclear and particle experiments, hot-plasma diagnostics, and high-energy astrophysical source modeling. The AAA material below is an exploratory mapping of this effective channel, not a claim that atomic or electron-envelope structure is a substrate premise.
 
 ### Teaching Path
 

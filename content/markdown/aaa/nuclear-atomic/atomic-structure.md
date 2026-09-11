@@ -2,7 +2,7 @@
 
 An observer-level atom consists of a nucleus and electron orbitals. This chapter asks what physical assemblies, causal wakes, exclusion envelopes, and local Noether sea response recover that familiar structure inside a dense Noether sea.
 
-The account connects nucleons, residual nuclear binding, electron resonance envelopes, and medium response in one substrate-level frame. It remains a provisional architecture rather than a completed quantitative derivation: quarks close into nucleons, nucleons close into nuclei, electrons occupy atomic resonance envelopes, and the Noether sea supplies the local medium record from which effective clocks, spectra, and binding descriptions are reconstructed.
+The account proposes a provisional mapping from AAA assembly and medium records to effective atomic behavior; it is not a substrate-level derivation of chemistry. Nucleons, residual nuclear binding, electron resonance envelopes, and medium response are interface variables whose relationship to the master equation remains open. The intended direction is from AAA primitives through recovered assemblies to effective clocks, spectra, and binding descriptions.
 
 The component treatments are [Nucleon Structure](nucleon-structure.md), [Nuclear Binding](nuclear-binding.md), [Electron](../assemblies/fermions/electron.md), [Atomic Spectra](atomic-spectra.md), and [Condensed Matter](condensed-matter.md).
 

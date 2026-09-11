@@ -1,10 +1,10 @@
 # Molecular Geometry
 
-This chapter states the molecular-geometry closure target within the assembly framework: a molecular shape must arise from atomic assemblies, directional bonding corridors, exclusion geometry, phase compatibility, and local Noether sea response.
+This chapter is an exploratory mapping study, not a molecular-level derivation. It records how AAA might eventually map its assembly and medium primitives to the effective molecular geometries recovered by the Standard Model. A molecular shape is therefore a downstream recovery target; atomic assemblies, bonding corridors, exclusion geometry, phase compatibility, and local Noether sea response are proposed mapping variables, not established AAA mechanisms.
 
 Start with the ordinary fact: molecules have repeatable shapes. Water is bent, carbon dioxide is linear, methane is tetrahedral, and those shapes come with repeatable bond lengths, bond angles, and vibration spectra. In $\mathbb{A}\mathbb{A}\mathbb{A}$, those patterns are not imported as orbital pictures that already explain themselves. They are targets that the assembly, corridor, exclusion, phase, and Noether sea response story has to recover.
 
-A molecule finds a stable arrangement only when its bonding corridors can share wake structure, avoid incompatible exclusion, keep phase-compatible resonances, and sit in a local Noether sea response that does not tear the arrangement apart.
+A proposed mapping hypothesis is that a stable molecular arrangement corresponds to bonding corridors that share wake structure, avoid incompatible exclusion, maintain phase-compatible resonances, and remain stable in a local Noether sea response. This is an exploratory hypothesis whose falsifier is failure of one common AAA-derived functional to recover the observed geometries and vibrational responses across the declared benchmark set.
 
 The required atomic constituents, resonance behavior, medium response, and exclusion geometry are developed in [Atomic Structure](atomic-structure.md), [Atomic Spectra](atomic-spectra.md), [Condensed Matter](condensed-matter.md), and [Molecular Exclusion and Noether Sea Response](../spacetime/molecular-exclusion-and-noether-sea-response.md).
 
@@ -16,13 +16,13 @@ The master equation has not yet been shown to produce molecular shape. A success
 
 ## Framing
 
-Molecular geometry should emerge from the coupled equilibrium of atomic-scale assemblies, directional bonding corridors, and delayed path-history constraints that favor particular angular arrangements and bond lengths.
+The mapping target is for molecular geometry to emerge, after the relevant effective atomic interface has been recovered, from coupled assembly variables, directional bonding corridors, and delayed path-history constraints that favor particular angular arrangements and bond lengths. The corpus does not yet derive this result from the master equation.
 
 At the constituent level this points back to [Electron](../assemblies/fermions/electron.md) and [Nucleon Structure](nucleon-structure.md).
 
 ## Binding Corridors and Angle Selection
 
-The molecular-bonding problem is not only an electron-sharing problem. In this framework, a bond is an effective corridor in which two or more atomic assemblies lower their combined energy by sharing wake structure, exclusion geometry, and local Noether sea response. The corridor is not a Noether-sea-free gap: the local Noether sea response is present around the electron assemblies, between electron assemblies and nuclei, and through the interstitial bonding region. Exclusion measures the cost of forcing phase-locked matter ledgers and their surrounding medium response into incompatible corridor, packing, or penetration states. Bond length is the radial equilibrium of that corridor; bond angle is the angular equilibrium after neighboring corridors compete for exclusion stress and phase compatibility.
+The exploratory molecular-bonding map is not an AAA claim that electron sharing is already understood at the substrate level. It proposes that, after effective atomic interfaces are recovered, a bond may be represented by a corridor in which assemblies lower their combined effective energy through shared wake structure, exclusion geometry, and local Noether sea response. The corridor is not assumed to be a Noether-sea-free gap. In this proposed map, bond length is the radial equilibrium of the corridor and bond angle is the angular equilibrium after neighboring corridors compete for exclusion cost and phase compatibility. The falsifier is a failure to derive these observables from common AAA variables without inserting molecule-specific orbital, Pauli, or chemical templates.
 
 A first useful decomposition is:
 

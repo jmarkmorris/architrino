@@ -6,6 +6,8 @@ Read the Hyde table as a geometry lesson, not as a replacement for chemistry. Th
 
 The useful question is therefore not whether the spiral is the law. The useful question is what physical regularities the spiral preserves, what it highlights, and which of those highlights can become recovery targets for assembly geometry.
 
+This document does not propose the periodic table as an AAA input or substrate mechanism. Atomic number, shell structure, valence, and chemical regularities are effective Standard Model outputs; any connection to assembly geometry is an exploratory mapping hypothesis to be tested downstream.
+
 ## Scope
 
 This document treats the periodic table as a scientific structure first, then analyzes how the Hyde format re-encodes that structure geometrically. The objective is technical clarity on:

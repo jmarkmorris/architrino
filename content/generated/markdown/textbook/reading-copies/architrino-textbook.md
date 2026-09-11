@@ -27844,9 +27844,9 @@ This is a hypothesis note, not a closed derivation. The chapter's claim is limit
 
 ### Molecular Exclusion and Noether Sea Response
 
-This chapter analyzes volume exclusion across ordinary matter and medium-level propagation. It complements [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), [Molecular Geometry](../../../../markdown/aaa/nuclear-atomic/molecular-geometry.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), and [Gravitational Waves](../../../../markdown/aaa/spacetime/gravitational-waves.md) by asking how ordinary exclusion boundaries coexist with deeper Noether sea response.
+This chapter is an exploratory mapping note, not an AAA derivation of chemistry. It compares effective molecular exclusion with the separate question of medium-level propagation, asking whether a future map from AAA assembly and medium primitives could recover both behaviors. It complements [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), [Molecular Geometry](../../../../markdown/aaa/nuclear-atomic/molecular-geometry.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), and [Gravitational Waves](../../../../markdown/aaa/spacetime/gravitational-waves.md). The molecular data below are observer-level or Standard Model comparison inputs; they are not substrate premises.
 
-The guiding distinction is ordinary occupancy versus medium availability. Molecules exclude one another through electron-envelope and bonding structure, but that does not decide how photon, neutrino-like, gravitational-wave, clock, or Noether sea response channels propagate through the same Euclidean volume. A tiny molecular hard-core packing fraction is therefore useful background, not a proof that every channel sees empty space. The native content of that distinction is the channel-specific visibility/response test in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md#composition); this chapter supplies its ordinary-chemistry comparison, not a second medium-coupling law.
+The guiding distinction is ordinary occupancy versus medium availability. At effective grade, molecules exclude one another through the atomic and chemical structure recovered by the Standard Model. The exploratory AAA question is whether a future assembly-level map can reproduce that exclusion while keeping photon, neutrino-like, gravitational-wave, clock, and Noether-sea response channels distinct. A tiny molecular hard-core packing fraction is therefore comparison background, not evidence that every channel sees empty space. The native content of the medium question is the channel-specific visibility/response test in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md#composition); this chapter supplies no molecular-level coupling law.
 
 > **Assembly-emergence hypothesis.** It is a visionary, unverified hypothesis that molecular shape, bonding, exclusion, and channel-specific boundary behavior may emerge from stable Architrino assembly geometry and retained causal-wake history. This chapter does not derive that emergence or map it uniquely to protons, neutrons, molecules, or any effective interaction. The molecular and chemistry descriptions below are effective comparison inputs until an Architrino-level derivation connects them to the Master Equation and the relevant assembly response.
 
@@ -27902,7 +27902,7 @@ Notes:
 - Trace constituents scale by their volume fraction and do not change the packing conclusion.
 - Despite high number densities, the hard-core geometric occupancy is only about $0.06\%$ of the volume under the declared $\mathrm N_2$ union-of-spheres rule. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, ordinary molecular exclusion occupies only a small fraction of the available Euclidean volume. That result leaves any deeper Noether sea response undetermined.
 
-This gives a **geometric baseline** for how much space a molecule excludes. In real matter, the effective boundary is also affected by bonding, compression, temperature, pressure, and the channel being probed.
+This gives an observer-level geometric baseline for how much space a molecule excludes under the declared convention. A possible AAA mapping would have to recover the effective boundary from lower-level assembly records; bonding, compression, temperature, pressure, and channel dependence remain inputs or recovery targets here, not established substrate causes.
 
 The kinetic baseline is not just occupied volume; it is also the collision length compared with the scale being probed. For a dilute molecular species with number density $n_m$ and effective hard-core diameter $d_m$, the order-of-magnitude mean free path is
 $$
@@ -27952,7 +27952,7 @@ A low $\phi_{\mathrm{VdW}}$ or high $\mathrm{Kn}_m$ may explain molecular sparsi
 
 Geometric VdW volume is the radius-and-overlap estimate: it is tied to tabulated radii and molecular geometry, not to the gas pressure or temperature in the worked example. Effective excluded volume is more flexible. Neighboring molecules can compress, stretch, or reorganize electron density, and hydrogen bonding, solvation shells, or $\pi$-$\pi$ stacking can alter the apparent space occupied. Raising $T$ usually increases vibration and loosens structures; raising $P$ can compress electron distributions slightly and reduce the effective excluded volume.
 
-Macroscopic boundaries are large-scale manifestations of those exclusions, but they remain channel-specific. At an air-water boundary, visible photons mostly pass while molecules from one side cannot enter the other without surface disruption. At an air-skin boundary, oxygen molecules are excluded by cellular membranes unless aided by proteins. At a metal-skin boundary, copper atoms in a wire do not freely diffuse into biological tissue, while infrared and visible photons can still cross or reflect at the boundary.
+Macroscopic boundaries are effective, channel-specific comparisons, not AAA-level mechanisms. At an air-water boundary, visible photons mostly pass while molecular transport is governed by the effective interface and species-dependent solubility. A lipid membrane can transmit oxygen by passive diffusion while restricting other solutes; permeability depends on molecular properties and membrane composition. At a metal-skin boundary, copper atoms in a wire do not freely diffuse into biological tissue, while infrared and visible photons can still cross or reflect at the boundary.
 
 ---
 
@@ -27962,7 +27962,7 @@ Maximally packed van der Waals volumes define exclusion domains for ordinary ato
 
 In many ordinary laboratory columns, neutrino transmission is a useful effective comparison, but transmission depends on channel, energy, material column, and the observable counted; compare [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md) for the assembly-level channel picture. Hypothetical WIMPs, axions, or gravitons belong only to standard-comparison language here and do not supply an Architrino-level mapping. Compare [Dark Matter](../../../../markdown/aaa/cosmology/dark-matter.md) for the cosmological inference side and [Gravitational Waves](../../../../markdown/aaa/spacetime/gravitational-waves.md) for the effective propagation layer.
 
-The effective spacetime comparison has the same lesson. In standard GR language, matter changes the metric rather than blocking spacetime as a substance. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Euclidean void remains fixed; the relevant implementation layer is Noether sea response and effective metric reconstruction.
+The effective spacetime comparison has the same lesson. In standard GR language, matter changes the metric rather than blocking spacetime as a substance; this is a recovery comparison, not an AAA premise. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Euclidean void remains fixed, while a future effective-metric map may use Noether sea response. That mapping remains exploratory and must be tested independently of the molecular occupancy estimate.
 
 ---
 
@@ -43981,7 +43981,7 @@ $u:\left[\begin{smallmatrix}+\\+\\0\end{smallmatrix}\right]\;\otimes\;\bar u:\le
 
 An observer-level atom consists of a nucleus and electron orbitals. This chapter asks what physical assemblies, causal wakes, exclusion envelopes, and local Noether sea response recover that familiar structure inside a dense Noether sea.
 
-The account connects nucleons, residual nuclear binding, electron resonance envelopes, and medium response in one substrate-level frame. It remains a provisional architecture rather than a completed quantitative derivation: quarks close into nucleons, nucleons close into nuclei, electrons occupy atomic resonance envelopes, and the Noether sea supplies the local medium record from which effective clocks, spectra, and binding descriptions are reconstructed.
+The account proposes a provisional mapping from AAA assembly and medium records to effective atomic behavior; it is not a substrate-level derivation of chemistry. Nucleons, residual nuclear binding, electron resonance envelopes, and medium response are interface variables whose relationship to the master equation remains open. The intended direction is from AAA primitives through recovered assemblies to effective clocks, spectra, and binding descriptions.
 
 The component treatments are [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md), [Nuclear Binding](../../../../markdown/aaa/nuclear-atomic/nuclear-binding.md), [Electron](../../../../markdown/aaa/assemblies/fermions/electron.md), [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), and [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md).
 
@@ -45792,7 +45792,7 @@ The division of labor is:
 
 ### Atomic Spectra
 
-This chapter treats atomic spectra as resonance structure in the Noether sea rather than as a purely abstract orbital postulate. A spectral line is a candidate record of an assembly transition, a photon-channel event, and a local clock/rate conversion. The central question is which spectral constants and redshift effects can be recovered as medium-sensitive resonance data.
+This chapter is an exploratory mapping study from AAA assembly and medium records to the effective atomic spectra described by the Standard Model. A spectral line is treated as a candidate record of an assembly transition, a photon-channel event, and a local clock/rate conversion; this is a proposed recovery route, not an established substrate mechanism. The central question is which spectral constants and redshift effects can be recovered as medium-sensitive resonance data.
 
 The required components are developed in [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Electron](../../../../markdown/aaa/assemblies/fermions/electron.md), [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Atomic Transition Radiation](../../../../markdown/aaa/reactions/atomic-transition-radiation.md), because the proposed spectral shifts depend on local assembly structure, the effective clock/rate layer, and the photon-channel event record.
 
@@ -46294,6 +46294,8 @@ Read the Hyde table as a geometry lesson, not as a replacement for chemistry. Th
 
 The useful question is therefore not whether the spiral is the law. The useful question is what physical regularities the spiral preserves, what it highlights, and which of those highlights can become recovery targets for assembly geometry.
 
+This document does not propose the periodic table as an AAA input or substrate mechanism. Atomic number, shell structure, valence, and chemical regularities are effective Standard Model outputs; any connection to assembly geometry is an exploratory mapping hypothesis to be tested downstream.
+
 #### Scope
 
 This document treats the periodic table as a scientific structure first, then analyzes how the Hyde format re-encodes that structure geometrically. The objective is technical clarity on:
@@ -46502,11 +46504,11 @@ Only after Neon stability and node discreteness are established should the progr
 
 ### Molecular Geometry
 
-This chapter states the molecular-geometry closure target within the assembly framework: a molecular shape must arise from atomic assemblies, directional bonding corridors, exclusion geometry, phase compatibility, and local Noether sea response.
+This chapter is an exploratory mapping study, not a molecular-level derivation. It records how AAA might eventually map its assembly and medium primitives to the effective molecular geometries recovered by the Standard Model. A molecular shape is therefore a downstream recovery target; atomic assemblies, bonding corridors, exclusion geometry, phase compatibility, and local Noether sea response are proposed mapping variables, not established AAA mechanisms.
 
 Start with the ordinary fact: molecules have repeatable shapes. Water is bent, carbon dioxide is linear, methane is tetrahedral, and those shapes come with repeatable bond lengths, bond angles, and vibration spectra. In $\mathbb{A}\mathbb{A}\mathbb{A}$, those patterns are not imported as orbital pictures that already explain themselves. They are targets that the assembly, corridor, exclusion, phase, and Noether sea response story has to recover.
 
-A molecule finds a stable arrangement only when its bonding corridors can share wake structure, avoid incompatible exclusion, keep phase-compatible resonances, and sit in a local Noether sea response that does not tear the arrangement apart.
+A proposed mapping hypothesis is that a stable molecular arrangement corresponds to bonding corridors that share wake structure, avoid incompatible exclusion, maintain phase-compatible resonances, and remain stable in a local Noether sea response. This is an exploratory hypothesis whose falsifier is failure of one common AAA-derived functional to recover the observed geometries and vibrational responses across the declared benchmark set.
 
 The required atomic constituents, resonance behavior, medium response, and exclusion geometry are developed in [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), and [Molecular Exclusion and Noether Sea Response](../../../../markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md).
 
@@ -46518,13 +46520,13 @@ The master equation has not yet been shown to produce molecular shape. A success
 
 #### Framing
 
-Molecular geometry should emerge from the coupled equilibrium of atomic-scale assemblies, directional bonding corridors, and delayed path-history constraints that favor particular angular arrangements and bond lengths.
+The mapping target is for molecular geometry to emerge, after the relevant effective atomic interface has been recovered, from coupled assembly variables, directional bonding corridors, and delayed path-history constraints that favor particular angular arrangements and bond lengths. The corpus does not yet derive this result from the master equation.
 
 At the constituent level this points back to [Electron](../../../../markdown/aaa/assemblies/fermions/electron.md) and [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md).
 
 #### Binding Corridors and Angle Selection
 
-The molecular-bonding problem is not only an electron-sharing problem. In this framework, a bond is an effective corridor in which two or more atomic assemblies lower their combined energy by sharing wake structure, exclusion geometry, and local Noether sea response. The corridor is not a Noether-sea-free gap: the local Noether sea response is present around the electron assemblies, between electron assemblies and nuclei, and through the interstitial bonding region. Exclusion measures the cost of forcing phase-locked matter ledgers and their surrounding medium response into incompatible corridor, packing, or penetration states. Bond length is the radial equilibrium of that corridor; bond angle is the angular equilibrium after neighboring corridors compete for exclusion stress and phase compatibility.
+The exploratory molecular-bonding map is not an AAA claim that electron sharing is already understood at the substrate level. It proposes that, after effective atomic interfaces are recovered, a bond may be represented by a corridor in which assemblies lower their combined effective energy through shared wake structure, exclusion geometry, and local Noether sea response. The corridor is not assumed to be a Noether-sea-free gap. In this proposed map, bond length is the radial equilibrium of the corridor and bond angle is the angular equilibrium after neighboring corridors compete for exclusion cost and phase compatibility. The falsifier is a failure to derive these observables from common AAA variables without inserting molecule-specific orbital, Pauli, or chemical templates.
 
 A first useful decomposition is:
 
@@ -46615,7 +46617,7 @@ For spin-sensitive chemistry, the later derivation should recover singlet/triple
 
 ### Condensed Matter
 
-This chapter states the condensed-matter closure target for medium-level behavior in the Noether sea. It focuses on Noether sea transport: the distinction between reversible inertial response, true resistance, and threshold behavior when matter moves through a densely coupled background of neutral Noether braids.
+This chapter is an exploratory mapping study for the effective condensed-matter behavior recovered from AAA. It focuses on a proposed Noether-sea transport map: the distinction between reversible inertial response, true resistance, and threshold behavior when effective matter moves through a densely coupled background of neutral Noether braids. The map is not a completed derivation of atomic, molecular, or chemical behavior.
 
 This note bridges [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), and [Molecular Exclusion and Noether Sea Response](../../../../markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md), since all four depend on how the Noether sea stores stress and permits transport.
 
@@ -46623,7 +46625,7 @@ The transport account is a closure target rather than a finished derivation. Its
 
 #### Noether Sea Transport
 
-The condensed-matter claim is not that ordinary matter feels a continuous dissipative drag from the Noether sea. In the validated weak regime, a stable assembly should move by reversible retuning: its internal causal ledger and local Noether sea coupling deform, store stress, and return that stress without opening a net loss channel.
+The exploratory transport hypothesis is not that ordinary matter feels a continuous dissipative drag from the Noether sea. In the proposed weak-regime map, a stable effective assembly would move by reversible retuning: its internal causal ledger and local Noether sea coupling deform, store stress, and return that stress without opening a net loss channel. This remains a mapping target; its falsifier is a controlled calculation in which the same retained record produces net loss below the declared threshold or cannot recover the effective transport benchmark.
 
 ##### Transport Residual and Critical Surface
 
@@ -49135,7 +49137,7 @@ This is a radiative closure program, not yet a completed derivation of blackbody
 
 ### Atomic Transition Radiation
 
-Atomic transition radiation is the line-emission and line-absorption channel in which an electron-assembly envelope moves between effective atomic resonance basins and the excess action is routed through a photon planar-mode channel, recoil, medium excitation, or residual atomic energy.
+Atomic transition radiation is an exploratory mapping of the effective line-emission and line-absorption channel into AAA event records. In the target mapping, an effective electron-assembly envelope moves between recovered atomic resonance basins and the excess action is routed through a photon planar-mode channel, recoil, medium excitation, or residual atomic energy. The atomic labels and transition mechanism remain downstream recovery targets, not established substrate premises.
 
 This page specializes the shared routing skeleton in [Radiation](../../../../markdown/aaa/reactions/radiation.md). The envelope energies and spectral labels are inherited from [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), while photon ontology and Gate A/B/C closure requirements are inherited from [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface). Reaction provenance follows [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md), and cosmology-facing photon records remain downstream of [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).
 
@@ -49502,7 +49504,7 @@ If the mapping reproduces standard line data only by preserving the same indepen
 
 ### Bremsstrahlung
 
-Bremsstrahlung ("braking radiation") is electromagnetic emission generated when a charged particle is accelerated by another charge, typically an electron deflected by an ion or nucleus. Because the acceleration history spans many scattering angles and impact parameters, bremsstrahlung produces a broad continuum rather than a line spectrum. In practice it is a core process in nuclear and particle experiments, hot-plasma diagnostics, and high-energy astrophysical source modeling.
+Bremsstrahlung ("braking radiation") is the Standard Model comparison process in which electromagnetic emission accompanies the acceleration of a charged particle by another charge, typically an electron deflected by an ion or nucleus. Because the acceleration history spans many scattering angles and impact parameters, bremsstrahlung produces a broad continuum rather than a line spectrum. In practice it is a core process in nuclear and particle experiments, hot-plasma diagnostics, and high-energy astrophysical source modeling. The AAA material below is an exploratory mapping of this effective channel, not a claim that atomic or electron-envelope structure is a substrate premise.
 
 #### Teaching Path
 

@@ -12,6 +12,10 @@ Accepted and implemented all 13 Noether Sea repairs. Full-document reread, indep
 
 Accepted and implemented the six bounded repairs. The chapter now separates imbalance bookkeeping from full balance, stability, wake cancellation, transparency, and four-member minimality; defines the classified population projection and reader-facing scope; and preserves the orientation-invariant, coupling-law, reciprocal-stability, and effective-response obligations. Chapter checks passed; generated equation-registry drift remains for the authorized regeneration process.
 
+### 2026-09-11 — Molecular Exclusion F1–F7 deferred disposition
+
+CRW-005-2 is closed at the bounded review-disposition level. The assembly-to-molecule mapping remains explicitly exploratory, and the accepted framing repair preserves the hypothesis without presenting it as a derivation. F1–F6 remain preserved as deferred, reopenable local findings rather than silently accepted repairs. Upstream braid realization is routed to the Braid Program, particle-branch mapping to the geometry-first Standard Model lane, and ambient assembly response to the Noether Sea constitutive-response lane. This closeout does not claim molecular derivation, stable fermion braids, or theory closure.
+
 ### 2026-09-10 — Causal Action Functional CAF-1–CAF-12
 
 Accepted, implemented, and validated all 12 findings. The work queue records the equations, counterexamples, preserved claim limits, and receipt.
@@ -35,11 +39,10 @@ Accepted, implemented, and validated all 16 findings. The substrate equation rem
 ## Pending work
 
 - `EL-1–EL-16`: Effective Lagrangian adjudication and repair.
-- Molecular Exclusion `F1–F7`: adjudication and repair.
 - Observer Framework `D1–D5`, `O1–O5`, `E1–E2`: adjudication and repair.
 - Action Model Comparison `D1–D6`, `O1–O3`, `E1–E3`: report complete; HQ adjudication pending.
 - Analytic Baselines `D1–D5`, `O1–O3`, `E1–E2`: report complete; HQ adjudication pending.
 - Attraction `F1–F6`, `O1–O2`: report complete; HQ adjudication pending.
-- Background and Simple Action, Causal Set and Delay Geometry, and Delay Dynamics Energy: independent reviews in progress.
+- Background and Simple Action, Causal Set and Delay Geometry, and Delay Dynamics Energy: independent reports complete; HQ adjudication pending.
 
 The status symbols and current state for these rows are maintained only in the [unified corpus review status board](corpus-review-status.md#active-priority-queue), not duplicated here.
