@@ -2,7 +2,7 @@
 
 ## 1. The Level at Which Magnetism Must Be Explained
 
-### 1.1 Primitive dynamics and observer response
+### 1.1. Primitive dynamics and observer response
 
 The central electrodynamics question in $\mathbb{A}\mathbb{A}\mathbb{A}$ is how delayed interactions between moving constituents become an electric or magnetic observer response. The primitive description uses polarity, causal-root histories, acceleration contributions, Euclidean void and absolute time. Familiar electric and magnetic fields, potentials and Maxwell-level continuity belong to the effective description to be recovered. Polarity does not import conventional point-charge ontology, and relativistic spacetime is not the substrate. Assigning a primitive magnetic charge or inserting a magnetic cross-product acceleration rule would change the starting theory rather than explain its output.
 
@@ -10,7 +10,7 @@ The working assembly picture places the relevant structure in moving-source hist
 
 Three explanatory levels must remain distinct. A regular causal hit contributes along its delayed source–receiver direction. An aggregate of hits samples several such directions and source times. An observer then measures a selected response of that aggregate through a declared apparatus and material environment. Radiality at the first level does not by itself determine the direction of the second or identify the electromagnetic meaning of the third.
 
-### 1.2 What a recovery statement would contain
+### 1.2. What a recovery statement would contain
 
 An observer-level recovery statement needs an allowed dynamical input, a defined projection to the observable, a regime and an independent comparison. A declaration that an assembly has an effective transverse response is weaker than a derivation of a magnetic response law. A benchmark reproduced by the same implementation that generated its reference establishes replay consistency, not independent physical correctness.
 
@@ -29,7 +29,7 @@ These distinctions prevent one successful special case from certifying the other
 
 ## 2. From Delayed Radial Contributions to an Assembly Response
 
-### 2.1 Radiality depends on the reference direction
+### 2.1. Radiality depends on the reference direction
 
 The weaker geometric question concerns the existing acceleration law. Consider a finite set of regular causal contributions at one receiver event. For purposes of directional bookkeeping, write their sum as
 
@@ -52,7 +52,7 @@ The right-hand side need not vanish when the delayed directions differ from $\wi
 
 Source motion can change both the directions sampled and their coefficients through the full causal history. A binary, ordered loop or other minimal assembly provides a possible geometry in which to ask the question. A chosen picture of a loop supplies no evolved trajectory, exposure account or constitutive response by itself.
 
-### 2.2 An odd transverse diagnostic
+### 2.2. An odd transverse diagnostic
 
 Motion reversal can help distinguish a transverse effect associated with oriented motion from a transverse component already present in an asymmetric static geometry. Let $\mathcal H_+$ and $\mathcal H_-$ be consistently paired complete assembly histories, and compare their receiver accelerations using the same declared unit direction $\widehat{\mathbf r}$. Define
 
@@ -72,7 +72,7 @@ The transpose is the ordinary Euclidean matrix transpose, and $\mathbf I$ is the
 
 This definition isolates the part that changes sign on exchanging the paired histories and is transverse to the chosen reference. A persistent nonzero value would identify an odd transverse aggregate in that assembly and regime. A zero value would reject that tested configuration as this particular precursor. Neither outcome is a universal statement about all assemblies, and a nonzero value still requires an independent moving-source comparison before it can support a magnetic interpretation.
 
-### 2.3 Even response, persistence and the missing physical example
+### 2.3. Even response, persistence and the missing physical example
 
 The complementary history average defines the even part; applying the same transverse and longitudinal projections separates direction from reversal parity. Both comparisons require the same accounting conventions. An apparent odd component produced by unmatched boundary histories, changed receiver geometry or different apparatus projections would not isolate the proposed effect.
 
@@ -82,7 +82,7 @@ The physical input envisioned by this question is an accepted evolved assembly w
 
 ## 3. Material and Noether Sea Constitutive Response
 
-### 3.1 A shared state rather than independent fitted constants
+### 3.1. A shared state rather than independent fitted constants
 
 The medium hypothesis treats effective permittivity and permeability as response coefficients of assemblies and their surrounding Noether sea, rather than intrinsic properties of empty Euclidean geometry. Laboratory matter is an overlay of assemblies whose wakes, boundaries, motion, orientation and polarization can alter the neighboring medium. The proposed dependence is
 
@@ -104,7 +104,7 @@ The state $\Theta_{\mathrm{sea}}$ includes density, cadence, orientation, strain
 
 The substantive hypothesis is that one state family explains several responses without per-observable retuning. Effective vacuum coefficients would characterize a quiescent sea, while water or glass would involve a material-loaded sea. Naming these possibilities does not establish that the sea has a nontrivial electromagnetic response or determine the values of any coefficient. A continuum field representation at this level also requires justification from the retained state; it is not an assumed ontology.
 
-### 3.2 The scalar wave-speed comparison and its limits
+### 3.2. The scalar wave-speed comparison and its limits
 
 In a local, linear, homogeneous, isotropic and effectively nondispersive comparison regime with the appropriate lossless scalar description, the familiar observer-level relation is
 
@@ -117,7 +117,7 @@ This is a standard electromagnetic comparison, not a derivation from the constit
 
 The scalar identity is insufficient to characterize anisotropy, frequency-dependent propagation or dissipative material response. Those cases require the appropriate response objects and a declared phase, group or other signal observable. Nor does the product of two coefficients alone establish impedance or interface conversion. A single underlying state would have to account jointly for delay, refraction, impedance, clock response and material boundaries.
 
-### 3.3 Gravitational loading and physical acceleration
+### 3.3. Gravitational loading and physical acceleration
 
 A further hypothesis is that a central matter assembly acts as a persistent boundary condition that loads and polarizes its surrounding sea, changing density, stress, cadence and signal response. Position-dependent electromagnetic coefficients may reparameterize part of the photon-channel response, but that interpretation is unproved. It does not replace a native account of gravitation or establish a universal optical description of it.
 
@@ -127,7 +127,7 @@ Equal readouts would not imply identical sea microstates. Gradients, tidal struc
 
 ## 4. Primitive Dyons as a Counterfactual
 
-### 4.1 Four signs do not supply transverse geometry
+### 4.1. Four signs do not supply transverse geometry
 
 A point source with spherical emission and inverse-square flux density invites a superficial analogy between electric and magnetic charge. In standard comparison language, a dyon carries both. A naive primitive inventory would therefore name positive–north, positive–south, negative–north and negative–south combinations. Here north and south denote hypothetical magnetic-charge signs, not the poles of an assembled bar magnet.
 
@@ -135,13 +135,13 @@ The unresolved geometry is decisive. Spherical expansion does not by itself sele
 
 A viable counterfactual would also need finite causal acceleration laws for the electric–electric, magnetic–magnetic and cross sectors; a controlled linear-superposition regime; reaction and exposure accounts; and a derived magnetic-neutralization mechanism. These are reasons the simple four-sign proposal is incomplete. They are not a theorem ruling out every logically possible two-sign primitive model.
 
-### 4.2 Schwinger's speculative confinement idea
+### 4.2. Schwinger's speculative confinement idea
 
 The retained source account of Julian Schwinger's 1969 “A Magnetic Model of Matter” is explicitly limited to its first page. It describes a speculative hypothesis: electric–magnetic charge reciprocity makes the magnetic unit large in the normalization fixed by the observed electric unit, making opposite magnetic charges difficult to separate. Magnetically neutral composites could then conceal magnetic constituents, while fractional constituent electric charges combine into exposed integral charge.
 
 This explains why the bare existence of hypothetical magnetic constituents need not immediately entail freely observed monopoles. It supplies no separation mechanism derived within $\mathbb{A}\mathbb{A}\mathbb{A}$, no causal acceleration law and no demonstrated composite. The same first-page account mentions a possible role of electric-to-magnetic charge ratios in charge-conjugation/parity (CP) violation; the continued argument is outside that supplied page. Its retained conceptual prompt is a need for a derived ratio, orientation or conjugation structure, not two independently assigned signs.
 
-### 4.3 Pair compatibility and charge shifts in the Witten comparison
+### 4.3. Pair compatibility and charge shifts in the Witten comparison
 
 The retained Witten comparison gives the Dirac–Schwinger–Zwanziger relation in the quoted paper conventions,
 
@@ -163,7 +163,7 @@ The transferable questions are whether a proposed inventory possesses its own de
 
 ## 5. Separating Binding from Transverse Redirection
 
-### 5.1 Symmetric and antisymmetric pairings
+### 5.1. Symmetric and antisymmetric pairings
 
 The preserved account of Renato P. dos Santos's classical dyon comparison separates two charge pairings:
 
@@ -177,7 +177,7 @@ Here $e_i$ and $g_i$ are the comparison particles' electric and magnetic charges
 
 In the assumed Maxwell-dual Lorentz dynamics of that comparison, $q$ multiplies the radial term and $\kappa$ the velocity-dependent transverse term. These are properties of the assumed comparison law. They do not establish that delayed assembly geometry realizes either term.
 
-### 5.2 The proportional-pair null and the orbital diagnostic
+### 5.2. The proportional-pair null and the orbital diagnostic
 
 If the two charge-label pairs are proportional, their antisymmetric pairing vanishes:
 
@@ -200,7 +200,7 @@ In this formula $\mathbf L$ is the comparison's mechanical relative angular mome
 
 The comparison also separates binding from redirection. Radial binding still requires the attractive radial sector; nonzero $\kappa$ does not supply the attraction. Thus a magnetic-like transverse signature would not, on its own, explain an assembly's persistence or binding.
 
-### 5.3 What the comparison can constrain
+### 5.3. What the comparison can constrain
 
 If an assembly derivation were to produce a stable odd transverse response, the dyon comparison suggests checking for a corresponding conservation-account signature and nonplanar trajectory structure while keeping the binding account separate. These are possible diagnostics. Neither the corrected angular momentum nor the conical orbit may be imposed on the Master Equation to manufacture agreement.
 

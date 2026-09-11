@@ -2,7 +2,7 @@
 
 ## 1. A Reading Surface Around One Textbook
 
-### 1.1 Purpose and evidence boundary
+### 1.1. Purpose and evidence boundary
 
 The retained design for Architrino Reader combines an offline textbook package with native navigation on iPhone and iPad. Its central purpose is continuous reading: open the textbook, find a section, follow its links, inspect its mathematics and return to the same place later. Search, bookmarks and appearance controls support that activity. They do not create a separate memorization product, editing environment, proof checker or simulation-authoring system.
 
@@ -10,7 +10,7 @@ The [design and implementation record](priorities.md) is the source for this acc
 
 The reader uses the same canonical textbook source as the other reading surfaces. The app does not become a second place to author scientific prose. Its generated package is a development snapshot with an identifiable version, so an installed reader can remain useful even when that snapshot predates the current corpus. Package regeneration is an on-demand development operation, rather than an obligation attached to every unrelated content change.
 
-### 1.2 Native structure and local page content
+### 1.2. Native structure and local page content
 
 The chosen first rendering path assigns navigation and application state to SwiftUI and the textbook body to generated local HTML in WKWebView. SwiftUI owns the tabs, reading controls, search and bookmark interfaces, saved position, settings and the iPad split view. Local WebKit pages preserve the existing Markdown and TeX rendering path, including KaTeX, tables, links and section anchors. Chapter Markdown remains package source or fallback material alongside the generated HTML reading copies.
 
@@ -20,7 +20,7 @@ The source compares two alternatives. A PDF-only reader offers familiar print-li
 
 ## 2. The Offline Package and Its Provenance
 
-### 2.1 Reading order and chapter units
+### 2.1. Reading order and chapter units
 
 The package takes its reading order, scene titles, Markdown paths and section anchors from the generated textbook table of contents. In the source this artifact is named `textbook_toc.json`. Directory layout, filenames and display labels are not substitutes for that order. Chapter, scene and section entries remain separately navigable even when they share a containing reading copy.
 
@@ -28,7 +28,7 @@ The initial package is chapter-oriented. It contains the chapter reading copies 
 
 The first package ships inside the app bundle. Offline reading therefore does not depend on downloading content after installation. A later remote-update mechanism would be a distinct content-delivery feature with its own integrity and failure behavior; its possibility does not weaken the initial bundle contract.
 
-### 2.2 Manifest, identity and validation
+### 2.2. Manifest, identity and validation
 
 The source describes a deterministic package manifest containing content and source hashes, a generation date, package version, schema version, table-of-contents checksum and file map. Reading-copy hashes connect packaged pages to the content used to generate them. The reader exposes package identity so a report can identify the snapshot actually installed, rather than assuming that every device has the latest text.
 
@@ -40,7 +40,7 @@ The package has a focused exporter and validator owner. Its saved output is excl
 
 ## 3. Destinations, Links and Reference Material
 
-### 3.1 Stable destinations and explicit handoff
+### 3.1. Stable destinations and explicit handoff
 
 Reading position and bookmarks use canonical path-and-anchor keys. A bookmark also retains human-readable title, chapter and section information, but navigation does not depend on display text alone. Internal links resolve to the corresponding chapter or section within the reader. Search results identify chapter, section and a short snippet so the reader can inspect a destination before opening it.
 
@@ -48,7 +48,7 @@ Some textbook links refer to interactive web applications rather than bundled ch
 
 An external link also requires an explicit browser handoff. The source's plain-word interface requirement applies to these notices and controls: mathematical notation belongs in the textbook body, while destination labels and helper text should communicate the action directly.
 
-### 3.2 The unresolved glossary destination
+### 3.2. The unresolved glossary destination
 
 The source contains two glossary descriptions. Its numbered decision specifies an explicit reader action opening a bundled in-app reference document when that document is included in the package. Its required-capabilities section says that the comparative glossary opens in-browser, apart from the main reading surface.
 
@@ -56,7 +56,7 @@ Both descriptions establish a separate, deliberate reference action, but they do
 
 ## 4. Reading State and Device Parity
 
-### 4.1 Common reader behavior
+### 4.1. Common reader behavior
 
 The Textbook tab is the launch surface. First launch opens the top-level table of contents; subsequent launches resume the saved position. The design retains chapter and section position, bookmarks across restarts, internal navigation, next and previous movement, and search over titles, headings, body text and glossary-like entries.
 
@@ -64,7 +64,7 @@ Text size, appearance and margins are reader controls. The requirements also inc
 
 Settings remains small: appearance, content version, offline package state and focused diagnostic or export controls. Textbook and Settings are the primary tabs. The first screen is not a marketing page, and the supporting controls do not grow into general editing or simulation tools.
 
-### 4.2 iPhone and iPad layouts
+### 4.2. iPhone and iPad layouts
 
 On iPhone, a navigation stack organizes the reading path. The top bar carries the chapter title, table of contents and search. The bottom controls offer previous section, bookmark, text size and next section. Swipe-back returns through the reading or table-of-contents hierarchy. Search and bookmarks use focused sheets or corresponding full-screen surfaces where appropriate.
 
@@ -72,7 +72,7 @@ On iPad, the same content and functions occupy a two-pane workspace: a persisten
 
 iPad is an equal first-release quality target. It shares the package, navigation, search, bookmarks, appearance controls and local persistence expected on iPhone. A layout that merely launches on iPad is weaker than this parity requirement. Physical-device evidence for that requirement remains distinct from the source's reported implementation of a split-view interface.
 
-### 4.3 Local state and feedback
+### 4.3. Local state and feedback
 
 The first version keeps theme, font size, bookmarks and reading position on the device, without an account system or cloud synchronization. The source's conditional privacy declaration depends on that scope and must be reconsidered if later analytics, accounts, crash reporting, network services or synchronization change the application's behavior. This is a retained product condition, not a current privacy or store-policy certification.
 
@@ -92,7 +92,7 @@ Those criteria are broader than a render parse and narrower than store acceptanc
 
 ## 6. Deferred Evolution
 
-### 6.1 Visual explanations after the reader
+### 6.1. Visual explanations after the reader
 
 The first planned post-v1 visualization is Molecule Visualization, beginning from the existing scene and runtime rather than an independently invented duplicate. Its eventual integration requires canonical textbook entry links and a single chosen embedded-web or native implementation path, with a minimal list-detail interface. Reusing a web surface is a design option when a scoped assessment finds it cheaper and more faithful; no measured cost comparison is claimed here.
 
@@ -100,7 +100,7 @@ Other source candidates are a photon planar-pair and Virtual Observer diagnostic
 
 The source separately defers the Molecule visualization itself, its entry points, the embed-or-bridge choice and its tab integration. These remain future design steps rather than missing requirements for the textbook-only first version.
 
-### 6.2 Content delivery, synchronization and optional tools
+### 6.2. Content delivery, synchronization and optional tools
 
 Downloadable textbook updates wait for a stable bundled-content contract. An accepted update path would need versioning, integrity checks, rollback and defined failure behavior. Optional cross-device synchronization and sharing wait for stable local reader parity and explicit privacy and data-ownership decisions. Neither capability belongs to the bundle-only initial scope.
 
@@ -108,7 +108,7 @@ The remaining possibilities are private notes and annotations, stable section-sh
 
 ## 7. Development Snapshots and the Deferred Release Plan
 
-### 7.1 Retained capability and historical evidence
+### 7.1. Retained capability and historical evidence
 
 The reader and exporter remain retained development capabilities. The [work log](work-log.md) records an August 2026 decision to package on demand and defer release, followed by the September archive of the workstream. Saved packages can therefore be older snapshots. Routine corpus or web-content work does not itself require a fresh iOS package, while explicitly requested iOS package or build work still carries its own validation requirements.
 
@@ -116,7 +116,7 @@ The source fixes the initial deployment floor at iOS and iPadOS 18 and records a
 
 The six remaining tasks in the [deferred queue](work-queue.md) are not executable from this manuscript. Device QA/archive, distribution and commercial planning, and review/publication require theory closure and an explicit operator release decision. The publication step additionally depends on accepted device/archive evidence and the distribution plan. Molecule integration waits for the first release, while remote updates and synchronization retain their later stability and ownership dependencies.
 
-### 7.2 Conditional distribution planning
+### 7.2. Conditional distribution planning
 
 The recorded first-public-release plan is unlisted App Store distribution, with a direct approved install link. The source describes TestFlight for prerelease device work, an app account under the retained bundle identity, an explicit unlisted-distribution review note, and eventual site and repository links after approval. GitHub is the source, release-note and support home rather than the iPhone installation channel.
 

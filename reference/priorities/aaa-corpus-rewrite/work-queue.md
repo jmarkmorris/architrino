@@ -40,8 +40,8 @@ Claim grade for a completed conversion: `measured` for the preservation checks, 
 - **Opened:** 2026-09-04
 - **Priority object:** `independent_assurance_review`
 - **Request / acceptance:** Independently compare every converted corpus document with its pre-campaign source and edition 1.0, prioritizing exact mathematics, claim authority, falsifiers, source support, link integrity, and teaching structure. Findings are consult-only until Codex adjudicates and applies accepted corrections.
-- **Scope:** 190 documents outside the already independently reviewed `foundations/` batch. The six `dynamics/` documents are included for a fresh Claude review at the operator's request despite their earlier Codex baseline review. Packet 1 covered all 14 `noether-braid/` documents. Packet 2 is `dynamics/`; its Master Equation review is now recorded below. Coverage is 15 of 190 documents reviewed, with 175 remaining; all 16 Master Equation findings are accepted and [corrected](#crw-005-master-equation-me-1-through-me-16--accepted-integration-2026-09-10) under the subsequent operator instruction. The next document is `content/markdown/aaa/dynamics/energy.md`.
-- **Packet 2 review:** [Master Equation assurance review, 2026-09-10](#crw-005-packet-2-document-1--master-equation-assurance-review-2026-09-10); one complete document reviewed under the current Codex assignment. The subsequent [ME-1 through ME-16 integration](#crw-005-master-equation-me-1-through-me-16--accepted-integration-2026-09-10) corrects this chapter; the manuscript remains outside the edit scope.
+- **Scope:** 190 documents outside the already independently reviewed `foundations/` batch. The six `dynamics/` documents are included for a fresh Claude review at the operator's request despite their earlier Codex baseline review. Packet 1 covered all 14 `noether-braid/` documents. Packet 2 is `dynamics/`; its Master Equation and [Energy reviews](#crw-005-packet-2-document-2--energy-assurance-review-2026-09-10) are recorded below. Coverage is 16 of 190 documents reviewed, with 174 remaining; all 16 Master Equation findings are accepted and [corrected](#crw-005-master-equation-me-1-through-me-16--accepted-integration-2026-09-10) under the subsequent operator instruction. Energy has 15 proposed findings awaiting adjudication. The next unread document is `content/markdown/aaa/dynamics/entropy.md`.
+- **Packet 2 review:** [Master Equation assurance review, 2026-09-10](#crw-005-packet-2-document-1--master-equation-assurance-review-2026-09-10); two complete documents reviewed under the current Codex assignment, including the [Energy review](#crw-005-packet-2-document-2--energy-assurance-review-2026-09-10). The subsequent [ME-1 through ME-16 integration](#crw-005-master-equation-me-1-through-me-16--accepted-integration-2026-09-10) corrects this chapter; the manuscript remains outside the edit scope.
 - **Packet 1 disposition:** Accepted the envelope-volume normalization, tangent-space claim correction, sharp-kernel restoration, topology-label restoration, conditional speed-budget grading, source support, broken anchors, merged headings, and bounded notation/grammar repairs. Rejected blanket renaming based only on a shared base glyph and rejected the claimed honeycomb scope error because the text already restricts the proof to intact regular face-to-face cells. Deferred the cross-corpus $c_1$ notation migration pending an exact use map and replacement proposal.
 - **Blocked by:** nothing.
 - **Completion:** Every one of the 190 paths has one recorded independent disposition and every accepted defect has been corrected and validated.
@@ -1883,3 +1883,167 @@ The unchanged causal-wake update-law instrument and moving-simple-root scalar-gr
 Scratch baselines, the complete diff, the mathematical checks, instrument outputs, and validation receipts are in `.tmp/crw005-master-fixes/`. Their useful results and authority limits are preserved here. `git diff --check` is the final whitespace check for the target and three edited workstream files. A differing final chapter hash, a changed viewer-ID sequence, a failed substitution in the stated counterexamples, or a failed focused check would overturn the corresponding completion claim.
 
 **Remaining scope:** all 16 chapter corrections are complete; the explicitly unproved scientific obligations remain unproved. The source-link inventory also found older incoming references using the former signed-complex wording in already-reviewed Noether-braid material; their anchors still resolve, but those passages have not been re-adjudicated in this target-only repair. This is retained as a downstream terminology/proof-scope follow-up in CRW-005, not silently counted as a second chapter correction. Assurance coverage remains **15 of 190 reviewed, 175 remaining**. The next unread assurance target is [Energy](../../../content/markdown/aaa/dynamics/energy.md).
+
+### CRW-005 Packet 2 document 2 — Energy assurance review, 2026-09-10
+
+**Disposition: complete review; corrections proposed, not applied.** The operator's “do 1” selected the recommended Energy review after the Master Equation corrections. This pass read all 1,564 lines of [Energy](../../../content/markdown/aaa/dynamics/energy.md), compared the complete baseline-to-current diff, and checked the mathematical dependencies against the corrected Master Equation. It did not review the next chapter or edit Energy, another corpus chapter, or the manuscript. This is a fresh semantic assessment by the current reviewer, not a second-agent validation of its own counterexamples.
+
+The reviewed Energy SHA-256 is `5d3c7f0b5537b72749e86f80df7ff4b795ec3b7863896bbe72ddaf5e24937516`. The pre-campaign source is `897fe1aa7:content/markdown/aaa/dynamics/energy.md`, SHA-256 `3c78c6d48e5bf1ff84829e0e366e89b8c551454511b2f7f6654e6967c9c89723`. The corrected Master Equation dependency is SHA-256 `d2a25fb7d970f4231e72f4c9564b1a15d20e5efe2caf8f0f63f88e2cbdc290d8`. Line references below refer to the reviewed Energy bytes. These are measured identities by `shasum -a 256`; later edits require refreshing the affected references.
+
+The chapter has a useful central distinction: the acceleration law is postulated, whereas the universal kinetic scalar, history energy, conservation theorem, mass map, and universal action increment remain constructions to establish. Its work-power conjugacy calculation and tensor trace algebra are sound within their stated ansatz. Fifteen findings remain. E-1 through E-3 have the clearest immediate algebraic consequences; the remaining items concern incomplete identities, unsupported implications, operational definitions, and reader access. All are **○ Proposed** pending adjudication. Their derivations below are independently checkable mathematical references, not EOM solver results or evidence of a realized assembly.
+
+#### E-1 — High: the radial-power display loses the polarity sign
+
+**Location:** lines 246–254, with the correct signed formula at lines 192–205. **Type:** hard sign error, inherited from the baseline.
+
+The display equates $\mathbf A_{ij}\cdot\mathbf V_i$ to $\|\mathbf A_{ij}\|V_r$. The line-of-action vector points from the retained transmitter event to the receiver. An unlike-polarity contribution is antiparallel to that vector, so its norm removes a physically necessary sign. With $c_f=1$, choose $\hat{\mathbf r}=\mathbf V=(1,0,0)$ and an attractive contribution $\mathbf A=(-1,0,0)$ in normalized acceleration units. The true power factor is $-1$; the display gives $+1$.
+
+**Smallest repair:** write $(\mathbf A_{ij}\cdot\hat{\mathbf r}_{ij})V_r$, or retain the explicit $\sigma_{ij}$ multiplying the positive amplitude, consistently with the preceding per-hit equation. **Grade:** derived from the chapter's polarity convention and the dot product. **Falsifier:** an explicit convention making the norm signed would overturn this reading; the present norm and signed kernel do not do that.
+
+#### E-2 — High: the action table's increment rule excludes its own redistribution
+
+**Location:** lines 1395–1401, 1411–1467. **Type:** incompatible constraints under the table's stated action interpretation, inherited from the baseline.
+
+The binary-3 transaction is $\Delta I_3=\hbar$. Binary 1 takes two positive steps with energy $2\omega_1\hbar$ under the declared action-angle interpretation, hence $\Delta I_1=2\hbar$. The angular account then requires
+
+$$
+\Delta I_2=-2\hbar-\Delta I_{\mathrm{wake}}.
+$$
+
+But the same paragraph requires every binary increment to be at least $-\epsilon_w\hbar$, while $|\Delta I_{\mathrm{wake}}|\le\epsilon_w\hbar$. The largest possible $\Delta I_2$ is $(-2+\epsilon_w)\hbar$, below the required floor whenever $\epsilon_w<1$. For example, $\epsilon_w=0.1$ requires both $\Delta I_2\le-1.9\hbar$ and $\Delta I_2\ge-0.1\hbar$. The summed energy equality, in contrast, is true by substitution of $\varepsilon_2=\varepsilon_w-2\varepsilon_1$; it does not validate angular closure or independently establish conservation.
+
+A second distinction is needed before summing the $I_a$: orbital action magnitudes of differently oriented binaries are not automatically signed angular-momentum components about one common axis. Finally, $\Delta E\approx\omega\Delta I$ requires a reduced Hamiltonian with $\omega=\partial H/\partial I$, fixed remaining variables, and a controlled finite-step remainder. Calling that relation a notation choice does not supply those assumptions. The text also uses $f$ as both a dimensionless state index and a frequency in $\Delta E\approx f\Delta A_{\mathrm{cycle}}$.
+
+**Smallest repair:** allow compensating signed internal increments, define either a common-axis angular component or the complete vector balance, and distinguish those components from nonnegative cycle actions. Use a state index such as $n$ and a separately defined frequency. Keep the table a guessed energy allocation until independent energy and angular accounts are supplied. **Grade:** derived incompatibility for the stated small-wake action interpretation; inferred ambiguity if “two steps” is intended to mean something else. **Falsifier:** a fully specified table satisfying all three action increments, the wake bound, and the per-binary sign bound for $\epsilon_w<1$ would refute the contradiction.
+
+#### E-3 — High: a sufficient positive-trace bound is treated as necessary
+
+**Location:** lines 1019–1044. **Type:** hard implication error, inherited from the baseline.
+
+Write the trace bracket as $B+C$, where $B=\zeta_{\mathrm{probe}}(1+\delta\mathcal M_0)$ and $C=\mathcal Z_{\mathrm{tf},ab}\delta\mathcal M_{\mathrm{tf}}^{ab}/3$. With positive overall prefactor, positivity requires $B+C>0$. The stronger bound $B>|C|$ is sufficient for either sign of $C$, not necessary for the measured sign. Thus failure of that stronger bound cannot by itself falsify the mass map.
+
+An algebraic example uses Euclidean coordinates, $\mathcal Z=\operatorname{diag}(2.8,0.1,0.1)$ and the dimensionless sea tensor $c_{\mathrm{eff},0}^2\mathcal M=\operatorname{diag}(2.8,0.1,0.1)$. Both are positive definite. Their isotropic parts are one and their trace-free parts are $(1.8,-0.9,-0.9)$. Hence $B=1$, $C=1.62$, and the actual trace bracket is $2.62>0$, although $1>1.62$ fails. The symmetrized response has positive diagonal entries $7.84,0.01,0.01$ up to the positive prefactor. This is a counterexample to the algebraic implication, not a certified sea state or a claim that this anisotropy lies in a weak-anisotropy approximation.
+
+**Smallest repair:** state the exact signed trace criterion, name $B>|C|$ a conservative sufficient bound, and classify its failure as loss of that guarantee. Positive trace also does not imply positive directional response in general; a tensor claim requires its own eigenvalue or quadratic-form condition. **Grade:** derived. **Falsifier:** a stated additional admissible-domain restriction that makes the stronger inequality necessary would change the assessment; no such theorem is supplied here.
+
+#### E-4 — High: the work and virial formulas omit their time and kinetic assumptions
+
+**Location:** lines 320–334. **Type:** incomplete mathematical identities, inherited from the baseline.
+
+Fixing the set of source identities does not make a delayed potential time independent. Even in the quadratic chart with $\mu_{\mathrm{arch}}\mathbf A=-\nabla U$, the chain rule gives
+
+$$
+\Delta K_\mu=-\Delta U+\int_{T_a}^{T_b}\partial_T U(\mathbf X(T),T)\,dT.
+$$
+
+The displayed $-\Delta U$ follows only when the explicit time/history contribution vanishes or is accounted for separately. A stationary receiver in a changing external scalar has zero displacement work but can have nonzero $\Delta U$. At general $K$, the displayed $\mu_K\mathbf A\cdot d\mathbf X$ still equals $dK$, but a gradient for the conjugate-momentum rate needs a fresh derivation; it is not established by the quadratic gradient identity.
+
+Likewise, $\langle2K-pU\rangle=0$ requires quadratic kinetic bookkeeping and a vanishing averaged virial endpoint term, in addition to a degree-$p$ potential. If $\dot{\mathbf p}=-\nabla U$ on a suitable reduced chart, then $d(\mathbf X\cdot\mathbf p)/dT=\mathbf V\cdot\mathbf p-\mathbf X\cdot\nabla U$. Homogeneity replaces the last term by $pU$, whereas $\mathbf V\cdot\mathbf p=2K$ is specific to the quadratic family. For example $K(s)=s^4$ gives $P(s)=4s^3/3$, hence $sP(s)=4K/3$, not $2K$.
+
+**Smallest repair:** give the complete chain-rule work identity, state the stationary/quadratic reduction explicitly, and retain the finite-window virial endpoint term before taking any periodic or long-time limit. **Grade:** derived calculus on the declared bookkeeping chart. **Falsifier:** an explicit source-history stationarity, kinetic, and endpoint hypothesis establishing the omitted terms are zero would discharge this finding.
+
+#### E-5 — High: finite-window energy flux omits particle crossings
+
+**Location:** lines 496–518; moving-window response target at lines 616–651. **Type:** incomplete balance law.
+
+$E_W$ explicitly sums kinetic energy only for particles currently inside $W$, but $\mathbf J_E$ is defined as causal-wake energy flux. When a particle crosses the boundary with nonzero kinetic proxy, the retained sum changes even without local work or a wake-energy transfer. In the distributional derivative of $K_a\mathbf1_W(\mathbf X_a)$, the boundary term is $K_a\mathbf V_a\cdot\nabla\mathbf1_W$. It must be balanced by mechanical transport. Timestep or mollifier refinement cannot remove an omitted physical crossing term. The momentum paragraph already includes assembly crossings; energy needs the corresponding definition.
+
+The later $W_A(T)$ also moves. Its transport must be relative to the boundary velocity, or the Reynolds transport term must be explicit. For a density and laboratory flux, the relative normal flux is $(\mathbf J_E-e_E\mathbf v_{\partial W})\cdot\hat{\mathbf n}$, with the analogous momentum correction.
+
+**Smallest repair:** define total energy flux to include mechanical, interaction, and wake transport without double counting, and specify fixed versus moving windows. **Grade:** derived control-volume bookkeeping. **Falsifier:** an explicit no-particle-crossing assumption or an existing definition of $\mathbf J_E$ that already contains the transport would remove the counterexample; the present energy-flux definition does neither. The fixed-window omission is present in the baseline.
+
+#### E-6 — High: the assembly and appendix totals discard undecomposed self-history energy
+
+**Location:** lines 795–807, 1286–1296, 1315–1327; compare lines 338–348 and 391–417. **Type:** incomplete ledger definition, inherited in substance.
+
+The chapter first requires kinetic, interaction, and wake-history entries with an explicit nonoverlap rule. Its assembly formula then contains kinetic energy, $\tfrac12\sum_{i\ne j}U_{ij}$, and coupling to the sea, with no internal self-history or remaining internal wake account. The half factor is justified for a deliberately symmetric pair-energy definition, but receiver-indexed delayed entries are not automatically the same mutual pair energy counted twice. The appendix similarly calls $K(r)+U(r)$ the total after defining $U$ as a branch-local scalar; a receiver-coordinate potential is not automatically the entire nonlocal conserved charge. A gauge choice cannot remove a time-varying history term.
+
+**Smallest repair:** state the exact internal pair/self/wake/sea partition and its provenance. If the appendix intentionally reduces the full charge to $K+U$, require a proof that all remaining history terms are included in that $U$ or constant on the reduced chart; otherwise label it a mechanical diagnostic and retain the omitted account. Cross-cell matching must compare the same complete energy. In the no-runaway discussion at line 447, also make explicit the corrected Master Equation's independence limit: a work-integral reconstruction alone tests bookkeeping, not an independently established conserved wake charge.
+
+**Grade:** derived distinction between the displayed sums and the chapter's earlier total; inferred missing construction. **Falsifier:** definitions explicitly absorbing every admitted self/root-history term into the named entries, with no double booking and the stated reduction proved, would discharge the issue.
+
+#### E-7 — Medium: Legendre compatibility does not identify primitive and medium speeds
+
+**Location:** lines 107–115. **Type:** unsupported implication, inherited from the baseline.
+
+The valid relation $P'(s)=K'(s)/s$ constrains the kinetic chart and its momentum. It contains neither a medium response law nor an assembly signal speed. Consequently it cannot derive $|c_{\mathrm{eff}}/c_K-1|\le\epsilon_{cK}$ across those different levels. For example a kinetic chart with a divergence at $c_K=2$ can be paired algebraically with an independent effective response scale $c_{\mathrm{eff}}=1/2$ in units $c_f=1$ without violating the conjugacy equation. This is a logical countermodel, not a physical assembly construction.
+
+**Smallest repair:** retain any same-scale comparison only as an additional, explicitly guessed matching hypothesis for a specified reduction, with a falsifier; do not call it a consequence of the Legendre calculation. Preserve the primitive unbounded-speed option and the independent sea-response construction. **Grade:** derived nonimplication from the displayed equations. **Falsifier:** an assembly reduction deriving the equality of the two scales would supply the missing bridge.
+
+#### E-8 — Medium: the mass shell does not by itself determine trajectory velocity
+
+**Location:** lines 1143–1195. **Type:** incomplete claimed equivalence, inherited from the baseline.
+
+The positive mass shell relates $E$ and $p$. It does not constrain a separately measured $v_{\mathrm{CM}}$ until the same effective dynamics proves $v_{\mathrm{CM}}=\partial E/\partial p=pc_{\mathrm{eff}}^2/E$, or an equivalent momentum-velocity relation. Thus the displayed gamma formulas are stronger than the one scalar mass-shell test. For an algebraic check with $c_f=1$, $c_{\mathrm{eff}}=1/2$, $M_0=1$, and $p=1/2$, the positive-shell energy is $\sqrt{1/8}$. Assigning an independent measured velocity zero does not violate that scalar equation, but it violates $p=\gamma M_0v$. The example diagnoses missing information, not admissible physical motion.
+
+**Smallest repair:** state the velocity relation, positive-energy branch, positive constant local speed, and fixed rest invariant as additional effective closure conditions before claiming equivalence. **Grade:** derived. **Falsifier:** a previously established velocity relation explicitly made an assumption here would close the gap.
+
+#### E-9 — Medium: emission density is confused with its reconstructed scalar
+
+**Location:** lines 213–225 and 274–282. **Type:** representation and regularity overclaim.
+
+The assertion that the ideal potential is necessarily a distribution supported on causal isochrons confuses the emission-time selector with the result after integrating emissions. The corrected [Master Equation local scalar derivation](../../../content/markdown/aaa/dynamics/master-equation.md#superposition-and-local-wake-geometry) supplies $C\operatorname{sgn}(D_t)/r$ on a regular moving-simple-root chart. For a stationary source with $c_f=1$ and retained history covering the required roots, $D_t=1$ and this scalar is $C/r$, smooth on an open receiver region away from the source. The delta distribution in the emission integral does not make its root-collapsed value a singular surface distribution on that region. Similarly, smoothing a selector alone does not prove smoothness of the full potential at a point-source singularity or for an uncontrolled infinite source sum.
+
+**Smallest repair:** separate emitted-surface distributions, integrated wake responses, and valid local scalar representatives; state separation, root, summability, and differentiation hypotheses. Retain global and regulator-dependent scalar constructions as open. **Grade:** derived regular-chart counterexample from current canon. **Falsifier:** an explicit alternative definition of $\Phi$ as the unintegrated emission distribution would change its mathematical type, but would then require a separate definition for the scalar used in the gradient and energy equations. The problematic representation sentences already occur in the baseline.
+
+#### E-10 — Medium: body prose asserts several results that its summary leaves open
+
+**Location:** lines 304–314, 767–782, 1127–1137, 1375–1387. **Type:** claim-grade inconsistency.
+
+The body says that a breather exchanges energy across a bounded cycle, that a sea provides constitutive relations, that the high-speed response yields the relativistic kinetic law, and that redistribution stabilizes only at discrete resonances. Elsewhere this same chapter correctly states that no stable sea-coupled assembly has been derived, quietness requires a controlled variance, conservation remains open, and discrete root counts do not quantize action. Those qualifications need to govern the assertions where made. In particular a large incoherent population does not by itself imply small variance, nearest-source dominance, or a bound breather.
+
+**Smallest repair:** state each as a proposed mechanism or conditional consequence and name its local premise. Preserve the stronger derived dot-product, conjugacy, and trace results. Do not turn the named hypotheses into either established recoveries or disproofs. **Grade:** inferred editorial mismatch, supported by the explicit internal contrasts; these overstatements survive from the baseline while the conversion improved several surrounding qualifications. **Falsifier:** a cited, applicable branch and response derivation establishing the stated behavior would justify stronger wording.
+
+#### E-11 — Medium: root parity is stated for unrestricted separator crossings
+
+**Location:** lines 1359 and 1463. **Type:** missing domain boundary in a topological claim, inherited from the baseline.
+
+An interior ordinary fold creates or destroys two simple roots of opposite signed degree, hence $\Delta N=\pm2$ and $\Delta D=0$ when all other roots remain retained. A root crossing a history-window boundary changes the retained count by one. For example $F(s,\lambda)=s-\lambda$ on the fixed open interval $0<s<1$ has zero roots for $\lambda<0$ and one for $0<\lambda<1$; its derivative is one throughout. No fold occurred. A singular coincident endpoint or higher degeneracy also requires its own classification.
+
+**Smallest repair:** restrict the parity row to certified interior fold events with nonzero second root derivative, transverse unfolding, and no endpoint crossing. Track boundary entries/exits separately from grouped channels. **Grade:** derived elementary root-count counterexample, consistent with the corrected Master Equation. **Falsifier:** an explicit definition restricting every separator in this table to that interior-fold class would remove the overbreadth.
+
+#### E-12 — Medium: the shielding measurement leaves its denominator and observable ambiguous
+
+**Location:** lines 820–842. **Type:** operational definition gap, inherited in substance.
+
+The “naive constituent sum” is not specified as unsigned or otherwise nonvanishing. For a neutral equal-polarity-count source, a signed monopole sum can be zero, making the shielding ratio undefined. A potential coefficient and an acceleration coefficient also have different radial powers: the elementary static scalar is proportional to $1/r$, while its radial gradient is proportional to $1/r^2$. They can be cross-checked after differentiation and common normalization, but cannot be interchanged as the same fitted coefficient without that map. A higher multipole also needs its own angular and radial basis.
+
+**Smallest repair:** define the reference ledger, require a positive denominator or return an undefined scalar, fix the measured quantity and multipole basis, and derive any potential-to-acceleration conversion. **Grade:** derived denominator and radial-scaling issues; inferred operational incompleteness. **Falsifier:** a local definition already specifying a nonzero reference and the measurement conversion would close the gap.
+
+#### E-13 — Medium: the entropy residual needs sign and window assumptions to imply its stated result
+
+**Location:** lines 686–717. **Type:** incomplete diagnostic contract.
+
+The residual is zero when $\Delta S_{\mathcal Q}\ge\int\mathcal D_{\mathcal Q}/(T_{\mathcal Q}+\varepsilon_T)\,dT'$. This implies nondecreasing entropy only if the integral is nonnegative. The paragraph does not state positivity of the temperature channel or dissipation rate and includes wake-boundary channels, which may be signed transport rather than nonnegative production. Algebraically, $\Delta S=-1$ and integrated signed rate $-2$ produce zero residual despite decreasing entropy. This is not a thermodynamic counterexample under positive dissipation; it identifies the assumptions the diagnostic needs. In addition, $W$ previously denotes a spatial region, but $\int_W dT'$ requires a time interval.
+
+**Smallest repair:** distinguish a spatial window from its observation interval, impose the intended positive-temperature and nonnegative-production assumptions, and keep entropy boundary transport separate if the window is not isolated. State precisely what a vanishing residual tests. **Grade:** derived inequality; inferred missing sign contract. **Falsifier:** definitions ensuring nonnegative production and a positive denominator on the declared time interval would discharge the implication gap. The formula and these omissions are present in the baseline.
+
+#### E-14 — Medium: several load-bearing terms and symbols remain unexplained
+
+**Location:** lines 7–11, 246–256, 391–417, 563–613, 849–905, 931–1017, 1061–1077, 1121–1123, 1294–1296. **Type:** required teaching and notation repair, not a request to simplify away mathematics.
+
+The chapter uses causal roots and isochrons before explaining the emission-time equation; invokes an affine partner chart and $J_p$ without introducing its geometry; and introduces $h^{ab}$, the tensor index range and contractions, $\theta$, $\lambda_A$, $\xi_A$, $\mathcal H_A$, $n$, $\chi_{\mathrm{sea}}$, and $\Gamma_N$ without enough local definitions. Terms such as “flatness,” “fibers,” and “exactness condition on one forgetting map” are used for scalar constancy and energy partition without defining the additional mathematical structure those terms normally require. “Tier 2 shielding” and a legacy reference-attractor gate are process vocabulary in reader prose. The gauge-matching paragraph references table entries before their definitions without explaining what is being matched.
+
+**Smallest repair:** define the causal event, the Euclidean index metric, the constitutive arguments actually needed, and the energy partition in place. Use direct descriptions such as constancy across the comparison family and a sum of disjoint energy accounts unless a genuine geometric construction is supplied. Replace workflow labels with their physical prerequisites. Add one worked signed-power example and one finite-window or tensor example where they expose the meaning of the formulas. Optional presentation choices include a diagram or a short notation table; the missing definitions themselves are not optional. **Grade:** inferred conformance judgment against edition 1.0 and the current edition 1.1. **Falsifier:** a complete first-use explanation in the reviewed text would defeat a specific omission. The passages largely predate the conversion; removing the old inline explanation label did not resolve all of their teaching burden.
+
+#### E-15 — Low: the opening wake link names a nonexistent anchor
+
+**Location:** line 3. **Type:** confirmed reader-navigation defect.
+
+The link ends in `foundations/architrino.md#the-emitted-wake`. A targeted heading/explicit-ID scan followed by manual inspection of the current Architrino heading inventory finds no such anchor. The current relevant section is [The wake is geometry, not fluid](../../../content/markdown/aaa/foundations/architrino.md#the-wake-is-geometry-not-fluid), which explains the expanding sphere and its point emission center.
+
+**Smallest repair:** point the opening link to that existing section, after checking its final wording. **Grade:** measured against current target headings and explicit IDs, not a claim that the target file is absent. **Falsifier:** an explicit alias or renderer routing rule resolving `the-emitted-wake` would overturn the navigation finding. The link was added between the baseline and current Energy source; this review does not attribute the missing destination to a particular editor or commit without inspecting its historical transition.
+
+#### Preservation, source support, and verification
+
+The scratch validator `.tmp/crw005-energy-review/validate.mjs` first passed known quoted-math, link, canonical display-parser, and KaTeX cases, then checked Energy. It found 499 accepted math expressions, 95 display equations, 95 viewer links with identical IDs and order to the baseline, and 117 local-link occurrences whose file targets exist. Eighty-nine display formulas are byte-identical; six differ. Those six are two acceleration-first substitutions, the corrected redshift deficit sign, removal of an unjustified nonnegativity assertion, replacement of an unproved kinetic maximum, and an explicit additive effective-potential shift. Each changed display was reviewed in the baseline diff. They are defensible mathematical corrections, not exact preservation; this assurance record does not silently classify the conversion as character-for-character equation preservation or recommend restoring the errors.
+
+The same baseline diff strengthens or clarifies several claim boundaries: the kinetic scalar, sea response, shielding proxy, ground-state language, and universal action increment. These changes are scientifically preferable but are substantive exceptions to the original no-claim-change conversion rule. Historical conversion rows remain historical evidence; this review supplies the current qualified disposition.
+
+The known-case-first link/order screen `.tmp/crw005-energy-review/check-links-order.mjs` checked 11 Markdown fragment occurrences. Ten match a current heading or explicit ID; the remaining opening wake anchor was manually confirmed as E-15. This was source-level resolution, not a browser navigation test. Its TOC traversal verified Energy immediately after Master Equation and Entropy next. `node scripts/validate-equation-mapping-links.mjs` passed its 23 registered curated links; that instrument does not cover all 95 Energy corpus-viewer IDs, so the latter count and identity comparison come from the scoped validator rather than that global curated-link result.
+
+The separate arithmetic script `.tmp/crw005-energy-review/mathematical-checks.mjs` first passed known dot-product and trace cases, then reproduced the signed-power, positive-trace, action-bound, mass-shell nonimplication, and entropy-sign examples recorded above. These computations check the written algebra, not assembly existence, dynamics, conservation, or stability. The proofs and counterexamples are retained in this durable record so scratch files are not their only evidence.
+
+The chapter's Hamilton and Noether references are appropriate historical sources for canonical mechanics and variational symmetry, but neither supplies a delay-compatible conservation theorem for this postulated acceleration law. This pass retains the reference verification limits already established in the Master Equation review: bibliographic identity and accessible primary material, not a claim of full verification of every historical theorem against the delayed model. The present findings rely on explicit algebra, calculus, current canon, and scoped source checks; no additional literature-mining campaign or new reference requirement was inferred from the two-entry bibliography. The guessed physical constructions need their own future derivations, not decorative citations.
+
+**Current campaign state:** Packet 1 contributes 14 reviewed paths; Packet 2 now has recorded reviews of Master Equation and Energy, giving 16 of 190 reviewed and 174 remaining by the CRW-005 disposition inventory. Master Equation's 16 accepted corrections remain closed. Energy's E-1 through E-15 are proposed and unapplied; review coverage is not correction completion. The next unread Dynamics document is Entropy, subject to the one-document instruction. The substantive Foundations campaign and manuscript retain their separate scope.

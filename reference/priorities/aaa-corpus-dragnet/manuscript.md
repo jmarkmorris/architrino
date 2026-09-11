@@ -2,7 +2,7 @@
 
 ## 1. The purpose of corpus correlation
 
-### 1.1 Finding relationships that can be checked
+### 1.1. Finding relationships that can be checked
 
 A growing knowledge corpus can contain related arguments whose connection is not explicit, several accounts of one concept, incompatible terminology, or references that no longer identify the responsible document. Corpus Dragnet is the repository's method for finding such relationships and making them reviewable. Its subject includes published explanations and internal research, design and operational material. The method asks what relationship can actually be observed, what each source is authorized to establish, and who can decide whether a change is warranted.
 
@@ -10,7 +10,7 @@ An observable relationship is more specific than thematic resemblance. Two passa
 
 The method does not grant a search worker general authority over the corpus. An accepted execution item defines the inspected scope, permitted changes, responsible owners and completion conditions. A pass may be read-only, or that item may explicitly permit bounded implementation and disposition. Neither form permits an independent change to a scientific claim grade, publication status or document ownership beyond its accepted scope. A useful relationship can therefore be recorded while the decision about its consequences remains open.
 
-### 1.2 Correlation is not scientific corroboration
+### 1.2. Correlation is not scientific corroboration
 
 Two documents can agree because one copied the other, because both use a common argument, or because each independently establishes a result. These are different evidentiary relationships. Repetition alone cannot identify which one applies. Removing a repeated passage can also remove a definition needed for standalone reading or erase the distinction between an original result and a later consumer.
 
@@ -18,7 +18,7 @@ The same limit applies to several scouts returning the same concern. Agreement a
 
 ## 2. The roles of sources
 
-### 2.1 What a document can own
+### 2.1. What a document can own
 
 A source role identifies the kind of authority a document has in a particular finding. A canonical published source owns its reader-facing explanation. A strategy or execution ledger owns the relevant workstream's direction or task state. A current architectural decision or operating procedure governs only the decision or procedure it explicitly addresses. An internal supporting document can carry a derivation, proposal or retained observation, with the grade and limitations it declares.
 
@@ -26,7 +26,7 @@ A generated derivative has a different role from its authored source. A historic
 
 Source roles must be confirmed for the actual relationship under review. Placement inside an active priority directory does not by itself make every supporting statement established theory. Conversely, a historical literal may be essential to reproducing an earlier record even when it differs from current terminology. The method therefore routes a finding to an existing owner and preserves the qualification that makes each source useful.
 
-### 2.2 Evidence grades and confidence answer different questions
+### 2.2. Evidence grades and confidence answer different questions
 
 Scientific claim grade describes the basis of a claim: derived, measured, inferred or guessed. A terminology or organization finding can be scientifically not applicable while still carrying a measured string inventory and an inferred editorial consequence. Confidence describes how securely the finding's path-specific relationship and source roles have been established. It does not upgrade the physics contained in either source.
 
@@ -36,7 +36,7 @@ Confidence can also differ within one finding. The presence of a phrase may be d
 
 ## 3. Designing a bounded pass
 
-### 3.1 Fixing the inspected population
+### 3.1. Fixing the inspected population
 
 A pass begins with a declared population of sources. The retained baseline uses tracked regular files in the current checkout, records the commit and any modified tracked paths within the resolved set, and excludes untracked and ignored material. Its published root is the authored textbook corpus. Its internal roots cover architectural decisions, design, learning, operations, priorities and research records. The exact root and exclusion lists remain in the [pass chronology](work-log.md).
 
@@ -46,7 +46,7 @@ Exclusions are part of the observation. The baseline separates generated and der
 
 The first completed correlation pass added explicit exclusions for Braid Program and Borg. Its reported total therefore describes that selected population. The earlier scout survey used another boundary. Comparing their file totals cannot establish that one covered the other or performed a more complete review.
 
-### 3.2 Choosing methods and inspecting their limits
+### 3.2. Choosing methods and inspecting their limits
 
 The retained pass combined exact terminology searches, normalized paragraph comparison, relative-link checks, former-owner path searches and a check against an already routed URL inconsistency. Each instrument produced a different kind of candidate. Exact matches located wording; paragraph groups suggested duplication; link parsing suggested unreachable destinations. None of these outputs settled the final interpretation without source context.
 
@@ -56,7 +56,7 @@ The link pass produced apparent missing targets from mathematical bracket-and-pa
 
 An existing recommendation can also explain a match. The recorded apex-versus-subdomain URL inconsistency had already been measured and routed by an operations inventory. Re-entering it as a new finding would have duplicated a disposition rather than discovered an unowned problem. The general requirement is to inspect the role and prior route of a candidate before deciding what its apparent novelty means.
 
-### 3.3 What a negative result establishes
+### 3.3. What a negative result establishes
 
 A pass that retains no findings records the inspected roots, exclusions, snapshot, methods and confidence threshold in its chronology, leaving the recommendations ledger unchanged. Its conclusion is bounded: no qualifying finding was found within that declared population and method. It does not establish that the entire corpus lacks duplication, terminology drift or missing connections.
 
@@ -64,7 +64,7 @@ The same discipline applies to an excluded endpoint. A Markdown-only survey cann
 
 ## 4. From a finding to a decision
 
-### 4.1 A durable recommendation
+### 4.1. A durable recommendation
 
 A recommendation preserves enough information for a later reader to reassess it: the pass and receipt, exact locations, source roles and claim grades, observable relationship, supporting evidence, confidence and uncertainty, bounded consequence and suggested owner route. Its status distinguishes untriaged, accepted, rejected and superseded findings. The [recommendations ledger](analysis/recommendations.md) retains these records after triage rather than deleting them.
 
@@ -72,7 +72,7 @@ The suggested route does not create a task or authorize an edit. The disposition
 
 When an accepted item authorizes implementation, the resulting edit must still remain within its declared relationship and scope. A wording repair does not independently validate an equation. A link repair does not promote the target's claim grade. The evidence record should make both the positive change and its limit inspectable.
 
-### 4.2 Terminology as a contextual classification
+### 4.2. Terminology as a contextual classification
 
 The first retained example concerned two technical passages whose delayed-interaction terminology conflicted with the repository's language rule. The recorded disposition used finite-memory terminology in one passage and receiver-delayed/transmitter-future-directed wording in the other. The source reports preservation of the equations, local derived grades and proof scope. This is an example of a bounded editorial correction, not a new derivation or a fresh verification of those passages here.
 
@@ -84,7 +84,7 @@ The reader-facing example concerned an undefined organizational metaphor. The so
 
 ## 5. Reading historical survey evidence
 
-### 5.1 A decision index is not a current scientific inventory
+### 5.1. A decision index is not a current scientific inventory
 
 The [retained scout report](evidence/luna-corpus-dragnet-review-2026-07-31.md) collects fifty-nine historical findings across claim boundaries, repository hygiene, validation coverage, task/blocker reporting and source evidence. It reports five scouts and a Markdown-only survey of 968 files. Its verified label means that a cited Markdown fact was confirmed within that survey; candidate and stronger-review labels retain additional uncertainty. This manuscript does not rerun that survey or authenticate its underlying scout returns.
 
@@ -92,7 +92,7 @@ The scientific entries repeatedly distinguish displayed geometry, prescribed his
 
 The report also records exclusions: fourteen Markdown citations outside its allowed roots and 965 non-Markdown endpoints were not inspected. Its legacy wake-speed pilot remains historical diagnostic evidence and cannot support a current normalized conclusion without the required rerun. Repeating the report's warning neither performs that rerun nor creates a current physical result.
 
-### 5.2 Chronology, disposition and verification
+### 5.2. Chronology, disposition and verification
 
 The local records preserve several stages of work. The strategy's current-summary paragraph still describes the first recommendation as untriaged, and the brainstorm refers to completed baseline and pass objects as present in the execution ledger. The actual retained queue has no rows, while later recommendation dispositions and dated chronology entries record three accepted resolutions. These texts must be read with their roles and dates intact; the older summaries do not create executable tasks or reverse later recorded decisions.
 

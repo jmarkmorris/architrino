@@ -2,7 +2,7 @@
 
 ## 1. What a Dark Candidate Must Explain
 
-### 1.1 Darkness is a channel relation
+### 1.1. Darkness is a channel relation
 
 A dark-sector candidate in $\mathbb{A}\mathbb{A}\mathbb{A}$ is a proposed assembly, release channel, transport mode or conversion history whose ordinary visible exposure is limited. That description does not establish a new species. The physical questions are what persists, which interaction channels remain exposed, how the object is prepared and transported, and what can terminate its darkness.
 
@@ -10,7 +10,7 @@ The [candidate source packet](dark-sector-photon-like-mode.md) explores assembli
 
 Hawking radiation supplies an observer-level comparison target, not an architrino-level premise. Likewise, a gravitational redshift description does not itself determine the evolution of internal binary radii or speeds. The candidate must acquire those relations from admitted assembly histories, delayed interactions and the relevant material or Noether sea response. An effective astronomical description may constrain that derivation without replacing it.
 
-### 1.2 A complete candidate record
+### 1.2. A complete candidate record
 
 The [strategy](priorities.md) retains topological and analogue-medium comparisons only within a fuller record,
 
@@ -29,7 +29,7 @@ The candidate registry therefore needs explicit internal ordering, exposure, med
 
 ## 2. Photon-Adjacent Release and Internal Evolution
 
-### 2.1 Five distinct candidate families
+### 2.1. Five distinct candidate families
 
 The source proposes five families. They address different missing mechanisms and should not be merged merely because each can be called photon-like.
 
@@ -43,7 +43,7 @@ The source proposes five families. They address different missing mechanisms and
 
 Compactness, large retained internal action and high reactivity are source hypotheses. Escape from a steep effective well alone proves none of them. Charge neutrality also does not imply zero radiative or higher-order exposure. Each proposed cancellation must be evaluated in its actual channel on the same assembly record.
 
-### 2.2 An internal state is more than an observed frequency
+### 2.2. An internal state is more than an observed frequency
 
 The proposed record is
 
@@ -66,7 +66,7 @@ is meaningful as written only on a route for which the radial parameter distingu
 
 The five source thresholds are synchronized binary speeds; equal, phase-locked interleaved radii; a cadence-ratio change such as $4:2:1$ toward degeneracy; a photon-exposure crossing; and a medium-response threshold that routes the packet into radiation, transport, reaction or another branch. Their approximate equalities require independently chosen tolerances and a persistence window. Three equal instantaneous speeds do not establish equal radii, phase locking or complete-history return.
 
-### 2.3 A threshold needs an evolution law
+### 2.3. A threshold needs an evolution law
 
 As a conditional description, let a declared branch diagnostic be $b[H_T]$, a function of the admitted history $H_T$, and let $b_\star$ specify a candidate boundary. Define
 
@@ -80,7 +80,7 @@ This conditional argument clarifies why redshift-triggered re-entry remains open
 
 ## 3. Re-Entry Requires a Complete Event
 
-### 3.1 What must leave the incoming record
+### 3.1. What must leave the incoming record
 
 The source's event map is
 
@@ -98,7 +98,7 @@ Calling the event an assembly shower is only descriptive until its identities an
 
 The useful observational prediction comes from one common release and event model. Independently adjusting X-rays, radio emission, spectral lines and background production would erase that constraint. A candidate that fits a visible output only by omitting medium update, remnant state or another required channel has not closed the event.
 
-### 3.2 A background requires a population and a transfer map
+### 3.2. A background requires a population and a transfer map
 
 The source's most speculative extension is a cosmic population of early strong-field releases whose later conversion and thermalization contribute to a CMB-like background. A possible source class is not yet a population history, and production of ordinary photons does not establish a thermal spectrum.
 
@@ -108,7 +108,7 @@ A proposed source spectrum can fail after propagation even if its local release 
 
 ## 4. Little Red Dots as a Comparative Test
 
-### 4.1 What the retained literature signals actually support
+### 4.1. What the retained literature signals actually support
 
 The photon-like packet records seven literature signals. The table preserves their source-time content as attributed summaries from that packet. The underlying papers have not been freshly read or verified for this manuscript, and these summaries do not establish a current observational consensus.
 
@@ -124,7 +124,7 @@ The photon-like packet records seven literature signals. The table preserves the
 
 The original packet retains the retrieval links. Compact, red, high-redshift appearance and black-hole-adjacent interpretations motivate comparison; none independently supports a new dark-sector mode.
 
-### 4.2 A joint pattern and its alternatives
+### 4.2. A joint pattern and its alternatives
 
 The proposed comparison combines eight classes of observations: continuum compactness, luminosity and abundance; Balmer emission or asymmetry; X-ray weakness relative to inferred power; radio behavior; hot dust or a dense cocoon; clustering or halo occupation; redshift distribution and lower-redshift analogues; and any cumulative CMB, reionization or nucleosynthesis effect.
 
@@ -136,7 +136,7 @@ Failure has several separate forms: no residual survives conventional comparison
 
 ## 5. WIMP, Supersymmetry and Axion-Like Comparisons
 
-### 5.1 A WIMP vector tied to one candidate
+### 5.1. A WIMP vector tied to one candidate
 
 The [WIMP packet](wimp-susy-benchmark.md) draws on the exposed Jungman, Kamionkowski and Griest arXiv record for *Supersymmetric dark matter*, `hep-ph/9506380`. It explicitly reports access limited to abstract, metadata, contents and a source note saying the full review was not submitted there. That is the retained packet's source boundary; this manuscript does not claim a fresh full-paper review.
 
@@ -153,7 +153,7 @@ The entries organize candidate mass, relic abundance, annihilation, scalar and a
 
 One candidate must declare which quantities it predicts, which it only bounds and which null results it must satisfy. A fit to abundance alone does not identify a WIMP or neutralino, and a benchmark vector with unknown entries is not a completed detection test. No current numerical abundance or detection limit is newly acquired in this synthesis.
 
-### 5.2 A supersymmetry analogy needs an actual transformation
+### 5.2. A supersymmetry analogy needs an actual transformation
 
 The source preserves the conjecture that a transformation of inner and middle binary variables might admit a supersymmetry-like comparison. Its proposed theorem target is
 
@@ -167,7 +167,7 @@ The effective gauge projection would remain fixed while the recovered spin compa
 
 These conditions have not been established by a transformation on admitted assemblies. Even satisfying the displayed necessary targets would not by itself recover the full algebra, dynamics or phenomenology of supersymmetry. Identifying middle and inner binaries with supersymmetric partners therefore remains a conjecture, not ontology.
 
-### 5.3 Axion-like residuals and their domain
+### 5.3. Axion-like residuals and their domain
 
 The axion-like comparison retains
 

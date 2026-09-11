@@ -83,6 +83,12 @@ This is an explicit supported-scope disposition under the accepted finite closeo
 
 Pending selected runs; no completion is inferred from this review alone.
 
+## September 10 bounded verification update
+
+The two actionable required content-integrity findings from the current checkout were repaired: the textbook reading copies were regenerated from the changed Master Equation source, and the receiver-event notation in `content/markdown/aaa/dynamics/master-equation.md` was made explicit with $T_r$ and $\partial_{T_r}$. `node scripts/build-textbook-md-pdf.mjs --check` and `node scripts/check-master-equation-terminology-migration.mjs` now pass.
+
+The bounded `node scripts/check-content-integrity.mjs` run completed in 29.2 seconds with the broad 330-file sweep skipped: 33 required checks passed and one required owned-compute task-closeout test failed at sandbox `spawn EPERM`. This is an environment-limited verification result, not a full OPS-024 acceptance or a scientific result. The remaining process-control failure requires an operator-machine or equivalent host run before the selected verification can be called fully green.
+
 ## September 8 semantic batch results
 
 **G9: ✓ Done statement-level review and current admission; ◐ Partial owner verification.** The four-file owner run `898d4860-35c5-4717-a074-c1d3b217c29f` closes exit one in 14.519 seconds, with 27 tests: 26 pass, one fails, no skips/cancellations. All methodology-admission failures clear; the new wrong-review-token negative and existing changed-source negative pass. The remaining assertion checks the uninstantiated calibration's frozen implementation composition: expected `7cceed67…`, actual `c03cdbd3…`. After a known SHA control, rehashing every declared implementation file from start-state HEAD yields the same `c03cdbd3…`, with zero implementation files changed by this batch. Thus this mismatch was present at the reviewed start state; its earlier first transition remains unresolved. The calibration still declares no terminal v2 receipt or factual packet. No frozen implementation hash is advanced. Owner: calibration/Braid Program; revisit when that input-dependent calibration is selected and its exact composition/receipt is reviewed.

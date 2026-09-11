@@ -2,7 +2,7 @@
 
 ## 1. Repository authority and client access
 
-### 1.1 Retrieval as a derived interface
+### 1.1. Retrieval as a derived interface
 
 A software client needs to find an authored explanation, read its exact text, identify its source, and follow its declared relationships. These are retrieval operations. Their successful execution does not establish the truth of the retrieved statement. The Architrino Model Context Protocol adapter separates these obligations by treating the repository as the authority and the service as a bounded interface to a validated snapshot of that repository.
 
@@ -10,7 +10,7 @@ The architecture has three distinct responsibilities. Authors maintain the repos
 
 The implemented retrieval vocabulary comprises `search`, `read`, `topics`, `neighbors`, and `walk`. All five operate on an immutable validated snapshot. Their contracts exclude repository editing, external actions, model calls, local-tool access, credential access, live repository scanning in the request path, and durable user state. Resources and prompts are not exposed. This exclusion applies to the retrieval interface; a transport process may authenticate itself without making its credentials available to the retrieval child.
 
-### 1.2 Visibility and authority are separate attributes
+### 1.2. Visibility and authority are separate attributes
 
 A source record carries its identity, route, source inputs, class, authority role, visibility, and provenance. These fields answer different questions. A route says where to find a source. Visibility says whether an authorized request may receive it. Authority describes the role that source can play in an answer. None of these fields substitutes for the others.
 
@@ -20,7 +20,7 @@ These distinctions prevent an attractive route, convenient excerpt, or high lexi
 
 ## 2. Constructing an immutable source snapshot
 
-### 2.1 Exact content, search, graph, and metadata
+### 2.1. Exact content, search, graph, and metadata
 
 The snapshot supplies four coordinated views. The content view holds the exact selected source text. The search view holds deterministic retrieval fields. The graph view records explicit typed edges and their evidence sources. The metadata view links exact equations, figures, and other declared source metadata. The early architecture diagram emphasizes search, graph, and metadata, but exact content is indispensable: a selection hash alone cannot answer a snapshot-only `read` request.
 
@@ -30,7 +30,7 @@ The generated graph is intentionally narrow. Document-to-section `contains`, rea
 
 Equation extraction preserves exact display-source spans. Figure extraction admits a local Markdown image only when its referenced asset exists, retaining the exact alternative text and asset identity. The presence of an exact TeX span or reachable image establishes source linkage. It does not certify an equation, interpretation, or illustration as scientifically correct.
 
-### 2.2 Hashes, ordering, and the freshness boundary
+### 2.2. Hashes, ordering, and the freshness boundary
 
 Source-file hashes identify raw bytes; selection and content-view identities identify the selected material. Generated-file and directory digests bind the declared generated inputs. Canonically normalized views receive their own hashes, and an enclosing snapshot hash binds the bundle without including itself. Source, edge, metadata, alias, and keyword ordering is normalized so that input-array order does not create a different semantic snapshot. Build time is excluded from the deterministic fingerprint rather than allowed to defeat repeatability.
 
@@ -40,7 +40,7 @@ Freshness has two distinct scopes. A local snapshot can be internally current ag
 
 The local full-corpus artifact explicitly names a local source state. It does not relabel an editing checkout as accepted `main`. Publication writes a complete candidate to a same-directory temporary file before atomic rename. Serving reads the validated bundle at startup and operates from memory thereafter; it does not inspect the repository anew for each request.
 
-### 2.3 What source coverage measurements establish
+### 2.3. What source coverage measurements establish
 
 The small representative fixture contains six source records, two graph edges, one equation, and one figure. Its negative cases exercise missing paths, duplicate identifiers, missing or wrong-class canonical parents, priority authority inflation, public visibility leakage, false equation and figure provenance, stale source hashes, and altered view hashes. These are checks on the documented construction boundary, not a complete corpus survey.
 
@@ -50,7 +50,7 @@ The September client receipts describe a different 2,042-record snapshot, with 1
 
 ## 3. Deterministic retrieval and bounded continuation
 
-### 3.1 Query semantics
+### 3.1. Query semantics
 
 `search` ranks eligible records using declared fields and fixed rules. Normalization uses Unicode NFKC, lowercasing, and collapsed whitespace. Exact-phrase and all-term matching retain deterministic field weights and authority preference, with a stable source-identifier tie-break. A score is retrieval bookkeeping, not a probability of truth or a scientific claim grade.
 
@@ -60,7 +60,7 @@ The benchmark then found every one of its eight reviewed source targets within t
 
 The separate proposal to add embeddings was declined because no residual reviewed failure remained for it to solve. That is a decision about the measured need, not a universal assertion that semantic retrieval is useless. A later proposal requires a significant surviving failure, a defined model and privacy boundary, freshness and cost measurements, visibility enforcement, provenance, fallback behavior, and unchanged source authority.
 
-### 3.2 Reading and enumeration
+### 3.2. Reading and enumeration
 
 `read` resolves a source identifier or route and returns exact content from the snapshot, with optional metadata. It does not substitute a search teaser or reopen repository files. Pagination uses Unicode character offsets so continuation does not split a surrogate pair. `topics` enumerates directly addressable, non-routing source records under the authorized visibility scope; excluding generated and scene routes from this enumeration does not exclude them from search.
 
@@ -70,7 +70,7 @@ Continuation binds the snapshot, tool, visibility scope, normalized non-cursor a
 
 Typed responses distinguish invalid requests and cursors, missing or excluded sources, forbidden visibility, incompatible or stale snapshots, and response-limit failures. Error responses contain no invented result data. An HTTP exchange can succeed while the application returns typed `not_found`; a missing source is not necessarily a transport failure.
 
-### 3.3 Traversing declared edges
+### 3.3. Traversing declared edges
 
 `neighbors` follows declared incoming, outgoing, or bidirectional edges of selected types. `walk` composes that operation through bounded breadth-first traversal. Its depth is one to three, its materialized non-origin node ceiling is 256, and its page ceiling remains twenty records. Nodes are visited once, the origin is excluded from returned nodes, and cycles do not cause indefinite traversal.
 
@@ -82,7 +82,7 @@ A separately authored cyclic and converging graph fixture provides an independen
 
 ## 4. Transport without expanded authority
 
-### 4.1 Stateful stdio and stateless HTTP
+### 4.1. Stateful stdio and stateless HTTP
 
 The local stdio adapter implements initialization, initialized notification, static tool discovery, tool calls, ping, and typed JSON-RPC errors. It uses newline-delimited UTF-8 messages and reserves standard output for protocol traffic. An apparently idle process can be waiting for input; lack of a banner is not a failure. Success and tool-level errors carry structured content with a matching text fallback. Tool annotations declare read-only, nondestructive, idempotent, closed-world behavior and forbid task augmentation.
 
@@ -92,7 +92,7 @@ The local Streamable HTTP adapter shares the same tool engine and definitions bu
 
 This describes the retained implementation contract. It is not a new claim about the latest protocol revision, client configuration syntax, or SDK recommendation. Those external conditions require their own current verification before a future deployment choice.
 
-### 4.2 Authorization, load, and safe events
+### 4.2. Authorization, load, and safe events
 
 The local HTTP launcher binds only to IPv4 loopback and requires a temporary bearer credential of at least sixteen characters, supplied through the environment. Constant-time comparison, an explicit read scope, exact supplied-origin checks, and rejection of query-string credentials provide a local authorization boundary. An invalid credential produces 401, insufficient scope produces 403, and an invalid supplied origin produces 403 before tool execution. A native client omitting Origin still requires authorization. This hook is not OAuth conformance.
 
@@ -100,7 +100,7 @@ The policy ceilings are 65,536 request bytes, 32,768 response bytes, a 10,000-mi
 
 Safe events are constructed from an allowlist. They can include request identity, a keyed principal pseudonym, tool name, typed status, HTTP status, duration, byte counts, and snapshot identity. They exclude credentials, raw query text, tool arguments, source content, response bodies, private prompts, and provider payloads. Retained tests inject recognizable secret, query, source-id, and content markers to check that these markers do not enter the event stream. This is a scoped negative test; the allowlist is the continuing contract.
 
-### 4.3 Liveness, readiness, and atomic activation
+### 4.3. Liveness, readiness, and atomic activation
 
 Liveness answers whether the process is running. Readiness additionally requires a structurally valid fresh snapshot with the configured identity, the configured authorization and origin controls, rate limiting, safe logging, and a compatible rollback candidate. Public health responses disclose only status. A running process serving a stale or mismatched snapshot must be unavailable for retrieval.
 
@@ -110,7 +110,7 @@ The local rollback fixture has distinct fixture provenance but the same content 
 
 ## 5. Independent client evidence
 
-### 5.1 Adapter tests and real consumers answer different questions
+### 5.1. Adapter tests and real consumers answer different questions
 
 A repository-authored transcript can show that the adapter returns expected messages. An independent SDK or named client can expose interoperability assumptions that the transcript missed. This distinction mattered when the first real Codex initialization rejected `tools/list`: the adapter disallowed the standard optional object-valued `_meta` field. The correction admitted that metadata on list and call requests while continuing to reject malformed metadata, unsupported top-level parameters, and task augmentation.
 
@@ -118,7 +118,7 @@ The retained official TypeScript SDK `1.29.0` results cover fixture stdio, full-
 
 The original subprocess check itself required a coverage repair: listing four tools and successfully calling only search and a missing read did not establish successful calls to all four. The strengthened transcript explicitly exercised each successful primitive. A later saved-configuration Codex result similarly illustrates evidence priority: the tool event reported three topics even though the model's prose incorrectly said the count was unavailable. The recorded structured event supports the count.
 
-### 5.2 Codex and ChatGPT at their recorded scopes
+### 5.2. Codex and ChatGPT at their recorded scopes
 
 The September Codex CLI `0.152.0` receipts use ephemeral read-only sessions, command-line HTTP configuration, ignored user configuration, and temporary bearer credentials. The earlier receipt covers a six-source fixture built in memory from corrected source selections. Its contemporaneous generated-drift and unmeasured-full-corpus statements remain historical. A later same-day receipt covers the 2,042-record full corpus and records successful topics, ontology search, exact ontology read, a declared `contains` neighbor, and typed missing-source read.
 
@@ -130,7 +130,7 @@ Neither client's local result establishes the other's behavior, a remote authent
 
 ## 6. Public remote service and private outbound transport
 
-### 6.1 The unadvanced public endpoint contract
+### 6.1. The unadvanced public endpoint contract
 
 A public remote adapter must preserve the same retrieval semantics while independently satisfying network, authorization, load, logging, health, and rollback obligations. The documented design places a loopback process behind TLS ingress and a configured trusted proxy, requires exact non-wildcard origins, and treats the service as an OAuth protected resource with audience validation and a single read scope. Query tokens and token passthrough are forbidden.
 
@@ -138,7 +138,7 @@ The public contract remains fixture-only, with remote readiness and public-deplo
 
 An actual remote release also needs an accepted-main snapshot, a separately published compatible rollback version, staging rollback evidence, and measured host behavior under the bounded load. The original hosting list is an unverified candidate ordering rather than a selected provider or cost result. Geometry, limits, and a successful local request do not measure service availability or expenditure.
 
-### 6.2 A private tunnel preserves the retrieval boundary
+### 6.2. A private tunnel preserves the retrieval boundary
 
 The separately specified private transport uses an outbound connection between a local tunnel client and authorized OpenAI clients, with the existing stdio server behind it. It creates no inbound public endpoint and does not advance the public OAuth/HTTPS contract. Public repository content remains the only exposed source scope; “private” describes the connection boundary, not permission to expose hidden development material.
 
@@ -148,7 +148,7 @@ The manager's accepted-main preflight requires a clean non-ignored tree, local H
 
 The control-plane key enters only the allowlisted tunnel environment. Alternate profiles, endpoints, logging and UI switches, fallback credentials, and Node injection options are excluded. The generated child command removes the key before starting repository retrieval code. Administration remains on loopback, browser auto-opening and remote UI are disabled, and durable receipts retain neither credential values nor tunnel identifiers. The ignored runtime profile and local log necessarily hold connection state and have their own local owner.
 
-### 6.3 Connectivity and real remote acceptance
+### 6.3. Connectivity and real remote acceptance
 
 Local health cannot establish connectivity. The source records an invalid-credential experiment in which both health and readiness remained positive while control-plane requests failed with 401. Accordingly the manager requires four facts: the supervised process identity exists, liveness passes, readiness passes, and a recent successful control-plane polling metric is present. An old positive poll is not current connection evidence.
 

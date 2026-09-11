@@ -2756,7 +2756,7 @@ An important open problem is to map the phase-space attractor landscape for self
 
 **Symmetry:** With opposite polarities and symmetric retained histories, both accelerate toward their common midpoint. Write $\mathbf X_1(T)=-x(T)\mathbf e$ and $\mathbf X_2(T)=x(T)\mathbf e$, with $x>0$ on the interval.
 
-**Equations:** The simultaneous separation is $r(T)=2x(T)$. The separation consumed by a partner hit is instead $r_p(T)=x(T)+x(T_t)$, where $r_p=c_f(T-T_t)$. When each receiver has the same single retained partner branch, symmetry gives
+**Equations:** The simultaneous separation is $r(T_r)=2x(T_r)$. The separation consumed by a partner hit is instead $r_p(T_r)=x(T_r)+x(T_t)$, where $r_p=c_f(T_r-T_t)$. When each receiver has the same single retained partner branch, symmetry gives
 
 $$
 \frac{d^2r}{dT^2}
@@ -2946,7 +2946,7 @@ The Master EOM is a **state-dependent DDE** (delay depends on the solution itsel
 - **Adaptive time-stepping** (small $\Delta T$ when roots are close or numerous)
 - **Event detection** for exact root crossings (optional; improves accuracy in sharp-hit regime)
 
-**Resolution and stability:** For a fixed emission event the gap $g(T,T_t)=r(T,T_t)-c_f(T-T_t)$ satisfies $\partial_Tg=-D_r$. Away from a stationary crossing, its local width is traversed on the scale $\eta/|D_r|$, so resolving a finite-width contribution requires steps small relative to that scale or an event treatment that resolves the crossing independently. At $D_r=0$, higher derivatives determine the local traversal scale. For example, with $c_f=1$, a receiver approaching a stationary emission center at speed ten has $|D_r|=11$; the rule $\Delta T<\eta/c_f$ alone can miss the crossing. Emission-time quadrature similarly needs control of $D_t$ and singular-root neighborhoods. These are resolution conditions, not an integrator-stability theorem; convergence and stability must be checked for the chosen history interpolation, quadrature, and time-stepping method.
+**Resolution and stability:** For a fixed emission event the gap $g(T_r,T_t)=r(T_r,T_t)-c_f(T_r-T_t)$ satisfies $\partial_{T_r}g=-D_r$. Away from a stationary crossing, its local width is traversed on the scale $\eta/|D_r|$, so resolving a finite-width contribution requires steps small relative to that scale or an event treatment that resolves the crossing independently. At $D_r=0$, higher derivatives determine the local traversal scale. For example, with $c_f=1$, a receiver approaching a stationary emission center at speed ten has $|D_r|=11$; the rule $\Delta T_r<\eta/c_f$ alone can miss the crossing. Emission-time quadrature similarly needs control of $D_t$ and singular-root neighborhoods. These are resolution conditions, not an integrator-stability theorem; convergence and stability must be checked for the chosen history interpolation, quadrature, and time-stepping method.
 
 #### Emission-to-Receiver Provenance Tracking
 

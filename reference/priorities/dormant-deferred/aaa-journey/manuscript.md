@@ -2,7 +2,7 @@
 
 ## 1. What a Discovery History Can Establish
 
-### 1.1 A reconstruction with a declared source boundary
+### 1.1. A reconstruction with a declared source boundary
 
 The [theory-history packet](aaa-theory-history.md) reconstructs a path from early Architrino and NPQG-era writing to the later formulation of $\mathbb{A}\mathbb{A}\mathbb{A}$. It brings together an account of an earlier archive survey, dated source leads, recurring ideas, terminology changes and a recorded reflection on discovery method. This manuscript synthesizes that local reconstruction. The underlying WordPress posts, registry and clean-text archive have not been freshly examined for this account.
 
@@ -10,7 +10,7 @@ That boundary determines what the narrative can establish. A dated entry in the 
 
 Discovery history and scientific justification answer different questions. The former asks how a concept became visible, what pressure made it useful, and why an alternative was retained or abandoned. The latter asks whether definitions, dynamics and evidence support the resulting claim. A persuasive story of discovery cannot fill a missing derivation, and a later derivation would not by itself authenticate an earlier recollection.
 
-### 1.2 Repeated construction rather than inevitable revelation
+### 1.2. Repeated construction rather than inevitable revelation
 
 The packet uses crystallization and annealing as its working metaphor. Early writing proposes a small set of structures; later work connects them, revisits weak joints and replaces interpretations that no longer carry the argument. The metaphor describes an inferred pattern in the reconstruction. It does not establish that the surviving structure was inevitable or that the discarded branches were all tested exhaustively.
 
@@ -18,7 +18,7 @@ The recurring motifs are two polarities, binaries, nested neutral assemblies, ad
 
 ## 2. Parsimony as a Search Constraint
 
-### 2.1 What the constraint permits
+### 2.1. What the constraint permits
 
 The origin capture attributes the initial search pressure to dissatisfaction after a period of studying particle physics. Its productive response was a deliberately narrow starting point: Euclidean void, absolute time and architrinos, without additional primitive machinery introduced for convenience. In the reconstruction, this constraint shaped the search for assemblies and effective behavior.
 
@@ -26,7 +26,7 @@ Parsimony here is a rule for proposing explanations. It asks whether a new prope
 
 The distinction matters at the boundary with established physics. General relativity, quantum theory, thermodynamics, the Standard Model and cosmological descriptions appear as effective comparisons or recovery targets in the later framing. Their successful behavior must be accounted for at the relevant level; it cannot be assumed as a primitive mechanism and then presented as an output of the search.
 
-### 2.2 Exploration and public claim discipline
+### 2.2. Exploration and public claim discipline
 
 The June 28 origin note distinguishes an exploratory process from the presentation of a scientific claim. During exploration, an investigator can pursue a speculative branch, ask whether it carries a useful idea and remove unnecessary structure as the consequences become clearer. A complete test protocol need not precede every tentative association.
 
@@ -36,7 +36,7 @@ The source records the image of pruning and chiseling as a recollection of this 
 
 ## 3. The Development Sequence in the Retained Account
 
-### 3.1 Search frame and assembly grammar, 2018–2020
+### 3.1. Search frame and assembly grammar, 2018–2020
 
 The reconstruction places the opening search in 2018. Its early black-hole material treats extreme environments as possible sites of decomposition and recycling, while late-2018 writing develops a physical-medium intuition. These are historical hypotheses in the packet. They do not establish a black-hole mechanism, a recycling cosmology or a realized medium.
 
@@ -46,7 +46,7 @@ The same period introduces the historical Noether core, described as three neste
 
 In 2020, the account adds the personality-layer language: additional constituents around a neutral core, with a proposed connection between nested binary inventory and fermion generations. This connects previously separate ideas about internal structure, external response and particle classification. It remains a proposed assembly interpretation, rather than a derivation of the generation count or a proof that a particular inventory persists through a decay.
 
-### 3.2 Measurement roles and delayed dynamics, 2021–2022
+### 3.2. Measurement roles and delayed dynamics, 2021–2022
 
 The 2021 material develops distinct inner, middle and outer binary roles and presents the binary as a variable clock and ruler. It also connects apparent or shielded energy, reaction bookkeeping and strong-sector interpretation. These connections explain why the same proposed assembly structure became relevant to several recovery questions; they do not make one successful comparison evidence for all of them.
 
@@ -56,7 +56,7 @@ The 2022 phase makes path history more prominent. The retained account describes
 
 Strong-sector speculation also becomes more detailed: relationships among internal binaries are compared with gluon structure, and vortex-like couplings are proposed as an interpretation of nucleon behavior. A resemblance between counts or a diagram of coupled vortices cannot establish the required algebra, confinement, transport or spin accounting. The historical value is that those recovery questions become identifiable.
 
-### 3.3 Assembly chronology and medium response, 2023–2024
+### 3.3. Assembly chronology and medium response, 2023–2024
 
 The 2023 account reinterprets familiar cosmological epoch labels as proposed local assembly processes. Binary formation, additional constituent attachment, quark-related arrangements and medium formation become parts of a conjectured reaction chronology. The chronology is a source of research leads. Borrowing an epoch name does not import the corresponding standard cosmological law into the substrate or demonstrate an alternative history of the universe.
 
@@ -66,7 +66,7 @@ The medium account becomes more explicit through the idea of ambient, nearly shi
 
 The same year's relation among graviton, Higgs and binary labels remains a historical proposal. Extending an inventory analogy from fermions to a spacetime-medium interpretation does not establish those particle identifications or a new primitive ingredient.
 
-### 3.4 Effective descriptions and explicit obligations, 2025–2026
+### 3.4. Effective descriptions and explicit obligations, 2025–2026
 
 The packet characterizes much of the 2025 material as effective-theory framing, sometimes mediated by AI-generated explanation. Such an explanation can organize a comparison, but its fluency is not independent evidence for the comparison's correctness.
 
@@ -110,7 +110,7 @@ This is an interpretive map, not a permission to replace tokens mechanically in 
 
 ## 6. Historical Perspectives and Responsible Attribution
 
-### 6.1 Distinct kinds of source
+### 6.1. Distinct kinds of source
 
 The [Journey strategy](priorities.md) allows real statements, AI-imagined reconstructions, edited notes, pasted material and mixtures to be staged as historical perspectives. Those categories have different evidential roles and must be identified before interpretation begins.
 
@@ -118,7 +118,7 @@ An imagined historical voice is not a quotation, endorsement or record of what a
 
 A useful perspective can ask why available ingredients failed to crystallize into a proposed architecture, how successful effective theories shaped later habits, or which conceptual opportunities appear different in retrospect. Those are historical interpretations requiring their own support. Present success or confidence cannot establish that a particular person would have endorsed the theory or that an earlier investigator should necessarily have found it.
 
-### 6.2 Narrative scope and scientific limits
+### 6.2. Narrative scope and scientific limits
 
 The source distinguishes polished public commentary from transcripts or staged debates and directs perspectives toward a common question set. No new perspective, impersonation or historical quotation is created here. Exact naming, shared-prompt and destination conventions remain in the strategy as editorial support.
 

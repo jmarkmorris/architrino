@@ -1,12 +1,12 @@
 # Operating the Architrino Public Surface
 
-## Purpose and authority
+## 1. Purpose and authority
 
 AAA Operations keeps the public applications, deployment path, generated artifacts, support routes and maintenance workflows reliable, inspectable and affordable. It is an operational lane, not a theory or solver-design lane. Its policies establish how an operational claim is measured and owned; its contracts and procedures remain the executable authorities; its evidence files retain dated measurements; and its work log preserves completed records and chronology.
 
 The academic style guide governs explanatory quality, while the operator explanation standard governs operator-facing response and discussion capture. The EOM solver remains the sole solver authority. Operational work may protect product quality, deployment reliability and evidence integrity, but it may not create a second solver path, change a scientific claim grade, or turn a display result into a physical result.
 
-## Operating policies
+## 2. Operating policies
 
 GitHub Pages is treated as static hosting unless a service backend is explicitly introduced. Browser runtime compute, browser heap, GPU memory and browser storage are measured separately from Pages transfer, repository storage and GitHub Actions usage. Public and review output targets 4K UHD, 3840 by 2160, while display resolution remains separate from solver authority.
 
@@ -18,9 +18,9 @@ Public feedback is privacy-safe by construction. Diagnostic detail is optional a
 
 Generated artifacts retain their source ownership and declared retention policy. The one-day Pages deployment handoff is the current artifact producer; future diagnostics, captures, benchmarks and review bundles require bounded classes, retention and size ceilings. Raw scientific output and sensitive material are prohibited by default. Generated files may be prepared by their owners, but an ordinary source-edit campaign does not silently regenerate or force-add them.
 
-The internal reference surface uses maintainable section numbering where the document class supports it, while queue identifiers remain distinct from reader-facing section numbers. Project skills keep shared rules in maintained instruction owners; discovery packages point to those owners rather than becoming competing policy sources. The repository skills policy requires monthly and change-triggered maintenance, but this cadence does not create an automatic scheduled job.
+The internal reference surface uses maintainable section numbering for priority manuscripts, while queue identifiers remain distinct from reader-facing section numbers. The 1-based hierarchy is applied within each manuscript from `##` through deeper headings; the document title remains unnumbered. Project skills keep shared rules in maintained instruction owners; discovery packages point to those owners rather than becoming competing policy sources. The repository skills policy requires monthly and change-triggered maintenance. Recurring work remains a live queue item with its next due date so it remains visible; each completed pass is recorded in the work log, and this cadence does not create an automatic scheduled job.
 
-## Guidance and workflow decisions
+## 3. Guidance and workflow decisions
 
 Operator-facing responses follow the operator explanation standard: answer first, explain at the needed depth, capture substantive discussion in the owning document, and close substantive responses with numbered possible actions and recommendations. The academic style guide owns explanatory writing. Working documents, reader-facing corpus files, application content and protected historical records retain separate owners and write boundaries. Routine discussion capture does not authorize reader-facing edits, application changes or publication.
 
@@ -28,11 +28,11 @@ The primary review surface is the document that owns the full treatment. A publi
 
 The sequential Office Document Standards Review is complete for its declared population: 292 Markdown documents and 166 other files, with safe guidance updates to 41 Research Office and 8 Learning Office documents. Its historical evidence, append-only records, manuscripts, production prompts, artwork and QA decisions remain protected. The technical brief and ten legacy role documents were reconciled against their live scientific owners; the brief now distinguishes the full vector acceleration residual from radial, causal-root and playback diagnostics. These are completed records, not a current product or scientific acceptance claim.
 
-Internal section numbering remains a queued operational improvement. It must define suitable document classes and a maintainable method while keeping work-queue identifiers distinct from reader-facing numbering and preserving the existing publication pipeline. The adopted skills architecture has nine project-scoped skills, with maintained instruction owners, discovery pointers, and monthly or change-triggered review. That cadence is a policy boundary, not an automatic scheduled job.
+Internal section numbering is complete for the 46-file priority-manuscript population. It keeps work-queue identifiers distinct from reader-facing numbering and leaves the existing publication pipeline unchanged. The adopted skills architecture has nine project-scoped skills, with maintained instruction owners, discovery pointers, and monthly or change-triggered review. That cadence is a policy boundary, not an automatic scheduled job.
 
 The active operational queue owns detailed work such as GitHub Presence and Community guidance review, internal reference section numbering, release-gate profile coverage, binding-corruption review, periodic skill maintenance and other accepted controls. Queue entries, completion criteria and pending decisions remain authoritative in [work-queue.md](work-queue.md); they are not reproduced here as a second task ledger.
 
-## Current measured baselines
+## 4. Current measured baselines
 
 The following statements summarize current baseline conclusions. Their dated evidence files and versioned contracts are the measurement authorities; this manuscript does not replace those receipts or claim a fresh measurement.
 
@@ -54,7 +54,7 @@ The webapp release gate requires content, graph, size, visual, browser, accessib
 
 The dependency and public-security policy records the patched Mermaid dependency, a zero-vulnerability post-change lockfile audit, full-commit pinning for external GitHub Actions, weekly npm and Actions review, and replacement of the automatic Liberapay widget with a user-selected link. Vendored assets are hash-bound with explicit update dispositions. CSP, HSTS, domain verification, DNSSEC, CAA, SPF, DKIM and DMARC each retain an observation and owner action or defer condition; no account, DNS, mail, certificate, hosting or production response follows from the baseline alone.
 
-## Decisions and boundaries
+## 5. Decisions and boundaries
 
 The current operational decisions are to retain static hosting, keep resource classes measured separately, target 4K public and review output, require evidence before hosting changes, and preserve one solver authority. These decisions are compatible with future change when a named trigger and owner accept it; they are not permanent claims that no change will ever be needed.
 
@@ -64,7 +64,7 @@ The operations lane does not independently promote internal research into reader
 
 The shelved idea of rendering agent responses in a side panel is not an active task. The file-based equation-mapping surface addresses the related need for readable, symbol-supported explanations written to a known path. Reopening a chat-response surface would require a measurable file-retention risk, an owner, a completion condition and a recovery behavior; it should not be treated as an automatic extension of the existing reference surface.
 
-## How to read operational evidence
+## 6. How to read operational evidence
 
 An operational result must name its instrument, scope, version and boundary. A budget checker can establish that its declared profile stayed within its declared limits; it cannot establish production-user performance. A byte-identity audit can establish equality for the inspected registry and records; it cannot establish future deployment identity. A security inventory can establish observed controls and owner actions; it cannot prove the absence of every vulnerability outside its declared dependency and source population.
 

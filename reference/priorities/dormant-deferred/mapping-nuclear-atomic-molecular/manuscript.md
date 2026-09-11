@@ -2,7 +2,7 @@
 
 ## 1. A Hierarchy of Physical Assemblies
 
-### 1.1 The shared explanatory form
+### 1.1. The shared explanatory form
 
 Nuclei, atoms, bonds and biomolecular records introduce larger organizations of matter, not new primitive substances. In $\mathbb{A}\mathbb{A}\mathbb{A}$, their proposed explanation begins with localized assemblies, polarity, Euclidean space, absolute time and delayed path-history interaction. The master equation supplies acceleration. Effective potentials, masses, orbitals, reaction coordinates and statistical readouts belong to higher-level descriptions that must be recovered from those histories.
 
@@ -10,7 +10,7 @@ Every example therefore needs more than a recognizable final shape. It combines 
 
 The [recovery synthesis](brainstorming.md) places these questions in one hierarchy. None of the developed molecular examples supplies a retained lower-level bond, turnover or repair history. Their completed contribution is a source-bound comparison design. The nuclear examples additionally contain reduced calculations and a proposed source-support chain, whose limited mathematical and physical scope remains explicit below.
 
-### 1.2 State, transition and observation
+### 1.2. State, transition and observation
 
 A generic candidate contains participating assembly identities, causal-wake histories, exclusion or interface geometry, the local sea at a declared coarse-graining scale, a retained branch or basin, an event account, a finite window and detector response. The state and its observation are distinct. A measured line, crystal structure or reaction yield constrains an effective record; it does not directly reveal the primitive mechanism that produced it.
 
@@ -18,7 +18,7 @@ The comparison layer can use standard quantum, nuclear or biochemical mathematic
 
 Shared environmental response is essential. Nuclear, atomic and molecular examples consume a common constitutive Noether sea response when their regimes overlap. They do not derive private versions to fit each line, molecule or residue. Numerical substrate instances use $c_f=1$; the historical MeV, femtometre, spectroscopic and biochemical values below are observer comparisons with their own unit dictionaries, not different numerical wake-speed assignments.
 
-### 1.3 Accounting without duplication
+### 1.3. Accounting without duplication
 
 For a declared event, a proposed assembly-level account has the form
 
@@ -32,7 +32,7 @@ This is a conditional conservation requirement, not an independently supplied co
 
 ## 2. Nuclear Residuals and the Iron-Group Maximum
 
-### 2.1 Binding above the nucleon scale
+### 2.1. Binding above the nucleon scale
 
 The effective nuclear energy decomposition is
 
@@ -59,7 +59,7 @@ $$
 
 with channel label $c$. Signs, range, spin/orientation dependence and saturation require source support. Borrowing a familiar nuclear-potential shape and renaming its terms does not recover them.
 
-### 2.2 Paired corridor relaxation
+### 2.2. Paired corridor relaxation
 
 Let $\Gamma_{N_1}$ and $\Gamma_{N_2}(r)$ be closed color-corridor graphs of two color-singlet nucleon envelopes. The proposed residual is the difference between paired and isolated constrained energies:
 
@@ -75,7 +75,7 @@ The minima require finite lower bounds, admissible configurations and attainment
 
 A finite residual must decay as the two accepted singlet envelopes separate. That decay and the absence of an open-color far field are related obligations, but not identical assertions. Section 3 gives the conditional bound that could connect them.
 
-### 2.3 What the reduced corridor row establishes
+### 2.3. What the reduced corridor row establishes
 
 The [first reduced evaluation](nn-corridor-overlap-first-evaluation.md) uses
 
@@ -104,7 +104,7 @@ At the six source-sampled radii from 1 to 4 fm, the chosen reduced parameters pr
 
 Gaussian profiles decay at large distance but are not compactly supported. Calling their interaction finite range describes an effective decay scale, not exact disappearance beyond a finite radius. Nor does a small sampled tail establish a uniform asymptotic color-field bound. The initial orientation extraction also remains below accepted top-level branch-interface evidence until its full no-open-color and common-account support is supplied.
 
-### 2.4 Saturation and the cusp
+### 2.4. Saturation and the cusp
 
 The [iron-group comparison](iron-group-binding-cusp-recovery.md) uses a broad target window
 
@@ -142,7 +142,7 @@ The graph version limits local degree and per-nucleon corridor capacity, rewards
 
 The recorded default toy sweep places its maximum at $(A,Z)=(62,28)$ and reports a falling high-mass tail and favorable representative heavy split. That is a source-reported model result, not an independently verified nuclear prediction. The same record explicitly withholds promotion because required branch-interface, confinement and weak-channel evidence remains missing. A shared global coefficient set avoids one kind of element-by-element tuning but does not by itself derive its coefficients or provide an independent reference.
 
-### 2.5 Fusion, fission and surviving constituents
+### 2.5. Fusion, fission and surviving constituents
 
 For a symmetric split of a reduced Coulomb term,
 
@@ -157,7 +157,7 @@ The source's required negative cases remain substantive: failure to bind the deu
 
 ## 3. Finite Tails, Projection Bounds, and Evidence Scope
 
-### 3.1 A conditional route to no open color
+### 3.1. A conditional route to no open color
 
 On one declared source domain, define
 
@@ -183,7 +183,7 @@ The implication is elementary once one uniform finite constant and the same-doma
 
 The source's exponential-tail route fixes a uniform large-distance envelope, a corridor weight and a decay-versus-weight-growth inequality. Its normalized support constants and coefficient-exclusion witnesses remain in the detailed packet. They are not measurements of a physical nucleon size or a new calculation here. Tail limits, finite overlap, local singlet support, a same-event account and the physical projection must still be joined before this implication can establish a no-open-color result for an actual retained family.
 
-### 3.2 Idempotence and norm control
+### 3.2. Idempotence and norm control
 
 An idempotent projection is not necessarily an orthogonal projection. On a Euclidean two-dimensional space,
 
@@ -198,13 +198,13 @@ The norm follows from $PP^{\mathsf T}=\operatorname{diag}(1+a^2,0)$. Thus idempo
 
 The [retained projection-support record](../../../../scripts/nuclear-atomic/open-color-projection-surface-support-retained-evidence.v1.json) assigns a normalized finite audit surface and unit projection bound while explicitly withholding the full no-open-color and event conclusions. Its recorded acceptance is a support-level repository disposition. The counterexample above qualifies what follows mathematically from its idempotence wording; it does not rewrite that record or certify its unresolved physical operator.
 
-### 3.3 Variational extraction and refinement
+### 3.3. Variational extraction and refinement
 
 The proposed confinement-tension extraction is an infimum of a source-bound functional over admissible fields and geometric variables. A claimed minimizer needs suitable existence assumptions, such as a nonempty compact admissible class and a proper lower-semicontinuous functional, or an appropriate coercive weak-compactness argument. Lower bounds and stationarity alone do not prove attainment or global minimality.
 
 Agreement at two resolutions is a bounded comparison. It does not prove convergence as resolution tends to zero, and replaying a retained value through the same producer is not an independent reference. The extraction must preserve the same transverse stiffness, excitation potential, density, delay, axis and response inputs while carrying its variational certificate and refinement domain. Accepted input rows cannot substitute for that extraction.
 
-### 3.4 Partial support and the unresolved whole
+### 3.4. Partial support and the unresolved whole
 
 The nuclear sources distinguish four families. Branch-interface evidence supplies orientation and exchange; confinement supplies scales, envelopes and finite residuals; weak channels supply beta-stability and reaction provenance; retained-window sea response supplies density/compression behavior. The last is reported as the only promotion-eligible family in the reduced binding record. This source-reported status does not establish the other three or independently validate the provider's physics.
 
@@ -214,7 +214,7 @@ The weak-event sea update is especially easy to confuse with the retained-window
 
 ## 4. Radioisotope Decay and Heat
 
-### 4.1 A selected alpha branch
+### 4.1. A selected alpha branch
 
 The [Pu-238 example](radioisotope-worked-example-pu-238.md) follows an evaluated observer event,
 
@@ -228,7 +228,7 @@ The local source records an observer half-life of 87.7 years and two principal a
 
 The parent is a proposed metastable nuclear basin with an escape route. Its radioactivity is not explained by heat, lattice vibration or stored scalar action units. Heat is a later consequence of energy deposition, and the surviving nucleons retain their deeper internal histories.
 
-### 4.2 Effective branch consistency
+### 4.2. Effective branch consistency
 
 Using the source's mass-adjustment comparison value, the excited-branch account gives
 
@@ -250,7 +250,7 @@ $$
 
 Combining the recorded 28.98% feeding with this split gives about 0.04059% gamma intensity per parent decay, compared in the source with the evaluated 0.0392(8)% row. That is a consistency comparison within the evaluated branch and its uncertainties. It does not derive the E2 transition, internal conversion, photon carrier or alpha escape. Gamma, conversion electron, X-ray and Auger outcomes must retain their branching and relaxation provenance rather than all being counted as simultaneous copies of the same transition energy.
 
-### 4.3 Heat is an ensemble and material readout
+### 4.3. Heat is an ensemble and material readout
 
 The familiar effective power relation is
 
@@ -263,7 +263,7 @@ under the constant-rate ensemble comparison and a declared deposition fraction. 
 
 For a resolved history, product kinetic energy decreases as energy enters material or other channels. At each chosen endpoint, the account includes remaining carrier energy and cumulative exported/deposited contributions once. It may not add the alpha's initial kinetic energy to all the heat later produced from that same energy. The same care applies to daughter excitation before and after its de-excitation. Ground-state nuclear gamma and conversion rows can be zero without asserting that subsequent material or atomic relaxation emits nothing.
 
-### 4.4 Escape probability and rate
+### 4.4. Escape probability and rate
 
 The proposed microscopic target has the approximate form
 
@@ -277,7 +277,7 @@ The missing physical record must supply the parent basin, alpha-like separatrix,
 
 ## 5. Atomic Labels and Detector Records
 
-### 5.1 Effective orbital mathematics
+### 5.1. Effective orbital mathematics
 
 The standard orbital address is
 
@@ -311,7 +311,7 @@ $$
 
 giving 2, 6, 10 and 14. Standard configurations and noble-gas shorthand organize the effective occupancy record. These capacities remain an exclusion/spin recovery target; repeating them in an encoding is not their primitive derivation. An atomic $\ell=0$ state can coexist with an independently recovered spin-half record, because atomic envelope angular momentum and internal assembly spin are different readouts.
 
-### 5.2 From one preparation to an outcome distribution
+### 5.2. From one preparation to an outcome distribution
 
 The [orbital bridge](atomic-orbital-structure-spectra-bridge.md) proposes one nuclear/electron assembly record with causal histories, exclusion envelope, coarse-grained sea, preparation/readout window and detector model. Its proposed projector should produce a distribution on an outcome space associated with that window. Write that space as $\mathcal X_W$ and its reference measure as $\nu_W$:
 
@@ -325,7 +325,7 @@ $$
 
 The time window indexes the record experiment; it is not silently the outcome integration domain. If outcomes include detection times, the chosen outcome space must say so. The basin, finite-window measure and projector remain unconstructed. The effective Born distribution cannot be inserted as a primitive law or used to define the very basin weights that are later claimed to predict it.
 
-### 5.3 Joint orbital recovery and notation limits
+### 5.3. Joint orbital recovery and notation limits
 
 One carrier must recover angular regularity and closure, radial node/scale behavior under refinement, orbital/spin separation, multi-electron capacity and configuration exceptions, spectral differences and detector statistics. Spectra additionally require preparation, photon event, recoil and apparatus provenance. A fitted line family with separate parameters for each transition does not meet that condition. Withheld configurations or apparatus contexts are necessary to distinguish prediction from a label table.
 
@@ -335,13 +335,13 @@ The private historical EOC notation re-encodes already known capacities and digi
 
 ## 6. A Molecular Bond and Its Transitions
 
-### 6.1 Molecular hydrogen as a joint target
+### 6.1. Molecular hydrogen as a joint target
 
 The [hydrogen-molecule design](h2-molecular-bond-event-ledger.md) selects the effective $X\,{}^1\Sigma_g^+$ ground state of $\mathrm H_2$. Its candidate record contains two proton assemblies, two electron assemblies, their causal histories, a joint exclusion boundary, sea response, bond branch, event account, observation window and apparatus. A molecular label alone supplies none of that dynamics.
 
 The local source retains NIST/CODATA comparison values for equilibrium separation, vibrational and rotational constants and a ground-state dissociation energy. These are critically compiled observer records with the source's stated provenance, not newly verified measurements here. In particular, the 4.4781 eV ground-state dissociation benchmark includes its rovibrational reference convention; it is not automatically the depth of an electronic potential measured from its minimum. The source's symbol $D_e$ for a centrifugal-distortion constant must also remain distinct from a similarly named dissociation-well depth.
 
-### 6.2 Occupied equilibrium and spectroscopy
+### 6.2. Occupied equilibrium and spectroscopy
 
 For the effective internuclear curve, the local target is
 
@@ -363,7 +363,7 @@ $$
 
 With the retained source constants, the latter is $4158.541\,\mathrm{cm^{-1}}$. It is a derived difference in a truncated spectroscopic wavenumber expansion, not a separately measured transition or an exact all-level formula. Conversion to energy uses the declared observer frequency–energy dictionary. Rotational, rotation–vibration and centrifugal-distortion comparisons must come from the same bond state and angular-momentum account.
 
-### 6.3 Formation, breakup and a withheld molecule
+### 6.3. Formation, breakup and a withheld molecule
 
 Formation begins with two source-bound neutral hydrogen records and a declared collision and disposal channel; the final molecule must share the branch used in the ground-state comparison. Dissociation begins with that same molecule and a specified deposition channel, then produces two neutral hydrogen records with a complete account. Energy, momentum, angular momentum, radiation/material output, recoil, sea and apparatus cannot be hidden in the bond label.
 
@@ -371,7 +371,7 @@ A withheld HD or $\mathrm D_2$ comparison applies the same constitutive and proj
 
 ## 7. Catalysis as a Reusable Molecular History
 
-### 7.1 Carbon conversion and proton reset
+### 7.1. Carbon conversion and proton reset
 
 Human carbonic anhydrase II provides a source-bound comparison for
 
@@ -385,7 +385,7 @@ The source combines crystallography, isotope-exchange kinetics and mutants. It r
 
 The retained interpretation does not require a completed static water chain in every structure or make His64 the sole possible route. A lower-level explanation must recover the measured separation without hard-coding residue names into reaction rates.
 
-### 7.2 Temporal paths and variational proposals
+### 7.2. Temporal paths and variational proposals
 
 The temporal order is written explicitly as
 
@@ -399,7 +399,7 @@ The arrows denote linked source/provenance stages, not an imported primitive rea
 
 The source proposes selection from admissible retained paths by a native action functional. This remains a candidate variational interface. Neither the action nor the admissible set is provided, and a physical stationary-action principle would not by itself imply a global minimum. A minimizing path additionally needs existence, constraint and attainment support. The effective biochemical mechanism identifies before-and-after comparisons; it cannot define the winning primitive path by assumption.
 
-### 7.3 Return, controls and repeated use
+### 7.3. Return, controls and repeated use
 
 Let $\mathcal Q_{\mathrm{cat}}$ retain the enzyme conformation, zinc coordination, hydration class and readiness while projecting away declared exported products and bath microstate. The proposed return condition is
 
@@ -418,7 +418,7 @@ The design thus identifies a reusable molecular mechanism that could fail severa
 
 ## 8. DNA Repair and Record Integrity
 
-### 8.1 What must be preserved
+### 8.1. What must be preserved
 
 The [CPD photolyase example](cpd-photolyase-record-integrity-ledger.md) selects repair of a cis-syn cyclobutane dimer joining two adjacent thymine bases. The record-facing state is
 
@@ -432,7 +432,7 @@ The entries identify bases, strand order, pairing records, backbone continuity/o
 
 This is a physical record definition, not a separate information substance. Removing a visible distortion is insufficient if the bases were substituted, inverted or detached. Irrelevant solvent differences may be projected out only while the molecular features required for identity and function remain testable.
 
-### 8.2 Source-resolved stages
+### 8.2. Source-resolved stages
 
 The comparison sequence is
 
@@ -451,7 +451,7 @@ The local source reports time-resolved serial crystallography with 18 snapshots 
 
 A separate source used a bent lesion-bound complex and synchrotron-induced cleavage at 100 K. That excitation context is not relabeled as an ordinary blue-light turnover. A third, T7-polymerase source supplies a functional witness of lesion-dependent progression, misincorporation or bypass. It constrains damage consequences independently of the photolyase mechanism, and does not imply that every damaged record universally stops every polymerase.
 
-### 8.3 Integrity, reset and functional discrimination
+### 8.3. Integrity, reset and functional discrimination
 
 For preserved identity and duplex-facing fields $K$, define normalized component discrepancies with predeclared tolerances and take
 

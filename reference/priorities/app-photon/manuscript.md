@@ -2,7 +2,7 @@
 
 ## 1. The role of the visualization
 
-### 1.1 A candidate pair and an explanatory instrument
+### 1.1. A candidate pair and an explanatory instrument
 
 The Photon and Polarization Visualization app studies a prescribed candidate: two coaxial, contra-rotating planar Noether braids translated along a common axis. Each braid contains independently enabled Inner, Middle and Outer binary layers. Its diagrams make the source geometry visible, while its analysis follows delayed source histories to a declared Virtual Observer and reconstructs a transverse diagnostic. The geometry is supplied to the calculation. Its appearance on screen does not show that the equations of motion retain it as a freely propagating photon.
 
@@ -10,7 +10,7 @@ This distinction determines the meaning of every output. A numerical causal root
 
 The [app contract](priorities.md) records implemented behavior, continuing product requirements and open physical questions separately. This exposition follows that distinction. Statements about implementation and tests are attributed to the retained local records; no fresh application execution or independent verification of the scientific owners is supplied here. Literal interfaces, control ranges, historical findings and source identities remain in the [source coverage](analysis/manuscript-source-coverage.md).
 
-### 1.2 Prescribed analysis and production histories
+### 1.2. Prescribed analysis and production histories
 
 The shared prescribed-history interface composes three declared history kinds: linear transmitter histories, moving-circular transmitter histories, and moving-circular same-transmitter histories. Photon supplies constrained app state to this interface. The interface is a display and reference capability; it does not accept arbitrary history functions or become a second production solver.
 
@@ -18,7 +18,7 @@ Production-authoritative histories, causal-root ledgers, rejected-root reasons, 
 
 ## 2. Geometry, coordinates and time
 
-### 2.1 The two braid views
+### 2.1. The two braid views
 
 Propagation is along the positive absolute-space x axis. The transverse plane has y and z axes. The trailing braid appears on the left of the face-on display and rotates counter-clockwise; the leading braid appears on the right and rotates clockwise. These roles are declared in state, rather than inferred from an arbitrary screen location. Each active binary contributes a red positrino and a blue electrino on opposite sides of its circular orbit.
 
@@ -33,7 +33,7 @@ $$
 
 Here the trailing role has rotation sign $\sigma_s=+1$ and the leading role has $\sigma_s=-1$. The phase offset $\phi_{s\ell}$, frequency $f_{s\ell}$ and radius $R_{s\ell}$ belong to the particular braid layer; enabling or disabling it changes both its markers and its contribution rows. The whole face-on braid does not rotate as a rigid image.
 
-### 2.2 Absolute histories and the comparison chart
+### 2.2. Absolute histories and the comparison chart
 
 Let the declared pair separation be nonnegative. The trailing and leading offsets in the moving chart are
 
@@ -61,7 +61,7 @@ The observer's offset remains an input; placing it at the leading center is a po
 
 The retained separation contract makes absolute history the authoritative app diagnostic for pair separation. Co-moving results are explicitly comparison-only. This authority concerns which app calculation interprets the separation control; it does not establish a physical photon separation.
 
-### 2.3 Speed controls and temporal windows
+### 2.3. Speed controls and temporal windows
 
 The app distinguishes the branch signal speed from the photon-channel translation speed. Direct controls specify their ratios to the wake speed separately. A second, provisional Lorentz-factor chart derives both controls from a supplied factor. That chart is an app parameterization, not a derived map from Noether sea state. The sources leave final local-speed authority blocked on such a source-bound physical input; no constitutive formula is supplied by this manuscript.
 
@@ -73,7 +73,7 @@ The field-fit window is a third temporal choice: the slowest enabled layer's com
 
 ## 3. Causal roots of a moving apparatus
 
-### 3.1 The arrival equation
+### 3.1. The arrival equation
 
 For each enabled source and reception time, the app solves the distance-delay equation for positive delays:
 
@@ -108,7 +108,7 @@ $$
 
 The fixed-magnitude qualification matters. With a general off-axis observer, the transverse separation can depend on source phase and hence on the unknown delay; the same expression is then an implicit relation, not an explicit solution. Both scales show why simply translating a co-moving field picture afterward misses part of the root problem.
 
-### 3.2 Three different meanings of an old or missing root
+### 3.2. Three different meanings of an old or missing root
 
 A retained root has an age in the selected reference cycles,
 
@@ -120,7 +120,7 @@ The app classifies it as fresh through one cycle, aging above one through two cy
 
 A stale retained root is distinct from a stale history window: the latter means the scanned interval lies on the already-passed side of the arrival equation and produced no root there. The no-catch-up label likewise describes a failure to catch the receiver inside the declared scan interval. Keeping these conditions separate prevents a diagnostic label from silently becoming a global existence theorem.
 
-### 3.3 Root admission and field admission
+### 3.3. Root admission and field admission
 
 At a candidate hit, define the source-to-receiver unit direction $\mathbf n$ from the unregularized displacement. With source velocity $\mathbf v_t$ and receiver velocity $\mathbf v_r$, the two causal factors and a dimensionless source Jacobian are
 
@@ -138,7 +138,7 @@ The generalized facade additionally requires a finite root residual within ten t
 
 ## 4. From contributions to a transverse diagnostic
 
-### 4.1 Transmitter weighting and display regularization
+### 4.1. Transmitter weighting and display regularization
 
 For a unit positive receiver and unit coupling, the app's source-bound contribution is
 
@@ -152,7 +152,7 @@ The source packet attributes the acceleration weight to the Master Equation and 
 
 The 0.08 floor belongs only to the inverse-square display denominator, in app-coordinate units. The direction remains normalized using the actual displacement; flooring the direction's normalization as well would introduce a different attenuation. Both history modes declare the same display floor. It is not a physical short-distance law, an EOM modification or a regulator-independent field result.
 
-### 4.2 Layer partition and coefficient closure
+### 4.2. Layer partition and coefficient closure
 
 Each source hit belongs to exactly one I/M/O layer. Project its acceleration onto the transverse plane and sum within that layer:
 
@@ -180,7 +180,7 @@ $$
 
 The total field uses the same samples and projection. Consequently its DC, cosine and sine coefficients equal the sums of their layer coefficients. Amplitudes do not add in this way: phase cancellation occurs before the magnitude is formed. A pair of large layer amplitudes can therefore accompany a small total diagnostic without contradicting exact coefficient closure. The phase of a zero-amplitude component has no determined directional meaning.
 
-### 4.3 Residuals answer different questions
+### 4.3. Residuals answer different questions
 
 The layer record separates four diagnostics. The branch-sum residual tests the normalized RMS agreement of each total sample with its layer sum. Harmonic closure tests agreement of total DC, cosine and sine coefficients with their layer sums. The total fit residual measures the waveform omitted by the selected-frequency fit. The largest delay-equation residual reports root-solve accuracy within the fit window.
 
@@ -190,7 +190,7 @@ The source tests require branch and harmonic closure residuals at or below $10^{
 
 ## 5. Polarization and analyzer comparisons
 
-### 5.1 A fitted component of a sampled field
+### 5.1. A fitted component of a sampled field
 
 The polarization inset summarizes a selected harmonic of the actual branch-sum transverse diagnostic over the common-period window:
 
@@ -203,7 +203,7 @@ Relative amplitude and phase lag characterize a linear, circular or elliptical f
 
 The historical review identified why the fitting window matters: fitting a reference frequency over an interval that is not a common period lets a slower component contaminate the reference coefficient. More samples within that same inadequate window do not remove the window's nonorthogonality. The later app contract specifies the slowest enabled layer's common period and preserves residuals rather than presenting the fit as the entire computed waveform. This is a source-recorded correction of the diagnostic's meaning, not a fresh runtime test.
 
-### 5.2 Instantaneous and accumulated analyzer fractions
+### 5.2. Instantaneous and accumulated analyzer fractions
 
 For analyzer angle $\theta$ in the transverse plane, let
 
@@ -224,7 +224,7 @@ An average of instantaneous ratios is generally different from a ratio of averag
 
 These are observer-level projection diagnostics. A displayed angular dependence supplies neither a material-analyzer mechanism nor a derivation of Malus' law. The positive regularizer also means a vanishing field does not support a meaningful polarization inference merely because the numerical fraction remains finite.
 
-### 5.3 The magnetic comparison
+### 5.3. The magnetic comparison
 
 An ideal plane wave propagating along the positive x axis supplies a separately labeled comparison:
 
@@ -237,7 +237,7 @@ This effective plane-wave relation is not a primitive magnetic input, a derivati
 
 ## 6. Same-transmitter roots and the finite negative result
 
-### 6.1 Speed eligibility does not establish a hit
+### 6.1. Speed eligibility does not establish a hit
 
 For the prescribed helical source, the translation and transverse orbital velocities are orthogonal. Their speed budget is
 
@@ -253,7 +253,7 @@ A root record retains source and receiver phase at the hit, with cycle index, la
 
 Partner-hit loops, same-transmitter loops and recurring causal round trips are proposed phase-lock mechanisms. Phase recurrence on prescribed paths is a diagnostic output, not a retained dynamical locking argument. Rejected near-singular candidates can remain in a singular-candidate family for inspection but cannot be promoted to candidate or stable phase-lock families. Same-transmitter roots remain outside the observer-field sum under the present facade contract.
 
-### 6.2 What the sweep did and did not find
+### 6.2. What the sweep did and did not find
 
 The retained compact receipt reports 756 prescribed cases: six named presets, six translation-speed ratios, three signal-speed ratios and seven observation phases. Within its three-history-cycle, finite-subdivision, finite-root-cap search, it records 5,068 helical roots and 5,116 phase families. The family classification is 4,666 single-hit, 422 singular-candidate and 28 phase-drift families. No stable or candidate phase-lock family was found; 42 cases contained singular candidates.
 
@@ -261,7 +261,7 @@ The strongest singular example has zero recorded source and receiver phase sprea
 
 The negative applies to the declared prescribed cases, search limits and historical classifier. It does not exclude every transmitter history, all phase-lock mechanisms or physical photons. Later admission work added explicit rejected-root reasons without adding a new transmitter-history family, so the same sweep was not regenerated. The retained receipt also states that a migration rerun reproduced headline counts but not the historical raw bytes because the case-row schema evolved. Count agreement is therefore not exact reproduction of the old record, and the raw case rows have not been read for this synthesis.
 
-### 6.3 An analytic reference has a different role
+### 6.3. An analytic reference has a different role
 
 The facade source describes an independent stationary fixture at $c_f=1$: a transmitter at the origin, receiver at $x=2$, and reception at $t=3$. Its delay equation is $2=3-t_e$, giving emission time 1, delay and distance 2, and both causal factors equal to 1. With unit positive source and unit coupling, the full observer vector is $(1/4,0,0)$. This vector is longitudinal in that fixture; it is not a nonzero transverse photon-field example.
 
@@ -269,7 +269,7 @@ Independent source and receiver clocks of periods 1 and 2 give source phase 0 de
 
 ## 7. Search, display and evidence provenance
 
-### 7.1 Comparing complete configurations
+### 7.1. Comparing complete configurations
 
 Configuration search begins with the current normalized settings and constructs nearby and systematic variations in enabled layers, frequency powers, radii, phases, separation, observer position and analyzer angle. The short interactive action examines a bounded sample. Deep comparison evaluates the full constructed pool and yields between candidates, allowing redraw and progress reporting. Full-pool evaluation is still bounded by the candidate builder; it is not exhaustive over a continuous parameter space.
 
@@ -277,13 +277,13 @@ A direct-versus-Lorentz-factor filter applies to normalized inputs before evalua
 
 Both modes use the same candidate builder, prescribed analysis, scoring rules and serializer. Deep rows carry both co-moving and absolute-history summaries or explicit failure status. Their normalized state snapshots are insulated from later UI changes, but their numerical summaries do not have an independent scientific oracle. These two meanings of independence must remain separate through export and import.
 
-### 7.2 Interesting, suspect and certified
+### 7.2. Interesting, suspect and certified
 
 The search design values low-residual fitted polarization, strong cancellation, sharp transitions, robustness under small nudges, agreement or informative disagreement between history modes, healthy causal-root structure, simple explanations and representative diversity. These are inspection criteria, not physical acceptance scores. Missed transmitters, small Jacobians, large delay residuals or unstable diagnostics label a suspect case; an extreme but poorly resolved value is not clean polarization evidence.
 
 Each retained result holds a complete settings snapshot, reason tags, score components, polarization and diagnostic summaries, comparison status and deltas, a compact sample or plot summary, and a short explanatory note. Deep provenance additionally records path identity, filters and both independence boundaries. Results support preview without losing the current state, load/play, rename/delete, selected or complete JSON export/import, and promotion into session presets. Such promotion is organizational: it does not promote a physical claim. Resetting a preset restores the last loaded complete state.
 
-### 7.3 Visual requirements and source-recorded failures
+### 7.3. Visual requirements and source-recorded failures
 
 The product contract keeps fixed-size polarity markers, neutral-purple orbit blending, layered trails, a shared Paths toggle and a stable face-on reference scale. Radii remain ordered and the outer radius capped at its initial value. Controls include playback and keyboard pause, time and state resets, animation scale, layer settings, observer coordinates, analyzer angle, speed mode and preset/search functions. Observer sliders show a zero marker and snap within two steps of zero. These conventions make comparisons legible without redefining the prescribed state.
 
@@ -293,7 +293,7 @@ Later local packets explicitly record common-period fitting, consistent display 
 
 ## 8. Open physical and architectural boundaries
 
-### 8.1 Local speed and formation geometry
+### 8.1. Local speed and formation geometry
 
 A source-bound map from Noether sea variables to the app's local speeds remains unresolved. Direct sliders and a provisional Lorentz-factor chart expose alternatives for inspection but do not derive an environmental response. In particular, identifying photon-channel speed with an effective local speed is a separate target, not a premise that establishes all aspects of photon geometry.
 
@@ -303,7 +303,7 @@ No retained branch, explicit admissible environment family, accepted constitutiv
 
 Even a future geometry response would not by itself imply frequency shift, energy transfer, gravitational redshift, endpoint-only dependence or path independence. Absolute time requires an explicit energy ledger; it does not exclude an unresolved path-history transfer to the Noether sea. The proposed scientific study therefore requires declared relaxation and stability criteria, forward and reverse paths, numerical refinement and an independent theorem or oracle. A pair of runs alone would not settle it.
 
-### 8.2 Delimited application scope
+### 8.2. Delimited application scope
 
 Shared visual extraction remains conditional on demonstrated cross-app maintenance need. Runtime decomposition waits for reviewed correctness boundaries to stabilize and must preserve one behavior path rather than introduce a parallel implementation. These architectural deferrals remain separate from the physical questions.
 

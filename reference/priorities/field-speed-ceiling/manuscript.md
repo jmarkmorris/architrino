@@ -2,7 +2,7 @@
 
 ## 1. The proposed constrained dynamics
 
-### 1.1 Why examine a path-speed ceiling?
+### 1.1. Why examine a path-speed ceiling?
 
 Finite propagation speed does not by itself limit the speed of a source. In the canonical master equation of $\mathbb{A}\mathbb{A}\mathbb{A}$, an architrino moves in Euclidean space with absolute time, emits a delayed wake at speed $c_f$, and receives acceleration contributions from its causal path history. The primitive velocity domain is $\mathbb R^3$. Below, equal to, and above $c_f$ are different causal-geometric regimes of that domain, rather than different ontologies. A proposed path ceiling therefore changes the dynamics: it cannot be inferred from wake propagation or inserted as a numerical clamp without changing the model.
 
@@ -12,7 +12,7 @@ This manuscript synthesizes the [field-speed mathematical development](analysis/
 
 We use $T$ for absolute time, $S$ for an emission instant, and $\mathbf X_i(T)$, $\mathbf V_i(T)$ and $\mathbf A_i(T)$ for the position, velocity and acceleration of label $i$. Where source notes use lowercase time, it is translated here to absolute time without changing the equations. Numerical examples use normalized wake-speed units with $c_f=1$. Symbolic $c_f$ remains where its dependence matters. Standard-physics conservation laws, relativistic speed bounds, masses and quantization are not premises of the architrino-level argument.
 
-### 1.2 The ordinary causal-root ledger
+### 1.2. The ordinary causal-root ledger
 
 The proposal retains the ordinary delayed interaction before constraining its complete sum. Establishing that order requires two pieces of notation: the causal equation identifies which emissions arrive, and the acceleration kernel assigns each ordinary arrival its weight.
 
@@ -36,7 +36,7 @@ $$
 
 The multiplier is $c_f/|D_t|$. Receiver motion controls the playback of source history through $D_r/D_t$; it does not replace the transmitter-side acceleration multiplier. Every admitted row must be evaluated at its original weight before forming the complete finite ordinary ledger $\mathbf A_i^{\mathrm{ord}}$.
 
-### 1.3 The velocity constraint and response order
+### 1.3. The velocity constraint and response order
 
 The proposed constrained response introduces a second speed, $c_a$, and the closed velocity ball $\mathcal B_{c_a}=\{\mathbf V:\|\mathbf V\|\le c_a\}$. Its regular solution law requires absolutely continuous velocity and a radial normal-cone reaction:
 
@@ -59,7 +59,7 @@ The notation $(z)_+=\max(z,0)$ denotes the positive part. The response removes a
 
 Operation order is part of the proposal. At a boundary direction $\mathbf e_x$, let two ordinary contributions be $2\mathbf e_x$ and $-\mathbf e_x+\mathbf e_y$. Projecting their sum gives $\mathbf e_y$; projecting each first and then adding gives $-\mathbf e_x+\mathbf e_y$. The second operation changes the law. Nor does a zero projected contribution erase the wake or its provenance.
 
-### 1.4 Response to a supplied input
+### 1.4. Response to a supplied input
 
 The finite-ledger response has an existence result of its own. This is the first analytic step toward a delayed evolution theorem: it determines velocity when the acceleration input has already been supplied. The separate task of obtaining that input from a changing history remains visible throughout the argument.
 
@@ -77,7 +77,7 @@ The distinction matters because the pointwise response is discontinuous across t
 
 A speed restriction changes the possible intersections between a path and its arriving wakes. It also changes how emission time advances along those intersections. The resulting geometry must be established before deciding whether an accumulated acceleration is finite: a root count alone says nothing about the integrability of its weight.
 
-### 2.1 Root geometry at and below wake speed
+### 2.1. Root geometry at and below wake speed
 
 For histories with $\|\mathbf V\|\le c_a\le c_f$, the reverse triangle inequality makes $S\mapsto g(T,S)$ nondecreasing and $T\mapsto g(T,S)$ nonincreasing. Consequently a fixed-receiver positive-delay fiber is empty, a singleton, or a connected interval. Separate ordinary roots and quadratic folds in one channel are unavailable. This is a derived geometric simplification, not an event prescription.
 
@@ -87,7 +87,7 @@ If a whole emission interval reaches one receiver event, equality in the speed-b
 
 The same-label channel is especially restrictive. Its causal equality requires equality between chord length and the maximum allowed path length over the entire intervening interval. Thus a positive-delay self equality at $c_a=c_f$ requires an exact straight wake-speed chord. A genuinely curved path has no such root. Straight co-moving intervals are recorded as nonordinary inactive families under the proposal, not counted as repeated ordinary self hits.
 
-#### 2.1.1 Strict-gap control and its boundary
+#### 2.1.1. Strict-gap control and its boundary
 
 With a strict uniform gap $c_a<c_f$, complete all-past histories and distinct present label positions give exactly one partner root, with
 
@@ -99,15 +99,15 @@ $$
 
 The gap controls delays and root conditioning. It does not bound an inverse-square contribution when range tends to zero. At equality, an isolated degenerate root has $D_t=0$; a cubic crossing follows only with the additional nonzero third derivative hypothesis. Higher odd orders and flat crossings remain possible. Weak path/velocity topologies do not automatically preserve pointwise root factors or exclude singular-continuous source clocks.
 
-#### 2.1.2 The remaining event geometry
+#### 2.1.2. The remaining event geometry
 
 The incidence set $g(T,S)=0$ therefore provides a useful organizing picture: ordinary arcs advance the source clock, frozen intervals pause it, and characteristic arrivals can advance it discontinuously. A complete atlas still needs interval endpoints, diagonal-abutting corners, source identities, simultaneous channels and singular-continuous components. A per-channel catalogue is not a proven locally finite stratification of the full history problem. Historical genericity and activation-monotonicity suggestions are retained as restricted proposals, not used to override the later margin-zero activation theorem. The velocity ball and its sphere also have trivial fundamental group; a speed ceiling supplies no topological protection for a braid.
 
-### 2.2 Incoming acceleration and the singular endpoint
+### 2.2. Incoming acceleration and the singular endpoint
 
 The mirror approach exposes why the type and domain of a measure matter. Integrating ordinary arrivals before coincidence and assigning acceleration to a whole family at coincidence are different operations. The first can be finite even when an ordinary-kernel extension of the second diverges.
 
-#### 2.2.1 Clock transfer and finite incoming accumulation
+#### 2.2.1. Clock transfer and finite incoming accumulation
 
 Along an injective ordinary branch with $D_t,D_r>0$, implicit differentiation gives $dS/dT=D_r/D_t$. For the vector kernel $\mathbf K=\sigma_{ij}K_{ij}c_f\hat{\mathbf r}/r^2$, changing clocks yields
 
@@ -134,7 +134,7 @@ $$
 
 Here $R_p$ is the causal partner range and $S_0$ is the source time received at cap entry. The complete row is forward on this prescribed segment, so its effective velocity increment is zero. At $T_c$, however, the whole partner cap becomes a characteristic family with $D_t=0$. Extending the ordinary inverse-square expression onto that event family produces the separate endpoint density $K/[2c_f^2(T_c-S)^2]$.
 
-#### 2.2.2 Endpoint divergence and failed completions
+#### 2.2.2. Endpoint divergence and failed completions
 
 The [open-interval convergence theorem](analysis/coincidence-open-interval-convergence-and-endpoint-residue.md) retains the exact distinction. On each compact source interval ending short of $T_c$, an ordinary-root resolution converges in total variation if it has eventual coverage, uniform collapse to the event, convergent moving traces and kernel, positive convergent $D_r$, retained source labels and separated competing strata. Uniform position convergence and $L^1$ velocity convergence alone do not imply these conditions. Fixed positive-range pieces push forward to finite labeled receiver-time atoms; the endpoint variation satisfies
 
@@ -147,7 +147,7 @@ The resolution limit precedes $\rho\downarrow0$. The residue measures the streng
 
 Two tempting repairs fail. Signed principal-value cancellation across different times does not reduce total variation. Projecting a divergent forward coefficient does not define a response on an infinite raw ledger: a small transverse direction rotating while its coefficient grows can retain a bounded but nonconvergent transverse vector. Even exact removal of a leading term leaves the integrability of the remainder to prove. These rejected routes explain why the event construction needs its own carrier and law.
 
-#### 2.2.3 Transverse variation on the open cap
+#### 2.2.3. Transverse variation on the open cap
 
 The singular endpoint does not prevent a conditional calculation on the preceding open segment. Its purpose is to describe the response to transverse displacement while the same ordinary branch and projection regime persist.
 
@@ -159,7 +159,7 @@ $$
 
 This is bending without a first-order longitudinal slowing term while the raw forward component remains strictly positive. A sign change leaves that smooth response branch. The calculation is a conditional variation about the stated cap solution, not a stability theorem or an exclusion of new partner events.
 
-### 2.3 The spatial wake-speed limit
+### 2.3. The spatial wake-speed limit
 
 The preceding obstruction concerns reception along a particular approaching path. A spatial measure asks instead how source emissions are distributed throughout a three-dimensional observation region. Comparing the two results requires retaining that change of carrier; a finite spatial limit cannot serve as a contact prescription for the mirror pair.
 
@@ -183,7 +183,7 @@ This derived result concerns a spatial marginal of an eternal uniform path. It n
 
 The endpoint obstruction leaves a precise gap: the ordinary kernel does not provide a finite event update. The construction in this chapter supplies one under additional event assumptions. Its output is immediate data and retained history; whether those data determine one future is the subject of Chapter 4.
 
-### 3.1 A common finite source carrier
+### 3.1. A common finite source carrier
 
 The proposed [common coincidence event](analysis/common-impulse-event-measure-and-mirror-cancellation.md) uses finite source-history data rather than the singular ordinary kernel. For cap duration $L$, retain both labels on a common lookback carrier $(0,L]\times\{+,-\}$ with finite matching measure $\nu$. Exact mirror symmetry gives signed source weights $+q\nu$ and $-q\nu$. Pushing them onto the same event $E$ produces opposite scalar atoms. Applying one common linear event-to-acceleration map after aggregation gives
 
@@ -194,7 +194,7 @@ $$
 
 The common map is additional law. Ordinary radial contributions would reinforce, because polarity and direction both reverse; their cancellation is not what was proved. Both source records remain present. The zero coefficient belongs to the event update, not to a vanished source, a finite part of the inverse-square kernel, or an independently derived conserved account.
 
-### 3.2 Complete history, ownership, and the straight right trace
+### 3.2. Complete history, ownership, and the straight right trace
 
 Cancellation of the matched event coefficient retains both source histories in the restart state. A restart must therefore retain labels and distinguish emissions that have passed, belong to the current event, or remain inbound. Otherwise a statement about the net event update would silently become a deletion of history.
 
@@ -212,7 +212,7 @@ On the isolated straight right trace, normalized to $T_c=0$, the partner root is
 
 The inherited cap's incidence depends on the candidate trace: it is a whole characteristic family at coincidence, has passed on the prescribed straight separation, and is a whole ridden $D_t=D_r=0$ interval on exact rebound. Generic right traces need have neither disposition. This geometric census precedes the question of whether the proposed event law admits the candidate trace.
 
-### 3.3 Frozen reception remains an additional choice
+### 3.3. Frozen reception remains an additional choice
 
 The frozen disposition itself remains additional semantics. The joint distribution $\mathbf K\delta(g)$ exists away from zero range on the frozen chart $g=2S$, and its receiver-time marginal supplies a nonzero density $\mathbf K(T,0)/2$. A source-crossing measure instead assigns zero to a frozen singleton. Both agree on ordinary crossing branches. Regular-chart equivalence cannot choose between them. The [swept-source proposal](analysis/mathematics-geometry-dynamical-system.md) must therefore remain distinct from both the canonical regular row and the separate finite coincidence event.
 
@@ -220,7 +220,7 @@ The frozen disposition itself remains additional semantics. The joint distributi
 
 The straight restart is compatible, but compatibility establishes only one member of the allowed future set. This chapter constructs other members, follows prescribed braking through a return where sufficient bounds permit it, and then identifies what a selector would have to add. The nonuniqueness is a result within the proposed law and declared solution class, not a consequence of incomplete incoming data.
 
-### 4.1 Delayed braking from the same complete past
+### 4.1. Delayed braking from the same complete past
 
 The straight future has no uniform inactive-gap margin: the constant positive margins $2S$ tend to zero as post-event emission times approach zero. The [trailing-front theorem](analysis/trailing-front-activation-dichotomy.md) turns this observation into exact nonuniqueness in the stated isolated mirror class.
 
@@ -240,17 +240,17 @@ This smooth active system has a local solution with $m'(u^+)=K/(2u^2)>0$. Its on
 
 Every positive $u$ therefore gives a distinct continuation sharing the complete preceding straight history, while the indefinitely straight continuation also remains. The acceleration law governs braking after the onset is supplied. It does not implement a causal mechanism producing that onset.
 
-#### 4.1.1 Why exclusion of an immediate cascade does not select onset
+#### 4.1.1. Why exclusion of an immediate cascade does not select onset
 
 The [event-adjacent no-cascade lemma](analysis/event-adjacent-no-cascade-lemma.md) closes a separate concern. A positive activation creates a nondecreasing speed deficit and a persistent ordinary partner root, so the nearby active set cannot consist of disconnected shrinking bursts. Onset at zero would require $m'(T)\ge K/(2T^2)$ and infinite variation. Each admitted local mirror solution has a positive initial interval free of ordinary active roots. This excludes the proposed thin ordinary cascade in that class, not the arbitrary positive waiting time or broader singular-clock phenomena.
 
 Earlier claims that swept-source reception uniquely selected straight passage consequently fail. The historical ceiling-exit story in which a self-family atom is delivered and then projected to zero is also unnecessary and unsupported by the selected event law: the current construction retains that family as inactive, and its disappearance is not a newly declared atom. The [complete-lobe review](analysis/independent-complete-lobe-returning-event-review-2026-09-02.md) records this correction explicitly.
 
-### 4.2 Returning lobes and controlled recurrence
+### 4.2. Returning lobes and controlled recurrence
 
 Choosing an onset makes it possible to ask a further question: how far does the resulting branch continue? The answer depends on source-window and range estimates. Return and repetition below are conditional on the supplied onset and the proposed event law; neither construction retroactively supplies an onset mechanism.
 
-#### 4.2.1 Turnaround and inward ceiling arrival
+#### 4.2.1. Turnaround and inward ceiling arrival
 
 For a supplied onset, let $y=T-E/2$ be the causal range while the source remains on its initial straight segment. The [return-map analysis](analysis/two-lobe-return-map-and-autonomous-trigger-audit.md) derives
 
@@ -268,7 +268,7 @@ $$
 
 The continuation argument uses positive-range, simple-root local evolution until inward cap arrival or coincidence; it must not assume extension merely from an inequality. The bound forces inward ceiling speed at positive separation. The pair then coasts inward to a second coincidence.
 
-#### 4.2.2 The complete returning-cap census
+#### 4.2.2. The complete returning-cap census
 
 The returning-cap census needs one additional observation. The helper $H(S)=S+x(S)$ becomes constant on the transmitter's inward cap, but its constant value is the return time, strictly above the root equation's right side before that event. Thus the unique ordinary partner root remains in the pre-cap source history. The receiver's same-label cap family is separately recorded inactive. On the open inward cap, $D_r=2$ and
 
@@ -278,11 +278,11 @@ $$
 
 The ordinary approach is integrable and has no event atom. The final matched cap, including its assigned start endpoint, belongs to the event carrier. All pre-cap records have strictly passed; equality at the return occurs exactly on the final inward cap. The same proposed event guard therefore reapplies with reversed orientation and incoming cap length $L_{\mathrm{out}}=x_{\mathrm{cap}}$.
 
-#### 4.2.3 Recurrence of the live state
+#### 4.2.3. Recurrence of the live state
 
 Let $G(K,u)=x_{\mathrm{cap}}$. Permanent passage makes this outgoing duration independent of older incoming cap length. Equal prescribed onsets generate reflected lobes and a spatial period-two cycle. Literal all-past history nevertheless grows. The [future-equivalence theorem](analysis/future-equivalence-quotient-and-two-cycle.md) removes only complete owned and consumed record bundles with a strict permanent all-receiver passage margin. Zero-gap frozen families, current event data, source clocks, ownership and cap duration stay live. When all transition clauses consult only this live data, equivalent states have identical sets of future ledgers and continuations. Equal prescribed onsets then give a genuine cycle on the normalized event-section quotient. This is a controlled cycle of a relation, not an autonomous breather or a claim that the literal archive repeats.
 
-#### 4.2.4 The cap-duration reset has no positive fixed cycle
+#### 4.2.4. The cap-duration reset has no positive fixed cycle
 
 The natural cap-duration reset also fails to select a positive fixed cycle. In the sufficient closed-form regime $\alpha=K/u\ge6$, define $z=\sqrt{2/(\alpha-2)}$. Then
 
@@ -295,11 +295,11 @@ The root stays in the stored straight history because $S_{\mathrm{cap}}/u=(1+z^2
 
 The historical review reports lower-ratio numerical lobes and a sharper threshold for one estimate, but the [live reproducibility item](work-queue.md#routed-reproducibility-gap) records that its two numerical instruments were not retained. Those measurements are unresolved reproducibility evidence, not a stronger theorem or a fresh calculation by this manuscript. The conservative sufficient bounds above remain the analytic statement.
 
-### 4.3 What a selection law would add
+### 4.3. What a selection law would add
 
 The local branches and returning lobes establish what the relation permits. A predictive choice among them requires an additional criterion whose input state, causal mechanism, and admissible solution class are specified. A regularity restriction or smoothing convention can change that choice, but its selection effect must be attributed to the added rule.
 
-#### 4.3.1 Selection proposals and the retained multivalued relation
+#### 4.3.1. Selection proposals and the retained multivalued relation
 
 The [selection analysis](analysis/exact-mirror-continuation-selection-analysis.md) tests several proposed uniqueness routes. Active-chart ODE uniqueness begins only after $u$ is supplied. A continuous-acceleration restriction, scalar minimality principle or prohibition on an inactive channel causing its own first crossing changes the admissible solution law. A smooth-limit prescription is incomplete without an approximation family: zero-preserving smoothing can retain straight motion, while a vanishing seed near a selected positive onset can approach that braking branch. A set-valued differential-equation closure does not supply missing values merely by being named.
 
@@ -307,11 +307,11 @@ A positive onset functional built from a reduced event state would have to respe
 
 The current [operator decision](decisions/continuation-selection-operator-decision-2026-09-02.md) retains the multivalued relation as Option A. It adds neither a deterministic selector nor a probability distribution. This is closure of the present decision at its stated authority, not closure of the physical dynamics.
 
-#### 4.3.2 Short-range and alternative continuation proposals
+#### 4.3.2. Short-range and alternative continuation proposals
 
 Other historical alternatives carry different missing data. A bounded short-range kernel or positive minimum separation introduces a new scale; excluding only exact coincidence does not bound arbitrarily close approaches. A finite transition interval needs entry, exit, retained-history and wake accounts throughout the interval. Stopping after a wake-speed segment exposes a nonordinary self-history family rather than an already defined braking row. An external third source can supply asymmetric input but does not determine how coincident opposite source records are aggregated. Non-collinear escape needs a declared perturbation class and cannot serve as a universal noncoincidence theorem. These proposals remain distinct from the controlled continuations already constructed.
 
-#### 4.3.3 Strict speed domains and nonattainment targets
+#### 4.3.3. Strict speed domains and nonattainment targets
 
 Two further comparisons sharpen the boundary. Replacing the closed ball by $\|\mathbf V\|<c_f$ supplies no normal-cone reaction at any admitted state; a finite-time boundary arrival simply leaves that domain. A constant sub-wake separating trial $x(T)=v_0T$, $0<v_0<1$, has
 
@@ -322,7 +322,7 @@ $$
 
 Its ordinary backward contribution is nonintegrable at coincidence; the trial does not establish a finite turnaround. An emergent nonattainment target is instead an integrable bound $\mathbf V\cdot\mathbf A\le C(T)(c_f^2-\|\mathbf V\|^2)$, which would preserve a positive speed gap by Gronwall. This is an FSC-local candidate-update obligation, not a proved property of the unchanged law. Even proving it would not prove positive-separation reversal, which needs enough finite backward acceleration to cancel the incoming speed.
 
-#### 4.3.4 Response gains and a drifting encounter
+#### 4.3.4. Response gains and a drifting encounter
 
 A broader exploratory response writes separate longitudinal and transverse gains multiplying the corresponding complete-ledger components. The hard cap is one particular gain choice. Smooth nonattainment would instead require an appropriate boundary reachability estimate and generally changes the interior response. Such gains must be derived from the admitted wake and assembly dynamics before they can explain a ceiling; an observer-level relativistic comparison is only a recovery target. The historical suggestion that a gain modification removes every event obligation is too broad: range singularities, history strata and other events require their own analysis. Likewise, a drifting mirror encounter is a proposed preferred-frame diagnostic, whose interpretation needs an independently derived emergent comparison map and complete drifted histories.
 
@@ -330,9 +330,9 @@ A broader exploratory response writes separate longitudinal and transverse gains
 
 The mirror example reaches a nonordinary boundary where regular evolution theorems do not select a future. The circular pair provides a complementary test within a regular chart. The argument first establishes a complete root census and acceleration compatibility, then asks which additional history-space hypotheses support local evolution. Stability remains a separate question.
 
-### 5.1 The exact circular binary
+### 5.1. The exact circular binary
 
-#### 5.1.1 Root census and acceleration compatibility
+#### 5.1.1. Root census and acceleration compatibility
 
 The [circular certificate](analysis/circular-binary-all-root-certificate.md) supplies the cleanest regular positive result. Prescribe an isolated all-past antipodal pair $\mathbf X_\pm(T)=\pm R\mathbf e_r(T)$ with opposite polarity and constant speed $R|\omega|=c_a\le c_f$. Let $\lambda=c_a/c_f$ and half-delay angle $\xi=|\omega|(T-S)/2$. Every partner root satisfies $\xi=\lambda|\cos\xi|$. Since $0<\xi\le\lambda\le1<\pi/2$, it reduces to
 
@@ -355,7 +355,7 @@ $$
 
 At $c_a=c_f=1$, $D=\cos D$ gives $D\approx0.7390851332151606$, $R_\ast/K\approx0.2021113735152611$, $|\omega_\ast|K\approx4.9477670782$ and $P/K\approx1.269903212$. These are rounded numerical evaluations of the analytic expressions, consistent with the retained [100-digit endpoint receipt](evidence/fsc-010-circular-binary-all-root-mpmath-receipt.v1.json), not new interval certificates.
 
-#### 5.1.2 The radius family and interior-circle exclusion
+#### 5.1.2. The radius family and interior-circle exclusion
 
 The [secondary theorems](analysis/circular-binary-secondary-theorems.md) delimit the result. A uniform circle strictly below the ceiling retains its unprojected forward component and fails the equation. At fixed $K,c_f$, the compatible radius decreases across $0<\lambda\le1$, with
 
@@ -366,19 +366,19 @@ $$
 
 This gives a minimum only inside the stated family. It supplies no universal minimum radius, action quantum or maximum physical frequency. Root conditioning is favorable: $d\xi/d\lambda=\cos\xi/(1+\lambda\sin\xi)\in(0,1)$, and $\lambda=\xi/\cos\xi$ parameterizes the family explicitly. Interval-Newton-ready algebra does not replace an actual directed-rounding certificate.
 
-#### 5.1.3 Rigid translation fails the complete response
+#### 5.1.3. Rigid translation fails the complete response
 
 Constant-speed rigid translation of the pair must be perpendicular to its rotation plane. In the equal-ceiling helical chart, with axial speed $u_h>0$ and circular speed $v_h>0$, $u_h^2+v_h^2=c_f^2$, the half-delay remains $D$, while $D_t=D_r=v_h^2(1+\sin D)/c_f$. The complete response has a strictly negative axial component and cannot sustain constant translation. The product $r^2D_t=4D^2R^2c_f(1+\sin D)$ is independent of the speed split, so the row magnitude does not vanish as the root factors degenerate. This excludes the whole rigid uniformly translating constant-boundary-speed circle class; deformed, externally coupled or nonuniformly translating assemblies remain outside the argument. The identity $D_t=D_r$ follows from the declared chord-exchange symmetry, but equality of the factors alone does not prove that symmetry.
 
-### 5.2 From admissible histories to local evolution
+### 5.2. From admissible histories to local evolution
 
-#### 5.2.1 A geometric neighborhood and a history-space contract
+#### 5.2.1. A geometric neighborhood and a history-space contract
 
 The [census-neighborhood theorem](analysis/circular-binary-census-stability-neighborhood.md) intersects a dimensionless $W^{2,\infty}$ neighborhood with the ceiling-admissible histories. Its explicit sufficient radius is approximately $0.0682586$ in normalized coordinates. It gives a partner-delay bracket $[R_\ast D,3R_\ast D]$, range floor $R_\ast\cos(3D/2)$, factor floors $[1+\sin(D/2)]/2$, a root-displacement bound and positive equal-time separation. Its acceleration control excludes straight self chords. These are geometry statements about admissible histories in a specified tube.
 
 The [regular-history theorem](analysis/regular-chart-history-to-ledger-well-posedness.md) adds what coupled evolution needs: finitely many fixed root slots, a sufficient delay window, atom-free $W^{2,\infty}$ histories with controlled acceleration, selected pointwise representatives and compatible traces, root-bracket floors on the intervening intervals, preserved inactive strata and a response cylinder mapped into itself. Root location is Lipschitz with coefficient $2/d_t$ for a transmitter floor $d_t>0$. Composing delayed position and velocity evaluations yields explicit $L^\infty$ row and total-ledger bounds; a stronger derivative-norm conclusion needs stronger acceleration regularity.
 
-#### 5.2.2 Contraction and the continuation boundary
+#### 5.2.2. Contraction and the continuation boundary
 
 For a horizon $h$ shorter than the delay floor, all transmitter data lie in the already known history. The receiver response map is contractive when
 
@@ -388,7 +388,7 @@ $$
 
 Here $L_{\mathrm{rec}}$ is the theorem's receiver-position ledger constant. The invariant-cylinder assumption is essential to make this a self-map. The exact all-past certified circle satisfies the conditional theorem and has a unique local continuation. Extending the conclusion uniformly to every history in the geometric tube still requires a verified invariant response regime and compatible right-acceleration trace. Continuation stops at the first loss of a floor, census, clock, trace, history coverage, response regime, ownership condition or event classification.
 
-#### 5.2.3 The separate stability problem
+#### 5.2.3. The separate stability problem
 
 No orbital stability or capture follows. A stability theorem would require a constructed solution and a differentiable evolution and return map on a declared history space, then the correct symmetry reduction and spectral hypotheses. A reduced spectral radius below one, under those nonlinear hypotheses, supports local exponential asymptotic stability and its local basin; a list of multipliers without that structure does not. Nor can any regular positive-gap theorem select the margin-zero mirror future of Section 4.1.
 
@@ -396,7 +396,7 @@ No orbital stability or capture follows. A stability theorem would require a con
 
 An isolated compatible circle supplies a constituent reference, but coupling several pairs changes every complete ledger. A larger assembly must satisfy its own acceleration equations before its prescribed motion can support claims about assembly transitions or accounts. The prescribed six-path example tests this distinction directly, and the binary cycle diagnostic shows why even a compatible path does not by itself define energy or action.
 
-### 6.1 Complete-ledger closure for six paths
+### 6.1. Complete-ledger closure for six paths
 
 A three-binary construction must use the full six-label ledger. For a prescribed boundary-speed constituent with unit tangent $\mathbf t_i$ and radial direction $\boldsymbol\rho_i$, compatibility requires
 
@@ -409,7 +409,7 @@ There are six scalar inequalities and twelve perpendicular scalar equalities bef
 
 A common period requires integer windings $\omega_iP=2\pi k_i$ and corresponding inverse-winding radius ratios at fixed speed. Relative phases must be taken through the correct integer-lattice quotient; a convenient pair of phase combinations need not distinguish every orbit when winding integers exceed one. Rotating a circle's frame while shifting its phase is a representation redundancy. Incommensurate windings give a torus trajectory rather than a finite-period cycle. Homothetic scaling balances a raw $L^{-2}$ ledger against required $L^{-1}$ curvature and gives at most one positive scale for a fixed curved shape and coupling. It is not an existence theorem. Likewise, a small-radius obstruction assumes bounded external contributions; simultaneous singular cross rows or leading cancellations leave that hypothesis class.
 
-### 6.2 A complete census with failed acceleration closure
+### 6.2. A complete census with failed acceleration closure
 
 The [quarantined reference calculation](analysis/quarantined-hypotheses-and-prescribed-reference-cases.md) fixes three equal-radius antipodal pairs in orthogonal planes with phases $0,2\pi/3,4\pi/3$ and normalized $c_f=R=\omega=1$. Its geometry theorem gives thirty ordinary distinct-label roots at every reception time and no self root. That complete census does not make it a solution. Write $\lambda=\kappa q_0^2>0$ for the common coupling, so the unit-coupling total $\mathbf A^{(0)}$ satisfies $\mathbf A^{\mathrm{ord}}=\lambda\mathbf A^{(0)}$. The retained [time-zero coordinate receipt](evidence/fsc-004-t0-six-path-mpmath-receipt.v1.json), produced at 100-digit precision, records these unit-coupling necessary-condition failures:
 
@@ -422,7 +422,7 @@ The [quarantined reference calculation](analysis/quarantined-hypotheses-and-pres
 
 Positive common coupling scales both the ordinary total and its minimal projected response by $\lambda$; it changes these magnitudes while preserving the negative forward signs and nonzero binormal component. All four orientations therefore fail under the minimal response for every $\lambda>0$. This is a measured negative for the prescribed geometry, supported by a time-zero arithmetic instrument together with the response's positive homogeneity; it is not an interval theorem about all other geometries or a test of an unselected redirection law. The separate 2,881-time sample scan is diagnostic, not a certified all-time floor. The antipodal labels share spatial carrier circles and the orthogonal circles intersect, so this object is a loop in labeled configuration space, not a six-component spatial link.
 
-### 6.3 The cycle diagnostic is not an action account
+### 6.3. The cycle diagnostic is not an action account
 
 Accounts remain unresolved even for the compatible binary. Its raw per-label cycle diagnostic is
 
@@ -433,7 +433,7 @@ $$
 
 In normalized units the raw value is approximately $5.72658$ per label. It has velocity-squared dimensions and is not an energy or action balance. The proposed response has no account storing the removed component. A native action requires separately derived conjugate variables and a cycle integral; an energy-frequency relation needs its own identity, and quantization needs an additional discrete closure argument. No Planck value or mass-based formula supplies those steps.
 
-### 6.4 Transitions and an infinite background
+### 6.4. Transitions and an infinite background
 
 A radius/frequency transfer between boundary circles must preserve $R^-|\omega^-|=R^+|\omega^+|=c_f$, but endpoint kinematics do not provide a transition. One needs its guard, event or continuous update, complete roots, outgoing history and wake/account balance. Finite standoff, transverse redirection, phase exhaustion, limiting transverse response, collective transition failure and sea-driven rebinding remain guessed mechanisms or conditional targets. A purely forward input has no unique transverse direction from isotropy alone. An infinite background also needs more than local finiteness: inverse-square decay and three-dimensional shell growth can leave a nonintegrable far tail. Exhaustion, cancellation rate and boundary/order independence must be proved before a many-assembly account is defined.
 

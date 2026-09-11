@@ -2,7 +2,7 @@
 
 ## 1. The boundary between interaction and record
 
-### 1.1 What a measurement account must explain
+### 1.1. What a measurement account must explain
 
 An interaction can correlate a source with a detector without producing a durable detector outcome. A measurement account therefore needs more than a list of possible outcomes: it must identify the physical conditions under which an interaction produces a record, explain how the record persists, and connect the resulting outcome statistics to observations. These are distinct questions. A condition that makes an outcome admissible does not, by itself, select that outcome from several admissible alternatives.
 
@@ -10,7 +10,7 @@ Ruth E. Kastner's transactional interpretation provides an external comparison f
 
 The present account synthesizes a saved interview intake, public-reference summaries, and captured correspondence. It does not independently establish the claims of the complete RTI theory. The local record identifies the 2022 second edition of *The Transactional Interpretation of Quantum Mechanics: A Relativistic Treatment* as the primary reference requested by Kastner, while explicitly limiting its book intake to public metadata, chapter summaries, and open abstracts. The [source and coverage record](analysis/manuscript-source-coverage.md) preserves those reading boundaries, the reference leads, and the correspondence chronology.
 
-### 1.2 Four questions that must remain distinct
+### 1.2. Four questions that must remain distinct
 
 A precursor is a candidate contribution to a possible outcome. Eligibility is a criterion that restricts which candidates can count as records. Actualization is the occurrence of a particular outcome. Persistence concerns the sense in which that outcome remains a record. A probability assignment supplies a further statistical object: it quantifies eligible alternatives without necessarily explaining the mechanism that makes one of them occur.
 
@@ -18,7 +18,7 @@ These distinctions matter even when a theory proposes one process that answers s
 
 ## 2. The transactional account and its ontological boundary
 
-### 2.1 Precursors, transactions, and irreducible actualization
+### 2.1. Precursors, transactions, and irreducible actualization
 
 In the saved transactional account, a source supplies an offer and absorbers supply confirmations. These form incipient transactions before one transaction is actualized. The public book summary describes offers and confirmations as possibilities structured by Hilbert space, the mathematical space used to represent quantum states. Actualization establishes a measurement event and a spacetime occurrence. This is reported external doctrine, not a derivation supplied by the local comparison.
 
@@ -26,7 +26,7 @@ The captured replies sharpen the account. Kastner describes absorber responses a
 
 The last point corrects a potentially misleading comparison. The earlier exchange sought an objective selection rule and described a missing bridge. The later clarification does not leave a deterministic mechanism accidentally unspecified: it asserts that the final transition is irreducible. A fair comparison asks which conditions RTI derives before actualization and which assumptions govern actualization itself. It cannot infer a defect merely from the absence of a deterministic account that the framework explicitly rejects.
 
-### 2.2 Virtual interaction, radiative transfer, and observation
+### 2.2. Virtual interaction, radiative transfer, and observation
 
 The public chapter summary associates the relativistic account with Davies-style quantum direct-action theory. It distinguishes unitary virtual-photon interactions from non-unitary radiative energy-transfer events. Here unitary refers to quantum-state evolution that preserves inner products; non-unitary names the different state change attributed to a completed measurement or radiative event. These are terms within the external framework, not additional laws at the architrino level.
 
@@ -34,7 +34,7 @@ The retained companion-paper summary says that real photons are both emitted and
 
 The useful inferred comparison is a distinction among reversible perturbation, correlation, photon-like packet formation, detector absorption, and durable record formation. A propagation calculation establishes only the quantities its instrument computes. It does not establish a detector click simply because an evolving field or packet reaches a detector location. This is a conceptual separation of claims; it does not report a new photon simulation or a demonstrated assembly mechanism.
 
-### 2.3 Possibilities, spacetime, and causal interpretation
+### 2.3. Possibilities, spacetime, and causal interpretation
 
 The saved PTI account treats quantum possibilities as physically real and places transactions in a deeper domain from which spacetime events emerge. The spacetime-emergence summary adds causal-set-like organization, rest-mass systems, inertial frames, and an arrow of time. These remain external ontological proposals. Rest mass in that description belongs to its systems; it does not give mass to an architrino.
 
@@ -44,7 +44,7 @@ The intake describes time-symmetric mathematical solutions but also records Kast
 
 ## 3. A conditional account of record eligibility
 
-### 3.1 The role of the four conditions
+### 3.1. The role of the four conditions
 
 The local proposal represents a candidate apparatus history by $\gamma_i$, its declared apparatus context by $\theta$, and the evaluation time by $T$. A history includes the processes relevant to the proposed detector outcome rather than only a label for that outcome. The context specifies the experimental channel against which eligibility is evaluated. The local packet names a more detailed context tuple but does not contain complete definitions or implementations of its components; no such implementation is assumed here.
 
@@ -65,7 +65,7 @@ For the product to be an eligibility predicate, each factor must take values in 
 
 The ledger factor is especially easy to overread. It specifies an observer-level accounting condition that a physical derivation must justify; inserting it into a product does not derive conservation at the architrino level. Similarly, naming a persistence condition does not prove that a detector state survives over its declared record window. The formula exposes those requirements so that a proposed dynamics can be assessed against them.
 
-### 3.2 Outcome basins and conditional weights
+### 3.2. Outcome basins and conditional weights
 
 Let the candidate histories lie in a measurable space. A measurable set is one to which the chosen measure assigns a weight. Let $\mu_{*,T}$ be a nonnegative measure on that space at time $T$, and let $B_i^{(d)}$ denote the basin of histories assigned to detector outcome $i$. The superscript $(d)$ identifies this detector-basin notation; it supplies no additional dynamical assumption. For fixed context and time, define the eligible set by $E_\theta(T)=\mathsf R_\theta^{-1}(1)$, suppressing the fixed time in the inverse-image notation used by the source.
 
@@ -85,7 +85,7 @@ Write the denominator as $Z(T;\theta)$. Nonnegativity of the measure and $0<Z(T;
 
 If $Z=0$, the proposed conditional distribution is undefined: the model has supplied no positive eligible weight. If $Z$ is infinite, the displayed normalization also fails. These cases cannot be repaired by silently choosing equal outcome probabilities. The formulas do not supply the measure, establish its invariance, show that physical trajectories visit the basins with the assigned frequencies, derive Born weights, or select one actual event. Those remain distinct dynamical and statistical questions.
 
-### 3.3 Context consistency is an ensemble condition
+### 3.3. Context consistency is an ensemble condition
 
 Operational no-signaling concerns the statistics available to an observer when a separated experimental setting changes. It is therefore a relation among distributions across declared contexts, not automatically a property that can be checked on one history in isolation. The factor $\mathsf N_\theta$ is shorthand for that unresolved consistency requirement. Its use as a Boolean factor is conditional on providing a legitimate construction; the notation does not provide one.
 
@@ -101,7 +101,7 @@ Kastner's captured reply ties no-signaling to the light-speed connection between
 
 ## 4. What the comparison preserves and what it leaves open
 
-### 4.1 Eligibility and actualization answer different questions
+### 4.1. Eligibility and actualization answer different questions
 
 The proposed basin formula can restrict weights to record-eligible alternatives while leaving several alternatives eligible. It therefore provides no general many-to-one rule. A stochastic selection law, deterministic evolution into one basin, or irreducible actualization would each add substantive content beyond the normalized assignment. Choosing among them requires their own mathematical and empirical justification.
 
@@ -109,7 +109,7 @@ The six-part correspondence mapping is useful at this limited level. Absorber re
 
 Outcome resolution also differs from repeated interaction. The retained decoherence summary separates deciding the measured observable from the effects of repeated measurements. The inferred consequence for a detector account is to distinguish resolution of an outcome from its later persistence, suppression of interfering contributions, and stability of repeated frequencies. Combining all of them into one unnamed measurement step would conceal which claim a calculation actually supports.
 
-### 4.2 Afshar and the ordering of records
+### 4.2. Afshar and the ordering of records
 
 The local Afshar intake reports Kastner's argument that interference evidence before a later path-discriminating selection does not by itself refute complementarity. It also records a spin-one-half analogy involving preparation, nondestructive confirmation, and post-selection in a different basis. These are source-reported interpretations; the complete experimental analysis and paper derivations have not been independently examined for this manuscript.
 
@@ -117,7 +117,7 @@ The useful inferred lesson is chronological and evidential. Preparation establis
 
 This distinction supports careful apparatus bookkeeping without deciding the Afshar controversy anew. Neither the analogy nor the local summary derives an assembly realization of the experiment, a spin law, or a detector response. Those physical claims would require a concrete preparation and response model rather than a relabeling of stages.
 
-### 4.3 External challenges and native derivations
+### 4.3. External challenges and native derivations
 
 The saved book summaries name Born probabilities, the measurement problem, Maudlin-style objections, relativity, virtual-particle interpretation, quantum eraser cases, Frauchiger–Renner, and decoherence. The interview adds Bell and Kochen–Specker as nonlocality and contextuality constraints. These are comparison subjects and, where already justified by tested observations or accepted mathematics, recovery constraints at the effective level. Their presence in an external source does not automatically create a new physical obligation for every assembly model.
 
@@ -125,7 +125,7 @@ A meaningful comparison would identify a precise result, its assumptions, and th
 
 ## 5. The usable scope of the comparison
 
-### 5.1 An explanatory distinction with explicit limits
+### 5.1. An explanatory distinction with explicit limits
 
 The retained material supports an inferred organizing distinction among correlation, eligible records, actualized events, and persistence. It records an external theory's stronger claims about the origin of events and probabilities, and it supplies a conditional mathematical language for asking what an assembly-based account still needs to derive. The Boolean and measure-theoretic consequences above are derived under stated assumptions. They are not measured detector behavior or a physical closure result.
 

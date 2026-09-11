@@ -2,7 +2,7 @@
 
 ## 1. From Delayed Dynamics to Cosmological Observables
 
-### 1.1 The explanatory problem
+### 1.1. The explanatory problem
 
 Cosmology in $\mathbb{A}\mathbb{A}\mathbb{A}$ asks whether one history of assemblies and the Noether sea can explain redshift, thermal radiation, element abundances, structure, lensing and material clocks. Its substrate is Euclidean space with absolute time, polarity and delayed path-history interaction. The master equation determines acceleration. Effective expansion, mass density, temperature, metric geometry and cosmological perturbations are descriptions to recover at the observer level; they do not prescribe primitive architrino motion.
 
@@ -10,7 +10,7 @@ The proposed explanatory chain runs from architrino histories through Noether br
 
 The present mathematics organizes conditional comparisons and exposes incompatible interpretations. It does not supply a derived cosmological transfer law, a recovered blackbody ensemble, an accepted dark-sector carrier or a demonstrated recycling history. A formula specifying what an observation should test is not a prediction until its source and response have been independently constructed.
 
-### 1.2 One response across scales
+### 1.2. One response across scales
 
 Represent the proposed common response by
 
@@ -31,7 +31,7 @@ The entries describe endpoint clocks, path propagation, thermalization before fr
 
 Four speed roles must remain distinguishable. The causal-wake speed is $c_f$; photon-channel group propagation is described by $c_\gamma$; recovered clocks and rulers determine $c_{\mathrm{eff}}$; and $c_0$ is the weak homogeneous calibration value. A frequency map without a propagation-speed map is incomplete. Coherent redshift must account for energy exchange while controlling frequency-dependent propagation residuals. Numerical substrate instantiations, when available, use $c_f=1$; the symbolic comparisons below introduce no different numerical wake-speed convention.
 
-### 1.3 Fit, prediction and shared identity
+### 1.3. Fit, prediction and shared identity
 
 A complete cosmological record also contains initial conditions, sources, thermal history, paths, growth and frame data. Each observable is a projection of that record with its own instrument, selection and nuisance model. Sharing names for parameters does not establish shared physical history. Conversely, a legitimate instrument correction need not change the underlying source.
 
@@ -39,7 +39,7 @@ The common-history requirement is falsifiable: if the thermal state needed for a
 
 ## 2. Inventories, Sources, and Constitutive Alternatives
 
-### 2.1 Continuity and disjoint accounting
+### 2.1. Continuity and disjoint accounting
 
 The proposed Noether sea content balance separates production, return, capture, decay, reclassification and relaxation:
 
@@ -65,7 +65,7 @@ These terms represent ordinary-assembly response, accumulated path deposition, r
 
 Sea assemblies contain architrinos, and wake contributions depend on retained histories. They are not automatically additional disjoint energy reservoirs. Any energy partition into primitive, history and sea terms must specify ownership so that the same contribution is counted once. A symbolic sum cannot establish that independence.
 
-### 2.2 Sparse visible contents and missing components
+### 2.2. Sparse visible contents and missing components
 
 Deep-space inventories distinguish photons, neutrinos, cosmic rays, atoms/plasma and dust from the unknown sea carrier population. Sparse visible material does not demonstrate an empty substrate, but it also does not measure the sea density. A sea-density inference must face packing, transparency, dispersion, coherence length, clock/ruler response and effective-metric recovery. Occupied-volume estimates are declared assembly or packing proxies, not point-particle volume arithmetic.
 
@@ -73,7 +73,7 @@ Observer-level baryons require their own comparison inventory: the BBN/CMB-infer
 
 Dark-sector apparentness is likewise not one scalar. The proposed inventory separates shielded energy, neutral assemblies, sea stress, observer projection and catalogue residuals. These alternatives can have different implications for lensing, dynamics and radiation. Their detailed inventory tuples remain in the [source inventory discussion](priorities.md#deep-space-inventory-benchmark); none is identified as the observed dark component by the decomposition itself.
 
-### 2.3 Galaxy and compact-core hypotheses
+### 2.3. Galaxy and compact-core hypotheses
 
 A candidate exposure change is written
 
@@ -91,7 +91,7 @@ Jet axes and precession, bubble energies and ages, galaxy morphology, rotation a
 
 ## 3. Thermalization, Coherent Transport, and Energy
 
-### 3.1 Producing a thermal spectrum
+### 3.1. Producing a thermal spectrum
 
 The CMB spectrum can be treated as a thermalized observer-level output without assuming that its shape directly reveals individual Noether braid modes. A stronger linkage would connect assembly ensemble dynamics, photon production/capture/release, thermalization depth and later coherent transport on one sea history. A fit obtained by changing that history between the spectrum, BBN and angular transfer does not establish the linkage.
 
@@ -105,7 +105,7 @@ $$
 
 the weights, source spectra, transport maps, covariance and side-effect terms all need declared support. Spectral distortion, image sharpness, anisotropy and polarization cannot be repaired by a freely chosen mixture. A proposed distributed-source mechanism must explain thermalization or detailed balance before free streaming, then preserve the resulting spectrum on transparent paths. Naming a source population supplies neither step.
 
-### 3.2 A typed blackbody-preservation target
+### 3.2. A typed blackbody-preservation target
 
 Frequency dilation depends on the object being transported. For the effective occupation comparison, let
 
@@ -138,7 +138,7 @@ $$
 
 The norm, band, temperature range, path depth and normalization must be fixed. Blackbody preservation, image quality, observed time dilation, anisotropy and polarization are separate conditions; a scalar spectral fit cannot compensate for a failed image or timing comparison.
 
-### 3.3 Why a commutator does not suffice
+### 3.3. Why a commutator does not suffice
 
 The source proposes a small commutator between a transparent-transport generator and frequency dilation. Such a relation can test covariance of a specified transport family, but it is not generally equivalent to blackbody recovery. Let a linear generator on an admitted spectral function space be $\mathcal G=-\kappa\mathsf I$, with $\kappa>0$. Then
 
@@ -153,7 +153,7 @@ Here $L$ is the transport parameter and $\kappa L$ is dimensionless. The resulti
 
 The direct spectrum and transverse/timing/polarization conditions remain necessary tests of the proposed branch regardless of that diagnostic. A stochastic lifetime, absorption/re-emission, scattering or species-loss model cannot be accepted merely because it decreases frequency or energy. It must also preserve those observed transfer properties. The [spectrum linkage discussion](priorities.md#cmb-spectrum--noether-braid-linkage) retains the original diagnostic and its proposed role.
 
-### 3.4 Signed energy change and positive loss
+### 3.4. Signed energy change and positive loss
 
 For a redshift $z\ge0$, suppose emitted and received bundle energies are expressed in one declared comparison convention and satisfy $E_{\mathrm{obs}}=E_{\mathrm{emit}}/(1+z)$. Define the positive loss magnitude separately from the signed photon change:
 
@@ -177,7 +177,7 @@ These signs distinguish a positive deposit from a negative photon change. Adding
 
 This conditional balance does not establish that the photon energy map is the substrate conserved quantity or that the sea sink exists. It requires a derived energy functional, a common energy convention and no double counting between assemblies, wakes and sea. If the proposed sink breaks time dilation, surface brightness, blackbody quality, acoustic structure, image sharpness, lensing or growth, the fixed-void transport branch fails its own joint target.
 
-### 3.5 Finite windows and long histories
+### 3.5. Finite windows and long histories
 
 A universe-wide constant energy requires a convergent total on each absolute-time leaf and a suitable delayed conservation theorem. If that total is not finite or summable, a local account is still required, but it too needs an accepted density and current. Conditional on such a local law,
 
@@ -196,13 +196,13 @@ A photon packet that loses its required geometry or coherence exits the transpar
 
 ## 4. Effective Transfer and Early-Universe Comparisons
 
-### 4.1 Acoustic structure and source alternatives
+### 4.1. Acoustic structure and source alternatives
 
 Nested-shell energy ratios, ensemble formation epochs or source-network cadence may be proposed as seeds for acoustic structure. Matching the first few peak-location ratios is only one comparison. The same seed history must pass photon-baryon transfer, TT/TE/EE phase relations, damping, lensing, BAO and growth while retaining near-Planck occupation. A shell-ratio story cannot bypass the transfer calculation.
 
 Galaxy-local or source-network recycling is similarly a proposed interpretation of apparent horizon uniformity. It is not a solved horizon problem. The candidate must account jointly for monopole isotropy, acoustic structure, spectral distortions, BBN, BAO, distance/redshift observations and clocks. Acoustic-ruler coherence must survive across source patches and tracer bins without private ruler calibration.
 
-### 4.2 Inflation-like comparison coordinates
+### 4.2. Inflation-like comparison coordinates
 
 For an inflation-like effective history, write $N=\ln a$ and $H=d\ln a/dt_{\mathrm{eff}}$. On a differentiable comparison branch with nonzero $\varepsilon$,
 
@@ -225,7 +225,7 @@ $$
 
 These are effective single-field canonical slow-roll comparison formulas with the corresponding gravitational, vacuum and unit assumptions, not exact expressions for every high-curvature release. Here the displayed compact convention uses observer natural units and the reduced Planck mass. A dimensional observer dictionary must restore its constants consistently; this convention is not a different numerical choice for substrate $c_f$. The formulas do not import an inflaton or effective spacetime into architrino dynamics. Their local role is to identify output coordinates and the assumptions a proposed comparison must either recover or explicitly replace.
 
-### 4.3 Angular transfer and matter perturbations
+### 4.3. Angular transfer and matter perturbations
 
 For a declared seed-power convention and linear observer transfer,
 
@@ -261,7 +261,7 @@ $$
 
 is a separable linear-growth comparison. Scale-dependent growth, neutrino/free-streaming effects and nonlinear corrections need their explicitly extended transfer description. Equality scale, BAO and lensing cannot be fitted with a different sea history merely to preserve the compact factorization.
 
-### 4.4 Production and free streaming
+### 4.4. Production and free streaming
 
 A candidate thermal, freeze-in, sterile-neutrino, compact-object or neutral-assembly component needs a production history as well as a final abundance. The effective thermal annihilation comparison is
 
@@ -294,7 +294,7 @@ $$
 
 with the lower limit fixed by the declared production history. The source's approximate keV mass and momentum-distribution scaling is retained as supporting benchmark detail. A production proposal must jointly expose abundance, distribution, free-streaming scale and relativistic loading or injection; no one scalar determines all four.
 
-### 4.5 The BBN handoff
+### 4.5. The BBN handoff
 
 The effective expansion comparison during BBN depends on the total participating energy density, including photons, electron–positron pairs and declared neutrino or other relativistic components. A ratio called $N_{\mathrm{eff}}$ needs an epoch, a species inventory and the reference one-neutrino density. Electron–positron content during its populated epoch must not silently become an extra-neutrino contribution merely because it appears in total non-photon radiation. The source's compact ratio therefore requires its stated relativistic-density convention before numerical use.
 
@@ -309,7 +309,7 @@ The asymmetry parameter belongs only to a declared neutrino-sector model. Weak e
 
 ## 5. Joint Observations and Selection
 
-### 5.1 Survey products and covariance
+### 5.1. Survey products and covariance
 
 A coherent comparison connects complementary data products rather than collecting independent best fits:
 
@@ -333,7 +333,7 @@ $$
 
 Singular directions, nuisance treatment, cross-survey covariance and shared calibration must be handled explicitly. Elementwise standardized differences are coordinates, not proof of statistical independence. Derived summaries such as $S_8$, an acoustic scale or an inferred local $H_0$ must not be counted again as independent measurements when their source information is already in the likelihood. Isotropic BAO products omit unavailable anisotropic entries by their data model, not to conceal a failed comparison.
 
-### 5.2 Noncompensating shared-state tests
+### 5.2. Noncompensating shared-state tests
 
 The source introduces a projection discrepancy over coordinates shared by observation families. For comparable, normalized coordinates and nonnegative weights,
 
@@ -354,7 +354,7 @@ $$
 
 can be negative. Adding it to a nonnegative shared-state penalty can produce zero even when neither test passes. The two requirements must therefore be kept separate, or combined through a declared nonnegative statistic that retains their individual acceptance conditions. The source-reported ACT/SDSS exponent and window remain historical benchmark details, with their primary-source verification unresolved here. Including that benchmark does not demonstrate that an Architrino branch has fitted it. A galaxy-scale modified-acceleration hypothesis must face its large-scale profile and screening/domain assumptions on the same response history.
 
-### 5.3 Quasars, growth and association claims
+### 5.3. Quasars, growth and association claims
 
 Quasar counts in redshift mix luminosity-function evolution, flux/color selection, obscuration, lensing, source-class evolution, classification error and the transfer map. A fixed-void interpretation cannot read the count distribution as direct path-transport evidence while ignoring those effects. An effective expansion comparison likewise must not assume that population modeling has explained away an unresolved transport residual.
 
@@ -364,7 +364,7 @@ Older QSO/galaxy and BL Lac/companion association claims remain historical leads
 
 ## 6. Chronology, Observer Conditioning, and Predictive Width
 
-### 6.1 Independent clock families
+### 6.1. Independent clock families
 
 An unbounded absolute-time model still has to explain the accessible age record. The sources report approximate convergence of multiple clocks near a common effective observer era; that report is not a fresh age measurement here and does not determine the absolute age of the Euclidean void.
 
@@ -372,7 +372,7 @@ The clock families remain distinct: Hubble-time/redshift reconstruction; differe
 
 A candidate may interpret the convergence as the current observer era, a dominant recycling/thermalization history or the accessible star-forming material record. It must also account for older populations: absence, resetting, concealment or exclusion from access each requires a concrete history and observation model. Merely positing a very old void explains none of those alternatives.
 
-### 6.2 Conditioning a history measure
+### 6.2. Conditioning a history measure
 
 Observer eligibility comprises durable records, available free energy, chemical/environmental support and stable access over a window. It should be a subset of the same history/basin measure used elsewhere for finite-window records, rather than a separately fitted anthropic probability law. A state subset cannot literally be intersected with a time interval without defining a common space.
 
@@ -388,7 +388,7 @@ $$
 
 the ratio is ordinary conditional measure. A fixed state event can be lifted to the product space. The history law, occupation versus event weighting and time-window convention must be inherited or derived consistently; choosing $\nu_*$ independently to obtain a desired chronology would reintroduce the separate probability law. This definition neither constructs the required basin measure nor derives Born weights, observer typicality or a cosmological age distribution.
 
-### 6.3 Fitting is not predictive restriction
+### 6.3. Fitting is not predictive restriction
 
 For a declared cosmological record and nearby comparison space, define
 
@@ -415,13 +415,13 @@ Here $\mathcal B_{\mathrm{fit}}$ denotes initial states meeting the full compari
 
 ## 7. Ordered-Core Recycling and Entropy
 
-### 7.1 The retired source and the retained hypothesis
+### 7.1. The retired source and the retained hypothesis
 
 The [ordered-core scope decision](ordered-core-recycling-entropy-scope-decision.md) excludes universal radiative shedding by freely propagating stable particles as a source for this mechanism. It records bound far fields in the steady velocity-field channel and the absence of a separately appended acceleration-field term in the master equation. Those source-reported results are not rederived here. Free-steady shedding therefore cannot pay for core ordering, replenish stable particles or drive cosmological redshift in the retained hypothesis.
 
 The narrower speculation is that a non-steady strong-field, accelerated, reaction or medium-relaxation event processes an infalling assembly and exports energy and entropy. An ordered core is a candidate coarse-grained state class, not proof of a single microstate, low horizon entropy or production of fresh low-entropy assemblies. Fine-grained record preservation does not by itself lower local coarse-grained entropy.
 
-### 7.2 A conditional entropy balance
+### 7.2. A conditional entropy balance
 
 For one event window and a consistent coarse-graining, the proposed account is
 
@@ -445,7 +445,7 @@ When the ordered subsystem is the core, the source's outgoing, medium, horizon a
 
 Every term must share energy, momentum, angular momentum, primitive inventory, polarity, wake history and identity routing. A positive export contribution may not be inferred from the desired negative local change. The allowed sources include accelerated or curved transport, sharp sea gradients, evolving horizons, reactions, capture/merger/dissociation/branch transitions and irreversible relaxation with a named depletion source. Resolved photon, gravitational-wave, particle, jet, diffuse or medium-excitation channels remain possibilities until an event actually populates them with finite source loss, gain and recoil/remnant records.
 
-### 7.3 From one event to cosmology
+### 7.3. From one event to cosmology
 
 A thermodynamically admissible event does not establish a cosmic source population. Formation, feeding, processing, release and sea transport must supply a rate, spectrum and spatial history. The same history must preserve supernova time dilation, surface-brightness behavior, CMB spectrum/anisotropy/distance, BBN, BAO and growth, while facing ordinary accretion, merger, dust, jet and environmental alternatives.
 
