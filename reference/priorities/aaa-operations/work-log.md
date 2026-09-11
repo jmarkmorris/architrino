@@ -2,6 +2,12 @@
 
 This file is the chronological work log for the `aaa-operations` priority area. Use it for dated agent status, proof-attempt notes, checker narratives, handoffs, failed paths, and operator/developer communication that must remain discoverable but should not crowd the live priority tracker.
 
+### 2026-09-11 — OPS-030 Option B report-only stale-binding review queued
+
+- The operator requested an operations action item after the Option B report-only check on `Converge AAA corpus and record CRW-005 reviews` failed before executing its bounded chains.
+- The retained report identifies the failure as a stale binding for the reserved assumptions namespace. This is a report-only diagnostic; existing authoritative A checks remain unchanged, and the candidate map remains unapproved.
+- OPS-030 routes exact-head/map/source comparison and disposition review to operations with the development-process-review and equation-mapping owners. It does not authorize refreshing hashes, changing the namespace, accepting the map, or transferring authority.
+
 Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and draft corpus-promotable text when this priority area has one. Use `priorities.md` for strategy, status, blockers, and promotion routing, and use `work-queue.md` for accepted executable tasks and their local order. Keep focused proof packets, certificates, app specs, and requirement notes in their own sibling files when they need a stable structure.
 
 ## Log Entries
