@@ -2,7 +2,7 @@
 
 ## 1. One Record Across Several Sectors
 
-### 1.1 The object being accepted
+### 1.1. The object being accepted
 
 A successful local explanation becomes a stronger theory claim only if its assumptions and outputs can coexist with the other results that the claim promises to preserve. The [closure-intersection framework](closure-intersection-ledger.md) expresses that obligation using one record space. It supplies a definition of joint acceptance, not evidence that an accepted physical record already exists.
 
@@ -26,7 +26,7 @@ Here $A$ names the assembly or branch family; $\Gamma$ describes its microstate;
 
 The record is a mathematical representation of the required information. Merely filling its fields does not derive an assembly, measure, medium law or event. Energy, momentum and angular momentum here belong to their established assembly-level accounts; they are not new primitive architrino properties.
 
-### 1.2 Sector acceptance
+### 1.2. Sector acceptance
 
 For sector $S$, fix Boolean predicates $P_S,\mathcal G_S:\mathfrak X\to\{0,1\}$ for the physical requirements and no-go applicability, respectively. Let $\mathcal B_S:\mathfrak X\to\mathfrak B_S$ map each record into a benchmark metric space $(\mathfrak B_S,d_S)$, with observational comparison region $\mathfrak B_S^{\mathrm{obs}}\subseteq\mathfrak B_S$ and finite nonnegative tolerance $\epsilon_S$. The source defines
 
@@ -84,7 +84,7 @@ The cosmological common record specifically retains $\rho_{\mathrm{NS}}(\mathbf 
 
 ## 3. Extending a Local Result
 
-### 3.1 The extension criterion
+### 3.1. The extension criterion
 
 Let $\pi_S:\mathfrak X\to\mathfrak X_S$ retain the sector fields and the shared coordinates consumed by sector $S$. For a local result $c\in\mathfrak X_S$, define
 
@@ -98,7 +98,7 @@ By the source's definition of joint acceptance, the local result passes this str
 
 The source also lists $c\in\pi_S(\mathcal C_S)$ as a condition. It follows already from a nonempty extension because the full intersection is a subset of $\mathcal C_S$. The additional clause emphasizes local acceptance but adds no independent mathematical requirement. No physical existence result follows from this definitional equivalence.
 
-### 3.2 Separate successes do not compose automatically
+### 3.2. Separate successes do not compose automatically
 
 Nonempty individual acceptance sets do not establish a common member. Even pairwise compatibility can be insufficient. Consider the purely mathematical record space $\{a,b,c\}$ with
 
@@ -114,7 +114,7 @@ Failure to find a witness in a finite search is also weaker than a proof that no
 
 ## 4. Incompatibility and Available Tolerance
 
-### 4.1 A claim-constrained domain
+### 4.1. A claim-constrained domain
 
 Let $I(c)\subseteq\mathfrak X$ contain the records that preserve the local claim's definitions, coefficients, event rows and effective-limit assumptions. For a target sector $T$, the constrained acceptance set is
 
@@ -140,7 +140,7 @@ $$
 
 An empty $D_T(c)$ already rejects the target through its predicates. Under the extended-real convention its infimum is $+\infty$ and its margin is $-\infty$; reporting the predicate failure separately keeps its cause visible.
 
-### 4.2 What the sign of the margin proves
+### 4.2. What the sign of the margin proves
 
 Assume a nonempty domain and a finite infimum. If $\delta_T(c)<0$, every feasible benchmark distance exceeds tolerance, so the constrained acceptance set is empty. If $\delta_T(c)>0$, the definition of infimum supplies a feasible record with distance strictly below tolerance: choose an approximation to the infimum closer than the positive slack. This proves existence in the defined mathematical set, without providing a computable optimizer or establishing that the predicates themselves were correctly modeled.
 
@@ -148,7 +148,7 @@ At $\delta_T(c)=0$, acceptance depends on attainment. For instance, take $D=(0,\
 
 A demanded reserve margin is an additional requirement, distinct from bare acceptance at tolerance. Missing event fields and hidden parameter splits likewise belong to the declared predicates or record definition; a positive numerical slack cannot repair them.
 
-### 4.3 Six diagnostic classes
+### 4.3. Six diagnostic classes
 
 | Witness class | Incompatibility being tested | Source failure identifier |
 | --- | --- | --- |
@@ -163,13 +163,13 @@ The source names a frame-split measurement recipe with CMB, matter dipoles, supe
 
 ## 5. Applying No-Go Results at the Claimed Level
 
-### 5.1 Assumptions and replacement burdens
+### 5.1. Assumptions and replacement burdens
 
 For each theorem family, the source records assumptions as accepted, rejected, replaced, effective or absent. It then distinguishes direct applicability, an assumption mismatch, a replacement constraint and an irrelevant comparison. The distinction is useful only when the actual theorem premises and the candidate's claimed regime are examined.
 
 A rejected substrate premise does not automatically remove an effective-level restriction. If the recovered description satisfies a theorem's assumptions, that theorem can constrain the recovery even though its language was not primitive. Conversely, a theorem whose required assumptions are absent cannot reject the candidate merely by resemblance. Any observed behavior protected by that theorem remains a separate recovery obligation.
 
-### 5.2 Six source classifications and their limits
+### 5.2. Six source classifications and their limits
 
 | Family | Retained classification | Required qualification |
 | --- | --- | --- |
@@ -184,13 +184,13 @@ These are carefully bounded interpretations of the retained source classificatio
 
 ## 6. Failure Routing and the Unworked Case
 
-### 6.1 Failures of a shared account
+### 6.1. Failures of a shared account
 
 The source retains five kinds of failure. An empty full intersection or extension requires a compatibility analysis. Hidden tuning requires examining the exposure and residual-routing definitions. Missing event fields require completing or rejecting the event account. Benchmark-only fitting requires revisiting the branch, mass, quantum or medium derivation that imported its desired output. Incompatible effective limits require the affected sectors to exhibit a shared overlap or a proper impossibility witness.
 
 The complete event inspection includes output, recoil, medium update, remnant, polarity or charge, architrino inventory, source identity, emission time, causal-root branch and branch-Jacobian records, alongside energy, momentum and angular-momentum accounting. Undefined required fields or nonzero required balance residuals are failures after all claimed channels are included; an individual nonzero output is not itself a failed balance. A replayable record is necessary provenance, but self-replay alone is not independent verification of its mathematics or physics.
 
-### 6.2 A framework is not a worked physical record
+### 6.2. A framework is not a worked physical record
 
 The [strategy](priorities.md) still names one worked shared-closure object: a sector case claiming stronger acceptance must provide either a nonempty extension witness or a named incompatibility witness. The existing sources do not contain that worked physical record. The historical promotion of the framework is distinct from constructing such an example, and this explanatory synthesis does not complete it.
 

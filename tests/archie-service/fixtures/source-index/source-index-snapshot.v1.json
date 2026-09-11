@@ -19,7 +19,7 @@
   },
   "generatedArtifactDigests": {
     "markdownIndex": "43f2c5f5e1aa19e6088e518e1ffa459c9a3ad078aa2323a246e6c520ecae7611",
-    "readingCopies": "6d517a356bb7c64b27f3bcabb49e0a3e85047d6ea0556b15fbaa20713fbab677",
+    "readingCopies": "d4d5ae37248f00721868aff90b460935648bcc6c433b4a152c2eae341d8b0924",
     "sceneGraph": "4444d446677a091f13c381e530a6eafb58bdcbfb7207bf21c71f98570f524d78",
     "textbookToc": "6f6b1d077aaa2db82fb50afc05d2ee737ac43bbf54f638a7ba328621ceb891b9"
   },
@@ -47,7 +47,7 @@
       "sourceId": "source.generated-foundations-ontology",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "sectionAnchor": "ontology",
-      "sourceContentSha256": "07ed1dc63a1b9d71f96a64ac0029b57c5bd307391feff049d2ddc01867736496",
+      "sourceContentSha256": "733509b9a04af72bb675c9fe3382634c9c0c7f85c21276119dabe84cb31f2cc4",
       "selectionSha256": "b470ef72cef4704bc2f591b73e698b7ad6ca5dd1ae9870a20251152307e1c370"
     },
     {
@@ -166,7 +166,7 @@
             "ontology",
             "reading copy"
           ],
-          "sourceContentSha256": "07ed1dc63a1b9d71f96a64ac0029b57c5bd307391feff049d2ddc01867736496",
+          "sourceContentSha256": "733509b9a04af72bb675c9fe3382634c9c0c7f85c21276119dabe84cb31f2cc4",
           "selectionSha256": "b470ef72cef4704bc2f591b73e698b7ad6ca5dd1ae9870a20251152307e1c370",
           "searchText": "Generated Foundations Reading Copy: Ontology foundations reading copy generated reading copy ontology Ontology Ontology is the study of what exists. Not what we can measure, not what our equations track, but what is actually there before anyone names it, observes it, or compresses it into a model. That distinction sounds abstract and is intensely practical. Physics routinely uses quantities that work beautifully without anyone claiming they are fundamental — temperature is real and useful, yet no single molecule has one. Confusing \"this description works\" with \"this is what e",
           "publicEligible": true
@@ -267,7 +267,7 @@
           "publicEligible": true
         }
       ],
-      "sha256": "56dc56fa02feeafea7e8ab4802ba2a291077f6f974b6f0a4045dcbf53638cf37"
+      "sha256": "b93299344285e202e883badc94b523341f1e5fa8138ab6677f6971f2189edc60"
     },
     "graph": {
       "schema": "archie-source-graph-view/v1",
@@ -371,5 +371,5 @@
       "sha256": "6ce866fec72d0914e6118a319140fa9b174a7aa9847b7611ceb3ed02a4fe7698"
     }
   },
-  "snapshotSha256": "656b83e14e5151d6a2a4573ac34109d325a655f94e88eed93e0b3ff31a11c56c"
+  "snapshotSha256": "bb04303ab376f05ae648d515357fe0edb7ff82eea6eee550346d5443c372fd77"
 }

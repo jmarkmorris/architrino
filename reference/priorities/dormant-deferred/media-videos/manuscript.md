@@ -12,7 +12,7 @@ The intended production range includes characters and visages, voices, narration
 
 ## 2. Four Complementary Explanatory Roles
 
-### 2.1 A flexible cast
+### 2.1. A flexible cast
 
 The [character bible](character-development.md) records four approved names: Mia Quinn, Sophia Calder, Julian Brooks and Rachel Stone. The remaining prototype and presentation decisions retain their draft status. They are fictional undergraduates with an academically advanced STEAM register, where STEAM denotes science, technology, engineering, arts and mathematics. Their authority comes from explanation, demonstration and scrutiny, rather than from their appearance or invented biography.
 
@@ -27,7 +27,7 @@ These responsibilities overlap enough for dialogue between peers. Mia is not the
 
 Any character may appear alone or with any subset of the ensemble. Four roles do not require four speakers in every short video. When all four are useful, the proposed interaction runs from Mia's mechanism, through Sophia's visual mathematics and Rachel's evidence question, to Julian's app or artifact connection. Casting follows the instructional need.
 
-### 2.2 Stable identities without stereotypes
+### 2.2. Stable identities without stereotypes
 
 The source supplies specific fictional appearance directions and palettes. These are continuity constraints, not explanations of expertise or behavior.
 
@@ -42,7 +42,7 @@ The shared direction is a thin, fit, athletic build and well-fitted, tasteful st
 
 The original bible retains each positive and negative visual prompt as a reusable source artifact. Changing hair, face, skin tone or wardrobe unpredictably breaks recognition even if each isolated shot appears polished. A real-person resemblance or imitation of an existing fictional character also violates the source's identity boundary. Demographic traits must not become jokes, shortcuts or proof of competence. Dating, relationships, family and private biography remain outside the educational script unless separately approved for a specific story reason.
 
-### 2.3 Voice and dialogue continuity
+### 2.3. Voice and dialogue continuity
 
 The common register is articulate, complete and technically precise while remaining conversational. The source rejects filler-heavy speech, influencer cadence, slang-driven humor, exaggerated reactions and obscure vocabulary used merely to sound sophisticated. An advanced undergraduate register does not require claims of credentials or experiences the fictional biographies do not supply.
 
@@ -54,7 +54,7 @@ The sources use *Educators* for recurring instructional characters, while the bi
 
 ## 3. A Small Prototype With an Inspectable Result
 
-### 3.1 One question in a landscape frame
+### 3.1. One question in a landscape frame
 
 The [prototype plan](first-prototype-priorities.md) specifies an internal-review pilot lasting 60–90 seconds, aimed at a first-time viewer with a general STEAM background. Its initial output target is 16:9 landscape at 3840 by 2160 pixels. The source calls this YouTube 4K HD landscape; the stated dimensions define the actual target more precisely than the label alone.
 
@@ -62,7 +62,7 @@ The proposed pilot has one hook, one central explanation, one visual demonstrati
 
 The six-beat script shape is hook, minimal setup, evidence pressure, demonstration, useful clarification and close. A full theory overview, unsupported claims, excessive formulas, irrelevant personal exposition and an elaborate toolchain would defeat this bounded purpose. No topic or script is selected by this synthesis.
 
-### 3.2 Decisions before generation
+### 3.2. Decisions before generation
 
 The source retains eight linked decisions: pilot topic; character sheets; visual style; voice and pronunciation; reviewed script outline; asset storage; prototype quality checks; and the smallest toolchain trial. The outline assigns spoken lines, narrator beats, on-screen text and visual actions. Storage and quality conditions then make the trial reviewable.
 
@@ -70,7 +70,7 @@ The minimum trial is intended to test one character still, one voice sample, one
 
 The source's completed character-development checklist records names, role definitions, biographies, visual and voice sheets, continuity rules and flexible casting. That preparatory work is different from final public character approval or a completed pilot. Each sheet still serves as the reference for its name, STEAM emphasis, explanation role, public-safe biography, visual and voice prompts, continuity checks, negative likeness and stereotype constraints, and personal-life boundary. Remaining style, topic, toolchain and acceptance decisions must not disappear merely because the sheets exist.
 
-### 3.3 What reaches internal review
+### 3.3. What reaches internal review
 
 The prototype's nine completion artifacts are a reviewed script, complete shot list, four draft character sheets, dry-run narration or read-through, a visual proof of style, a chart/formula/app-navigation visual, captions or a transcript draft, the specified landscape export and retained source artifacts. Together they let a reviewer trace the explanation from source to final presentation.
 
@@ -78,7 +78,7 @@ A rendered movie alone would conceal too much of that chain. Conversely, a compl
 
 ## 4. Quality Through the Whole Production Path
 
-### 4.1 A source-preserving workflow
+### 4.1. A source-preserving workflow
 
 The required sequence begins with reviewed content, permits draft scripts and shot plans, supports section-level dry runs and retains the material used for final generation. AI drafting does not replace operator review before public release. Short one-shot production and a longer repeatable pipeline are both allowed. Live streaming remains a possible later mode, with the same script review, factual review, captioning and archive duties; it is not a route around them.
 
@@ -86,7 +86,7 @@ The retained production sources include scripts, prompts, character references, 
 
 The main strategy's seven work objects cover the prototype decisions, ensemble, script pipeline, quality control, production method, asset pipeline and platform profiles. This manuscript organizes their subject matter without marking any of those operational objects complete or starting a production run.
 
-### 4.2 What must be checked in the result
+### 4.2. What must be checked in the result
 
 Factual review compares the script and its realized visuals with the relevant source and claim level. Appearance review compares each shot with the fictional identity reference. Audio review checks pacing, intelligibility, pronunciation and the intended character register. Accessibility review checks captions or a transcript and legibility on both mobile and desktop displays. Platform review checks framing, duration and export conventions. Provenance review traces final content back to reviewed source artifacts.
 
@@ -94,7 +94,7 @@ The source also requires clear fictional presentation, no unsupported claim that
 
 The character continuity checklist adds eight concrete comparisons: correct name/role; consistent face, hair, skin tone and wardrobe; overlay space; appropriate behavior/tone; no real-person likeness; no demographic shortcut; no unapproved private-life detail; and mobile-readable captions. A pass is specific to the inspected shot and reference. It does not prove that later generations will retain the same identity.
 
-### 4.3 Platform profiles
+### 4.3. Platform profiles
 
 YouTube landscape is the first target; TikTok and the Architrino webapp remain later profiles. Each profile needs its own aspect ratio, duration bands, captions/transcript, thumbnail or cover frame, file formats, source retention, publication checks and use classification: public, internal, tutorial-only or embedded.
 
@@ -102,7 +102,7 @@ Reframing a landscape composition for a narrow screen can remove an overlay or c
 
 ## 5. Capture Equipment as Retained Working Evidence
 
-### 5.1 What the equipment notes can and cannot establish
+### 5.1. What the equipment notes can and cannot establish
 
 The [camera notes](equipment/cameras.md) and [microphone notes](equipment/microphones.md) preserve practical capture experience alongside the generated-media plans. They are useful historical working material, not a current equipment recommendation or verified specification sheet. Device variants, firmware, software versions and test conditions are often unspecified.
 
@@ -110,7 +110,7 @@ The camera inventory covers a Mac camera, an iPad, iPhone 12 and iPhone 16 headi
 
 The full source retains the detailed mode lists rather than replacing them with a fresh product comparison. Any future choice depending on a particular resolution, frame rate, lens, codec or recording path needs verification on the actual device. No such inspection or purchase decision occurs in this synthesis.
 
-### 5.2 Motion, exposure and storage notes
+### 5.2. Motion, exposure and storage notes
 
 The Pocket 3 notes explore panoramic capture, motionlapse, timelapse, hyperlapse, spinshot, zoom, camera reversal, forward-pointing capture, low-light operation and subject tracking. They include questions about off-center tracking and using motion to illustrate an orbit. These are proposed capture uses and operating notes, not evidence of a scientific trajectory or a tested explanatory animation.
 
@@ -120,7 +120,7 @@ Battery duration, accessory completeness, memory-card markings and recording-tim
 
 Firmware updating, tracking positions, vertical capture and saved configurations remain proposed device tests. Their presence in the notebook is not a report that the tests were run or that the current hardware supports every listed combination.
 
-### 5.3 Audio observations and open compatibility questions
+### 5.3. Audio observations and open compatibility questions
 
 The microphone record includes Blue Yeti gain and pickup notes, reported initial noise, an iPad audio-routing difficulty and posture/on-the-go limitations. Those are attributed observations and workarounds without retained controlled measurements. They do not establish a universal device defect or a verified setting for another recording environment.
 

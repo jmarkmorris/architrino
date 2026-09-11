@@ -2,7 +2,7 @@
 
 ## 1. From Definite Outcomes to a Joint Law
 
-### 1.1 The explanatory problem
+### 1.1. The explanatory problem
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, a detector is a physical assembly whose delayed history produces a persistent record. Observation is not a new primitive interaction. The substrate has definite configurations in Euclidean space and absolute time, and its master equation determines acceleration from causal path history. Quantum states, analyzer operators and measured correlation laws belong to an effective description that the substrate must recover.
 
@@ -10,7 +10,7 @@ A definite outcome is only one part of the Bell problem. A source prepares two s
 
 The [retained assumption synthesis](brainstorming.md) distinguishes a settled conditional negative result from unresolved positive mechanisms. A passive shared past cannot violate CHSH when Bell factorization, measurement independence and valid trial sampling hold. No positive Architrino route has been derived or selected. Accepted assembly source histories and analyzer-response calculations remain necessary before route adjudication can become a physical result.
 
-### 1.2 EPR completeness and Bell obstruction
+### 1.2. EPR completeness and Bell obstruction
 
 The [EPR lecture analysis](tim-maudlin-epr-bell-video-source-mining.md) separates two questions. EPR uses certainty without disturbing a remote system as a sufficient criterion for a physical property, then asks whether the wavefunction is complete. Bell constrains a declared class of setting-indexed response laws. EPR supplies a conditional completeness argument; Bell supplies a quantitative obstruction.
 
@@ -18,7 +18,7 @@ The distinction is already visible in a single-particle screen example. A defini
 
 The [Bell-foundations analysis](tim-maudlin-bell-foundations-2022-video-source-mining.md) retains an EPR-sympathetic discovery history: Bell challenged overstrong earlier exclusions of hidden variables and isolated distant-system independence as the interesting constraint. The paper published in 1966 was written before the 1964 theorem paper. The exploratory route and the published theorem’s deliberate obstruction should not be confused. Neither the historical argument nor Maudlin’s preferred interpretation selects an Architrino mechanism.
 
-### 1.3 What conservation does and does not specify
+### 1.3. What conservation does and does not specify
 
 A source account may impose
 
@@ -32,7 +32,7 @@ The required separation is therefore physical: source preparation, locally avail
 
 ## 2. The CHSH Constraint
 
-### 2.1 Trials, outcomes and correlations
+### 2.1. Trials, outcomes and correlations
 
 A binary trial records
 
@@ -58,7 +58,7 @@ $$
 
 The bound below concerns the model’s expectations. A finite sample can fluctuate beyond it under a local null, so an experimental verdict also needs a justified statistical test, including any memory, stopping and trial-selection assumptions. Computing four ratios does not by itself supply that verdict.
 
-### 2.2 Factorization and a common preparation measure
+### 2.2. Factorization and a common preparation measure
 
 Let $\lambda$ be the complete state declared relevant to the response model. Bell factorization is
 
@@ -77,7 +77,7 @@ These are distinct assumptions. The first restricts the conditional response; th
 
 Completeness has to be defined relative to a physical causal model. Adding relevant apparatus variables can improve the state declaration, but adding variables that determine the settings need not preserve measurement independence. A “complete past” is not permission to assume both independence and its negation under an unexplained expansion of the conditioning set.
 
-### 2.3 The bound, including stochastic response
+### 2.3. The bound, including stochastic response
 
 For deterministic local outcomes $A_x,B_y\in\{-1,+1\}$,
 
@@ -115,7 +115,7 @@ $$
 
 The same-measure average proves the same bound. Equivalently, suitable local random seeds can dilate these response kernels to deterministic ones without changing the stipulated setting independence. Local dice, more detailed histories, braid structure or more complex detectors do not evade the result while its assumptions remain intact.
 
-### 2.4 The passive-record negative control
+### 2.4. The passive-record negative control
 
 “Decided at entanglement” becomes a definite two-wing claim only after specifying whether $a=A(x,\lambda)$ and $b=B(y,\lambda)$ and whether the later settings select the same state distribution. If those conditions and valid sampling hold, the passive source record is inside the class just bounded.
 
@@ -123,7 +123,7 @@ The negative result neither denies definite substrate states nor rules out every
 
 ## 3. The Observer-Level Recovery Target
 
-### 3.1 Spin and polarization conventions
+### 3.1. Spin and polarization conventions
 
 For the effective spin-singlet comparison, let $\theta_{xy}$ be the angle between unit spin-measurement axes $\hat{\mathbf x}$ and $\hat{\mathbf y}$. With binary outcomes $a,b$, the target joint law is
 
@@ -145,7 +145,7 @@ This is an observer-level quantum target, not a substrate probability postulate.
 
 Linear polarization uses a different analyzer-angle convention. The particular state and outcome labeling discussed in the [Bell-theorem source analysis](stanford-encyclopedia-bell-theorem-source-mining.md) has $E(\theta)=\cos(2\theta)$. Another entangled state or a reversed binary label can change the sign or axis relation. The carrier, state, analyzer and labeling must be stated before assigning a correlation law; the spin angle is not one universal substrate angle.
 
-### 3.2 Why aligned anticorrelation is insufficient
+### 3.2. Why aligned anticorrelation is insufficient
 
 Rotational symmetry and perfect aligned anticorrelation do not alone select the cosine. An explicit local comparison illustrates the missing constraint. Draw a unit vector $\mathbf n$ uniformly on the sphere and let
 
@@ -165,7 +165,7 @@ This model is rotationally invariant, has unbiased marginals and gives perfect a
 
 For coplanar spin axes at Alice’s $0$ and $\pi/2$ and Bob’s $\pi/4$ and $-\pi/4$, the singlet table yields three correlations $-1/\sqrt2$ and the fourth $+1/\sqrt2$, hence $S=-2\sqrt2$. This is one algebraic check of the target convention. It does not derive the full quantum Tsirelson bound or prove that a candidate physical model cannot exceed it elsewhere.
 
-### 3.3 One physical family behind every diagnostic
+### 3.3. One physical family behind every diagnostic
 
 A proposed recovery begins with accepted pair histories and local analyzer kernels. Schematically, for a declared preparation/window measure $\mu_W$, unresolved apparatus state included in $\zeta$, and outcome maps $A_x,B_y$, a candidate pushforward is
 
@@ -184,7 +184,7 @@ The division of work follows the physics: Quantum Closure supplies source measur
 
 ## 4. Conditional Dependence and Causal Routes
 
-### 4.1 Decomposing factorization
+### 4.1. Decomposing factorization
 
 Parameter independence requires
 
@@ -205,7 +205,7 @@ Together these give Bell factorization on the declared support. Their interpreta
 
 For a genuinely complete deterministic state, each conditional outcome is fixed, so outcome independence holds. A deterministic candidate retaining measurement independence and valid trials can violate the Bell bound only by changing conditional factorization, hence parameter independence in that complete-state description. Merely relabeling a residual correlation as an unscreened common cause does not avoid the completeness issue.
 
-### 4.2 No-signaling and access
+### 4.2. No-signaling and access
 
 Operational no-signaling concerns the averaged observable law:
 
@@ -232,7 +232,7 @@ $$
 
 These equalities refer to a specified joint probability law and its supported conditioning events. For finite tested settings with positive probabilities, zero conditional mutual information expresses the corresponding conditional independence almost surely. It says nothing about untested or zero-probability settings without an extension of the model. Information is a diagnostic of physical records, not a new substrate substance.
 
-### 4.3 Distinct unresolved mechanisms
+### 4.3. Distinct unresolved mechanisms
 
 | Route | Mathematical change | Physical boundary |
 | --- | --- | --- |
@@ -248,7 +248,7 @@ These options are not interchangeable descriptions of a shared sea. In particula
 
 ## 5. Detectors and Valid Trial Tables
 
-### 5.1 Selection changes the analyzed ensemble
+### 5.1. Selection changes the analyzed ensemble
 
 Let $D_A,D_B\in\{0,1\}$ denote inclusion. The selected distribution is
 
@@ -261,7 +261,7 @@ when the conditioning event has positive probability. If inclusion depends on th
 
 A physical proposal must specify inclusion laws such as $D_A(x,a,\lambda,\eta_A)$ and $D_B(y,b,\lambda,\eta_B)$ or their stochastic counterparts, with local apparatus states $\eta_A,\eta_B$. It must predict an efficiency, threshold, window, orientation, material-state or setting-rate dependence that can be tested independently. Detector complexity alone does not change CHSH; a strictly local response remains inside its factorized model.
 
-### 5.2 From heralding to persistent outcome closure
+### 5.2. From heralding to persistent outcome closure
 
 A defensible trial map declares source heralding, setting generation, time tags, coincidence or event-ready rules, missed detections, no-click treatment, channel-dependent delays, memory, postselection and stopping rules. It also identifies the spacelike intervals relevant to the chosen null model. High efficiency and event-ready preparation constrain particular selection explanations; neither phrase substitutes for the complete analysis.
 
@@ -269,7 +269,7 @@ The physical outcome event matters especially for a finite-speed proposal. The m
 
 The breadth of Bell platforms—spin, polarization, interferometric phase, internal state, spatial mode and motion—makes accepted source states and analyzer responses prior to a universal apparatus explanation. One local detector model cannot be transferred to every platform without its observable and record map.
 
-### 5.3 A concrete historical apparatus lesson
+### 5.3. A concrete historical apparatus lesson
 
 The encyclopedia packet retains the Holt–Pipkin polarization anomaly and Clauser’s 1976 repetition as a source-bound mechanism example. It reports restored agreement with the quantum comparison and a proposed stress-induced optical activity in the Pyrex source bulb as a possible explanation of the earlier discrepancy.
 
@@ -277,7 +277,7 @@ The lesson is the specificity of the proposed material state, optical pathway an
 
 ## 6. Finite Influence, Reach and Multipartite Constraints
 
-### 6.1 A directional reach condition
+### 6.1. A directional reach condition
 
 In a declared preferred frame, a simple Alice-to-Bob channel can act only if
 
@@ -291,7 +291,7 @@ with nonnegative emission/processing and receiving-response latencies, the effec
 
 The source’s expression with $L_{AB}/c_f$ is the zero-additional-latency special case after identifying the influence with primitive wakes. That identification is a model bridge, not an experimental fact. Published preferred-frame influence-speed lower bounds constrain their declared hypothetical influence, timing convention and model assumptions. They do not directly measure a universal $c_f$. Any new numerical substrate instance uses $c_f=1$; no numerical influence-speed estimate is made here.
 
-### 6.2 Reachable and unreachable laws
+### 6.2. Reachable and unreachable laws
 
 For a chosen binary reach partition, let $r_{xy}$ be its conditional reachable fraction for setting pair $(x,y)$. With reachable and fallback laws $P_1$ and $P_0$,
 
@@ -320,7 +320,7 @@ Setting-dependent mixture weights can also disturb no-signaling even when both c
 
 Frequency-dependent photon propagation or a frequency crossover requires its own constitutive equation and evidence. A speed hierarchy alone supplies neither dispersion nor a Bell-correlation crossover.
 
-### 6.3 The Bancal boundary
+### 6.3. The Bancal boundary
 
 The retained source synthesis describes a four-party obstruction for a specified class of finite-speed hidden-influence models. In the relevant preferred-frame arrangement, two later parties lie outside each other’s influence cones. After the earlier data are fixed, the model imposes conditional local screening between those later parties.
 
@@ -330,7 +330,7 @@ The implication is narrower than a ban on every conceivable medium and stronger 
 
 ## 7. Measurement Dependence and Physical Typicality
 
-### 7.1 A common past must produce a particular dependence
+### 7.1. A common past must produce a particular dependence
 
 A forward-causal measurement-dependent candidate requires a physical joint law
 
@@ -346,7 +346,7 @@ Determinism alone does not entail that dependence. A deterministic setting gener
 
 Maudlin’s preference to retain statistical independence is a methodological position, not a theorem excluding every measurement-dependent model. No philosophical choice about free will is needed to state or test the conditional law.
 
-### 7.2 Allowed histories and a finite comparison measure
+### 7.2. Allowed histories and a finite comparison measure
 
 Claims that the required histories are rare, typical or fine-tuned need a physical support $\Omega_{\mathrm{phys}}$ and a measure tied to accepted dynamics or preparation. For a finite preparation/window class $\Omega_W$ with
 
@@ -368,13 +368,13 @@ Stellar and quasar setting sources constrain specified common-cause histories by
 
 ## 8. Evidence, Interpretation and Remaining Recovery
 
-### 8.1 Different experimental questions
+### 8.1. Different experimental questions
 
 Experimental comparisons must separate loophole control, statistical strength, cosmic setting provenance, baseline, conditional finite-influence-speed limits and multipartite relevance. A test leading in one category need not lead in another. Source and detector platforms also interrogate different observables.
 
 The retained source packets do not provide a newly verified numerical frontier here. Their encyclopedia audit rejects “no additional hypothesis” as a description of the 2015 experiments and withholds its rounded experimental values. Strong loophole control still rests on the declared hardware-to-trial map and statistical null. Exact numbers and conditional speed bounds require their own primary-source records; none is refreshed or inferred from a video or encyclopedia in this synthesis.
 
-### 8.2 What the explanatory sources contribute
+### 8.2. What the explanatory sources contribute
 
 The local analysis of the July 2026 EPR lecture records that it ends before the promised Bell derivation. It contributes the one-particle/two-wing distinction, epistemic versus physical collapse, the EPR completeness criterion, and the warning that conservation alone is not a response law. It supplies no Bell experiment, finite-speed mechanism or Bancal analysis.
 
@@ -382,7 +382,7 @@ The local analysis of the October 2022 interview contributes explicit detector i
 
 The 2024-revision encyclopedia packet sharpens factorization, outcome closure, access to hidden variables and the physical state-space measure requirement. Its historical and primary-source leads remain supporting references, not independent experiment verification.
 
-### 8.3 Adjacent constraints retain their own assumptions
+### 8.3. Adjacent constraints retain their own assumptions
 
 The measurement triad distinguishes wavefunction completeness, universal linear evolution and a unique definite outcome. An effective, incomplete wavefunction with definite substrate records rejects one member of that triad but still owes the effective linear regime, Born statistics and record-selection dynamics.
 

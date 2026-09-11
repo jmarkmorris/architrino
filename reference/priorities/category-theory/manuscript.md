@@ -16,7 +16,7 @@ The argument follows the information a process needs. After the categorical voca
 
 ## 2. Objects, arrows, and translations
 
-### 2.1 Typed processes and their composition
+### 2.1. Typed processes and their composition
 
 A category specifies objects and morphisms, or typed arrows, between them. An arrow $f:A\to B$ starts at object $A$ and ends at object $B$. Whenever $f:A\to B$ and $g:B\to C$ are admitted, their composition $g\circ f:A\to C$ means first $f$, then $g$. Every object has an identity arrow that leaves it unchanged. The defining laws are
 
@@ -32,7 +32,7 @@ Associativity changes how one fixed sequence is grouped; it does not change its 
 
 Morphisms need not be ordinary functions. Their additional names express precise properties: an endomorphism starts and ends at one object; an isomorphism has a two-sided inverse; an automorphism is an invertible endomorphism. A monomorphism permits cancellation on the left, and an epimorphism permits cancellation on the right. Those cancellation definitions should not be silently replaced by injectivity or surjectivity in an arbitrary category. A homeomorphism is an isomorphism of topological spaces, preserving continuity in both directions; a diffeomorphism does the same for smooth spaces and differentiable maps.
 
-### 2.2 Structure-preserving translations
+### 2.2. Structure-preserving translations
 
 A functor $F:\mathcal C\to\mathcal D$ translates objects and arrows between categories while preserving identity and composition:
 
@@ -52,7 +52,7 @@ A groupoid is a category in which every arrow is invertible. A monoidal category
 
 The object and the composition rule must be developed together: the record at a cut determines what the next extension may consume. The construction begins with the delayed arrival condition, specifies the candidate boundary fields, and then proves the exact joining laws on that declared record type. Physical sufficiency remains a separate question throughout.
 
-### 3.1 The delayed arrival condition
+### 3.1. The delayed arrival condition
 
 At reception time $T_r$, a transmitter's emission time $T_t$ satisfies
 
@@ -68,7 +68,7 @@ Here $\mathbf X_r$ and $\mathbf X_t$ are receiver and transmitter positions in t
 
 The instantaneous projection, denoted $X(T)$ when referring to the complete collection of instantaneous data, must be distinguished from the canonical history-bearing state $S(T)$. Bold $\mathbf X_i(T)$ denotes the position of one architrino. Endpoint information alone does not reconstruct an arbitrary consumed past path. The stronger claim that a particular physical assembly admits two lawful endpoint-matched histories with different futures still requires an independently certified witness; the abstract example in Section 4.2 does not supply it.
 
-### 3.2 Boundary fields, equality, and sufficiency
+### 3.2. Boundary fields, equality, and sufficiency
 
 Fix a declared domain $\mathcal D$, a cut $T$, a finite participating identity set $R$, and the represented interval $I_T\subseteq(-\infty,T]$. The candidate boundary-history record is
 
@@ -105,7 +105,7 @@ Exact equality requires agreement of every represented and physically consumed f
 
 Losslessness has two requirements. Reconstructability means recovering the original substrate record from the encoding, including persistent identities when they distinguish histories. Predictive sufficiency means that equal encoded states give the same complete admitted future continuations, or the same transition law, on the declared domain. An encoding can fail one requirement while meeting a restricted version of the other. Mathematical equivalence of categories alone does not settle either physical requirement.
 
-### 3.3 Coupled extensions and the empty identity
+### 3.3. Coupled extensions and the empty identity
 
 A single worldline segment is generally too small a process record: its acceleration depends on transmitters and possibly on shared wakes or environment. The proposed arrow therefore carries a coupled history increment and its boundary data. For $T_a\le T_b$, write
 
@@ -153,7 +153,7 @@ $$
 
 It neither appends history nor changes a ledger or grade. A zero-duration operation that reclassifies a root or weakens a certificate is a different operation. The left and right identity laws follow because compatible union with the empty interval changes no component.
 
-### 3.4 Compatible union and exact associativity
+### 3.4. Compatible union and exact associativity
 
 The identity law checks the empty extension; associativity checks how a fixed nonempty chronological sequence is joined. Both depend on the same exact boundary type, so a record omitted from that type cannot be repaired by a formal composition symbol.
 
@@ -179,7 +179,7 @@ Reordered expressions such as $\mathsf P_{12}\circ\mathsf P_{23}$ are ordinarily
 
 Exact record composition leaves open whether a smaller state can support the same declared predictions. The relevant test compares histories that the proposed reduction identifies. A single separating pair can refute closure; a successful isolated comparison cannot establish it for an entire history domain.
 
-### 4.1 Factorization through a reduced state
+### 4.1. Factorization through a reduced state
 
 Let $\mathscr H$ be a declared full-history domain on which a deterministic continuation $E_{\Delta T}$ is defined. Let $Q:\mathscr H\to\mathscr Z$ retain a proposed reduced state. A fiber $Q^{-1}(z)$ is the set of histories giving the same reduced state $z$. For a self-contained reduced evolution $\overline E_{\Delta T}$, the required equation is
 
@@ -191,7 +191,7 @@ $$
 
 The equation says that evolving the full record and then reducing it agrees with reducing first and evolving the reduced record. Its central requirement is constancy on fibers: all histories identified by $Q$ must have the same reduced future.
 
-#### 4.1.1 The separating-pair lemma
+#### 4.1.1. The separating-pair lemma
 
 **Separating-pair lemma.** Suppose two histories obey
 
@@ -211,11 +211,11 @@ Then no reduced function can satisfy the commuting equation on that domain. **Pr
 
 > Claim grade: derived abstract obstruction. The falsifier for a claimed closed reduction is one admitted pair in a common fiber with distinct projected futures. Applying the lemma to physical histories requires lawful admissibility and independent classification of the separating response; history-dependent notation alone is not that witness.
 
-#### 4.1.2 Branching domains and transition laws
+#### 4.1.2. Branching domains and transition laws
 
 On a branching domain, a full state can have a set of admitted continuations. A transition law additionally assigns probabilities, if independently supplied. The reduced relation or law must be constant after pushing those complete sets or laws through $Q$. Selecting a convenient branch independently on each side does not test this obligation, and counting alternatives does not assign probabilities.
 
-### 4.2 A manufactured exact negative control
+### 4.2. A manufactured exact negative control
 
 The worldline-history contract tests whether the proposed diagnostic notices discarded history through a scalar mathematical example. Set $T=0$, $h=1$, and take
 
@@ -245,15 +245,15 @@ The endpoint projection cannot determine that response. This is a derived negati
 
 The control set also needs a full-history positive case, $Q=\operatorname{id}$ where evolution exists, and an endpoint-local positive response $\mathcal A_0(H)=F(Q(H))$, for which equal projections necessarily give equal responses. The latter detects a test that spuriously reports memory dependence. The physical negative-control slot remains unsupplied: it requires two lawful endpoint-matched histories and independent root, next-acceleration, or later projected separation. Same-implementation replay tests repeatability or plumbing and supplies no independent physical acceptance.
 
-### 4.3 Markov sufficiency and speed restrictions
+### 4.3. Markov sufficiency and speed restrictions
 
 A state description is Markov-sufficient when its present value contains everything needed for its declared future transition law. Determinism instead concerns whether a complete state selects one future; causality concerns allowed past-supported influences; single-root behavior concerns how many emission events contribute. None of those three statements alone establishes Markov sufficiency in instantaneous variables.
 
-#### 4.3.1 Geometric restrictions on the consumed past
+#### 4.3.1. Geometric restrictions on the consumed past
 
 The [field-speed comparison](../field-speed-ceiling/brainstorming.md#markov-sufficiency-across-master-equation-variants) distinguishes future-only caps, universal non-strict bounds, universal strict bounds, and uniform gaps. A future cap leaves older wakes in flight. A non-strict cap allows tangent or degenerate equality cases. Strict sub-$c_f$ motion excludes ordinary noncoincident self-hits on the consumed interval and makes the partner-root map monotone, but a unique partner root still selects a past transmitter event. Pointwise strictness permits arbitrarily poor conditioning near $c_f$; a uniform positive speed gap supplies a stronger transversality bound. These geometric restrictions do not reconstruct the missing transmitter history. Removing self-hits also materially changes any reasoning that consumes them.
 
-#### 4.3.2 History-state closure and the selector problem
+#### 4.3.2. History-state closure and the selector problem
 
 A history-state representation includes the consumed past as part of the present state, for example
 
@@ -273,7 +273,7 @@ One next-acceleration mismatch can refute instantaneous sufficiency on a certifi
 
 Symmetry and topology describe transformations and invariants, but the permitted transformations differ. This chapter first treats proved actions on complete histories and then distinguishes them from continuous deformations and spatial topology. The distinction determines what an invariant can classify and prevents a formal equivalence from carrying an unsupported dynamical conclusion.
 
-### 5.1 Full-history symmetries
+### 5.1. Full-history symmetries
 
 A reversible symmetry and a lawful extension answer different questions. A symmetry changes an entire record through a proved transformation; an extension adds chronological history and is generally not reversible. A restriction discards information. Keeping these arrow classes separate prevents an effective identification from being mistaken for substrate identity.
 
@@ -303,7 +303,7 @@ The stabilizer consists of transformations that leave the complete history fixed
 
 An admitted transformation carries the full paths, polarities, root identities, wakes, environment, boundaries, and certification. Persistent-label permutations are exact symmetries only on records where the complete provenance and causal-root identities transform consistently. Time reversal does not preserve the declared past-supported law. Polarity conjugation, scaling, and additional internal transformations are not supplied by the accepted group action. Neither similar endpoints nor equal effective outputs establish such a symmetry.
 
-### 5.2 Covariance of a chronological extension
+### 5.2. Covariance of a chronological extension
 
 For an admitted interval arrow $\mathsf P_{ab}$, full-history covariance is expressed by
 
@@ -317,7 +317,7 @@ Here $\gamma_a$ and $\gamma_b$ transform the source and target records, and $\ma
 
 > Claim grade: derived mathematics for action groupoids and stabilizers; inherited derived symmetry for the declared full-history action. A transformed complete record that violates the causal condition or changes a consumed invariant falsifies a proposed symmetry on that domain. No symmetry orbit establishes retention, stability, particle identity, or probability.
 
-### 5.3 Groups, representations, and deformation paths
+### 5.3. Groups, representations, and deformation paths
 
 Group theory is the direct tool for reversible transformations. A group $G$ is a one-object category $\mathbf BG$, with group elements as arrows and multiplication as composition. A representation assigns linear transformations to those arrows, expressed categorically as $\rho:\mathbf BG\to\mathbf{Vect}$, where $\mathbf{Vect}$ is the category of vector spaces and linear maps. General categories become useful when multiple boundary types or noninvertible operations must be related.
 
@@ -337,7 +337,7 @@ $$
 
 This is the space of continuously differentiable position-and-velocity histories for $N$ architrinos over a window of length $h$. The alternative $W^{1,\infty}([-h,0],\mathbb R^{6N})$ requires bounded weak first derivatives; absolutely continuous history classes are another possible refinement. The appropriate regularity is part of the theorem's hypotheses. The source's finite-branch, distance-floor, and transversality assumptions are not supplied by choosing a convenient space.
 
-### 5.4 The distinct referents of topological invariants
+### 5.4. The distinct referents of topological invariants
 
 Several invariants can coexist without sharing a referent. History-space topology concerns proximity and deformation of histories; spatial knot or link topology concerns embedded curves under declared closure conventions; causal-root topology concerns births, folds, signed degrees, and branch walls. Exchange-configuration loops describe exchanging two assemblies but do not alone establish quantum statistics or holonomy, the transformation accumulated around a closed path. An orbifold or differentiable-stack presentation retains quotient stabilizers under further smoothness and action assumptions; an arbitrary topological groupoid does not automatically have that stronger structure. The brainstorming source reports priority-side examples where root counts remain fixed as spatial support changes knot type; that particular external example is retained as an unverified supporting lead in the coverage record, rather than used here as independent evidence.
 
@@ -347,7 +347,7 @@ A Noether braid's physical name does not certify an Artin braid class, a mathema
 
 A finite representation makes a different change from a complete-history symmetry: it retains less information. Its adequacy depends on what was omitted, how uncertainty is carried, and which conclusions remain licensed. The following restriction algebra specifies consistency between representations; it does not establish that the discarded past is physically irrelevant.
 
-### 6.1 Finite representations and compatible restriction
+### 6.1. Finite representations and compatible restriction
 
 Finite computation represents bounded history and resolution. The candidate finite record
 
@@ -377,11 +377,11 @@ $$
 
 Reducing directly must agree with reducing through an intermediate record. Every restriction carries its changed uncertainty, tail conditions, lost causal-root reach, and abstention boundary. If discarded history can change a downstream record, the output must enclose that uncertainty or decline the claim. The Braid Program owns the executable atlas and restriction data; the categorical statement is only the shared interface.
 
-### 6.2 Uncertainty, truncation, and predictive claims
+### 6.2. Uncertainty, truncation, and predictive claims
 
 Epistemic uncertainty is a family of possible exact histories. Truncation stores only part of a history. Physical coarse-graining asserts that certain distinctions do not matter for specified effective predictions. These three operations can use related mathematical language while imposing different proof burdens. A coherent inverse system does not by itself prove a physical limiting history or predictive closure.
 
-### 6.3 Compatibility of extracted root and acceleration records
+### 6.3. Compatibility of extracted root and acceleration records
 
 Candidate extraction functors $F_{\mathrm{root}}$ and $F_{\mathrm{acc}}$ map full histories to typed causal-root and delayed-acceleration records. Besides preserving identity and composition, they would have to obey induced symmetry and restriction relations such as
 
@@ -403,7 +403,7 @@ Here $k$ selects root or acceleration records, $\gamma_k$ is the independently s
 
 Restriction records information loss; a closed coarse description must additionally justify why that loss is harmless for its declared predictions. Recovery between physical levels requires still more: independently supported carriers and mapping rules. The distinction separates an exact quotient, a bounded approximation, and a proposed physical bridge.
 
-### 7.1 Exact quotients and bounded approximate descriptions
+### 7.1. Exact quotients and bounded approximate descriptions
 
 An exact coarse quotient identifies histories or arrows only through an equivalence compatible with composition. If $f\sim f'$ and $g\sim g'$ are compatible representatives, the quotient requires $g\circ f\sim g'\circ f'$. Predictive closure additionally imposes Section 4.1's fiber condition. The permission to define a quotient supplies neither of these physical conclusions automatically.
 
@@ -420,7 +420,7 @@ $$
 
 with a predeclared effective distance $d_{\mathrm{eff}}$, tolerance $\epsilon$, continuation-matching rule, observable family, and validity domain. The processes $E_1$ and $E_2$ are the admitted matched continuations. An erased distinction that changes an included observable beyond tolerance refutes closure on that domain. Lax functoriality, in which composition is related by specified comparison maps rather than strict equality, is a coherence language; it does not supply the numerical bound.
 
-### 7.2 The substrate-to-observer recovery chain
+### 7.2. The substrate-to-observer recovery chain
 
 The prospective physical chain is
 
@@ -438,7 +438,7 @@ Its successive descriptions concern complete substrate histories, assemblies, me
 
 Exact full-history isomorphism, symmetry-orbit membership, effective equivalence, and equivalence between existing theories are separate relations. An invariant coarse map obeys $Q(\gamma\cdot H)=Q(H)$; an equivariant one obeys $Q(\gamma\cdot H)=\gamma_{\mathrm{eff}}\cdot Q(H)$ for a declared target action. Stabilizers must survive wherever the target consumes them. Equal recovery outputs do not prove that their source histories are substrate-isomorphic.
 
-### 7.3 Comparing direct recovery with staged translation
+### 7.3. Comparing direct recovery with staged translation
 
 Suppose two effective theories receive candidate functors from a common retained history category,
 
@@ -462,13 +462,13 @@ The natural transformation $\eta$, or a declared bounded replacement, compares d
 
 Physical processes impose composition questions at several scales. Formal paths through causal hits, parallel combinations of assemblies, and successive reactions each require their own admissibility conditions. The reaction identity account supplies concrete routing data, while the preceding history contract explains why routing alone cannot establish lawful event composition.
 
-### 8.1 Formal causal paths and assembly independence
+### 8.1. Formal causal paths and assembly independence
 
 Emission events, reception events, and certified causal hits already define a typed directed graph. Its edges can carry transmitter and receiver identities, delay, polarity product, root Jacobian, direction, and acceleration contribution. A free category on that graph adds formal paths by concatenating edges. Such a path does not establish a new physical interaction: successive receiver-local hits do not become one transitive causal hit merely because the graph has a route. A physical composition law or a counterexample to a proposed one belongs to the Master Equation's causal semantics.
 
 Assembly juxtaposition has an analogous limitation. A disjoint identity inventory does not prove independence, because delayed cross-wakes and shared environment can couple the proposed parts. A monoidal product, describing parallel combination, requires an independence or controlled-coupling theorem. Operadic substitution, in which one assembly is inserted into a designated slot of another, likewise requires lawful boundary conditions. Where these conditions fail, explicit environmental ports and cross-coupling records must remain in the composite description.
 
-### 8.2 Reaction boundaries and identity routing
+### 8.2. Reaction boundaries and identity routing
 
 The [reaction ledger](../../../content/markdown/aaa/validation/reaction-ledger.md#provenance-preserving-polarity-inventory) supplies a definite starting datum: a closed event routes participating persistent identities by a polarity-preserving bijection,
 
@@ -498,7 +498,7 @@ $$
 
 Matching the finite sets is insufficient: the second event must consume the first event's full branch, wake, medium, and boundary output without revising accepted history.
 
-### 8.3 Conditional count preservation and its physical limits
+### 8.3. Conditional count preservation and its physical limits
 
 Let $\mathbf{FinSet}^{\pm}$ be the groupoid of finite polarity-labeled identity sets and polarity-preserving bijections. A candidate forgetful functor is
 
@@ -522,7 +522,7 @@ Pair production, in effective language, cannot mean that substrate identities ar
 
 The factorization test has a concrete implementation use even while the physical history-sufficiency question remains open. A restart record promises to preserve the state consumed by later solver decisions. The historical negative control and its later bounded repair test that promise against complete accepted records, making the chosen comparison observable as important as the saved input.
 
-### 9.1 The historical restart object and omitted controller state
+### 9.1. The historical restart object and omitted controller state
 
 The [26 August 2026 restart audit](evidence/ct004-eom-restart-factorization-audit.md) applies the factorization question to an implementation. Its complete state $\mathscr F_T$ included accepted path and joint histories, immutable controls, accepted/rejected counts, and all controller variables used by the next step. The reduced restart object was the pair of a checkpoint and a compatible request template, because resume reconstructed its request from both. For that version,
 
@@ -538,7 +538,7 @@ The required output comparison retained the complete accepted history and discre
 
 The checkpoint preserved histories, accepted time, current step width, certificate-cost cooldown, joint fallback mode, counts, and fingerprint-bound request controls. The audit found that the adaptive controller's consecutive-growth-headroom count was omitted. Its two-success rule doubled the step width after two sufficiently easy accepted steps; restarting initialized the count to zero and thereby delayed growth.
 
-### 9.2 Exact-cut control and complete-record separation
+### 9.2. Exact-cut control and complete-record separation
 
 The audit's existing non-growing checkpoint round-trip test passed. A focused public-API probe compiled against the rebuilt EOM solver library then used a one-path constant retained history with $c_f=1$, minimum and initial width $0.01$, maximum width $0.04$, and adaptive growth enabled. The full request covered $T=2$ through $2.08$, with the comparison route stopped and restarted at $2.01$. Its measured accepted partitions were
 
@@ -551,7 +551,7 @@ The cut fingerprints agreed; final complete-history fingerprints differed. The r
 
 > Claim grade: measured historical implementation result, reported by the named public-API probe and checkpoint positive control in the evidence packet; the omitted counter supplied the code-level explanation. The appropriate falsifier is restoration or exact reconstruction of the counter followed by matching discrete decisions and complete accepted records in the same control. This manuscript does not rerun the historical executable.
 
-### 9.3 Repair evidence and its remaining boundary
+### 9.3. Repair evidence and its remaining boundary
 
 The [27 August solver-owner record](../app-solver/work-log.md#2026-08-27--adaptive-growth-memory-checkpoint-repair) reports a bounded repair. The exact counter passes from request through certificate and checkpoint encoding to resume; missing-state legacy formats are rejected. The record identifies checkpoint schema v7 and reports 36 tests plus an independent 366-check audit against a predeclared two-success recurrence and constant-path closed form. Cuts after one, two, and four accepted steps preserve the accepted-history tokens, final fingerprints, step decisions, and controller state in those controls.
 
@@ -559,23 +559,23 @@ A current source inspection of the resume assignment and evolution initializatio
 
 The repair record retains one difference: the first resumed step reuses two start snapshots where uninterrupted execution reuses three, so resume performs one additional fresh calculation at that boundary. Its acceptance concerns history and decision parity, not identical performance telemetry, a cost improvement, arbitrary controller modes, or general restart sufficiency. Crash-surviving campaign state, retained-history certification, and long-horizon orchestration remain separate solver obligations.
 
-### 9.4 What the restart application establishes
+### 9.4. What the restart application establishes
 
 The categorical contribution is methodological. It established the correct boundary object, distinguished endpoint equality from complete-record equality, and asked whether every future-consumed distinction crossed that boundary. A state-machine or serialization audit can express the same missing variable. The example supports practical reuse of the factorization question without establishing a uniquely categorical physical theorem.
 
 ## 10. Comparison with existing theories
 
-### 10.1 Representations and quantum process descriptions
+### 10.1. Representations and quantum process descriptions
 
 The comparison structures in the source synthesis are mathematical organizing languages. The Standard Model describes observed particle families and their interactions; its representation categories organize multiplets, or groups of states transformed together, and intertwiners, or maps respecting those transformations. Gauge groupoids organize equivalent descriptions under gauge changes. Such organization does not derive why a particular physical symmetry group, representation inventory, or coupling is realized. The global form of a gauge group, including possible identifications by a subgroup, must also be specified when physically consumed; a local symmetry-algebra name alone does not settle it.
 
 Quantum theory organizes amplitudes and probabilities for observations. Hilbert spaces, vector spaces equipped with inner products and completeness, and operator or completely positive map categories describe processes and their composition. A dagger operation represents an adjoint; monoidal structure represents a declared composite-system product. The wires-and-boxes diagram convention depicts systems as wires and processes as boxes, but does not create independence, amplitudes, probability rules, or measurement records. Nor does diagrammatic resemblance establish no-signaling constraints: the requirement that changing a measurement setting in one separated part of an experiment cannot change the outcome statistics observed locally in the other. Classical copying structure is an additional specified structure, not permission to copy arbitrary quantum states by diagrammatic resemblance.
 
-### 10.2 Geometric and field-theory descriptions
+### 10.2. Geometric and field-theory descriptions
 
 General relativity describes gravity through observer-level Lorentzian geometry, which assigns spacetime intervals with distinct temporal and spatial signs. Model and metric groupoids organize covariance and equivalence; embeddings organize relationships among regions. Quantum field theory associates field or observable structures with regions, and functorial examples translate region, spacetime, or bordism data into algebras or vector spaces. A bordism relates boundaries through an intervening manifold. These descriptions clarify covariance, locality, and gluing but do not select an empirical field theory or make its geometry fundamental within $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
-### 10.3 Structural comparison and constitutive explanation
+### 10.3. Structural comparison and constitutive explanation
 
 These are comparison-level summaries retained from the lane. The detailed source-backed case studies remain an explicit research gap, not completed evidence that category theory caused either a theory's success or its unresolved problems. Each proposed case study must distinguish independently supplied physical inputs, categorical result, unique payoff, discarded information, overreach, and falsifier. Standard Model, quantum, quantum-field, relativistic, and assembly cases must keep their physical structures as recovery targets or comparisons rather than substrate premises.
 
@@ -583,19 +583,19 @@ The general diagnostic is that structural coherence concerns how defined things 
 
 ## 11. Mathematical scope and unresolved physical questions
 
-### 11.1 Established record algebra and open physical obligations
+### 11.1. Established record algebra and open physical obligations
 
 The ordinary record construction supplies exact identities, associative compatible union, the fiber-separation obstruction, a typed symmetry square, and compatible restriction equations. Its record type makes hidden boundary conditions inspectable. The restart application demonstrates a practical information-loss audit. The shorter proofs remain ordinary record algebra, delay-system reasoning, group theory, topology, or state-machine analysis; no stronger uniquely categorical physical theorem is supplied.
 
 The physical obligations are specific: a sufficient history domain, valid state-dependent-delay existence and continuation hypotheses, causal-root completeness through composed intervals, treatment of branching or selection, an independently lawful separating pair, and a retained carrier for any assembly claim. Root/acceleration naturality needs independently classified records and ambiguity controls. Physical causal-incidence composition needs an actual law beyond formal graph paths. Recovery needs one accepted carrier and one tested effective record with a compositional residual. Assembly combination needs protected topology or independence, not disjoint inventory or a picture.
 
-### 11.2 Provisional classifications and optional higher structures
+### 11.2. Provisional classifications and optional higher structures
 
 Several provisional ideas retain their distinct uncertainty. Particle species as equivalence classes of retained histories require both a retained family and an independently derived relation; a recovery fiber is not a proved substrate isomorphism class. Assembly automorphisms inducing effective multiplets require a full-record action, a representation, and consistent recovery across representatives. Effective observer states requiring memory remain an inferred possibility to be settled by a separating pair or a closure theorem. Branch-sensitive reaction labels require a sufficient quotient and lawful composition. No one of these proposals is accepted merely by belonging to a categorical vocabulary.
 
 Higher morphisms, relating arrows to arrows, remain optional. A boundary-fixed deformation between history extensions must pass through admissible histories at every intermediate stage. Double categories can distinguish evolution and symmetry directions, but ordinary arrows and covariance squares express the present obligations. Monoidal, operadic, stack, topos, and other broad programs have no demonstrated necessity here. A topos is a category with additional structures supporting a generalized set-like internal language; possessing such a language is not evidence for physical ontology.
 
-### 11.3 The test for a continuing mathematical role
+### 11.3. The test for a continuing mathematical role
 
 The defensible ongoing role is a low-intensity supporting laboratory. It can provide a bridge certificate for a concrete pair of theories, an information-loss counterexample, compact relational vocabulary, or a bounded history-composition test. For philosophy-history, it distinguishes a change of notation from equivalence of models, controlled reduction from ontological derivation, bridge compatibility from a common physical mechanism, and preserved from discarded information. It supplies no historical evidence about what people believed, why a program prevailed, or which historical path was available.
 

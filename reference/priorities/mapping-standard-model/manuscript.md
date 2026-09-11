@@ -6,7 +6,7 @@ The Standard Model organizes particle families, gauge transformations, reaction 
 
 The central requirement is consistency across observations. A geometry selected to explain charge must also support its claimed mass response, weak exposure, color behavior and reactions. A separate adjustable geometry for every observable would reproduce a catalogue without explaining the relations within it. Conditional algebra can expose inadequate descriptions before a physical branch exists, but cannot establish that branch by assigning it enough coordinates.
 
-### 1.1 Histories, properties and representations
+### 1.1. Histories, properties and representations
 
 A proposed particle record contains constituent identities and polarities, a history-valid assembly, layer-resolved radii, cadences, speeds, phases and plane normals, accessory geometry, medium context and the delayed interaction record. Total internal energy and observer-facing exposed energy require a declared assembly-level accounting rule. Neither is primitive mass. The mass-facing residual is an output of this record, not a substitute for it.
 
@@ -16,7 +16,7 @@ Harmless relabelings preserve the declared outputs. Color basis changes, physica
 
 The six-site charge proposal, including the candidate exposed unit $e/6$, remains conditional on retained geometry selecting the allowed sign patterns and excluding unwanted stable charges. Likewise, three named axes do not derive a continuous color representation. A finite assembly grammar can encode and reconstruct a branch, but successful parsing or a charge table establishes neither its lawful history nor its physical species.
 
-### 1.2 What outside constraints can identify
+### 1.2. What outside constraints can identify
 
 Effective observations constrain the substrate through a many-stage map: preparation, assembly evolution, exposed response, propagation, detector reconstruction and statistical inference. Non-decoupling channels may preserve sensitivity to deeper information, but sensitivity does not prove that this map is injective. Anomaly constraints, symmetry content, confinement, scalar response and possible higher-dimension operators must each be assessed in their own regime. Their combined ability to select a unique substrate remains an additional question.
 
@@ -24,7 +24,7 @@ The [strategy](priorities.md) also distinguishes ordinary assemblies from the am
 
 The E8 dimension comparison and internal supersymmetry proposals remain heuristics. Numerical resemblance between a proposed inventory and an algebraic dimension does not supply the representation, generators, dynamics or excluded modes. A proposed partner mechanism must predict its own accessible channels and explain their observational absence where applicable; it cannot inherit supersymmetry as a primitive law. The strategy retains those alternatives and the direct finite-assembly and vortex-coupling proposals as separate source-supported questions.
 
-### 1.3 Hydrogen membership and element-dependent response
+### 1.3. Hydrogen membership and element-dependent response
 
 The hydrogen example separates exact membership from an effective spatial interface. Its matter account includes the electron assembly, the three quark assemblies within a color-singlet proton, and their strong-corridor record. The local sea is the complement of that complete matter account in the chosen window. An electron resonance envelope is neither the electron's constituent boundary nor the whole atom's exact inventory.
 
@@ -38,7 +38,7 @@ For heavier elements, isotope-specific nuclear structure, electron-envelope stat
 
 ## 2. Phase, Transport and the Information a Carrier Must Preserve
 
-### 2.1 A connection includes a comparison rule
+### 2.1. A connection includes a comparison rule
 
 A connection specifies transport between fibers above a base of controls or configurations. Holonomy compares transported information after a closed base path. The path closes in selected settings while absolute time continues; the full physical history does not loop backward into itself.
 
@@ -55,7 +55,7 @@ Here $s$ parametrizes the path and later operations multiply on the left. These 
 
 For a constant physical line described by $n'=e^{i\chi}n_0$, the Berry connection is $a'_B=-d\chi$. The endpoint overlap supplies $e^{i[\chi(1)-\chi(0)]}$ and parallel transport supplies its inverse. Their product is one. Dropping the endpoint conversion manufactures a false effect.
 
-### 2.2 Four loops with different meanings
+### 2.2. Four loops with different meanings
 
 For the effective isolated positive eigenline of $H=E_*\hat n\cdot\boldsymbol\sigma$, a northern-chart eigenvector gives
 
@@ -79,7 +79,7 @@ The winding $w$ is integral, while the specified flux fixes the phase. A local g
 
 A spatial spinor turn has a different base, $SO(3)$, and a continuous lift with $\mathcal D(2\pi)=-I$ and $\mathcal D(4\pi)=I$. An isolated ray does not observe its common sign; a controlled arm-relative comparison can. None of these four examples identifies a physical architrino carrier. Their complete derivations, controls and original external-reading limits remain in [Geometric Phase and Holonomy](analysis/geometric-phase-and-holonomy.md).
 
-### 2.3 Ordered transport excludes independent additive clocks
+### 2.3. Ordered transport excludes independent additive clocks
 
 The source's explicit two-component example uses
 
@@ -95,7 +95,7 @@ Suppose instead that all operational memory consists of counters $\phi\in(\mathb
 
 A continuous homomorphism from connected $SU(3)$ into the discrete permutation group of three labels is trivial. Adding diagonal phases still leaves the connected part without off-diagonal mixing. A nontrivial continuous representation of the full color algebra requires at least three complex dimensions: simplicity makes a nonzero representation injective, while the eight-dimensional algebra cannot inject into four-dimensional $\mathfrak u(2)$. These dimensions count effective responses, not constituents.
 
-### 2.4 Accessories and discarded modes
+### 2.4. Accessories and discarded modes
 
 Let $J$ isometrically embed an undressed effective space into a dressed one, let $S$ be full unitary transport and set $\Pi=JJ^\dagger$. Compression gives
 
@@ -110,7 +110,7 @@ The source survey distinguishes six-, eight- and twelve-member core geometries, 
 
 ## 3. Effective Families and Their Shared Algebra
 
-### 3.1 Chiral and broken-phase comparisons
+### 3.1. Chiral and broken-phase comparisons
 
 Use $(d_c,d_L)_Y$ for color dimension, weak dimension and hypercharge, with $Q_{\mathrm{em}}=T_3+Y/2$. For each generation, the comparison inventory is
 
@@ -144,7 +144,7 @@ The pre-breaking scalar has four real components; three supply longitudinal vect
 
 The full family matrix and spectator tests remain in the holonomy source. Photon, $Z$ and physical Higgs are self-conjugate effective species; a real gluon adjoint does not make its basis components individually observable. Spatial and weak/color operations act on different indices. A passive internal basis change cannot physically rotate a laboratory axis or transfer electric charge without an event.
 
-### 3.2 Neutrality, color and anomalies
+### 3.2. Neutrality, color and anomalies
 
 On a lepton doublet $Q=\operatorname{diag}(0,-1)$ and $[Q,T_\pm]=\pm T_\pm$. Electromagnetic cancellation therefore leaves off-diagonal weak response. A single scalar exposure that switches off every interaction whenever charge vanishes cannot describe an active neutrino.
 
@@ -154,13 +154,13 @@ Anomaly arithmetic tests a whole effective inventory. Converting all fields to l
 
 ## 4. Weak Exposure, Flavor Overlap and CP
 
-### 4.1 Geometry must retain the information it uses
+### 4.1. Geometry must retain the information it uses
 
 The provisional axial tensor $M_{ij}=\sum_a q_an_i^{(a)}n_j^{(a)}$ describes a signed second moment. Degenerate eigenvalues do not select a unique principal frame; this tensor also loses information under individual axis reversal. A polarity-sensitive dipole or complete site/history record may therefore be needed. The ordered triple product of three axial angular-momentum vectors is parity-even and cannot alone establish a mirror-odd weak selector.
 
 A leading-site factor involving velocity must refer to physical relative event geometry. Passing a massive particle can reverse its described helicity without changing its internal construction. Neither that observer change nor an axial orientation sign establishes charged-current chirality. The proposed exposure must yield chirality, CKM/PMNS overlap and weak-corridor provenance from one domain, as required by [Weak-Sector Gauge Closure](analysis/weak-sector-gauge-closure.md).
 
-### 4.2 Measures and complex overlap conventions
+### 4.2. Measures and complex overlap conventions
 
 For sites $a$ and spatial variables $x$, a proposed nonnegative density is $w_h(a,x)=\eta_a^{(h)}\rho_{\mathrm{NS}}\chi_{\mathrm{sea}}A_a$. Only when $0<Z_h=\sum_a\int w_h\,dV<\infty$ does $d\mu_h=w_h\,dV/Z_h$ define a normalized measure. Its physical derivation remains open. With $A_{ij}^{(h)}=\langle m_j,w_i\rangle_{\mu_h}$, phases and complex conjugation are part of the convention.
 
@@ -174,7 +174,7 @@ This qualifies the source's shorthand without changing its original bytes: dropp
 
 Uniform suppression also cancels under separate measure normalization. If $\eta^{(R)}=\zeta\eta^{(L)}$ with identical support and positive $\zeta$, then $Z_R=\zeta Z_L$ and $\mu_R=\mu_L$. A physical right-channel suppression needs different support, destructive/orthogonal overlap, or an unnormalized current gate. Empty support defines a zero physical channel before normalization, not a normalized measure with $Z_R=0$.
 
-### 4.3 A branch-derived first flavor row
+### 4.3. A branch-derived first flavor row
 
 The geometry proposal constructs shielding envelopes from layer-resolved weak-retained amplitudes, their norm weights, site marginals and phases. Its three tiers retain layers $\{I,M,O\}$, $\{I,M\}$ and $\{I\}$. Nonzero normalizers, phase extension across relevant zeros, one physical measure and refinement control are necessary. An adjacent-refinement difference below tolerance is a finite check, not an infinite convergence proof without further control.
 
@@ -218,7 +218,7 @@ Likewise, $\int\operatorname{tr}(F\wedge F)/(8\pi^2)$ is an integer target only 
 
 ## 7. Detector Records and Precision Tests
 
-### 7.1 A reconstructed event is an inference chain
+### 7.1. A reconstructed event is an inference chain
 
 Weak reactions separate measured charged/hadronic products from inferred neutral channels. The neutron, muon, pion, kaon, rare-kaon and heavy-flavor families test different spectra, lifetimes, branching fractions, helicity structure and source/detector information. A muon decay's two neutral rows cannot be replaced by a single invisible sink. A heavy-flavor tag requires displaced vertices, tracks, semileptonic signatures, calibration and mistag probabilities; it is not direct observation of a constituent trajectory.
 
@@ -226,7 +226,7 @@ The dated PDG and experiment rows in [the weak-flavor packet](analysis/weak-flav
 
 The source's final disposition accepts only four limited muon source objects—ledger, projection, quotient and exposure—and leaves charged-current chirality and downstream flavor, corridor and reaction evidence open. Older missing-exposure wording remains historical support. Neither that acquisition boundary nor a benchmark table certifies a retained neutral-lepton branch.
 
-### 7.2 Photon, forward jets and missing momentum
+### 7.2. Photon, forward jets and missing momentum
 
 The [VBF template](analysis/vbf-photon-missing-transverse-momentum-event-ledger.md) binds one reconstructed photon, two forward jets, missing transverse momentum, other hard objects and a soft term to beam, trigger, calibration, pileup, backgrounds and fit information. The same event shape supports distinct $Z(\nu\nu)\gamma jj$, invisible-Higgs and dark-photon benchmark interpretations; it does not identify new substrate content.
 
@@ -238,7 +238,7 @@ $$
 
 makes the corresponding summed residual algebraically zero. That identity checks bookkeeping; independent calibration, uncertainty, control samples and an inferred physical prediction supply discrimination. Visible and recoil labels can refer to the same photon and jets and must not be summed twice. Background, pileup and mismeasurement categories are observer roles, not automatically products of the same physical collision. Longitudinal partonic uncertainty also prevents transverse balance alone from establishing complete event kinematics.
 
-### 7.3 Joint electroweak and scalar benchmarks
+### 7.3. Joint electroweak and scalar benchmarks
 
 The [precision electroweak packet](analysis/precision-electroweak-gauge-running-benchmark-packet.md) keeps on-shell, scale/scheme-dependent and effective leptonic weak angles separate. Running couplings need threshold and polarization conventions; the QCD world average and electroweak-fit strong coupling are distinct surfaces. The source's main fit and CDF-stress mode remain separate, and LHC mass/angle extractions carry PDFs, recoil, detector calibration and nuisance profiling.
 

@@ -12,7 +12,7 @@ This manuscript develops the connections among regular evolution, coordinate coi
 
 ## 2. The equation reads history
 
-### 2.1 Emission and reception
+### 2.1. Emission and reception
 
 Write $\mathbf X_i(T)$ for the position of receiver $i$ at absolute time $T$, and $\mathbf V_i(T)$ for its velocity. An emission by transmitter $j$ at an earlier time $s$ reaches this receiver when
 
@@ -52,7 +52,7 @@ This ratio describes how the sampled emission time changes as reception advances
 
 All numerical examples below use normalized wake-speed units, $c_f=1$. Symbolic formulas retain $c_f$ where its role matters.
 
-### 2.2 Initial data and regular evolution
+### 2.2. Initial data and regular evolution
 
 A delayed law needs more initial information than positions and velocities at one instant. One must specify the relevant past paths, including their continuation farther into the past or a proof that older emissions cannot contribute. A finite retained segment is complete only when the omitted past has been excluded mathematically. Prescribing such a past for a forward initial-value problem does not assert that the same law generated that past at all earlier times.
 
@@ -60,7 +60,7 @@ On a regular interval, a finite complete collection of simple roots can move con
 
 The boundaries of this regular description include vanishing delay, a zero transmitter factor, loss of history control, and failure of convergence when infinitely many transmitters contribute. These boundaries need not occur together. A causal-root fold at positive delay is a merger of roots, whereas a self root born from the excluded zero-delay diagonal has a different geometry.
 
-### 2.3 How a regular root changes under perturbation
+### 2.3. How a regular root changes under perturbation
 
 A root supplies both an acceleration value and a sensitivity to changes in the history. These are different mathematical objects. Work in normalized units and put $D=1-\mathbf n\cdot\mathbf v$, where $\mathbf v=\mathbf V_j(s)$ is the sampled transmitter velocity. For a displacement $\mathbf b_i$ of the receiver and a direct displacement $\mathbf b_j$ of the transmitter at the unperturbed emission time, implicit differentiation gives
 
@@ -89,7 +89,7 @@ $$
 
 This is a derived regular-chart tensor. In particular, differentiating only $r^{-2}$ discards moving-emission, direction, and transmitter-factor contributions. When source acceleration does not decay with distance, the resulting bound need not gain an additional inverse power of range. That fact becomes important for infinite populations.
 
-### 2.4 A local scalar potential and its limits
+### 2.4. A local scalar potential and its limits
 
 On a connected simple-root chart on which $D$ has fixed sign, the scalar
 
@@ -103,7 +103,7 @@ The distinction can be seen on a local quadratic path crossing the wake speed. A
 
 Smoothing the causal selector changes the finite-width acceleration law even where a limiting sharp root is regular. A fold calculation may give a width-dependent amplitude proportional to the inverse square root of width. Neither that scaling nor dimensional availability of a length made from the coupling and $c_f$ selects a physical width. A density assigned per path arclength also differs from a shell thickness; converting between path time and arclength introduces the path-speed factor and does not provide a regularization principle.
 
-### 2.5 Complete root geometry before dynamical interpretation
+### 2.5. Complete root geometry before dynamical interpretation
 
 A useful exact control uses piecewise affine source histories and affine receiver paths. On one collinear sign sector the causal residual is affine in emission time. Away from its zero derivative, solving it gives an affine emission map, which must then be clipped to the exact source and receiver intervals. Corners, interval endpoints, and excluded zero-delay roots belong to the census. A nonzero residual at each point of an open complement is weaker than a uniform positive complement gap.
 
@@ -113,7 +113,7 @@ Compact periodic geometry gives a different completeness control. On a torus wit
 
 ## 3. Coordinate coincidence and delayed singularity
 
-### 3.1 Three distinct questions
+### 3.1. Three distinct questions
 
 For two different identities $i\ne j$, coordinate coincidence means
 
@@ -125,7 +125,7 @@ The identity labels remain distinct at that event. The equation instead samples 
 
 The distinction separates three investigations. Coordinate reachability asks whether the evolving positions can meet. Root reachability asks whether the evolving history produces a particular causal-root boundary. Continuation asks whether the equation determines a future through an attained boundary. An answer to one is evidence for another only when the required implication is actually proved.
 
-### 3.2 A finite construction reaching coordinate contact
+### 3.2. A finite construction reaching coordinate contact
 
 A derived finite construction reaches distinct-label coordinate contact as the finite endpoint limit of a regular incoming evolution on one declared forward initial-history class. It uses four architrinos and complete prescribed pasts, followed by evolution of all four receivers under the Master Equation. Its purpose is an existence result; it does not settle the stationary two-particle problem or a general populated-universe claim.
 
@@ -162,7 +162,7 @@ This is a finite first-contact limit of the incoming EOM evolution, with finite 
 
 No positive-delay self root approaches zero delay in this construction. Thus it establishes coordinate contact without establishing the self-boundary event discussed below. It also gives no frequency or probability for contact. Reflection symmetry is a special condition, and a proof of generic behavior requires an admitted perturbation class and persistence of the complete root census.
 
-### 3.3 The stationary two-particle encounter
+### 3.3. The stationary two-particle encounter
 
 A more direct control starts two equal-magnitude, opposite-polarity particles at rest on a line, with stationary complete earlier histories. Write their positions as $\pm q(T)\mathbf e$, where $\mathbf e$ is a fixed unit vector, $q>0$ is half the present separation, and $u=-q'$ is inward speed. On the monotone incoming branch, there is one partner root per receiver and no positive-delay self root.
 
@@ -176,7 +176,7 @@ The complete incoming analysis establishes that the first boundary is $u(T_*)=1$
 
 The result answers a precise question: the regular incoming solution does not reach coordinate contact before it reaches a field-speed event. It does not prove that the particles rebound, pass through each other, or remain forever separated. Those claims require a continuation.
 
-### 3.4 Present separation, delay, and near-field geometry
+### 3.4. Present separation, delay, and near-field geometry
 
 The near-field comparison is particularly transparent with $c_f=1$. Let the present baseline from transmitter to receiver be $d\mathbf n_0$ and write an affine transmitter velocity as $a\mathbf n_0+\mathbf p$, with $\mathbf p\cdot\mathbf n_0=0$. If $\chi=\sqrt{1-\|\mathbf p\|^2}>0$ and $a<\chi$, its first positive root has
 
@@ -201,7 +201,7 @@ There are no positive roots when $a>\chi$, one when $-\chi<a<\chi$, and two when
 
 Both roots of a receding superfield source must be kept. Although one opposite-polarity row points outward relative to the present baseline, their complete radial sum is $-2K\chi/d^2$. The older of these roots cannot be hidden inside a supposedly bounded remainder. Conversely, two sufficiently fast inbound paths can each outrun the other's recent wake. Their recent partner channels are then empty, as in the incoming part of the finite contact construction, while older and self receptions can remain present.
 
-### 3.5 Transverse motion does not have a universal secular sign
+### 3.5. Transverse motion does not have a universal secular sign
 
 Define relative position $\mathbf d=\mathbf X_i-\mathbf X_j$, relative velocity $\mathbf w$, and the kinematic areal-rate vector $\mathbf h=\mathbf d\times\mathbf w$. This introduces neither mass nor a conserved angular account. For an exactly central relative acceleration, $\mathbf h$ is constant and the radial equation contains $\|\mathbf h\|^2/d^3$. Comparing it with an inward inverse-square term gives a barrier scale of order $\|\mathbf h\|^2/K$. The scale where the two accelerations match is not, without initial radial data, an exact turning radius.
 
@@ -224,7 +224,7 @@ The common-motion terms have no fixed sign. Even exact relative aim can acquire 
 
 The retained three-body EOM measurement found an increased areal-rate component over only about $0.135183$ turns. Later attempted controls did not supply a complete accepted turn. Their failed prefixes neither establish a full-turn average nor reverse the mathematical sign-indefiniteness of the general prescribed-history calculation.
 
-### 3.6 Two conditional exclusion mechanisms
+### 3.6. Two conditional exclusion mechanisms
 
 A quantitative transverse exclusion remains possible on a restricted populated chart. Suppose $H=\|\mathbf h\|$, $\|\mathbf w\|\le V$, and the exact areal-rate equation has the decomposition
 
@@ -256,7 +256,7 @@ $$
 
 This is a first-exit theorem. A finite-speed trajectory cannot reach zero separation while those hypotheses remain valid; a speed, root, or remainder bound must fail earlier. It does not predict a rebound, apply to a root-free inbound sector, or impose a global speed ceiling.
 
-### 3.7 Contact, perturbations, and one-sided continuation
+### 3.7. Contact, perturbations, and one-sided continuation
 
 The finite contact example has no incoming collapsing partner row, so its bounded old-source field escapes the hypotheses of the radial theorem. An explicit transverse change of $10^{-6}$ in one target's supplied endpoint position instead gives a derived positive transverse separation at least $9.9995\times10^{-7}$ through $T=0.005$. A historical oracle run corroborates the resulting near-pass. The explicit miss does not require a universal genericity theorem.
 
@@ -275,7 +275,7 @@ For an existing inverse-square row and bounded physical velocity, a power-law ti
 
 ## 4. Why the unchanged continuation fails, and what a candidate repairs
 
-### 4.1 A self root born at positive particle separation
+### 4.1. A self root born at positive particle separation
 
 Translate the stationary pair's field-speed event to $T=0$. Suppose a continuous regular continuation enters $u(T)>1$. For either particle, let an inward coordinate be $x(T)$ and define $h(T)=x(T)-T$. Before the event $h$ decreases; on the proposed superfield side it increases. A newborn self root matches a past value to the present one:
 
@@ -294,13 +294,13 @@ At birth both the delay and the velocity gaps approach zero. Their sum is eventu
 
 Consequently, the unchanged sharp-root law has no regular continuation with locally finite accumulated acceleration through this crossing on the specified stationary history. Assigning a finite value at the single excluded endpoint cannot repair a divergent integral on its open neighborhood. This is a limitation of that law on that input; it is not a selected alternative motion.
 
-### 4.2 Regularity has several meanings
+### 4.2. Regularity has several meanings
 
 An unbounded instantaneous acceleration is not automatically an infinite velocity change. For a transverse fold at positive delay, the two roots can contribute an inverse-square-root dependence on time from the fold. Such a singularity is locally integrable. The self-birth measure above has stronger divergence. The geometry and signed accumulation must therefore be evaluated, rather than grouping every exceptional root into one category called a singularity.
 
 A separate derived exclusion result gives a positive lower bound on recent self delays when the recent self contributions lie in a common forward cone, recent velocities remain bounded, the opposing part of the remaining acceleration has an integrable projection, and the initial and entering root sections have positive delays. Complete finite simple-root sections and locally absolutely continuous receiver velocity are part of these hypotheses. The cone makes the relevant projected self contributions reinforce rather than cancel. The estimate does not exclude singular lineages or histories for which these controls fail.
 
-### 4.3 A conditional quintic continuation
+### 4.3. A conditional quintic continuation
 
 One proposed boundary rule changes the strength of a root only when its history identifies it as born from the self diagonal. Near such a birth, its multiplier vanishes as the fifth power of a dimensionless local geometric coordinate. Ordinary roots retain their original rule. Selecting this multiplier as physical is an additional constitutive hypothesis: the regular equation does not derive it merely by encountering a divergence.
 
@@ -318,7 +318,7 @@ This conditional result demonstrates that the existing candidate supplies more t
 
 There is also a distinction between a well-defined sharp candidate and a well-defined approximation problem. Naming hard cutoffs or smoothing kernels does not specify how they act on the quintic multiplier, its root history or its event classification. Those parameterized operators must be defined before their evolved solutions can be compared. The sharp candidate's local uniqueness alone cannot prove convergence of unspecified approximations, and a regulator for a different acceleration weight does not supply that missing definition.
 
-### 4.4 What a delay floor actually proves
+### 4.4. What a delay floor actually proves
 
 The self-delay exclusion uses more than a root count. On a simple self branch with delay $\delta$, differentiating the root gives an identity between the branch's acceleration and the change of reciprocal delay. When recent chord velocities are bounded, a common forward cone converts the projected self contribution into a bound on the total variation of $1/\delta$. Integrating the actual remaining acceleration's negative projection prevents an unrecorded cancellation from defeating that bound.
 
@@ -338,7 +338,7 @@ $$
 
 Accumulation at one fixed reception requires vanishing of these leading coefficients. A sequence whose reception times also approach an endpoint has different quantifiers: continuous endpoint velocity requires $v_*=c_f$, and an incoming $C^2$ sequence additionally requires $\mathbf V_*\cdot\mathbf A_*=0$. Cubic vanishing need not follow because the moving lower-order coefficients can balance the cubic term. These are geometric necessary conditions, not examples of EOM self birth.
 
-### 4.5 Suppression order, sensitivity, and regulator dependence
+### 4.5. Suppression order, sensitivity, and regulator dependence
 
 On the linear self-birth chart with unsuppressed acceleration proportional to $T^{-3}$, a nonnegative maturity multiplier $M(T)$ yields finite accumulated acceleration precisely when its weighted integral is finite:
 
@@ -368,7 +368,7 @@ Thus it has no positive-delay self root on those chords. Under a non-strict ceil
 
 The stationary mirror encounter also shows why clipping a computed velocity is not a derivation of a ceiling. At its first field-speed event, the existing partner acceleration still points inward along the motion. Keeping the velocity within a prescribed ball requires an additional response. The response, the treatment of singular receptions and the retained history must belong to one declared alternative dynamics. A ceiling can eliminate some self-intersection geometry while introducing a new question about how boundary motion is selected.
 
-### 5.1 A constraint requires a response law
+### 5.1. A constraint requires a response law
 
 Let $c_a$ denote an imposed maximum particle speed, distinct from the wake speed $c_f$. A studied alternative first computes the complete finite ordinary acceleration $\mathbf A_{\rm ord}$ and then removes its outward radial component at the velocity boundary. With $\hat{\mathbf v}=\mathbf V/\|\mathbf V\|$ and $(b)_+=\max(b,0)$, the proposed response is
 
@@ -383,7 +383,7 @@ This expression holds almost everywhere along solutions satisfying the proposed 
 
 If $c_a<c_f$, both velocity factors satisfy $D_t,D_r\ge c_f-c_a>0$, and the chord inequality excludes self roots. If $c_a=c_f$, straight characteristic intervals can occur: a whole interval of emissions can satisfy the same reception condition. If $c_a>c_f$, superfield root geometries remain possible. These are derived distinctions among the three proposed regimes.
 
-### 5.2 Contact under the equal-speed constraint
+### 5.2. Contact under the equal-speed constraint
 
 For the mirror pair at its first field-speed event, the equal-speed response can sustain a conditional incoming segment
 
@@ -396,7 +396,7 @@ The particles continue inward at unit speed and reach coordinate coincidence. Th
 
 A separate proposed event completion retains the distinct source labels and matches their event measures using exact mirror symmetry and one common linear conversion to acceleration impulse. Within that architecture the net event impulse is zero and position and velocity remain continuous. This cancellation is a statement about the declared event measure and map. It is not an event value derived from the unchanged ordinary root law, nor a reason to discard divergent receiver contributions in a different problem. The continuation theorem also requires the proposed complete labeled-history splice and event-ownership rules: the already accounted-for noncrossing event family is not counted again as a new ordinary reception. Velocity is absolutely continuous and the equation holds almost everywhere. Zero impulse alone does not supply these rules.
 
-### 5.3 Finite continuation without a unique future
+### 5.3. Finite continuation without a unique future
 
 Even after that proposed event completion, the outgoing future is not uniquely selected. Put coincidence at $t=0$ and write the separating mirror coordinate as
 
@@ -418,7 +418,7 @@ For positive $t_w$, the right-hand side is regular at onset. At zero onset it ha
 
 This is a conditional nonuniqueness theorem for the proposed cap and event architecture. It establishes that a speed ceiling can replace one obstruction with a different closure problem: a finite continuation relation that does not determine a single future. Multiple mathematical continuations do not establish randomness, free will, or a physical process selecting among them.
 
-### 5.4 A separate circular compatibility result
+### 5.4. A separate circular compatibility result
 
 The ceiling investigation also supplies a positive all-past circular control. For antipodal circular paths at the imposed speed, set $0<\lambda=c_a/c_f\le1$. The partner half-delay angle $\xi$ obeys
 
@@ -430,7 +430,7 @@ On the relevant interval the left side increases and the right side decreases, g
 
 This is an exact compatibility result for an all-past circular history under the modified dynamics. It does not prove that general initial histories form such a circle, that perturbations remain near it, or that the circle is stable. Existence of a special solution and dynamical selection of that solution remain distinct questions.
 
-### 5.5 What adopting the ceiling would cost
+### 5.5. What adopting the ceiling would cost
 
 A ceiling would remove mechanisms used in the open-speed description. A history confined wholly below or at wake speed cannot contain the earlier superfield interval responsible for a later superfield-history self reception. Circular self-hit branches requiring above-wake-speed motion, multiple separated simple roots within one channel, and proposed binary self-hit barriers dependent on such motion cannot simply be retained. Assembly and braid constructions that use those histories would need new admissible paths and new dynamical derivations. The original conditional results do not become false; their hypotheses are excluded by the alternative model.
 
@@ -440,7 +440,7 @@ The constrained response also supplies no energy, momentum or angular-momentum a
 
 ## 6. Infinite populations and cancellation
 
-### 6.1 What the stationary lattice establishes
+### 6.1. What the stationary lattice establishes
 
 A finite population and an infinite population pose different summation problems. For an infinite population, the number of particles in a three-dimensional shell grows with its volume, whereas one stationary contribution decreases as inverse distance squared. Magnitudes need not have a finite total. Cancellation must be specified and proved for the actual delayed contributions.
 
@@ -448,7 +448,7 @@ A useful complete-history control places equal-magnitude alternating polarities 
 
 At a stationary receiver anchor, this selected grouped sum is exactly zero. Reflection through that anchor pairs equal-polarity sources with opposite acceleration vectors in finite symmetric cubes. To transfer the cancellation to the fixed eight-source grouping, one must also control the unmatched boundary faces, edges and corners. Their total tends to zero, giving the same zero limit. Exact cancellation is therefore a derived property of this reference, despite divergence of the sum of individual magnitudes. It does not establish equality of every possible source ordering.
 
-### 6.2 Finite changes and infinitely coordinated changes
+### 6.2. Finite changes and infinitely coordinated changes
 
 Changing a fixed finite set $F$ of source histories, while keeping the receiver history fixed and retaining regular finite root sums, gives
 
@@ -466,7 +466,7 @@ A broader history class allowed independent small changes for arbitrarily many p
 
 A separate sequence of finite changes shows that restricting attention to histories with individually finite sums does not automatically give continuity in the original uniform history norm. The affected finite sets grow without bound along that sequence. Neither construction proves discontinuity for two fixed modified labels, and neither proves that coupled evolution from a local disturbance creates the constructed distant histories. The environmental response must be determined by an evolution theorem.
 
-### 6.3 One sufficient proposed history class
+### 6.3. One sufficient proposed history class
 
 A mathematical proposal restores finite sums and controlled relative derivatives by restricting the histories and strengthening the way their differences are measured. In normalized units, let $\mathbf u_j(s)=\mathbf X_j(s)-\mathbf z_j$ for all $s\le0$. Require, in addition to the regular root and separation conditions,
 
@@ -482,7 +482,7 @@ Why does a distant-past condition help a spatial sum? A source at range $R$ cont
 
 The corresponding stronger norm measures a position-and-velocity difference by the least temporal-envelope budget plus the sum of its persistent allowances. Between admitted $C^3$ histories sharing bounded envelope budgets and regular root margins, the acceleration map has a controlled relative derivative and remainder, with uniform tails. The linear derivative expression can act on suitable $C^1$ directions, but arbitrary small $C^1$ changes need not remain admitted histories. These are derived sufficient estimates, not a selection of this distant-past background as physical. They do not prove a common lifespan for mutually evolving particles, compatibility of all derivatives at the release cut, or preservation of the entire regular history domain. In particular, a well-defined initial acceleration is only the beginning of an infinite-population evolution theorem.
 
-### 6.4 A common first evolution interval
+### 6.4. A common first evolution interval
 
 For a stationary alternating lattice with only two fixed modified complete pasts, a conditional local evolution theorem goes beyond evaluation of the initial acceleration. Under complete uniform simple-root certificates, separation bounds, bounded history derivatives and a normalized exclusion of very recent self roots, one positive interval works for every particle. The prescribed block sum and finite source corrections define a uniformly smooth field $\mathscr F_i(T,\mathbf x)$. Every arriving emission on this interval remains in the supplied past. Solving $\ddot{\mathbf X}_i=\mathscr F_i(T,\mathbf X_i)$ therefore constructs the environmental futures as well as the target futures without prescribing either. A contraction with common bounds gives existence and uniqueness within the declared bounded, piecewise classical comparison class. A separate check of old roots, their complements and recent chords verifies that the constructed paths solve the complete causal equations.
 
@@ -500,7 +500,7 @@ For the existing two-target control with past disturbances supported in a common
 
 The result supplies a common short lifespan, not a certified numerical duration or an invariant population class. Its uniform bounds are relaxed bounds rather than preservation of every originally saturated constant. Later reception of newly generated emissions requires a coupled delayed estimate, and neither later continuation nor target contact follows from this first-interval theorem.
 
-### 6.5 The first nonstationary response
+### 6.5. The first nonstationary response
 
 For the same explicit smooth compatible history, a further derived result identifies the first reception of the past disturbance. If $\ell$ is the lattice spacing, the entire population remains stationary through
 
@@ -514,7 +514,7 @@ The extension preserves the smooth join, the original quantitative history bound
 
 This establishes a nonstationary smooth continuation after the waiting interval. Completing the received pulse requires a longer estimate and its endpoint must follow the moving receivers' actual causal equations. The next result supplies that estimate on a stated parameter range. Later reception of postrelease emissions requires a separate coupled-history estimate; neither target contact nor a globally preserved population class follows.
 
-### 6.6 Completion of the first received pulse
+### 6.6. Completion of the first received pulse
 
 The [independently adjudicated pulse theorem](analysis/smooth-two-particle-pulse-independent-adjudication.md) extends this same smooth control through its first received pulse. To specify the input, take the two modified labels to be $E=\{0,e_1\}$, where $e_1=(1,0,0)$, and their common displacement direction to be $\mathbf e=(0,0,1)$. For every supplied time $s\leq0$, retain
 
@@ -566,7 +566,7 @@ $$
 
 Thus the construction solves the entire population's future while receiving only prescribed pre-release emissions. It does not hold the environmental futures fixed or omit their already received contributions. Their newly generated emissions have not yet arrived.
 
-### 6.7 Class loss and the next continuation boundary
+### 6.7. Class loss and the next continuation boundary
 
 The same input permits arbitrary $g>0$, but its fixed derivative ceilings prevent a full-pulse assertion for every such value. Let $J=2^{16}$ be its dimensionless jerk ceiling and $\theta=t-t_*$. A hypothetical globally $C^3$ continuation in the original class through $\theta_0=2^{-16}$ must satisfy $\|\mathbf y_i''\|\leq J\theta$, because acceleration is zero at onset. For the receiver with $\mathbf k=(1,0,1)$ relative to target zero, put $\mathbf n_0=\mathbf k/\sqrt2$ and $\mathbf e_a=-\sqrt2\mathbf n_0(n_0)_3$, a unit direction. The exact pulse expansion, with its uniform remainder and moving-receiver correction retained, gives
 
@@ -587,7 +587,7 @@ Neither threshold is claimed sharp. The negative result follows from the equatio
 
 For the accepted small-coupling range, the next old-pulse shell has anchor reception onset $t=\sqrt3-11/8$, beyond the present horizon. Continuing the same control through it requires an expanded finite receiving set, actual moving-receiver endpoints and uniform displacement, derivative and root bounds. If complete displacement stays below $d\ell$, cross ranges exclude nonnegative emission times while $t<1-2d$; this sufficient inequality grants no lifespan without those bounds. Once a newly generated emission does arrive, source and receiver variations both enter the delayed equation, and the receiver-only reduction must be replaced by a coupled-history estimate. No later evolution, target-contact conclusion, arbitrary-history continuity or physical selection of the class follows from the first-pulse theorem.
 
-### 6.8 The topology and summation rule are part of the result
+### 6.8. The topology and summation rule are part of the result
 
 The original population class is a space of complete prescribed histories with quantitative displacement, speed, acceleration, jerk, separation, density, and root bounds. Its norm controls the entire past without fading away old changes. The accepted negative results concern that space and norm. They do not say that every dense history has a divergent sum, nor that a fixed finite source modification is inadmissible.
 
@@ -601,7 +601,7 @@ To transfer a finite-population miss to a limiting evolution, one needs both a u
 
 ## 7. Wake transport, action, and conserved accounts
 
-### 7.1 Geometry does not determine an account value
+### 7.1. Geometry does not determine an account value
 
 The emitted-surface picture already has a causal kinematic realization. For an emission by $j$ at time $s$, retain its identity, emission time, center $\mathbf C_{j,s}=\mathbf X_j(s)$, polarity, and expanding radius $a_{j,s}(T)$. Then
 
@@ -620,7 +620,7 @@ $$
 
 with corresponding balances for vector momentum and angular momentum. Here $\Phi_E$ is outward account flux through the boundary of the chosen region. The motion and wake quantities are unknown functions to be derived; they are not supplied by importing single-particle mass or conventional kinetic energy. Defining the wake change to be whatever cancels the motion change would make the equation true by definition and would not explain conservation.
 
-### 7.2 A local gradient identity does not supply a complete action
+### 7.2. A local gradient identity does not supply a complete action
 
 An action principle assigns a scalar functional to histories and derives an equation by requiring its first variation to vanish. One investigated characteristic-tail kernel was constructed to reproduce the required receiver-position derivative. With causal mismatch $g=T-s-R/c_f$, it satisfies a local identity of the form
 
@@ -653,7 +653,7 @@ For a locally Lipschitz self path, $r(T,T-u)\le Mu$ near the diagonal. At fixed 
 
 Finally, exact elimination of auxiliary variables from a differentiable action preserves its worldline derivative when the auxiliary Euler equation holds. Rewriting a well-defined reduced functional with extra variables cannot remove its future term while leaving the same functional. The divergent frozen self-inclusive action does not even satisfy that differentiability premise. An independently evolving causal wake state must therefore supply additional justified dynamics; a relabeling of the failed action does not supply it.
 
-### 7.3 What account obstructions actually exclude
+### 7.3. What account obstructions actually exclude
 
 One proposed architecture treats acceleration observations as expenditures from a finite positive source budget. If arbitrarily many supplied receiver channels each demand the same nonzero acceleration variation, but the total allocated budget is bounded, at least one allocation must tend to zero as the receiver count grows. A common bound making supported acceleration vanish with allocation then contradicts the canonical nonzero observation. This excludes that finite-funded-observation architecture under its universal-channel assumptions. It does not identify acceleration with energy expenditure or prove that every coupled physical population realizes those independent channels.
 
@@ -670,7 +670,7 @@ $$
 
 The sphere $S^2$ indexes directions, and total variation adds magnitudes rather than cancelling signs. A vector density can have zero net integral on each sphere while this quantity grows without bound. Finite local accounts can still exist. A global account with finite total variation requires assumptions addressing the complete past; a conditionally summed global account requires a separately specified convergence and conservation argument.
 
-### 7.4 Allocation, observation, and transfer
+### 7.4. Allocation, observation, and transfer
 
 The finite-budget obstruction depends on an ordered set of definitions. A construction first specifies which emissions are allocated to each reception, how those allocations are represented, and how a receiver observes them. Only then can it define depletion, suppression, motion and wake accounts, and boundary transfer. Rearranging these steps can conceal a required input by defining it from the desired acceleration afterward.
 
@@ -680,7 +680,7 @@ A receiver patch of transverse radius $\varepsilon$ seen at range $r$ has solid 
 
 On a regular monotone branch, a source-clock measure pushed onto reception time acquires the playback derivative. Reconstructing a fixed nonzero acceleration through a newly traversed source allocation can then require unbounded gain near $D_r=0$. More explicitly, if emission time advances by $o(\Delta T)$ while a bounded-gain new-allocation model offers only $o(\Delta T)$ response, it cannot reproduce an acceleration integral of order $\Delta T$. A rule involving residence or repeated reading could lie outside this obstruction, but it must be supplied rather than inferred from the failed model.
 
-### 7.5 Nondepleting transport does not close reception
+### 7.5. Nondepleting transport does not close reception
 
 A nondepleting proposal avoids spending a finite source packet at each compatible receiver. That change alone does not select the emission density or its account values. Isotropic functions of polarity and source-speed invariants can define many covariant scalar and vector emission weights. Their availability shows freedom in the construction, not physical uniqueness.
 
@@ -690,7 +690,7 @@ Energy and vector momentum could be separate state channels with separately spec
 
 For an orbital angular account about origin $O$, the exact integrability requirement is the integrability of $(\mathbf Y-O)\times d\mathbf P$. It can be weaker than a finite full spatial first moment: momentum radial to a source center can make the radius-dependent cross product vanish. Changing the origin transforms the angular account by the corresponding displacement crossed with total momentum. These identities are geometric bookkeeping conditions and do not assign a primitive spin or momentum to an architrino.
 
-### 7.6 Global history and boundary ownership
+### 7.6. Global history and boundary ownership
 
 Boundary accounting must distinguish interception, surviving transport, and escape. A wake surface can cross a spatial boundary only in part; an earliest-crossing label cannot stand in for a surface-resolved flux. Splitting a region should preserve additive account transfers, with boundary atoms assigned consistently and without resetting an emission's earlier debit history.
 
@@ -700,7 +700,7 @@ An ordinary outgoing ray from a fixed source center cannot later return to that 
 
 ## 8. From root geometry to an assembly
 
-### 8.1 Returning a history is stronger than cancelling an acceleration
+### 8.1. Returning a history is stronger than cancelling an acceleration
 
 An assembly candidate must solve every member's equation on its complete retained history. Cancelling the sum of accelerations is only a necessary condition for a prescribed rigid translation at constant velocity. Individual residuals can remain large while their total vanishes. A periodic drawing also need not be a periodic delayed solution: the source history and all retained root identities must return along with the visible coordinates.
 
@@ -708,7 +708,7 @@ A branch description therefore includes active roots, proven inactive complement
 
 The proposed deeper assembly condition also compares the accumulated tangential, recoil, boundary, and multiple-root contributions over the same return. Their pointwise or cycle-average cancellation is not an independently conserved account. Cohomology and chart-gluing descriptions express additional global compatibility questions; a locally valid root chart does not automatically supply a global section or a finite number of continuations.
 
-### 8.2 Circular and spiral controls
+### 8.2. Circular and spiral controls
 
 Circular geometry remains useful for classifying root births. For the standard circular self-root family, the birth conditions are $\tan\xi_* =\xi_*$ and $\beta_* =\sqrt{1+\xi_*^2}$. Near a positive transverse crossing of the speed parameter, the two root offsets and transmitter factors split as square roots of $\beta-\beta_*$. Their acceleration singularity is proved locally integrable under the declared nonzero crossing rate, absolute branch budget, regulator control, and restored post-event census. At the exact constant-speed null point, the regular acceleration formula remains undefined. A zero receiver playback factor does not cancel it.
 
@@ -726,7 +726,7 @@ The retained $a=0.1$ control has finite certified root windows, a positive Jacob
 
 Earlier receiver-weighted conclusions about these paths were withdrawn. Their root windows, implicit transport identities, and transversality calculations survive at their stated geometric grade. The identity $1-d\Delta/d\theta=D_r/D_t$ is a consequence of the same root equation; agreement with it is not independent evidence for acceleration strength. Any dynamical interpretation must use $c_f/|D_t|$ and preserve the same root record.
 
-### 8.3 Residual screens and surface integrals
+### 8.3. Residual screens and surface integrals
 
 The retained point-cloud audit illustrates why memberwise residuals matter. Its source-time expanded screen had 120 records, of which 62 were eligible for the stated residual test and 58 remained unknown; all 62 eligible prescribed candidates failed that test. Twenty-four had cancellation in a summed quantity that concealed member residuals. Thirteen eligible dense controls also failed. The best reported residual remained many orders above its declared tolerance. These historical instrument results reject the tested exact prescribed motions, not every nearby deformable branch, and no fresh run is implied.
 
@@ -736,7 +736,7 @@ Likewise, integrating a scalar wake diagnostic over a chosen surface does not au
 
 ## 9. Response coefficients and observable recovery
 
-### 9.1 Bare assembly response and medium response
+### 9.1. Bare assembly response and medium response
 
 An accepted drifting assembly with independently defined total momentum could support a susceptibility
 
@@ -748,7 +748,7 @@ This is a proposed assembly-level response in bare Euclidean void. Its definitio
 
 A surrounding Noether sea, meaning the proposed population of structured assemblies, introduces a different constitutive problem. Its susceptibility, shielding, exposure, and effective signal speed need not preserve the bare response. An isolated assembly's far-field multipole and a medium's pressure response are different objects. A vanishing linear response on a particular chart does not exclude a nonlinear response, nor does a symmetry of a prescribed sea supply its dynamical constitutive law.
 
-### 9.2 Clock, shape, and signal must come from the same history
+### 9.2. Clock, shape, and signal must come from the same history
 
 Lorentz and gravitational behavior are observer-level recovery targets. One proposed extraction uses a cycle-averaged shape tensor
 
@@ -762,7 +762,7 @@ After choosing an observer channel with speed $c_*$, the comparison factor is $\
 
 The homogeneous moving-assembly problem precedes weak-field medium comparison in this program. The same branch must determine clock, ruler and two-way signal residuals. Fitting one parameter per observable would not establish the requested recovery. Independent derivation of the constitutive map is still missing; prepared coefficient relations and stiffness expansions do not supply it.
 
-### 9.3 Weak-field comparisons and anisotropy
+### 9.3. Weak-field comparisons and anisotropy
 
 The proposed weak-field map converts medium density, cadence, effective potential, drift and stress into lapse, shift and spatial response coefficients. Those coefficients must jointly predict redshift, delay, bending, weak acceleration and preferred-frame residuals. Writing them in an effective metric is a comparison representation, not a replacement of Euclidean space and absolute time at the substrate level.
 

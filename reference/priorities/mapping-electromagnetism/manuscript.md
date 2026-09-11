@@ -2,7 +2,7 @@
 
 ## 1. Sources, currents, and effective fields
 
-### 1.1 The recovery problem
+### 1.1. The recovery problem
 
 Electromagnetism supplies several descriptions of the same physical event: a source moves or changes, an environment transmits its influence, a receiver responds, and energy and momentum pass between the participants. A microscopic explanation must connect these descriptions. Agreement with the trajectory of one charged probe does not establish the geometry of the source, the necessity of a responding medium, or a field that another receiver would reconstruct in the same way.
 
@@ -12,7 +12,7 @@ The electromagnetic problem is consequently bidirectional. Forward reasoning sta
 
 The material developed here contains exact kinematic identities, conditional geometric results, comparison designs, and recorded failures of finite prescribed seeds. It contains no accepted electromagnetic source–sea–receiver branch, no completed Maxwell derivation, and no derived electron magnetic moment. These distinctions determine how its positive and negative results can be used.
 
-### 1.2 Three objects that must remain distinct
+### 1.2. Three objects that must remain distinct
 
 A **source assembly** has an identity-resolved geometry, exposed polarity, internal motion, and group motion. A **current record** describes how exposed polarity is transported or redistributed. An **effective field** is a shared observer-level reconstruction from that source, its causal history, any derived sea response, and the boundary conditions. A receiver has its own geometry and response to this common record.
 
@@ -20,7 +20,7 @@ The four broad source mechanisms are transport of an assembly, accumulation or c
 
 A useful magnetic comparison therefore separates an internal axis, an exposed-current moment, and the surrounding magnetic readout. An axis is a geometric direction. A headless alignment tensor can distinguish orientations while remaining unchanged when circulation reverses. A magnetic moment is axial and requires a noncancelling oriented response. A field chart additionally needs spatial range, parity, receiver independence, boundary behavior, and the appropriate dynamical relations. The [source, moment, and field comparison](evidence/common-axis-source-moment-field-matrix.md) establishes this separation as a constraint design, not as retained source evidence.
 
-### 1.3 The sea is an alternative to test
+### 1.3. The sea is an alternative to test
 
 The Noether sea may remain within its balanced reference tolerance while direct source wakes carry the required response. It may undergo a derived change essential to one or more electromagnetic behaviors. Both contributions may survive. These alternatives remain open; no nontrivial sea response is assumed merely because a constitutive description is being sought.
 
@@ -28,7 +28,7 @@ They cannot be distinguished by fitting an inverse-square magnitude or one recei
 
 ## 2. Exposed motion and magnetic moment
 
-### 2.1 Translation and internal circulation
+### 2.1. Translation and internal circulation
 
 Let an assembly have geometric centroid $\mathbf X_c$, group velocity $\mathbf V$, and members indexed by $a$. Write
 
@@ -58,7 +58,7 @@ $$
 
 is an identity under these definitions. Neither $Q_{\mathrm{exp}}$ nor $\mathbf M_{\mathrm{exp}}$ has acquired its observer normalization merely by being computed. In particular, the raw moment is not yet a magnetic moment in measured units. A normalization, an angular-momentum account, a retained assembly, and an independently tested receiver map remain necessary.
 
-### 2.2 Why rapid circulation can cancel
+### 2.2. Why rapid circulation can cancel
 
 Consider two opposite-polarity members with the same constant exposure $e$, tracing exact circles of radius $R$ about the full assembly's geometric centroid, with constant signed angular velocities and the same fixed oriented axis. This common center must be the centroid used in Section 2.1; it is not automatically the moving centroid of the two members alone. Let $\omega_-=s_\omega\omega_+$, where $s_\omega=\pm1$. Each circular component then satisfies $\mathbf u_a=\omega_a\hat{\mathbf n}\times\mathbf r_a$ and $\mathbf r_a\times\mathbf u_a=R^2\omega_a\hat{\mathbf n}$. Its contribution to the full assembly's moment is therefore
 
@@ -73,7 +73,7 @@ An isolated equal-exposure opposite-polarity two-member assembly illustrates the
 
 Adding current creates other constraints. Exactly counter-rotating members on the same equal-radius circle meet twice per individual orbital period. Axial separation can restore clearance but introduce a dipole. The historical two-ring and double-dyad investigations therefore impose clearance, centroid, dipole, current, and isotropy constraints together. Their scoped obstructions do not exclude phase-varying or differently organized assemblies. A visually attractive loop or a sampled positive clearance is insufficient to establish continuous admissibility or binding.
 
-### 2.3 Independent reversals
+### 2.3. Independent reversals
 
 The six source comparisons test distinct facts:
 
@@ -92,7 +92,7 @@ Direct and sea contributions can be separated by transmitter labels on a common 
 
 ## 3. From exposed histories to Maxwell comparisons
 
-### 3.1 Coarse-graining before field fitting
+### 3.1. Coarse-graining before field fitting
 
 The [finite-braid Maxwell construction](campaigns/fine-grained-braid-maxwell-exploration-prompt.md) begins with a proposed scale separation,
 
@@ -127,7 +127,7 @@ These are observer-level equations to recover. They are not a definition of an a
 
 The minimum population comparisons include a balanced isotropic reference, static exposed polarity, translation of exposed polarity, aligned internal circulation, conservative exposure reconfiguration without center flow, and a propagating transverse disturbance. One smoothing rule must serve all six. Small residuals at one smoothing scale do not establish a limiting law without controlled population, window, and boundary refinement.
 
-### 3.2 Homogeneous identities and constitutive response
+### 3.2. Homogeneous identities and constitutive response
 
 One candidate common carrier is an oriented history two-chain,
 
@@ -146,7 +146,7 @@ where $d$ is the exterior derivative, $G_\ell$ the smoothing kernel, $Z_F$ the f
 
 Defining $\mathbf B$ as a curl can make its divergence vanish by construction while leaving the microscopic obligation unanswered. Even genuine edge cancellation does not determine the sourced equations, impedance, phase, screening, or energy transfer. Those require a constitutive map from exposed density and current, direct history, the declared reference sea or its derived change, and boundaries to the common projected carrier. The two-chain is one candidate architecture, not an additional compulsory primitive.
 
-### 3.3 A capacitor separates transport from displacement
+### 3.3. A capacitor separates transport from displacement
 
 A capacitor comparison illustrates why current and carrier identity must be separated. The wire and the gap are both regions containing assemblies and causal histories; the microscopic conduction mechanism is not settled by drawing the circuit. Drift of charge carriers, signal propagation, continuing worldlines, and a relay of local assembly changes are distinguishable mechanisms. A positive plate charge may be an electron deficit; it does not require positive primitive carriers or a hole ontology.
 
@@ -163,7 +163,7 @@ The native burden is to recover both surface descriptions from one evolving acco
 
 ## 4. Electric response of complete receivers
 
-### 4.1 Group translation and internal deformation
+### 4.1. Group translation and internal deformation
 
 For an identity-labeled receiver with $N$ members, the source-tagged acceleration decomposes exactly as
 
@@ -191,7 +191,7 @@ The pair centroid is driven by $\mathbf A_{\mathrm{even}}$, while the relative a
 
 A charged receiver requires a noncancelling charge-facing projection. Same-sign accessory members are one possible realization, but the decomposition does not locate them outside a neutral core or establish that charge requires detachable accessories. A locally constant charge class can coexist with continuously changing response strength. Quantized charge and a continuous effective coupling are different obligations.
 
-### 4.2 A common environment and four receiver classes
+### 4.2. A common environment and four receiver classes
 
 The [multi-receiver electric comparison](analysis/e0-e4-multi-receiver-electric-response.md) specifies a neutral sea braid, a complete electron-like receiver, its complete positron-like conjugate, and a neutral composite receiver. The neutral composite is a nucleon surrogate for response comparison; it is not a derived neutron or quark model. Separate electron and positron forks do not constitute pair production.
 
@@ -209,7 +209,7 @@ The environmental controls are:
 
 Omitting sea transmitters is a mathematical knockout. It is not evidence that physically empty space is available. The difference between responsive and frozen histories isolates a sea increment only on the common-event diagnostic record. In full feedback evolutions, changed source and receiver histories must also be accounted for.
 
-### 4.3 What the readouts must distinguish
+### 4.3. What the readouts must distinguish
 
 The response record separates centroid motion, a best-fit proper rigid orientation, non-rigid deformation, signed internal polarity moment, and polarity-sector centers. Rigid rotation must not be counted again as strain. A uniform source window requires a predeclared nonuniformity bound; gradient responses form a separate comparison. Source reversal isolates the polarity-odd electric row before comparing receiver conjugates. A global polarity conjugation is a different symmetry test.
 
@@ -219,7 +219,7 @@ After source removal, return of acceleration to its baseline does not require th
 
 ## 5. Magnetic receiver geometry
 
-### 5.1 A delayed response, rather than an instantaneous primitive multiplier
+### 5.1. A delayed response, rather than an instantaneous primitive multiplier
 
 A fixed arriving Master Equation hit has no instantaneous receiver-velocity multiplier. The [magnetic reduction](../mapping-equations/analysis/inferring-braid-requirements.md#magnetic-field-reduction) therefore locates possible magnetic behavior in successive delayed hits, receiver displacement and frame evolution, internal assembly response, a derived sea response, or their combination. It does not insert a primitive $\mathbf v\times\mathbf B$ rule.
 
@@ -243,7 +243,7 @@ $$
 
 at leading order in three dimensions. This is a conditional algebraic recovery constraint, not a derivation of the kernel from the Master Equation. A symmetric part needs its own energy-transfer explanation. The axial vector $\mathbf b_{\mathrm{eff}}$ is a representation of the recovered skew matrix, not an extra substrate field.
 
-### 5.2 Group and internal magnetic readouts can exchange roles
+### 5.2. Group and internal magnetic readouts can exchange roles
 
 For a declared leading polarity-odd comparison $\delta\mathbf A_a^B=\sigma_aK_B\mathbf v_a$ with $K_B^T=-K_B$, take a matched opposite-polarity pair with $\mathbf v_-=s_v\mathbf v_+$. Then
 
@@ -261,7 +261,7 @@ The full moment burden is stricter than a nonzero raw loop moment. A retained or
 
 ## 6. Cubic backgrounds: exact facts and finite failures
 
-### 6.1 Stationary inversion cancellation
+### 6.1. Stationary inversion cancellation
 
 The [cubic-lattice analysis](analysis/f6c-cubic-lattice.md) contains an exact stationary identity. Let sites be $\mathbf X_g=dLg$ for integer triples $g$, invertible fixed $L$, lattice scale $d>0$, and checkerboard polarity. A displacement $n$ and its inverse $-n$ have the same polarity-product factor $\sigma(n)$. With stationary paths, the causal root has delay $d\|Ln\|/c_f$. In normalized units $c_f=1$, the transmitter factor is $D_t=1$ and the dimensionless acceleration contribution has the form
 
@@ -276,7 +276,7 @@ Here $a_0$ absorbs the fixed dimensional coefficient and lattice scale. Any inve
 
 The retained source reports a structural audit of 192 stationary ledgers and 105,600 rows with exact cancellation, tamper negatives, and a separately authored high-precision comparison. Those are historical instrument results. They do not establish a moving periodic sea, and no new execution is represented here.
 
-### 6.2 Why isolated cells and copied circles differ
+### 6.2. Why isolated cells and copied circles differ
 
 Equal positive and negative tetrahedral center sets at $\pm h\mathbf n_i$ form the eight vertices of a cube with side $d=2h/\sqrt3$. These are track centers, not moving members when the orbit radius is nonzero. The cube is the convex hull of the vertices; the tetrahedra are not filled matter occupying the intervening volume.
 
@@ -293,7 +293,7 @@ Copying the same moving cell into adjacent cubes introduces a different obstruct
 
 The global-plane antiphase pattern has a two-site primitive cell under the even-parity translation lattice, although an orthogonal description uses a $2\times2\times2$ cell. A nonzero circle in one fixed plane at a fixed site cannot possess full cubic point symmetry there. Multiple site orientations, permutations, or time-dependent symmetries require their own analysis.
 
-### 6.3 Rank-two isotropy does not remove directional dispersion
+### 6.3. Rank-two isotropy does not remove directional dispersion
 
 Cubic symmetry forces an invariant rank-two tensor to be proportional to the identity. It also permits the fourth-order invariant
 
@@ -303,7 +303,7 @@ $$
 
 whose values on $[100]$, $[110]$, and $[111]$ are $1$, $1/2$, and $1/3$. A vector response can involve fourth-rank coefficients even in a quadratic wavevector term. Thus isotropic second orientation moments neither prove propagation isotropy nor recover observer Lorentz behavior. Physical clock and ruler assemblies must participate in the readout. Linearization also requires an actual background solution; a spectrum around a rejected prescribed orbit has no stability interpretation for that orbit.
 
-### 6.4 Three bounded negative results
+### 6.4. Three bounded negative results
 
 The moving-seed evidence distinguishes three experiments, all in normalized wake-speed units:
 
@@ -319,7 +319,7 @@ Finite open crops, exact periodic all-image constructions, replicated finite lad
 
 ## 7. Adaptive geometry and a retained medium
 
-### 7.1 Local kinematics without lattice bonds
+### 7.1. Local kinematics without lattice bonds
 
 The [adaptive cubic contract](analysis/adaptive-cubic-medium-kinematics-and-ledger-contract.md) replaces immutable cell copies with identity-labeled local geometry. A candidate chart writes a member path as
 
@@ -342,7 +342,7 @@ $$
 
 A rigid proper rotation gives $E=0$, an exact kinematic check. The antisymmetric part $(F-F^T)/2$ is not the finite polar-decomposition rotation. Neither construction supplies a stiffness, energy density, or elastic constitutive law.
 
-### 7.2 Neighborhood identity, return, and reorganization
+### 7.2. Neighborhood identity, return, and reorganization
 
 Suppose distance enclosures distinguish six local neighbors from every omitted candidate. A positive separation between the largest upper bound among the six and the smallest lower bound among the omitted distances certifies the neighbor identities within those enclosures. It does not truncate causal interactions at the sixth neighbor. Rank changes require persistent identities, reciprocal edge changes, a bracket or dwell record distinguishing the change from an unresolved instantaneous rank tie, and continued root and account provenance. A kinematically admissible swap is not yet a retained physical reorganization.
 
@@ -358,7 +358,7 @@ Piecewise polynomial histories require extrema and error enclosures on every int
 
 The [background audit](evidence/adaptive-cubic-background-o0-audit-2026-08-25.json) did not reach this return question. Its usable history was only $[-2,0.1]$ while the candidate period was $2\pi$; even an antipodal sample at the initial event would require an earlier history. It also lacked a closed exterior and an independent continuous-return certificate. Root completeness, speed, clearance, and use of the EOM solver did not remove those gaps. The adaptive background was blocked, and physical receiver and directional-response comparisons were not run. Missing comparisons are not negative physical measurements.
 
-### 7.3 Directional response needs a physical readout
+### 7.3. Directional response needs a physical readout
 
 An even-sided tetrahedral parity pattern can have orientation second moment exactly $I/3$ while retaining higher-order structure. A fourth orientation diagnostic measures that structure, but it is still an orientation statistic. Propagation along $[100]$, $[110]$, and $[111]$ would require an accepted background, controlled boundaries, physical receiver assemblies, one fixed readout, and refinement. Those three directions can falsify isotropy when they disagree; their agreement alone does not establish isotropy over every direction.
 
@@ -366,7 +366,7 @@ This hierarchy prevents a path-acceleration diagnostic from being promoted to a 
 
 ## 8. Inverse assembly constraints and their limits
 
-### 8.1 A geometric match does not choose a particle
+### 8.1. A geometric match does not choose a particle
 
 The preserved [research history](work-log.md) contains useful inverse constraints extending beyond the cubic medium. A comparison between pair-conjugate three-binary coordinates and polarity-sector coordinates found different general spaces with a common lower-dimensional locus. Matching a metric on that locus does not identify the unmatched directions. Bounded evolution from the common initialization compared coordinate behavior; the initial agreement is not an independent physical oracle, and a short nonreturn result is not nonexistence of the whole family.
 
@@ -380,7 +380,7 @@ Its 56 partner roots were complete under the declared history, but the memberwis
 
 Polarity-resolved axial scales, radii, and phases expand a three-coordinate chart to six coordinates and can remove a tangent-space obstruction. A source record reports an off-surface component about $68.4\%$ for the smaller chart and near numerical zero for the expanded symmetry-compatible chart. Tangency at an event is not a retained recurrent branch. Breathing and shear can contribute to current, so a recurrence cadence must not automatically be interpreted as forward circular motion.
 
-### 8.2 Current persistence, topology, and branch identity
+### 8.2. Current persistence, topology, and branch identity
 
 Historical return searches retained several distinct limitations: scalar recrossings failed full history matching; reflected shape return could reverse current; corridor closure could precede the desired recurrent event; and a tolerance-relative root-time pressure could stop certification without a geometric collision or a proven caustic. Current-capacity and corridor-opening projections produced admissible algebraic directions only under their declared instantaneous constraints. They did not constitute root-certified evolution until a separate root check, and they did not bind the resulting trajectory.
 
@@ -392,7 +392,7 @@ The practical consequence is strong even without a selected particle geometry: t
 
 ## 9. Fine structure, action, and scale dependence
 
-### 9.1 Measurement situations and shared parents
+### 9.1. Measurement situations and shared parents
 
 The [fine-structure analysis](analysis/fine-structure.md) treats the coupling as a comparison across situations. A trapped-lepton anomaly, atomic recoil, atomic or leptonic bound-state spectroscopy, Hall metrology, scattering, and electroweak fits infer related quantities through different observables, theory corrections, auxiliary constants, and covariance. Clock comparisons constrain variation; they are not interchangeable with an absolute coupling determination. Astrophysical and cosmological inferences carry their own environmental and model assumptions.
 
@@ -402,7 +402,7 @@ A physical situation must specify the matter branch, near and distant sea and bo
 
 Three forms of variation must be distinguished: changing observational momentum scale while holding the physical parents fixed; changing the internal matter state; and comparing matched matter in different sea environments. The momentum scale $\mu$ in a scattering comparison is not automatically a persistent internal energy or an electron radius. A transient geometrical response during the event remains possible, but it needs a derivation. Near, environment, and far sea regions belong to one history, and a null nontrivial sea correction remains admissible.
 
-### 9.2 An action period is not yet Planck's constant
+### 9.2. An action period is not yet Planck's constant
 
 Suppose a retained orbit $\gamma$ admits a derived Poincaré–Cartan one-form $\vartheta$ on the appropriate history or reduced-state description. Define the candidate period
 
@@ -424,7 +424,7 @@ $$
 
 Here $q_{\mathrm{obs}}$ is observable charge, $c_\gamma$ a derived effective photon speed, and $\varepsilon_{\mathrm{eff}}$ belongs to the same constitutive map used in Maxwell comparisons. The formula is a conditional effective matching relation. Using the observed $\alpha$ to define $h_\vartheta$ and then claiming to predict $\alpha$ would be circular. Independent inference of the action period from geometry and agreement across withheld observables is the stronger comparison. Inconsistent implied periods across independent anchors would falsify that common mapping.
 
-### 9.3 Fixed-background running
+### 9.3. Fixed-background running
 
 For one physical situation $s$ with fixed parent record $\Theta_s$, write
 
@@ -458,7 +458,7 @@ The inverse coupling is affine in logarithmic scale over this constant-coefficie
 
 The source's high-energy numerical anchor is explicitly scheme-dependent: the PDG 2024 five-flavor modified-minimal-subtraction value is $\hat\alpha^{(5)}(M_Z)^{-1}=127.930\pm0.008$. It is not the low-energy CODATA number evaluated in an unchanged measurement convention. [The PDG electroweak review](https://pdgweb.lbl.gov/2024/reviews/rpp2024-rev-standard-model.pdf) gives this effective comparison and its scheme.
 
-### 9.4 What the coupling comparison cannot establish
+### 9.4. What the coupling comparison cannot establish
 
 Electromagnetic screening and non-Abelian antiscreening involve different effective carrier structures. Reproducing the former does not derive the latter. In a conventional electroweak comparison basis, $\alpha_{Y,\mathrm{GUT}}=(5/3)\alpha_Y$ and
 
@@ -476,7 +476,7 @@ The existing fixed-parent checker and its negative cases test record consistency
 
 ## 10. Weak response and fixed-law continuation
 
-### 10.1 Changing preparation while preserving the law
+### 10.1. Changing preparation while preserving the law
 
 The [fixed-law continuation](analysis/fixed-law-source-continuation.md) varies a physical source-loading coordinate $\zeta$ while keeping the acceleration law, coefficients, regulator, projection, tolerances, common history prefix, and architrino inventory fixed. Each amplitude retains source, sea, receiver, wake, root, and boundary identities. With $c_f=1$, the numerical acceleration weight is checked against $W^{\mathrm{acc}}=1/|D_t|$; the record also retains $D_r$ and the declared transition margins.
 
@@ -493,7 +493,7 @@ $$
 
 where $\epsilon>0$ is the fixed denominator floor. At least two signed pairs are required: the smallest pair estimates a tangent, and further rows test it. A two-point chord cannot certify itself as a weak linear regime. This finite-record comparison does not prove that the supplied baseline is a retained physical branch.
 
-### 10.2 First sampled transition and pair capture
+### 10.2. First sampled transition and pair capture
 
 The first reported positive transition is the smallest sampled $\zeta$ for which a declared causal-root transversality margin, inactive-root gap, return-section stability margin, collision margin, or branch-status condition reaches its boundary. It is a first sampled boundary, not a certified first threshold of a continuous family. Each margin keeps its declared normalization and tolerance. A collision requires quarantine; an inactive-root gap closure is not automatically a collision, pair formation, or failure of the primitive law.
 
@@ -501,7 +501,7 @@ The prescribed diagnostic uses amplitudes $-0.10,-0.05,0,0.05,0.10,0.30,0.50,0.7
 
 Pair capture requires an accepted baseline plus certified conjugate product basins with opposite protected six-unit polarity inventories on the same record. Passing that prerequisite check would still not manufacture an attempted capture. Product formation must route the existing architrino identities into products and remnants, continue source and sea backreaction, and close energy, momentum, angular momentum, wake, recoil, and boundary accounts. The present diagnostic skips pair capture and does not run backreaction.
 
-### 10.3 What strong-field agreement would and would not reveal
+### 10.3. What strong-field agreement would and would not reveal
 
 Recovering a strong-field rate or scale would constrain the joint source, receiver, sea, and product history. It would not by itself reveal an internal architrino speed. That inference additionally needs identity-resolved paths, an independently established ordinary cycle, formation and coherence times, and retained products. A hard source-amplitude switch or a new per-hit coefficient would evade the fixed-law question.
 

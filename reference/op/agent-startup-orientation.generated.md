@@ -83,9 +83,9 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [.githooks/pre-push](../../.githooks/pre-push) | 38 | `3666ac9286628a8e` |
 | [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 285 | `6b42eb39e05c2fe5` |
 | [reference/op/brainstorming.md](brainstorming.md) | 380 | `da4b2d965e309e0d` |
-| [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 200 | `e4112612903c192b` |
+| [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 208 | `328459c22faedf60` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 190 | `2c685c5e25ca8643` |
-| [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 99 | `3205999b99d803a1` |
+| [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 101 | `7c4b39325bf1840d` |
 | [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `6e7d85fadab80fc0` |
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 60 | `421e58e6c3ced0d5` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `aea014967bca3b04` |
@@ -93,7 +93,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/priorities/README.md](../priorities/README.md) | 125 | `f93aee4d2c7b7b80` |
 | [reference/office-of-research/cto/prompts/README.md](../office-of-research/cto/prompts/README.md) | 64 | `44455776ef041094` |
 | [reference/office-of-research/cto/prompts/start-pi.md](../office-of-research/cto/prompts/start-pi.md) | 72 | `4e0ff61a310d3916` |
-| [reference/office-of-research/cto/prompts/start-research.md](../office-of-research/cto/prompts/start-research.md) | 102 | `4190e93f3c346d41` |
+| [reference/office-of-research/cto/prompts/start-research.md](../office-of-research/cto/prompts/start-research.md) | 104 | `ad41a664553d2087` |
 | [reference/office-of-research/cto/prompts/convergence-campaign.md](../office-of-research/cto/prompts/convergence-campaign.md) | 575 | `8a7b0a0d05f9197b` |
 | [reference/office-of-research/cto/prompts/corpus-reviewer.md](../office-of-research/cto/prompts/corpus-reviewer.md) | 108 | `07d11f4dadb19c19` |
 | [reference/office-of-research/cto/prompts/selective-reference-pass.md](../office-of-research/cto/prompts/selective-reference-pass.md) | 65 | `fdb289ec504b8176` |

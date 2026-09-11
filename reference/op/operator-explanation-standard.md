@@ -126,6 +126,14 @@ Keep outstanding durable decisions recorded in their appropriate working documen
 
 There is no separate `Open items:` block or required `Closure goal:` line. Generated and recommended prompts begin directly with a concrete task; no fixed opening label is required. Provide a detailed reusable prompt only when it helps the operator act, rather than expanding every next action into a full prompt.
 
+## Agent and task names
+
+When working a numbered item such as `ABC-012`, begin every associated agent name and task/thread title with the item's identifier in lowercase, followed by a concise role or purpose: `abc-012 HQ`, `abc-012 implementation`, or `abc-012 geometry review`. Apply the same prefix to coordinators, delegated workers, independent reviewers, follow-up tasks, and handoffs. Preserve an explicitly requested full name and carry its item prefix into subsequent launches. Work without an assigned item identifier uses a descriptive name; do not invent a queue item merely to name an agent.
+
+The launching coordinator checks the prefix before dispatch and includes the item identifier in the worker's assignment. Keep a Specialist's role-file basename as its role identity, separate from the prefixed launch name. If a tool accepts only underscores in machine identifiers, use the equivalent `abc_012_` prefix there and retain `abc-012` in the display title and assignment. Verify any returned or automatically normalized display title and correct it when the tool supports renaming.
+
+When continuing an existing item, correct unprefixed active task titles within that item's coordination scope. If a running sub-agent has an immutable name, preserve its execution and record its stable ID beside the prefixed assignment label; subsequent launches use the required prefix. Naming changes do not authorize creating additional tasks, restarting work, or renaming unrelated tasks. These names identify work in task lists and records; prompts still begin with the concrete task rather than a salutation.
+
 ## Response mechanics
 
 - **Ask only necessary questions.** Bundle closely related clarifications when they can be answered together; separate dependent decisions so the operator can assess each. Put the recommended choice first when fixed choices help, and use open discussion for nuanced decisions. Distinguish a recommendation from a request for permission; do not ask again for work already authorized.

@@ -8,7 +8,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, the substrate consists of polarity-bearing 
 
 The developed mathematical results below establish distinctions and exclude shortcuts. They do not identify a retained braid as a fermion, derive the Born rule, or provide an accepted Bell mechanism. The physical construction remains open at the passage from retained histories to a common preparation–transformation–record description.
 
-### 1.1 Three Different Spaces
+### 1.1. Three Different Spaces
 
 Physical space locates an architrino. A history domain records what its evolution needs. An effective state space organizes predictions. These roles must remain distinct even when each is represented by coordinates.
 
@@ -22,7 +22,7 @@ Here $\mathrm{id}_i$ is a persistent identity and $s_i$ its polarity. The histor
 
 The domain $\Omega$ need not be a vector space. Adding two lawful trajectories need not yield another lawful trajectory or preserve their root structure. A Hilbert space of functions *on* histories therefore has different elements from the history domain itself. Counting constituents, binary layers or spatial axes does not determine its dimension.
 
-### 1.2 From Exact Histories to Preparation Statistics
+### 1.2. From Exact Histories to Preparation Statistics
 
 A preparation protocol $P$ leaves a distribution $\mu_P$ over unresolved histories. An apparatus protocol $C$ produces a record $o$ through a response $K_o^C(\omega)$, after any declared averaging over apparatus variables:
 
@@ -45,7 +45,7 @@ This does not require every history in a preparation to produce the same individ
 
 ## 2. Hilbert Geometry and Its Additional Physical Burdens
 
-### 2.1 An Arrow and Its Coordinates
+### 2.1. An Arrow and Its Coordinates
 
 Take perpendicular unit vectors $\mathbf e_1,\mathbf e_2$ and the dimensionless vector
 
@@ -63,7 +63,7 @@ $$
 
 Each new vector has squared length one, and their dot product is zero. Substitution gives $\mathbf v=5\mathbf e'_1+0\mathbf e'_2$. The coordinates have changed from $(3,4)$ to $(5,0)$ while the arrow and its length remain fixed. This is a passive change of description. Rotating the arrow while holding the axes fixed is a physical operation of a different kind.
 
-### 2.2 Inner Products, Functions and Completeness
+### 2.2. Inner Products, Functions and Completeness
 
 An inner product supplies size and overlap. Our complex convention is conjugate-linear in the first argument and linear in the second:
 
@@ -91,7 +91,7 @@ $$
 
 The series converges in the integrated-square norm. The last identity generalizes Pythagoras; by itself it is not a probability law. Ordinary Euclidean spaces are real Hilbert spaces, so neither quantum behavior nor infinitely many dimensions follows from the name.
 
-### 2.3 Why Amplitudes Carry More Than One Set of Probabilities
+### 2.3. Why Amplitudes Carry More Than One Set of Probabilities
 
 As an effective quantum comparison, use orthonormal outcome vectors $\phi_A,\phi_B$ and
 
@@ -112,7 +112,7 @@ both give equal A/B frequencies, yet an ideal measurement in the $\psi_+,\psi_-$
 
 Quantum theory adds further structure: density operators for general preparations, unitary transformations for closed-system evolution, tensor products for subsystem composition, and rules for sequential measurements. An open subsystem need not evolve unitarily. None of these rules follows merely from writing a complex coordinate for a braid.
 
-### 2.4 Functions of Histories and Koopman Evolution
+### 2.4. Functions of Histories and Koopman Evolution
 
 Suppose $\Omega$ is measurable and $\mu$ is a declared probability measure. Conditional mathematics then supplies
 
@@ -135,7 +135,7 @@ Composition makes this action linear even when $\Phi_\tau$ is nonlinear. A well-
 
 There is also an obstruction to a common shortcut. Classical bounded readouts represented by multiplication satisfy $M_fM_gF=fgF=M_gM_fF$. Their commutativity survives passage to Hilbert space. Thus vectorizing classical readouts does not automatically recover noncommuting quantum operations. This excludes that argument, not every history-based physical construction.
 
-### 2.5 Response Geometry and a Common Quantum Representation
+### 2.5. Response Geometry and a Common Quantum Representation
 
 A second, conjectural physical route starts from responses $r_\omega(u)$ derived from histories, such as a phase-resolved apparatus response or a component of arriving acceleration. Given square integrability under a nonnegative sampling measure $\nu$, real responses generate
 
@@ -174,7 +174,7 @@ For pure states and rank-one projectors this reduces to $|\langle\phi_o^C,\psi_P
 
 ## 3. Rotation, Spinor Transport and Observable Comparisons
 
-### 3.1 Frames and the Quaternion Cover
+### 3.1. Frames and the Quaternion Cover
 
 An ordinary proper rotation $R$ satisfies $R^{\mathsf T}R=I_3$ and $\det R=1$. An ordered orthonormal frame is a matrix in $SO(3)$; an axis alone lies on $S^2$ and loses rotation about itself. Rotation order already matters before spinors enter: $R_x(\pi/2)R_y(\pi/2)\hat{\mathbf e}_z=\hat{\mathbf e}_x$, while reversing the order gives $-\hat{\mathbf e}_y$.
 
@@ -187,7 +187,7 @@ $$
 
 The quaternions $q$ and $-q$ yield the same vector rotation. The kernel of this action is exactly $\{1,-1\}$, giving the two-to-one cover of $SO(3)$. A continuous one-turn path lifted from $1$ ends at $-1$; two turns end at $1$. Since the unit-quaternion sphere $S^3$ is simply connected, the based rotation-loop classes form $\mathbb Z_2$. This is path topology, not a claim that emitted wakes or work transactions disappear after two turns.
 
-### 3.2 Matrices and a Worked Direction
+### 3.2. Matrices and a Worked Direction
 
 With Pauli matrices
 
@@ -224,7 +224,7 @@ $$
 
 Both computations give the same visible direction. At $2\pi$ the spinor representative changes sign while the frame returns; at $4\pi$ both return. These are exact comparison identities, not native trajectories.
 
-### 3.3 An Isolated Sign and a Relative Sign
+### 3.3. An Isolated Sign and a Relative Sign
 
 For an isolated pure-state comparison, $\rho=\psi\psi^\dagger$ satisfies $(-\psi)(-\psi)^\dagger=\rho$. Every matrix expectation is likewise unchanged. An axis-aligned state can remain on the same ray throughout a rotation about that axis. A representative sign alone therefore supplies no observable.
 
@@ -237,7 +237,7 @@ $$
 
 For the worked state, $P_+=[1+\cos\delta\cos(\theta/2)]/2$. At $\delta=0$ the ideal zero-, one- and two-turn values are $1,0,1$. A common sign on both arms has no effect; removing coherence removes the cross term. A separate phase plate can mimic a fringe shift, so the rotation operation and nuisance phases require independent controls. The neutron-interferometer comparison and its original source scope are preserved in [Spinors, Rotations, and History](analysis/spinors-rotations-and-history.md#sign-ray-phase-and-experimental-comparison); this manuscript does not remeasure that experiment.
 
-### 3.4 A Lawful Rotation Must Move the Whole Relevant History
+### 3.4. A Lawful Rotation Must Move the Whole Relevant History
 
 At $c_f=1$, a simple causal root obeys
 
@@ -262,13 +262,13 @@ Extra acceleration terms and different source/receiver rotations generally chang
 
 ## 4. What a Spin Identification Must Establish
 
-### 4.1 Two Exact Obstructions to Compression
+### 4.1. Two Exact Obstructions to Compression
 
 Suppose a reduced space $X$ carries an ordinary $SO(3)$ action and a single-valued amplitude obeys $f(\varpi(U)x)=Uf(x)$ for every $U\in SU(2)$. Substituting $U=-I_2$ gives $f(x)=-f(x)$, hence $f=0$. This conditional lemma excludes a nonzero globally equivariant spinor amplitude when the central element acts trivially on the source space. More classical coordinates do not help if their action still factors through $SO(3)$. Ray-valued, bundle-valued or genuinely lifted relational constructions have different premises and are not excluded.
 
 A second counterexample compares the constant path $\gamma_0(s)=I_3$ with $\gamma_1(s)=R_z(2\pi s)$. Their endpoint frames agree while their lifted endpoints differ. An endpoint-only classifier loses the distinction. More generally, a sign $\eta$ on histories descends through a quotient $Q$ exactly when it is constant on every fiber of $Q$. Arbitrary identity renaming, physical exchange, phase-origin change and relative phase change must not be conflated. Real-valued writhe also does not automatically supply an integer winding parity.
 
-### 4.2 Central Sign, Spin Class and Composition
+### 4.2. Central Sign, Spin Class and Composition
 
 The comparison representation
 
@@ -302,7 +302,7 @@ $$
 
 has continuous integer rank and hence constant rank on a connected interval. A smooth shape change cannot silently change central-sign multiplicity under these assumptions. Sector crossings, altered quotients, changed boundary conditions or loss of an isolated mode require explicit treatment. This constrains an unchanged-sector story; it does not forbid particle conversion generally.
 
-### 4.3 Distinct Operations and Effective Relativistic Comparisons
+### 4.3. Distinct Operations and Effective Relativistic Comparisons
 
 Spatial rotation, internal phase, parity, charge conjugation, chirality, helicity and exchange act on different information. Parity reverses polar displacements and velocities, while a cross product of two polar vectors is axial. A determinant of three axial normals is parity-even; assigning it mirror-odd meaning needs another construction. A polar–axial pairing can be mirror-odd if its factors are well defined and nonzero.
 
@@ -325,7 +325,7 @@ Here $M_{\mathrm{eff}}$ is recovered bulk mass. The effective clock/ruler map, d
 
 Spatial and weak $SU(2)$ act on separate indices: $U\otimes I$ and $I\otimes V$ commute. A spatial turn must not change an electron into a neutrino or a color component into a laboratory direction. Effective weak quark partners contain the CKM mixture $d'_i=\sum_jV^{\mathrm{CKM}}_{ij}d_j$, not a prescribed geometric pairing of adjacent flavor names.
 
-### 4.4 Candidate Frames and Accessory Attachments
+### 4.4. Candidate Frames and Accessory Attachments
 
 The preserved candidate survey includes orthogonal-axis, coincident-axis, two-component circular, moving-midpoint five-coordinate, deformed, coupled-module, double-dyad and tetrahedral geometries. Their identity and motion records differ. Scoped negative circular and common-cadence realizations do not exclude entire parent families. No configuration label identifies an accepted spinor assembly.
 
@@ -333,7 +333,7 @@ The surveyed accessory programs contain six added architrinos, but that inventor
 
 A useful conditional preservation result makes the assumptions explicit. Let $p:X_{BA}\to X_B$ and $s:X_B\to X_{BA}$ satisfy $p\circ s=\mathrm{id}$ and compatible frame maps $F_{BA}\circ s=F_B$. If an admissible deformation retracts $X_{BA}$ onto $s(X_B)$ while fixing that subspace, each accessory-bearing frame loop is homotopic to its projected core loop. Their lifted signs agree. Spatial separation alone does not establish this retraction. Noncontractible accessory angles, changed stabilizers, exchange, root boundaries or medium conditions can defeat it. Even class-preserving attachment can change charge exposure, magnetic response and weak coupling; full backreaction remains necessary.
 
-### 4.5 Effective Family Requirements
+### 4.5. Effective Family Requirements
 
 These are comparison requirements inherited from the source's versioned effective-physics review, not freshly verified particle measurements or candidate identifications.
 
@@ -351,7 +351,7 @@ These are comparison requirements inherited from the source's versioned effectiv
 
 Antiparticles retain the corresponding spin class. The effective photon, neutral weak boson and Standard Model Higgs are self-conjugate; the real gluon adjoint does not introduce an independent antigluon octet. Neutrino neutrality alone does not decide self-conjugacy. Photon Jones-vector notation has two amplitudes but integer helicity phases, not a spatial spin-one-half action. Hadronic composition separately tests $1/2\otimes1/2=0\oplus1$ and three-spinor sectors $1/2\oplus1/2\oplus3/2$, together with orbital, gluonic, parity, color and exchange contributions.
 
-### 4.6 Three Further Insufficient-Premise Results
+### 4.6. Three Further Insufficient-Premise Results
 
 Rotation covariance alone does not choose exchange statistics. Both symmetric and antisymmetric two-spinor sectors are invariant under joint rotations. A theorem connecting a one-object rotation loop to a two-object exchange path needs the relevant configuration spaces and physical assumptions. Calling paths braids supplies neither planar confinement nor a phase representation of exchange.
 
@@ -361,7 +361,7 @@ Finally, the effective interaction $H_{\mathrm{int}}=-\mu_0\boldsymbol\sigma\cdo
 
 ## 5. Deterministic Transport, Basin Measures and Records
 
-### 5.1 A Sufficient State and Its Pushforward
+### 5.1. A Sufficient State and Its Pushforward
 
 For finite regularization $\eta>0$ and justified history horizon $h$, retain assembly, wake, sea, apparatus and control variables in a measurable state space
 
@@ -389,7 +389,7 @@ $$
 
 Choosing $\nu$ to fit the desired Born law invalidates the construction. A return section gives $R(\gamma)=\Phi_{\tau_\Sigma(\gamma)}\gamma$ and measure action $R_*$. Its first-return time, excluded boundaries and retained context must be specified.
 
-### 5.2 Measures and Finite-Window Basins
+### 5.2. Measures and Finite-Window Basins
 
 The measure begins with preparation-limited unresolved history pushed through the same deterministic flow and retained projection. An invariant measure obeys $\mathcal P_\tau\mu_* =\mu_*$. A metastable measure instead has a declared finite-window drift bound on a specified test family containing the outcome basins. A preparation, return-section or finite-window measure must not be silently replaced by an independently fitted ensemble.
 
@@ -410,7 +410,7 @@ This is the conditional basin-measure identity. It identifies what must be compu
 
 Finite-window reachability asks whether a trajectory enters a target during a declared interval while remaining admissible. It is different from unbounded reachability. An actual computable embedding of halting into a retained dynamical chart would import an undecidability obstruction for that stronger question; no such embedding is established or required for ordinary record formation here.
 
-### 5.3 A Basin Weight Becomes a Probability of a Completed Record
+### 5.3. A Basin Weight Becomes a Probability of a Completed Record
 
 The record indicator $\mathbf1_{\mathrm{rec}}(i;\theta)$ requires measurable basins, controlled boundaries, finite measurement time, restartability and divergence residuals, an apparatus/environment entropy-lock criterion, closed energy–momentum–angular-momentum accounts, and a bound on unrecorded energy over the same window. Then
 
@@ -430,7 +430,7 @@ $$
 
 Neither side may define the other to force agreement. Self-location, betting or decision-theory credences are consumers of the physical measure. Two inference rules giving different weights to the same fixed apparatus frequencies expose why an interpretive argument alone does not derive this equality.
 
-### 5.4 A Worked Abstract Basin Map
+### 5.4. A Worked Abstract Basin Map
 
 For $0<b(u)<1$ and $0<\lambda\le1$, consider the dimensionless comparison map
 
@@ -449,7 +449,7 @@ Repeated pushforward tends to $p_0\delta_0+p_1\delta_1$. The initial density is 
 
 ## 6. Apparatus Response and Effective Benchmarks
 
-### 6.1 Spin and Photon Channels Have Different Demands
+### 6.1. Spin and Photon Channels Have Different Demands
 
 A detector kernel is a basin pullback averaged over a derived material measure:
 
@@ -470,7 +470,7 @@ $$
 
 The dagger is conjugate transpose and $\hat a$ is a real unit analyzer direction. To obtain the ideal pass fraction from material dynamics, a derived threshold coordinate must have uniform pushforward under its return-map occupation measure. This is the open material-measure burden; writing the projector does not derive Malus' law. Polarization Bell comparisons use the doubled-angle law, not the spin-singlet angle law.
 
-### 6.2 Source–Path–Detector Comparisons Beyond Two Outcomes
+### 6.2. Source–Path–Detector Comparisons Beyond Two Outcomes
 
 In the effective three-mode neutrino comparison,
 
@@ -502,7 +502,7 @@ The coefficients are to be mapped from branch, wake, detector and sea records. U
 
 ## 7. Pair Provenance and the Bell Obstruction
 
-### 7.1 A Source Measure Must Be Produced Before a Joint Table
+### 7.1. A Source Measure Must Be Produced Before a Joint Table
 
 A preparation section $\Sigma_{\mathrm{src}}$ carries a source occupation measure $\mu_{\mathrm{src}}$. A pair map produces
 
@@ -523,7 +523,7 @@ $$
 
 This context-indexed integral is a target construction. Its physical origin and complete-record interpretation cannot be inferred from notation. The product of conditional apparatus measures is a declared assumption in this source representation; a physical application must justify its sufficient retained record.
 
-### 7.2 Product Screening and Four Distinct Failures
+### 7.2. Product Screening and Four Distinct Failures
 
 If the completed record admits local kernels for every setting under one setting-independent measure,
 
@@ -544,7 +544,7 @@ $$
 
 The spin-singlet curve is $-\cos\theta$, with $|S|=2\sqrt2$ at optimal settings; the local bound is two. Photon curves separately involve $\cos2(\alpha-\beta)$ with state-dependent sign/phase convention. The same generated record law must preserve no-signaling marginals, measurement independence, ordering-independent observer tables and $|S|\le2\sqrt2$, with preferred-frame leakage bounded in the observer export. A superquantum value is failure. A deficit is assessed at the declared comparison settings and tolerances, not by demanding maximal violation at every setting.
 
-### 7.3 A Table-Level Success That Exposes a Missing Mechanism
+### 7.3. A Table-Level Success That Exposes a Missing Mechanism
 
 The source's generated threshold examples reproduce the singlet target using a uniform coordinate $\eta\in[0,1]$ and a sign branch $\sigma=\pm1$. Set
 
@@ -572,7 +572,7 @@ Each sign appears twice. The generated examples require $(-1,+1,-1,-1)$ on a mid
 
 The examples are therefore failure-boundary fixtures and simulation targets. They lack completed local one-wing response signs and same-window record residuals. Nonrestartability before records complete can be investigated; persistent failure of local record autonomy after claiming completed records cannot serve as an explanation. The missing mathematical object is a lawful same-record apparatus response, not another fitted context table. The detailed negative controls and blocked intake chain remain in [the pair-provenance source](analysis/dynamic-pair-provenance-source-measure.md#complete-record-parity-audit).
 
-### 7.4 Phase from Retained Source Data
+### 7.4. Phase from Retained Source Data
 
 A proposed pair coordinate uses local record-cycle phases and a relative provenance phase. In radians,
 
@@ -603,7 +603,7 @@ The proposed relative phase is $\arg(-Z_A^{AB}\overline{Z_B^{AB}}e^{i\Phi_{AB}^{
 
 The phase must be invariant under the allowed branch-preserving quotient. Zero phasors on a positive-measure source set make it undefined; nonzero gauge variation makes it a coordinate artifact. Finite gauge probes are diagnostics, not the supremum over every allowed transformation. Uniform pushforward, sign symmetry and the correct threshold must then follow from source and material return maps. Passing a JSON shape check, declaring a wake phase or unwrapping a layer phase establishes none of these physical facts.
 
-### 7.5 The Missing Apparatus-Window Input
+### 7.5. The Missing Apparatus-Window Input
 
 The retained apparatus-response construction needs accepted histories, local target metadata, a signed separatrix response, record-cycle phase and same-window record residuals. Its proposed response functional is
 
@@ -619,7 +619,7 @@ Here $\Sigma$ is the incoming signed response coordinate, $\Lambda$ its accumula
 
 ## 8. Metastability, Switches and Deciders
 
-### 8.1 A Threshold Slot Is Not Yet Control
+### 8.1. A Threshold Slot Is Not Yet Control
 
 The agency proposal uses a middle-binary speed near the wake speed as a candidate threshold slot:
 
@@ -633,7 +633,7 @@ This defines a speed window. It does not prove that every braid occupies it, tha
 
 A Switch changes later basin weights through an internally held bias under fixed boundary context. A Decider additionally updates, holds and reuses such bias through record-sensitive feedback. Neither introduces primitive randomness, selects among ontic worlds, or exempts itself from deterministic evolution. Biological or neural networks are possible consumers of this structure, not evidence for consciousness at every scale.
 
-### 8.2 Fixed Context, Physical Cost and Persistence
+### 8.2. Fixed Context, Physical Cost and Persistence
 
 Let $c_\Omega$ retain boundary histories, sea context and the incoming perturbation class. For an internal preparation $u$,
 
@@ -651,7 +651,7 @@ The source proposes a positive work-or-dissipation transaction below the destruc
 
 For a Decider, $u_{n+1}=G(u_n,r_n,\chi_n)$ uses the record $r_n$ and retained memory $\chi_n$. Distinct admissible records must produce both distinguishable updates and a later basin-weight difference under the same tested context. Memory with no outcome effect is insufficient; an open-loop schedule is at most a Switch.
 
-### 8.3 Minimality and Illustrative Models
+### 8.3. Minimality and Illustrative Models
 
 A role graph separates sensor, threshold, bias, memory and their interactions. Deleting the sensor must remove input access; deleting the threshold removes accessible alternatives; deleting bias removes preparation dependence; deleting memory removes record-sensitive feedback; deleting coupling breaks the latency/hold relation. Roles can share physical components only when their variables and obligations remain explicit. A required environmental role cannot be hidden to claim minimality.
 
@@ -678,7 +678,7 @@ The He–Rb–He proposal assigns a soft rubidium sensor and stiff-neighbor bias
 
 ## 9. Guidance, Coherence and Downstream Tests
 
-### 9.1 A Single-Ontology Guidance Reduction
+### 9.1. A Single-Ontology Guidance Reduction
 
 A conditional guidance reduction uses the same occupation measure and coarse trajectories:
 
@@ -692,7 +692,7 @@ The density requires absolute continuity with respect to the declared coordinate
 
 The retained stress tests include an envelope with bounded corrections, ensembles from declared preparation histories, hydrogen-like confinement and phase locking, non-Markovian self-hit corrections, and a Lissajous-scar comparison. The latter compares a commensurate periodic-orbit family, density enhancement, near-degenerate splitting and robustness to a declared perturbation. Lissajous imagery alone supplies no physical mode or probability law. First-passage times across a separatrix and selected basin weights must use the same flow and measure; massive-superposition and weak-probe comparisons do not authorize a second collapse ensemble.
 
-### 9.2 Register Coherence as a Survival Bound
+### 9.2. Register Coherence as a Survival Bound
 
 Let $Q_0=\mathrm{id}$ and $Q_n=R_{g_n}\circ\cdots\circ R_{g_1}$ be the controlled return-map sequence. For a coherent register set $B_{\mathrm{coh}}$,
 
@@ -707,7 +707,7 @@ This expresses survival through all operations, not merely success at the final 
 
 ## 10. Local Provenance and Biological Response Boundaries
 
-### 10.1 A Local Constitutive Question Separate from Bell
+### 10.1. A Local Constitutive Question Separate from Bell
 
 Pair provenance may also be tested as a locally available population statistic. This is a separate constitutive proposal, not an ER=EPR mechanism. The rejected interpretation makes information into stress, creates a wormhole, or lets a remote setting change the local sea before causal contact.
 
@@ -732,7 +732,7 @@ $$
 
 Matched comparisons are isotropic and aligned pair populations at equal scalar density, provenance-scrambled records preserving one-point variables, matched non-pair populations, and pre/post carrier-arrival windows. Redundancy, missing physical carrier, absent retained consumer or a violation of causality rejects the compliance proposal. It does not reject pair provenance as a quantum source record. The [scope decision](decisions/pair-provenance-local-compliance-scope-decision.md) establishes no nontrivial medium response and grants no Bell inference from compliance alone.
 
-### 10.2 Replication-Gated Xenon Comparisons
+### 10.2. Replication-Gated Xenon Comparisons
 
 The preserved biological watch concerns a reported isotope-dependent anesthetic threshold, not consciousness ontology. For isotope thresholds $E_a$, its comparison is
 
@@ -746,7 +746,7 @@ The proposed nuisance model separates spin class, isotope mass, polarizability o
 
 A robust result could constrain a biological endpoint kernel $\Delta p_k=\mu_*^a(B_k^a)-\mu_*^b(B_k^b)$ under fixed protocols. It would not establish that nuclear spin creates consciousness or that a biological threshold is a Decider-level choice. Radical-pair models remain comparisons; proposed organoid and fly experiments remain proposals. The source's replication and nuisance-control boundaries are retained in [the xenon watch](brainstorming.md#xenon-isotope-spin-biology-validation-watch).
 
-### 10.3 The Remaining Physical Join
+### 10.3. The Remaining Physical Join
 
 The unresolved neutrino-chirality/pro-Noether conversion idea remains a guessed branch requiring a derived chirality map and wrong-sign or conjugate-channel discriminator. It supplies no missing spin or probability construction.
 

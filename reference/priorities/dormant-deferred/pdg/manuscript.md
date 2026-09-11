@@ -10,7 +10,7 @@ A channel's successful translation is not a physical derivation of the channel. 
 
 ## 2. Data access and the meaning of a proposal
 
-### 2.1 A local, versioned data source
+### 2.1. A local, versioned data source
 
 The retained API note proposes the official Python package and a local SQLite database, with the package's bundled database as the default unless an explicit database URL is supplied. Normal ingest is intended to work offline after installation. Package and database updates belong to development maintenance, not an ingest operation that silently changes its data edition. Direct SQL is secondary when the API cannot expose a required traversal; REST and website inspection are outside the normal ingest path.
 
@@ -18,7 +18,7 @@ The note illustrates connection, edition/schema inspection, particle lookup by n
 
 These are locally retained API examples. Package compatibility, requirements, edition-dependent outputs, database filenames, licensing and redistribution statements have not been checked against current PDG documentation. The reproducibility requirement is nevertheless explicit: preserve the package version, edition, schema version and database identity/path with derived data. The source favors backend/local storage over bundling the full database into the frontend or ordinary Git history, while its exact storage and wrapper decisions remain deferred.
 
-### 2.2 Normalize before handing off
+### 2.2. Normalize before handing off
 
 The ingest layer first creates a repository-owned proposal with stable identity, source provenance, participants, multiplicities, subdecay structure, ranking and ambiguity notes. A solver request is emitted only from that normalized proposal. It carries explicit assembly occurrences with stable identifiers and a backlink to the proposal. Raw PDG objects do not cross directly into solve-core state.
 
@@ -26,7 +26,7 @@ Concrete repeated products may expand into repeated occurrences when every ident
 
 The source distinguishes two obstacles. A concrete channel can lack a repository mapping, producing a backlog case. A channel can also be incomplete as an explicit assembly boundary because it remains generic, inclusive or missing necessary provenance. Neither condition says that the observed PDG channel is physically unreal. Supported concrete rows and deterministically completed rows can be request-ready, while both kinds of unresolved case remain blocked.
 
-### 2.3 Deliberate completion rather than hidden guessing
+### 2.3. Deliberate completion rather than hidden guessing
 
 The mapping registry is a declared translation policy. Only explicit supported canonical names may emit assembly rows; aliases may normalize a name but do not create new solver vocabulary. A generic-family charge-closure pass for pion, nucleon and antinucleon product tokens is permitted only when the parent charge and already concrete siblings force exactly one unordered assignment. Zero or multiple assignments leave the proposal blocked.
 
@@ -36,7 +36,7 @@ Such completion makes omitted participation visible in the request rather than i
 
 ## 3. A small language for explicit material
 
-### 3.1 Names, occurrences and counts
+### 3.1. Names, occurrences and counts
 
 The compact notation uses fermion family letters with generation indices, nucleon tokens, a small set of core forms and explicit counted unbound material. Separators are optional only where longest-match tokenization remains unambiguous. Every character must be consumed by a valid token. A prefix for anti orientation binds to one permitted token, and a number must not serve simultaneously as a multiplicity and a generation or core-form suffix.
 
@@ -44,7 +44,7 @@ An unbound ledger always states both primitive counts, including an explicit zer
 
 The registry defines three core sizes with equal electrino and positrino counts: three, two and one of each. A fermion row adds its specified polar counts to a generation-matched core. Charged matter leptons add six electrinos; their antiparticles add six positrinos. Neutrinos add three of each. Down-type matter quarks add four electrinos and two positrinos; up-type matter quarks add one electrino and five positrinos, with the corresponding antiparticle recipes exchanging the polar counts. These are the source's finite recipe declarations, not newly established physical structures.
 
-### 3.2 A source disagreement that cannot be normalized away
+### 3.2. A source disagreement that cannot be normalized away
 
 The ingest grammar says that the positive weak-boson token carries anti-core provenance and the negative token pro-core provenance. Its composite registry instead writes the positive row with a pro core and the negative row with an anti core, together with corresponding opposite orientation labels. The two passages are inconsistent. Both weak-boson composite rows are explicitly marked as not transformed to solver rows, so their names do not grant solve-core admission.
 
@@ -52,7 +52,7 @@ The editor separately retains weak-boson artwork and a possible downstream class
 
 ## 4. What an exact assembly construction requires
 
-### 4.1 The finite law system
+### 4.1. The finite law system
 
 The solver reference describes a finite assembly alphabet, a primitive-content map, boundary multisets and finite local law tables. With electrino and positrino content as the primitive basis, write
 
@@ -73,7 +73,7 @@ Pass-through is identity, preserving the same provenance block. Dissociation ope
 
 One counted unbound-architrino ledger is the explicit exception to ordinary fixed recipe rows. Multiple dissociations can contribute to it, while associations and a product-side unbound pass-through draw declared counts from it. It is not an unlimited reservoir. No routed balance can become negative, no second intermediate ledger may appear, and an intact core cannot silently serve as a free polar source.
 
-### 4.2 Finite recipes and their reach
+### 4.2. Finite recipes and their reach
 
 The written first-pass laws decompose each fermion into its generation-matched core and polar counts, with the inverse recipe for association. Core ladder dissociation releases one electrino and one positrino while moving from the three-binary form to the two-binary form, then to the one-binary form, and finally to fully unbound material. Every released primitive must enter the common ledger explicitly.
 
@@ -81,7 +81,7 @@ The document leaves the sufficiency of one-step ladder openings unresolved. It a
 
 The finite-alphabet notation and a counted ledger serve different purposes: ordinary assembly recipes have fixed primitive content, while the one ledger carries state-dependent counts. A complete implementation must represent that exception explicitly rather than infer that every ledger balance is a new fixed particle type. Equal primitive vectors likewise do not identify distinct assemblies or supply a legal association recipe.
 
-### 4.3 Conservation includes provenance
+### 4.3. Conservation includes provenance
 
 The source's stronger bookkeeping picture is one primitive carrier set viewed through different assembly partitions. Let
 
@@ -98,7 +98,7 @@ $$
 
 A nonzero imbalance rules out exact closure for that fixed boundary under conserving laws. Zero imbalance is necessary but insufficient: the local recipes, core availability, nonnegative routing and complete provenance witness must still exist. This distinction is essential when reading a deterministic failure result.
 
-### 4.4 The beta example exposes a boundary inconsistency
+### 4.4. The beta example exposes a boundary inconsistency
 
 The source gives a beta-boundary example with two down-quark rows and one up-quark row on the reactant side, and one down, two up, one electron and one antineutrino on the product side. Using its own declared primitive vectors gives
 
@@ -144,7 +144,7 @@ The publication adapter maps explicit graph structure to editor rows, operators,
 
 ## 7. A diagram whose geometry is declared
 
-### 7.1 Tiles provide their own spacing
+### 7.1. Tiles provide their own spacing
 
 The editor's primitive is an 80-pixel square black tile. Its centered inner border has a 72-pixel outer box, leaving four pixels of black field on each side. Abutting tiles therefore creates visible spacing through the glyph itself, without storing or calculating external gaps. The exact four-pixel stroke uses a centered SVG rectangle whose geometry is shared by every tile family. Content may move inside the outline; the outline may not be shifted or resized as an optical adjustment.
 
@@ -152,7 +152,7 @@ An assembly occupies four horizontal tiles as one object. Its origin is stored o
 
 Binary glyphs use a separate internal coordinate system fitted into the same tile frame. Their mode chooses full orbit, axis without ellipse, or polar pair alone. Binary colors are serialized left/right; polar colors are bottom/top. The source declares eight full, eight axis and four polar variants. These are static glyph recipes, not additional particle states certified by a diagram.
 
-### 7.2 A fixed desktop strip
+### 7.2. A fixed desktop strip
 
 Two 80-pixel bands sit above the authored surface. The first holds only a compact document selector and home button; the second is empty. A separate blank tile row begins the grid. The 20-column strip is 1,600 pixels wide, centered without scaling, wrapping, decorative inset or mobile fallback. Vertical overflow scrolls below the bands. The specified target is a sufficiently wide desktop viewport.
 
@@ -160,7 +160,7 @@ The three assembly stages occupy columns 2–5, 9–12 and 16–19. Operator col
 
 Within an assembly stage, insertion and deletion preserve dense occupied rows. The exception is the deliberately reserved top row. Composite row clusters may later move as blocks, but their richer editing behavior remains deferred. The fixed strip gives geometric meaning to placement without making that placement a solver law.
 
-### 7.3 Direct editing stays local to the surface
+### 7.3. Direct editing stays local to the surface
 
 The editor specifies single-object selection, vertical stage-constrained drag, immediate deletion with incident-link cleanup, and a transient picker on an empty legal target. It excludes persistent inspectors, extra top controls, multiselect, resize handles, context menus and a visible JSON editor. Assembly creation writes stable identity, role, origin and all four tile keys. Operator creation requires explicit integer count fields rather than hidden defaults.
 
@@ -170,13 +170,13 @@ The authored picker offers all three operator types in either operator stage, wh
 
 ## 8. Links, labels and a geometric conflict
 
-### 8.1 Whole-object links
+### 8.1. Whole-object links
 
 Links attach at the outer edge midpoints of whole assemblies or operators, never to internal tiles. They are permitted only between adjacent semantic stages through one routing column. A serialized link stores identity and canonical left/right endpoint identifiers, without waypoints, bend, color or screen coordinates. Endpoint reversal does not create another link; self-links and duplicate endpoint pairs are forbidden.
 
 The rendered line is visually undirected: white, two pixels wide, one cubic curve with a wider invisible click target. Ordered stages imply left-to-right reaction presentation without arrows. Stable link identifiers select one of five repeating routing offsets without moving objects or altering validity. The source's general object-to-object list includes same-class endpoint pairs, but its fixed adjacent-stage rule alternates assemblies and operators; that more restrictive placement condition governs which links can actually be valid.
 
-### 8.2 The two spline requirements do not agree
+### 8.2. The two spline requirements do not agree
 
 The source simultaneously requires horizontal endpoint tangents and fixes both interior cubic control-point heights to a shared midpoint-plus-offset. For endpoints $P_0,P_3$ and interior controls $P_1,P_2$, a cubic has endpoint derivatives
 
@@ -188,7 +188,7 @@ Horizontal tangents require the first control height to equal the first endpoint
 
 The retained text also describes offsets as lateral while applying them to the control-point height. This manuscript preserves the exact metrics in support and identifies the unresolved design choice. It does not silently choose replacement curves or claim that a live renderer already resolves the conflict. Same-source renderer/reference agreement would not decide which authored rule is correct.
 
-### 8.3 Composite labels come after explicit rows
+### 8.3. Composite labels come after explicit rows
 
 Composite labels name row clusters after the tiles and links have been drawn. They carry an admitted type, side, text and inclusive row span; no independent geometry belongs in the record. A photon label, for example, spans explicit pro- and anti-core rows. It is not a standalone four-tile photon assembly. Reference artwork for a label remains distinct from a permitted assembly payload.
 

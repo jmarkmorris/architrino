@@ -4,6 +4,16 @@ This file records dated pass receipts, scan boundaries, tool versions when mater
 
 ## Log Entries
 
+### 2026-09-10 — Section 6 converted to bounded queue objects
+
+- Section 6 of `manuscript.md` was reviewed with the operator today, including its six scan families, cadence, token-capacity boundary, policy-routing rule, and executable-object definition.
+- The operator accepted the section-6 action: represent duplicate-concept maps, terminology drift, published-to-internal support routes, internal results without identified future destinations, overlapping task ownership, and link/generated-source distinctions as six separate bounded queue objects.
+- Added a seventh queue object for findings that may warrant a new workstream. It creates a future-work decision record, not a new owner or task by itself.
+- Recorded the agreed cadence: one bounded family per active review cycle unless populations and outputs are explicitly independent; revisit on material evidence or owner change; perform an approximately quarterly coverage review while active.
+- Recorded the capacity boundary: soon-to-expire excess tokens may support low-risk read-only inventory or preparation, but do not determine scientific priority, claim disposition, ownership changes, or substantive edits.
+- Clarified that an executable object is an accepted queue row with bounded scope, method, authority, and completion evidence. A repository query or helper program may support execution but is not itself the authority object.
+- No scan was run and no scientific claim grade, owner assignment, or historical finding was changed.
+
 ### 2026-09-03 — CD-2026-003 owner triage resolved
 
 - The operator approved the complete reader-facing terminology correction recorded in CD-2026-003.

@@ -6,13 +6,13 @@ Architrino Lattice Lab is a geometry-first educational explorer of declared elec
 
 The retained materials distinguish three kinds of result. A geometric view identifies sites, neighbors, repeated cells and polarity patterns. A finite calculation sums an explicitly bounded set of source contributions for one receiver. A periodic certificate proves a statement about every receiver of a declared infinite repeating pattern under a specified exhaustion. None of these establishes later motion, perturbative stability, binding, energy conservation or a physical Noether sea. The app remains a static educational display, with its implementation and verification descriptions attributed to the retained contracts and audits rather than a fresh runtime examination.
 
-### 1.1 The held-history experiment
+### 1.1. The held-history experiment
 
 The mathematical reference case holds every site fixed, with zero velocity, throughout the entire past through a common release time. It then asks for acceleration at release. Stationary histories simplify the causal-root problem: a distinct stationary partner contributes at the unique emission time separated from reception by its wake-travel delay. A coincident same-site endpoint is excluded rather than added as a self contribution.
 
 Zero velocity is part of the initial condition. Zero acceleration, when proved, is a further statement about that instant and the declared history. It does not decide what happens after a displacement, defect, changed history or later evolution. A future dynamics calculation would need its own accepted history representation, complete causal-root accounting and evolution authority.
 
-### 1.2 Three boundaries that must remain distinct
+### 1.2. Three boundaries that must remain distinct
 
 The main spherical crop determines which markers a learner sees. A polarity-preserving repeat cell identifies unique representatives of the infinite decorated pattern. The calculation boundary identifies which source rows are summed and in what limiting convention. These can be different objects in the same view. For a periodic case, the crop supplies no acceleration rows merely because a site is visible; the certificate applies to the complete declared repeat. For the finite Random case, the declared finite site inventory is the calculation domain, and every other member enters the selected receiver's ledger exactly once.
 
@@ -20,7 +20,7 @@ Camera rotation, visibility filters, marker aggregation and relationship highlig
 
 ## 2. Lattices, polarity patterns, and local geometry
 
-### 2.1 The point set and its decoration
+### 2.1. The point set and its decoration
 
 A lattice description specifies occupied positions. A polarity rule assigns electrino or positrino labels to those positions. The same point geometry can carry several polarity patterns: simple-cubic checkerboard and alternating planes share their point set but differ in which neighbors have matching polarity. Conversely, a cell selected to repeat both positions and colors can be larger or differently oriented than a geometry-only cell.
 
@@ -28,7 +28,7 @@ In the retained gallery, simple cubic has six nearest neighbors; body-centered c
 
 The gallery's two polarities are displayed as red positrinos and blue electrinos. Equal counts are a declared population property of the represented cases, not a cancellation theorem. For example, assigning equal populations randomly need not place equally weighted opposite acceleration contributions around a receiver. FCC's triangular nearest-neighbor loops also prevent a two-color pattern from making every nearest pair opposite in polarity; repeating a coloring does not erase that local constraint.
 
-### 2.2 Spacing, shells, and density
+### 2.2. Spacing, shells, and density
 
 Let $d>0$ denote the undeformed nearest-neighbor spacing. The retained geometry table gives the following local reference data. Its density is a site count per geometric volume, not mass density or a constitutive property of a medium.
 
@@ -44,7 +44,7 @@ The HCP entry uses the source's ideal close-packed height ratio. For a periodic 
 
 A geometric neighbor relationship is not a bond, wake path or acceleration vector. In the accepted deformation design, relationship identities come from the undeformed canonical nearest-neighbor set. Deformation changes their lengths while preserving their identities. Consequently those transformed relationships need not all remain at the current shortest distance. The older shortest-distance filtering approach is historical support, not the accepted identity-preservation rule.
 
-### 2.3 Owning a site once
+### 2.3. Owning a site once
 
 A fundamental translation tile owns each actual site once under a half-open boundary convention. Translated image markers provide context; they are not additional architrinos. The retained repeat-capable gallery uses two owned sites per polarity-preserving tile. The three translation vectors must reproduce both occupied geometry and polarity, including the skew HCP cell. Camera orbit is visual inspection and is never a tiling operation.
 
@@ -54,7 +54,7 @@ The presentation contract permits a translated colored sphere only when its disp
 
 ## 3. Exact cancellation for the stationary checkerboard
 
-### 3.1 Sites, roots, and the acceleration row
+### 3.1. Sites, roots, and the acceleration row
 
 The [checkerboard certificate](analysis/simple-cubic-checkerboard-cancellation-certificate.md) fixes integer-indexed sites, parity-alternating polarity, equal polarity magnitude $\epsilon$, and normalized wake speed $c_f=1$. Let $L_{j,\lambda}$ multiply one coordinate axis $j$ by a positive factor $0<\lambda\leq1$ while leaving the other coordinates unchanged. The complete held history is
 
@@ -83,7 +83,7 @@ $$
 
 The sign records relative polarity, while the transformed vector and its norm supply direction and inverse-square magnitude. The positive scale factor excludes degeneracy: this statement does not admit a collapse to zero separation along an axis.
 
-### 3.2 Pair cancellation and the infinite boundary
+### 3.2. Pair cancellation and the infinite boundary
 
 Negating an integer offset preserves its parity. Linearity reverses the transformed displacement and preserves its norm under negation. Thus the two partners have equal polarity relationship, delay, weight and magnitude, with opposite acceleration vectors:
 
@@ -103,7 +103,7 @@ $$
 
 An increasing exhaustion of the infinite repeat by such sets has zero sum at every stage and therefore zero in that declared limit. Since the argument uses offsets relative to an arbitrary receiver, it covers every receiver. The exhaustion is part of the theorem. It is not a claim of absolute convergence, arbitrary summation order or independence from the boundary prescription.
 
-### 3.3 What the displayed shells establish
+### 3.3. What the displayed shells establish
 
 For an electrino receiver, the six members of the undeformed nearest shell are positrinos and form three cancelling pairs. Under one-axis scaling, two are at $\lambda d$ and four at $d$. The twelve members of the undeformed next shell are electrinos: eight have distance $d\sqrt{1+\lambda^2}$ and four remain at $\sqrt2d$. Their six pairs cancel separately. These eighteen rows are explanatory examples of the generative argument; they do not prove the remaining infinite ledger by numerical extrapolation.
 
@@ -111,7 +111,7 @@ The source names two distinct verification routes. A structural verifier reconst
 
 ## 4. Cancellation through complete symmetry groups
 
-### 4.1 Why a whole orbit can replace an opposite pair
+### 4.1. Why a whole orbit can replace an opposite pair
 
 The [periodic gallery certificates](analysis/periodic-gallery-cancellation-certificates.md) generalize the pairing idea. Write a receiver-centered offset in units of $d$ as $\mathbf r\ne\mathbf0$, and let the app's static deformation be
 
@@ -139,7 +139,7 @@ $$
 
 The orbit sum lies in the common fixed-vector space and must therefore vanish. Every finite union of complete orbits has zero sum. An increasing exhaustion covering all source sites gives zero under that prescribed limit. Missing orbits, broken polarity preservation, noncommuting deformation or a surviving fixed direction invalidate the corresponding conclusion.
 
-### 4.2 Case-specific reach
+### 4.2. Case-specific reach
 
 The retained packet names two inequivalent receiver classes for each of its five additional periodic cases. Its case constructions and verification assertions support the following conditional reach:
 
@@ -153,7 +153,7 @@ The retained packet names two inequivalent receiver classes for each of its five
 
 For the inversion cases, opposite offsets carry the same relative polarity and cancel. Diamond's four-member rotation group has no nonzero common fixed vector and commutes with the diagonal X scaling. The source's independent gallery verifier reconstructs the group conditions, both receiver classes and local rows, and includes corrupted-symmetry and corrupted-row negative controls. Its recorded checks concern those constructions and samples, not a proof for every conceivable coloring on the same point set.
 
-### 4.3 The deformed-HCP boundary
+### 4.3. The deformed-HCP boundary
 
 At the undeformed HCP baseline, the threefold rotation and basal reflection remove every possible invariant vector component. A nontrivial X scaling does not commute with that rotation. The source reports that the remaining commuting symmetries leave one in-plane component unconstrained. The existing certificate therefore fails to prove zero when $\beta>0$.
 
@@ -163,19 +163,19 @@ The retained certificates and final reconciliation audit already describe bounde
 
 ## 5. The finite Random 50/50 calculation
 
-### 5.1 Population and source domain
+### 5.1. Population and source domain
 
 The [finite Random contract](contracts/random-finite-configuration-contract.md) declares 88 simple-cubic sites within the case's spherical radius of $2.75d$, with exactly 44 positrinos and 44 electrinos. This is its retained case inventory, not a new count reconstructed from an assumed crop center. A selected receiver sums contributions from the other 87 sites exactly once. The residual is a dimensionless stationary acceleration vector and magnitude for that finite configuration.
 
 Unlike the deterministic periodic cases, Random has no polarity-preserving repeat-panel claim or all-space certificate. Its unpolarized companion can still illustrate conventional simple-cubic geometry. That geometry does not make its finite polarity assignment periodic. Presentation filters must not silently remove calculation rows, and an old aggregate value must not override the sum of the included rows.
 
-### 5.2 Reproducible assignments
+### 5.2. Reproducible assignments
 
 The contract uses a recorded unsigned 32-bit seed and stable site identifiers. It first orders identifiers by direct UTF-16 code-unit comparison, assigns each ordinal a deterministic SplitMix32 score, and ranks sites by unsigned score with ordinal tie-breaking. The first 44 receive one polarity and the remaining 44 the other. A deterministic score is a device for reproducible assignment; it is not evidence of a physical random process or a demonstrated statistical sampling law.
 
 The exact integer operations, versioned algorithm identifier, default seed and fingerprint fields remain in the focused contract. Recalculation selects the smallest succeeding unsigned seed whose assignment fingerprint differs from the current one. The button therefore has to produce a changed recorded assignment rather than only repainting the same sites. The retained audit records a changed seed, fingerprint, target polarity and residual while finite scope remained unchanged. These are source-time verification observations, not newly executed trials.
 
-### 5.3 Reading a nonzero residual
+### 5.3. Reading a nonzero residual
 
 A nonzero finite residual means nonzero initial acceleration under the declared stationary finite ledger. It does not diagnose instability, predict a trajectory or measure energy. Equal populations alone do not imply a zero residual because the vector contributions also depend on positions and receiver-relative polarity.
 
@@ -183,7 +183,7 @@ The source's separately authored verifier reconstructs both assignment and finit
 
 ## 6. Showing geometry without changing its meaning
 
-### 6.1 Static deformation and endpoint aggregation
+### 6.1. Static deformation and endpoint aggregation
 
 The visible control is Uniaxial Deformation. Its parameter $\beta$ is neither velocity nor a Lorentz quantity: zero is the undeformed case, and one is the maximum supported nondegenerate endpoint. The coordinate map changes semantic X from scale one to 0.01 while preserving semantic Y and Z. The miniature keeps its undeformed display-fit scale so reframing cannot imitate an additional deformation. Markers remain fixed in screen size while positions and relationship lengths change.
 
@@ -191,13 +191,13 @@ Exactly at the endpoint, the display groups markers whose true transformed posit
 
 The HCP endpoint audit makes these distinctions concrete. At its recorded viewport, 116 main-view identities formed 30 groups. The 509 canonical main edges were partitioned into 86 internal edges, 71 distinct external representatives and 352 redundant external identities. The repeat view partitioned 63 canonical links into 10 internal, 19 distinct external and 34 redundant links. These are counts at different stages of a presentation mapping, not competing inventories of physical particles. All HCP endpoint acceleration claims remained not established.
 
-### 6.2 Projection, size, and orientation
+### 6.2. Projection, size, and orientation
 
 The retained design uses fixed-size solid spheres, orthographic projection, drag rotation and wheel zoom. Equal world-space edges can have different projected lengths because the screen sees only two components of the rotated displacement. Depth does not itself rescale an orthographic image. Marker clipping shortens visible segments at sphere surfaces without altering center-to-center geometry. The Diamond audit separates its four nearest neighbors from its longer next shell and attributes apparent edge-length differences to projection under the declared camera.
 
 The main view, polarity repeat, unpolarized companion and orientation key share a trackball quaternion. The default presents semantic +Z upward, with spherical-envelope caps authored on semantic ±Z. Arbitrary subsequent rotation can tilt Y and introduce roll; no model axis is relabeled. The lower-left key represents centered, equal-scale positive and negative unit axes rather than an extra circle or enclosing cube. A lower-right accessible legend retains red Positrino above blue Electrino with the same marker-size and lighting treatment as the corresponding canvas sites.
 
-### 6.3 Relationship highlighting and context
+### 6.3. Relationship highlighting and context
 
 The default-off repeat-cell highlight affects the main view. Enabling it retains unselected ordinary relationships while replacing the ordinary segments for selected identities with violet emphasis. The selected set must equal the suppressed ordinary set, so a thin ordinary stroke cannot remain through a highlighted edge. At an aggregated endpoint, highlights follow actual external group-pair representatives rather than invented radial lines, halos or duplicate circles.
 
@@ -205,7 +205,7 @@ The main spherical envelope remains a viewing crop. Its retained radius is $2.75
 
 ## 7. The interface as an explanation of evidence
 
-### 7.1 A result-first Ledger
+### 7.1. A result-first Ledger
 
 When a calculation exists, the Ledger presents one outcome, a normalized magnitude and vector, a concise scope sentence and two local shell examples before its Show calculation disclosure. The local examples explain arithmetic; the declared certificate carries a periodic all-site conclusion. A finite result names its finite scope. A not-established state presents a calm explanation and optional geometric shells without an outcome icon, residual, unavailable-value rows or calculation disclosure.
 
@@ -213,7 +213,7 @@ Selection identifies the receiver and polarity without exposing raw coordinates 
 
 The current retained presentation places case-specific geometry under the selected case's accessible title, common population/crop/line conventions in Shared Display Conventions, repeat ownership in How This Pattern Repeats, and outcomes in the Ledger. The finite versus periodic method remains available in the expanded calculation. HCP's deformed-proof limitation is a necessary exception to otherwise shared deformation copy. Exact typography, accessible labels, selection cues and surviving copy are preserved in the supporting contracts and audit map.
 
-### 7.2 What the removal audits preserve
+### 7.2. What the removal audits preserve
 
 Earlier designs included a Lattice Primer, an overview card, named camera presets and several additional explanatory labels. The later accepted presentation removed those surfaces. The eighteen-paragraph Primer audit assigns their geometry and authority content to surviving owners, while repeated density statements, chemistry analogies and duplicated disclaimers were dropped rather than moved into another overview. Random was introduced after the Primer removal and never had those paragraphs.
 
@@ -221,7 +221,7 @@ A source requirements packet can preserve an earlier design alongside later amen
 
 ## 8. Remaining work and the boundary of extension
 
-### 8.1 New periodic patterns and teaching structures
+### 8.1. New periodic patterns and teaching structures
 
 The active queue proposes an optional primitive-cell tiling demonstration, additional periodic equal-population families and shared-vertex Platonic cell complexes. These are different extensions. A tiling demonstration must specify primitive vectors and owned basis sites and distinguish its translation tile from a conventional cell or a Voronoi construction. Adjacent copies use integer translations of the same vectors, with unique ownership and the accepted relationship graph preserved.
 
@@ -229,7 +229,7 @@ New polarity families require an exact point set, polarity assignment, minimal p
 
 Shared-vertex complexes require cells to refer to the same global site inventory. Cubic and tetrahedral-octahedral honeycombs are initial objects; the two alternate cube-corner tetrahedra form a compound rather than a space tiling. Any further periodic complex needs exact coordinate and incidence construction. The ledger must report both shared participation and sites unused by the selected overlay, distinguish cell boundaries from neighbor or acceleration graphs, and establish volume coverage for any claimed tiling. This is not a packing of independent braids, and a cell overlay does not assign a braid or prove retention.
 
-### 8.2 What has not been authorized by a picture
+### 8.2. What has not been authorized by a picture
 
 Polarity editing remains deferred, and nonzero-deformation HCP requires renewed authorization before its unresolved all-space work proceeds. The broader periodic-proof acceptance object remains open despite the bounded certificates already retained. The scientific lane is active, but this synthesis does not execute or reprioritize its queue.
 

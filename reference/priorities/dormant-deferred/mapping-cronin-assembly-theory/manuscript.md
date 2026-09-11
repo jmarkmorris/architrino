@@ -2,13 +2,13 @@
 
 ## 1. What the Shared Word Does and Does Not Identify
 
-### 1.1 A construction description
+### 1.1. A construction description
 
 The [preserved comparison](brainstorming.md) describes Cronin and collaborators' assembly theory as a way to quantify the shortest construction pathway for an object from specified elementary parts, allowing previously constructed substructures to be reused. Copy number adds information about repeated instances. The external proposal interprets sufficiently complex, sufficiently abundant objects as evidence of a selecting causal process. This is the source note's account of the proposal; its literature review was limited, and no current experimental or complexity theorem is certified here.
 
 A minimum construction count is meaningful only after declaring the primitives, operations, reuse semantics and equivalence of objects. Changing the alphabet, admitting a complex substructure as primitive or changing what counts as one operation can change the minimum. A measured proxy also needs its own relation to that mathematical minimum. A molecular instrument reading, a combinatorial optimum and an inference about selection are different claims.
 
-### 1.2 A dynamical assembly
+### 1.2. A dynamical assembly
 
 An assembly in $\mathbb{A}\mathbb{A}\mathbb{A}$ is instead a physical organization of delayed trajectories. Its primitives are architrino identities and polarity in Euclidean space and absolute time, with acceleration determined from path history. Circular and braid families propose geometries whose prescribed acceleration must agree with the complete delayed acceleration contribution on the declared domain. Their admission is not defined by the shortest recipe over reusable discrete parts.
 
@@ -18,7 +18,7 @@ Construction complexity and dynamical admission can therefore be compared, but n
 
 ## 2. Minimum Recipes, Copies and Selection
 
-### 2.1 A finite example with explicit rules
+### 2.1. A finite example with explicit rules
 
 Consider a purely combinatorial example with one primitive string $x$. One paid operation concatenates two previously available strings; any previously constructed string can be reused without another construction charge. Under these stated rules,
 
@@ -30,7 +30,7 @@ uses two operations: concatenate $x$ with itself, then reuse $xx$ twice. Two is 
 
 The example illustrates reuse and dependence on conventions. It is not a molecular measurement, a proof about the external assembly index in every object class, or a proposed complexity index for architrino histories. Continuous delayed trajectories require a representation before any analogous finite construction count exists.
 
-### 2.2 What abundance can establish
+### 2.2. What abundance can establish
 
 A high construction count and repeated observations can motivate a selection hypothesis. To turn that motivation into a probability claim, one needs a declared alternative process, available building blocks, exposure time, reaction or copying opportunities, survival and detection models. “Unlikely by chance” has no quantitative value until the chance model is specified. A shortest recipe alone supplies none of those rates.
 
@@ -40,7 +40,7 @@ The source note draws an analogy with independent verification of calculations. 
 
 ## 3. Computational Complexity Needs a Defined Problem
 
-### 3.1 What the historical literature tension concerns
+### 3.1. What the historical literature tension concerns
 
 The comparison note records a claimed distinction between assembly indices and familiar compression measures, a later claimed correspondence with a smallest-grammar problem, and a statistical/compression critique. It also records a biochemical mapping application and a broader philosophical claim about selection and operative time. Those entries remain historical research leads with their original abstract/page-reading limits. Their exact theorem statements, dates, reductions and empirical comparisons have not been newly checked against primary texts.
 
@@ -48,7 +48,7 @@ A conceptual difference between two quantities does not settle their computation
 
 The claim of a tension is therefore retained as a question about formal statements, not adjudicated by choosing a paper's label. A publication-level comparison would need the original proofs and their hypotheses. Shared polynomial-time solvability, shared hardness or a one-way reduction are different possible relationships; each supports a different conclusion.
 
-### 3.2 Hardness does not transfer by analogy
+### 3.2. Hardness does not transfer by analogy
 
 Suppose an external decision problem is denoted $A$, and a proposed assembly decision problem is $B$. To infer hardness of $B$ from hardness of $A$, one needs an appropriate reduction in the direction
 
@@ -64,7 +64,7 @@ Bounded searches and heuristics may still be sensible engineering choices, but t
 
 ## 4. What a Technical Bridge Would Have to Preserve
 
-### 4.1 From histories to construction pathways
+### 4.1. From histories to construction pathways
 
 A proposed bridge would need an explicit map from a declared class of physical histories to construction objects. It would have to identify primitives, composition operations, object equivalence and reusable substructures, then explain which of those operations correspond to dynamically admissible preparation or transition histories. In a delayed system, two independently described segments cannot simply be concatenated without compatible retained histories and boundary data.
 
@@ -72,7 +72,7 @@ Preserving the shape of a graph is insufficient if reuse changes its meaning. Re
 
 The proposed contribution from dynamics to construction theory is consequently a heuristic: a concrete delayed-interaction example might illustrate how physical rules restrict a combinatorially larger possibility space. It would become a technical result only after the mapping preserves the construction and reuse semantics and connects the admitted pathways to actual dynamics. The source does not establish that the external literature lacks every model of selection; that broad absence claim would require a separate review.
 
-### 4.2 From construction theory to dynamical questions
+### 4.2. From construction theory to dynamical questions
 
 The useful reverse traffic is methodological. Explicit grammars force clarity about what is counted, what may be reused and which distinctions a complexity measure discards. Copy-number analysis highlights the need to distinguish repeated observations from independently generated evidence. Neither imports a selection postulate, a discrete recipe ontology or a complexity theorem into primitive acceleration dynamics.
 

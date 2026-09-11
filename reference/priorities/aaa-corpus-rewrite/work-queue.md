@@ -40,7 +40,8 @@ Claim grade for a completed conversion: `measured` for the preservation checks, 
 - **Opened:** 2026-09-04
 - **Priority object:** `independent_assurance_review`
 - **Request / acceptance:** Independently compare every converted corpus document with its pre-campaign source and edition 1.0, prioritizing exact mathematics, claim authority, falsifiers, source support, link integrity, and teaching structure. Findings are consult-only until Codex adjudicates and applies accepted corrections.
-- **Scope:** 190 documents outside the already independently reviewed `foundations/` batch. The six `dynamics/` documents are included for a fresh Claude review at the operator's request despite their earlier Codex baseline review. Packet 1 covered all 14 `noether-braid/` documents; 176 documents remain. Packet 2 is `dynamics/`.
+- **Scope:** 190 documents outside the already independently reviewed `foundations/` batch. The six `dynamics/` documents remain included at the operator's request. Packet 1 covered 14 `noether-braid/` documents; Packet 2 now covers Master Equation, Energy, Entropy, Binary Dynamics, [Causal Action Functional](#crw-005-packet-2-document-5--causal-action-functional-assurance-review-2026-09-10), and Effective Lagrangian. Coverage is 21 of 190 reviewed, with 169 remaining. Master Equation's 16, Energy's 15, and [Entropy's 14 corrections](#crw-005-entropy-ent-1-through-ent-14--accepted-integration-2026-09-10) are accepted and implemented. [Binary Dynamics' 18 corrections](#crw-005-binary-dynamics-bd-1-through-bd-18--accepted-integration-2026-09-10) are accepted and implemented. All 12 Causal Action Functional findings are now [accepted and corrected](#crw-005-causal-action-functional-caf-1-through-caf-12--accepted-integration-2026-09-10). The [Effective Lagrangian review](#crw-005-packet-2-document-6--effective-lagrangian-assurance-review-2026-09-10) completes Packet 2 with 16 proposed findings awaiting adjudication. The [Noether Sea review](#crw-005-packet-3-document-1--noether-sea-assurance-review-2026-09-10) opens Packet 3 with 13 proposed findings (six high, seven medium). Effective Lagrangian corrections remain pending. The next unread document is `content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md`.
+- **Packet 2 review:** All six Dynamics chapters have recorded reviews under the current Codex assignment. Master Equation, Energy, Entropy, Binary Dynamics, and Causal Action Functional corrections are accepted and implemented; the [Effective Lagrangian findings](#crw-005-packet-2-document-6--effective-lagrangian-assurance-review-2026-09-10) remain proposed. The manuscript remains outside the edit scope.
 - **Packet 1 disposition:** Accepted the envelope-volume normalization, tangent-space claim correction, sharp-kernel restoration, topology-label restoration, conditional speed-budget grading, source support, broken anchors, merged headings, and bounded notation/grammar repairs. Rejected blanket renaming based only on a shared base glyph and rejected the claimed honeycomb scope error because the text already restricts the proof to intact regular face-to-face cells. Deferred the cross-corpus $c_1$ notation migration pending an exact use map and replacement proposal.
 - **Blocked by:** nothing.
 - **Completion:** Every one of the 190 paths has one recorded independent disposition and every accepted defect has been corrected and validated.
@@ -1663,3 +1664,1287 @@ The complete revised Detecting chapter was reread through contiguous `sed` range
 Chapter completion: F5-1, F5-2, and F5-3 each have accepted, implemented, verified corrections. The current disposition table now records seven of nine Foundations chapters with their accepted corrections verified, zero partially integrated chapters, and two unread chapters. This closes the assigned Detecting review and its explicitly authorized F5-2 dependency correction; it does not count as a complete Master Equation review. Historical review-stage statements and earlier receipts retain their chronology.
 
 Remaining scientific obligations are apparatus-specific center-error and temporal-sampling bounds for finite rest diagnostics; dynamical realization of candidate histories rather than prescribed-path root geometry alone; and a common dynamics/medium derivation of clock, ruler, photon, and matter responses satisfying calibrated leakage bounds for declared deterministic or statistical comparison families. The existing conservation/action and physical-response obligations remain open. Falsifier: failure of the stated baseline/check results would invalidate the relevant integration receipt; a calibrated, uncertainty-controlled above-bound prediction in an admitted family would refute that particular hiding claim. No further correction decision remains for F5-1 through F5-3. Stop here; Constructing the Absolute Frame remains the next unread chapter and requires a subsequent assignment.
+
+### CRW-005 Packet 2 document 1 — Master Equation assurance review, 2026-09-10
+
+#### Scope, disposition, and coverage
+
+The operator authorized exactly one complete assurance review of [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md), comparison with its pre-campaign source and the live edition requirements, and capture in this existing workstream record. This entry is that review's disposition: **review complete; corrections proposed for discussion, not accepted or applied**. The corpus chapter and the lane manuscript were not edited. No second chapter was reviewed. Reads of linked definitions and headings below are dependency checks, not additional document reviews. This fresh Codex review follows the current assignment; it does not impersonate the Claude reviewer named in the earlier campaign plan or claim a separate agent's verification.
+
+The reviewed chapter has 5,891 source lines and SHA-256 `6a9675f6a6e193e939f20e78f11ed65a881b75bafde695677604656ab145d865`, measured by `wc -l` and `shasum -a 256`. The pre-campaign source is Git object `897fe1aa7:content/markdown/aaa/dynamics/master-equation.md`, SHA-256 `ccff8f702e9c2b3919a20186f05e804d11c7b829575850cae1b7844c3c963513`, extracted with `git show`. The review read the complete current chapter in sequential ranges and compared the baseline through the complete nonblank change set from `git diff --ignore-blank-lines --unified=0 897fe1aa7 -- content/markdown/aaa/dynamics/master-equation.md`, with the full diff retained as scratch. Line references below address that reviewed current hash; later changes require remapping them.
+
+The comparison used CRW-005 and this queue's edition-1.0 preservation and teaching requirements, the current edition-1.1 [academic style guide](../../../content/markdown/aaa/archie/academic-style-guide.md), mathematical and terminology guidance, the live corpus-reviewer procedure, and the foundational distinction among substrate, assemblies, effective descriptions, and observer records. The imported mathematical frameworks below are comparison tools and proof obligations; standard-physics laws are not premises for architrino motion.
+
+By the recorded Packet 1 inventory of 14 documents plus this one new disposition, **15 of 190 assurance documents are reviewed and 175 remain**. This is review coverage, not 15 fully corrected chapters and not completion of CRW-005. A known-case-tested preorder traversal of `content/graph/textbook_toc.json` gives the Dynamics order: Master Equation, Energy, Entropy, Binary Dynamics, Causal Action Functional, Effective Lagrangian. The exact next target is [Energy](../../../content/markdown/aaa/dynamics/energy.md), `content/markdown/aaa/dynamics/energy.md`. The separate nine-document Foundations campaign and the manuscript fidelity review do not change this denominator. A newer recorded assurance disposition or a changed live reader order would overturn this progress calculation; check the CRW-005 row and the textbook TOC before the next assignment.
+
+#### Overall assessment and preserved strengths
+
+The current chapter makes several sound and valuable distinctions: the sharp causal-root acceleration law is the postulate; the dual mollifier is an auxiliary calculation; transmitter-side weight is distinct from receiver-side playback; finite-history boundary exits are distinct from interior singular roots; prescribed geometry does not establish a realized stable assembly; and work-integral constancy does not independently prove a Noether charge. Those distinctions should survive any repair.
+
+The baseline comparison also confirms substantive corrections, so the resulting chapter cannot be described as a purely mechanical, equation-preserving conversion. Examples include restoring acceleration-first action diagnostics, removing unconditional well-posedness and energy claims, correcting effective redshift conventions, identifying the sharp-law recovery limit, and renaming the claimed exact action as a candidate. These are appropriate changes in authority where justified by the displayed reasoning, but exact before-and-after provenance remains necessary. Equal display counts do not establish identical equations. The review does not reverse prior accepted corrections merely to satisfy the original mechanical criterion.
+
+The remaining problems are concentrated in duplicate summaries, missing hypotheses, the full circular-root chart, and statements that outrun the proof immediately preceding them. Findings ME-1 through ME-11 include explicit internal contradictions or counterexamples. ME-12 through ME-16 distinguish incomplete mathematical constructions, source and teaching defects, and questions requiring additional definitions. None establishes an EOM solver defect or a physically realized counterexample trajectory.
+
+**Severity and relative importance:** High within this chapter: ME-5 (incorrect circular formulas/count), ME-6 (incorrect delayed-distance substitution), and ME-7 (incompatible well-posedness statement). Address these first because they change quantitative conclusions or the domain on which a solution is asserted. Medium: ME-1 through ME-4 and ME-8 through ME-14, covering mathematical scope, dimensional and sign errors, unsupported stability/cost claims, incomplete action and topology constructions, and lost measurement provenance. Low: ME-15, an editorial repair under the lane requirements. ME-16 is an unresolved reproducibility/specification question of medium importance, not a proved defect in a populated benchmark. These are document-review priorities; no downstream implementation failure has been established.
+
+#### ME-1 — Straight spatial motion can admit a simple self-hit
+
+**Location and grade:** lines 1248–1264 versus the later Self-Hit Condition around lines 2684–2717. Derived counterexample; definite internal contradiction.
+
+The early list makes curvature necessary and its implication repeats “exceeded … and curved.” The later section already correctly removes that requirement. In normalized units $c_f=1$, take the prescribed path $\mathbf X(T)=((T+T^2)/2,0,0)$ on $[0,1]$. At reception $T_r=1$ and emission $T_t=0$, the separation and elapsed time both equal one. For emission variable $s$ near zero, the causal gap is $F(s)=s(1-s)/2$, so $F'(0)=1/2\ne0$. This is a noncoincident simple geometric root on a straight spatial line with changing speed. It is not a solved trajectory of the full interaction law, nor a complete assembly-admissibility certificate; it suffices to disprove the claimed geometric necessity of curvature.
+
+**Smallest repair and falsifier:** make the early list and implication agree with the later interval-speed lemma and counterexample. A valid objection would have to show the root is coincident, nonsimple, or the path spatially curved under the stated definitions. Direct differentiation and the coordinates settle those checks. Inspection of the actual `27f5f3781^..27f5f3781` target diff shows the later repair while the early duplicate survives; this is a residual inconsistency, not evidence that the accepted later correction introduced a dynamics error.
+
+#### ME-2 — A singular root is not necessarily an ordinary fold
+
+**Location and grade:** Proposition 3, lines 1023–1041; separator table around line 1178. Derived counterexample to the unqualified fold classification.
+
+The equations $F=0$ and $F_{T_t}=0$ locate a singular root. An ordinary fold additionally needs a nonzero second emission derivative and a transverse control derivative. The chapter correctly states those extra conditions for the generic pair-creation calculation and in its earlier caustic discussion, then says all interior root-count changes occur only at folds. For $F(u;\lambda)=u^3-\lambda u$, negative $\lambda$ gives one simple root and positive $\lambda$ gives three. At the transition $F_{uu}=0$, so it is not an ordinary fold. The signed degree remains one: after the transition the two outer derivatives are positive and the middle derivative negative. This local scalar family disproves the universal classification; no physical realization is claimed.
+
+**Smallest repair and falsifier:** say “singular roots,” reserve the fold jump law for its stated generic hypotheses, and keep higher degeneracies routed to their own normal forms. In the separator table, $D_t=0$ alone must not certify an ordinary fold; similarly, $D_r=0$ gives stationary playback but reversal needs a sign change. A proof that the admitted family excludes all higher degeneracies would justify a narrower fold-only statement; its hypotheses must be supplied where the claim is made.
+
+#### ME-3 — A lower delay bound does not give an equivalent retention test
+
+**Location and grade:** lines 1144–1166. Derived inequality error.
+
+The proposition establishes $\Delta_{\mathrm{fwd}}\ge d_{\min}/(c_f-u)$. Consequently $\Delta_{\mathrm{fwd}}<h$ implies $u<c_f-d_{\min}/h$; the converse does not follow. For a prescribed stationary pair with separation vector $(1,3,0)$, choose the first coordinate as the forward direction, $d_{\min}=1$, $h=2$, and $c_f=1$. Then $u=0<1/2$, but the exact delay is $\sqrt{10}>2$ and the root is outside the retained memory. The current word “equivalently” loses transverse separation and any slack in the lower bound.
+
+**Smallest repair and falsifier:** call the speed inequality necessary, or state the special collinear equality assumptions under which it becomes sufficient. Substitution in the exact distance equation checks the counterexample. This does not reject the forward-starvation obstruction at or above the bound; it rejects using that obstruction as an exact availability threshold below it.
+
+#### ME-4 — Sub-field-speed monotonicity gives at most one retained root
+
+**Location and grade:** Single-Hit Regime, lines 1191–1210, against Proposition 2. Derived existence counterexample.
+
+A positive derivative on the entire declared interval makes the delay map injective. Existence still requires an endpoint bracket or another existence assumption. With $c_f=1$, a stationary transmitter at zero, receiver at distance two, reception time zero, and retained interval $[-1,-0.1]$, the gap is $F(s)=s+2>0$: there is no retained root despite strict sub-field-speed motion. A bound only locally near a candidate root also cannot establish global monotonicity on the retained interval.
+
+**Smallest repair and falsifier:** retain Proposition 2's interval-wide bound and bracket; say “at most one” before imposing existence. Scope the causal set explicitly to retained emissions. The stated affine gap and its endpoint signs provide the operator-checkable falsifier of the current singleton assertion. The full-history root at $s=-2$ remains present outside this window.
+
+#### ME-5 — Three formulas still use an incomplete circular-root chart
+
+**Location and grade:** lines 3341–3376, 3395–3430, and 3542–3567. Derived algebraic defects; the later signed branch treatment supplies part of the repair.
+
+For circular motion, the actual distance equation is $|\sin\xi|=\xi/\beta_f$. Its nonzero domain includes $0<\xi\le\beta_f$. At $\beta_f=\pi/2$, the endpoint $\xi=\beta_f$ is a noncoincident simple root with $J=1$ and separation $2R$. The strict upper bound printed repeatedly excludes it; it is not the excluded zero-delay diagonal.
+
+The full-chart Jacobian is
+
+$$
+J=1-\beta_f\operatorname{sgn}(\sin\xi)\cos\xi=1-\xi\cot\xi.
+$$
+
+The intermediate equality $J=1-\beta_f\cos\xi$ is valid only on positive-sine sheets. Likewise the unsigned threshold $\beta_f^\star=\sec\xi^\star$ omits the sign needed on alternating lobes. The later signed proposition is the appropriate local reference; its scope must also govern the earlier formulas.
+
+Finally the bound $N_{\mathrm{self}}\le\beta_{\max}/\pi+C_{\mathrm{circ}}$ with an absolute endpoint constant cannot cover the full absolute-sine chart. Set $\beta_f=(m+1/2)\pi$. The first lobe contributes one positive root and each subsequent lobe through index $m$ contributes two, including the admitted final endpoint, giving $N=2m+1$. On each such lobe the function is strictly concave, negative at the left zero, positive before its crossing, and nonpositive at the right boundary; at the final peak its derivative is negative, so equality at the peak does not remove the earlier crossing. Thus the discrepancy from $\beta_f/\pi=m+1/2$ grows with $m$ and cannot be absorbed into a fixed constant. The full-chart leading coefficient is two, while a positive-sine-only count can have coefficient one.
+
+**Smallest repair and falsifier:** include the regular upper endpoint, apply the sheet sign consistently, and state a valid full-chart count with an explicit endpoint convention. Substitution at $\beta_f=\pi/2$ checks the first defect; a negative-sine root checks the Jacobian; the lobe argument checks the unbounded count discrepancy. These are geometric root counts on prescribed circles. They do not certify a retained circular solution, fold transit, stability, or a runtime cost estimate.
+
+#### ME-6 — Radial fall substitutes present separation for delayed separation
+
+**Location and grade:** lines 2754–2781. Derived mismatch with the canonical kernel, plus an unsupported speed inference.
+
+Write the symmetric positions as $\mathbf X_1(T)=-x(T)\mathbf e$ and $\mathbf X_2(T)=x(T)\mathbf e$. Their current separation is $r(T)=2x(T)$, whereas a retained partner hit has delayed separation $r_p=x(T)+x(T_t)$. The two-receiver contribution is therefore $r''=-2\kappa\epsilon^2W_p^{\mathrm{acc}}/r_p^2$, not the displayed expression with $r(T)^2$. “Schematic” does not identify the omitted retardation approximation when the formula is also described as canonical. The assertion that moderate initial separation keeps the speeds sub-field-speed is also unproved; a starting separation alone supplies no speed bound over an entire fall.
+
+**Smallest repair and falsifier:** use delayed separation, or explicitly restrict both the distance replacement and $W\approx1$ to a slow, short interval. Make sub-field-speed behavior a checked interval assumption. Any inward-moving history with $x(T_t)\ne x(T)$ distinguishes the denominators. A complete retained-history solution with a proved speed bound could settle the second issue; this review supplies no such solution and does not infer a collision from an instantaneous approximation.
+
+#### ME-7 — The proposed well-posedness statement omits initial compatibility
+
+**Location and grade:** lines 2493–2563. Derived necessary-condition failure in the stated theorem target; applicability of the cited framework remains open.
+
+A solution that is $C^1$ across the join between prescribed history and forward evolution must satisfy $\phi'(0)=\mathcal G(\phi)$, where $\mathcal G$ is the chosen history evolution functional. This includes the position-velocity relation and the endpoint acceleration. An arbitrary $C^1$ history does not satisfy it. For example, two distinct stationary unlike histories can have simple positive-distance partner roots inside the memory horizon, finite branch count and bounded couplings, yet their nonzero endpoint acceleration under the kernel disagrees with the zero left derivative. W1–W5 do not remove that mismatch.
+
+The later caveat correctly says the external hypotheses have not been verified, but the preceding “for any initial history” statement still promises a joined $C^1$ solution under insufficient assumptions. The finite-width integral and a root-resolved evaluation also need separately specified support and regularity; root floors alone do not describe every point sampled by a noncompact mollifier.
+
+**Smallest repair and falsifier:** formulate the target on a compatible solution manifold, or weaken the joined regularity and state the corresponding history class and theorem. Keep local existence and global continuation conditional until the functional's extension and admissibility hypotheses are proved. Evaluating the two one-sided derivatives at the join checks the definite defect. A verified theorem covering the exact functional, compatible domain, boundary treatment, and continuation bounds would discharge the open application question.
+
+#### ME-8 — Direct wake support is not a proved universal influence cone
+
+**Location and grade:** lines 2652–2666. Inferred proof-gap finding.
+
+A wake emitted at one event propagates at $c_f$ from its fixed emission center. That establishes its direct surface support. The stronger claim that all later influence of that event must remain inside the filled $c_f$ cone needs a theorem about the complete interacting histories. The model permits faster architrino motion; an altered intermediate history can be carried to later emission sites. The direct wake-support equation alone places no corresponding bound on that material-history leg. The existing Foundations distinction between direct hits and inherited influence is relevant here.
+
+**Smallest repair and falsifier:** scope the equation to direct wake support, or explicitly to relay constructions whose every displacement leg is independently bounded by $c_f$ times its duration. Leave a universal influence or operational signal-speed theorem open. A derivation bounding all admitted material-history and retransmission legs would overturn this proof-gap finding. No actual faster-than-$c_f$ signal, observable violation, or dynamically realized relay has been demonstrated here.
+
+#### ME-9 — The acceleration correction has a dimensional denominator error
+
+**Location and grade:** lines 1354–1368. Derived dimensional inconsistency; the order of the physical correction remains guessed.
+
+For acceleration $a$ and length $L_0$, the printed ratio $a^2L_0^2/c_f^2$ has dimensions of velocity squared. It cannot be added to one as a dimensionless relative period correction. If the intended small parameter is $aL_0/c_f^2$, its square has denominator $c_f^4$. Setting numerical $c_f=1$ does not settle the symbolic dimensional requirement or prove that the leading correction is quadratic rather than linear.
+
+**Smallest repair and falsifier:** define a dimensionless acceleration parameter and state that the correction's order requires the transport derivation. A different declared meaning or normalization of $a$ could change this diagnosis, but the current prose calls it an acceleration scale; its units must be specified where used.
+
+#### ME-10 — Circular balance has a sign inconsistency, and nonexistence is not instability
+
+**Location and grade:** Corollary heading at line 3291, radial convention at line 3772, balance around line 3924, interpretation at line 3963. Derived sign inconsistency and unsupported stability conclusion.
+
+The circular analysis declares outward radial acceleration positive and reports inward values as negative. Its signed balance therefore requires $\overline A_{\mathrm{rad}}=-\omega^2R$. The later positive right-hand side either has the wrong sign or silently switches to an inward magnitude. The adjacent text correctly says no stability verdict follows, then assigns an explanatory role to the bare MCB's “instability.” No spectrum or other stability evidence supplied there establishes that statement. Likewise a nonzero tangential residual excludes the specified constant-speed circle; it is not a stability spectrum about an equilibrium.
+
+**Smallest repair and falsifier:** preserve one radial convention, describe the restricted partner-circle result as nonexistence within that ansatz, and keep instability conditional for a realized equilibrium. An explicit inward-magnitude redefinition at the later equation would resolve the sign issue; a balanced history with an independently justified delay spectrum would resolve the stability question. Neither follows from the current algebraic cancellation points.
+
+#### ME-11 — The numerical advice lacks a traversal-rate condition and a cost model
+
+**Location and grade:** lines 2933–2954. Derived insufficiency of the stated resolution rule; cost claims unmeasured in this review.
+
+For fixed emission time, $g(T)=r(T,T_t)-c_f(T-T_t)$ has derivative $-D_r$. A mollifier width $\eta$ in this gap is traversed on a local time scale $\eta/|D_r|$. Therefore $\Delta T<\eta/c_f$ alone does not ensure resolution for unrestricted receiver motion. In normalized units $c_f=1$, a receiver approaching a stationary emission center at speed ten has $|D_r|=11$: a step $\eta/2$ satisfies the printed bound while exceeding the traversal scale $\eta/11$. Resolution by itself would still not prove integrator stability.
+
+Spatial hashing also has no unconditional $O(N\log N)$ all-pairs bound when arbitrarily many sources or retained history samples occupy every queried neighborhood. The assertion that more than 100 particles is intractable provides no instrument, hardware, accuracy, history size, or wall-time measurement.
+
+**Smallest repair and falsifier:** distinguish gap-resolution criteria from a stability proof, include the relevant traversal rates and event controls, and condition expected cost on a stated occupancy/history model backed by profiling. A proved global bound on $|D_r|$ or a method that resolves these events independently of the step rule would alter the first assessment. Actual profiling under an explicit accuracy and history contract could support the cost claim. No solver implementation or performance campaign was run.
+
+#### ME-12 — The full action variation needs more than the receiver residual
+
+**Location and grade:** lines 4942–5000, 5033–5208, and summary around line 5496. Derived additional term in the full path variation; the complete action construction remains open.
+
+The displayed action sums ordered pair functionals $S_{ij}$ over complete paths. Varying $\mathbf X_i(t)$ changes its receiver appearances in $S_{ij}$ and its transmitter appearances in $S_{ji}$. The latter integrate over reception times later than $t$: past-causal support for each pair does not erase this part of a full path variation. The chapter's explicit residual $\mathbf C_{ij}$ is described as the receiver interior derivative plus its boundary term. Cancelling it is not, by itself, a derivation of the full Euler derivative of the displayed action. The action's $i\ne j$ sum also needs a separate self-history extension if it is to reproduce a master law containing admitted $i=j$ roots.
+
+**Smallest repair and falsifier:** retain the receiver calculation as a necessary ingredient and list the transmitter variation, self-history domain, and common boundaries among the remaining action obligations. The summary's “only when” condition is necessary language; do not treat it as sufficient. State the remaining full-variation conditions alongside it, and remove the earlier description of the candidate as an exact variational action. A full variation or a precisely defined alternative variational principle that accounts for these terms could discharge the finding. This is not a no-go theorem for every possible delayed action.
+
+#### ME-13 — The proposed root cohomology lacks its defining structure
+
+**Location and grade:** lines 645–657 and Signed Causal-Root Complex after line 1043. Inferred formalization defect.
+
+The chapter defines a set of admissible charts and restriction maps, then writes a Cech $\check H^1$ obstruction without specifying an abelian coefficient sheaf, a group-valued transition structure, or an alternative cohomology construction. A disagreement on triple overlaps does not automatically define that class. Likewise positive and negative root spans define a graded vector space, but a chain complex additionally requires a differential and its compatibility. The local-to-global distinction is useful; the displayed mathematical objects need enough structure for their conclusions to have a defined meaning.
+
+**Smallest repair and falsifier:** state the concrete overlap-compatibility problem until the transition objects, cocycle law and equivalence relation are defined; call the root split graded bookkeeping unless a differential is supplied. A complete definition and a worked consistent/inconsistent overlap example would resolve this objection. Theorem-target status appropriately withholds proof, but does not define an otherwise unspecified object.
+
+#### ME-14 — Conversion removed the identities of four cited instruments
+
+**Location and grade:** current lines 332, 1622, 2218, and 3772; corresponding deleted baseline text. Measured provenance loss by target Git diff and exact-basename `rg --files scripts/equation-mapping` checks.
+
+The baseline identifies `derive-causal-wake-update-law.mjs`, `verify-moving-single-root-scalar-gradient.mjs`, `analyze-fixed-point-cloud-residual.mjs`, and `analyze-circular-self-hit-binary.mjs`. The current text substitutes descriptions without a stable source reference, while preserving precise residuals, scan domains, or claims about instrument independence. All four implementation paths are present under `scripts/equation-mapping/` by the scoped file inventory. This review did not rerun them or establish that they still produce the reported results.
+
+**Smallest repair and falsifier:** retain readable instrument names with stable, appropriate source links or an owning accessible evidence reference, following the corpus sources policy. A raw internal filename need not dominate the prose, but the claimed measurement must remain traceable. An existing unambiguous reference binding each passage to its instrument and exact run domain would overturn the provenance finding. Generic equation-viewer links alone do not identify these numerical runs.
+
+#### ME-15 — Tag removal left repeated prose and fragmented mathematical teaching
+
+**Location and grade:** lines 196–215, 602–604, 660–705, and 2528–2552. Editorial assessment supported by direct baseline/current paragraph comparison.
+
+The wake-center paragraph is immediately retold with the same fixed center and growing radius; the emission-density explanation is likewise followed by a second explanation of the same dilution. The baseline delta shows that several retired plain-language labels were removed while the paired technical and paraphrase paragraphs remained. Criterion 12 requires integration of the explanation. Later, isolated displays for $h>0$, the branch-count symbol, the pair $(i,j)$, and the time $T$ interrupt sentences with separate viewer links. At the same time the root-sheaf discussion assumes substantially more apparatus than it teaches.
+
+**Smallest repair and falsifier:** integrate each explanation where it introduces the mechanism, define new mathematical structures before using them, and preserve the existing equation and viewer identities through an explicitly authorized presentation change. Do not mechanically delete every explanatory repetition: definitions and examples that perform distinct work should remain. A rendered reading showing distinct instructional roles could overturn a specific redundancy judgment; the present review establishes source structure and KaTeX parseability, not visual layout quality.
+
+#### ME-16 — The prescribed spiral “complete record” is not supplied for reproduction
+
+**Location and grade:** lines 4541–4658. Open specification question, not a demonstrated numerical or physical error.
+
+The text names a pitch amplitude, turn-center speed ratio, interval, four root tubes, and associated inactive-gap and memory data as the complete fixed record $C_{\mathrm{rs}}$. It does not supply those tube functions and bounds or an unambiguous executable source for them. Values and derivatives subsequently written as functions of $C_{\mathrm{rs}}$ therefore cannot be independently reconstructed from the displayed scalar inputs alone. The section correctly withholds canonical dynamics and an acceleration-balance verdict; that restriction should remain.
+
+**Smallest repair and falsifier:** either give the complete prescribed history and tube/boundary data in an accessible source, or explicitly present this as a symbolic conditional construction whose data remain unspecified. A unique construction from the stated inputs, with independently checkable roots and derivative values, would settle the question. This review makes no claim that the proposed record is impossible.
+
+#### Sources, links, and validation boundary
+
+The bibliography's Hamilton and Noether identities were checked against the [Trinity College Dublin Hamilton archive](https://www.maths.tcd.ie/pub/HistMath/People/Hamilton/Dynamics/) and the [EuDML original-publication record](https://eudml.org/doc/59024). These support bibliographic attribution and the role of external variational mathematics, not an application theorem for the chapter's delayed action. The publisher search record matches the cited [Walther 2003 paper](https://www.sciencedirect.com/science/article/pii/S0022039603002183), but direct full-text retrieval returned HTTP 403. The author's accessible [2024 solution-manifold paper](https://arxiv.org/abs/2402.07636) explicitly states the solution-manifold restriction in its abstract. That provides context for ME-7; the endpoint-compatibility argument above is independent elementary differentiation. No full-text verification of Walther 2003 or new literature-mining campaign is claimed.
+
+A task-local Node checker passed known cases for inline and quoted display extraction, fenced-code exclusion, local-link extraction, preorder TOC traversal, and a simple KaTeX expression before being run on the target. Its `check-results.txt` records 1,593 extracted current mathematical expressions accepted by the vendored KaTeX renderer, 412 display blocks in both baseline and current sources, and 433 local-link occurrences with existing file targets. The 20 distinct non-viewer local links were compared with their destination files and applicable headings. A separately known-case-tested viewer-ID extraction found all 412 current viewer-link occurrences in `content/generated/equation-mapping/corpus-equations.json`. Registry membership establishes that the IDs resolve in that local registry; it does not certify registry freshness, formula agreement, browser rendering, or mathematical truth.
+
+The link delta removes the old `#exact-nonlocal-lagrangian` self-link in favor of the renamed candidate section and replaces viewer ID `corpus-equation-294f2da9e1cc87a7` with `corpus-equation-2760b9055d10f80c` for the revised regulator recovery statement. Those are recorded semantic changes, not unexplained missing links. External sites other than the bibliography checks were not exhaustively fetched. No generator was run, no instrument or oracle was modified, and no EOM run, full solver suite, visual render, or independent-agent acceptance is claimed.
+
+Disposable extraction code, baseline, diffs, and checker output are under `.tmp/crw005-master-review/`; the useful findings, counterexamples, source limitations, hashes, progress and next target are preserved here. The chapter hash was rechecked before capture and matched the reviewed hash. The manuscript was measured immediately before capture as SHA-256 `7b99cacfe5fc297bc25f7a3b51a1b2f88c425288dea0295b4ccb0ba0bece6013`; this records the capture boundary, not a claim about other agents' earlier manuscript activity.
+
+**Next authorized boundary:** discuss and adjudicate this chapter's findings. No correction is applied by this review, and Energy remains unreviewed until a subsequent assignment. CRW-005 remains in progress because its accepted-correction and remaining-document obligations are still open.
+
+#### Capture validation
+
+The review-record checker passed its known extraction and KaTeX cases before checking this entry, then accepted all 95 mathematical expressions and found all three local file-link targets. `git diff --check` passed for the three edited workstream files: this queue, `priorities.md`, and `evidence/conversion-ledger.md`. No conversion row was changed. A post-capture `shasum -a 256` still returned the reviewed chapter hash. The manuscript hash changed during this capture interval to `2e1ea92399257f97df446403b77a9c44413ba418a1aec881769793b71675d28d`; this task made no manuscript writes and claims neither byte stability nor a review of that concurrent manuscript revision. The measurement establishes a concurrent change, not its author or cause.
+
+### CRW-005 Master Equation ME-1 through ME-16 — accepted integration, 2026-09-10
+
+The operator explicitly requested correction of all 16 findings after the complete assurance review above. All 16 are **accepted and implemented within Master Equation**. Acceptance of a correction does not promote the associated open physical construction: the action, compatible-history existence theorem, global influence bound, stability analysis, and populated spiral example retain their stated proof burdens. No finding is deferred for an operator decision. The original review remains an immutable account of its inspected version; this entry records the subsequent correction.
+
+The immediate pre-edit chapter had SHA-256 `6a9675f6a6e193e939f20e78f11ed65a881b75bafde695677604656ab145d865`; the corrected 5,892-line chapter has SHA-256 `d2a25fb7d970f4231e72f4c9564b1a15d20e5efe2caf8f0f63f88e2cbdc290d8`, measured by `shasum -a 256` and `wc -l`. Edits were guarded against a changed target before installation. The authored corpus scope is only [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md); the manuscript, other corpus chapters, source instruments, and historical scientific evidence were not edited by this task. Current-state assurance summaries in this queue, `priorities.md`, and the ledger introduction are updated separately from historical conversion rows.
+
+| Finding | Disposition and implemented repair |
+| --- | --- |
+| ME-1 | Accepted. The early self-hit requirements now agree with the existing straight-line, variable-speed counterexample; super-field-speed interval history is necessary, not sufficient. |
+| ME-2 | Accepted. Singular roots are distinguished from generic folds; the cubic counterexample and the extra fold hypotheses are explicit. Stationary playback is distinguished from reversal. |
+| ME-3 | Accepted. The speed condition derived from a delay lower bound is necessary only, with the stationary transverse-offset counterexample showing why it is not sufficient. |
+| ME-4 | Accepted. Uniqueness requires the interval-wide speed bound; existence requires a bracket. Both unsigned count and signed degree now explicitly restrict to the retained interval, as do the graded root spans. |
+| ME-5 | Accepted. The circular root domain includes its regular upper endpoint, the Jacobian and tangency conditions carry the sine-sheet sign, and the full absolute-sine census has leading coefficient two. A half-wave counting argument gives an explicit uniform upper bound. |
+| ME-6 | Accepted. Symmetric radial fall uses the actual partner-hit separation, with the simultaneous-distance approximation and its conditions stated separately. Initial separation no longer implies a global speed bound. |
+| ME-7 | Accepted. The proposed theorem uses compatible histories and an applicable functional-domain theorem. It separates the finite-width integral from a root-resolved model, addresses noncompact mollifier support, and keeps continuation conditional. Repeated summaries and the pathology target now use the same hypotheses. |
+| ME-8 | Accepted. Direct wake support is the emitted sphere. The filled cone is derived only for wake-only relay legs; the broader inherited-influence and observer-channel questions remain open. The opening summary was corrected too. |
+| ME-9 | Accepted. The quadratic ansatz uses the dimensionless acceleration ratio squared, with denominator $c_f^4$. Its order remains guessed pending the transport derivation. |
+| ME-10 | Accepted. Outward-positive radial balance has the negative centripetal sign. The partner-circle result is scoped nonexistence; no unsupported instability is assigned to the bare MCB. |
+| ME-11 | Accepted. Numerical guidance distinguishes gap-traversal resolution from stability, treats stationary crossings separately, and conditions spatial-index cost on occupancy and retained history. A fixed particle-count performance threshold is removed. |
+| ME-12 | Accepted. The candidate action explicitly includes the transmitter-variation obligation, self-history extension, ordered-pair normalization, and common boundaries. The receiver residual is necessary, not a complete action derivation; early and late summaries agree. |
+| ME-13 | Accepted. Root spaces are a signed grading, with no unspecified differential or homology claim. Global gluing is formulated through actual record agreement and compatible relabelings. The previous section fragment remains as an explicit anchor for existing links. |
+| ME-14 | Accepted. Four readable instrument names link to their actual source implementations. Their numerical and domain claims remain locally scoped; the reruns below independently reproduce the cited checks within those instruments' limits. |
+| ME-15 | Accepted. Repeated wake-center, emission-density, and branch-record explanations are integrated. Parameter and history-space displays receive coherent introductions. Existing equation-viewer identities are retained. |
+| ME-16 | Accepted. The spiral example is a conditional construction with unspecified full history and root data. Local radial shape and center-rate assumptions are explicit, including the locally even radial curve needed for the displayed radial-jet specialization. Unprovided sampled cancellation and inventory claims are removed. |
+
+The chapter-wide self-review combined the complete source review from the preceding assignment, comparison of every changed passage and display against that unchanged baseline, whole-document structural checks, and targeted rereads across the theorem, summary, circular, spiral, and action sections. This found and repaired repeated versions of the same defects beyond the original cited lines: the opening universal-influence claim, the early action-residual sufficiency framing, the pathology theorem's abbreviated existence hypothesis, and the finite-interval root-count notation. This was the integrating author's self-review, not a separate agent review or a new full independent assurance pass. No additional chapter was reviewed or counted.
+
+**Mathematical validation.** A task-local bisection helper returned the independently known square root of two before any circular target calculation. Direct Cartesian position/velocity geometry at three prescribed circular roots then agreed with the corrected signed Jacobian, including the upper endpoint and a negative-sine sheet. The root census gave 1, 3, 5, and 41 roots at the four tested half-integer multiples of $\pi$, matching the separate half-wave argument. Elementary checks covered the straight self-hit, missing bracket, delay-bound counterexample, delayed radial denominator, and receiver traversal scale. All numerical examples used $c_f=1$. These checks establish prescribed geometry and algebra; none is a solved EOM trajectory, singular-event continuation, or stability certificate. The proofs and counterexamples in the review and corrected chapter are the independent mathematical references, rather than agreement between duplicate implementations of a new rule.
+
+The unchanged causal-wake update-law instrument and moving-simple-root scalar-gradient verifier both completed successfully with their built-in assertions. The latter returned maximum component residual `2.1183055309847987e-12`, reproducing the chapter's rounded figure; its wrong-scaling control returned `0.5125312228736556`. The unchanged circular analyzer completed its `--max-beta=20` run and returned the first formal cancellation at speed ratio `3.070356625390253`; this remains an algebraic candidate, not a stable solution. The existing `node --test tests/fixed-point-cloud-residual.test.js` suite passed 5 of 5 tests. No oracle or implementation was changed to make these comparisons agree.
+
+**Structural validation.** The task-local validator passed known cases for quoted math, links, the canonical display parser, and KaTeX before checking the chapter. It accepted all 1,631 extracted mathematical expressions, found all 438 local file-link occurrences' targets, and verified that all 412 equation-viewer links retain their original IDs and order. Of 412 display blocks, 399 are byte-identical to the immediate baseline and 13 have the explicitly reviewed mathematical repairs. The canonical abstract and per-hit acceleration law is unchanged. The previous signed-root and circular-corollary fragments are retained as explicit anchors. These are source and syntax checks, not browser-layout verification or proof that every external link is reachable.
+
+`node scripts/build-equation-mapping-corpus.mjs --check` exited 1 because `content/generated/equation-mapping/corpus-equations.json` is stale. The chapter's edited formulas and headings require that generated source binding to advance; no generated file was written. The exact regeneration command for the later authorized publication/regeneration procedure is `node scripts/build-equation-mapping-corpus.mjs --write`, followed by its `--check`. Other retained hashes in historical evidence continue to identify their original reviewed source versions and were not repinned. Consequently current source corrections do not retroactively change what those older instruments or reviews established.
+
+Scratch baselines, the complete diff, the mathematical checks, instrument outputs, and validation receipts are in `.tmp/crw005-master-fixes/`. Their useful results and authority limits are preserved here. `git diff --check` is the final whitespace check for the target and three edited workstream files. A differing final chapter hash, a changed viewer-ID sequence, a failed substitution in the stated counterexamples, or a failed focused check would overturn the corresponding completion claim.
+
+**Remaining scope:** all 16 chapter corrections are complete; the explicitly unproved scientific obligations remain unproved. The source-link inventory also found older incoming references using the former signed-complex wording in already-reviewed Noether-braid material; their anchors still resolve, but those passages have not been re-adjudicated in this target-only repair. This is retained as a downstream terminology/proof-scope follow-up in CRW-005, not silently counted as a second chapter correction. Assurance coverage remains **15 of 190 reviewed, 175 remaining**. The next unread assurance target is [Energy](../../../content/markdown/aaa/dynamics/energy.md).
+
+### CRW-005 Packet 2 document 2 — Energy assurance review, 2026-09-10
+
+**Disposition: complete review; corrections proposed, not applied.** The operator's “do 1” selected the recommended Energy review after the Master Equation corrections. This pass read all 1,564 lines of [Energy](../../../content/markdown/aaa/dynamics/energy.md), compared the complete baseline-to-current diff, and checked the mathematical dependencies against the corrected Master Equation. It did not review the next chapter or edit Energy, another corpus chapter, or the manuscript. This is a fresh semantic assessment by the current reviewer, not a second-agent validation of its own counterexamples.
+
+The reviewed Energy SHA-256 is `5d3c7f0b5537b72749e86f80df7ff4b795ec3b7863896bbe72ddaf5e24937516`. The pre-campaign source is `897fe1aa7:content/markdown/aaa/dynamics/energy.md`, SHA-256 `3c78c6d48e5bf1ff84829e0e366e89b8c551454511b2f7f6654e6967c9c89723`. The corrected Master Equation dependency is SHA-256 `d2a25fb7d970f4231e72f4c9564b1a15d20e5efe2caf8f0f63f88e2cbdc290d8`. Line references below refer to the reviewed Energy bytes. These are measured identities by `shasum -a 256`; later edits require refreshing the affected references.
+
+The chapter has a useful central distinction: the acceleration law is postulated, whereas the universal kinetic scalar, history energy, conservation theorem, mass map, and universal action increment remain constructions to establish. Its work-power conjugacy calculation and tensor trace algebra are sound within their stated ansatz. Fifteen findings remain. E-1 through E-3 have the clearest immediate algebraic consequences; the remaining items concern incomplete identities, unsupported implications, operational definitions, and reader access. All are **○ Proposed** pending adjudication. Their derivations below are independently checkable mathematical references, not EOM solver results or evidence of a realized assembly.
+
+#### E-1 — High: the radial-power display loses the polarity sign
+
+**Location:** lines 246–254, with the correct signed formula at lines 192–205. **Type:** hard sign error, inherited from the baseline.
+
+The display equates $\mathbf A_{ij}\cdot\mathbf V_i$ to $\|\mathbf A_{ij}\|V_r$. The line-of-action vector points from the retained transmitter event to the receiver. An unlike-polarity contribution is antiparallel to that vector, so its norm removes a physically necessary sign. With $c_f=1$, choose $\hat{\mathbf r}=\mathbf V=(1,0,0)$ and an attractive contribution $\mathbf A=(-1,0,0)$ in normalized acceleration units. The true power factor is $-1$; the display gives $+1$.
+
+**Smallest repair:** write $(\mathbf A_{ij}\cdot\hat{\mathbf r}_{ij})V_r$, or retain the explicit $\sigma_{ij}$ multiplying the positive amplitude, consistently with the preceding per-hit equation. **Grade:** derived from the chapter's polarity convention and the dot product. **Falsifier:** an explicit convention making the norm signed would overturn this reading; the present norm and signed kernel do not do that.
+
+#### E-2 — High: the action table's increment rule excludes its own redistribution
+
+**Location:** lines 1395–1401, 1411–1467. **Type:** incompatible constraints under the table's stated action interpretation, inherited from the baseline.
+
+The binary-3 transaction is $\Delta I_3=\hbar$. Binary 1 takes two positive steps with energy $2\omega_1\hbar$ under the declared action-angle interpretation, hence $\Delta I_1=2\hbar$. The angular account then requires
+
+$$
+\Delta I_2=-2\hbar-\Delta I_{\mathrm{wake}}.
+$$
+
+But the same paragraph requires every binary increment to be at least $-\epsilon_w\hbar$, while $|\Delta I_{\mathrm{wake}}|\le\epsilon_w\hbar$. The largest possible $\Delta I_2$ is $(-2+\epsilon_w)\hbar$, below the required floor whenever $\epsilon_w<1$. For example, $\epsilon_w=0.1$ requires both $\Delta I_2\le-1.9\hbar$ and $\Delta I_2\ge-0.1\hbar$. The summed energy equality, in contrast, is true by substitution of $\varepsilon_2=\varepsilon_w-2\varepsilon_1$; it does not validate angular closure or independently establish conservation.
+
+A second distinction is needed before summing the $I_a$: orbital action magnitudes of differently oriented binaries are not automatically signed angular-momentum components about one common axis. Finally, $\Delta E\approx\omega\Delta I$ requires a reduced Hamiltonian with $\omega=\partial H/\partial I$, fixed remaining variables, and a controlled finite-step remainder. Calling that relation a notation choice does not supply those assumptions. The text also uses $f$ as both a dimensionless state index and a frequency in $\Delta E\approx f\Delta A_{\mathrm{cycle}}$.
+
+**Smallest repair:** allow compensating signed internal increments, define either a common-axis angular component or the complete vector balance, and distinguish those components from nonnegative cycle actions. Use a state index such as $n$ and a separately defined frequency. Keep the table a guessed energy allocation until independent energy and angular accounts are supplied. **Grade:** derived incompatibility for the stated small-wake action interpretation; inferred ambiguity if “two steps” is intended to mean something else. **Falsifier:** a fully specified table satisfying all three action increments, the wake bound, and the per-binary sign bound for $\epsilon_w<1$ would refute the contradiction.
+
+#### E-3 — High: a sufficient positive-trace bound is treated as necessary
+
+**Location:** lines 1019–1044. **Type:** hard implication error, inherited from the baseline.
+
+Write the trace bracket as $B+C$, where $B=\zeta_{\mathrm{probe}}(1+\delta\mathcal M_0)$ and $C=\mathcal Z_{\mathrm{tf},ab}\delta\mathcal M_{\mathrm{tf}}^{ab}/3$. With positive overall prefactor, positivity requires $B+C>0$. The stronger bound $B>|C|$ is sufficient for either sign of $C$, not necessary for the measured sign. Thus failure of that stronger bound cannot by itself falsify the mass map.
+
+An algebraic example uses Euclidean coordinates, $\mathcal Z=\operatorname{diag}(2.8,0.1,0.1)$ and the dimensionless sea tensor $c_{\mathrm{eff},0}^2\mathcal M=\operatorname{diag}(2.8,0.1,0.1)$. Both are positive definite. Their isotropic parts are one and their trace-free parts are $(1.8,-0.9,-0.9)$. Hence $B=1$, $C=1.62$, and the actual trace bracket is $2.62>0$, although $1>1.62$ fails. The symmetrized response has positive diagonal entries $7.84,0.01,0.01$ up to the positive prefactor. This is a counterexample to the algebraic implication, not a certified sea state or a claim that this anisotropy lies in a weak-anisotropy approximation.
+
+**Smallest repair:** state the exact signed trace criterion, name $B>|C|$ a conservative sufficient bound, and classify its failure as loss of that guarantee. Positive trace also does not imply positive directional response in general; a tensor claim requires its own eigenvalue or quadratic-form condition. **Grade:** derived. **Falsifier:** a stated additional admissible-domain restriction that makes the stronger inequality necessary would change the assessment; no such theorem is supplied here.
+
+#### E-4 — High: the work and virial formulas omit their time and kinetic assumptions
+
+**Location:** lines 320–334. **Type:** incomplete mathematical identities, inherited from the baseline.
+
+Fixing the set of source identities does not make a delayed potential time independent. Even in the quadratic chart with $\mu_{\mathrm{arch}}\mathbf A=-\nabla U$, the chain rule gives
+
+$$
+\Delta K_\mu=-\Delta U+\int_{T_a}^{T_b}\partial_T U(\mathbf X(T),T)\,dT.
+$$
+
+The displayed $-\Delta U$ follows only when the explicit time/history contribution vanishes or is accounted for separately. A stationary receiver in a changing external scalar has zero displacement work but can have nonzero $\Delta U$. At general $K$, the displayed $\mu_K\mathbf A\cdot d\mathbf X$ still equals $dK$, but a gradient for the conjugate-momentum rate needs a fresh derivation; it is not established by the quadratic gradient identity.
+
+Likewise, $\langle2K-pU\rangle=0$ requires quadratic kinetic bookkeeping and a vanishing averaged virial endpoint term, in addition to a degree-$p$ potential. If $\dot{\mathbf p}=-\nabla U$ on a suitable reduced chart, then $d(\mathbf X\cdot\mathbf p)/dT=\mathbf V\cdot\mathbf p-\mathbf X\cdot\nabla U$. Homogeneity replaces the last term by $pU$, whereas $\mathbf V\cdot\mathbf p=2K$ is specific to the quadratic family. For example $K(s)=s^4$ gives $P(s)=4s^3/3$, hence $sP(s)=4K/3$, not $2K$.
+
+**Smallest repair:** give the complete chain-rule work identity, state the stationary/quadratic reduction explicitly, and retain the finite-window virial endpoint term before taking any periodic or long-time limit. **Grade:** derived calculus on the declared bookkeeping chart. **Falsifier:** an explicit source-history stationarity, kinetic, and endpoint hypothesis establishing the omitted terms are zero would discharge this finding.
+
+#### E-5 — High: finite-window energy flux omits particle crossings
+
+**Location:** lines 496–518; moving-window response target at lines 616–651. **Type:** incomplete balance law.
+
+$E_W$ explicitly sums kinetic energy only for particles currently inside $W$, but $\mathbf J_E$ is defined as causal-wake energy flux. When a particle crosses the boundary with nonzero kinetic proxy, the retained sum changes even without local work or a wake-energy transfer. In the distributional derivative of $K_a\mathbf1_W(\mathbf X_a)$, the boundary term is $K_a\mathbf V_a\cdot\nabla\mathbf1_W$. It must be balanced by mechanical transport. Timestep or mollifier refinement cannot remove an omitted physical crossing term. The momentum paragraph already includes assembly crossings; energy needs the corresponding definition.
+
+The later $W_A(T)$ also moves. Its transport must be relative to the boundary velocity, or the Reynolds transport term must be explicit. For a density and laboratory flux, the relative normal flux is $(\mathbf J_E-e_E\mathbf v_{\partial W})\cdot\hat{\mathbf n}$, with the analogous momentum correction.
+
+**Smallest repair:** define total energy flux to include mechanical, interaction, and wake transport without double counting, and specify fixed versus moving windows. **Grade:** derived control-volume bookkeeping. **Falsifier:** an explicit no-particle-crossing assumption or an existing definition of $\mathbf J_E$ that already contains the transport would remove the counterexample; the present energy-flux definition does neither. The fixed-window omission is present in the baseline.
+
+#### E-6 — High: the assembly and appendix totals discard undecomposed self-history energy
+
+**Location:** lines 795–807, 1286–1296, 1315–1327; compare lines 338–348 and 391–417. **Type:** incomplete ledger definition, inherited in substance.
+
+The chapter first requires kinetic, interaction, and wake-history entries with an explicit nonoverlap rule. Its assembly formula then contains kinetic energy, $\tfrac12\sum_{i\ne j}U_{ij}$, and coupling to the sea, with no internal self-history or remaining internal wake account. The half factor is justified for a deliberately symmetric pair-energy definition, but receiver-indexed delayed entries are not automatically the same mutual pair energy counted twice. The appendix similarly calls $K(r)+U(r)$ the total after defining $U$ as a branch-local scalar; a receiver-coordinate potential is not automatically the entire nonlocal conserved charge. A gauge choice cannot remove a time-varying history term.
+
+**Smallest repair:** state the exact internal pair/self/wake/sea partition and its provenance. If the appendix intentionally reduces the full charge to $K+U$, require a proof that all remaining history terms are included in that $U$ or constant on the reduced chart; otherwise label it a mechanical diagnostic and retain the omitted account. Cross-cell matching must compare the same complete energy. In the no-runaway discussion at line 447, also make explicit the corrected Master Equation's independence limit: a work-integral reconstruction alone tests bookkeeping, not an independently established conserved wake charge.
+
+**Grade:** derived distinction between the displayed sums and the chapter's earlier total; inferred missing construction. **Falsifier:** definitions explicitly absorbing every admitted self/root-history term into the named entries, with no double booking and the stated reduction proved, would discharge the issue.
+
+#### E-7 — Medium: Legendre compatibility does not identify primitive and medium speeds
+
+**Location:** lines 107–115. **Type:** unsupported implication, inherited from the baseline.
+
+The valid relation $P'(s)=K'(s)/s$ constrains the kinetic chart and its momentum. It contains neither a medium response law nor an assembly signal speed. Consequently it cannot derive $|c_{\mathrm{eff}}/c_K-1|\le\epsilon_{cK}$ across those different levels. For example a kinetic chart with a divergence at $c_K=2$ can be paired algebraically with an independent effective response scale $c_{\mathrm{eff}}=1/2$ in units $c_f=1$ without violating the conjugacy equation. This is a logical countermodel, not a physical assembly construction.
+
+**Smallest repair:** retain any same-scale comparison only as an additional, explicitly guessed matching hypothesis for a specified reduction, with a falsifier; do not call it a consequence of the Legendre calculation. Preserve the primitive unbounded-speed option and the independent sea-response construction. **Grade:** derived nonimplication from the displayed equations. **Falsifier:** an assembly reduction deriving the equality of the two scales would supply the missing bridge.
+
+#### E-8 — Medium: the mass shell does not by itself determine trajectory velocity
+
+**Location:** lines 1143–1195. **Type:** incomplete claimed equivalence, inherited from the baseline.
+
+The positive mass shell relates $E$ and $p$. It does not constrain a separately measured $v_{\mathrm{CM}}$ until the same effective dynamics proves $v_{\mathrm{CM}}=\partial E/\partial p=pc_{\mathrm{eff}}^2/E$, or an equivalent momentum-velocity relation. Thus the displayed gamma formulas are stronger than the one scalar mass-shell test. For an algebraic check with $c_f=1$, $c_{\mathrm{eff}}=1/2$, $M_0=1$, and $p=1/2$, the positive-shell energy is $\sqrt{1/8}$. Assigning an independent measured velocity zero does not violate that scalar equation, but it violates $p=\gamma M_0v$. The example diagnoses missing information, not admissible physical motion.
+
+**Smallest repair:** state the velocity relation, positive-energy branch, positive constant local speed, and fixed rest invariant as additional effective closure conditions before claiming equivalence. **Grade:** derived. **Falsifier:** a previously established velocity relation explicitly made an assumption here would close the gap.
+
+#### E-9 — Medium: emission density is confused with its reconstructed scalar
+
+**Location:** lines 213–225 and 274–282. **Type:** representation and regularity overclaim.
+
+The assertion that the ideal potential is necessarily a distribution supported on causal isochrons confuses the emission-time selector with the result after integrating emissions. The corrected [Master Equation local scalar derivation](../../../content/markdown/aaa/dynamics/master-equation.md#superposition-and-local-wake-geometry) supplies $C\operatorname{sgn}(D_t)/r$ on a regular moving-simple-root chart. For a stationary source with $c_f=1$ and retained history covering the required roots, $D_t=1$ and this scalar is $C/r$, smooth on an open receiver region away from the source. The delta distribution in the emission integral does not make its root-collapsed value a singular surface distribution on that region. Similarly, smoothing a selector alone does not prove smoothness of the full potential at a point-source singularity or for an uncontrolled infinite source sum.
+
+**Smallest repair:** separate emitted-surface distributions, integrated wake responses, and valid local scalar representatives; state separation, root, summability, and differentiation hypotheses. Retain global and regulator-dependent scalar constructions as open. **Grade:** derived regular-chart counterexample from current canon. **Falsifier:** an explicit alternative definition of $\Phi$ as the unintegrated emission distribution would change its mathematical type, but would then require a separate definition for the scalar used in the gradient and energy equations. The problematic representation sentences already occur in the baseline.
+
+#### E-10 — Medium: body prose asserts several results that its summary leaves open
+
+**Location:** lines 304–314, 767–782, 1127–1137, 1375–1387. **Type:** claim-grade inconsistency.
+
+The body says that a breather exchanges energy across a bounded cycle, that a sea provides constitutive relations, that the high-speed response yields the relativistic kinetic law, and that redistribution stabilizes only at discrete resonances. Elsewhere this same chapter correctly states that no stable sea-coupled assembly has been derived, quietness requires a controlled variance, conservation remains open, and discrete root counts do not quantize action. Those qualifications need to govern the assertions where made. In particular a large incoherent population does not by itself imply small variance, nearest-source dominance, or a bound breather.
+
+**Smallest repair:** state each as a proposed mechanism or conditional consequence and name its local premise. Preserve the stronger derived dot-product, conjugacy, and trace results. Do not turn the named hypotheses into either established recoveries or disproofs. **Grade:** inferred editorial mismatch, supported by the explicit internal contrasts; these overstatements survive from the baseline while the conversion improved several surrounding qualifications. **Falsifier:** a cited, applicable branch and response derivation establishing the stated behavior would justify stronger wording.
+
+#### E-11 — Medium: root parity is stated for unrestricted separator crossings
+
+**Location:** lines 1359 and 1463. **Type:** missing domain boundary in a topological claim, inherited from the baseline.
+
+An interior ordinary fold creates or destroys two simple roots of opposite signed degree, hence $\Delta N=\pm2$ and $\Delta D=0$ when all other roots remain retained. A root crossing a history-window boundary changes the retained count by one. For example $F(s,\lambda)=s-\lambda$ on the fixed open interval $0<s<1$ has zero roots for $\lambda<0$ and one for $0<\lambda<1$; its derivative is one throughout. No fold occurred. A singular coincident endpoint or higher degeneracy also requires its own classification.
+
+**Smallest repair:** restrict the parity row to certified interior fold events with nonzero second root derivative, transverse unfolding, and no endpoint crossing. Track boundary entries/exits separately from grouped channels. **Grade:** derived elementary root-count counterexample, consistent with the corrected Master Equation. **Falsifier:** an explicit definition restricting every separator in this table to that interior-fold class would remove the overbreadth.
+
+#### E-12 — Medium: the shielding measurement leaves its denominator and observable ambiguous
+
+**Location:** lines 820–842. **Type:** operational definition gap, inherited in substance.
+
+The “naive constituent sum” is not specified as unsigned or otherwise nonvanishing. For a neutral equal-polarity-count source, a signed monopole sum can be zero, making the shielding ratio undefined. A potential coefficient and an acceleration coefficient also have different radial powers: the elementary static scalar is proportional to $1/r$, while its radial gradient is proportional to $1/r^2$. They can be cross-checked after differentiation and common normalization, but cannot be interchanged as the same fitted coefficient without that map. A higher multipole also needs its own angular and radial basis.
+
+**Smallest repair:** define the reference ledger, require a positive denominator or return an undefined scalar, fix the measured quantity and multipole basis, and derive any potential-to-acceleration conversion. **Grade:** derived denominator and radial-scaling issues; inferred operational incompleteness. **Falsifier:** a local definition already specifying a nonzero reference and the measurement conversion would close the gap.
+
+#### E-13 — Medium: the entropy residual needs sign and window assumptions to imply its stated result
+
+**Location:** lines 686–717. **Type:** incomplete diagnostic contract.
+
+The residual is zero when $\Delta S_{\mathcal Q}\ge\int\mathcal D_{\mathcal Q}/(T_{\mathcal Q}+\varepsilon_T)\,dT'$. This implies nondecreasing entropy only if the integral is nonnegative. The paragraph does not state positivity of the temperature channel or dissipation rate and includes wake-boundary channels, which may be signed transport rather than nonnegative production. Algebraically, $\Delta S=-1$ and integrated signed rate $-2$ produce zero residual despite decreasing entropy. This is not a thermodynamic counterexample under positive dissipation; it identifies the assumptions the diagnostic needs. In addition, $W$ previously denotes a spatial region, but $\int_W dT'$ requires a time interval.
+
+**Smallest repair:** distinguish a spatial window from its observation interval, impose the intended positive-temperature and nonnegative-production assumptions, and keep entropy boundary transport separate if the window is not isolated. State precisely what a vanishing residual tests. **Grade:** derived inequality; inferred missing sign contract. **Falsifier:** definitions ensuring nonnegative production and a positive denominator on the declared time interval would discharge the implication gap. The formula and these omissions are present in the baseline.
+
+#### E-14 — Medium: several load-bearing terms and symbols remain unexplained
+
+**Location:** lines 7–11, 246–256, 391–417, 563–613, 849–905, 931–1017, 1061–1077, 1121–1123, 1294–1296. **Type:** required teaching and notation repair, not a request to simplify away mathematics.
+
+The chapter uses causal roots and isochrons before explaining the emission-time equation; invokes an affine partner chart and $J_p$ without introducing its geometry; and introduces $h^{ab}$, the tensor index range and contractions, $\theta$, $\lambda_A$, $\xi_A$, $\mathcal H_A$, $n$, $\chi_{\mathrm{sea}}$, and $\Gamma_N$ without enough local definitions. Terms such as “flatness,” “fibers,” and “exactness condition on one forgetting map” are used for scalar constancy and energy partition without defining the additional mathematical structure those terms normally require. “Tier 2 shielding” and a legacy reference-attractor gate are process vocabulary in reader prose. The gauge-matching paragraph references table entries before their definitions without explaining what is being matched.
+
+**Smallest repair:** define the causal event, the Euclidean index metric, the constitutive arguments actually needed, and the energy partition in place. Use direct descriptions such as constancy across the comparison family and a sum of disjoint energy accounts unless a genuine geometric construction is supplied. Replace workflow labels with their physical prerequisites. Add one worked signed-power example and one finite-window or tensor example where they expose the meaning of the formulas. Optional presentation choices include a diagram or a short notation table; the missing definitions themselves are not optional. **Grade:** inferred conformance judgment against edition 1.0 and the current edition 1.1. **Falsifier:** a complete first-use explanation in the reviewed text would defeat a specific omission. The passages largely predate the conversion; removing the old inline explanation label did not resolve all of their teaching burden.
+
+#### E-15 — Low: the opening wake link names a nonexistent anchor
+
+**Location:** line 3. **Type:** confirmed reader-navigation defect.
+
+The link ends in `foundations/architrino.md#the-emitted-wake`. A targeted heading/explicit-ID scan followed by manual inspection of the current Architrino heading inventory finds no such anchor. The current relevant section is [The wake is geometry, not fluid](../../../content/markdown/aaa/foundations/architrino.md#the-wake-is-geometry-not-fluid), which explains the expanding sphere and its point emission center.
+
+**Smallest repair:** point the opening link to that existing section, after checking its final wording. **Grade:** measured against current target headings and explicit IDs, not a claim that the target file is absent. **Falsifier:** an explicit alias or renderer routing rule resolving `the-emitted-wake` would overturn the navigation finding. The link was added between the baseline and current Energy source; this review does not attribute the missing destination to a particular editor or commit without inspecting its historical transition.
+
+#### Preservation, source support, and verification
+
+The scratch validator `.tmp/crw005-energy-review/validate.mjs` first passed known quoted-math, link, canonical display-parser, and KaTeX cases, then checked Energy. It found 499 accepted math expressions, 95 display equations, 95 viewer links with identical IDs and order to the baseline, and 117 local-link occurrences whose file targets exist. Eighty-nine display formulas are byte-identical; six differ. Those six are two acceleration-first substitutions, the corrected redshift deficit sign, removal of an unjustified nonnegativity assertion, replacement of an unproved kinetic maximum, and an explicit additive effective-potential shift. Each changed display was reviewed in the baseline diff. They are defensible mathematical corrections, not exact preservation; this assurance record does not silently classify the conversion as character-for-character equation preservation or recommend restoring the errors.
+
+The same baseline diff strengthens or clarifies several claim boundaries: the kinetic scalar, sea response, shielding proxy, ground-state language, and universal action increment. These changes are scientifically preferable but are substantive exceptions to the original no-claim-change conversion rule. Historical conversion rows remain historical evidence; this review supplies the current qualified disposition.
+
+The known-case-first link/order screen `.tmp/crw005-energy-review/check-links-order.mjs` checked 11 Markdown fragment occurrences. Ten match a current heading or explicit ID; the remaining opening wake anchor was manually confirmed as E-15. This was source-level resolution, not a browser navigation test. Its TOC traversal verified Energy immediately after Master Equation and Entropy next. `node scripts/validate-equation-mapping-links.mjs` passed its 23 registered curated links; that instrument does not cover all 95 Energy corpus-viewer IDs, so the latter count and identity comparison come from the scoped validator rather than that global curated-link result.
+
+The separate arithmetic script `.tmp/crw005-energy-review/mathematical-checks.mjs` first passed known dot-product and trace cases, then reproduced the signed-power, positive-trace, action-bound, mass-shell nonimplication, and entropy-sign examples recorded above. These computations check the written algebra, not assembly existence, dynamics, conservation, or stability. The proofs and counterexamples are retained in this durable record so scratch files are not their only evidence.
+
+The chapter's Hamilton and Noether references are appropriate historical sources for canonical mechanics and variational symmetry, but neither supplies a delay-compatible conservation theorem for this postulated acceleration law. This pass retains the reference verification limits already established in the Master Equation review: bibliographic identity and accessible primary material, not a claim of full verification of every historical theorem against the delayed model. The present findings rely on explicit algebra, calculus, current canon, and scoped source checks; no additional literature-mining campaign or new reference requirement was inferred from the two-entry bibliography. The guessed physical constructions need their own future derivations, not decorative citations.
+
+**Current campaign state:** Packet 1 contributes 14 reviewed paths; Packet 2 now has recorded reviews of Master Equation and Energy, giving 16 of 190 reviewed and 174 remaining by the CRW-005 disposition inventory. Master Equation's 16 accepted corrections remain closed. Energy's E-1 through E-15 are proposed and unapplied; review coverage is not correction completion. The next unread Dynamics document is Entropy, subject to the one-document instruction. The substantive Foundations campaign and manuscript retain their separate scope.
+
+### CRW-005 Energy — revised repair scope and mass boundaries, 2026-09-10
+
+**Status: accepted for implementation.** The operator authorized revising the Energy repair scope and then applying the recommended changes. E-1 through E-15 are accepted within the following boundaries; the original review remains historical evidence. This assignment owns Energy and its existing review/current-status records, not another chapter, the manuscript, generated artifacts, or Git publication.
+
+Architrinos have no physical mass property. The coefficients $a$, $\mu_{\mathrm{arch}}$, and $\mu_K$ are kinetic-bookkeeping quantities, never universal or species-specific architrino masses. Effective assembly inertial mass is an operational response target; its direction-dependent tensor, scalar trace, effective rest mass, and gravitational response must remain distinct. The mass mechanism based on internal energy, exposure, and Noether sea coupling remains guessed, with its quantitative derivation open. Algebraic repairs inside that ansatz do not establish it. An external assembly-force measurement must be calibrated independently of the mass being inferred. The appendix's centrifugal potential is a comparison reduction until its kinetic, angular, and radial premises are derived; the word effective alone does not license importing it into a primitive binary.
+
+E-7's phrase “primitive unbounded-speed option” is corrected here: unrestricted primitive speed is the ontological boundary; a finite saturation chart is only an auxiliary comparison. E-8's velocity relation and E-4's canonical/virial equations remain conditional reduced-model or effective recovery relations, never new substrate postulates. E-2's scalar action balance requires a declared common-axis angular interpretation, or a separate vector account. The permitted repair makes the table internally consistent at its guessed grade without claiming quantization, energy conservation, or angular-momentum conservation has been derived.
+
+The source baseline remains SHA-256 `5d3c7f0b5537b72749e86f80df7ff4b795ec3b7863896bbe72ddaf5e24937516`, measured before editing. Existing equation-viewer IDs, historical evidence, and downstream generated consumers are preserved. Validation will compare the revised source with this baseline, check mathematical examples against explicit algebra, and review the entire resulting chapter.
+
+### CRW-005 Energy E-1 through E-15 — accepted integration, 2026-09-10
+
+**Status: ✓ Done — all 15 accepted document repairs implemented.** This receipt supersedes the original review's proposed/unapplied disposition. The operator first authorized the revised mass boundaries above and then the recommended repairs. The canonical [Energy chapter](../../../content/markdown/aaa/dynamics/energy.md) now carries those changes. Correction completion concerns the stated mathematical and editorial defects; the physical energy, mass, conservation, stable-assembly, and quantization constructions remain open at their declared grades.
+
+| Finding | Disposition | Implemented correction and retained boundary |
+| --- | --- | --- |
+| E-1 | ✓ Done | Signed radial acceleration replaces its norm in the power identity. The negative-power example preserves polarity, and root playback is derived separately from the causal equation. |
+| E-2 | ✓ Done | The state index is dimensionless, frequency has its own symbol, and the action-angle relation is a conditional canonical approximation. Signed binary-2 compensation replaces the incompatible lower bound. Both energy and common-axis angular balance must hold; a general braid still needs vector angular bookkeeping. |
+| E-3 | ✓ Done | The signed trace condition is exact within the ansatz. Absolute-value and norm bounds are sufficient guarantees. Their failure does not falsify a positive trace, and positive trace does not establish positive directional response or physical mass. |
+| E-4 | ✓ Done | The work relation includes explicit potential time dependence. The virial comparison retains the endpoint term and uses the actual momentum contraction; the familiar quadratic form requires its extra hypotheses. |
+| E-5 | ✓ Done | Window flux includes particle/assembly transport, interaction transport, and wake transport without overlap. Moving boundaries use relative flux. A crossing-particle example explains the mechanical term. |
+| E-6 | ✓ Done | Assembly and appendix accounts retain internal self/history energy. The pair entry is an explicit symmetric allocation, not an assumption of reciprocal delayed receiver potentials. Gauge matching compares complete accounts. No-runaway claims require an independently derived charge and lower bound. |
+| E-7 | ✓ Done | Primitive speed remains uncapped. A finite kinetic saturation chart is an auxiliary comparison, and matching its speed to sea response is an additional hypothesis. |
+| E-8 | ✓ Done | Effective rest mass is distinguished from total internal energy and inertial response. Gamma parameterization requires a positive-energy mass shell and an independently justified momentum-velocity relation with constant local coefficients. |
+| E-9 | ✓ Done | Emission-time distributions are distinguished from root-integrated local scalars. The moving-simple-root scalar is stated with its normalization, separation, root, and summation assumptions; global and regularized constructions remain separate obligations. |
+| E-10 | ✓ Done | Breather binding, nearest-source dominance, sea constitutive response, relativistic behavior, smooth transitions, and discrete resonance are conditional claims or proposed mechanisms where stated. |
+| E-11 | ✓ Done | The parity rule applies to certified interior ordinary folds with transverse unfolding and no history-endpoint crossing. Boundary entry/exit is counted separately. |
+| E-12 | ✓ Done | Shielding uses a positive unsigned reference norm in a declared basis. Zero reference is undefined. Acceleration and scalar-potential fits have distinct radial powers and require a normalization-preserving derivative comparison. |
+| E-13 | ✓ Done | The entropy diagnostic names its time interval, positive temperature, nonnegative production, and units. Signed boundary transport is separate. Free energy and fluctuation-dissipation residuals retain their diagnostic limits. |
+| E-14 | ✓ Done | Causal roots, quadratic bookkeeping, Euclidean indices, constitutive variables, partitions, and gauge matching are explained locally. Undefined geometric/process language is replaced with the actual mathematical operation or prerequisite. The mass table and worked examples expose the distinctions. |
+| E-15 | ✓ Done | The opening wake link resolves to the existing “The wake is geometry, not fluid” section. |
+
+**Mass terminology and evidence independence.** Architrinos have no physical mass property; a kinetic coefficient is neither zero mass nor a hidden common mass. The chapter distinguishes kinetic-bookkeeping coefficients, effective assembly inertial mass, its directional response tensor and scalar trace, the effective rest-mass recovery parameter, and the appendix's comparison-model inertial coefficient. Gravitational mass and its equality with inertial mass are unproved. Assembly force must be calibrated independently of the unknown mass. The full post-integration reread also identified and repaired a circular universality test: its numerator must use independently measured response, because substitution of the ansatz's own predicted trace merely recovers the input coefficient. The exposed-energy partition likewise cannot count a remainder defined by subtraction as independent evidence.
+
+**Mathematical verification.** The unchanged pre-repair reference script `.tmp/crw005-energy-review/mathematical-checks.mjs` again passed its known dot-product and trace cases before reproducing the recorded counterexamples. Its `displayed` fields describe the old review target, not the repaired source. The separate `.tmp/crw005-energy-fixes/check-repairs.mjs` passed known dot-product and positive/negative equality-check fixtures before testing the revised algebra. These instruments verify arithmetic against explicit calculus and algebra, not trajectories or physical mass. New numerical examples use $c_f=1$.
+
+The checks include both radial polarities; the tensor example with isotropic term $1$, signed correction $1.62$, and positive trace bracket $2.62$; and a compatible common-axis table with increments $(1,-2,2)\hbar$, equal frequencies, and zero wake exchange. In the latter, signed compensation closes both linear budgets, while existence of a physical transition and the finite-action remainder remain unproved. For the time-dependent quadratic comparison, take $U(X,T)=-X+T$, $X(T)=T^2/2$, and unit bookkeeping coefficient over $0\le T\le1$. Then $\ddot X=-\partial_XU=1$, $\Delta K=1/2$, $\Delta U=1/2$, and $\int_0^1\partial_TU\,dT=1$, confirming the corrected work relation and rejecting the omitted-time-term version. For $K=s^4$, conjugacy gives $P=4s^3/3$ and $sP=4K/3$, not $2K$. The effective mass-shell parameterization reproduces both the shell and the added velocity relation for $c_{\mathrm{eff}}=1/2$, $M_0=1$, and $v=1/5$. Positive-production entropy examples satisfy the stated nondecrease implication. Each is a conditional algebraic check, not an imported substrate law.
+
+**Source and navigation verification.** A full source reread covered all 1,582 lines measured by `wc -l`, followed by inspection of the complete Energy diff and all changed display formulas. After the final notation correction, `.tmp/crw005-energy-fixes/validate.mjs` passed its known extraction/parser/KaTeX cases and accepted 594 math expressions, 95 display equations, 95 viewer links with identical IDs and order to the pre-repair source, and 120 local-link occurrences whose file targets exist. Eight display formulas changed and 87 remain byte-identical under the canonical display parser. The raw-source diff was also inspected because that parser strips Markdown quote prefixes and does not alone preserve every standalone inequality token. The eight changes are the signed power, work relation, entropy integration interval, assembly history term, signed trace condition, and three appendix history-account formulas. The action-table corrections also change inline mathematics and table entries; the display count is not a count of all substantive changes.
+
+The known-case-first fragment/order screen `.tmp/crw005-energy-review/check-links-order.mjs` resolved all 13 Markdown section-fragment occurrences against current headings or explicit IDs and confirmed that Entropy follows Energy. This is source-level navigation validation, not a browser test. `node scripts/validate-equation-mapping-links.mjs` passed its 23 registered curated links; the scoped validator supplies the separate 95-ID Energy assurance. The bibliography retains the original review's source-verification limits; no new historical source is presented as a derivation of the delayed theory.
+
+**Generated consumers and publication handoff.** Before editing, exact-path and baseline-hash `rg` searches under `scripts/`, `tests/`, this review lane, `content/generated/`, and `content/graph/` identified Energy consumers in the graph/TOC, generated reading copies and source/reference indexes, equation registry, source-index fixture, and foundational-impact configuration. This is a scoped consumer inventory, not a claim that each is a byte pin. Authored Energy was edited; generated consumers and historical evidence were not manually rewritten. `node scripts/build-equation-mapping-corpus.mjs --check` returned stale `content/generated/equation-mapping/corpus-equations.json` for its 199-file scan. The publication procedure's required refresh is `node scripts/build-equation-mapping-corpus.mjs --write`, followed by the same `--check`; it was not run during this edit batch. This whole-corpus check does not attribute every registry difference to Energy.
+
+The integrated Energy source has SHA-256 `2ad8fd5d5b6093b494575ad671dfbc0b835fbe0e3cc321e56a59632a3a0fef00` by `shasum -a 256`. The original review and accepted scope remain intact above. Current assurance coverage remains 16 of 190 reviewed, with 174 remaining in the disposition inventory; this repair adds no newly reviewed chapter. Both Master Equation's previously accepted repairs and Energy's E-1 through E-15 now have implementation receipts. The next unread Dynamics document is Entropy under the one-document instruction. The substantive Foundations campaign and manuscript retain their separate scope.
+
+### CRW-005 Packet 2 document 3 — Entropy assurance review, 2026-09-10
+
+**Disposition: complete review; 14 corrections proposed, not applied.** The operator's “do 1” selected the recommended [Entropy](../../../content/markdown/aaa/dynamics/entropy.md) review after the Energy corrections. This pass read the entire 1,013-line chapter and the complete pre-campaign-to-current diff. Line references below identify the reviewed source. No corpus chapter or manuscript was edited. This is a semantic review by the current reviewer; independent references consist of the explicit finite examples, calculus, and identified primary-source passages, not a separate reviewing agent or EOM solver run.
+
+By `shasum -a 256`, the reviewed source is `39f4fe93b8627e91e51d8e8163b352f83b229e894dab65c204ca2098405cfb5d`; the pre-campaign source `897fe1aa7:content/markdown/aaa/dynamics/entropy.md` is `d54e64350554d26a3f1dcc5bb49f4f35ae9ffc5be90ac1ee2c787ced73e213a1`. The current Energy dependency is `2ad8fd5d5b6093b494575ad671dfbc0b835fbe0e3cc321e56a59632a3a0fef00`. The TOC traversal places Entropy third in Dynamics, after Energy and before Binary Dynamics.
+
+The chapter correctly keeps entropy, temperature, horizon thermodynamics, and quantum state descriptions out of primitive ontology. It also correctly distinguishes relative-entropy data processing from entropy growth, makes delayed-flow measure preservation a separate obligation, and rejects a universal measurement-locking cost. Its main unresolved problem is mathematical: several different entropy functionals are subsequently treated as one quantity. Five high-priority findings affect definitions, a balance sign, a product count, available work, and the inherited mass criterion. Nine medium-priority findings concern missing assumptions, scope, and operational definitions. All ENT-1 through ENT-14 are **○ Proposed** pending adjudication; an open physical recovery target by itself is not counted as a defect.
+
+#### ENT-1 — High: record entropy and hidden-history entropy are different quantities
+
+**Location:** lines 9–19, 61–92, 116–146, 192–207, 483–487, 625, and 775. **Type:** incompatible definitions and refinement interpretations, inherited in substance.
+
+For a discrete history variable $X$ and deterministic record $Z=\Pi(X)$, the definition at lines 63–66 is $k_BH(Z)$: uncertainty about which retained record occurs. The opening explanation and receiver-inference formula instead concern $k_BH(X\mid Z=z)$, or its average $k_BH(X\mid Z)$. The Boltzmann expression counts the compatible histories of one observed macrostate. These quantities are not equivalent. Take four equiprobable histories. A constant record has $H(Z)=0$ but conditional hidden-history entropy $H(X\mid Z)=\log4$. An exact record has $H(Z)=\log4$ but $H(X\mid Z)=0$. Refinement moves the two quantities in opposite directions. The finite identity is $H(X)=H(Z)+H(X\mid Z)$. For uniform counting within each fiber, $H(X\mid Z=z)=\log|\Pi^{-1}(z)|$; that uniformity is an additional condition, not a property of pushforward.
+
+The chapter's continuous reference measure and conditional-singleton caveats are useful, but do not resolve this discrete contradiction. Nor does a realized universe history and a record partition select a unique ignorance measure; the preparation model must still supply the weights. An invariant constant on each fiber can vary between fibers and contribute to $H(Z)$, contrary to the universal entropy-relevance rule at line 92.
+
+**Smallest repair:** define record-outcome entropy, conditional inference entropy, and Boltzmann log-volume separately; identify which one each later formula uses. Keep the valid KL data-processing result. Use the four-history example to explain conditioning and the opposite refinement directions. Thermodynamic identification then requires the relevant physical reduction. **Grade:** derived finite counterexample. **Falsifier:** a fully specified conditioning convention making every occurrence consistent with these identities would close the finding; changing only the prose label would not.
+
+#### ENT-2 — High: the second-law formula adds the chart-change correction twice
+
+**Location:** lines 629–649 and 705–721. **Type:** sign/double-accounting error, inherited.
+
+The local balance defines the measured entropy change to contain $+\mathcal R_{\mathcal Q}$, where that term accounts for a change of record map. The later purported total then adds $+\int\mathcal R_{\mathcal Q}\,dT$ to the already measured inside change. With no physical evolution, flux, or production, refine a fair-bit record from a constant label to an exact label. Its record entropy changes by $k_B\log2$, entirely accounted for by the chart term. The later formula reports $2k_B\log2$ rather than zero physical production. Under the earlier sign convention, subtract the map-change term to remove its contribution from the observed change. For both inside and environment chart changes, both corrections must be treated consistently.
+
+Line 721 also says that an irreversible comparison has a positive residual. Physical entropy production can be positive on a fixed exact chart with zero record-change residual, so these terms cannot share that interpretation.
+
+**Smallest repair:** derive the total diagnostic from the integrated balance, state whether it measures observed entropy change or physical production, and give the chart correction one consistent sign. Keep physical production separate from map changes and numerical errors. **Grade:** derived from the displayed definitions. **Falsifier:** an alternative explicitly defined residual with the opposite sign in the first balance would change the conclusion, but would require changing that balance too.
+
+#### ENT-3 — High: horizon patch counts do not factor without compatibility assumptions
+
+**Location:** lines 531–579 and 893–971. **Type:** unjustified exact factorization and incomplete entropy identification.
+
+The final horizon formula sets the globally admissible label count equal to the product of the locally admissible counts. With two patches each allowing labels $0,1$, but a shared-history condition requiring equal labels, there are only two global assignments, $(0,0)$ and $(1,1)$, while the product is four. In general, the global set is a subset of the Cartesian product. Equality requires that every local combination be globally compatible. That is different from statistical independence of probabilities, which is also needed if entropy is to be added as marginal entropies.
+
+The preceding finite-edge capacity bound is sound only when distinct assignments being counted are distinguished by the finite edge-label tuple. Uncounted internal multiplicity cannot be bounded by that tuple. Even when this holds, a finite capacity gives an entropy upper bound, not an attained entropy. For the two compatible assignments, probabilities $(0.9,0.1)$ give $H=0.325083$, below $\log2=0.693147$. With many binary edges constrained to one common label, capacity per edge and edge density may remain finite while total entropy stays $k_B\log2$; an upper bound of area order does not establish a nonzero area-law coefficient.
+
+**Smallest repair:** define the global compatibility set; use the product as an upper bound unless factorization is proved. Distinguish log-capacity from the entropy of a declared measure and state the additional condition for a positive limiting entropy density. Keep terminal alignment and the proposed surviving labels at their actual hypothesis level, rather than treating them as an exhaustive derived microstate classification. **Grade:** derived counting counterexample; inferred missing physical construction. **Falsifier:** a global compatibility theorem, an entropy measure, and the required limiting density would discharge the corresponding parts. The exact final product predates the conversion; the finite-alphabet bound was added during it.
+
+#### ENT-4 — High: increased exposure is not net extractable work
+
+**Location:** lines 274–345. **Type:** objective mismatch and unjustified additivity, inherited.
+
+The operational definition maximizes net energy delivered to a weight. The later de-shielding term instead maximizes gross positive changes of exposure times a fixed internal energy. It omits control work, reset cost, heat, changes of the internal account, and the final-state requirement. In a normalized comparison with $c_f=1$, releasing one energy unit at a control cost of two gives net work $-1$, while the exposure formula gives $+1$. This logical countermodel does not assume that such a physical de-shielding process exists.
+
+The displayed sum of exposed and de-shielding availabilities also need not equal the joint optimum. If the only allowed controls produce contributions $(1,0)$ or $(0,1)$, the joint supremum is one, while the sum of separate suprema is two. For an empty control class the displayed supremum needs an explicit convention; it is not automatically a zero resource. Calling the expression schematic does not justify interpreting it as the operational quantity already defined.
+
+**Smallest repair:** retain gross exposed energy as a candidate diagnostic, and calculate actual availability through the existing net-work optimization on one admissible process. State the assumptions under which the terms can be added. Before using the free-energy work bound at lines 288–300, name the physical thermodynamic entropy, bath, first/second-law comparison, and allowed work/control channels; an arbitrary record entropy does not acquire that bound by definition. **Grade:** derived counterexamples to the identification; inferred missing thermodynamic reduction. **Falsifier:** a cost-complete process and separability result equating the gross proxy with the joint net optimum would close the issue.
+
+#### ENT-5 — High: the mass-window criterion repeats Energy's corrected error
+
+**Location:** lines 347–360. **Type:** necessary/sufficient-condition reversal and current cross-chapter inconsistency, inherited.
+
+Write the proposed scalar-trace bracket as $B+C$, with $B=\zeta_{\mathrm{probe}}(1+\delta\mathcal M_0)$ and signed $C=\mathcal Z_{\mathrm{tf},ab}\delta\mathcal M_{\mathrm{tf}}^{ab}/3$. With positive prefactor, positivity requires $B+C>0$. The chapter imposes the stronger $B>|C|$ and says failure has not supplied a positive scalar-mass reservoir. Energy now explicitly corrects this inference. Its algebraic example has $B=1$, $C=1.62$, and positive trace bracket $2.62$, while failing $1>1.62$.
+
+**Smallest repair:** propagate the signed criterion and sufficient-bound distinction from Energy. Name the quantity as the scalar trace of a proposed assembly inertial-response tensor, not derived physical mass. Positive trace is neither positive directional response nor evidence of extractable work; dissociation can be an allowed process if the declared control/final-state class permits it. **Grade:** derived algebra and measured inconsistency by comparison with current Energy. **Falsifier:** a stated additional physical constraint making this sufficient bound necessary on the particular reservoir family would require its own derivation. The mass mechanism and any relation to gravitational mass remain open.
+
+#### ENT-6 — Medium: equal hit records do not imply measure-preserving involutions
+
+**Location:** lines 165–207. **Type:** unsupported promotion of a local inference equivalence, inherited.
+
+The cited Master Equation passage describes ambiguity in one received hit and a stationary surrogate as an inference device. It does not construct a map on full admissible histories, show that applying it twice returns the original history, or establish preservation of the preparation measure. Two histories with the same retained hit and probabilities $0.9$ and $0.1$ already disprove the implication from record invariance to measure preservation under their swap. The swap is an involution, but sends the measure to $(0.1,0.9)$. A stationary surrogate can additionally discard transmitter motion, so involutivity is not automatic even as a local recast.
+
+**Smallest repair:** keep the local observational ambiguity; require separate full-history admissibility, bijectivity/involutivity, and measure-invariance hypotheses before making the stronger statement. A computable multiplicity also requires the declared measure or finite counting construction. **Grade:** derived nonimplication and live dependency check. **Falsifier:** an explicit history-space transformation with all three properties would justify the stronger claim.
+
+#### ENT-7 — Medium: a general record entropy has no automatic additive spatial balance
+
+**Location:** lines 386–400, 627–649, and 705–721. **Type:** missing local thermodynamic reduction and correlation terms, inherited.
+
+For correlated discrete records, $H(A,B)=H(A)+H(B)-I(A;B)$, where $I$ is their mutual information. The inside-plus-environment sum therefore need not be the joint entropy. A reversible binary permutation that maps $(A,B)=(X,0)$ to $(X,X)$ for a fair bit $X$ preserves joint entropy $\log2$, but increases the sum of marginal entropies from $\log2$ to $2\log2$. The difference is correlation, not demonstrated irreversible production.
+
+A general history or access-cut entropy likewise does not automatically have an additive local density $s_{\mathcal Q}$ with a local entropy current. The moving-boundary correction in the displayed balance is mathematically appropriate once such a density and balance have been established. It does not establish that reduction for every entropy introduced in the chapter. The local organization row's $\Delta S_{\mathrm{inside}}\le0$ is one process class, not a definition of all organized systems; a maintained steady state may have zero change while continually producing and exporting entropy.
+
+**Smallest repair:** restrict the density/current and additive thermodynamic balances to an explicitly justified coarse local regime, or retain correlation/information-flow terms in the general record account. Identify the entropy used before invoking the second-law inequality. **Grade:** derived finite correlation example; inferred missing reduction. **Falsifier:** an applicable additive-entropy construction or controlled bound on the omitted correlations would discharge the issue.
+
+#### ENT-8 — Medium: escaping distinctions do not determine the sign or amount of entropy change
+
+**Location:** lines 671–689 and 773–775. **Type:** underdefined theorem target tied to the wrong entropy functional, inherited.
+
+The wake-escapement set classifies causal intersections. It does not assign probabilities, entropy weights, or independence to distinctions, so counting escaping roots cannot by itself yield an entropy rate. Losing access to a fair bit reduces the retained outcome entropy from $\log2$ to zero while increasing hidden conditional uncertainty by $\log2$. A hundred duplicate records of the same bit still carry at most one bit of new information. At the thermodynamic level, outward positive entropy transport enters the window balance with a minus sign; it is not automatically positive internal production.
+
+**Smallest repair:** state which entropy the arrow target concerns after ENT-1, define a measure-weighted information-loss or entropy-transfer functional, and derive its relation to the earlier signed flux balance. Keep the common-boundary-functional hypothesis and its existing falsifier, but do not identify its distinct projections or signs by analogy. **Grade:** derived counterexamples to the automatic sign/count interpretation; guessed physical mechanism remains open. **Falsifier:** a construction yielding the stated equality for the chosen entropy on the declared history class would close the target.
+
+#### ENT-9 — Medium: the complexity score does not imply a stability criterion
+
+**Location:** lines 404–421. **Type:** undefined normalization and unsupported dynamical inference, inherited.
+
+For normalized quantities $x=S^{\mathrm{incoh}}/S^{\max}$ and $y=S^{\mathrm{coh}}/S^{\max}$, the score is $x(1-y)$. On the square $0\le x,y\le1$ it peaks at the corner $(1,0)$. The formula contains no acceleration balance, recurrence, perturbation dynamics, or stability spectrum. Without an admissible-state relation between $x$ and $y$, a fixed finite positive maximum entropy, and a definition of the coherent/incoherent probability spaces, it does not supply a stability criterion or an intrinsic measure of structural complexity. Enlarging an unrelated noisy background can change the score without changing the core's dynamics.
+
+**Smallest repair:** define the distributions, constraints, and normalization; label the association of stable assemblies with ridges as a guessed diagnostic hypothesis, with stability determined independently from actual retained trajectories. Remove the implied derivation conveyed by “therefore.” **Grade:** derived properties of the score; inferred missing dynamical bridge. **Falsifier:** a proved relation between the score and an independent stability result on a specified assembly family would support stronger wording.
+
+#### ENT-10 — Medium: cross-entropy is an ideal coding cost, not every actual mean code length
+
+**Location:** lines 591–613. **Type:** exact-versus-ideal coding identification, inherited.
+
+For $P=Q=(0.9,0.1)$, the displayed cross-entropy is approximately $0.468996$ bits per symbol. Any binary prefix code for two symbols uses at least one bit per symbol. Thus this value is not the exact length of a one-symbol implemented prefix code. It is the expected ideal logarithmic loss; block/arithmetic coding can approach the rate under declared assumptions and overhead. The mathematical identity $H_2(P,Q)=H_2(P)+D_{\mathrm{KL}}(P\|Q)/\log2$ is valid when the support conditions hold.
+
+**Smallest repair:** call it expected ideal code length or log-loss, and state the coding limit/overhead needed for physical implementation. Specify infinite loss when $q_i=0<p_i$. Preserve the preceding valid prefix-code lower bound. **Grade:** derived binary counterexample. **Falsifier:** an explicitly ideal fractional-length convention would make the formula exact for that convention, while still requiring a separate physical code interpretation.
+
+#### ENT-11 — Medium: reset error and side information need a defined entropy correction
+
+**Location:** lines 869–883. **Type:** incomplete Landauer comparison contract; the environment-side correction is an improvement over the baseline.
+
+The leading reset bound is appropriate for an uncorrelated, fully erased memory under the declared thermal comparison. The unspecified “measure/readout tolerance” is not automatically an additive entropy tolerance. If a binary reset ends in probabilities $(0.9,0.1)$, its residual entropy is $h(0.1)=-0.1\log0.1-0.9\log0.9=0.325083$, not its error probability $0.1$. Under the simple thermal entropy-balance assumptions, the erased entropy is $\log2-h(0.1)$, rather than $\log2-0.1$. For more states, the relation also depends on alphabet size and the failure distribution.
+
+Accessible side information can change the entropy actually erased. A perfect retained copy of a classical bit permits a reversible controlled reset of that bit while consuming their correlation; resetting the copy later restores the full-cycle cost. This does not violate the ordinary uncorrelated reset bound. The quantum comparison literature also treats the conditioning explicitly, as in [del Rio et al., The thermodynamic meaning of negative entropy](https://arxiv.org/abs/1009.1630); its abstract was inspected only for that scope, not used as a substrate premise.
+
+**Smallest repair:** define $\varepsilon_\mu$ as a proved entropy deficit or replace it with initial-minus-final entropy under a stated error model. State the initial correlation, usable side-information, and eventual reset conventions. **Grade:** derived finite entropy arithmetic; effective thermodynamic comparison. **Falsifier:** a previously declared entropy-error bound and uncorrelated protocol matching this notation would discharge the issue.
+
+#### ENT-12 — Medium: a cyclic device need not return its environment to its initial state
+
+**Location:** line 885. **Type:** overly restrictive cycle boundary, inherited.
+
+The paragraph requires the memory, apparatus, target, and boundary environment all to return to the same physical record. Cyclic device operation normally restores the designated working device; reservoirs, processed targets, and work stores can change. Here the previous reset inequality explicitly requires entropy export. Returning that same environment to its exact initial record would erase the stated export and impose a stronger global cycle. Such a stronger cycle can be studied, but it is not the definition of every cyclic demon or engine.
+
+**Smallest repair:** identify which apparatus variables are cyclic and which external variables carry heat, entropy, work, or processed outputs. State that a full return of all those resources is a separate condition. **Grade:** derived inconsistency between the reset export and the proposed universal return requirement; effective comparison. **Falsifier:** explicitly restricting the paragraph to a closed global cycle, rather than all cyclic apparatus operation, would remove the overreach.
+
+#### ENT-13 — Medium: quasi-invariance alone does not conserve fine-grained entropy
+
+**Location:** lines 150–161, with the stronger condition correctly stated at line 798. **Type:** missing measure-change qualification, inherited.
+
+A quasi-invariant reference measure preserves null sets under an invertible transformation; it need not preserve volumes or differential entropy. For $Y=2X$ with $X$ uniform on $[0,1]$, Lebesgue measure is quasi-invariant on the ambient real line, but differential entropy relative to that fixed reference rises from zero to $\log2$. The change is the mean logarithm of the Jacobian. A transported reference can yield an invariant relative functional, but then the reference is changing and must be named. The phrase “suitably quasi-invariant” does not specify this correction.
+
+**Smallest repair:** require the relevant invariant reference and invertibility for the conservation statement, or state the Radon–Nikodym/Jacobian correction and transported-reference convention explicitly. Preserve the existing warning that determinism supplies no delayed Liouville theorem. **Grade:** derived change-of-variables example and inferred underspecification. **Falsifier:** explicit conditions making the correction vanish, or an explicitly transported reference, would discharge the gap.
+
+#### ENT-14 — Medium: several diagnostic domains and teaching definitions remain missing
+
+**Location:** lines 27–37, 94–114, 165–211, 243–266, 489–507, 719, 804–839, and 906–947. **Type:** operational/notation omissions, not a request for decorative explanation.
+
+The chapter needs a local explanation of a causal root before its receiver record, of pushforward and conditional measure at their first load-bearing use, and of the divergence in the data-processing comparison. The preparation fiber in the basin-weight formula must be placed in the same time-indexed domain as $\mu_T$ and the inverse flow. The ratio requires positive finite conditioning mass and a basin partition covering the admitted outcomes. The Boltzmann-brain ratio likewise needs a nonzero finite denominator or an explicit undefined/infinite result, and the wake-concordance fraction needs a rule for a record with zero retained incoming roots. A fluctuation tolerance intended as a statistical guarantee needs a measure, confidence/failure probability, and tested regime; it cannot be a universal deterministic cap on entropy decreases merely because it is named.
+
+The horizon section uses $T_U^{(O)}$, $\delta_\ell$, and $\epsilon_{\mathrm{local}}$ without adequate local definitions. Its coefficient has units of inverse area, so $\ell_{\mathrm{eff}}$ must be a length scale whose square is an area, rather than an “area scale” as written at line 936. The temperature derivative also needs its admissible state variables and fixed sea/control parameters specified when those variables independently affect entropy. The provenance graph must say whether its edges are known from retained tags, conditioned on one candidate history, or uncertain across compatible histories; hidden transmitter identity does not define one observed graph automatically.
+
+**Smallest repair:** define these objects in place, give each ratio its admissible domain and undefined case, and add a compact worked record/fiber example. Preserve sophisticated mathematics where it is actually constructed; do not substitute unexplained words such as cut space or boundary operator for the missing map from labels to entropy. **Grade:** inferred conformance findings against the live edition-1.1 teaching standard and the written formulas. **Falsifier:** an existing local definition that resolves a specific listed omission would remove that subitem. Diagram or table layout is optional; the definitions are not.
+
+#### Preservation, source support, and verification
+
+The pre-campaign diff contains scientifically helpful changes beyond style: a proper counting reference replaces a normalized probability inside the Boltzmann logarithm; temperature is separated from absolute time in two formulas; apparatus locking becomes conditional; the reset bound is moved to the environmental account; a success-probability-only computation-cost equation is removed; the horizon coefficient acquires its area normalization; and several unsupported cosmology, purity, recurrence, and measure-suppression assertions are weakened to their defensible levels. These improvements should not be reverted to satisfy character-for-character preservation. They also mean the historical conversion cannot be certified as preserving all equations and claim grades exactly. The cosmological exponent changed with its comparison budget; it remains a rough sensitivity illustration, not a derived probability or a justified identification of that horizon with every possible $S_{\max}$.
+
+The scoped validator first passed known math/link/KaTeX extraction fixtures. Its initial strict viewer-ID equality assertion correctly failed: although both versions contain 54 display equations, the current source adds the finite-edge capacity bound `corpus-equation-fb24ad351d46fbe8` and removes the unjustified computation-cost equation `corpus-equation-b97fdcb000af71bb`. The comparison was then changed to align surviving equations by their viewer IDs; a known added/reordered-ID fixture passed before target alignment. The final report accepts 253 math expressions under vendored KaTeX, finds 54 display equations and 54 viewer links, and confirms 70 local-link file occurrences. Of 53 surviving IDs, 47 displayed formulas remain identical and six change; surviving IDs retain their relative order. The full raw-source diff was inspected as well, since the canonical display parser strips Markdown quote prefixes and does not by itself certify every standalone inequality token.
+
+The six changed surviving displays are the Boltzmann count, two temperature-symbol corrections, the cosmological exponential scale, the environment-side reset bound, and the horizon area normalization. The finite-edge bound is a seventh mathematical addition and the computation-cost row a deletion. The known-case-first fragment/order checker resolves all 11 chapter links containing Markdown section fragments against current headings or explicit IDs. `node scripts/validate-equation-mapping-links.mjs` passes its 23 registered curated links; it is not an independent check of all 54 Entropy viewer IDs. No browser navigation or visual layout audit is claimed.
+
+The unchanged reviewed source is the target of `.tmp/crw005-entropy-review/mathematical-checks.mjs`, whose entropy helper first returned zero for a singleton and $\log2$ for a fair bit, and whose equality checker passed positive/negative fixtures before the review examples. It reproduced the four-history distinction, double-added chart term, compatible patch count, positive trace, gross-versus-net work, nonadditive optimizations, correlated marginal entropies, unequal-weight recast, binary coding gap, reset-error entropy, and quasi-invariant rescaling examples above. These finite constructions are independently checkable algebraic counterexamples; none claims an admissible physical assembly, a constitutive response, or an EOM solver result. All newly instantiated numerical comparisons use $c_f=1$.
+
+Primary-source checks were bounded to claims used in this review. [Shannon's original paper, accessible reprint](https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf), particularly its conditional/joint-entropy discussion and noiseless coding theorem, supports the distinctions used here. The [Egan–Lineweaver abstract](https://arxiv.org/abs/0909.3983) supports the quoted orders of magnitude and black-hole dominance of its observable-universe estimate. The publisher abstracts for [Gibbons–Hawking](https://doi.org/10.1103/PhysRevD.15.2738), [Bekenstein](https://doi.org/10.1103/PhysRevD.7.2333), and [Hawking](https://doi.org/10.1007/BF02345020) support their historical horizon/thermodynamic roles; full-paper theorem verification is not claimed. The Kullback–Leibler DOI could not be retrieved by the browser, and the Landauer DOI returned an anti-bot page, so neither full source was certified. These access limits are not evidence that the underlying citations are wrong. The finite proofs above do not depend on inaccessible text, and no new source-mining campaign or compulsory bibliography expansion is proposed.
+
+**Current campaign state:** Packet 1 contributes 14 reviewed paths; Packet 2 now contains Master Equation, Energy, and Entropy, giving 17 of 190 reviewed and 173 remaining in the CRW-005 disposition inventory. Master Equation and Energy retain their accepted implementation receipts. Entropy has 14 proposed findings awaiting adjudication. The next unread Dynamics document is Binary Dynamics, under the one-document instruction; the Foundations campaign and manuscript remain separately scoped. A changed target hash, failed example, or resolving local definition would overturn the corresponding measured or inferred finding and requires re-adjudication.
+
+### CRW-005 Entropy ENT-1 through ENT-14 — accepted integration, 2026-09-10
+
+The operator's “do 1 and then do the next document” authorizes all 14 Entropy corrections followed by a review-only pass of Binary Dynamics. All ENT-1 through ENT-14 are **✓ Accepted and implemented** in [Entropy](../../../content/markdown/aaa/dynamics/entropy.md). This receipt supersedes their proposed status above without changing the historical review. It does not close the physical entropy, mass, horizon, or singular-event derivations.
+
+| Finding | Implemented correction |
+| --- | --- |
+| ENT-1 | Separated record-outcome entropy, conditional inference entropy, Boltzmann log-volume, and thermodynamic identification; supplied the four-history example and opposite refinement directions. |
+| ENT-2 | Subtracted both inside and environment map-change contributions from their observed changes; kept physical production distinct. |
+| ENT-3 | Defined globally compatible assignments, conditional weights, finite-edge injection, capacity bounds, and the extra positive-density requirement for an area law. |
+| ENT-4 | Replaced the claimed additive availability with a gross-exposure proxy; routed actual extraction through cost-complete net work and final-state constraints; defined no-extraction and infeasible cases. |
+| ENT-5 | Propagated Energy's exact signed trace condition with its actual positive prefactor, distinguished the sufficient absolute-value bound, and retained the open assembly-mass mechanism. |
+| ENT-6 | Separated equal local hit records from admissible, involutive, measure-preserving transformations of complete histories. |
+| ENT-7 | Restricted local density/current balances to a justified additive thermodynamic regime and supplied the mutual-information correction for correlated records. |
+| ENT-8 | Defined information lost under a specified record coarsening and measure; separated its sign from outcome entropy and outward thermodynamic flux. |
+| ENT-9 | Defined finite record alphabets and fixed normalization; kept the complexity/stability association at guessed grade with an independent stability test. |
+| ENT-10 | Distinguished ideal logarithmic coding cost from implemented prefix lengths, including support and overhead conditions. |
+| ENT-11 | Defined the reset correction as residual entropy under an error model and retained correlation/side-information accounting. |
+| ENT-12 | Distinguished a device cycle from restoring its bath, targets, and work store. |
+| ENT-13 | Required an invariant reference or explicit measure-change correction for fine-grained conservation. |
+| ENT-14 | Defined conditioning, pushforward, causal roots, divergence, graph provenance, ratio domains, temperature controls, statistical confidence, and horizon variation/length conventions in place. |
+
+**Editorial closure:** the complete revised 993-line source was reread, including unchanged sections. That reread additionally clarified the minimum entropy specification, removed the remaining claim that all quantities factor through one fiber, and aligned the heat-death passage with the fixed-reference distinction. This is editorial self-review, not a second agent's review. By `shasum -a 256`, the pre-edit source is `39f4fe93b8627e91e51d8e8163b352f83b229e894dab65c204ca2098405cfb5d` and the revised source is `bf462293a13b9c9b26376454361be6b146155dfcd1c46e08415adb9e66395f2c`.
+
+**Verification:** the scoped `.tmp/crw005-entropy-fixes/validate.mjs` passes its known extraction and alignment fixtures before checking the target; its final output is retained in `final-validation.txt` in that scratch directory. It confirms all 54 display equations and 54 viewer IDs remain in order, with 10 intentional formula changes and no added or removed IDs, and verifies 70 local-file link occurrences. The known-case-first fragment checker resolves all 11 Markdown section-link occurrences. Vendored KaTeX accepts all 306 extracted expressions in the final source; an intermediate missing-brace error was corrected before the passing final run. `node scripts/validate-equation-mapping-links.mjs` passes its 23 registered curated links, which is not a check of all chapter viewer destinations. Scoped `git diff --check` passes. No visual layout or browser-navigation certification is claimed.
+
+The unchanged `.tmp/crw005-entropy-review/mathematical-checks.mjs` was rerun as a separate finite mathematical reference. Its singleton/fair-bit fixtures pass before the four-history, chart, compatibility, signed-mass, net-work, correlation, coding, reset, and reference-rescaling examples. The repaired definitions and signs were checked against those constructions; no reference formulas were modified to agree with the edits. The examples establish the stated algebra, not a realized assembly or EOM evolution. Every new numerical instantiation uses $c_f=1$. Source-verification boundaries remain those recorded in the Entropy review; no bibliography expansion was needed.
+
+All 14 corrections are closed at the document-integration level. The physical reduction of entropy, candidate mass map, positive horizon entropy density, and unified wake-boundary mechanism remain explicitly open in the chapter. Existing conversion history and evidence bytes were preserved. The source changed without generated writes; equation-map regeneration belongs to the final publication procedure, using `node scripts/build-equation-mapping-corpus.mjs --write` when that procedure is invoked.
+
+### CRW-005 Packet 2 document 4 — Binary Dynamics assurance review, 2026-09-10
+
+**Scope:** complete review-only reading of all 2,318 lines of [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), its changed source lines and displayed-equation comparison against pre-campaign `897fe1aa7`, and relevant current Master Equation/Energy definitions. No Binary Dynamics edits were made. The textbook TOC traversal places it after Entropy and before Causal Action Functional. The reviewed SHA-256 is `afeae578058591cb6feba913d039c5b48df9bfd55beb250608ecb225962148a2`; the historical source hash is `95d068269ae12c29d10633838f5a43434c025d7da15feeab1d16023854bb3c57`, measured with `shasum -a 256`.
+
+The chapter's separation of prescribed circular balance from stable retained dynamics is sound and must be preserved. Its full-angle self-root equations, principal partner certificate, collision-free winding lemma, and first reported full-ledger circular balance remain useful. This review finds **18 actionable issues: nine high and nine medium**. All BD-1 through BD-18 are **○ Proposed**, awaiting operator adjudication. Existing open MCB or mass derivations are not themselves counted as defects; the findings concern inconsistent formulas or claims that exceed their stated assumptions.
+
+#### BD-1 — High: boundary energy bookkeeping cannot replace pointwise tangential acceleration balance
+
+**Location:** lines 560–572, 911–961, 1003–1054, 1584–1627, and 1820–1859. **Type:** kinematic contradiction, inherited.
+
+A prescribed constant-speed circle has $\mathbf V=s\hat{\mathbf e}_t$ and $\mathbf A=-(s^2/R)\hat{\mathbf e}_r$, hence $A_{\mathrm{tan}}(T)=0$ at every time. A positive sum of canonical tangential accelerations changes the speed regardless of which wake account receives the compensating energy. The principal-partner passage offers wake flux as an alternative to the zero sum; the circular requirements then omit pointwise tangential balance and add a boundary acceleration to the normative balance residual without adding that acceleration to the EOM. Those are incompatible equations for one trajectory. A period average is sufficient on the exactly symmetric stationary circular chart only because the component is constant; it is not sufficient for a deformed periodic history. An oscillating speed can have zero mean tangential acceleration.
+
+The quadratic power row also changes a sum over both members into one $\mu_{\mathrm{arch}}s_b\langle A^{\mathrm{tan}}\rangle$ without declaring that the last acceleration is the sum; for identical per-member components the total is twice the single-member value.
+
+**Smallest repair:** require the total actual acceleration to satisfy the radial and tangential kinematics pointwise; keep energy and boundary closure as additional conditions. If a boundary interaction supplies acceleration, derive it and include the same term in the EOM and power sum. Define per-member versus summed normalization. **Grade:** derived directly from differentiating the circular ansatz. **Falsifier:** a consistent acceleration term already included in the same EOM, or a nonuniform-speed scope explicitly replacing the circular claim, would resolve the relevant subclaim.
+
+#### BD-2 — High: surface smoothing leaves the zero-delay self singularity and makes the stated self-inclusive theorem inapplicable
+
+**Location:** lines 2033–2113. **Type:** singular kernel and empty self-channel admissibility condition, inherited despite an improved finite-width theorem.
+
+Definition 3 sums over $j=i$ and integrates to $\theta=0$, where the self separation is exactly zero. A positive separation floor on every $\theta\in[-h,0]$ cannot hold for that channel. Excluding the single endpoint does not supply a positive infimum for a continuous self history. For a smooth nonzero-speed segment, separation scales as $|\theta|$ and the inverse-square vector amplitude as $|\theta|^{-2}$. A usual smooth mollifier positive near zero does not remove that nonintegrable behavior. The canonical exclusion of the zero-delay self root therefore does not automatically pass through to this smeared integral.
+
+**Smallest repair:** state an explicit admissible self-support/early-time exclusion or independently declared core regularization and its sharp-limit scope; otherwise restrict the theorem to channels with a genuine separation floor and say that it supplies no self-inclusive binary well-posedness result. The current Master Equation distinguishes singular-event controls and auxiliary core regularization; a surface mollifier alone is not a coincidence law. **Grade:** derived endpoint and local asymptotic counterexample. **Falsifier:** an explicit kernel-support prescription making the integral finite and satisfying the stated floor would discharge the issue.
+
+#### BD-3 — High: the proposed impulse history space excludes the advertised limits
+
+**Location:** lines 1979–1993 and 2047–2049. **Type:** wrong functional space for finite impulses; the conversion extended the older position-only space to include velocity.
+
+The chapter chooses $\mathcal H_*=W^{1,\infty}([-h,0];(X,V))$ and calls it the home for finite-impulse limits with velocity jumps. Both $X$ and $V$ are Lipschitz in that space; $V$ cannot jump and its derivative must be essentially bounded. Even an ordinary integrable fold can violate this requirement: $A(T)=T^{-1/2}$ on $T>0$ gives $V(T)=2\sqrt T$, bounded with finite impulse but not Lipschitz at zero. A nonzero delta impulse is still less regular. Bounded velocity and finite total impulse do not imply convergence in the stated norm.
+
+**Smallest repair:** distinguish smooth finite-$\eta$ histories from their limits; use an explicitly justified class such as absolutely continuous velocity for integrable accelerations or bounded-variation velocity with an event convention for jump impulses, while positions retain the corresponding integral regularity. State the convergence topology and one-sided history evaluations. **Grade:** derived counterexamples. **Falsifier:** a uniform acceleration bound and strong convergence excluding every advertised jump would justify $W^{1,\infty}$, but would narrow the claimed impulse class.
+
+#### BD-4 — High: an isolated circular normal does not define the claimed protected handedness label
+
+**Location:** lines 1134–1146. **Type:** explicit counterexample to the stated invariant, inherited.
+
+The normal $\hat{\mathbf n}=\hat{\mathbf r}\times\hat{\mathbf V}$ is an axial vector, not by itself a two-component chirality invariant of an isolated circle. Rotate the complete labeled history continuously through angle $a\in[0,\pi]$ about an axis in its plane. The endpoint normal is its negative. Every intermediate circle is nondegenerate; distances, transmitter order, causal-root times, and Jacobian dot products are preserved by the same proper spatial rotation. This is exactly the chapter's stated falsifier and is licensed by its later $O(3)$ covariance proof.
+
+**Smallest repair:** describe an oriented normal relative to a declared external or assembly frame. Retain a protected $\mathbb Z_2$ claim only after defining additional framing data and proving that the above rotation is excluded by the physical state class. **Grade:** derived rigid-rotation counterexample. **Falsifier:** additional physically retained framing that obstructs this deformation would change the problem; a drawing orientation alone would not.
+
+#### BD-5 — High: the signed labels undercount roots and confuse representation changes with births
+
+**Location:** lines 421–469, 619–724, 1158–1225, 1489–1569. **Type:** root-index and chart-domain errors, inherited.
+
+A root is not uniquely identified by $(m,\sigma)$: a fold produces two roots in the same signed window. At $s=3$, the complete partner census has three roots but only two distinct $(m,\sigma)$ pairs; at $s=4.65$, the self census has three roots but two pairs. The definitions of $N_s$ and $M_p$ therefore undercount. These counts were reproduced using the unchanged circular analyzer, with the sign/window mapping checked on known examples first.
+
+The principal self root continues smoothly through full delay angle $\pi$ at $s=\pi/2$, where $J=1$ and the total self count remains one. It changes signed representation; a new physical self root is not born there. Similarly a partner root crosses full delay $2\pi$ at $s=\pi$, with $J=1$. The domain $\alpha_p\in(0,\pi)$ excludes $\alpha_p=0$, although this is a nonzero-length diameter partner chord for older windings. The statement that the $m=0$, positive-sheet self representation exists for every $s>1$ conflicts with its restricted $\alpha_s\le\pi$ domain. The assertion that all higher delays are one common principal angle plus $2\pi m$ also hides the root-specific angles. Finally, decreasing a positive self-sheet angle toward zero sends its emission azimuth toward zero, not toward $-\pi$ as claimed.
+
+**Smallest repair:** enumerate roots by the full delay, or add a left/right-root index inside each signed window; handle shared endpoints once and distinguish a chart change from physical birth. Propagate this convention through the count formulas, speed ladder, and azimuth section. Preserve the later correct full-half-angle sign theorem. **Grade:** derived from the delay equations, with scoped numerical confirmation. **Falsifier:** a one-to-one root-label map covering the cited two-root windows and endpoints would resolve it.
+
+#### BD-6 — High: the averaged history Hessian has no established stability sign test
+
+**Location:** lines 1651–1700. **Type:** unsupported necessary condition and instability inference, inherited.
+
+The passage says negative averaged stiffness signals instability and positive stiffness is necessary, although its history potential may be only a diagnostic work reconstruction. Neither follows for general delayed or gyroscopic dynamics. For example, the two-dimensional comparison system $\ddot x+2\Omega J\dot x-a x=0$, with $J$ a quarter-turn matrix and $\Omega^2>a>0$, has negative potential Hessian $-aI$ but distinct purely imaginary characteristic roots and bounded linear motions. This is a mathematical counterexample to the proposed necessity, not an imported binary law. Conversely, for $\ddot x(T)+k x(T-\tau)=0$, the positive coefficient $k$ does not prevent delay instability: differentiating $\lambda^2+k e^{-\lambda\tau}=0$ at $\tau=0$ gives $d\lambda/d\tau=k/2>0$ at $\lambda=i\sqrt k$.
+
+**Smallest repair:** keep the Hessian as a diagnostic unless a restricted energy/variational theorem establishes its relation to the actual linearized history operator. Use the full return operator for the stability verdict. **Grade:** derived mathematical counterexamples and inferred missing bridge. **Falsifier:** a theorem for the declared binary chart proving the required relation would license the sign test within that scope.
+
+#### BD-7 — High: period rescaling is not automatically a neutral physical direction
+
+**Location:** lines 1662 and 1881. **Type:** unjustified mode removal from the stability operator, inherited.
+
+Time translation and spatial isometries are symmetries of the stated law; changing the period at fixed spatial shape is not. If $Y(T)=X(aT)$, the delayed chord condition rescales the history arguments while $c_f\Delta$ remains tied to absolute elapsed time. The old roots do not generally remain roots. A phase shift of a periodic solution yields the familiar neutral tangent; a period variation is an unknown in an augmented periodic-boundary problem and need not generate a second unit multiplier of the physical return map.
+
+**Smallest repair:** remove only neutral directions proved for the full retained dynamics. Distinguish an auxiliary period variable or numerical phase condition from a physical neutral mode; avoid removing phase and an overlapping rotation twice. **Grade:** derived failure of time-rescaling invariance and inferred spectral risk. **Falsifier:** an explicit second symmetry generator with unit multiplier in the physical return operator would justify its quotient.
+
+#### BD-8 — Medium: Conley-index persistence does not establish an attracting periodic orbit
+
+**Location:** lines 1085 and 1700. **Type:** incomplete topological stability bridge, inherited.
+
+An isolating neighborhood confines the invariant set, not every nearby forward trajectory. A persistent Conley index can describe a saddle; for instance, the fixed planar system $\dot x=x,\dot y=-y$ has an isolated hyperbolic saddle whose index persists under small parameter changes, while nearby trajectories escape along $x$. Index persistence alone proves neither attraction nor that the invariant set is one periodic orbit. At a singular $\eta\to0$ limit, failure of a chosen isolating neighborhood or index comparison does not by itself prove that no stable limit orbit exists elsewhere or under another valid continuation.
+
+**Smallest repair:** separate invariant-set persistence, periodic-orbit identification, and attraction. Supply the trapping/contraction or other dynamical argument appropriate to the claimed attractor, and specify the admissibility/compactness conditions for a history-space index. **Grade:** derived nonimplication via a hyperbolic saddle; inferred missing continuation conditions. **Falsifier:** an applicable theorem with the extra attraction and orbit-identification hypotheses would resolve it.
+
+#### BD-9 — High: small residuals and a spectral margin are not an existence theorem
+
+**Location:** lines 1746–1948. **Type:** numerical diagnostic promoted to mathematical certification, inherited.
+
+The final implication certifies a finite-$\eta$ binary from small nonzero EOM/period residuals, positive root floors, and a spectral radius below one at the candidate. A derivative evaluated away from an actual periodic solution is not yet a Floquet certificate. Small return defect and pointwise derivative below one are insufficient: the scalar flow $\dot y=\varepsilon(1+y^2)$ is strictly increasing and has no periodic orbit. At $y_0=-1$, period one, and $\varepsilon=10^{-4}$, its return defect is about $0.00019998$ and return derivative $0.99980004<1$. This checks the logical gap, not an AAA counterexample. The earlier proposed neighborhood self-map must itself be proved with the needed space, compactness or contraction assumptions; it is not included quantitatively in the final residual implication.
+
+The finite inactive-record complement also needs a covering proof: checking finitely many declared gaps does not exclude undeclared roots over the continuous delay interval. Literal $1+$ acceleration denominators require the stated nondimensional acceleration scale to be applied consistently.
+
+**Smallest repair:** label the tuple a numerical acceptance diagnostic, or add an actual a posteriori existence enclosure, nonlinear error bounds, complete root exclusion, and a verified spectral bound at the enclosed orbit. State the nondimensional norm/scales. **Grade:** derived counterexample to the residual inference and inferred missing certification hypotheses. **Falsifier:** a validated fixed-point or equivalent existence theorem satisfying those quantitative hypotheses would justify certification.
+
+#### BD-10 — Medium: generic interior folds do not describe all ledger changes
+
+**Location:** lines 1222–1254, 1569, 1785–1800, and 2009–2031. **Type:** missing unfolding and boundary hypotheses, inherited.
+
+The fold conditions omit transversality to the parameter: $F=F_{T_t}=0$ and $F_{T_tT_t}\ne0$ do not ensure a generic birth as $s$ varies without an appropriate nonzero unfolding derivative. For example, $F(t;s)=t^2+s^2$ meets the listed second-derivative condition at zero but does not produce a pair on either nearby side. Root entry at the finite-history boundary, the excluded coincident self endpoint, and the signed-representation changes in BD-5 are not generic interior folds. A retained signed degree can change at a history boundary. The delay-map lemma also needs an interior root $0<\Delta^*<h$; a root at $h$ can leave the domain after an arbitrarily small perturbation.
+
+**Smallest repair:** state the generic interior-fold and parameter-unfolding assumptions, preserve the $\Delta N=\pm2,\Delta D=0$ result only there, and separately account for endpoint, memory-boundary, and chart events. Require an interior delay margin for local retained-root continuation. **Grade:** derived local normal-form and domain examples. **Falsifier:** explicit event exclusions or additional unfolding hypotheses would resolve the corresponding statements.
+
+#### BD-11 — Medium: the opening circular magnitude omits its Jacobian and later prose misreads the full radial coefficient
+
+**Location:** lines 89–97, 773–829, and 1060–1077. **Type:** coefficient and scope inconsistency, inherited.
+
+The opening calls $T_p\propto\sin(\delta_p/2)/\cos^2(\delta_p/2)$ canonical while omitting the speed-dependent factor $1/J_p$. At $s=0.8$, $R=\kappa\epsilon^2=1$, the stripped expression is about $0.232809$ and the canonical one $0.157465$; $J_p\approx1.478484$. Its positive sign survives, but its magnitude does not. Later statements that every partner has $J_p>1$ and that the partner acceleration denominator is $J_p$ instead of $|J_p|$ apply only to the principal/positive chart, not the complete negative partner sheets. The diagnostic subsection simultaneously denies canonical status to formulas that already include the canonical weight on the declared circle.
+
+The maximum-curvature explanation also infers stronger partner pull from decreasing $\cos(\delta_p/2)$ while ignoring the changing $J_p$. The full dimensionless radial coefficient $1/(\cos\xi_p(1+s\sin\xi_p))$ falls from about $0.995086$ at $s=0.1$ to $0.808445$ at $s=1$ and approaches $2/\pi$ at large $s$. The displayed one-partner/one-self radial row also needs its restricted-ledger qualification.
+
+**Smallest repair:** include the canonical weight, label chart domains and absolute values consistently, and discuss curvature using the full signed radial balance at specified speed/radius, not one geometric factor. **Grade:** derived formulas with unchanged-analyzer confirmation. **Falsifier:** an explicit stripped-geometry convention or fixed-weight comparison would make that narrower claim valid.
+
+#### BD-12 — High: the center-of-mass corollary both assumes an unmapped quantity and contradicts exact symmetry
+
+**Location:** line 2244, with lines 2210–2227. **Type:** terminology and conservation overclaim, inherited and inconsistent with current Energy.
+
+Architrinos have no physical mass; the optional equal coefficients define a bookkeeping midpoint, not a primitive center of mass. For the chapter's exactly symmetric circle, $X_1(T)=C+\rho(T)$ and $X_2(T)=C-\rho(T)$ give $(X_1+X_2)/2=C$ exactly. Omitting a wake account cannot make that geometric midpoint oscillate. In a less symmetric history a mechanical response center may move, but this requires its actual weights and domain.
+
+Total translation-charge conservation alone does not forbid unbounded growth of the mechanical component while the wake component compensates it. A velocity or center bound additionally requires control of the separate wake charge and a coercive energy account, as the later conditional no-runaway section partly recognizes.
+
+**Smallest repair:** use the defined midpoint or candidate center of response, state exact symmetry pinning, and restrict generic center motion and no-runaway claims to proven charge/energy bounds. Keep assembly inertial and gravitational mass mapping open. **Grade:** derived midpoint identity and inferred unsupported conservation consequence. **Falsifier:** explicit unequal effective assembly weights or a separate bounding theorem would change the applicable center statement; neither assigns mass to primitive architrinos.
+
+#### BD-13 — Medium: angular impulse, work, and escaped angular momentum are conflated
+
+**Location:** lines 55–75, 167–200, 1015–1052. **Type:** sign, normalization, and account mismatch, inherited.
+
+The opening cross product uses the outward delayed chord although the unlike-polarity acceleration is its negative; it gives the opposite of the mechanical angular-change direction under the declared orientation. The hinge expression $\int R A_{\mathrm{tan}}\,dT$ is an unweighted kinematic angular increment, not automatically angular momentum exported through a boundary. A generic finite-$\eta$ root transition need not make the pre-existing partner cycle contribution continuous in the singular limit, so equating the entire cycle-budget jump to the new self term needs additional hypotheses.
+
+The one-form $R T_{\mathrm{net}}d\theta$ is work per bookkeeping coefficient; angular impulse is $\int R T_{\mathrm{net}}dT$. Dividing by uniform $\omega$ relates the two, but calling the first an angular-momentum potential obscures the distinction. Nor is replacing $\mu_{\mathrm{arch}}$ by $\mu_K$ a valid general angular-momentum conversion: for $p=P(s)\hat V$, transverse momentum response is $P(s)/s$, while longitudinal response is $P'(s)=\mu_K(s)$. For $K(s)=s^4/4$, $P=s^3/3$, those factors differ by three.
+
+**Smallest repair:** define the kinematic increment, chosen momentum/kinetic chart, actual escaped charge, and conservation equation separately; correct the cross-product sign and one-form units. Keep the finite hinge impulse conditional on existence and proper normalization. **Grade:** derived sign/dimension/conjugacy checks; inferred missing escaped-charge construction. **Falsifier:** an action-derived charge equating the specified accounts with the correct coefficients would close the gap.
+
+#### BD-14 — Medium: forward-root decay and the memory wall need their missing hypotheses
+
+**Location:** lines 366–419. **Type:** a conditional asymptotic presented as following from smooth simple roots, inherited.
+
+The current Master Equation conditions the decay estimate on a chasing root with $r\sim c_fd_{\min}/(c_f-u)$ and $D_t\sim c_f-u$. Binary Dynamics retains only “smooth simple-root history.” Smoothness and $D_t\ne0$ alone imply neither asymptotic. The delay lower bound requires a positive leading receiver-minus-transmitter projection in the co-moving history, not an unspecified “forward transmitter” separation. If $d_{\min}$ shrinks with the moving branch, its lower-bound divergence can change.
+
+Likewise $u_{\mathrm{crit}}=c_f-d_{\min}/h$ is an exclusion bound under fixed stated floors, not necessarily the exact first root-exit speed. A stationary separation $(1,3,0)$ with $c_f=1$, $d_{\min}=1$, and $h=2$ satisfies the speed inequality while the actual delay $\sqrt{10}$ already exceeds the window. These distinctions are explicit in the current Master Equation.
+
+**Smallest repair:** propagate the exact direction, uniform-floor, sharpness, and chasing-root assumptions; distinguish necessary retention bounds from actual exit events and from an independently derived moving clock period. **Grade:** derived bound counterexample and live cross-file comparison. **Falsifier:** an explicit moving family attaining those estimates would justify the stronger family-specific statement.
+
+#### BD-15 — Medium: a local attractor and integer root counts do not establish universality or quantized geometry
+
+**Location:** lines 296–305, 1091–1132, and 1630–1649. **Type:** missing global selection/uniqueness inference, inherited.
+
+A stable reproducible circular branch provides candidate local units. It does not alone prove a unique global curvature cap, exclude a separate smaller-radius attractor or noncircular family, or show that all assembly clocks and rulers reduce to fixed multiples. Similarly integer root counts are constant on open parameter intervals: they can label a continuum of histories. A self-map preserving one ledger does not imply that its radius/frequency solutions form isolated values. The displayed candidate equations could yield isolated intersections, a curve, or no solution unless a rank/selection result is supplied.
+
+**Smallest repair:** retain global cap, universal standards, and quantization as separate hypotheses requiring global comparison, basin/selection, and isolation arguments. Preserve the local candidate units and measured algebraic intersections. **Grade:** inferred missing logical premises, with the chapter's own open intervals as the counterexample to count-only discreteness. **Falsifier:** an exhaustive admissible-family bound and a theorem isolating the allowed geometric outputs would justify the stronger claims.
+
+#### BD-16 — Medium: curvature is not necessary for every possible self-hit history
+
+**Location:** lines 204 and 1211. **Type:** uniform-motion theorem stated for all straight paths, inherited.
+
+Uniform straight motion at speed different from $c_f$ has no nontrivial self root, but a straight history with changing speed can. In units $c_f=1$, $X(T)=(T^2,0,0)$ on $[0,1]$ has emission at zero and reception at one with chord one and delay one. The path lies on a straight line and its reception speed is two. This is a prescribed-history geometric counterexample, not a claim that the free primitive equation generates that trajectory.
+
+**Smallest repair:** say uniform rectilinear motion, and explain that the no-self-hit result follows from constant chord-speed mismatch; arbitrary histories require the full root test. **Grade:** derived direct chord calculation. **Falsifier:** an explicitly uniform-motion restriction removes the issue.
+
+#### BD-17 — Medium: asymptotic equivalence symbols discard nonunit constants
+
+**Location:** lines 228–241 and 373–375. **Type:** asymptotic-notation error, inherited.
+
+From $\sin(\delta_s/2)\sim\sqrt{6\mu}$ and $J_s\sim2\mu$, the actual equivalents are $1/(\sin(\delta_s/2)|J_s|)\sim(2\sqrt6)^{-1}\mu^{-3/2}$ and $1/(\sin^2(\delta_s/2)|J_s|)\sim(1/12)\mu^{-2}$. The chapter drops those constants while using $\sim$, which conventionally asserts ratio one. The exponents and singularity warning remain correct. Likewise $\gamma_f(u)\sim\sqrt{c_f/2}(c_f-u)^{-1/2}$, including a factor $1/\sqrt2$ when $c_f=1$.
+
+**Smallest repair:** retain the constants or use proportional/order notation with its convention explicit. **Grade:** derived substitution into the displayed asymptotics, confirmed by near-hinge evaluations. **Falsifier:** an explicitly declared nonstandard use of $\sim$ would remove the narrow notation error but would still need consistency with the math style guide.
+
+#### BD-18 — Medium: instrument provenance and several teaching definitions were lost or remain ambiguous
+
+**Location:** lines 67–75, 117–121, 650–677, 1281–1326, 1419–1423, and 1651–1700. **Type:** reproducibility and local-definition omissions.
+
+The historical source names `scripts/equation-mapping/analyze-circular-self-hit-binary.mjs`; the current source replaces it with a generic instrument description while retaining ten-digit numerical results. The implementation still exists and was used in this review. Restore a reader-appropriate source link and identify the scan domain/tolerance and independence boundary. “Supplied tangential values” and corrections of unexplained older numbers refer to conversation history that the chapter's reader does not have.
+
+The spiral ansatz states that the paths are opposite about their midpoint, a rotation by $\pi$ in the plane; “mirror-conjugate” needs its actual map and must not imply an orientation-reversing reflection without proof. The signed-sheet section calls $\Delta^{\sigma,m}$ a delay while defining a dimensionless angle; later $\Delta$ again means elapsed time. The self packet changes $\xi$ from a minimal angle to a full delay half-angle and $\sigma$ from orientation-sheet sign to sine-lobe sign. These conventions can be correct locally but need explicit transitions. The root-degree, cohomology, and Hessian passages need the mathematical objects they use, rather than treating a list of roots as an already constructed Morse complex. The standard effective-potential introduction also leaves “Therefore the usual angular-momentum barrier and the instantaneous effective potential” as an incomplete sentence.
+
+**Smallest repair:** restore stable instrument discoverability and scope, remove stale conversation references, define the maps/domains at first use, and explain which topological constructions are established and which are proposed. **Grade:** measured source comparison and inferred teaching-standard defects. **Falsifier:** a current explicit definition or discoverable instrument link resolving a listed omission would remove that subitem.
+
+#### Binary Dynamics verification, preserved results, and limits
+
+The scoped validator first passes known math/link extraction, canonical display parsing, KaTeX, and viewer-ID alignment fixtures. It then accepts **760 mathematical expressions**, finds **171 displays and 171 viewer links**, and confirms **188 local-file link occurrences**. All 170 historical viewer IDs survive in order; one new ID is the conditional work-rate bound. Eleven surviving displayed formulas changed during the conversion, primarily the corrected standard comparison potential, the first-order history-space formulation, and the finite-width acceleration functional with its required $c_f$ factor. These are substantive improvements, not an equation-identical style conversion. All nine chapter links containing Markdown section fragments resolve against the current headings/explicit anchors. The raw source and the changed prose/math lines were read; no visual layout certification is claimed.
+
+`node --test tests/circular-self-hit-binary-analysis.test.js` passes **7/7** tests, including the finite scan through $1<s<20$ of the counterfactual line of action. The unchanged analyzer's `ledgerAt(3.070356625390253)` returns one self root, three partner roots, outward-positive radial coefficient $-0.8196069638161786$, and tangential coefficient $6.509515149133449\times10^{-13}$. This reproduces the existing algebraic candidate and its direct chord checks; it is not a new independent dynamical acceptance result. Golden numerical rows remain reproduction evidence; separately authored closed forms and direct chord geometry provide the stated independent checks only in their documented scopes. No EOM evolution, finite-event continuation, or new MCB stability calculation was run.
+
+The additional `.tmp/crw005-binary-review/check-mathematics.mjs` first passes known dot-product, identity-rotation, signed-window, and exact diameter-root fixtures. It then checks the rotation counterexample, missing label multiplicity, circle-weight discrepancy, full radial coefficient, hinge constants, straight-line self-hit, integrable-fold regularity, failed time rescaling, and small-defect nonperiodic flow. Those finite calculations use $c_f=1$ and leave the analyzer and its reference tests unchanged. Their outputs are retained in `mathematics.txt`, with test output in `tests.txt` and equation comparison in `validation.txt` in the same scratch directory. The durable finding explanations above contain the mathematical constructions, so scratch is not their only home.
+
+Bounded source verification found the [Walther publisher search record](https://www.sciencedirect.com/science/article/pii/S0022039603002183) supporting the cited solution-manifold/smooth-semiflow role; the full publisher page was blocked. The Noether original-publication page and a primary Conley-index survey also returned access errors, so this pass does not certify their full texts. The defects above rely on the displayed equations and explicit counterexamples, not on inaccessible source text. No compulsory bibliography expansion is proposed.
+
+**Disposition:** Entropy's 14 accepted integrations are complete. Binary Dynamics has 18 proposed findings; its source remains unchanged. Packet 1's 14 reviewed paths plus four Dynamics documents give **18 of 190 reviewed, 172 remaining** in the CRW-005 disposition inventory. These are assurance-review counts, not stability certificates or correction-completion counts. The next unread document is **Causal Action Functional**. The Foundations campaign and manuscript remain separately scoped. A changed target hash, failed counterexample, or resolving local definition would require re-adjudication of the corresponding finding.
+
+**Final scoped checks:** `node scripts/validate-content.mjs --check --strict` completes with exit 0, zero errors, zero warnings, and 30 informational notes. The known-case-first review-record checker confirms BD-1 through BD-18 exactly once, nine high and nine medium findings, accepts 138 math expressions in the new Entropy receipt/Binary review, and verifies their local-file targets. Scoped `git diff --check` passes for Entropy and the three review owners. `cmp` confirms Binary Dynamics is byte-identical to the reviewed snapshot. `rg --files` filtered to Markdown measures 199 corpus files, nine Foundations files, and 14 Noether Braid files; together with the four explicitly recorded Dynamics reviews, this verifies the current 190-document denominator and 18 reviewed dispositions. These checks establish document structure, current source identity, and inventory scope; they do not certify the open physical theory.
+
+### CRW-005 Binary Dynamics BD-1 through BD-18 — accepted integration, 2026-09-10
+
+The operator authorized implementation of the preceding recommendations followed by the next document review. All **18 Binary Dynamics findings are accepted, implemented, and verified by self-review**. This acceptance concerns the document corrections, not completion of the physical MCB, action, singular-event, or mass derivations.
+
+The integration makes the following changes in [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md):
+
+| Finding | Implemented disposition |
+| --- | --- |
+| BD-1 | Requires pointwise radial and tangential circular acceleration balance, places absolute values before averaging the balance residual, and keeps independently constructed energy exchange separate. Defines both-member versus per-member power. |
+| BD-2 | Restricts the finite-width local theorem to fixed smooth support masks with a positive separation floor, explicitly excluding a self interval near zero delay. No new canonical core or event law is asserted. |
+| BD-3 | Separates continuous fixed-width histories from bounded-variation velocity limits, states position/velocity compatibility and candidate convergence topologies, and preserves the open limit/uniqueness obligation. |
+| BD-4 | Replaces protected isolated-circle handedness with an oriented axial normal; gives the continuous rotation counterexample and identifies the additional physical framing needed for protection. |
+| BD-5 | Enumerates full-delay roots, allows multiple roots in each signed window, assigns shared endpoints once, and separates physical births from representation changes. Corrects self-chart domains and emission-azimuth limits. |
+| BD-6 | Makes the averaged Hessian diagnostic conditional on a proved relation to the full linearized history operator; removes its unsupported sign verdict. |
+| BD-7 | Removes only proved neutral symmetry directions, avoids overlapping phase/rotation modes, and retains period variation as an auxiliary unknown rather than an automatic physical symmetry. |
+| BD-8 | Separates Conley-index persistence, orbit identification, and attraction; requires the relevant trapping, compactness, and continuation arguments. |
+| BD-9 | Classifies the residual tuple as numerical diagnostics; requires existence enclosures, nonlinear error bounds, complete excluded-root coverage, and stability bounds at the actual orbit. Defines nondimensional norms. |
+| BD-10 | Adds the fold unfolding derivative, distinguishes memory/coincidence endpoints, qualifies degree persistence, and requires interior delay margins for the implicit-function argument. |
+| BD-11 | Restores the opening partner Jacobian, qualifies signed denominators and restricted radial rows, and gives the full principal radial coefficient's monotonicity proof. |
+| BD-12 | Defines the mechanical midpoint without primitive mass, proves its exact symmetry pinning, and keeps center-of-response and no-runaway conclusions conditional on actual assembly and charge bounds. |
+| BD-13 | Corrects the angular cross-product sign; distinguishes kinematic angular increments, work one-forms, and escaped charges; states hinge continuity assumptions and longitudinal/transverse momentum factors. |
+| BD-14 | Restores leading-separation and chasing-root hypotheses and identifies the memory wall as a necessary bound, with a counterexample to sufficiency. |
+| BD-15 | Keeps the global curvature cap, universal standards, and isolated geometric selection as separate hypotheses beyond local attraction or integer root counts. |
+| BD-16 | Restricts the straight-path no-self-hit result to uniform rectilinear motion and supplies the nonuniform prescribed-history counterexample. |
+| BD-17 | Restores the nonunit constants in the hinge and Lorentz-factor asymptotic equivalents. |
+| BD-18 | Restores the analyzer link and measurement scope; defines the opposed-path rotation, full versus reduced angles, and sign conventions; separates signed degree from an unconstructed Morse complex and completes the effective-potential introduction. |
+
+The complete revised chapter was reread, followed by a reread of the final targeted corrections. `shasum -a 256` measures the resulting 2,287-line source as `1bc6f8a1b4b0cdef7682bbff04a54bf98fa590a7c8675a8f843b147cebd137b8`, against the reviewed pre-edit hash `afeae578058591cb6feba913d039c5b48df9bfd55beb250608ecb225962148a2`. The canonical residual tuple's identifiers and order are preserved. A targeted binding search found the existing numerical-recipe, analytic-baseline, and delay-energy consumers referring to that owner; this task did not rewrite those consumers or claim a full downstream audit.
+
+The known-case-first scoped parser and vendored KaTeX check accept **762 mathematical expressions**, **171 displays with all 171 existing viewer IDs preserved in order**, and **189 local-file link occurrences**. Twenty-two displayed formulas changed deliberately. A separate heading/explicit-anchor check resolves all nine Markdown section-link occurrences; the old Morse heading anchor is retained explicitly. `node --test tests/circular-self-hit-binary-analysis.test.js` passes **7/7**. The unchanged review mathematics script passes its known cases and target calculations. The analyzer, its reference tests, and the mathematical comparison script were not edited with the subject. These checks preserve the measured circular candidates; they do not establish a periodic-history or stability certificate.
+
+`node scripts/validate-content.mjs --check --strict` reports zero errors, zero warnings, and 30 informational notes. `node scripts/validate-equation-mapping-links.mjs` passes its scope of 23 registered links, not an exhaustive generated-viewer freshness check. Scoped `git diff --check` passes the Binary source. Disposable receipts are under `.tmp/crw005-binary-fixes/`; the table and mathematical findings above are the durable evidence. No generated files were rewritten and no Git publication was attempted. Expected equation-content drift remains for the authorized regeneration/publication procedure, using `node scripts/build-equation-mapping-corpus.mjs --write` and its corresponding check. A changed source hash, failed reference calculation, or unresolved accepted subitem would reopen the corresponding disposition.
+
+### CRW-005 Packet 2 document 5 — Causal Action Functional assurance review, 2026-09-10
+
+**Scope:** complete review-only reading of all 205 lines of [Causal Action Functional](../../../content/markdown/aaa/dynamics/causal-action-functional.md), the entire source diff against pre-campaign `897fe1aa7`, all ten displayed equations, and the relevant current Master Equation, Binary Dynamics, Energy, and Delay Dynamics Energy definitions. The textbook TOC traversal places this chapter after Binary Dynamics and before Effective Lagrangian. `shasum -a 256` measures the reviewed source as `6be6618db2cff3a15f45ce0df630bb4c4f3d72841e2e5e4a075c88a411b89a87`; the historical baseline is `2b8dd00b0082f01f8e7d1fb8bbc8badfd36d75b13de60376a0d5ea54995bb7ef`. The chapter remains unedited.
+
+The distinction between the sign-blind scalar statistic and the vector acceleration law is useful and should survive the repair. The current transmitter weight, signed playback distinction, inverse-area units, and warning that extrema do not establish mass or stability are correct in their declared roles. The review finds **12 actionable issues: four high and eight medium**. All CAF-1 through CAF-12 are **○ Proposed**. An open physical mass or action derivation is not itself counted as a defect; the findings target unsupported implications, incomplete definitions, and concrete cross-file errors.
+
+#### CAF-1 — High: the full circular count has the wrong leading coefficient
+
+**Location:** lines 130–150. **Type:** mathematical error inherited from the baseline; the conversion added a proof paragraph and derived label without fixing it.
+
+For the full equation $|\sin\xi|=\xi/\beta_f$, the first sine half-wave contributes at most one positive root and each later active half-wave can contribute two. Thus $N_{\mathrm{self}}=2\beta_f/\pi+O(1)$, not a bound with leading coefficient $1/\pi$ and an absolute additive constant. A direct lower bound already rules out the written theorem: every complete later half-wave whose midpoint lies below $\beta_f$ has negative root function at both ends and positive value at its midpoint, yielding two roots. The difference from $\beta_f/\pi$ therefore grows without bound. The current Master Equation supplies $N_{\mathrm{self}}\le2\beta_f/\pi+2$ and distinguishes the positive-sine subchart $N^{(+)}=\beta_f/\pi+O(1)$.
+
+The unchanged analyzer, checked first against the exact diameter root at $\beta_f=\pi/2$, measures full counts **5, 63, 317** at speeds **10, 100, 500**, with positive-sine counts **3, 31, 159**. These finite evaluations support the separately derived lobe argument; they do not themselves prove the asymptotic theorem. “One sign” must mean the sine-lobe sign, not Binary Dynamics' reduced-angle orientation sign. The stated falsifier tests only linear growth and would miss the erroneous coefficient.
+
+**Smallest repair:** propagate the full-chart factor two and an explicit valid endpoint constant, define the one-sign restriction, show the lobe count, and make the falsifier test the actual inequality. **Grade:** derived lobe-count proof, with measured analyzer checks. **Falsifier:** an omitted domain restriction to positive sine lobes would justify the smaller coefficient for that restricted count; it would not justify the displayed full count.
+
+#### CAF-2 — High: instantaneous circular parameters do not determine the delayed chord of a changing history
+
+**Location:** lines 123–150. **Type:** missing uniform-history hypothesis.
+
+Writing $R(T)$ and $\omega(T)$ and assuming only bounded instantaneous $\beta_f(T)$ suggests a nonuniform history theorem. The equation used in the proof requires a fixed-radius circle with constant angular rate over the entire relevant lookback. For a nonuniform angle, the phase difference is $\int_{T_t}^{T_r}\omega(u)du$, not $\omega(T_r)(T_r-T_t)$; a changing radius additionally changes the chord formula.
+
+A concrete prescribed-history check uses $c_f=R=1$ and $\theta(T)=(\pi/3)T^2$. Emission at zero and reception at one have chord $2\sin(\pi/6)=1$, exactly the delay. The instantaneous speed ratio at reception is $2\pi/3$, and substituting it into the uniform formula predicts chord $2\sin(\pi/3)=\sqrt3$. This is a geometric counterexample to the substitution, not a claimed EOM solution or a disproof of every possible nonuniform count bound.
+
+**Smallest repair:** state a family of prescribed uniform circular histories, with a separate family parameter and positive speed magnitude. Restrict the count and $D_r=D_t$ conclusions to that family; leave general nonuniform root-count control separate. **Grade:** derived direct chord comparison and live Master Equation agreement. **Falsifier:** a proof using the actual varying-history chord, or an explicit uniform-history restriction, would resolve the relevant scope claim.
+
+#### CAF-3 — High: the displayed scalar is not defined across the advertised caustic and regulator routes
+
+**Location:** lines 39–54, 88–100, and 168–186. **Type:** missing existence/domain conditions for a nonnegative integral.
+
+The distance replacement $r^2+\epsilon_c^2$ does not control $W^{\mathrm{acc}}=c_f/|D_t|$. The table mentions $\eta$ but the scalar formula contains no finite-width definition or event limit. At a simple-root chart the finite sum is meaningful with strict past delays, excluded zero-delay self coincidence, finite receiver/transmitter inventory, and appropriate separation/Jacobian floors. Those assumptions must precede its use as a finite statistic or barrier.
+
+At a generic transverse fold the pair weight can scale as $|T-T_*|^{-1/2}$, which is locally integrable. That is not a blanket caustic result: the local family $g(x;T)=x^2-T^2$ has roots $x=\pm|T|$ and pair coarea weight $1/|T|$, whose integral diverges. A positive distance floor or positive $\epsilon_c$ does not cure it. A prescribed uniform circular record held exactly at a root tangency has $D_t=0$ throughout the reception window. The correct value is undefined or infinite until an actual regularization is given, not a finite branch comparison by declaration.
+
+**Smallest repair:** define the finite simple-root domain first, the units and role of $\epsilon_c$, and either an explicit finite-$\eta$ functional/event prescription with convergence scope or exclusion of singular histories. Never infer finiteness from surface or distance smoothing alone. **Grade:** derived singularity examples; inferred missing regulator definition. **Falsifier:** a stated regulator and proven finite limit on the claimed path class would discharge the corresponding objection.
+
+#### CAF-4 — High: a realized-trajectory work record is not a Noether pullback
+
+**Location:** lines 194–205. **Type:** evidence-independence and conservation overclaim.
+
+The certificate's “Noether pullback” accepts records from the same action **or realized trajectory** without distinguishing their grades. For any differentiable prescribed motion and chosen quadratic kinetic proxy, defining $U(T)=-\int\mu\mathbf A\cdot\mathbf V\,dT$ makes $K+U$ constant identically. For example, $V(T)=T$, $K=T^2/2$, and $U=-T^2/2$ satisfy it without a variational law or conserved physical energy. Momentum and angular momentum can likewise be canceled by their own negative increments. Common provenance does not make those reconstructions independent charges. Energy and the linked Delay Dynamics Energy chapter explicitly preserve this distinction.
+
+**Smallest repair:** separate trajectory-local work diagnostics from action-derived or independently constructed wake charges, with boundary exchange and normalization stated. Reserve Noether terminology for a proved variational symmetry construction. Complete same-record tables alone do not establish action closure. **Grade:** derived identity counterexample and current-owner comparison. **Falsifier:** an independently derived compatible charge with the required symmetry/boundary proof would license the stronger claim.
+
+#### CAF-5 — Medium: rounded intervals and box identity do not certify root existence or physical branch identity
+
+**Location:** lines 88–100 and 201. **Type:** incomplete enclosure criterion and coordinate-dependent continuation rule.
+
+“Root residual zero on the retained box” is ambiguous: a root equation is zero at a root, not throughout a nontrivial simple-root interval. Merely enclosing zero is insufficient. For $g(x)=x-x+1+0.1x$ on $[0,2]$, natural interval evaluation gives $[-1,3.2]$, while the exact range is $[1,1.2]$ and the derivative is $0.1$. Even a nonzero derivative bound plus this enclosure does not prove existence. Rounding an approximate value outward also does not account for input or truncation error unless those errors were already enclosed.
+
+A tracked root can move from one overlapping box into another without a fold or physical change. Conversely, distinct roots can occupy one large box. Different boxes can certify the same history; identical box labels cannot substitute for validated overlap and root matching. This distinguishes physical identity from a convenient numerical representation.
+
+**Smallest repair:** require root existence/uniqueness bounds, complete complement coverage, and validated overlap continuation; distinguish computational box replacement from physical ledger events. **Grade:** derived interval counterexample and inferred representation mismatch. **Falsifier:** an explicit enclosure/overlap contract providing those guarantees would resolve it.
+
+#### CAF-6 — Medium: causal writhe lacks a counting convention and a stated invariance class
+
+**Location:** lines 104–117. **Type:** incomplete mathematical definition.
+
+The sum runs over ordered pairs of strands or segments, while the indicator is only zero or one. One strand pair can cross more than once; subdividing the strands can change how many positive indicators are summed. Counting both $(\alpha,\beta)$ and $(\beta,\alpha)$ doubles a symmetric crossing sign, whereas an antisymmetric sign cancels the pair. The text does not select either convention, exclude self-pairs, or define which projection/over-under data determine a signed event. A diagram crossing sum is also not automatically the geometric writhe in the framed $Lk=Wr+Tw$ relation.
+
+**Smallest repair:** define a finite crossing-event set, count each event once with explicit projection/framing and sign rules, and state which deformations preserve the statistic. Keep linking events and diagram crossings distinct unless their conversion is derived. **Grade:** derived counting ambiguity and inferred incomplete topology scope. **Falsifier:** a subdivision-independent event definition resolving the ordered-pair ambiguity would make the statistic reproducible; a separate invariance proof would justify topological use.
+
+#### CAF-7 — Medium: the barrier needs an admissible path class, common comparison conventions, and bounds over all paths
+
+**Location:** lines 39–63 and 168–186. **Type:** incomplete minimax domain and transition-cost interpretation.
+
+The formula gives a symmetric excess height above the **larger** endpoint value. A monotone scalar path from zero to ten has barrier zero despite its positive uphill change; it is not a directional activation cost. A single exhibited path gives an upper bound on the infimum, not a certified positive barrier. Two paths with maxima three and zero and endpoints zero show why the first path's height proves no lower bound.
+
+The path topology, admissible histories, allowed event crossings, and convention for no admissible path are unspecified. Restricting paths to isolated fixed-root charts may disconnect endpoints; allowing arbitrary independent charts may admit nonphysical shortcuts. Comparisons also need a fixed cohort, history window, length units, and regulator prescription. The statistic scales as inverse length squared when lengths and $\epsilon_c$ are scaled together, and changing receiver count or the averaging window can change it without establishing a physical barrier. These are genuine normalization choices, not evidence of a universal cost.
+
+**Smallest repair:** define the admissible continuous path class and shared comparison data, use the empty-infimum convention explicitly, call the formula excess saddle height, and distinguish an upper bound from a proved global lower bound. Explain that its units remain inverse area. **Grade:** derived minimax counterexamples and scaling; inferred missing domain. **Falsifier:** a declared admissible class and exhaustive lower-bound argument could establish a positive barrier in that class, but would not by itself identify physical transition energy.
+
+#### CAF-8 — Medium: the scalar forgets branch information and has no necessary stationarity condition for physical solutions
+
+**Location:** lines 58–73, 196, and 205. **Type:** summary overstatement and unproved selection condition.
+
+The last paragraph says the functional “preserves causal-root topology, branch labels, caustic routing.” Those data remain in its argument $\mathfrak B$; they cannot in general be recovered from one sign-blind sum. Distinct lists of positive weights can have the same sum, and orientation and polarity have been explicitly discarded. The correct object preserving provenance is the pair of the retained record and its scalar value.
+
+Likewise the vector law does not imply stationarity of this chosen statistic. Multiplying, changing, or substituting a diagnostic scalar does not change an already specified acceleration law. A stationarity row can be a declared search criterion but cannot be required of every physical branch unless a variational equivalence is proved. Finite discrete comparisons prove only what was compared, not a first-variation identity.
+
+**Smallest repair:** attribute topology retention to the full record and make scalar stationarity an optional search hypothesis with its own variation space and constraint set. Preserve vector EOM and actual stability tests as independent requirements. **Grade:** derived information-loss statement; inferred missing variational implication. **Falsifier:** an injective reconstruction theorem or an actual equivalence between EOM solutions and constrained scalar extrema would license the respective stronger claim.
+
+#### CAF-9 — Medium: mass-response and action terminology need their level and units stated in place
+
+**Location:** lines 3–9, 35, 54–63, 121, and 205. **Type:** terminology underspecification, not evidence of a primitive mass term.
+
+No mass parameter appears in the scalar, and the chapter correctly says that its extrema do not establish mass. Nevertheless repeated unqualified “mass-response tests” leave the response channel undefined. The current Energy chapter places mass only at the effective assembly/observer level and keeps its quantitative map open. This inverse-area statistic is neither a physical inertial coefficient nor an energy-equivalent, passive-gravitational, or active-gravitational mass. Nothing here identifies those channels with one another. “Exact Fokker-type variational action” also outruns the current Master's explicitly candidate action and documented variation obstruction.
+
+**Smallest repair:** say candidate effective assembly response, name the inertial or gravitational channel only when a defined probe actually selects it, state that no mass map is derived, and link to Energy's current distinctions. Describe the present object as a scalar branch statistic and the Fokker functional as a candidate variational scaffold. A title change is optional; the in-place claim and units corrections are substantive. **Grade:** measured formula/terminology comparison and inferred ambiguity. **Falsifier:** an explicit response experiment and derivation mapping this scalar to a specified assembly coefficient would resolve the missing link; it would not assign mass to individual architrinos.
+
+#### CAF-10 — Medium: the displayed vector factor is a normalized kernel, not the complete acceleration or an action integrand
+
+**Location:** lines 65–73. **Type:** omitted coupling/sign scope and conflated consumer roles.
+
+The row $W^{\mathrm{acc}}\hat{\mathbf r}/r^2$ has inverse-area units and points along the outward chord. The complete per-hit acceleration is $\kappa\sigma_{ij}|q_iq_j|$ times that row, with the sum over retained hits; unlike-polarity contributions reverse the direction. The preceding scalar deliberately strips those factors, but the “exact vector acceleration/action consumer” sentence does not restore or qualify them. Nor does a variational action generally use its Euler derivative as its own integrand: the Master candidate uses a causal $1/r$ scaffold and has an unresolved variation obstruction.
+
+**Smallest repair:** call the displayed row the normalized directional acceleration kernel, explicitly restore polarity/coupling in the vector consumer, and describe the action requirement as an Euler-derivative target. **Grade:** derived dimensions/sign comparison and current Master Equation definition. **Falsifier:** an explicit normalization convention and a separately proved variational map would resolve the respective ambiguities.
+
+#### CAF-11 — Medium: the root-event account repeats the generic-fold-only error
+
+**Location:** lines 100 and 148–150. **Type:** missing event distinctions.
+
+Interior circular pair births have $J=0$ and the usual nonzero second root derivative and unfolding derivative. The principal self onset at speed one is instead the excluded zero-delay coincident endpoint. A finite memory boundary can change a retained count with nonzero $J$, and changing a signed representation can leave the count unchanged: the principal self root at $s=\pi/2$ has full delay angle $\pi$ and $J=1$. Binary Dynamics now makes these distinctions explicit. Treating all births, null thresholds, and inactive-gap changes as one interchangeable ledger hides which continuation theorem applies.
+
+**Smallest repair:** classify interior folds, the principal coincident endpoint, memory entry/exit, and harmless chart changes separately; use the generic pair rule only with its hypotheses. **Grade:** derived circular endpoint calculations and live Binary comparison. **Falsifier:** explicit event restrictions matching the formulas would resolve the overgeneralization.
+
+#### CAF-12 — Medium: two section links fail and internal certification language obscures the reader explanation
+
+**Location:** lines 3, 39, 54, 88–100, and 152–201. **Type:** measured navigation failure and editorial repair.
+
+The scoped Markdown fragment check flags `../foundations/architrino.md#the-emitted-wake` and `master-equation.md#exact-causal-delay-fokker-type-interaction-term`; direct heading and explicit-anchor inspection confirms neither current target exists. The first was added during the conversion; the second was already present in the baseline. Use a verified current wake section and the candidate-action section. “Native-time” should mean absolute time here; the negative-control row's “Not advanced disposition” is internal workflow language. The long certificate tables repeatedly refer to boxes, routing, emitted records, and acceptance without first explaining the physical/mathematical content or identifying the missing proofs.
+
+**Smallest repair:** fix both section links and time terminology, define essential mathematical concepts in place, and replace internal status language with a direct reader-facing account of what each check establishes. Do not delete mathematical assumptions or provenance needed to assess a measured claim. **Grade:** measured source/anchor comparison and inferred academic-style defects. **Falsifier:** live matching target anchors or a resolving local definition would remove the corresponding finding.
+
+#### Causal Action Functional verification, attribution, and disposition
+
+The known-case-first scoped validator accepts **70 mathematical expressions**, finds **10 displays and 10 preserved viewer IDs**, and checks **19 local-file link occurrences**. Against `897fe1aa7`, only the statistic's displayed integration window/differential changed: the current $[T_0,T_1]$ window and $dT_r$ correct and clarify the older formula. This is a valid substantive clarification, not exact equation preservation. The entire textual diff was read. Most mathematical defects were already present in the baseline; the conversion added an explicit proof/grade for the count claim, the new broken wake link, and the stronger final “preserves” wording. This attribution follows the inspected source diff, not commit subjects or last-editor identity. Two of eight Markdown-fragment occurrences fail as specified in CAF-12; generated HTML equation-viewer entries were not regenerated or exhaustively checked.
+
+The new `.tmp/crw005-causal-review/check-mathematics.mjs` passes known interval-arithmetic, minimax, and exact diameter-root fixtures before target calculations. It then checks the complete versus one-sign counts with the unchanged analyzer, the nonuniform circle chord, zero-containing interval without a root, tangential fold divergence, excess-height examples, arbitrary-motion work reconstruction, and inverse-area scaling. An initial hand-written expected interval was corrected after its assertion failed; the interval arithmetic itself matched the known fixtures, and the final target run passes with $[-1,3.2]$ versus exact range $[1,1.2]$. The record uses the corrected calculation only. The derived arguments above are the durable evidence; scratch holds executable checks and outputs. All numerical examples use $c_f=1$; none is claimed as a new free EOM solution, action construction, mass mapping, or stability result. The chapter cites only repository pages; no new external literature premise was required for these elementary derivations and local comparisons.
+
+**Disposition:** all 18 accepted Binary corrections are complete. Causal Action Functional has 12 proposed findings and remains byte-identical to its reviewed snapshot. `rg --files` filtered to Markdown measures 199 corpus documents, nine Foundations documents, and 14 Noether Braid documents; the 14 Packet 1 reviews plus five explicitly recorded Dynamics reviews give **19 of 190 reviewed, 171 remaining**. These are review dispositions, not correction-completion or physical-closure counts. The next unread document is **Effective Lagrangian**, which has not been reviewed in this turn. A changed target hash, failed counterexample, or resolving definition would reopen the affected proposed finding. The Foundations campaign, manuscript, generated outputs, analyzer, and its reference tests remain outside this task's edits.
+
+**Final scoped checks:** the known-case-first record checker finds CAF-1 through CAF-12 exactly once, four high and eight medium, accepts 58 mathematical expressions in the new Binary receipt/Causal review, and resolves their local-file targets. After the final Binary endpoint correction, the scoped source validator accepts 762 math expressions and records 22 deliberately changed displays with all 171 IDs preserved. `cmp` confirms the Causal source remains byte-identical to its reviewed snapshot. Scoped `git diff --check` passes the Binary source and three review owners. A final strict content check reports zero errors, zero warnings, and 30 informational notes; the registered equation-link check again passes its 23-link scope. These structural checks do not clear the two Causal section-link findings or its mathematical recommendations, and do not establish the missing theory proofs.
+
+### CRW-005 Causal Action Functional CAF-1 through CAF-12 — accepted integration, 2026-09-10
+
+The operator selected implementation of all 12 recommendations followed by review of Effective Lagrangian. All **CAF-1 through CAF-12 are accepted, implemented, and verified by full-document self-review** in [Causal Action Functional](../../../content/markdown/aaa/dynamics/causal-action-functional.md). The action, mass, singular-extension, and stability derivations remain open; acceptance concerns the repairs to their definitions and claim boundaries.
+
+| Finding | Disposition and change |
+| --- | --- |
+| CAF-1 | ✓ Done: restores the full count's factor two, supplies an explicit upper constant and matching half-wave lower argument, and distinguishes positive-sine from reduced-angle signs. |
+| CAF-2 | ✓ Done: restricts the theorem to complete prescribed uniform circular histories, separates the family parameter from reception time, and includes the nonuniform chord counterexample. |
+| CAF-3 | ✓ Done: defines a finite regular-root domain, excludes self coincidence and endpoint roots, proves a simple finite bound, and separates the distance comparison length from an unconstructed singular extension. |
+| CAF-4 | ✓ Done: separates reconstructed work from independently derived conservation and Noether charges. |
+| CAF-5 | ✓ Done: explains existence/uniqueness enclosures, complement coverage, input/truncation/rounding errors, and root matching across overlapping boxes. |
+| CAF-6 | ✓ Done: defines a projected crossing-event sum with explicit realization, orientation, over/under data, selection rule, and one count per event; no geometric-writhe or arbitrary-deformation invariant is claimed. |
+| CAF-7 | ✓ Done: specifies a continuous path class in a declared regular history space, common comparison conventions, the empty-infimum meaning, excess-height interpretation, and upper-versus-lower-bound distinction. |
+| CAF-8 | ✓ Done: attributes retained information to the full record and treats scalar stationarity as an optional search hypothesis. |
+| CAF-9 | ✓ Done: states inverse-area units and candidate assembly-response scope; no primitive mass or quantitative mass map is inferred; the linked action is explicitly a candidate scaffold. |
+| CAF-10 | ✓ Done: identifies the normalized acceleration kernel and restores coupling and polarity in the complete per-hit law; variation of an action remains a separate target. |
+| CAF-11 | ✓ Done: distinguishes generic interior folds, coincident onset, finite-memory boundary events, and harmless representation changes, including the regular diameter crossing. |
+| CAF-12 | ✓ Done: repairs both broken section links, uses absolute time, and replaces internal acceptance tables with reader-facing explanations of definitions and evidence. |
+
+The integration additionally clarifies that $D_t\ne0$ on smooth interior history supplies the implicit-function theorem, while recording $D_r$ verifies the playback derivative; missing a stored receiver factor does not invalidate the mathematical continuation theorem. It also distinguishes the circular family's known continuation at a tangency from evaluating the undefined quotient $0/0$. These are bounded consistency repairs found during the complete reread, not a new theory mechanism.
+
+`shasum -a 256` measures the revised 193-line source as `7e585c26bd6702dcb01efbf329431ae17295d3293d19d373816c7c28657d62dd`, from pre-edit `6be6618db2cff3a15f45ce0df630bb4c4f3d72841e2e5e4a075c88a411b89a87`. The known-case-first scoped parser and vendored KaTeX check accept **108 math expressions**, **10 displays**, and **all ten existing viewer IDs in order**, with **three deliberately changed displays**: crossing sum, speed definition, and root-count bound. All **21 local-file occurrences** exist and the separate fragment checker resolves all ten Markdown section-link occurrences. The unchanged review mathematics script passes its known fixtures and its root counts, chord, interval, fold, minimax, work-identity, and scaling cases. The circular analyzer and comparison instruments were not modified with the source. The new lobe argument and finite-domain bound are explicit derivations; reference reproduction does not establish a physical action or dynamics.
+
+A scoped binding search identified the `mass-action.energy-ledger` impact-contract path trigger and a constraint-ledger consumer. Existing viewer IDs and chapter section anchors remain available. Effective Lagrangian's incompatible singular-barrier use is recorded in EL-14 below rather than silently modified during its review. This is not an exhaustive downstream audit. `node scripts/validate-content.mjs --check --strict` reports zero errors, zero warnings, and 30 informational notes; `node scripts/validate-equation-mapping-links.mjs` passes its 23 registered-link scope. Disposable receipts are under `.tmp/crw005-causal-fixes/`. Generated equation content remains for the existing regeneration/publication procedure; no generated files or Git publication were included. A source-hash change, failed derivation, or unresolved accepted subitem would reopen the corresponding disposition.
+
+### CRW-005 Packet 2 document 6 — Effective Lagrangian assurance review, 2026-09-10
+
+**Scope:** full review-only reading of all 1,163 lines of [Effective Lagrangian](../../../content/markdown/aaa/dynamics/effective-lagrangian.md), all 79 displayed equations, the entire diff against pre-campaign `897fe1aa7`, and the relevant current Master Equation, Energy, Binary Dynamics, Causal Action Functional, and assembly-topological-charge definitions. The current source hash by `shasum -a 256` is `9d974db22027ba28beeadcaca9ed1d01b9a00b345434f33a0da690bf33336aed`; the historical baseline hash is `6a474cf83e5d93c556c580b16f89545661268cca2d0a998d09244ac6ea4d11aa`. The chapter is unedited. The TOC traversal places it last in Dynamics.
+
+The standard oscillator, Legendre transform, phase-space action, receiver-gradient formula, and characteristic-integral identity are useful within their stated mathematical roles. The conversion correctly removed a spurious kinetic coefficient from the acceleration law, distinguished kinetic energy from kinetic Lagrangian, and weakened several mass-gap and spin claims. Those improvements are preserved by the review. The established $c_1$ notation is treated as phase-return degree data, as its current owner specifies; no unsupported blanket rename is recommended.
+
+The review finds **16 actionable issues: seven high and nine medium**. All EL-1 through EL-16 are **○ Proposed**. Explicitly open research targets are not defects merely because they remain open; the findings concern erroneous formulas, missing definitions, or conclusions stronger than the supplied arguments.
+
+#### EL-1 — High: the variation residual compares against the desired scale law rather than the complete Euler derivative
+
+**Location:** lines 235–289, 314–415, and 1155–1157. **Type:** incomplete variational test with a false-positive route.
+
+The displayed $R_{A,i}=A_i-\sum_j\kappa\sigma_{ij}|q_iq_j|A_{ij,\mathrm{scale}}$ omits precisely the constraint-derivative contribution the chapter is meant to test. A canonical EOM trajectory makes that difference vanish in the regular sharp limit even if the candidate action still has a nonzero derivative residual. The current Master Equation's energy-residual definition instead uses $R_A=A-A_{\mathrm{act}}$, with the action side including every surviving contribution. On-shell agreement with the desired EOM is not an off-shell variational identity.
+
+There is also a second event role. Varying $X_i(T)$ affects kernels in which it is the receiver **and** kernels in which it is an earlier transmitter to a later receiver. A triangular integration domain does not remove the latter. The elementary discrete action $S=q_1q_0+q_2q_1$ has $\partial S/\partial q_1=q_0+q_2$, not only $q_0$. In the continuous ordered-pair action, collecting the full variation gives both a past-receiver integral and a future-receiver integral, each with the displayed one-half coefficient. Neither the future term nor its normalization becomes a boundary term merely because the receiver constraint derivative is canceled.
+
+**Smallest repair:** define the full Euler derivative with receiver, transmitter, admitted self, cutoff, and boundary contributions; keep the scale-only row as an EOM diagnostic. Require a functional identity on the admitted variation class and a causal treatment of any future dependence before claiming a generator. **Grade:** derived product-rule counterexample and current-owner residual comparison. **Falsifier:** an explicit complete variation showing the missing terms cancel or reduce to valid boundaries under stated hypotheses would close the obstruction for that action class.
+
+#### EL-2 — High: the conservation residuals retain an undefined symbol and lose the kinetic coefficient
+
+**Location:** lines 129, 382–411, 573–647. **Type:** incomplete propagation of the acceleration-first conversion.
+
+The chapter now defines $R_{A,i}^{(\eta)}$ with acceleration units, but the energy, momentum, and angular-momentum tests still contain undefined $R_i^{(\eta)}$. Reading that as the new acceleration residual makes all three numerators dimensionally inconsistent. The quadratic energy defect is $\sum_i\mu_{\mathrm{arch}}V_i\cdot R_{A,i}$, the momentum defect is $\sum_i\mu_{\mathrm{arch}}R_{A,i}$, and the angular defect is $\sum_i\mu_{\mathrm{arch}}X_i\times R_{A,i}$. The current Master Equation explicitly retains the coefficient in its energy balance. The old baseline defined a weighted residual, so the source diff identifies the conversion that left these consumers unresolved; this attribution is based on the actual formulas, not last touch.
+
+**Smallest repair:** use the complete acceleration residual from EL-1 consistently and restore the kinetic coefficient in each charge equation. Define separate normalization floors with the units of their denominators; one bare $\varepsilon$ cannot literally have acceleration-impulse, energy, momentum, and angular-momentum units at once. General kinetic charts require their actual momentum derivative, not automatic scalar substitution. **Grade:** derived dimension/work identity and measured baseline comparison. **Falsifier:** an explicit definition of a weighted residual and compatible units would resolve the mismatch; none is supplied at these uses.
+
+#### EL-3 — High: resonance locking is not necessary for a global Hamiltonian chart
+
+**Location:** lines 171–232 and 873–945. **Type:** false implication from quasiperiodicity to monodromy, leakage, or loss of Hamiltonian validity.
+
+On the global phase space $T^*\mathbb T^2$, take the mathematical comparison Hamiltonian $H=I_1+\sqrt2 I_2$. Its flow is $\theta_1(T)=\theta_1(0)+T$, $\theta_2(T)=\theta_2(0)+\sqrt2T$, with both actions constant. It has no common nonzero period, but preserves the globally defined symplectic form $d\theta_1\wedge dI_1+d\theta_2\wedge dI_2$ and its volume exactly. Its action variables acquire no monodromy. Temporal phase drift and monodromy of an action bundle over a parameter loop are different objects.
+
+Thus the assertions that global Hamiltonian validity occurs only on resonance-locked branches and that off-lock branches necessarily leak symplectic content do not follow from Hamiltonian geometry. A special delayed branch may require a stronger retention condition, but that must be derived for its actual dynamics. Slow external parameters can also produce a time-dependent Hamiltonian without destroying symplecticity, while energy need not remain constant.
+
+**Smallest repair:** retain phase-locked histories as a useful restricted search domain; distinguish periodic, quasiperiodic, globally canonical, and closed-energy properties. Remove universal off-lock leakage/monodromy claims until a branch-specific theorem proves them. **Grade:** derived explicit canonical-flow counterexample. **Falsifier:** an additional physical restriction excluding the counterexample class and proving necessity for the admitted delayed reduction would license that narrower result.
+
+#### EL-4 — High: single-valued classical angles do not force action quantization
+
+**Location:** lines 183–232 and 951–971. **Type:** missing quantum recovery premise.
+
+A canonical cylinder with $\theta\in S^1$, $I\in\mathbb R$, and $H=I$ has globally single-valued $e^{i\theta}$, a periodic angle, and arbitrary real action $\oint I\,d\theta=2\pi I$. With comparison units $\hbar_{\mathrm{eff}}=1$ and $I=1/2$, the integral is $\pi$, not an allowed multiple of $2\pi$ under the displayed condition. Phase return therefore supplies an integer winding but does not discretize the conjugate action. To obtain the latter from single-valuedness, one needs an independently justified transported amplitude with phase $\exp(i\oint\Pi dQ/\hbar_{\mathrm{eff}})$ and its boundary/holonomy rule; that identification is missing.
+
+The early guessed flat-bundle block does not repair the later affirmative “positive selection rule” and “Thus quantization” conclusion. Even the action-cycle and frequency formulas require the declared integrable/action-angle setting and a specified cycle basis; phase locking alone does not create independent canonical pairs for every subassembly.
+
+**Smallest repair:** keep the integer action condition and observable algebra as recovery hypotheses, distinguish phase winding from action holonomy, and state the missing amplitude/scale derivation. Preserve the canonical $c_1$ phase-degree notation without treating it as an action quantum. **Grade:** derived canonical-cylinder counterexample. **Falsifier:** a derived transport law and scale enforcing the proposed amplitude single-valuedness would provide the missing implication within its stated domain.
+
+#### EL-5 — High: signed polarity density and current are not mechanical kinetic moments
+
+**Location:** lines 653–765. **Type:** invalid moment identification and neutral-medium singularity.
+
+The ratio $u=j_q/\rho_q$ is a signed-current ratio. It is not generally the barycentric velocity of the constituents, even where $\rho_q\ne0$. For two populations with polarity signs $+1,-1$, densities $1.1,1$, and velocities $+1,-1$, the ratio is $2.1/0.1=21$, outside the constituent velocity interval. In an exactly neutral co-moving population with unit positive and negative densities and both velocities two, $\rho_q=j_q=0$, while a unit quadratic bookkeeping coefficient gives mechanical momentum four and kinetic energy four. This directly affects the Noether sea, whose neutral state is central to the proposed application.
+
+The equation for $\partial_T(\rho_q u^i)=\partial_Tj_q^i$ is a polarity-weighted current moment, not a mechanical momentum balance without a derived weighting map. Likewise $f_q\cdot u$ is not automatically delivered mechanical power, especially with velocity dispersion and different responses of the two polarities. Naming an energy density $e_q$ does not define its weights.
+
+**Smallest repair:** keep polarity continuity separate from number/species, mechanical-momentum, stress, and energy moments, defining each from the chosen kinetic chart and distribution. Use the signed-current ratio only on its stated nonneutral domain and do not make it the neutral medium's material velocity. **Grade:** derived two-population counterexamples. **Falsifier:** restrictive single-stream/single-polarity hypotheses or a separately proved response map would justify a narrower identification; neither supplies neutral-sea mechanics as written.
+
+#### EL-6 — High: the polarity-wall circulation mixes action and phase units and does not define a nontrivial double cover
+
+**Location:** lines 1030–1059 and 1095–1102. **Type:** dimensional error and unsupported topological carrier.
+
+The later envelope convention $\psi=\sqrt\rho\exp(iS_{\mathrm{env}}/\hbar_{\mathrm{eff}})$ gives $S_{\mathrm{env}}$ action units. The earlier circulation $\oint\nabla S_{\mathrm{env}}\cdot d\ell=\pi N_{\mathrm{wall}}\pmod{2\pi}$ equates an action with a dimensionless phase. It requires division by $\hbar_{\mathrm{eff}}$ or an explicitly different phase variable.
+
+A single-valued continuous real density also does not automatically carry the proposed odd holonomy. Along a closed loop with finitely many transverse zero crossings, every sign change must be undone before returning to the initial point, so the number of crossings is even. A loop that avoids the zero set stays in a constant-sign component. “Enclosed domain-wall intersections” is not a defined intersection number for a loop and a surface. A nontrivial sign bundle requires extra configuration-space and transition-function structure, not simply the pointwise map $\rho_q\mapsto\operatorname{sign}\rho_q$. A zero level set is not by itself a physically stable domain wall.
+
+**Smallest repair:** correct the phase units and define the actual base space, loop, cover, and transition rule before assigning wall-parity holonomy. Keep the spin/exchange interpretation guessed and remove any implication that ordinary signed-density zero sets already construct it. **Grade:** derived dimensions and sign-continuity argument. **Falsifier:** a well-defined additional bundle structure yielding odd exchange holonomy would change the topological model; it must be derived from the retained histories.
+
+#### EL-7 — High: the envelope residual lacks a common physical map and can miss density mismatch entirely
+
+**Location:** lines 1021–1145. **Type:** incompatible quantities and incomplete closure test.
+
+$\rho_q$ has polarity-density units, while the nonnegative envelope is introduced for a fixed-particle-number benchmark. No conversion or projection operator is inserted before subtracting $j_q-j_{\mathrm{env}}$ and $\rho_q-\rho_{\mathrm{env}}$. The reader cannot tell whether these are comparable quantities, or which polarity/number normalization is used. A nonlinear projection of a signed density does not generally transform its current by the identity.
+
+Even if common units are imposed, the final $\mathcal R_{\mathrm{env}}$ omits the density mismatch that the preceding prose says must be controlled. Take spatially and temporally constant normalized densities $\rho_q=2$, $\rho_{\mathrm{env}}=1$, zero currents, constant $S_{\mathrm{env}}$, and $V_{\mathrm{eff}}=0$. Every displayed continuity, Hamilton-Jacobi, and memory-current residual vanishes, while the density difference is one. The constant wavefunction is a valid comparison solution, but it does not establish the claimed mapping from the supplied density. Near nodes, $Q_{\mathrm{env}}$ additionally needs a positive-density domain or a separate weak formulation.
+
+**Smallest repair:** define the physical projection and units first, derive its density/current identities, and include the actual density/normalization and boundary mismatches in the acceptance scope. State node regularity and distinguish approximate residuals from a proved reduction. **Grade:** derived zero-residual counterexample and dimensional comparison. **Falsifier:** an explicit projection fixing density equality by construction, with compatible current and boundary transport, would discharge the corresponding missing test.
+
+#### EL-8 — Medium: the action's history domain and variation boundaries are not completely specified
+
+**Location:** lines 235–289, 354–381, and 465–469. **Type:** incomplete functional domain and limiting hypotheses.
+
+The action integrates emissions from $-\infty$, while EL1 defines histories only on $[T_a,T_b]$. Fixed endpoint variations of positions do not specify variations of the earlier history or the later receiver terms exposed by EL-1. The admissible self sum may be selected by history-dependent roots or cutoffs; then its variation can have boundary contributions not shown in the kernel gradient. A finite time window is covariant when translated with the history, but not invariant under translating only the path while holding the window fixed.
+
+The simple-root delta limit is valid locally with its full integrability and separation assumptions; it does not assert uniform convergence over a varying history family or justify taking a derivative through an uncontrolled singular limit. These distinctions are only partly stated.
+
+**Smallest repair:** choose one complete integration/history domain, freeze or vary the prehistory and endpoints explicitly, specify fixed-support versus state-dependent exclusions, and retain every resulting boundary term. State the topology and domination/uniform bounds for each limit actually used. **Grade:** inferred missing functional definitions, with the explicit mismatch of domains as measured evidence. **Falsifier:** a complete admissible variation class and boundary calculation would resolve the gap.
+
+#### EL-9 — Medium: the displayed wake-energy expression has not been derived as a Noether charge
+
+**Location:** lines 531–558 and 593–647. **Type:** an unproved boundary formula given stronger status than its owner.
+
+The current Master Equation calls the same double integral a candidate in-flight interaction term, not yet a canonical energy charge. Effective Lagrangian says the action-level Noether charge “can be written” in this form. If $\partial_{T_1}$ is the total derivative of the composite kernel and the upper boundary decays, the proposed expression reduces to $\tfrac12\sum_{ij}\int_{-\infty}^{T}\mathcal K^E_{ij}(T,T_t)dT_t$. A static sign check does not prove that this quantity completes the energy of a general nonlocal action. If a partial derivative holding some path data fixed is intended, that different operator must be defined.
+
+A fixed-delay mathematical comparison makes the missing theorem concrete. For $S=\int[\dot q^2/2-gq(T)q(T-1)/2]dT$, the full Euler equation is $\ddot q=-g[q(T-1)+q(T+1)]/2$. Set $g=-1/\cosh1$ and $q=e^T$. This solves the equation, but the analogous proposed energy $\dot q^2/2+gq(T)q(T-1)/2$ has derivative $e^{2T}\tanh1\ne0$. This counterexample rejects the generic boundary-form inference, not the specific geometric kernel by itself.
+
+**Smallest repair:** retain the displayed expression as a candidate with a defined derivative operator and derive its complete time-translation identity before naming it a charge. Symmetry preservation alone does not validate an arbitrary candidate expression. **Grade:** derived boundary reduction and comparison counterexample; inferred missing geometric-kernel proof. **Falsifier:** a full boundary-variation calculation yielding this expression and its conservation on the admitted solutions would establish it.
+
+#### EL-10 — Medium: coarse-graining a quadratic interaction requires two-point correlations
+
+**Location:** lines 653–699. **Type:** missing closure assumption in the Eulerian density product.
+
+An exact microscopic density can rewrite an admissible pair sum, subject to self-exclusion and delta conventions. Replacing it by a smoothed density is another step: averaging a two-time density product gives a product of means plus a two-point correlation, not just the displayed product of coarse means. Two zero-mean variables with values $+1,-1$ can have product mean $+1$ when correlated or $-1$ when anticorrelated, despite identical one-point means. Neutral coarse density therefore does not imply zero pair interaction. The guessed transmitter-compression paragraph acknowledges one inheritance problem but not this distinct loss of pair data.
+
+**Smallest repair:** distinguish exact microscopic rewrite from coarse closure, retain the correlation/self-exclusion term, or explicitly state and test the factorization regime. Do not add an extra transmitter Jacobian to compensate for missing correlation: those are separate operations. **Grade:** derived averaging identity and finite counterexample. **Falsifier:** a controlled limit proving the relevant connected correlation negligible would justify the factorized action in that regime.
+
+#### EL-11 — Medium: time-frequency parity does not determine tensor antisymmetry or universal transport ratios
+
+**Location:** lines 701–715 and 767–807. **Type:** unsupported constitutive inference.
+
+Odd frequency dependence concerns reversal of frequency; antisymmetric stress concerns exchange of spatial indices. They are independent. The comparison response $\widetilde K^{ij}(\omega)=e^{i\omega\tau}\delta^{ij}$ has a nonzero odd imaginary part for $\tau>0$ and an identically zero antisymmetric spatial part. Delayed failure of pairwise mechanical cancellation can be represented by a source or wake exchange without forcing a particular antisymmetric mechanical stress.
+
+The formula $\operatorname{Im}\widetilde K/\omega$ also needs a Fourier-sign convention, an identified input/output pair (for example stress versus strain rather than strain rate), and finite response moments. Causality alone does not guarantee a Taylor expansion at zero frequency. Even coefficients include static stiffness as well as possible inertia corrections. Certification of a kernel/window does not by itself make coefficient ratios invariant under changes of state or units.
+
+**Smallest repair:** derive spatial tensor sectors separately from frequency moments, define the response convention and moment assumptions, and restrict ratio claims to what the actual kernel and comparison transformation establish. **Grade:** derived tensor counterexample and inferred missing constitutive premises. **Falsifier:** a branch-derived response law connecting these sectors with the required symmetries and regularity would license its specific relation.
+
+#### EL-12 — Medium: the dissipation residual can count the same transferred energy twice
+
+**Location:** lines 809–837. **Type:** ambiguous energy partition and missing flux terms.
+
+The residual adds both integrated positive viscous conversion $D$ and $\Delta E_{\mathrm{wake}}$, while the prose requires that converted content appear in the wake, heat, or medium account. If one unit leaves coherent kinetic energy and enters the wake account, then $\Delta K=-1$ and $\Delta E_{\mathrm{wake}}=+1$ already conserve total energy. Adding $D=1$ reports a false residual of one. A separate disjoint wake term could make the formula valid, but that exclusion is not defined. Boundary work, transport, reversible internal-energy exchange, and the memory-stress power likewise need the account appropriate to the chosen window. Negative viscosity-like coefficients would also make the current denominator unsuitable as a nonnegative normalizer.
+
+**Smallest repair:** define a nonoverlapping energy partition and signed finite-window balance, include the relevant boundary terms, and state positivity assumptions or use a norm-based denominator. **Grade:** derived one-unit bookkeeping counterexample. **Falsifier:** explicit disjoint account definitions and a derived balance containing each transfer once would resolve it.
+
+#### EL-13 — Medium: a preserved memory two-form is not yet a reduced symplectic structure
+
+**Location:** lines 873–945. **Type:** missing descent, closedness, nondegeneracy, and flux definition.
+
+An induced effective flow is not automatic: histories with the same coarse coordinates must have the same coarse future, or a controlled approximation to it. The proposed history two-form must also descend through the coarse-graining, meaning it gives the same reduced bilinear value regardless of the unresolved representative and annihilates discarded directions. Closedness and nondegeneracy must be proved. Preservation alone is insufficient: the zero two-form is preserved by every flow, and the identity preserves even a nonclosed form.
+
+The vector wedge $\delta X\wedge\delta V$ needs its index contraction or tensor kernel, units, and pullback to the reduced tangent space. The claimed equivalence to a boundary flux is not derived. Integrating an unspecified two-form around a one-dimensional return loop is not a scalar integral without an explicit contraction or a form-valued time-integration convention. “Zero-Floquet neutral directions” should distinguish zero exponents from unit multipliers. None of these definitions follows from periodic replay alone.
+
+**Smallest repair:** state the reduced-flow closure condition and candidate form's precise domain, prove descent/closedness/nondegeneracy, and define a correctly typed boundary identity before using its residual as a Hamiltonian test. **Grade:** derived mathematical nonimplications and inferred missing definitions. **Falsifier:** a constructed reduced flow and symplectic form satisfying these properties would resolve the issue; small preservation error for an undefined form would not.
+
+#### EL-14 — Medium: the fold-crossing barrier lies outside the scalar's defined regular domain
+
+**Location:** lines 974–1015. **Type:** incompatible chart floors and barrier interpretation.
+
+A root birth at a fold has $D_t=0$ and cannot occur under one strictly positive sharp-root Jacobian floor. The newly corrected Causal Action Functional defines $B_{\mathrm{rec}}$ on a declared regular history space and supplies no finite-$\eta$ singular extension. A continuous path in that space cannot connect different root-count sectors through a fold; an empty connecting path class gives $+\infty$ by definition. This is a domain exclusion, not evidence of a finite physical barrier. Writing endpoints at finite regulator and taking a positive liminf does not define the missing interpolating functional or event rule.
+
+The quantity is an excess minimax height above the larger endpoint, not the minimum raw scalar value. Phase-lock and frame-degeneracy walls are also not necessarily the same codimension-one root fold. Loss of a chosen phase chart need not change a physical invariant.
+
+**Smallest repair:** inherit the current regular-domain and excess-height definitions; keep a cross-sector gap as an unconstructed extension requiring its own finite event model, admissible path class, and path-independent lower bound. Preserve the correct statement that inverse-area units do not give mass or energy. **Grade:** derived incompatibility of positive floors with a fold and current-owner comparison. **Falsifier:** a defined finite event extension with a proved positive finite barrier would establish the proposed diagnostic in its own domain.
+
+#### EL-15 — Medium: the delayed spring is a comparison model, not the derived first correction to an assembly spring
+
+**Location:** lines 73–119. **Type:** unsupported identification and insufficient expansion assumptions.
+
+The Taylor expansion has the correct signs for the explicitly chosen equation $m\ddot x=-kx(T-\Delta)$ with positive fixed $k,\Delta$. It produces an inertia-like coefficient shift and anti-damping. But the statement that a real assembly spring's first effective model is this single delayed displacement channel is not derived. A general response can contain distributed delays, immediate terms, several internal variables, and additional contributions represented by the ellipsis; those can contribute at the same orders and change the net sign.
+
+A controlled remainder needs smoothness on the entire delay interval and a bound such as $k\Delta^3\sup|x^{(3)}|/6$, not merely a pointwise derivative at the reception time. “Slowly varying” should specify the comparison scale and the treatment of omitted channels. The mass-like shift is an effective inertia coefficient of this assumed model, not an assembly mass result.
+
+**Smallest repair:** introduce it as one illustrative effective response model, state constant-delay and remainder hypotheses, and limit sign and linked-moment conclusions to that channel. **Grade:** derived Taylor identity; inferred missing physical reduction. **Falsifier:** an actual branch-derived assembly response reducing to the stated channel at the claimed order would justify the stronger identification.
+
+#### EL-16 — Medium: the local variational templates need their derivative and endpoint conventions
+
+**Location:** lines 471–523 and 841–869. **Type:** incomplete scope of standard mathematical comparison formulas.
+
+The moving-endpoint boundary expression $[p_a\delta q^a-H\delta t]$ requires $\delta q$ at the endpoint to mean the total endpoint displacement; a fixed-time vertical variation instead gives $[p_a\delta q^a+L\delta t]$. Mixing those meanings changes the boundary term. The later transformation $q\mapsto q+\epsilon X(q,t)$ is vertical and has no time component, so the time-translation case needs either an explicit time generator or the corresponding evolutionary characteristic and boundary term.
+
+The field action displays an ellipsis after first derivatives, then gives only the first-derivative Euler-Lagrange formula. If higher derivatives are admitted, they contribute higher total derivatives and need additional boundary data. For the one-dimensional comparison $L=(q'')^2/2$, the displayed first-derivative formula would give zero while the actual Euler derivative is $q^{(4)}$. For $q=T^4$, that derivative is 24. Merely invoking Einstein-Hilbert as a comparison does not remove its boundary/second-derivative issue.
+
+**Smallest repair:** define vertical versus total endpoint variations and the time generator explicitly; restrict the field formula to first derivatives or include the higher-derivative sum with appropriate boundary conditions. **Grade:** derived endpoint and higher-derivative checks. **Falsifier:** explicit restrictions or conventions matching the written formulas would resolve the respective ambiguity.
+
+#### Effective Lagrangian verification, provenance, and disposition
+
+The known-case-first scoped parser and vendored KaTeX check accept **329 mathematical expressions**, **79 displays**, and **all 79 viewer IDs preserved in order** against the historical baseline. Five displays changed in the inspected conversion: two acceleration equations, the acceleration-residual definition, its normalized window diagnostic, and the renamed branch-gap statistic. All **89 local-file occurrences** exist; all seven Markdown-fragment occurrences resolve against current headings or explicit anchors. The full changed prose and formula diff was read. The conversion improved several claim grades and added a useful reference orientation; most concerns above were already present in the baseline. EL-2 identifies the specific incomplete residual conversion. No visual-layout, generated-viewer freshness, or full downstream audit is claimed.
+
+The mathematical check script `.tmp/crw005-effective-review/check-mathematics.mjs` passes known averaging, polynomial-derivative, and phase fixtures before evaluating its targets. It checks both event roles in a triangular discrete action, the fixed-delay comparison solution and failed candidate energy, continuous classical action on a periodic cylinder, the irrational canonical flow's explicit data, neutral mechanical moments, correlated two-point products, duplicate energy transfer, missed density mismatch, even sign-crossing parity, independent temporal/spatial parity, and Taylor/higher-derivative examples. Numerical examples use normalized wake-speed units $c_f=1$ where a wake speed is needed; the ordinary comparison models are mathematical counterexamples to implications, not imported substrate laws. The explicit proofs and counterexamples above are the durable evidence; scratch contains the executable arithmetic and source snapshots. The existing analyzer and its mathematical references were unchanged.
+
+Bounded source verification attempted the cited Hamilton and Madelung DOI pages and the Noether original-publication page. The DOI opens were blocked as unsafe by the browser service and the Noether page returned 403. A publisher search located supporting Madelung bibliographic references in primary research articles, but did not expose the cited originals for full-text verification. This review therefore does not certify those original texts or use inaccessible claims as proof. The actionable mathematical findings rely on the displayed local equations and explicit derivations; no compulsory bibliography expansion is proposed.
+
+**Disposition:** all 12 Causal Action corrections are complete. Effective Lagrangian has **16 proposed findings** and remains byte-identical to the reviewed snapshot. With all six Dynamics chapters and the already recorded 14 Noether Braid chapters, CRW-005 has **20 of 190 reviewed, 170 remaining**. Packet 2's document review coverage is complete; its Effective Lagrangian corrections await adjudication. The next unreviewed textbook-order chapter after the already completed Noether Braid packet is **Noether Sea**, `content/markdown/aaa/spacetime/noether-sea.md`; it has not been reviewed in this turn. A changed source hash, failed counterexample, or resolving definition would require re-adjudication of the affected finding. No new investigation, generated rewrite, or publication was launched.
+
+Final verification after tracker updates: the known-case-first record checker finds EL-1 through EL-16 exactly once (seven high, nine medium), renders all 93 math expressions in the new acceptance/review record with vendored KaTeX, and resolves its local file targets. `node scripts/validate-content.mjs --check --strict` reports zero errors, zero warnings, and 30 notes. Scoped `git diff --check` passes for Causal Action Functional and the three review owners. `shasum -a 256` confirms both source hashes above, and `cmp` confirms Effective Lagrangian is identical to its review-start snapshot. The `rg --files content/markdown/aaa` Markdown inventory counted by `awk` is 199, including nine Foundations and 14 Noether Braid documents; the 190-document denominator and 20 recorded reviewed paths therefore leave 170 unreviewed paths. These checks establish the stated syntax, inventory, and snapshot boundaries; they do not establish the missing physical derivations.
+
+### CRW-005 Packet 3 document 1 — Noether Sea assurance review, 2026-09-10
+
+**Scope and disposition:** the operator requested the next document review, without implementation. The full 1,236-line [Noether Sea](../../../content/markdown/aaa/spacetime/noether-sea.md) chapter and its entire 172-line diff against pre-campaign `897fe1aa7` were read. The source is unchanged by this review. `shasum -a 256` identifies the reviewed source as `2dcd65594cdeb201cb6e8ab6f393304b72d909a70c70cd9548c1ac9d24dfd512` and the baseline as `255cb1bb0441724cf9ce36110a4a7c30b173abbc7454420d163fd379cac8798d`. The canonical display parser finds all 68 baseline displays and viewer IDs unchanged in order. The actual diff adds paragraph separation and one missing article; it does not introduce the mathematical issues below. They are inherited issues or conflicts with subsequently corrected neighboring chapters, not demonstrated conversion regressions.
+
+The review records **13 findings: six high and seven medium**, all **○ Proposed**. The physical-medium ontology, fixed void, absolute time, distinction between polarity and pro/anti orientation, comparative ambient-selection target, open constitutive status, and separation of density, delay, and cadence are retained. The mass passage at lines 1172–1184 concerns candidate assembly-level inertial response; it does not assign mass to architrinos or claim a completed mass map. The gravitational-loading passage similarly needs its effective assembly interpretation, not a new primitive mass parameter. No blanket terminology rename is recommended. Effective Lagrangian's 16 earlier proposals remain pending and are outside this turn's implementation scope.
+
+#### NS-1 — High: the shell argument needs weighted-root moment hypotheses and an explicit convergence mode
+
+**Location:** lines 20–49. The counting argument supplies a useful conditional mean-square theorem, but does not derive its hypotheses for the actual wake sum. An acceleration hit contains the transmitter factor $c_f/|D_t|$ and the number of admitted roots, not only inverse-square distance. Neutrality and spatial correlation length alone bound neither of these history-dependent factors, nor their second moments. A finite correlation range does not cure an infinite single-cell variance. A population of nearly tangent emission histories can invalidate the claimed $O(n^{-2})$ shell variance unless the weighted cell law is controlled. This identifies a missing hypothesis, not a constructed counterexample to an accepted Noether sea population.
+
+Let $A_n$ denote centered vector shell contributions with finite second moments. The precise elementary conclusion follows from
+
+$$
+\mathbb E\left\|\sum_{n=N}^{M}A_n\right\|^2
+=\sum_{n=N}^{M}\mathbb E\|A_n\|^2
++2\sum_{N\le n<m\le M}\mathbb E(A_n\cdot A_m).
+$$
+
+A summable variance bound and an absolutely summable covariance bound make these partial sums Cauchy in $L^2$. This proves convergence in mean square, hence in probability, along the declared shell order. It does not by this argument establish an almost-sure limit on the particular deterministic universe history, uniform receiver/time convergence, or permission to differentiate the limit. The covariance expression should declare a matrix norm or the scalar dot-product covariance. The weak-gradient paragraph is right to keep the mean contribution open; a local Taylor expansion cannot be extended to all far shells without a global density profile and remainder control.
+
+**Smallest repair:** state the weighted cell/root moment assumptions, derive the displayed tail estimate, label the result conditional $L^2$ convergence, and retain physical realization and stronger limits as separate obligations. **Grade:** derived conditional probability estimate; inferred missing link to the wake ensemble. **Falsifier:** a same-history weighted-cell estimate with finite second moments and the required convergence theorem would support a stronger statement.
+
+#### NS-2 — High: the braid energy and transaction rules identify an unclosed action unit with Planck's constant
+
+**Location:** lines 519–608. The local claim $E_N=h\nu_N$ and transactions $\Delta A_{\mathrm{cyc}}=\pm h$ do not match the current [Cadence-Scale Retuning Hypothesis](../../../content/markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#cadence-scale-retuning-hypothesis). That owner distinguishes its candidate cycle-action unit $h_{\mathrm{act}}$ from observer Planck $h$, and writes a branch action $A_N=Nh_{\mathrm{act}}$ with candidate energy bookkeeping $E_N=A_Nf_N$. The reviewed chapter silently chooses one action unit and closes its observer calibration. Its denial of a new quantum postulate does not establish those identifications.
+
+Action divided by a period has energy dimensions; dimensions do not by themselves establish that it equals the full branch energy. Even in an ordinary mathematical Hamiltonian comparison, $dE/dI=\omega$ yields $E(I)=\int\omega(I)\,dI+\text{constant}$, not generally $I\omega(I)$. The corrected neighboring hypothesis can be retained at its stated candidate grade without treating it as an independently proved energy identity. Observer photon readout $E_{\mathrm{obs}}=h\nu_{\mathrm{obs}}$ is a separately labeled effective recovery relation and need not be renamed with the assembly variable.
+
+**Smallest repair:** inherit $h_{\mathrm{act}}$, the branch action level, its unclosed mapping to $h$, and the candidate status of the energy relation throughout the current and temperature rows. Specify a one-unit restriction if that is the intended model. **Grade:** measured owner comparison plus derived distinction between dimensions and an energy identity. **Falsifier:** a derived branch energy/action map with a proved one-unit domain and observer calibration would justify the stronger formulas.
+
+#### NS-3 — Medium: the unsubtracted Hilbert-transform residual can reject a causal response
+
+**Location:** lines 483–515. A causal kernel does not automatically satisfy the particular unsubtracted relation printed here. The instantaneous causal response $K(T)=\delta(T)$ has $\chi(\omega)=1$, so $\operatorname{Im}\chi=0$ and the displayed numerator is nonzero. A contact term may be excluded by a declared domain, or subtracted as a high-frequency constant; neither convention is stated. Frequency convention, analyticity half-plane, integrability or growth assumptions, subtraction order, principal-value sign, and finite-band tail treatment matter. A generic evolving medium also has a two-time response; a diagonal $\chi(\omega,\mathbf k)$ requires a stationary homogeneous reference or a controlled local approximation.
+
+**Smallest repair:** define the Fourier and Hilbert conventions and the admissible response class, use the appropriately subtracted dispersion relation, and distinguish an actual causal violation from finite-band or modeling error. **Grade:** derived contact-response counterexample. **Falsifier:** a declared strictly delayed decaying kernel class and controlled full-frequency reconstruction would make the printed test applicable within that class.
+
+#### NS-4 — High: the cadence-current remainder omits rate derivatives and the leading diffusion contribution
+
+**Location:** lines 543–571 and 577–588. For an admitted jump process with increments $d_\varsigma(\nu)$ and rates $r_\varsigma(\nu)$ per braid per unit absolute time, define the first and second jump moments $a=\sum_\varsigma r_\varsigma d_\varsigma$ and $b=\sum_\varsigma r_\varsigma d_\varsigma^2$. Taylor expansion of the gain-minus-loss equation, when small jumps and smoothness justify it, gives the current
+
+$$
+J_\nu=af_N-\frac12\partial_\nu(bf_N)+\cdots.
+$$
+
+The chapter retains $af_N$ and writes $O((\Delta\nu_N)^2\partial_\nu f_N)$ without a rate scale or derivatives of rates and increments. Even with constant $f_N$ the omitted term need not vanish: take equal local rates $r_+=r_-=\nu^2$ and constant increments $\pm d$. Then $a=0$, $b=2d^2\nu^2$, and the diffusion current is $-2d^2\nu f_N$, while the printed remainder is zero. For constant equal rates and $f_N=e^{-\nu}$, the exact symmetric-jump evolution is $2r(\cosh d-1)e^{-\nu}>0$, despite zero first jump moment. These are comparison processes used to check the proposed mathematics, not primitive stochastic laws for the theory.
+
+**Smallest repair:** start with the branch-transition gain/loss measure, retain the diffusion current or bound it in a stated drift-dominated regime, and supply a rate-bearing error estimate. State separately whether the projected process has enough retained state to use rates without unresolved memory. **Grade:** derived jump-expansion counterexamples. **Falsifier:** a controlled scaling in which the second and higher jump moments are uniformly negligible would validate a drift-only approximation.
+
+#### NS-5 — Medium: detailed balance needs the cadence measure and does not erase local drift
+
+**Location:** lines 592–608. The reverse-map identity is useful and should be preserved. If $f_N$ is a density per unit continuous cadence and the forward retuning is $F(\nu)=\nu+d_+(\nu)$, flux balance between corresponding intervals compares
+
+$$
+f_N(\nu)r_+(\nu)
+=f_N(F(\nu))r_-(F(\nu))|F'(\nu)|.
+$$
+
+The Jacobian is absent from the chapter's pair test. For $F(\nu)=2\nu$, forward density-rate product one and reverse density-rate product one-half give equal interval fluxes, but the printed residual is one-half. The printed formula is appropriate for discrete state probabilities with counting measure, or a translation map with unit Jacobian; the chapter has not chosen that representation.
+
+Detailed balance means cancellation of paired probability fluxes in equilibrium. It does not mean every state's conditional first cadence increment is zero. A reversible three-state chain with probabilities $(1/4,1/2,1/4)$ and adjacent rates $(2,1)$ on the first edge and $(1,2)$ on the second has zero pair residuals and local drifts $(2,0,-2)$. The population's mean drift is zero, while local drift is balanced by redistribution. This distinction is essential once NS-4's diffusion term is retained.
+
+**Smallest repair:** choose the measure, include any retuning Jacobian, and distinguish pair current, local drift, and ensemble mean drift. **Grade:** derived change-of-variable and reversible-chain examples. **Falsifier:** an explicit discrete branch-state measure with a demonstrated continuum limit would justify the corresponding discrete test.
+
+#### NS-6 — High: the cadence-distribution equation is not joined to the declared population balance
+
+**Location:** lines 9–18, 226–241, 315–384, 543–571, and 650–664. The chapter does not state whether $f_N$ is a normalized probability density or a population density per cadence. If it is a population density, the required normalization is $\int_0^\infty f_N\,d\nu=\rho_{\mathrm{NS}}$. Integrating the candidate transport equation then requires
+
+$$
+S_\rho+r_\rho
+=\int_0^\infty(S_{\mathrm{BH}}+S_{\mathrm{GW}}-R_{\mathrm{eq}})\,d\nu
+-[J_\nu]_{0}^{\infty},
+$$
+
+on the same spatial-flux convention. A disturbance that only retunes existing braids must have zero integrated number source, and number-preserving neighbor equilibration must integrate to zero. Otherwise a positive gravitational-wave disturbance term creates counted braids without a reaction. The full source decomposition earlier in the chapter also contains return, recruitment, pair participation, dissociation, reclassification, and relaxation; their placement in this kinetic equation is not supplied. A cadence-dependent spatial velocity would require its own flux moment rather than automatic use of one population mean.
+
+The finite reaction-window count also lacks an explicit transit flux. Braids can enter or leave a fixed spatial window with no reaction, so its count change cannot equal only the displayed reaction terms unless the window is a material/identity cohort or transit is carried explicitly. Likewise, collimated release that later joins the ambient population is counted at the actual classification event, not automatically at launch.
+
+**Smallest repair:** define the density measure and smoothing normalization, derive its zeroth moment, specify frequency-boundary and spatial-boundary terms, and map each existing source channel exactly once. **Grade:** derived integration constraint; no new physical conservation law is assumed. **Falsifier:** an explicit normalization and source/flux map recovering the existing continuity ledger would close the mismatch.
+
+#### NS-7 — High: the path-rate expression still depends on an unselected cadence variable
+
+**Location:** lines 694–759, 829–965, and 1051–1086. The state $f_N(\nu,\mathbf X,T)$ and its ratio $\mathcal C_N[f_N]$ are functions of cadence $\nu$, while $\alpha_{\mathrm{prop},X}(s)$ must be a scalar along the packet path. No evaluation cadence, response-weighted integral, or branch-state projection is specified. Segmenting the path does not remove this free variable. For the simple positive distribution $f_N=e^{-\nu T}$, zero spatial flow, and a source chosen to satisfy the stated transport equation, $\mathcal C_N=-\nu$ away from the floor. The same cell gives values $-1$ and $-2$ at cadences one and two. Thus the input record does not yet define a unique scalar propagation update.
+
+The dimensional handoff is also undeclared: $D_\gamma\boldsymbol\theta$ has inverse-length units for dimensionless $\boldsymbol\theta$, but $\mathcal C_N$ and $\nabla\cdot\mathbf u$ have inverse-time units. Their coefficients need time-per-length units or a stated division by photon-channel speed; the stress coefficient needs the corresponding inverse stress-length units. Setting $c_f=1$ in numerical work does not identify an effective channel speed or remove this symbolic obligation. The symbol $S(t_s)$ must specify absolute time $T(s)$, and the evolving scalar $\boldsymbol\theta$ later drops the orientation variables included in its earlier definition without an explicit projection. Finally, $\mathcal C_N$ is a source-balanced material-rate quantity, not an equation-defect residual: it can be nonzero when transport is satisfied exactly.
+
+**Smallest repair:** define the map from the full cadence distribution and orientation record to each scalar segment response, give coefficient units and positive-density domain/floor error, and use explicit absolute-time and projected-state notation. **Grade:** derived type and dimensional checks. **Falsifier:** a specified normalized channel weighting or evaluation rule that produces a unique scalar and retains the needed state would resolve the issue.
+
+#### NS-8 — High: endpoint redshift uses the sea cadence without the clock mismatch required by its owner
+
+**Location:** lines 51–58, 282–294, 791–827, 1003–1049, and 1112–1152. The hypothesis table correctly lists local clock/sea cadence tracking as unproved, but the executable endpoint formulas drop its mismatch. [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) explicitly requires $\Delta_{\mathrm{clk\text{-}sea},\mathcal A}=0$ within tolerance before using $\Gamma_N$ as a source/detector clock conversion. Writing a clock rate as $C_{\mathcal A}=C_N\exp(\Delta_{\mathcal A})$ makes the extra frequency conversion $\exp(\Delta_E-\Delta_R)$, and therefore the extra log-redshift term $-\Delta_E+\Delta_R$. With identical sea cadence and a receiver mismatch $0.1$, this is a real log-redshift contribution of $0.1$ that the current subtraction attributes to propagation.
+
+**Smallest repair:** explicitly restrict all displayed transport tests to the tracking branch, or retain both endpoint mismatch terms in the inputs, frequency, duration, and subtraction equations. Do not absorb them into $B_X$, $D_v$, or a fitted path term. **Grade:** derived rate-ratio algebra and measured clock-owner comparison. **Falsifier:** both endpoint mismatch records demonstrably below the declared error budget permit the shorter equations.
+
+#### NS-9 — Medium: the constant-coefficient gradient path term is exactly an endpoint term
+
+**Location:** lines 759–808, 829–862, 913–965, and 1003–1086. When $\mathbf p_X$ is fixed and $D_\gamma=d/ds$ on the declared path, the fundamental theorem gives
+
+$$
+\int_E^R\mathbf p_X\cdot D_\gamma\boldsymbol\theta\,ds
+=\mathbf p_X\cdot(\boldsymbol\theta_R-\boldsymbol\theta_E).
+$$
+
+This term can be a useful constitutive contribution, but it is not independent interior-history sensitivity. Paths with equal endpoint state produce the same contribution regardless of intermediate excursions. On state components shared with the endpoint coefficient row, redshift depends only on the difference between the endpoint and gradient coefficients until independent clock calibration separates them. For one scalar component, $b(\theta_E-\theta_R)+p(\theta_R-\theta_E)$ is unchanged by $(b,p)\mapsto(b+a,p+a)$. Additional segmented samples cannot remove this exact degeneracy by themselves.
+
+**Smallest repair:** evaluate this exact differential at the endpoints, explain its calibration degeneracy, and reserve path-dependent evidence for the remaining terms or a separately derived state-dependent/non-exact response. Do not require a new response mechanism merely to make the term nontrivial. **Grade:** derived fundamental-theorem identity. **Falsifier:** varying coefficients or a derived non-exact response would remove the stated constant-row reduction, but must be included in the model explicitly.
+
+#### NS-10 — Medium: the source calibration is ambiguous and does not determine envelope duration
+
+**Location:** lines 692, 1003–1013, and 1112–1152. $B_X(E)$ is described as the actual emitted frequency relative to $\nu_{X,0}$ while also declared separate from endpoint cadence. Those statements need a clock convention: an absolute-frequency ratio already contains the source cadence, whereas an intrinsic branch factor measured per source-clock unit does not. The later product applies both $B_X(E)$ and $\Gamma_{N,E}^{-1}$, so choosing the former interpretation counts cadence twice.
+
+There is a distinct duration assumption. A carrier-frequency calibration does not automatically fix a packet-envelope duration. The formula assumes the source duration changes by $B_X(E)^{-1}$. Two source wave packets can have different carrier frequency with the same envelope width; this is a mathematical waveform example, not a theory of photon generation. For $B_X=2$, unit reference and actual envelope duration, and no endpoint or propagation change, the printed duration diagnostic gives $\ln2$ although the path has not stretched the packet.
+
+**Smallest repair:** define $B_X$ in a stated source-clock calibration and introduce an independently measured source-duration factor, or restrict the family to a proved fixed-cycle-count waveform class where the reciprocal relation holds. Define the observation-time convention too. **Grade:** derived factorization and waveform counterexample. **Falsifier:** a same-source derivation of the reciprocal duration law for the declared family would support the shorter form.
+
+#### NS-11 — Medium: several residuals test identities or unnormalized quantities rather than constitutive closure
+
+**Location:** lines 127–161, 390–426, 628–648, and 1088–1137. The maximum assembly-class score is not comparable across classes until its component norms and reference scales are fixed; the visibility numerator similarly adds loss/scattering and preferred-frame residuals without declaring common dimensionless normalization. The moment test uses one $\varepsilon$ across density, momentum, energy, cadence, and orientation equations with different units. These require moment-specific scales or explicit nondimensionalization.
+
+A small moment-equation defect also cannot by itself show that omitted memory has been controlled: a model solved using its own chosen moments, currents, and sources satisfies its own equation. In the extreme, identically zero definitions pass while measuring nothing. Define the moments and fluxes independently from the same resolved history and evaluate the proposed closure on histories not used to choose its coefficients. Likewise, defining $Y^{\mathrm{freq}}$ from the measured frequency and inserting it into the inverse frequency formula is algebraic replay; prediction requires an independently evaluated path rate. Image/chromaticity/duration agreement alone does not close an energy balance, and a generic free coherence residue can otherwise absorb the quantity being tested. Finally, cadence-and-balance acceptance is a population membership diagnostic; it supplies no dynamical equilibrium or stability proof.
+
+**Smallest repair:** state the normalization and independent extraction for each test, identify definition/replay versus prediction, bound residuals from retained evidence, and keep membership distinct from equilibrium. **Grade:** derived false-positive routes and dimensional checks. **Falsifier:** independently extracted moments, held-out or analytically known responses, and a bounded omitted-history error would support the closure interpretation.
+
+#### NS-12 — Medium: the stated torque, support, and cage measurements have no inspectable instrument attribution here
+
+**Location:** lines 179–185. The chapter calls forward torque and axial support measured readings while saying their instrument record is pending. The following paragraph describes an acceleration-balanced braid-plus-cage candidate while also saying the cage's reciprocal acceleration still needs evaluation. Those are different scopes: balancing a central receiver against prescribed neighbors does not establish acceleration balance of the whole complex. The explicit open stability statement is appropriate and must remain.
+
+**Smallest repair:** identify the actual prescribed-response instrument, input history, evaluated receivers, normalized wake-speed convention, and retained evidence through a reader-appropriate source/methods note. If that evidence cannot be supplied, retain only a clearly labeled mechanism hypothesis and say which balance is unestablished. Do not fabricate a source or infer a self-consistent cage from a prescribed central response. **Grade:** measured attribution gap by complete reading of the target; no assertion that the measurements are false or that evidence exists nowhere else. **Falsifier:** an inspectable independent instrument record demonstrating the exact stated scope would close the attribution issue.
+
+#### NS-13 — Medium: the acoustic and named stochastic-gravity comparisons need their source-specific scope
+
+**Location:** lines 428–481. The acoustic metric is presented for an ordinary acoustic medium without the assumptions that make this scalar metric representation valid. The checked primary source, Matt Visser, *Acoustic black holes: horizons, ergospheres, and Hawking radiation* (1997 preprint; 1998 publication), states a barotropic, inviscid, irrotational background and treats small velocity-potential perturbations; its theorem and equation (4) match the displayed metric. These assumptions belong beside the example, because a viscous or vortical medium need not admit this same scalar-wave reduction. [Primary source, theorem and equation (4)](https://arxiv.org/html/gr-qc/9712010).
+
+The named Hu comparison also needs an identifiable source and a bounded mapping. Hu and Verdaguer, *Stochastic Gravity: Theory and Applications* (2008), section 3.2, equation (3.11), defines a centered, symmetrized stress-tensor two-point noise kernel. A generic classical cadence/response covariance is a useful analogy, but does not by itself reproduce that quantum noise kernel or imply all higher correlations. [Primary source, section 3.2](https://arxiv.org/html/0802.0658). The chapter's explicit refusal to add primitive stochastic metric noise is correct and should be retained.
+
+**Smallest repair:** add concise assumptions, identify the perturbation and statistical observables being compared, and give these two targeted source notes. No broad bibliography or imported substrate dynamics is needed. **Grade:** measured primary-source comparison, limited to the stated passages. **Falsifier:** a different explicitly derived acoustic regime or a concrete observer correlation map could justify a broader comparison.
+
+**Verification and limits:** the known-case-first scoped extractor, canonical display parser, and vendored KaTeX render all **247 math expressions**, retain **68 displays and viewer IDs**, resolve **97 local-file occurrences**, and find **eight Markdown fragment occurrences with no unresolved simple-heading or explicit-anchor candidates**. The display comparison records no changed equations against the historical baseline. The unchanged source can still contain the semantic issues above; syntax checks are not a proof. A separate small mathematical check first passed known sum, derivative, and exponential fixtures, then reproduced the symmetric-jump, rate-gradient diffusion, change-of-variable, reversible-chain, free-cadence, exact-gradient, clock-mismatch, independent-envelope, contact-response, and independent-shell-tail examples. Their status is explicit mathematical comparison, not an EOM evolution or physical medium measurement. Scratch scripts, snapshot, and baseline diff are under `.tmp/crw005-noether-sea-review/`.
+
+The live TOC traversal places Noether Sea first in Spacetime and **Noether Sea Pro/Anti Coupling** next. This review completes one document only. The next unread path is `content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md`; all NS findings and the prior EL findings remain proposed. Any source-hash change or a counterderivation meeting a finding's falsifier requires reassessing that finding before integration.
+
+Final verification: `node scripts/validate-content.mjs --check --strict` reports zero errors, zero warnings, and 30 notes. The known-case-first review-record checker finds NS-1 through NS-13 exactly once (six high, seven medium), renders all 89 math expressions in this record, and resolves its local file targets. Scoped `git diff --check` passes for the three updated assurance owners. A byte comparison with the review-start snapshot and a fresh SHA-256 calculation confirm the reviewed Noether Sea source is unchanged. The `rg --files content/markdown/aaa` inventory counted by `awk` remains 199 Markdown files, including nine Foundations and 14 Noether Braid files. With the six recorded Dynamics reviews and this one Spacetime review, current assurance coverage is 21 of 190, leaving 169 unread documents; this is review coverage, not correction completion or independent physical validation.

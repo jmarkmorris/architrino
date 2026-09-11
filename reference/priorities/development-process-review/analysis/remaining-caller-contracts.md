@@ -10,7 +10,7 @@ Legend: ✓ Done, ◐ Partial, ○ Not done. Blocked identifies an unmet prerequ
 | F5 original-input routing, build/API review and complete prefix/rung chain | ✓ Done | [Complete current F5 execution](f5-remaining-callers.md); no broader scientific or repository-health conclusion |
 | Circular current build/context and complete pilot | ✓ Done | [Independent pilot acceptance](../evidence/circular-current-execution/current-pilot-independent-review.md) |
 | Circular current ladder resource and execution contract | ◐ Partial | [Detailed ladder requirements](circular-current-execution.md); memory/entry review and bounded current-rung evidence are separate from the completed pilot |
-| Refined current execution | ◐ Partial — Blocked | [Original-byte prerequisite review](../evidence/refined-current-migration/recoverability-review.md#wider-local-recovery-follow-through); three exact original utilities remain unavailable |
+| Refined current execution | ◐ Partial — admission decision complete; implementation Deferred | The [refined-specific admission decision](../evidence/refined-current-migration/recoverability-review.md#refined-admission-decision--september-11) resolves the utility-availability policy prerequisite. A separately versioned current transport, five original ancestry routes and independent validation remain with the [recovery queue](../work-queue.md#blocked-prerequisites); full original-environment verification remains unavailable. |
 
 The [current remaining-task table](review-and-repair-plan.md#complete-remaining-task-reconciliation-after-publication-rollover) owns executable follow-through.
 

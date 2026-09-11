@@ -2,7 +2,7 @@
 
 ## 1. A persistent assembly is a condition on histories
 
-### 1.1 From a moving picture to a dynamical object
+### 1.1. From a moving picture to a dynamical object
 
 A set of circulating points is easy to prescribe. A persistent assembly must do something more demanding: its complete past must generate the acceleration needed to continue that same motion. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the present configuration is therefore only a section through the dynamical state. Two assemblies can have identical positions and velocities now and different accelerations because their earlier paths differ.
 
@@ -12,7 +12,7 @@ A braid in this setting need not have every member on one plane or circle. The r
 
 The program contains exact geometric identities, conditional theorems, computer-assisted source results, finite numerical observations and proposed physical interpretations. Their roles are developed separately below. The central open problem is a demonstrated persistent branch with a controlled neighborhood and, for energy claims, a compatible action-derived account. A catalog entry, an attractive drawing or a finite low residual does not by itself supply that object.
 
-### 1.2 Causal roots and acceleration
+### 1.2. Causal roots and acceleration
 
 At a reception event $(\mathbf X_i(T_r),T_r)$, a transmitter path contributes at every admitted earlier time $T_t$ satisfying the causal condition
 
@@ -41,7 +41,7 @@ Differentiating the causal equation along a simple root gives $dT_t/dT_r=D_r/D_t
 
 Finite speeds at or above $c_f$ are not excluded from the model merely because a strict sub-field instrument cannot certify them. They require a complete multiroot treatment, including transitions and self hits. Likewise, reaching $c_f$ is not alone a fold: the relevant event is the loss of the transmitter-factor margin on a causal root.
 
-### 1.3 What each level of evidence establishes
+### 1.3. What each level of evidence establishes
 
 Geometric specification establishes which paths a record denotes. Geometric admission adds such conditions as separation, coherent history and a valid representation. Causal admission establishes the required root inventory on its stated domain. Ordinary evolution then asks whether the complete delayed acceleration continues the history without imposed future motion. Retention and return require still more: a bounded branch, an explicit return action and the necessary history comparison. These levels are not interchangeable, and a failure can occur at any one without deciding all the others.
 
@@ -49,7 +49,7 @@ A finite reception ladder, for example, can certify every root at its reception 
 
 This hierarchy also explains why unknown, unavailable, failed and not applicable must remain distinct. An unavailable residual is not zero. A field-speed restriction in an instrument is not a physical rejection. A stationary geometric endpoint can be inapplicable to a moving-history test while still failing an exact stationary balance equation. The [candidate adjudication](analysis/braid-candidate-requirement-adjudication.md) and [analytical method](contracts/method.md) retain the detailed interfaces and tests supporting these distinctions.
 
-### 1.4 A common ruler and an exact return
+### 1.4. A common ruler and an exact return
 
 Comparing differently sized histories requires a predeclared ruler. For $m$ members, use their geometric center $\mathbf C=m^{-1}\sum_i\mathbf X_i$ and a fixed reference root-mean-square radius
 
@@ -66,7 +66,7 @@ Position, rate and history residuals therefore have separate purposes. A history
 
 ## 2. Geometry, polarity and coordinate families
 
-### 2.1 Neutral binaries and persistent endpoint labels
+### 2.1. Neutral binaries and persistent endpoint labels
 
 A useful pair-conjugate chart writes the two endpoints of binary $a$ as
 
@@ -83,7 +83,7 @@ For a common-axis family, removing the common axial translation leaves two relat
 
 The [orbiting-endpoint comparison](analysis/three-binary-orbiting-endpoint-comparison.md) and [coincident-axis analysis](analysis/coincident-axis-and-two-component-circular-analytics.md) give the complete coordinate maps. Their geometric results do not claim that every admissible coordinate point is a solution.
 
-### 2.2 Why six-to-six matching failed, and what the five-coordinate repair does
+### 2.2. Why six-to-six matching failed, and what the five-coordinate repair does
 
 A seemingly fair comparison between two six-coordinate descriptions can be unfair if their centering constraints remove different directions. Three vectors with zero sum are linearly dependent. Consequently, independently adjustable axial scales on three independent axes cannot also provide the assumed separate-sector centering. The original six-to-six comparison had a structural obstruction before any dynamics was run.
 
@@ -91,7 +91,7 @@ The repaired comparison instead selects two injectively embedded five-coordinate
 
 The later bounded EOM comparison evolved four primary cases and two refinements to $T=0.15$ with $c_f=1$, using a fixed retained past and declared sampling/chunk structure. Its observed leakage is evidence on that five-coordinate slice. The record does not isolate pair conjugacy as the cause: the compared paths also differ in the prescribed noncommon coordinates and histories. The refinement rule itself included a specific normal-leakage test, rather than a proof that every diagnostic converged. Local initialization fairness, finite evolution and a causal explanation of the difference remain separate claims.
 
-### 2.3 Circular compositions and geometric negatives
+### 2.3. Circular compositions and geometric negatives
 
 Two six-member components can share a center, occupy separated positions on a common axis, rotate in the same sense or counterrotate. Each choice must preserve its own member order, pair declarations, component membership, phase convention and history. A component called a planar braid does not make the entire two-component assembly planar; affine span belongs to the whole member set.
 
@@ -101,7 +101,7 @@ A stronger analytical exclusion applies to two parallel circular planes with fix
 
 A balanced sum over all members would not repair this failure. Every receiver must satisfy its own vector equation. Action/reaction-style cancellation of an aggregate is not receiver-local balance in delayed dynamics.
 
-### 2.4 Persistent axes, frequencies and finite display histories
+### 2.4. Persistent axes, frequencies and finite display histories
 
 The eleven three-axis circular specifications form two groups of five variants—axially separated and coincident-midpoint—together with the phase-compensated symmetric representative. Their endpoint indices remain persistent when frequencies or visual roles change. An endpoint associated with the highest frequency in one row need not have that role in another, and reordering by frequency changes the identity convention.
 
@@ -109,7 +109,7 @@ A rational-frequency prescription has an exact common return only when all phase
 
 Other sources prescribe linear centered histories, a phase-varying twelve-member path and an asymmetric counter-breathing eight-member display. A finite displayed future is a chosen path. Interpolation, reconstruction and boundary guards determine which path it is; changing those details changes the subject. An empty neutral-pair list is not evidence that an implementation secretly pairs components, and a list of component memberships is not an equation constraining their subsequent motion. The [configuration chart](configurations/configuration-chart.md) and [display catalog](configurations/configuration-display-catalog.md) preserve these individual declarations.
 
-### 2.5 Exterior improvement and internal consistency
+### 2.5. Exterior improvement and internal consistency
 
 An exterior wake response can improve while the imposed assembly becomes less internally consistent. The historical coincident-axis accessory pilot provides such an example: selected accessory placements improved exterior ratios while worsening all three internal residuals. Its numerical convention used the recorded legacy $c_f=4$, so those values remain protocol-local history and are not combined with current normalized evidence.
 
@@ -119,7 +119,7 @@ The sealed nine-configuration sample illustrates the limits of numerical search.
 
 ## 3. Circular balance and the structure of causal folds
 
-### 3.1 Chord geometry before balance
+### 3.1. Chord geometry before balance
 
 Consider members on one circle of radius $R$, with common angular rate $\omega>0$ and fixed phase offsets. Put a receiver at phase zero at reception and let a transmitter's relative phase at that time be $\delta$. For delay $\tau>0$, their chord has length $2R|\sin((\delta-\omega\tau)/2)|$. With $x=\omega\tau/2$ and $\beta=\omega R/c_f$, the causal equation becomes
 
@@ -144,7 +144,7 @@ $$
 
 These are the balance equations on the declared symmetric chart. They do not establish a universal radius or speed for arbitrary phases and polarities. Complete exact vector equality at one phase, together with covariance and the exact ordinary root ledger, does establish the rigid circular solution at every phase. An approximate residual near zero is evidence toward that theorem's premises, not a replacement for them.
 
-### 3.2 Polarity, winding and the regular census
+### 3.2. Polarity, winding and the regular census
 
 For a regular $2N$-gon with alternating polarity, moving $N$ indices reaches the antipode. When $N$ is odd the antipodal polarity is opposite; when $N$ is even it is the same. This is exact indexing of the ideal polygon. Stored finite decimal phases and vectors carry the intended geometry but are not by themselves exact trigonometric antipodality or cancellation certificates.
 
@@ -154,7 +154,7 @@ The finite polarity census first studied small balanced regular inventories. Its
 
 The individually stored alternating-ring specifications likewise preserve their own radii, speeds and operators. Their nonmonotone numerical rows must not be narrated as a continued branch without a continuation argument. The hundred equal-radius six-member records described next belong to a different, explicitly indexed topology ladder; those hundred records are not a census of every possible assembly.
 
-### 3.3 A global result on the regular six-member chart
+### 3.3. A global result on the regular six-member chart
 
 The strongest circular result concerns six alternating members with equal radius, regular phases and common circulation. The recorded proof establishes one simple tangential-balance zero in every even ordinary topology cell, and none in the initial or odd cells. Radial compatibility selects the associated radius. This is a global theorem on that chart, not a statement about unequal radii, arbitrary phases or stability.
 
@@ -170,7 +170,7 @@ organizes the shifted endpoint lattice with spacing $\pi/6$. Subtracting the lea
 
 The physical scope remains narrow even though the speed range is global. Exceptional fold roots are not ordinary simple roots. No theorem here proves an attracting neighborhood, a selected formation mechanism or an energy spectrum. The [planar frontier](campaigns/planar-three-binary-work-queue.md) retains the exact completed theorem objects and the separately deferred dynamical questions.
 
-### 3.4 Two asymptotic limits with different answers
+### 3.4. Two asymptotic limits with different answers
 
 Increasing the fold index at fixed six-member inventory is different from increasing the number of members. Confusing these limits loses the leading correction in each.
 
@@ -193,7 +193,7 @@ $$
 
 whose zero is $d=2/\pi^2$. The compatible radius has order $N^{5/3}$. The positive chamber-interior contribution of order $N^2/6$ explains why the selected zero must be sought near the fold rather than in an assumed interior continuum limit. This is an asymptotic existence and location result; it is not finite-$N$ global uniqueness, and it does not supply the first parity correction. The [boundary-layer theorem](evidence/2026-09-02-bp014-boundary-layer-balance-theorem.md) retains the root-family and complement estimates needed for that conclusion.
 
-### 3.5 Local isolation and local history flow
+### 3.5. Local isolation and local history flow
 
 Near the regular T04 solution, separate phase and radius slices each admit a small certified box, but two slice results do not prove a coupled statement. The later five-variable phase/radius/speed certificate treats the coupled $10^{-6}$ box directly, owns 72 roots and uses covariance to discharge the remaining vector equations. It identifies the unique local regular equal-radius zero in that box. A wider $2\times10^{-6}$ attempt failed interval inversion; that failure is neither an asymmetric zero nor proof that none exists outside the smaller box.
 
@@ -203,7 +203,7 @@ A separate local history-flow result works in a nonzero $W^{2,\infty}$ neighborh
 
 The [coupled-box certificate](evidence/2026-09-02-planar-three-binary-coupled-box-certificate.md) and supporting local-flow records therefore answer complementary questions. Global unequal-radius or phase uniqueness remains open, as do independently reproduced one-cycle evolution and a controlled nearby-history return map.
 
-### 3.6 Excluded weave and drift directions
+### 3.6. Excluded weave and drift directions
 
 The orthogonal weave provides a useful negative because its proof explicitly separates ordinary cells from folds. A finite fixed-phase scan was strengthened by interval exclusions across the stated speed domain, with separate limiting treatment of exceptional folds. Some folds carry persistent factors that vanish together; others produce same-directed divergent newborn contributions. None may be silently counted as an ordinary root. The result excludes that fixed weave on its declared domain, not every orthogonal or phase-shifted assembly.
 
@@ -213,7 +213,7 @@ These negatives guide the remaining geometry without replacing it. Opening phase
 
 ## 4. Continuous causal-root sheets
 
-### 4.1 What carries a root from one reception to the next
+### 4.1. What carries a root from one reception to the next
 
 A root at one reception event does not prove a root inventory on an interval. For a continuous family, one needs a common history domain, endpoint signs, a simple-root margin and control of every place a root could enter, leave or merge. On a connected compact parameter domain, a complete anchor inventory together with those conditions can make root count invariant. A sampled root count without the boundary argument cannot.
 
@@ -242,7 +242,7 @@ $$
 
 where $\delta_{ij}$ is a same-time clearance lower bound on the relevant domain. These inequalities can propose an emission enclosure. They do not replace the required whole-reception face signs. Nor may a checker impose $R=T_r-T_t$ while proving those signs: that equality is a consequence at the root, not a premise on the entire face.
 
-### 4.2 Circular reduction helps without completing the domain
+### 4.2. Circular reduction helps without completing the domain
 
 The common-frequency three-binary study uses a squared-gap equation $G=\|\Delta\mathbf X\|^2-\delta^2$ to exploit circular geometry; here $\delta$ denotes the chart's dimensionless delay and $\Delta\mathbf X$ the corresponding displacement. Its early continuous ratio/phase inventories expose the difference between a useful reduction and a completed proof. The first retained inventory records 480,018 evaluated cells, 114 simple-root cells and 146,224 unresolved cells. The second uses an analytic circular reduction and endpoint symmetry, reducing the evaluated count to 180,210, with 652 simple-root cells and 98,152 unresolved cells. Reused symmetry cells have separate counts and are not additional independent evaluations.
 
@@ -250,7 +250,7 @@ Both records retain only 128 illustrative unresolved sample rows, not every unre
 
 These records are valuable negatives about the attempted cover. They show where resource limits, maximum depth and topology uncertainty persist. They also preserve exact analytical identities and control residuals, so a later proof can explain precisely which obligations it discharges rather than treating a new output as an unexplained success.
 
-### 4.3 Emission coordinates and reception projection are separate
+### 4.3. Emission coordinates and reception projection are separate
 
 A circular root sheet can be simple in an emission-fixed coordinate while its projection onto reception phase still needs proof. With $\theta$ the reception phase, an emission coordinate $\epsilon=\theta-\delta$ is useful for selected receiver/transmitter roles in the bounded common-frequency chart. But counting roots in that chart does not automatically establish a one-to-one reception-time inventory. The derivative of the projection must retain its required sign throughout the domain.
 
@@ -258,7 +258,7 @@ The later source certificates therefore separate three objects: the root-sheet c
 
 On the declared bounded radius-ratio chart, the accepted source reports complete representative/reused inter-binary roots together with the sealed same-binary and partner classes. These are continuous prescribed-history root results. They do not evaluate the full acceleration residual, establish a periodic solution or supply an energy. The [common-frequency action and root account](evidence/coincident-midpoint-common-frequency-step-action-ledger.md) preserves the exact chart interfaces and their chronology.
 
-### 4.4 A simple root can leave the retained history
+### 4.4. A simple root can leave the retained history
 
 The outer-radius expansion gives a concrete reason to keep history boundaries distinct from folds. Let $\alpha$ be the outer radius divided by the fixed middle radius, and $\chi$ the dimensionless retained-delay cutoff. With the earlier $\chi=9/4$, a boundary is encountered at
 
@@ -272,7 +272,7 @@ A later calculation uses the longer cutoff $\chi=145/64$ on a new left-open slic
 
 The finite structural ledger provides another boundary: 24 phases on a small radius grid and thousands of accounting rows can reveal chart warnings but cannot certify a continuous domain. Its six emission-chart root-count warnings remain part of the source result. A large ledger and a continuous proof answer different questions.
 
-### 4.5 From root intervals to usable acceleration bounds
+### 4.5. From root intervals to usable acceleration bounds
 
 Once coverage is established, the sharp acceleration must consume the entire accepted root enclosure and the same history family. Distance can then be intersected with causal delay and clearance bounds. An empty intersection indicates inconsistent or unresolved input; it is not a root to discard or a zero contribution.
 
@@ -282,7 +282,7 @@ This distinction governs the continuous eight-member analysis below. It also pre
 
 ## 5. Finite ordinary evolution and its limits
 
-### 5.1 Inward approach is not a completed breathing cycle
+### 5.1. Inward approach is not a completed breathing cycle
 
 The stationary two-member release begins at $(\pm0.5,0,0)$ with zero velocity and a constant past. Its separately recomputed release acceleration is inward, approximately $\mp0.28622861030534$ along the axis. The retained refinement ladder advances through increasingly close approach, but all recorded motion remains inward. It establishes no certified crossing, positive-separation inner turn, outer turn or recapture.
 
@@ -292,7 +292,7 @@ A distinct transverse-moving release, with speed $0.25$, produces a retained reb
 
 An earlier removed run had also motivated the breathing investigation, but its numerical authority was withdrawn when its raw bundles were removed. The later retained moving release bears its own identity and evidence; it does not revive the withdrawn run. The [stationary diagnostic](evidence/2026-07-24-stationary-rest-two-architrino-breather-diagnostic.md) and [moving return-map account](evidence/2026-07-24-current-solver-two-architrino-breather-return-map.md) keep the experiments separate.
 
-### 5.2 History correlation moves a certification frontier
+### 5.2. History correlation moves a certification frontier
 
 The stationary frontier initially stopped near $T=1.24$ despite opposite root-face signs and positive transmitter and receiver factors. The diagnosis identified a missing accepted joint-history carrier. This was an ordinary simple-root width problem, not a fold or absence of a physical root.
 
@@ -300,7 +300,7 @@ A validation-only carrier then certified the formerly blocked step to $1.245$. F
 
 The chain is evidence of specific capability improvements, not a completed stationary fate. Direct/traversal parity through the same exact-pair implementation checks an interface. A fixture that expects an atomic rejection can pass while the requested future evolution remains unresolved. An in-process history carrier also does not become checkpoint persistence until its serialization and restart obligations are actually supplied.
 
-### 5.3 Local outward departure and a later inward turn
+### 5.3. Local outward departure and a later inward turn
 
 A radially balanced circular two-member past has another behavior. On its principal one-partner-root, no-self-root chart with $0<\beta<1$, the initial radial velocity and acceleration vanish, but the delayed tangential acceleration is positive. Rotational covariance and the exact polar equations give
 
@@ -315,7 +315,7 @@ A longer retained circular-history release supplies the source's measured counte
 
 That long run explicitly changes root and acceleration tolerances through a fingerprint-bound continuation sequence and records overlap controls. It is not one unchanged refinement ladder. The independent circular reference checks release calibration, not the complete later trajectory. The [radial-turn result](evidence/2026-08-11-physical-binary-retained-history-radial-turn.md) therefore supports a bounded measured negative to universal monotonicity; it supplies no later inward fate, repeated excursion, binding or persistent branch.
 
-### 5.4 Phase-varying prescribed admission and failed target-horizon evolution
+### 5.4. Phase-varying prescribed admission and failed target-horizon evolution
 
 The selected twelve-member phase-varying history differs from the older common-cadence circular realization that failed its prescribed test. Its individual branches, polarity sectors, orbit frames and history reconstruction are part of its identity. Continuous geometric guards and a finite prescribed-root ladder admit that exact history at their stated scope. Neither the older failure nor the newer admission is a verdict on every related family.
 
@@ -331,7 +331,7 @@ The [ordinary-evolution evaluation](evidence/2026-08-27-f5-ordinary-evolution-ev
 
 It did preserve conditional mathematics: relaxed feasibility differs from a globally smooth witness; strict-slack lifting needs its original-family and join hypotheses; exact decimal arithmetic needs the actual operands; and endpoint agreement does not establish a continuous exact-solution error bound. Point-acceleration nonuniformity on a broader sharp-history family is not a counterexample within an unchanged fixed-cubic family. These supporting results explain possible limits of an instrument without claiming that the missing concrete trial was reconstructed.
 
-### 5.5 What a completed return experiment still requires
+### 5.5. What a completed return experiment still requires
 
 The exact regular-circle theorem, a short local existence result and the measured binary events provide different parts of a future return analysis. None completes it alone. A full cycle needs a retained history long enough for every causal root, a precise action on labels and rates, independent equation comparison and a refinement ladder that reaches the common target. A nearby-history experiment additionally needs its perturbation histories to lie inside the actual admissible neighborhood.
 
@@ -339,7 +339,7 @@ Only genuine symmetry directions may be removed before interpreting growth or mu
 
 ## 6. Counter-breathing geometry and continuous residuals
 
-### 6.1 Eight members on a six-coordinate history surface
+### 6.1. Eight members on a six-coordinate history surface
 
 The asymmetric counter-breathing family uses four tetrahedral axes,
 
@@ -374,7 +374,7 @@ $$
 
 Thus every member in a sector has squared speed $\dot h_\sigma^2+\dot\rho_\sigma^2+\rho_\sigma^2\dot\theta_\sigma^2$. This is kinematics, not kinetic energy. On a complete ordinary nondegenerate history branch, the declared symmetry makes the law tangent to this history surface. The conditional invariance theorem does not establish stability, periodicity or physical realization, and numerical leakage still tests implementation and history handling.
 
-### 6.2 Spheres, frames and what they do not protect
+### 6.2. Spheres, frames and what they do not protect
 
 The track-center radius $|h_\sigma|$ differs from the orbit-envelope radius $\sqrt{h_\sigma^2+\rho_\sigma^2}$. Two nonparallel complete circular tracks determine the common sphere, while four simultaneous points need a noncoplanarity condition to do so. Breathing produces a time-indexed family of envelopes, not a material shell. Equal envelope radii provide no lower bound on every cross-sector clearance.
 
@@ -384,7 +384,7 @@ Opposite-edge constructions give useful geometric and velocity-bearing frames. P
 
 Face-normal closure, orbit-area rates and signed face projections describe the geometry. They do not establish spin, magnetic field, action conservation or the gluing of physical faces. The [full geometry treatment](analysis/f6c-geometry.md) gives these constructions and the exact nondegeneracy hypotheses.
 
-### 6.3 Turns, cadence reversal and incomplete returns
+### 6.3. Turns, cadence reversal and incomplete returns
 
 Finite continuations show sector compensation and changes from tangentially dominated motion toward breathing-dominated motion. The direction called a current in these diagnostics is polarity-weighted lever-arm motion, not a primitive electromagnetic current. Oversampling selected regions does not turn the observed census into a population distribution.
 
@@ -394,7 +394,7 @@ The return action in that record includes the proper half-turn $\operatorname{di
 
 A bounded radial-frequency continuation changed nine ratios while preserving the declared comparison. Its best improvement was below one percent, short of the frozen ten-percent threshold, so no refinement followed. Phase-grid aliasing had also spoiled an earlier apparent improvement. These observations close those tuning attempts at their measured scope. They neither prove that no periodic branch exists nor authorize restarting a closed direction without a new scientific object.
 
-### 6.4 An exact reconstructed future is not a uniquely known past
+### 6.4. An exact reconstructed future is not a uniquely known past
 
 The residual program selects the refined trial's accepted frame centers. Eight members at 81 saved times define 80 exact rational Hermite intervals. Shared positions and rates make the selected future globally $C^1$, while curvature can jump at original knots. Rounded polynomial coefficients would define another path unless their error were separately enclosed.
 
@@ -402,7 +402,7 @@ The original history family contains paths and their own derivatives satisfying 
 
 Bernstein control points provide a useful sufficient containment test. Failure of that construction need not exclude another admissible joining path. By contrast, an exact interior point outside an allowance is a counterexample to containment of the selected path. These distinctions matter because different admissible anchored pasts can produce different delayed acceleration despite sharing the same release jets and fixed future.
 
-### 6.5 A member residual must compare two different sides
+### 6.5. A member residual must compare two different sides
 
 The required side is the exact second derivative of the reconstructed member history. The law side is a separately authored delayed-acceleration reference consuming the same history family and complete root cover. The EOM solver's own acceleration is not an independent reference for itself.
 
@@ -428,7 +428,7 @@ These compare Cartesian member vectors before norms and aggregation. Tangent-onl
 
 A complete conditional root cover over 160 initial parent cells is an important premise, not a completed residual integral. The source records a local refined mismatch bound below $0.01234$ on $[0,0.001]$ for the declared family. Every component interval still contains zero. That bounds local mismatch without proving equality, imbalance, whole-history RMS or a score increase.
 
-### 6.6 Correlation, quadrature and partial accepted integrals
+### 6.6. Correlation, quadrature and partial accepted integrals
 
 The first coarse acceleration enclosure was valid but extremely broad. Emission-only refinement narrowed the permitted root domain through strict whole-face signs and then required a complete fresh cover. An exploratory boundary move was not itself proof of a discarded region. Later positive emission endpoints can also be causal when they remain earlier than reception; absolute sign is not the causal test.
 
@@ -446,7 +446,7 @@ The measurements expose why better inputs do not always mean a tighter final ans
 
 The accepted September result covers only original parents 0–2 at the loose setting, through reception time $0.0030000000000000001$. The remaining 157 parents and both finer settings are not completed by that result. All cited integral lower bounds remain zero. Historical source-generation acceptance is preserved, while a replay against changed live source bindings fails admission; that is not a new numerical disproof of the original enclosure. The [continuous enclosure contract](evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md) and [integral/supremum treatment](evidence/2026-08-27-f6c-residual-integral-supremum-enclosure.md) supply the full conditions for extending the calculation.
 
-### 6.7 Physical interpretations remain downstream
+### 6.7. Physical interpretations remain downstream
 
 The six-coordinate map admits even/odd sector variables and an exact scalar-plus-directional decomposition with an inverse. It does not establish exactly three dynamical modes: that requires a closed history reconstruction and a return operator. Polar and axial response also require reflection behavior, not rotations alone. A vector reversal under a chart action is not a spinor sign.
 
@@ -456,7 +456,7 @@ Literal eight-plus-six capture would require fourteen backreacting members. A we
 
 ## 7. Platonic histories and exact exclusions
 
-### 7.1 A solid, a coloring and a history are different objects
+### 7.1. A solid, a coloring and a history are different objects
 
 A Platonic vertex set fixes geometry. A polarity word decorates it. A relationship assignment may identify a solid or a comparison structure. A motion rule and a complete history then define a dynamical test. None of these steps is implicit in the preceding one.
 
@@ -472,7 +472,7 @@ This is elementary Euclidean kinematics. It supplies a test of the delayed law r
 
 The relevant symmetry is that of the colored history. Under an improper orthogonal map, an angular-velocity axis transforms as an axial vector, including the determinant factor. Global polarity conjugation is a separate operation. Counting a finite collection of stabilizer strata therefore does not count every axis.
 
-### 7.2 Octahedral axes: exact negative strata and open interiors
+### 7.2. Octahedral axes: exact negative strata and open interiors
 
 For the regular octahedron ordered as $(+\mathbf e_x,-\mathbf e_x,+\mathbf e_y,-\mathbf e_y,+\mathbf e_z,-\mathbf e_z)$, the retained analysis distinguishes two balanced polarity words. The vertex-axis obstruction follows analytically because selected receiver distances and weights remain constant. Other axis strata require complete delayed sums.
 
@@ -490,7 +490,7 @@ Normalized interpolation divides it into two triangular charts. Boundary represe
 
 The later interval proof closes all five edges, including the shared diagonal, with 9,078 accepted boxes. In each box it fits one common signed rigid scale to representative required directions and shows that at least one of nine residual components excludes zero. Allowing signed scale makes this a necessary-condition screen containing every positive-radius balance; it is not a new physical parameter. Both triangle interiors remain open. Continuity from the excluded edges does not exclude them, and none of these strict-sub-field rigid results addresses arbitrary super-field or non-rigid histories. The [moving-history reduction](analysis/platonic-moving-history-reduction.md) records the separate channel systems and full quotient construction.
 
-### 7.3 The static Stella endpoint is not an equilibrium
+### 7.3. The static Stella endpoint is not an equilibrium
 
 The eight Stella members form two interpenetrating tetrahedral sectors. At the stationary release, each receiver has three opposite-polarity partners at distance $1/\sqrt3$, three same-polarity partners at $\sqrt{2/3}$ and one opposite antipode at distance one. Thus there are 56 actual nonself roots. A 64-row ordered-pair account additionally records the eight explicit self exclusions; it does not add eight physical hits.
 
@@ -507,7 +507,7 @@ Two exact histories reach the same stationary formula for different reasons. The
 
 The catalog prescription requires zero acceleration and fails this complete balance test. This excludes that exact static history. It is not a failed ordinary evolution, an exclusion of all moving Stella histories or a stability result. There is no equilibrium here about which to infer a stability spectrum.
 
-### 7.4 A short release and a geometric packing theorem
+### 7.4. A short release and a geometric packing theorem
 
 The separately released Stella history contracts through $T=0.01$. The fine rung reaches radius $0.49987390781532354$ and radial speed $-0.02521769834861235$, with zero reported center residual and radius spread and only rounding-scale tangential speed. Its 256 complete pair certificates comprise four accepted steps of 64 accounting rows each. The solver refinement comparisons establish a short measured contraction, not independently implemented future evolution, a turn or arrival at the origin.
 
@@ -519,7 +519,7 @@ This is a theorem about disjoint geometric solids and privately labeled vertices
 
 ## 8. Wake diagnostics, action and physical interpretation
 
-### 8.1 Exposure, playback and work have different dimensions
+### 8.1. Exposure, playback and work have different dimensions
 
 A path can produce a measurable exterior wake pattern without carrying a known energy. The delayed root account already distinguishes the signed playback factor $D_r/D_t$ from the dimensionless acceleration weight $c_f/|D_t|$. Neither is automatically an energy-flow coefficient.
 
@@ -533,7 +533,7 @@ At zero speed the declared convention must define the limiting rate. A constant 
 
 The same-record method accordingly keeps wake exposure, normal transport, squared acceleration exposure, complex spectral coefficients and kinetic-account rates distinct. Signal-processing “power,” meaning a squared coefficient magnitude, is not energy per unit time. A downstream consumer cannot construct an unavailable energy by relabeling a completed diagnostic.
 
-### 8.2 Prescribed drive and a candidate energy balance
+### 8.2. Prescribed drive and a candidate energy balance
 
 For an imposed path, required acceleration is known kinematically. If the interaction and environment inventories are complete, define the acceleration that a prescription would have to supply:
 
@@ -563,7 +563,7 @@ $$
 
 All terms must share one branch, action, root/history policy, regulator, kinetic convention, spatial partition and environment account. The residual retains incomplete memory, unresolved roots, endpoint terms, Euler mismatch and numerical error. Choosing a different identity or convention for each term does not close the equation. The [same-record energy methodology](contracts/same-record-energy-ledger-methodology.md) develops these obligations without claiming a completed energy measurement.
 
-### 8.3 A local action identity meets a future-boundary obstruction
+### 8.3. A local action identity meets a future-boundary obstruction
 
 The common-frequency program attempted a minimal delayed-action provider before asking for action increments or angular-momentum scaling. Its local tail construction has a characteristic derivative identity that can reproduce the desired scalar acceleration dependence. A centered finite-difference check on one small prescribed circular chart passed its frozen error threshold, while all four noncentral direct-scalar controls retained a nonzero unwanted residual. These are bounded implementation checks on the proposed construction, not a retained solution or a universal action theorem.
 
@@ -571,7 +571,7 @@ The next test asks whether the crossing charge can be updated from data availabl
 
 The missing object is a separately derived causal wake-state update that reproduces the same charges from available state. The result blocks that attempted provider and its proposed increment screen. It does not prove that every delayed action is impossible, that every possible state extension fails, or that a conserved energy has been derived. The broader restricted no-go for local scalar counterterms remains attached to its own hypotheses and supporting owner.
 
-### 8.4 Wake transport has a useful conservation identity of its own
+### 8.4. Wake transport has a useful conservation identity of its own
 
 Normal wake transport can be derived without first resolving energy. For the source-normalized wake distribution, distributional differentiation yields
 
@@ -594,7 +594,7 @@ The signed complete-cycle flux of a neutral assembly therefore vanishes, but thi
 
 These statements require their geometric and history conditions. Moving surfaces, source crossings, unresolved folds, incomplete history or nonconvex multiple-crossing ambiguities need a new account. A far-field plateau also needs an actual radius sequence; it is not supplied by the raw invariant alone. The retained diagnostic implementation and independently authored static-source controls support this non-energy measurement, not an action-derived flux.
 
-### 8.5 Phase-preserving spectra and exterior information loss
+### 8.5. Phase-preserving spectra and exterior information loss
 
 Frequency-resolved cancellation retains a complex coefficient for each tagged source/root contribution, temporal harmonic and angular mode. Its raw magnitude is the sum of the tagged magnitudes; its net magnitude is the magnitude of their complex sum. The ratio is meaningful only above its declared floor. Phase must survive until after superposition.
 
@@ -602,7 +602,7 @@ Fourier-transforming a rectified residual trace is another operation. The absolu
 
 An exterior coefficient map can also have a null space. If $\widetilde f=C\widetilde z$, internally different histories can share the same measured exterior coefficients. An action-derived modal charge would require its own kernel on internal variables, with endpoint, core and environment terms, together with an observability statement about $C$. Parseval norms or an assumed identity kernel do not supply that charge. Exterior-dark channels can matter internally even when the observed spectrum cancels.
 
-### 8.6 Far-field approximation is not exact coefficient recovery
+### 8.6. Far-field approximation is not exact coefficient recovery
 
 A derived angular approximation provides a useful quantitative example. For prescribed $C^3$ paths within radius $a<R$, with uniform speed $\nu<1$ and bounded acceleration and jerk, contraction estimates bound the difference between the finite-radius delayed pattern and its exact far pattern. A second estimate controls replacing delayed velocities by a common-time expansion. Increasing $R$ reduces the first error; it does not automatically reduce the second.
 
@@ -617,7 +617,7 @@ The resulting coefficient $2/5$ belongs to the approximate pattern, not automati
 
 The [causal angular-bound treatment](evidence/2026-07-24-causal-delay-angular-bound.md) retains both errors, the denominator condition and the independent finite audit. Its historical absence of an eligible evolved cohort is an evidence-generation boundary, not a present blanket claim that no evolved history exists anywhere.
 
-### 8.7 Energy fractions need a meaningful reference
+### 8.7. Energy fractions need a meaningful reference
 
 Gross outward crossing, net outward transport, outside storage and work delivered to actual recipients are different quantities. Simultaneous inward and outward sectors can give zero net while both gross rates are nonzero. Repeated crossings can make gross transport larger than an initially available amount. A stationary virtual probe does not measure delivery to a moving external receiver.
 
@@ -629,7 +629,7 @@ $$
 
 It is invariant under a common additive shift of both energies. The absolute lower-bound value need not itself remain unchanged. A depletion fraction additionally requires an unforced realized branch, controlled environment and return, endpoint storage and a converged residual. A transport-loading ratio or a driven-transfer efficiency answers another question and need not be bounded by one in the same way.
 
-### 8.8 From candidate assemblies to effective physics
+### 8.8. From candidate assemblies to effective physics
 
 Common-frequency levels retain continuous radius ratios unless additional accepted equations select them. A pinned dimensionless speed fixes one normalization, not the remaining ratios or a mechanism of pinning. A discrete label does not mean the members are stationary, nor does it imply a transition between labels. Provisional action-unit conventions and adjacent-label spacing are comparison choices until a branch, action charge and exchange history give them physical content.
 

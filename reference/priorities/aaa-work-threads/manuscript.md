@@ -2,7 +2,7 @@
 
 ## 1. Research ownership and the object of attention
 
-### 1.1 A research program needs explicit boundaries
+### 1.1. A research program needs explicit boundaries
 
 The research program of $\mathbb{A}\mathbb{A}\mathbb{A}$ contains questions about primitive dynamics, persistent assemblies, effective descriptions, numerical execution, applications and scientific exposition. These questions depend on one another, but dependence does not make their owners interchangeable. A numerical engine supplies trajectories and declared error controls; a scientific campaign asks what those trajectories establish; a proof or acceptance owner determines whether the claimed conclusion follows. A display can expose a result without becoming its scientific authority.
 
@@ -10,7 +10,7 @@ AAA Work Threads coordinates these relationships. Its subject is the allocation 
 
 This distinction matters particularly for a theory whose primitive description precedes the standard effective frameworks. At the architrino level the premises are delayed path-history interaction, polarity, Euclidean void and absolute time, with acceleration determined by the primitive law. Energy, momentum, angular momentum, effective geometry, detector probabilities and familiar particle labels require their own derivations or explicitly effective mappings. A table that puts those quantities together does not import their standard laws into the substrate.
 
-### 1.2 Owners, shared packets and retained addresses
+### 1.2. Owners, shared packets and retained addresses
 
 An owner carries a continuing responsibility and an executable queue. A shared theorem packet can be ranked separately when one mathematical result serves several owners, but it does not thereby become a new directory owner. Ordinary support material inherits the responsibility of its parent. Ranking belongs to a next unresolved object; directory membership and product visibility answer different questions.
 
@@ -18,7 +18,7 @@ A top-level owner may be deferred or unranked while remaining an active address 
 
 These distinctions prevent two opposite mistakes: deleting an apparently empty owner that still protects a responsibility, and treating a preserved responsibility as an instruction to execute its former queue. A new correlation pass, a chosen review draft, a scientific reference surface or an accepted common assembly record may satisfy a particular reopening condition. Merely finding an old plan does not.
 
-### 1.3 One next unresolved object
+### 1.3. One next unresolved object
 
 The scored unit is the next unresolved marginal object in a workstream. First compare all unresolved objects within that owner; then carry only its local winner into the unified ranking. A lane with no identified next object has no score to inherit. Different conceptual and validation burdens should not be averaged into an imagined composite task.
 
@@ -28,7 +28,7 @@ This rule distinguishes progress from percentage complete. A large nearly finish
 
 ## 2. Attention scores and their limits
 
-### 2.1 Value and remaining burden
+### 2.1. Value and remaining burden
 
 The ranking procedure combines five declared judgments. Base scores the direct value of completing the object on a one-to-ten scale. Cascade ranges from mostly local benefit to a broad multiplier across several theory queues. Pressure reflects the most negative applicable current closure-scorecard delta, using zero when no category applies. Engine distinguishes primitive equations and their certification from downstream bookkeeping. Eureka scores, on a one-to-ten scale, the prospect of a materially simplifying theorem, carrier, target, physical object or decisive negative result.
 
@@ -57,7 +57,7 @@ $$
 
 These are inferred attention scores. The name Cost does not make the denominator a measured duration, resource bill or performance profile. In particular, document counts, geometric complexity and test counts cannot establish execution cost without an actual instrument measuring it.
 
-### 2.2 Ordering and changing evidence
+### 2.2. Ordering and changing evidence
 
 After a scored object or component changes, the affected local queue is sorted again, its winner's derived fields are recomputed and the entire unified table is sorted by higher ROI. Ties are resolved by higher Value, higher Eureka, lower Intuition, lower Cost and finally higher Cascade. Global ranks are contiguous and corresponding tracker metadata is synchronized. A validator can check this arithmetic and representation; it cannot establish that the component judgments are scientifically justified.
 
@@ -67,7 +67,7 @@ Earlier inventories and dated join tables contain other populations and orders. 
 
 ## 3. Shared mathematical records
 
-### 3.1 A common record does not supply missing physics
+### 3.1. A common record does not supply missing physics
 
 The closure join proposes common entries for assembly identity, configuration and velocity, complete path history, residual, event accounts, exposure, medium response, basin partition and cross-sector acceptance. Its purpose is to make repeated obligations recognizable and comparable. It is not an additional ontology, a demonstrated exceptional algebra or a proof that one physical state realizes all entries.
 
@@ -75,7 +75,7 @@ Instantaneous configuration and velocity must remain distinct from the required 
 
 The eight recurring dimensions are branch state and stability, causal-wake history, residual routing, conservation accounts, shielding and exposure, medium response, basin measure and joint acceptance. Their common requirement is identity across uses. The branch whose clock behavior is measured must be the branch whose signal response, residuals and permitted observer projection are being compared. Separate best-fitting records do not establish one successful assembly.
 
-### 3.2 Branch and history before stability
+### 3.2. Branch and history before stability
 
 An admissible branch requires the appropriate causal roots, retained history, residual controls and domain assumptions. Where a stability gap is required, the configuration must first be a state the object can occupy: acceleration balance and the relevant equilibrium or persistent motion cannot be omitted. A spectrum around a configuration that does not satisfy its defining dynamics has no stability referent.
 
@@ -83,7 +83,7 @@ Symmetry removal, finite active-root control and absence of secular rest-frame d
 
 The same caution applies to an independently evolving wake state. A regular transmitter-side acceleration expression and signed root playback can be useful without resolving a coincident transition or causal conserved accounts. The mathematical question is how a state updates and how the declared reduction follows, not whether an interface can store its proposed fields.
 
-### 3.3 Shared identity across consumers
+### 3.3. Shared identity across consumers
 
 Pressure and exposure are a concrete shared dependency. A useful record would carry the accepted branch, retained roots, pressure perturbation, medium state and response observable, together with the projection used by each consumer. A null-sector bound and the effective response must attach to that same identity. They cannot be fitted independently for clocks, signals, inertia, material behavior and cosmology and then called one constitutive law.
 
@@ -91,7 +91,7 @@ The coordination proposal does not require every consumer to show a nonzero medi
 
 ## 4. Transitions, exposure and basin measures
 
-### 4.1 Residuals need an event account
+### 4.1. Residuals need an event account
 
 A residual is not a physical destination. If a branch retunes, radiates, recoils, excites a medium, reacts or changes basin, the proposed event must identify the initial state, outgoing channels, remnant and updated history. Otherwise a phrase such as excess action released merely renames an unexplained loss.
 
@@ -99,7 +99,7 @@ The event ledger joins the appropriate energy, momentum, angular momentum, polar
 
 The smallest useful next example is a concrete evolved transition with a closed account, not another abstract gate. Sector-specific packets still matter: radiation channels, weak events, nuclear binding, measurement records and high-energy release each add conditions that a generic ledger cannot erase. Reuse should remove duplicated grammar while preserving these distinct physical burdens.
 
-### 4.2 Exposure is a map with exclusions
+### 4.2. Exposure is a map with exclusions
 
 The proposed exposure contract begins with a branch ledger, a sector projection and a quotient identifying distinctions that the declared observation does not resolve. In the source notation,
 
@@ -111,7 +111,7 @@ Here $A$ identifies the branch, $S$ the sector, $\mathcal L_A$ its ledger, $\Pi_
 
 A single coefficient or second moment is therefore a candidate summary rather than automatic sufficiency. One must establish that the needed observables are determined, to the stated accuracy, by that summary. The shared contract aims to prevent independent retuning across sectors; it does not prove the quotient exists or that a proposed internal geometry supplies it.
 
-### 4.3 Measures require a state space and dynamics
+### 4.3. Measures require a state space and dynamics
 
 A transfer operator or finite-time pushforward needs an explicit state space, retained variables, evolution map or kernel and basin partition. If an invariant measure is available, candidate outcome weights can be written
 
@@ -123,7 +123,7 @@ Here $B_i$ is the declared basin, $\mu_*$ the invariant measure and $p_i$ its pr
 
 This grammar can connect measurement, detector response, agency, algorithmic coherence and frequency-lock questions. It does not turn those subjects into identical mechanisms or import quantization as a primitive postulate. In particular, a detector kernel remains a separate acceptance obligation after a basin partition is proposed.
 
-### 4.4 Compatibility is a joint requirement
+### 4.4. Compatibility is a joint requirement
 
 Local sector success must survive simultaneous constraints on the same admissible record. A branch that satisfies one weak-sector projection and a different branch that satisfies one gravity comparison do not prove a nonempty joint acceptance intersection. The coordinating matrix makes that common-record requirement explicit; it does not prove the intersection is nonempty.
 
@@ -133,7 +133,7 @@ Application and service owners remain consumers of this structure. A visualizati
 
 ## 5. Recovering useful reasoning from a research archive
 
-### 5.1 Inventory and semantic reading answer different questions
+### 5.1. Inventory and semantic reading answer different questions
 
 The retained recovery pilot classified 832 nonignored Markdown paths as 51 brainstorming, 232 analysis, 158 control or history and 391 other support entries. The classification used paths, not mathematical content. Reading the list establishes what the list contains; it does not read the documents it names or demonstrate that all scientific insights were recovered.
 
@@ -141,25 +141,25 @@ Directory genre is not a maturity test. An application lane can contain a substa
 
 The pilot's no-new-untracked-obligation conclusion is bounded to its named cases. Earlier style review, correlation inventory and source triage provide useful provenance but not an exhaustive semantic audit of all paths. Promotion also requires reader-ready exposition and scientific qualifications; moving a document cannot supply them.
 
-### 5.2 Static cancellation does not establish a medium
+### 5.2. Static cancellation does not establish a medium
 
 One pilot case concerns a stationary polarity-alternating lattice with paired opposite offsets. Under the declared geometry, equal magnitudes and a valid receiver-centered pairing, acceleration contributions can cancel. The supporting static certificate allows the stated deformation family; a separate gallery claim can have a narrower undeformed domain. Their assumptions must not be combined silently.
 
 Such cancellation does not establish stability under arbitrary perturbations, a constitutive modulus, a dynamic medium or a transport response. A finite specimen and an infinite paired exhaustion can also have different boundary obligations. The useful recovery is the precise conditional cancellation argument and its limitations, not a claim that the lattice has become an accepted physical sea.
 
-### 5.3 A point value is not a field function
+### 5.3. A point value is not a field function
 
 Another pilot distinguishes a scalar potential function from one scalar value. On a regular moving-root branch with positive separation and nonzero transmitter factor, the retained local construction relates the spatial gradient of the declared potential to acceleration. That statement does not imply that the value at one point determines its gradient, all histories or every response channel.
 
 A valid insufficiency test must make two cases agree on the entire proposed retained representation while their claimed outputs differ. Matching only one point value does not refute sufficiency of a field function. Conversely, a local gradient identity does not settle global gluing, infinite populations, singular roots or independently evolving wake accounts. The pilot preserves the completed regular-domain result and the remaining obligations separately.
 
-### 5.4 A conditional return is not a selected evolution
+### 5.4. A conditional return is not a selected evolution
 
 The speed-ceiling case contains conditional braking and return arguments together with a negative result for a particular reset selector. Equal prescribed onset data can support a two-cycle in a future-equivalence quotient without producing literal periodicity of the entire past. Autonomous crossing conditions need not select those onset data.
 
 The retained negative excludes a positive fixed point under the stated selector and parameter regime. It does not exclude every possible continuation relation, and a multivalued alternative does not itself choose an evolution. The missing reproducible instrument record remains a limitation of the historical evidence. The pilot's useful outcome is to preserve the conditional positive, the selector-specific negative and the unresolved selection question together.
 
-### 5.5 Vanishing tangent and collective response
+### 5.5. Vanishing tangent and collective response
 
 The fixed-law pilot varies physical source preparation while holding the interaction law, coefficients, history-family identity, projection, tolerances and architrino inventory fixed. It compares weak signed response with the first certified geometric boundary, without introducing an amplitude-dependent interaction coefficient or naming every boundary pair production. Its prescribed fixture tests the evaluator. A physical interpretation requires one accepted retained EOM-evolved source–sea–receiver family; pair capture additionally requires independently certified conjugate product basins on that same record. This remains a candidate diagnostic method with missing physical input.
 
@@ -179,7 +179,7 @@ For the illustrative quadratic $q(p)=q_0+bp^2$, a sinusoidal argument $p(T)=a\co
 
 Removing other histories to study an isolated object changes the domain. The logical comparison $y_i=\sum_jK_{ij}u_j$ can have zero diagonal entries and nonzero off-diagonal response. It is not a primitive kernel; it shows that isolated self-response does not bound collective coupling. The retained clarification names the perturbation or drive and corresponding observable, and distinguishes isolated from population accounts without imposing a universal transport gate.
 
-### 5.6 Learning proposals retain their own purpose
+### 5.6. Learning proposals retain their own purpose
 
 The brainstorming record includes spinor rotations and relative phase, gauge conventions and closed-loop holonomy, information loss under projection, cross-theory explanation, categorical history composition and relay-machine engineering. These are different kinds of questions. A spinor teaching example does not establish a physical spinor carrier; a gauge-invariant loop quantity still needs a realized assembly map; discarded information does not license a thermodynamic law for one architrino.
 
@@ -187,7 +187,7 @@ The earlier selection of spinor and holonomy learning belongs to its own recorde
 
 ## 6. Notation as preservation of meaning
 
-### 6.1 Define the object before choosing the glyph
+### 6.1. Define the object before choosing the glyph
 
 Useful notation identifies a quantity's mathematical type, physical layer, units, domain, reference state and index conventions. Absolute time, a cycle duration, a record window and a clock readout can share dimensions while denoting different objects. A vector norm, a signed component and a characteristic average are not interchangeable merely because each is called speed.
 
@@ -195,7 +195,7 @@ The current notation scope permits only worthwhile independent corrections: a co
 
 The existing style and symbol guides remain the owners. A planning table must not become a second glossary. The accepted convention rule concerns a symbol, its actual meaning and its field together. A conventional use can remain in its proper context, but a familiar glyph or repeated local usage is not evidence of convention. Mixed-context presentation and specific destination choices can remain unresolved without rejecting that rule.
 
-### 6.2 A rename is not a transformation
+### 6.2. A rename is not a transformation
 
 A pure rename preserves the object, equations and hypotheses. Substituting an already defined expression for an alias can also preserve the mathematics directly. Changing a half-angle to a full angle, a dimensional speed to a normalized ratio or an unnormalized shape ratio to a reference-normalized value changes substitution rules and requires independent checks of derivatives, bounds and units.
 
@@ -203,7 +203,7 @@ The numerical convention $c_f=1$ does not erase these distinctions. Two quantiti
 
 A proposed symbol destination must be checked for its own occupants. If adopting it displaces another meaning, that move belongs to the same connected assessment. A swap must be mapped by concept rather than by sequential text replacement. Unknown occupancy is not zero occupancy, and a search that finds no exact spelling does not establish semantic clearance of variants or interfaces.
 
-### 6.3 What a census can establish
+### 6.3. What a census can establish
 
 The historical consultation parsed 4,598 display records in 153 display-bearing files, within a generator scan of 199 Markdown documents. Whitespace normalization left 4,436 distinct strings, so the 162 excess records measure repetition under that test, not algebraic redundancy. A temporary KaTeX-tree traversal and four selected tokenization examples supported counts under declared conventions, not a whole-corpus semantic validator.
 
@@ -213,7 +213,7 @@ The top-fifty table is therefore a search aid. Numeric powers, dimensions, inver
 
 ## 7. Completed corrections and unresolved distinctions
 
-### 7.1 Absolute time and cycle periods
+### 7.1. Absolute time and cycle periods
 
 The completed period correction reserves $T$ for absolute time and uses $P$ with role subscripts for cycle durations. A period is measured in a declared time coordinate and must specify what returns: a signal, reduced shape, apparatus phase or complete delayed history. Its name does not establish existence or stability of that return.
 
@@ -223,7 +223,7 @@ Historical serialized names keep their recorded spelling with current translatio
 
 The retained implementation receipt separates source edits, equation identity, local definitions, generated reading copies and browser evidence. It records 98 changed displays, with stable existing links, and a later follow-up adding precise definitions where broad fallback chips were inadequate. Its scoped web checks and explicit iOS exclusion do not establish that every exported or installed reader was updated. The source-time parser limitations remain documented rather than silently repaired by this manuscript.
 
-### 7.2 Expanding a redundant alias and measuring layout
+### 7.2. Expanding a redundant alias and measuring layout
 
 The independent suppression correction expanded the chapter's stated alias $\xi\equiv e^{-\sigma}$ into its already defined expression. It retained the postulated transport construction, range, numerical values and equation identities. No new destination symbol or physical law was introduced, and other xi meanings were unaffected.
 
@@ -231,7 +231,7 @@ Source/output identity alone was insufficient for visual acceptance. Two equatio
 
 The historical independent layout case used 1,800 pixels of scalable glyphs and eight pixels of fixed padding in a 908-pixel container. The permitted glyph scale was one half, taking a 60-pixel base font to 30 pixels. That hand-calculated comparison tests fitting arithmetic. The later browser inspection of the affected equations tests those layouts; neither validates the physical mixing construction.
 
-### 7.3 Group motion, total motion and circulation
+### 7.3. Group motion, total motion and circulation
 
 The terminology-only transition names whole-assembly translation group velocity and its magnitude group speed. It preserves the declared center, void/sea/observer frame, averaging and constant-motion assumptions. Sea flow, phase drift, statistical drift and wave-packet group velocity retain their separate meanings. Equality with a wave-packet quantity is a recovery question, not a lexical consequence.
 
@@ -250,7 +250,7 @@ The deferred assessment found 108 non-group beta-f math spans in four corpus sou
 
 No global replacement is selected. Bare s already denotes dimensional speed, a dimensionless circular ratio, a sine-sheet sign, rescaled time and path parameters. Indexed beta can identify binaries or sampled group speeds. Internal-qualified speed already distinguishes characteristic and instantaneous operations. The unresolved questions concern definition and reservation scope before spelling, while conventional comparison quantities remain protected in their actual fields.
 
-### 7.4 Shape, delay angle and reference normalization
+### 7.4. Shape, delay angle and reference normalization
 
 Envelope shape $\xi=R_\parallel/R_\perp$ differs from a circular half-delay angle even though both are dimensionless. The historical display assessment separated 72 shape-related records from 88 others, with thirteen other roles across sixteen source files. The broader source scan found additional inline and working uses; neither population is a count of approved edits.
 
@@ -274,7 +274,7 @@ Dropping the reference-shape denominator requires the additional assumption $\xi
 
 ## 8. Preserving evidence through maintenance
 
-### 8.1 File placement is part of a dependency system
+### 8.1. File placement is part of a dependency system
 
 Research filing should preserve the document's owner and actual genre. A mathematical subject in a title does not turn an audit or mining record into a derivation. The retained filing history includes corrections to such overbroad classification. Developed mathematics, methodology, evidence and operations can be adjacent without becoming interchangeable.
 
@@ -282,7 +282,7 @@ The data-layout work separated six initially simpler moves from twenty-six with 
 
 Before a change, enumerate direct consumers, constructed paths, generated indexes, content digests, pinned fixtures and reproduction commands. Missing canonical input must fail closed rather than cause a checker to skip its obligation. A build registry whose output is required to remain byte-identical needs that comparison explicitly; a successful unrelated test suite cannot supply it.
 
-### 8.2 Hash identity and causal attribution
+### 8.2. Hash identity and causal attribution
 
 A content digest binds bytes, not meaning. A mechanical move that changes a source link can invalidate a pinned input even when the scientific equation is unchanged. Conversely, a matching hash does not establish physical truth. A receipt that stores an input path and an input that stores a receipt path can create a dependency requiring careful reproduction rather than casual hash replacement.
 
@@ -290,7 +290,7 @@ Historical evidence must remain attributable. A commit subject does not establis
 
 The retained records distinguish traced repairs from inferred attribution and work still needing impact review. This manuscript does not rerun their history or strengthen an inference into a measured causal result. Exact source bytes, original commands and unresolved attribution stay available in support.
 
-### 8.3 Partial validation is not overall health
+### 8.3. Partial validation is not overall health
 
 The layout and recovery record reports a partial Node assessment of 120 out of 318 files, leaving 198 unexamined at that checkpoint. Its fourteen failures had different classifications, including operation-specific, interpreter/environment, permission and pin issues. That population cannot be summarized as a clean suite or as a single defect class.
 
@@ -298,7 +298,7 @@ The distinction between a source stage, a generated-output stage, a rendered app
 
 For notation changes, stable equation IDs, local definitions, promoted formulas, search, tooltips, accessible labels and reading copies are separate consumers. Normal app startup and alternate mounts can treat saved drafts differently; a migration must preserve user work and test its actual path. For mathematical transformations, comparison against independently justified substitutions is separate again. The appropriate verification is determined by the changed obligation, not by the largest available checklist.
 
-### 8.4 What successful coordination establishes
+### 8.4. What successful coordination establishes
 
 Good coordination makes the next object explicit, preserves owner authority, connects genuinely shared mathematics and leaves every claimed result attached to its assumptions and evidence. It can expose an omitted consumer, a false equivalence or a reusable negative argument. It cannot replace the derivation, instantiate the missing branch or turn a deferred plan into an accepted scientific result.
 

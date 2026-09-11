@@ -2,13 +2,13 @@
 
 ## 1. Geometry as a Description of Phase Motion
 
-### 1.1 The proposed correspondence
+### 1.1. The proposed correspondence
 
 The [original Lissajous proposal](priorities.md) asks whether familiar closed figures can describe phase-return data in a Noether braid. Its useful idea is to distinguish commensurate frequencies, which can return together, from incommensurate frequencies, which need not. That is a statement about a prescribed phase chart. Establishing a realized braid additionally requires admissible constituent histories, complete delayed interactions and the relevant dynamical return.
 
 A figure is the image of a trajectory under a specified coordinate or observation map. Its name alone does not identify which binary phases, radial breathing variables, indexed axes or projected observables generated it. The same apparent figure can arise from different histories, and a projection can erase a phase that prevents the complete state from returning. The correspondence must therefore begin with variables and a map, rather than infer a physical state from the outline of a curve.
 
-### 1.2 Rotation and translation
+### 1.2. Rotation and translation
 
 A single rotating coordinate with constant axial drift has the illustrative path
 
@@ -30,7 +30,7 @@ The example prescribes geometry only. It is not a solution of the master equatio
 
 ## 2. Exact Return of Active Phases
 
-### 2.1 The commensurability criterion
+### 2.1. The commensurability criterion
 
 For active constant-frequency phases, write
 
@@ -57,7 +57,7 @@ Zero entries represent stationary phases and impose no additional period constra
 
 For a positive $4{:}2{:}1$ carrier, the winding vector over the slow phase's cycle is $(4,2,1)$. The [frequency-lock chapter](../../../../content/markdown/aaa/noether-braid/three-binary-4-2-1-frequency-lock.md#assumption-2-exact-integer-phase-closure) uses that reduced carrier convention while explicitly retaining its branch assumptions. The index with the base frequency is not thereby the outermost radius, and the ratio is not a generic law for all Noether braids.
 
-### 2.2 A planar figure and a breathing rotation
+### 2.2. A planar figure and a breathing rotation
 
 A classical planar coordinate map has the form
 
@@ -83,7 +83,7 @@ Here the rotation and breathing phases define a two-frequency image. Expanding t
 
 These examples make the original proposed roles explicit without selecting a physical breathing mode or identifying radial oscillation with the indexed binary frequencies of another branch.
 
-### 2.3 Irrational phases and the image of a torus
+### 2.3. Irrational phases and the image of a torus
 
 Two nonzero constant frequencies with irrational ratio have no positive common phase period. Their phase orbit is dense in the two-dimensional phase torus. One way to see the density is to return repeatedly to a fixed first-phase section: the second phase advances by an irrational rotation, whose iterates are dense on the circle. Allowing the continuous time between those sections fills every phase neighborhood. This is a property of the prescribed linear phase flow, not a physical thermalization or probability law.
 
@@ -98,7 +98,7 @@ The phase torus is compact, so the image is closed; continuity maps arbitrarily 
 
 ## 3. From Winding Integers to a Braid Record
 
-### 3.1 Integer return is only part of the label
+### 3.1. Integer return is only part of the label
 
 For nonconstant phases on a declared closed return chart, the winding count is
 
@@ -112,7 +112,7 @@ The original lane calls its reduced label $\Lambda_{\mathrm{NS}}$. The current [
 
 A pair of frequency integers cannot replace those records. A drawn crossing is not automatically a constituent coincidence, a change of causal-root topology or a chirality proof. Returning the reduced coordinates also does not establish return of the retained delayed history. The geometry-to-record bridge remains conditional until the same branch supplies the required identities, roots, phases, frame and return convention.
 
-### 3.2 A bounded rational approximation is not an exact lock
+### 3.2. A bounded rational approximation is not an exact lock
 
 The original source reports a classifier that assigns a bounded-denominator rational label to the rotation/breathing ratio. Such a label is a useful description of detuning within a declared resolution. Every positive finite tolerance can also admit irrational ratios. If the ratio is modeled as $\Omega/\omega=p/q+\delta$ with $\omega>0$ and positive integer $q$, the residual breathing phase after $q$ rotation cycles is
 

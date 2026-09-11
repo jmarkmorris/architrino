@@ -2,7 +2,7 @@
 
 ## 1. The Embedded Strong-Field Problem
 
-### 1.1 From compact matter to an interface
+### 1.1. From compact matter to an interface
 
 A strong-field explanation in $\mathbb{A}\mathbb{A}\mathbb{A}$ must connect compact assembly dynamics to exterior observations through one history. The substrate is Euclidean space with absolute time, polarity, and delayed path-history interaction. The master equation determines acceleration directly. Curved metrics, mass labels, temperature, and black-hole thermodynamic relations enter as effective readouts or recovery targets. They do not prescribe how an individual architrino moves.
 
@@ -10,7 +10,7 @@ The central unresolved object is a compact source whose interior, surrounding No
 
 The [canonical alignment condition](../../../content/markdown/aaa/spacetime/singularity-resolution.md#canonical-strong-field-alignment-condition) is written in shorthand as $F_H=0$. Its candidate terminal regime includes $v_2=c_f$ and $v_3\to c_f$, with the indexed roles bound to the source record. These are constraints on the proposed family. They do not establish a universal architrino speed ceiling or identify a visible geometric surface with an event horizon.
 
-### 1.2 Finite data and delayed support
+### 1.2. Finite data and delayed support
 
 Let $\Omega$ be a compact Euclidean region, $W=[T_i,T_f]$ an absolute-time window, and $C_{\partial\Omega}$ a finite exterior collar. The boundary problem needs the complete initial state $X_\Omega(T_i)$ and retained histories $\mathcal H_\Omega^{<T_i}$ supporting every delayed contribution that enters the window. On the collar it also needs the Noether sea density/state trace $\rho_{\mathrm{NS}}$, response trace $\Sigma_{\mathrm{sea}}$, and transport trace $\mathbf u_{\mathrm{sea}}$. The response trace must name its constitutive producer; writing its symbol does not choose or derive that law.
 
@@ -18,7 +18,7 @@ Incoming and outgoing causal wakes carry root identities, directions, delays, mu
 
 These data form the common input record $\Theta_{\partial\Omega,W}$. An exterior projection $\Pi_{\mathrm{ext}}$ checks readouts from that record. It cannot feed an independently fitted Schwarzschild or Kerr solution back into the substrate update. The [embedded boundary formulation](analysis/embedded-horizon-interface-boundary-conditions.md) retains the complete typed input and output specification.
 
-### 1.3 Seven independent conditions
+### 1.3. Seven independent conditions
 
 At contract grade, the boundary equation separates into
 
@@ -44,7 +44,7 @@ This is a derived formulation of the problem, not a solved boundary equation. It
 
 ## 2. Compact Geometry and Finite Continuation
 
-### 2.1 The conditional barrel lemma
+### 2.1. The conditional barrel lemma
 
 For a common-cadence spindle, let $\rho_a=R_a\cos\alpha_a$ be the cylindrical radius of layer $a\in\{I,M,O\}$. Suppose the declared circumferential speed relation is
 
@@ -62,7 +62,7 @@ The equal cylindrical radius follows algebraically from the common cadence and s
 
 The integer pattern $4:2:1$ has a different status: it is a guessed frequency hypothesis. A reduced return map, retained branch, or closed scale-alignment calculation must select it independently and give an invariant consequence distinguishing it from neighboring ratios. Choosing it from familiar integer triples establishes neither selection nor a physical law. Strong-field planarity changes are likewise open branch questions; a throat, cylinder, planar neck, or return to three-dimensional motion must arise from retained histories.
 
-### 2.2 Compact-star predecessors
+### 2.2. Compact-star predecessors
 
 The compact-star route connects internal scale, cadence, axial inventory, density, pressure, and sea response to exterior mass-radius, clock, ruler, redshift, and light-path outputs. The proposed predecessor family must carry both dense-matter support and exterior response. Separately adjusting the interior support law and the exterior metric would leave their relationship unexplained.
 
@@ -70,7 +70,7 @@ For an effective spherical compact-fluid comparison, the retained benchmark fami
 
 A proposed sequence $\theta_{*,n}$ carries $R_{*,n}$, $M_n$, pressure and density profiles, the sea response, and the compact-region account. It must satisfy the declared compact-source residual until an explicit exit condition $g_H(\theta_{*,n})=0$ is reached. The interface then inherits history and boundary data from that sequence. It does not begin as an unrelated black-hole ansatz. The effective comparison equations constrain this construction's outputs and never become primitive pressure or mass laws.
 
-### 2.3 Packing, temperature, and angular momentum
+### 2.3. Packing, temperature, and angular momentum
 
 A finite maximum-curvature interior remains a candidate mechanism. Its proposed barrier must control density, response, delayed roots, and boundary flux without a zero-volume endpoint or arbitrary continuation. In a self-hit interpretation, same-transmitter roots, transversality, the transmitter-side factor floor, signed playback, regularization, acceleration weight, and a bounded branch functional all need support. A maximum-curvature drawing supplies none of those conditions.
 
@@ -105,7 +105,7 @@ This is an assembly-level accounting target. A release process draining one laye
 
 ## 3. Horizons and Observer Predictions
 
-### 3.1 Local interfaces and global horizons
+### 3.1. Local interfaces and global horizons
 
 A native interface, a trapped-surface comparison, an apparent horizon, an event horizon, and a photon light ring answer different questions. The apparent-horizon comparison depends on the chosen effective slice. An event-horizon claim requires adequate global history support, which a local finite-window solution of $F_H=0$ does not supply. A photon-path or planar-pair readout can constrain the optical comparison without replacing the interface carrier.
 
@@ -121,7 +121,7 @@ Consequently that comparison requires $r_{\mathrm{LR}}/r_H=3/2$ and $r_{\mathrm{
 
 The [black-hole horizon-interface map](../mapping-equations/analysis/eq-07c-black-hole-horizon-interface-noether-braid-map.md) retains the neutral Kerr radius, area, surface-gravity, temperature, and entropy comparisons, together with their carrier bindings. An accretion or jet fit cannot substitute for those horizon/interior bindings. Exterior success with undefined interior continuation also fails the full proposed explanation.
 
-### 3.2 One source across instruments
+### 3.2. One source across instruments
 
 An admitted boundary output $\mathcal O_H$ contains the interface locus, finite state, surviving labels, boundary ledger, exterior projection, component verdicts, and source/precision/history provenance. The [observer projection](analysis/observer-level-strong-field-projection-contract.md) organizes its outputs as
 
@@ -152,7 +152,7 @@ $$
 
 The instrument must define singular covariance directions, systematic uncertainties, and nuisance treatment. Neither this expression nor a small residual computed from a copied comparison formula establishes an independent prediction. All applicable channels must pass their separately fixed tolerances on one source, with no hidden retuning; inapplicable channels need a physical or observational reason.
 
-### 3.3 Imaging and merger records
+### 3.3. Imaging and merger records
 
 Horizon-scale imaging tests ring diameter and width, central brightness depression, complex visibilities, closure phases and amplitudes, time variability, resolved linear and circular polarization, and constrained jet-base emission. A plausible image may fail the interferometric data. The comparison therefore binds image reconstruction and visibility-domain modeling to the same calibrated data and compact source.
 
@@ -164,7 +164,7 @@ The present result is structural: it defines what these predictions must share. 
 
 ## 4. Counting Horizon-Interface States
 
-### 4.1 Admissible labels and harmless relabeling
+### 4.1. Admissible labels and harmless relabeling
 
 Entropy counting starts only after an admitted interface supplies candidate labels. Each label must preserve the accepted boundary conditions under its own continuation. A macrostate cell around exterior $(M,\mathbf J,Q)$ is fixed before counting, with tolerances independent of the resulting number of states. The raw admitted fiber contains exactly those surviving labels whose exterior projection lies in that cell. An empty cell does not authorize widening it after inspection.
 
@@ -172,7 +172,7 @@ The [label-enumerator formulation](analysis/horizon-interface-label-entropy-enum
 
 The quotient count needs orbit representatives or an exact orbit-counting identity. Dividing by $|G_0|$ is valid only under the necessary fixed-point conditions; nontrivial stabilizers otherwise invalidate that shortcut. These are mathematical restrictions on a proposed count, not evidence that the required finite physical ensemble has been constructed.
 
-### 4.2 Local patterns and global extension
+### 4.2. Local patterns and global extension
 
 For a connected finite block $U$, local labels are restrictions of globally admitted labels. A locally attractive pattern that cannot extend to the complete interface is excluded. Distinct global extensions may induce the same local pattern; the local density counts that pattern once while global counting retains those extensions separately only when they lie in different $G_0$ orbits.
 
@@ -184,7 +184,7 @@ $$
 
 Equivalently, equal restrictions of two parents must remain equal after applying $g$. The descended maps must obey group composition. If this condition fails, the local quotient is undefined; one must preserve parent-orbit provenance rather than choose a favorable pair of parents. An unrelated local permutation group would risk merging physically different histories.
 
-### 4.3 Area growth and the coefficient
+### 4.3. Area growth and the coefficient
 
 The required limit enlarges a compatible family of represented horizons. It is not simply finer sampling of one fixed physical area. Before enumeration, the family fixes the admissibility rule, harmless action, patch rule, physical alignment area $A_{\mathrm{align}}$, and the scaling of exterior macrostate cells between members. Restriction maps must respect both labels and the declared exterior scaling. Connected blocks satisfy $|U_n|\to\infty$ with controlled boundary fraction.
 
@@ -206,7 +206,7 @@ This implication is derived. The effective area-law target is the ratio $s_{\mat
 
 A fixed-area continuum-refinement sequence tests a different question: stability under changing resolution and its coarse-graining map. Pooling it with thermodynamic-area exhaustion cannot manufacture an area law. Repeated sampling of one small block also supplies no area limit. Independently authored small-block enumeration or an analytic orbit count is required before production counts can support a correctness claim.
 
-### 4.4 Release entropy and holographic comparisons
+### 4.4. Release entropy and holographic comparisons
 
 A time-resolved interface and its outgoing record need one observer access rule and a common entropy type before their entropies can be compared. The proposed crossing diagnostic is
 
@@ -223,7 +223,7 @@ Boundary-data matching compares the projected interior evolution with the access
 
 ## 5. Ingress, Release, and Reconstitution
 
-### 5.1 A time-dependent release selector
+### 5.1. A time-dependent release selector
 
 Release is a proposed dynamical selection among jets, winds, diffuse outflow, dark-sector candidates, capture, and return. Its conditions include spin/angular momentum, polarity balance, inflow rate and spikes, merger history, core size and growth, defects, surrounding sea loading, layer transitions, and environment. These conditions must explain launch, sustained propagation, and shutoff. Changing the chosen channel without changing its declared source conditions introduces an untracked switch.
 
@@ -231,7 +231,7 @@ The channel taxonomy distinguishes horizon-interface emission, collimated jets, 
 
 Before ingestion is called assimilation, the incoming record must identify its boundary crossing, horizon-label update, interior coarse-graining change, and deposition into sea, defects, recoil, or outgoing channels. Disappearance from an exterior display is not disappearance from the physical account. Likewise, observer-inferred mass changes need an explicit access convention for shielding/exposure, escaped energy, embedding, and reabsorption. The apparent-mass balance retained in [the source strategy](priorities.md#quantitative-targets) is observer bookkeeping, not a primitive mass law or permission for arbitrary mass drift.
 
-### 5.2 Outbound states and angular momentum
+### 5.2. Outbound states and angular momentum
 
 Each candidate emitted assembly or fragment needs a velocity distribution, branch shape and planarization criterion, displaced sea volume, branch identity, and recruitment/return account. An outward density/cadence gradient may be tested against a proposed sequence from packed states through binary plasma, semi-stable binaries, nested branches, planar channels, or axial stabilization. This is a reporting family, not a claim that every channel traverses every stage.
 
@@ -239,7 +239,7 @@ Every occupied stage must have its own retained history, inventory, root and exc
 
 Asymmetric jets require compact-source recoil and angular-momentum routing on the same event. Radiation, both jet channels, and sea exchange must all be included. If a reduced angular-momentum formula has no separate radiation term, the account must explicitly locate radiative angular momentum inside a declared channel; omission cannot imply zero. The detailed jet-recoil diagnostic is supporting bookkeeping, while conservation of the complete event remains the obligation.
 
-### 5.3 Observational leads and competing mechanisms
+### 5.3. Observational leads and competing mechanisms
 
 Quasar winds test sustained mechanical work through outflow, velocity, mechanical power, duty cycle, shock scale, and host response. A launch impulse alone does not explain continued feedback. Resolved jet knots contribute position, age and duration, energy bounds, polarization, spectrum, projected direction, environment, and release chronology. Knots, lobes, shocks, and radiative readouts must share the same source and transport state.
 
@@ -249,7 +249,7 @@ Dark-sector photon-like release remains a guessed channel class. A distinct outg
 
 ## 6. High-Energy Events and the Scope of Comparison
 
-### 6.1 Source-window records
+### 6.1. Source-window records
 
 High-energy routing joins one source domain and window, its history, channel-resolved event account, sea update, observer equations and validity regime, data/covariance, remnant, and downstream physical question. The [event-routing source](high-energy-astrophysics/priorities.md) makes these requirements explicit. A shell containing field names is still not accepted evidence.
 
@@ -267,7 +267,7 @@ The principal event families impose different joint constraints:
 
 A black-hole merger, neutron-star merger, and mixed merger cannot be merged into one physical class because their waveforms resemble one another. Similarity in one observed channel does not close matter, ejecta, remnant, and release accounts. CMB energy by scale is likewise a source/transport/thermalization comparison, not a license to replace cosmological history with a spectrum-only fit.
 
-### 6.2 Compatibility and classification
+### 6.2. Compatibility and classification
 
 The proposed event-class test asks whether one declared carrier target $\Theta_\Pi(\lambda)$, under a predeclared parameter domain, can satisfy both complete observer records within their covariance-aware tolerances and without hidden retuning. This is stronger than a shared name or visual resemblance, but its logical scope needs care.
 
@@ -275,7 +275,7 @@ If the target family may change for each pair, common-family compatibility is no
 
 The first compact-star routing example deliberately leaves the native carrier unresolved while recording a quasi-static source window, effective support benchmark, uncertainty, accounts, and owning physical question. It tests the structure of the comparison. It does not establish compact-star retention, dense-matter stability, population rates, distributions, or selection effects. Those ensemble questions require their own declared population model.
 
-### 6.3 Observations as tests of derived outputs
+### 6.3. Observations as tests of derived outputs
 
 The proposed detachability criterion asks whether removing an observation leaves the substrate premises unchanged while its declared observable residual remains capable of failure. Schwarzschild, Kerr, TOV, inspiral, radiation, shock, and thermalization equations thereby constrain derived outputs. They do not construct architrino dynamics by being inserted as assumptions.
 
