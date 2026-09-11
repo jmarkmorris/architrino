@@ -356,14 +356,27 @@ export function createEndpointResidualSearchProtocol(
   return validateCoincidentAxisThreeBinaryCompleteCycleProbeProtocol(protocol);
 }
 
+function compareEligibleEndpointResidualCases(left, right) {
+  const leftGuidance = left.refined.memberResidual.searchGuidance;
+  const rightGuidance = right.refined.memberResidual.searchGuidance;
+  const leftPeak = leftGuidance.fullCycleMaximumPointwiseMemberResidualNorm;
+  const rightPeak = rightGuidance.fullCycleMaximumPointwiseMemberResidualNorm;
+  if (leftPeak !== rightPeak) {
+    return leftPeak - rightPeak;
+  }
+  const leftRms = leftGuidance.fullCycleRmsPointwiseMemberResidualNorm;
+  const rightRms = rightGuidance.fullCycleRmsPointwiseMemberResidualNorm;
+  if (leftRms !== rightRms) {
+    return leftRms - rightRms;
+  }
+  // Exact metric ties use caseId only for deterministic, non-scientific ordering.
+  return left.caseId < right.caseId ? -1 : left.caseId > right.caseId ? 1 : 0;
+}
+
 function rankedEligibleCases(cases) {
   return cases.filter(
     (row) => row.status === "eligible-complete-inventory",
-  ).sort((left, right) =>
-    left.refined.memberResidual.searchGuidance
-      .fullCycleMaximumPointwiseMemberResidualNorm -
-    right.refined.memberResidual.searchGuidance
-      .fullCycleMaximumPointwiseMemberResidualNorm);
+  ).sort(compareEligibleEndpointResidualCases);
 }
 
 function campaignSummary(cases) {
@@ -596,11 +609,7 @@ export function summarizeEndpointResidualRefinements(refinements) {
   const eligible = refinements.filter(
     (row) => row.status === "eligible-complete-inventory",
   );
-  const ranked = [...eligible].sort((left, right) =>
-    left.refined.memberResidual.searchGuidance
-      .fullCycleMaximumPointwiseMemberResidualNorm -
-    right.refined.memberResidual.searchGuidance
-      .fullCycleMaximumPointwiseMemberResidualNorm);
+  const ranked = [...eligible].sort(compareEligibleEndpointResidualCases);
   return {
     selectedCount: refinements.length,
     eligibleCount: eligible.length,

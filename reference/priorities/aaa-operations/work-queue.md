@@ -4,38 +4,53 @@ This is the current execution ledger for deployment, hosting, cost, reliability,
 
 ## Ranked Next Objects
 
-1. `release_gate_profile_coverage` — [OPS-020](#ops-020--release-gate-profile-coverage). Status: Queued.
-2. `agent_guidance_surface_consolidation` — [OPS-014](#ops-014--agent-guidance-surface-consolidation). Status: Queued.
-3. `reference_equation_mapping_surface` — [OPS-016](#ops-016--reference-equation-mapping-surface). Status: Queued.
-4. `archie_mcp_tool_contract_fixture_drift` — [OPS-023](#ops-023--archie-mcp-tool-contract-fixture-drift). Status: Queued.
-5. `post_campaign_binding_corruption_sweep` — [OPS-024](#ops-024--post-campaign-binding-corruption-sweep). Status: In progress; broader acceptance remains open.
-6. `periodic_project_skill_maintenance` — [OPS-027](#ops-027--periodic-project-skill-maintenance). Status: Recurring; next pass due 2026-11-10.
+1. `priority_directory_review_and_drive` — [OPS-028](#ops-028--priority-directory-review-and-drive). Priority: High; status: In progress; first directory completed.
+2. `reference_equation_mapping_surface` — [OPS-016](#ops-016--reference-equation-mapping-surface). Status: Queued.
+3. `operator_explanation_standard_review` — [OPS-029](#ops-029--operator-explanation-standard-review). Status: Queued.
+4. `periodic_project_skill_maintenance` — [OPS-027](#ops-027--periodic-project-skill-maintenance). Status: Recurring; next pass due 2026-11-10.
 
 ## In progress
 
-### OPS-024 — Post-campaign binding corruption sweep
+### OPS-028 — Priority-directory review and drive
 
-- **Priority object:** `post_campaign_binding_corruption_sweep`
-- **Request:** Complete the remaining binding and recovery audit after the campaign repairs, using the live recovery queue and semantic closeout record as owners for their scoped obligations.
-- **Current boundary:** Finite operational repairs are complete, but the full sweep, same-candidate acceptance, calibration prerequisites and deferred scientific continuation remain open or separately owned.
-- **Acceptance:** Every in-scope binding has a measured disposition, unresolved inputs have named owners, and no operational closeout is presented as scientific acceptance.
-- **Owner:** operations with Development Process Review and the affected technical owners.
+- **Priority object:** `priority_directory_review_and_drive`.
+- **Priority:** High.
+- **Request:** Review and drive every top-level priority directory in `reference/priorities/`, with particular attention to each directory's newly written `manuscript.md` and its live tracker, queue, brainstorming and work log. For each directory, establish the current owner, active queue object, manuscript disposition, blockers and next bounded action; advance work only within that directory's authority.
+- **Directory inventory:**
+  - ● `aaa-corpus-dragnet` — complete.
+  - ◐ `aaa-corpus-rewrite` — in progress; active owner; `CRW-005`.
+  - ◐ `aaa-operations` — in progress; active owner; `OPS-028`.
+  - ○ `aaa-work-threads` — todo.
+  - ○ `app-aaa-core` — todo.
+  - ○ `app-borg` — todo.
+  - ○ `app-equation-mapping` — todo.
+  - ○ `app-lattice-lab` — todo.
+  - ○ `app-photon` — todo.
+  - ○ `app-simulation` — todo.
+  - ○ `app-solver` — todo.
+  - ○ `app-topo` — todo.
+  - ○ `app-ui-guidelines` — todo.
+  - ○ `braid-program` — todo.
+  - ○ `category-theory` — todo.
+  - ○ `development-process-review` — todo.
+  - ○ `dormant-deferred` — todo; inventory only, not reactivated.
+  - ○ `field-speed-ceiling` — todo.
+  - ○ `mapping` — todo.
+  - ○ `mapping-benchmarks` — todo.
+  - ○ `mapping-electromagnetism` — todo.
+  - ○ `mapping-equations` — todo.
+  - ○ `mapping-one-nature-many-theories` — todo.
+  - ○ `mapping-open-problems` — todo.
+  - ○ `mapping-quantum` — todo.
+  - ○ `mapping-standard-model` — todo.
+  - ○ `mapping-strong-field` — todo.
+  - ○ `master-equation-closure` — todo.
+  - ○ `source-mining` — todo.
+- **Current disposition:** `aaa-corpus-dragnet` is the first completed directory in the linked work-log record. `aaa-corpus-rewrite` and `aaa-operations` are active and remain under their current owners; this action coordinates with them and does not overwrite their live work. `dormant-deferred` is inventoried but is not reactivated by this row.
+- **Acceptance:** Every inventoried directory has a dated review record naming its live owner and next disposition; every present `manuscript.md` receives a bounded review disposition; directories without a manuscript are explicitly recorded as such; newly written manuscript work is routed to the owning queue or a named follow-up action; no scientific, editorial or dormant-work status is strengthened merely by inventory.
+- **Owner:** `aaa-operations`, coordinating with each directory's owner; `aaa-corpus-rewrite` retains authority for reader-facing rewrite work.
 
 ## Queued
-
-### OPS-020 — Release gate profile coverage
-
-- **Priority object:** `release_gate_profile_coverage`
-- **Request:** Decide which standalone pages require an accepted release profile and record a reason for every page without one.
-- **Acceptance:** Per-page verdicts, selected profiles with captured receipts, and no blanket rule unsupported by the page population.
-- **Owner:** operations.
-
-### OPS-014 — Agent guidance surface consolidation
-
-- **Priority object:** `agent_guidance_surface_consolidation`
-- **Request:** Inventory Claude and Codex guidance surfaces, resolve conflicts with named precedence, and convert at least one drift class from manual synchronization to an executable check.
-- **Acceptance:** Verified inventory, resolved conflicts, explicit precedence and one maintained drift check.
-- **Owner:** operations with the live guidance owners.
 
 ### OPS-016 — Reference equation-mapping surface
 
@@ -44,18 +59,29 @@ This is the current execution ledger for deployment, hosting, cost, reliability,
 - **Acceptance:** Source-write policy, explicit target set, registry build and validation, and no links from `content/markdown/aaa` into `reference/`.
 - **Owner:** operations and the equation-mapping owner.
 
-### OPS-023 — Archie MCP tool-contract fixture drift
+### OPS-029 — Operator explanation standard review
 
-- **Priority object:** `archie_mcp_tool_contract_fixture_drift`
-- **Request:** Restore agreement between Archie fixture responses and `mcp-tool-contract/v1` semantics without weakening the contract to match the fixtures.
-- **Acceptance:** `tests/archie-service-contracts.test.js` passes 14 of 14 with the disagreement explained.
-- **Owner:** Archie service owner.
+- **Priority object:** `operator_explanation_standard_review`.
+- **Status:** ○ Queued.
+- **Opened:** 2026-09-11, at the operator's request.
+- **Request:** Review [operator-explanation-standard.md](../../op/operator-explanation-standard.md) in full for clarity, internal consistency, duplication, instruction precedence, and practical effect on operator communication. Check its relationship to AGENTS.md, the academic style guide, and the dispatch procedures, including the work-item prefix rule for agent and task names.
+- **Acceptance:** Record exact section or line references, distinguish demonstrated conflicts from optional improvements, explain the effect of each finding, and recommend the smallest justified correction. Preserve explicit operator decisions and identify any policy choice requiring their judgment. This action requests a review and recommendations; implementation is a separate disposition.
+- **Owner:** operations with the operator-guidance owner; coordinate with recurring OPS-014 to avoid duplicate review work.
 
 ## Awaiting verification
 
 No rows.
 
 ## Recurring
+
+### OPS-014 — Periodic review of agent guidance
+
+- **Priority object:** `periodic_agent_guidance_review`
+- **Request:** Review the maintained Claude and Codex guidance surfaces for drift, conflict and stale references; apply only scoped corrections to their live owners.
+- **Cadence:** Keep this item live with the next due date; complete an earlier pass when a guidance owner changes materially.
+- **Next pass due:** 2026-12-09.
+- **Acceptance:** Current guidance surfaces and precedence remain verified, any material correction is applied at its live owner, and the pass is recorded in the work log.
+- **Owner:** operations with the live guidance owners.
 
 ### OPS-027 — Periodic project skill maintenance
 
@@ -69,3 +95,7 @@ No rows.
 ## Closed work
 
 Completed task detail is not retained in this queue. Search [work-log.md](work-log.md) by task identifier for the closure record.
+
+<a id="ops-024--post-campaign-binding-corruption-sweep"></a>
+
+OPS-024: [completed local evidence-only reconciliation and I5 custody disposition](work-log.md#2026-09-11--ops-024-closed-after-i5-custody-disposition). The [recovery queue](../development-process-review/work-queue.md) retains blocked inputs and deferred verification.

@@ -11,16 +11,19 @@ The detailed planar common-center three-binary constraint investigation is maint
 1. `binary_subfield_fate` — [BP-001](#bp-001--binary-subfield-fate). Status: `Deferred / blocked`.
 2. `collinear_breather_campaign` — [BP-003](#bp-003--collinear-breather-campaign). Status: `Deferred / blocked`.
 3. `borg_braid_analysis_mode` — [BP-006](#bp-006--borg-braid-analysis-mode). Status: `Deferred / blocked`.
-4. `coincident_midpoint_421_coaxial_two_planar_braid_v2_adjudication` — [BP-007](#bp-007--421-coincident-midpoint--co-rotating-two-planar-braid-adjudication). Status: `Deferred / blocked`.
-5. `asymmetric_counter_breathing_member_acceleration` — [BP-010](#bp-010--asymmetric-counter-breathing-representative-normalized-member-acceleration-predeclaration). Status: `Three-parent streamed partial calculation admitted; the exact parents 3–5 historical source blob is identified but not materialized through an approved private archive route; whole-history M05/M06 and three-rung measurement remain open`.
-6. `circular_path_regular_polarity_completion` — [BP-012](#bp-012--circular-path-regular-polarity-completion). Status: `In progress`; the exact topology schedule and seven-speed 286,664-projection census are complete, but no continuous exclusion follows.
-7. `circular_path_nonuniform_phase_census` — [BP-013](#bp-013--circular-path-nonuniform-phase-census). Status: `In progress`; the regular-square $D_4$ cell is certified and the rest of the chamber remains open.
-8. `platonic_braid_qualification_and_prescribed_history` — [BP-016](#bp-016--platonic-braid-qualification-and-prescribed-history-program). Status: `In progress`; mixed-face, face-diagonal, all quotient vertices, and all five generic-axis quotient edges are excluded, while the two simplex interiors remain open.
-9. `packed_platonic_assembly_histories` — [BP-017](#bp-017--packed-platonic-assembly-history-program). Status: `In progress for exact geometry; dynamics blocked`; the complete private-cube shrink family is proved.
+4. `asymmetric_counter_breathing_member_acceleration` — [BP-010](#bp-010--asymmetric-counter-breathing-representative-normalized-member-acceleration-predeclaration). Status: `Three-parent streamed partial calculation admitted; the exact parents 3–5 historical source blob is identified but not materialized through an approved private archive route; whole-history M05/M06 and three-rung measurement remain open`.
+5. `circular_path_regular_polarity_completion` — [BP-012](#bp-012--circular-path-regular-polarity-completion). Status: `In progress`; the exact topology schedule and seven-speed 286,664-projection census are complete, but no continuous exclusion follows.
+6. `circular_path_nonuniform_phase_census` — [BP-013](#bp-013--circular-path-nonuniform-phase-census). Status: `In progress`; the regular-square $D_4$ cell is certified and the rest of the chamber remains open.
+7. `platonic_braid_qualification_and_prescribed_history` — [BP-016](#bp-016--platonic-braid-qualification-and-prescribed-history-program). Status: `In progress`; mixed-face, face-diagonal, all quotient vertices, and all five generic-axis quotient edges are excluded, while the two simplex interiors remain open.
+8. `packed_platonic_assembly_histories` — [BP-017](#bp-017--packed-platonic-assembly-history-program). Status: `In progress for exact geometry; dynamics blocked`; the complete private-cube shrink family is proved.
+9. `f5_current_generation_ordinary_evolution_regeneration` — [BP-018](#bp-018--f5-current-generation-ordinary-evolution-regeneration). Status: `Queued`; the prior halted-prefix payload is superseded and a fresh source-bound campaign is required.
+10. `f6c_current_generation_whole_history_regeneration` — [BP-019](#bp-019--f6c-current-generation-whole-history-regeneration). Status: `Queued`; the prior three-parent payload is partial and a fresh full-domain campaign is required.
 
 ## Shared search prerequisites
 
 ### Routed test breakage from OPS-020
+
+**Current refined I4 disposition, 2026-09-11: ◐ Partial — admission decision complete; transport implementation Deferred.** The [independently reviewed refined admission decision](../development-process-review/evidence/refined-current-migration/recoverability-review.md#refined-admission-decision--september-11) permits a separately versioned retained-record verification boundary with the three exact historical utility tuples explicitly unavailable and full original-environment verification false. The [Development Process Review queue, item 2](../development-process-review/work-queue.md#blocked-prerequisites) retains concrete custody of the current bridge, five original ancestry routes and independent controls; Braid retains scientific acceptance. This supersedes the utility-decision prerequisite in the historical entries below without completing I4, retiring its historical API, replacing source bytes or making strict historical authentication pass. BP-018/BP-019 and their scientific campaigns retain their separate scope.
 
 **Shared-helper caller audit, 2026-09-07.** The [caller audit](../development-process-review/analysis/shared-helper-caller-audit.md) documents 27 selected occurrences in 19 files and reproduces the cached-root binding-test failure. Git-source hashing attributes the new helper mismatches to the streamed repair at c86595d13; they matched at 21771de11. Seven inspected entry declarations also have separate input/host constraints. Classification is complete, while supported-profile migration remains open; the refined verifier is still a current historical-transport dependency and cannot be globally repinned or retired. The earlier 158 passing tests do not cover these launch regressions.
 
@@ -64,7 +67,11 @@ The detailed planar common-center three-binary constraint investigation is maint
 
 ### Routed methodology coverage review from OPS-018
 
-**September 8 disposition: ◐ Partial — statement review/current admission complete; separate frozen calibration prerequisite remains.** Veronica’s [29-row impact review](../development-process-review/analysis/semantic-closeout-review.md) retains every coverage definition/gate and records the dated review token. The four named files now pass 26 of 27 tests; the sole failure is the uninstantiated calibration implementation identity already mismatching at the batch’s starting HEAD. No calibration pin or receipt is advanced. The original routing history below is preserved; its methodology-review action is complete, while its all-four-files completion condition retains that separately scoped prerequisite.
+**September 10 disposition: ✓ Done — statement review/current admission and optional calibration-route decision.** The [29-row impact review](../development-process-review/analysis/semantic-closeout-review.md) retains every coverage definition/gate and records the dated review token. The [BP-007 retirement record](work-log.md#2026-09-10--bp-007-optional-calibration-route-retired) closes the need to pursue that optional campaign under the operator's consumer-based disposition authority. The focused methodology test and uninstantiated-V2 guards pass by the exact selections recorded there. The frozen implementation assertion still fails; retirement supplies no numerical acceptance or all-four-files pass.
+
+**○ Not done — retained calibration executable/test disposition; owner: Braid Program.** The existing test expects `7cceed67…` while the declared composition hashes to `c03cdbd3…`. Explicitly resolve the retained runner/test lifecycle before claiming that the original four-file acceptance condition passes. Any future source/test maintenance must account for this retirement, preserve V1 evidence and fail-closed protections, and validate its actual changed scope. It must not silently advance a hash, weaken an assertion, or launch calibration to clear a test. That maintenance is outside this queue/work-log-only disposition; a future scientific calibration requires a new named consumer and the reopening prerequisites in the retirement record.
+
+The September 6 routing below is historical context. Its methodology-review action is complete; it is not a current instruction to refresh the contract again.
 
 - **Status:** Queued; routed here on 2026-09-06 from [OPS-018](../aaa-operations/work-queue.md#ops-018--layout-pass-digest-pin-attribution), which established that it is a single pre-existing defect rather than a digest to refresh.
 - **Defect:** `src/prescribed-path-analysis/analytical-measure-coverage.v2.json` pins `content/markdown/aaa/noether-braid/braid-analysis-methodology.md` at `783c7b77…` with `impactReview: reviewed-for-exact-configuration-complete-cycle-campaign-v2`. That document now hashes to `611b89ce…`, last changed by `c973402b9`, and `validateMethodologyCoverageContract` refuses to proceed: *"methodology hash 611b89ce… requires an explicit analytical coverage impact review."* Four test files fail on this one gate: `all-candidate-analytical-rebuild`, `analytical-campaign-database`, `endpoint-residual-search-campaign`, and `coincident-midpoint-4-2-1-…-coverage-calibration`.
@@ -183,6 +190,24 @@ Plainly: this program asks whether a Platonic arrangement can carry a complete b
 
 Plainly: moving the cells apart creates separately owned candidate assemblies, but it does not make their histories independent. Independence is a calculation about the cross-assembly acceleration, not a consequence of drawing a gap.
 
+### BP-018 — F5 current-generation ordinary-EOM regeneration
+
+- **Status:** Queued; operator-authorized current-generation replacement of the superseded halted-prefix result payload.
+- **Priority object:** `f5_current_generation_ordinary_evolution_regeneration`
+- **Request:** Freeze a new F5 declaration against the current canonical configuration and source/runtime set, generate the complete phase-varying ordinary-EOM result under fixed controls, and publish only a new result identity. Resolve the current configuration-versus-fixture contract before launch; do not silently replay the old declaration or relabel a new result as historical.
+- **Retained prior state:** `.local-data/braid-analysis/f5-ordinary-evolution-20260827/evaluation-v1/` was an unaccepted halted-prefix payload with all three rungs stopping at `root_completeness_not_certified`; its raw payload and logs are superseded by this row. Declarations, retained prehistory, build inventories, source archives, independent reviews, and the release-time response remain outside the deletion scope.
+- **Acceptance:** Fresh declaration, source/runtime manifest, new output root and result identity; all declared rungs either reach the declared horizon or publish an explicit fail-closed disposition; fixed-input repeatability; independent geometry/dynamics/output review; complete process and resource closure; no stability, retention, binding, score, or physical-realization claim from the run alone.
+- **Completion:** A new current-generation F5 result is independently accepted at its actual grade, or the campaign is explicitly closed with a measured fail-closed result and its falsifier.
+
+### BP-019 — F6c current-generation whole-history regeneration
+
+- **Status:** Queued; operator-authorized current-generation replacement of the superseded partial streamed result payloads.
+- **Priority object:** `f6c_current_generation_whole_history_regeneration`
+- **Request:** Prepare and execute a new full-domain F6c campaign from current source generations, covering all 160 cells, the complete declared interval, M05/M06, and the three-rung refinement. Use new input/source/output identities and do not attempt to authenticate the old parents 3–5 calculation as current evidence.
+- **Retained prior state:** The admitted v3 payload covered only three of 160 original parents, while the earlier v2 payload was a prior partial attempt. Their raw streamed payload directories are superseded by this row; source descriptors, receipts, continuation controls, historical archives, mathematical references, root-cover and emission-refinement prerequisites remain outside the deletion scope.
+- **Acceptance:** Fresh source union and current-generation manifest; full 160-cell coverage; M05/M06 and all three rungs; independent numerical reference and arithmetic closure; complete process/resource/output closure; measured reproducibility under fixed inputs; no balance, retention, stability, binding, score, or physical-realization claim unless separately established.
+- **Completion:** A new full-domain F6c result is independently accepted at its actual grade, or the campaign is explicitly closed with a measured fail-closed disposition and its falsifier.
+
 ## Co-spherical research controls
 
 These controls support the reader-facing [Spatial (3D) Braid Assemblies](../../../content/markdown/aaa/noether-braid/3d-braid-assemblies.md) chapter. Operational status, task ordering, reproduction instructions, and unbooked questions remain here so they cannot be mistaken for accepted reader-facing results. This separation creates no new run authorization, candidate, score, registry entry, or queue rank.
@@ -233,14 +258,6 @@ The exact octahedral coloured-axis and residual-channel census is produced by `s
 - **Request / acceptance:** Define one record-driven teaching/graph surface that consumes sealed solver rows without presenting annotations as evidence.
 - **Evidence / blocker:** Pending product and record-schema design; implementation belongs to Borg after acceptance.
 - **Completion:** A bounded packet names required carriers, interactions, authority labels, and browser acceptance.
-
-### BP-007 — 4:2:1 coincident-midpoint / co-rotating two-planar-braid adjudication
-
-- **Status:** Deferred / blocked
-- **Priority object:** `coincident_midpoint_421_coaxial_two_planar_braid_v2_adjudication`
-- **Request / acceptance:** Preserve the optional V2 calibration route by predeclaring a receipt-bound, purge-aware full adjudication of all 172 rows with raw retention and separately authored independent acceptance.
-- **Evidence / blocker:** V1 is closed as calibration-insufficient. The parallel current-source census independently closes H2 for both the coincident-midpoint 4:2:1-frequency orthogonal-axis three-binary configuration and the coaxial-separated co-rotating two-planar-braid configuration, so BP-007 is no longer their H2 admission route and the coaxial-separated configuration has no direct dependency on it. The coincident-midpoint 4:2:1-frequency configuration lies outside the current sub-field H3 method. Reusing that method requires a separately frozen slower history and H2 reconfirmation; assessing the unchanged history requires an independently validated method covering its actual root regime. No V2 calibration execution is authorized until its packet and cost pilot pass fail-closed review.
-- **Completion:** The V2 packet is accepted before execution, or the calibration route is retired.
 
 ## Stopped historical campaigns
 
@@ -310,3 +327,7 @@ Plainly: the apparent cancellation does not occur in the broad chamber. The bran
 ## Superseded / withdrawn
 
 The score-free axial-transverse three-binary interior compatibility packet was withdrawn during the exact-identity taxonomy migration. It evaluated zero causal roots and computed zero scores. The [facts-first local-landscape design](campaigns/axial-transverse-three-binary-interior-score-landscape-predeclaration.md) remains a non-executable predeclaration and requires a new exact-identity freeze before any future use.
+
+### BP-007 — 4:2:1 coincident-midpoint / co-rotating two-planar-braid adjudication
+
+The optional calibration route was retired on 2026-09-10; the [decision, consumer audit, retained evidence and reopening conditions](work-log.md#2026-09-10--bp-007-optional-calibration-route-retired) are in the work log. This navigation anchor preserves existing references; BP-007 is removed from the live ranked and deferred tasks. The separate [executable/test disposition](#routed-methodology-coverage-review-from-ops-018) remains owned without authorizing a campaign.

@@ -26,7 +26,7 @@ Discover available roles directly from:
 - `reference/office-of-research/specialists/roles-geometry-dynamics/`
 - `reference/office-of-research/specialists/roles-og-entourage/`
 
-Use a role file's basename before `.md` as the requested agent name. Examples from the live collections include `bill-thurston`, `emmy-noether`, `henri-poincare`, `jack-k-hale`, `hassler-whitney`, `lars-hormander`, `ramon-e-moore`, `germund-dahlquist`, `red`, and `sig`.
+Use a role file's basename before `.md` as the requested Specialist identity. Examples from the live collections include `bill-thurston`, `emmy-noether`, `henri-poincare`, `jack-k-hale`, `hassler-whitney`, `lars-hormander`, `ramon-e-moore`, `germund-dahlquist`, `red`, and `sig`. Set the separate launch name and task title according to [Agent and task names](../../../op/operator-explanation-standard.md#agent-and-task-names).
 
 Re-list the directories before every dispatch because the roster can change. Do not treat `system-prompt.md` as a role, and do not invent a role without a live role file. Read the [Specialist charter](../../specialists/specialist.md) with the selected lens. Preserve each lens's local-use boundary: inherited theory packets and unverified thresholds are research leads, not premises or acceptance criteria. The historical entourage system prompt is excluded from local dispatch.
 
@@ -67,6 +67,8 @@ Do not infer consensus from silence, shared vocabulary, persona prestige, or agr
 
 Requested Specialist: [basename from a live role file]
 Role file: [exact live role-file path]
+Work item: [owning item identifier, when assigned]
+Launch name/task title: [name following the operator explanation standard]
 
 Assigned question:
 [self-contained question]

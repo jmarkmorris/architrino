@@ -35,6 +35,7 @@ Before launching worker threads:
 
 - refresh the relevant priority markdown files, source files, and current git status from disk;
 - name the shared closure objective and definition of done;
+- set and verify launch names and task titles under [Agent and task names](operator-explanation-standard.md#agent-and-task-names);
 - choose tasks with the lowest expected file overlap;
 - assign each worker preferred write files and nearby files to avoid;
 - decide which thread owns integration, conflict resolution, and final technical judgment;
@@ -53,6 +54,7 @@ Context:
 - Repository: `$REPO_ROOT`
 - Workflow: [implementation / review / exploration / verification / source mining]
 - Priority item, issue, or target file: [exact path and item number when applicable]
+- Launch name/task title: [name following the operator explanation standard]
 - Preferred write ownership: [files or directories this worker may touch]
 - Avoid touching: [files, reports, generated outputs, or priority items owned by another thread]
 - Reasoning effort: [inherited, or an explicitly authorized supported override]

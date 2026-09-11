@@ -7,7 +7,7 @@
 - Value: `0.00`
 - Cost: `0.0`
 - ROI: `0.00`
-- Status: `active-no-executable-object`
+- Status: `active-with-executable-object`
 - Claim level: `operations-priority`
 - Scope: deployment discipline, service limits, release readiness, cost visibility, reliability, and webapp growth operations.
 
@@ -17,6 +17,7 @@ This workstream tracks operational questions and executable maintenance for the 
 
 ## Current considerations
 
+- Review the operator communication policy through [OPS-029](work-queue.md#ops-029--operator-explanation-standard-review), checking clarity, consistency, precedence and practical usability while preserving explicit operator decisions.
 - Review the protected children’s production stories under the [production procedure](../../office-of-learning/childrens-books/production/README.md) before authorizing manuscript or artwork changes. The priority questions concern trace persistence, common emission and speed assumptions, unspecified bead coupling, and earlier-position emission; preserve recorded approvals and pending QA decisions until the proper review.
 - Verify the safety, developmental and external compliance assumptions in the [play-surface proposal](../../office-of-learning/play-surface/README.md) before design decisions depend on them.
 - Define a maintainable internal section-numbering convention for suitable document classes without conflating reader-facing numbers with work-queue identifiers.

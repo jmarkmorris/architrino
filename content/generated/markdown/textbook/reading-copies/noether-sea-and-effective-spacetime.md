@@ -11,28 +11,34 @@ The easiest mistake is to treat the Noether sea as another name for space. It is
 This is why the reader path introduces Noether braid scaffold and geometry before observer-level spacetime. The intended picture is a fixed container populated by organized assemblies, not a flexible container that curves by itself. At the roadmap level, the physical Noether braid density can be read as a coarse-grained population field,
 $$
 \rho_{\text{NS}}(\mathbf X,T)
-\sim
-\sum_s W_\ell(\mathbf X-\mathbf X_s(T))
+=
+\sum_{s\in\mathcal I_{\mathrm{sea}}(T)} W_\ell(\mathbf X-\mathbf X_s(T))
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e6849e85f4f768ac)
 
-where $W_\ell$ is a smoothing window over Noether braid center variables $\mathbf X_s(T)$. The Noether sea stress, delay factor, and orientation variables then depend on each braid's closure label, orientation, and envelope deformation. The Noether sea is therefore introduced before effective metric language because its state variables are coarse-grained functions of Noether braid geometry, not primitive geometric postulates.
+Here $\rho_{\mathrm{NS}}$ is number density, not mass density. The set $\mathcal I_{\mathrm{sea}}(T)$ contains the identities classified as ambient braids, and $W_\ell\ge0$ is a spatial smoothing window with $\int W_\ell\,dV=1$, centered on the declared braid centers $\mathbf X_s(T)$. The associated cadence density is $f_N(\nu,\mathbf X,T)=\sum_{s\in\mathcal I_{\mathrm{sea}}(T)}W_\ell(\mathbf X-\mathbf X_s(T))\delta(\nu-\nu_s(T))$: it counts braids per spatial volume per unit ordinary cadence, so $\int_0^\infty f_N\,d\nu=\rho_{\mathrm{NS}}$. A normalized cadence smoothing kernel may replace the delta for continuum calculations, provided its integral on the positive-cadence domain is one. Stress, delay, and orientation variables also depend on the same population's closure labels and envelope deformation. These are coarse projections of assembly geometry, not primitive geometric postulates.
 
-The homogeneous Noether sea also supplies the first constructive convergence case for the infinite many-source wake sum. In a statistically homogeneous, isotropic, locally neutral population with neutrality correlation length $\ell$, receiver-centered shell contributions have square-summable fluctuations: a shell of radius $r_n\sim n\ell$ contains $O(n^2)$ neutral cells, signed fluctuations scale as $O(n)$, and inverse-square wake dilution contributes $O(n^{-2})$. The shell variance is therefore $O(n^{-2})$. The required mixing condition is summable cross-shell covariance,
+The homogeneous population motivates a conditional mean-square convergence estimate for the infinite many-source wake sum. A causal root is a past emission event whose expanding wake reaches the specified receiver event. Fix one receiver event, a probability measure on complete source histories, and receiver-centered shells of thickness $\ell$. Each cell contribution must include every admitted causal root and its transmitter weight $c_f/|D_t|$, where $D_t=c_f-\mathbf V_t\cdot\hat{\mathbf r}_t$ in the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md); $\mathbf V_t$ is the emission velocity and $\hat{\mathbf r}_t$ points from that emission site to the receiver. Spatial neutrality alone bounds neither the number of roots nor the weight near a tangent root.
+
+Write $\mathbf A_n$ for the full shell contribution and $\Delta\mathbf A_n=\mathbf A_n-\mathbb E\mathbf A_n$ for its centered fluctuation. Assume each distant shell contains at most $K n^2$ cells, each centered weighted cell contribution has second moment at most $C n^{-4}$, and each cell's sum of absolute dot-product covariances with cells in that shell is at most $C' n^{-4}$. The constants are uniform in the shell index. Summing those cell bounds gives $\mathbb E\|\Delta\mathbf A_n\|^2\le C_A n^{-2}$. This is a weighted-history moment hypothesis; finite spatial correlation length does not establish it. Also require absolutely summable cross-shell dot-product covariance,
 $$
-\sum_{n\ne m}
-\left|
-\operatorname{Cov}(\Delta\mathbf A_n,\Delta\mathbf A_m)
-\right|
-<\infty,
+\begin{aligned}
+&\sum_{n<m}\left|\mathbb E(\Delta\mathbf A_n\cdot\Delta\mathbf A_m)\right|<\infty,\\
+&\mathbb E\left\|\sum_{n=N}^{M}\Delta\mathbf A_n\right\|^2
+=\sum_{n=N}^{M}\mathbb E\|\Delta\mathbf A_n\|^2
++2\sum_{N\le n<m\le M}\mathbb E(\Delta\mathbf A_n\cdot\Delta\mathbf A_m)\\
+&\hspace{1em}\le C_A\sum_{n=N}^{\infty}n^{-2}
++2\sum_{N\le n<m}\left|\mathbb E(\Delta\mathbf A_n\cdot\Delta\mathbf A_m)\right|
+\longrightarrow0\quad(N\to\infty)
+\end{aligned}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c848c934bb2c4609)
 
-where $\Delta\mathbf A_n$ is the signed fluctuation of shell $n$'s wake-acceleration contribution about its neutral ensemble mean. The condition prevents correlations from rebuilding a divergent coherent tail from individually decaying shells. Under that condition the neutral far-population contribution converges in the receiver-centered exhaustion sense. This exhaustion is fixed by the receiver event's causal-root ledger and expanding receiver-centered shells, not by an arbitrary rearrangement of a conditionally convergent spatial series. This is a weak homogeneous medium result, not a blanket convergence claim for coherent strong-field regions or unneutralized source populations.
+The bound makes the partial sums Cauchy in $L^2$, the space of finite mean-square random vectors, and hence gives convergence in mean square and in probability along the declared shell order. It does not establish almost-sure convergence for the actual universe history, uniformity over receiver events, differentiated-tail convergence, or invariance under arbitrary source rearrangement. Those stronger conclusions and realization of the weighted-history assumptions remain separate obligations. For a homogeneous isotropic ensemble with zero shell means, the centered sum is the full mean-zero far-population contribution.
 
-It also controls only fluctuations about a zero shell mean. For a weak density gradient
+For a weak density gradient, a local expansion about the receiver origin is
 $$
 \rho_{\mathrm{NS}}(\mathbf X)
 =
@@ -41,14 +47,14 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9659291f3d9667a1)
 
-the additional gravity-side obligation is to compute the neutral-cell multipole and prove convergence of
+The additional gravity-side obligation is to compute the weighted neutral-cell multipole and prove convergence of the full shell means,
 $$
-\sum_n\mathbb E[\Delta\mathbf A_n\mid\mathbf g_\rho].
+\sum_n\mathbb E[\mathbf A_n\mid\mathbf g_\rho]
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-bee72957ddd0c7a0)
 
-That mean row, rather than the homogeneous variance proof, must supply the leading constitutive response to $\mathbf g_\rho$. Until the neutral-cell multipole and its shell falloff are derived, the homogeneous result does not settle the weak-gradient or Seeliger problem.
+The centered fluctuation has zero mean under its defining ensemble; it cannot supply this mean response. Extending the local density expansion to arbitrarily distant shells requires a global profile and a controlled remainder. Until that profile and the weighted multipole falloff are derived, the conditional homogeneous estimate does not settle weak-gradient gravity or the Seeliger problem of defining the influence of an infinite population.
 
 The spacetime recovery stack depends on four load-bearing hypotheses that must remain visible:
 
@@ -118,7 +124,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9c433cc4c53a999c)
 
-not a primitive frame-free photon scalar. The redshift task is to compute the endpoint cadence, launch geometry, and path-history propagation terms from the same $S(T)$ record rather than changing explanation between gravitational, relative-motion, and cosmological cases.
+Here $h$ is observer Planck calibration and this equation is an effective photon recovery relation, not a primitive frame-free photon scalar or an identification of a braid action unit. The redshift task is to compute the endpoint clock rates, including their mismatch from sea cadence, launch geometry, and path-history propagation terms from the same $S(T)$ record.
 
 ### Composition
 
@@ -145,22 +151,23 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8e2b2de02618c521)
 
-The entries are, respectively: retained-branch closure; local polarity neutrality and pro/anti balance; convergence of the far-population wake sum; dense packing without uncontrolled branch disruption; weak homogeneous transparency to ordinary matter, photon-channel packets, and neutrino-like assemblies; a shared constitutive response for $n$, $\chi_{\text{sea}}$, $\Gamma_N$, stress, and effective metric channels; compatibility with the particle-building branch program; and a production, recycling, or relaxation route that gives the class sufficient abundance.
+The entries are, respectively: retained-branch closure; local polarity neutrality and pro/anti balance; convergence of the far-population wake sum; dense packing without uncontrolled branch disruption; weak homogeneous transparency to ordinary matter, photon-channel packets, and neutrino-like assemblies; a shared constitutive response for $n$, $\chi_{\text{sea}}$, $\Gamma_N$, stress, and effective metric channels; compatibility with the particle-building branch program; and a production, recycling, or relaxation route that gives the class sufficient abundance. Each entry denotes a dimensionless defect divided by a declared positive acceptance scale, with the same observable, norm, domain, and scale used across classes. A missing entry leaves selection unresolved; it is not assigned zero. A maximum at most one means every declared test meets its own tolerance, not that the class is selected without a comparative population argument.
 
-Transparency is therefore a bounded-response condition, not a claim of zero interaction. The Noether sea has to keep direct scattering and loss below tolerance while still supplying the response assigned to clocks, photons, matter, and neutrino-like channels. For a channel family $X\in\{\gamma,\mathrm{clk},\mathrm{mat},\nu\}$, where $\mathrm{clk}$ denotes the physical-clock channel whose observer readout is derived clock time $\tau$, the Noether sea must make direct loss, scattering, and preferred-frame visibility small while still supplying the constitutive response that the channel is supposed to recover. A compact two-row check is
+Transparency is a bounded-response condition. For a channel family $X\in\{\gamma,\mathrm{clk},\mathrm{mat},\nu\}$, denoting photon, physical-clock, matter, and neutrino-like channels, respectively, direct loss, scattering, and preferred-frame visibility must remain below tolerance while the medium supplies the required constitutive response. The physical-clock readout is derived clock time $\tau$. A normalized joint test is
 
 $$
 \mathcal R_{\mathrm{vis/resp},X}
 =
 \max\!\left(
-\frac{\mathcal R_{\mathrm{loss/scat},X}+\mathcal R_{\mathrm{LV},X}}{\epsilon_{\mathrm{vis},X}},
+\frac{\mathcal R_{\mathrm{loss/scat},X}}{\epsilon_{\mathrm{loss/scat},X}},
+\frac{\mathcal R_{\mathrm{LV},X}}{\epsilon_{\mathrm{LV},X}},
 \frac{\left\|O_X^{\mathrm{eff}}-\Pi_X[\Theta_{\mathrm{sea}},\mathcal L_X]\right\|}{\epsilon_{\mathrm{resp},X}}
 \right).
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d59b015b955e5774)
 
-The first term enforces weak homogeneous transparency and hides ordinary medium-drift leakage; the second term enforces that clocks, photon transport, matter response, or neutrino-like propagation still consume the same retained Noether sea record. A candidate class that sets the coupling to zero passes the visibility row trivially while failing the response row: it becomes invisible, but it no longer reconstructs the effective observables assigned to the Noether sea.
+The first two ratios separately normalize loss/scattering and preferred-frame visibility by their own tolerances; the third normalizes the observable response error in the units of $O_X^{\mathrm{eff}}$. Here $\Pi_X$ is the candidate projection from medium state $\Theta_{\mathrm{sea}}$ and channel ledger $\mathcal L_X$. Fix these scales before comparing candidates. Setting the coupling to zero can pass visibility while failing a nonzero independently specified response target; invisibility alone does not reconstruct the observables assigned to the Noether sea.
 
 The orthogonal-axis three-binary-centered Noether sea claim is therefore the statement that the corresponding class $\mathfrak C_A$—prescribed one-braid records whose three axes run from mutual orthogonality toward the group-translation direction along $\lambda_A$—can drive $\mathcal R_{\mathrm{sea\text{-}class}}(\mathfrak C_A)$ below the accepted tolerance while other candidate classes either fail one of the rows or are classified as localized matter, radiation, reaction, or strong-field branches. This is stronger than saying that orthogonal-axis three-binary exclusion envelopes are visually plausible. It is a comparative selection problem over assembly classes, not a consequence of the taxonomy definition.
 
@@ -182,9 +189,9 @@ The Noether sea changes how isolated assembly calculations should be read. A tru
 
 At the ontology level, a matter braid embedded in the Noether sea is an open assembly, not an isolated clockwork object. It exchanges angular momentum and causal-wake structure with neighboring neutral braids while preserving its own closure ledger. The exact boundary between assembly-locked and ambient contributions is the channel-dependent [assembly-Noether sea interface diagnostic](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic), $D_{a,X}$; spatial proximity alone does not decide which record owns a contribution.
 
-The current coincident-axis three-binary braid evidence sharpens that picture without closing the full medium problem. The coincident-axis three-binary braid here means the prescribed chart with one common midpoint, one coincident binary axis, one common frequency, and one common circulation sense; per-binary radii, axial half-separations, transverse orbit radii, and phases remain independent. At measurement level, the forward torque to the source-record circulation channel and the axial support supplied by a phase-matched responsive sea are readings of the prescribed response records, pending a linked instrument record; the tested axially organized responses do not supply the missing equatorial support. At mechanism-estimate level, this motivates an angular-momentum metabolism: the sea feeds an assembly channel, internal wake transport redistributes that input, and outgoing wake returns angular momentum to the sea's orientation order. A self-consistent closed loop has not yet been derived, so the metabolism is a constitutive closure target rather than a retained-branch theorem.
+The coincident-axis three-binary chart supplies a candidate setting for this mechanism: one common midpoint, one coincident binary axis, one common frequency, and one common circulation sense, while per-binary radii, axial half-separations, transverse orbit radii, and phases remain independent. The mechanism hypothesis is that phase-matched neighbors supply angular-momentum transfer and axial acceleration support, internal wake transport redistributes the input, and outgoing wake returns angular momentum to the sea's orientation order. No inspectable instrument record is supplied here for the asserted transfer or support, so this passage makes no measured claim about their sign, magnitude, or equatorial adequacy. A self-consistent closed loop remains a constitutive closure target.
 
-The static cage result gives the complementary effective picture. When a braid's support deficit selects a polar-covering neighbor cage, the acceleration-balanced candidate is a braid-plus-cage complex (stability ledger open), closer to a molecule in a solvent than to a point object fixed at a lattice site. That comparison is effective framing, not ontology: the underlying objects remain Noether braid assemblies and causal wakes, and the cage still requires its own reciprocal acceleration and stability ledger. Together, the metabolism and cage pictures explain why the Noether sea is part of the assembly's physical boundary conditions rather than decorative background.
+A polar-covering neighbor cage is a complementary support hypothesis, comparable at the effective level to a molecule in a solvent. Even a verified central-braid acceleration balance against prescribed neighbors would establish only that central response. Balance of the whole braid-plus-cage complex requires evaluating every cage constituent reciprocally on the same histories, and stability requires a separate perturbation analysis about a retained solution. Neither whole-complex balance nor stability is established here. The underlying objects remain Noether braid assemblies and causal wakes; the comparison explains how surrounding assemblies enter local boundary conditions.
 
 For a candidate local branch $B$, the stronger closure form is not
 
@@ -235,12 +242,13 @@ N_{\mathrm{return}}
 -N_{\mathrm{dissoc}}
 -N_{\mathrm{reclass}}
 +N_{\mathrm{relax}}
-+R_{N,\Omega}.
+-N_{\mathrm{out}}^{\Omega}
++R_{N,\Omega}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fb5f0b1586fb1ce1)
 
-Each term must be tied to the same identity, energy, momentum, angular-momentum, and causal-wake ledger used by the local reaction. If a reaction changes apparent particle inventory while leaving the Noether sea row undeclared, the source story is incomplete rather than closed.
+Here $\Omega$ is a fixed spatial window observed over a declared absolute-time interval and $N_{\mathrm{out}}^{\Omega}$ is net outward transit, the time-integrated number flux through its boundary. It vanishes for a material identity cohort only when the cohort definition excludes transit. Classification changes are counted once at their actual event. Each term must be tied to the same identity, energy, momentum, angular-momentum, and causal-wake ledger used by the local reaction. A particle inventory change without this population account leaves the source story incomplete.
 
 This does not require solving the entire universe before studying one assembly. It does require a controlled embedding record. The useful analytic hierarchy is:
 
@@ -293,7 +301,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a0af3ca5c6ae82bd)
 
-Here $\Omega_N$ is a representative local Noether sea braid cadence and $C_N$ is the corresponding clock-rate factor. This pair is not a new density or delay factor: $n$ tracks normalized Noether braid density, $\chi_{\text{sea}}$ tracks effective causal delay, and $\Gamma_N$ tracks cadence stretch. The clock extraction and hydrogen spectral use of this diagnostic belong in [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target).
+Here $\Omega_N$ is a representative local angular cadence and $C_N$ is the sea cadence-rate factor. For the population projection in this chapter, choose $\Omega_N=2\pi\int_0^\infty\nu f_N\,d\nu/\rho_{\mathrm{NS}}$ where the density is positive and the first moment is finite; use the same extraction for $\Omega_{N0}$. This definition does not identify a matter clock with the population mean. Its separately extracted clock-rate factor is $C_{\mathcal A}=C_N\exp(\Delta_{\mathrm{clk\text{-}sea},\mathcal A})$, with the logarithmic mismatch retained unless bounded below tolerance. Density $n$, delay $\chi_{\text{sea}}$, and cadence stretch $\Gamma_N$ remain distinct. Clock extraction belongs in [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target).
 
 When a calculation needs pro/anti subcomponents, orientation imbalance, or coupling-regime stability thresholds, use [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md).
 
@@ -314,7 +322,7 @@ These are medium variables. They are not properties of the Euclidean void.
 
 ### Continuum Balance and Constitutive Closure
 
-The first continuum obligation for the Noether sea is local bookkeeping of conserved or slowly relaxing coarse variables. For a fixed control region $V\subset\Sigma_T$, a density variable is mature only when its integral changes by boundary flux, declared source, and residual:
+The first continuum obligation for the Noether sea is local bookkeeping of conserved or slowly relaxing coarse variables. For a fixed control region $V\subset\Sigma_T$, where $\Sigma_T$ is the Euclidean spatial slice at absolute time $T$, the population balance is
 $$
 \frac{d}{dT}\int_V \rho_{\text{NS}}\,dV
 +
@@ -338,7 +346,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#noether-sea-continuity)
 
-The same standard applies to cadence, orientation, strain, and energy variables. A continuum equation is therefore not added because fluids are a good analogy; it is admitted only when it is the low-moment projection of the resolved Noether braid population and the residual decreases under refinement.
+Here $\hat{\mathbf n}$ is the outward boundary normal, $S_\rho$ is the signed number-source density, $r_\rho$ is the local unresolved rate density, and $R_{\rho,V}=\int_Vr_\rho\,dV$. The same standard applies to cadence, orientation, strain, and energy variables. A continuum equation is admitted as a low-moment projection of the resolved population when its residual decreases under refinement; a fluid analogy alone does not establish it.
 
 The source term should be decomposed before it is used in cosmology or reaction provenance:
 $$
@@ -383,7 +391,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d91bf9fe72198358)
 
-Here $S_{\mathrm{BH,diff}}$ denotes broad medium loading, $S_{\mathrm{BH,col}}$ denotes collimated or jet-like release that later couples back to the medium, and $S_{\mathrm{pair}}$ denotes pair-channel participation controlled by local density, cadence, excitation, and threshold state. None of these terms creates substrate from nothing. Each is a projection of architrino and Noether braid inventory through a declared reaction, release, or relaxation record.
+Here $S_{\mathrm{BH,diff}}$ denotes broad medium loading, $S_{\mathrm{BH,col}}$ counts collimated-release content when it actually enters the ambient classification, and $S_{\mathrm{pair}}$ counts newly admitted ambient braids from pair-channel activity. Launch alone does not enter the ambient count; pair channels that recruit or return existing braids use the recruitment or return entry, without counting the same event again as production. None of these terms creates substrate from nothing. Each is a projection of architrino and Noether braid inventory through a declared reaction, release, or relaxation record.
 
 The hydrodynamic comparison also has a domain warning: quantizing the coarse variable does not by itself reveal the microscopic contents. In a medium analogy, phonon quantization recovers collective excitations of the continuum; it does not recover the atoms. For the Noether sea, this means that a quantized effective metric, scalar, or vector channel is a recovery benchmark for long-wavelength behavior, while the microscopic derivation still has to come from Noether braid population dynamics, causal wakes, and branch ledgers.
 
@@ -419,15 +427,15 @@ $$
 \left\|\partial_T M_a\right\|
 +\left\|\nabla\cdot J_a\right\|
 +\left\|S_a\right\|
-+\varepsilon
++\varepsilon_a
 }
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9a83480fab7acf04)
 
-with $a$ ranging over the retained density, momentum, energy, cadence, and orientation moments. This residual is the guardrail against closing the Noether sea by naming a fluid-like equation while hiding unresolved causal-wake memory in fitted coefficients.
+Here $a$ ranges over density, assembly-level momentum, energy, cadence, and orientation moments. Each norm uses a declared space-time window and component scaling; $\varepsilon_a>0$ has the units of that moment's rate density, so different physical dimensions are never added across moments. This is an equation-defect diagnostic, not by itself evidence of closure. Extract $M_a$ and the reference fluxes and sources independently from resolved histories; compare proposed constitutive fluxes and sources against those references on histories not used to set coefficients. Solving an equation with its own fitted definitions can make the defect vanish while leaving omitted memory entirely uncontrolled. A closure claim also needs a bound on that omitted-history contribution.
 
-Analogue-gravity comparisons sharpen this point. In an ordinary acoustic medium, the effective metric seen by small sound perturbations is fixed by medium density, flow, and sound speed, for example schematically
+Analogue-gravity comparisons sharpen this point. In Visser's acoustic construction, the fluid is barotropic (pressure depends only on density), inviscid (without viscosity), and locally irrotational (flow has a velocity potential). Small perturbations of that potential obey a scalar wave equation with an effective acoustic metric. In effective coordinates $(t_{\mathrm{eff}},\mathbf x_{\mathrm{eff}})$, the comparison has the form
 $$
 (g_{\mathrm{ac}})_{\mu\nu}
 \propto
@@ -440,7 +448,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c2bb582175c96dd9)
 
-The comparison is useful because it keeps the levels separated: the perturbation metric is a constitutive readout, while the underlying medium still obeys its own dynamics. The Noether sea target has the same form of obligation,
+Here $\rho_0$, $\mathbf u_{\mathrm{fluid}}$, and $c_s$ are the background fluid's mass density, flow, and sound speed; $h_{ij}=\delta_{ij}$ is the spatial matrix in Cartesian comparison coordinates. This fluid mass density is not the braid number density $\rho_{\mathrm{NS}}$. The metric describes the potential perturbation, not arbitrary viscous or vortical motion. See Visser's theorem and equation (4) in [Acoustic black holes: horizons, ergospheres, and Hawking radiation](https://arxiv.org/html/gr-qc/9712010). The Noether sea target has the same form of constitutive obligation,
 $$
 g_{\mu\nu}^{\mathrm{eff}}
 =
@@ -452,7 +460,7 @@ $$
 
 where $\mathcal{G}_{\mu\nu}$ must be derived from the retained density, flow, cadence, orientation, strain, and causal-wake records. A metric row that fits clock, signal, pressure, or lensing behavior with separate coefficients for each observable is not yet a Noether sea constitutive law.
 
-Hu's stochastic-gravity comparison sharpens the next rung above moment closure. Mean-field variables are not enough; fluctuations and correlations carry information about the mesoscopic state. Let $\delta T_A^{\mathrm{eff}}$ denote observer-level stress, cadence, or response-channel fluctuations induced by a branch record $\theta$, and let $C_{AB}^{\theta}(x,y)$ be the corresponding two-point correlation:
+The stochastic-gravity comparison concerns fluctuations beyond a mean response. Hu and Verdaguer's [Stochastic Gravity: Theory and Applications](https://arxiv.org/html/0802.0658), section 3.2, equation (3.11), defines a noise kernel from the symmetrized two-point product of mean-subtracted quantum stress tensors. A classical cadence covariance is not that quantum observable. For a bounded analogy, let $\delta T_A^{\mathrm{eff}}$ denote a mean-subtracted stress, cadence, or response-channel readout from a branch ensemble $\theta$, and let $x,y$ denote two events in a declared effective observer chart. Its covariance is
 $$
 C_{AB}^{\theta}(x,y)
 =
@@ -480,7 +488,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3b70202295912d83)
 
-Here $\Pi_{\mathrm{corr}}^{(n)}$ is the declared projection from retained Noether sea histories to the $n$-point observer-level correlation. Passing the $n=2$ test is the analogue of the noise-kernel step in stochastic gravity; higher $n$ tests are the kinetic-theory route toward mesoscopic closure.
+Here $\Pi_{\mathrm{corr}}^{(n)}$ projects the history measure $\mu_{\Omega,\theta}$, retained medium state, and windowed wake histories $\mathcal H_\Omega^W$ into a specified $n$-point observer correlation; $\epsilon_n$ normalizes its chosen norm. A two-point comparison neither identifies this classical covariance with the quantum noise kernel nor determines higher correlations. Each higher-order observable needs its own projection and evidence. No independent stochastic metric noise is added to the substrate.
 
 Constitutive response must be stated as a map from the same state variables. Here $\chi_{AB}$ is a response susceptibility indexed by observable channels; it is not the scalar delay factor $\chi_{\mathrm{sea}}$. A weak linear row has the schematic form
 $$
@@ -494,43 +502,43 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0a7d7ba6210bcb46)
 
-where $X_B$ are declared perturbations of $\mathcal{N}_{\mathrm{sea}}$ and $Y_A$ are observer-channel readouts such as delay factor, stress, cadence, or clock response. Causality requires the time-domain kernel to have delayed support only, which becomes an analyticity and dispersion check in frequency space. The practical residual is
+Here $X_B$ are declared medium perturbations and $Y_A$ are channel readouts. A diagonal frequency/wavevector response requires a stationary homogeneous reference, or a local approximation with bounded evolution and gradient errors; otherwise response uses two times and two positions. At fixed $\mathbf k$, use the temporal transform $\widetilde g(\omega)=\int_{\mathbb R}e^{i\omega T}g(T)\,dT$ and a causal response with a possible instantaneous contact term $\chi_{AB}^{\infty}\delta(T)$. Define the subtracted susceptibility $\widehat\chi_{AB}=\chi_{AB}-\chi_{AB}^{\infty}$. The following test applies when its delayed kernel is integrable, its transform is analytic for $\operatorname{Im}\omega>0$ and decays sufficiently on the closing semicircle, and the full real-axis principal value exists:
 $$
 \mathcal R_{\mathrm{KK}}(\chi_{AB})
 =
 \frac{
 \left\|
-\operatorname{Re}\chi_{AB}(\omega)
+\operatorname{Re}\widehat\chi_{AB}(\omega)
 -
-\mathcal H\!\left(\operatorname{Im}\chi_{AB}\right)(\omega)
+\mathcal H\!\left(\operatorname{Im}\widehat\chi_{AB}\right)(\omega)
 \right\|_{\omega}
 }{
-\left\|\operatorname{Re}\chi_{AB}\right\|_{\omega}
+\left\|\operatorname{Re}\widehat\chi_{AB}\right\|_{\omega}
 +
-\left\|\mathcal H\!\left(\operatorname{Im}\chi_{AB}\right)\right\|_{\omega}
-+\varepsilon
+\left\|\mathcal H\!\left(\operatorname{Im}\widehat\chi_{AB}\right)\right\|_{\omega}
++\varepsilon_{AB}
 }
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7946aae635691658)
 
-where $\mathcal H$ is the principal-value Hilbert transform used by the packet. A nonzero residual means the proposed response row is not yet a causal Noether sea constitutive law.
+The convention is $\mathcal H g(\omega)=\pi^{-1}\operatorname{PV}\int_{\mathbb R}g(\omega')/(\omega'-\omega)\,d\omega'$, where principal value removes a symmetric interval around the pole before taking its width to zero. Cauchy's integral formula in the upper half-plane then gives $\operatorname{Re}\widehat\chi=\mathcal H(\operatorname{Im}\widehat\chi)$. The norm and positive floor $\varepsilon_{AB}$ have susceptibility units. A pure contact response $\chi=1$ has $\widehat\chi=0$ and passes this subtracted test. Responses with greater high-frequency growth require additional declared subtractions. A finite-band estimate also needs a bound on the unmeasured frequency tails; a residual exceeding numerical, tail, and local-model errors can reject the stated response class, whereas a nonzero finite-band residual alone cannot establish acausality. Passing this necessary dispersion test does not derive the constitutive map.
 
 ### Equilibrium Transport Hypothesis
 
 A provisional cosmology-facing hypothesis treats the Noether sea as a dense neighbor-coupled population of Noether braids whose individual action transactions are discrete while the ensemble response can be smooth. Most braids in a weak deep-space region have other Noether braids as their nearest dynamical neighbors. Photons and neutrinos can traverse the population, and gravitational waves can perturb it, but the baseline relaxation law is a braid-to-braid medium law.
 
-Let $\nu_N$ denote an ordinary frequency extracted from a representative Noether braid cadence state. The local braid energy scale is then
+Let $\nu_N$ denote an ordinary frequency extracted from a representative Noether braid cadence state. In the candidate action bookkeeping of the retuning hypothesis,
 
 $$
-E_N=h\nu_N
+A_N=N h_{\mathrm{act}},\qquad E_N=A_N\nu_N
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6424de3e0b5f7c9f)
 
-The point of this expression is not to add a new quantum postulate at the Noether sea level. It records the same closed-cycle action accounting used in the [Cadence-Scale Retuning Hypothesis](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#cadence-scale-retuning-hypothesis): a cadence state carries energy as action per cycle times cycles per unit absolute time. A single Noether braid may cross a neighboring branch through an $h$-scale ledger step, while a large asynchronous ensemble can produce an apparently smooth drift in the coarse variables.
+Here $h_{\mathrm{act}}$ is the candidate closed-cycle action unit, $N$ is the branch's integer action level, and $A_N$ is its total action. This inherits the [Cadence-Scale Retuning Hypothesis](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#cadence-scale-retuning-hypothesis), translating that owner's frequency symbol $f_N$ to $\nu_N$ to keep it distinct from this chapter's population density. Neither $N=1$ nor $h_{\mathrm{act}}=h$ is assumed. Action times cadence has energy dimensions, but equality with the full branch energy remains a hypothesis. For example, the mathematical action-angle comparison $dE/dI=\omega(I)$ gives $E(I)=\int\omega(I)\,dI+\mathrm{constant}$, generally not $I\omega(I)$. Observer photon calibration by $h$ is a separate recovery relation. Many asynchronous candidate action transactions can nevertheless motivate a smooth ensemble description.
 
-At the single Noether braid level, each accepted $h$-scale transfer requires the braid to retune its cadence-scale closure. The retuning may appear as a cadence shift, indexed-binary radius shift, envelope-scale change, envelope-ratio change, orientation or strain update, or modified coupling to neighboring braids. In the simplest fixed-speed indexed-binary approximation,
+At the single Noether braid level, each accepted $h_{\mathrm{act}}$-scale transfer requires the braid to retune its cadence-scale closure. The retuning may appear as a cadence shift, indexed-binary radius shift, envelope-scale change, envelope-ratio change, orientation or strain update, or modified coupling to neighboring braids. In the simplest fixed-speed indexed-binary approximation,
 
 $$
 v_N\sim 2\pi R_N\nu_N,
@@ -542,56 +550,49 @@ $$
 
 so a higher accepted cadence corresponds to a smaller representative scale, while a lower accepted cadence corresponds to a larger representative scale. A full orthogonal-axis three-binary record can partition the same transaction across its three indexed binaries, so this relation is a first estimate rather than a complete closure law.
 
-At the ensemble level, let $f_N(\nu,\mathbf X,T)$ be the local distribution of Noether braid cadence states. The cadence-space current is the coarse-grained flux of many branchwise retunings:
+At the ensemble level, use the number density per cadence $f_N$ defined above. To project branchwise retunings onto cadence alone, assume the retained branch labels, orientation, and memory either determine conditional rates at the stated cadence or have a controlled averaging error. Otherwise enlarge the retained state; cadence alone need not support a process whose future rates depend only on the present projected state. For smooth test functions $\phi$, a candidate number-preserving gain/loss operator $\mathcal Q$ is defined by
 
 $$
-J_\nu
-\sim
-f_N
-\left\langle
-\dot{\nu}_N
-\right\rangle_{\Delta A_{\mathrm{cyc}}=\pm h}
+\int_0^\infty\phi(\nu)\mathcal Q[f_N]\!(\nu)\,d\nu
+=\int_0^\infty f_N(\nu)\sum_{\varsigma=\pm1}r_\varsigma(\nu)
+\left[\phi(\nu+d_\varsigma(\nu))-\phi(\nu)\right]d\nu
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9caecd309e84febf)
 
-where the average is taken over accepted $h$-scale transactions inside the coarse-graining cell. Once the single-braid [retuning map](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#cadence-scale-retuning-hypothesis) $\mathcal{R}_{\mathrm{cyc}}^{(q,\varsigma)}$ is specified, the first current estimate is
+Here $r_\varsigma\ge0$ is the rate per braid per unit absolute time of an admitted $\Delta A_{\mathrm{cyc}}=\varsigma h_{\mathrm{act}}$ transition and $d_\varsigma=\Delta\nu_N^{(q,\varsigma)}$ is its signed cadence increment from the branch retuning map. Allowed jumps stay in $\nu>0$; exits are separately counted population events. Spatial and absolute-time arguments are suppressed in this equation. Setting $\phi=1$ proves that internal jumps preserve number. Taylor expanding $\phi(\nu+d_\varsigma)$ and integrating by parts gives $\mathcal Q=-\partial_\nu J_\nu$, with
 
 $$
-J_\nu(\nu,\mathbf X,T)
-=
-\sum_{\varsigma=\pm1}
-f_N(\nu,\mathbf X,T)\,
-r_\varsigma(\nu,\mathbf X,T)\,
-\Delta\nu_N^{(q,\varsigma)}
-+
-O\!\left((\Delta\nu_N)^2\partial_\nu f_N\right)
+J_\nu=a f_N-\frac12\partial_\nu(b f_N)+J_{\ge3},
+\qquad
+a=\sum_{\varsigma=\pm1}r_\varsigma d_\varsigma,
+\qquad
+b=\sum_{\varsigma=\pm1}r_\varsigma d_\varsigma^2
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f63acc081bd16c20)
 
-where $r_\varsigma$ is the local rate density of accepted $\varsigma$ transactions per braid and $\Delta\nu_N^{(q,\varsigma)}$ is the cadence component extracted from $\mathcal{R}_{\mathrm{cyc}}^{(q,\varsigma)}$. Deep space can therefore look smooth without making the underlying transactions continuous. Moving from deep space toward a solar-system environment should not be modeled as a scalar temperature increase alone; it is a bias in the local population toward higher cadence, stronger strain, stronger alignment, and larger gradients. Near a proton or other matter assembly, the neighboring Noether braids see a sharper boundary condition and retune more discretely around the assembly.
+The first moment $a$ is local drift and the nonnegative second moment $b$ produces diffusion. Derivatives act on rates and increments as well as on density. The exact weak remainder after the quadratic expansion obeys $|\int\phi(-\partial_\nu J_{\ge3})\,d\nu|\le\|\phi'''\|_\infty\int f_N\sum_\varsigma r_\varsigma|d_\varsigma|^3\,d\nu/6$, when the integral is finite and $\phi'''$ is bounded over the jump intervals. This rate-bearing bound does not assert a pointwise current expansion without additional smoothness. A drift-only approximation needs a separate bound on both diffusion and higher moments. Equal rates $r_+=r_-=\nu^2$ and fixed increments $\pm d$ give $a=0$, yet for constant density the diffusion current is $-2d^2\nu f_N$. This mathematical comparison demonstrates why zero drift does not eliminate redistribution; it is not a primitive stochastic law for architrinos.
+
+Deep space can therefore look smooth without making the underlying candidate transactions continuous. In a solar-system environment, the proposed response can include changed cadence, strain, alignment, and gradients; a scalar temperature change alone does not specify those variables. Near a matter assembly, the neighboring braids sample sharper boundary conditions whose effect on the retuning rates remains to be derived.
 
 #### Temperature-Conditioned Branch Transition Target
 
-A temperature channel can enter this transport law only through the same retained ensemble record used to define [temperature](../../../../markdown/aaa/dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable). It is not a property of one Noether braid, and it does not change $h$. The braid-level event remains an accepted branch-ledger transition with $\Delta A_{\mathrm{cyc}}=\pm h$; temperature can only bias the rates at which those admissible transitions are accepted inside a declared coarse-graining cell.
+A temperature channel can enter this transport law only through the same retained ensemble record used to define [temperature](../../../../markdown/aaa/dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable). It is not a property of one Noether braid and does not change $h_{\mathrm{act}}$. The candidate event remains a branch-ledger transition with $\Delta A_{\mathrm{cyc}}=\pm h_{\mathrm{act}}$; temperature conditions admissible rates in a declared coarse-graining cell, without calibrating the action unit to observer Planck $h$.
 
 When the retained record licenses a temperature variable $T_{\mathcal Q,W}$, the temperature-conditioned part of the cadence current has the candidate form
 
 $$
-J_\nu^{(T)}(\nu,\mathbf X,T)
-=
-\sum_{\varsigma=\pm1}
-f_N(\nu,\mathbf X,T)\,
-r_\varsigma(\nu,\mathbf X,T;T_{\mathcal Q,W})\,
-\Delta\nu_N^{(q,\varsigma)}
-+
-O\!\left((\Delta\nu_N)^2\partial_\nu f_N\right)
+J_\nu^{(T)}=a^{(T)}f_N-\frac12\partial_\nu(b^{(T)}f_N)+J_{\ge3}^{(T)},
+\qquad
+(a^{(T)},b^{(T)})
+=\sum_{\varsigma=\pm1}r_\varsigma(\nu,\mathbf X,T;T_{\mathcal Q,W})
+(d_\varsigma,d_\varsigma^2)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-90bc7ba66eacbd11)
 
-where $r_\varsigma(\nu,\mathbf X,T;T_{\mathcal Q,W})$ is the accepted rate for the $\varsigma$ branch transition under the same temperature-availability record. The detailed-balance residual for a neighboring $+h/-h$ pair is
+These are the same jump moments and remainder with temperature-conditioned rates, not an additional current to add again to $J_\nu$. For a differentiable invertible retuning map $F(\nu)=\nu+d_+(\nu)$, detailed balance compares fluxes through corresponding cadence intervals. Because $f_N$ is a density with respect to $d\nu$, its residual is
 
 $$
 \mathcal R_{\mathrm{db}}^{(T)}(\nu,\mathbf X,T)
@@ -600,14 +601,14 @@ f_N(\nu,\mathbf X,T)\,
 r_+(\nu,\mathbf X,T;T_{\mathcal Q,W})
 -
 f_N(\nu+\Delta\nu_N^{(q,+)},\mathbf X,T)\,
-r_-(\nu+\Delta\nu_N^{(q,+)},\mathbf X,T;T_{\mathcal Q,W})
+r_-(\nu+\Delta\nu_N^{(q,+)},\mathbf X,T;T_{\mathcal Q,W})\,|F'(\nu)|
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-124f0e76a45fe263)
 
-This pair test assumes the reverse increment returns to the starting cadence, $\Delta\nu_N^{(q,-)}(\nu+\Delta\nu_N^{(q,+)})=-\Delta\nu_N^{(q,+)}(\nu)$, so the second rate is evaluated on the paired reverse branch rather than an unrelated local decrement.
+This pair test assumes the reverse increment returns to the starting cadence, $\Delta\nu_N^{(q,-)}(\nu+\Delta\nu_N^{(q,+)})=-\Delta\nu_N^{(q,+)}(\nu)$. The Jacobian $|F'|$ converts the reverse interval back to the starting interval. For $F(\nu)=2\nu$, forward density-rate product one balances reverse product one-half. Discrete branch probabilities with counting measure instead use no Jacobian; noninvertible maps require summing over inverse branches.
 
-If $\mathcal R_{\mathrm{db}}^{(T)}=0$ after coarse-graining, individual $+h$ and $-h$ ledger transitions may still occur, but the temperature channel produces no net cadence-space drift. If the residual is nonzero, the signed imbalance contributes to $J_\nu^{(T)}$ and therefore biases cadence-scale retuning. In the fixed-speed indexed-binary approximation above, positive cadence drift trends toward smaller representative scale, while negative cadence drift trends toward larger representative scale. The full theorem target is to derive the rates $r_\varsigma$, the retuning increments $\Delta\nu_N^{(q,\varsigma)}$, and the indexed-binary partition of the same action transaction from a closed orthogonal-axis three-binary branch record rather than treating temperature as an external driver.
+Detailed balance cancels each pair's equilibrium probability flux while individual transitions continue. It does not require the conditional drift $a^{(T)}(\nu)$ to vanish. For a comparison chain at cadences $(1,2,3)$ with probabilities $(1/4,1/2,1/4)$ and adjacent forward/reverse rates $(2,1)$ and $(1,2)$, every pair balances but local drifts are $(2,0,-2)$; their population mean is zero. In a valid diffusion limit, drift and diffusion balance in the equilibrium current. Nonzero pair residuals indicate redistribution, not necessarily a nonzero total mean drift. The fixed-speed scale trend applies to individual cadence changes; the rates, increments, and internal partition still require derivation from retained branch histories.
 
 #### Ambient-Branch Acceptance
 
@@ -627,7 +628,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2461e009287ae7e3)
 
-The branch-level equilibrium test is not that every Noether braid has the same cadence. It is that, after all resolved assembly ledgers have been removed, an ambient branch belongs to the local neutral-braid population when its cadence lies within the smoothed distribution and the remaining pro/anti orientation balance is small. In symbolic form,
+The population membership diagnostic does not require every braid to have the same cadence. After removing resolved assembly ledgers, it compares a branch's cadence with the smoothed population and checks local pro/anti balance. It is not a dynamical equilibrium or stability test. In symbolic form,
 
 $$
 \zeta_{\mathrm{sea}}^{(\ell)}
@@ -647,7 +648,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-20dc713649ab7325)
 
-where $\chi_{\mathrm{comp}}^{(\ell)}$ is the established ledger-complement indicator that removes branches phase-locked to resolved assemblies; it is neither $\chi_{\mathrm{sea}}$ nor the response susceptibility $\chi_{AB}$. The term $\Delta_{\mathrm{cad}}$ compares the branch cadence with $\left\langle\nu\right\rangle_{\mathrm{sea},\ell}$, and $\Delta_{\mathrm{bal}}$ measures the residual neutral-pairing and orientation imbalance of the same window. The assembly-facing definition is given in [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic). The conceptual point is that a matter Noether braid can sit inside the same coordinate window as ambient Noether sea braids without becoming part of the ambient Noether sea record; ledger complement, not mere spatial proximity, makes the separation.
+Here $\chi_{\mathrm{comp}}^{(\ell)}$ removes branches phase-locked to resolved assemblies; it is neither the delay factor nor susceptibility. The cadence difference $\Delta_{\mathrm{cad}}$ and neutral-pairing/orientation imbalance $\Delta_{\mathrm{bal}}$ are divided by declared positive scales before entering the exponential. The assembly-facing definition is in [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic). The average is defined only for positive denominator, using an independently classified reference population to avoid circular membership tests. Spatial proximity alone does not make an assembly-locked braid ambient, and acceptance by this diagnostic proves neither balance nor persistence.
 
 A candidate equilibrium-transport equation is
 
@@ -656,14 +657,17 @@ $$
 +\nabla\cdot(\mathbf{u}_{\mathrm{sea}}f_N)
 +\partial_\nu J_\nu
 =
-S_{\mathrm{BH}}
+S_{\mathrm{pop}}
 +S_{\mathrm{GW}}
 -R_{\mathrm{eq}}[f_N]
++r_f
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c0665f146523b9cf)
 
-Here $J_\nu$ is the current through frequency or cadence state space, $S_{\mathrm{BH}}$ is loading from black-hole recycling regions, $S_{\mathrm{GW}}$ is the perturbative contribution from gravitational-wave disturbances, and $R_{\mathrm{eq}}[f_N]$ is the local neighbor-equilibration operator. This equation is a derivation target, not a completed constitutive law. It becomes relevant to redshift only if the same $f_N$ record also determines $\Gamma_N$, $\chi_{\text{sea}}$, and the path-history propagation term $\mathcal{P}_{E\to R}$ used in the cosmology chapters.
+Here $S_{\mathrm{pop}}$ is the signed cadence-resolved source for all ambient membership events, $S_{\mathrm{GW}}$ redistributes existing braids under gravitational-wave disturbances, and $r_f$ records unresolved kinetic error. Write $S_{\mathrm{pop}}=s_{\mathrm{BH,diff}}+s_{\mathrm{BH,col}}+s_{\mathrm{pair}}+s_{\mathrm{return}}-s_{\mathrm{recruit}}-s_{\mathrm{dissoc}}-s_{\mathrm{reclass}}+s_{\mathrm{relax}}$, with $\int s_c\,d\nu=S_c$ for each previously declared number-source channel. Number-preserving retuning has $\int S_{\mathrm{GW}}\,d\nu=0$; the residual neighbor operator also has $\int R_{\mathrm{eq}}\,d\nu=0$. It excludes transitions already assigned to $J_\nu$, so no equilibration event is counted twice. Relaxation enters $s_{\mathrm{relax}}$ only when it changes ambient membership. A disturbance that changes membership must instead use its corresponding population event.
+
+Integrating over cadence derives the exact compatibility condition $S_\rho+r_\rho=\int_0^\infty(S_{\mathrm{pop}}+S_{\mathrm{GW}}-R_{\mathrm{eq}}+r_f)\,d\nu-[J_\nu]_0^\infty$, where $[J_\nu]_0^\infty=J_\nu(\infty)-J_\nu(0)$. For zero cadence-boundary flux this reduces to $r_\rho=\int r_f\,d\nu$. Any nonzero boundary exchange needs an identified event or unresolved residual; it must not be added a second time to $S_{\mathrm{pop}}$. The spatial factorization assumes cadence-independent mean velocity in the cell. Otherwise replace $\mathbf u_{\mathrm{sea}}f_N$ by the cadence-resolved flux $\mathbf j_{\mathbf X}(\nu)$ and define $\rho_{\mathrm{NS}}\mathbf u_{\mathrm{sea}}=\int\mathbf j_{\mathbf X}\,d\nu$. These conditions join the candidate kinetic equation to the declared population balance; they do not derive its constitutive coefficients. Redshift additionally requires this same record to determine sea cadence, delay, and packet response.
 
 #### Absolute-Record Transport Target
 
@@ -678,7 +682,9 @@ $$
 \left(
 \Gamma_{N,E},\,
 \Gamma_{N,R},\,
+\Delta_E,\,\Delta_R,\,
 B_X(E),\,
+B_X^{\mathrm{dur}}(E),\,
 D_v,\,
 Y_{X,E\to R}^{\mathrm{freq}},\,
 Y_{X,E\to R}^{\mathrm{dur}}
@@ -691,7 +697,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9d32e87a0c250386)
 
-The factor $B_X(E)$ is the source-branch emission factor for family $X$: it relates the actual emitted line frequency in the source branch at $E$ to the reference frequency $\nu_{X,0}$, with $B_X(E)=1$ on the reference branch. It is fixed by the source emission or calibration record, not by endpoint cadence, launch geometry, or path propagation.
+The endpoint clock mismatch is $\Delta_Q=\Delta_{\mathrm{clk\text{-}sea},\mathcal A_Q}$ for the specified source or receiver clock assembly, $Q\in\{E,R\}$. With a calibrated clock map $d\tau_Q/dT=C_{\mathcal A_Q}=\Gamma_{N,Q}^{-1}e^{\Delta_Q}$, the factor $B_X(E)=\nu_{\mathrm{em},X}^{(\tau_E)}/\nu_{X,0}$ compares emitted cycles per source-clock unit with the reference line frequency in the same clock units. Thus the emitted absolute frequency is $\nu_{X,0}B_X(E)C_{\mathcal A_E}$; $B_X$ does not already contain that clock conversion. The independent source-envelope factor is $B_X^{\mathrm{dur}}(E)=\Delta\tau_{\mathrm{em},X}/\Delta\tau_{X,0}$, measured by one declared envelope-width procedure in source-clock units. Both factors equal one on the reference source. Only a demonstrated fixed-cycle-count waveform family permits $B_X^{\mathrm{dur}}=B_X^{-1}$.
+
+Received frequency and duration below are measured per receiver-clock unit and in receiver-clock units, respectively. The endpoint rates are taken constant over each packet to within a declared error. The launch comparison is restricted to a locally affine emission-to-arrival map shared by phase and envelope, so its duration factor is $D_v^{-1}$. Non-affine launch or differing phase/envelope launch maps require separately extracted timing corrections before this factorization is used. These restrictions do not impose equality of the subsequent frequency and duration path responses.
 
 The minimal state needed for the first executable closure is a projection of the absolute record, not a new ontology. For a segmented path $\gamma_{E\to R}=\{\Delta s_j\}_{j=1}^N$, use
 
@@ -703,6 +711,7 @@ $$
 \mathcal G_R,\,
 \mathcal V_{E,R},\,
 B_X(E),\,
+B_X^{\mathrm{dur}}(E),\,
 \left\{
 \mathcal K_{X,j},\Delta s_j
 \right\}_{j=1}^{N}
@@ -718,7 +727,8 @@ $$
 =
 \left(
 \mathbf g_N(Q),
-\mathcal R_{\Gamma,Q}
+\mathcal R_{\Gamma,Q},\,
+\Delta_Q
 \right),
 \qquad
 Q\in\{E,R\}
@@ -744,11 +754,13 @@ $$
 \mathcal K_{X,j}
 =
 \left(
-\mathbf d_{\theta,j},\,
+T_j,\,c_{\gamma,j},\,\mathbf d_{\vartheta,j},\,
 f_{N,j},\,
-S_{\mathrm{BH},j},\,
+w_{X,j},\,I_{X,j},\,\mathcal O_j,\,
+S_{\mathrm{pop},j},\,
 S_{\mathrm{GW},j},\,
 R_{\mathrm{eq},j},\,
+r_{f,j},\,
 \partial_\nu J_{\nu,j},\,
 \delta_{u,j},\,
 \sigma_{X,j},\,
@@ -758,7 +770,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f47829488b33a6d0)
 
-Here $\mathbf d_{\theta,j}=D_{\gamma}\boldsymbol\theta_{\mathrm{sea}}|_j$, $\delta_{u,j}=(\nabla\cdot\mathbf u_{\mathrm{sea}})_j$, and $\sigma_{X,j}=\hat k_a\hat k_b\Sigma_{\mathrm{sea},X,j}^{ab}$. The transport coefficients are one fixed row for the line family,
+Here $T_j=T(s_j)$ is absolute time, $c_{\gamma,j}>0$ is the photon-channel path speed, $\mathbf d_{\vartheta,j}=D_\gamma\boldsymbol\vartheta_{\mathrm{sea}}|_j$ is the scalar-state gradient defined below, $w_{X,j}$ is a normalized cadence-response weight, and $\mathcal O_j$ is the retained orientation record. Cadence-dependent entries remain functions of $\nu$ until the stated weighted integral is taken. Also $\delta_{u,j}=(\nabla\cdot\mathbf u_{\mathrm{sea}})_j$ and $\sigma_{X,j}=\hat k_a\hat k_b\Sigma_{\mathrm{sea},X,j}^{ab}$. Each input has an independently extracted uncertainty, including the kinetic and omitted-orientation errors. The transport coefficients are one fixed row for the line family,
 
 $$
 \Theta_X
@@ -826,9 +838,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-16ce3b9db4303c65)
 
-where $\hat{\mathbf k}$ points from transmitter to receiver, $c_{\gamma,Q}$ is the local photon-channel speed used for the endpoint comparison, and $\mathcal R_v$ carries higher-order and multi-root Jacobian corrections from the exact causal ledger.
+Here $\mathbf v_Q$ is endpoint assembly velocity in absolute coordinates, $\hat{\mathbf k}$ points from transmitter to receiver, $c_{\gamma,Q}$ is the local photon-channel speed used for the endpoint comparison, and $\mathcal R_v$ carries bounded higher-order and multi-root Jacobian corrections from the exact causal ledger. This weak comparison requires positive numerator and denominator and one specified endpoint direction; a bent path requires its separate endpoint tangents.
 
-The path-history term is a line integral over the packet path through the Noether sea:
+Write $Y_{X,E\to R}=Y_{X,E\to R}^{\mathrm{freq}}$ when the frequency label is suppressed. Its candidate prediction is a line integral over the packet path through the Noether sea:
 
 $$
 Y_{X,E\to R}
@@ -836,32 +848,27 @@ Y_{X,E\to R}
 \int_{\gamma_{E\to R}}
 \alpha_{\mathrm{prop},X}
 \!\left[
-S(t_s)
+S(T(s))
 \right]
 \,ds
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6f3b85ad3e8bb5ea)
 
-A first local path-rate ansatz is
+A reduced scalar projection of the medium state and the corresponding path derivative are
 
 $$
-\alpha_{\mathrm{prop},X}
-=
-\mathbf p_X\cdot
-\frac{d\boldsymbol\theta_{\mathrm{sea}}}{ds}
--
-p_{\nu,X}
-\frac{\partial_\nu J_\nu}{f_N+\epsilon_f}
-+
-p_{u,X}\nabla\cdot\mathbf u_{\mathrm{sea}}
-+
-\mathcal R_{\mathrm{coh},X}
+\boldsymbol\vartheta_{\mathrm{sea}}
+=\Pi_{\mathrm{scal}}\boldsymbol\theta_{\mathrm{sea}}
+=(\ln n,\ln\chi_{\mathrm{sea}},\ln\lambda,-\ln\xi)^T,
+\qquad
+\frac{d\boldsymbol\vartheta_{\mathrm{sea}}}{ds}
+=D_\gamma\boldsymbol\vartheta_{\mathrm{sea}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2f9c6b2de76027f7)
 
-with $\boldsymbol\theta_{\mathrm{sea}}=(\ln n,\ln\chi_{\text{sea}},\ln\lambda,-\ln\xi)^T$. The endpoint-only entry $\ln(R_{\text{braid}}/R_{\text{braid},0})$ is deliberately absent: it is a local assembly-clock readout, not a continuum medium field transported along the photon path. If a future constitutive derivation promotes a path-resolved braid-radius field, it must extend both $\boldsymbol\theta_{\mathrm{sea}}$ and $\mathbf p_X$ explicitly rather than allowing that channel to leak into $p_{\nu,X}$ or $p_{u,X}$. The sharper continuity form replaces the isolated current-divergence term with the source-balanced cadence residual. Along a photon path, let
+The projection $\Pi_{\mathrm{scal}}$ selects four dimensionless scalars from the full reduced medium state $\boldsymbol\theta_{\mathrm{sea}}$; it does not redefine that state or erase its orientation variables. Retained orientation $\mathcal O$ enters the cadence-response weight and the channel stress projection below. Any orientation or memory effect not represented there needs a separately bounded error. The endpoint-only entry $\ln(R_{\text{braid}}/R_{\text{braid},0})$ is a local carrier-size readout; no path-resolved size channel is included in this ansatz. Along the absolutely timed path $\mathbf X(s)$, take $d\mathbf X/ds=\hat{\mathbf k}$ and $dT/ds=c_\gamma^{-1}$, giving
 
 $$
 D_{\gamma}
@@ -873,17 +880,18 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c1a7b5ae8118e453)
 
-where $\hat{\mathbf k}$ is the path tangent and $s$ is path length. The transport equation defines
+Here $s$ is Euclidean path length and $c_\gamma=ds/dT$, which is not set equal to the primitive wake speed by choosing units. The kinetic equation defines the source-balanced rate
 
 $$
 \mathcal C_N[f_N]
 =
 \frac{
-S_{\mathrm{BH}}
+S_{\mathrm{pop}}
 +
 S_{\mathrm{GW}}
 -
 R_{\mathrm{eq}}[f_N]
++r_f
 -
 \partial_\nu J_\nu
 }{
@@ -893,7 +901,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ffe8b3a6a5e608ba)
 
-Away from the regularization floor,
+On the smooth positive-density domain, the cadence-independent spatial-velocity convention gives the exact identity
 
 $$
 \left(
@@ -901,27 +909,31 @@ $$
 +
 \mathbf u_{\mathrm{sea}}\cdot\nabla
 \right)
-\ln f_N
-\approx
-\mathcal C_N[f_N]
+\ln(f_N/f_{\mathrm{ref}})
+=
+\left(1+\frac{\epsilon_f}{f_N}\right)\mathcal C_N[f_N]
 -
 \nabla\cdot\mathbf u_{\mathrm{sea}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-11b355a5f73b506a)
 
-Here $\mathcal C_N[f_N]$ is a cadence-space continuity residual for the distribution $f_N$; it is not the endpoint clock-rate factor $C_N=\Gamma_N^{-1}$.
+Here $f_{\mathrm{ref}}>0$ is a constant reference density per cadence, making the logarithm dimensionless, and $\epsilon_f\ge0$ is a declared numerical floor in the same units. The quantity $\mathcal C_N$ is a source-balanced material-rate quantity, not an equation defect or the endpoint clock-rate factor $C_N=\Gamma_N^{-1}$. It can be nonzero when the kinetic equation is satisfied exactly. If the spatial flux is cadence-dependent, define $\mathbf v_\nu=\mathbf j_{\mathbf X}/f_N$ and replace $\mathbf u_{\mathrm{sea}}$ by $\mathbf v_\nu$ in this identity; the population-mean flow in the separate response channel remains independently defined.
 
-The continuity-disciplined path rate is therefore
+To obtain a scalar response for family $X$, specify a nonnegative cadence sensitivity $W_X(\nu;\mathcal O,\mathcal N_{\mathrm{sea}},\mathcal L_X)$ and a cadence interval $I_X\subset(0,\infty)$ before evaluating transport. Its normalization is $w_X=W_Xf_N/\int_{I_X}W_Xf_N\,d\nu$, with positive finite denominator, and its scalar projection is $\mathcal C_{N,X}=\int_{I_X}w_X\mathcal C_N\,d\nu$. Thus $w_X$ has inverse-cadence units and $\int_{I_X}w_X\,d\nu=1$. The sensitivity and interval must come from independent channel-response extraction and use the same rule in every case; they cannot be selected to reproduce the observed redshift. This specifies a family of mathematical projections, not a derived physical sensitivity.
+
+Require $f_N\ge f_{\min}>0$ on the weighted support, a smooth cadence density, and finite weighted rate integrals. If $\mathcal C_{N,X}^{(0)}$ denotes the same projection with zero floor and the same weight, then $|\mathcal C_{N,X}-\mathcal C_{N,X}^{(0)}|\le[\epsilon_f/(f_{\min}+\epsilon_f)]\int_{I_X}w_X|\mathcal C_N^{(0)}|\,d\nu$. Unresolved support or cadence tails require their own response bound; a floor cannot certify empty or poorly sampled cells. For a dimensionless comparison $f_N=e^{-\nu T}$, $T>0$, zero flow, and source $-\nu f_N$, the unfloored rate is $-\nu$. Choosing $W_X=1$ on $I_X=[1,2]$ gives the unique scalar $-1-1/T+1/(e^T-1)$, rather than an unselected value at cadence one or two. This example checks the projection and does not determine the physical $W_X$.
+
+With that scalar projection, the candidate path rate is
 
 $$
 \alpha_{\mathrm{prop},X}
 =
 \mathbf p_X\cdot
-D_{\gamma}\boldsymbol\theta_{\mathrm{sea}}
+D_{\gamma}\boldsymbol\vartheta_{\mathrm{sea}}
 +
 p_{\nu,X}
-\mathcal C_N[f_N]
+\mathcal C_{N,X}
 +
 p_{u,X}
 \nabla\cdot\mathbf u_{\mathrm{sea}}
@@ -935,25 +947,30 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1af1a68a23919c6e)
 
-Here $\Sigma_{\mathrm{sea},X}^{ab}$ is the channel-$X$, trace-free projection of the Noether sea stress $\Sigma_{\text{sea}}$ and vanishes in the isotropic weak limit. It is not a separate stress ontology. In a segmented calculation this is the computable update
+Here $\Sigma_{\mathrm{sea},X}^{ab}$ is the channel-$X$, trace-free projection of the Noether sea stress, extracted with its orientation record, and vanishes in the isotropic weak limit. Its units are stress. With length and absolute-time units denoted by $L$ and $\mathsf T$, $\mathbf b_N$ and $\mathbf p_X$ are dimensionless, $p_{\nu,X}$ and $p_{u,X}$ have units $\mathsf T/L$, and $p_{\sigma,X}$ has units $(\mathrm{stress}\,L)^{-1}$. The bounded remainder $\mathcal R_{\mathrm{coh},X}$ has units $L^{-1}$. Every term in $\alpha_{\mathrm{prop},X}$ therefore has inverse-length units and $Y_X$ is dimensionless. Numerical examples use $c_f=1$; this normalization does not remove the channel-speed or coefficient units.
+
+In a segmented calculation the scalar update is
 
 $$
 \alpha_{\mathrm{prop},X,j}
 =
-\mathbf p_X\cdot\mathbf d_{\theta,j}
+\mathbf p_X\cdot\mathbf d_{\vartheta,j}
 +
 p_{\nu,X}
+\int_{I_{X,j}}w_{X,j}(\nu)
 \frac{
-S_{\mathrm{BH},j}
+S_{\mathrm{pop},j}
 +
 S_{\mathrm{GW},j}
 -
 R_{\mathrm{eq},j}
++r_{f,j}
 -
 \partial_\nu J_{\nu,j}
 }{
 f_{N,j}+\epsilon_f
 }
+\,d\nu
 +
 p_{u,X}\delta_{u,j}
 +
@@ -964,9 +981,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-75350bdb543c5ac1)
 
-The coefficient rows $\mathbf b_N$ and $(\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$ must be fixed from the declared Noether sea constitutive response and then reused across gravitational, relative-motion, and deep-space cases. A deep-space contribution may come from a persistent $\mathcal C_N[f_N]$, flow-divergence, or anisotropic-response record, but not from switching to a generic photon-energy-loss explanation.
+The coefficient rows $\mathbf b_N$ and $(\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$ must be fixed from independent clock and medium-response extraction and then reused across gravitational, relative-motion, and deep-space cases. A deep-space contribution may come from a persistent projected cadence rate, flow divergence, or anisotropic response. This identifies candidate response channels without deriving their coefficients.
 
-The endpoint coefficient-row constraints are recovery constraints, not a fit to one redshift case. This transport chapter consumes the clock-row extraction owned by [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target): the homogeneous moving Noether braid branch fixes the coefficient of $-\ln\xi$ by requiring $\Gamma_N\to1/\xi\to\gamma_\star$, while the weak static endpoint branch fixes the scalar normalization
+For the constant row $\mathbf p_X$, the fundamental theorem of calculus gives $\int_E^R\mathbf p_X\cdot D_\gamma\boldsymbol\vartheta_{\mathrm{sea}}\,ds=\mathbf p_X\cdot(\boldsymbol\vartheta_R-\boldsymbol\vartheta_E)$. Evaluate this contribution at the endpoints, including their absolute times. Intermediate excursions with equal endpoint states give the same value. On components shared with $\mathbf g_N$, the log-redshift sum is $\mathbf b_N\cdot(\mathbf g_N(E)-\mathbf g_N(R))+\mathbf p_X\cdot(\boldsymbol\vartheta_R-\boldsymbol\vartheta_E)$; shifting both shared coefficient rows by the same vector leaves it unchanged. Independent clock calibration is needed to separate those rows. Extra path samples do not remove this exact degeneracy. Interior-history sensitivity belongs to the other integrands, unless a state-dependent coefficient or non-exact response is separately derived.
+
+The endpoint coefficient-row constraints are conditional recovery targets. On the clock-tracking branch, where the independently extracted clock/sea mismatch is below tolerance, this chapter consumes the clock-row extraction owned by [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#gamma-n-geometry-extraction-target): the homogeneous moving Noether braid branch requires $\Gamma_N\to1/\xi\to\gamma_\star$, while the weak static endpoint branch requires the scalar normalization
 
 $$
 b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1
@@ -986,7 +1005,7 @@ In the GR-matching weak branch this is $b_n a_n+2b_\chi+b_\lambda a_\lambda+b_R 
 
 The minimal shared-delay packet is likewise imported from the clock-row owner. For $\gamma_{\mathrm{PPN}}=1$, it gives $a_\chi=2$ and $b_\chi=1/2$. Nonzero $n$, $\lambda$, or $R_{\text{braid}}$ contributions remain admissible only as a compensated static family that preserves the endpoint sum and the inverse clock-rate row; they are not free redshift-fit parameters.
 
-The relative-motion recovery fixes the separation between launch geometry and transport coefficients. In a homogeneous weak record with $\mathbf g_N(E)=\mathbf g_N(R)=0$, $B_X(E)=1$, and $\mathcal K_{X,j}=0$ for every segment,
+The relative-motion recovery fixes the separation between launch geometry and transport coefficients. In a homogeneous weak comparison with $\mathbf g_N(E)=\mathbf g_N(R)=0$, $\Delta_E=\Delta_R=0$, $B_X(E)=1$, and all response terms in each $\alpha_{\mathrm{prop},X,j}$ zero,
 
 $$
 Z_X
@@ -1000,15 +1019,16 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fbbe8a04fa993d93)
 
-Thus the launch factor carries the ordinary first-order Doppler or phase-compression term; no component of $(\mathbf p_X,p_{\nu,X},p_{u,X},p_{\sigma,X})$ may be adjusted to recover a pure relative-motion redshift.
+Thus the launch factor carries the first-order Doppler or phase-compression term in this restricted comparison. The segment's positive density, normalized weight, and absolute-time record do not vanish; only its response terms do. Moving clocks with nonzero cadence or mismatch corrections retain those endpoint factors. No path coefficient is adjusted to replace them.
 
-Endpoint-subtracted redshift gives the corresponding isolation test for the path row. From
+Define $1+z_X=\nu_{X,0}/\nu_{\mathrm{obs},X}$ using the receiver's calibrated clock units. The frequency factorization then gives
 
 $$
 \ln(1+z_X)
 =
 \ln\Gamma_{N,E}
 -\ln\Gamma_{N,R}
+-\Delta_E+\Delta_R
 -\ln D_v
 +Y_{X,E\to R}
 -\ln B_X(E)
@@ -1025,6 +1045,7 @@ Y_{X,E\to R}^{\mathrm{sub}}
 -\left(
 \ln\Gamma_{N,E}
 -\ln\Gamma_{N,R}
+-\Delta_E+\Delta_R
 \right)
 +\ln D_v
 +\ln B_X(E)
@@ -1048,22 +1069,24 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0311b4c441ffe079)
 
-Endpoint-subtracted replay therefore constrains the propagation row only after the endpoint scalar is fixed. A compensated static family is invisible to this first-order subtraction when it preserves $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$; it becomes disfavored only if it leaves an endpoint residual that the path-history row must repair.
+Here $U_Q=-\Phi_N(Q)$ is the positive weak gravitational-potential depth used as an observer-level recovery variable, and $c_0$ is the reference photon-channel speed. This comparison is not a primitive potential law. Endpoint-subtracted replay isolates the inferred propagation contribution only after the endpoint scalar and both clock mismatches are independently fixed. A compensated static family with the same scalar sum cannot be distinguished by this comparison alone. Without independent clock calibration, the shared endpoint/gradient coefficient degeneracy remains. In particular, identical sea cadence and receiver mismatch $\Delta_R=0.1$ with $\Delta_E=0$ give log-redshift $0.1$ even when the path contribution is zero.
 
-The deep-space continuity packet constrains the remaining path row by endpoint-subtracted replay:
+Evaluate the exact gradient contribution at the endpoints and approximate the remaining integral by segments:
 
 $$
 Z_{\mathrm{prop},X}
 =
+\mathbf p_X\cdot(\boldsymbol\vartheta_R-\boldsymbol\vartheta_E)
++
 \sum_{j=1}^{N}
 \left[
-\mathbf p_X\cdot\mathbf d_{\theta,j}
-+p_{\nu,X}\mathcal C_{N,j}
+p_{\nu,X}\mathcal C_{N,X,j}
 +p_{u,X}\delta_{u,j}
 +p_{\sigma,X}\sigma_{X,j}
 +\mathcal R_{\mathrm{coh},X,j}
 \right]
 \Delta s_j
++R_{\mathrm{quad},X}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f761477990b0a1c3)
@@ -1071,23 +1094,28 @@ $$
 with
 
 $$
-\mathcal C_{N,j}
+\mathcal C_{N,X,j}
 =
+\int_{I_{X,j}}w_{X,j}(\nu)
 \frac{
-S_{\mathrm{BH},j}
+S_{\mathrm{pop},j}
 +S_{\mathrm{GW},j}
 -R_{\mathrm{eq},j}
++r_{f,j}
 -\partial_\nu J_{\nu,j}
 }{
 f_{N,j}+\epsilon_f
 }
+\,d\nu
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f15c770a02b94107)
 
-This equation fixes the sign convention and the shared-row obligation for deep-space transport, but it does not yet determine $\mathbf p_X$, $p_{\nu,X}$, $p_{u,X}$, or $p_{\sigma,X}$ individually. They remain constitutive freedoms until independent segment records vary the corresponding Noether sea gradients, cadence residual, flow divergence, and anisotropic response. The first observable falsifiers are the existing transport diagnostics: chromaticity residuals for line-family dependence, time-dilation residuals for frequency/cadence splitting, image-bundle variance for anisotropic or flow-induced beam spread, and directional residuals for unmodeled large-scale Noether sea structure.
+Here $R_{\mathrm{quad},X}$ is the dimensionless quadrature error with an independently established bound. If the non-gradient integrand has path derivative bounded by $M_j$ on segment $j$, midpoint quadrature gives $|R_{\mathrm{quad},X}|\le\sum_j M_j(\Delta s_j)^2/4$. The source, redistribution, kinetic-error, and cadence-boundary conventions are those of the same population equation. In particular, omitted source channels cannot be reconstructed by adjusting $p_{\nu,X}$.
 
-The coherence residue is admissible only if the same $Y_X$ passes the observational transport tests,
+This formula fixes the sign and scalar projection without determining the physical sensitivity or coefficients. Once those are independently fixed, $Z_{\mathrm{prop},X}$ is a prediction to compare with $Y_{X,E\to R}^{\mathrm{sub}}$ on histories not used for calibration. Defining the path output by that subtraction and reinserting it into the frequency formula is algebraic replay, not a predictive check. Independent response records must distinguish the cadence, flow, and anisotropic terms; the gradient term remains an endpoint contribution. Chromaticity, duration, image-bundle spread, and directional errors can then falsify the proposed map.
+
+The remainder $\mathcal R_{\mathrm{coh},X}$ cannot be fitted freely to the observed redshift. Require a bound $|\mathcal R_{\mathrm{coh},X}(s)|\le b_{\mathrm{coh},X}(s)$ extracted from omitted-history and channel-response evidence, giving $|\int\mathcal R_{\mathrm{coh},X}\,ds|\le\int b_{\mathrm{coh},X}\,ds$. Kinetic uncertainty likewise contributes at most $|p_{\nu,X}|\int ds\int_{I_X}w_X|r_f|/(f_N+\epsilon_f)\,d\nu$ when only its bound is known; floor, weighting, endpoint, and quadrature errors must also be propagated. These bounds must be fixed independently of the outcome being tested. In addition, the same transport prediction must meet the observational constraints
 
 $$
 \operatorname{Var}_{\perp}(Y_X)
@@ -1111,13 +1139,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4e8ea7364d16e40c)
 
-The two transport outputs are operationally defined by the measured phase frequency and packet-envelope duration:
+Here $\operatorname{Var}_\perp$ uses a declared bundle of neighboring rays, the logarithmic frequency derivative holds the specified source family and geometry fixed, and the positive tolerances normalize the respective dimensionless observables. These checks are necessary transport tests; none supplies the omitted-history bound. The two measured diagnostics are operationally defined by phase frequency per receiver-clock unit and envelope duration $\Delta\tau_{\mathrm{obs},X}$ in receiver-clock units:
 $$
 Y_{X,E\to R}^{\mathrm{freq}}
 =
 -\ln\!\left[
 \frac{\nu_{\mathrm{obs},X}}
-{\nu_{X,0}B_X(E)(\Gamma_{N,R}/\Gamma_{N,E})D_v}
+{\nu_{X,0}B_X(E)(\Gamma_{N,R}/\Gamma_{N,E})e^{\Delta_E-\Delta_R}D_v}
 \right],
 $$
 
@@ -1127,16 +1155,16 @@ $$
 Y_{X,E\to R}^{\mathrm{dur}}
 =
 \ln\!\left[
-\frac{\Delta t_{\mathrm{obs},X}}
-{\Delta t_{X,0}B_X(E)^{-1}(\Gamma_{N,E}/\Gamma_{N,R})D_v^{-1}}
+\frac{\Delta\tau_{\mathrm{obs},X}}
+{\Delta\tau_{X,0}B_X^{\mathrm{dur}}(E)(\Gamma_{N,E}/\Gamma_{N,R})e^{\Delta_R-\Delta_E}D_v^{-1}}
 \right].
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-795bec180afc5ceb)
 
-The same segmented path record must predict both. Their mismatch is the duration-side falsifier that rules out a frequency-only loss law even when that law reproduces a redshift curve.
+These are extraction definitions. A prediction requires an independently evaluated phase-transport response and an envelope-transport response from the same path record. The latter follows the separation of neighboring launch and arrival events, not the carrier-frequency calibration alone. Equality of the two extracted $Y$ values is a further observational recovery condition, not an algebraic identity. For $B_X=2$, $B_X^{\mathrm{dur}}=1$, unit reference envelope width, and unchanged endpoint and propagation factors, the emitted carrier frequency doubles while $Y_X^{\mathrm{dur}}=0$; imposing reciprocal source duration would create a false $\ln2$ path signal.
 
-The path term is thus phase-cadence retiming read from $S(T)$: it may change the energy a receiver assigns through $E=h\nu_{\mathrm{obs}}$, but it is not an untracked energy sink along the path.
+The proposed path term describes phase-cadence retiming read from $S(T)$. Its interpretation also requires a separate energy account for the packet, medium, source, receiver, and boundary exchanges. Image, chromaticity, and duration agreement does not close that energy account. Neither a fitted redshift nor observer calibration $E=h\nu_{\mathrm{obs}}$ proves absence of physical energy transfer along the path.
 
 With this map, the received frequency is
 
@@ -1145,13 +1173,14 @@ $$
 =
 \nu_{X,0}B_X(E)
 \frac{\Gamma_{N,R}}{\Gamma_{N,E}}
+e^{\Delta_E-\Delta_R}
 D_v
 \exp(-Y_{X,E\to R}^{\mathrm{freq}})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0228398f241eef72)
 
-so no factor is interpreted as untracked photon energy loss. The packet energy read by the receiver is $E_{\mathrm{obs},X}=h\nu_{\mathrm{obs},X}$ after source branch, endpoint cadence, launch compression, and path-history propagation have all been extracted from the same absolute record.
+This follows by source-clock to absolute-time conversion, phase transport, and absolute-time to receiver-clock conversion. The effective packet-energy readout is $E_{\mathrm{obs},X}=h\nu_{\mathrm{obs},X}$ after source calibration, endpoint cadence and mismatch, launch compression, and path response have been specified. It remains a conditional transport map until the response coefficients, frequency and envelope evolution, and energy exchanges are derived from the retained histories.
 
 The expansionary reading is therefore conditional. Local equilibrium by itself does not imply an effective expansion history. A Hubble-like redshift slope appears only if the coarse-grained transport has a signed, persistent cadence-space current or source-relaxation imbalance that projects into the photon path-rate functional while preserving image sharpness, line coherence, and packet time-dilation consistency.
 
@@ -1232,6 +1261,12 @@ This page does not own:
 - Clock and ruler behavior; see [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md).
 - Cosmological scale-factor translation; see [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md).
 - Strong-field recycling regimes; see [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md).
+
+### Source Notes
+
+Matt Visser, *Acoustic black holes: horizons, ergospheres, and Hawking radiation*, 1997 preprint, [arXiv:gr-qc/9712010](https://arxiv.org/abs/gr-qc/9712010), theorem and equation (4), supplies the acoustic comparison in “Continuum Balance and Constitutive Closure.” Its scalar metric describes small velocity-potential disturbances under the stated fluid assumptions; it supplies no Noether sea constitutive law.
+
+B. L. Hu and E. Verdaguer, *Stochastic Gravity: Theory and Applications*, 2008, [arXiv:0802.0658](https://arxiv.org/abs/0802.0658), section 3.2, equations (3.11)–(3.12), identifies the centered, symmetrized quantum stress covariance used for comparison. The classical history covariance here is a distinct observable whose observer-level mapping remains to be derived.
 
 ### Summary Commitment
 

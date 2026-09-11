@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1633
+      "sections": 1634
     }
   },
   "tocRoot": {
@@ -3638,6 +3638,14 @@
                 "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
                 "markdownSection": "Ownership Boundary",
                 "sectionKey": "ownership boundary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Source Notes",
+                "markdownPath": "content/markdown/aaa/spacetime/noether-sea.md",
+                "markdownSection": "Source Notes",
+                "sectionKey": "source notes",
                 "headingLevel": 2
               },
               {
