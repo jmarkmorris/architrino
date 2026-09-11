@@ -2,7 +2,7 @@
 
 This note states a bounded working hypothesis for the Noether sea: the sea is not a passive geometric background. It is an active medium built from persistent Noether braid assemblies with internal structure and coupling rules. The fixed background remains absolute time and the Euclidean void; this chapter is about the contents that occupy that background and supply medium response. It is the assembly-hypothesis continuation of [Noether sea](noether-sea.md), [Euclidean Void](../foundations/euclidean-void.md), and [Noether Braid](../noether-braid/noether-braid.md).
 
-For the canonical medium ontology, total-density boundary, and terminology discipline, see [Noether sea](noether-sea.md). This chapter is the canonical home for the more specific pro/anti Noether braid coupling details: orientation basis, density decomposition, imbalance stability, local coupling hypotheses, and cluster-organization motifs. The distinction between this orientation label and polarity conjugation is fixed in [Terminology Usage](../archie/terminology-usage.md#proanti-orientation-and-polarity-conjugation).
+For the canonical medium ontology, total-density boundary, and terminology discipline, see [Noether sea](noether-sea.md). This chapter develops a narrower hypothesis: how a classified pair of complementary orientation populations might contribute to the medium response. The distinction between this orientation label and polarity conjugation is fixed in [Terminology Usage](../archie/terminology-usage.md#proanti-orientation-and-polarity-conjugation).
 
 The claim level is intentionally narrower than the Noether sea ontology page. The ontology page says what the medium is. This page asks whether complementary pro/anti orientation populations are part of how that medium stays transparent, balanced, and responsive.
 
@@ -22,7 +22,9 @@ The indices are persistent record identities, not a sorting by radius, frequency
 
 The orientation label does not assign matter versus antimatter. Global polarity conjugation $C$ leaves the indexed worldlines and $o_{\mathrm{PA}}$ unchanged. The proposed parity action is $P:o_{\mathrm{PA}}\mapsto-o_{\mathrm{PA}}$; establishing it requires the retained orientation carrier, not the mnemonic alone. A matter branch and its polarity-conjugate antimatter branch may therefore each occur on either pro/anti orientation once the full retained branch and charged-sector ledgers are supplied. This sea-level orientation balance is distinct from the visible-sector [matter-antimatter asymmetry](../philosophy-history/solving-the-crisis.md#matter-antimatter-asymmetry) question, which belongs to polarity-conjugate branch populations, weak-sector asymmetry, early-state boundary conditions, and reaction-ledger bias. The key claim is that stable large-scale Noether sea behavior may require both orientations to coexist and couple, so the Noether sea does not drift into one indexed-frame handedness.
 
-At the assembly level, a useful physical picture is antiparallel pairing. Complementary orientations can suppress exposed axial circulation when their open circulation channels face each other in the right way. That gives the Noether sea a second kind of neutrality beyond each braid's own internal polarity neutrality: local polar-site leakage is mutually suppressed, so the composite remains comparatively transparent and non-reactive.
+At the assembly level, a useful physical picture is antiparallel pairing. Complementary orientation labels do not by themselves establish antiparallel circulation: relative axis, phase, and retained path history must also be specified. The proposed outcome is that an appropriate coupling law could suppress exposed axial circulation and polar-site leakage, while preserving the response assigned to the medium. Comparative transparency is therefore a testable hypothesis, not a consequence of equal labels or equal counts.
+
+For the population projection below, restrict the ambient identity set to carriers whose pro/anti orientation has been classified on a nondegenerate retained branch. Use the same normalized spatial window $W_\ell$ and the same exclusion of resolved assembly contributions for both components, and take a constant reference number density $\rho_{\mathrm{NS},0}>0$. If an admitted carrier has no defined orientation sign, it must be excluded by a declared classification rule or retained as an unresolved contribution; assigning it a sign by convention would hide the missing classification.
 
 At the continuum-medium level, represent local Noether braid density with canonical symbols $(\rho_{\text{NS}}, n)$ as two coupled components:
 
@@ -46,13 +48,13 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-065ce48e2e3776f9)
 
-where long-lived Noether sea regions require $|\Delta\rho_{\text{NS}}|$ to remain below a stability threshold set by the local coupling regime. In plain terms, the sea may tolerate local orientation bias, but not unlimited domination by one ordered orientation. At the diagnostic level, the $\Delta_{\mathrm{bal}}$ term in the ambient-branch acceptance diagnostic of [Noether sea](noether-sea.md#ambient-branch-acceptance) is the coarse-grained, normalized window readout of $\Delta\rho_{\text{NS}}$ over $\Omega_\ell$ after resolved assembly ledgers have been excluded; the open coupling-law work is to derive that normalization and its stability threshold from pro/anti orientation dynamics.
+where the signed density difference is a population-imbalance field, not itself a stability theorem. Positivity gives $|\Delta\rho_{\text{NS}}|\le\rho_{\text{NS}}$ pointwise, and where $\rho_{\text{NS}}>0$ the fractional imbalance $b\equiv\Delta\rho_{\text{NS}}/\rho_{\text{NS}}$ lies in $[-1,1]$. A stricter persistence threshold requires a specified retained branch, environment, evolution law, and perturbation class; it remains a coupling-law target. At the diagnostic level, the $\Delta_{\mathrm{bal}}$ term in the ambient-branch acceptance diagnostic of [Noether sea](noether-sea.md#ambient-branch-acceptance) is not generally identical to this signed density difference: the full diagnostic also contains neutral-pairing and orientation/polarization residuals with their own norms and scales. The normalized density difference may contribute to its orientation part only after that map is derived.
 
 The [Noether sea](noether-sea.md) page names the Noether sea and its total state variables; this chapter owns the pro/anti split and the hypotheses about how those subcomponents couple.
 
 ## 2 Pro + 2 Anti Coupling Hypothesis
 
-A recurring speculative motif is a minimal neutral cluster built from two pro-Noether braid constituents and two anti-Noether braid constituents. The intuition is a compact four-member arrangement: enough pieces to balance orientation, suppress exposed circulation, and resist a one-constituent perturbation. Geometrically, this is often pictured as a compact four-body bound state analogous in shape intuition, but not in nuclear force mechanism, to a helium-like $2\mathrm{p}+2\mathrm{n}$ nucleus: two of one type plus two of the complementary type in a tightly coupled arrangement.
+A recurring speculative motif is a candidate four-member cluster built from two pro-Noether braid constituents and two anti-Noether braid constituents. Four is not minimal for count balance: one pro and one anti already give zero count difference. The four-member arrangement may instead be useful for a stronger, still-to-be-defined property such as packing, reciprocal support, or tolerance to a specified perturbation. Geometrically, it is often pictured as a compact four-body bound state analogous in shape intuition, but not in nuclear force mechanism, to a helium-like $2\mathrm{p}+2\mathrm{n}$ nucleus: two of one type plus two of the complementary type in a tightly coupled arrangement.
 
 The analogy is structural:
 
@@ -65,7 +67,7 @@ The analogy is not identity:
 - no claim that baryonic protons/neutrons are being reused,
 - no claim that QCD binding equations directly apply.
 
-Instead, the model uses the helium-like picture as a design intuition for why a four-member pro/anti cluster may minimize net torque, suppress long-term precession drift, and provide a resilient seed unit for medium-level tiling. The count balance is the useful part; the nuclear analogy is not a claim about the acceleration law.
+Instead, the model uses the helium-like picture as a design intuition for why a four-member pro/anti cluster might, after an actual same-history calculation, minimize net torque, suppress long-term precession drift, or provide a resilient seed unit for medium-level tiling. These are properties to test, not consequences of the count. The count balance is the useful part; the nuclear analogy is not a claim about the acceleration law. Any claim of minimality also requires a declared property and a comparison with smaller candidate clusters.
 
 ## Why This Matters for Effective Spacetime Phenomenology
 
@@ -77,18 +79,18 @@ If the local Noether sea is assembled from balanced pro/anti Noether braid popul
 
 This is consistent with the framework's broader assemblies-first stance. Equations are read as effective descriptors of deeper assembly dynamics, and the medium response is carried by organized Noether braid populations rather than by the Euclidean void itself.
 
-## Ownership Boundary
+## Related descriptions
 
-This chapter owns:
+The following pages provide the surrounding descriptions:
 
 - pro-Noether braid and anti-Noether braid orientation basis,
 - local density decomposition into $\rho_+$ and $\rho_-$,
 - orientation imbalance $\Delta\rho_{\text{NS}}$,
 - coupling-regime stability thresholds,
 - the $2+2$ pro/anti cluster hypothesis,
-- and medium-level Noether braid assembly motifs that could support effective spacetime behavior.
+- medium-level Noether braid assembly motifs that could support effective spacetime behavior.
 
-This chapter does not own:
+For the broader medium ontology, internal braid architecture, effective metric, clock and ruler extraction, and cosmological translation, see:
 
 - the Noether sea as medium ontology; see [Noether sea](noether-sea.md),
 - the internal Noether braid architecture; see [Noether Braid](../noether-braid/noether-braid.md),

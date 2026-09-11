@@ -3613,7 +3613,7 @@ $$
 
 rather than an infinite-acceleration constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](../../../../markdown/aaa/dynamics/energy.md#self-hit-branch-changes-and-discrete-ledgers).
 
-This is the main regime assumption of the doubling-frequency-lock analysis. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric. It is not a claim that every Noether braid regime has any fixed binary exactly at $c_f$. A promoted result must compare the three possible $h$ assignments or prove from the retained record why only one is admissible.
+This is the main regime assumption of the doubling-frequency-lock analysis. The speed $c_f$ is the propagation speed of causal wake surfaces in the reduced dynamics, not an observer-level claim about an effective metric. It is not a claim that every Noether braid regime has any fixed binary exactly at $c_f$. A promoted result must compare the three possible $h$ assignments or prove from the retained record why only one is admissible.
 
 ### Assumption 2 (Exact Integer Phase Closure)
 
@@ -5446,7 +5446,7 @@ Comparing $\mathbf G[S;P]$ directly with $\mathbf G[S';P']$ is uncontrolled unle
 
 ### Superimposed Causal-Wake Map
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$-native wake equation used here is not an imported wave-equation partial differential equation. It constructs the superimposed causal-wake map from the same delayed causal isochrons used by the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#path-history-sum-and-integral-representation). The equation is the construction rule. For one declared source record and analysis protocol, its evaluated scalar is the wake map; the map's spatial or temporal structure is its wake pattern, and a frequency or angular-mode decomposition is its wake spectrum. An assembly's wake is shorthand for the superposition of its constituent architrino wakes, not emission by the assembly as a single transmitter.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$-native wake equation used here is not an imported wave-equation partial differential equation. It constructs the superimposed causal-wake map from the same delayed causal wake surfaces used by the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#path-history-sum-and-integral-representation). The equation is the construction rule. For one declared source record and analysis protocol, its evaluated scalar is the wake map; the map's spatial or temporal structure is its wake pattern, and a frequency or angular-mode decomposition is its wake spectrum. An assembly's wake is shorthand for the superposition of its constituent architrino wakes, not emission by the assembly as a single transmitter.
 
 For source $j$, emission time $T_t<T$, and coordinate probe $\mathbf X$, define
 

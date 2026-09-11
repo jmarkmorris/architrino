@@ -6,7 +6,7 @@ This chapter answers four linked questions. What kinetic bookkeeping is allowed 
 
 The chapter underwrites [Particle Masses](../assemblies/particle-masses.md), [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation), [Noether Braid](../noether-braid/noether-braid.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../validation/simulations/action-energy/delay-dynamics-energy.md).
 
-All such dynamics unfold on absolute time $T$ and the Euclidean void. A causal isochron is the sphere emitted at one past time $T_t$; a causal root is an emission time satisfying $\|\mathbf X_i(T)-\mathbf X_j(T_t)\|=c_f(T-T_t)$ with $T_t<T$. The receiver lies on that sphere when it receives the hit. The [Master Equation](master-equation.md#the-master-equation-canonical-form) assigns each admitted hit a signed acceleration along the line from the emission point to the receiver. Derivations retain the wake speed $c_f$ symbolically; numerical examples use $c_f=1$.
+All such dynamics unfold on absolute time $T$ and the Euclidean void. A causal wake surface is the sphere emitted at one past time $T_t$; a causal root is an emission time satisfying $\|\mathbf X_i(T)-\mathbf X_j(T_t)\|=c_f(T-T_t)$ with $T_t<T$. The receiver lies on that surface when it receives the hit. The [Master Equation](master-equation.md#the-master-equation-canonical-form) assigns each admitted hit a signed acceleration along the line from the emission point to the receiver. Derivations retain the wake speed $c_f$ symbolically; numerical examples use $c_f=1$.
 
 The chapter separates the primitive acceleration law, candidate kinetic and history-energy bookkeeping, effective assembly response, and observer comparison. Mass belongs to the last two levels. Its proposed origin in internal geometry, shielding, and Noether sea coupling is developed here as a recovery target; the quantitative mass map has not been derived.
 
@@ -225,7 +225,7 @@ Here $\Phi_o$ includes the admitted roots of source $o$ and is normalized per un
 
 ### Potential Availability Is Geometric
 
-The phrase "an architrino emits potential" should not be read as a transmitter continually spending an internal fuel. The emission is the causal-wake geometry of the architrino itself: at each emission time, an expanding causal isochron is added to the transmitter's path history. That causal structure can later participate in work, but it is not a material energy substance stored inside the Euclidean void.
+The phrase "an architrino emits potential" should not be read as a transmitter continually spending an internal fuel. The emission is the causal-wake geometry of the architrino itself: at each emission time, an expanding causal wake surface is added to the transmitter's path history. That causal structure can later participate in work, but it is not a material energy substance stored inside the Euclidean void.
 
 Potential energy is therefore relational. It is assigned when a receiver is placed in a transmitter's path-history causal-wake record and its trajectory intersects the relevant causal wake surfaces. The receiver's energy accounting depends on the active causal roots, their inverse-square distance factors, their polarity signs, the transmitter-side root denominator, the transmitter-side acceleration weight, and the receiver's radial motion through the line of action. In the general per-hit law the transmitter-side factor is
 
@@ -315,7 +315,7 @@ A localized phase-correlated assembly is the candidate setting for sustained, no
 
 ## Energy Conservation and Exchange
 
-Energy conservation is a required closure target. Its derivation must show, on one retained causal-root record, how kinetic motion exchanges with causal-history interaction content while every active root, admitted self entry, fold, and boundary transfer has unique provenance. The wake term in the candidate ledger should not be read as an independent material reservoir that drains from the transmitter with every unreceived isochron; it must be derived as nonlocal bookkeeping from the same time-translation-invariant causal action or causal-wake update that generates the acceleration contributions. Time-translation symmetry is necessary but insufficient: the action route must extend the variational symmetry argument of [Noether (1918)](https://eudml.org/doc/59024) to the delayed history and its boundary terms, while either route requires signed motion, wake, and boundary accounts with complete pairwise provenance and no double booking. For mollified working models, an exact conservation claim additionally requires the regularization to inherit the accepted action or update rather than being inserted only at the acceleration-operator level.
+Energy conservation is a required closure target. Its derivation must show, on one retained causal-root record, how kinetic motion exchanges with causal-history interaction content while every active root, admitted self entry, fold, and boundary transfer has unique provenance. The wake term in the candidate ledger should not be read as an independent material reservoir that drains from the transmitter with every unreceived causal wake surface; it must be derived as nonlocal bookkeeping from the same time-translation-invariant causal action or causal-wake update that generates the acceleration contributions. Time-translation symmetry is necessary but insufficient: the action route must extend the variational symmetry argument of [Noether (1918)](https://eudml.org/doc/59024) to the delayed history and its boundary terms, while either route requires signed motion, wake, and boundary accounts with complete pairwise provenance and no double booking. For mollified working models, an exact conservation claim additionally requires the regularization to inherit the accepted action or update rather than being inserted only at the acceleration-operator level.
 
 Virial language is a conditional reduced-model comparison. Suppose a derived canonical reduction supplies $\dot{\mathbf p}=-\nabla U$ and a potential homogeneous of degree $p$ in its spatial coordinates. The product rule gives $d(\mathbf X\cdot\mathbf p)/dT=\mathbf V\cdot\mathbf p-pU$. Averaging over $[T_a,T_b]$ leaves the endpoint term $[\mathbf X\cdot\mathbf p]_{T_a}^{T_b}/(T_b-T_a)$. The familiar $\langle2K-pU\rangle=0$ follows only when that endpoint term vanishes and the kinetic chart is quadratic, so $\mathbf V\cdot\mathbf p=2K$. For a general $K$, the left kinetic term is $sP(s)$; for example $K=s^4$ gives $sP=4K/3$. Here $p$ in $pU$ is the homogeneity degree, distinct from the vector $\mathbf p$. This calculus does not derive a canonical reduction of the delayed law; see [Analytic Baselines](../validation/simulations/action-energy/analytic-baselines.md#analytic-baselines).
 
@@ -455,7 +455,7 @@ For reaction or radiation events, energy can leave the source assembly as photon
 
 This is a boundary-accounting idea, not a new energy reservoir. If a wake leaves the chosen local window before any retained receiver crosses it, the local work ledger cannot spend that wake internally. The accounting must therefore mark it as escaped flux, recoil, boundary exchange, or another declared handoff rather than hiding it inside the local assembly.
 
-For a finite local window $W\subset\Sigma_T$, the **wake-escapement diagnostic set** is the set of emitted causal isochrons whose first retained boundary crossing occurs before any retained receiver intersection inside that window. More explicitly, if architrino $a$ emits at $T_t$, define the causal isochron at later time $T$ by
+For a finite local window $W\subset\Sigma_T$, the **wake-escapement diagnostic set** is the set of emitted causal wake surfaces whose first retained boundary crossing occurs before any retained receiver intersection inside that window. More explicitly, if architrino $a$ emits at $T_t$, define the causal wake surface at later time $T$ by
 
 $$
 C_a(T;T_t)
@@ -470,7 +470,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f9ab8f3a26ebd83e)
 
-The emitted isochron belongs to the escapement set $\mathcal{E}_{\mathrm{esc}}(W)$ when it has a first retained boundary crossing
+The emitted causal wake surface belongs to the escapement set $\mathcal{E}_{\mathrm{esc}}(W)$ when it has a first retained boundary crossing
 $$
 C_a(T_{\partial W};T_t)\cap\partial W\ne\varnothing
 $$
@@ -492,7 +492,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-012f94e1f66b159d)
 
-This isochron-level set is an earliest-crossing diagnostic, not a measure of the escaped fraction of a wake. When only some surface sectors cross $\partial W$, or when retained receivers intersect other sectors, quantitative escapement is the surface-resolved boundary flux through $\partial W$, with a declared solid-angle or surface partition when needed. A receiver intersection records local work; it does not imply depletion or absorption of the remaining isochron unless that mechanism is separately derived from the action.
+This surface-level set is an earliest-crossing diagnostic, not a measure of the escaped fraction of a wake. When only some surface sectors cross $\partial W$, or when retained receivers intersect other sectors, quantitative escapement is the surface-resolved boundary flux through $\partial W$, with a declared solid-angle or surface partition when needed. A receiver intersection records local work; it does not imply depletion or absorption of the remaining causal wake surface unless that mechanism is separately derived from the action.
 
 Wake escapement is therefore a finite-window boundary classification, not a new substance in the Euclidean void. It names the portion of causal-wake history that cannot be balanced by local receiver work because no local receiver intercepted it. In a contracting binary, the persistent positive tangential drive identified in [Binary Dynamics](binary-dynamics.md#tangential-drive-and-wake-escapement) should be read against this boundary ledger: particle kinetic gain, local interaction-energy change, recoil, and escaped wake flux are parts of one balance law.
 
@@ -1228,12 +1228,12 @@ Cross-links:
 
 ## Energy and Self-Hit in the Noether Sea
 
-In the **super-field-speed** regime ($\|\mathbf V_a\|>1$ somewhere along the relevant path-history interval), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the Noether sea:
+In the **super-field-speed** regime ($\|\mathbf V_a\|>1$ somewhere along the relevant path-history interval), architrinos and assemblies can intersect their own past causal wake surfaces (self-hit). In the presence of the Noether sea:
 
 - On the uniform-circular chart, each canonical self-hit contribution is radially outward and therefore cannot supply centripetal support. Whether the corresponding self-hit branches provide a lower radial boundary in a Noether braid or more complex assembly depends on the complete vector balance and continuation record; it is not implied by the circular sign alone.
 - Under a candidate signed wake account, energy represented in an architrino's causal wake and local Noether sea response would be partially routed back through delayed self-interaction. The exchange between internal kinetic energy and wake/medium energy is candidate bookkeeping pending an accepted signed account on the same causal-root record.
 
-If an accepted causal action with a proved delay-compatible Noether theorem supplies both the acceleration contributions and the signed energy accounts on one provenance-complete record, then global conservation would follow and self-hit would route energy along more complex paths (architrino → causal isochron → local Noether sea → back to architrino/assembly) without net creation or loss. That action, theorem, account construction, pairwise provenance result, and boundary-flux closure remain open; until they close, self-hit routing is a candidate bookkeeping picture rather than an established conservation result.
+If an accepted causal action with a proved delay-compatible Noether theorem supplies both the acceleration contributions and the signed energy accounts on one provenance-complete record, then global conservation would follow and self-hit would route energy along more complex paths (architrino → causal wake surface → local Noether sea → back to architrino/assembly) without net creation or loss. That action, theorem, account construction, pairwise provenance result, and boundary-flux closure remain open; until they close, self-hit routing is a candidate bookkeeping picture rather than an established conservation result.
 
 ---
 

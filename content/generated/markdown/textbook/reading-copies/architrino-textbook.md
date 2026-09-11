@@ -4613,7 +4613,7 @@ The level distinction used throughout the chapter is:
 
 At reception time $T_r$, the acceleration of receiver $r$ at position $\mathbf X_r(T_r)$ depends only on causal wake surfaces that intersect that reception site.
 
-- **Substrate event**: $\mathbf X_r(T_r)$ coincides with an expanding causal isochron emitted by a transmitter at a past time $T_t<T_r$.
+- **Substrate event**: $\mathbf X_r(T_r)$ coincides with an expanding causal wake surface emitted by a transmitter at a past time $T_t<T_r$.
 - **Path-history input**: the transmitter path determines which emission times solve the causal constraint.
 - **Effective reconstruction**: a potential or field value away from the receiver is useful only after one has declared a continuum or diagnostic representation.
 - **Inference layer**: transmitter identity, distance, and emission velocity may be reconstructed from additional records, but they are not directly supplied by a single hit.
@@ -5524,7 +5524,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-21bb33201b0a74f3)
 
-Operationally, this is the branchwise transmitter-to-receiver reading of the dynamics. The transmitter path supplies a path-history map $T_t\mapsto(\mathbf X_t(T_t),\mathbf V_t(T_t))$, while the receiver supplies the event data $(\mathbf X_r(T_r),\mathbf V_r(T_r),T_r)$. Solving $F_{T_r}^{(r\leftarrow t)}(T_t)=0$ selects exactly those transmitter-history points whose causal isochrons are received at that event. Each selected root therefore maps one transmitter-history branch into one receiver-local line of action; the delay-map Jacobian below records how the uniform transmitter emission-time measure is mapped into a compressed or dilated received causal-surface density. When multiple roots exist, the causal-root ledger is the bookkeeping of these simultaneous transmitter-to-receiver branch matches.
+Operationally, this is the branchwise transmitter-to-receiver reading of the dynamics. The transmitter path supplies a path-history map $T_t\mapsto(\mathbf X_t(T_t),\mathbf V_t(T_t))$, while the receiver supplies the event data $(\mathbf X_r(T_r),\mathbf V_r(T_r),T_r)$. Solving $F_{T_r}^{(r\leftarrow t)}(T_t)=0$ selects exactly those transmitter-history points whose causal wake surfaces are received at that event. Each selected root therefore maps one transmitter-history branch into one receiver-local line of action; the delay-map Jacobian below records how the uniform transmitter emission-time measure is mapped into a compressed or dilated received causal wake-surface density. When multiple roots exist, the causal-root ledger is the bookkeeping of these simultaneous transmitter-to-receiver branch matches.
 
 The one-dimensional delay-map Jacobian is
 
@@ -5830,12 +5830,12 @@ This follows immediately from the triangle inequality. Therefore strict sub-fiel
 
 - Receiver at $\mathbf X_i(T_r)$ "now"
 - Transmitter path $\{\mathbf X_j(T'): T' < T_r\}$ in the past
- - Field-speed causal wake surface: the expanding isochron at radius $c_f(T_r-T_t)$ centered at $\mathbf X_j(T_t)$
+ - Field-speed causal wake surface: the expanding causal wake surface at radius $c_f(T_r-T_t)$ centered at $\mathbf X_j(T_t)$
  - **Causal emission times**: where this wake surface **intersects** the receiver's current location
 
 For each $T_t \in \mathcal{C}_{ij}(T_r)$, draw a line from $\mathbf X_j(T_t)$ to $\mathbf X_i(T_r)$; this is the **line of action** $\hat{\mathbf{r}}_{ij}$ for the acceleration.
 
-This geometry should be read in terms of the transmitter path, the expanding causal isochrons centered on past emission points, and the receiver event at which one or more of those isochrons are intersected.
+This geometry should be read in terms of the transmitter path, the expanding causal wake surfaces centered on past emission points, and the receiver event at which one or more of those surfaces are intersected.
 
 ###### Reduced Translating-Loop Delay Checkpoint
 
@@ -6342,7 +6342,7 @@ $\hat{\mathbf{r}}_{ij}$ points **from the transmitter's historical position** $\
 
 **The $1/r^2$ factor:**
 
-Reflects the **surface density** of potential on the causal isochron. As that surface grows, the potential spreads over area $4\pi r^2$, so the density at any point scales as $1/r^2$.
+Reflects the **surface density** of potential on the causal wake surface. As that surface grows, the potential spreads over area $4\pi r^2$, so the density at any point scales as $1/r^2$.
 
 **The transmitter-side acceleration weight $W_{ij}^{\mathrm{acc}}$:**
 
@@ -7011,7 +7011,7 @@ where $\mathcal{F}$ is a **causal functional**: it depends on the current state 
 
 ###### Mollified Causal-Wake Regularization
 
-The ideal model uses **surface-delta causal isochrons** in the emission-time integral. On a simple branch with a distance floor and a Jacobian floor, the delta collapses to a continuous reception-time branch contribution weighted by the transmitter-side acceleration weight; singular or impulse-like behavior arises only when branches hit collision support, lose transversality, accumulate, or are sampled as unresolved numerical events. One may treat the singular limit as a measure-valued branch law, or regularize by replacing the surface delta with a narrow wake surface of thickness $\eta > 0$:
+The ideal model uses **surface-delta causal wake surfaces** in the emission-time integral. On a simple branch with a distance floor and a Jacobian floor, the delta collapses to a continuous reception-time branch contribution weighted by the transmitter-side acceleration weight; singular or impulse-like behavior arises only when branches hit collision support, lose transversality, accumulate, or are sampled as unresolved numerical events. One may treat the singular limit as a measure-valued branch law, or regularize by replacing the surface delta with a narrow wake surface of thickness $\eta > 0$:
 
 $$
 \delta(r - c_f\Delta) \longrightarrow \delta_\eta(r - c_f\Delta) = \frac{1}{\sqrt{2\pi}\,\eta} \exp\!\Big(-\frac{(r - c_f\Delta)^2}{2\eta^2}\Big)
@@ -7242,7 +7242,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-baa274dff3803dde)
 
-**Geometric interpretation:** The architrino's current position $\mathbf X_i(T_r)$ lies on the causal isochron emitted from its past position $\mathbf X_i(T_t)$.
+**Geometric interpretation:** The architrino's current position $\mathbf X_i(T_r)$ lies on the causal wake surface emitted from its past position $\mathbf X_i(T_t)$.
 
 **Requirements:**
 
@@ -7255,7 +7255,7 @@ For a derived geometric counterexample to a curvature requirement, take the pres
 
 **Key insight:** An architrino can experience **multiple self-hits simultaneously** (or within a regularization window $\eta$).
 
-**Mechanism:** In curved motion at super-field-speed, the worldline may intersect **multiple past isochrons** at the same reception time $T_r$. Each intersection corresponds to a distinct emission time $T_{t,k} \in \mathcal{C}_{ii}(T_r)$.
+**Mechanism:** In curved motion at super-field-speed, the worldline may intersect **multiple past causal wake surfaces** at the same reception time $T_r$. Each intersection corresponds to a distinct emission time $T_{t,k} \in \mathcal{C}_{ii}(T_r)$.
 
 **Example:** In uniform circular motion at speed $\|\mathbf V\| > c_f$, an architrino can be hit by wake surfaces from multiple points on its own orbit, corresponding to different "winding numbers" $m = 0, 1, 2, \ldots$ (see Maximum-Curvature Orbit).
 
@@ -7408,7 +7408,7 @@ This transmitter-side fold is therefore an **amplitude pole** for the self branc
 
 ###### Limited Information Per Hit
 
-From the perspective of the receiving architrino, the information carried by an intersecting causal isochron is **limited**. The receiver only knows:
+From the perspective of the receiving architrino, the information carried by an intersecting causal wake surface is **limited**. The receiver only knows:
 
 1. The **net strength** of the potential at the point of intersection, represented by the acceleration magnitude $\|\mathbf A\|$ on the retained hit record.
 2. The **unoriented line of action** through its current position (the line along which the acceleration points).
@@ -7527,7 +7527,7 @@ At each hit, log:
 
 **Use cases:**
 
-- Visualize causal cones and causal isochrons
+- Visualize causal cones and causal wake surfaces
 - Identify self-hit events and winding numbers
 - Trace energy transfer pathways
 - Validate superposition (sum of logged accelerations = total acceleration?)
@@ -10464,7 +10464,7 @@ This chapter answers four linked questions. What kinetic bookkeeping is allowed 
 
 The chapter underwrites [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation), [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md), and the constructive delay-energy standard in [Delay Dynamics Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md).
 
-All such dynamics unfold on absolute time $T$ and the Euclidean void. A causal isochron is the sphere emitted at one past time $T_t$; a causal root is an emission time satisfying $\|\mathbf X_i(T)-\mathbf X_j(T_t)\|=c_f(T-T_t)$ with $T_t<T$. The receiver lies on that sphere when it receives the hit. The [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form) assigns each admitted hit a signed acceleration along the line from the emission point to the receiver. Derivations retain the wake speed $c_f$ symbolically; numerical examples use $c_f=1$.
+All such dynamics unfold on absolute time $T$ and the Euclidean void. A causal wake surface is the sphere emitted at one past time $T_t$; a causal root is an emission time satisfying $\|\mathbf X_i(T)-\mathbf X_j(T_t)\|=c_f(T-T_t)$ with $T_t<T$. The receiver lies on that surface when it receives the hit. The [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form) assigns each admitted hit a signed acceleration along the line from the emission point to the receiver. Derivations retain the wake speed $c_f$ symbolically; numerical examples use $c_f=1$.
 
 The chapter separates the primitive acceleration law, candidate kinetic and history-energy bookkeeping, effective assembly response, and observer comparison. Mass belongs to the last two levels. Its proposed origin in internal geometry, shielding, and Noether sea coupling is developed here as a recovery target; the quantitative mass map has not been derived.
 
@@ -10683,7 +10683,7 @@ Here $\Phi_o$ includes the admitted roots of source $o$ and is normalized per un
 
 ##### Potential Availability Is Geometric
 
-The phrase "an architrino emits potential" should not be read as a transmitter continually spending an internal fuel. The emission is the causal-wake geometry of the architrino itself: at each emission time, an expanding causal isochron is added to the transmitter's path history. That causal structure can later participate in work, but it is not a material energy substance stored inside the Euclidean void.
+The phrase "an architrino emits potential" should not be read as a transmitter continually spending an internal fuel. The emission is the causal-wake geometry of the architrino itself: at each emission time, an expanding causal wake surface is added to the transmitter's path history. That causal structure can later participate in work, but it is not a material energy substance stored inside the Euclidean void.
 
 Potential energy is therefore relational. It is assigned when a receiver is placed in a transmitter's path-history causal-wake record and its trajectory intersects the relevant causal wake surfaces. The receiver's energy accounting depends on the active causal roots, their inverse-square distance factors, their polarity signs, the transmitter-side root denominator, the transmitter-side acceleration weight, and the receiver's radial motion through the line of action. In the general per-hit law the transmitter-side factor is
 
@@ -10773,7 +10773,7 @@ A localized phase-correlated assembly is the candidate setting for sustained, no
 
 #### Energy Conservation and Exchange
 
-Energy conservation is a required closure target. Its derivation must show, on one retained causal-root record, how kinetic motion exchanges with causal-history interaction content while every active root, admitted self entry, fold, and boundary transfer has unique provenance. The wake term in the candidate ledger should not be read as an independent material reservoir that drains from the transmitter with every unreceived isochron; it must be derived as nonlocal bookkeeping from the same time-translation-invariant causal action or causal-wake update that generates the acceleration contributions. Time-translation symmetry is necessary but insufficient: the action route must extend the variational symmetry argument of [Noether (1918)](https://eudml.org/doc/59024) to the delayed history and its boundary terms, while either route requires signed motion, wake, and boundary accounts with complete pairwise provenance and no double booking. For mollified working models, an exact conservation claim additionally requires the regularization to inherit the accepted action or update rather than being inserted only at the acceleration-operator level.
+Energy conservation is a required closure target. Its derivation must show, on one retained causal-root record, how kinetic motion exchanges with causal-history interaction content while every active root, admitted self entry, fold, and boundary transfer has unique provenance. The wake term in the candidate ledger should not be read as an independent material reservoir that drains from the transmitter with every unreceived causal wake surface; it must be derived as nonlocal bookkeeping from the same time-translation-invariant causal action or causal-wake update that generates the acceleration contributions. Time-translation symmetry is necessary but insufficient: the action route must extend the variational symmetry argument of [Noether (1918)](https://eudml.org/doc/59024) to the delayed history and its boundary terms, while either route requires signed motion, wake, and boundary accounts with complete pairwise provenance and no double booking. For mollified working models, an exact conservation claim additionally requires the regularization to inherit the accepted action or update rather than being inserted only at the acceleration-operator level.
 
 Virial language is a conditional reduced-model comparison. Suppose a derived canonical reduction supplies $\dot{\mathbf p}=-\nabla U$ and a potential homogeneous of degree $p$ in its spatial coordinates. The product rule gives $d(\mathbf X\cdot\mathbf p)/dT=\mathbf V\cdot\mathbf p-pU$. Averaging over $[T_a,T_b]$ leaves the endpoint term $[\mathbf X\cdot\mathbf p]_{T_a}^{T_b}/(T_b-T_a)$. The familiar $\langle2K-pU\rangle=0$ follows only when that endpoint term vanishes and the kinetic chart is quadratic, so $\mathbf V\cdot\mathbf p=2K$. For a general $K$, the left kinetic term is $sP(s)$; for example $K=s^4$ gives $sP=4K/3$. Here $p$ in $pU$ is the homogeneity degree, distinct from the vector $\mathbf p$. This calculus does not derive a canonical reduction of the delayed law; see [Analytic Baselines](../../../../markdown/aaa/validation/simulations/action-energy/analytic-baselines.md#analytic-baselines).
 
@@ -10913,7 +10913,7 @@ For reaction or radiation events, energy can leave the source assembly as photon
 
 This is a boundary-accounting idea, not a new energy reservoir. If a wake leaves the chosen local window before any retained receiver crosses it, the local work ledger cannot spend that wake internally. The accounting must therefore mark it as escaped flux, recoil, boundary exchange, or another declared handoff rather than hiding it inside the local assembly.
 
-For a finite local window $W\subset\Sigma_T$, the **wake-escapement diagnostic set** is the set of emitted causal isochrons whose first retained boundary crossing occurs before any retained receiver intersection inside that window. More explicitly, if architrino $a$ emits at $T_t$, define the causal isochron at later time $T$ by
+For a finite local window $W\subset\Sigma_T$, the **wake-escapement diagnostic set** is the set of emitted causal wake surfaces whose first retained boundary crossing occurs before any retained receiver intersection inside that window. More explicitly, if architrino $a$ emits at $T_t$, define the causal wake surface at later time $T$ by
 
 $$
 C_a(T;T_t)
@@ -10928,7 +10928,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f9ab8f3a26ebd83e)
 
-The emitted isochron belongs to the escapement set $\mathcal{E}_{\mathrm{esc}}(W)$ when it has a first retained boundary crossing
+The emitted causal wake surface belongs to the escapement set $\mathcal{E}_{\mathrm{esc}}(W)$ when it has a first retained boundary crossing
 $$
 C_a(T_{\partial W};T_t)\cap\partial W\ne\varnothing
 $$
@@ -10950,7 +10950,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-012f94e1f66b159d)
 
-This isochron-level set is an earliest-crossing diagnostic, not a measure of the escaped fraction of a wake. When only some surface sectors cross $\partial W$, or when retained receivers intersect other sectors, quantitative escapement is the surface-resolved boundary flux through $\partial W$, with a declared solid-angle or surface partition when needed. A receiver intersection records local work; it does not imply depletion or absorption of the remaining isochron unless that mechanism is separately derived from the action.
+This surface-level set is an earliest-crossing diagnostic, not a measure of the escaped fraction of a wake. When only some surface sectors cross $\partial W$, or when retained receivers intersect other sectors, quantitative escapement is the surface-resolved boundary flux through $\partial W$, with a declared solid-angle or surface partition when needed. A receiver intersection records local work; it does not imply depletion or absorption of the remaining causal wake surface unless that mechanism is separately derived from the action.
 
 Wake escapement is therefore a finite-window boundary classification, not a new substance in the Euclidean void. It names the portion of causal-wake history that cannot be balanced by local receiver work because no local receiver intercepted it. In a contracting binary, the persistent positive tangential drive identified in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#tangential-drive-and-wake-escapement) should be read against this boundary ledger: particle kinetic gain, local interaction-energy change, recoil, and escaped wake flux are parts of one balance law.
 
@@ -11686,12 +11686,12 @@ Cross-links:
 
 #### Energy and Self-Hit in the Noether Sea
 
-In the **super-field-speed** regime ($\|\mathbf V_a\|>1$ somewhere along the relevant path-history interval), architrinos and assemblies can intersect their own past isochrons (self-hit). In the presence of the Noether sea:
+In the **super-field-speed** regime ($\|\mathbf V_a\|>1$ somewhere along the relevant path-history interval), architrinos and assemblies can intersect their own past causal wake surfaces (self-hit). In the presence of the Noether sea:
 
 - On the uniform-circular chart, each canonical self-hit contribution is radially outward and therefore cannot supply centripetal support. Whether the corresponding self-hit branches provide a lower radial boundary in a Noether braid or more complex assembly depends on the complete vector balance and continuation record; it is not implied by the circular sign alone.
 - Under a candidate signed wake account, energy represented in an architrino's causal wake and local Noether sea response would be partially routed back through delayed self-interaction. The exchange between internal kinetic energy and wake/medium energy is candidate bookkeeping pending an accepted signed account on the same causal-root record.
 
-If an accepted causal action with a proved delay-compatible Noether theorem supplies both the acceleration contributions and the signed energy accounts on one provenance-complete record, then global conservation would follow and self-hit would route energy along more complex paths (architrino → causal isochron → local Noether sea → back to architrino/assembly) without net creation or loss. That action, theorem, account construction, pairwise provenance result, and boundary-flux closure remain open; until they close, self-hit routing is a candidate bookkeeping picture rather than an established conservation result.
+If an accepted causal action with a proved delay-compatible Noether theorem supplies both the acceleration contributions and the signed energy accounts on one provenance-complete record, then global conservation would follow and self-hit would route energy along more complex paths (architrino → causal wake surface → local Noether sea → back to architrino/assembly) without net creation or loss. That action, theorem, account construction, pairwise provenance result, and boundary-flux closure remain open; until they close, self-hit routing is a candidate bookkeeping picture rather than an established conservation result.
 
 ---
 
@@ -12240,7 +12240,7 @@ If $\mathbf X_t(T_t)=\mathbf X_0$ (transmitter fixed) and $q(T_t)=Q\,\delta(T_t-
 
 ##### Event-driven Radial-Transport + Per-Hit EOM (Canonical Method)
 
-Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the causal isochron), then drive particle motion by summing line-of-action per-hit accelerations with transmitter-side acceleration weight at causal intersection times. Numerical instantiations use $c_f=1$; symbolic derivations retain $c_f$ where its dependence matters.
+Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the emission-labeled surface), then drive particle motion by summing line-of-action per-hit accelerations with transmitter-side acceleration weight at causal intersection times. Numerical instantiations use $c_f=1$; symbolic derivations retain $c_f$ where its dependence matters.
 
 Field representation (transport/continuity form)
 - Source impulse at $(T_t,\mathbf X_0)$ creates a wake surface supported on $r = c_f(T-T_t)$ with surface density that conserves a constant per-wake surface amplitude $q$:
@@ -12837,8 +12837,8 @@ The background is fixed absolute time times Euclidean space. Free paths are stra
   - "Geodesics are straight" means: in the absence of any interaction, a worldline $\mathbf X(T)$ satisfies $\mathbf A(T)=d^2\mathbf X/dT^2=\mathbf{0}$; motion is uniform and rectilinear in each slice $\Sigma_T$. The fixed background contributes no acceleration.
 
 - Wake geometry as a continuous causal flux:
-  - Each architrino streams potential continuously. At any reception time $T_r$, the contribution emitted at past time $T_t$ sits on the **causal wake surface** (spherical isochron) $r=c_f(T_r-T_t)$ centered on $\mathbf X(T_t)$, with surface density $\propto 1/r^2$ so the integrated flux remains $q$.
-  - The potential wake is the superposition of all such causal isochrons from past emissions. The flux never shuts off; the surfaces are bookkeeping devices isolating portions of the path history whose intersection with a receiver delivers acceleration.
+  - Each architrino streams potential continuously. At any reception time $T_r$, the contribution emitted at past time $T_t$ sits on the **causal wake surface** $r=c_f(T_r-T_t)$ centered on $\mathbf X(T_t)$, with surface density $\propto 1/r^2$ so the integrated flux remains $q$.
+  - The potential wake is the superposition of all such causal wake surfaces from past emissions. The flux never shuts off; the surfaces are bookkeeping devices isolating portions of the path history whose intersection with a receiver delivers acceleration.
 
 - Intersection as the driver of acceleration:
   - The receiver's worldline is $\mathbf X_{o'}(T_r)$. An intersection at reception time $T_r$ means some earlier emission time $T_t<T_r$ satisfies the causal-distance condition
@@ -12866,11 +12866,11 @@ The background is fixed absolute time times Euclidean space. Free paths are stra
   - The background adds no acceleration; departures from straight motion arise only from these intersections with emitted causal wakes, including self-hits when the causal-root and branch conditions allow.
 
 - Physical picture:
-  - Picture many continuously expanding wake surfaces (causal isochrons). An acceleration contribution occurs whenever one of those surfaces intersects the receiver, directed straight along the radius back to its emission point, with inverse-square geometric decay multiplied by the transmitter-side acceleration weight. Receiver crossing rate belongs to root playback and does not multiply that arriving contribution.
+  - Picture many continuously expanding wake surfaces. An acceleration contribution occurs whenever one of those surfaces intersects the receiver, directed straight along the radius back to its emission point, with inverse-square geometric decay multiplied by the transmitter-side acceleration weight. Receiver crossing rate belongs to root playback and does not multiply that arriving contribution.
 
 #### Causal Set and Delay Geometry
 
-The receiver $o'$ at reception time $T_r$ is accelerated only by earlier transmitter events whose [causal isochrons](../../../../markdown/aaa/foundations/architrino.md), the expanding wake surfaces emitted at those events, pass through it. Those events form the possibly multi-valued set of causal emission times
+The receiver $o'$ at reception time $T_r$ is accelerated only by earlier transmitter events whose [causal wake surfaces](../../../../markdown/aaa/foundations/architrino.md), the expanding wake surfaces emitted at those events, pass through it. Those events form the possibly multi-valued set of causal emission times
 $$
 \mathcal{C}_o(T_r)
 =
@@ -12887,13 +12887,13 @@ Terminology note: the `causal set` in this simulation note is the causal interac
 
 ##### Geometry of Delay and Roots
 
-- Root condition as an expanding causal isochron intersection:
+- Root condition as an expanding causal wake-surface intersection:
   - Define $F(T_t; T_r) \equiv \|\mathbf X_{o'}(T_r) - \mathbf X_o(T_t)\| - c_f(T_r - T_t)$. Numerical runs use $c_f=1$. Causal roots satisfy $F(T_t; T_r)=0$ with $T_t < T_r$ and $H(T_r-T_t)$.
-- Geometrically: the transmitter point $\mathbf X_o(T_t)$ must lie on the causal wake surface (isochron) of radius $\Delta = T_r - T_t$ centered at the receiver's reception position $\mathbf X_{o'}(T_r)$.
+- Geometrically: the transmitter point $\mathbf X_o(T_t)$ must lie on the causal wake surface of radius $\Delta = T_r - T_t$ centered at the receiver's reception position $\mathbf X_{o'}(T_r)$.
 
 - Local uniqueness (sub-field-speed, transverse crossing):
   - If the transmitter speed is locally sub-field-speed and the derivative $\partial_{T_t}F(T_t;T_r) = c_f-\hat{\mathbf{r}}\!\cdot\!\mathbf V_o(T_t)$ is nonzero at the root, then the implicit function theorem guarantees a unique, smooth root branch near $T_r$.
-  - Intuition: the expanding causal isochron intersects the moving transmitter path transversely.
+  - Intuition: the expanding causal wake surface intersects the moving transmitter path transversely.
 
 - Multiple roots (require super-field-speed):
   - When $\|\mathbf V_o\|\ge c_f$ at some emission times, the transmitter history can develop tangencies or outpace recent wake surfaces, allowing several distinct historical points to satisfy the same distance-time constraint. If $\|\mathbf V_o\|<c_f$ everywhere on the searched interval, $F(T_t;T_r)$ is strictly increasing in $T_t$, so at most one causal root exists.
@@ -12903,7 +12903,7 @@ Terminology note: the `causal set` in this simulation note is the causal interac
   - No $r=0$ causal roots beyond $\Delta=0$: because $r=c_f(T_r-T_t)$, $r=0$ implies $\Delta=0$; the $\Delta=0$ case is excluded by $H(0)=0$. Under mollification, any claimed symmetric $r\to0$ limit must be verified for the declared kernel and geometry.
 
 ###### Outrunning One's Own Wake: A Speedboat Analogy
-- Picture a speedboat continuously laying down circular wake ridges that spread outward across the water at a fixed wave speed $c_w$ (analogy variable: wake ridge expansion speed). If the boat stays slower than $c_w$, it remains inside its newest ridge and will never meet it again, so no self-hit occurs. Once the boat exceeds $c_w$, it moves ahead of its freshest ridge. Later, if it curves or slows, it can run into older ridges it created earlier. Each crossing produces a brief deflection normal to the ridge, straight outward from the ridge's center, mirroring the model's line-of-action acceleration. The ridge emission rate never changes. Earlier transmitter motion bunches or dilates ridge spacing and therefore maps to the transmitter-side acceleration weight; receiver motion changes the order and rate at which the ridge history is replayed, not the strength of a ridge that has already arrived. This is an analogy: real Kelvin wakes are dispersive; the comparison uses ideal circular ridges expanding at one speed to match the model's fixed-speed causal isochrons.
+- Picture a speedboat continuously laying down circular wake ridges that spread outward across the water at a fixed wave speed $c_w$ (analogy variable: wake ridge expansion speed). If the boat stays slower than $c_w$, it remains inside its newest ridge and will never meet it again, so no self-hit occurs. Once the boat exceeds $c_w$, it moves ahead of its freshest ridge. Later, if it curves or slows, it can run into older ridges it created earlier. Each crossing produces a brief deflection normal to the ridge, straight outward from the ridge's center, mirroring the model's line-of-action acceleration. The ridge emission rate never changes. Earlier transmitter motion bunches or dilates ridge spacing and therefore maps to the transmitter-side acceleration weight; receiver motion changes the order and rate at which the ridge history is replayed, not the strength of a ridge that has already arrived. This is an analogy: real Kelvin wakes are dispersive; the comparison uses ideal circular ridges expanding at one speed to match the model's fixed-speed causal wake surfaces.
 
 ###### Four Self-Hits in One Maneuver
 1) Sprint phase (exceed the field speed): The boat accelerates to a speed strictly greater than $c_w$ and holds it for several ticks. During this super-speed run it lays down several concentric ridges that it immediately outruns.
@@ -13456,7 +13456,7 @@ In classical electrostatics, a static $1/r$ potential yields an electric field $
 This project does not posit a static near field. Instead:
 
 - Measure-valued expanding causal surfaces (no static $1/r$ near field):
-  - Each emission is a razor-thin causal isochron with surface density $q/(4\pi r^2)$, represented by $\rho(T,T_t)=(q/(4\pi r^2))\delta(r-c_f\Delta)H(\Delta)$. The support at fixed $T$ is a causal wake surface $S_r$, not a three-dimensional $1/r^2$ fill down to $r=0$. See [Background and Simple Action](../../../../markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md).
+  - Each emission is a razor-thin causal wake surface with surface density $q/(4\pi r^2)$, represented by $\rho(T,T_t)=(q/(4\pi r^2))\delta(r-c_f\Delta)H(\Delta)$. The support at fixed $T$ is a causal wake surface $S_r$, not a three-dimensional $1/r^2$ fill down to $r=0$. See [Background and Simple Action](../../../../markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md).
 
 - $H(0)=0$ (no coincident self-acceleration):
   - The instantaneous emission $(\Delta=0)$ contributes no acceleration to the transmitter; $r=0$ roots beyond $\Delta=0$ do not exist because $r=c_f(T_r-T_t)$. This removes the only event where a literal $r=0$ could enter. See [Causal Set and Delay Geometry](../../../../markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md).
@@ -13487,7 +13487,7 @@ This matters especially for shielding claims. A strongly shielded assembly may l
 
 #### Self-Interaction Switch
 
-An [architrino](../../../../markdown/aaa/foundations/architrino.md), the substrate's massless polarity carrier, can intersect an expanding causal isochron that it emitted earlier in its own history. Self-hit occurs when the same-transmitter causal-root set is nonempty, $\mathcal{C}_{aa}(T_r)\ne\varnothing$. Super-field-speed history is a necessary warning condition for simple nontrivial roots, but it is not sufficient by itself; the calculation must solve the same-transmitter root equation, and curvature, branch geometry, and the transversality floor determine whether the worldline actually intersects its own causal wake. An admitted self-hit contribution additionally carries a retained transmitter-side acceleration weight $W^{\mathrm{acc}}$. Only such an admitted same-transmitter hit accelerates outward and can contribute to the smallest sustainable size or fastest natural rhythm of a stable structure. On the uniform-circular chart its radial projection is always outward, so it can oppose collapse but cannot supply centripetal support; stability belongs to the complete signed branch ledger.
+An [architrino](../../../../markdown/aaa/foundations/architrino.md), the substrate's massless polarity carrier, can intersect an expanding causal wake surface that it emitted earlier in its own history. Self-hit occurs when the same-transmitter causal-root set is nonempty, $\mathcal{C}_{aa}(T_r)\ne\varnothing$. Super-field-speed history is a necessary warning condition for simple nontrivial roots, but it is not sufficient by itself; the calculation must solve the same-transmitter root equation, and curvature, branch geometry, and the transversality floor determine whether the worldline actually intersects its own causal wake. An admitted self-hit contribution additionally carries a retained transmitter-side acceleration weight $W^{\mathrm{acc}}$. Only such an admitted same-transmitter hit accelerates outward and can contribute to the smallest sustainable size or fastest natural rhythm of a stable structure. On the uniform-circular chart its radial projection is always outward, so it can oppose collapse but cannot supply centripetal support; stability belongs to the complete signed branch ledger.
 
 ##### Conditions and Effects
 
@@ -13531,13 +13531,13 @@ The practical consequence is narrow: simulations can prioritize nearby sources a
 
 #### Units and Constants
 
-The action-energy simulations measure speeds in normalized units with $c_f=1$, the speed of a [wake](../../../../markdown/aaa/foundations/architrino.md), the expanding disturbance emitted by an architrino. They use $\kappa>0$ to set the scale of every per-hit acceleration, $\eta>0$ to thicken ideal causal isochrons for regularized calculus, and $\epsilon>0$ as the polarity unit. Each acceleration contribution lies along the line from the emission point to the receiver and has received strength shaped by the transmitter-side weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; like polarities accelerate apart and unlike polarities accelerate together.
+The action-energy simulations measure speeds in normalized units with $c_f=1$, the speed of a [wake](../../../../markdown/aaa/foundations/architrino.md), the expanding disturbance emitted by an architrino. They use $\kappa>0$ to set the scale of every per-hit acceleration, $\eta>0$ to thicken ideal causal wake surfaces for regularized calculus, and $\epsilon>0$ as the polarity unit. Each acceleration contribution lies along the line from the emission point to the receiver and has received strength shaped by the transmitter-side weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; like polarities accelerate apart and unlike polarities accelerate together.
 
 ##### Core Symbols
 
 - $c_f=1$: wake speed in normalized units.
 - $\kappa>0$: universal coupling constant.
-- $\eta>0$: causal-isochron thickness.
+- $\eta>0$: causal wake-surface thickness.
 - $\epsilon>0$: polarity-unit magnitude; Electrino $q=-\epsilon$, Positrino $q=+\epsilon$.
 - $\sigma_{q q'}=\mathrm{sign}(q\,q')\in\{+1,-1\}$.
 - $r=\|\mathbf X_{o'}(T_r)-\mathbf X_o(T_t)\|$, with $\hat{\mathbf{r}}=(\mathbf X_{o'}(T_r)-\mathbf X_o(T_t))/r$.
@@ -13553,7 +13553,7 @@ The action-energy simulations measure speeds in normalized units with $c_f=1$, t
   - Scaling insight: if you scale $\kappa\mapsto \alpha\kappa$ while keeping $(\epsilon,\eta)$ fixed, accelerations scale by $\alpha$. Characteristic assembly scales such as the minimal binary radius $d_0$ and period $P_0$ shift accordingly through the dynamical balance that defines them.
 
 - Regularization width ($\eta>0$):
-  - $\eta$ is the width applied to each causal isochron (wake surface) to mollify the surface delta $\delta(r-\Delta)$. It converts impulsive hits into brief, smooth acceleration contributions so pointwise quantities such as gradients are defined. The evolution remains a delayed-history problem; an ordinary instantaneous-state ODE solver is insufficient unless the retained history and root reconstruction are supplied explicitly.
+  - $\eta$ is the width applied to each causal wake surface to mollify the surface delta $\delta(r-\Delta)$. It converts singular surface support into brief, smooth acceleration contributions so pointwise quantities such as gradients are defined. The evolution remains a delayed-history problem; an ordinary instantaneous-state ODE solver is insufficient unless the retained history and root reconstruction are supplied explicitly.
   - Geometric guidance: choose $\eta$ small relative to local geometric scales (e.g., the receiver's instantaneous curvature radius along its path and the local receiver-transmitter separation) so the regularized dynamics approximate the ideal path-history picture while remaining numerically stable.
 
 - Polarity-unit magnitude ($\epsilon>0$):
@@ -13649,7 +13649,7 @@ $$
 - Measure-driven dynamics:
   - With exact surface deltas, dynamics are impulsive: velocities are functions of bounded variation with jump discontinuities at hit times.
 
-- Mollified isochron surfaces:
+- Mollified causal wake surfaces:
   - Replacing $\delta(\cdot)$ by a narrow Gaussian of width $\eta > 0$ spreads each causal surface’s intersection into a short, smooth acceleration contribution. This can yield classical $C^1$ trajectories on an admitted history chart, but the solver must still retain and reconstruct the delayed path segment.
 
 - Choosing $\eta$:
@@ -15158,7 +15158,7 @@ and the architrino is the transmitter of the causal wake surface emitted at $T_t
 
 **Dynamical role:**
 - On any interval with strict sub-field-speed motion, self-hit is absent by the triangle-inequality root test, unless older path-history emissions from a prior super-field-speed interval remain active.
-- As velocities exceed $c_f$ on curved histories, emission isochrons can catch up with the transmitter's future positions, generating candidate nonlocal feedback and effective restoring or destabilizing accelerations depending on configuration.
+- As velocities exceed $c_f$ on curved histories, emitted causal wake surfaces can catch up with the transmitter's future positions, generating candidate nonlocal feedback and effective restoring or destabilizing accelerations depending on configuration.
 - In generic trajectories, once an architrino has exceeded $c_f$ and emitted wakes in that regime, it can later slow below $c_f$ and still experience self-hits from those earlier emissions because the active record is non-Markovian.
 - For binary and Noether braid assemblies, repeated outward self-hit contributions are candidate ingredients of a lower-radius barrier. Stable radii, frequencies, limit cycles, and attractors require separate tangential, radial, wake-boundary, and return-map closure.
 
@@ -15895,7 +15895,7 @@ The sign is branch-invariant on this same-sheet chart because winding changes ti
 **Corollary.**
 Within the positive-sheet bare two-body kernel, exact constant-speed circular motion is impossible because the total tangential acceleration is positive. Signed roots or additional physical interactions may alter that sum. A wake boundary charge can complete energy accounting, but cannot rescue the circle by bookkeeping alone.
 
-**Interpretation.** The positive tangential component is not merely an obstruction to be erased. In a finite local window, partner and self wakes are continually emitted while only a subset of their causal isochrons later hit a local receiver. A local binary can be called conservative only if the retained causal wake state, its boundary exchange, and the active-root record close energy, momentum, and angular momentum on the same update.
+**Interpretation.** The positive tangential component is not merely an obstruction to be erased. In a finite local window, partner and self wakes are continually emitted while only a subset of their causal wake surfaces later hit a local receiver. A local binary can be called conservative only if the retained causal wake state, its boundary exchange, and the active-root record close energy, momentum, and angular momentum on the same update.
 
 **Cycle-integral reading.** On a prescribed circle, let $\theta$ be receiver phase and define
 $$
@@ -22159,7 +22159,7 @@ $$
 
 rather than an infinite-acceleration constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](../../../../markdown/aaa/dynamics/energy.md#self-hit-branch-changes-and-discrete-ledgers).
 
-This is the main regime assumption of the doubling-frequency-lock analysis. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric. It is not a claim that every Noether braid regime has any fixed binary exactly at $c_f$. A promoted result must compare the three possible $h$ assignments or prove from the retained record why only one is admissible.
+This is the main regime assumption of the doubling-frequency-lock analysis. The speed $c_f$ is the propagation speed of causal wake surfaces in the reduced dynamics, not an observer-level claim about an effective metric. It is not a claim that every Noether braid regime has any fixed binary exactly at $c_f$. A promoted result must compare the three possible $h$ assignments or prove from the retained record why only one is admissible.
 
 #### Assumption 2 (Exact Integer Phase Closure)
 
@@ -23992,7 +23992,7 @@ Comparing $\mathbf G[S;P]$ directly with $\mathbf G[S';P']$ is uncontrolled unle
 
 #### Superimposed Causal-Wake Map
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$-native wake equation used here is not an imported wave-equation partial differential equation. It constructs the superimposed causal-wake map from the same delayed causal isochrons used by the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#path-history-sum-and-integral-representation). The equation is the construction rule. For one declared source record and analysis protocol, its evaluated scalar is the wake map; the map's spatial or temporal structure is its wake pattern, and a frequency or angular-mode decomposition is its wake spectrum. An assembly's wake is shorthand for the superposition of its constituent architrino wakes, not emission by the assembly as a single transmitter.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$-native wake equation used here is not an imported wave-equation partial differential equation. It constructs the superimposed causal-wake map from the same delayed causal wake surfaces used by the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#path-history-sum-and-integral-representation). The equation is the construction rule. For one declared source record and analysis protocol, its evaluated scalar is the wake map; the map's spatial or temporal structure is its wake pattern, and a frequency or angular-mode decomposition is its wake spectrum. An assembly's wake is shorthand for the superposition of its constituent architrino wakes, not emission by the assembly as a single transmitter.
 
 For source $j$, emission time $T_t<T$, and coordinate probe $\mathbf X$, define
 
@@ -27742,7 +27742,7 @@ B. L. Hu and E. Verdaguer, *Stochastic Gravity: Theory and Applications*, 2008, 
 
 This note states a bounded working hypothesis for the Noether sea: the sea is not a passive geometric background. It is an active medium built from persistent Noether braid assemblies with internal structure and coupling rules. The fixed background remains absolute time and the Euclidean void; this chapter is about the contents that occupy that background and supply medium response. It is the assembly-hypothesis continuation of [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), [Euclidean Void](../../../../markdown/aaa/foundations/euclidean-void.md), and [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md).
 
-For the canonical medium ontology, total-density boundary, and terminology discipline, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). This chapter is the canonical home for the more specific pro/anti Noether braid coupling details: orientation basis, density decomposition, imbalance stability, local coupling hypotheses, and cluster-organization motifs. The distinction between this orientation label and polarity conjugation is fixed in [Terminology Usage](../../../../markdown/aaa/archie/terminology-usage.md#proanti-orientation-and-polarity-conjugation).
+For the canonical medium ontology, total-density boundary, and terminology discipline, see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). This chapter develops a narrower hypothesis: how a classified pair of complementary orientation populations might contribute to the medium response. The distinction between this orientation label and polarity conjugation is fixed in [Terminology Usage](../../../../markdown/aaa/archie/terminology-usage.md#proanti-orientation-and-polarity-conjugation).
 
 The claim level is intentionally narrower than the Noether sea ontology page. The ontology page says what the medium is. This page asks whether complementary pro/anti orientation populations are part of how that medium stays transparent, balanced, and responsive.
 
@@ -27762,7 +27762,9 @@ The indices are persistent record identities, not a sorting by radius, frequency
 
 The orientation label does not assign matter versus antimatter. Global polarity conjugation $C$ leaves the indexed worldlines and $o_{\mathrm{PA}}$ unchanged. The proposed parity action is $P:o_{\mathrm{PA}}\mapsto-o_{\mathrm{PA}}$; establishing it requires the retained orientation carrier, not the mnemonic alone. A matter branch and its polarity-conjugate antimatter branch may therefore each occur on either pro/anti orientation once the full retained branch and charged-sector ledgers are supplied. This sea-level orientation balance is distinct from the visible-sector [matter-antimatter asymmetry](../../../../markdown/aaa/philosophy-history/solving-the-crisis.md#matter-antimatter-asymmetry) question, which belongs to polarity-conjugate branch populations, weak-sector asymmetry, early-state boundary conditions, and reaction-ledger bias. The key claim is that stable large-scale Noether sea behavior may require both orientations to coexist and couple, so the Noether sea does not drift into one indexed-frame handedness.
 
-At the assembly level, a useful physical picture is antiparallel pairing. Complementary orientations can suppress exposed axial circulation when their open circulation channels face each other in the right way. That gives the Noether sea a second kind of neutrality beyond each braid's own internal polarity neutrality: local polar-site leakage is mutually suppressed, so the composite remains comparatively transparent and non-reactive.
+At the assembly level, a useful physical picture is antiparallel pairing. Complementary orientation labels do not by themselves establish antiparallel circulation: relative axis, phase, and retained path history must also be specified. The proposed outcome is that an appropriate coupling law could suppress exposed axial circulation and polar-site leakage, while preserving the response assigned to the medium. Comparative transparency is therefore a testable hypothesis, not a consequence of equal labels or equal counts.
+
+For the population projection below, restrict the ambient identity set to carriers whose pro/anti orientation has been classified on a nondegenerate retained branch. Use the same normalized spatial window $W_\ell$ and the same exclusion of resolved assembly contributions for both components, and take a constant reference number density $\rho_{\mathrm{NS},0}>0$. If an admitted carrier has no defined orientation sign, it must be excluded by a declared classification rule or retained as an unresolved contribution; assigning it a sign by convention would hide the missing classification.
 
 At the continuum-medium level, represent local Noether braid density with canonical symbols $(\rho_{\text{NS}}, n)$ as two coupled components:
 
@@ -27786,13 +27788,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-065ce48e2e3776f9)
 
-where long-lived Noether sea regions require $|\Delta\rho_{\text{NS}}|$ to remain below a stability threshold set by the local coupling regime. In plain terms, the sea may tolerate local orientation bias, but not unlimited domination by one ordered orientation. At the diagnostic level, the $\Delta_{\mathrm{bal}}$ term in the ambient-branch acceptance diagnostic of [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md#ambient-branch-acceptance) is the coarse-grained, normalized window readout of $\Delta\rho_{\text{NS}}$ over $\Omega_\ell$ after resolved assembly ledgers have been excluded; the open coupling-law work is to derive that normalization and its stability threshold from pro/anti orientation dynamics.
+where the signed density difference is a population-imbalance field, not itself a stability theorem. Positivity gives $|\Delta\rho_{\text{NS}}|\le\rho_{\text{NS}}$ pointwise, and where $\rho_{\text{NS}}>0$ the fractional imbalance $b\equiv\Delta\rho_{\text{NS}}/\rho_{\text{NS}}$ lies in $[-1,1]$. A stricter persistence threshold requires a specified retained branch, environment, evolution law, and perturbation class; it remains a coupling-law target. At the diagnostic level, the $\Delta_{\mathrm{bal}}$ term in the ambient-branch acceptance diagnostic of [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md#ambient-branch-acceptance) is not generally identical to this signed density difference: the full diagnostic also contains neutral-pairing and orientation/polarization residuals with their own norms and scales. The normalized density difference may contribute to its orientation part only after that map is derived.
 
 The [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) page names the Noether sea and its total state variables; this chapter owns the pro/anti split and the hypotheses about how those subcomponents couple.
 
 #### 2 Pro + 2 Anti Coupling Hypothesis
 
-A recurring speculative motif is a minimal neutral cluster built from two pro-Noether braid constituents and two anti-Noether braid constituents. The intuition is a compact four-member arrangement: enough pieces to balance orientation, suppress exposed circulation, and resist a one-constituent perturbation. Geometrically, this is often pictured as a compact four-body bound state analogous in shape intuition, but not in nuclear force mechanism, to a helium-like $2\mathrm{p}+2\mathrm{n}$ nucleus: two of one type plus two of the complementary type in a tightly coupled arrangement.
+A recurring speculative motif is a candidate four-member cluster built from two pro-Noether braid constituents and two anti-Noether braid constituents. Four is not minimal for count balance: one pro and one anti already give zero count difference. The four-member arrangement may instead be useful for a stronger, still-to-be-defined property such as packing, reciprocal support, or tolerance to a specified perturbation. Geometrically, it is often pictured as a compact four-body bound state analogous in shape intuition, but not in nuclear force mechanism, to a helium-like $2\mathrm{p}+2\mathrm{n}$ nucleus: two of one type plus two of the complementary type in a tightly coupled arrangement.
 
 The analogy is structural:
 
@@ -27805,7 +27807,7 @@ The analogy is not identity:
 - no claim that baryonic protons/neutrons are being reused,
 - no claim that QCD binding equations directly apply.
 
-Instead, the model uses the helium-like picture as a design intuition for why a four-member pro/anti cluster may minimize net torque, suppress long-term precession drift, and provide a resilient seed unit for medium-level tiling. The count balance is the useful part; the nuclear analogy is not a claim about the acceleration law.
+Instead, the model uses the helium-like picture as a design intuition for why a four-member pro/anti cluster might, after an actual same-history calculation, minimize net torque, suppress long-term precession drift, or provide a resilient seed unit for medium-level tiling. These are properties to test, not consequences of the count. The count balance is the useful part; the nuclear analogy is not a claim about the acceleration law. Any claim of minimality also requires a declared property and a comparison with smaller candidate clusters.
 
 #### Why This Matters for Effective Spacetime Phenomenology
 
@@ -27817,18 +27819,18 @@ If the local Noether sea is assembled from balanced pro/anti Noether braid popul
 
 This is consistent with the framework's broader assemblies-first stance. Equations are read as effective descriptors of deeper assembly dynamics, and the medium response is carried by organized Noether braid populations rather than by the Euclidean void itself.
 
-#### Ownership Boundary
+#### Related descriptions
 
-This chapter owns:
+The following pages provide the surrounding descriptions:
 
 - pro-Noether braid and anti-Noether braid orientation basis,
 - local density decomposition into $\rho_+$ and $\rho_-$,
 - orientation imbalance $\Delta\rho_{\text{NS}}$,
 - coupling-regime stability thresholds,
 - the $2+2$ pro/anti cluster hypothesis,
-- and medium-level Noether braid assembly motifs that could support effective spacetime behavior.
+- medium-level Noether braid assembly motifs that could support effective spacetime behavior.
 
-This chapter does not own:
+For the broader medium ontology, internal braid architecture, effective metric, clock and ruler extraction, and cosmological translation, see:
 
 - the Noether sea as medium ontology; see [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md),
 - the internal Noether braid architecture; see [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md),
@@ -27844,7 +27846,9 @@ This is a hypothesis note, not a closed derivation. The chapter's claim is limit
 
 This chapter analyzes volume exclusion across ordinary matter and medium-level propagation. It complements [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), [Molecular Geometry](../../../../markdown/aaa/nuclear-atomic/molecular-geometry.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), and [Gravitational Waves](../../../../markdown/aaa/spacetime/gravitational-waves.md) by asking how ordinary exclusion boundaries coexist with deeper Noether sea response.
 
-The guiding distinction is ordinary occupancy versus medium availability. Molecules exclude one another through electron-envelope and bonding structure, but that does not decide how photon, neutrino-like, gravitational-wave, clock, or Noether sea response channels propagate through the same Euclidean volume. A tiny molecular hard-core packing fraction is therefore useful background, not a proof that every channel sees empty space. The native content of that distinction is the two-row visibility/response residual in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md#composition); this chapter supplies its ordinary-chemistry comparison, not a second medium-coupling law.
+The guiding distinction is ordinary occupancy versus medium availability. Molecules exclude one another through electron-envelope and bonding structure, but that does not decide how photon, neutrino-like, gravitational-wave, clock, or Noether sea response channels propagate through the same Euclidean volume. A tiny molecular hard-core packing fraction is therefore useful background, not a proof that every channel sees empty space. The native content of that distinction is the channel-specific visibility/response test in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md#composition); this chapter supplies its ordinary-chemistry comparison, not a second medium-coupling law.
+
+> **Assembly-emergence hypothesis.** It is a visionary, unverified hypothesis that molecular shape, bonding, exclusion, and channel-specific boundary behavior may emerge from stable Architrino assembly geometry and retained causal-wake history. This chapter does not derive that emergence or map it uniquely to protons, neutrons, molecules, or any effective interaction. The molecular and chemistry descriptions below are effective comparison inputs until an Architrino-level derivation connects them to the Master Equation and the relevant assembly response.
 
 When chemists use the **van der Waals (VdW) volume** of a molecule, they mean the space excluded by its electron distribution: the effective hard-core volume a molecule presents to its neighbors. Atomic van der Waals radii, such as the Bondi radii, set a common hard-sphere convention; a molecular van der Waals volume then depends on the molecular geometry and the rule used to subtract bonded overlaps. The estimate below therefore declares the one molecule it uses rather than treating a multi-molecule lookup table as source authority. The unit conversion is $1\,\mathring{\mathrm A}^3 = 10^{-24}\,\mathrm{cm}^3$.
 
@@ -27896,7 +27900,7 @@ Using the ideal gas law, dry air at $1\,\mathrm{atm}$ and $298\,\mathrm{K}$ cont
 Notes:
 - Dry air omits water vapor. At $25^\circ\mathrm{C}$ and $50\%$ relative humidity, $\mathrm{H}_2\mathrm{O}$ is about $1.6\%$ by volume, or about $3.9 \times 10^{17}$ per $\mathrm{cm}^3$. At saturation near $25^\circ\mathrm{C}$, it is about $3.1\%$ by volume.
 - Trace constituents scale by their volume fraction and do not change the packing conclusion.
-- Despite high number densities, the hard-core geometric occupancy is only about $0.06\%$ of the volume under the declared $\mathrm N_2$ union-of-spheres rule. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, ordinary molecular exclusion occupies only a small fraction of the available Euclidean volume, while deeper Noether sea implementation layers remain available for medium-level propagation.
+- Despite high number densities, the hard-core geometric occupancy is only about $0.06\%$ of the volume under the declared $\mathrm N_2$ union-of-spheres rule. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, ordinary molecular exclusion occupies only a small fraction of the available Euclidean volume. That result leaves any deeper Noether sea response undetermined.
 
 This gives a **geometric baseline** for how much space a molecule excludes. In real matter, the effective boundary is also affected by bonding, compression, temperature, pressure, and the channel being probed.
 
@@ -27921,7 +27925,7 @@ $$
 
 When $\mathrm{Kn}_m$ is not small, a molecular continuum pressure or viscosity description is a poor model even if the geometric occupancy is tiny.
 
-This distinction is useful for $\mathbb{A}\mathbb{A}\mathbb{A}$ because molecular exclusion and Noether sea response answer different questions. Molecular packing fraction estimates what ordinary matter blocks geometrically. Mean-free-path and Knudsen estimates say whether a gas can be treated as a continuum at the scale of the probe. Neither estimate determines whether a photon, neutrino, gravitational-wave channel, or clock-rate comparison couples strongly to the Noether sea. Those channels require their own coupling and propagation records.
+This distinction is useful for $\mathbb{A}\mathbb{A}\mathbb{A}$ because molecular exclusion and Noether sea response answer different questions. Molecular packing fraction estimates what ordinary matter blocks geometrically. Mean-free-path and Knudsen estimates say whether a gas can be treated as a continuum at the scale of the probe. Neither estimate determines whether a photon, neutrino, gravitational-wave channel, or clock-rate comparison couples strongly to the Noether sea. Those channels require their own coupling and propagation records; the present chapter does not supply those records.
 
 For any simulation or synthetic-observable packet that compares ordinary matter with medium-level propagation, the minimal separation is
 $$
@@ -27954,9 +27958,9 @@ Macroscopic boundaries are large-scale manifestations of those exclusions, but t
 
 #### Propagation Across Excluded Regions
 
-Maximally packed van der Waals volumes define exclusion domains for ordinary atoms and molecules. They do not automatically block every observer-level channel or every deeper medium-level propagation mode. Ordinary matter is blocked by electron-envelope and bonding structure; that is the channel that forms the material boundary. Photons may pass, reflect, or be absorbed depending on frequency and material: visible light moves through water and glass but not metal, X-rays probe deep into flesh but are stopped more strongly by bone, and gamma rays can penetrate meters of concrete.
+Maximally packed van der Waals volumes define exclusion domains for ordinary atoms and molecules. They do not automatically block every observer-level channel or every deeper medium-level propagation mode. Ordinary matter is blocked by electron-envelope and bonding structure; that is the channel that forms the material boundary. Photons may pass, reflect, or be absorbed depending on frequency, material, thickness, and the observable counted.
 
-Neutrinos pass almost completely unhindered through ordinary matter; compare [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md) for the assembly-level channel picture. Hypothetical WIMPs, axions, or gravitons belong only to standard-comparison language here: if such channels exist, their ordinary-matter coupling is weak enough that molecular hard-core exclusion is not the blocking rule. Compare [Dark Matter](../../../../markdown/aaa/cosmology/dark-matter.md) for the cosmological inference side and [Gravitational Waves](../../../../markdown/aaa/spacetime/gravitational-waves.md) for the effective propagation layer.
+In many ordinary laboratory columns, neutrino transmission is a useful effective comparison, but transmission depends on channel, energy, material column, and the observable counted; compare [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md) for the assembly-level channel picture. Hypothetical WIMPs, axions, or gravitons belong only to standard-comparison language here and do not supply an Architrino-level mapping. Compare [Dark Matter](../../../../markdown/aaa/cosmology/dark-matter.md) for the cosmological inference side and [Gravitational Waves](../../../../markdown/aaa/spacetime/gravitational-waves.md) for the effective propagation layer.
 
 The effective spacetime comparison has the same lesson. In standard GR language, matter changes the metric rather than blocking spacetime as a substance. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Euclidean void remains fixed; the relevant implementation layer is Noether sea response and effective metric reconstruction.
 
@@ -27965,13 +27969,13 @@ The effective spacetime comparison has the same lesson. In standard GR language,
 #### Absolute Timespace vs. Implemented Medium
 
 - Absolute-timespace background: the mathematical arena in this project is absolute timespace, the product of one global time and Euclidean 3-space. It is fixed, non-dynamical, and does not curve.
-- Noether sea implementation layer: effective spacetime behavior is realized by coherent assembly architecture at scales far smaller than molecules. In bridge prose this can be called a spacetime medium layer, but it is not a separate substrate inventory. Its microstructure can modulate effective propagation, boundaries, and coherence without altering the background kinematics.
+- Noether sea implementation hypothesis: effective spacetime behavior may be realized by coherent assembly architecture at scales far smaller than molecules. In bridge prose this can be called a spacetime medium layer, but it is not a separate substrate inventory. Its proposed microstructure may modulate effective propagation, boundaries, and coherence without altering the background kinematics; this chapter does not derive that response.
 
 This is the same implementation layer developed in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) and [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md).
 
-The van der Waals volume is an exclusion region mainly for **ordinary fermionic matter**. At the molecular level it defines exclusion for atoms and molecules; at the material level, boundaries such as air-water, skin-air, and metal-skin are large-scale manifestations of those exclusions. At the cosmic scale and observer level, photons, neutrinos, dark matter candidates, gravitational waves, clock comparisons, and effective metric descriptions interact through different coupling mechanisms. Molecular hard-core exclusion is therefore a matter-channel fact, not a universal medium-availability rule.
+The van der Waals volume is an exclusion region for ordinary molecular matter. At the molecular level it defines a declared geometric envelope for atoms and molecules; at the material level, boundaries such as air-water, skin-air, and metal-skin are effective manifestations of molecular interactions. The possibility that these structures ultimately map to Architrino assemblies, effective particles, or other observer-level channels is a visionary hypothesis, not a derivation in this chapter. Molecular hard-core exclusion is therefore a matter-channel comparison, not a universal medium-availability rule.
 
-The worked air estimate makes the chapter's conclusion concrete. A molecular occupancy of only about $6\times10^{-4}$ does not predict a photon, neutrino-like, clock, or gravitational-wave response. Each channel still requires its own $\mathcal C_X$ record and must pass the shared $\mathcal R_{\mathrm{vis/resp},X}$ test; geometric sparsity alone establishes neither transparency nor opacity.
+The worked air estimate makes the chapter's limited conclusion concrete. A molecular occupancy of only about $6\times10^{-4}$ does not predict a photon, neutrino-like, clock, or gravitational-wave response, and it does not establish a mapping from molecular geometry to effective particle or force language. Each channel still requires its own $\mathcal C_X$ record and a separately specified visibility/response test; geometric sparsity alone establishes neither transparency nor opacity.
 
 ### Observer Framework
 
@@ -28138,7 +28142,7 @@ $$
 
 where $\widehat{\mathbf r}_{j,\mathrm{cross}}$ points from the transmitter event to the boundary crossing. At a transmitter-side fold, $D_{t,j}=0$ and the simple-root weight diverges. Such an entry is fail-closed unless the chart also retains the root multiplicity and the next nonzero derivative needed for a fold or multi-root evaluation; substituting a finite simple-root weight is not an admissible boundary approximation.
 
-The crossing time $T_{\mathrm{cross}}$ separates instantaneous influx from already admitted exterior history. An interior receiver at $T$ may depend on a boundary entry with $T_{\mathrm{cross}}<T$, so the boundary ledger is accumulated rather than only evaluated at the present boundary. For non-convex $\Omega$, the ledger retains each boundary-crossing event rather than assuming that the active exterior isochron still intersects $\partial\Omega$ at the evaluation time.
+The crossing time $T_{\mathrm{cross}}$ separates instantaneous influx from already admitted exterior history. An interior receiver at $T$ may depend on a boundary entry with $T_{\mathrm{cross}}<T$, so the boundary ledger is accumulated rather than only evaluated at the present boundary. For non-convex $\Omega$, the ledger retains each boundary-crossing event rather than assuming that the active exterior causal wake surface still intersects $\partial\Omega$ at the evaluation time.
 
 The subsystem evolution therefore has the schematic form
 $$
@@ -28207,7 +28211,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-85633fd824cef966)
 
-Here $\widehat{\mathcal{B}}_{\partial\Omega}(T;\theta)$ denotes the boundary wake history retained by the observer model record, and $\mathcal{B}_1\sim_{O,\theta,W}\mathcal{B}_2$ means that the two retained boundary histories give the same Physical Observer clock, ruler, detector, and readout records on $W$ within the declared tolerance. This quotient is an observer-accessible coarse-graining of deterministic boundary data, not a new substrate boundary. It is the object later counted in local-horizon entropy targets.
+Here $\widehat{\mathcal{B}}_{\partial\Omega}(T;\theta)$ denotes the boundary wake history retained by the observer model record. Let $R_{O,W}$ map each retained boundary history to its complete clock, ruler, detector, and readout record on $W$, and let $q_{O,W}$ apply the declared finite precision to that record. Define $\mathcal{B}_1\sim_{O,\theta,W}\mathcal{B}_2$ exactly when $q_{O,W}(R_{O,W}(\mathcal{B}_1))=q_{O,W}(R_{O,W}(\mathcal{B}_2))$. This is an equivalence relation on the explicitly declared space of alternative retained boundary histories, whereas a raw tolerance neighborhood is only a closeness relation. The quotient is an observer-accessible coarse-graining of deterministic boundary data, not a new substrate boundary. It is the object later counted in local-horizon entropy targets.
 
 #### Boundary-Wake Covariance Scaffold
 
@@ -47912,7 +47916,7 @@ This page is a foundation-up overview. It states the shared mechanism and the cl
 
 #### Radiation Versus The Always-On Wake
 
-Every architrino emits its wake at all times. The causal-isochron record that carries the potential is broadcast continuously by every source — moving or still, bound or free — and mediating acceleration through that record is the ordinary business of the substrate. This constant emission is *not* radiation. Radiation is the narrower event defined above: a *routed closure residual*, in which a driven, non-adiabatically disturbed assembly sheds part of that residual into an outgoing carrier — a planar-mode photon assembly, or a reaction-product assembly such as an alpha, beta electron, neutron, or neutrino (see [Radioactivity Naming](#radioactivity-naming)). If no residual is routed, nothing is radiated, even though the wake never stops.
+Every architrino emits its wake at all times. The causal wake-surface record that carries the potential is broadcast continuously by every source — moving or still, bound or free — and mediating acceleration through that record is the ordinary business of the substrate. This constant emission is *not* radiation. Radiation is the narrower event defined above: a *routed closure residual*, in which a driven, non-adiabatically disturbed assembly sheds part of that residual into an outgoing carrier — a planar-mode photon assembly, or a reaction-product assembly such as an alpha, beta electron, neutron, or neutrino (see [Radioactivity Naming](#radioactivity-naming)). If no residual is routed, nothing is radiated, even though the wake never stops.
 
 The always-on wake is therefore the emission of the potential, and it should keep the name **wake**. The word `transmission` is reserved in this chapter for the material row where a photon passes through a medium (reflection, transmission, absorption); it must not be reused for the substrate wake, or the two meanings collide.
 
@@ -64891,27 +64895,27 @@ The file is therefore an implementation-facing checklist rather than a general t
 
 ###### Provenance-resolved propagation test
 Implement 1-architrino and 2-architrino setups with $\mathbb{U}_{\text{now}}$ sensors arranged on causal rings:
-- Verify causal isochron propagation at $c_f$
+- Verify causal wake-surface propagation at $c_f$
 - Verify correct arrival ordering and phase behavior (per kernel)
 - Verify numerical stability of $T_t$ inversion as $\Delta T \to \Delta T / 2$
 - Produce provenance tables showing correct `transmitter_id` values and emission times
 
 ###### Baseline diagnostics
 - On the same root and history records, report the normalized finite-window energy, momentum, and angular-momentum pullback residuals $\mathcal R_E$, $\mathcal R_P$, and $\mathcal R_J$ defined by the [Coincident-Midpoint Orthogonal-Axis Action-Increment Protocol](../../../../markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md#branch-chart-conservation-pullback). Each residual must satisfy its predeclared tolerance and remain stable under temporal and history refinement. A diagnostic work integral or acceleration moment does not replace that exact wake-history pullback.
-- Compare the numerical arrival times and surface normalization with an independently authored stationary-transmitter analytic isochron. Cross-integrator agreement is an additional implementation-parity check, not an independent oracle.
+- Compare the numerical arrival times and surface normalization with an independently authored stationary-transmitter analytic causal wake surface. Cross-integrator agreement is an additional implementation-parity check, not an independent oracle.
 
 ###### Grid Cache Boundary
 
 1. **Problem**: A finite simulation cannot retain unbounded path history.
 2. **Authoritative record**: Retain bounded, interpolable worldline segments $\mathbf X_i(T)$ and $\mathbf V_i(T)$ with stable transmitter identities over the declared causal horizon.
 3. **Optional cache**: A $\mathbb{U}_{\text{now}}$ grid may cache potential and gradient summaries for visualization or broad-phase search, but a nearest-node lookup cannot replace the transmitter-tagged history needed to solve a self-hit root.
-4. **Deliverable**: Demonstrate convergence against an independently authored analytic isochron and show that grid caching preserves the same root identity, emission time, and acceleration contribution as the authoritative history record.
+4. **Deliverable**: Demonstrate convergence against an independently authored analytic causal wake surface and show that grid caching preserves the same root identity, emission time, and acceleration contribution as the authoritative history record.
 
 ###### Grid-Based History
 
 * **Memory Strategy:** Store finite authoritative worldline history; use the fixed grid only as a derived cache.
 * **Lookup:** Use a grid or spatial index to nominate candidates, then solve the causal-root equation against the retained transmitter history.
-* **Validation:** Verify causal isochron propagation, phase ordering, transmitter identity, and emission time under joint temporal, history, and spatial refinement.
+* **Validation:** Verify causal wake-surface propagation, phase ordering, transmitter identity, and emission time under joint temporal, history, and spatial refinement.
 
 #### Convergence Tests
 
@@ -65112,7 +65116,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 ##### Delayed Emission and Transmitter-Side Acceleration
 
 - What we assume:
-- Transmitters emit potential on expanding causal isochrons with surface density $\propto 1/r^2$, represented distributionally by $\delta(r-c_f\Delta)$ with $\Delta=T_r-T_t$.
+- Transmitters emit potential on expanding causal wake surfaces with surface density $\propto 1/r^2$, represented distributionally by $\delta(r-c_f\Delta)$ with $\Delta=T_r-T_t$.
   - Each causal hit is directed along $\hat{\mathbf{r}}$ from the transmitter's emission point to the receiver, with received magnitude weighted by $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$, where $D_t=c_f-\mathbf V_t(T_t)\cdot\hat{\mathbf r}$ is the transmitter-side wake-spacing factor and $D_r=c_f-\mathbf V_r(T_r)\cdot\hat{\mathbf r}$ is the receiver-side root-playback factor.
 
 - Why it matters:
@@ -65154,11 +65158,11 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 ---
 
-##### Superposition with isochrons and $\eta$-regularization
+##### Superposition with causal wake surfaces and $\eta$-regularization
 
 - What we assume:
-- All wake contributions superpose linearly at the level of distributions (isochrons add).
-- We use a narrow Gaussian isochron $\delta_\eta$ when continuous-time derivatives are needed.
+- All wake contributions superpose linearly at the level of distributions (causal wake surfaces add).
+- We use a narrow Gaussian causal wake surface $\delta_\eta$ when continuous-time derivatives are needed.
 
 - Why it matters:
   - Locality: inverse-square geometric weighting together with finite-speed branch selection makes nearby coherent roots dominant, but infinite populations still require an explicit cutoff, screening rule, cancellation estimate, sampled mean field, or principal-value/mean-field subtraction.
@@ -65205,7 +65209,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 - No Lorentzian spacetime metric at the fundamental level (background is absolute time + Euclidean space; emergent cones are effective, not kinematic).
 - No right-hand-rule magnetism or $\mathbf V\times\mathbf B$ acceleration term at the substrate level; every per-hit acceleration is along $\hat{\mathbf{r}}$.
-- No gauge field inventory beyond architrino causal wakes; interaction carriers are the geometry of delayed isochrons and their couplings.
+- No gauge field inventory beyond architrino causal wakes; interaction carriers are the geometry of delayed causal wake surfaces and their couplings.
 
 ---
 
@@ -65291,7 +65295,7 @@ Consequence: embedded observers and synthetic detector records must reason stati
 
 Even for a single transmitter, the receiver cannot be sure that a given acceleration did not come from multiple distinct emission times $T_t\in\mathcal{C}_{o'j}(T_r)$ on that same transmitter. When the transmitter has a super-field-speed history interval or its trajectory curves, several roots of $r=c_f(T_r-T_t)$ can occur and arrive in close succession along one acceleration axis, contributing separate per-hit accelerations whose emission-time origins are not recoverable from the net vector alone.
 
-However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net acceleration is the linear sum of contributions from all architrinos in the universe whose causal isochrons intersect the receiver now. While inverse-square surface dilution and transmitter-side acceleration weight usually make nearby transmitters dominate, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
+However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net acceleration is the linear sum of contributions from all architrinos in the universe whose causal wake surfaces intersect the receiver now. While inverse-square surface dilution and transmitter-side acceleration weight usually make nearby transmitters dominate, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
 
 ---
 
@@ -84175,7 +84179,7 @@ The useful distinction is not geometric versus non-geometric. It is primitive ge
 | Layer | Geometry | Ontological status | What it controls |
 | --- | --- | --- | --- |
 | Euclidean void | Flat metric $h_{ij}=\delta_{ij}$ on $\mathbb{R}^3$ | Fundamental container | Distance, direction, spatial operators on each $T$ slice, fixed location identity |
-| Causal wake | Expanding causal isochrons satisfying $r=c_f(T-T_t)$ | Source-provenanced causal structure | Delayed interaction, line of action, branch roots, path-history effects |
+| Causal wake | Expanding causal wake surfaces satisfying $r=c_f(T-T_t)$ | Source-provenanced causal structure | Delayed interaction, line of action, branch roots, path-history effects |
 | Assembly | Stable internal organization of architrinos and Noether braids | Emergent bound structure | Particle identity, shielding, mass response, chirality, spin-like and quantum-number mappings |
 | Noether sea | Density, delay, stress, drift, alignment, and compliance response | Emergent medium content | Clock/ruler response, inertia, propagation channels, weak-field gravitational behavior |
 | Effective metric | $g^{\text{eff}}_{\mu\nu}$ reconstructed from observer records | Observer-level geometry | Proper time, geodesic approximation, lensing, redshift, Shapiro delay, gravitational-wave comparison |
@@ -84281,7 +84285,7 @@ The distinction is important because it prevents false demands on the primitive.
 
 The second distinction is between substance and causal structure. If architrinos continuously emit causal wakes, one might ask whether the wake is a second substance filling the void. The canonical answer is no. A causal wake is physically real, but it is not an independent material inventory.
 
-A wake is the causal-isochron residue of architrino emission. It is source-provenanced, path-history dependent, and finite-speed. Its role is to deliver delayed interaction when it intersects a receiver according to the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). It has physical consequence because it can accelerate an architrino at a reception event.
+A wake is the causal wake-surface record of architrino emission. It is source-provenanced, path-history dependent, and finite-speed. Its role is to deliver delayed interaction when it intersects a receiver according to the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). It has physical consequence because it can accelerate an architrino at a reception event.
 
 Its reality, however, is structural rather than substantive. A wake has no independent identity apart from its transmitter history. It is not a free-standing medium with its own internal constituents. It is not a second material layer added beside architrinos. It is a lawful causal geometry generated by architrino motion and evaluated at later intersections. The practical test is whether any wake state remains to be specified after the transmitter identity, polarity, and path history are fixed. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the answer is no: the wake is physically real as a delayed interaction record, but not autonomous as a separate substance or primitive field.
 
@@ -84303,7 +84307,7 @@ This split is one of the core ontological safeguards of the framework. If the vo
 
 The phrase **Plenum of Potential** names a philosophical bridge, not an added substance. It describes the way the Euclidean void can be materially empty at a coordinate while still being relationally saturated by causal wake history.
 
-At any location in the void, there need not be matter in the ordinary sense, and there need not be a material substance belonging to the void itself. Yet in a universe populated by architrinos that continuously emit causal wakes, that location may be crossed by many potential-bearing causal isochrons from many source histories. The location is empty as container, but it is not causally irrelevant.
+At any location in the void, there need not be matter in the ordinary sense, and there need not be a material substance belonging to the void itself. Yet in a universe populated by architrinos that continuously emit causal wakes, that location may be crossed by many potential-bearing causal wake surfaces from many source histories. The location is empty as container, but it is not causally irrelevant.
 
 The Plenum of Potential therefore means:
 
@@ -84342,13 +84346,13 @@ That architecture is stronger than a slogan about building from the bottom up. I
 
 This document gives a philosophical orientation for what a causal wake can and cannot carry, and for what that implies about information, conservation bookkeeping, and the limits of inference in $\mathbb{A}\mathbb{A}\mathbb{A}$. It belongs in the Philosophy and History section because it organizes level discipline around one arc: the wake as record, superposition as lossless transport, reception as lossy projection, and inherited physics as compression. The canonical technical owners remain [Architrino](../../../../markdown/aaa/foundations/architrino.md), [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), [Energy](../../../../markdown/aaa/dynamics/energy.md), [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md), and [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md).
 
-The guiding observation is simple to state. A causal wake is the source-dependent causal-isochron record of an architrino's emissions: the expanding surfaces emitted at successive absolute times. For a fixed interaction law, its content is determined by transmitter identity, polarity, and path history. The wake is not an additional material carrier. Energy, momentum, and angular-momentum assignments belong to accounting functionals evaluated against the interacting histories; their conservation requires the derivations described below. Reception introduces a different limitation: one local acceleration sample does not identify the source histories that produced it.
+The guiding observation is simple to state. A causal wake is the source-dependent record of an architrino's emission-labeled causal wake surfaces: the expanding surfaces emitted at successive absolute times. For a fixed interaction law, its content is determined by transmitter identity, polarity, and path history. The wake is not an additional material carrier. Energy, momentum, and angular-momentum assignments belong to accounting functionals evaluated against the interacting histories; their conservation requires the derivations described below. Reception introduces a different limitation: one local acceleration sample does not identify the source histories that produced it.
 
 #### What a Wake Carries
 
 Strictly, a wake carries nothing material. [Energy](../../../../markdown/aaa/dynamics/energy.md) states the discipline: a wake is not a hidden fuel, a vacuum reservoir, or a second substance in the Euclidean void. What the wake makes available is fixed by the transmitter path:
 
-- **Potential**: the per-isochron amplitude, available wherever the wake passes, realized as a per-hit acceleration contribution and, for an assembly-level ledger, work only when an actual receiver trajectory crosses it with its transmitter-side acceleration weight.
+- **Potential**: the per-surface amplitude, available wherever the wake passes, realized as a per-hit acceleration contribution and, for an assembly-level ledger, work only when an actual receiver trajectory crosses it with its transmitter-side acceleration weight.
 - **Momentum and angular momentum**: bookkeeping values, not cargo. A delayed conservation account must include the history-dependent terms omitted by an assembly-only inventory. Those terms depend on the declared interacting histories, action, and boundary convention; a transmitter path alone does not establish a conserved balance. Delayed interactions need not give equal-and-opposite assembly changes on the same time slice.
 - **Information**: the wake is an encoding of the source's worldline, propagating outward at the primitive causal-wake speed $c_f$. A receiver sampling the wake is sampling the source's kinematic history at causal delay.
 
@@ -84358,7 +84362,7 @@ This admits a complete inventory. Ask what the information in the universe is, a
 
 #### Superposition Without Corruption
 
-From the first instant an architrino emits, its wake coexists with the wakes of every other source whose isochrons reach the same regions. Superposition is exact and linear at the potential level: the net potential is the sum of contributions from all sources, and isochrons pass through one another without interacting. Wakes never scatter off wakes. Each contribution arrives at a receiver event with its content intact.
+From the first instant an architrino emits, its wake coexists with the wakes of every other source whose causal wake surfaces reach the same regions. Superposition is exact and linear at the potential level: the net potential is the sum of contributions from all sources, and causal wake surfaces pass through one another without interacting. Wakes never scatter off wakes. Each contribution arrives at a receiver event with its content intact.
 
 The receiver, however, does not read the contributions separately. At each instant its response is a single acceleration vector, the receiver-local sum over delayed causal-root hits defined in the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). By analogy with a circuit node: every source delivers exactly its own signal, and the node reads only the total. The analogy is orientation, not mechanism; the mechanism is the linear hit sum of the equation of motion.
 
@@ -84392,7 +84396,7 @@ An instantaneous collision model balances the mechanical changes of interacting 
 
 This changes the object a conservation theorem must address. Assembly-only momenta need not form a conserved total on a slice of absolute time. In a symmetry-preserving delayed action model, the full charges include history-dependent boundary contributions. For the canonical Master Equation, obtaining that same action and closing its boundary terms remain proof obligations. The [trajectory reconstruction and total-energy discussion](../../../../markdown/aaa/dynamics/master-equation.md#trajectory-work-reconstruction-and-total-energy-target) explicitly distinguishes a total made constant by a work-integral definition from independently derived conservation. Negligible delays motivate an instantaneous effective approximation only after the omitted history terms have been bounded.
 
-At universal scale the same structure becomes a standing exchange. Every architrino has been emitting along its entire path history, so every receiver sits inside the accumulated record of every source whose isochrons have had time to arrive. Here the contact question splits into two distinct questions that must not be conflated. **Geometric reach** asks whose wakes have arrived at all: within the causal reach set, contact is continuous and universal in principle, with amplitude diluted by distance but never cut off. **Active roots** ask which pairs currently contribute legal causal-root hits with nonvanishing branch strength: that is a branch-geometry question, and it is the sense in which a pair can be in reach yet dynamically silent at a given receiver event. The claim "every architrino is in contact with every other at all times" is defensible only in the first sense, and its second-sense refinement is an open root-census question owned by the dynamics chapters.
+At universal scale the same structure becomes a standing exchange. Every architrino has been emitting along its entire path history, so every receiver sits inside the accumulated record of every source whose causal wake surfaces have had time to arrive. Here the contact question splits into two distinct questions that must not be conflated. **Geometric reach** asks whose wakes have arrived at all: within the causal reach set, contact is continuous and universal in principle, with amplitude diluted by distance but never cut off. **Active roots** ask which pairs currently contribute legal causal-root hits with nonvanishing branch strength: that is a branch-geometry question, and it is the sense in which a pair can be in reach yet dynamically silent at a given receiver event. The claim "every architrino is in contact with every other at all times" is defensible only in the first sense, and its second-sense refinement is an open root-census question owned by the dynamics chapters.
 
 The deeper principle is that conservation laws require proofs about the complete dynamical record. Non-creation and non-destruction of architrinos and fixed polarity are substrate commitments. Time-translation and Euclidean symmetries identify the candidate energy, momentum, and angular-momentum charges of a compatible action. They do not establish the charges merely by naming them. Matter-only effective balances require additional control of the omitted history terms. The full derivational statement, a conservation theorem for the canonical dynamics with wake-history contributions and controlled boundary residuals, remains owned by the Master Equation.
 
@@ -84418,7 +84422,7 @@ The discipline also applies to explanations and observers. In the architecture, 
 
 #### Placement and Claim Levels
 
-- **Ontological**: the wake as causal-isochron record whose content is fixed by transmitter identity, polarity, and path history; no independent wake degrees of freedom.
+- **Ontological**: the wake as a causal wake-surface record whose content is fixed by transmitter identity, polarity, and path history; no independent wake degrees of freedom.
 - **Derivational, owned elsewhere**: linear superposition of the net potential, the receiver-local hit sum, self-hit structure, and the wake-history energy, momentum, and angular-momentum accounting rows, all owned by [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) and [Energy](../../../../markdown/aaa/dynamics/energy.md).
 - **Derived on the regular single-hit domain**: the transverse-velocity example establishes a many-to-one instantaneous readout. Its falsifier would be a dependence of the canonical per-hit acceleration on transverse transmitter velocity at fixed emission point, radial velocity, polarity, and reception event; the defining law is in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). Restricted time-series reconstruction is not excluded.
 - **Closure targets**: the assembly-scale selectivity mechanism behind structured reception; the proposed inheritance of quantum indistinguishability from hit-level unlabeledness; a conservation theorem for the canonical dynamics with history-boundary contributions; the active-root census behind universal contact; and observer-level Lorentz recovery. These targets belong to the assembly, quantum, Master Equation, and Lorentz-recovery chapters. Neither a conserved diagnostic defined by integration nor a stable prescribed geometry closes them.

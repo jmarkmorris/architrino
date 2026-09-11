@@ -1,12 +1,12 @@
 # Units and Constants
 
-The action-energy simulations measure speeds in normalized units with $c_f=1$, the speed of a [wake](../../../foundations/architrino.md), the expanding disturbance emitted by an architrino. They use $\kappa>0$ to set the scale of every per-hit acceleration, $\eta>0$ to thicken ideal causal isochrons for regularized calculus, and $\epsilon>0$ as the polarity unit. Each acceleration contribution lies along the line from the emission point to the receiver and has received strength shaped by the transmitter-side weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; like polarities accelerate apart and unlike polarities accelerate together.
+The action-energy simulations measure speeds in normalized units with $c_f=1$, the speed of a [wake](../../../foundations/architrino.md), the expanding disturbance emitted by an architrino. They use $\kappa>0$ to set the scale of every per-hit acceleration, $\eta>0$ to thicken ideal causal wake surfaces for regularized calculus, and $\epsilon>0$ as the polarity unit. Each acceleration contribution lies along the line from the emission point to the receiver and has received strength shaped by the transmitter-side weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; like polarities accelerate apart and unlike polarities accelerate together.
 
 ## Core Symbols
 
 - $c_f=1$: wake speed in normalized units.
 - $\kappa>0$: universal coupling constant.
-- $\eta>0$: causal-isochron thickness.
+- $\eta>0$: causal wake-surface thickness.
 - $\epsilon>0$: polarity-unit magnitude; Electrino $q=-\epsilon$, Positrino $q=+\epsilon$.
 - $\sigma_{q q'}=\mathrm{sign}(q\,q')\in\{+1,-1\}$.
 - $r=\|\mathbf X_{o'}(T_r)-\mathbf X_o(T_t)\|$, with $\hat{\mathbf{r}}=(\mathbf X_{o'}(T_r)-\mathbf X_o(T_t))/r$.
@@ -22,7 +22,7 @@ The action-energy simulations measure speeds in normalized units with $c_f=1$, t
   - Scaling insight: if you scale $\kappa\mapsto \alpha\kappa$ while keeping $(\epsilon,\eta)$ fixed, accelerations scale by $\alpha$. Characteristic assembly scales such as the minimal binary radius $d_0$ and period $P_0$ shift accordingly through the dynamical balance that defines them.
 
 - Regularization width ($\eta>0$):
-  - $\eta$ is the width applied to each causal isochron (wake surface) to mollify the surface delta $\delta(r-\Delta)$. It converts impulsive hits into brief, smooth acceleration contributions so pointwise quantities such as gradients are defined. The evolution remains a delayed-history problem; an ordinary instantaneous-state ODE solver is insufficient unless the retained history and root reconstruction are supplied explicitly.
+  - $\eta$ is the width applied to each causal wake surface to mollify the surface delta $\delta(r-\Delta)$. It converts singular surface support into brief, smooth acceleration contributions so pointwise quantities such as gradients are defined. The evolution remains a delayed-history problem; an ordinary instantaneous-state ODE solver is insufficient unless the retained history and root reconstruction are supplied explicitly.
   - Geometric guidance: choose $\eta$ small relative to local geometric scales (e.g., the receiver's instantaneous curvature radius along its path and the local receiver-transmitter separation) so the regularized dynamics approximate the ideal path-history picture while remaining numerically stable.
 
 - Polarity-unit magnitude ($\epsilon>0$):

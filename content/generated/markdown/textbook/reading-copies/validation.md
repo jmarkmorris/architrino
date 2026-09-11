@@ -3469,27 +3469,27 @@ The file is therefore an implementation-facing checklist rather than a general t
 
 ##### Provenance-resolved propagation test
 Implement 1-architrino and 2-architrino setups with $\mathbb{U}_{\text{now}}$ sensors arranged on causal rings:
-- Verify causal isochron propagation at $c_f$
+- Verify causal wake-surface propagation at $c_f$
 - Verify correct arrival ordering and phase behavior (per kernel)
 - Verify numerical stability of $T_t$ inversion as $\Delta T \to \Delta T / 2$
 - Produce provenance tables showing correct `transmitter_id` values and emission times
 
 ##### Baseline diagnostics
 - On the same root and history records, report the normalized finite-window energy, momentum, and angular-momentum pullback residuals $\mathcal R_E$, $\mathcal R_P$, and $\mathcal R_J$ defined by the [Coincident-Midpoint Orthogonal-Axis Action-Increment Protocol](../../../../markdown/aaa/validation/simulations/coincident-midpoint-orthogonal-axis-action-increment-protocol.md#branch-chart-conservation-pullback). Each residual must satisfy its predeclared tolerance and remain stable under temporal and history refinement. A diagnostic work integral or acceleration moment does not replace that exact wake-history pullback.
-- Compare the numerical arrival times and surface normalization with an independently authored stationary-transmitter analytic isochron. Cross-integrator agreement is an additional implementation-parity check, not an independent oracle.
+- Compare the numerical arrival times and surface normalization with an independently authored stationary-transmitter analytic causal wake surface. Cross-integrator agreement is an additional implementation-parity check, not an independent oracle.
 
 ##### Grid Cache Boundary
 
 1. **Problem**: A finite simulation cannot retain unbounded path history.
 2. **Authoritative record**: Retain bounded, interpolable worldline segments $\mathbf X_i(T)$ and $\mathbf V_i(T)$ with stable transmitter identities over the declared causal horizon.
 3. **Optional cache**: A $\mathbb{U}_{\text{now}}$ grid may cache potential and gradient summaries for visualization or broad-phase search, but a nearest-node lookup cannot replace the transmitter-tagged history needed to solve a self-hit root.
-4. **Deliverable**: Demonstrate convergence against an independently authored analytic isochron and show that grid caching preserves the same root identity, emission time, and acceleration contribution as the authoritative history record.
+4. **Deliverable**: Demonstrate convergence against an independently authored analytic causal wake surface and show that grid caching preserves the same root identity, emission time, and acceleration contribution as the authoritative history record.
 
 ##### Grid-Based History
 
 * **Memory Strategy:** Store finite authoritative worldline history; use the fixed grid only as a derived cache.
 * **Lookup:** Use a grid or spatial index to nominate candidates, then solve the causal-root equation against the retained transmitter history.
-* **Validation:** Verify causal isochron propagation, phase ordering, transmitter identity, and emission time under joint temporal, history, and spatial refinement.
+* **Validation:** Verify causal wake-surface propagation, phase ordering, transmitter identity, and emission time under joint temporal, history, and spatial refinement.
 
 ### Convergence Tests
 
@@ -3690,7 +3690,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 #### Delayed Emission and Transmitter-Side Acceleration
 
 - What we assume:
-- Transmitters emit potential on expanding causal isochrons with surface density $\propto 1/r^2$, represented distributionally by $\delta(r-c_f\Delta)$ with $\Delta=T_r-T_t$.
+- Transmitters emit potential on expanding causal wake surfaces with surface density $\propto 1/r^2$, represented distributionally by $\delta(r-c_f\Delta)$ with $\Delta=T_r-T_t$.
   - Each causal hit is directed along $\hat{\mathbf{r}}$ from the transmitter's emission point to the receiver, with received magnitude weighted by $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$, where $D_t=c_f-\mathbf V_t(T_t)\cdot\hat{\mathbf r}$ is the transmitter-side wake-spacing factor and $D_r=c_f-\mathbf V_r(T_r)\cdot\hat{\mathbf r}$ is the receiver-side root-playback factor.
 
 - Why it matters:
@@ -3732,11 +3732,11 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 ---
 
-#### Superposition with isochrons and $\eta$-regularization
+#### Superposition with causal wake surfaces and $\eta$-regularization
 
 - What we assume:
-- All wake contributions superpose linearly at the level of distributions (isochrons add).
-- We use a narrow Gaussian isochron $\delta_\eta$ when continuous-time derivatives are needed.
+- All wake contributions superpose linearly at the level of distributions (causal wake surfaces add).
+- We use a narrow Gaussian causal wake surface $\delta_\eta$ when continuous-time derivatives are needed.
 
 - Why it matters:
   - Locality: inverse-square geometric weighting together with finite-speed branch selection makes nearby coherent roots dominant, but infinite populations still require an explicit cutoff, screening rule, cancellation estimate, sampled mean field, or principal-value/mean-field subtraction.
@@ -3783,7 +3783,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 - No Lorentzian spacetime metric at the fundamental level (background is absolute time + Euclidean space; emergent cones are effective, not kinematic).
 - No right-hand-rule magnetism or $\mathbf V\times\mathbf B$ acceleration term at the substrate level; every per-hit acceleration is along $\hat{\mathbf{r}}$.
-- No gauge field inventory beyond architrino causal wakes; interaction carriers are the geometry of delayed isochrons and their couplings.
+- No gauge field inventory beyond architrino causal wakes; interaction carriers are the geometry of delayed causal wake surfaces and their couplings.
 
 ---
 
@@ -3869,7 +3869,7 @@ Consequence: embedded observers and synthetic detector records must reason stati
 
 Even for a single transmitter, the receiver cannot be sure that a given acceleration did not come from multiple distinct emission times $T_t\in\mathcal{C}_{o'j}(T_r)$ on that same transmitter. When the transmitter has a super-field-speed history interval or its trajectory curves, several roots of $r=c_f(T_r-T_t)$ can occur and arrive in close succession along one acceleration axis, contributing separate per-hit accelerations whose emission-time origins are not recoverable from the net vector alone.
 
-However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net acceleration is the linear sum of contributions from all architrinos in the universe whose causal isochrons intersect the receiver now. While inverse-square surface dilution and transmitter-side acceleration weight usually make nearby transmitters dominate, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
+However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net acceleration is the linear sum of contributions from all architrinos in the universe whose causal wake surfaces intersect the receiver now. While inverse-square surface dilution and transmitter-side acceleration weight usually make nearby transmitters dominate, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
 
 ---
 

@@ -258,7 +258,7 @@ and the architrino is the transmitter of the causal wake surface emitted at $T_t
 
 **Dynamical role:**
 - On any interval with strict sub-field-speed motion, self-hit is absent by the triangle-inequality root test, unless older path-history emissions from a prior super-field-speed interval remain active.
-- As velocities exceed $c_f$ on curved histories, emission isochrons can catch up with the transmitter's future positions, generating candidate nonlocal feedback and effective restoring or destabilizing accelerations depending on configuration.
+- As velocities exceed $c_f$ on curved histories, emitted causal wake surfaces can catch up with the transmitter's future positions, generating candidate nonlocal feedback and effective restoring or destabilizing accelerations depending on configuration.
 - In generic trajectories, once an architrino has exceeded $c_f$ and emitted wakes in that regime, it can later slow below $c_f$ and still experience self-hits from those earlier emissions because the active record is non-Markovian.
 - For binary and Noether braid assemblies, repeated outward self-hit contributions are candidate ingredients of a lower-radius barrier. Stable radii, frequencies, limit cycles, and attractors require separate tangential, radial, wake-boundary, and return-map closure.
 
@@ -995,7 +995,7 @@ The sign is branch-invariant on this same-sheet chart because winding changes ti
 **Corollary.**  
 Within the positive-sheet bare two-body kernel, exact constant-speed circular motion is impossible because the total tangential acceleration is positive. Signed roots or additional physical interactions may alter that sum. A wake boundary charge can complete energy accounting, but cannot rescue the circle by bookkeeping alone.
 
-**Interpretation.** The positive tangential component is not merely an obstruction to be erased. In a finite local window, partner and self wakes are continually emitted while only a subset of their causal isochrons later hit a local receiver. A local binary can be called conservative only if the retained causal wake state, its boundary exchange, and the active-root record close energy, momentum, and angular momentum on the same update.
+**Interpretation.** The positive tangential component is not merely an obstruction to be erased. In a finite local window, partner and self wakes are continually emitted while only a subset of their causal wake surfaces later hit a local receiver. A local binary can be called conservative only if the retained causal wake state, its boundary exchange, and the active-root record close energy, momentum, and angular momentum on the same update.
 
 **Cycle-integral reading.** On a prescribed circle, let $\theta$ be receiver phase and define
 $$

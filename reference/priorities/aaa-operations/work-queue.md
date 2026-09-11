@@ -7,7 +7,8 @@ This is the current execution ledger for deployment, hosting, cost, reliability,
 1. `priority_directory_review_and_drive` — [OPS-028](#ops-028--priority-directory-review-and-drive). Priority: High; status: In progress; first directory completed.
 2. `reference_equation_mapping_surface` — [OPS-016](#ops-016--reference-equation-mapping-surface). Status: Queued.
 3. `operator_explanation_standard_review` — [OPS-029](#ops-029--operator-explanation-standard-review). Status: Queued.
-4. `periodic_project_skill_maintenance` — [OPS-027](#ops-027--periodic-project-skill-maintenance). Status: Recurring; next pass due 2026-11-10.
+4. `option_b_report_only_stale_binding_review` — [OPS-030](#ops-030--option-b-report-only-stale-binding-review). Priority: Medium; status: Queued.
+5. `periodic_project_skill_maintenance` — [OPS-027](#ops-027--periodic-project-skill-maintenance). Status: Recurring; next pass due 2026-11-10.
 
 ## In progress
 
@@ -67,6 +68,16 @@ This is the current execution ledger for deployment, hosting, cost, reliability,
 - **Request:** Review [operator-explanation-standard.md](../../op/operator-explanation-standard.md) in full for clarity, internal consistency, duplication, instruction precedence, and practical effect on operator communication. Check its relationship to AGENTS.md, the academic style guide, and the dispatch procedures, including the work-item prefix rule for agent and task names.
 - **Acceptance:** Record exact section or line references, distinguish demonstrated conflicts from optional improvements, explain the effect of each finding, and recommend the smallest justified correction. Preserve explicit operator decisions and identify any policy choice requiring their judgment. This action requests a review and recommendations; implementation is a separate disposition.
 - **Owner:** operations with the operator-guidance owner; coordinate with recurring OPS-014 to avoid duplicate review work.
+
+### OPS-030 — Option B report-only stale-binding review
+
+- **Priority object:** `option_b_report_only_stale_binding_review`.
+- **Priority:** Medium.
+- **Status:** ○ Queued.
+- **Opened:** 2026-09-11, after the report-only Option B check on `Converge AAA corpus and record CRW-005 reviews` reported a stale binding.
+- **Request:** Review the Option B report-only dependency-map failure, currently recorded as `Stale binding: https://example.invalid/option-b-corrected/assumptions`, against the exact published candidate head and the retained map/source artifacts. Determine whether the map should be refreshed as a reviewed candidate, whether its declared assumptions binding is obsolete, or whether the diagnostic should remain unchanged pending scope acceptance.
+- **Acceptance:** Record the exact stale binding, affected map and source bytes, comparison head, and independent reproduction. Preserve `approval: not-granted`, A-check authority, report-only status, and the distinction between a consistency result and scientific or baseline acceptance. Do not refresh hashes, alter the namespace, accept the map, or transfer authority without an explicit operator decision and exact-head review.
+- **Owner:** operations with the development-process-review and equation-mapping owners; scientific acceptance remains with the applicable theory owner.
 
 ## Awaiting verification
 

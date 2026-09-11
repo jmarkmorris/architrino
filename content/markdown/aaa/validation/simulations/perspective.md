@@ -11,7 +11,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 ## Delayed Emission and Transmitter-Side Acceleration
 
 - What we assume:
-- Transmitters emit potential on expanding causal isochrons with surface density $\propto 1/r^2$, represented distributionally by $\delta(r-c_f\Delta)$ with $\Delta=T_r-T_t$.
+- Transmitters emit potential on expanding causal wake surfaces with surface density $\propto 1/r^2$, represented distributionally by $\delta(r-c_f\Delta)$ with $\Delta=T_r-T_t$.
   - Each causal hit is directed along $\hat{\mathbf{r}}$ from the transmitter's emission point to the receiver, with received magnitude weighted by $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$, where $D_t=c_f-\mathbf V_t(T_t)\cdot\hat{\mathbf r}$ is the transmitter-side wake-spacing factor and $D_r=c_f-\mathbf V_r(T_r)\cdot\hat{\mathbf r}$ is the receiver-side root-playback factor.
 
 - Why it matters:
@@ -53,11 +53,11 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 ---
 
-## Superposition with isochrons and $\eta$-regularization
+## Superposition with causal wake surfaces and $\eta$-regularization
 
 - What we assume:
-- All wake contributions superpose linearly at the level of distributions (isochrons add).
-- We use a narrow Gaussian isochron $\delta_\eta$ when continuous-time derivatives are needed.
+- All wake contributions superpose linearly at the level of distributions (causal wake surfaces add).
+- We use a narrow Gaussian causal wake surface $\delta_\eta$ when continuous-time derivatives are needed.
 
 - Why it matters:
   - Locality: inverse-square geometric weighting together with finite-speed branch selection makes nearby coherent roots dominant, but infinite populations still require an explicit cutoff, screening rule, cancellation estimate, sampled mean field, or principal-value/mean-field subtraction.
@@ -104,7 +104,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 
 - No Lorentzian spacetime metric at the fundamental level (background is absolute time + Euclidean space; emergent cones are effective, not kinematic).
 - No right-hand-rule magnetism or $\mathbf V\times\mathbf B$ acceleration term at the substrate level; every per-hit acceleration is along $\hat{\mathbf{r}}$.
-- No gauge field inventory beyond architrino causal wakes; interaction carriers are the geometry of delayed isochrons and their couplings.
+- No gauge field inventory beyond architrino causal wakes; interaction carriers are the geometry of delayed causal wake surfaces and their couplings.
 
 ---
 
@@ -191,7 +191,7 @@ Consequence: embedded observers and synthetic detector records must reason stati
 
 Even for a single transmitter, the receiver cannot be sure that a given acceleration did not come from multiple distinct emission times $T_t\in\mathcal{C}_{o'j}(T_r)$ on that same transmitter. When the transmitter has a super-field-speed history interval or its trajectory curves, several roots of $r=c_f(T_r-T_t)$ can occur and arrive in close succession along one acceleration axis, contributing separate per-hit accelerations whose emission-time origins are not recoverable from the net vector alone.
 
-However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net acceleration is the linear sum of contributions from all architrinos in the universe whose causal isochrons intersect the receiver now. While inverse-square surface dilution and transmitter-side acceleration weight usually make nearby transmitters dominate, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
+However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net acceleration is the linear sum of contributions from all architrinos in the universe whose causal wake surfaces intersect the receiver now. While inverse-square surface dilution and transmitter-side acceleration weight usually make nearby transmitters dominate, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
 
 ---
 

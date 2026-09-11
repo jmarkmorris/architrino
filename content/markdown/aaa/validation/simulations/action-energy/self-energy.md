@@ -11,7 +11,7 @@ In classical electrostatics, a static $1/r$ potential yields an electric field $
 This project does not posit a static near field. Instead:
 
 - Measure-valued expanding causal surfaces (no static $1/r$ near field):
-  - Each emission is a razor-thin causal isochron with surface density $q/(4\pi r^2)$, represented by $\rho(T,T_t)=(q/(4\pi r^2))\delta(r-c_f\Delta)H(\Delta)$. The support at fixed $T$ is a causal wake surface $S_r$, not a three-dimensional $1/r^2$ fill down to $r=0$. See [Background and Simple Action](background-and-simple-action.md).
+  - Each emission is a razor-thin causal wake surface with surface density $q/(4\pi r^2)$, represented by $\rho(T,T_t)=(q/(4\pi r^2))\delta(r-c_f\Delta)H(\Delta)$. The support at fixed $T$ is a causal wake surface $S_r$, not a three-dimensional $1/r^2$ fill down to $r=0$. See [Background and Simple Action](background-and-simple-action.md).
 
 - $H(0)=0$ (no coincident self-acceleration):
   - The instantaneous emission $(\Delta=0)$ contributes no acceleration to the transmitter; $r=0$ roots beyond $\Delta=0$ do not exist because $r=c_f(T_r-T_t)$. This removes the only event where a literal $r=0$ could enter. See [Causal Set and Delay Geometry](causal-set-and-delay-geometry.md).

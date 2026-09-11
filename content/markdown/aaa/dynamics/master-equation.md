@@ -45,7 +45,7 @@ The level distinction used throughout the chapter is:
 
 At reception time $T_r$, the acceleration of receiver $r$ at position $\mathbf X_r(T_r)$ depends only on causal wake surfaces that intersect that reception site.
 
-- **Substrate event**: $\mathbf X_r(T_r)$ coincides with an expanding causal isochron emitted by a transmitter at a past time $T_t<T_r$.
+- **Substrate event**: $\mathbf X_r(T_r)$ coincides with an expanding causal wake surface emitted by a transmitter at a past time $T_t<T_r$.
 - **Path-history input**: the transmitter path determines which emission times solve the causal constraint.
 - **Effective reconstruction**: a potential or field value away from the receiver is useful only after one has declared a continuum or diagnostic representation.
 - **Inference layer**: transmitter identity, distance, and emission velocity may be reconstructed from additional records, but they are not directly supplied by a single hit.
@@ -956,7 +956,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-21bb33201b0a74f3)
 
-Operationally, this is the branchwise transmitter-to-receiver reading of the dynamics. The transmitter path supplies a path-history map $T_t\mapsto(\mathbf X_t(T_t),\mathbf V_t(T_t))$, while the receiver supplies the event data $(\mathbf X_r(T_r),\mathbf V_r(T_r),T_r)$. Solving $F_{T_r}^{(r\leftarrow t)}(T_t)=0$ selects exactly those transmitter-history points whose causal isochrons are received at that event. Each selected root therefore maps one transmitter-history branch into one receiver-local line of action; the delay-map Jacobian below records how the uniform transmitter emission-time measure is mapped into a compressed or dilated received causal-surface density. When multiple roots exist, the causal-root ledger is the bookkeeping of these simultaneous transmitter-to-receiver branch matches.
+Operationally, this is the branchwise transmitter-to-receiver reading of the dynamics. The transmitter path supplies a path-history map $T_t\mapsto(\mathbf X_t(T_t),\mathbf V_t(T_t))$, while the receiver supplies the event data $(\mathbf X_r(T_r),\mathbf V_r(T_r),T_r)$. Solving $F_{T_r}^{(r\leftarrow t)}(T_t)=0$ selects exactly those transmitter-history points whose causal wake surfaces are received at that event. Each selected root therefore maps one transmitter-history branch into one receiver-local line of action; the delay-map Jacobian below records how the uniform transmitter emission-time measure is mapped into a compressed or dilated received causal wake-surface density. When multiple roots exist, the causal-root ledger is the bookkeeping of these simultaneous transmitter-to-receiver branch matches.
 
 The one-dimensional delay-map Jacobian is
 
@@ -1262,12 +1262,12 @@ This follows immediately from the triangle inequality. Therefore strict sub-fiel
 
 - Receiver at $\mathbf X_i(T_r)$ "now"
 - Transmitter path $\{\mathbf X_j(T'): T' < T_r\}$ in the past
- - Field-speed causal wake surface: the expanding isochron at radius $c_f(T_r-T_t)$ centered at $\mathbf X_j(T_t)$
+ - Field-speed causal wake surface: the expanding causal wake surface at radius $c_f(T_r-T_t)$ centered at $\mathbf X_j(T_t)$
  - **Causal emission times**: where this wake surface **intersects** the receiver's current location
 
 For each $T_t \in \mathcal{C}_{ij}(T_r)$, draw a line from $\mathbf X_j(T_t)$ to $\mathbf X_i(T_r)$; this is the **line of action** $\hat{\mathbf{r}}_{ij}$ for the acceleration.
 
-This geometry should be read in terms of the transmitter path, the expanding causal isochrons centered on past emission points, and the receiver event at which one or more of those isochrons are intersected.
+This geometry should be read in terms of the transmitter path, the expanding causal wake surfaces centered on past emission points, and the receiver event at which one or more of those surfaces are intersected.
 
 #### Reduced Translating-Loop Delay Checkpoint
 
@@ -1774,7 +1774,7 @@ $\hat{\mathbf{r}}_{ij}$ points **from the transmitter's historical position** $\
 
 **The $1/r^2$ factor:**
 
-Reflects the **surface density** of potential on the causal isochron. As that surface grows, the potential spreads over area $4\pi r^2$, so the density at any point scales as $1/r^2$.
+Reflects the **surface density** of potential on the causal wake surface. As that surface grows, the potential spreads over area $4\pi r^2$, so the density at any point scales as $1/r^2$.
 
 **The transmitter-side acceleration weight $W_{ij}^{\mathrm{acc}}$:**
 
@@ -2443,7 +2443,7 @@ where $\mathcal{F}$ is a **causal functional**: it depends on the current state 
 
 #### Mollified Causal-Wake Regularization
 
-The ideal model uses **surface-delta causal isochrons** in the emission-time integral. On a simple branch with a distance floor and a Jacobian floor, the delta collapses to a continuous reception-time branch contribution weighted by the transmitter-side acceleration weight; singular or impulse-like behavior arises only when branches hit collision support, lose transversality, accumulate, or are sampled as unresolved numerical events. One may treat the singular limit as a measure-valued branch law, or regularize by replacing the surface delta with a narrow wake surface of thickness $\eta > 0$:
+The ideal model uses **surface-delta causal wake surfaces** in the emission-time integral. On a simple branch with a distance floor and a Jacobian floor, the delta collapses to a continuous reception-time branch contribution weighted by the transmitter-side acceleration weight; singular or impulse-like behavior arises only when branches hit collision support, lose transversality, accumulate, or are sampled as unresolved numerical events. One may treat the singular limit as a measure-valued branch law, or regularize by replacing the surface delta with a narrow wake surface of thickness $\eta > 0$:
 
 $$
 \delta(r - c_f\Delta) \longrightarrow \delta_\eta(r - c_f\Delta) = \frac{1}{\sqrt{2\pi}\,\eta} \exp\!\Big(-\frac{(r - c_f\Delta)^2}{2\eta^2}\Big)
@@ -2674,7 +2674,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-baa274dff3803dde)
 
-**Geometric interpretation:** The architrino's current position $\mathbf X_i(T_r)$ lies on the causal isochron emitted from its past position $\mathbf X_i(T_t)$.
+**Geometric interpretation:** The architrino's current position $\mathbf X_i(T_r)$ lies on the causal wake surface emitted from its past position $\mathbf X_i(T_t)$.
 
 **Requirements:**
 
@@ -2687,7 +2687,7 @@ For a derived geometric counterexample to a curvature requirement, take the pres
 
 **Key insight:** An architrino can experience **multiple self-hits simultaneously** (or within a regularization window $\eta$).
 
-**Mechanism:** In curved motion at super-field-speed, the worldline may intersect **multiple past isochrons** at the same reception time $T_r$. Each intersection corresponds to a distinct emission time $T_{t,k} \in \mathcal{C}_{ii}(T_r)$.
+**Mechanism:** In curved motion at super-field-speed, the worldline may intersect **multiple past causal wake surfaces** at the same reception time $T_r$. Each intersection corresponds to a distinct emission time $T_{t,k} \in \mathcal{C}_{ii}(T_r)$.
 
 **Example:** In uniform circular motion at speed $\|\mathbf V\| > c_f$, an architrino can be hit by wake surfaces from multiple points on its own orbit, corresponding to different "winding numbers" $m = 0, 1, 2, \ldots$ (see Maximum-Curvature Orbit).
 
@@ -2842,7 +2842,7 @@ This transmitter-side fold is therefore an **amplitude pole** for the self branc
 
 #### Limited Information Per Hit
 
-From the perspective of the receiving architrino, the information carried by an intersecting causal isochron is **limited**. The receiver only knows:
+From the perspective of the receiving architrino, the information carried by an intersecting causal wake surface is **limited**. The receiver only knows:
 
 1. The **net strength** of the potential at the point of intersection, represented by the acceleration magnitude $\|\mathbf A\|$ on the retained hit record.
 2. The **unoriented line of action** through its current position (the line along which the acceleration points).
@@ -2962,7 +2962,7 @@ At each hit, log:
 
 **Use cases:**
 
-- Visualize causal cones and causal isochrons
+- Visualize causal cones and causal wake surfaces
 - Identify self-hit events and winding numbers
 - Trace energy transfer pathways
 - Validate superposition (sum of logged accelerations = total acceleration?)

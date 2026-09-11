@@ -89,7 +89,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `6e7d85fadab80fc0` |
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 60 | `421e58e6c3ced0d5` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `aea014967bca3b04` |
-| [reference/op/git/pr-lifecycle.md](git/pr-lifecycle.md) | 858 | `343e0d618908a30d` |
+| [reference/op/git/pr-lifecycle.md](git/pr-lifecycle.md) | 860 | `011c1f567d848cf9` |
 | [reference/priorities/README.md](../priorities/README.md) | 125 | `f93aee4d2c7b7b80` |
 | [reference/office-of-research/cto/prompts/README.md](../office-of-research/cto/prompts/README.md) | 64 | `44455776ef041094` |
 | [reference/office-of-research/cto/prompts/start-pi.md](../office-of-research/cto/prompts/start-pi.md) | 72 | `4e0ff61a310d3916` |
@@ -105,6 +105,6 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [content/markdown/aaa/archie/about-architrino.md](../../content/markdown/aaa/archie/about-architrino.md) | 79 | `bab0a2cbe3a73eab` |
 | [content/markdown/aaa/archie/academic-style-guide.md](../../content/markdown/aaa/archie/academic-style-guide.md) | 518 | `f7e80e2b9436568f` |
 | [content/markdown/aaa/archie/mathematics-style-guide.md](../../content/markdown/aaa/archie/mathematics-style-guide.md) | 364 | `9b6b4c319d1db052` |
-| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 152 | `5bffdd22c089275f` |
-| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 612 | `529168068a9d3450` |
-| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 183 | `f45955143cf8e7df` |
+| [content/markdown/aaa/archie/mathematics-terminology.md](../../content/markdown/aaa/archie/mathematics-terminology.md) | 152 | `f59f1ec26799f091` |
+| [content/markdown/aaa/archie/terminology-usage.md](../../content/markdown/aaa/archie/terminology-usage.md) | 612 | `cf27413335ffea6b` |
+| [content/markdown/aaa/archie/comparative-glossary.md](../../content/markdown/aaa/archie/comparative-glossary.md) | 183 | `e2bf223eb6a854bf` |

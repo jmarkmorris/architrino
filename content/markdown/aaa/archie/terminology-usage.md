@@ -87,7 +87,7 @@ Sentence guidance:
 
 Related ratified terms from the conservation and information program:
 
-- `geometric reach`: the set of receivers whose positions the isochrons of a given transmitter history have had time to arrive at; contact in this sense is universal within the reach set and diluted with distance, never cut off.
+- `geometric reach`: the set of receivers whose causal wake surfaces from a given transmitter history have had time to arrive at; contact in this sense is universal within the reach set and diluted with distance, never cut off.
 - `active roots`: the causal roots currently contributing legal hits with nonvanishing branch strength at a receiver event. A pair can be inside geometric reach yet have no active roots. Mechanism ownership stays with the Master Equation chapter.
 - The four-tier taxonomy of conserved quantities, `counting invariants`, `record invariant`, `symmetry ledger entries`, and `conditional topological invariants`, is the canonical classification; see [Information and the Wake](../philosophy-history/information-and-the-wake.md) for the survey and the dynamics chapters for mechanisms.
 
@@ -251,7 +251,7 @@ Use `wake` or `causal wake` for emitted substrate-level $\mathbb{A}\mathbb{A}\ma
 | When you mean... | Prefer | Keep `field` only when... | Example |
 | --- | --- | --- | --- |
 | emitted architrino influence | `wake`, `causal wake` | not applicable | "The architrino emits a causal wake that later intersects the receiver." |
-| the emitted front/surface | `wake front`, `wake surface`, `causal isochron` | not applicable | "Self-hit occurs when the worldline re-enters its own wake surface." |
+| the emitted front/surface | `wake front`, `wake surface`, `causal wake surface` | not applicable | "Self-hit occurs when the worldline re-enters its own wake surface." |
 | line-of-force style substrate prose | `line of action` | not applicable | "The push is radial along the line of action." |
 | coarse-grained continuum closure | `effective field` | continuum, observer-level, QFT-style bridge language | "At the effective level the wake superposition behaves like a field." |
 | hybrid phrase `wake field` | `causal wake` or `effective field` | only if the sentence is rewritten to specify level | "Use `causal wake` for substrate prose and `effective field` for coarse-grained closure." |

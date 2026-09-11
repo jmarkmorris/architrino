@@ -84,7 +84,7 @@ $$
 
 rather than an infinite-acceleration constraint. These impulse events are candidate mechanical origins for the discrete causal-root ledger steps used in the [energy bookkeeping](../dynamics/energy.md#self-hit-branch-changes-and-discrete-ledgers).
 
-This is the main regime assumption of the doubling-frequency-lock analysis. The speed $c_f$ is the propagation speed of causal isochrons in the reduced dynamics, not an observer-level claim about an effective metric. It is not a claim that every Noether braid regime has any fixed binary exactly at $c_f$. A promoted result must compare the three possible $h$ assignments or prove from the retained record why only one is admissible.
+This is the main regime assumption of the doubling-frequency-lock analysis. The speed $c_f$ is the propagation speed of causal wake surfaces in the reduced dynamics, not an observer-level claim about an effective metric. It is not a claim that every Noether braid regime has any fixed binary exactly at $c_f$. A promoted result must compare the three possible $h$ assignments or prove from the retained record why only one is admissible.
 
 ## Assumption 2 (Exact Integer Phase Closure)
 

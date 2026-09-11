@@ -3692,10 +3692,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Ownership Boundary",
+                "title": "Related descriptions",
                 "markdownPath": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md",
-                "markdownSection": "Ownership Boundary",
-                "sectionKey": "ownership boundary",
+                "markdownSection": "Related descriptions",
+                "sectionKey": "related descriptions",
                 "headingLevel": 2
               },
               {
@@ -9123,10 +9123,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Superposition with isochrons and $\\eta$-regularization",
+                    "title": "Superposition with causal wake surfaces and $\\eta$-regularization",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Superposition with isochrons and $\\eta$-regularization",
-                    "sectionKey": "superposition with isochrons and eta regularization",
+                    "markdownSection": "Superposition with causal wake surfaces and $\\eta$-regularization",
+                    "sectionKey": "superposition with causal wake surfaces and eta regularization",
                     "headingLevel": 2
                   },
                   {
