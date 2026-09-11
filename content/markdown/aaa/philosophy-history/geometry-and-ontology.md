@@ -60,7 +60,7 @@ The useful distinction is not geometric versus non-geometric. It is primitive ge
 | Layer | Geometry | Ontological status | What it controls |
 | --- | --- | --- | --- |
 | Euclidean void | Flat metric $h_{ij}=\delta_{ij}$ on $\mathbb{R}^3$ | Fundamental container | Distance, direction, spatial operators on each $T$ slice, fixed location identity |
-| Causal wake | Expanding causal isochrons satisfying $r=c_f(T-T_t)$ | Source-provenanced causal structure | Delayed interaction, line of action, branch roots, path-history effects |
+| Causal wake | Expanding causal wake surfaces satisfying $r=c_f(T-T_t)$ | Source-provenanced causal structure | Delayed interaction, line of action, branch roots, path-history effects |
 | Assembly | Stable internal organization of architrinos and Noether braids | Emergent bound structure | Particle identity, shielding, mass response, chirality, spin-like and quantum-number mappings |
 | Noether sea | Density, delay, stress, drift, alignment, and compliance response | Emergent medium content | Clock/ruler response, inertia, propagation channels, weak-field gravitational behavior |
 | Effective metric | $g^{\text{eff}}_{\mu\nu}$ reconstructed from observer records | Observer-level geometry | Proper time, geodesic approximation, lensing, redshift, Shapiro delay, gravitational-wave comparison |

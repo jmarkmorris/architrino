@@ -103,6 +103,22 @@ The local-access design uses fine-grained PATs for the identified tool/repositor
 
 A useful access check proceeds from account identity, to repository identity and permissions, to the actual intended operation. Profile-read success does not prove push access. A dry run is preliminary evidence; an authorized real push and a matching server branch tip establish that specific write. Avoid creating a throwaway commit in a valuable repository merely to test connectivity. Use the next legitimate, validated publication when authorized.
 
+<a id="242-route-diagnosis-and-publication-lessons"></a>
+
+### Route diagnosis and publication lessons
+
+An authentication result belongs to the route that produced it. A plain `gh auth status` can report no authenticated host while an explicit tool-and-repository wrapper succeeds, because the wrapper may inject a selected credential ephemerally and the plain CLI may intentionally have no shared login. Treat the two observations as separate measurements; neither should be silently substituted for the other.
+
+Diagnose access in this order: identify the current tool and checkout, verify the authenticated account through the assigned route, verify the exact remote repository and the relevant capability, perform the intended authorized operation, and compare the resulting server identity with the expected local identity. A successful profile read, repository metadata response, or public `git ls-remote` is not evidence of write permission. A real authorized push with an exact server-tip comparison establishes only that tested write path.
+
+Credential storage, credential selection, GitHub account identity, repository destination, application integration, and publication authority are separate boundaries. A token label, project name, remote name, or desktop authentication indicator does not prove any of them. Use the explicit route for both Git transport and GitHub API operations; do not restore a shared login merely because an unwrapped client reports no login. If the assigned route is unavailable, stop the authenticated operation and report the route failure rather than borrowing another context.
+
+The route must fail closed: inject secrets only through the supported secure mechanism, keep them out of remote URLs, files, logs, task messages, and diagnostic output, restrict lookup to the intended tool and repository, and do not fall back to a broader cached credential. Separate credentials under one local user improve routing and revocation but are not an operating-system isolation boundary.
+
+PR publication adds a second identity check. First query whether the exact branch already has a PR; an “already exists” response is a state observation, not a creation failure. Before merging, bind the operation to the reviewed `headRefOid`, current base, successful required checks, and mergeability. Keep report-only diagnostics visibly separate from required checks. After merging, verify the merge commit parents, synchronize local `main`, retire only the exact merged branch, and create the next registered branch from that synchronized base.
+
+Local environment failures must remain distinct from remote authentication failures. Sandbox permissions can prevent updates to `.git` lockfiles, `FETCH_HEAD`, or remote-tracking refs even when the authenticated remote operation succeeds. Record the failed local maintenance step and its scope, retry only through an approved environment or route, and do not infer that GitHub rejected the operation.
+
 Disconnect or revoke the particular authorization being retired, then verify the affected client. Removing a GitHub App installation, revoking an OAuth grant, deleting a PAT, and logging a CLI out are separate actions. Record which was done. Do not rotate unrelated credentials in response to uncertainty about a different integration.
 
 <a id="241-agreed-design-one-fine-grained-pat-per-tool-and-repository"></a>
@@ -294,4 +310,3 @@ B is the accepted future knowledge architecture. Separate tool/repository author
 The remaining work is to specify and verify the selected scope: which dependencies and earlier contents need records, which checks execute, how credentials are routed, how editors acknowledge publication readiness, and how integrated work is validated. Use one representative equation and its current consumers to resolve the knowledge-model questions. Use bounded operational trials to resolve coordination and routing questions. The capability scores remain inferred judgments and can change with evidence; they do not reopen the architectural choice merely because implementation details remain unfinished.
 
 The [campaign rollout](../../priorities/development-process-review/processes-git-codex-claude.md#3-rollout-and-integration-plan) is the entry point for that work. Keep the existing live publication owner and operator merge authority until their respective changes are explicitly implemented. A material blocker to an accepted direction requires a new decision, rather than an unrecorded substitution.
-

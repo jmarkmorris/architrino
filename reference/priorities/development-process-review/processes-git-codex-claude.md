@@ -43,7 +43,7 @@ The finite current package is checklist reconciliation and the authorized Pages 
 | Status | Preserved item | Revisit condition and owner |
 | --- | --- | --- |
 | ○ Not done — Deferred | Select broader knowledge protections/retrieval requirements and reassess provisional option scores | Before broader B/C adoption, review the [architecture objectives](../../op/git/git-backed-knowledge-architecture.md#12-proposed-integrity-objectives-to-discuss) and [cooperation requirements](../../op/git/git-github-operating-guide.md#22-the-arrangement-we-are-trying-to-achieve). These design questions do not block the bounded current workflow. |
-| ○ Not done — Deferred | Broader B migration or transfer of A enforcement | [Section 3.6](#36-migration-to-b--bounded-integration-complete-broader-adoption-deferred); require a separately selected useful chain and explicit authority. |
+| ◐ Adopted direction — bounded migration | Broader B migration or transfer of A enforcement | Proceed with useful, bounded B migration while A and B run in parallel. A remains authoritative until explicit acceptance criteria support transferring a responsibility; retirement of A is a later decision, not part of this direction. See [Section 3.6](#36-migration-to-b--bounded-integration-complete-broader-adoption-deferred). |
 | ◐ Partial — Deferred | Automate publication coordination across active editors | Manual coordination has real publication evidence; [section 3.5](#35-coordinated-publication-migration) retains implementation and failure-case verification. Revisit when the operator selects automation. |
 | ○ Not done — Rejected; decision complete | Adopt additional linked worktrees or run a teaching/evaluation experiment | Operator rejects temporary/task-managed, permanent and toy teaching worktrees. The [decision](../../op/git/git-github-operating-guide.md#283-how-we-would-evaluate-a-worktree-workflow) supersedes evaluation permission; the [lesson](analysis/worktree-learning-and-experiment.md) preserves the rejected design. Use the existing checkout; no implementation task remains. |
 | ○ Not done — Deferred | Verify Claude's first delegated merge | At its next suitable explicitly delegated real candidate; do not create a throwaway PR. |
@@ -147,7 +147,7 @@ This plan authorizes documenting the future workflow. Building the protocol, cha
 
 ### 3.6. Migration to B — bounded integration complete, broader adoption deferred
 
-The operator authorized the bounded trial after the earlier design-only phase. Two chains now run in local publication validation and a separate report-only GitHub job. A remains authoritative. The Option B task is archived at the operator's request; this does not disable its checks or accept its maps as baselines.
+The operator authorized the bounded trial after the earlier design-only phase. Two chains now run in local publication validation and a separate report-only GitHub job. The operator now affirms a measured migration toward B: continue useful bounded migration with A and B in parallel, keep A authoritative until explicit acceptance supports a transfer, and defer any retirement of A to a later decision. The Option B task is archived at the operator's request; this does not disable its checks or accept its maps as baselines.
 
 | Status | Phase | Current result and remaining boundary |
 | --- | --- | --- |
