@@ -3,7 +3,36 @@ import { createHash } from 'node:crypto';
 import { readFileSync, realpathSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { API_SUBJECT_BINDINGS, runF5 } from './run-f5-enclosed-root.mjs';
+import * as f5Fs from "node:fs";
+import * as f5Crypto from "node:crypto";
+// Bootstrap uses Node builtins only; no repository module runs before selection.
+export async function bootstrapF5(root, sourceMapSha256, originalIdentities = {}) {
+  if (!/^[a-f0-9]{64}$/u.test(sourceMapSha256 ?? "")) throw Error("externally selected F5 source-map digest required");
+  const capture = (filename, expected) => {
+    if (f5Fs.realpathSync(filename) !== filename) throw Error("canonical F5 bootstrap source required");
+    const fd = f5Fs.openSync(filename, f5Fs.constants.O_RDONLY | f5Fs.constants.O_NOFOLLOW | f5Fs.constants.O_NONBLOCK);
+    try {
+      const before = f5Fs.fstatSync(fd, {bigint:true});
+      const identity = s => [s.dev,s.ino,s.size,s.mtimeNs,s.ctimeNs].join(":");
+      if (!before.isFile() || before.size <= 0n || before.size > 1024n**2n) throw Error("bounded F5 bootstrap source");
+      const data = f5Fs.readFileSync(fd), sha256 = f5Crypto.createHash("sha256").update(data).digest("hex");
+      if (sha256 !== expected || identity(before) !== identity(f5Fs.fstatSync(fd,{bigint:true})) || identity(before) !== identity(f5Fs.lstatSync(filename,{bigint:true}))) throw Error("F5 bootstrap source digest/original identity changed");
+      if (Object.hasOwn(originalIdentities,filename) && originalIdentities[filename] !== identity(before)) throw Error("F5 original bootstrap identity changed");
+      return {data,identity:identity(before),path:filename};
+    } finally {f5Fs.closeSync(fd);}
+  };
+  const mapPath = path.join(root,"reference/priorities/development-process-review/contracts/option-b-f5-operational-sources.jsonld");
+  const map = capture(mapPath,sourceMapSha256), admissionPath = "scripts/eom/f5-current-source-admission.mjs";
+  const rows = JSON.parse(map.data)["@graph"]?.filter(r=>r.role==="admission"&&r.binding?.path===admissionPath);
+  if (rows?.length !== 1 || !/^[a-f0-9]{64}$/u.test(rows[0].binding.sha256)) throw Error("exact F5 admission module selection required");
+  const helper = capture(path.join(root,admissionPath),rows[0].binding.sha256);
+  const module = await import("data:text/javascript;base64,"+helper.data.toString("base64"));
+  return module.admitF5Sources(root,sourceMapSha256,{...originalIdentities,[map.path]:map.identity,[helper.path]:helper.identity});
+}
+
+// Historical API applicability, not a current execution selector.
+const API_SUBJECT_BINDINGS = [{"path":"src/eom/native/eom_f5_enclosed_root_cli.cpp","sha256":"9f7661f4000174d631d4c60f7078e124d77ae9b2ddba6af36197f13096095f81"},{"path":"src/eom/CMakeLists.txt","sha256":"e4b3a8bdfc91c756eb00e4c37e872bcbebfe1f7b406a551e3aa630f8818d2bdd"},{"path":"src/eom/src/History.cpp","sha256":"cd732843db488de66798953278d1e3b15151163c826b9d5b93eed98363a8b4c5"},{"path":"src/eom/src/Interval.cpp","sha256":"5da66e8473f78439dbb075857918af85b7789b2749e5046c83d9b58d944023a5"},{"path":"src/eom/include/architrino/eom/History.hpp","sha256":"0e326f15c70a0b0dc5786b1c14a2f2378324754c28cc597b92d82c0c1da3c8f3"},{"path":"src/eom/include/architrino/eom/Interval.hpp","sha256":"880a98273244c65f85ebcce2e08026a177c4af633633b8e29078948b54143dd9"}];
+
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 export function checkBinding(record, root) {
@@ -37,8 +66,10 @@ export function executionCopy(original, copy, root) {
   if (!relative || relative.split(path.sep).includes('..') || path.isAbsolute(relative)) throw new Error('execution copy must be inside the explicit input root');
   return { ...copy, path: relative };
 }
-export function currentBuildAdmission(admissionPath, admissionSha256) {
+export function currentBuildAdmission(admissionPath, admissionSha256, operational) {
   return ({ root, preparationInput, apiInput }) => {
+    if (!operational) throw new Error("explicit current F5 operational admission required");
+    operational.recheck();
     if (process.platform !== 'darwin') throw new Error('reviewed macOS runtime required');
     for (const key of Object.keys(process.env))
       if (key.startsWith('DYLD_') || ['LD_PRELOAD', 'LD_LIBRARY_PATH', 'NODE_OPTIONS', 'NODE_PATH'].includes(key))
@@ -88,7 +119,7 @@ export function currentBuildAdmission(admissionPath, admissionSha256) {
     });
     const toolchain = { built: localBuilt,
       externalLibraries: (build.externalLibrariesAfter ?? []).map(relative), compiler: actualCompiler };
-    dependencies.push(checkBinding({ path: fileURLToPath(import.meta.url), sha256: digest(readFileSync(fileURLToPath(import.meta.url))) }, root));
+    operational.recheck(); dependencies.push(...operational.sources);
     return { toolchainInput: { binding: buildBinding, value: build }, toolchain, actualCompiler, dependencies,
       adapterSourceSha256: admission.currentApiBindings.find(x => x.path === 'src/eom/native/eom_f5_enclosed_root_cli.cpp').sha256,
       applicability: { admission: admissionBinding, originalApiProof: admission.apiProof, boundary: 'reviewed configuration-path and build-test-selection changes only; original API receipt preserved' } };
@@ -103,7 +134,13 @@ export async function main(argv) {
     } else args.push(argv[i], argv[i + 1]);
   }
   if (!current['--admission'] || !/^[a-f0-9]{64}$/.test(current['--admission-sha256'] ?? '')) throw new Error('exact independently reviewed admission required');
-  return runF5(args, { admitCurrentBuild: currentBuildAdmission(current['--admission'], current['--admission-sha256']) });
+  const selected = args.filter((_,i)=>i%2===0).filter(x=>x==="--source-map-sha256");
+  if(selected.length!==1)throw Error("one externally selected F5 source-map digest required");
+  const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"../..");
+  const operational=await bootstrapF5(root,args[args.indexOf("--source-map-sha256")+1]);
+  const {runF5}=await operational.importModule("scripts/eom/run-f5-enclosed-root.mjs");
+  const result=await runF5(args, { admitCurrentBuild: currentBuildAdmission(current['--admission'], current['--admission-sha256'],operational) });
+  operational.recheck();return result;
 }
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url))
+if (import.meta.url.startsWith("file:") && !new URL(import.meta.url).search && process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url))
   main(process.argv.slice(2)).catch(error => { console.error(error.message); process.exitCode = 1; });

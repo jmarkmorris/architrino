@@ -1,0 +1,911 @@
+{
+  "@context": {
+    "@vocab": "https://architrino.com/knowledge/current-source/",
+    "from": {
+      "@type": "@id"
+    },
+    "to": {
+      "@type": "@id"
+    }
+  },
+  "schemaVersion": "current-source-manifest/v1",
+  "scope": "f6c-cached-root-cover-pilot-current-source",
+  "repository": "https://github.com/jmarkmorris/architrino.git",
+  "baseline": {
+    "commit": "7c957f86c1ca8c7ff8d4cf8341f2b3e2748b4b09",
+    "entry": "scripts/eom/run-f6c-cached-root-cover-pilot.mjs",
+    "authority": "operator-directed-existing-A-transfer"
+  },
+  "revisionId": "b-rem-5/v1",
+  "@graph": [
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "@type": "Source",
+      "revisionId": "b-rem-5/v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "e55cc27ca8e7d6bc0141b72cd65e1b2dce26d0c13d47d92427e68887d4de4e8a"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fprepare-f6c-cached-continuous-reception-root-cover.py",
+      "@type": "Source",
+      "revisionId": "existing-A-transfer/v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fverify-f6c-cached-continuous-reception-root-cover.py",
+      "@type": "Source",
+      "revisionId": "existing-A-transfer/v1",
+      "role": "independent-reference",
+      "binding": {
+        "path": "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-root-cover-pilot-resource-plan.md",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "resource-plan",
+      "binding": {
+        "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "1a6327933b0060905aec97022e87c243b54f353af8c7aec83712967b285b010d"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_cached_continuous_reception_root_cover_preparation.py",
+      "@type": "Source",
+      "revisionId": "existing-A-transfer/v1",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_cached_continuous_reception_root_cover.py",
+      "@type": "Source",
+      "revisionId": "existing-A-transfer/v1",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/test_f6c_cached_continuous_reception_root_cover.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fcontinuous_reception_roots_cached.py",
+      "@type": "Source",
+      "revisionId": "existing-A-transfer/v1",
+      "role": "independent-reference",
+      "binding": {
+        "path": "scripts/eom/oracle/continuous_reception_roots_cached.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fcertified_history.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "independent-reference",
+      "binding": {
+        "path": "scripts/eom/oracle/certified_history.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fdecimal_interval.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "independent-reference",
+      "binding": {
+        "path": "scripts/eom/oracle/decimal_interval.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-cached-root-cover-predeclaration.md",
+      "@type": "Source",
+      "revisionId": "existing-A-transfer/v1",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-continuous-reception-enclosure-contract.md",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-accepted-frame-history-reconstruction.md",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "710279f5c348a81fd36d58c6ca704730b3fa70da729ca30b9c92ae4e1cc6734b"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/tests%2Ftest_eom_continuous_reception_roots.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/test_eom_continuous_reception_roots.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "81de0ebc74a6e2e2a6c66e96cd3a7856806b7e41f775e3e2f184caf5bd1158ac"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fverify-f6c-accepted-frame-reconstruction.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "independent-reference",
+      "binding": {
+        "path": "scripts/eom/verify-f6c-accepted-frame-reconstruction.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "0c5ae3b5e7161cbed60de71670d17d5437a41b7ce4109843dbf3cdd20b9e3965"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fverify-f6c-retained-history-guards.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "independent-reference",
+      "binding": {
+        "path": "scripts/eom/verify-f6c-retained-history-guards.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "b8480f3652fd7254bdfe998bbe0f6d092500c6451d692c1ab225d3405295897d"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/tests%2Ftest_eom_continuous_reception_roots_cached.py",
+      "@type": "Source",
+      "revisionId": "existing-A-transfer/v1",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/test_eom_continuous_reception_roots_cached.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "3b20e5d7bce4b57dfd41c0d1efcc34f9242dcd41a02b35676f45ba0984499578"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fcontinuous_reception_roots.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "independent-reference",
+      "binding": {
+        "path": "scripts/eom/oracle/continuous_reception_roots.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fverify-f6c-continuous-reception-root-cover.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "independent-reference",
+      "binding": {
+        "path": "scripts/eom/verify-f6c-continuous-reception-root-cover.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_continuous_reception_root_cover.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/test_f6c_continuous_reception_root_cover.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-call-local-state-cache-equivalence.md",
+      "@type": "Source",
+      "revisionId": "existing-A-transfer/v1",
+      "role": "scientific-contract",
+      "binding": {
+        "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-root-cover-full-resource-plan.md",
+      "@type": "Source",
+      "revisionId": "existing-A-transfer/v1",
+      "role": "resource-plan",
+      "binding": {
+        "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-cutover/v1",
+      "role": "admission",
+      "binding": {
+        "path": "scripts/eom/run-f6c-cached-root-cover-pilot.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "ce7d33b4073250195d17687bd5f95ca67aad105acedee61413c7818e16bcc7fa"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-f6c-cached-root-cover-pilot.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-cutover/v1",
+      "role": "launcher",
+      "binding": {
+        "path": "scripts/eom/launch-f6c-cached-root-cover-pilot.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "f6b2fc855bc617e0119b93d7ef19b6f1bba22926bfaec3ddd7126b08ad55f3cd"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Source",
+      "revisionId": "cutover/v1",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-manifest.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "9097ef3fd3fb2040b48c601d81c184188e8a992aa4464694860d05d0bf76a56e"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "@type": "Relationship",
+      "revisionId": "b-rem-5/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "toRevision": "b-rem-5/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Fprepare-f6c-cached-continuous-reception-root-cover.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fprepare-f6c-cached-continuous-reception-root-cover.py",
+      "toRevision": "existing-A-transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Fverify-f6c-cached-continuous-reception-root-cover.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fverify-f6c-cached-continuous-reception-root-cover.py",
+      "toRevision": "existing-A-transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Areference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-root-cover-pilot-resource-plan.md",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-root-cover-pilot-resource-plan.md",
+      "toRevision": "transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Atests%2Ftest_f6c_cached_continuous_reception_root_cover_preparation.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_cached_continuous_reception_root_cover_preparation.py",
+      "toRevision": "existing-A-transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Atests%2Ftest_f6c_cached_continuous_reception_root_cover.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_cached_continuous_reception_root_cover.py",
+      "toRevision": "existing-A-transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Foracle%2Fcontinuous_reception_roots_cached.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fcontinuous_reception_roots_cached.py",
+      "toRevision": "existing-A-transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Foracle%2Fcertified_history.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fcertified_history.py",
+      "toRevision": "transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Foracle%2Fdecimal_interval.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fdecimal_interval.py",
+      "toRevision": "transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Areference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-cached-root-cover-predeclaration.md",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-cached-root-cover-predeclaration.md",
+      "toRevision": "existing-A-transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Areference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-continuous-reception-enclosure-contract.md",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-continuous-reception-enclosure-contract.md",
+      "toRevision": "transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Areference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-accepted-frame-history-reconstruction.md",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-accepted-frame-history-reconstruction.md",
+      "toRevision": "transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Atests%2Ftest_eom_continuous_reception_roots.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_eom_continuous_reception_roots.py",
+      "toRevision": "transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Fverify-f6c-accepted-frame-reconstruction.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fverify-f6c-accepted-frame-reconstruction.py",
+      "toRevision": "transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Fverify-f6c-retained-history-guards.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fverify-f6c-retained-history-guards.py",
+      "toRevision": "transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Atests%2Ftest_eom_continuous_reception_roots_cached.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_eom_continuous_reception_roots_cached.py",
+      "toRevision": "existing-A-transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Areference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md",
+      "toRevision": "transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Foracle%2Fcontinuous_reception_roots.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fcontinuous_reception_roots.py",
+      "toRevision": "transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Fverify-f6c-continuous-reception-root-cover.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fverify-f6c-continuous-reception-root-cover.py",
+      "toRevision": "transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Atests%2Ftest_f6c_continuous_reception_root_cover.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_continuous_reception_root_cover.py",
+      "toRevision": "transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Areference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-call-local-state-cache-equivalence.md",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-call-local-state-cache-equivalence.md",
+      "toRevision": "existing-A-transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Areference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-root-cover-full-resource-plan.md",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-root-cover-full-resource-plan.md",
+      "toRevision": "existing-A-transfer/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Flaunch-f6c-cached-root-cover-pilot.mjs",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-f6c-cached-root-cover-pilot.mjs",
+      "toRevision": "option-b-cutover/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "cutover/v1",
+      "role": "exact source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Flaunch-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "toRevision": "option-b-cutover/v1",
+      "role": "captured operational entry"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Flaunch-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "@type": "Relationship",
+      "revisionId": "b-rem-5/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "toRevision": "b-rem-5/v1",
+      "role": "registered outer supervisor"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "cutover/v1",
+      "role": "captured source manifest reader"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "@type": "Relationship",
+      "revisionId": "b-rem-5/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "toRevision": "b-rem-5/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Fprepare-f6c-cached-continuous-reception-root-cover.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fprepare-f6c-cached-continuous-reception-root-cover.py",
+      "toRevision": "existing-A-transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Fverify-f6c-cached-continuous-reception-root-cover.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fverify-f6c-cached-continuous-reception-root-cover.py",
+      "toRevision": "existing-A-transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Areference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-root-cover-pilot-resource-plan.md",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-root-cover-pilot-resource-plan.md",
+      "toRevision": "transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Atests%2Ftest_f6c_cached_continuous_reception_root_cover_preparation.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_cached_continuous_reception_root_cover_preparation.py",
+      "toRevision": "existing-A-transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Atests%2Ftest_f6c_cached_continuous_reception_root_cover.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_cached_continuous_reception_root_cover.py",
+      "toRevision": "existing-A-transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Foracle%2Fcontinuous_reception_roots_cached.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fcontinuous_reception_roots_cached.py",
+      "toRevision": "existing-A-transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Foracle%2Fcertified_history.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fcertified_history.py",
+      "toRevision": "transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Foracle%2Fdecimal_interval.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fdecimal_interval.py",
+      "toRevision": "transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Areference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-cached-root-cover-predeclaration.md",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-cached-root-cover-predeclaration.md",
+      "toRevision": "existing-A-transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Areference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-continuous-reception-enclosure-contract.md",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-continuous-reception-enclosure-contract.md",
+      "toRevision": "transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Areference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-accepted-frame-history-reconstruction.md",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-accepted-frame-history-reconstruction.md",
+      "toRevision": "transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Atests%2Ftest_eom_continuous_reception_roots.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_eom_continuous_reception_roots.py",
+      "toRevision": "transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Fverify-f6c-accepted-frame-reconstruction.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fverify-f6c-accepted-frame-reconstruction.py",
+      "toRevision": "transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Fverify-f6c-retained-history-guards.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fverify-f6c-retained-history-guards.py",
+      "toRevision": "transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Atests%2Ftest_eom_continuous_reception_roots_cached.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_eom_continuous_reception_roots_cached.py",
+      "toRevision": "existing-A-transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Areference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md",
+      "toRevision": "transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Foracle%2Fcontinuous_reception_roots.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fcontinuous_reception_roots.py",
+      "toRevision": "transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Ascripts%2Feom%2Fverify-f6c-continuous-reception-root-cover.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fverify-f6c-continuous-reception-root-cover.py",
+      "toRevision": "transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Atests%2Ftest_f6c_continuous_reception_root_cover.py",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_f6c_continuous_reception_root_cover.py",
+      "toRevision": "transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Areference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-call-local-state-cache-equivalence.md",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-call-local-state-cache-equivalence.md",
+      "toRevision": "existing-A-transfer/v1",
+      "role": "inherited source admission obligation"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs%3Areference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-root-cover-full-resource-plan.md",
+      "@type": "Relationship",
+      "revisionId": "option-b-cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-pilot.mjs",
+      "fromRevision": "option-b-cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/reference%2Fpriorities%2Fbraid-program%2Fevidence%2F2026-08-27-f6c-root-cover-full-resource-plan.md",
+      "toRevision": "existing-A-transfer/v1",
+      "role": "inherited source admission obligation"
+    }
+  ]
+}

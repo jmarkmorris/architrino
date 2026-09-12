@@ -44,11 +44,11 @@ function tiny(b){
   const fd=openSync(b.path,constants.O_RDONLY|constants.O_NOFOLLOW);try{const before=fstatSync(fd,{bigint:true});check(before.isFile()&&before.size===BigInt(b.bytes),'source size');const raw=readFileSync(fd);check(sha(raw)===b.sha256&&id(before)===id(fstatSync(fd,{bigint:true}))&&id(before)===id(lstatSync(b.path,{bigint:true})),'source replacement/hash');return raw;}finally{closeSync(fd);}
 }
 function capabilityPath(b){
-  check(b&&typeof b.path==='string'&&path.isAbsolute(b.path)&&realpathSync(b.path)===b.path,'runtime capability path');
+  check(b&&typeof b.path==='string'&&path.isAbsolute(b.path)&&path.resolve(b.path)===b.path,'runtime capability path');
   return b.path;
 }
-async function coordinator(plan){
-  const b=plan.sources.find(b=>b.path===path.join(plan.root,'scripts/eom/f6c-bounded-operation.mjs'));check(b,'explicit coordinator source');return import(url(tiny(b)));
+export async function admitOperationalSources(plan,live=()=>{}){
+  live();const b=plan.sources.find(b=>b.path===path.join(plan.root,'scripts/eom/f6c-bounded-operation.mjs'));check(b,'explicit coordinator source');const C=await import(url(tiny(b)));live();const sourceAdmission=await C.admitPlanSourceBindings(plan,live);live();return{C,sourceAdmission};
 }
 export function declaredSources(plan,C){return C.sourceUnion([...plan.sources,plan.hookModule,plan.hookControls,...plan.stages.flatMap(s=>[s.entry,...s.sources])]);}
 export function validateConfiguration(plan,C){
@@ -189,8 +189,8 @@ export function publicationIdentity(p,outputPath){
 }
 
 export async function fileOperation(job){
-  const C=await coordinator(job.plan),c=validateConfiguration(job.plan,C),live=()=>check(process.hrtime.bigint()<BigInt(job.deadlineNanoseconds),'original package operation deadline');
-  live();
+  const live=()=>check(process.hrtime.bigint()<BigInt(job.deadlineNanoseconds),'original package operation deadline');live();
+  const {C}=await admitOperationalSources(job.plan,live),c=validateConfiguration(job.plan,C);
   const expected=await contents(c,job.plan.root,C,live);
   if(job.kind==='preflight'){
     check(realpathSync(c.pythonCommand)===c.python.path&&realpathSync(c.pythonVenvConfig.path)===c.pythonVenvConfig.path,'shared-venv command resolves to frozen runtime');declaredRuntimes(job.plan,c,C);
@@ -225,13 +225,15 @@ export async function fileOperation(job){
 }
 
 export async function registered(stageId,planBinding,deadlineNanoseconds,prior){
-  const plan=JSON.parse(tiny(planBinding)),C=await coordinator(plan),c=validateConfiguration(plan,C),stage=plan.stages.find(s=>s.id===stageId);check(stage,'declared stage');
-  const live=()=>check(process.hrtime.bigint()<BigInt(deadlineNanoseconds),'original registered deadline');live();const node=nodeRuntime(stage,C);
+  const live=()=>check(process.hrtime.bigint()<BigInt(deadlineNanoseconds),'original registered deadline');live();
+  const plan=JSON.parse(tiny(planBinding)),{C}=await admitOperationalSources(plan,live),c=validateConfiguration(plan,C),stage=plan.stages.find(s=>s.id===stageId);check(stage,'declared stage');
+  const node=nodeRuntime(stage,C);
   const expected=await contents(c,plan.root,C,live);let result;
   if(stageId==='producer'){
     check(prior===null,'producer has no predecessor');
     const {spawn}=await import('node:child_process'),census=C.outputCensus(plan),all=declaredSources(plan,C);
-    const global=C.sourceUnion([...all,planBinding,...Object.values(C.PINS).map(([p,h])=>C.clean(C.readBound(path.join(plan.root,p),h,false,1048576,live)))]);
+    const selected=await C.admitPlanSourceBindings(plan,live);
+    const global=C.sourceUnion([...all,planBinding,...selected.sources]);
     const budgets={scientificBytesAlready:census.scientificBytes,logBytesAlready:census.logBytes,...sourceBaseline(global,expected.members,C)};
     const config=c.inventoryVersion===2?{planBinding,budgets}:{...c,root:plan.root,...budgets};
     const duration=Number(BigInt(deadlineNanoseconds)-process.hrtime.bigint())/1e9;check(duration>0&&duration<=1800,'remaining original duration');

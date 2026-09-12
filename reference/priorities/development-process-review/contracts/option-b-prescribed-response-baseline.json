@@ -1,0 +1,115 @@
+{
+  "schema": "current-source-transfer-baseline/v1",
+  "repository": "https://github.com/jmarkmorris/architrino.git",
+  "commit": "7c957f86c1ca8c7ff8d4cf8341f2b3e2748b4b09",
+  "entry": "scripts/eom/run-prescribed-response-pilot.mjs",
+  "scope": "prescribed-response-pilot-current-source",
+  "authority": "operator-directed-existing-A-transfer",
+  "bindings": [
+    {
+      "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/root-ladder-20260827-v2/rung-8.json",
+      "sha256": "a430d035d41ad32c89224f1a068c0a2a7947b9e44849f76280e1aa43a86b9052",
+      "category": "scientific-evidence-retained"
+    },
+    {
+      "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/root-ladder-20260827-v2/ledger-reduction.json",
+      "sha256": "37b934854075b500239a733df1b5e70a7ff355f0e56bbdc382adad952288a3a5",
+      "category": "scientific-evidence-retained"
+    },
+    {
+      "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/prepared-20260827-v1/history-manifest.json",
+      "sha256": "5c665fcd7eee92a105fd958929ee443e4eeaea6afc0222935739aad2622a1725",
+      "category": "scientific-evidence-retained"
+    },
+    {
+      "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/prepared-20260827-v1/nominal-history-conformance.json",
+      "sha256": "f862a7148a0a00b3bde5fbb0d164156fce2dbfc161597b0cdaa182457f3741e0",
+      "category": "scientific-evidence-retained"
+    },
+    {
+      "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/prepared-20260827-v1/api-domain-conformance.json",
+      "sha256": "440deb996eaeb646b7863e9276fb937f9897c11fdbd56fed11a32efb269fe746",
+      "category": "scientific-evidence-retained"
+    },
+    {
+      "path": ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/root-ladder-20260827-v2/reviewed-build.json",
+      "sha256": "5c8a9c36804b8bfed45b7f98834c0c104e758465ca0d19402bf0c328d81f9710",
+      "category": "scientific-evidence-retained"
+    },
+    {
+      "path": "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
+      "sha256": "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
+      "category": "historical-evidence-retained"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json",
+      "sha256": "bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344",
+      "category": "historical-evidence-retained"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-prescribed-acceleration-response-predeclaration.md",
+      "sha256": "c08d7f53616fc2843b3a192f7e3c10229f9a9fe7abc1a8670ddb1706d95756ef",
+      "category": "historical-evidence-retained"
+    },
+    {
+      "path": "scripts/eom/oracle/prescribed_acceleration_response.py",
+      "sha256": "e630c2f4c48c9fcfc56866166e8b5977d70ab83c6ca3f2b08ad9ea4f3f5e910c",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "tests/test_prescribed_acceleration_response.py",
+      "sha256": "4b0e66feb308544aa6294b126a05f6a3c9fbb403580e8193d3140a7b52c370f1",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "scripts/eom/reduce-prescribed-acceleration-response.py",
+      "sha256": "e5b6ce3274f0cfdef107c03a966508896f8e7874372c4735fcd8ad55a339cd16",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "tests/test_prescribed_acceleration_response_consumer.py",
+      "sha256": "eeb85745d0175fabc3306e3a00e5b6dc3df3418b29fe40df9b89b765ac468875",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "scripts/eom/oracle/decimal_interval.py",
+      "sha256": "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "scripts/eom/oracle/certified_history.py",
+      "sha256": "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "scripts/eom/oracle/continuous_reception_roots.py",
+      "sha256": "f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "scripts/eom/oracle/reference_kernel.py",
+      "sha256": "a3b94301b2994c29e1107de44d627db9566abe9cda60ec8e00b89d9351a275f6",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "scripts/eom/oracle/certified_acceleration.py",
+      "sha256": "62787f1bb0d14329c0ad1f3586ef1f1cbeb666fe8c11f8831f7ad761d7c42b83",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+      "sha256": "71974054ddce7fc29b8464b9a7a63f8fbb04ee5b425dc997df4d40b2804341aa",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "scripts/eom/publish-prescribed-acceleration-response.py",
+      "sha256": "dc9d6db86b564297c0b21b5cf79afefd150b0eeb55d0bbedc71621eee0c30be4",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "tests/test_prescribed_acceleration_response_publication.py",
+      "sha256": "fe57d4ed40110d530044b0d6aecb7a17da865b4d56d6186a3ad14497282e217f",
+      "category": "current-repository-binding-transfer"
+    }
+  ]
+}

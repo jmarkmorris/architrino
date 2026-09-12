@@ -41,7 +41,10 @@ async function rejection(options) {
 const UNRESOLVED_ADMISSION_DRIVER = "--unresolved-admission-driver";
 async function runUnresolvedAdmissionDriver(root) {
   const { options } = fixture("normal", realpathSync(root));
-  options.limitMs = 15600; options.admit = async () => new Promise(() => {});
+  options.limitMs = 20000; options.admit = async () => {
+    writeFileSync(path.join(root, "admission-entered"), "synthetic callback reached\n", { flag: "wx" });
+    return new Promise(() => {});
+  };
   const receipt = await rejection(options);
   writeFileSync(path.join(root, "unresolved-admission-receipt.json"), JSON.stringify(receipt) + "\n", { flag: "wx" });
   await new Promise(() => {});
@@ -53,18 +56,19 @@ async function isolatedUnresolvedAdmission() {
   const started = performance.now();
   const driver = spawn(process.execPath, [fileURLToPath(import.meta.url), UNRESOLVED_ADMISSION_DRIVER, root], { stdio: "ignore" });
   const status = await new Promise((resolve, reject) => {
-    const timeout = setTimeout(() => reject(new Error("unresolved admission driver exceeded 20 seconds")), 20000);
+    const timeout = setTimeout(() => reject(new Error("unresolved admission driver exceeded 25 seconds")), 25000);
     driver.once("error", error => { clearTimeout(timeout); reject(error); });
     driver.once("close", (code, signal) => { clearTimeout(timeout); resolve({ code, signal }); });
   });
   const elapsed = performance.now() - started;
+  assert.equal(readFileSync(path.join(root, "admission-entered"), "utf8"), "synthetic callback reached\n");
   assert.deepEqual(status, { code: null, signal: "SIGKILL" });
-  assert.ok(elapsed >= 14500 && elapsed < 20000, `guard boundary was ${elapsed} ms`);
+  assert.ok(elapsed >= 19000 && elapsed < 25000, `guard boundary was ${elapsed} ms`);
   return JSON.parse(readFileSync(path.join(root, "unresolved-admission-receipt.json"), "utf8"));
 }
 
 test("launcher arguments require reviewed bytes and fresh scoped output", () => {
-  const good = ["--out", ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/new", "--launcher-sha256", "a".repeat(64)];
+  const good = ["--out", ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/new", "--launcher-sha256", "a".repeat(64),"--source-map-sha256","b".repeat(64)];
   assert.equal(parseLauncherArgs(good).launcherSha256, "a".repeat(64));
   for (const args of [[], good.slice(0, 2), [...good, "--out", "duplicate"], ["--out", "/tmp/x", ...good.slice(2)],
     ["--out", good[1] + "/../x", ...good.slice(2)]]) assert.throws(() => parseLauncherArgs(args));

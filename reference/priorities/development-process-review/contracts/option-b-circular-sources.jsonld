@@ -1,0 +1,792 @@
+{
+  "@context": {
+    "@vocab": "https://architrino.com/knowledge/current-source/",
+    "from": {
+      "@type": "@id"
+    },
+    "to": {
+      "@type": "@id"
+    }
+  },
+  "schemaVersion": "current-source-manifest/v1",
+  "scope": "subfield-circular-current-operation",
+  "repository": "https://github.com/jmarkmorris/architrino.git",
+  "baseline": {
+    "commit": "7c957f86c1ca8c7ff8d4cf8341f2b3e2748b4b09",
+    "entry": "scripts/eom/run-current-subfield-circular-root-pilot.mjs",
+    "authority": "operator-directed-existing-A-transfer"
+  },
+  "revisionId": "option-b-circular-20260912-v1",
+  "@graph": [
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "admission",
+      "binding": {
+        "path": "scripts/eom/run-current-subfield-circular-root-pilot.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "184b86e790fcdcc6fc9eb57ec389849615c4b13f8ab70c384637a579bb8dc4b7"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "launcher",
+      "binding": {
+        "path": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "e55cc27ca8e7d6bc0141b72cd65e1b2dce26d0c13d47d92427e68887d4de4e8a"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-subfield-circular-root-pilot.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/run-subfield-circular-root-pilot.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "7ea12ef02b4a1d5ba2da1a353b0e7720e30cfd5d3f59bfb2db0177ad11fd737f"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/src%2Fprescribed-path-analysis%2FSubfieldCircularObservationOwner.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "current-source",
+      "binding": {
+        "path": "src/prescribed-path-analysis/SubfieldCircularObservationOwner.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "178b7f5e81ce05afe87af25cd06892d774655c15e58297f392e4668419258786"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fobserve-subfield-circular-processes.py",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/observe-subfield-circular-processes.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "d74e4aa23a07eb7d8d25e444854a26d8e48dee3e4171d2fb9c5b184027825a03"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-rung.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/run-current-subfield-circular-root-rung.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "be58586eaf2c8e5b791eb34a46686167fa483ecae215fb375e5ddc4ccb11400a"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-subfield-circular-root-rung.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/run-subfield-circular-root-rung.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "e9ae291fd123fdb2e176fc085ded0f9f58a495a75b84489775d406bbd7d19e23"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fdispatch-subfield-circular-root-ladder.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/dispatch-subfield-circular-root-ladder.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "70e6841466fc489e6593c5e60a57071ed4a39c3b6fbb2cd7c315e6417bacbc5e"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fprepare-current-subfield-circular-prior.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/prepare-current-subfield-circular-prior.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "3814f396c1f08f04d3ca9db07cd202af55a15743a5e920ac4f067584dbbe4996"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fprepare-current-subfield-circular-ladder.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/prepare-current-subfield-circular-ladder.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "83150bc0bdfc918f6b7f2146bfc92cc9068ed5b2428480bc9a2c954961cb16a9"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fprepare-subfield-circular-root.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/prepare-subfield-circular-root.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "7128933e7fbf8b101f0e6088b7287be666dd9fda9387d5215dcc8e343ab8d0ef"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fprepare-f5-enclosed-root.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/prepare-f5-enclosed-root.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "3431be1ca2f17474775572358baa88eae8de3ce93403d58e4b1fa36d9e367d50"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/src%2Fprescribed-path-analysis%2FSubfieldCircularPhaseProcess.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "current-source",
+      "binding": {
+        "path": "src/prescribed-path-analysis/SubfieldCircularPhaseProcess.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "15a844adc1731a6ea47f0636f86d9e0d7196d6b15dd963006a278c129cc328f1"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/src%2Fprescribed-path-analysis%2FSubfieldCircularPhaseLedgerWorker.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "current-source",
+      "binding": {
+        "path": "src/prescribed-path-analysis/SubfieldCircularPhaseLedgerWorker.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "00cd8290a9929e0e099c91aeff03c52cf06ec5d9cad329ffad00092c61815e02"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/src%2Fprescribed-path-analysis%2FSubfieldCircularMemoryOwner.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "current-source",
+      "binding": {
+        "path": "src/prescribed-path-analysis/SubfieldCircularMemoryOwner.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "39b7e854ad0a14b7fa4feb7d8ee5a8b79932c7a5475825058fd420c80169f755"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fobserve-subfield-circular-memory.py",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/observe-subfield-circular-memory.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "7e3fe932be06ca6aaa72151f142ebf0bc59c1818a3622124dc5cc78c9ad24c9f"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/src%2Fprescribed-path-analysis%2FSubfieldCircularRootLedgerReducer.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "independent-reference",
+      "binding": {
+        "path": "src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "6dabe54a991ccd7a8c1ca5da41139c0669e62f521d17fff4c9a0c52b51b2dda9"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Freduce-subfield-circular-root-ledger.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "independent-reference",
+      "binding": {
+        "path": "scripts/eom/reduce-subfield-circular-root-ledger.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "2b3eb236b561c1901e6dfc58603f97f1104fc045e79d2d7a10d8879da02fd60a"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fverify-subfield-circular-history.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "independent-reference",
+      "binding": {
+        "path": "scripts/eom/verify-subfield-circular-history.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "b2fc83aa828ac9f175d7c3ae7bf43b66fcda54a702de6f2f80812852aebd5f38"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/src%2Feom%2Fnative%2Feom_subfield_circular_root_cli.cpp",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "current-source",
+      "binding": {
+        "path": "src/eom/native/eom_subfield_circular_root_cli.cpp",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "a06246ca3aac60d500981b19fcffabb9612dc3a4085fc4fb3c441e8839726b7a"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/src%2Feom%2FCMakeLists.txt",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "current-source",
+      "binding": {
+        "path": "src/eom/CMakeLists.txt",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Source",
+      "revisionId": "option-b-circular-20260912-v1",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-manifest.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "9097ef3fd3fb2040b48c601d81c184188e8a992aa4464694860d05d0bf76a56e"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-0",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "launcher"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-0",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "launcher"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-1",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-subfield-circular-root-pilot.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-1",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-subfield-circular-root-pilot.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-2",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/src%2Fprescribed-path-analysis%2FSubfieldCircularObservationOwner.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-2",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/src%2Fprescribed-path-analysis%2FSubfieldCircularObservationOwner.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-3",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fobserve-subfield-circular-processes.py",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-3",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fobserve-subfield-circular-processes.py",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-4",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-rung.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-4",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-rung.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-5",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-subfield-circular-root-rung.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-5",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-subfield-circular-root-rung.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-6",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fdispatch-subfield-circular-root-ladder.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-6",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fdispatch-subfield-circular-root-ladder.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-7",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fprepare-current-subfield-circular-prior.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-7",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fprepare-current-subfield-circular-prior.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-8",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fprepare-current-subfield-circular-ladder.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-8",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fprepare-current-subfield-circular-ladder.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-9",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fprepare-subfield-circular-root.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-9",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fprepare-subfield-circular-root.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-10",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fprepare-f5-enclosed-root.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-10",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fprepare-f5-enclosed-root.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-11",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/src%2Fprescribed-path-analysis%2FSubfieldCircularPhaseProcess.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-11",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/src%2Fprescribed-path-analysis%2FSubfieldCircularPhaseProcess.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-12",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/src%2Fprescribed-path-analysis%2FSubfieldCircularPhaseLedgerWorker.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-12",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/src%2Fprescribed-path-analysis%2FSubfieldCircularPhaseLedgerWorker.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-13",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/src%2Fprescribed-path-analysis%2FSubfieldCircularMemoryOwner.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-13",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/src%2Fprescribed-path-analysis%2FSubfieldCircularMemoryOwner.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-14",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fobserve-subfield-circular-memory.py",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-14",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fobserve-subfield-circular-memory.py",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-15",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/src%2Fprescribed-path-analysis%2FSubfieldCircularRootLedgerReducer.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "independent-reference"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-15",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/src%2Fprescribed-path-analysis%2FSubfieldCircularRootLedgerReducer.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "independent-reference"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-16",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Freduce-subfield-circular-root-ledger.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "independent-reference"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-16",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Freduce-subfield-circular-root-ledger.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "independent-reference"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-17",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fverify-subfield-circular-history.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "independent-reference"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-17",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fverify-subfield-circular-history.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "independent-reference"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-18",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/src%2Feom%2Fnative%2Feom_subfield_circular_root_cli.cpp",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-18",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/src%2Feom%2Fnative%2Feom_subfield_circular_root_cli.cpp",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-19",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/src%2Feom%2FCMakeLists.txt",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-19",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/src%2Feom%2FCMakeLists.txt",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "current-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-dependsOn-20",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "manifest-reader"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/circular-checks-20",
+      "@type": "Relationship",
+      "revisionId": "option-b-circular-20260912-v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-current-subfield-circular-root-pilot.mjs",
+      "fromRevision": "option-b-circular-20260912-v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "option-b-circular-20260912-v1",
+      "role": "manifest-reader"
+    }
+  ]
+}

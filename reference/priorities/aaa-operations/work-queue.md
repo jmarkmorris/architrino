@@ -100,13 +100,12 @@ No rows.
 - **Request:** Review the maintained project skills and their discovery pointers for policy drift, stale references and unsupported duplication.
 - **Cadence:** Keep this item live with the next due date; complete an earlier pass when a referenced owner changes materially.
 - **Next pass due:** 2026-11-10.
+- **Interim finding (2026-09-12):** Review of `architrino-converge` routing applied a mode table, a shared canon/constraints section, and Git-command alignment in `reference/office-of-research/cto/prompts/convergence-campaign.md`, and added the skill owner to the Corpus convergence and Source mining router cards. Remaining check for the next pass: confirm the paste blocks still reach the shared section when invoked through each skill.
 - **Acceptance:** Each maintained skill has a disposition recorded in the work log, with corrections applied only to its live owner and no competing policy source introduced.
 - **Owner:** operations with the repository skills-policy owner.
 
 ## Closed work
 
 Completed task detail is not retained in this queue. Search [work-log.md](work-log.md) by task identifier for the closure record.
-
-<a id="ops-024--post-campaign-binding-corruption-sweep"></a>
 
 OPS-024: [completed local evidence-only reconciliation and I5 custody disposition](work-log.md#2026-09-11--ops-024-closed-after-i5-custody-disposition). The [recovery queue](../development-process-review/work-queue.md) retains blocked inputs and deferred verification.

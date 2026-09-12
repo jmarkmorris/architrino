@@ -12,6 +12,7 @@ import json
 import os
 from pathlib import Path
 import stat
+import subprocess
 import sys
 import time
 from types import ModuleType
@@ -35,6 +36,24 @@ RESTRICTION = '5a2e9158bf26c34a7a9755e53ea1337cc006765727d9afe1ef1304c3fcd140b0'
 SCHEMA = 'braid-program/f5-current-handoff-plan.v1'
 HANDOFF = 'braid-program/f5-prehistory-handoff.v2'
 LIMIT = 8*1024**2
+RUNTIME_LIMIT = 256*1024**2
+OPERATIONAL_ROLES = {
+    "scripts/eom/f5-current-source-admission.mjs": "admission",
+    "scripts/equation-mapping/current-source-manifest.mjs": "manifest-reader",
+    "scripts/eom/launch-f5-prehistory-handoff-build.mjs": "launcher",
+    "scripts/eom/prepare-f5-enclosed-root-build.mjs": "current-source",
+    "scripts/eom/prepare-f5-prehistory-handoff-build.mjs": "current-source",
+    "scripts/eom/prepare-f5-enclosed-root.mjs": "current-source",
+    "scripts/eom/run-f5-enclosed-root.mjs": "current-source",
+    "scripts/eom/run-current-f5-enclosed-root.mjs": "current-source",
+    "scripts/eom/execute-f5-prehistory-handoff.py": "current-source",
+    "scripts/eom/run-f5-current-handoff.mjs": "current-source",
+    "scripts/eom/prepare-f5-original-input-tree.mjs": "current-source",
+    "scripts/eom/prepare-subfield-circular-root.mjs": "current-source",
+    "scripts/eom/launch-subfield-circular-root-pilot.mjs": "current-source",
+    "scripts/dev/owned-compute-supervisor.mjs": "current-source",
+    "tests/option-b-f5-admission.test.mjs": "current-source"
+}
 
 
 def require(ok, why):
@@ -103,6 +122,69 @@ def tool(bound):
         yield module
     finally:
         sys.modules.pop(module.__name__, None)
+
+
+def admit_operational_sources(args, stack, captures):
+    """Execute only the externally selected Node admission/reader generation."""
+    map_path = ROOT/'reference/priorities/development-process-review/contracts/option-b-f5-operational-sources.jsonld'
+    digest = getattr(args, 'source_map_sha256', None)
+    require(type(digest) is str and len(digest) == 64 and all(c in '0123456789abcdef' for c in digest), 'externally selected F5 source-map digest required')
+    node = Path(getattr(args, 'node', '')).absolute()
+    require(getattr(args, 'node', None) and node == node.resolve() and node.is_file(), 'explicit canonical Node capability required')
+    for key in os.environ:
+        require(not key.startswith('DYLD_') and key not in ('NODE_OPTIONS','NODE_PATH','LD_PRELOAD','LD_LIBRARY_PATH'), 'injected admission environment')
+    node_digest = getattr(args, 'node_sha256', None)
+    node_bytes = getattr(args, 'node_bytes', None)
+    require(type(node_digest) is str and len(node_digest) == 64 and all(c in '0123456789abcdef' for c in node_digest), 'externally selected Node SHA-256 required')
+    require(type(node_bytes) is int and 0 < node_bytes <= RUNTIME_LIMIT, 'externally selected Node byte size required')
+    node_capture = stack.enter_context(Bound(node,node_digest,False,RUNTIME_LIMIT))
+    require(node_capture.initial[2] == node_bytes, 'selected Node size differs')
+    captures['nodeRuntime'] = node_capture
+    inherited = decode(getattr(args,'source_identities','{}').encode())
+    require(type(inherited) is dict, 'original operational identity table required')
+    selected = stack.enter_context(Bound(map_path, digest))
+    captures['sourceMap'] = selected
+    helper_path = 'scripts/eom/f5-current-source-admission.mjs'
+    rows = [r for r in decode(selected.data).get('@graph', []) if r.get('@type') == 'Source']
+    require(len(rows) == len(OPERATIONAL_ROLES) and {r.get('binding',{}).get('path') for r in rows} == set(OPERATIONAL_ROLES), 'independent exact F5 operational source census required')
+    expected = {str(map_path):selected}
+    for row in rows:
+        filename = row['binding']['path']
+        require(row.get('role') == OPERATIONAL_ROLES[filename], 'independent F5 operational role differs')
+        b = stack.enter_context(Bound(ROOT/filename,row['binding']['sha256'],filename == helper_path))
+        expected[str(b.path)] = b
+        captures['operational:'+str(b.path)] = b
+    for b in captures.values():
+        if str(b.path) in inherited:
+            require(':'.join(map(str,b.initial)) == inherited[str(b.path)], 'inherited F5 original source identity differs')
+    require(not inherited or set(inherited) == set(expected) | {str(node)}, 'complete inherited F5 identity census required')
+    helper = expected[str(ROOT/helper_path)]
+    captures['operationalAdmission'] = helper
+    import base64
+    source_url = 'data:text/javascript;base64,'+base64.b64encode(helper.data).decode('ascii')
+    script = """import fs from 'node:fs';
+const input=JSON.parse(fs.readFileSync(0,'utf8'));
+const M=await import(input.module);
+const a=await M.admitF5Sources(input.root,input.digest,input.identities);
+a.recheck();console.log(JSON.stringify({sources:a.sources,identities:a.identities}));"""
+    originals = {filename: ':'.join(map(str,b.initial)) for filename,b in expected.items()}
+    for b in captures.values(): b.scan()
+    result = subprocess.run([str(node),'--input-type=module','-e',script], input=json.dumps(dict(module=source_url,root=str(ROOT),digest=digest,identities=originals)).encode(),
+                            stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=15,check=False)
+    require(result.returncode == 0 and len(result.stdout) <= LIMIT, 'F5 captured source admission rejected: '+result.stderr[-2000:].decode(errors='replace'))
+    admission = decode(result.stdout)
+    require(type(admission) is dict and set(admission) == {'sources','identities'} and type(admission['sources']) is list and type(admission['identities']) is dict, 'closed Node admission result required')
+    require(len(admission['sources']) == len(expected) and {r.get('path') for r in admission['sources']} == set(expected) and set(admission['identities']) == set(expected), 'Node result omits independent operational census')
+    for r in admission['sources']:
+        b = expected[r['path']]
+        require(b.binding() == r and ':'.join(map(str,b.initial)) == admission['identities'][r['path']], 'F5 operational original identity differs')
+    for b in captures.values(): b.scan()
+
+
+def recheck_operational_originals(originals):
+    for binding, identity in originals:
+        with Bound(binding['path'],binding['sha256'],False,RUNTIME_LIMIT) as b:
+            require(b.binding() == binding and b.initial == identity, 'F5 operational original identity changed before completion')
 
 
 def validate_plan(plan):
@@ -198,15 +280,19 @@ def retract_stage(output):
         if (a.st_dev,a.st_ino) == (b.st_dev,b.st_ino): public.unlink()
 
 
-def runtime_inventory():
-    argparse.ArgumentParser().parse_args([])
+def runtime_inventory(args):
     quotient = (10**20000+1)//(10**15000+3)
     with ExitStack() as stack:
+        captures = {}
+        admit_operational_sources(args,stack,captures)
         for filename in (SUBJECT,REFERENCE):
             b = stack.enter_context(Bound(ROOT/filename,PINS[filename]))
             stack.enter_context(tool(b))
-        files = sorted(runtime_paths())
-    return {'schema':'braid-program/f5-current-python-runtime.v1','scientificDataLoaded':False,
+        files = sorted(runtime_paths() | {captures['nodeRuntime'].path})
+        for b in captures.values(): b.scan()
+        originals = [(b.binding(),b.initial) for b in captures.values()]
+    recheck_operational_originals(originals)
+    return {'_operationalOriginals':originals,'schema':'braid-program/f5-current-python-runtime.v1','scientificDataLoaded':False,
             'files':[str(p) for p in files]}
 
 
@@ -222,6 +308,8 @@ def execute(args, started=None):
         def capture(role, path, digest, collect=True, limit=LIMIT):
             captures[role] = stack.enter_context(Bound(path,digest,collect,limit))
             return captures[role]
+        admit_operational_sources(args,stack,captures)
+        operational_originals = [(b.binding(),b.initial) for b in captures.values()]
         own = capture('bridge', ROOT/SELF, args.bridge_sha256)
         require(compile(own.data, _EXECUTING_CODE.co_filename,'exec',dont_inherit=True,optimize=sys.flags.optimize) == _EXECUTING_CODE, 'executing transport differs')
         plan_file = capture('plan', args.plan, args.plan_sha256)
@@ -275,25 +363,40 @@ def execute(args, started=None):
                 watch.check(); check_runtime()
         check_runtime()
     check_runtime()
+    recheck_operational_originals(operational_originals)
     publish_stage(output/'.pending-stage.json',output/'stage.json',started)
+    recheck_operational_originals(operational_originals)
     record = {**private_record,'path':str(output/'stage.json')}
-    return {'completed':True,'accepted':False,'stage':args.stage,'receipt':record,'h3EvidenceEligible':False}
+    return {'completed':True,'accepted':False,'stage':args.stage,'receipt':record,'h3EvidenceEligible':False,'_operationalOriginals':operational_originals}
 
 
 def main():
-    if sys.argv[1:] == ['--runtime-inventory']:
-        print(json.dumps(runtime_inventory()),flush=True)
-        return 0
     parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--runtime-inventory',action='store_true')
+    parser.add_argument('--source-map-sha256',required=True)
+    parser.add_argument('--node',required=True)
+    parser.add_argument('--node-sha256',required=True)
+    parser.add_argument('--node-bytes',required=True,type=int)
+    parser.add_argument('--source-identities',default='{}')
     for flag in ('stage','plan','plan-sha256','bridge-sha256','out-dir'):
-        parser.add_argument('--'+flag,required=True,**({'choices':['produce','verify']} if flag=='stage' else {}))
+        parser.add_argument('--'+flag,required='--runtime-inventory' not in sys.argv,**({'choices':['produce','verify']} if flag=='stage' else {}))
     for flag in ('handoff','handoff-sha256'): parser.add_argument('--'+flag)
     args=parser.parse_args()
+    if args.runtime_inventory:
+        result = runtime_inventory(args)
+        originals = result.pop('_operationalOriginals')
+        recheck_operational_originals(originals)
+        print(json.dumps(result),flush=True)
+        recheck_operational_originals(originals)
+        return 0
     try:
         started = time.monotonic()
         result = execute(args,started)
+        originals=result.pop('_operationalOriginals')
+        recheck_operational_originals(originals)
         deadline_check(started)
         print(json.dumps(result),flush=True)
+        recheck_operational_originals(originals)
         deadline_check(started)
     except BaseException as error:
         retract_stage(Path(args.out_dir).absolute())

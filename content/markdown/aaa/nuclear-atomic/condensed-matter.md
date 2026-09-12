@@ -1,6 +1,6 @@
 # Condensed Matter
 
-This chapter is an exploratory mapping study for the effective condensed-matter behavior recovered from AAA. It focuses on a proposed Noether-sea transport map: the distinction between reversible inertial response, true resistance, and threshold behavior when effective matter moves through a densely coupled background of neutral Noether braids. The map is not a completed derivation of atomic, molecular, or chemical behavior.
+This chapter is an exploratory mapping study for effective condensed-matter behavior in the Architrino Assembly Architecture, $\mathbb{A}\mathbb{A}\mathbb{A}$. Its proposed Noether sea transport map distinguishes reversible inertial response, resistance, and threshold behavior of matter in a coupled medium of neutral Noether braids. An [architrino](../foundations/architrino.md) is a point entity with polarity and a retained path history; its expanding causal wake contributes to other architrinos' acceleration through the [Master Equation](../dynamics/master-equation.md). A Noether braid is a candidate neutral assembly of such histories, and the [Noether sea](../spacetime/noether-sea.md) is their proposed ambient population. The transport map is not a completed derivation of atomic, molecular, or chemical behavior.
 
 This note bridges [Atomic Structure](atomic-structure.md), [Particle Masses](../assemblies/particle-masses.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), and [Molecular Exclusion and Noether Sea Response](../spacetime/molecular-exclusion-and-noether-sea-response.md), since all four depend on how the Noether sea stores stress and permits transport.
 
@@ -29,9 +29,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f1e6b138902c1fde)
 
-Here $\mathbf{V}_{\text{cm}}$ and $\mathbf{a}_{\text{cm}}$ record center-of-mass transport, $\rho_{\text{NS}}$ and $\chi_{\text{sea}}$ record the local Noether sea state, $\mathcal{M}_{\text{sea}}^{ab}$ records the medium-response tensor, and $\Delta_{\mathbf{k}}$ is the canonical assembly non-symmetry Floquet gap inherited from the branch certificate. It is unrelated to the Bloch wavevector $\mathbf k$ used later in this chapter. The equation defines the diagnostic target; it does not yet prove the constitutive form of $\mathcal{R}_{\text{tr}}$.
+Here $\mathbf{V}_{\text{cm}}$ is assembly group velocity relative to the local sea flow, extracted from a declared response center in absolute time $T$, and $\mathbf{a}_{\text{cm}}=d\mathbf V_{\text{cm}}/dT$. The center-of-mass label does not assign mass weights to primitive architrinos; its observer interpretation requires the response-center map in [Particle Masses](../assemblies/particle-masses.md). The number density $\rho_{\text{NS}}$, delay factor $\chi_{\text{sea}}=c_f/c_{\text{eff}}$, and tensor $\mathcal{M}_{\text{sea}}^{ab}$ describe the same medium record. The assembly non-symmetry Floquet gap $\Delta_{\mathbf{k}}$ measures separation of the non-neutral return-map modes from the declared stability boundary, when a periodic retained branch and its certificate supply that quantity. It is unrelated to the Bloch wavevector $\mathbf k$ used later. This argument list proposes a diagnostic; its norm, units, history window, sufficiency, and constitutive form remain to be derived.
 
-The critical surface is
+The proposed critical level set is
 
 $$
 \mathcal{R}_{\text{tr}}
@@ -41,13 +41,13 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f45f41d4bdc27fc0)
 
-It separates three regimes:
+The following classification is a hypothesis to test after the residual, its orientation, and its critical value have been independently specified. A level set is a regular surface only where the residual is differentiable with nonzero gradient; neither regularity nor the classification follows from naming the residual.
 
 | Regime | Meaning |
 | --- | --- |
-| $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$ | Reversible medium-dressed inertial response; no ordinary drag term is allowed. |
-| $\mathcal{R}_{\text{tr}}\approx\mathcal{R}_{\text{tr},*}$ | Onset of medium excitation, action shedding, or branch instability. |
-| $\mathcal{R}_{\text{tr}} > \mathcal{R}_{\text{tr},*}$ | Dissipative transport, radiation-like shedding, medium heating, or structural transition must be logged. |
+| $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$ | Proposed reversible regime after material scattering, driving, and boundary exchanges have been separated. |
+| $\mathcal{R}_{\text{tr}}\approx\mathcal{R}_{\text{tr},*}$ | Candidate onset region, with a declared comparison tolerance. |
+| $\mathcal{R}_{\text{tr}} > \mathcal{R}_{\text{tr},*}$ | Candidate excitation or transition regime; the actual outgoing channel must be established from the record. |
 
 ### Reversible Response Below Threshold
 
@@ -62,7 +62,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-20365054f2b08d21)
 
-This is the condensed-matter version of medium-dressed inertial response. The Noether sea may shape the response tensor, the local delay factor, and the stability margin, but it must not drain energy from a stable bound state merely because that state is moving through the Noether sea.
+This is a small-group-velocity response ansatz, not an established momentum law. The assembly label $A$, positive calibration $\alpha_{\mathrm m}$, probe-facing exposure fraction $\zeta(A)$, and candidate internal energy $E_{\text{internal}}(A)$ inherit the reference level, energy units, and separation from sea-coupled energy in [Particle Masses](../assemblies/particle-masses.md). The no-drag target concerns uniform unforced transport on the declared branch. Internal binding alone does not exclude loss of translational energy or exchange with a driven medium.
 
 The algebraic reason for this distinction is that the reversible kinetic scalar can consume only the symmetric part of the medium-response tensor. Decompose
 
@@ -94,7 +94,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ee1f858bd8d144c9)
 
-The below-threshold reversible energy is the quadratic form
+For fixed assembly and medium data, take a real, velocity-independent response tensor in a Euclidean orthonormal frame, with repeated spatial indices summed. The candidate reversible energy is the quadratic form
 
 $$
 K_{\mathrm{rev}}
@@ -112,7 +112,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ea7571efc9fc9808)
 
-The antisymmetric part drops out of the scalar energy because
+The stated derivative holds with the prefactor and tensor held fixed; velocity-dependent coefficients contribute additional derivatives. A positive kinetic-energy interpretation further requires the prefactor times $\mathcal M_+$ to be positive definite on the admitted velocity directions. Neither requirement is a stability proof. The antisymmetric part drops out of the scalar energy because
 
 $$
 V_{\text{cm},a}\mathcal{M}_{-}^{ab}V_{\text{cm},b}=0
@@ -120,7 +120,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f45d9b5503a1757b)
 
-but it need not vanish from the momentum response. Define the branch-preserving gyroscopic contribution by
+but it need not vanish from the proposed momentum response. Define its antisymmetric, or gyroscopic, contribution by
 
 $$
 p_{\mathrm{gyro}}^{a}
@@ -157,9 +157,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cded86daf17ca75b)
 
-may therefore record a finite reversible exchange with the material-orientation or Noether sea circulation ledger. It must not be classified as dissipation unless the completed cycle leaves an unreturned excitation or heating channel.
+may therefore be nonzero even when the velocity returns to its initial value. A reversible interpretation requires a derived exchange with the material-orientation or Noether sea circulation account and recovery of the full state on the relevant cycle. An unreturned coherent excitation is stored energy, not automatically heat; dissipation requires an identified loss or thermalization channel in the declared reduced description.
 
-A sufficient acceleration-level form for a strictly workless transverse response is instead
+A sufficient acceleration-level form for preserving Euclidean speed instantaneously is
 
 $$
 A_{\mathrm{gyro}}^a
@@ -173,7 +173,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a14da50e76e59777)
 
-This row changes direction without changing $V_{\text{cm}}^2$ at that instant. The momentum-response and acceleration-response forms are not interchangeable without the constitutive map that relates $\mathcal M_-^{ab}$, $\mathcal G^{ab}$, and the medium exchange record.
+This contribution changes direction without changing $V_{\text{cm}}^2$ at that instant. It is workless for a stationary isotropic quadratic energy, but not for an arbitrary anisotropic $\mathcal M_+$: the latter requires $V_{\text{cm},a}\mathcal M_+^{ab}A_{\mathrm{gyro},b}=0$. Changes in the energy coefficients add further exchange terms. The momentum-response and acceleration-response forms are not interchangeable without the constitutive map relating $\mathcal M_-^{ab}$, $\mathcal G^{ab}$, and the medium exchange account.
 
 Thus the directional inertial readout below threshold is
 
@@ -186,7 +186,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a3830ba90fdb2d71)
 
-The dimensional convention is fixed by the weak isotropic limit $\mathcal{M}_{\text{sea}}^{ab}\to\delta^{ab}/c_{\text{eff}}^2$, so $m_{\mathrm{eff}}$ reduces to the roadmap scalar $\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A)/c_{\text{eff}}^2$ of [Particle Masses](../assemblies/particle-masses.md). This is not a completed derivation of $\mathcal{M}_{+}^{ab}$, $\mathcal{M}_{-}^{ab}$, or $\mathcal G^{ab}$; it is the reversible-response lemma that any derivation must satisfy. Below $\mathcal{R}_{\text{tr},*}$, a nonzero antisymmetric momentum term is admissible in steady transport or with its acceleration-cycle exchange balanced by the orientation/circulation ledger. A strictly workless transverse term must satisfy the acceleration-level contraction above. Any drag-like coefficient or net work-loss term must instead vanish in the branch-preserving limit or be routed to an excitation, heating, radiation-like, boundary-exchange, or branch-transition channel.
+Here $\hat v$ is a unit direction and $\theta_{\mathrm{sea}}$ denotes the retained medium state. The weak isotropic convention $\mathcal{M}_{\text{sea}}^{ab}\to\delta^{ab}/c_{\text{eff}}^2$ gives the roadmap scalar $\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A)/c_{\text{eff}}^2$ of [Particle Masses](../assemblies/particle-masses.md), with the tensor carrying inverse-speed-squared units. The symmetric/antisymmetric identities are derived algebra under the stated assumptions; the physical response tensors, energy assignment, and no-drag regime remain constitutive proposals. An antisymmetric momentum term needs a consistent full-cycle exchange account. A workless acceleration must be tested against the actual energy metric, and any loss must be assigned to a resolved material, medium, radiation, or boundary channel.
 
 ## Lattice and Band-Response Recovery
 
@@ -201,19 +201,19 @@ $$
 and a Brillouin zone $\mathrm{BZ}$ given by the Wigner-Seitz cell of the reciprocal lattice. The effective electron-envelope states should admit a Bloch-form recovery
 
 $$
-\psi_{\alpha\mathbf k}(\mathbf x)
+\psi_{\alpha\mathbf k}(\mathbf x_{\mathrm{eff}})
 =
-e^{i\mathbf k\cdot\mathbf x}
-u_{\alpha\mathbf k}(\mathbf x),
+e^{i\mathbf k\cdot\mathbf x_{\mathrm{eff}}}
+u_{\alpha\mathbf k}(\mathbf x_{\mathrm{eff}}),
 \qquad
-u_{\alpha\mathbf k}(\mathbf x+\mathbf R)=u_{\alpha\mathbf k}(\mathbf x),
+u_{\alpha\mathbf k}(\mathbf x_{\mathrm{eff}}+\mathbf R)=u_{\alpha\mathbf k}(\mathbf x_{\mathrm{eff}}),
 \qquad
 \mathbf R\in\Lambda
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8754efcd4b0fb4ef)
 
-with $\mathbf k$ identified modulo reciprocal-lattice vectors, $\Lambda$ the direct Bravais lattice generated by the $\mathbf a_i$, and $\Lambda^*$ its reciprocal lattice. Here $\mathbf x$, and later $t$, are effective material-chart coordinates; the native closure still owes the map from $(T,\mathbf X)$ into that chart. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is an effective envelope statement: the periodic material branch constrains the electron assembly's resonance envelope, while the underlying causal-wake and Noether sea records remain the native dynamics.
+with $\mathbf k$ identified modulo reciprocal-lattice vectors, $\Lambda$ the direct Bravais lattice generated by the $\mathbf a_i$, and $\Lambda^*$ its reciprocal lattice. The band index is $\alpha$, and $u_{\alpha\mathbf k}$ is the cell-periodic part of the effective envelope. The coordinates $\mathbf x_{\mathrm{eff}}$ and time $t_{\mathrm{eff}}$ belong to an effective material chart; its map from $(T,\mathbf X)$ remains owed. Bloch form requires an effective linear spectral problem invariant under lattice translations. A periodic arrangement alone does not derive that spectral problem from delayed architrino dynamics.
 
 The corresponding band residual should compare the recovered dispersion $E_\alpha(\mathbf k)$ to the observed material branch without fitting a separate rule for each probe:
 
@@ -244,7 +244,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0cce5aa29136cf0e)
 
-This tensor is a material-response readout, not the primitive mass of the electron assembly. It belongs beside the medium-dressed inertial response above: the exposed assembly mass determines how the electron assembly enters the material branch, while the band curvature determines how that branch responds to slow envelope perturbations.
+This is a local curvature readout of a twice-differentiable isolated band, with $\hbar$ the reduced observer-level action quantum. It need not be positive: a band maximum has negative curvature and is conventionally described through holes. Its relation to assembly inertia is a recovery obligation; no primitive architrino mass or equality with the medium-response tensor follows.
 
 The Fermi-surface target is likewise a recovery target. For a chemical potential $\mu$,
 
@@ -259,7 +259,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0d3160ceecccadfa)
 
-Metal-like branches have a nonempty $\mathcal F_\alpha$ and therefore low-energy response at arbitrarily small excitation cost along the surface. Band-insulator branches have filled bands separated by a positive gap,
+In the zero-temperature independent-band comparison, a partially filled dispersive band with accessible states on both sides of $\mu$ supplies the usual metallic response in the thermodynamic limit. A nonempty level set alone is insufficient: it can be an isolated band-edge point or a flat band without the assumed transport response. Band-insulator branches have filled bands separated from empty bands by a positive gap,
 
 $$
 \Delta_{\mathrm{band}}
@@ -274,23 +274,23 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-12d57e2d9a64aa49)
 
-Semiconductor, Mott-insulator, and topological-insulator comparisons should enter as refinements of this gap-and-branch classification. A Mott branch cannot be recovered by single-electron band filling alone; it requires an interaction or exclusion residual that blocks double occupancy or its assembly-level analogue. A topological branch cannot be promoted from gap size alone; it needs a Berry-curvature or boundary-mode invariant tied to the same effective connection used by the electromagnetic recovery program.
+Semiconductor, Mott-insulator, and topological-insulator comparisons refine this classification. Mott behavior requires an interaction-driven charge gap beyond independent-band filling; suppressing double occupancy alone does not establish an insulating phase. Topological classification requires a defined occupied-state bundle and its protecting symmetries or invariant. Its momentum-space Berry connection describes changes of band basis and is distinct from the real-space electromagnetic connection; their relation in electromagnetic response must be derived.
 
-The minimal transport consistency condition is that a perfect periodic branch has no ordinary Drude loss term. If a current relaxes, the relaxation time $\tau$ must be traced to disorder, vacancies, phonons, boundary exchange, or another logged branch disturbance. The observer-level Drude comparison may keep
+In the ideal static, noninteracting periodic comparison, coherent Bloch evolution has no scattering relaxation term. Periodicity alone does not exclude current relaxation in an interacting material: momentum transfer to the lattice, including Umklapp processes that change crystal momentum by a reciprocal vector, can matter. The relaxation time $\tau_{\mathrm{rel}}$ must be derived from the admitted collision and boundary channels. For one isotropic carrier channel, the observer-level Drude comparison is
 
 $$
 \sigma
 =
-\frac{e^2\tau n_{\mathrm{car}}}{m_*}
+\frac{e^2\tau_{\mathrm{rel}} n_{\mathrm{car}}}{m_*}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-429648e1cef4b658)
 
-but $\tau^{-1}$ must vanish in the ideal branch limit and must not be confused with Noether sea drag below $\mathcal{R}_{\text{tr},*}$. This is the condensed-matter version of the no-drag rule: stable Bloch transport is coherent envelope transport until a material imperfection, lattice excitation, or branch transition opens a logged loss channel.
+where $e>0$ is the elementary-charge magnitude, $n_{\mathrm{car}}$ the carrier number density, and $m_*>0$ the channel's effective mass. Only when all current-relaxing channels vanish does $\tau_{\mathrm{rel}}^{-1}\to0$; the resulting ballistic limit does not supply a finite steady dissipative conductivity. Material resistance and the proposed Noether sea no-drag condition are separate tests.
 
 ## Lattice Scattering and Phonon Response
 
-The scattering target should recover reciprocal-lattice selectivity before interpreting material images or diffraction data. For incident and outgoing wavevectors $\mathbf k$ and $\mathbf k'$, let $\mathbf q=\mathbf k-\mathbf k'$. A periodic lattice branch must give constructive elastic scattering only on reciprocal-lattice transfers,
+The scattering target should recover reciprocal-lattice selectivity before interpreting diffraction data. For incident and outgoing wavevectors $\mathbf k$ and $\mathbf k'$, let $\mathbf q=\mathbf k-\mathbf k'$. In the infinite, perfectly periodic kinematic-scattering limit, coherent elastic Bragg peaks lie on reciprocal-lattice transfers,
 
 $$
 \mathbf q\in\Lambda^*
@@ -324,9 +324,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8926a2ad442dba57)
 
-tests whether the declared lattice branch, basis, and atom-local Noether sea response generate the same reciprocal-space selection rule. Thermal or zero-point lattice motion may reduce peak intensity through an effective Debye-Waller factor, but it should not move the reciprocal-lattice condition unless the material branch itself changes.
+tests whether the declared lattice branch, basis, and atom-local Noether sea response reproduce the selection rule. The basis positions are $\mathbf d_i$ and their scattering amplitudes are $f_i(\mathbf q)$; a zero structure factor extinguishes an otherwise allowed reflection. Finite samples broaden peaks and disorder or motion can produce diffuse or inelastic scattering away from reciprocal points. A Debye-Waller factor describes coherent-intensity reduction at fixed mean lattice geometry; thermal expansion can shift peak locations by changing that geometry.
 
-Phonons are the next material-response layer. For a branch displacement vector $\mathbf u_n(t)$ about equilibrium sites, the harmonic branch is governed by a dynamical matrix $D_{ij}(\mathbf k)$:
+Phonons are effective collective lattice modes. After the same material configuration satisfies its equilibrium equations, expand its effective dynamics to harmonic order in displacements $\mathbf u_n(t_{\mathrm{eff}})$. A mass-normalized dynamical matrix $D_{ij}(\mathbf k)$ then defines the comparison eigenproblem:
 
 $$
 \omega_s^2(\mathbf k)\,e_{s,i}(\mathbf k)
@@ -336,18 +336,18 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-6f127603d0fb4b14)
 
-with $e_{s,i}(\mathbf k)$ the mode polarization vectors; the symbol $\epsilon$ stays reserved for the polarity unit.
+with $\omega_s$ the mode angular frequency and $e_{s,i}$ its polarization. For a multi-atom cell, $i,j$ combine basis-site and spatial-component indices. In the conservative harmonic comparison, a Hermitian nonnegative dynamical matrix gives real nonnegative squared frequencies after the relevant symmetry modes are identified. This effective spectrum neither proves native equilibrium nor certifies an assembly Floquet gap.
 
-In a long-wavelength isotropic elastic limit, the same branch should reduce to a displacement field $u_i(\mathbf x,t)$ in the effective material chart declared above. The strain is
+In a homogeneous, long-wavelength isotropic elastic limit, the same branch should reduce to a displacement field $u_i(\mathbf x_{\mathrm{eff}},t_{\mathrm{eff}})$. The strain is
 
 $$
 u_{ij}
 =
 \frac{1}{2}
 \left(
-\frac{\partial u_i}{\partial x_j}
+\frac{\partial u_i}{\partial x_{\mathrm{eff}}^j}
 +
-\frac{\partial u_j}{\partial x_i}
+\frac{\partial u_j}{\partial x_{\mathrm{eff}}^i}
 \right)
 $$
 
@@ -358,31 +358,31 @@ and elastic action
 $$
 S_{\mathrm{el}}
 =
-\int dt\,d^3x
+\int dt_{\mathrm{eff}}\,d^3x_{\mathrm{eff}}
 \left[
 \frac{\rho_{\mathrm{mat}}}{2}
 \left(
-\frac{\partial u_i}{\partial t}
+\frac{\partial u_i}{\partial t_{\mathrm{eff}}}
 \right)^2
 -
-\mu u_{ij}u_{ij}
+\mu_{\mathrm{el}} u_{ij}u_{ij}
 -
-\frac{\lambda}{2}u_{ii}u_{jj}
+\frac{\lambda_{\mathrm{el}}}{2}u_{ii}u_{jj}
 \right]
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-04de828484fba635)
 
-Here $\mu$ and $\lambda$ are the standard Lamé coefficients of the material branch, not the chemical potential $\mu$ used elsewhere in this chapter and not the canonical envelope scale ratio $\lambda$. The acoustic recovery target is
+Here $\rho_{\mathrm{mat}}>0$ is effective material mass density, and $\mu_{\mathrm{el}}$ and $\lambda_{\mathrm{el}}$ are its Lamé elastic coefficients. Positive isotropic strain energy requires $\mu_{\mathrm{el}}>0$ and $3\lambda_{\mathrm{el}}+2\mu_{\mathrm{el}}>0$. Variation of this assumed effective action gives the acoustic comparison
 
 $$
 \omega_{\mathrm L}^2
 =
-\frac{2\mu+\lambda}{\rho_{\mathrm{mat}}}k^2,
+\frac{2\mu_{\mathrm{el}}+\lambda_{\mathrm{el}}}{\rho_{\mathrm{mat}}}k^2,
 \qquad
 \omega_{\mathrm T}^2
 =
-\frac{\mu}{\rho_{\mathrm{mat}}}k^2
+\frac{\mu_{\mathrm{el}}}{\rho_{\mathrm{mat}}}k^2
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-08e361307cf0b9f7)
@@ -402,7 +402,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0a04478195f31bed)
 
-where $V$ is the crystal volume and $\Delta N_s$ is the dimensionless per-mode phonon occupation change in the effective branch description. A coherent recoil-free or elastic event has $\Delta N_s=0$ for the relevant phonon channels and must route momentum through the whole branch or boundary record. This is the material analogue of distinguishing reversible retuning from heating.
+where $V$ is crystal volume and $\Delta N_s$ is the dimensionless per-mode occupation change at fixed harmonic frequencies. Changes in the frequencies or background energy require additional terms. A no-phonon elastic event has $\Delta N_s=0$ and routes momentum through the whole branch or boundary record. Coherent phonon excitation can have nonzero $\Delta N_s$ without being thermalized heat, so phonon creation alone is not a dissipation criterion.
 
 ## Order-Parameter Defects and Critical Transport
 
@@ -413,7 +413,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f28384fbdf809f56)
 
-be an observer-level order-parameter map for a material region with defect set $D$ and target space $\mathcal{Q}$. A loop $\gamma$ around a line defect may then carry a homotopy label
+be a continuous observer-level order-parameter map on a material region $\Omega$ away from the defect set $D$, with target space $\mathcal{Q}$. An order parameter records local material order, such as a phase where its amplitude is nonzero. A closed loop $\gamma$ avoiding $D$ may carry a homotopy label, the class unchanged by continuous deformation within that target space:
 $$
 \mathcal{I}_\gamma
 =
@@ -434,7 +434,7 @@ $$
 
 These are recovery or comparison objects. They do not replace the architrino, causal-wake, or Noether sea branch records that must generate the effective material description.
 
-The transport consequence is a gap rule. A stable branch may deform, strain, or retune without changing its defect label while the relevant stability gap remains open:
+Homotopy invariance follows when $Q$ stays continuous and defined on the tracked loop throughout the deformation, the target space remains fixed, and no defect crosses the loop or its tracking boundary. For the proposed transport map, one can require
 $$
 \Delta_{\mathbf{k}}>0
 \quad\Longrightarrow\quad
@@ -443,7 +443,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5a29e240f1fbea66)
 
-for branch-preserving perturbations. If a material event changes the topological label, creates a vortex or dislocation, unbinds a defect pair, or opens an edge mode, the event has crossed a branch threshold. In the condensed-matter closure target that means
+only for perturbations already shown to preserve those homotopy conditions. Here $\Delta\mathcal I_\gamma=0$ means equality of classes, not subtraction in a possibly non-abelian group. An assembly Floquet gap does not establish that a material order parameter remains defined. The proposed diagnostic implication
 $$
 \Delta\mathcal{I}_\gamma\ne0
 \quad\Longrightarrow\quad
@@ -454,11 +454,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-47b7f6e464fe79fc)
 
-Below that threshold the response remains reversible retuning or coherent transport. Above it, the energy and momentum ledger must route the event through lattice excitation, surface transport, heating, radiation-like shedding, boundary exchange, or structural transition.
+therefore needs a separate relation between assembly stability, order-parameter singularities, and transport. A defect can cross a measurement loop through boundary transport without a bulk gap closing; edge modes can already exist on a fixed gapped branch. Such events require an explicit boundary or excitation account and cannot be assigned a universal scalar threshold from topology alone.
 
 ## Hall and Topological Response Benchmarks
 
-Hall response is a high-value comparison because it separates ordinary transport loss from transverse, nondissipative response. The classical Hall branch supplies the baseline tensor target
+Hall response compares longitudinal resistance with transverse response. Adopt $E_i=\rho_{ij}j_j$, $j_i=\sigma_{ij}E_j$, and $\boldsymbol\sigma=\boldsymbol\rho^{-1}$ in an oriented material plane. For one isotropic electron channel of charge $-e$ in a perpendicular signed field $B$, the classical comparison is
 
 $$
 \rho_{xy}
@@ -467,14 +467,14 @@ $$
 \qquad
 \rho_{xx}
 =
-\frac{m_*}{n_{\mathrm{car}}e^2\tau}
+\frac{m_*}{n_{\mathrm{car}}e^2\tau_{\mathrm{rel}}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-13c92fa67d65752b)
 
-This baseline is observer-level bookkeeping. The effective magnetic-state map must still be derived from the photon/action ledger and material branch, and the Lorentz-force form must remain a recovery target rather than a primitive substrate law.
+Here $\rho_{yx}=-\rho_{xy}$; matrix inversion gives $\sigma_{xy}=-\rho_{xy}/(\rho_{xx}^2+\rho_{xy}^2)$ in this isotropic convention. For a sheet, use areal carrier density and sheet resistance/conductance throughout; for a bulk sample, use volumetric density and bulk units. The effective magnetic-state map remains to be derived from the photon/action ledger and material branch; the Lorentz-force form is an observer-level recovery target.
 
-The integer quantum Hall recovery target is stronger. In a two-dimensional gapped branch, the Hall conductivity must reduce to
+For the integer quantum Hall band comparison, require a two-dimensional effective spectral problem, a fixed occupied subspace separated by a bulk gap, zero-temperature linear response for exact quantization, and consistent current and orientation conventions. Low but nonzero temperature gives an approximation whose corrections must be controlled. Its target is
 
 $$
 \sigma_{xy}
@@ -486,7 +486,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c88fc143217cb216)
 
-where $C$ is the first Chern number of the filled effective band bundle,
+where $C=C_{\mathrm{filled}}$ is the signed first Chern number of the occupied bundle in the convention
 
 $$
 C
@@ -504,9 +504,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ae35dcfd1eb9ce3f)
 
-Here $A_i(\mathbf k)=-i\langle u_{\mathbf k}|\partial_{k_i}u_{\mathbf k}\rangle$ is an effective Berry connection over the Brillouin zone. This is a comparison/recovery object: it tests whether the effective U(1) connection and material branch reproduce topological quantization. It should not be imported as a fundamental gauge-potential ontology.
+Here $A_i(\mathbf k)=-i\langle u_{\mathbf k}|\partial_{k_i}u_{\mathbf k}\rangle$ is the Berry connection for a normalized occupied state on a local momentum-space patch. Multiple isolated occupied bands require summing their curvatures; for a degenerate occupied subspace use the trace of its bundle curvature. Nonzero $C$ requires compatible patches rather than one globally smooth periodic eigenvector, whose exact curvature would integrate to zero on the Brillouin torus. The minus sign defines $C$ for the stated Berry and conductivity conventions; reversing an orientation or connection convention requires translating the signs together. This momentum-space connection is not itself a primitive wake or the real-space electromagnetic potential.
 
-The robustness condition is that a small branch perturbation cannot change $C$ while the gap stays open:
+For a continuous family on the same compact Brillouin torus, with fixed-rank occupied projectors and the bulk spectral gap $\Delta_{\mathrm{top}}$ open throughout, integer-valued continuity gives
 
 $$
 \Delta_{\mathrm{top}}>0
@@ -516,7 +516,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0bb6b552ca638c2c)
 
-Disorder may localize non-transporting states and widen observed plateaux, but the plateau value must come from the topological invariant of the extended branch, not from disorder as a fitted correction. A compact Hall residual is
+Disordered systems need a mobility-gap or real-space formulation when Bloch momentum is unavailable; the clean Brillouin-zone formula cannot simply be reused. A compact comparison score is
 
 $$
 \mathcal R_{\mathrm{QH}}
@@ -534,11 +534,13 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-29c80575bd6a49a0)
 
+Both tolerance denominators are positive, $\rho_{xx}$ is the passive longitudinal sheet resistance, and the first term compares signed sheet conductivity with the same $C_{\mathrm{filled}}$. This score does not certify a gap: its last term is zero even at $\Delta_{\mathrm{top}}=0$. Acceptance separately requires a resolved positive gap margin, the occupied-bundle hypotheses, and the declared conductivity tolerance.
+
 Fractional quantum Hall states, anyons, non-Abelian edge sectors, Chern-Simons effective actions, and chiral boundary liquids are valuable comparison material, but they should stay in the recovery/comparison bucket unless a local $\mathbb{A}\mathbb{A}\mathbb{A}$ closure target consumes them directly. The safe present requirement is narrower: recover quantized Hall response, edge robustness, fractional charge/statistics as observer-level collective behavior where experimentally required, and keep every topological field description downstream of the effective material branch rather than treating it as substrate ontology.
 
 ### Superconducting Response Benchmark
 
-Superconductivity is the strongest low-loss transport benchmark for the threshold picture. A superconducting material branch must recover persistent current and vanishing longitudinal resistive loss below its declared critical surface while remaining distinct from an ideal normal-metal branch. Crossing a critical temperature, current, magnetic loading, vortex-motion threshold, or material defect must open the corresponding excitation, heating, or branch-transition channel rather than being hidden as Noether sea drag.
+Superconductivity tests persistent current and vanishing longitudinal resistance together with magnetic expulsion, distinguishing it from an ideal normal-metal conductor. Temperature, current, magnetic loading, pinning, and material defects define branch-specific limits; a defect or a change of magnetic loading does not necessarily destroy superconductivity. Any dissipative response requires an identified material or medium channel.
 
 The magnetic comparison has two coupled requirements. The same effective U(1) material connection must recover the Meissner response in the applicable branch and the conventional paired-branch flux quantum
 
@@ -550,7 +552,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7c77191a24746bb2)
 
-as an observer-level benchmark. The factor $2e$ tests the branch's composite pairing and exchange-statistics map; it is not inserted as a new substrate carrier or as proof that every superconducting branch shares one microscopic mechanism. Type-II vortex transport further sharpens the threshold ledger: pinned vortices may preserve a zero-loss branch, while vortex motion must appear as a logged resistive channel.
+as an observer-level benchmark, with $h=2\pi\hbar$. In a paired condensate, single-valued phase constrains the fluxoid, which includes a circulating-current contribution; magnetic flux alone approaches integer multiples of $\Phi_0$ when that contribution vanishes on the chosen contour. The factor $2e$ tests effective paired charge and does not by itself prove exchange statistics or one universal pairing mechanism. Type-II materials admit flux-carrying vortices; their motion needs a resolved response account, and only its dissipative component constitutes longitudinal resistive loss.
 
 A minimal same-record residual may be organized as
 
@@ -574,7 +576,7 @@ where the five entries test zero longitudinal resistance, magnetic expulsion, fl
 
 ### Photon-Coupled Surface Transport
 
-Photon absorption, reflection, and surface heating are thresholded transport events in the same condensed-matter sense. The incoming photon ledger does not permit a continuous drag term on the material, and the material does not act as a hard spatial wall. A surface cell supplies electron-envelope, bonding or lattice, nuclear-source, and local Noether sea records that route the incoming planar-pair ledger into coherent re-release, capture, scattering, heat, recoil, or retained excitation.
+Photon absorption, reflection, and surface heating test channel-dependent material response. Their rates and thresholds do not follow from the transport residual's name. The proposed [photon](../assemblies/bosons/electroweak-bosons.md) carrier is a coaxial contra-rotating polarity-conjugate planar pair, whose retained existence and transition dynamics remain open. A surface cell's electron-envelope, bonding or lattice, nuclear, and sea records must determine its coupling. Continuous illumination can transfer momentum and cause radiation pressure or radiation drag; the no-drag target for unforced translation does not prohibit this driven exchange.
 
 This surface-transport language is not a hidden particle-production rule. If a photon-coupled material event yields different outgoing Standard Model assemblies, the local reaction record must add a separate identity-routing row for the target or Noether sea content that supplies those inventories.
 
@@ -595,9 +597,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5071023c2a21c6f1)
 
-where $a_{\perp}$ is the incoming photon transverse ledger, $\mathcal B_e$ is the realized electron-envelope branch, $\mathcal B_{\mathrm{lat}}$ is the material bonding or lattice branch, $\Theta_E^{(\ell)}$ is the local Noether sea response record, $\mathcal M_{\text{sea}}^{ab}$ is the medium-response tensor, and $\Delta_{\mathbf{k}}$ is the relevant stability gap. The surface channel becomes dissipative only when the selected route opens a logged excitation or heating channel; otherwise the event is coherent transport or reversible retuning.
+where $a_{\perp}$ denotes the proposed incoming photon's transverse accounting data, $\mathcal B_e$ the electron-envelope branch, $\mathcal B_{\mathrm{lat}}$ the material branch, and $\Theta_E^{(\ell)}$ the local medium response averaged on scale $\ell$. The tensor $\mathcal M_{\text{sea}}^{ab}$ and assembly gap $\Delta_{\mathbf{k}}$ retain their earlier meanings. A coherent stored excitation is distinct from thermalized heating, and both must be separated from escaping radiation and boundary transfer.
 
-The corresponding energy row is
+For one declared event window and energy reference, the proposed energy balance is
 
 $$
 E_{\gamma,\mathrm{in}}
@@ -617,7 +619,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-204583549c087acb)
 
-For a metal-like branch, the conduction-electron response supports a coherent re-release channel with large $E_{\gamma,\mathrm{out}}$. For an ultra-black multiple-capture branch, repeated capture and dephasing through the material geometry drive $E_{\gamma,\mathrm{out}}$ toward zero while the ledger closes through electron-envelope excitation, lattice heating, Noether sea update, recoil, and remnant terms. Ordinary optical surface routing must preserve nuclear inventory, so $\Delta Z=0$ and $\Delta A=0$ unless a separate nuclear-reaction gate is supplied.
+The outgoing photon energy includes every outgoing photon within the event's declared accounting boundary; the increments partition electron-envelope, lattice, sea, recoil, and remaining stored or exported energy without overlap. This is a balance target, not a derived conservation theorem. A reflecting metal and a strongly absorbing surface select different channel weights according to frequency, angle, material, and geometry; metallicity alone does not fix reflectivity. Delayed thermal emission remains outgoing energy when the window includes it. Ordinary optical routing keeps nuclear charge number $Z$ and mass number $A$ fixed unless a separate nuclear reaction is established.
 
 ### Earth-Core Iron as a Boundary Case
 
@@ -637,15 +639,15 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-65cf91c16a6adc5a)
 
-for ordinary planetary differentiation. Here $\mathcal{N}_{\mathrm{Fe}}$ is the number density of iron nuclei and $\mathbf{J}_{\mathrm{Fe}}$ is their segregation flux. A nonzero $S_{\mathrm{Fe}}^{\mathrm{nuc}}$ would be a nuclear-reaction claim, not a condensed-matter pressure claim; it would have to preserve proton, neutron, charge, energy, momentum, and medium-provenance bookkeeping in the same spirit as [BBN Constraints](../cosmology/BBN-constraints.md) and [Nuclear Binding](nuclear-binding.md).
+for an effective description restricted to ordinary differentiation without iron-producing or iron-consuming nuclear reactions. Here $\mathcal{N}_{\mathrm{Fe}}$ is iron-nucleus number density and $\mathbf{J}_{\mathrm{Fe}}$ its total number flux, including advection when present. A nonzero $S_{\mathrm{Fe}}^{\mathrm{nuc}}$ requires explicit reactant/product inventories and charge, energy, momentum, and medium provenance. Proton and neutron counts must be tracked but need not be separately conserved in weak reactions; [BBN Constraints](../cosmology/BBN-constraints.md) and [Nuclear Binding](nuclear-binding.md) own the reaction comparison.
 
-The pressure-side bridge may instead use a segregation functional of the form
+In an isothermal, diffusion-only effective approximation, a candidate constitutive number flux is
 
 $$
 \mathbf{J}_{\mathrm{Fe}}
 =
 -D_{\mathrm{Fe}}\nabla_{\mathrm{eff}}\!\left[
-\mu_{\mathrm{Fe}}(P,T,\theta_{\mathrm{sea}})
+\mu_{\mathrm{Fe}}(P,T_{\mathrm{temp}},\theta_{\mathrm{sea}})
 +
 M_{\mathrm{sh}}(\mathrm{Fe};\theta_{\mathrm{sea}})\Phi_{\mathrm{eff}}
 \right]
@@ -653,24 +655,24 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-084e8d113c9b36a7)
 
-where $\theta_{\mathrm{sea}}$ denotes the local Noether sea state record, including $\rho_{\text{NS}}$, $\chi_{\text{sea}}$, $\mathcal{M}_{\text{sea}}^{ab}$, and strain data. The term $M_{\mathrm{sh}}(\mathrm{Fe};\theta_{\mathrm{sea}})$ is the medium-dressed exposed mass response of an iron assembly, not a new nuclear species; the symbol $A$ stays reserved in this section for the nuclear mass number. In this form the reason iron sinks is not that the center creates iron, but that existing iron-bearing assemblies minimize the relevant chemical, gravitational, and medium-response potential in dense planetary interiors.
+Here $P$ is pressure, $T_{\mathrm{temp}}$ thermodynamic temperature, $\mu_{\mathrm{Fe}}$ chemical potential per iron nucleus, and $\Phi_{\mathrm{eff}}$ effective gravitational potential per unit mass. The coefficient $D_{\mathrm{Fe}}\ge0$ is a number-flux mobility, with units of number divided by length, time, and energy; it is not a bare diffusivity. The term $M_{\mathrm{sh}}(\mathrm{Fe};\theta_{\mathrm{sea}})$ is a candidate effective mass response and $\theta_{\mathrm{sea}}$ contains the medium variables and strain. This ansatz moves existing iron down the declared potential gradient; multicomponent flow, buoyancy, convection, and non-isothermal transport need additional terms. It does not derive planetary segregation from assembly dynamics.
 
-The sharper equilibrium hypothesis is that the iron-rich metallic branch is compatible with higher normalized Noether braid density than a silicate branch at the same pressure and temperature. Let
+The sharper hypothesis compares iron in metallic and silicate-hosted environments at the same pressure and temperature. For a chemical preference, both potentials below must refer to the same transferred iron inventory, the same per-nucleus energy reference, and specified host compositions. Comparing an arbitrary iron potential with an unrelated silicate formula-unit potential would not establish phase preference. With $\mu_{\mathrm{silicate}}$ denoting that iron transfer potential in the silicate host, let
 
 $$
 \Delta\mu_{\mathrm{Fe/silicate}}^{\mathrm{metal}}
 \left(
-n,P,T,\mathcal B_{\mathrm{lat}}
+n,P,T_{\mathrm{temp}},\mathcal B_{\mathrm{lat}}
 \right)
 =
 \mu_{\mathrm{Fe}}^{\mathrm{metal}}
 \left(
-n,P,T,\mathcal B_{\mathrm{lat}}
+n,P,T_{\mathrm{temp}},\mathcal B_{\mathrm{lat}}
 \right)
 -
 \mu_{\mathrm{silicate}}
 \left(
-n,P,T,\mathcal B_{\mathrm{sil}}
+n,P,T_{\mathrm{temp}},\mathcal B_{\mathrm{sil}}
 \right)
 $$
 
@@ -687,11 +689,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-06879c8305291ea1)
 
-along the planetary-interior branch, with $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$. This does not say that Noether sea density creates iron. It says that, after iron already exists, the metallic iron branch may reduce relative chemical and medium-response cost as ambient Noether braid density increases. In ordinary terms, iron-rich material sinks because it is dense; in the native theory, density must eventually be derived from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether sea coupling.
+on a declared branch interval, with $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ and pressure, temperature, composition, and other independent coordinates held fixed in the partial derivative. If those variables change along a planetary profile, the total derivative has additional chain-rule terms. A negative derivative indicates a decreasing relative cost; it does not imply that the cost is negative or that either phase exists in equilibrium. Assembly packing, exclusion, bonding, and medium response must still supply the physical functions.
 
 [Atomic Structure](atomic-structure.md#element-dependent-sea-response) states the general $\Delta\mu_{E/Y}^{B}$ record. This section specializes that record to Earth-core iron and carries the packing sufficient condition explicitly.
 
-A local sufficient condition can be stated by differentiating the packing ceiling rather than treating it as a fixed phase label. The exclusion-envelope geometry is inherited from [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#dynamic-exclusion-envelope), while [Molecular Exclusion and Noether Sea Response](../spacetime/molecular-exclusion-and-noether-sea-response.md#levels-of-excluded-volume) keeps the ordinary matter-channel occupancy baseline separate from Noether sea response. Use a convex packing-penalty function $\Psi(z)$ on the occupancy ratio $z_X$; $\Psi'(z_X)$ is the marginal penalty for pushing the branch toward its oblate exclusion-envelope packing ceiling. For a material branch $X$, let
+A conditional sufficient inequality follows by differentiating a proposed packing penalty. The dynamic exclusion envelope in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#dynamic-exclusion-envelope) is a channel-dependent region of disruptive wake response, not a rigid body. Its replacement by a hard packing envelope requires a separate derivation; [Molecular Exclusion and Noether Sea Response](../spacetime/molecular-exclusion-and-noether-sea-response.md#levels-of-excluded-volume) preserves that distinction. On a declared interval, assume a positive differentiable ceiling $n_{\max,X}^{\mathrm{obl}}(n)$, a differentiable convex nondecreasing penalty $\Psi$, and a fixed nonnegative energy coefficient $A_X$. For material branch $X$, let
 
 $$
 z_X(n)
@@ -701,7 +703,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2dde8b7c21ec9fd6)
 
-and define the marginal packing term
+and define the derivative of the penalty $A_X\Psi(z_X(n))$ as the marginal packing term
 
 $$
 \mathcal{P}_X(n)
@@ -721,7 +723,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-57acf9549143e9f9)
 
-The factor $1-n\,\partial_n\ln n_{\max,X}^{\mathrm{obl}}$ is the packing-headroom correction: if the branch-derived oblate-envelope packing ceiling rises with ambient density, the marginal exclusion penalty is reduced. For each material branch, decompose the marginal dense-medium response of the branch potential as
+The factor $1-n\,\partial_n\ln n_{\max,X}^{\mathrm{obl}}$ comes from differentiating the density-dependent denominator. At fixed $z_X$ and ceiling value, a positive ceiling derivative reduces this factor, but it can also make the marginal term negative; convexity alone does not fix that sign. If $A_X$ or other penalty parameters vary, their derivatives must be added or bounded explicitly. Decompose the candidate branch-potential derivative as
 
 $$
 \frac{\partial\mu_X}{\partial n}
@@ -741,7 +743,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-bd93854327385862)
 
-where $G_X \ge 0$ collects the density-favorable coordination and Noether sea coupling gains, $\mathcal{P}_X$ is the marginal packing term above, $\mathcal{D}_X$ collects the delay, strain, and pressure derivative terms, and $b_X$ bounds the remaining coefficient drift. Subtracting the iron and silicate rows shows the sign condition $\partial_n\Delta\mu_{\mathrm{Fe/silicate}}^{\mathrm{metal}} < 0$ is guaranteed on a branch interval if
+where $G_X\ge0$ denotes hypothesized density-favorable gains, $\mathcal P_X$ the defined packing derivative, $\mathcal D_X$ other explicit medium-response derivatives under the same held-fixed convention, and $b_X$ the remaining error with a uniform bound $B_{\mathrm{coeff}}\ge0$. All terms share the units and inventory normalization of $\partial_n\mu_X$. Since $b_{\mathrm{Fe}}-b_{\mathrm{sil}}\le B_{\mathrm{coeff}}$, subtraction proves $\partial_n\Delta\mu_{\mathrm{Fe/silicate}}^{\mathrm{metal}}<0$ wherever
 
 $$
 G_{\mathrm{Fe}}-G_{\mathrm{sil}}
@@ -759,7 +761,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d3797c9992eca35e)
 
-This is a sufficient inequality, not yet a completed derivation. It becomes a derivation only when $n_{\max,X}^{\mathrm{obl}}(n)$ comes from exclusion-envelope packing, $G_X$ comes from metallic coordination and Noether sea coupling, and $\mathcal{D}_X$ comes from the same local Noether sea state record used for clock, delay, strain, and transport response.
+This implication is already derived arithmetic under the stated decomposition and bound. Its physical antecedent remains unverified: the ceiling, gains, other derivatives, and error bound must come from the same retained assembly and medium record. Selecting favorable functions in this decomposition establishes only a model example, not an iron or silicate constitutive law.
 
 The support-function version of the packing burden is concrete. For a declared branch exclusion envelope $E_X$, let
 
@@ -772,7 +774,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9de952aee0240ecb)
 
-be its support function in direction $\hat{\mathbf n}$. For branch-cell directions $\hat{\mathbf{b}}_{X,i}$, define support-function spacings
+be its support function in unit direction $\hat{\mathbf n}$. Assume a compact centrally symmetric envelope centered at the chosen origin, three linearly independent cell-edge unit directions $\hat{\mathbf b}_{X,i}$, and declared nonnegative wake and lattice clearances. Define candidate spacings
 
 $$
 D_{X,i}
@@ -786,9 +788,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ae33a8d6e0fb2808)
 
-where $2\bar{s}_X$ is the full envelope width for a centrally symmetric envelope such as a centered oblate spheroid; a non-centered envelope would instead need $\bar{s}_X(\hat{\mathbf{b}})+\bar{s}_X(-\hat{\mathbf{b}})$,
+where $2\bar{s}_X$ is the directional width under the centered symmetry assumption. A general envelope, including a centered but asymmetric one, requires $\bar{s}_X(\hat{\mathbf b})+\bar{s}_X(-\hat{\mathbf b})$. Directional widths alone do not prove simultaneous non-overlap for an oblique cell and its neighboring copies.
 
-and the support-function cell volume
+For the chosen spacings, define the support-function cell volume
 
 $$
 V_{\mathrm{cell},X}^{\mathrm{sf}}
@@ -806,7 +808,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9cca1c577b16e4f5)
 
-Then the oblate packing ceiling must satisfy
+where $c_{\mathrm{cell},X}>0$ is a declared dimensionless cell factor. The determinant formula gives a volume for the specified edge vectors; it does not establish that volume as a minimum over admissible cells. Only if $V_{\mathrm{cell},X}^{\mathrm{sf}}$ is independently proved to be a lower bound on cell volume for a fixed braid count and a declared packing class does its class-restricted ceiling obey
 
 $$
 n_{\max,X}^{\mathrm{obl}}
@@ -817,14 +819,14 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9edec181cc74e5f7)
 
-where $N_{\mathrm{cell},X}$ is the declared braid count per branch cell and the $\rho_{\text{NS},0}$ normalization keeps the ceiling dimensionless for comparison with $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$. Equality is only a replay assumption for a declared branch cell. The Fe/silicate sign can therefore be credited to packing only when the Fe metallic branch earns a smaller support-function cell volume, higher effective coordination, or lower spacing anisotropy from the declared exclusion-envelope geometry.
+where $N_{\mathrm{cell},X}$ is the fixed braid count and $\rho_{\text{NS},0}>0$ a reference number density, making the ratio dimensionless. Constructing one admissible cell instead gives an achievable density and hence a lower bound on the maximum over a class containing it. Equality needs both admissibility and an optimality proof in that class. Neither cell volume nor a larger ceiling alone fixes the Fe/silicate derivative sign; the complete marginal inequality above still has to hold.
 
 The metallic-phase side can be written as
 
 $$
 \Delta G_{\mathrm{Fe}}^{\mathrm{metal/silicate}}
 =
-\Delta G_{\mathrm{std}}(P,T)
+\Delta G_{\mathrm{std}}(P,T_{\mathrm{temp}})
 +
 \delta G_{\mathrm{sea}}\!\left(
 \rho_{\text{NS}},
@@ -836,7 +838,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9a0b310bf5f438d5)
 
-The $\delta G_{\mathrm{sea}}$ term is admissible as a medium-response correction to phase stability, conductivity, elastic response, or transport. The stress argument uses $\Sigma_{\text{sea},ij}$, the component form of the canonical Noether sea stress $\Sigma_{\text{sea}}$ from [Noether sea](../spacetime/noether-sea.md). It is not admissible as a hidden transmutation channel. Branch-preserving retuning of an iron assembly must keep the nuclear inventory fixed, for example $\Delta Z_{\mathrm{Fe}}=0$ and $\Delta A_{\mathrm{Fe}}=0$, while any cadence, envelope, or transport change remains subordinate to the clock and retuning programs in [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md) and [Retuning-Map Toy Model](../validation/simulations/retuning-map-toy-model.md).
+This proposed free-energy difference must use a fixed transferred inventory or a balanced phase reaction, with one common energy normalization. The $\Delta G_{\mathrm{std}}$ term is a standard comparison baseline; $\delta G_{\mathrm{sea}}$ is a candidate correction that must avoid counting medium effects already represented by that baseline. A free-energy difference alone does not determine conductivity or transport rates. The stress argument $\Sigma_{\text{sea},ij}$ uses the canonical stress in [Noether sea](../spacetime/noether-sea.md). Retuning keeps $\Delta Z_{\mathrm{Fe}}=0$ and $\Delta A_{\mathrm{Fe}}=0$; its clock and envelope interpretation remains subject to [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md) and the explicitly limited [Retuning-Map Toy Model](../validation/simulations/retuning-map-toy-model.md).
 
 The corresponding closure residual is
 
@@ -856,10 +858,14 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b6447516ad4a51bc)
 
-The source term enforces the no-new-iron guardrail, the segregation and phase terms test the density-sorting and metallic-response claims, $\mathcal{R}_{\Gamma}$ tests the local clock-cadence handoff, and $\mathcal{R}_{\text{tr}}$ tests whether transport remains reversible or crosses into logged excitation, heating, radiation-like shedding, or branch transition. The bridge fails if it requires unlogged iron-nucleus creation, independent medium parameters for phase and clock behavior, or an ordinary drag channel below the transport threshold.
+The source term tests the no-new-iron condition, the segregation and phase terms test material response, $\mathcal R_\Gamma$ tests clock-cadence matching, and $\mathcal R_{\text{tr}}$ tests the proposed transport classification. As in the superconducting score, every addend must be a finite nonnegative dimensionless mismatch using a declared norm and positive tolerance; raw signed or dimensionful quantities cannot be added as an acceptance score. A small sum does not replace the individual domain, stability, and source requirements. The bridge fails on the declared benchmark if it requires unlogged nuclear reactions, inconsistent medium records, or unaccounted energy loss.
 
 ### Threshold Crossing and Failure Modes
 
-Crossing $\mathcal{R}_{\text{tr},*}$ is the point at which reversible transport stops being the adequate description. Above threshold, some transported energy or action must route into an explicit channel: medium excitation, radiation-like transport, local heating, action shedding, or branch transition. For the dynamical bookkeeping of those channels, see [Energy](../dynamics/energy.md) and [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation).
+The proposed threshold marks departure from reversible transport only after a channel-resolved constitutive calculation establishes that classification. Energy or action assigned to medium excitation, radiation, heating, or branch transition needs a defined account and conversion; those quantities are not interchangeable merely because both appear in a ledger. Their dynamical obligations remain in [Energy](../dynamics/energy.md) and [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation).
 
-The main failure modes are therefore sharp. If $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$ still produces ordinary dissipative drag in stable atoms, the framework loses chemical stability. If $\mathcal{R}_{\text{tr}} > \mathcal{R}_{\text{tr},*}$ occurs without a logged excitation, radiation, heating, or branch-transition channel, the energy ledger is incomplete. If the threshold cannot be expressed in terms of assembly motion, local Noether sea state, medium response, and stability gap data, the medium-transport picture has not matured into a usable transport closure.
+A controlled below-threshold loss in the declared unforced regime would falsify this no-drag transport map; it would not alone demonstrate loss of internal chemical binding or falsify the primitive acceleration law. A measured above-threshold event inconsistent with the predicted channels would refute the classification, while an unbalanced independently defined energy account would expose a bookkeeping failure. If histories with the same proposed diagnostic arguments have different outcomes, the reduced argument list is insufficient and must retain the missing history or boundary information.
+
+## Comparison Sources
+
+David Tong's *Solid State Physics* lecture notes (2017), [Electron Dynamics in Solids, §§3.1–3.2](https://davidtong.org/pdfs/teaching/solid-state-physics/solidstate3.pdf), and [Phonons, §§4.1–4.2](https://davidtong.org/pdfs/teaching/solid-state-physics/solidstate4.pdf), supply the independent-band and harmonic-lattice comparison assumptions. His *Lectures on the Quantum Hall Effect* (2016), [§§1.2, 2.2–2.3, arXiv:1606.06687](https://arxiv.org/abs/1606.06687), explains the Hall tensor and occupied-band topological comparison. These effective theories constrain the recovery targets; they do not establish Architrino assemblies, medium response, or the proposed transport threshold.

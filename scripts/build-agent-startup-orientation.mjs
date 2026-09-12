@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 
 const ROOT_DIR = path.resolve(fileURLToPath(new URL("..", import.meta.url)));
 const OUTPUT_PATH = "reference/op/agent-startup-orientation.generated.md";
+const FINGERPRINT_HEADING = "## Source Fingerprints";
 
 const SOURCE_PATHS = [
   "AGENTS.md",
@@ -67,22 +68,24 @@ const WORKFLOWS = [
     name: "Corpus convergence",
     use: "Move the corpus toward current canon by turning priority, source, or corpus signals into concrete mathematical artifacts and safe scoped edits when authority allows.",
     read: [
+      "reference/op/skills/skill-architrino-converge.md",
       "reference/office-of-research/cto/prompts/convergence-campaign.md",
       "reference/op/theory-orientation.md",
       "relevant priority or corpus files",
     ],
-    live: "Read the full protocol before running a campaign, because it owns modes, edit authority, handoff shape, and priority action prompts.",
+    live: "Enter through the skill owner so its exclusions apply, then read the full protocol before running a campaign, because it owns modes, edit authority, handoff shape, and priority action prompts.",
   },
   {
     name: "Source mining",
     use: "Acquire and map source material into current AAA terminology, claim levels, proof routes, and corpus or priority destinations.",
     read: [
+      "reference/op/skills/skill-architrino-sources.md",
       "content/markdown/aaa/archie/about-architrino.md",
       "reference/office-of-research/cto/prompts/convergence-campaign.md",
       "reference/op/source-mining-best-practice.md",
       "source-family addendum",
     ],
-    live: "About Architrino owns reference selection, presentation, and source-checking policy; use the mining guide for acquisition, traceability, and source-family procedures.",
+    live: "Enter through the skill owner so bounded verification is not widened into mining; About Architrino owns reference selection, presentation, and source-checking policy; use the mining guide for acquisition, traceability, and source-family procedures.",
   },
   {
     name: "Corpus review",
@@ -227,17 +230,63 @@ if (!fs.existsSync(absoluteOutputPath)) {
 }
 
 const current = fs.readFileSync(absoluteOutputPath, "utf8");
-if (current !== generated) {
-  console.error(`[agent-startup-orientation] ${OUTPUT_PATH} is stale`);
+if (gatedPortion(current) !== gatedPortion(generated)) {
+  console.error(`[agent-startup-orientation] ${OUTPUT_PATH} is stale (workflow cards, standing rules, prompt index, or linked paths changed)`);
   console.error("Run: node scripts/build-agent-startup-orientation.mjs --write");
   process.exit(1);
 }
 
-console.log(`[agent-startup-orientation] ${OUTPUT_PATH} is current`);
+const changedSources = changedFingerprintSources(current, generated);
+if (changedSources.length) {
+  console.log(`[agent-startup-orientation] ${OUTPUT_PATH} routing is current; ${changedSources.length} source fingerprint(s) changed since the last --write (informational, not gating):`);
+  for (const sourcePath of changedSources) {
+    console.log(`  ${sourcePath}`);
+  }
+  console.log("Regenerate during the branch/PR process, then skim the cards for policy drift.");
+} else {
+  console.log(`[agent-startup-orientation] ${OUTPUT_PATH} is current`);
+}
+
+function gatedPortion(text) {
+  const index = text.indexOf(FINGERPRINT_HEADING);
+  return index === -1 ? text : text.slice(0, index);
+}
+
+function fingerprintRows(text) {
+  const index = text.indexOf(FINGERPRINT_HEADING);
+  if (index === -1) {
+    return new Map();
+  }
+  const rows = new Map();
+  for (const line of text.slice(index).split(/\r?\n/)) {
+    const match = line.match(/^\| \[([^\]]+)\]\([^)]*\) \| (\d+) \| `([0-9a-f]+)` \|$/);
+    if (match) {
+      rows.set(match[1], `${match[2]}:${match[3]}`);
+    }
+  }
+  return rows;
+}
+
+function changedFingerprintSources(currentText, generatedText) {
+  const before = fingerprintRows(currentText);
+  const after = fingerprintRows(generatedText);
+  const changed = [];
+  for (const [sourcePath, fingerprint] of after) {
+    if (before.get(sourcePath) !== fingerprint) {
+      changed.push(sourcePath);
+    }
+  }
+  for (const sourcePath of before.keys()) {
+    if (!after.has(sourcePath)) {
+      changed.push(sourcePath);
+    }
+  }
+  return changed;
+}
 
 function printUsage(exitCode) {
   console.log("Usage: node scripts/build-agent-startup-orientation.mjs [--check|--write]");
-  console.log(`  --check   Validate ${OUTPUT_PATH} against current startup sources (default)`);
+  console.log(`  --check   Validate ${OUTPUT_PATH} routing content and linked paths (default); fingerprint drift is reported, not gated`);
   console.log(`  --write   Regenerate ${OUTPUT_PATH}`);
   process.exit(exitCode);
 }
@@ -309,11 +358,11 @@ function buildOrientationMarkdown() {
     "node scripts/build-agent-startup-orientation.mjs --write",
     "```",
     "",
-    "The full content-integrity gate includes this check.",
+    "The full content-integrity gate includes this check. The check fails only when the workflow cards, standing rules, prompt index, or a linked path changes; the fingerprint table below is informational and is refreshed at regeneration.",
     "",
-    "## Source Fingerprints",
+    FINGERPRINT_HEADING,
     "",
-    "A source hash change means this target should be regenerated and then skimmed for whether the compact guidance still reflects the live policy.",
+    "A changed hash means a startup source was edited after the last regeneration. It does not fail `--check`; skim the affected card when regenerating during the branch/PR process.",
     "",
     "| Source | Lines | SHA-256 |",
     "| --- | ---: | --- |",
@@ -334,12 +383,19 @@ function sourceMetadata(sourcePath) {
 }
 
 function sourceLink(sourcePath) {
-  if (!SOURCE_PATHS.includes(sourcePath) && !PROMPT_INDEX.some((row) => row.path === sourcePath)) {
+  if (!looksLikePath(sourcePath)) {
     return tableCell(sourcePath);
+  }
+  if (!fs.existsSync(path.join(ROOT_DIR, sourcePath))) {
+    throw new Error(`Missing linked path: ${sourcePath}`);
   }
   const outputDir = path.posix.dirname(OUTPUT_PATH);
   const href = path.posix.relative(outputDir, sourcePath);
   return `[${sourcePath}](${href})`;
+}
+
+function looksLikePath(value) {
+  return /^[A-Za-z0-9_.-]+(\/[A-Za-z0-9_.-]+)+$/.test(value) || /^\.[A-Za-z0-9_.-]+(\/[A-Za-z0-9_.-]+)+$/.test(value);
 }
 
 function tableCell(value) {

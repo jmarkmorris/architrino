@@ -5,11 +5,13 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { minimalBinding, parseArgs, snapshot, SOURCE_OWNERS } from "../scripts/eom/prepare-f5-enclosed-root-build.mjs";
 
+import {admitF5Sources,SOURCE_MAP} from "../scripts/eom/f5-current-source-admission.mjs";
 const root = process.cwd();
+const sourceMapSha256 = createHash("sha256").update(readFileSync(SOURCE_MAP)).digest("hex");
 const self = "scripts/eom/prepare-f5-enclosed-root-build.mjs";
 const digest = createHash("sha256").update(readFileSync(self)).digest("hex");
 const args = ["--out", ".local-data/braid-analysis/f5-enclosed-root-current-build/synthetic-not-created",
-  "--python", "/synthetic/venv/python", "--builder-sha256", digest];
+  "--python", "/synthetic/venv/python", "--builder-sha256", digest, "--source-map-sha256", sourceMapSha256];
 
 test("build arguments preserve explicit fresh lane and runtime", () => {
   const parsed = parseArgs(args);
@@ -30,14 +32,15 @@ test("minimal binding matches producer closed file-record shape", () => {
   assert.equal(record.sha256, digest);
   assert.equal(record.bytes, readFileSync(self).length);
 });
-test("source snapshot binds fresh builder, whole EOM owners and frozen references", () => {
-  const records = snapshot(digest);
+test("source snapshot binds fresh builder, whole EOM owners and frozen references", async () => {
+  const admission = await admitF5Sources(root,sourceMapSha256);
+  const records = snapshot(digest, admission);
   assert.equal(records.find((r) => r.path === self).sha256, digest);
   for (const [filename, expected] of Object.entries(SOURCE_OWNERS))
     assert.equal(records.find((r) => r.path === filename).sha256, expected);
   assert.ok(records.some((r) => r.path === "src/eom/native/eom_f5_enclosed_root_cli.cpp"));
   assert.equal(new Set(records.map((r) => r.path)).size, records.length);
-  assert.throws(() => snapshot("0".repeat(64)), /reviewed source drift/);
+  assert.throws(() => snapshot("0".repeat(64), admission), /admission\/builder/);
 });
 test("build source uses two compilation workers and no data invocation", () => {
   const source = readFileSync(self, "utf8");

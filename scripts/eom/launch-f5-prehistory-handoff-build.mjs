@@ -1,4 +1,6 @@
 // Operational registered-child launch and build-byte admission, not mathematics.
+import * as f5Fs from "node:fs";
+import * as f5Crypto from "node:crypto";
 import { execFile } from "node:child_process";
 import { createHash } from "node:crypto";
 import { closeSync, constants, existsSync, fstatSync, fsyncSync, lstatSync,
@@ -11,12 +13,8 @@ const ROOT = process.cwd();
 const SELF = "scripts/eom/launch-f5-prehistory-handoff-build.mjs";
 const ENTRY = "scripts/eom/prepare-f5-prehistory-handoff-build.mjs";
 const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs";
-const PINS = Object.freeze({
-  [ENTRY]: "9cf07590c1733db90eb5c0b407a4bae6fac8af6adc0785bd41c9f5a5d0b5b111",
-  "scripts/eom/prepare-subfield-circular-root.mjs": "31224420d48181f8834e0a6290f7dd2957fbb0e4072e3f6aa2062d76a8cd6e43",
-  "scripts/eom/prepare-f5-enclosed-root.mjs": "3431be1ca2f17474775572358baa88eae8de3ce93403d58e4b1fa36d9e367d50",
-  [OUTER]: "e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920",
-});
+const SOURCE_MAP = "reference/priorities/development-process-review/contracts/option-b-f5-operational-sources.jsonld";
+const ADMISSION = "scripts/eom/f5-current-source-admission.mjs";
 const absolute = value => path.resolve(ROOT, value);
 const sha = value => createHash("sha256").update(value).digest("hex");
 const check = (ok, reason) => { if (!ok) throw new Error(reason); };
@@ -39,6 +37,37 @@ export function readBound(filename, expected, collect = false) {
       (!expected || digest === expected), "build input changed or differs");
     return { path: filename, sha256: digest, bytes: at, ...(collect ? { data: Buffer.concat(chunks) } : {}) };
   } finally { closeSync(fd); }
+}
+// Builtins-only bootstrap remains usable in captured file workers.
+// Bootstrap uses Node builtins only; no repository module runs before selection.
+export async function initializeF5Sources(root, sourceMapSha256, originalIdentities = {}) {
+  if (!/^[a-f0-9]{64}$/u.test(sourceMapSha256 ?? "")) throw Error("externally selected F5 source-map digest required");
+  const capture = (filename, expected) => {
+    if (f5Fs.realpathSync(filename) !== filename) throw Error("canonical F5 bootstrap source required");
+    const fd = f5Fs.openSync(filename, f5Fs.constants.O_RDONLY | f5Fs.constants.O_NOFOLLOW | f5Fs.constants.O_NONBLOCK);
+    try {
+      const before = f5Fs.fstatSync(fd, {bigint:true});
+      const identity = s => [s.dev,s.ino,s.size,s.mtimeNs,s.ctimeNs].join(":");
+      if (!before.isFile() || before.size <= 0n || before.size > 1024n**2n) throw Error("bounded F5 bootstrap source");
+      const data = f5Fs.readFileSync(fd), sha256 = f5Crypto.createHash("sha256").update(data).digest("hex");
+      if (sha256 !== expected || identity(before) !== identity(f5Fs.fstatSync(fd,{bigint:true})) || identity(before) !== identity(f5Fs.lstatSync(filename,{bigint:true}))) throw Error("F5 bootstrap source digest/original identity changed");
+      if (Object.hasOwn(originalIdentities,filename) && originalIdentities[filename] !== identity(before)) throw Error("F5 original bootstrap identity changed");
+      return {data,identity:identity(before),path:filename};
+    } finally {f5Fs.closeSync(fd);}
+  };
+  const mapPath = path.join(root,"reference/priorities/development-process-review/contracts/option-b-f5-operational-sources.jsonld");
+  const map = capture(mapPath,sourceMapSha256), admissionPath = "scripts/eom/f5-current-source-admission.mjs";
+  const rows = JSON.parse(map.data)["@graph"]?.filter(r=>r.role==="admission"&&r.binding?.path===admissionPath);
+  if (rows?.length !== 1 || !/^[a-f0-9]{64}$/u.test(rows[0].binding.sha256)) throw Error("exact F5 admission module selection required");
+  const helper = capture(path.join(root,admissionPath),rows[0].binding.sha256);
+  const module = await import("data:text/javascript;base64,"+helper.data.toString("base64"));
+  return module.admitF5Sources(root,sourceMapSha256,{...originalIdentities,[map.path]:map.identity,[helper.path]:helper.identity});
+}
+export async function selectedBuildOperation(job) {
+  const a = await initializeF5Sources(job.root, job.sourceMapSha256, job.identities);
+  a.recheck();
+  const result = job.kind === "finalize" ? finalizeBuild(job) : admitBuild({...job, selectedSourceMap: a.sourceMap});
+  a.recheck(); return result;
 }
 export function writeNew(filename, value) {
   const data = Buffer.from(JSON.stringify(value)+"\n"), fd = openSync(filename, "wx");
@@ -85,6 +114,7 @@ export function admitBuild(job) {
     receipt.status === completion.status && receipt.accepted === false && receipt.rootCalls === 0 &&
     receipt.dataLoaded === false && receipt.eomExecuted === false && receipt.evolutionAuthorized === false &&
     receipt.h3EvidenceEligible === false, "build authority differs");
+  if (job.selectedSourceMap) check(same(receipt.sourceMap, job.selectedSourceMap), "build receipt source-map selection differs");
   check(same(receipt.sourcesBefore, receipt.sourcesAfter), "authored source generation differs");
   check(receipt.stages.length === job.gates.length && receipt.stages.length > 0, "build gate census differs");
   receipt.stages.forEach((stage, index) => {
@@ -121,7 +151,7 @@ export function finalizeBuild(job) {
 async function workerAdmission(job, bytes, limitMs, signal) {
   check(Number.isInteger(limitMs) && limitMs > 0 && limitMs <= 1800000, "positive remaining worker budget required");
   const worker = new Worker(`const {parentPort,workerData}=require('node:worker_threads');
-    import('data:text/javascript;base64,'+Buffer.from(workerData.bytes).toString('base64')).then(m=>workerData.job.kind==='finalize'?m.finalizeBuild(workerData.job):m.admitBuild(workerData.job))
+    import('data:text/javascript;base64,'+Buffer.from(workerData.bytes).toString('base64')).then(m=>m.selectedBuildOperation(workerData.job))
     .then(value=>parentPort.postMessage({value})).catch(e=>parentPort.postMessage({failure:e.message}));`,
   { eval: true, execArgv: [], workerData: { job, bytes } });
   let timer, listener;
@@ -134,7 +164,7 @@ async function workerAdmission(job, bytes, limitMs, signal) {
   }); } finally { await worker.terminate(); clearTimeout(timer); signal.removeEventListener("abort", listener); }
 }
 export async function launch(argv) {
-  check(argv.length === 6 && argv[0] === "--out" && argv[2] === "--python" && argv[4] === "--launcher-sha256" &&
+  check(argv.length === 8 && argv[6] === "--source-map-sha256" && /^[a-f0-9]{64}$/u.test(argv[7] ?? "") && argv[0] === "--out" && argv[2] === "--python" && argv[4] === "--launcher-sha256" &&
     /^[a-f0-9]{64}$/u.test(argv[5]) && path.isAbsolute(argv[3]), "expected --out NEW-RUN --python ABSOLUTE-PYTHON --launcher-sha256 SHA");
   const started = performance.now(), deadlineNanoseconds = process.hrtime.bigint()+1800000000000n, output = absolute(argv[1]);
   check(output.startsWith(absolute(".local-data/braid-analysis/f5-prehistory-handoff-build-20260827/")+path.sep) &&
@@ -142,7 +172,11 @@ export async function launch(argv) {
   let ancestor = path.dirname(output);
   while (!existsSync(ancestor)) ancestor = path.dirname(ancestor);
   check(realpathSync(ancestor) === ancestor, "symlinked build ancestor");
-  const self = readBound(SELF, argv[5], true), captures = Object.entries(PINS).map(([p, h]) => readBound(p, h, true));
+  const admission = await initializeF5Sources(realpathSync(ROOT), argv[7]);
+  check(admission.pins[SELF] === argv[5], "launcher/map selection differs");
+  const self = readBound(SELF, argv[5], true), captures = admission.sources.map(b => readBound(b.path, b.sha256, true));
+  admission.recheck();
+  const selectedJob = job => ({...job, root: admission.root, sourceMapSha256: argv[7], identities: admission.identities});
   const outerBytes = captures.find(x => x.path === absolute(OUTER)).data;
   const outer = await import("data:text/javascript;base64,"+outerBytes.toString("base64"));
   const table = await outer.processTable();
@@ -163,18 +197,18 @@ export async function launch(argv) {
     finally { observations.push(stamp); console.error(JSON.stringify({ stage: "f5-handoff-build-resources", ...stamp })); }
   };
   await observe(true);
-  const sources = captures.filter(x => [ENTRY, "scripts/eom/prepare-subfield-circular-root.mjs", "scripts/eom/prepare-f5-enclosed-root.mjs"].some(p => absolute(p) === x.path))
+  const sources = captures
     .map(x => ({ path: path.relative(ROOT, x.path), sha256: x.sha256, bytes: x.data }));
   process.on("SIGINT", interrupt); process.on("SIGTERM", interrupt);
   try {
     const running = outer.superviseRegisteredPilot({ root: ROOT, entry: ENTRY,
-      args: ["--out", argv[1], "--python", argv[3], "--builder-sha256", PINS[ENTRY]],
+      args: ["--out", argv[1], "--python", argv[3], "--builder-sha256", admission.pins[ENTRY], "--source-map-sha256", argv[7], "--source-identities", JSON.stringify(admission.identities)],
       sources, output: output+"-outer", startedAtMs: started, limitMs: 1800000, heartbeatMs: 15000,
       inspectProcesses: startupAbortInspection(outer.processTable, finalAbort.signal),
       admit: async ({ receipt, remainingMs, signal }) => {
         check(!resourceFailure, "resource supervision failed");
         const stdout = readBound(path.join(output+"-outer", "runner-stdout.log"));
-        return workerAdmission({ buildOutput: output, stdout, gates: receipt.gates }, self.data, remainingMs, signal);
+        return workerAdmission(selectedJob({ buildOutput: output, stdout, gates: receipt.gates }), self.data, remainingMs, signal);
       } });
     timer = setInterval(() => {
       console.error(JSON.stringify({ stage: finalizing ? "f5-handoff-build-finalization" : "f5-handoff-build-running",
@@ -184,19 +218,22 @@ export async function launch(argv) {
     receipt = await running;
     finalizing = true; if (inFlight) await inFlight;
     await observe(false); check(!resourceFailure, "resource supervision failed");
+    admission.recheck();
+    receipt.sourceMap = admission.sourceMap;
     receipt.buildLaunchScope = "captured-executing-builder-and-helpers; independently registered cancellable child groups; build only";
     receipt.operationalSourceBindings = [self, ...captures].map(({ path, sha256, bytes }) => ({ path, sha256, bytes }));
     receipt.resourceObservationsBeforePublication = [...observations];
     receipt.finalizationAdmission = "fresh successful launcher completion binds the full resource-observation sequence through final worker closure";
     check(performance.now()-started < 1800000, "inclusive publication deadline");
-    const publication = await workerAdmission({ kind: "finalize", output: output+"-outer", receipt,
+    const publication = await workerAdmission(selectedJob({ kind: "finalize", output: output+"-outer", receipt,
       sources: [self, ...captures].map(({ path, sha256 }) => ({ path, sha256 })),
-      deadlineNanoseconds: String(deadlineNanoseconds) }, self.data,
+      deadlineNanoseconds: String(deadlineNanoseconds) }), self.data,
       Math.floor(1800000-(performance.now()-started)), finalAbort.signal);
     if (inFlight) await inFlight;
     await observe(false);
     check(!resourceFailure && !finalAbort.signal.aborted, "final resource observation or interruption rejects build");
     check(performance.now()-started < 1800000, "inclusive final deadline");
+    admission.recheck();
     console.log(JSON.stringify({ completed: true, accepted: true, authority: "build-process-admission-only",
       receipt: publication, resourceObservations: [...observations], elapsedSeconds: (performance.now()-started)/1000,
       h3EvidenceEligible: false, eomExecuted: false }));

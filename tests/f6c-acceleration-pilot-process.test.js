@@ -39,6 +39,7 @@ function pythonSource(){return Buffer.from([
 function entrySource(mode,program,digest){return Buffer.from([
   "import{readFileSync,realpathSync}from'node:fs';import path from'node:path';import{fileURLToPath}from'node:url';",
   'import * as U from '+JSON.stringify(pathToFileURL(path.join(root,entryPath)).href)+';',
+  'export async function initializeSourceBindings(){};export const SOURCE_BINDINGS='+JSON.stringify({'scripts/eom/launch-subfield-circular-root-pilot.mjs':hash(outer),'scripts/eom/launch-prescribed-response-pilot.mjs':hash(helper)})+';', // Synthetic transport fixture only.
   'export const LANE=U.LANE,SHARED_LOCK_LANE=U.SHARED_LOCK_LANE,SCOPE=U.SCOPE;',
   'export const outputPaths=U.outputPaths,clean=U.clean,readBound=U.readBound,writeNew=U.writeNew,equal=U.equal;',
   'export function fileOperation(job){',
@@ -86,7 +87,7 @@ async function runFixture(mode){
   const output=path.join(dir,lane,'attempt'),ops=output+'-outer';
   try{
     const L=await import('data:text/javascript;base64,'+self.toString('base64')),began=performance.now();
-    const operation=L.launchCaptured({root:dir,options:{output,plan:path.join(dir,'fake-plan'),planSha256:'1'.repeat(64),launcherSha256:hash(self),python,git:'/usr/bin/git'},
+    const operation=L.launchCaptured({root:dir,options:{output,plan:path.join(dir,'fake-plan'),planSha256:'1'.repeat(64),launcherSha256:hash(self),sourceMapSha256:'2'.repeat(64),python,git:'/usr/bin/git'},
       self:{path:path.join(root,'scripts/eom/launch-f6c-acceleration-pilot.mjs'),sha256:hash(self),bytes:self.length,data:self},
       entry:{path:path.join(dir,entryPath),sha256:hash(entry),bytes:entry.length,data:entry},outerBytes:outer,helperBytes:helper,began,deadlineNanoseconds:String(process.hrtime.bigint()+1800000000000n)});
     if(!['pass','slow-publication'].includes(mode)){

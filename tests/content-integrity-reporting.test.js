@@ -1,6 +1,39 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { runChecks } from "../scripts/check-content-integrity.mjs";
+import { runChecks, selectedChecks, MAC_DEPENDENT_TESTS } from "../scripts/check-content-integrity.mjs";
+
+test("GitHub assigns exactly two Python tests locally without weakening the local gate", () => {
+  const pattern = new RegExp(MAC_DEPENDENT_TESTS);
+  assert.ok(pattern.test("current Python handoff retains real runtime inventory with external admission and no scientific data"));
+  assert.ok(pattern.test("Python admission rejects wrong Node capability, omitted census and same-byte Node replacement"));
+  assert.equal(pattern.test("captured file worker admits known build metadata, then rejects omitted map and substituted gates"), false);
+  const local = selectedChecks({ GITHUB_ACTIONS: "true" });
+  const github = selectedChecks({}, "github");
+  assert.equal(local.length, github.length);
+  assert.equal(local.filter(c => c.args.some(a => a.startsWith("--test-skip-pattern"))).length, 0);
+  assert.equal(github.filter(c => c.args.some(a => a.startsWith("--test-skip-pattern"))).length, 1);
+  for (const [i, check] of local.entries()) {
+    assert.deepEqual(github[i].args.filter(a => !a.startsWith("--test-skip-pattern")), check.args);
+  }
+  assert.throws(() => selectedChecks({}, "unknown"), /Unknown validation profile/);
+});
+
+test("default gate excludes opt-in maintenance checks", () => {
+  const required = selectedChecks({});
+  const maintenance = selectedChecks({ AAA_CONTENT_MAINTENANCE: "run" });
+  assert.ok(required.length < maintenance.length);
+  assert.ok(required.every(({ name }) => !name.includes("Borg registry")));
+  assert.ok(maintenance.some(({ name }) => name.includes("Borg registry")));
+});
+
+test("all remaining Option B admission and finite-disposition controls are required", () => {
+  const checks = selectedChecks({});
+  const admission = checks.find(row => row.name === "Test Option B current-source admission and dependency controls");
+  assert.ok(admission && !admission.reporting && !admission.skipWhen);
+  for (const file of ["tests/option-b-f5-admission.test.mjs", "tests/option-b-f5-evolution-admission.test.mjs", "tests/option-b-circular-admission.test.mjs", "tests/option-b-operational-successor.test.mjs", "tests/option-b-disposition-coverage.test.mjs"]) assert.ok(admission.args.includes(file), file);
+  const census = checks.find(row => row.args[0] === "scripts/equation-mapping/check-current-source-dispositions.mjs");
+  assert.ok(census && !census.reporting && !census.skipWhen);
+});
 
 function scenario(checks, results) {
   const output = [], invoked = [];

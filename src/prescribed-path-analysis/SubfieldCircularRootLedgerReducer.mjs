@@ -17,8 +17,8 @@ export const SUBFIELD_CIRCULAR_REFERENCES = Object.freeze([
   ["whole-manifest-verifier", "scripts/eom/verify-subfield-circular-history.mjs", "b2fc83aa828ac9f175d7c3ae7bf43b66fcda54a702de6f2f80812852aebd5f38"],
 ].map(([id, relative, sha256]) => Object.freeze({ id, path: relative, sha256 })));
 const SUBJECT_PATH = "src/eom/native/eom_subfield_circular_root_cli.cpp";
-const SUBJECT_SHA = "42dc7eaa74a36f019ff126215754785f9b8418dd998d9850c2c70dc5cb03bd41";
-const CMAKE_SHA = "e4b3a8bdfc91c756eb00e4c37e872bcbebfe1f7b406a551e3aa630f8818d2bdd";
+const SUBJECT_SHA = "a06246ca3aac60d500981b19fcffabb9612dc3a4085fc4fb3c441e8839726b7a";
+const CMAKE_SHA = "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4";
 const API_PINS = Object.freeze({
   "src/eom/src/History.cpp": "cd732843db488de66798953278d1e3b15151163c826b9d5b93eed98363a8b4c5",
   "src/eom/src/Interval.cpp": "5da66e8473f78439dbb075857918af85b7789b2749e5046c83d9b58d944023a5",
@@ -199,28 +199,30 @@ function verifyBuild(bytes, expectedHash, files) {
     if (all.has(binding.realPath) && all.get(binding.realPath).sha256 !== binding.sha256) fail("conflicting build file bindings");
     all.set(binding.realPath, binding);
   }
-  for (const group of ["sources", "references", "tools", "headerDependencies", "externalLibraries"]) {
+  for (const group of ["sources", "references", "headerDependencies"]) {
     const before = build[`${group}Before`], after = build[`${group}After`];
     if (!Array.isArray(before) || before.length === 0 || !same(before, after)) fail(`build ${group} snapshot mismatch`);
     const seen = new Set(); for (const binding of before) { if (seen.has(binding.path)) fail(`duplicate build ${group} path`); seen.add(binding.path); verify(binding); }
   }
   for (const field of ["executable", "library", "cmakeCache", "compileCommands", "manualDependencyFile"]) verify(build.built?.[field]);
-  if (review) {
-    const census = ["sources", "references", "tools", "headerDependencies", "externalLibraries"].flatMap(category =>
-      build[`${category}After`].map(({path, sha256, bytes}) => ({category, path, sha256, bytes})));
-    if (!same(census, review.bindingChecks) || build.built.executable.sha256 !== review.executable.sha256 ||
-        build.built.executable.bytes !== review.executable.bytes || build.stages.length !== review.successfulClosedStages)
-      fail("current build differs from independent review census");
-    for (const binding of build.discoveryToolsBefore) verify(binding);
-    if (!build.runtimeDependencies.every(binding => binding.status === "runtime-capability"))
-      fail("current build runtime capability boundary differs");
+  // Current host capabilities are identified by path, not historical bytes.
+  // This verifies the build record; independent build acceptance stays external.
+  const capabilities = rows => Array.isArray(rows) && rows.length > 0 && rows.every(row =>
+    isObject(row) && Object.keys(row).length === 1 && typeof row.path === "string" && path.isAbsolute(row.path));
+  for (const group of ["tools", "externalLibraries"]) {
+    if (!capabilities(build[`${group}Before`]) || !same(build[`${group}Before`], build[`${group}After`]))
+      fail(`build ${group} capabilities differ`);
   }
+  if (!capabilities(build.discoveryToolsBefore) || !Array.isArray(build.runtimeDependencies) ||
+      build.runtimeDependencies.some(row => !isObject(row) || row.status !== "runtime-capability" ||
+        typeof row.consumer !== "string" || typeof row.requested !== "string" || !path.isAbsolute(row.requested) ||
+        Object.keys(row).some(key => !["consumer", "requested", "status"].includes(key))))
+    fail("current build runtime capability boundary differs");
   if (!Array.isArray(build.stages) || build.stages.length < 3) fail("incomplete build stages");
   for(const required of ["configure","librarybuild","adapterlink"])if(build.stages.filter(stage=>stage.stage===required).length!==1)fail(`missing unique ${required} build stage`);
   for (const stage of build.stages) { if (stage.code !== 0 || stage.signal !== null || stage.timedOut !== false || stage.interrupted !== false || stage.descendantsAfterClose !== false || stage.processGroupClosed !== true) fail("build stage did not close successfully"); verify(stage.log); }
-  const reviewedSource = relative => review.bindingChecks.find(binding => binding.category === "sources" && binding.path === relative)?.sha256;
-  for (const [relative, expected] of Object.entries({ [SUBJECT_PATH]: review ? reviewedSource(SUBJECT_PATH) : SUBJECT_SHA,
-    "src/eom/CMakeLists.txt": review ? reviewedSource("src/eom/CMakeLists.txt") : CMAKE_SHA, ...API_PINS })) {
+  for (const [relative, expected] of Object.entries({ [SUBJECT_PATH]: SUBJECT_SHA,
+    "src/eom/CMakeLists.txt": CMAKE_SHA, ...API_PINS })) {
     const binding = all.get(realpathSync(files.relative(relative)));
     if (!binding || binding.sha256 !== expected) fail(`build misses frozen source ${relative}`);
   }

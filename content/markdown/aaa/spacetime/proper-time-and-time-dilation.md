@@ -4,7 +4,7 @@ This chapter explains how clock time is recovered from assembly dynamics. Absolu
 
 This chapter keeps `proper time` as the standard relativity bridge term for clock time along a timelike record. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the native claim is more specific: $\tau$ is a derived clock readout, not a second substrate time and not a more fundamental or exemplary time. The word `proper` should therefore be read only in the inherited physics sense of belonging to the physical clock record.
 
-This chapter is the canonical home for derived clock time, observer clocks, clock slowing, and the clock map from absolute time $T$ to measured clock readout $\tau$. Foundation and ontology pages should point here once the discussion becomes a clock law, frequency extraction, observer-clock comparison, or Lorentz/GR time-dilation recovery.
+An [architrino](../foundations/architrino.md) is a point transceiver whose past motion supplies expanding causal wakes; their arrivals determine its acceleration. A [Noether braid](../noether-braid/noether-braid.md) is a neutral assembly candidate built from coupled architrinos, and the [Noether sea](noether-sea.md) is the ambient population of such assemblies. They occupy the fixed [Euclidean void](../foundations/euclidean-void.md) and evolve in [absolute time](../foundations/absolute-time.md). A retained, countable clock cycle and its identification with an atomic clock remain dynamical and observer-level recovery obligations.
 
 For the detailed comparison between special-relativistic clock language and the deformable Noether braid implementation story, see [the special-relativity bridge](../philosophy-history/theory-bridges/special-relativity-noether-braid.md).
 
@@ -34,6 +34,10 @@ $$
 [View →](../../../../equation-mapping.html#corpus-equation-3022ac1cbdf14fea)
 
 Here $\varphi_{\mathcal A}$ is the counted clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, $R_{\mathcal A}$ is the clock geometry/orientation record, $H_{\mathcal A}$ is the relevant path-history ledger, and $\mathbf{w}$ is the clock group velocity relative to local Noether sea flow. A broad native expression such as $d\tau/dT=F(\mathbf{w},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{clock geometry})$ is only a shorthand after this phase channel has been declared; observer comparisons must project it to $d\tau/dt_{\mathrm{eff}}$.
+
+Take $\varphi_{\mathcal A}$ to be a continuous phase with full turns retained, and $\Omega_{\mathcal A}=d\varphi_{\mathcal A}/dT$ and $\Omega_{\mathcal A}^{(0)}>0$ to be angular frequencies measured against $T$. Along a clock history, let $J_{\mathcal A}=dt_{\mathrm{eff}}/dT>0$ be the total derivative of its declared observer-chart time. The exact chain rule is $d\tau_{\mathcal A}/dt_{\mathrm{eff}}=(\Omega_{\mathcal A}/\Omega_{\mathcal A}^{(0)})/J_{\mathcal A}$. Effective relative velocity is $\mathbf w_{\mathrm{eff}}=d\mathbf x_{\mathrm{eff}}/dt_{\mathrm{eff}}-\mathbf u_{\mathrm{sea,eff}}$; it is not obtained by relabeling the native $\mathbf w$. Reference normalization sets $J_0=1$ at the reference record only. Equating native and observer rate ratios elsewhere requires the additional condition $J_{\mathcal A}=1$ along those records and a declared ruler/speed conversion.
+
+The phase-count definition and chain rule are derived identities on an admitted clock record. The constitutive clock law and Lorentz/GR recovery are hypotheses until that record and its observer map are supplied. A phase that cannot be unwrapped, a zero reference frequency, or a nonmonotone observer time invalidates the stated clock construction; a well-defined clock can still fail the physical recovery tests below.
 
 For a two-clock comparison, the native input is not the relative velocity of the two clock centers by itself. It is the pair of local clock records
 $$
@@ -86,16 +90,16 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-112a7cb2d7209d27)
 
-where $F_{\mathcal A}=d\tau_{\mathcal A}/dT$ is the same clock map used above. Oppositely directed circumnavigation paths provide the transported-clock benchmark exemplified by Hafele-Keating-type comparisons, while fiber-linked stationary clocks can supply the endpoint reference without turning photon transport into the carried matter clock. This is distinct from the photon-loop Sagnac row: both loops sample the same declared Noether sea flow, but one integrates a material clock cadence and the other integrates signal propagation. The terrestrial $\mathbf u_{\mathrm{sea}}$ working profile in [PPN Parameters](ppn-parameters.md#terrestrial-working-drift-profiles) must be used along both paths. CMB-comoving and locally entrained profiles are discriminated by the annual, sidereal, east-west, and altitude dependence of $\Delta\tau_{C:C_0}$.
+Here $F_{\mathcal A}=d\tau_{\mathcal A}/dT$ is the same clock map used above, applied to identically calibrated clock designs along both histories. Oppositely directed circumnavigation paths provide the benchmark exemplified by [Hafele and Keating’s observed time gains](https://doi.org/10.1126/science.177.4044.168), while fiber-linked stationary clocks can supply the endpoint reference without turning photon transport into the carried matter clock. This is distinct from the photon-loop Sagnac comparison: one integrates a material clock cadence and the other integrates signal propagation. Use the same terrestrial flow model from [PPN Parameters](ppn-parameters.md#terrestrial-working-drift-profiles) along both paths. CMB-comoving and locally entrained profiles are distinguishable only when their projected annual, sidereal, east-west, or altitude signatures differ beyond the common uncertainty budget.
 
 The target is to reproduce, in the appropriate regime,
 $$
-\frac{d\tau}{dt_{\mathrm{eff}}} \approx \sqrt{1+\frac{2\Phi_N}{c_0^2} - \frac{\|\mathbf{w}\|^2}{c_0^2}}
+\frac{d\tau}{dt_{\mathrm{eff}}} \approx \sqrt{1+\frac{2\Phi_N}{c_0^2} - \frac{\|\mathbf{w}_{\mathrm{eff}}\|^2}{c_0^2}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cc8677a60808f0b3)
 
-and to generalize this map to strong-field and high-velocity conditions.
+Here $\Phi_N<0$ is the Newtonian comparison potential in a deeper potential region, $c_0$ is the calibrated weak-field observer speed, and both $|\Phi_N|/c_0^2$ and $\|\mathbf w_{\mathrm{eff}}\|^2/c_0^2$ are small. This expression fixes the leading weak-field terms; its square root does not determine second-order coefficients. Strong-field and high-velocity recovery requires a separate derivation.
 
 Notation convention used in this chapter: $n(\mathbf X,T)\equiv \rho_{\text{NS}}(\mathbf X,T)/\rho_{\text{NS},0}$ is the canonical medium-density variable. The Noether sea delay factor is $\chi_{\text{sea}}(\mathbf X,T)\equiv c_f/c_{\text{eff}}(\mathbf X,T)$; use it for refractive-delay language so $n$ remains reserved for density. The clock-law derivation imports the [transverse causal budget lemma](../noether-braid/braid-mathematics.md#transverse-causal-budget-lemma): primitive branch tests may use $c_f$, but observer-level clock comparison uses the declared dressed speed $c_\star$, usually $c_\star=c_{\text{eff}}(\mathbf X,T)$ in a local Noether sea cell.
 
@@ -111,7 +115,7 @@ Notation convention used in this chapter: $n(\mathbf X,T)\equiv \rho_{\text{NS}}
   - All worldlines are parametrized directly by $T$.
 
 - **Derived clock time $\tau$** (standard bridge term: proper time)
-  - Time read by a **physical clock**: a bound Noether braid assembly, such as an atomic transition or binary oscillation, interacting with the Noether sea.
+  - Time read by a **physical clock**. A countable braid or binary cycle is a microscopic candidate; reproducing atomic transition clocks requires a separate assembly and spectral mapping.
   - Encodes how many internal oscillation cycles occur per unit $dT$ before projection into an observer chart.
   - The word `proper` does not mean substrate-level, privileged, or exemplary; it names the inherited relativity comparison target for a clock-carried record.
 
@@ -125,7 +129,7 @@ A clock is any assembly with a **stable, countable internal cycle**. The native 
 
 - Minimal model: a Noether braid with one declared clock-channel index $a_{\mathrm{clk}}\in\{1,2,3\}$ whose cycle is counted. The clock-channel role is extracted from the record and is not assigned by radius order.
 - Base frequency $\omega_0$ (or period $P_0 = 2\pi/\omega_0$) is defined for:
-  - Clock **at rest** in the absolute frame.
+  - Clock **at rest relative to the reference sea**, $\mathbf w=\mathbf0$, with its orientation, geometry, and history fixed; absolute rest agrees with this condition only when $\mathbf u_{\mathrm{sea}}=\mathbf0$.
   - In a region of homogeneous Noether sea density $n=1$ and negligible external gradients.
 
 Derived clock time is then defined operationally as:
@@ -141,11 +145,11 @@ The central problem is to compute $\omega(\mathbf{w},n,\chi_{\text{sea}},\Phi_{\
 
 ### Moving-Branch Clock Retuning Target
 
-The homogeneous moving-clock extraction is independent from weak-field PPN matching. Primitive branch calculations solve causal roots with $c_f$:
+The homogeneous moving-clock extraction is a separate obligation from weak-field parameterized post-Newtonian (PPN) matching, which compares coefficients of the effective weak-gravity metric. Primitive branch calculations solve causal roots with $c_f$; $T_r$ is reception time at receiver $o$, and $T_t<T_r$ is emission time at transmitter $j$:
 $$
-\left\|\mathbf X_{o}(T)-\mathbf X_{j}(T_0)\right\|
+\left\|\mathbf X_{o}(T_r)-\mathbf X_{j}(T_t)\right\|
 =
-c_f(T-T_0)
+c_f(T_r-T_t)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-35f02051aff239c6)
@@ -163,7 +167,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3eb1204b66abfc3a)
 
-where $\mathbf{w}$ is the clock assembly group velocity through the local Noether sea.
+Here $\mathbf{w}$ is the native clock assembly group velocity through the local Noether sea and $0\le\beta_\star<1$. The channel speed in this native ratio must be expressed in the same length and absolute-time units. At observer export, use the effective velocity and channel speed in that chart; equality with the native ratio is an additional recovery condition.
 
 The locally measured speed of light is therefore a co-calibrated observer readout, not a primitive identity among all speed symbols. In a weak homogeneous calibration cell $W_0$, a Physical Observer obtains the empirical value by comparing photon-channel round-trip transport against its own ruler and derived clock phase:
 $$
@@ -199,20 +203,20 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a02d9cc11e62d3ed)
 
-An accepted clock branch must then extract
+After export, the same budget must be expressed in the effective chart. An admitted clock branch must extract
 $$
 \frac{d\tau}{dt_{\mathrm{eff}}}
 =
 \frac{c_{\perp}}{c_\star}
 =
-\frac{1}{\gamma_\star(\mathbf{w})}
+\frac{1}{\gamma_\star(\mathbf{w}_{\mathrm{eff}})}
 $$
 
 [View →](../../../../equation-mapping.html#lorentz-clock-rate)
 
-from its internal phase dynamics, rather than assign the factor independently.
+from its internal phase dynamics and observer projection. Finite wake speed alone does not pin any constituent’s speed or establish that its internal motion is transverse. The [speed-budget premise and consequence](../noether-braid/braid-mathematics.md#transverse-internal-motion-speed-budget-premise-and-consequence) state those additional hypotheses.
 
-For an admitted moving Noether braid branch $q$ on a group-speed band $0\le \|\mathbf{w}\|/c_f\le\beta_{\max}<1$, choose one clock phase $\theta_{\mathrm{clk},q}$ from the same causal-root ledger used for the branch's geometry. The extracted period is
+For an admitted moving Noether braid branch $q$ on a group-speed band $0\le \|\mathbf{w}\|/c_f\le\beta_{\max}<1$ that also satisfies $\|\mathbf w\|<c_\star$, choose one clock phase $\theta_{\mathrm{clk},q}$ from the same causal-root ledger used for the branch's geometry. The extracted period is
 $$
 P_q(\mathbf{w})
 =
@@ -223,9 +227,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7d21870566bab09b)
 
-Here $P_0$ is the reference cycle period of the same declared clock branch. $P_q$ is the cycle period of clock branch $q$.
-
-and the clock residual is
+Here the dot means $d/dT$, the cycle average retains full phase turns, and both periods are measured in absolute time. The observer period is instead $P_{q,\mathrm{eff}}=\int_{\text{one cycle}}J_q\,dT$. Comparing the native period ratio directly to the observer Lorentz factor requires $J_q=J_0=1$ and the same speed conversion; otherwise use the exported periods. With this restriction, define the native period residual
 $$
 R_T^{(q)}(\mathbf{w})
 \equiv
@@ -245,13 +247,13 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-93af84c8ee8b5221)
 
-uniformly on the group-speed band, with any surviving preferred-frame sideband reported as a branch-sourced leakage term. This packet fails if the clock phase and ruler geometry come from different branch ledgers, if the residual is suppressed only by fitting a PPN coefficient after the fact, or if $c_f$ is silently identified with $c_\star$ without a dressing map.
+uniformly on the declared band, where $C_T$ is a fixed branch-uniform bound and $\epsilon_{\mathrm{LV}}$ is the declared dimensionless leakage budget. A surviving preferred-frame sideband is an observer-channel deviation only after the same export and calibration. This comparison fails if the clock phase and ruler geometry come from different branch ledgers, if the residual is suppressed only by fitting a PPN coefficient after the fact, or if $c_f$ is silently identified with $c_\star$ without a dressing map.
 
 This moving-clock row is one leg of the structural-integrity common-limit closure in [Lorentz Kinematics](./lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure). It is not enough for the clock branch to approximate $\gamma_\star^{-1}$ in isolation. The same causal-root ledger must also produce the moving ruler deformation, photon synchronization row, and weak-field gravity-channel speed row used by Lorentz closure; otherwise the clock result is a branch-split fit rather than clock-map closure.
 
 ### Noether Sea Braid Cadence
 
-For redshift and cosmology work, the local Noether sea braid cadence can serve as the immediate clock reference before any separate detector clock is introduced. Let $\Omega_N(\mathbf X,T)$ be a representative cadence extracted from the local Noether sea braid population, with $P_N(\mathbf X,T)=2\pi/\Omega_N(\mathbf X,T)$. Relative to the weak homogeneous reference cadence, define
+For redshift and cosmology work, the local Noether sea braid cadence is a candidate reference before a separate detector clock is introduced. Cadences in this section are native $T$-rates. Their direct Lorentz and static-redshift targets below refer to the comparison subclass with $J=1$ on the compared histories; for a general observer chart the rate to compare is $C_N/J$. Let $\Omega_N(\mathbf X,T)>0$ be a representative angular cadence extracted by a declared population average from the local Noether sea braid population, with $P_N(\mathbf X,T)=2\pi/\Omega_N(\mathbf X,T)$. Relative to the positive weak homogeneous reference cadence, define
 
 $$
 \Gamma_N(\mathbf X,T)
@@ -332,34 +334,34 @@ $$
 d\tau
 =
 \frac{1}{c_0}
-\sqrt{-g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu}
+\sqrt{-g^{\text{eff}}_{\mu\nu}dx_{\mathrm{eff}}^\mu dx_{\mathrm{eff}}^\nu}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-88c5350d2fa2aad3)
 
-with the weak-field static endpoint limit above and the moving-clock limit
+Here $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$, the other $x_{\mathrm{eff}}^i$ are effective ruler coordinates, and the metric has signature $(-,+,+,+)$. The curve must be future-directed and timelike. Squaring this definition and dividing by $d\tau^2$ gives the normalization identity
 $$
 g^{\text{eff}}_{\mu\nu}
-\frac{dx^\mu}{d\tau}
-\frac{dx^\nu}{d\tau}
+\frac{dx_{\mathrm{eff}}^\mu}{d\tau}
+\frac{dx_{\mathrm{eff}}^\nu}{d\tau}
 =
 -c_0^2
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1d7d800b6f44e95b)
 
-This equation is not a claim that the Euclidean void is a four-dimensional curved substrate. It is the observer-level action benchmark: physical clocks should extremize the same effective interval that the signal, ruler, and orbital modules use when they project the Noether sea state into GR comparison language. If a branch recovers endpoint redshift but fails the integrated clock functional along accelerated or orbital records, the clock map has not closed.
+This equation is not a claim that the Euclidean void is a four-dimensional curved substrate. It is an observer-level clock-functional benchmark: an ideal clock accumulates the interval along its actual path, including an accelerated path. Stationarity of that interval under fixed-endpoint path variations is the separate freely falling geodesic benchmark; it is not a condition on an arbitrarily transported clock. If a branch recovers endpoint redshift but fails the integrated clock functional along accelerated or orbital records, the clock map has not closed.
 
 ### Gamma-N Geometry Extraction Target
 
-The equations above define the endpoint benchmark, but they do not yet derive the Noether sea cadence factor from Noether braid geometry. A first-order extraction scaffold should start from the local variables that already appear in the clock and transport programs: normalized Noether braid density $n$, Noether sea delay factor $\chi_{\text{sea}}$, envelope scale $\lambda$, envelope shape ratio $\xi$, and a representative Noether braid scale $R_{\text{braid}}$. Around the weak homogeneous reference, collect the logarithmic deformation record
+The equations above define the endpoint benchmark, but they do not yet derive the Noether sea cadence factor from Noether braid geometry. A first-order extraction scaffold starts from normalized Noether braid density $n$, Noether sea delay factor $\chi_{\text{sea}}$, envelope scale $\lambda$, envelope shape ratio $\xi$, and a representative Noether braid scale $R_{\text{braid}}$. Normalize $n$, $\lambda$, and $\xi$ to one in the reference cell and $R_{\mathrm{braid}}$ to $R_{\mathrm{braid},0}>0$. The reference delay $\chi_{\mathrm{sea},0}=c_f/c_{\mathrm{eff}}(W_0)>0$ need not equal one. All logarithm arguments must be positive. Around that reference, collect the logarithmic deformation record
 
 $$
 \mathbf{g}_N
 =
 \left(
 \ln n,\,
-\ln\chi_{\text{sea}},\,
+\ln\frac{\chi_{\text{sea}}}{\chi_{\mathrm{sea},0}},\,
 \ln\lambda,\,
 -\ln\xi,\,
 \ln\frac{R_{\text{braid}}}{R_{\text{braid},0}}
@@ -420,7 +422,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ddb1a2e9ae23ad5a)
 
-up to preferred-frame leakage. The first-order admissible row is therefore
+at linear order only if the other moving deformations and $\mathcal R_\Gamma$ have no contribution proportional to $-\ln\xi$. A finite unspecified leakage term does not identify $b_\xi$; the leakage and remainder must be controlled relative to that deformation as it tends to zero. Under those hypotheses the first-order row is
 
 $$
 \mathbf{b}_N
@@ -448,7 +450,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a95758caeb211954)
 
-then the cadence-stretch factor is
+where $\Omega_{\mathrm{clk}}>0$ is a dimensionless rate factor normalized to one in the reference cell, distinct from an angular frequency. The cadence-stretch factor is
 
 $$
 \Gamma_N^{\mathrm{met}}
@@ -466,7 +468,7 @@ $$
 \ln\Omega_{\mathrm{clk}}
 =
 \omega_n\ln n
-+\omega_\chi\ln\chi_{\text{sea}}
++\omega_\chi\ln\frac{\chi_{\text{sea}}}{\chi_{\mathrm{sea},0}}
 +\omega_\lambda\ln\lambda
 +\omega_R\ln\frac{R_{\text{braid}}}{R_{\text{braid},0}}
 +\mathcal{R}_{\Omega}
@@ -497,7 +499,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8b98e8e2198fada3)
 
-or, locally,
+or, locally on a differentiable constitutive branch with spatially constant coefficient row and a controlled derivative of the remainder,
 
 $$
 \mathbf{b}_N\cdot\nabla\mathbf{g}_N
@@ -512,7 +514,7 @@ Equivalently, let $U\equiv-\Phi_N>0$ and define the static weak-potential respon
 
 $$
 \ln n=a_n\frac{U}{c_0^2},\qquad
-\ln\chi_{\text{sea}}=a_\chi\frac{U}{c_0^2},\qquad
+\ln\frac{\chi_{\text{sea}}}{\chi_{\mathrm{sea},0}}=a_\chi\frac{U}{c_0^2},\qquad
 \ln\lambda=a_\lambda\frac{U}{c_0^2},\qquad
 \ln\frac{R_{\text{braid}}}{R_{\text{braid},0}}=a_R\frac{U}{c_0^2}
 $$
@@ -535,7 +537,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1a28ac3218d03be4)
 
-This is the first useful reduction of the proof burden. The Lorentz branch fixes the shape coefficient $b_\xi$, while static weak-field redshift fixes one isotropic coefficient combination. Individual values of $b_n$, $b_\chi$, $b_\lambda$, and $b_R$, or equivalently of the $\omega$ row, require a constitutive calculation or simulation that extracts how a mass source changes $n$, $\chi_{\text{sea}}$, $\lambda$, and $R_{\text{braid}}$ in the same Noether sea cell.
+This reduces the proof burden. The restricted Lorentz matching fixes $b_\xi$ under the remainder assumptions above, while static weak-field redshift fixes one isotropic coefficient combination. Individual values of $b_n$, $b_\chi$, $b_\lambda$, and $b_R$, or equivalently of the $\omega$ row, require a constitutive calculation or simulation that extracts how a mass source changes $n$, $\chi_{\text{sea}}$, $\lambda$, and $R_{\text{braid}}$ in the same Noether sea cell.
 
 Existing weak-field signal tests constrain one neighboring component of this vector. The PPN Shapiro-delay map uses the observer-normalized delay factor
 
@@ -627,7 +629,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f6c3e0cfe0ef5b1f)
 
-and the cadence-stretch row is
+and, choosing a minimal representative with vanishing unused coefficients and $A_\chi\ne0$, the cadence-stretch row is
 
 $$
 \left(
@@ -667,10 +669,10 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a2fde75dcac68696)
 
-so
+Writing the four-component isotropic coefficient and response vectors as $\mathbf b=(b_n,b_\chi,b_\lambda,b_R)^T$, $\boldsymbol\omega=(\omega_n,\omega_\chi,\omega_\lambda,\omega_R)^T$, and $\mathbf a=(a_n,a_\chi,a_\lambda,a_R)^T$ gives
 
 $$
-\mathbf b_N\cdot\mathbf a=1,\qquad
+\mathbf b\cdot\mathbf a=1,\qquad
 \boldsymbol\omega\cdot\mathbf a=-1,\qquad
 b_i+\omega_i=0
 $$
@@ -734,7 +736,7 @@ A finite-height clock comparison samples the spatial derivative of the same scal
 
 $$
 \frac{\Delta\nu}{\nu}
-=
+\approx
 -\Delta\ln\Gamma_N
 =
 S_G\frac{gL}{c_0^2}
@@ -746,7 +748,7 @@ $$
 
 Thus finite-height redshift fixes $S_G=1$ to the experimental tolerance. It does not distinguish the minimal row $\mathbf{c}=\mathbf{0}$ from a compensated row with $\mathbf{c}\cdot\mathbf{u}^{G}\ne0$ and adjusted $b_\chi$, provided the same coefficients are used across the sample.
 
-Hydrogen spectral conversion adds a record-difference test rather than another endpoint normalization. For two admissible hydrogen records $\ell$ and $\ell'$ whose line-inferred cadence stretch agrees after the envelope-gap residual is removed, the same spectral row must satisfy
+Hydrogen spectral conversion adds a record-difference test rather than another endpoint normalization. For two admissible hydrogen records $\ell$ and $\ell'$ whose line-inferred cadence stretch agrees after the envelope-gap residual is removed, and whose remaining $\mathcal R_\Gamma$ corrections agree within the stated error budget, the same spectral row must satisfy
 
 $$
 \mathbf{b}_{N}^{\mathrm{spec}}\cdot
@@ -760,9 +762,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1948a88723c6fa33)
 
-The minimal shared-delay row passes only if the record difference has no uncompensated $\chi_{\text{sea}}$ component after the fixed $-\ln\xi$ term is included. The hydrogen toy scan now demonstrates the discriminant: the clean shared-delay row passes a clean $\chi_{\text{sea}}$-only packet, while the density/scale-compensated row passes the split-record scaffold. This does not yet prove that the gravitational static endpoint has nonzero $a_n$, $a_\lambda$, or $a_R$; it demonstrates within the scaffold that any atom-local record with persistent density, scale, or core-radius splits must use one shared compensated row instead of per-line clock factors; the universal statement remains a conjectured consistency requirement.
+The minimal shared-delay row passes only if the record difference has no uncompensated $\chi_{\text{sea}}$ component after the fixed $-\ln\xi$ term is included. The [Hydrogen spectral coefficient toy scan](../validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md) describes this discriminant within a constructed scaffold: its clean shared-delay case and density/scale-compensated case test their respective assumed inputs. Their agreement is evidence about those algebraic inputs, not an independent hydrogen or gravitational constitutive result. A universal shared row remains a conjectured consistency requirement.
 
-Pressure-response replay supplies the independent shared-row test. Let
+Pressure-response data supply an additional shared-coefficient consistency condition at retained linear order, with higher-order remainders controlled. Independence requires a pressure record derived or measured separately from the fitted clock row; replaying a constructed scaffold does not supply it. For a nonzero pressure-induced cadence change, let
 
 $$
 \mathbf{a}^{G}
@@ -801,9 +803,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a63bfc2ad5245009)
 
-The current Fe/Cr toy pressure projection has $\mathbf{a}^{P\to\Gamma}=(0,0.6,0,0)^T$ (toy-replay value; no linked packet), while the GR-matching shared-delay endpoint has $A_\chi=2$. Therefore the $\chi_{\text{sea}}$-only shared row is falsified for that toy pressure replay. A broader compensated row remains conditional: it requires branch-derived non-$\chi_{\text{sea}}$ pressure response in $n$, $\lambda$, or $R_{\text{braid}}$, and it must still preserve $S_G=1$ for finite-height and endpoint redshift.
+As an illustrative assumed pressure vector, take $\mathbf{a}^{P\to\Gamma}=(0,0.6,0,0)^T$ while the GR-matching shared-delay endpoint has $A_\chi=2$. The minimal endpoint row fixes $b_\chi=1/2$, so the pressure equation gives $0.6b_\chi=0.3$, not one. This is an algebraic incompatibility of the specified toy inputs, not a measured Fe/Cr response or a physical falsification. A broader compensated row remains conditional: it requires branch-derived non-$\chi_{\text{sea}}$ pressure response in $n$, $\lambda$, or $R_{\text{braid}}$, and it must still preserve $S_G=1$ for finite-height and endpoint redshift.
 
-The current validation result is therefore:
+The conditional coefficient disposition is therefore:
 
 | Coefficient | Status |
 | --- | --- |
@@ -811,7 +813,7 @@ The current validation result is therefore:
 | $a_\lambda$ | Optional in the weak static endpoint; conditionally required only if the envelope-scale branch supplies the compensating record. |
 | $a_R$ | Optional in the weak static endpoint; conditionally required only after a declared $R_{\text{braid}}$ readout ties the pressure or spectral record to the same row. |
 
-Unconstrained nonzero values of $a_n$, $a_\lambda$, or $a_R$ are disfavored (toy-scoped). They may be promoted only as branch-derived compensated response, not as adjustable redshift coefficients.
+These constraints alone do not favor zero or nonzero values of $a_n$, $a_\lambda$, or $a_R$. A physical assignment requires branch-derived compensated response rather than adjustable redshift coefficients.
 
 This gives the derivation a concrete target. The same $\Gamma_N$ extraction map must recover $\Gamma_N=1$ in the weak homogeneous reference, $\Gamma_N\to1/\xi$ in the homogeneous moving Noether braid Lorentz branch, and $\Gamma_N\approx1-\Phi_N/c_0^2$ in the weak gravitational endpoint branch. It must also remain separate from the launch factor $D_v$ and the path-history propagation factor $Y_X$, so the endpoint contribution to redshift is only
 
@@ -859,7 +861,7 @@ $$
 =
 \left(
 \ln n_{\mathrm H}^{(\ell)},\,
-\ln\chi_{\text{sea},\mathrm H}^{(\ell)},\,
+\ln\frac{\chi_{\text{sea},\mathrm H}^{(\ell)}}{\chi_{\mathrm{sea},0}},\,
 \ln\lambda_{\mathrm H}^{(\ell)},\,
 -\ln\xi_{\mathrm H}^{(\ell)},\,
 \ln\frac{R_{\text{braid},\mathrm H}^{(\ell)}}{R_{\text{braid},0}}
@@ -885,9 +887,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d39f2b933cf2f91b)
 
-The row $\mathbf{b}_{N}^{\mathrm{spec}}$ is not a per-line fit. It is the spectral-channel instance of the same clock-row program above, with $b_\xi=1$ inherited from the homogeneous Lorentz branch and the weak-field scalar combination constrained by gravitational redshift. The residual $\mathcal R_{\Gamma,\mathrm H}^{\mathrm{spec},(\ell)}$ carries higher-order branch effects such as recoil, hyperfine structure, medium anisotropy, or unresolved source-branch corrections; it must not absorb the basic distinction between $n$, $\chi_{\text{sea}}$, and clock cadence.
+The row $\mathbf{b}_{N}^{\mathrm{spec}}$ is not a per-line fit. It is the spectral-channel instance of the same clock-row program above, with $b_\xi=1$ inherited only under the homogeneous Lorentz branch's remainder assumptions and the weak-field scalar combination constrained by gravitational redshift. The residual $\mathcal R_{\Gamma,\mathrm H}^{\mathrm{spec},(\ell)}$ carries higher-order branch effects such as recoil, hyperfine structure, medium anisotropy, or unresolved source-branch corrections; it must not absorb the basic distinction between $n$, $\chi_{\text{sea}}$, and clock cadence.
 
-For a hydrogen transition $a\to b$, the clock-converted spectral readout is therefore
+For a downward hydrogen transition $a\to b$ with positive envelope gap, the candidate effective spectral conversion is
 
 $$
 \nu_{a\to b}^{\mathrm{obs},(\ell)}
@@ -904,7 +906,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-953b0edf29be2d6f)
 
-Equivalently, an isolated line with bounded event residual gives a line-inferred cadence stretch,
+Here $E_{\mathrm{env}}(a)-E_{\mathrm{env}}(b)$ is a candidate assembly-level envelope-energy gap and $h$ is Planck’s constant in observer energy-frequency bookkeeping; neither is an architrino-level premise. The frequency is referred to the declared clock calibration, with propagation and detector conversion separately controlled. A line with an independently bounded event residual gives a line-inferred cadence stretch,
 
 $$
 \widehat\Gamma_{N,\mathrm H}^{(\ell)}(a,b)
@@ -914,13 +916,13 @@ E_{\text{env}}^{(\ell)}(a)
 -
 E_{\text{env}}^{(\ell)}(b)
 }{
-h\nu_{a\to b}^{\mathrm{obs},(\ell)}
+h\left(\nu_{a\to b}^{\mathrm{obs},(\ell)}-\nu_{a\to b}^{\mathrm{res},(\ell)}\right)
 }
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-76adf5d3fbc29f32)
 
-The first pass condition is that one $\Gamma_{N,\mathrm H}^{(\ell)}$ from the local Noether sea response controls the chosen line set:
+The corrected frequency in this denominator must be positive. Its residual uncertainty propagates into $\widehat\Gamma$; setting the residual to zero is a separate toy assumption. Let $\mathcal L_{\mathrm H}^{0}$ be the declared line set, $\varepsilon_\Gamma>0$ a fixed normalization floor, and $\Delta_\Gamma^{\mathrm{tol}}>0$ the chosen tolerance. The first consistency condition is that one $\Gamma_{N,\mathrm H}^{(\ell)}$ from the local Noether sea response controls that set:
 
 $$
 \max_{(a,b)\in\mathcal L_{\mathrm H}^{0}}
@@ -947,28 +949,28 @@ This target fails if $\Gamma_N$ is multiplied directly into the line frequency a
 
 The first proof/simulation packet for this row is the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md). It treats $\mathbf{b}_{N}^{\mathrm{spec}}$ as a constrained clock-row instance: $b_\xi=1$ is fixed by the homogeneous Lorentz branch, the weak static endpoint row must satisfy $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$, and the observer frequency uses $C_N=\Gamma_N^{-1}$. The packet passes only if a shared row controls the chosen hydrogen line set across admissible refinement; it fails when the scan needs a transition-specific row, a direct $\Gamma_N$ frequency multiplier, a collapsed density/delay variable, or a residual budget that hides recoil, hyperfine structure, photon-channel propagation, or unresolved source-branch effects.
 
-The first executable scaffold keeps the clock proof burden visible. Its accepted spectral row is inherited from the density/scale-compensated static-response packet, not fitted from hydrogen lines alone. Its hydrogen records also keep $n$, $\chi_{\text{sea}}$, $\lambda$, $\xi$, and $R_{\text{braid}}$ as separate entries in $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, so a row that matches one line or one record can still fail when the component split changes under admissible refinement. The executable derives the scaffold line factors, observer frequencies, and replay envelope gaps from recovered principal labels plus one shared line-inferred $\ln\Gamma_N$. A completed theory-bearing record must therefore supply the same four inputs together from one declared hydrogen spectral channel ledger and the same Noether sea cell: the hydrogen $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ record, envelope gaps, observer frequencies, and static response vector.
+The first executable scaffold keeps the clock proof burden visible. Its selected toy spectral row is inherited from the density/scale-compensated static-response packet, not fitted from hydrogen lines alone. Its hydrogen records also keep $n$, $\chi_{\text{sea}}$, $\lambda$, $\xi$, and $R_{\text{braid}}$ as separate entries in $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, so a row that matches one line or one record can still fail when the component split changes under admissible refinement. The executable derives the scaffold line factors, observer frequencies, and replay envelope gaps from recovered principal labels plus one shared line-inferred $\ln\Gamma_N$. A completed theory-bearing record must therefore supply the same four inputs together from one declared hydrogen spectral channel ledger and the same Noether sea cell: the hydrogen $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ record, envelope gaps, observer frequencies, and static response vector.
 
 ---
 
 ## Mechanisms for Time Dilation
 
-Two coupled mechanisms change the internal frequency of a Noether braid clock. The prescribed [coincident-axis three-binary braid](../noether-braid/3d-braid-assemblies.md#coincident-axis-three-binary-coordinate-chart) candidate — one common midpoint, one coincident binary axis, one common frequency, and one common circulation sense, with independent per-binary radii, axial half-separations, transverse orbit radii, and phases — supplies mechanism intuition for a highly coordinated clock. The executable clock record below instead uses a prescribed coincident-midpoint orthogonal-axis braid chart so orientation and per-binary frequency dependence remain independently falsifiable. The two charts are alternative clock candidates, not one clock ontology silently changing family.
+Two candidate mechanisms describe how motion and medium response can change a clock cadence; neither supplies an evolved clock solution by itself. The prescribed [coincident-axis three-binary braid](../noether-braid/3d-braid-assemblies.md#coincident-axis-three-binary-coordinate-chart) candidate — one common midpoint, one coincident binary axis, one common frequency, and one common circulation sense, with independent per-binary radii, axial half-separations, transverse orbit radii, and phases — supplies mechanism intuition for a highly coordinated clock. The proposed clock record below uses a prescribed coincident-midpoint orthogonal-axis braid chart so orientation and per-binary frequency dependence remain separately testable. The two charts are alternative clock candidates.
 
 ### Kinematic Effect (Velocity Dependence)
 
 When the clock has group velocity (center-of-mass convention) $\mathbf{V}_{\text{cm}}$ relative to a local Noether sea drift $\mathbf{u}_{\text{sea}}$, its material group velocity is $\mathbf{w}=\mathbf{V}_{\text{cm}}-\mathbf{u}_{\text{sea}}$:
 
-1. **Path-length elongation:** Internal architrinos must traverse longer spatial paths per cycle because the clock’s center of mass is in motion. Even in the clock’s own rest frame, the underlying wake interactions are evaluated in the absolute frame where the worldline is slanted through absolute timespace.
+1. **Changed path geometry:** Translation changes the internal paths in absolute timespace and the delayed emission-to-reception geometry. Longer paths imply a longer period only under additional control of site speed and internal geometry; the Master Equation supplies no fixed constituent-speed postulate.
 
 2. **Finite causal speed:** Primitive self-hit and partner-hit roots are mediated by delayed, radial path-history interactions at speed $c_f$. When those roots are dressed into an observer-level clock law, the transverse budget must be formed with the declared channel speed $c_\star$: $c_\star=c_f$ for a primitive branch test and $c_\star=c_{\text{eff}}(\mathbf X,T)$ for a Noether sea dressed clock comparison.
 
 3. **Shape deformation (Lorentz-link hypothesis):** Under the orthogonal-axis three-binary Lorentz-link hypothesis, increased $\|\mathbf{w}\|$ makes the complete braid's **oblate spheroidal exclusion envelope** flatten along the direction of motion:
  - At low $\|\mathbf{w}\|$, the oblate spheroidal exclusion envelope is nearly spherical.
  - As $\|\mathbf{w}\|\to c_\star$, that envelope contracts along $\hat{\mathbf{w}}$ while maintaining transverse dimensions, yielding semiaxes $(R_{\perp}, R_{\perp}, R_{\parallel})$ and $R_{\parallel} < R_{\perp}$.
- - This geometric dilation changes internal path lengths and curvature, lowering $\omega$.
+ - The resulting frequency change must be extracted from the same delayed dynamics; envelope flattening alone does not prove a lower $\omega$.
 
-Geometry terminology follows [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#canonical-geometry-variables): the envelope shape ratio is $\xi=R_{\parallel}/R_{\perp}$. The derived clock-time factor is not defined to be $\xi$; it is the extracted clock observable $\omega_{\text{clk}}/\omega_0=d\tau/dt_{\mathrm{eff}}$ after an effective observer chart is declared. In the homogeneous Lorentz-closure target, the theory must derive $\omega_{\text{clk}}/\omega_0\to\xi\to1/\gamma_\star$.
+Geometry terminology follows [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#canonical-geometry-variables): the envelope shape ratio is $\xi=R_{\parallel}/R_{\perp}$. The derived clock-time factor is not defined to be $\xi$; it is the extracted native clock ratio $\omega_{\text{clk}}/\omega_0=d\tau/dT$, followed by division by $J$ for observer export. The homogeneous target $\omega_{\text{clk}}/\omega_0\to\xi\to1/\gamma_\star$ applies directly to the observer rate only in the $J=1$ comparison subclass.
 
 **Kinematic hypothesis:**
 $$
@@ -984,43 +986,43 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fd732363b668a113)
 
-in the regime where the clock's motion does not significantly disturb the local Noether sea. For SI comparison in the weak homogeneous comparison, the observer branch sets $c_\star$ to the measured low-gradient clock/signal speed $c_0=c_{\text{eff}}(\infty)$; this is a declared branch status, not an independent replacement for the primitive wake speed $c_f$.
+This implication is restricted to a clock that does not significantly disturb the local Noether sea and a chart conversion with $J=1$ that preserves the indicated speed ratio. Otherwise it requires the explicit observer conversion. For SI comparison in the weak homogeneous limit, the observer branch uses the measured low-gradient clock/signal speed $c_0=c_{\text{eff}}(\infty)$; converting the native budget to that speed remains part of the recovery obligation.
 
 ### Muon Lifetime Benchmark
 
-Cosmic-ray muons supply a compact observer-level benchmark for the moving-clock row. In the standard account, muons formed high in the atmosphere have a rest-frame mean lifetime near $2.2\,\mu\mathrm{s}$ and travel at a large fraction of $c_0$. Without time dilation, a particle moving near $c_0$ for only a few microseconds would cross less than a kilometer before the exponential survival law suppresses the population. Yet high-altitude and sea-level counts, such as the Frisch-Smith Mount Washington comparison, retain far more muons than the undilated lifetime permits.
+Cosmic-ray muons supply an observer-level benchmark for the moving-clock comparison. In the standard account, muons formed high in the atmosphere have a rest-frame mean lifetime near $2.2\,\mu\mathrm{s}$ and travel at a large fraction of $c_0$. Without time dilation, their mean travel distance at nearly $c_0$ would be less than a kilometer. High-altitude and sea-level counts in [Frisch and Smith’s Mount Washington comparison](https://doi.org/10.1119/1.1969508) tested the resulting survival difference. These are external measurement benchmarks, not a derived muon assembly or lifetime in this theory.
 
-The benchmark is a clock-law test, not a new substrate-time claim. In the weak homogeneous observer branch, let $N_{\mathrm{high}}$ be the counted muon rate at the high detector, $N_{\mathrm{low}}$ the counted rate at the lower detector, $\Delta h$ the height separation, $\tau_{\mu,0}$ the rest-lifetime comparison value, and $\|\mathbf{w}_\mu\|$ the muon group speed through the local Noether sea. The observer-level survival target is
+In the weak homogeneous observer branch, let $N_{\mathrm{high}}$ and $N_{\mathrm{low}}$ be the counted rates at the high and low detectors, $\Delta h$ their height separation, $\tau_{\mu,0}$ the rest-lifetime comparison value, and $v_{\mu,\mathrm{eff}}>0$ the downward muon speed relative to the detectors in their effective chart. For an ideal vertical monoenergetic beam at constant speed, with matched detector acceptance and negligible energy loss or scattering, the observer-level survival target is
 $$
 N_{\mathrm{low}}
 \approx
 N_{\mathrm{high}}
 \exp\!\left[
 -
-\frac{\Delta h/\|\mathbf{w}_\mu\|}
+\frac{\Delta h/v_{\mu,\mathrm{eff}}}
 {\gamma_\mu \tau_{\mu,0}}
 \right],
 \qquad
 \gamma_\mu
 =
-\frac{1}{\sqrt{1-\|\mathbf{w}_\mu\|^2/c_0^2}}.
+\frac{1}{\sqrt{1-v_{\mu,\mathrm{eff}}^2/c_0^2}}.
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c56da42f9f4c60a1)
 
-The same event can be described in the muon's effective rest chart as length contraction of the atmospheric path. In $\mathbb{A}\mathbb{A}\mathbb{A}$ both descriptions are downstream exports of one moving-assembly response: the external observer sees a slowed internal reaction clock, while the muon-channel description compresses the traversed distance. The native burden is to derive the same $\gamma_\mu$ from the assembly and Noether sea record that also supports clocks, rulers, photon synchronization, and bounded preferred-frame leakage.
+For a real flux comparison, integrate survival over the measured energy and angular distributions and account for detector efficiency and energy loss. The ideal constant-speed event also has an effective rest-chart description using the contracted atmospheric path. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the target is to recover both descriptions from one moving-assembly response. The native burden is to derive the same $\gamma_\mu$ from the assembly and Noether sea record that also supports clocks, rulers, photon synchronization, and bounded preferred-frame leakage.
 
 ### Gravitational Effect (Medium Dependence)
 
-Massive assemblies polarize and densify the surrounding Noether sea. A clock deeper in this polarized region experiences:
+A proposed constitutive response to massive assemblies changes the surrounding Noether sea and clock cadence. The signs and sizes of density, delay, and geometric responses must be extracted; the endpoint coefficient constraint alone does not determine them:
 
-1. **Higher local Noether density $n(\mathbf X,T)$ (equivalently higher $\rho_{\text{NS}}$):** Interaction delays with the Noether sea (and between internal architrinos through the Noether sea) increase. This raises the **Noether sea delay factor** $\chi_{\text{sea}}$ for internal processes.
+1. **Local Noether density $n(\mathbf X,T)$ (equivalently $\rho_{\text{NS}}$):** A higher density can alter the coupled assembly response, but it does not by definition increase the **Noether sea delay factor** $\chi_{\text{sea}}$. Their relation is constitutive.
 
 2. **Effective field speed reduction $c_{\text{eff}}(\mathbf X,T) < c_f$:**
- - The propagation of wake influences is slowed in dense regions (more frequent encounters with Noether braids).
- - From the clock's perspective, each internal wake contribution is delayed in the declared clock map.
+ - The effective signal or phase response can be slower in this candidate medium branch. Primitive wakes still propagate at $c_f$ in the void and do not scatter as independent substances.
+ - The clock response changes through the histories of interacting architrinos, rather than by replacing $c_f$ in the primitive causal-root condition.
 
-3. **Tidal distortion of Noether braid geometry:** Gradients in $n$ and the effective potential $\Phi_{\text{eff}}$ compress the braid differently along radial vs tangential directions. This modifies binary radii and thus frequencies.
+3. **Tidal distortion of Noether braid geometry:** An anisotropic medium response can change radial and tangential braid geometry differently. Whether the retained branch compresses, expands, or changes frequency must follow from its delayed dynamics; it is not fixed by the potential gradient alone.
 
 **Gravitational hypothesis:** To first order in the Newtonian potential $\Phi_N(\mathbf X,T)$,
 $$
@@ -1031,7 +1033,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-24b2b751b10b3a1a)
 
-with the sign convention chosen so that $\Phi_N < 0$ (deeper potential) yields **slower** clocks ($d\tau/dt_{\mathrm{eff}} < 1$), consistent with GR.
+This implication uses the $J=1$ static comparison subclass. The sign convention makes $\Phi_N < 0$ (deeper potential) yield **slower** clocks ($d\tau/dt_{\mathrm{eff}} < 1$), consistent with the GR benchmark.
 
 ### Finite-Height Clock Benchmark
 
@@ -1046,28 +1048,28 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4301ecefeb0aadf9)
 
-Thus $L=1\,\mathrm{mm}$ corresponds to $\Delta\nu/\nu\approx1.1\times10^{-19}$, while $L=33\,\mathrm{cm}$ corresponds to $\Delta\nu/\nu\approx3.6\times10^{-17}$. These numbers are direct weak-field acceptance tests for the extracted clock map: the same Noether sea constitutive response that slows separated clocks must also describe an extended clock sample whose lower and upper portions accumulate different derived clock phases.
+Thus $L=1\,\mathrm{mm}$ corresponds to $\Delta\nu/\nu\approx1.1\times10^{-19}$, while $L=33\,\mathrm{cm}$ corresponds to $\Delta\nu/\nu\approx3.6\times10^{-17}$. These are rounded weak-field benchmark estimates at the scales probed by [Bothwell et al.’s millimetre-scale sample](https://arxiv.org/abs/2109.12238) and [Chou et al.’s optical-clock comparison](https://doi.org/10.1126/science.1192720), rather than outputs of an extracted Noether sea clock map. The same constitutive response must describe separated clocks and an extended sample whose lower and upper portions accumulate different derived clock phases.
 
 For independent atoms this can be corrected pointwise, as in ordinary redshift compensation. For entangled or collective clock states, however, assigning the entire apparatus the derived clock time at the trap center is only an approximation. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure target is to derive the measured clock time from collective phase evolution across the sample, with the center-time prescription emerging only when the gradient-induced phase spread is below the experiment's uncertainty.
 
-Guided/free-fall atom interferometers sharpen this target because one branch is held in the laboratory frame while the other follows a free-fall trajectory. After subtracting controlled laser, magnetic, and preparation phases, the branch comparison should expose a cubic-time phase coefficient:
+A specific guided/free-fall comparison holds one branch in the laboratory while the other falls, as in [Dobkowski et al.’s quantum free-fall interferometer](https://arxiv.org/abs/2502.14535v4). Its cubic phase is a protocol-specific benchmark, not a universal property of atom interferometers. Let $t_{\mathrm{eff}}$ here denote elapsed laboratory-chart time from the declared launch event. The following fit separates a cubic coefficient from the retained control-phase model:
 $$
-\Delta\phi_{\mathrm{gf}}(T)
+\Delta\phi_{\mathrm{gf}}(t_{\mathrm{eff}})
 =
-\widehat{\beta}_{T^3}T^3
-+\Delta\phi_{\mathrm{ctrl}}(T)
-+O(T^4)
+\widehat{\beta}_{T^3}t_{\mathrm{eff}}^3
++\Delta\phi_{\mathrm{ctrl}}(t_{\mathrm{eff}})
++O(t_{\mathrm{eff}}^4)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0077a0ddcb45b39a)
 
-This coefficient must be derived from the same weak-field clock and phase map that produces the finite-height redshift benchmark. A fit to $\widehat{\beta}_{T^3}$ cannot be allowed to use one effective potential record while the redshift, Shapiro-delay, lensing, PPN, or gravitational-wave-speed channels use another.
+The label $\widehat\beta_{T^3}$ identifies the fitted cubic coefficient, with units of inverse time cubed; it does not denote absolute time in this observer fit. A cubic phase alone does not establish a portable internal-clock readout. This coefficient must be derived from the same weak-field clock and phase map that produces the finite-height redshift benchmark, using the same effective potential record as the other comparison channels.
 
 ### Quantum Clock-Interference Benchmark
 
 Matter-wave interferometers separate two evidential levels. A branch phase shift induced by a gravitational potential can be retained as an effective-potential or gravitational Aharonov-Bohm comparison; by itself it is a phase recovery target, not proof that a portable clock record accumulated different derived times along the branches. Neutron COW-style phase experiments therefore belong on the phase-only side unless the internal degree of freedom itself functions as a clock.
 
-The stronger benchmark appears when an internal degree of freedom is prepared as a clock and remains correlated with the path history. Let the two branch histories $\gamma_1$ and $\gamma_2$ export internal clock states $|\tau_1\rangle$ and $|\tau_2\rangle$ at recombination. The clock part of the visibility target is
+The stronger benchmark appears when an internal degree of freedom is prepared as a clock and remains correlated with the path history. Let the two branch histories $\gamma_1$ and $\gamma_2$ export internal clock states $|\tau_1\rangle$ and $|\tau_2\rangle$ at recombination. For normalized pure internal states, balanced path amplitudes, and ideal recombination with no other loss of coherence, the clock part of the visibility target is
 $$
 \mathcal{V}_{\mathrm{clk}}
 =
@@ -1080,22 +1082,22 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e7ab7276510aa91d)
 
-The interference loss is then a record-formation question: visibility falls only to the extent that the internal clock states become distinguishable enough to supply which-path information. In $\mathbb{A}\mathbb{A}\mathbb{A}$, this does not promote branch-dependent time to substrate ontology. It says that a Noether braid clock can export branch-dependent clock records, and that the same clock map that recovers $d\tau/dt_{\mathrm{eff}}$ in homogeneous moving-clock and weak-field limits must also predict the internal-state overlap for neutron, atom, or optical-ion clock interferometers.
+Here $\mathcal D_{\mathrm{clk}}$ is the optimal distinguishability of those two pure states with equal prior weights. Unequal path weights, mixed internal states, or other losses require the corresponding density-matrix and apparatus model; the displayed equality is not a general formula for total visibility. Within the stated ideal comparison, distinguishable internal states reduce the clock contribution to visibility. This remains an observer-level recovery target for the same clock map, without promoting branch-dependent time or quantum states to substrate ontology.
 
 ### Combined Dilation
 
 In a region with potential $\Phi_N(\mathbf X,T)$ and clock group velocity $\mathbf{w}$ relative to the Noether sea, we conjecture the observer-chart comparison
 $$
 \frac{d\tau}{dt_{\mathrm{eff}}}
-= \frac{\omega(\mathbf{w},\Phi_N,n)}{\omega_0}
-\approx \sqrt{1 + \frac{2\Phi_N}{c_0^2} - \frac{\|\mathbf{w}\|^2}{c_0^2}}
+= \frac{\omega(\mathbf{w},\Phi_N,n)}{\omega_0 J}
+\approx \sqrt{1 + \frac{2\Phi_N}{c_0^2} - \frac{\|\mathbf{w}_{\mathrm{eff}}\|^2}{c_0^2}}
 $$
 
 [View →](../../../../equation-mapping.html#weak-field-clock-redshift)
 
-in the weak-field, low-velocity observer limit, with higher-order corrections ($\|\mathbf{w}\|^4/c_0^4$, $\Phi_N^2/c_0^4$, cross-terms) determined by the detailed Noether braid response. Primitive simulations may still use $c_f$ inside the root equation; the PPN comparison uses the dressed asymptotic speed $c_0$.
+in the weak-field, low-velocity observer limit, with higher-order corrections ($\|\mathbf{w}_{\mathrm{eff}}\|^4/c_0^4$, $\Phi_N^2/c_0^4$, cross-terms) determined by the detailed Noether braid response. Primitive simulations use $c_f=1$ inside the root equation; the PPN comparison uses the dressed asymptotic speed $c_0$.
 
-Outside that limit, the native clock map $F$ will in general deviate from the GR expression and define the theory's distinctive strong-field / high-velocity predictions.
+Outside that limit, neither agreement nor deviation is established here. Strong-field or high-velocity predictions require a derived clock map, its observer export, and comparison with the full GR benchmark in that regime.
 
 ### Effective Energy-Momentum Closure Test
 
@@ -1114,7 +1116,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-59b67c6eb65aa89c)
 
-Here $\gamma_\star$ is the kinematic Lorentz-response factor for the declared speed channel. It is distinct from the scalar PPN spatial-compliance parameter $\gamma_{\mathrm{PPN}}$ and from the index-bearing spatial metric family $\gamma_{ij}^{\mathrm{eff}}$ and $(\gamma_{\mathrm{eff}}^{-1})^{ij}$. This is a cross-check on the emergent clock model, not an independent axiom at the architrino substrate level. For definitions and interpretation, see [Effective Energy-Momentum Closure](../dynamics/energy.md#effective-energy-momentum-closure).
+Here $E_{\mathrm{CM}}$, $p_{\mathrm{CM}}$, and $M_0$ are effective assembly energy, momentum magnitude, and rest mass; $v$ is effective group speed in this locally homogeneous rest chart, and $\gamma_\star=(1-v^2/c_{\mathrm{eff}}^2)^{-1/2}$ uses $c_\star=c_{\mathrm{eff}}$. It is distinct from the scalar PPN spatial-compliance parameter $\gamma_{\mathrm{PPN}}$ and the index-bearing spatial metric family $\gamma_{ij}^{\mathrm{eff}}$. This is a cross-check on the emergent clock model, not an independent axiom at the architrino substrate level. For definitions and interpretation, see [Effective Energy-Momentum Closure](../dynamics/energy.md#effective-energy-momentum-closure).
 
 ### Strong-Field / Horizon Alignment Note
 
@@ -1135,7 +1137,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-66f56bea6f5bfbce)
 
-with intrinsic polarities $q_a=\pm\epsilon$, $\epsilon=|e|/6$, and trajectories $\mathbf X_a(T)$. No per-constituent inertial mass is assigned at the substrate level.
+The intrinsic polarities are $q_a=\pm\epsilon$, where $\epsilon=|e|/6$ is the declared observer electric-bookkeeping convention rather than a derived charge calibration. The trajectories are $\mathbf X_a(T)$. No per-constituent inertial mass is assigned at the substrate level.
 
 Define pair-separation vectors
 $$
@@ -1146,45 +1148,53 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3c71c57e2ff4abc4)
 
-with radii $R_a=\|\mathbf r_a\|$. The three radii are independently assignable and do not order or relabel the binaries.
+The binary half-separation radii are $R_a=\|\mathbf r_a\|/2$. The three radii are independently assignable and do not order or relabel the binaries.
 
-For this state to carry the coincident-midpoint orthogonal-axis braid label, its three binary axes must also be mutually orthogonal at the orthogonal-axis three-binary near-rest endpoint and converge toward the group-translation direction along the prescribed flattening coordinate $\lambda_A$. The frequencies $f_a$ remain independently assignable, and the axial half-separations $h_a$, transverse orbit radii $\rho_a$, phases $\phi_a$, and circulation rows remain explicit binary coordinates. This prescribed chart does not establish that the clock is retained or stable under EOM-solver evolution; failure to preserve the declared coordinate relations on the same evolved record would falsify the coincident-midpoint orthogonal-axis braid clock assignment.
+For this state to carry the coincident-midpoint orthogonal-axis braid label, its three binary axes must be mutually orthogonal at the near-rest endpoint and converge toward the group-translation direction along the prescribed flattening coordinate $\lambda_A$. For the coincident-midpoint member used here, $h_a=0$ and $\rho_a=R_a$; nonzero axial half-separations belong to the distinct axially separated member. The frequencies $f_a$, phases $\phi_a$, and circulation senses remain explicit prescribed coordinates. This chart does not establish that the clock is retained or stable under EOM solver evolution; failure to preserve the declared coordinate relations on the same evolved record would falsify this clock assignment.
 
 ### Microscopic Evolution Equation (Regularized)
 
-For each $a\in\mathcal{A}$ evolve by the acceleration-first substrate law
+The sharp acceleration law is the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form). For each $a\in\mathcal A$, its [auxiliary dual-mollified regulator](../dynamics/master-equation.md#auxiliary-dual-mollified-regulator-for-proof-and-computation) has the form
 $$
-\frac{d^2\mathbf X_a}{dT^2}(T)=
-\sum_{b\in\mathcal{A}}
+\frac{d^2\mathbf X_a}{dT_r^2}(T_r)=
+\sum_{b\in\mathcal{A}\cup\mathcal E}
 \kappa\,\sigma_{ab}\lvert q_aq_b\rvert
-\int_{T-h}^{T}\!dT_0\;
-\frac{\hat{\mathbf{r}}_{ab}(T;T_0)}
-{r_{ab}^2(T;T_0)+\epsilon_c^2}\,
-\delta_\eta\!\big(r_{ab}(T;T_0)-c_f(T-T_0)\big)
+\int_{T_r-h}^{T_r}\!dT_t\;
+\frac{\mathbf{r}_{ab}(T_r;T_t)}
+{\left(r_{ab}^2(T_r;T_t)+\epsilon_c^2\right)^{3/2}}\,
+c_f\delta_\eta\!\big(r_{ab}(T_r;T_t)-c_f(T_r-T_t)\big)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-bb684255f9d3e34a)
 
 $$
-r_{ab}(T;T_0)=\|\mathbf X_a(T)-\mathbf X_b(T_0)\|,
+\mathbf r_{ab}(T_r;T_t)=\mathbf X_a(T_r)-\mathbf X_b(T_t),
 \qquad
-\hat{\mathbf{r}}_{ab}=\frac{\mathbf X_a(T)-\mathbf X_b(T_0)}{r_{ab}(T;T_0)}
+r_{ab}=\|\mathbf r_{ab}\|,
+\qquad
+\hat{\mathbf r}_{ab}=\frac{\mathbf r_{ab}}{r_{ab}}\quad(r_{ab}>0)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-285ff9ef24594b59)
 
-This is the dual-mollified finite-memory certification form used in the dynamical chapters. The memory depth $h<\infty$ bounds the retained causal history, $\eta>0$ thickens the causal wake surface, and $\epsilon_c>0$ caps the near-collision inverse-square amplitude. Exploratory scans may use a simpler $\delta_\eta$ causal-surface mollifier only when they label the run as a non-certification approximation.
+Here $\sigma_{ab}=\operatorname{sign}(q_aq_b)$, $\kappa>0$ is the canonical coupling, and $\mathcal E$ is the declared external transmitter inventory supplying the Noether sea and any apparatus background. Taking $\mathcal E=\varnothing$ defines an isolated six-site calculation and cannot test medium-dependent clock response. External histories may be prescribed for a conditional comparison, but then the combined system has not been evolved self-consistently.
+
+The memory duration $0<h<\infty$ truncates the retained history; it is unrelated to Planck’s constant in the spectral section. The mollifier $\delta_\eta$ has unit integral in its length-valued argument, and $\eta>0$ and $\epsilon_c>0$ have units of length. The factor $c_f$ makes the emission-time integral dimensionless apart from the spatial kernel: $[\kappa|q_aq_b|]=\mathrm L^3/\mathrm T^2$ then gives acceleration units. All numerical evaluations use $c_f=1$.
+
+At positive separation and isolated simple roots, the limit $\eta\to0$ gives the transmitter-side weight $c_f/|D_{t,ab}|$, where $D_{t,ab}=c_f-\hat{\mathbf r}_{ab}\cdot\mathbf V_b(T_t)$. Receiver motion enters root playback through $D_{r,ab}/D_{t,ab}$, with $D_{r,ab}=c_f-\hat{\mathbf r}_{ab}\cdot\mathbf V_a(T_r)$; it does not multiply the arriving acceleration. Include all partner, external, and nonzero-delay self roots on the admitted history domain. The zero-delay endpoint is excluded from the sharp law. The softened vector has value zero at coincidence only as an auxiliary kernel, which supplies no physical coincidence continuation.
+
+Finite regulators and finite memory confer no certification. Recovering the sharp law requires complete simple-root coverage, positive separation and transversality margins, boundary clearance, and controlled $\eta\to0$ and $\epsilon_c\to0$ limits; a finite $h$ additionally needs an older-history remainder bound or proof that no omitted contribution exists. Folds, caustics, and coincident root births require their own admissible event treatment. Missing history or an unresolved singular event leaves verification incomplete.
 
 ### Clock Observable and Clock Map
 
-Declare $a_{\mathrm{clk}}\in\{1,2,3\}$ as the clock channel on the source record. Let $\mathbf{e}_1,\mathbf{e}_2$ be an orthonormal basis of the mean orbital plane of $\mathbf r_{a_{\mathrm{clk}}}$, and define phase
+Declare $a_{\mathrm{clk}}\in\{1,2,3\}$ as the clock channel on the source record. Fix an oriented orthonormal basis $\mathbf e_1,\mathbf e_2$ for the declared projection plane. The projected separation must remain nonzero. Define a continuous lifted phase whose value modulo one turn is
 $$
-\theta_{\mathrm{clk}}(T)=\operatorname{atan2}\!\big(\mathbf r_{a_{\mathrm{clk}}}\!\cdot\!\mathbf e_2,\mathbf r_{a_{\mathrm{clk}}}\!\cdot\!\mathbf e_1\big)
+\theta_{\mathrm{clk}}(T)\equiv\operatorname{atan2}\!\big(\mathbf r_{a_{\mathrm{clk}}}\!\cdot\!\mathbf e_2,\mathbf r_{a_{\mathrm{clk}}}\!\cdot\!\mathbf e_1\big)\pmod{2\pi}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-092eb918e6e21bff)
 
-On a window $[T_1,T_2]$, define measured frequency
+Retain every full turn when constructing this lift. Endpoint principal angles alone lose entire cycles. Sampling must resolve crossings without aliasing; a moving projection basis requires its rotation to be accounted for separately. Choose the phase orientation so the reference cadence is positive. On a window $[T_1,T_2]$ with $T_2>T_1$, define the window-averaged angular frequency
 $$
 \omega_{\text{clk}}
 =
@@ -1195,12 +1205,12 @@ $$
 
 For the reference run $(v=0,\Phi_N=0)$, set $\omega_0=\omega_{\text{clk}}^{\text{ref}}$ and define
 $$
-\frac{d\tau}{dT}\equiv\frac{\omega_{\text{clk}}}{\omega_0}
+\frac{\tau(T_2)-\tau(T_1)}{T_2-T_1}\equiv\frac{\omega_{\text{clk}}}{\omega_0}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7500f56ae93f3cd2)
 
-This native observable is the benchmark preserved by the clock projector in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic). For a branch record $\mathcal{B}_{\mathbf X j}^{(T_0)}$, the clock-facing projection keeps only the entries that can change the extracted phase or cadence:
+This is an elapsed-time ratio on the window. The instantaneous law instead uses $d\theta_{\mathrm{clk}}/dT$; the two coincide only for constant cadence or a controlled local-window limit. This native observable is the benchmark preserved by the clock projector in [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic). For a branch record $\mathcal{B}_{\mathbf X j}^{(T_0)}$, the clock-facing projection keeps only the entries that can change the extracted phase or cadence:
 
 $$
 \Pi_{\mathrm{clock}}
@@ -1224,11 +1234,11 @@ Thus a boundary contribution may affect clock coupling only by changing the same
 
 Run the same coincident-midpoint orthogonal-axis braid clock record under controlled backgrounds:
 
-1. Uniform group speed (center-of-mass convention) $v=\|\mathbf{V}_{\text{CM}}\|$ through homogeneous medium.
+1. Uniform native group speed $\|\mathbf w\|$ relative to homogeneous Noether sea, with the declared assembly-center convention. Export to $v=\|d\mathbf x_{\mathrm{eff}}/dt_{\mathrm{eff}}\|$ in a stationary comparison chart before a PPN fit.
 2. Weak static potential background $\Phi_N(\mathbf X,T)$ (or $U\equiv-\Phi_N>0$).
 3. Weak-field regime constraints: $v^2/c_\star^2\ll1$ and $\lvert U\rvert/c_0^2\ll1$.
 
-Use $c_\star=c_f$ for primitive kernel-only scans and $c_\star=c_0$ for observer-level PPN coefficient fits. This keeps the root-solver speed and the clock-comparison speed explicit instead of silently identifying them.
+Use $c_f=1$ in every numerical root calculation. PPN fits use the exported speed $v$, the Newtonian comparison potential $U$, and $c_\star=c_0$ in one static isotropic observer chart with vanishing shift. Hold other independent PPN potentials fixed or subtract their declared contributions. In this fit only, $\omega_j$ denotes the exported phase rate $\Delta\theta/\Delta t_{\mathrm{eff}}$, obtained from the native rate and the chart conversion; it is not the raw $T$-frequency. Reference normalization keeps $J_0=1$.
 
 For each run $j$, record
 $$
@@ -1247,7 +1257,7 @@ This chapter keeps only the symbolic/numeric coefficient interface needed to bri
 
 ### Perturbative Expansion (Weak-field, Low-velocity)
 
-For the coefficient map in this section, observer-level PPN fits use the low-gradient comparison speed $c_\star=c_0$; primitive kernel-only scans must state separately when they keep $c_\star=c_f$.
+For this coefficient map, use only the exported PPN comparison variables declared above. Fits to raw native rates remain native diagnostics and do not determine PPN coefficients.
 
 Linearize each trajectory as $\mathbf X_a(T)=\mathbf X_a^{(0)}(T)+\delta\mathbf X_a(T)$ around the periodic rest solution — conditional on a certified rest attractor supplying $\mathbf X_a^{(0)}$, which the retention disclaimer above records as not yet established — and expand the extracted clock ratio in
 $$
@@ -1256,7 +1266,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-64e8f8cdf1803ebd)
 
-Use the regression model
+Conditional on smooth response about the stated admitted background, use the regression model
 $$
 \frac{\omega}{\omega_0}
 =
@@ -1264,7 +1274,7 @@ $$
 +C_2\,\epsilon_U^2
 +C_{Uv}\,\epsilon_U\epsilon_v
 +C_{v4}\,\epsilon_v^2
-+\mathcal{O}(\epsilon^3)
++\mathcal{O}\!\left((|\epsilon_U|+|\epsilon_v|)^3\right)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9e575c0858eaedcc)
@@ -1294,7 +1304,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5ac985c25be680fa)
 
-Estimated covariance:
+Take $W=\operatorname{diag}(w_j)$ with positive weights, require $N>5$ and full column rank of $X$, and check conditioning over independently varied potential and speed. The following estimated covariance applies only under zero-mean residuals with $\operatorname{Cov}(\boldsymbol\varepsilon)=s^2W^{-1}$ and a valid quadratic response model; correlated errors, uncertain reference rates, and truncation bias require their own covariance or bias treatment:
 $$
 \mathrm{Cov}(\hat{\mathbf{c}})
 =
@@ -1321,7 +1331,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c4d40d220acd8735)
 
-and the PPN map used in [PPN Parameters](./ppn-parameters.md) is
+and, in the isolated static subclass of [PPN Parameters](./ppn-parameters.md), with $U=-\Phi_N$ and other independent potentials controlled, the PPN map is
 $$
 \beta_{\mathrm{PPN}}=\frac{1+2C_2}{2}
 $$
@@ -1335,7 +1345,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3b615016e360844f)
 
-The mixed coefficient $C_{Uv}$ is treated as a leakage diagnostic at this order.
+The raw mixed coefficient is not a zero-target leakage diagnostic. In the static isotropic comparison metric, $g_{00}^{\mathrm{eff}}=-1+2\epsilon_U-2\beta_{\mathrm{PPN}}\epsilon_U^2$ and $g_{ij}^{\mathrm{eff}}=(1+2\gamma_{\mathrm{PPN}}\epsilon_U)\delta_{ij}$ to the retained orders, with $g_{0i}^{\mathrm{eff}}=0$. These are observer-level [PPN benchmark coefficients](https://doi.org/10.12942/lrr-2014-4), not substrate premises. Substitution in the clock interval gives the radicand $1-2\epsilon_U-\epsilon_v+2\beta_{\mathrm{PPN}}\epsilon_U^2-2\gamma_{\mathrm{PPN}}\epsilon_U\epsilon_v$. Using $\sqrt{1+s}=1+s/2-s^2/8+O(s^3)$ therefore yields $C_2=\beta_{\mathrm{PPN}}-1/2$, $C_{Uv}=-(\gamma_{\mathrm{PPN}}+1/2)$, and $C_{v4}=-1/8$. For the GR comparison, $C_{Uv}^{\star}=-3/2$. Deviations must be measured relative to this chart-specific target; a nonzero mixed coefficient is not by itself preferred-frame leakage.
 
 Execution protocols, benchmark catalogs, and numeric pass/fail thresholds are routed through:
 
@@ -1348,22 +1358,22 @@ Execution protocols, benchmark catalogs, and numeric pass/fail thresholds are ro
 
 ## Failure Conditions and Red Flags
 
-This program fails, and the emergent-metric project is likely untenable, if any of the following hold:
+The following observations would reject the tested clock-recovery claim when the same admitted branch, observer map, apparatus conditions, and uncertainty budget are held fixed. Failure of a prescribed or uncertified clock candidate alone does not reject all clock realizations:
 
 1. **Incorrect velocity dependence:**
  - If $P_q(\mathbf w)$ cannot be made to fit $\propto \gamma_\star(\mathbf w)$ without fine-tuning internal clock geometry or Noether sea parameters.
 
 2. **Wrong sign or magnitude of gravitational dilation:**
- - Clocks deeper in a potential must tick slower. Any prediction of faster ticks, or gross magnitude mismatch, is fatal.
+ - In the matched weak static comparison, clocks at more negative $\Phi_N$ must tick slower after transport and environmental shifts are controlled. A resolved opposite sign or magnitude mismatch rejects that recovery claim.
 
 3. **Directional anisotropy:**
- - If $P_q(\mathbf w)$ depends measurably on direction in the absolute frame, violating isotropy bounds ($<10^{-16}$ sidereal modulation), the theory contradicts precision Lorentz tests.
+ - If the exported clock or resonator observable has an orientation-dependent residual exceeding its experiment-specific bound, the proposed Lorentz recovery fails in that channel. Native directional dependence alone is insufficient; compare the calibrated modulation and nuisance model in the [Constraint Ledger](../validation/constraint-ledger.md), rather than apply one universal sidereal threshold.
 
 4. **Clock-dependence:**
  - If different reasonable clock designs (different internal assemblies) yield different $d\tau/dt_{\mathrm{eff}}$ at the same $(v,\Phi_N)$ beyond experimental bounds, the emergent Equivalence Principle fails.
 
 5. **Parameter bloat:**
- - If matching these effects requires introducing many independent medium parameters ($n$ profiles, ad hoc transport coefficients), the theory's naturalness score collapses; see [Parameter Ledger](../validation/parameter-ledger.md).
+ - If matching these effects requires separately adjustable medium profiles or transport coefficients, the proposed shared constitutive explanation remains unestablished. Record which quantities are derived and which are fitted in the [Parameter Ledger](../validation/parameter-ledger.md); parameter count alone supplies no numerical naturalness verdict.
 
 ---
 
@@ -1371,14 +1381,14 @@ This program fails, and the emergent-metric project is likely untenable, if any 
 
 ### Closure Program Interface (clock-to-PPN bridge)
 
-This chapter supplies the fitted coefficient bridge between microscopic clock dynamics and PPN observables.
+This chapter defines a candidate coefficient bridge between microscopic clock dynamics and PPN observables. It reports no fitted coefficients from an accepted evolved clock.
 
 The clock-to-PPN closure checklist is:
 
 1. Define a reference clock assembly and extraction window for $\omega_0$.
 2. Run controlled perturbations over $(U_j,v_j)$ in the weak-field, low-velocity regime.
 3. Fit $(A_U,A_v,C_2,C_{Uv},C_{v4})$ from the extracted clock ratios.
-4. Forward $\hat\beta_{\mathrm{PPN}}$ and the leakage coefficient $\hat C_{Uv}$ to [PPN Parameters](./ppn-parameters.md).
+4. Compare $\hat\beta_{\mathrm{PPN}}$ and $\hat C_{Uv}$ with their declared PPN targets and retain the chart, potential, and covariance assumptions.
 5. Record pass/fail status in [Closure Scorecard](../validation/closure-scorecard.md) against [Constraint Ledger](../validation/constraint-ledger.md) bounds.
 
 Given extracted coefficients
@@ -1410,9 +1420,9 @@ $$
 with
 $$
 \hat{\mathbf{q}}=(\hat A_U,\hat A_v,\hat\beta_{\mathrm{PPN}},\hat C_{Uv}),\qquad
-\mathbf{q}_\star=(1,\tfrac12,1,0)
+\mathbf{q}_\star=(1,\tfrac12,1,-\tfrac32)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ea9b593a97e8f0b1)
 
-Low $\chi^2_{\mathrm{closure}}$ with no preferred-direction leakage is the acceptance condition for the clock-law sector.
+Here $\Sigma_q$ is the propagated covariance of the four fitted comparison quantities; it must be positive definite, or the statistic must be restricted to its independently supported subspace. A low quadratic discrepancy is a goodness-of-fit diagnostic only under its declared error model and threshold. It does not establish a retained clock, constitutive response, independence of the evidence, complete Lorentz or metric recovery, solver certification, or empirical acceptance. The remaining physical obligation is one admitted history that produces the clock, ruler, and signal records together and survives the stated falsifiers.

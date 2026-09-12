@@ -8,9 +8,15 @@ runs:
         node-version: "22"
     # OPS-022: the reporting test sweep is opt-in and not requested here;
     # see content-integrity.yml.
+    - name: Install locked JavaScript dependencies
+      shell: bash
+      run: npm ci --ignore-scripts --no-audit --no-fund
+    - name: Install source inventory tool
+      shell: bash
+      run: sudo apt-get update && sudo apt-get install -y ripgrep
     - name: Validate source and generated assets
       shell: bash
-      run: node scripts/check-content-integrity.mjs
+      run: node scripts/check-content-integrity.mjs --profile=github
     - name: Verify deployment image selection
       shell: bash
       run: node --test tests/pages-image-assets.test.js

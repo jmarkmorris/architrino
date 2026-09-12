@@ -100,7 +100,7 @@ test('final completion awaits actual stdout callback, rejects stalls and late fl
   await assert.rejects(L.flushCompletion({operationalLogBytes:16*1024**2},{began:0,lastSampleStartedMs:0,clock:()=>1,stream:new Writable({write(){}})}),/log bound/);
 });
 test('closed CLI hash/path contract rejects extras, duplicates and traversal',()=>{
-  const argv=['--out','.local-data/braid-analysis/prescribed-response-example','--plan','plan','--plan-sha256','1'.repeat(64),'--launcher-sha256','2'.repeat(64),'--entry-sha256','3'.repeat(64)];
+  const argv=['--out','.local-data/braid-analysis/prescribed-response-example','--plan','plan','--plan-sha256','1'.repeat(64),'--launcher-sha256','2'.repeat(64),'--entry-sha256','3'.repeat(64),'--source-map-sha256','4'.repeat(64)];
   assert.equal(L.parseArgs(argv).entrySha256,'3'.repeat(64));for(const bad of [argv.slice(0,-2),[...argv,'--extra','x'],[...argv,'--out','again']])assert.throws(()=>L.parseArgs(bad));
   const bad=[...argv];bad[1]='a/../b';assert.throws(()=>L.parseArgs(bad));
 });

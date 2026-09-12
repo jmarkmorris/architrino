@@ -6,6 +6,8 @@ The standard gluon is a gauge-boson carrier of the strong interaction. This chap
 
 The key reader distinction is that a gluon is not introduced here as a new substrate particle. It is the effective record of a permitted strong-sector reconfiguration. The page therefore moves from color geometry, to the color-corridor event record, to the octet and confinement benchmarks that must reproduce QCD behavior.
 
+**Claim boundary.** The polarity inventories and conditional matrix identities below are derived only under their stated bookkeeping assumptions. The assembly-to-gluon interpretation, corridor dynamics, confinement mechanism, self-interaction, and glueball mapping are proposed or guessed; the QCD statements are effective recovery targets. A candidate mapping is falsified by failure of a retained branch to preserve the declared color record, by a non-closing event ledger, or by an independently checked observer record that disagrees with the claimed QCD benchmark. No such retained branch or response map is supplied here.
+
 ## The Geometric Origin of Color Charge
 
 In the Standard Model, color is an abstract $SU(3)$ label. In $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly language, color is the **axis-exceptionality state** of a Noether braid with an axial layer: one axis is distinguished relative to the other two, and the three admissible choices span the quark color triplet. The canonical algebra-and-bookkeeping closure remains in [Color Charge and SU(3)](../fermions/color-charge-su3.md).
@@ -14,9 +16,9 @@ A quark is colored when the assembly has a "which axis is special" degree of fre
 
 ### The Noether Braid Substrate
 
-The [Euclidean void](../../foundations/euclidean-void.md), the fixed three-dimensional container of the theory, is populated by high-energy, small-scale [Noether braids](../../noether-braid/noether-braid.md)—candidate neutral assemblies built from three indexed electrino:positrino binaries—often in tightly bound pro/anti groups. These assemblies form an ambient Noether sea of color-singlet braids.
+The [Euclidean void](../../foundations/euclidean-void.md), the fixed three-dimensional container of the theory, is populated by candidate neutral [Noether braid](../../noether-braid/noether-braid.md) assemblies. Some prescribed quark-mapping scaffolds use three indexed electrino:positrino binaries, but that specialization is not a definition of every Noether braid. The Noether sea is the proposed ambient assembly medium; its composition and dominance remain selection targets rather than established consequences of this chapter.
 
-A Noether braid also has three persistently indexed axes $(1,2,3)$, each carrying two polar sites.
+For the prescribed quark color scaffold used here, three persistently indexed axes $(1,2,3)$ each carry two candidate polar sites. This axial layer is additional to the neutral scaffold and is not a property of every Noether braid.
 
 - **Axial layer:** 6 polar sites total, 2 per axis.
 - **Symmetry breaking:** quarks do not keep the three axes equivalent.
@@ -25,6 +27,8 @@ A Noether braid also has three persistently indexed axes $(1,2,3)$, each carryin
 ### Defining Color States
 
 #### Case A: The Up Quark ($u$)
+
+Write $e>0$ for the elementary electric-charge magnitude and $\epsilon=e/6$, with $\epsilon_+=+\epsilon$ and $\epsilon_-=-\epsilon$ for the six candidate axial sites.
 
 - **Composition:** $5\epsilon_+ + 1\epsilon_-$, so $Q=+\frac{2}{3}e$.
 - **Axis pattern:** two positive-polarity dyads and one exceptional mixed dyad.
@@ -50,24 +54,24 @@ The conventional labels Red, Green, and Blue are therefore basis names for the t
 
 ## The Gluon: Emergent Vortex Dynamics
 
-In this model, the gluon is not a fundamental point particle but an emergent meta-assembly: a dynamic link formed by the coupling of potential vortices between Noether braids.
+The proposed geometric implementation treats the gluon channel not as a fundamental point particle but as a candidate corridor response: a dynamic link that could be formed by coupled potential vortices between Noether braids. This substrate realization has not been derived from the delayed acceleration law.
 
 The useful picture is a corridor, not a bead. A color-exposed quark leaves open axial traffic in the surrounding Noether sea; the gluon channel is the routed corridor that carries that traffic into another compatible color state while preserving the strong-sector record.
 
 ### Polar Vortices and Flux Tubes
 
-- **Source:** each circulating binary within the Noether braid generates a pair of persistent, high-intensity polar vortices along its rotation axis.
+- **Working hypothesis:** each circulating binary within the prescribed scaffold generates a pair of persistent, high-intensity polar-vortex responses along its rotation axis.
 - **Coupling:** when colored quarks interact, these vortices do not terminate in empty space. Instead, they twist the surrounding Noether sea into a **flux tube**, a coherent bundle of ambient Noether braids carrying the open color corridor between exceptional-axis sectors.
-- **The glue:** the strong force is the coupled-vortex tension that drives shortening and restores the surrounding Noether sea toward its isotropic ground state.
+- **Candidate mechanism:** coupled-vortex tension could drive corridor shortening and return the surrounding Noether sea toward an isotropic state. The response coefficient, sign, and relaxation law remain open.
 
-This can also be read as the strong-force version of the pole problem. Rotational averaging can blur equatorial structure, but it does not fully hide axial leakage. Colored braids therefore remain open at their poles unless another braid accepts the flux. A gluon tube is the Noether sea's way of routing that exposed axial traffic into a partner assembly rather than letting it radiate away incoherently.
+The proposed picture is also a strong-sector analogue of the pole problem. Rotational averaging can blur equatorial structure without removing axial exposure in the candidate scaffold. Whether that exposure remains open, is accepted by a partner assembly, or is carried away by another channel is a dynamical question; a gluon tube is the proposed routing mechanism, not a derived outcome.
 
 ### The Gluon as an Axis-Reconfiguration Braid
 
-A gluon is a propagating disturbance in the Noether braid assembly network that reconfigures axis exceptionality within the quark color basis.
+At the effective-record level, a gluon channel is a propagating disturbance in the Noether braid assembly network that is intended to reconfigure axis exceptionality within the quark color basis. Its retained substrate carrier and observer response remain closure targets.
 
 - **The operator:** when a Red quark $|q_1\rangle$ interacts with a Green quark $|q_2\rangle$, the gluon acts as a bridge that mixes or swaps the exceptional-axis state between axes 1 and 2.
-- **The braid:** geometrically, this is realized as a twisting of the Noether sea flux tube: a braid segment that propagates between the quark braids and carries the topology required to move exceptionality from one axis sector to another.
+- **The braid:** the candidate geometry is a twist of the Noether sea flux tube, represented by a braid segment that propagates between quark braids and carries the transport data needed to move exceptionality from one axis sector to another. A protected braid, linking, or topological-charge class is not implied until the relevant branch invariant is derived.
 
 ### Color-Corridor Provenance Target
 
@@ -91,12 +95,12 @@ $$
 
 Here $a_{\mathrm{in}}$ and $a_{\mathrm{out}}$ name the exceptional-axis sectors before and after the corridor acts, $\Delta A_{\mathrm{ax}}$ records any axial-inventory rerouting, $\mathcal Q_{\mathrm{corr}}$ records the corridor payload, $\mathcal Q_{\mathrm{tube}}$ records the Noether sea flux-tube strain, and $\mathcal Q_{\mathrm{recoil}}$ records the balancing response of the source, target, and surrounding hadron. The allowed-actions rule from [Quarks](../fermions/quarks.md#allowed-gluon-actions) constrains $\Delta A_{\mathrm{ax}}$: it may describe within-flavor captive-potential transfer or axis-sector rerouting, but it must preserve the total six-site axial inventory, electric charge, generation tier, and selected down-family sector rather than licensing a strong flavor change.
 
-For each routed quantity
+For each additive routed quantity
 $$
 \mathcal Q
 \in
 \left\{
-E,\mathbf p,\mathbf J,\mathrm{pol},\mathrm{arch},\mathrm{path},\mathrm{tube}
+E,\mathbf p,\mathbf J
 \right\},
 $$
 
@@ -120,14 +124,14 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-150d7aa903eba2aa)
 
-This is a provenance target, not a new interaction law. It prevents the gluon story from stopping at "color changed" by requiring the same record to bind axis exceptionality, axial inventory, energy, momentum, angular momentum, polarity, path history, and flux-tube strain for one color-reconfiguration event.
+This is a conditional provenance target, not a new interaction law or an established conservation proof. It applies to a closed event record whose boundary exchanges are included in the source, target, corridor, tube, and recoil terms. Polarity and architrino inventory are separate discrete constraints, while path history and tube strain are provenance fields; they must be recorded in the same event record but are not asserted here to be additive conserved quantities.
 
 ### The 8 Gluon Modes (Recovering the Octet Count, Bookkeeping)
 
-The octet count comes from the color-basis operator space.
+At the effective representation level, the octet count comes from the color-basis operator space; listing the operators does not derive a substrate gluon spectrum.
 
 - **The basis:** we have 3 color basis states, equivalently the three exceptional-axis sectors $(1,2,3)$.
-- **The matrix:** there are $3 \times 3 = 9$ possible couplings, corresponding to $U(3)$ before the singlet is removed.
+- **The Hermitian operator space:** the real vector space of Hermitian operators on the three-dimensional color basis has $3^2=9$ directions, corresponding to the Lie algebra $\mathfrak u(3)$ before the traceless restriction.
 - **Off-diagonal color-changing modes:** six generators move or mix exceptionality between distinct axis sectors: $(12),(13),(23)$, each with two Hermitian components. These are the color-changing corridor modes analogous to entries such as $R\bar{G}$ or $B\bar{R}$.
 - **Diagonal traceless modes:** two additional generators are neutral in net color change but still act nontrivially on relative color phase and weighting across the three indexed binary-axis sectors. They are the diagonal traceless directions $H_1$ and $H_2$ described in [Color Charge and SU(3)](../fermions/color-charge-su3.md#generator-basis-from-axis-operations).
 - **The singlet removal:** the equal superposition
@@ -138,7 +142,7 @@ The octet count comes from the color-basis operator space.
   [View →](../../../../../equation-mapping.html#corpus-equation-90656043e4dc42e1)
 
   is totally symmetric. It carries no net color change and is required not to interact as an open color mode.
-- **The octet:** removing this one singlet leaves 8 traceless modes: six off-diagonal color-changing generators plus two diagonal traceless generators, the familiar gluon octet of QCD.
+- **The octet:** removing this one singlet leaves 8 traceless modes: six off-diagonal color-changing generators plus two diagonal traceless generators. This is the conditional effective bookkeeping that matches the familiar QCD gluon octet; dynamical availability of those modes remains unestablished.
 
 ### Gluon Spin (Vector Nature)
 
@@ -153,7 +157,7 @@ At the Standard Model level, gluons are spin-1 gauge bosons. Because color is co
 
 ## Confinement and Energetics
 
-Quarks are confined because an open color corridor stores energy in the surrounding Noether braid assembly network.
+The proposed confinement mechanism is that an open color corridor stores energy in the surrounding Noether braid assembly network. Whether this storage follows from the delayed dynamics, and whether it excludes free color, remain open.
 
 ### Energy-Density Dimensional Consistency Check
 
@@ -173,11 +177,11 @@ Quarks are confined because an open color corridor stores energy in the surround
 
   [View →](../../../../../equation-mapping.html#corpus-equation-a3a58292fb5f505c)
 
-- **Result:** the energy grows approximately linearly with separation, $V \propto r$, until it becomes cheaper to create a new quark-antiquark pair than to keep stretching the corridor.
+- **QCD benchmark:** the effective comparison expects the energy to grow approximately linearly with separation, $V \propto r$, until pair production becomes the lower-energy channel. This is a benchmark supplied by the comparison theory, not a result derived by the scaffold above.
 
 This is the standard flux-tube observable pressure translated into Noether sea language, not an import of perturbative string ontology. The string-tension scale is useful because QCD and lattice calculations already treat the approximately linear static potential as a non-perturbative benchmark. The $\mathbb{A}\mathbb{A}\mathbb{A}$ task is to extract $\sigma_{\mathrm{eff}}$ from the same medium shear/torsion record that also suppresses free color and produces a finite closed-braid excitation scale.
 
-The validation gate is therefore:
+The recovery targets are therefore:
 
 - **Static-potential recovery:** the open corridor must reproduce the accepted hadronic-scale linear potential within the declared tolerance.
 - **No free color:** an isolated color sector must exceed the free-color bound rather than becoming a long-lived asymptotic object.
@@ -186,7 +190,7 @@ The validation gate is therefore:
 - **Running-coupling recovery:** that shared record must also produce color antiscreening at short distance while the electromagnetic sector remains screening. Naming vortex self-interaction is not enough; the sign and scale dependence must descend from the declared corridor and Noether sea response without a sector-specific sign choice.
 - **Massless-versus-massive corridor recovery:** the perturbative gluon channel must retain two transverse helicities and no localized rest gap even though an open color corridor carries an extensive separation cost, while the $W/Z$ corridors acquire localized massive-vector response. The same medium record must derive that distinction; confinement tension alone does not make a gluon a massive free particle.
 
-The compact gauge-invariant diagnostic is inherited from the Wilson-loop test in [Color Charge and SU(3)](../fermions/color-charge-su3.md#closure-interface-confinement-energy-scaling). Here $R$ and $T$ are the standard rectangular loop extents, with $T$ kept as a lattice-comparison label rather than the native absolute-time coordinate:
+The compact gauge-invariant diagnostic is inherited from the Wilson-loop test in [Color Charge and SU(3)](../fermions/color-charge-su3.md#closure-interface-confinement-energy-scaling). Here $R$ and $T$ are the standard rectangular loop extents, $\theta$ denotes the declared branch-parameter and effective-ensemble data, and $T$ is kept as a lattice-comparison label rather than the native absolute-time coordinate:
 $$
 \left\langle W(C_{R,T})\right\rangle_{\theta}
 \sim
@@ -212,7 +216,7 @@ A proton candidate such as $(u_R,u_G,d_B)$ has a schematic color-singlet assignm
 
   [View →](../../../../../equation-mapping.html#corpus-equation-e5f369e14a755963)
 
-- **Far field:** at distances larger than the proton radius, the open color corridors close and no net color flux leaks into the surrounding Noether sea. The composite is therefore transparent in the color channel at large distances.
+- **Far-field target:** the effective comparison expects the open color corridors to close at distances larger than the proton radius, with no net color flux in the far record. Spatial screening by the proposed assembly remains a recovery obligation, not a consequence of the occupancy count.
 
 ---
 
@@ -222,9 +226,9 @@ Unlike photons, gluons carry color structure themselves because they represent r
 
 ### The 3-Gluon Vertex
 
-- **Mechanism:** since a gluon is a polarized distortion of the Noether braid assembly network, two gluon braids can interact when they cross or share corridor structure.
-- **Topology:** flux tubes can merge or split. Geometrically, this is the tangling of Noether sea vortices, the strong-sector origin of non-Abelian self-interaction.
+- **Candidate mechanism:** two corridor disturbances could interact when they cross or share corridor structure; this requires a derived coupled-response law rather than treating gluons as primitive braids.
+- **Topology target:** flux tubes may merge or split in the effective comparison. Tangling of Noether sea responses is a proposed substrate interpretation, not yet the derived origin of non-Abelian self-interaction.
 
 ### Glueballs
 
-If these self-interacting braids form a closed loop without quarks at the ends, they produce a glueball: a massive, unstable resonance of pure strong-sector excitation of the Noether sea.
+If a retained closed pure-sector corridor exists without quarks at its ends, its effective observer record would be a candidate glueball-like resonance. The resonance mass and instability are effective comparison quantities; neither a closed loop nor its retained branch has been derived here.

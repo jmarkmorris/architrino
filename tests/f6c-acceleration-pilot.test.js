@@ -11,35 +11,38 @@ import {PassThrough} from 'node:stream';
 import * as E from '../scripts/eom/run-f6c-acceleration-pilot.mjs';
 import * as L from '../scripts/eom/launch-f6c-acceleration-pilot.mjs';
 const root=realpathSync(process.cwd()),hash=b=>createHash('sha256').update(b).digest('hex'),H='a'.repeat(64);
-const helperBytes=readFileSync(E.HELPERS),helpers=await L.reviewedHelpers(helperBytes);
+const sourceMapSha256=hash(readFileSync(E.SOURCE_MAP));
+await E.initializeSourceBindings(root,sourceMapSha256);
+const helperBytes=readFileSync(E.HELPERS),helpers=await L.reviewedHelpers(helperBytes,E.SOURCE_BINDINGS[E.HELPERS]);
 const python=path.resolve(process.env.AAA_VENV??path.join(root,'../.venv'),'bin/python');
 const pythonReal=realpathSync(python),node=realpathSync(process.execPath),git='/synthetic/git';
-const binding=(p,sha256=H,bytes=1)=>({path:p,sha256,bytes});
+const entryHash=hash(readFileSync(E.ENTRY)),launcherHash=hash(readFileSync(E.LAUNCHER));
+const binding=(p,sha256=H,bytes=1)=>({path:p,sha256:p===E.ENTRY?entryHash:p===E.LAUNCHER?launcherHash:sha256,bytes:!path.isAbsolute(p)&&([E.ENTRY,E.LAUNCHER].includes(p)||(E.SOURCE_BINDINGS[p]&&!Object.hasOwn(E.EVIDENCE_PINS,p)))?readFileSync(p).length:bytes});
 const falseFlags=names=>Object.fromEntries(names.map(n=>[n,false]));
 const write=(p,v)=>{mkdirSync(path.dirname(p),{recursive:true});return E.writeNew(p,v);};
 function directory(){const dir=realpathSync(mkdtempSync(path.join(tmpdir(),'f6c-range-ops-control-')));mkdirSync(path.join(dir,E.LANE),{recursive:true});return dir;}
-function planFixture(){return {historicalInputs:E.HISTORICAL.map(([role,originalPath,sha256,bytes])=>({role,originalPath,sha256,bytes,path:'reference/'+role+'.source'})),schema:'braid-program/f6c-continuous-reception-acceleration-launch.v2',executionBridge:binding(E.BRIDGE,E.PINS[E.BRIDGE]),declarationInput:{originalPath:E.DECLARATION,path:'reference/synthetic.source',sha256:E.PINS[E.DECLARATION],bytes:1},scope:E.SCOPE,
-  consumer:binding(E.CONSUMER,E.PINS[E.CONSUMER]),controls:binding(E.CONSUMER_TESTS,E.PINS[E.CONSUMER_TESTS]),
-  declaration:binding(E.DECLARATION,E.PINS[E.DECLARATION]),rangeVerifier:binding(E.CHECKER,E.CHECKER_SHA),
+function planFixture(){return {historicalInputs:E.HISTORICAL.map(([role,originalPath,sha256,bytes])=>({role,originalPath,sha256,bytes,path:'reference/'+role+'.source'})),schema:'braid-program/f6c-continuous-reception-acceleration-launch.v2',executionBridge:binding(E.BRIDGE,E.SOURCE_BINDINGS[E.BRIDGE]),declarationInput:{originalPath:E.DECLARATION,path:'reference/synthetic.source',sha256:E.SOURCE_BINDINGS[E.DECLARATION],bytes:1},scope:E.SCOPE,
+  consumer:binding(E.CONSUMER,E.SOURCE_BINDINGS[E.CONSUMER]),controls:binding(E.CONSUMER_TESTS,E.SOURCE_BINDINGS[E.CONSUMER_TESTS]),
+  declaration:binding(E.DECLARATION,E.SOURCE_BINDINGS[E.DECLARATION]),rangeVerifier:binding(E.CHECKER,E.CHECKER_SHA),
   runtimeBindings:[binding(pythonReal),binding(path.join(path.dirname(path.dirname(python)),'pyvenv.cfg')),binding(git)],
-  operationalBindings:[E.BRIDGE,E.BRIDGE_TESTS,E.ENTRY,E.LAUNCHER,E.TESTS,E.PROCESS_TESTS,E.HELPERS,E.OUTER,E.CHECKER_TESTS,'/bin/ps','/usr/bin/memory_pressure',node].map(p=>binding(p,E.PINS[p]??H)),
+  operationalBindings:[E.BRIDGE,E.BRIDGE_TESTS,E.ENTRY,E.LAUNCHER,E.TESTS,E.PROCESS_TESTS,E.HELPERS,E.OUTER,E.CHECKER_TESTS,'/bin/ps','/usr/bin/memory_pressure',node].map(p=>binding(p,E.SOURCE_BINDINGS[p]??H)),
   limits:{...E.LIMITS},priorCoverClosure:{authority:'externally-reviewed-caller-observation',ownerSha256:E.FIXED[9][2],admissionSha256:E.FIXED[5][2],matchingFreshCompletionObserved:true,exitCode:0,elapsedSeconds:'8.534247625',processesClosed:true,independentAuditAccepted:true}};}
 
 test('all scientific implementation/control pins remain the separately accepted source generation',()=>{
   for(const p of [E.CONSUMER,E.CONSUMER_TESTS,E.BRIDGE,E.CHECKER,E.CHECKER_TESTS,E.HELPERS,E.OUTER,...E.FIXED.filter(([,p])=>!p.startsWith('.local-data')).map(([,p])=>p)])
-    assert.equal(hash(readFileSync(p)),E.PINS[p],p);
-  assert.equal(E.FIXED.length,16);assert.equal(E.CHECKER_SHA,'6e3467a017c3477fb1b2baddd10e985687ed6112aeb5bc84c2fc92a9453cda83');
+    assert.equal(hash(readFileSync(p)),E.SOURCE_BINDINGS[p],p);
+  assert.equal(E.FIXED.length,16);assert.equal(E.CHECKER_SHA,'a0c546124828b5879a2e163b0f965d37b90c251d327301eaa72e031261824e53');
 });
 test('closed plan has no invented runtime/default fields and exact operational closure',()=>{
   const plan=planFixture();
   // The Git path is explicit and checked against its real filesystem identity.
   const actualGit=realpathSync('/usr/bin/git');plan.runtimeBindings[2]=binding(actualGit);
-  assert.equal(E.validatePlan(plan,root,H,H,python,actualGit),plan);
+  assert.equal(E.validatePlan(plan,root,launcherHash,entryHash,python,actualGit),plan);
   for(const mutate of [p=>p.limits.inclusiveSeconds++,p=>p.scope='full',p=>p.python=python,
     p=>p.consumer.sha256=H,p=>p.rangeVerifier.sha256=H,p=>p.priorCoverClosure.exitCode=false,
     p=>p.operationalBindings.pop(),p=>p.operationalBindings.push(p.operationalBindings[0]),
     p=>p.runtimeBindings.splice(1,1),p=>p.priorCoverClosure.independentAuditAccepted=false]){
-    const changed=structuredClone(plan);mutate(changed);assert.throws(()=>E.validatePlan(changed,root,H,H,python,actualGit));
+    const changed=structuredClone(plan);mutate(changed);assert.throws(()=>E.validatePlan(changed,root,launcherHash,entryHash,python,actualGit));
   }
   const bindings=E.planBindings(plan,root);assert.equal(new Set(bindings.map(b=>b.path)).size,bindings.length);
   for(const [role,p,h] of E.FIXED){const r=plan.historicalInputs.find(r=>r.role===role);assert.equal(bindings.find(b=>b.path===path.join(root,r?.path??p)).sha256,r?.sha256??h,role);}
@@ -57,7 +60,7 @@ test('bounded source read and write preserve exact bytes and reject symlink/over
   assert.throws(()=>L.captureBootstrapSource(p,H));
 });
 test('pure helper capture refuses changed bytes and exposes only operational functions used here',async()=>{
-  await assert.rejects(L.reviewedHelpers(Buffer.concat([helperBytes,Buffer.from('\n')])));
+  await assert.rejects(L.reviewedHelpers(Buffer.concat([helperBytes,Buffer.from('\n')]),E.SOURCE_BINDINGS[E.HELPERS]));
   for(const name of ['selectOwnedRows','acceptRSS','parseHostResource','runFileWorker','reserveLock','releaseLock','flushCompletion'])assert.equal(typeof helpers[name],'function');
 });
 test('data/outer siblings are distinct and stage CLI preserves original candidate and deadline',()=>{
@@ -177,7 +180,7 @@ test('shared exclusion recognizes old/cached/full/root/range and both F5 stages'
   }
 });
 test('explicit runtime launch options reject extras missing values unsafe hash and traversal',()=>{
-  const args=['--out','child','--plan','plan','--plan-sha256',H,'--launcher-sha256',H,'--entry-sha256',H,'--python',python,'--git-binary','/usr/bin/git'];
+  const args=['--out','child','--plan','plan','--plan-sha256',H,'--launcher-sha256',H,'--entry-sha256',H,'--python',python,'--git-binary','/usr/bin/git','--source-map-sha256',sourceMapSha256];
   assert.equal(L.parseArgs(args).python,python);assert.throws(()=>L.parseArgs(args.concat('--extra','x')));assert.throws(()=>L.parseArgs(args.slice(0,-2)));
   const bad=[...args];bad[1]='../child';assert.throws(()=>L.parseArgs(bad));
 });
@@ -244,8 +247,8 @@ test('failed stage projection retains unresolved process identities and cleanup 
 test('current acceleration transport rejects old plans and changed or executable archive routes',()=>{
   const plan=planFixture(),g=realpathSync('/usr/bin/git');plan.runtimeBindings[2]=binding(g);
   for(const mutate of [p=>p.schema=p.schema.replace('.v2','.v1'),p=>p.declarationInput.originalPath=E.CONSUMER,p=>p.declarationInput.path='scripts/evil.source',p=>p.declarationInput.path='reference/../evil.source',p=>p.declarationInput.sha256=H,p=>p.executionBridge.sha256=H]){
-    const changed=structuredClone(plan);mutate(changed);assert.throws(()=>E.validatePlan(changed,root,H,H,python,g));
+    const changed=structuredClone(plan);mutate(changed);assert.throws(()=>E.validatePlan(changed,root,launcherHash,entryHash,python,g));
   }
   const rows=E.planBindings(plan,root);assert.equal(rows.some(b=>b.path===path.join(root,E.DECLARATION)),false);
-  assert.equal(rows.find(b=>b.path===path.join(root,'reference/synthetic.source')).sha256,E.PINS[E.DECLARATION]);
+  assert.equal(rows.find(b=>b.path===path.join(root,'reference/synthetic.source')).sha256,E.SOURCE_BINDINGS[E.DECLARATION]);
 });

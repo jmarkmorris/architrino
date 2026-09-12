@@ -180,7 +180,7 @@ class CapturePublicationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             with s.captured_references(b'bad',b'bad'):pass
         before=set(sys.modules)
-        with s.captured_references((ROOT/s.CORE).read_bytes(),(ROOT/s.REFERENCE).read_bytes())as(c,r):
+        with s.captured_references((ROOT/'reference/priorities/braid-program/evidence/source-replay/scripts__eom__oracle__f6c_refined_acceleration_conformance.py.source').read_bytes(),(ROOT/'reference/priorities/braid-program/evidence/source-replay/scripts__eom__verify-f6c-continuous-reception-acceleration.py.source').read_bytes())as(c,r):
             self.assertEqual(c.REFERENCE_SHA256,s.REFERENCE_SHA);self.assertTrue(callable(r.compare_ranges));self.assertNotEqual(c.__name__,core.__name__)
         self.assertFalse([n for n in set(sys.modules)-before if n.startswith('_f6c_refined_')])
     def test_exclusive_durable_publication_and_alias(self):
@@ -399,8 +399,14 @@ class MainFlowTests(unittest.TestCase):
         self.assertTrue(done['accepted']);self.assertTrue(done['externalInclusiveDeadlineAndProcessClosureRequired']);self.assertFalse(report['analysis']['accepted']);self.assertFalse(any(report['candidateClaims'].values()))
         self.assertEqual(len(report['priorOperationalBindings']),2);self.assertEqual(events.count('file-close'),len(instances));self.assertEqual(events.count('numerical-stage-mocked'),1);self.assertEqual(events[-1],'watch-teardown')
         self.assertGreater(events.count('recheck'),2*len(instances)-2)
+    def test_host_import_changes_do_not_retract_authored_source_publication(self):
+        for mode in ('late-runtime','publication-runtime'):
+            out,events,stdout,_,error,_=self.run_flow(mode)
+            self.assertIsNone(error);self.assertTrue(out.is_file())
+            self.assertTrue(json.loads(stdout)['externalInclusiveDeadlineAndProcessClosureRequired'])
+
     def test_all_late_main_paths_retract_public_authority(self):
-        for mode in ('numeric-failure','late-runtime','publication-runtime','published-capture','late-source','late-publication','reference-cleanup','file-cleanup','slow-file-cleanup','stdout-failure','slow-watch-teardown','watch-teardown-error'):
+        for mode in ('numeric-failure','published-capture','late-source','late-publication','reference-cleanup','file-cleanup','slow-file-cleanup','stdout-failure','slow-watch-teardown','watch-teardown-error'):
             with self.subTest(mode=mode):
                 out,events,stdout,stderr,error,_=self.run_flow(mode)
                 self.assertIsNotNone(error);self.assertFalse(out.exists());self.assertIn('watch-teardown',events)

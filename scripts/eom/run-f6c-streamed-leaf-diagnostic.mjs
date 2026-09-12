@@ -37,22 +37,22 @@ export function remainingDuration(deadline,now=process.hrtime.bigint()){
   return {originalNodeDeadlineNanoseconds:deadline,entryBudgetStampNanoseconds:String(now),remainingNanoseconds:String(remaining),policy:CLOCK_POLICY};
 }
 export const FALSE_FLAGS='accepted source_bytes_authenticated frame_identity_authenticated premise_truth_authenticated historical_trajectory_identity_established root_coverage_established gauss_kronrod_completed subdivision_allowance_verified three_rung_agreement_established execution_authorized eom_executed metrics_available score_authorized h3_evidence_eligible physical_claim_established'.split(' ');
+export const OPERATIONS=Object.freeze({
+ "operationCoordinator": "scripts/eom/f6c-bounded-operation.mjs",
+ "operationCoordinatorControls": "tests/f6c-bounded-operation.test.js",
+ "helpers": "scripts/eom/launch-prescribed-response-pilot.mjs",
+ "outer": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+ "diagnostics": "scripts/eom/launch-f6c-emission-refinement-pilot.mjs"
+});
+export const SOURCE_MAP='reference/priorities/development-process-review/contracts/option-b-f6c-bounded-operation-sources.jsonld';
 export const PINS=Object.freeze({
- "operationCoordinator": [
-  "scripts/eom/f6c-bounded-operation.mjs",
-  "e100a96f0771d82664fa62b66865cbf5924cced1216588c631836ed361d6a252"
- ],
- "operationCoordinatorControls": [
-  "tests/f6c-bounded-operation.test.js",
-  "4beac06fb776869c62c52ef2ee5b7a79c078f9ee45ba7d5b30e59871ca944ebe"
- ],
  "adapter": [
   "scripts/eom/f6c_variable_cell_adapter.py",
-  "2f0b9ea1ff9ed60a8dacf1b8447ea2a075f482a2d9b505de46e24b1dafb16a25"
+  "8431df6a2dbf6716330d6bc0319cc1e4ad8dd19c0140553dd1e75294eb8cbe80"
  ],
  "adapterControls": [
   "tests/test_f6c_variable_cell_adapter.py",
-  "1fe6838fc63b10cd8e0051ce03039db05b7ea8370c0b8f065beb3e59492df6c2"
+  "94a2a80a1dd0d8f06dde78a11a3eba220a1d86a92dd9888b99e02f2598dc1e63"
  ],
  "diagnostic": [
   "scripts/eom/f6c_single_leaf_diagnostic.py",
@@ -60,7 +60,7 @@ export const PINS=Object.freeze({
  ],
  "diagnosticControls": [
   "tests/test_f6c_single_leaf_diagnostic.py",
-  "47d502100d4f92e8c803f5f0dad7c248874f493ed0df9ef43e1e956e8e9bf71c"
+  "52f0a68016d444f50a8365b5183e2268e63757c2d53bdf698f73f1674672d766"
  ],
  "stream": [
   "scripts/eom/f6c_streamed_leaf_session.py",
@@ -68,7 +68,7 @@ export const PINS=Object.freeze({
  ],
  "streamControls": [
   "tests/test_f6c_streamed_leaf_session.py",
-  "8fd4f300db43fcd67eda052677ee1f004efda464db7b51eea40d69c6169cd39b"
+  "8768e22871054f903da53075078c12a230e63df3863e1882c5d99048904123a9"
  ],
  "continuation": [
   "scripts/eom/f6c_leaf_continuation.py",
@@ -101,18 +101,6 @@ export const PINS=Object.freeze({
  "transport": [
   "scripts/eom/verify-f6c-refined-acceleration.py",
   "e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae"
- ],
- "helpers": [
-  "scripts/eom/launch-prescribed-response-pilot.mjs",
-  "72b181165cafe21f3237dca7638343a9d31ea4ee48f709d9b43761666d6e7ec5"
- ],
- "outer": [
-  "scripts/eom/launch-subfield-circular-root-pilot.mjs",
-  "e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920"
- ],
- "diagnostics": [
-  "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
-  "42cff90c1d7fab71a3e826c5e9da4185363b6d2ab48ba7d826ef1ac3f9e9427c"
  ]
 });
 // Readiness alone is selected by the reviewed invocation. Historical wrapper
@@ -418,6 +406,7 @@ function inspectContinuation(spec,read,requireDeclaredSources){
    else if(member){check(equalBinding(member,b),'package member exact original bytes');}
    else {add(b);const actual=read(b.path,b.sha256,false,1024**3);check(actual.bytes===b.bytes&&actual.identity===identities[b.path],'unmapped historical source changed');}
   }
+  historicalInvocationVersion(invocation.schema);
   const header=json(a.reviewerBindings.frozenHeader).expectedHeaderStatic;
   check(header&&equalBinding(header.spec.binding,a.invocation)&&same(header.spec.parentRefinements,invocation.parentRefinements)&&same(header.sourceBindings.files,invocation.bindings)&&same(header.runtimeBindings,invocation.runtimeBindings),'original frozen header bindings');
   if(['braid-program/f6c-streamed-leaf-invocation.v4','braid-program/f6c-streamed-leaf-invocation.v5'].includes(invocation.schema))check(Object.hasOwn(header.spec,'acceptedParentEvidence')&&Object.hasOwn(header.spec,'evidencePackage')&&same(header.spec.acceptedParentEvidence,invocation.acceptedParentEvidence)&&same(header.spec.evidencePackage,invocation.evidencePackage),'exact historical v4 evidence selection');
@@ -451,6 +440,8 @@ function inspectContinuation(spec,read,requireDeclaredSources){
  if(requireDeclaredSources)check(same([...union].sort((a,b)=>a.path.localeCompare(b.path)),[...boundedSourceUnion(c.sourceBindings)].sort((a,b)=>a.path.localeCompare(b.path))),'declared continuation physical union differs');
  return {sources:union,segments,inheritedPairs:total,authority};
 }
+// This bounded gate adds no acceptance for other historical schemas.
+export function historicalInvocationVersion(schema){check(schema!=='braid-program/f6c-streamed-leaf-invocation.v6','v6 historical continuation requires separately reviewed acceptance');}
 export function continuationInputs(spec,read=readBound){return inspectContinuation(spec,read,true);}
 export function prepareContinuation(spec,read=readBound){
  // Data preparation only. validateSpec always verifies the resulting exact list.
@@ -479,13 +470,32 @@ export function historicalEvidenceInputs(spec){
  // were consumed. This layer authenticates transport, never historical truth.
  return sources;
 }
-export function validateSpec(s,selfSha){
+// An explicit caller-selected map is required before using any operational module.
+export async function admitOperationalSources(s,live=()=>{}){
+ live();check(s&&typeof s.root==='string'&&path.isAbsolute(s.root),'explicit operational root');
+ const b=s.bindings?.operationCoordinator;binding(b);check(b.path===path.join(s.root,OPERATIONS.operationCoordinator),'canonical operational coordinator');
+ const owner=readBound(b.path,b.sha256,true,1024**2,live);check(owner.bytes===b.bytes,'selected coordinator size');
+ const C=await import(url(owner.data));live();
+ binding(s.bindings.sourceMap);check(s.bindings.sourceMap.path===path.join(s.root,SOURCE_MAP),'explicit canonical source map');
+ const admitted=await C.initializeSourceBindings(s.root,s.bindings.sourceMap.sha256,live);
+ check(equalBinding(s.bindings.sourceMap,admitted.sourceMap),'selected source map size');
+ check(equalBinding(s.bindings.manifestReader,admitted.sources.find(v=>v.path===path.join(s.root,'scripts/equation-mapping/current-source-manifest.mjs'))),'selected manifest reader');
+ for(const[k,p]of Object.entries(OPERATIONS))check(equalBinding(s.bindings[k],admitted.sources.find(v=>v.path===path.join(s.root,p))),'map-selected operational '+k);
+ check(admitted.sources.some(v=>equalBinding(v,b)),'map-selected coordinator');
+ checkBindings(admitted.sources,live,admitted.identities);return admitted;
+}
+export function validateSpec(s,selfSha,sourceAdmission){
  keys(s,['schema','scope','root','output','python','git','bindings','runtimeBindings','parentRefinements','evidencePackage','acceptedParentEvidence','historicalEvidence','continuation','maxAdvances','limits']);
- check(s.schema==='braid-program/f6c-streamed-leaf-invocation.v5'&&s.scope===SCOPE,'fixed streamed diagnostic scope');
+ check(s.schema==='braid-program/f6c-streamed-leaf-invocation.v6'&&s.scope===SCOPE,'fixed streamed diagnostic scope');
  check(typeof s.root==='string'&&path.isAbsolute(s.root)&&realpathSync(s.root)===s.root&&typeof s.output==='string'&&path.dirname(s.output)===path.join(s.root,LANE)&&path.resolve(s.output)===s.output&&/^[a-z0-9][a-z0-9-]{0,95}$/u.test(path.basename(s.output)),'fresh canonical direct-child lane');
- keys(s.bindings,['coordinator','controls',...Object.keys(PINS)]);for(const b of Object.values(s.bindings))binding(b);
+ keys(s.bindings,['coordinator','controls','sourceMap','manifestReader',...Object.keys(PINS),...Object.keys(OPERATIONS)]);for(const b of Object.values(s.bindings))binding(b);
  check(s.bindings.coordinator.path===path.join(s.root,SELF)&&s.bindings.coordinator.sha256===selfSha&&s.bindings.controls.path===path.join(s.root,CONTROL),'executing connection and controls');
  for(const[k,[p,h]]of Object.entries(PINS))check(s.bindings[k].path===path.join(s.root,p)&&(k==='readiness'||s.bindings[k].sha256===h),'fixed reviewed '+k);
+ check(sourceAdmission?.sourceMap?.path===path.join(s.root,SOURCE_MAP)&&equalBinding(s.bindings.sourceMap,sourceAdmission.sourceMap)&&equalBinding(s.bindings.manifestReader,sourceAdmission.sources.find(b=>b.path===path.join(s.root,'scripts/equation-mapping/current-source-manifest.mjs'))),'explicit admitted operational selection');
+ for(const[k,p]of Object.entries(OPERATIONS)){
+  const selected=sourceAdmission.sources.find(b=>b.path===path.join(s.root,p));
+  check(selected&&equalBinding(s.bindings[k],selected),'manifest-selected operational '+k);
+ }
  check(Number.isInteger(s.maxAdvances)&&s.maxAdvances>=1&&s.maxAdvances<=3280&&same(s.limits,LIMITS),'unchanged explicit bounds');
  check(Array.isArray(s.parentRefinements)&&s.parentRefinements.length<=159,'explicit bounded parent selection');
  check(Array.isArray(s.runtimeBindings)&&s.runtimeBindings.length>0&&s.runtimeBindings.length<=256,'fresh bounded runtime census');s.runtimeBindings.forEach(binding);
@@ -496,7 +506,7 @@ export function validateSpec(s,selfSha){
  const physical=descriptors.filter(b=>{const route=packaged.routes.get(b.path);if(!route)return true;check(equalBinding(route,b),'packaged descriptor generation differs');return false;});
  const continuation=continuationInputs(s);
  check(s.maxAdvances+continuation.inheritedPairs<=3280,'inherited evaluations remain spent');
- return boundedSourceUnion([...all,...physical,...packaged.sources,...fresh.sources,...continuation.sources,...historicalEvidenceInputs(s)]);
+ return boundedSourceUnion([...all,...sourceAdmission.sources,...physical,...packaged.sources,...fresh.sources,...continuation.sources,...historicalEvidenceInputs(s)]);
 }
 
 export function writeNew(filename,value,live=()=>{},includeIdentity=false){
@@ -755,7 +765,7 @@ if __name__=='__main__':execute(*sys.argv[1:])
 
 export async function registered(specPath,specSha,selfSha,deadline){
   const live=()=>check(process.hrtime.bigint()<BigInt(deadline),'registered entry deadline');live();
-  const record=readBound(specPath,specSha,true,1024**2,live),spec=decodeSpec(record.data);checkBindings(validateSpec(spec,selfSha),live);
+  const record=readBound(specPath,specSha,true,1024**2,live),spec=decodeSpec(record.data),admitted=await admitOperationalSources(spec,live);checkBindings(validateSpec(spec,selfSha,admitted),live);
   check(import.meta.url.startsWith('file:')&&fileURLToPath(import.meta.url)===spec.bindings.coordinator.path,'captured registered entry path');
   const body=sha(PYTHON);check(PYTHON.length<65536,'bounded embedded Python');
   // Sample only after preflight, immediately before registering the target.
@@ -766,7 +776,7 @@ export async function registered(specPath,specSha,selfSha,deadline){
     child.stdout.pipe(process.stdout);child.stderr.pipe(process.stderr);child.once('error',reject);
     child.once('close',(code,signal)=>code===0&&!signal?resolve():reject(Error('registered Python failed '+code+'/'+signal)));
   });
-  checkBindings(validateSpec(spec,selfSha),live);console.error(JSON.stringify({kind:'streamed-leaf-entry-resources',clockTransfer,resourceUsage:process.resourceUsage()}));live();
+  checkBindings(admitted.sources,live,admitted.identities);checkBindings(validateSpec(spec,selfSha,admitted),live);console.error(JSON.stringify({kind:'streamed-leaf-entry-resources',clockTransfer,resourceUsage:process.resourceUsage()}));live();
 }
 
 export function inspectStreamLayout(output){
@@ -843,12 +853,13 @@ export function scanStream(filename,expected,live=()=>{}){
 }
 export function fileOperation(job){
  const live=()=>check(process.hrtime.bigint()<BigInt(job.deadlineNanoseconds),'file worker deadline');live();
- if(job.kind==='preflight'){
+ if(job.kind==='preflight')return(async()=>{
   const captured=readBound(job.specPath,job.specSha,true,1024**2,live),spec=decodeSpec(captured.data);
-  const records=boundedSourceUnion([...validateSpec(spec,job.selfSha),clean(captured)]),actual=records.map(b=>readBound(b.path,b.sha256,false,1024**3,live));
+  const admitted=await admitOperationalSources(spec,live);
+  const records=boundedSourceUnion([...validateSpec(spec,job.selfSha,admitted),clean(captured)]),actual=records.map(b=>readBound(b.path,b.sha256,false,1024**3,live));
   actual.forEach((r,n)=>check(r.bytes===records[n].bytes,'source size'));
   return{spec,sources:actual.map(clean),sourceIdentities:Object.fromEntries(actual.map(b=>[b.path,b.identity])),specBinding:clean(captured)};
- }
+ })();
  if(job.kind==='recheck')return checkBindings(job.sources,live,job.sourceIdentities);
  if(job.kind==='admit'){
   const proc=job.processReceipt;
@@ -905,7 +916,8 @@ export function fileOperation(job){
 export async function coordinate({specPath,specSha,selfSha,self,began,deadlineNanoseconds,lifetime}){
   // The single canonical file-C instance owns the private lifetime registry.
   // This captured mode never mints a guard or installs another observer.
-  const root=realpathSync(process.cwd()),owner=readBound(path.join(root,PINS.operationCoordinator[0]),PINS.operationCoordinator[1],false,1024**2);
+  const root=realpathSync(process.cwd());check(lifetime?.coordinator?.path===path.join(root,OPERATIONS.operationCoordinator),'canonical lifetime owner');
+  const owner=readBound(lifetime.coordinator.path,lifetime.coordinator.sha256,false,1024**2);
   const C=await import(pathToFileURL(owner.path).href);C.assertLifetime(lifetime);
   const live=()=>lifetime.live();
   check(lifetime.coordinator?.path===owner.path&&lifetime.coordinator.sha256===owner.sha256&&lifetime.coordinator.bytes===owner.bytes&&lifetime.coordinator.identity===owner.identity,'original canonical lifetime owner');
@@ -917,14 +929,16 @@ export async function coordinate({specPath,specSha,selfSha,self,began,deadlineNa
     const capturedSpec=readBound(specPath,specSha,true,1024**2,live),spec=decodeSpec(capturedSpec.data);
     // Full evidence/continuation validation stays in the observed file worker.
     keys(spec,['schema','scope','root','output','python','git','bindings','runtimeBindings','parentRefinements','evidencePackage','acceptedParentEvidence','historicalEvidence','continuation','maxAdvances','limits']);
-    check(spec.schema==='braid-program/f6c-streamed-leaf-invocation.v5'&&spec.scope===SCOPE&&spec.root===root,'fixed streamed invocation');
+    check(spec.schema==='braid-program/f6c-streamed-leaf-invocation.v6'&&spec.scope===SCOPE&&spec.root===root,'fixed streamed invocation');
     check(typeof spec.output==='string'&&path.dirname(spec.output)===path.join(root,LANE)&&path.resolve(spec.output)===spec.output&&/^[a-z0-9][a-z0-9-]{0,95}$/u.test(path.basename(spec.output)),'fixed streamed output');
-    keys(spec.bindings,['coordinator','controls',...Object.keys(PINS)]);
+    keys(spec.bindings,['coordinator','controls','sourceMap','manifestReader',...Object.keys(PINS),...Object.keys(OPERATIONS)]);
     check(Array.isArray(spec.runtimeBindings)&&spec.runtimeBindings.length>0&&spec.runtimeBindings.length<=256,'bounded runtime declaration');
     const declared=boundedSourceUnion([...Object.values(spec.bindings),...spec.runtimeBindings]);
     check(equalBinding(spec.bindings.coordinator,clean(self))&&equalBinding(spec.bindings.operationCoordinator,clean(owner)),'exact caller and C declarations');
     const minimalPaths=[spec.git,realpathSync(process.execPath),'/bin/ps','/usr/bin/memory_pressure'];
     const minimal=minimalPaths.map(p=>{check(typeof p==='string'&&path.isAbsolute(p)&&path.resolve(p)===p,'canonical observer executable');const b=declared.find(v=>v.path===p);check(b,'declared initial executable');const a=readBound(p,b.sha256,false,1024**3,live);check(a.bytes===b.bytes,'initial executable byte count');return a;});
+    const admitted=await admitOperationalSources(spec,live);
+    lifetime.bindSources({sources:admitted.sources,identities:admitted.identities});
     const initial=[self,owner,capturedSpec,...minimal];
     lifetime.bindSources({sources:initial.map(clean),identities:Object.fromEntries(initial.map(b=>[b.path,b.identity]))});
     const output=spec.output,ops=output+'-outer';

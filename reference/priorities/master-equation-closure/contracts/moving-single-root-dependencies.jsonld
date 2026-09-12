@@ -20,14 +20,14 @@
       "@id": "https://example.invalid/option-b-corrected/assumptions",
       "alias": "assumptions",
       "@type": "Assumption",
-      "revisionId": "candidate-2c64153885f5d90fec1f",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "sourceBindings": [
         {
           "path": "content/markdown/aaa/dynamics/master-equation.md",
           "selector": {
             "kind": "lines",
-            "first": 1556,
-            "last": 1556
+            "first": 1548,
+            "last": 1548
           },
           "contract": "fixed-byte-selection/v1",
           "sha256": "62396c4a950d5a66d23193f2470af9ada078e84f9f952bb6ae1847d2ecfac4a7"
@@ -36,8 +36,8 @@
           "path": "content/markdown/aaa/dynamics/master-equation.md",
           "selector": {
             "kind": "lines",
-            "first": 1572,
-            "last": 1576
+            "first": 1564,
+            "last": 1568
           },
           "contract": "fixed-byte-selection/v1",
           "sha256": "533595d9f7bbc1ac57a01b75662b2d509025194bd4392a975bd81b1455af14b5"
@@ -49,14 +49,14 @@
       "@id": "https://architrino.com/equation-mapping.html#corpus-equation-f320108876777c46",
       "alias": "definitions",
       "@type": "EquationOccurrence",
-      "revisionId": "candidate-c3f93b5f7336e1568b2c",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "sourceBindings": [
         {
           "path": "content/markdown/aaa/dynamics/master-equation.md",
           "selector": {
             "kind": "lines",
-            "first": 1558,
-            "last": 1570
+            "first": 1550,
+            "last": 1562
           },
           "contract": "fixed-byte-selection/v1",
           "sha256": "63ef42ce257b705d424f2d0bfd358f4fff0126e83f41b5c4a00b33a4441cd46c"
@@ -105,14 +105,14 @@
       "@id": "https://example.invalid/option-b-corrected/sign",
       "alias": "sign",
       "@type": "Derivation",
-      "revisionId": "candidate-6fdf64818963c90ad48a",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "sourceBindings": [
         {
           "path": "content/markdown/aaa/dynamics/master-equation.md",
           "selector": {
             "kind": "lines",
-            "first": 1598,
-            "last": 1598
+            "first": 1590,
+            "last": 1590
           },
           "contract": "fixed-byte-selection/v1",
           "sha256": "98d3743709edd49c6e27ee522848c182ece0211bc40b64bf74a34aeed99c14a3"
@@ -134,14 +134,14 @@
       "@id": "https://architrino.com/equation-mapping.html#corpus-equation-0d1e584019eb76b1",
       "alias": "root-derivative",
       "@type": "EquationOccurrence",
-      "revisionId": "candidate-0dfe7cff47a9b6bb3fa7",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "sourceBindings": [
         {
           "path": "content/markdown/aaa/dynamics/master-equation.md",
           "selector": {
             "kind": "lines",
-            "first": 1580,
-            "last": 1594
+            "first": 1572,
+            "last": 1586
           },
           "contract": "fixed-byte-selection/v1",
           "sha256": "92b4f541ca0f965833ec56529ba9cf4a695b0c88b1b4e384c56c8831b860bbfc"
@@ -153,14 +153,14 @@
       "@id": "https://architrino.com/equation-mapping.html#corpus-equation-4c68e6145352e9dc",
       "alias": "scalar",
       "@type": "EquationOccurrence",
-      "revisionId": "candidate-4b58fb11c84368f0c5d9",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "sourceBindings": [
         {
           "path": "content/markdown/aaa/dynamics/master-equation.md",
           "selector": {
             "kind": "lines",
-            "first": 1600,
-            "last": 1606
+            "first": 1592,
+            "last": 1598
           },
           "contract": "fixed-byte-selection/v1",
           "sha256": "b1cc4d703d792d7a25906b03c6749feebabf79b0644a5ce1d20ff0d1d75b74ef"
@@ -210,14 +210,14 @@
       "@id": "https://architrino.com/equation-mapping.html#corpus-equation-193390fd300cb6a5",
       "alias": "identity",
       "@type": "EquationOccurrence",
-      "revisionId": "candidate-18374c679ce5c7fccd97",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "sourceBindings": [
         {
           "path": "content/markdown/aaa/dynamics/master-equation.md",
           "selector": {
             "kind": "lines",
-            "first": 1608,
-            "last": 1620
+            "first": 1600,
+            "last": 1612
           },
           "contract": "fixed-byte-selection/v1",
           "sha256": "5dee81630ce1d111ab9b5aef91e8f5c885770111782adde6c1a1354ea1e58001"
@@ -461,12 +461,12 @@
     {
       "@id": "https://example.invalid/option-b-corrected/dependsOn-definitions-assumptions",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/dependsOn",
       "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-f320108876777c46",
-      "fromRevision": "candidate-c3f93b5f7336e1568b2c",
+      "fromRevision": "byte-preserving-selector-relocation/2026-09-12",
       "toObject": "https://example.invalid/option-b-corrected/assumptions",
-      "toRevision": "candidate-2c64153885f5d90fec1f",
+      "toRevision": "byte-preserving-selector-relocation/2026-09-12",
       "role": "domain",
       "meaning": "r and selected root need the declared domain.",
       "justifications": [
@@ -474,8 +474,8 @@
           "path": "content/markdown/aaa/dynamics/master-equation.md",
           "selector": {
             "kind": "lines",
-            "first": 1556,
-            "last": 1576
+            "first": 1548,
+            "last": 1568
           },
           "contract": "fixed-byte-selection/v1",
           "sha256": "b23340642a432b0832360a1792b08f01ecb827bcf1e708604779042bb56604e1"
@@ -485,12 +485,12 @@
     {
       "@id": "https://example.invalid/option-b-corrected/dependsOn-constraint-definitions",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/dependsOn",
       "fromObject": "https://example.invalid/option-b-corrected/constraint",
       "fromRevision": "candidate-77b7e81a060eb2f56767",
       "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-f320108876777c46",
-      "toRevision": "candidate-c3f93b5f7336e1568b2c",
+      "toRevision": "byte-preserving-selector-relocation/2026-09-12",
       "role": "mathematical",
       "meaning": "Causal constraint uses separation r and emission time.",
       "justifications": [
@@ -509,10 +509,10 @@
     {
       "@id": "https://example.invalid/option-b-corrected/dependsOn-root-derivative-constraint",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/dependsOn",
       "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-0d1e584019eb76b1",
-      "fromRevision": "candidate-0dfe7cff47a9b6bb3fa7",
+      "fromRevision": "byte-preserving-selector-relocation/2026-09-12",
       "toObject": "https://example.invalid/option-b-corrected/constraint",
       "toRevision": "candidate-77b7e81a060eb2f56767",
       "role": "mathematical",
@@ -533,12 +533,12 @@
     {
       "@id": "https://example.invalid/option-b-corrected/dependsOn-root-derivative-definitions",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/dependsOn",
       "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-0d1e584019eb76b1",
-      "fromRevision": "candidate-0dfe7cff47a9b6bb3fa7",
+      "fromRevision": "byte-preserving-selector-relocation/2026-09-12",
       "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-f320108876777c46",
-      "toRevision": "candidate-c3f93b5f7336e1568b2c",
+      "toRevision": "byte-preserving-selector-relocation/2026-09-12",
       "role": "mathematical",
       "meaning": "D and n enter the differential.",
       "justifications": [
@@ -557,12 +557,12 @@
     {
       "@id": "https://example.invalid/option-b-corrected/dependsOn-root-derivative-assumptions",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/dependsOn",
       "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-0d1e584019eb76b1",
-      "fromRevision": "candidate-0dfe7cff47a9b6bb3fa7",
+      "fromRevision": "byte-preserving-selector-relocation/2026-09-12",
       "toObject": "https://example.invalid/option-b-corrected/assumptions",
-      "toRevision": "candidate-2c64153885f5d90fec1f",
+      "toRevision": "byte-preserving-selector-relocation/2026-09-12",
       "role": "domain",
       "meaning": "Fixed reception/history, differentiable root and nonzero D license differentiation/division.",
       "justifications": [
@@ -581,12 +581,12 @@
     {
       "@id": "https://example.invalid/option-b-corrected/dependsOn-sign-assumptions",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/dependsOn",
       "fromObject": "https://example.invalid/option-b-corrected/sign",
-      "fromRevision": "candidate-6fdf64818963c90ad48a",
+      "fromRevision": "byte-preserving-selector-relocation/2026-09-12",
       "toObject": "https://example.invalid/option-b-corrected/assumptions",
-      "toRevision": "candidate-2c64153885f5d90fec1f",
+      "toRevision": "byte-preserving-selector-relocation/2026-09-12",
       "role": "domain",
       "meaning": "Continuity, nonvanishing and connectedness support one sign; continuity is stated here.",
       "justifications": [
@@ -605,12 +605,12 @@
     {
       "@id": "https://example.invalid/option-b-corrected/dependsOn-sign-definitions",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/dependsOn",
       "fromObject": "https://example.invalid/option-b-corrected/sign",
-      "fromRevision": "candidate-6fdf64818963c90ad48a",
+      "fromRevision": "byte-preserving-selector-relocation/2026-09-12",
       "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-f320108876777c46",
-      "toRevision": "candidate-c3f93b5f7336e1568b2c",
+      "toRevision": "byte-preserving-selector-relocation/2026-09-12",
       "role": "mathematical",
       "meaning": "D is the transmitter factor whose sign is used.",
       "justifications": [
@@ -629,12 +629,12 @@
     {
       "@id": "https://example.invalid/option-b-corrected/dependsOn-scalar-definitions",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/dependsOn",
       "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-4c68e6145352e9dc",
-      "fromRevision": "candidate-4b58fb11c84368f0c5d9",
+      "fromRevision": "byte-preserving-selector-relocation/2026-09-12",
       "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-f320108876777c46",
-      "toRevision": "candidate-c3f93b5f7336e1568b2c",
+      "toRevision": "byte-preserving-selector-relocation/2026-09-12",
       "role": "mathematical",
       "meaning": "Definition uses r and C, rather than a previously computed derivative.",
       "justifications": [
@@ -653,12 +653,12 @@
     {
       "@id": "https://example.invalid/option-b-corrected/dependsOn-scalar-sign",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/dependsOn",
       "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-4c68e6145352e9dc",
-      "fromRevision": "candidate-4b58fb11c84368f0c5d9",
+      "fromRevision": "byte-preserving-selector-relocation/2026-09-12",
       "toObject": "https://example.invalid/option-b-corrected/sign",
-      "toRevision": "candidate-6fdf64818963c90ad48a",
+      "toRevision": "byte-preserving-selector-relocation/2026-09-12",
       "role": "mathematical",
       "meaning": "The selected scalar uses the chart sign epsilon.",
       "justifications": [
@@ -677,12 +677,12 @@
     {
       "@id": "https://example.invalid/option-b-corrected/dependsOn-proof-scalar",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/dependsOn",
       "fromObject": "https://example.invalid/option-b-corrected/proof",
       "fromRevision": "candidate-d087eb0cc0d3c879db3d",
       "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-4c68e6145352e9dc",
-      "toRevision": "candidate-4b58fb11c84368f0c5d9",
+      "toRevision": "byte-preserving-selector-relocation/2026-09-12",
       "role": "mathematical",
       "meaning": "Differentiate the defined scalar.",
       "justifications": [
@@ -701,12 +701,12 @@
     {
       "@id": "https://example.invalid/option-b-corrected/dependsOn-proof-root-derivative",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/dependsOn",
       "fromObject": "https://example.invalid/option-b-corrected/proof",
       "fromRevision": "candidate-d087eb0cc0d3c879db3d",
       "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-0d1e584019eb76b1",
-      "toRevision": "candidate-0dfe7cff47a9b6bb3fa7",
+      "toRevision": "byte-preserving-selector-relocation/2026-09-12",
       "role": "mathematical",
       "meaning": "Substitute grad r from the causal derivative.",
       "justifications": [
@@ -759,12 +759,12 @@
     {
       "@id": "https://example.invalid/option-b-corrected/dependsOn-proof-sign",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/dependsOn",
       "fromObject": "https://example.invalid/option-b-corrected/proof",
       "fromRevision": "candidate-d087eb0cc0d3c879db3d",
       "toObject": "https://example.invalid/option-b-corrected/sign",
-      "toRevision": "candidate-6fdf64818963c90ad48a",
+      "toRevision": "byte-preserving-selector-relocation/2026-09-12",
       "role": "mathematical",
       "meaning": "Constant sign removes its derivative; epsilon/D=1/abs(D).",
       "justifications": [
@@ -783,12 +783,12 @@
     {
       "@id": "https://example.invalid/option-b-corrected/dependsOn-proof-assumptions",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/dependsOn",
       "fromObject": "https://example.invalid/option-b-corrected/proof",
       "fromRevision": "candidate-d087eb0cc0d3c879db3d",
       "toObject": "https://example.invalid/option-b-corrected/assumptions",
-      "toRevision": "candidate-2c64153885f5d90fec1f",
+      "toRevision": "byte-preserving-selector-relocation/2026-09-12",
       "role": "domain",
       "meaning": "Proof remains on the stated connected regular chart.",
       "justifications": [
@@ -851,10 +851,10 @@
     {
       "@id": "https://example.invalid/option-b-corrected/dependsOn-identity-proof",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/dependsOn",
       "fromObject": "https://architrino.com/equation-mapping.html#corpus-equation-193390fd300cb6a5",
-      "fromRevision": "candidate-18374c679ce5c7fccd97",
+      "fromRevision": "byte-preserving-selector-relocation/2026-09-12",
       "toObject": "https://example.invalid/option-b-corrected/proof",
       "toRevision": "candidate-d087eb0cc0d3c879db3d",
       "role": "proof-support",
@@ -864,8 +864,8 @@
           "path": "content/markdown/aaa/dynamics/master-equation.md",
           "selector": {
             "kind": "lines",
-            "first": 1608,
-            "last": 1620
+            "first": 1600,
+            "last": 1612
           },
           "contract": "fixed-byte-selection/v1",
           "sha256": "5dee81630ce1d111ab9b5aef91e8f5c885770111782adde6c1a1354ea1e58001"
@@ -885,36 +885,35 @@
     {
       "@id": "https://example.invalid/option-b-corrected/dependsOn-theorem-claim-identity",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "explicit-instrument-link/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/dependsOn",
       "fromObject": "https://example.invalid/option-b-corrected/theorem-claim",
       "fromRevision": "candidate-0a5961227d075af2f5e9",
       "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-193390fd300cb6a5",
-      "toRevision": "candidate-18374c679ce5c7fccd97",
+      "toRevision": "byte-preserving-selector-relocation/2026-09-12",
       "role": "proof-support",
       "meaning": "Derived claim refers to this equality only under its hypotheses.",
       "justifications": [
         {
           "path": "content/markdown/aaa/dynamics/master-equation.md",
           "selector": {
-            "kind": "lines",
-            "first": 1622,
-            "last": 1622
+            "kind": "literal",
+            "text": "> Claim grade: derived for the identity on one connected regular moving-simple-root chart; measured for the circular-history check in normalized units with $c_f=1$. The [moving-simple-root scalar-gradient instrument](../../../../scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs) solves the roots afresh, computes the scalar gradient by finite differences, and compares it with the canonical ledger vector on the unchanged root record. Across five step refinements, the largest component residual was $2.12\\times10^{-12}$; a raw $1/r_b^2$ scalar left a residual of $0.513$ because its radial scaling is wrong. Falsifier: a nonzero scalar-gradient-versus-ledger residual on any certified regular point would refute the local representation; failure to reproduce the stated residuals on the same circular-history domain would refute the measurement.\n"
           },
           "contract": "fixed-byte-selection/v1",
-          "sha256": "408565312ea8192da68b29a688b014bae09fb708e7c88b3ed148b0cd845b7c58"
+          "sha256": "cb4ab8015266b7ecd769dc46873d4549fad2321a6295c6f67a2f73255e343b98"
         }
       ]
     },
     {
       "@id": "https://example.invalid/option-b-corrected/dependsOn-calculation-scalar",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/dependsOn",
       "fromObject": "https://example.invalid/option-b-corrected/calculation",
       "fromRevision": "candidate-a57a4a4a497628485dfe",
       "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-4c68e6145352e9dc",
-      "toRevision": "candidate-4b58fb11c84368f0c5d9",
+      "toRevision": "byte-preserving-selector-relocation/2026-09-12",
       "role": "implementation",
       "meaning": "Scalar values implement C*epsilon/r.",
       "justifications": [
@@ -1025,12 +1024,12 @@
     {
       "@id": "https://example.invalid/option-b-corrected/verifies-calculation-identity",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/verifies",
       "fromObject": "https://example.invalid/option-b-corrected/calculation",
       "fromRevision": "candidate-a57a4a4a497628485dfe",
       "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-193390fd300cb6a5",
-      "toRevision": "candidate-18374c679ce5c7fccd97",
+      "toRevision": "byte-preserving-selector-relocation/2026-09-12",
       "role": "verification-target",
       "meaning": "Tests numerical implementation of the equality on its circular control; does not prove the theorem.",
       "justifications": [
@@ -1175,7 +1174,7 @@
     {
       "@id": "https://example.invalid/option-b-corrected/dependsOn-measured-prose-calculation",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "explicit-instrument-link/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/dependsOn",
       "fromObject": "https://example.invalid/option-b-corrected/measured-prose",
       "fromRevision": "candidate-4019c58a4cc891510cc0",
@@ -1187,12 +1186,11 @@
         {
           "path": "content/markdown/aaa/dynamics/master-equation.md",
           "selector": {
-            "kind": "lines",
-            "first": 1622,
-            "last": 1622
+            "kind": "literal",
+            "text": "> Claim grade: derived for the identity on one connected regular moving-simple-root chart; measured for the circular-history check in normalized units with $c_f=1$. The [moving-simple-root scalar-gradient instrument](../../../../scripts/equation-mapping/verify-moving-single-root-scalar-gradient.mjs) solves the roots afresh, computes the scalar gradient by finite differences, and compares it with the canonical ledger vector on the unchanged root record. Across five step refinements, the largest component residual was $2.12\\times10^{-12}$; a raw $1/r_b^2$ scalar left a residual of $0.513$ because its radial scaling is wrong. Falsifier: a nonzero scalar-gradient-versus-ledger residual on any certified regular point would refute the local representation; failure to reproduce the stated residuals on the same circular-history domain would refute the measurement.\n"
           },
           "contract": "fixed-byte-selection/v1",
-          "sha256": "408565312ea8192da68b29a688b014bae09fb708e7c88b3ed148b0cd845b7c58"
+          "sha256": "cb4ab8015266b7ecd769dc46873d4549fad2321a6295c6f67a2f73255e343b98"
         },
         {
           "path": "reference/priorities/master-equation-closure/analysis/receiver-wake-gradient-closure.md",
@@ -1255,12 +1253,12 @@
     {
       "@id": "https://example.invalid/option-b-corrected/checks-scientific-check-identity",
       "@type": "Relationship",
-      "revisionId": "candidate-1",
+      "revisionId": "byte-preserving-selector-relocation/2026-09-12",
       "kind": "https://example.invalid/option-b-corrected/checks",
       "fromObject": "https://example.invalid/option-b-corrected/scientific-check",
       "fromRevision": "candidate-bd1b6ea33956a6046991",
       "toObject": "https://architrino.com/equation-mapping.html#corpus-equation-193390fd300cb6a5",
-      "toRevision": "candidate-18374c679ce5c7fccd97",
+      "toRevision": "byte-preserving-selector-relocation/2026-09-12",
       "role": "bounded-verification",
       "meaning": "Numerical implementation evidence only; no equation text read or proof.",
       "justifications": [

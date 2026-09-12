@@ -2,10 +2,45 @@
 import { accessSync, closeSync, constants, existsSync, fsyncSync, mkdirSync,
   openSync, readFileSync, readdirSync, realpathSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import * as f5Fs from "node:fs";
+import * as f5Crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
-import { compileInput, fileBinding, makeDependencies,
-  requireSameBindings, resolvedInvocation } from "./prepare-subfield-circular-root.mjs";
-import { runWatched, scopedPath } from "./prepare-f5-enclosed-root.mjs";
+// Bootstrap uses Node builtins only; no repository module runs before selection.
+export async function bootstrapF5(root, sourceMapSha256, originalIdentities = {}) {
+  if (!/^[a-f0-9]{64}$/u.test(sourceMapSha256 ?? "")) throw Error("externally selected F5 source-map digest required");
+  const capture = (filename, expected) => {
+    if (f5Fs.realpathSync(filename) !== filename) throw Error("canonical F5 bootstrap source required");
+    const fd = f5Fs.openSync(filename, f5Fs.constants.O_RDONLY | f5Fs.constants.O_NOFOLLOW | f5Fs.constants.O_NONBLOCK);
+    try {
+      const before = f5Fs.fstatSync(fd, {bigint:true});
+      const identity = s => [s.dev,s.ino,s.size,s.mtimeNs,s.ctimeNs].join(":");
+      if (!before.isFile() || before.size <= 0n || before.size > 1024n**2n) throw Error("bounded F5 bootstrap source");
+      const data = f5Fs.readFileSync(fd), sha256 = f5Crypto.createHash("sha256").update(data).digest("hex");
+      if (sha256 !== expected || identity(before) !== identity(f5Fs.fstatSync(fd,{bigint:true})) || identity(before) !== identity(f5Fs.lstatSync(filename,{bigint:true}))) throw Error("F5 bootstrap source digest/original identity changed");
+      if (Object.hasOwn(originalIdentities,filename) && originalIdentities[filename] !== identity(before)) throw Error("F5 original bootstrap identity changed");
+      return {data,identity:identity(before),path:filename};
+    } finally {f5Fs.closeSync(fd);}
+  };
+  const mapPath = path.join(root,"reference/priorities/development-process-review/contracts/option-b-f5-operational-sources.jsonld");
+  const map = capture(mapPath,sourceMapSha256), admissionPath = "scripts/eom/f5-current-source-admission.mjs";
+  const rows = JSON.parse(map.data)["@graph"]?.filter(r=>r.role==="admission"&&r.binding?.path===admissionPath);
+  if (rows?.length !== 1 || !/^[a-f0-9]{64}$/u.test(rows[0].binding.sha256)) throw Error("exact F5 admission module selection required");
+  const helper = capture(path.join(root,admissionPath),rows[0].binding.sha256);
+  const module = await import("data:text/javascript;base64,"+helper.data.toString("base64"));
+  return module.admitF5Sources(root,sourceMapSha256,{...originalIdentities,[map.path]:map.identity,[helper.path]:helper.identity});
+}
+
+function fileBinding(filename) {
+  const full=path.isAbsolute(filename)?filename:path.join(ROOT,filename), realPath=realpathSync(full), raw=readFileSync(realPath);
+  return {path:full.startsWith(ROOT+"/")?path.relative(ROOT,full):full,realPath,sha256:f5Crypto.createHash("sha256").update(raw).digest("hex"),bytes:raw.length};
+}
+function scopedPath(value,prefix) {
+  if(typeof value!=="string"||!value.startsWith(prefix)||value===prefix||path.isAbsolute(value)||value.includes("\\")||value.split("/").some(p=>!p||p==="."||p===".."))throw Error("fresh scoped F5 build path required");
+  const full=path.join(ROOT,value);let parent=full;
+  while(!existsSync(parent))parent=path.dirname(parent);
+  if(realpathSync(parent)!==parent)throw Error("symlinked build path");
+  return full;
+}
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const SELF = "scripts/eom/prepare-f5-prehistory-handoff-build.mjs";
@@ -26,10 +61,9 @@ const PINNED = Object.freeze({
   "tests/test_f5_prehistory_handoff_producer.py": "ec1d99b6919fd2c666dd1dd157388f9577f054070744db3e38a4cc4b56062770",
   "scripts/eom/verify-f5-prehistory-handoff.py": "6c94b0ca16dfe20bed4841a547adca349f2f36cdd5ec04211341d6b060032a68",
   "tests/test_f5_prehistory_handoff.py": "111e828c8ea3c26996ce51c83496ff7850d48b52cf7e874982c67e882ad6cadf",
-  "scripts/eom/prepare-subfield-circular-root.mjs": "31224420d48181f8834e0a6290f7dd2957fbb0e4072e3f6aa2062d76a8cd6e43",
-  "scripts/eom/prepare-f5-enclosed-root.mjs": "3431be1ca2f17474775572358baa88eae8de3ce93403d58e4b1fa36d9e367d50",
   "src/eom/CMakeLists.txt": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4",
 });
+const OPERATIONAL = ["scripts/eom/prepare-subfield-circular-root.mjs", "scripts/eom/prepare-f5-enclosed-root.mjs"];
 const absolute = (value) => path.isAbsolute(value) ? value : path.join(ROOT, value);
 export function minimalBinding(filename) {
   const record = fileBinding(filename);
@@ -53,16 +87,19 @@ function syncFile(filename) {
 export function parseArgs(argv) {
   const values = {};
   for (let i = 0; i < argv.length; i += 2) {
-    if (!["--out", "--python", "--builder-sha256"].includes(argv[i]) || !argv[i + 1] || values[argv[i]])
+    if (!["--out", "--python", "--builder-sha256", "--source-map-sha256", "--source-identities"].includes(argv[i]) || !argv[i + 1] || values[argv[i]])
       throw new Error("expected --out NEW-DIRECTORY --python ABSOLUTE-VENV-PYTHON --builder-sha256 SHA");
     values[argv[i]] = argv[i + 1];
   }
-  if (Object.keys(values).length !== 3 || !path.isAbsolute(values["--python"]) ||
-      !/^[a-f0-9]{64}$/u.test(values["--builder-sha256"] ?? "")) throw new Error("incomplete build arguments");
-  return { output: scopedPath(values["--out"], BASE), python: values["--python"], sha: values["--builder-sha256"] };
+  if (Object.keys(values).length !== (values["--source-identities"] ? 5 : 4) || !path.isAbsolute(values["--python"]) ||
+      !/^[a-f0-9]{64}$/u.test(values["--source-map-sha256"] ?? "") || !/^[a-f0-9]{64}$/u.test(values["--builder-sha256"] ?? "")) throw new Error("incomplete build arguments");
+  return { output: scopedPath(values["--out"], BASE), python: values["--python"], sha: values["--builder-sha256"], sourceMapSha256: values["--source-map-sha256"], ...(values["--source-identities"] ? {originalIdentities: JSON.parse(values["--source-identities"])} : {}) };
 }
-export function snapshot(builderSha) {
-  const files = new Set([SELF, ...Object.keys(PINNED)]);
+export function snapshot(builderSha, admission) {
+  if (!admission || admission.root !== ROOT || admission.pins[SELF] !== builderSha) throw new Error("explicit F5 operational admission/builder required");
+  admission.recheck();
+  const operational = Object.fromEntries(OPERATIONAL.map(p => [p, admission.pins[p]]));
+  const files = new Set([SELF, ...Object.keys(PINNED), ...OPERATIONAL]);
   const visit = (relative) => {
     for (const entry of readdirSync(absolute(relative), { withFileTypes: true })) {
       const next = `${relative}/${entry.name}`;
@@ -74,7 +111,7 @@ export function snapshot(builderSha) {
   };
   visit("src/eom/src"); visit("src/eom/include");
   const records = [...files].sort().map(fileBinding);
-  for (const [filename, expected] of Object.entries({ ...PINNED, [SELF]: builderSha }))
+  for (const [filename, expected] of Object.entries({ ...PINNED, ...operational, [SELF]: builderSha }))
     if (records.find((record) => record.path === filename)?.sha256 !== expected)
       throw new Error(`reviewed source drift: ${filename}`);
   return records;
@@ -95,7 +132,10 @@ function cacheField(cache, name) {
 }
 
 export async function prepare(argv) {
-  const { output, python, sha } = parseArgs(argv);
+  const { output, python, sha, sourceMapSha256, originalIdentities = {} } = parseArgs(argv);
+  const admission = await bootstrapF5(ROOT, sourceMapSha256, originalIdentities);
+  const {compileInput,makeDependencies,requireSameBindings,resolvedInvocation} = await admission.importModule("scripts/eom/prepare-subfield-circular-root.mjs");
+  const {runWatched} = await admission.importModule("scripts/eom/prepare-f5-enclosed-root.mjs");
   if (existsSync(output) || process.platform !== "darwin") throw new Error("fresh exclusive directory on the reviewed macOS host required");
   for (const key of Object.keys(process.env))
     if (key.startsWith("DYLD_") || ["LD_PRELOAD", "LD_LIBRARY_PATH", "CPATH", "CPLUS_INCLUDE_PATH", "C_INCLUDE_PATH"].includes(key))
@@ -109,13 +149,16 @@ export async function prepare(argv) {
   const receipt = { schema: "braid-program/f5-prehistory-handoff-build.v1", status: "incomplete",
     accepted: false, sourceOwners: SOURCE_OWNERS, rootCalls: 0, dataLoaded: false, eomExecuted: false,
     evolutionAuthorized: false, h3EvidenceEligible: false, startedAt: new Date().toISOString(),
-    sourcesBefore: snapshot(sha), stages: [], outputDirectory: output };
+    sourceMap: admission.sourceMap, operationalSources: admission.sources,
+    sourcesBefore: snapshot(sha, admission), stages: [], outputDirectory: output };
   mkdirSync(path.dirname(output), { recursive: true }); mkdirSync(output);
   const build = path.join(output, "build"), dependencies = path.join(output, "dependencies");
   mkdirSync(build); mkdirSync(dependencies);
   const watched = async (stage, command, args, cwd = ROOT) => {
+    admission.recheck();
     const log = path.join(output, `${stage}.log`);
     const result = await runWatched(command, args, { cwd, stage, logPath: log, limitMs: remaining(), heartbeatMs: 15000 });
+    admission.recheck();
     syncFile(log);
     receipt.stages.push({ ...result, cwd, log: fileBinding(log) });
     return readFileSync(log, "utf8").trim();
@@ -170,7 +213,7 @@ export async function prepare(argv) {
     const headerPaths = [...new Set(receipt.dependencyUnits.flatMap((unit) => unit.files))].sort();
     receipt.headerDependenciesBefore = headerPaths.filter((filename) => filename.startsWith(`${ROOT}/src/eom/`)).map(fileBinding);
     const configured = [cachePath, commandsPath].map(fileBinding);
-    requireSameBindings(receipt.sourcesBefore, snapshot(sha), "precompile sources");
+    requireSameBindings(receipt.sourcesBefore, snapshot(sha, admission), "precompile sources");
     await watched("librarybuild", cmake, ["--build", build, "--target", "eom_native", "--parallel", "2", "--verbose"]);
     const executable = path.join(build, "eom_f5_prehistory_inspector"), library = path.join(build, "libeom_native.a");
     const inspectorDep = path.join(dependencies, "inspector-actual.d");
@@ -205,7 +248,7 @@ export async function prepare(argv) {
       }
     }
     await watched("help-control", executable, ["--help"]);
-    receipt.sourcesAfter = snapshot(sha);
+    receipt.sourcesAfter = snapshot(sha, admission);
     receipt.toolsAfter = receipt.toolsBefore.map((record) => ({ path: record.path }));
     receipt.headerDependenciesAfter = headerPaths.filter((filename) => filename.startsWith(`${ROOT}/src/eom/`)).map(fileBinding);
     receipt.externalLibrariesAfter = externalPaths.map(capabilityPath);
@@ -220,17 +263,20 @@ export async function prepare(argv) {
     throw error;
   } finally {
     receipt.elapsedBeforePublication = (performance.now() - started) / 1000;
+    admission.recheck();
     jsonNew(path.join(output, "preparation.json"), receipt);
+    admission.recheck();
     const fd = openSync(output, "r");
     try { fsyncSync(fd); } finally { closeSync(fd); }
   }
   remaining();
   const completion = { completed: true, accepted: false, status: receipt.status,
     receipt: minimalBinding(path.join(output, "preparation.json")), elapsedSeconds: (performance.now() - started) / 1000 };
+  admission.recheck();
   console.log(JSON.stringify(completion));
   remaining(); // Fresh successful closure remains mandatory even after stdout.
   return completion;
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url))
+if (import.meta.url.startsWith("file:") && !new URL(import.meta.url).search && process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url))
   prepare(process.argv.slice(2)).catch((error) => { console.error(error.message); process.exitCode = 1; });

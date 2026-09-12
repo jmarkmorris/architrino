@@ -102,7 +102,7 @@ def plan_fixture(root):
     plan=dict(schema=s.PLAN_SCHEMA,scope=s.parent_scope(1),parentIndex=1,**{k:b(*v) for k,v in s.NAMED.items()},
         dependencies={k:b(*v) for k,v in s.DEPENDENCIES.items()},
         originalBindings={k:dict(path=v[0],sha256=v[1],bytes=v[2] if len(v)>2 else 1) for k,v in s.ORIGINAL.items()},
-        acceptanceOwner=b(s.OWNER,'c'*64),priorCoverClosure=s.closure_premise(),runtimeBindings=[b(str(root/'python'),'d'*64)],
+        acceptanceOwner=b(s.OWNER,'c'*64),priorCoverClosure=s.closure_premise(),runtimeBindings=[{'path':str(root/'python')}],
         operationalBindings=[b(str(root/'node'),'e'*64)],limits=dict(w.LIMITS))
     plan['historicalDocumentRoutes']=[dict(original=dict(path=s.PREFIX+name,sha256=h,bytes=n),physical=dict(path=str(root/('archive-'+h+'.source')),sha256=h,bytes=n)) for name,h,n in (
         ('2026-08-27-f6c-cached-root-cover-full-resource-plan.md','daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b',10021),
@@ -193,7 +193,7 @@ class PlanTests(unittest.TestCase):
     def setUp(self):self.root=Path('/synthetic/repository');self.plan=plan_fixture(self.root)
     def test_closed_plan_subject_census_and_owner_is_plan_selected(self):
         sources,runtime,ops=s.validate_plan(self.plan,'a'*64,self.root,w)
-        self.assertEqual(len(sources),23);self.assertEqual(len(s.PLAN_KEYS),21);self.assertEqual(len(s.MANIFEST_KEYS),28);self.assertEqual(len(s.COMPLETION_KEYS),15)
+        self.assertEqual(len(sources),23);self.assertEqual(len(s.PLAN_KEYS),20);self.assertEqual(len(s.MANIFEST_KEYS),28);self.assertEqual(len(s.COMPLETION_KEYS),15)
         self.plan['acceptanceOwner']['sha256']='f'*64;s.validate_plan(self.plan,'a'*64,self.root,w)
         self.assertEqual(self.plan['priorCoverClosure']['originalCallerSession'],'13512')
     def test_closed_plan_changes_rejected(self):
@@ -216,7 +216,7 @@ class PlanTests(unittest.TestCase):
         for target in ('runtimeBindings','operationalBindings'):
             p=deepcopy(self.plan);p[target]=[dict(p['producer'])]
             with self.assertRaises(ValueError):s.validate_plan(p,'a'*64,self.root,w)
-        p=deepcopy(self.plan);p['runtimeBindings']*=2
+        p=deepcopy(self.plan);p['runtimeBindings']=[{'path':'/synthetic/python'}]*2
         with self.assertRaises(ValueError):s.validate_plan(p,'a'*64,self.root,w)
         p=deepcopy(self.plan);p['dependencies']['rootLibrary']['bytes']=True
         with self.assertRaises(ValueError):s.validate_plan(p,'a'*64,self.root,w)
@@ -481,7 +481,7 @@ class MainPathTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             temp=Path(directory).resolve();output=temp/'out';plan=plan_fixture(ROOT)
             plan.update(parentIndex=parent_index,scope=s.parent_scope(parent_index))
-            plan['producer']['sha256']=digest(SOURCE.read_bytes());plan['runtimeBindings']=[bind(Path(sys.executable).resolve(),b'x')]
+            plan['producer']['sha256']=digest(SOURCE.read_bytes());plan['runtimeBindings']=[{'path':str(Path(sys.executable).resolve())}]
             plan_path=temp/'plan.json';plan_path.write_bytes(s.encoded(plan));events=[];clock=[0.0];stderr=io.StringIO();stdout=io.StringIO()
             captured_source=temp/'captured-source.json';captured_source.write_bytes(b'{"source":1}\n')
             source_binding=bind(captured_source,captured_source.read_bytes());source_identity=w.BoundFile.identity(captured_source.stat())

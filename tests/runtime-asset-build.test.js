@@ -268,7 +268,9 @@ test("PR Pages check has no deployment job and both workflows use the same build
   assert.match(action, /using: composite/);
   const commands = [...action.matchAll(/^      run: (.+)$/gm)].map(match => match[1]);
   assert.deepEqual(commands, [
-    "node scripts/check-content-integrity.mjs",
+    "npm ci --ignore-scripts --no-audit --no-fund",
+    "sudo apt-get update && sudo apt-get install -y ripgrep",
+    "node scripts/check-content-integrity.mjs --profile=github",
     "node --test tests/pages-image-assets.test.js",
     "node --test tests/runtime-asset-fresh-checkout.test.js",
     "node scripts/build-static-site.mjs --out .tmp/site",

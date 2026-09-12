@@ -22,7 +22,6 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 10. `full_ppn_completion` — Status: `Deferred / blocked`.
 11. `horizon_diagnostics_consumer` — Status: `Deferred / blocked`.
 12. `speed_symbol_consolidation` — Status: `Deferred / blocked`.
-13. `data_file_layout_completion` — Owner: this queue. Status: `In progress`.
 
 ## In progress
 
@@ -39,13 +38,6 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 - **Request / acceptance:** Close the causal wake update, finite coincident same-transmitter continuation, and all three conserved accounts on the same update.
 - **Evidence / blocker:** Master-Equation Closure owns the derivation and joint acceptance.
 - **Completion:** The owner queue records a jointly accepted update and accounts, or a decisive no-go.
-
-### AWT-015 — Data-file layout completion
-
-- **Status:** In progress
-- **Request / acceptance:** File the 32 machine-readable data files still at the top level of nine active lanes into their layout subdirectories, updating every consumer that references them by path. Scope, destinations, consumers, hazards, and validation are in [campaigns/data-file-layout-completion.md](campaigns/data-file-layout-completion.md).
-- **Evidence / blocker:** Filing is complete. The operator authorized the remaining repair sequence on September 12 through completion or the 02:41:39 UTC one-hour checkpoint. The [continuation evidence](evidence/awt-015-residual-validation-2026-09-12.md#checkpoint-handoff) records completed current-binding, historical-input replay, executable-retirement, contract, corpus and generated-output repairs with focused checks. Final ordinary Node reports 2,594 passes, 108 failures and one skip over 2,703 tests; full Python reports 1,653 tests with ten failures and fourteen errors. Slow Node reports 123/124 passes; its sole fresh-export failure is repaired and passes a subsequent focused run. Integrity reports 32 required passes and two failures. Remaining work is current runtime-capability contract propagation through callers/tests, 15 links to ten missing evidence files, and OPS-030's expressly reserved decision on the checked selector/hash candidate, followed by the complete gates on settled sources. All three ordinary opt-ins executed with a fresh adapter; the sealed compact-v2 input remains absent at its declared path. No focused pass or historical result is overall current health.
-- **Completion:** Every content-digest pin affected by the layout pass is resolved, each by verifying the bound document's substance before refreshing its digest, or by the review its gate requires. The full Node and Python suites pass on a machine with the shared venv, and the content-integrity gate passes apart from the separately tracked [OPS-017](../aaa-operations/work-queue.md#ops-017--feedback-app-resource-closure-adjudication).
 
 ## Deferred / blocked
 

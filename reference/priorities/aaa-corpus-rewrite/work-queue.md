@@ -144,7 +144,7 @@ Accordingly, this verified item schedules no corpus work. It retains the histori
 
 - `reference/op/simulation-protocol-routing-index.md`, `textbook-review-exports.md`, `machine-artifact-retention.md`; the former review-time development experiment was removed by operator direction
 - `reference/office-of-research/cto/prompts/start-research.md`, `start-pi.md`
-- `.agents/skills/math-preview/SKILL.md`
+- `.agents/skills/architrino-math-preview/SKILL.md`
 
 Small in volume, disproportionate in effect, and the reason is position rather than size. These are files a new session reads while routing itself at startup, before it has read the explanation standard. A retained `Plainly:` in one of them is a worked example of the retired pattern shown to the next agent as if it were current practice, so the convention teaches itself back into the repository faster than conversions remove it. Eighteen occurrences is a single short pass.
 
@@ -952,7 +952,7 @@ Current conclusion: $Q_A$ is a defined quadrupole statistic, not a verified suff
 
 ### Supplemental quadrupole assessment — definition, geometry, and physical response
 
-The operator's “do 1” requests examination of the actual framing-quadrupole claim. This is a focused theorem-target review within batch 3, using the corpus-review-workflow skill's live core-geometry-theorem-reviewer procedure. The campaign's explicit authorization of review records and discussion capture permits this account in the existing owners; no reviewed corpus or dependency is edited. Batch 4 remains paused. The complete Absolute Timespace reread from the accepted integration remains attributable to its unchanged SHA-256 `51c8388d72a767588b03e2fd983afde15f8c000818c0b919c3cd09b08291a1ea`.
+The operator's “do 1” requests examination of the actual framing-quadrupole claim. This is a focused theorem-target review within batch 3, using the `architrino-review` skill's live core-geometry-theorem-reviewer procedure. The campaign's explicit authorization of review records and discussion capture permits this account in the existing owners; no reviewed corpus or dependency is edited. Batch 4 remains paused. The complete Absolute Timespace reread from the accepted integration remains attributable to its unchanged SHA-256 `51c8388d72a767588b03e2fd983afde15f8c000818c0b919c3cd09b08291a1ea`.
 
 #### What the live documents assert
 
@@ -3026,3 +3026,155 @@ The authorized repair pass implemented D1–D4 and E1–E2, dispositioned O1–O
 ### CRW-005 Delay Dynamics Energy — bounded repair closeout — 2026-09-11
 
 The authorized repair pass implemented DDE-1–DDE-4 and EDE-1–EDE-2 in the canonical chapter and evidence report. Action-boundary, work, flux, acceleration, power, and energy residuals are separated; signs, weighting, domains, and member sums are corrected; and ODE-1–ODE-4 remain open obligations for independent energy construction, root completeness, exchange accounting, regulator limits, and physical recovery. Strict content validation, `git diff --check`, in-memory KaTeX checks, and independent elementary weighting/flux/member-sum/leakage witnesses passed. Generated equation links and registry freshness remain deferred.
+
+### CRW-005 Informational Ambiguity — bounded repair closeout — 2026-09-11
+
+The authorized repair pass implemented IA-1–IA-7. The chapter now distinguishes signed net acceleration from scalar diagnostics, constrains stationary surrogate histories, preserves the complete history ledger, and qualifies reconstruction and information claims. OIA-1–OIA-3 remain open; repository-wide broken-link and equation-registry drift reported by the owner remains outside this edit scope.
+
+### CRW-005 Numerical Recipe and Stability — bounded repair closeout — 2026-09-11
+
+The authorized repair pass implemented NR-1–NR-8. Continuous causal-root evolution is separated from impulses; root coverage, interpolation error, stopping tolerances, regularization, and population/stability claim boundaries are explicit. ONR-1–ONR-4 remain open; the chapter supplies no evolved-EOM, regulator-limit, stability, or conservation closure.
+
+### CRW-005 Radial Attraction — bounded repair closeout — 2026-09-11
+
+The authorized repair pass implemented RA-1–RA-6. The prescribed-source boundary, retained-history domain, complete root-sum requirement, positive-separation radial reduction, quadrature, and claim-grade limits are explicit. Full-history equality, realization, singular continuation, physical energy, and stability remain open.
+
+### CRW-005 Receiver Velocity and Work — bounded repair closeout — 2026-09-11
+
+The authorized repair pass implemented RVW-1–RVW-5 and ERVW-1. The branch derivative, turning-direction terms, per-hit versus total work, optional kinetic chart, and signed fixed-transmitter comparison are now explicit. ORVW-1–ORVW-3 remain open for independent energy, root continuation, evolved realization, stability, and physical recovery.
+
+### CRW-005 Like-Polarity Symmetric Repulsion — bounded repair closeout — 2026-09-11
+
+The authorized repair pass implemented R-1–R-6 and E-1. The chapter now records preparation history, root and weight definitions, self-hit boundaries, and conditional symmetry. O-1–O-4 remain open for existence/continuation, stability and collision avoidance, conservation, and physical realization.
+
+### CRW-005 Self-Energy and Regularization — bounded repair closeout — 2026-09-11
+
+The authorized repair pass implemented SE-1–SE-6. Continuous emission, sharp roots, endpoint domains, Gaussian and core regularization, work normalization, and candidate self-energy are separated. O-1–O-5 remain open for coincident continuation, regulator removal, history/population limits, conservation/stability, and physical energy or mass recovery.
+
+### CRW-005 Self-interaction switch — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented SIS-1–SIS-3. The chapter separates kinematic roots from regular acceleration admission, derives positive separation from strict delay, and defines outward repulsion relative to the earlier emission position. SIS-O1–SIS-O3 remain open for singular continuation, complete dynamical realization, and stable scales or extrema.
+
+### CRW-005 Superposition and locality — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented SL-1–SL-4. Scalar superposition, nearby dominance, population assumptions, and far-field truncation are now bounded by compatible charts, explicit weights, retained-history conditions, and omitted-contribution estimates. Global scalar extension, physical cancellation or screening, complete-history accuracy, and conservation remain open.
+
+### CRW-005 Units and Constants — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented UC-1–UC-7. Dimensional conversion, coupling scaling, surface width, self-hit thresholds, lookback coverage, root conditioning, and acceleration-direction claims are explicitly scoped. OUC-1–OUC-4 remain open for assembly existence/stability, regulator limits, root completeness, and physical conserved or particle-calibration maps.
+
+### CRW-005 Proper Time and Time Dilation — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented PT-01–PT-12 in the canonical chapter and dedicated evidence report. The chapter now separates native and observer rates through an explicit chart derivative, normalizes dressed reference delays, restricts proper-time stationarity to its valid benchmark, bounds remainders and derivatives before coefficient identification, preserves residuals in spectral inversion, matches the canonical acceleration regulator with $c_f=1$, tracks lifted full-turn phase, and corrects the restricted PPN mixed potential-speed target to $-3/2$. Strict content validation, local-link and whitespace checks, KaTeX rendering of 93 display and 400 inline expressions, all 93 equation-anchor preservation, and independent algebraic witnesses passed. The report records one corrected control expectation and other rejected harness attempts as non-evidence. Physical clock retention, constitutive/population response, observer recovery, spectral identification, root/history/limit control, and observational acceptance remain open; no theory closure, EOM solver certification, conservation, stability, or particle calibration is claimed. See [the dedicated receipt](evidence/crw-005-proper-time-and-time-dilation-review-2026-09-12.md) for exact hashes, line references, falsifiers, and the generated-registry check.
+
+### CRW-005 Lorentzian Conspiracy and Emergent Lorentz Kinematics — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented LK-01–LK-16 in the canonical chapter and dedicated evidence report. The chapter now separates primitive void propagation from effective medium response, requires complete admitted causal-root sums, restricts binary reductions and action/potential claims to their declared domains, normalizes rest-shape diagnostics, applies the clock-coordinate map and squared lapse factor, restores higher-order remainders and hierarchy constants, and bounds root, fit, and Lorentz-recovery claims. Strict content validation reported zero errors and warnings; focused parser/ID, KaTeX, reference-rendering, and independent symbolic checks passed. The equation-mapping check reported source-derived registry freshness drift without a generator write; the report records the exact command. Branch existence, stability, action construction, observer recovery, and physical Lorentz closure remain open. No theory closure, EOM solver certification, conservation, or particle calibration is claimed. See [the dedicated receipt](evidence/crw-005-lorentz-kinematics-review-2026-09-12.md) for exact hashes, line references, counterexamples, and validation limits.
+
+### CRW-005 Emergent Metric — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented EM-01–EM-15 in the canonical chapter and dedicated evidence report. The chapter now states the Lorentzian metric domain and the separation between algebraic signature and physical recovery, corrects geodesic and null-path formulas and the proper-acceleration norm, bounds PPN dimensions and coefficients, and conditions horizon flux, entropy counting, medium response, and external Einstein comparisons. Focused checks passed with 375 math expressions, 61 displays, 83 links, eight heading fragments, no missing or duplicate equation IDs, and no KaTeX errors; strict content validation reported zero errors and warnings, equation-registry freshness passed at the final observation, and scoped whitespace checks passed. Constitutive and thermodynamic recovery, photon agreement, and physical metric identification remain open. No theory closure, EOM solver certification, conservation, stability, or particle calibration is claimed. See [the dedicated receipt](evidence/crw-005-emergent-metric-review-2026-09-12.md) for exact hashes, line references, counterexamples, and validation limits.
+
+### CRW-005 General Relativity — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented GR-01–GR-11 in the canonical chapter and dedicated evidence report. The chapter now separates substrate dynamics from observer-level GR benchmarks, defines diagnostic domains and clock endpoints, fixes optical-path and EFT conventions, bounds perihelion and preferred-frame claims, includes the equivalence tests in the acceptance set, and distinguishes an alignment candidate from a global horizon. Strict content validation reported zero errors and warnings; the focused check rendered 148 expressions and preserved all 25 equation identifiers; scoped whitespace checks passed. Constitutive recovery, continuation, and observer-level horizon mapping remain open. Generated equation-registry drift and its exact deferred regeneration command are recorded; no theory closure, EOM solver certification, conservation, stability, or particle calibration is claimed. See [the dedicated receipt](evidence/crw-005-general-relativity-review-2026-09-12.md) for exact hashes, line references, falsifiers, and validation limits.
+
+### CRW-005 PPN Parameters — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented PPN-01–PPN-12 in the canonical chapter and dedicated evidence report. The chapter now corrects the preferred-frame coefficient dictionary and dependent matrix/example, fixes the endpoint clock ratio and synthetic redshift, bounds ADM and apparatus assumptions, separates tolerance weights from likelihood covariance, and limits Fisher-rank and observational interpretations. Strict content validation reported zero errors and warnings; controlled parsing and KaTeX checks accepted all 92 display equations with identifiers retained; scoped whitespace checks passed. Native Noether-sea recovery and empirical acceptance remain open. Generated registry status and all validation limits are recorded in the [dedicated receipt](evidence/crw-005-ppn-parameters-review-2026-09-12.md); no theory closure is claimed.
+
+### CRW-005 Gravitational Waves — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented GW-01–GW-15 in the canonical chapter and dedicated evidence report. The chapter now defines the native carrier and observer map, corrects the wave-operator sign, bounds propagation, phase, population, polarization, event-acceptance, detector-projection, occupation/classicality, and flux claims, and replaces unsupported third-derivative commands. Strict content validation reported zero errors and warnings; focused checks accepted 170 display equations and 36 local links with equation identifiers preserved; scoped whitespace checks passed. Native tensor dynamics, source coupling, and energy balance remain open. Generated registry drift and its exact deferred regeneration command are recorded; no theory closure is claimed. See [the dedicated receipt](evidence/crw-005-gravitational-waves-review-2026-09-12.md) for exact hashes, line references, counterexamples, and validation limits.
+
+### CRW-005 Black Holes — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented BH-01–BH-19 in the canonical chapter and dedicated evidence report. The chapter now distinguishes alignment from causal horizons, native roots from effective observer boundaries, regularity from finite coarse variables, horizon and radiation entropy, population-weighted balance, physical carriers, capture and jet domains, and dimensional scales from universal bounds. Strict content validation reported zero errors and warnings; focused checks accepted 68 display equations with all 68 mapping identifiers preserved; scoped whitespace checks passed. Binding, stability, continuation, and release mechanisms remain open. Generated registry drift and its exact deferred regeneration command are recorded; no theory closure is claimed. See [the dedicated receipt](evidence/crw-005-black-holes-review-2026-09-12.md) for exact hashes, line references, counterexamples, and validation limits.
+
+### CRW-005 Singularity Resolution — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented SR-01–SR-07 in the canonical chapter and dedicated evidence report. The chapter now separates coordinate, effective, and delayed-dynamics singularity meanings; conditional clock loss; theorem hypotheses; scaling domains; coarse bounds from regularity; finite records from unique histories; and source attribution. Scoped checks accepted 107 expressions, preserved 18 equation links, resolved 28 local paths, and passed whitespace validation; the latest strict check recorded one out-of-scope Black Holes link error. Physical existence, regulator-independent continuation, uniqueness, and observer recovery remain open. Generated registry drift and its exact deferred regeneration command are recorded; no theory closure is claimed. See [the dedicated receipt](evidence/crw-005-singularity-resolution-review-2026-09-12.md) for exact hashes, line references, falsifiers, and validation limits.
+
+### CRW-005 Horizon Chirality and Planar Spin — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented HC-01–HC-12 in the canonical chapter and dedicated evidence report. The chapter now separates local alignment from a global horizon, counts individual crossings, bounds writhe and conservation claims, defines circulation and planar domains, and keeps branch stability and observer recovery open. Strict content validation reported zero errors and warnings; focused checks accepted 110 mathematical expressions, found eight unique sign assignments, and matched the area formula in 15 cases; scoped whitespace checks passed. Generated registry drift and its exact deferred regeneration command are recorded; no theory closure is claimed. See [the dedicated receipt](evidence/crw-005-horizon-chirality-review-2026-09-12.md) for exact hashes, line references, falsifiers, and validation limits.
+
+### CRW-005 Gauge Structure Emergence — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented GSE-01–GSE-13 in the canonical chapter and dedicated evidence report. The chapter now conditions connection, holonomy, characteristic, electroweak-action, charge, root-domain, sea-pairing, detector, and observer-comparison claims on explicit effective assumptions. Strict content validation reported zero errors and warnings; KaTeX accepted 283 chapter expressions and local-link/whitespace checks passed. Gauge emergence, branch persistence, effective-action matching, and anomaly recovery remain open. Generated registry drift and its exact deferred regeneration command are recorded; no theory closure is claimed. See [the dedicated receipt](evidence/crw-005-gauge-structure-emergence-review-2026-09-12.md) for exact hashes, line references, falsifiers, and validation limits.
+
+### CRW-005 Gauge Symmetries — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented GS-01–GS-10 in the canonical chapter and dedicated evidence report. The chapter now defines gauge orbits, action and boundary hypotheses, hypercharge and electromagnetic conventions, covariant-derivative scope, phase-sector tests, flux domains, and the conditional comparison action, while limiting color-transport conclusions. Strict content validation reported zero errors and warnings; focused KaTeX checks accepted 251 expressions and preserved all 37 equation identifiers; scoped whitespace checks passed. Gauge emergence, assembly persistence, and effective matching remain open. Generated refresh is deferred; see [the dedicated receipt](evidence/crw-005-gauge-symmetries-review-2026-09-12.md) for exact hashes and validation limits.
+
+### CRW-005 Particle Masses — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented PM-01–PM-14 in the canonical chapter and dedicated evidence report. The chapter now separates exposure, energy, momentum, inertia, stability, charge conventions, action-ladder hypotheses, particle comparisons, and observer-level mass targets. Strict content validation reported zero errors and warnings; focused KaTeX checks accepted 283 expressions and scoped whitespace checks passed. Retained assemblies, physical energy, sea response, and observer mappings remain open. Generated registry refresh is deferred; see [the dedicated receipt](evidence/crw-005-particle-masses-review-2026-09-12.md) for exact hashes, counterexamples, falsifiers, and validation limits.
+
+### CRW-005 Color Charge and SU(3) — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented CCS-01–CCS-11 in the canonical chapter and dedicated evidence report. The chapter now bounds representation and bracket conventions, singlet and phase-cancellation claims, family selection, flavor comparisons, confinement diagnostics, and dimensional/spectral definitions. Strict content validation reported zero errors and warnings; focused KaTeX checks accepted 231 expressions, preserved all 32 equation identifiers, and scoped whitespace checks passed. Physical color transport, branch retention, family populations, and confinement recovery remain open. Generated registry refresh is deferred; see [the dedicated receipt](evidence/crw-005-color-charge-su3-review-2026-09-12.md) for exact hashes and validation limits.
+
+### CRW-005 Electron — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented ELC-1–ELC-7 in the canonical chapter and dedicated evidence report. The chapter now separates candidate assembly claims from observed constraints, conditions conjugation and mass-response statements, defines charge and statistical-readout domains, separates identity from spin/statistics, qualifies near-lossless motion, and aligns the precision interface with the current composite-radius owner. The joined strict validator reported zero errors and warnings; scoped diff checks passed; focused checks preserved three display equations and their links and resolved 30 local paths. Electron branch existence and physical-response derivations remain open. Generated registry refresh is deferred; see [the dedicated receipt](evidence/crw-005-electron-review-2026-09-12.md) for exact hashes, the independent symmetry witness, falsifiers, and validation limits.
+
+### CRW-005 Muon and Tau — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented MT-1–MT-5 in the canonical chapter and dedicated evidence report. The chapter now bounds generation, charge/weak/spin, reaction provenance, precision-interface, and sensitivity-ranking claims while preserving the displayed reaction equations. The joined strict validator reported zero errors and warnings; scoped diff checks passed; focused KaTeX checks accepted 42 expressions. Retained branches, population selection, quantitative masses/lifetimes, spin/weak-response maps, and reaction rates remain open. Generated registry refresh is deferred; see [the dedicated receipt](evidence/crw-005-muon-tau-review-2026-09-12.md) for exact hashes, falsifiers, and validation limits.
+
+### CRW-005 Neutrinos — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented NU-1–NU-8 in the canonical chapter and dedicated evidence report. The chapter now separates candidate branches from propagation and response, corrects the PMNS convention and CP sign, and bounds handedness, mass, conservation, Dirac/Majorana, sterile, and benchmark claims. The joined strict validator reported zero errors and warnings; scoped diff checks passed; focused KaTeX checks accepted 122 expressions. Retained branches, spin/weak response, mass and observer maps, conservation, and reaction rates remain open. Generated registry refresh is deferred; see [the dedicated receipt](evidence/crw-005-neutrinos-review-2026-09-12.md) for exact hashes, falsifiers, and validation limits.
+
+### CRW-005 Quantum Number Mapping — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented QNM-01–QNM-13 in the canonical chapter and dedicated evidence report. The chapter now bounds charge normalization, triad selection, generation diagnostics, chirality/conjugation, color and spin claims, causal timing, and precision-comparison assumptions, with counterexamples retained where the original diagnostics were insufficient. The joined strict validator reported zero errors and warnings; scoped diff checks passed; focused KaTeX checks accepted 49 display and 449 inline expressions with all equation identifiers preserved. Physical branch retention and gauge, spin, mass, and lifetime derivations remain open. Generated registry refresh is deferred; see [the dedicated receipt](evidence/crw-005-quantum-number-mapping-review-2026-09-12.md) for exact hashes, counterexamples, falsifiers, and validation limits.
+
+### CRW-005 Quarks — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented QK-01–QK-09 in the canonical chapter and dedicated evidence report. The chapter now bounds charge units, weak assignments, generation claims, SU(3), singlet, confinement, stability, and experimental-attribution claims. The joined strict validator reported zero errors and warnings; scoped diff checks passed; focused KaTeX/local-link checks accepted 222 expressions, including 28 displays, and resolved 42 local links. Physical branch existence, observable recovery, color transport, and confinement remain open. Generated registry refresh is deferred; see [the dedicated receipt](evidence/crw-005-quarks-review-2026-09-12.md) for exact hashes, falsifiers, and validation limits.
+
+### CRW-005 Weak Mixing Angle — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented WM-01–WM-06 in the canonical chapter and dedicated evidence report. The chapter now bounds inverse-trigonometric representatives, six-site and equilibrium scope, moment diagnostics, discrete color records, wake-only numerical interpretation, and discrete-minimum claims. Strict content validation reported zero errors and warnings; scoped diff and whitespace checks passed; focused KaTeX, local-link, and equation-mapping checks passed. Photon-sector closure and physical weak-angle derivation remain open. Generated registry refresh is deferred; see [the dedicated receipt](evidence/crw-005-weak-mixing-angle-review-2026-09-12.md) for exact hashes, falsifiers, and validation limits.
+
+### CRW-005 Electroweak Bosons — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented EB-01–EB-10 in the canonical chapter and dedicated evidence report. The chapter now bounds effective-metric, analyzer, regularizer, W/Z payload, energy-residual, neutrino inventory, primitive-mass, Higgs normalization, photon, and closure-interface claims. Strict content validation reported zero errors and warnings; scoped diff and whitespace checks passed; focused KaTeX checks accepted 35 equations and resolved 51 links with no missing local targets. Photon Gate A, analyzer and weak-corridor derivations, scalar normalization, and downstream recovery remain open. Generated registry refresh is deferred; see [the dedicated receipt](evidence/crw-005-electroweak-bosons-review-2026-09-12.md) for exact hashes and validation limits.
+
+### CRW-005 Gluons — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented GL-01–GL-10 in the canonical chapter and dedicated evidence report. The chapter now bounds scaffold and axial inventories, meta-assembly and carrier interpretations, conservation typing, $\mathfrak u(3)$ counting, confinement, screening, self-interaction, and notation claims. Strict content validation reported zero errors and warnings; scoped diff and whitespace checks passed; known-case-first focused checks accepted eight display and 53 inline expressions, resolved 20 relative links, and passed 23 equation links. Physical carrier, branch, confinement, and observer recovery remain open. Generated registry refresh is deferred; see [the dedicated receipt](evidence/crw-005-gluons-review-2026-09-12.md) for exact hashes, falsifiers, and validation limits.
+
+### CRW-005 Mesons — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented MES-001–MES-007 in the canonical chapter and dedicated evidence report. The chapter now bounds stability, kaon/CP, dense-matter, mass, isospin, color-singlet, and $c_0$ notation claims. Strict content validation reported zero errors and warnings; scoped diff and whitespace checks passed; focused checks passed one math control, seven chapter links, 19 report links, and 23 equation links. Physical branch, mass, isospin, and recovery mappings remain open. Generated registry refresh is deferred; see [the dedicated receipt](evidence/crw-005-mesons-review-2026-09-12.md) for exact hashes, falsifiers, and validation limits.
+
+### CRW-005 Atomic Structure — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented AS-01–AS-05 in the canonical chapter and dedicated evidence report. The chapter now clarifies effective stability language, channel-ordering claims, quark-envelope notation, selection-window scope, and residual/check-slot definitions. Strict content validation reported zero errors and warnings; scoped diff and whitespace checks passed; focused KaTeX checks accepted 234 expressions including 42 displays, with 23 registered equation links. Physical atomic branch, stability, and recovery mappings remain open. Generated registry refresh is deferred; see [the dedicated receipt](evidence/crw-005-atomic-structure-review-2026-09-12.md) for exact hashes, falsifiers, and validation limits.
+
+### CRW-005 Nucleon Structure — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented NS-01–NS-11 in the canonical chapter and dedicated evidence report. The chapter now clarifies effective stability status, charge/radius and mass-response interfaces, magnetic and spin mappings, confinement/color-transport scope, source precision, and reader-facing claim boundaries. Strict content validation reported zero errors and warnings; scoped diff and whitespace checks passed; focused known-case-first KaTeX and local-link checks passed with 23 equation-mapping links. Physical branch existence, completed mass/spin and magnetic-sign derivations, and downstream nuclear/atomic closure remain open. Generated registry refresh is deferred; see [the dedicated receipt](evidence/crw-005-nucleon-structure-review-2026-09-12.md) for exact hashes, falsifiers, and validation limits.
+
+### CRW-005 Nuclear Binding — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented NB-01–NB-14 in the canonical chapter and dedicated evidence report. The chapter now corrects the omitted shell term, reaction-energy accounting, escape-probability interpretation, and unsupported binding and stability conclusions while preserving all 17 original displayed equations byte-for-byte. Strict content validation reported zero errors and warnings; complete reread, scoped diff and whitespace checks, and controlled KaTeX, math, and local-link checks passed. Physical branch existence, nuclear derivations, EOM solver acceptance, and downstream closure remain open. Generated registry refresh is deferred; see [the dedicated receipt](evidence/crw-005-nuclear-binding-review-2026-09-12.md) for the exact hash, falsifiers, and deferred command.
+
+### CRW-005 Atomic Spectra — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented AS-01–AS-12 in the canonical chapter and dedicated evidence report. The chapter now clarifies clock conversion, spectral calibration, shared-input replay, shell-gap limitations, and magnetic and recoil comparison assumptions while preserving all 24 original displayed equations and equation links byte-for-byte. Strict content validation reported zero errors and warnings; complete reread, scoped diff and whitespace checks, and controlled KaTeX, math, and local-link checks passed. Physical branch existence and stability, independent spectral prediction, energy and clock derivations, and transition amplitudes remain open. Generated registry refresh is deferred; see [the dedicated receipt](evidence/crw-005-atomic-spectra-review-2026-09-12.md) for the exact hash, falsifiers, and deferred command.
+
+### CRW-005 Hyde Periodic Table — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented HY-01–HY-10 in the canonical chapter and dedicated evidence report. The chapter now distinguishes derived arithmetic and effective atomic benchmarks from proposed assembly physics while preserving both original displayed equations. Strict content validation reported zero errors, zero warnings, and 30 out-of-scope informational notes; complete reread, known-control-first KaTeX, math, local-link, preservation, and whitespace checks passed. Full historical-source verification, artwork auditing, and physical derivations remain open. Generated registry refresh is deferred; see [the dedicated receipt](evidence/crw-005-hyde-periodic-table-review-2026-09-12.md) for the exact hash, falsifiers, and deferred command.
+
+### CRW-005 Molecular Geometry — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented MG-01–MG-08 in the canonical chapter and dedicated evidence report. The chapter now distinguishes energy minima from delayed-dynamics stability, frozen from relaxed curvature, and Hessian stiffness from mass-weighted vibration modes while preserving all four original displayed equations. Strict content validation reported zero errors, zero warnings, and 30 informational notes; complete reread, scoped diff and whitespace checks, and controlled KaTeX, math, local-link, and equation-ID checks passed. Molecular histories, conservative energy reduction, mass and clock response, matched benchmarks, and spin and statistics recovery remain open. Generated registry refresh is deferred; see [the dedicated receipt](evidence/crw-005-molecular-geometry-review-2026-09-12.md) for the exact hash, falsifiers, and deferred command.
+
+### CRW-005 Condensed Matter — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented CM-01–CM-15 in the canonical chapter and dedicated evidence report. The chapter now distinguishes speed preservation from energy conservation and achievable packing density from an upper bound, among other bounded repairs. Strict content validation reported zero errors and warnings; complete reread, scoped diff and whitespace checks, controlled KaTeX and local-link checks over 209 expressions, eight arithmetic witness groups, and preservation checks for all 54 viewer identities passed. Physical branches, constitutive recovery, EOM solver acceptance, theory closure, and downstream closure remain open. The final equation-registry check passed without a task-owned regeneration; see [the dedicated receipt](evidence/crw-005-condensed-matter-review-2026-09-12.md) for the exact hash, falsifiers, and final generator-check record.

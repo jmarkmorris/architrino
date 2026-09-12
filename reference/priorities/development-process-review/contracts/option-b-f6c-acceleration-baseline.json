@@ -1,0 +1,130 @@
+{
+  "schema": "current-source-transfer-baseline/v1",
+  "repository": "https://github.com/jmarkmorris/architrino.git",
+  "commit": "7c957f86c1ca8c7ff8d4cf8341f2b3e2748b4b09",
+  "entry": "scripts/eom/run-f6c-acceleration-pilot.mjs",
+  "scope": "f6c-acceleration-pilot-current-source",
+  "authority": "operator-directed-existing-A-transfer",
+  "bindings": [
+    {
+      "path": "scripts/eom/execute-f6c-acceleration.py",
+      "sha256": "02b1b58eed0fda3cba96df90117a03095297fd9e38bfaf95a81788e3d28549ac",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json",
+      "sha256": "f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1",
+      "category": "scientific-evidence-retained"
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json",
+      "sha256": "7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43",
+      "category": "scientific-evidence-retained"
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json",
+      "sha256": "86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880",
+      "category": "scientific-evidence-retained"
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/cover-manifest.json",
+      "sha256": "19fae257f7f36d858fa60d9031125b3f29dbb8780e944802699aab5292275f4c",
+      "category": "scientific-evidence-retained"
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/comparison.json",
+      "sha256": "6bf2b50ef4f0b46f43ae77a9881f82a2f9d504d5df757bc0ad215deb8eac36c6",
+      "category": "scientific-evidence-retained"
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/pilot-admission.json",
+      "sha256": "1a814c90279eed456546b2c4959a8504657213ffc2d25c063060831814e930ee",
+      "category": "scientific-evidence-retained"
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/rows.ndjson",
+      "sha256": "786785b2597bcdf024e350ba89c129fb32115afed693169a6db3137c6bdca383",
+      "category": "scientific-evidence-retained"
+    },
+    {
+      "path": ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/pieces.ndjson",
+      "sha256": "2c064a5956e7684868cbda7aa7e312ac609e07760bf67f1cf121c934d6d4c411",
+      "category": "scientific-evidence-retained"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json",
+      "sha256": "5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86",
+      "category": "historical-evidence-retained"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md",
+      "sha256": "8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378",
+      "category": "historical-evidence-retained"
+    },
+    {
+      "path": "scripts/eom/oracle/continuous_reception_acceleration.py",
+      "sha256": "abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "tests/test_eom_continuous_reception_acceleration.py",
+      "sha256": "26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md",
+      "sha256": "8d2c7819962db6bac0e1ea0939292992145dbe342a28b51928efb81e74478179",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md",
+      "sha256": "7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md",
+      "sha256": "db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md",
+      "sha256": "710279f5c348a81fd36d58c6ca704730b3fa70da729ca30b9c92ae4e1cc6734b",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "scripts/eom/prepare-f6c-continuous-reception-acceleration.py",
+      "sha256": "d9c5c1ad4332df56f72ac9dc2d569fc5576bc5b4434886221685030e3e620106",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "tests/test_f6c_continuous_reception_acceleration_preparation.py",
+      "sha256": "45f40e2c6580fa09a614a471e7375615c8d54e3fc295a68dbdb8ad2167b7690b",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md",
+      "sha256": "3ef8fb9020bae71833b1e06a119672b49a4beb5395f697dcb3d037d088e7891e",
+      "category": "historical-evidence-retained"
+    },
+    {
+      "path": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+      "sha256": "71974054ddce7fc29b8464b9a7a63f8fbb04ee5b425dc997df4d40b2804341aa",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "scripts/eom/launch-prescribed-response-pilot.mjs",
+      "sha256": "05cd35574276841795077ea28a2b6d6e47534379184f7164a9dafe473e156a7f",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "scripts/eom/verify-f6c-continuous-reception-acceleration.py",
+      "sha256": "a0c546124828b5879a2e163b0f965d37b90c251d327301eaa72e031261824e53",
+      "category": "current-repository-binding-transfer"
+    },
+    {
+      "path": "tests/test_f6c_continuous_reception_acceleration.py",
+      "sha256": "13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed",
+      "category": "current-repository-binding-transfer"
+    }
+  ]
+}

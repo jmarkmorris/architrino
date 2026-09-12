@@ -4,7 +4,7 @@
 
 **Current aim:** develop the [integrated manuscript](manuscript.md) while resolving the actual two-particle population release conditions and the existing quintic candidate's regulator question. Changed history classes and physical laws remain proposals.
 
-**Dispatched now:** no scientific worker. The full-pulse adjudication is integrated into manuscript Sections 6.6–6.7, with separate editorial fidelity and scoped document validation completed. The old pulse worker remains stopped. The next old-pulse-shell theorem is a recommendation awaiting a bounded scientific assignment; it is not a manuscript-lane task or a publication action.
+**Dispatched now:** no scientific worker. The second-shell mathematical review and capture/manuscript fidelity checks are complete. The accepted extension retains $0<G/\ell\le16$, reaches $79\ell/128$ with 32 nonconstant environmental histories, and excludes every received postrelease emission. The distance-two shell and first reception of generated futures remain separate possible assignments.
 
 ## Work to do
 
@@ -30,17 +30,14 @@ The [quintic independent review](analysis/quintic-mirror-boundary-independent-ad
 
 ## Results that constrain the next step
 
+- **The fixed two-target disturbance has an independently accepted EOM response through its second receiving shell.** For $0<G/\ell\le16$, the [second-shell adjudication](analysis/smooth-two-particle-second-shell-independent-adjudication.md) accepts continuation to $79\ell/128$, exactly 32 nonconstant environmental histories, original class/root preservation and no received postrelease emissions. This bounded result is separate from the blocked arbitrary-population formulation.
 - **Different-label contact is possible** in the accepted finite four-particle construction; that does not establish self-root birth. [Contact review](analysis/mec-008-independent-adjudication.md).
 - **The stationary two-particle EOM reaches a root-free field-speed endpoint at positive separation.** Its established continuation obstruction remains unchanged. [Mirror result](analysis/mirror-close-approach-causal-root-boundary.md).
 - **A positive self-delay floor is independently accepted under explicit regularity, cone, velocity and opposing-remainder hypotheses.** Its finite-event extension is accepted conditionally and does not resolve the zero-delay mirror boundary. [Accepted delay-floor review](analysis/mec-008-self-delay-independent-adjudication.md).
 - **The proposed infinite-history class fails the required summation and continuity properties.** This blocks that construction, not every possible dense EOM solution.
+- **Equal-time cell moments are insufficient even with rigid internal geometry**, by the [independently accepted rigid-cell obstruction](analysis/population-rigid-cell-independent-adjudication.md). Its signed divergence and growing-finite-support discontinuity concern coordinated prescribed histories, not EOM-generated motion from two changed labels. The conditional delayed-moment derivative result requires a remainder that survives summation. The fixed finite-support pulse control remains intact; expanding-population EOM convergence cannot be tested on a witness already divergent at release.
 
 For strategy and claim boundaries, see [priorities](priorities.md). For explanations, see [brainstorming](brainstorming.md) and the linked mathematical owners. Source-packet P/Leg/D labels and old numbered assignments are preserved in the [historical work log](work-log.md#2026-09-09--queue-presentation-simplified); they are not additional live tasks.
-
-<a id="coordinated-campaign-execution-order"></a>
-<a id="effort-contracts"></a>
-<a id="coordinator-ownership-and-dispatch"></a>
-<a id="wake-reception-review-action-register"></a>
 
 <details>
 <summary>Strategic ranking metadata — not another execution queue</summary>
@@ -54,12 +51,6 @@ This block preserves the repository's machine-checked workstream ranking. These 
 3. `pairwise_causal_root_ledger_closure` — [Root provenance](analysis/pairwise-causal-root-ledger-closure.md). Status: `Queued`.
 4. `finite_coincident_same_transmitter_transition` — [Boundary continuation](analysis/diagonal-birth-lineage-causal-wake-candidate.md). Status: `Deferred / blocked`.
 5. `same_update_conserved_accounts` — [Joint accounts](analysis/independent-causal-wake-state-closure.md). Status: `Deferred / blocked`.
-
-<a id="mec-002--causal-wake-update-law"></a>
-<a id="mec-008--same-transmitter-coincidence-domain-reachability"></a>
-<a id="mec-005--pairwise-causal-root-ledger-closure"></a>
-<a id="mec-003--finite-coincident-same-transmitter-transition"></a>
-<a id="mec-004--same-update-conserved-accounts"></a>
 
 The corresponding mathematical owners above contain each obligation's definitions, acceptance boundaries and evidence. Existing incoming fragment links are retained for source provenance.
 

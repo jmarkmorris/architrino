@@ -9,7 +9,7 @@ import {fileURLToPath} from 'node:url';
 
 export const SELF='scripts/eom/prepare-f6c-parent-refinement-batch.mjs';
 export const CONTROLS='tests/f6c-parent-refinement-batch-preparation.test.js';
-export const COORDINATOR=['scripts/eom/f6c-bounded-operation.mjs','e100a96f0771d82664fa62b66865cbf5924cced1216588c631836ed361d6a252'];
+export const COORDINATOR='scripts/eom/f6c-bounded-operation.mjs';
 export const EXPECTATIONS=['reference/priorities/development-process-review/contracts/streamed-leaf-historical-invocation-v5.md','576fade32f3f923b88c5490fb44f4411b6a744199857ddea872a70e55c378ccc'];
 export const OBSERVER='scripts/eom/observe-parent-batch.mjs';
 export const CLOSURE_CHECKER='scripts/eom/verify-f6c-bounded-operation-closure.mjs';
@@ -27,8 +27,8 @@ export const canonical=v=>v===null||typeof v!=='object'?JSON.stringify(v):Array.
 const absolute=p=>check(typeof p==='string'&&p.length>0&&p.length<=2048&&p.startsWith('/')&&!p.startsWith('//')&&!p.includes('\0')&&!p.includes('\\')&&path.resolve(p)===p,'canonical absolute path');
 const digest=h=>check(typeof h==='string'&&/^[a-f0-9]{64}$/u.test(h),'explicit expected hash');
 export function parseArguments(a){
- check(Array.isArray(a)&&a.length===8&&a[0]==='--configuration'&&a[2]==='--configuration-sha256'&&a[4]==='--self-sha256'&&a[6]==='--out-directory','usage: --configuration ABS --configuration-sha256 SHA --self-sha256 SHA --out-directory ABS');
- absolute(a[1]);digest(a[3]);digest(a[5]);absolute(a[7]);return{configurationPath:a[1],configurationSha256:a[3],selfSha256:a[5],outDirectory:a[7]};
+ check(Array.isArray(a)&&a.length===12&&a[0]==='--configuration'&&a[2]==='--configuration-sha256'&&a[4]==='--self-sha256'&&a[6]==='--out-directory'&&a[8]==='--coordinator-sha256'&&a[10]==='--source-map-sha256','usage: --configuration ABS --configuration-sha256 SHA --self-sha256 SHA --out-directory ABS --coordinator-sha256 SHA --source-map-sha256 SHA');
+ absolute(a[1]);for(const i of[3,5,9,11])digest(a[i]);absolute(a[7]);return{configurationPath:a[1],configurationSha256:a[3],selfSha256:a[5],outDirectory:a[7],coordinatorSha256:a[9],sourceMapSha256:a[11]};
 }
 // Small same-FD bootstrap; all later byte IO uses the frozen coordinator.
 function bootstrap(filename,expected,live){
@@ -40,14 +40,15 @@ function bootstrap(filename,expected,live){
   return{path:filename,sha256:expected,bytes:raw.length,identity:ident(s),data:raw};
  }finally{closeSync(fd);}
 }
-export function validateConfiguration(c,C,root){
- keys(c,['schema','root','template','coordinator','composition','compositionControls','preparationControls','observer','closureChecker','closureControls','expectations','sources','sourceIdentities','runtimeBindings','operationalBindings','acceptanceOwner','historicalDocumentRoutes','pythonCommand','git','operationDirectory','parents','closureReserveBytes','ownerTask']);
- check(c.schema==='braid-program/f6c-parent-refinement-batch-preparation.v2'&&c.root===root,'preparation root/schema');absolute(root);absolute(c.operationDirectory);absolute(c.pythonCommand);absolute(c.git);
+export function validateConfiguration(c,C,root,sourceAdmission){
+ keys(c,['schema','root','template','coordinator','sourceMap','composition','compositionControls','preparationControls','observer','closureChecker','closureControls','expectations','sources','sourceIdentities','runtimeBindings','operationalBindings','acceptanceOwner','historicalDocumentRoutes','pythonCommand','git','operationDirectory','parents','closureReserveBytes','ownerTask']);
+ check(c.schema==='braid-program/f6c-parent-refinement-batch-preparation.v3'&&c.root===root,'preparation root/schema');absolute(root);absolute(c.operationDirectory);absolute(c.pythonCommand);absolute(c.git);
  for(const k of ['template','coordinator','composition','compositionControls','preparationControls','observer','closureChecker','closureControls','expectations','acceptanceOwner'])C.binding(c[k]);
- check(c.coordinator.path===path.join(root,COORDINATOR[0])&&c.coordinator.sha256===COORDINATOR[1],'frozen coordinator');
+ C.binding(c.sourceMap);check(sourceAdmission&&canonical(c.sourceMap)===canonical(sourceAdmission.sourceMap)&&c.coordinator.path===path.join(root,COORDINATOR)&&sourceAdmission.sources.some(b=>canonical(b)===canonical(c.coordinator)),'externally selected coordinator and source map');
  check(c.preparationControls.path===path.join(root,CONTROLS)&&c.expectations.path===path.join(root,EXPECTATIONS[0])&&c.expectations.sha256===EXPECTATIONS[1],'preparation control/expectation');
  check(Array.isArray(c.sources)&&Array.isArray(c.runtimeBindings)&&Array.isArray(c.operationalBindings),'explicit source/runtime arrays');
  const sources=C.sourceUnion(c.sources);check(sources.length===c.sources.length,'unique explicit source paths');
+ for(const b of sourceAdmission.sources)check(sources.some(s=>canonical(s)===canonical(b)),'missing selected coordinator source');
  check(sources.some(b=>b.path===path.join(root,SUPERVISOR)),'explicitly selected owned-compute source');
  check(c.sourceIdentities&&Object.getPrototypeOf(c.sourceIdentities)===Object.prototype&&Object.keys(c.sourceIdentities).sort().join('|')===sources.map(b=>b.path).sort().join('|'),'exact original identity keys');
  for(const value of Object.values(c.sourceIdentities))check(typeof value==='string'&&/^(?:0|[1-9][0-9]*)(?::(?:0|[1-9][0-9]*)){4}$/u.test(value),'original five-field identity');
@@ -59,10 +60,10 @@ export function validateConfiguration(c,C,root){
  for(const p of c.parents){keys(p,['parentIndex','output','producerMaximumBytes','comparisonMaximumBytes']);check(Number.isInteger(p.parentIndex)&&p.parentIndex>previous&&p.parentIndex<160,'strict original parent index');previous=p.parentIndex;absolute(p.output);}
  return sources;
 }
-export function derivePlans({configuration:c,template,admission,exported,self,configurationBinding,outDirectory,C,B}){
- validateConfiguration(c,C,c.root);absolute(outDirectory);
+export function derivePlans({configuration:c,template,admission,exported,self,configurationBinding,outDirectory,C,B,sourceAdmission}){
+ validateConfiguration(c,C,c.root,sourceAdmission);absolute(outDirectory);
  const plans=B.makeParentPlans({template,indices:c.parents.map(p=>p.parentIndex),sourceBindings:c.sources,runtimeBindings:c.runtimeBindings,operationalBindings:c.operationalBindings,acceptanceOwner:c.acceptanceOwner,historicalDocumentRoutes:c.historicalDocumentRoutes});
- const inputs=plans.map(p=>B.validatePlan(p,{root:c.root,selfSha:c.composition.sha256,python:c.pythonCommand,git:c.git}));
+ const inputs=plans.map(p=>B.validatePlan(p,{root:c.root,selfSha:c.composition.sha256,python:c.pythonCommand,git:c.git,sourceAdmission}));
  check(c.composition.path===path.join(c.root,B.SELF)&&c.compositionControls.path===path.join(c.root,B.CONTROL),'exact reviewed composition paths');
  check(admission.schema==='braid-program/f6c-cached-root-cover-full-admission.v1'&&admission.scope==='full'&&admission.accepted===true&&admission.processesClosed===true&&Array.isArray(admission.sourceBindings)&&admission.sourceBindings.length===198,'bound complete original ancestry');
  const historical=admission.sourceBindings.map(b=>B.binding(b,c.root));
@@ -82,7 +83,7 @@ export function derivePlans({configuration:c,template,admission,exported,self,co
  C.sourceUnion([...sources,batchBinding]); // Runtime also captures its plan.
  records.push({path:batchBinding.path,value:batch,raw:batchRaw,binding:batchBinding});
  check(records.length+1<=LIMITS.outputPaths&&records.reduce((n,r)=>n+r.raw.length,0)<LIMITS.outputBytes,'preparation output quota');
- return{records,batch,batchBinding,metadata,requiredSources:needed,sources,invocation:[node.path,c.observer.path,'--plan',batchBinding.path,'--plan-sha256',batchBinding.sha256,'--self-sha256',c.observer.sha256,'--checker-sha256',c.closureChecker.sha256,'--out-directory',c.operationDirectory+'-external','--owner-task',c.ownerTask]};
+ return{records,batch,batchBinding,metadata,requiredSources:needed,sources,invocation:[node.path,c.observer.path,'--plan',batchBinding.path,'--plan-sha256',batchBinding.sha256,'--self-sha256',c.observer.sha256,'--checker-sha256',c.closureChecker.sha256,'--coordinator-sha256',c.coordinator.sha256,'--source-map-sha256',c.sourceMap.sha256,'--out-directory',c.operationDirectory+'-external','--owner-task',c.ownerTask]};
 }
 export class Publication{
  constructor(directory,C,live){
@@ -110,14 +111,16 @@ export async function prepare({options,self,coordinator,began,deadline}){
  check(import.meta.url===url(self.data),'captured preparation generation');let maximumRSSBytes=0,publication;const root=realpathSync(process.cwd());
  const live=()=>{check(performance.now()<deadline,'original preparation deadline');const rss=process.memoryUsage().rss;maximumRSSBytes=Math.max(maximumRSSBytes,rss);check(rss<=LIMITS.rssBytes,'preparation RSS');};live();
  const C=await import(url(coordinator.data));
+ const sourceAdmission=await C.initializeSourceBindings(root,options.sourceMapSha256,live);
+ check(sourceAdmission.sources.some(b=>canonical(b)===canonical(clean(coordinator))),'bootstrap coordinator matches selected manifest');
  const input=C.readBound(options.configurationPath,options.configurationSha256,true,1048576,live),c=JSON.parse(input.data.toString('utf8'));
- check(input.data.equals(Buffer.from(canonical(c)+'\n')),'canonical closed configuration bytes');validateConfiguration(c,C,root);
+ check(input.data.equals(Buffer.from(canonical(c)+'\n')),'canonical closed configuration bytes');validateConfiguration(c,C,root,sourceAdmission);
  const first=C.originalIdentities([self,coordinator,input]);for(const[p,id]of Object.entries(c.sourceIdentities)){check(!first[p]||first[p]===id,'original source generation conflict');first[p]=id;}
  const sources=C.sourceUnion([...c.sources,clean(self),clean(input)]);C.captureUnion(sources,first,live);
  const subject=C.readBound(c.composition.path,c.composition.sha256,true,1048576,live);check(subject.bytes===c.composition.bytes&&subject.identity===first[subject.path],'captured composition original identity');const B=await import(url(subject.data));
  const read=b=>{const f=C.readBound(b.path,b.sha256,true,67108864,live);check(f.bytes===b.bytes&&f.identity===first[f.path],'original metadata identity');return B.parseJSON(f.data);};
  const template=read(c.template),originals=Object.fromEntries(Object.entries(template.originalBindings).map(([k,b])=>[k,B.binding(b,root)]));
- const result=derivePlans({configuration:c,template,admission:read(originals.fullAdmission),exported:read(originals.export),self:clean(self),configurationBinding:clean(input),outDirectory:options.outDirectory,C,B});
+ const result=derivePlans({configuration:c,template,admission:read(originals.fullAdmission),exported:read(originals.export),self:clean(self),configurationBinding:clean(input),outDirectory:options.outDirectory,C,B,sourceAdmission});
  const dirs=[options.outDirectory,result.batch.operationDirectory,...result.batch.outputDirectories];check(new Set(dirs).size===dirs.length&&!dirs.some(a=>dirs.some(b=>a!==b&&a.startsWith(b+'/'))),'disjoint preparation/operation roots');
  for(const d of dirs){absolute(d);check(d.startsWith(path.join(root,'.local-data/braid-analysis')+'/')&&!existsSync(d),'fresh explicit output directory');}
  check(sources.every(b=>!dirs.some(d=>b.path===d||b.path.startsWith(d+'/'))),'source/output overlap');
@@ -135,7 +138,7 @@ export async function prepare({options,self,coordinator,began,deadline}){
 }
 export async function runPreparation(options){
  const began=performance.now(),deadline=began+LIMITS.milliseconds,live=()=>check(performance.now()<deadline&&process.memoryUsage().rss<=LIMITS.rssBytes,'preparation bootstrap deadline/RSS');
- const root=realpathSync(process.cwd()),self=bootstrap(path.join(root,SELF),options.selfSha256,live),coordinator=bootstrap(path.join(root,COORDINATOR[0]),COORDINATOR[1],live);
+ const root=realpathSync(process.cwd()),self=bootstrap(path.join(root,SELF),options.selfSha256,live),coordinator=bootstrap(path.join(root,COORDINATOR),options.coordinatorSha256,live);
  const captured=await import(url(self.data));return captured.prepare({options,self,coordinator,began,deadline});
 }
 if(import.meta.url.startsWith('file:')&&process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){

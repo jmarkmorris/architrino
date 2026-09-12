@@ -1054,9 +1054,12 @@ class CaptureTests(unittest.TestCase):
             with self.assertRaises(ValueError):subject._owner_declaration(raw.replace(old,new))
 
     def test_entry_pins_literal_source_only(self):
-        raw=(ROOT/'scripts/eom/run-f6c-cached-root-cover-full.mjs').read_bytes()
+        raw=(ROOT/'reference/priorities/development-process-review/evidence/source-recovery/original-full-entry.mjs.source').read_bytes()
         pins=subject._entry_pins(raw)
-        self.assertEqual(pins['scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py'],dict((r,h)for r,_,h in subject.SOURCES)['rootComparison'])
+        # This parser reads the original full-run entry, whose comparison source
+        # predates the current execution interface in subject.SOURCES.
+        self.assertEqual(hsh(raw),'1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b')
+        self.assertEqual(pins['scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py'],'19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132')
 
     def full_metadata_fixture(self):
         """Independent structural fixture, not an actual full-run attestation."""

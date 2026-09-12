@@ -1,10 +1,6 @@
-<a id="2-operating-git-and-github-together"></a>
-
 # Operating Git and GitHub together
 
 This guide describes the current Git, Codex, and Claude arrangement and labels future workflows explicitly. The [publication procedure](pr-lifecycle.md) owns execution and authorization; this guide does not invoke publication. The [campaign checklist](../../priorities/development-process-review/processes-git-codex-claude.md#3-rollout-and-integration-plan) tracks unfinished work, and [Git-backed knowledge architecture](git-backed-knowledge-architecture.md) explains the knowledge-system design. Section labels are retained for continuity.
-
-<a id="21-motivation-a-dependable-shared-development-environment"></a>
 
 ## Motivation: a dependable shared development environment
 
@@ -15,8 +11,6 @@ We need an arrangement in which each task knows which checkout it is using, whic
 Projects, worktrees, separate clones, authentication methods, and automated checks are implementation choices with different boundaries. Similar feature names do not establish compatible behavior. Choose among them by whether they preserve repository identity, concurrent work, execution reliability, and understandable handoffs at a manageable cost. The operator rejects additional linked worktrees, including evaluation experiments; use the existing local checkout and coordinate shared resources and integration. Changing vendors or adopting isolation machinery does not by itself resolve the coordination problem.
 
 The recovery and Git incident records provide concrete evidence and distinguish observed failures from possible causes. They motivate checking the actual operation and its effects before proceeding, agreeing on changes to shared state, and leaving useful handoffs. The sections below explain the current arrangement and options; accepted changes belong in the live procedure owners rather than in a second competing rulebook.
-
-<a id="22-the-arrangement-we-are-trying-to-achieve"></a>
 
 ## The arrangement we are trying to achieve
 
@@ -34,8 +28,6 @@ Protecting the evolving knowledge network requires cooperation among agents from
 These cooperation requirements apply to the file-based arrangement and to any database-backed alternative. Recording ownership makes it visible; preventing collisions additionally requires participants or an enforcing service to honor it. Application features should be evaluated against these outcomes, whatever their names. This table does not certify a vendor or select a new implementation.
 
 Three identities are separate: the local repository being edited, the remote repository receiving Git operations, and the account or integration authenticating those operations. A correct account can still push to the wrong repository if its permissions allow both. A branch name or application project title does not verify the destination. The incident diagnosis records a wrong Architrino origin followed by MyLists fetches; it does not establish a merge of the two histories or a lost local commit.
-
-<a id="221-where-git-guidance-lives-in-this-repository"></a>
 
 ### Where Git guidance lives in this repository
 
@@ -63,8 +55,6 @@ This map was assembled by reading the Git index, startup permissions, selected l
 
 The recommended organization is to retain the dedicated Git-procedure home, keep executable checks and hosting policy with their own owners, and use this guide as the explanatory map while we work through decisions. We have not yet established that the distributed guidance is fully consistent. For example, public contributor examples and experimental procedures need to be read with their actual scope; their existence is not evidence that an agent may perform those actions during ordinary development. This inventory does not move files or change any publication procedure.
 
-<a id="23-set-up-the-applications-around-explicit-repositories"></a>
-
 ## Set up the applications around explicit repositories
 
 **Current operating default: one project per repository, with explicit authorization for each tool and repository.** Keep Architrino and MyLists in separate repository-rooted projects in each application where that project concept applies. For other tool surfaces, establish the equivalent explicit checkout scope. Verify which repository the tool may read or write and through which authorization channel. A separate project is an organizational boundary, not proof that its credential is limited to that repository. Our agreed local-access design adds a distinct fine-grained PAT for each tool/repository pair, as described in section 2.4.1. Cross-repository work needs explicitly named repositories and coordinated operations, rather than an assumption that a parent project safely manages their Git state.
@@ -85,8 +75,6 @@ The durable lesson is to verify the cooperation requirements above before adopti
 
 Before accepting work from either application, establish what environment is actually running it. A local Mac shell and a sandbox or virtual machine can expose different files, interpreters, credentials, and network access. Read the live `AGENTS.md` and router in the checkout when accessible. For this repository, Python work uses the shared venv; an unavailable interpreter is an unavailable check, not permission to substitute system Python and classify the resulting failures as code defects.
 
-<a id="24-github-access-connector-oauth-pat-and-git"></a>
-
 ## GitHub access: connector, OAuth, PAT, and Git
 
 Authentication answers which identity may perform an operation. It does not establish the correct destination, ownership of unfinished changes, or scientific validity. Keep those questions separate when configuring or testing access.
@@ -102,8 +90,6 @@ The former browser-authorized shared CLI credential is retired for these context
 The local-access design uses fine-grained PATs for the identified tool/repository contexts. Use a token limited to the necessary repositories and permissions, with an expiration and a named consumer; verify that the required endpoints support it. Store it through that client's supported credential mechanism. Never embed it in an origin URL, paste it into an agent conversation, or put it in repository files. GitHub also recommends CLI or credential-manager access as alternatives to manually creating a PAT. See [GitHub token management](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
 
 A useful access check proceeds from account identity, to repository identity and permissions, to the actual intended operation. Profile-read success does not prove push access. A dry run is preliminary evidence; an authorized real push and a matching server branch tip establish that specific write. Avoid creating a throwaway commit in a valuable repository merely to test connectivity. Use the next legitimate, validated publication when authorized.
-
-<a id="242-route-diagnosis-and-publication-lessons"></a>
 
 ### Route diagnosis and publication lessons
 
@@ -121,8 +107,6 @@ Local environment failures must remain distinct from remote authentication failu
 
 Disconnect or revoke the particular authorization being retired, then verify the affected client. Removing a GitHub App installation, revoking an OAuth grant, deleting a PAT, and logging a CLI out are separate actions. Record which was done. Do not rotate unrelated credentials in response to uncertainty about a different integration.
 
-<a id="241-agreed-design-one-fine-grained-pat-per-tool-and-repository"></a>
-
 ### Agreed design: one fine-grained PAT per tool and repository
 
 For local Git and GitHub API operations, the agreed target is a distinct fine-grained PAT for each tool-and-repository pair, rather than a broadly authorized shared OAuth login. Each authorization is unique, repository-scoped, and independently revocable. This choice serves the operator's separation requirement; it is not a general claim that PATs are superior to OAuth. It remains subject to verifying the required operations and each client's credential-routing support. A tool that cannot support the boundary must be reported as a design gap, not silently granted broader access.
@@ -138,8 +122,6 @@ Distinct PATs do not by themselves isolate local processes. If both agents can r
 The [shared PAT helper](../../../scripts/github-auth/README.md#claude-code-local-setup) supports Claude Code Local on the Mac through explicit per-command selection. Its Codex default and existing Keychain service names are preserved. The inspected Cowork session reported a Linux shell, missing GitHub CLI, and proxy and filesystem restrictions; those session findings do not establish a universal Cowork limitation. Claude Code Local subsequently reported native Mac tools. The helper extension does not configure ordinary CLI commands or the desktop application's PR-status authentication.
 
 See the [campaign plan](../../priorities/development-process-review/processes-git-codex-claude.md#34-credential-migration-and-completion-checks) for implementation status and completion checks.
-
-<a id="243-operating-routes-credential-ownership-and-remaining-verification"></a>
 
 ### Operating routes, credential ownership, and remaining verification
 
@@ -164,8 +146,6 @@ For routine replacement, create a new fine-grained token for the same pair, save
 
 The [campaign evidence](../../priorities/development-process-review/processes-git-codex-claude.md#37-credential-verification-evidence) records tested capabilities and remaining obligations. Public reads and endpoint permission headers do not establish token write permissions. The shared-Mac limitation is accepted; the mandatory caller rule remains in force.
 
-<a id="25-repository-checks-before-git-operations"></a>
-
 ## Repository checks before Git operations
 
 Repository identity checks protect the work before it crosses a Git boundary. The following inspect this checkout without initiating publication:
@@ -184,8 +164,6 @@ A commit records local history. A push updates a server reference. `origin/main`
 
 When an incident arises, preserve the branch and uncommitted work before repair, inspect the actual changed paths, and compare local and server tips. A Git bundle preserves committed reachable history but does not include uncommitted or untracked files; those require separate preservation. Verify a recovery copy by restoring it outside the working checkout. The diagnosis records the original commit, manifest, restored bundle, and later approved publication. Its large local backup remains outside this repository.
 
-<a id="26-two-agents-in-one-checkout"></a>
-
 ## Two agents in one checkout
 
 Current policy permits both Claude and Codex to develop and inspect Git. Publication belongs to the operator-designated runner under the live procedure, with merge authority retained by the operator or explicitly delegated for the scoped candidate. The brand of agent does not confer exclusive Git authority. Shared checkout means shared files, branch, and staging area; a branch switch or blanket staging command affects everyone's work.
@@ -200,8 +178,6 @@ Direct communication between Codex tasks was used for this document split. That 
 
 **Last touch is not causal attribution.** Do not attribute a failure, hash mismatch, or regression to the most recent commit touching a file. Establish the relevant expectation and inspect the last matching and first mismatching states along the relevant history, including changes to the expectation or checker itself. Inspect the actual transition before assigning cause. A byte mismatch does not by itself establish a behavioral or mathematical defect. If retained history cannot establish the transition, report attribution as unresolved. Last-editor identity grants neither ownership nor permission to overwrite concurrent work. See the [agent evidence rules](../../../AGENTS.md#evidence-independence). The earlier last-touch classification in the recovery queue is historical and superseded.
 
-<a id="261-agreed-future-workflow-coordinated-publication-while-agents-are-active"></a>
-
 ### Agreed future workflow: coordinated publication while agents are active
 
 **Current interim workflow: publish after editing stops.** The operator waits until editing tasks across Codex, Claude, and other tools have stopped, then asks one runner to commit and push all accumulated changes. The runner reviews all intended repository work regardless of author, checks completion reports and background writers, excludes accidental files, credentials, and runtime artifacts, derives the staging paths, and validates the combined result. The operator does not maintain a file list. Stopped tasks can leave incomplete work, so the runner raises a concrete readiness problem if one is found. The [live publication owner](pr-lifecycle.md#interim-workflow-publish-accumulated-work-after-editing-stops) defines this implemented guidance. Automatic coordination while editors are active remains future work.
@@ -209,8 +185,6 @@ Direct communication between Codex tasks was used for this document split. That 
 The operator should be able to initiate publication once, without personally coordinating every editor. The operator designates one publication runner through the live [repository publication procedure](pr-lifecycle.md). That runner coordinates a stable candidate with the active editors, validates it, commits and pushes it, and reports the result. This direction is agreed for future implementation; the cross-vendor coordination described below is not yet an established automated capability. Merge authority remains with the operator until separately delegated.
 
 **Why a pause is needed.** Files accumulating in the checkout do not necessarily form a coherent checkpoint. An editor may have changed an equation but not yet updated its dependent code, or may still be assembling a multi-file change. Git records staged bytes without deciding whether the work is complete. State comparisons can detect changes during validation, but cannot establish that an editor has finished. Readiness therefore needs an explicit handoff, followed by protection against further writes to the candidate while publication is underway.
-
-<a id="2611-publication-sequence"></a>
 
 #### Publication sequence
 
@@ -220,8 +194,6 @@ The operator should be able to initiate publication once, without personally coo
 4. **Protect the candidate.** The runner verifies that the acknowledgments cover the candidate and that overlapping writers have paused. Unrelated reading or work may continue only where it cannot change the staging area, branch identity, candidate, or state captured by validation. If the existing gate fingerprints broader checkout state, use a brief checkout-wide writing pause rather than assume file-level separation is sufficient.
 5. **Validate and publish.** The runner performs the authorized preparation, stages only the agreed scope, runs the required gate, and verifies that the candidate remains the examined state before committing and pushing. A state change invalidates the relevant evidence and requires reconciliation and renewed validation; it is not repaired by silently accepting new bytes. Confirm the remote result through the live procedure.
 6. **Release the pause and report.** After the local candidate is committed and its push is confirmed, tell each paused editor what was published and which remaining work can resume. Remote checks can continue under observation; subsequent edits must not be represented as part of the earlier validated candidate. Later merge and branch rollover require their own coordination under the live procedure.
-
-<a id="2612-communication-failure-and-recovery"></a>
 
 #### Communication, failure, and recovery
 
@@ -233,8 +205,6 @@ If publication fails, the runner either coordinates the required repair while th
 
 See the [campaign plan](../../priorities/development-process-review/processes-git-codex-claude.md#35-coordinated-publication-migration) for implementation status and completion checks.
 
-<a id="27-place-tests-by-their-requirements-and-make-retries-informative"></a>
-
 ## Place tests by their requirements and make retries informative
 
 The testing arrangement must connect each accepted risk to an actual execution path. Distinguish quick development checks, the selected local publication gate, portable GitHub checks, supported-host process checks, and explicitly requested scientific campaigns. Section 2.7.1 establishes the existing publication checkpoint and the limit of what it proves about individual scientific-test coverage. Before adding automation, inspect which changed dependencies select which checks, including indirect execution, and record any gap. Put a test where its dependencies and operating-system behavior are available, and document which entry point selects it. A broad sweep should become a blocking publication requirement only after its coverage, prerequisites, duration, and process cleanup have been validated. A reporting-only sweep must report its failures visibly and cannot certify overall health. The concrete recovery acceptance and measured reporting repairs remain in the [recovery plan](../../priorities/development-process-review/analysis/review-and-repair-plan.md#testing-arrangement-to-decide).
@@ -242,8 +212,6 @@ The testing arrangement must connect each accepted risk to an actual execution p
 For long-running work, use the existing [supervision and heartbeat procedure](../long-running-test-heartbeats.md). A deadline limits waiting; verified child-process cleanup establishes a separate operational property. Preserve raw output, exit status, source identity, and the run location so the next task can distinguish a real assertion failure from an unavailable prerequisite or an interrupted run. No new CI configuration is proposed as an automatic consequence of this document.
 
 Before retrying a failed access or test operation, state what changed and which competing explanation the next attempt can resolve. Repeating an identical request after an unchanged denial adds little evidence. Check the specific client, environment, credentials and operation; record the observed block and continue independent work when possible. Reported hours and retry counts in the original intake remain estimates unless reconciled to logs.
-
-<a id="271-what-happens-when-the-operator-requests-the-pr-process"></a>
 
 ### What happens when the operator requests the PR process?
 
@@ -255,11 +223,7 @@ Crucially, “the PR gate runs” and “this particular scientific pin test run
 
 **Question for later review: does this coverage make sense for our needs?** First establish which valuable dependencies are checked by the existing mandatory paths and which rely on separately selected scientific tests, including any indirect execution. Then assess whether those checkpoints address the accepted risks. This is an investigation of current coverage before a design decision; the operator is not expected to infer the implementation or choose a new testing schedule to obtain an explanation of the existing one.
 
-<a id="28-should-we-use-git-worktrees-or-change-merge-methods"></a>
-
 ## Should we use Git worktrees or change merge methods?
-
-<a id="281-what-git-worktrees-are"></a>
 
 ### What Git worktrees are
 
@@ -267,15 +231,11 @@ A **Git worktree** comprises editable working files and their checkout metadata.
 
 For example, one task could develop a derivation in one directory and branch, while another task updates a visualization in another. Saving a file in one directory does not update the corresponding file in the other. Committed work must be deliberately integrated before the combined result is validated. Their shared object database makes committed work locally accessible; it does not automatically combine their branches.
 
-<a id="282-how-codex-and-claude-could-use-them"></a>
-
 ### Rejected task-worktree arrangement
 
 The former proposal assigned separate directories and branches to independently integrable tasks. The operator rejected that arrangement for this project on September 8, 2026. Codex and Claude tasks use the existing local Architrino checkout and explicit file ownership. This is an operator workflow choice, not a measured claim that Git worktrees are universally defective.
 
 Separate source directories have distinct working files but still require deliberate integration and coordination of shared configuration and runtime state. These technical boundaries remain useful when inspecting any pre-existing linked worktree; they do not authorize creating or adopting one. Preserve unfinished work and the existing validation, credential-routing and cleanup protections wherever such state already exists. A worktree lock protects administrative retention; it is not a general editing lock.
-
-<a id="283-how-we-would-evaluate-a-worktree-workflow"></a>
 
 ### Linked-worktree adoption and evaluation rejected
 
@@ -283,13 +243,9 @@ Separate source directories have distinct working files but still require delibe
 
 This decision does not delete or migrate pre-existing directories, branches, worktrees or evidence. Before any separately authorized operation affecting existing state, preserve unfinished work, verify the runner's directory and branch, account for branches checked out elsewhere, and validate the actual integrated candidate. Existing safeguards remain; the rejected worktree rollout is no longer an unfinished implementation task. The [lesson and decision record](../../priorities/development-process-review/analysis/worktree-learning-and-experiment.md) retains definitions and the rejected experiment design.
 
-<a id="2831-codex-permanent-worktrees"></a>
-
 #### Permanent linked worktrees rejected
 
 Permanent and task-managed linked worktrees are both within this rejection. Persistence of a directory is distinct from backup, branch ownership or per-task isolation; retaining this distinction does not select an application feature for use. No permanent-worktree evaluation remains queued for this project.
-
-<a id="284-merge-method-ordinary-merge-commits"></a>
 
 ### Merge method: ordinary merge commits
 
@@ -298,8 +254,6 @@ Squash merging places the branch's combined change in one new commit on the base
 **Selected method: ordinary merge commits.** On September 8, 2026, the repository API verified merge commits enabled, squash and rebase merging disabled, and automatic head-branch deletion disabled. The operator reported that Protect main does not require linear history. Merge commits preserve the branch’s committed steps and original commit identities in main’s ancestry, supporting recovery of earlier reasoning and inspection of provenance through Git. Keeping that history does not require maintaining every earlier version as current or runnable. The tradeoff is a more detailed history containing intermediate development commits.
 
 The reports do not prove that squash caused the unavailable source bytes. A state that was never committed still needs another retained copy regardless of merge method. The prospective switch does not restore missing past states or call for rewriting existing history.
-
-<a id="29-accepted-directions-and-remaining-implementation-questions"></a>
 
 ## Accepted directions and remaining implementation questions
 

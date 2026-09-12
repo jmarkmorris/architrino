@@ -5,10 +5,46 @@ import { closeSync, existsSync, fsyncSync, lstatSync, mkdirSync, openSync, readd
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { isDeepStrictEqual } from 'node:util';
-import { acquireLock, authenticateBindings, canonicalFreshOutput, capture, checkOutputBudget, publish,
-  readJson, releaseLock, sha256, validateLauncherEnvironment, validateSourceInventory, writeAll } from './run-f5-ordinary-evolution.mjs';
-import { BATCH_ROOT, SHARED_LOCK, acceptRSS, assertScientificGeneration, descendantRecords,
-  observeBatch, parseHostResource, probeBatch, requireBatch as check, sameIdentity, validateCasePlan } from './f5-batch-admission.mjs';
+import path from 'node:path';
+import * as f5Fs from 'node:fs';
+import * as f5Crypto from 'node:crypto';
+// Bootstrap uses Node builtins only; no repository module runs before selection.
+export async function bootstrapEvolution(root, sourceMapSha256, originalIdentities = {}) {
+  if (!/^[a-f0-9]{64}$/u.test(sourceMapSha256 ?? "")) throw Error("externally selected F5 source-map digest required");
+  const capture = (filename, expected) => {
+    if (f5Fs.realpathSync(filename) !== filename) throw Error("canonical F5 bootstrap source required");
+    const fd = f5Fs.openSync(filename, f5Fs.constants.O_RDONLY | f5Fs.constants.O_NOFOLLOW | f5Fs.constants.O_NONBLOCK);
+    try {
+      const before = f5Fs.fstatSync(fd, {bigint:true});
+      const identity = s => [s.dev,s.ino,s.size,s.mtimeNs,s.ctimeNs].join(":");
+      if (!before.isFile() || before.size <= 0n || before.size > 1024n**2n) throw Error("bounded F5 bootstrap source");
+      const data = f5Fs.readFileSync(fd), sha256 = f5Crypto.createHash("sha256").update(data).digest("hex");
+      if (sha256 !== expected || identity(before) !== identity(f5Fs.fstatSync(fd,{bigint:true})) || identity(before) !== identity(f5Fs.lstatSync(filename,{bigint:true}))) throw Error("F5 bootstrap source digest/original identity changed");
+      if (Object.hasOwn(originalIdentities,filename) && originalIdentities[filename] !== identity(before)) throw Error("F5 original bootstrap identity changed");
+      return {data,identity:identity(before),path:filename};
+    } finally {f5Fs.closeSync(fd);}
+  };
+  const mapPath = path.join(root,"reference/priorities/development-process-review/contracts/option-b-f5-evolution-sources.jsonld");
+  const map = capture(mapPath,sourceMapSha256), admissionPath = "scripts/eom/f5-current-source-admission.mjs";
+  const rows = JSON.parse(map.data)["@graph"]?.filter(r=>r.role==="admission"&&r.binding?.path===admissionPath);
+  if (rows?.length !== 1 || !/^[a-f0-9]{64}$/u.test(rows[0].binding.sha256)) throw Error("exact F5 admission module selection required");
+  const helper = capture(path.join(root,admissionPath),rows[0].binding.sha256);
+  const module = await import("data:text/javascript;base64,"+helper.data.toString("base64"));
+  return module.admitF5Sources(root,sourceMapSha256,{...originalIdentities,[map.path]:map.identity,[helper.path]:helper.identity},"evolution");
+}
+
+let acquireLock,authenticateBindings,canonicalFreshOutput,capture,checkOutputBudget,publish,readJson,releaseLock,sha256,validateLauncherEnvironment,validateSourceInventory,writeAll;
+let BATCH_ROOT,SHARED_LOCK,acceptRSS,assertScientificGeneration,descendantRecords,observeBatch,parseHostResource,probeBatch,sameIdentity,validateCasePlan;
+const check=(ok,why)=>{if(!ok)throw Error(why);};
+export async function initializeBatch(admission=null){
+ const load=relative=>admission?admission.importModule(relative):import(new URL('../../'+relative,import.meta.url));
+ const ordinary=await load('scripts/eom/run-f5-ordinary-evolution.mjs');
+ if(admission)await ordinary.initializeEvolution(admission);
+ ({acquireLock,authenticateBindings,canonicalFreshOutput,capture,checkOutputBudget,publish,readJson,releaseLock,sha256,validateLauncherEnvironment,validateSourceInventory,writeAll}=ordinary);
+ ({BATCH_ROOT,SHARED_LOCK,acceptRSS,assertScientificGeneration,descendantRecords,observeBatch,parseHostResource,probeBatch,sameIdentity,validateCasePlan}=await load('scripts/eom/f5-batch-admission.mjs'));
+}
+if(!new URL(import.meta.url).search && !(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)))await initializeBatch();
+
 
 const delay = ms => new Promise(done=>setTimeout(done,ms));
 const alive = pid => { try { process.kill(pid,0); return true; } catch(e) { if(e.code==='ESRCH')return false; throw e; } };
@@ -57,12 +93,18 @@ export function terminalCensus(planned, states) {
   });
 }
 
-export async function main(argv=process.argv.slice(2), control=null) {
+export async function main(argv=process.argv.slice(2), control=null, originalAdmission=null) {
+  check(argv.at(-2)==='--source-map-sha256'&&/^[a-f0-9]{64}$/u.test(argv.at(-1)??''),'externally selected F5 evolution map required');
+  const selected=argv.at(-1);argv=argv.slice(0,-2);
+  const operational=originalAdmission??await bootstrapEvolution(f5Fs.realpathSync(fileURLToPath(new URL('../../',import.meta.url))),selected);
+  check(operational.sourceMap.sha256===selected,'F5 evolution selection differs');operational.recheck();
+  await initializeBatch(operational);
   check(argv.length===4 && argv[0]==='--plan' && argv[2]==='--phase','Usage: --plan FILE --phase serial|parallel|isolation');
   validateLauncherEnvironment();
   const start=performance.now(), startEpoch=Date.now(), cpuStart=process.resourceUsage();
   const cpuStartCapturedElapsedSeconds=(performance.now()-start)/1000;
   const planBinding=readJson(resolve(argv[1])), plan=planBinding.value, declaration=readJson(plan.declaration.path), d=declaration.value;
+  operational.requireBindings(plan.sourceBindings);operational.requireBindings(d.sourceBindings);
   const synthetic=control!==null;
   if(synthetic){
     check(typeof control.controlId==='string' && /^[a-z][a-z0-9-]{0,63}$/u.test(control.controlId) && plan.syntheticControl?.controlId===control.controlId,'distinct bound synthetic control identity required');
@@ -97,7 +139,7 @@ export async function main(argv=process.argv.slice(2), control=null) {
     immutable.push(predecessor);
   }
   if(synthetic)check(review.value.allowedPhases?.includes(phase.id),'inert control phase not admitted');
-  authenticateBindings(immutable);
+  operational.recheck();authenticateBindings(immutable);
   const states=new Map(phase.cases.map(c=>[c.id,{status:'not-started',stageRecords:[],nextStage:0,owners:[],fds:[],child:null,closed:false}]));
   const owners=new Map(), fds=[];
   const sampleState={beganMs:performance.now(),lastSampleMs:null,lastSampleStartedMs:null,maximumSampleGapMs:0,maximumSampledRSSBytes:0,samples:0};
@@ -222,7 +264,7 @@ export async function main(argv=process.argv.slice(2), control=null) {
     return table;
   };
   const host=async launch=>{
-    authenticateBindings(immutable);validateSourceInventory(d);
+    operational.recheck();authenticateBindings(immutable);validateSourceInventory(d);
     const before=performance.now(), disk=statfsSync(BATCH_ROOT,{bigint:true});
     const text=await probeBatch('/usr/bin/memory_pressure',[]);
     // Preserve raw host admission even when the threshold rejects.
@@ -236,7 +278,7 @@ export async function main(argv=process.argv.slice(2), control=null) {
     check(!state.seenRequests.has(message.requestId),'replayed worker request');state.seenRequests.add(message.requestId);
     const reply=(eventName,fields={})=>{
       check(!stopping && !state.failure && !state.interruption && Date.now()<deadline,'stop/deadline before positive ACK');
-      try{authenticateBindings(immutable);validateSourceInventory(d);}catch(e){stop(`source admission failed: ${e.message}`);throw e;}
+      try{operational.recheck();authenticateBindings(immutable);validateSourceInventory(d);}catch(e){stop(`source admission failed: ${e.message}`);throw e;}
       check(!stopping && Date.now()<deadline,'stop/deadline after ACK admission');
       send(state,{event:eventName,caseId:state.id,requestId:message.requestId,...fields});
     };
@@ -283,16 +325,17 @@ export async function main(argv=process.argv.slice(2), control=null) {
     throw Error('unknown worker protocol message');
   };
   const launch=async(c,state)=>{
-    check(!stopping && Date.now()<deadline,'no remaining phase time');authenticateBindings(immutable);validateSourceInventory(d);
+    check(!stopping && Date.now()<deadline,'no remaining phase time');operational.recheck();authenticateBindings(immutable);validateSourceInventory(d);
     await host(true);
     check(!stopping && Date.now()<deadline,'stop/deadline after host admission');
-    authenticateBindings(immutable);validateSourceInventory(d);
+    operational.recheck();authenticateBindings(immutable);validateSourceInventory(d);
     check(!stopping && Date.now()<deadline,'stop/deadline immediately before spawn');
     const out=openSync(resolve(output,`${c.id}.stdout.ndjson`),'wx',0o600);state.fds.push(out);
     const err=openSync(resolve(output,`${c.id}.stderr.ndjson`),'wx',0o600);state.fds.push(err);
     state.id=c.id;state.case=c;state.status='running';state.startedAt=new Date().toISOString();state.began=performance.now();state.stdoutBytes=0;state.stderrBytes=0;state.seenRequests=new Set();state.queue=Promise.resolve();
     const args=[synthetic?control.worker.path:resolve(BATCH_ROOT,'scripts/eom/run-f5-ordinary-evolution.mjs'),'--declaration',declaration.path,'--out',resolve(c.output),'--batch-plan',planBinding.path,'--batch-case',c.id];
-    const child=spawn(d.runtime.node,args,{cwd:BATCH_ROOT,env:d.runtime.launcherEnvironment,detached:true,stdio:['ignore','pipe','pipe','ipc']});state.child=child;
+    const selectedArgs=synthetic?args:operational.invocation('scripts/eom/run-f5-ordinary-evolution.mjs',[...args.slice(1),'--source-map-sha256',selected]);
+    const child=spawn(d.runtime.node,selectedArgs,{cwd:BATCH_ROOT,env:d.runtime.launcherEnvironment,detached:true,stdio:['ignore','pipe','pipe','ipc']});state.child=child;
     child.once('error',e=>failCase(state,e.message));
     child.on('message',m=>{state.queue=state.queue.then(()=>handle(state,m)).catch(e=>{if(!state.interruption)failCase(state,e.message);});});
     child.stdout.on('data',b=>{try{state.stdoutBytes+=b.length;check(state.stdoutBytes<=1024**2,'worker terminal stdout limit');writeAll(out,b);}catch(e){stop(e.message);}});
@@ -400,7 +443,7 @@ export async function main(argv=process.argv.slice(2), control=null) {
     process.off('SIGINT',onSignal);process.off('SIGTERM',onSignal);process.stderr.off('error',outputFailure);
   }
   check(existsSync(output),'batch failed before evidence directory creation');
-  try{authenticateBindings(immutable);validateSourceInventory(d);}catch(e){failed??=e.message;}
+  try{operational.recheck();authenticateBindings(immutable);validateSourceInventory(d);}catch(e){failed??=e.message;}
   const cpuEnd=process.resourceUsage(),cpuEndCapturedElapsedSeconds=(performance.now()-start)/1000,census=terminalCensus(phase.cases,states);
   let userCpuMicroseconds=null,systemCpuMicroseconds=null,cpuMeasurementFailure=null;
   try {
@@ -445,6 +488,7 @@ export async function main(argv=process.argv.slice(2), control=null) {
   authenticateBindings([binding,inventoryBinding]);check(Date.now()<hardDeadline,'original campaign deadline reached during final inventory');
   process.stdout.write(JSON.stringify({...binding,accepted:false,syntheticControl:synthetic,benchmarkEligible:false,operationallyClosed:!cleanupUnresolved,inventory:inventoryBinding,finalOutputBytes,
     elapsedSecondsThroughFinalInventory:(performance.now()-start)/1000})+'\n');
+  operational.recheck();
   if(failed||cleanupUnresolved)process.exitCode=1;
 }
-if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url))main().catch(e=>{process.stderr.write(JSON.stringify({accepted:false,failure:e.message})+'\n');process.exitCode=1;});
+if(!new URL(import.meta.url).search&&process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url))main().catch(e=>{process.stderr.write(JSON.stringify({accepted:false,failure:e.message})+'\n');process.exitCode=1;});

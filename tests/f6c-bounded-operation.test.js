@@ -30,7 +30,9 @@ test('immutable exact resource limits and inert stage plan',t=>{
   assert.deepEqual([C.LIMITS.inclusiveMilliseconds,C.LIMITS.aggregateRSSBytes,C.LIMITS.rssPollMilliseconds,C.LIMITS.maximumRSSGapMilliseconds,C.LIMITS.scientificBytes,C.LIMITS.combinedLogBytes,C.LIMITS.serialWorkers],
     [1800000,2147483648,250,1000,67108864,16777216,1]);
   assert.ok(C.validatePlan(plan,root).length>0);
-  for(const mutate of [p=>p.limits={},p=>p.stages[0].runtimeBindings=[],p=>p.stages.push(p.stages[0]),p=>p.stages[0].id='../escape',p=>p.stages[0].args=[1],p=>p.stages[0].args=['--operation-deadline-ns','1'],p=>p.outputDirectories=[p.operationDirectory],p=>p.outputDirectories=[root],p=>p.sources=[],p=>p.stages[0].entry.bytes=1048577]){
+  const capabilitiesOnly=structuredClone(plan);capabilitiesOnly.sources=[];capabilitiesOnly.stages[0].runtimeBindings=[];
+  assert.ok(C.validatePlan(capabilitiesOnly,root).some(b=>b.path===plan.hookModule.path),'authored hooks remain bound without host-runtime hashes');
+  for(const mutate of [p=>p.limits={},p=>p.stages[0].runtimeBindings=[{}],p=>p.stages.push(p.stages[0]),p=>p.stages[0].id='../escape',p=>p.stages[0].args=[1],p=>p.stages[0].args=['--operation-deadline-ns','1'],p=>p.outputDirectories=[p.operationDirectory],p=>p.outputDirectories=[root],p=>p.sources=null,p=>p.stages[0].entry.bytes=1048577]){
     const p=structuredClone(plan);mutate(p);assert.throws(()=>C.validatePlan(p,root));
   }
 });
@@ -129,7 +131,7 @@ test('production entries reject absent or invented actual lifetime before any wo
 });
 
 test('direct CLI has exact flags, absolute plan and explicit hashes',()=>{
-  assert.deepEqual(C.parseArguments(['--plan','/private/tmp/plan.json','--plan-sha256','a'.repeat(64),'--self-sha256','b'.repeat(64)]),{planPath:'/private/tmp/plan.json',planSha256:'a'.repeat(64),selfSha256:'b'.repeat(64)});
+  assert.deepEqual(C.parseArguments(['--plan','/private/tmp/plan.json','--plan-sha256','a'.repeat(64),'--self-sha256','b'.repeat(64),'--source-map-sha256','c'.repeat(64)]),{planPath:'/private/tmp/plan.json',planSha256:'a'.repeat(64),selfSha256:'b'.repeat(64),sourceMapSha256:'c'.repeat(64)});
   for(const args of [[],['--help'],['--plan','relative','--plan-sha256','a'.repeat(64),'--self-sha256','b'.repeat(64)],['--plan','/tmp/p','--plan-sha256','bad','--self-sha256','b'.repeat(64)]])assert.throws(()=>C.parseArguments(args));
 });
 
@@ -264,7 +266,7 @@ test('fixed control profile contracts every nested cutoff without altering scien
 test('finite control CLI accepts no arbitrary duration or mixed-mode fallback',()=>{
   const parse=runInNewContext(fragment('function parseWholeArguments(', '\nasync function wholeAttemptMain')+'\nparseWholeArguments',
     {parseArguments:C.parseArguments,absolute:()=>{},hashToken:h=>assert.match(h,/^[a-f0-9]{64}$/u),check:checked});
-  const fixed=['--control-plan','/fixture/plan.json','--plan-sha256','a'.repeat(64),'--self-sha256','b'.repeat(64)];
+  const fixed=['--control-plan','/fixture/plan.json','--plan-sha256','a'.repeat(64),'--self-sha256','b'.repeat(64),'--source-map-sha256','c'.repeat(64)];
   const parsed=parse(fixed);assert.equal(parsed.mode,'plan');assert.equal(parsed.control,true);assert.equal(parsed.planPath,'/fixture/plan.json');
   for(const bad of [fixed.slice(0,-1),[...fixed,'--duration','120'],['--control-plan=120',...fixed.slice(1)],['--plan',...fixed.slice(1),'--control-plan'],['--control-plan','--streamed',...fixed.slice(2)]])assert.throws(()=>parse(bad));
   const main=fragment('async function wholeAttemptMain(){','\nif(process.argv[1]');
@@ -400,6 +402,6 @@ test('combined path reserve precedes initial logs, publication and registered lo
   assert.ok(registered.indexOf('two registered log paths fit combined allowance')<registered.indexOf('s.outer.superviseRegisteredPilot'));
   for(const prior of [510,511,512])assert.equal(prior+2<=512,prior===510);
   const worker=fragment('function lifetimeFileWorker(', '\nasync function lifetimeRegistered');
-  assert.match(worker,/runFileWorker\(\{\.\.\.job,deadlineNanoseconds:s\.deadlineNanoseconds,priorContext:s\.priorContext\}/u);
+  assert.match(worker,/runFileWorker\(\{\.\.\.job,\.\.\.\(s\.mode==='plan'\?s\.sourceAdmission:\{\}\),deadlineNanoseconds:s\.deadlineNanoseconds,priorContext:s\.priorContext\}/u);
   assert.match(fragment('export async function fileOperation(', '\n// PRIVATE SOURCE CANDIDATE'),/outputCensus\(job\.plan,new Map\(\),job\.priorContext\)/u);
 });

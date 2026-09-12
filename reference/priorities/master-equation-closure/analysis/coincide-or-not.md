@@ -21,6 +21,8 @@ The rank-three calculation belongs to the smooth stationary-source comparison fi
 
 ## Scope
 
+Current population extension: the [rigid-cell investigation](#rigid-cell-moment-cancellation-and-its-delayed-obstruction) derives a sum-and-continuity obstruction despite exact equal-time moments and complete regular roots, and gives sufficient conditions on actual delayed weighted moments for integrable cell tails. The new proof awaits independent adjudication. This preserves the accepted finite contact result and the separate restricted-domain population results; it does not adjudicate dense-population contact or incidence.
+
 This packet is the analytical owner of MEC-008. It asks one question that the completed collinear programs deliberately do not answer.
 
 > In a populated universe of many architrinos in general position, with no imposed symmetry, can two architrinos reach the same point of the Euclidean void at the same absolute time?
@@ -40,6 +42,18 @@ The word `possible` separates into three questions that must not be merged.
 3. **Boundary definition and continuation:** if an admissible history reaches $d=0$, what event object is defined there and which outgoing retained history follows? These are downstream of reachability. Assigning a value at the single endpoint neither proves arrival nor selects a continuation.
 
 Thus the run-up and reachability are the same analytical subproblem viewed from evolution and endpoint perspectives, while reachability and continuation are different problems. A domain-exclusion theorem closes MEC-008 without an event rule; a boundary-reaching counterexample makes a derived event rule and continuation theorem unavoidable.
+
+## Environment and perturbation assumptions
+
+Every scenario comparison distinguishes the presence of other labels from a perturbation of a specified reference history. Isolation removes external acceleration contributions; it does not prohibit changing the pair's own pasts. Conversely, the exact stationary infinite lattice is a populated equilibrium under its declared summation prescription, not an environment-free encounter. Its zero total acceleration at anchors results from balancing nonzero contributions and need not survive a history change or receiver displacement.
+
+The [manuscript scenario comparison](../manuscript.md#31-three-distinct-questions) records these assumptions together. The isolated mirror control uses exact stationary collinear input. The finite four-particle contact control has an evolving environment and exact reflection with polarity reversal; that symmetry keeps target transverse displacements equal. The explicit one-target transverse perturbation breaks that condition and gives the stated finite-interval miss. It changes the supplied past, rather than injecting an externally prescribed disturbance during the future evolution. These results establish neither robustness under all small admissible changes nor a contact probability in a physical population.
+
+The infinite-population controls require an additional timing distinction. Two modified complete pasts give a finite correction to the stationary reference at release; the later environmental histories are solved under the equation. In the accepted smooth example the old disturbance has not yet arrived during the initial waiting interval, and its reception subsequently produces motion. In contrast, the broad-class and rigid-cell obstructions prescribe coordinated changes at distant emission times across infinitely many cells, or across growing finite sets. They test history-domain admissibility and continuity; they are not proved outcomes of the two-label disturbance's evolution. Rigid translation preserves equal-time cell moments but does not preserve cancellation of the actual delayed weighted contributions.
+
+For a target pair, environmental acceleration matters through the difference of the two complete external sums. Its contribution to the derivative of relative areal rate is the separation vector crossed with that difference, as derived in the manuscript. Neither population count nor the word perturbation determines whether this contribution vanishes, persists, or changes sign. Each use below must name the changed histories, the retained symmetry or quantitative bounds, and whether the environment is absent, exactly balanced, or evolving. A population-distribution claim additionally requires a specified distribution; a deterministic environment does not automatically produce random transverse acceleration.
+
+Claim grade: the scenario distinctions restate the hypotheses of the cited controls, and the relative-acceleration identity is derived by differentiating the cross product. They introduce no new robustness theorem. Falsifiers are an omitted external root contribution in an allegedly isolated or balanced control, a symmetry-breaking history admitted by a claimed symmetry argument, or an evolved disturbance outside the stated bounds or reception interval.
 
 ## MEC-008 acceptance conditions
 
@@ -1472,6 +1486,223 @@ The [lineage-gated quintic candidate](diagonal-birth-lineage-causal-wake-candida
 The finite spiral packets contribute proof patterns for root tubes, complement gaps, and implicit transport. Their particular finite-memory windows and constants do not become uniform bounds for an infinite Euclidean population. The compact-torus contact argument in the [topological ledger owner](topological-causal-root-ledger-proof-target.md) likewise is not a noncompact population limit: its retained horizon grows with the torus size. Pressure, mass, Lorentz/GR, and other observer-level response maps remain downstream targets.
 
 
+### Rigid-cell moment cancellation and its delayed obstruction
+
+Vanishing spatial moments at every absolute time do not suffice to make the delayed population update converge. The obstruction survives even when each alternating eight-source cell translates rigidly, so that none of its internal separations changes. Different vertices emit at different times; one common cell velocity can therefore have different values at the eight received emissions. The transmitter weights then defeat the spatial cancellation. This section derives that stronger obstruction and the corresponding history-sensitivity failure. It is a new derived result awaiting independent adjudication, not a new acceptance decision.
+
+The [accepted summation obstruction](population-summation-independent-adjudication.md) allows independent source motions. The additional question here is whether imposing exact equal-time cell moments removes that failure. The construction uses the same lattice and the same compact pulse polynomial, but correlates all eight histories within each selected cell. It supplies an infinite population and its finite restrictions. The [accepted restricted-envelope theorem](population-admissibility-independent-adjudication.md) remains valid on its different domain and topology.
+
+#### Declared dense class and quantifiers
+
+Take the complete-history class in [population-history-class.md](population-history-class.md), with release cut zero and normalized wake speed $c_f=1$. Labels are $j\in\mathbb Z^3$, anchors are $\mathbf z_j=\ell j$, charges are $q_j=q_0\sigma_j$ with $\sigma_j=(-1)^{j_1+j_2+j_3}$, and $G=\kappa q_0^2>0$. Both charge magnitudes and charge-product magnitudes are fixed. Targets are labels $0$ and $e_1$. Choose $\ell=L/100$ for the declared reference scale $L$. The complete real-valued paths have domain $(-\infty,0]$; none is assumed to solve the EOM before release.
+
+Restrict environmental histories further to the form
+
+$$
+P_n=\{2n+\epsilon:\epsilon\in\{0,1\}^3\},\qquad
+\mathbf X_j(s)=\mathbf z_j+\mathbf u_n(s),\quad j\in P_n.
+$$
+
+The cells $P_n$ are a fixed diagnostic partition. Cells containing a target are stationary in the witness. Each $\mathbf u_n$ is $C^3$; impose the original displacement ceiling $\ell/16$, speed ceiling $4$, acceleration-of-input ceiling $256/\ell$, and third-time-derivative ceiling $65536/\ell^2$, together with the original release separation and complete regular-root conditions. The topology is the relative complete-past norm
+
+$$
+\|h\|_{\mathcal H}
+=\sup_{j,s\le0}\frac{\|h_j(s)\|}{\ell}
++\sup_{j,s\le0}\|\dot h_j(s)\|.
+$$
+
+Cell-common perturbations are allowed independently between cells. This is a restriction of the existing prescribed-input class for testing a proposed sufficient condition; it is not adoption of rigid physical assemblies. The speed ceiling is a class bound, not a primitive speed law. On the witness below, the stronger slow-source and root conditions are derived directly.
+
+For every $s\le0$, every center $\mathbf x$, and $R\ge40\ell$, the inherited displacement-to-cube comparison gives
+
+$$
+4\pi\ell^{-3}R^3
+\le\#\{j:R\le\|\mathbf X_j(s)-\mathbf x\|<2R\}
+\le16\pi\ell^{-3}R^3.
+$$
+
+In particular the lower density coefficient times $L^3$ is $4\pi10^6$, exceeding the declared high-density threshold $10^6$. Spatial local finiteness follows from the same bounded displacement. The proposed future interval is $J=[0,\ell/256]$. Only the past is prescribed; a sum failure at $T=0$ already defeats a uniform update on $J$, without assigning any future. Finite restrictions use all cells with $\|n\|_\infty\le N$. They exhaust the infinite class member but cannot satisfy a positive density lower bound beyond their finite extent.
+
+For each multi-index $\alpha=(\alpha_1,\alpha_2,\alpha_3)$ of total degree $|\alpha|\le2$, rigid translation preserves
+
+$$
+\sum_{j\in P_n}\sigma_j\mathbf X_j(s)^\alpha=0
+\qquad(s\le0).
+$$
+
+Here $\mathbf x^\alpha=x_1^{\alpha_1}x_2^{\alpha_2}x_3^{\alpha_3}$. Expanding the common translation leaves a polynomial in the three binary coordinates of total degree at most two. Every monomial misses at least one coordinate, whose alternating sum is zero. Thus signed charge, position, and quadratic spatial moments vanish identically in time, including their time derivatives wherever defined. These identities are stronger than cancellation only at release or only at sampled emission positions.
+
+Claim grade: derived for the moment and density implications; guessed for interpreting this restricted class as a physical population. Falsifier: a cell polynomial of degree at most two with nonzero signed sum, or a shell violating the stated cube bounds under the displacement ceiling. Neither implication establishes preservation by the EOM.
+
+#### Which moments actually yield an integrable tail
+
+Fix a receiver event $(\mathbf x,T)$ and a distant cell with fixed anchor center $\mathbf c$. Write $\mathbf y=\mathbf x-\mathbf c=R\mathbf n$, $P=I-\mathbf n\mathbf n^{\mathsf T}$, and $\boldsymbol\xi_b=\mathbf X_j(s_b)-\mathbf c$ at each actual root $b$, retaining its source label $j$. Assume $\|\boldsymbol\xi_b\|\le a$ uniformly. For $R\ge2a$, direct expansion of the Euclidean norm and unit vector gives
+
+$$
+\begin{aligned}
+r_b&=R-\mathbf n\cdot\boldsymbol\xi_b
++\frac{\|P\boldsymbol\xi_b\|^2}{2R}+O(a^3R^{-2}),\\
+\hat{\mathbf r}_b&=\mathbf n-\frac{P\boldsymbol\xi_b}{R}
+-\frac{(\mathbf n\cdot\boldsymbol\xi_b)P\boldsymbol\xi_b
++\tfrac12\|P\boldsymbol\xi_b\|^2\mathbf n}{R^2}
++O(a^3R^{-3}),\\
+s_b&=T-R+\mathbf n\cdot\boldsymbol\xi_b
+-\frac{\|P\boldsymbol\xi_b\|^2}{2R}+O(a^3R^{-2}),\\
+D_b&=1-\mathbf n\cdot\mathbf V_j(s_b)
++\frac{P\boldsymbol\xi_b\cdot\mathbf V_j(s_b)}{R}
++O(a^2V_*R^{-2}).
+\end{aligned}
+$$
+
+The source position and velocity in these formulas are evaluated at the actual implicit emission time. The expansions describe an admitted root; they do not construct or count roots. In particular $s_b-(T-R)$ is generally of order cell diameter, rather than tending to zero with $R$. Bounded nonstationary acceleration allows velocity differences of that order between emissions. Replacing all $\mathbf V_j(s_b)$ by one simultaneous velocity would discard a leading contribution.
+
+Define the delayed transmitter-weighted moments
+
+$$
+\mu_0=\sum_b\frac{\sigma_j}{|D_b|},\qquad
+\boldsymbol\mu_1=\sum_b\frac{\sigma_j\boldsymbol\xi_b}{|D_b|},\qquad
+\boldsymbol\mu_2=\sum_b\frac{\sigma_j\boldsymbol\xi_b\otimes\boldsymbol\xi_b}{|D_b|}.
+$$
+
+With $K(\mathbf y)=\mathbf y/\|\mathbf y\|^3$, the exact-root spatial Taylor expansion is
+
+$$
+\frac{\mathbf B_{ic}}{G\sigma_i}
+=\mu_0K(\mathbf y)-DK(\mathbf y)[\boldsymbol\mu_1]
++\tfrac12D^2K(\mathbf y):\boldsymbol\mu_2+O(R^{-5}).
+$$
+
+The colon denotes contraction of both derivative arguments against the second-moment tensor. The remainder is uniform with bounded cell diameter, root count, and $|D_b|^{-1}$. Homogeneity gives $D^kK=O(R^{-2-k})$. Therefore $\mu_0=\boldsymbol\mu_1=0$ with bounded $\boldsymbol\mu_2$ is a sufficient condition for $O(R^{-4})$ cell acceleration; also cancelling $\boldsymbol\mu_2$ yields $O(R^{-5})$. These are sufficient moment conditions, not necessary conditions for every possible vector cancellation. Approximate bounds $|\mu_0|=O(R^{-2})$ and $\|\boldsymbol\mu_1\|=O(R^{-1})$ also suffice for $O(R^{-4})$, at fixed cell scale.
+
+A history derivative needs the differentiated conditions too. At a regular root, a direct variation satisfies
+
+$$
+\delta s_b=-\frac{\hat{\mathbf r}_b\cdot[h_i(T)-h_j(s_b)]}{D_b},\qquad
+\delta\boldsymbol\xi_b=h_j(s_b)+\mathbf V_j(s_b)\delta s_b,
+$$
+
+$$
+\delta D_b=-\delta\hat{\mathbf r}_b\cdot\mathbf V_j(s_b)
+-\hat{\mathbf r}_b\cdot[\dot h_j(s_b)+\mathbf A_j^{\rm hist}(s_b)\delta s_b].
+$$
+
+The cell centers are fixed, while $\delta\mathbf y=h_i(T)$. Uniform bounds on source acceleration, root count and transmitter factors bound $\delta\boldsymbol\xi_b$ and $\delta D_b$ for a unit history variation. Differentiating the spatial Taylor remainder then keeps it $O(R^{-5})$: variation of its coefficient is bounded, variation of its spatial argument produces $O(R^{-6})$, and variation of a source offset remains bounded. If the exact zeroth and first weighted moments vanish throughout a differentiable constrained family, their tangent derivatives vanish as well. Bounded second moments and their tangent derivatives then give $D_{\mathcal H}\mathbf B_{ic}=O(R^{-4})$ on that family. A vanishing moment at one history alone does not remove $\delta\mu_0 K=O(R^{-2})$ under arbitrary perturbations. Approximate moment bounds need corresponding operator-norm derivative bounds, not only small values.
+
+On a neighborhood $\mathcal U$ and compact interval $J$ with a complete persistent root chart, these uniform $R^{-4}$ estimates and cubic cell counts give acceleration and derivative tails $O(R^{-1})$ by the earlier dyadic theorem. Passing from those derivative estimates to differentiability of the infinite functional additionally requires a uniform first-order remainder on the chosen history family; that remainder is an explicit hypothesis here. This establishes a conditional whole-cell result only. It neither selects a physical partition nor permits arbitrary source rearrangements. Folds, root births and unbounded multiplicity can invalidate the constants or differentiation; they must be excluded by proved margins or treated by a separate theorem. Local finiteness for each ordered pair alone does not protect the limit.
+
+Claim grade: derived under the stated expansion, tangent-family and uniform-margin assumptions. Falsifiers: an error in the displayed norm expansion, an omitted moving-emission term, or a family satisfying all uniform estimates with a nonvanishing complete-cell tail. Equal-time spatial moments do not satisfy these weighted hypotheses merely by sharing a name.
+
+#### A rigid translation with distinct received velocities
+
+The following exact construction tests that distinction without approximating any root in the signed-divergence calculation. Fix receiver zero and a unit direction $\mathbf e=(1,2,4)/\sqrt{21}$. A cell center is $\mathbf c_n=\ell(2n+(1/2,1/2,1/2))$. Select cells with $\|\mathbf c_n\|\ge100\ell$ whose direction toward the receiver satisfies
+
+$$
+\left\|-\frac{\mathbf c_n}{\|\mathbf c_n\|}-\mathbf e\right\|
+\le\vartheta,\qquad \vartheta=\frac1{16\sqrt{63}}.
+$$
+
+Let $d_j=\|\mathbf z_j\|$ and $\mathbf n_j=-\mathbf z_j/d_j$. Distinct vertices in a selected sufficiently distant cell have distinct distances, separated uniformly by at least $\ell/(2\sqrt{21})$. To check this, write their centered offsets as $\mathbf a_j=\ell(\epsilon-(1/2,1/2,1/2))$. For a nonzero difference $v\in\{-1,0,1\}^3$, the integer $v_1+2v_2+4v_3$ cannot vanish: the largest nonzero weighted coordinate exceeds the sum of the smaller ones. Hence $|\mathbf e\cdot v|\ge1/\sqrt{21}$. The direction-cone error is at most $\sqrt3\vartheta=1/(16\sqrt{21})$. Taylor expansion of $\|\mathbf c_n+\mathbf a_j\|$ has error at most $\|\mathbf a_j\|^2/[2(\|\mathbf c_n\|-\|\mathbf a_j\|)]$, by the norm Hessian bound. The difference of two such errors tends uniformly to zero as the cell radius grows. These bounds prove the distance gap after a fixed finite cutoff, which can also ensure $\mathbf n_j\cdot\mathbf e\ge1/2$ and $d_j>10\ell$. No selected cell contains a target.
+
+Set the pulse width $b=\ell/(16\sqrt{21})$ and reuse the $C^3$ polynomial
+
+$$
+\psi(t)=\begin{cases}t(1-t^2)^4,&|t|<1,\\0,&|t|\ge1.\end{cases}
+$$
+
+Its value and slope at zero are $0$ and $1$. Termwise polynomial bounds give $\|\psi\|_\infty\le16$, $\|\psi'\|_\infty\le80$, $\|\psi''\|_\infty\le384$, and $\|\psi'''\|_\infty\le1728$. For $0<\nu\le1/1024$, prescribe one common displacement for every vertex of a selected cell:
+
+$$
+\mathbf u_n(s)=\nu b\,\mathbf e
+\sum_{j\in P_n}\sigma_j\psi\!\left(\frac{s+d_j}{b}\right),\qquad s\le0.
+$$
+
+Unselected cells stay stationary. Within a cell the eight pulse centers are separated by at least $8b$, so supports are disjoint; at every time at most one term is nonzero. All supports precede release. Consequently
+
+$$
+\|\mathbf u_n\|_\infty\le16\nu b<\ell/64,\quad
+\|\dot{\mathbf u}_n\|_\infty\le80\nu\le5/64,\quad
+\|\ddot{\mathbf u}_n\|_\infty\le384\nu/b<256/\ell,\quad
+\|\mathbf u_n^{(3)}\|_\infty\le1728\nu/b^2<65536/\ell^2.
+$$
+
+The norm distance to stationary input is at most $(16b/\ell+80)\nu$. At any one of the eight times $s=-d_j$, the common displacement is zero and its common velocity is $\nu\sigma_j\mathbf e$. These different sampled velocities arise from one shared translating cell history, not independent deformation of its vertices. Every cell's signed spatial moments through degree two remain exactly zero at all times.
+
+Admission holds for every receiver at release. All receivers are at their anchors. Every cross-channel range is at least $63\ell/64$. With $v=80\nu$, the residual $f_{ij}(\tau)=\tau-\|\mathbf z_i-\mathbf X_j(-\tau)\|$ obeys
+
+$$
+f_{ij}(\tau_2)-f_{ij}(\tau_1)\ge(1-v)(\tau_2-\tau_1).
+$$
+
+It starts negative and tends to positive infinity, so every cross channel has exactly one root. Its transmitter factor is at least $59/64$; the original half-width $w=\ell/256$ root tube lies inside positive delay, and its complement has gap at least $(59/64)w>w/4$. Each self residual is at least $(59/64)\tau$, so all positive-delay self channels are empty and both self-complement conditions hold. Bounded displacement confines every cross root to its finite anchor-distance window; no all-earlier emission is omitted and no population-wide finite-memory cutoff is imposed. Thus multiplicity one, complete root provenance, range floors and transmitter margins survive uniformly, without a fold or root birth being responsible for the failure below.
+
+For receiver zero the complete root from selected source $j$ is exactly $s_j=-d_j$, since $\mathbf X_j(-d_j)=\mathbf z_j$. Range and direction are exactly $d_j$ and $\mathbf n_j$. Put $t_j=\mathbf n_j\cdot\mathbf e\ge1/2$. The complete row and its stationary difference are
+
+$$
+\mathbf F_j=\frac{G\sigma_j\mathbf n_j}{d_j^2(1-\nu\sigma_jt_j)},\qquad
+\Delta\mathbf F_j=\frac{G\nu t_j\mathbf n_j}{d_j^2(1-\nu\sigma_jt_j)},\qquad
+\mathbf e\cdot\Delta\mathbf F_j
+\ge\frac{G\nu}{4(1+\nu)d_j^2}>0.
+$$
+
+Unselected sources have zero correction. The positive projection is exact at every selected source. For a selected cell its weighted zeroth moment already satisfies
+
+$$
+\mu_0=\sum_{j\in P_n}\frac{\sigma_j}{1-\nu\sigma_jt_j}
+=\sum_{j\in P_n}\frac{\nu t_j}{1-\nu\sigma_jt_j}
+\ge\frac{4\nu}{1+\nu}.
+$$
+
+There is therefore an inverse-square leading cell contribution despite exact equal-time cancellation through quadratic order. The mechanism uses only $D_t$; no receiver playback factor enters.
+
+The chosen cutoff $100\ell$ suffices for the distance argument: the difference of norm-expansion errors is at most $3\ell^2/[4(100\ell-\sqrt3\ell/2)]<\ell/132<\ell/(4\sqrt{21})$. Together with the direction error this leaves more than $\ell/(2\sqrt{21})$ between distinct vertex distances. The vertex direction differs from the center direction by at most $\sqrt3/(100-\sqrt3/2)$, which also verifies $t_j>1/2$ throughout the selected cone.
+
+Claim grade: derived, pending independent adjudication. Falsifier: overlapping pulse supports despite the distance gap, violation of a stated uniform class/root bound, failure of an equal-time moment identity, or failure of the exact positive row subtraction. EOM incompatibility of a prescribed past is not a falsifier of this initial-history theorem; an all-time EOM history would be a different class.
+
+#### Signed divergence, derivative tails and finite modifications
+
+The selected cone contains a positive density of whole cells. An explicit counting lower bound avoids relying on a divergent upper majorant. Put $\beta=\vartheta/8$. For sufficiently large $R$, centers in the ball of radius $\beta R$ about $-3R\mathbf e/2$ are selected, and every associated vertex has distance in $[R,2R]$. Normalizing a vector perturbed from $-3R\mathbf e/2$ changes its direction by at most $2\beta/(3/2-\beta)<\vartheta$. Cell centers have cubic spacing $2\ell$ and covering radius $\sqrt3\ell$. Every point in the concentric ball of radius $\beta R/2$ belongs to a center cube whose center is in the larger ball once $\sqrt3\ell\le\beta R/2$. Comparing its volume with $8\ell^3$ gives at least
+
+$$
+\frac{\pi\beta^3}{48}(R/\ell)^3
+$$
+
+selected cells. The exact source correction bound, eight vertices per cell and $d_j\le2R$ then give
+
+$$
+\sum_{\text{these cells}}\mathbf e\cdot\Delta\mathbf B_n
+\ge C_*\frac{G\nu R}{\ell^3},\qquad
+C_* =\frac{\pi\beta^3}{96(1+1/1024)}>0.
+$$
+
+The stationary complete-cell series is absolutely convergent by the accepted third finite-difference theorem; its tail is $O(GR^{-2})$. Every added cell correction has nonnegative projection, and the displayed growing lower bound proves infinite total correction. Hence every exhaustive ordering of these complete cells has projected acceleration tending to positive infinity. Grouping finitely many entire cells together cannot repair it. For another partition whose stationary baseline converges along its exhaustion, the same nonnegative individual-source corrections also diverge. A prescription with a nonconvergent stationary baseline is not covered by that comparison and is not selected here.
+
+This proves pointwise sum failure arbitrarily close to stationary input in the relative rigid-cell norm. It also defeats the requested $\eta_N(J)\to0$ on every neighborhood containing those inputs, since $0\in J$. This is an obstruction to the proposed universe class, not a collision-exclusion theorem.
+
+The obstruction to a bounded history derivative persists even if all infinite divergent inputs are removed. Modify only the finitely many selected cells in the displayed radius-$R$ ball. For this fixed support the canonical acceleration increment is finite, and differentiation at amplitude zero is legitimate without exchanging infinite limits:
+
+$$
+\left.\frac{d}{d\nu}\mathbf F_j\right|_{\nu=0}
+=\frac{G t_j\mathbf n_j}{d_j^2}.
+$$
+
+The generating history direction has norm at most $C_h=16b/\ell+80$, independently of $R$, while its projected derivative sum is at least $C_*GR/\ell^3$. Thus the finite-tail derivative operator norms grow at least as $C_*GR/(C_h\ell^3)$ on cell-common directions. No bounded derivative at the stationary input can agree with every canonical finite source modification in this topology.
+
+For continuity itself, take the same finite shell with amplitude $\nu_R=\nu_0\ell/R$, where $0<\nu_0\le1/1024$. Its history norm is at most $C_h\nu_0\ell/R\to0$, but its exact acceleration increment has projection at least $C_*G\nu_0/\ell^2>0$. Each member has a convergent stationary background plus finitely many changed source rows and retains all equal-time cell moments. Therefore no continuous extension respecting those finite increments exists on this relative neighborhood. The number of modified cells grows with $R$; this result says nothing adverse about continuity on two fixed changed labels or any fixed finite support.
+
+Claim grade: derived, pending independent adjudication. Falsifiers: failure of the explicit ball/cube count or signed lower bound, a finite whole-cell limit despite the nonnegative infinite correction, or a continuous finite-increment-preserving extension despite the displayed small-norm sequence. A finite numerical sum or small finite-population residual cannot falsify a quantified tail theorem on its own.
+
+#### Coincidence disposition and the direct follow-on boundary
+
+The rigid-cell restriction fails the first mathematical target: density, complete histories, exact spatial moments through quadratic order, one simple cross root per source and uniform transmitter margins still do not define a finite acceleration on a neighborhood of stationary input. Consequently this class cannot support the requested class-wide differentiable flow or its coincidence/genericity transfer. Its failure does not prove that all its individual histories lack EOM futures, and it does not remove the stationary solution under the reviewed block prescription. It proves neither domain-wide contact exclusion nor high-density contact reachability.
+
+There are two distinct surviving conditional routes. The actual delayed weighted moment and tangent conditions above yield integrable whole-cell tails if an EOM family preserves them. Separately, the [independently accepted distant-past-envelope proposal](population-admissibility-independent-adjudication.md) supplies acceleration and relative-derivative tails when deviations and their required time derivatives decay with integrable past-age envelope, plus summable persistent deviations. Its power threshold is $p>1$, and it remains an additional unadopted domain/topology choice. The rigid-cell witness falls outside that proposal: it has fixed nonzero sampled velocities at arbitrarily old emission times on infinitely many labels. These conditional positive results have not been contradicted.
+
+The finite-modification population route also survives. Its accepted [full-pulse control](smooth-two-particle-pulse-independent-adjudication.md) has a bounded nonstationary EOM interval under its fixed complete histories and summation prescription; it does not embed the four-particle contact construction. The new negative theorem concerns independently adjustable cell histories at indefinitely old times, not environmental motion generated by that accepted control.
+
+To reach contact in an admitted limit still requires uniform coupled EOM estimates, complete root provenance and a one-sided symmetry/crossing proof. To exclude contact requires an invariant region derived from the same update. The earlier shrinking-cone theorem remains conditional on its positive coefficient and bounded remainder, neither supplied by density or spatial moments. To claim local codimension two requires a differentiable admissible history/time slice whose relative-position map has rank three, together with persistence of its full incoming root census. No probability measure or universe-wide incidence statement is selected.
+
+The present mathematical stopping point is the explicit sum-and-continuity obstruction, together with the stronger delayed conditions that a successful cell construction must satisfy. Independent reconstruction of the rigid-cell proof is required before accepting the new result. An expanding-population EOM control for this negative class cannot test convergence of a functional already divergent at release; such a run is therefore not an appropriate next instrument. The existing finite-support evolution and any separately selected admissible infinite class retain their own continuation and approximation obligations.
+
 ## Blow-Up Admissibility
 
 The answer is chart-dependent. A surviving inverse-square partner row has no nondegenerate bounded-velocity blow-up, while the incoming causal-shadow chart has a one-sided continuous blow-up because its relative acceleration remains bounded. Neither construction supplies a two-sided continuation across the change in root admission.
@@ -1763,7 +1994,7 @@ Stated at full strength, without hedging, so that it can be defeated on its meri
 
 **R2. For opposite polarity the accumulated update points inward.** By the near-field lemma the magnitude grows like $|D_t|/d^{2}$, and for opposite polarity its radial component is directed along the closing direction. Approach reduces $D_t$ and therefore suppresses the coefficient relative to the static case, but it does not remove the inverse-square growth. On the radial row alone, no repulsive contact barrier exists to invoke.
 
-**R3. A populated universe destroys every isolation-based protection.** Barrier and conservation arguments constructed for an isolated pair have no referent when each architrino receives contributions from an enormous number of transmitters. There is no closed subsystem for which a relative account can be conserved, so the transverse barrier of the previous section must be defended as a scaling statement rather than as a conservation statement.
+**R3. Environmental contributions require a new check of an isolated-pair argument.** An argument that omits other transmitters does not transfer to a populated pair without accounting for their complete delayed acceleration sums. Population alone does not prove that a protection is destroyed: exact symmetry or a proved remainder bound may preserve the relevant relative-motion property. The transverse barrier therefore needs the actual environmental bound stated in its theorem; no conserved pair account is assumed here.
 
 **R4. $\mathbb{A}\mathbb{A}\mathbb{A}$ contains structures that deliberately revisit small separation.** Bound opposite-polarity pairs are basic constituents, not rare accidents. Each is a configuration that returns to small separation repeatedly over cosmological durations. Measure-zero-for-a-random-draw is weak protection against a structure whose function is to revisit the neighborhood.
 
@@ -1777,7 +2008,7 @@ Stated at full strength, without hedging, so that it can be defeated on its meri
 
 **O2. Divergent accumulated update is a barrier in the strict sense.** MEC-007's exact result that the newborn self-root measure has infinite total variation is the collinear instance of a general form of argument: a functional that is monotone along admissible histories and unbounded at the target makes the target unreachable. This form is indifferent to genericity, which is what makes it stronger than codimension counting.
 
-**O3. Exact aim is two conditions and a populated environment never holds them.** Coincidence requires $h=0$ exactly at exactly the right instant. A populated environment perturbs every pair transversally and continuously. Failing to hold an exact transverse condition is the one thing an environment can be relied upon to do.
+**O3. Symmetry-breaking perturbations can remove exact aim.** The explicit one-target transverse change gives a miss, but the stronger suggestion that a populated environment must always destroy exact aim is rejected. The four-particle contact control has an environment and preserves the relevant symmetry. A claim about typical transverse changes needs an admitted perturbation class, persistence of the complete root census, and, for probability statements, a distribution. Population alone supplies none of those premises.
 
 **O4. Magnitude asymmetry means the environment cannot defeat a barrier.** At small $d$ the pair row scales like $1/d^{2}$ while the aggregate environmental contribution remains $O(1)$. The environment therefore cannot push a pair through a divergent barrier. Combined with O3 this is a pincer rather than a tension: the environment destroys exact aim while being unable to remove whatever protection exists.
 

@@ -32,7 +32,8 @@ hostTest('actual probes bind runtime, birth, wait4 closure and nonzero resource 
   try {
     const first = await f.owner.initialize();
     assert.equal(first.schema, 'circular-observer-runtime.v1');
-    assert(first.runtime.some(row => /\/Python\.framework\/.*\/Python$|\/libpython[^/]*$/u.test(row.path)), 'actual linked libpython must be captured before ps');
+    assert(first.runtime.some(row => row.path === realpathSync(python)), 'resolved interpreter capability must be recorded before ps');
+    assert(first.runtime.every(row => !Object.hasOwn(row, 'sha256')), 'host capabilities carry no historical byte pins');
     const rows = await f.owner.inspect(f.context()); assert(rows.some(row => row.pid === process.pid));
     const receipt = await f.owner.finish();
     assert.equal(receipt.closed, true); assert.equal(receipt.probes.length, 2);

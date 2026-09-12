@@ -6,6 +6,14 @@ This operator-selected recovery campaign has no global research rank. The operat
 
 **Recovery resumed on the published successor by operator instruction.** Preserve the accepted first-candidate [checkpoint](analysis/circular-current-execution.md#paused-checkpoint-and-restart). The [accepted finite scope](priorities.md#accepted-finite-operational-closeout--september-8) selects operational repairs and retains scientific continuation separately. G1–G5 mechanical work has its completed checkpoint in the owner record; no publication is requested.
 
+## Operator-selected Option B work
+
+B-REM-1 is complete for the enumerated F6c operational source-binding family and removed from the executable queue. The [family transfer record](analysis/option-b-f6c-family-cutover.md) and [independent review](evidence/option-b-f6c-family-review.md) retain its validation and scientific/reference boundaries. The operator selected every remaining package in the [finite migration plan](analysis/option-b-remaining-migration-plan.md). This does not reopen the deferred scientific recovery items below.
+
+All five finite migration packages are complete and removed from this executable queue. The [integrated closeout](analysis/option-b-repository-reconciliation.md#finite-package-closeout) retains the earlier 563-test selection, 77 passing resumed shared-caller controls, both final-generation F5 builds and complete 196-row inventory. The [independent final review](evidence/option-b-remaining-binding-dispositions.md#b-rem-5-independent-final-validation--authorized-resumption) authenticates the operational validation and unchanged source generation.
+
+B-REM-5's [authorized generated-only registry refresh and final gate](analysis/option-b-repository-reconciliation.md#authorized-equation-registry-refresh-and-final-gate) pass: all 30 required Content Integrity checks, unchanged migration source snapshot and clear owned-compute closeout. No executable migration item remains. The completed builds and regression families were not repeated; scientific acceptance, optional broad verification and deferred capabilities retain their separate owners.
+
 ## Ranked Next Objects
 
 No executable repair remains in the accepted finite closeout. G8's reviewed historical/current mapping, regeneration and affected-consumer checks are complete in the [semantic record](analysis/semantic-closeout-review.md#g8-receipt-projection-resolution). Blocked inputs and deferred work below retain their original conditions.

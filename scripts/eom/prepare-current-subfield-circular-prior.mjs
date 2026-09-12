@@ -3,7 +3,26 @@
 import {createHash} from 'node:crypto';import {gzipSync,gunzipSync} from 'node:zlib';
 import {existsSync,mkdirSync,realpathSync,writeFileSync} from 'node:fs';
 import path from 'node:path';import {fileURLToPath} from 'node:url';
-import {captureCircularFile} from '../../src/prescribed-path-analysis/SubfieldCircularObservationOwner.mjs';
+import {closeSync,constants,fstatSync,openSync,readFileSync} from 'node:fs';
+async function circularAdmission(root,digest,originalBindings=[]) {
+  if (!/^[a-f0-9]{64}$/u.test(digest??'')) throw Error('externally selected circular source-map digest required');
+  const initial=[...originalBindings];
+  const capture=(filename,expected)=>{
+    if(realpathSync(filename)!==filename)throw Error('canonical circular bootstrap source required');
+    const fd=openSync(filename,constants.O_RDONLY|constants.O_NOFOLLOW|constants.O_NONBLOCK);
+    try{const before=fstatSync(fd);if(!before.isFile()||before.size>2*1024**2)throw Error('bounded circular bootstrap source required');
+      const data=readFileSync(fd),after=fstatSync(fd);
+      if(data.length!==before.size||['dev','ino','size','mtimeMs','ctimeMs'].some(key=>before[key]!==after[key])||createHash('sha256').update(data).digest('hex')!==expected)throw Error('circular bootstrap source differs');
+      initial.push({path:filename,sha256:expected,identity:Object.fromEntries(['dev','ino','size','mtimeMs','ctimeMs'].map(key=>[key,before[key]]))});
+      return data;
+    }finally{closeSync(fd);}
+  };
+  const raw=capture(path.join(root,'reference/priorities/development-process-review/contracts/option-b-circular-sources.jsonld'),digest);
+  const rows=JSON.parse(raw)['@graph']?.filter(row=>row['@type']==='Source'&&row.role==='admission');
+  if(rows?.length!==1||rows[0].binding.path!=='scripts/eom/run-current-subfield-circular-root-pilot.mjs')throw Error('circular admission entry differs');
+  const module=await import('data:text/javascript;base64,'+capture(path.join(root,rows[0].binding.path),rows[0].binding.sha256).toString('base64'));
+  return module.loadCircularSourceMap(root,digest,initial);
+}
 const sha=data=>createHash('sha256').update(data).digest('hex');
 const check=(ok,message)=>{if(!ok)throw Error(message);};
 const decode=record=>{check(Buffer.isBuffer(record.data)&&sha(record.data)===record.sha256,'captured input digest differs');return JSON.parse(record.data);};
@@ -46,13 +65,24 @@ export function finalizeCurrentCircularPrior(binding){
 }
 async function main(){
  const root=realpathSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..')),args={};
- for(let i=2;i<process.argv.length;i+=2){check(['--review','--review-sha256','--accepted-review','--accepted-review-sha256','--out','--self-sha256'].includes(process.argv[i])&&process.argv[i+1]&&!args[process.argv[i]],'exact prior-preparation arguments required');args[process.argv[i]]=process.argv[i+1];}
- const final=Boolean(args['--accepted-review']);check(Object.keys(args).length===4&&args['--out']&&args['--self-sha256']&&(final?args['--accepted-review-sha256']:args['--review']&&args['--review-sha256']),'complete prior-preparation arguments required');
+ for(let i=2;i<process.argv.length;i+=2){check(['--review','--review-sha256','--accepted-review','--accepted-review-sha256','--out','--self-sha256','--source-map-sha256'].includes(process.argv[i])&&process.argv[i+1]&&!args[process.argv[i]],'exact prior-preparation arguments required');args[process.argv[i]]=process.argv[i+1];}
+ const final=Boolean(args['--accepted-review']);check(Object.keys(args).length===5&&args['--out']&&args['--self-sha256']&&(final?args['--accepted-review-sha256']:args['--review']&&args['--review-sha256']),'complete prior-preparation arguments required');
+ const admission=await circularAdmission(root,args['--source-map-sha256']);
+ check(admission.source('scripts/eom/prepare-current-subfield-circular-prior.mjs').sha256===args['--self-sha256'],'selected prior preparer differs');
+ const captured=await import('data:text/javascript;base64,'+admission.source('scripts/eom/prepare-current-subfield-circular-prior.mjs').data.toString('base64'));
+ return captured.prepareCurrentCircularPrior({root,args,originalBindings:admission.bindings});
+}
+export async function prepareCurrentCircularPrior({root,args,originalBindings}) {
+ const admission=await circularAdmission(root,args['--source-map-sha256'],originalBindings),final=Boolean(args['--accepted-review']);
+ check(import.meta.url==='data:text/javascript;base64,'+admission.source('scripts/eom/prepare-current-subfield-circular-prior.mjs').data.toString('base64'),'captured prior preparer required');
+ const {captureCircularFile}=await import('data:text/javascript;base64,'+admission.source('src/prescribed-path-analysis/SubfieldCircularObservationOwner.mjs').data.toString('base64'));
  const inputs=[];const capture=(filename,digest)=>{const row=captureCircularFile(path.resolve(root,filename),digest);inputs.push(row);return row;};
- capture('scripts/eom/prepare-current-subfield-circular-prior.mjs',args['--self-sha256']);capture('src/prescribed-path-analysis/SubfieldCircularObservationOwner.mjs','04a7abdc62324640ffa5e5764e3b750fc18bcf327087b0bd358d6e63f64d5920');
+ inputs.push(...admission.bindings);
  const base=path.join(root,'.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1'),output=path.resolve(root,args['--out']);check(path.dirname(output)===base&&realpathSync(base)===base&&!existsSync(output),'fresh direct prior output required');
  let bytes,name;
- if(final){const binding=capture(args['--accepted-review'],args['--accepted-review-sha256']);bytes=finalizeCurrentCircularPrior(binding);name=`prior${decode(binding).rung}.json`;}
+ if(final){const binding=capture(args['--accepted-review'],args['--accepted-review-sha256']),packet=decode(binding);
+  check(packet.entrySha256===admission.source('scripts/eom/run-current-subfield-circular-root-rung.mjs').sha256&&packet.memoryOwnerSha256===admission.source('src/prescribed-path-analysis/SubfieldCircularMemoryOwner.mjs').sha256&&packet.memoryHelperSha256===admission.source('scripts/eom/observe-subfield-circular-memory.py').sha256,'accepted next review current source selection differs');
+  bytes=finalizeCurrentCircularPrior(binding);name=`prior${packet.rung}.json`;}
  else{
   const reviewBinding=capture(args['--review'],args['--review-sha256']),review=decode(reviewBinding),jointBinding=capture(review.admission.path,review.admission.sha256),joint=decode(jointBinding);
   // Raw lease remains private. Never capture or publish its control token.
@@ -63,9 +93,9 @@ async function main(){
   for(const row of review.bindings)capture(row.path,row.sha256);
   const priorPrefix=capture(profile.prior.path,profile.prior.sha256),earlierAdmissions=decode(priorPrefix).rungAdmissions.map(row=>capture(row.path,row.sha256));
   ({reviewBytes:bytes}=buildCurrentCircularPriorPacket({jointBinding,reviewBinding,stdoutBinding,terminalProjection,priorPrefix,earlierAdmissions,planBinding:profile.plan,
-   entrySha256:profile.sources.entry.sha256,memoryOwnerSha256:profile.sources.memoryOwner.sha256,memoryHelperSha256:profile.sources.memoryHelper.sha256}));name=`next${review.rung===8?32:128}-review.pending.json`;
+   entrySha256:admission.source('scripts/eom/run-current-subfield-circular-root-rung.mjs').sha256,memoryOwnerSha256:admission.source('src/prescribed-path-analysis/SubfieldCircularMemoryOwner.mjs').sha256,memoryHelperSha256:admission.source('scripts/eom/observe-subfield-circular-memory.py').sha256}));name=`next${review.rung===8?32:128}-review.pending.json`;
  }
- for(const row of inputs)captureCircularFile(row.path,row.sha256);mkdirSync(output);writeFileSync(path.join(output,name),bytes,{flag:'wx'});for(const row of inputs)captureCircularFile(row.path,row.sha256);
- console.log(JSON.stringify({prepared:true,accepted:false,laterLadderAuthorized:false,output:path.join(output,name),sha256:sha(bytes),bytes:bytes.length}));
+ admission.recheck();for(const row of inputs)captureCircularFile(row.path,row.sha256);mkdirSync(output);writeFileSync(path.join(output,name),bytes,{flag:'wx'});for(const row of inputs)captureCircularFile(row.path,row.sha256);admission.recheck();
+ console.log(JSON.stringify({prepared:true,accepted:false,laterLadderAuthorized:false,sourceMap:admission.sourceMap,sourceBindings:admission.bindings,output:path.join(output,name),sha256:sha(bytes),bytes:bytes.length}));
 }
 if(import.meta.url.startsWith('file:')&&process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))main().catch(error=>{console.error(error.stack);process.exitCode=1;});

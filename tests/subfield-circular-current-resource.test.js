@@ -10,7 +10,9 @@ test('known cost boundary partitions enabled and returned candidates without inc
 test('current pilot transport requires independently bound review and joint closure',()=>{
  const joint={path:'/known/pilot',sha256:'a'.repeat(64),value:{schema:'circular-current-pilot-admission.v1',accepted:true,h3EvidenceEligible:false,observations:{closed:true,failure:null},process:{accepted:true,processesClosed:true,guardClosed:true,admission:{accepted:true,h3EvidenceEligible:false}}}};
  const review={sha256:SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW.sha256,value:{schema:'circular-independent-current-pilot-review.v1',boundedPilotAccepted:true,h3EvidenceEligible:false,joint:{path:joint.path,sha256:joint.sha256},externalOwner:{exitCode:0,processGroupClosed:true,elapsedWallSeconds:100},phaseCount:32,rowCount:2448,candidateCount:16}};
- assert.equal(acceptCurrentCircularPilot(joint,review),joint.value.process);
- assert.throws(()=>acceptCurrentCircularPilot(joint,{...review,sha256:'b'.repeat(64)}));
- joint.value.observations.closed=false;assert.throws(()=>acceptCurrentCircularPilot(joint,review));
+ review.path=SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW.path;
+ assert.equal(acceptCurrentCircularPilot(joint,review,SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW),joint.value.process);
+ assert.throws(()=>acceptCurrentCircularPilot(joint,{...review,sha256:'b'.repeat(64)},SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW));
+ assert.throws(()=>acceptCurrentCircularPilot(joint,review));
+ joint.value.observations.closed=false;assert.throws(()=>acceptCurrentCircularPilot(joint,review,SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW));
 });

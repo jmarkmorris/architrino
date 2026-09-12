@@ -14,33 +14,12 @@ export const COMPARISON = "scripts/eom/verify-f6c-cached-continuous-reception-ro
 export const RESOURCE_PLAN = "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md";
 export const LANE = ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827";
 export const LIMIT_MS = 1800000, LOG_LIMIT = 16*1024**2, FILE_LIMIT = 64*1024**2;
-export const PINS = Object.freeze({
-  [OUTER]: "e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920",
-  [CONSUMER]: "d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841",
-  [COMPARISON]: "3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7",
-  [RESOURCE_PLAN]: "8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378",
-  "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py": "5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2",
-  "tests/test_f6c_cached_continuous_reception_root_cover.py": "09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3",
-  "scripts/eom/oracle/continuous_reception_roots_cached.py": "daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf",
-  "scripts/eom/oracle/certified_history.py": "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7",
-  "scripts/eom/oracle/decimal_interval.py": "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md": "520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md": "db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md": "710279f5c348a81fd36d58c6ca704730b3fa70da729ca30b9c92ae4e1cc6734b",
-  "tests/test_eom_continuous_reception_roots.py": "81de0ebc74a6e2e2a6c66e96cd3a7856806b7e41f775e3e2f184caf5bd1158ac",
-  "scripts/eom/verify-f6c-accepted-frame-reconstruction.py": "0c5ae3b5e7161cbed60de71670d17d5437a41b7ce4109843dbf3cdd20b9e3965",
-  "scripts/eom/verify-f6c-retained-history-guards.py": "b8480f3652fd7254bdfe998bbe0f6d092500c6451d692c1ab225d3405295897d",
+export const SOURCE_MAP = "reference/priorities/development-process-review/contracts/option-b-cached-root-cover-full-sources.jsonld";
+const SOURCE_READER = "scripts/equation-mapping/current-source-manifest.mjs";
+export const EVIDENCE_PINS = Object.freeze({
   ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json": "f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1",
   ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json": "7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43",
   ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json": "86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880",
-  "tests/test_eom_continuous_reception_roots_cached.py": "a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md": "3b20e5d7bce4b57dfd41c0d1efcc34f9242dcd41a02b35676f45ba0984499578",
-  "scripts/eom/oracle/continuous_reception_roots.py": "f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c",
-  "scripts/eom/verify-f6c-continuous-reception-root-cover.py": "1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36",
-  "tests/test_f6c_continuous_reception_root_cover.py": "5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md": "a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md": "2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md": "1a6327933b0060905aec97022e87c243b54f353af8c7aec83712967b285b010d",
   ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/rows.ndjson": "786785b2597bcdf024e350ba89c129fb32115afed693169a6db3137c6bdca383",
   ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/pieces.ndjson": "2c064a5956e7684868cbda7aa7e312ac609e07760bf67f1cf121c934d6d4c411",
   ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/cover-manifest.json": "19fae257f7f36d858fa60d9031125b3f29dbb8780e944802699aab5292275f4c",
@@ -48,8 +27,32 @@ export const PINS = Object.freeze({
   ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/pilot-admission.json": "1a814c90279eed456546b2c4959a8504657213ffc2d25c063060831814e930ee",
   ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/launcher-stderr.log": "627a923d57d0c5b7c7472d526040a8c097616ce8dab314ac8540188c24aedbee",
   ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/resource-observations.ndjson": "b51612a9a1689f54d54f89e416f390b2a36fec45e5859772f8755e6634ccf3dd",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json": "5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86",
+  "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json": "5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86"
 });
+export let SOURCE_BINDINGS;
+let sourceRecords, sourceMapBinding;
+export async function initializeSourceBindings(root, expectedMapDigest) {
+  SOURCE_BINDINGS = undefined; sourceRecords = undefined; sourceMapBinding = undefined;
+  check(hex(expectedMapDigest), "externally selected source-map digest required");
+  check(realpathSync(root) === root, "canonical Option B repository root required");
+  const readSource = (filename,...args) => {check(realpathSync(filename) === filename,"source symlink or path escape");return readBound(filename,...args);};
+  const captured = readSource(path.join(root, SOURCE_MAP), expectedMapDigest, true, 1024**2);
+  const metadata = JSON.parse(captured.data);
+  const readers = metadata["@graph"]?.filter(row => row.role === "manifest-reader" && row.binding?.path === SOURCE_READER);
+  check(readers?.length === 1 && hex(readers[0].binding.sha256), "exact manifest reader identity required");
+  const reader = readSource(path.join(root, SOURCE_READER), readers[0].binding.sha256, true, 1024**2);
+  const module = await import("data:text/javascript;base64," + reader.data.toString("base64"));
+  const admitted = module.admit(captured.data, {root, readBound:readSource, scope:"f6c-cached-root-cover-full-current-source"});
+  // Capture-to-use closure: reject a manifest or reader replaced while validating.
+  checkBindings([clean(captured), clean(reader), ...admitted.bindings]);
+  sourceRecords = admitted.bindings; sourceMapBinding = clean(captured);
+  SOURCE_BINDINGS = Object.freeze({...admitted.pins, ...EVIDENCE_PINS});
+  return {sourceMap:sourceMapBinding, sources:sourceRecords};
+}
+function requireSourceBindings() {
+  check(SOURCE_BINDINGS && sourceRecords && sourceMapBinding, "Option B source admission required");
+}
+
 export const check = (condition, message) => { if (!condition) throw new Error(message); };
 export const sha = bytes => createHash("sha256").update(bytes).digest("hex");
 export const clean = ({ data, ...binding }) => binding;
@@ -93,18 +96,19 @@ function bindings(value,label) {
   check(new Set(value.map(b=>b.path)).size===value.length,"duplicate "+label);
 }
 export function validatePlan(plan,root,launcherSha,entrySha) {
+  requireSourceBindings();
   closed(plan,["schema","scope","resourcePlan","comparisonContract","operationalBindings","controlBindings","python","pythonRealPath","git","node"],"machine plan");
   check(plan.schema==="braid-program/f6c-cached-root-cover-full-launch.v2"&&plan.scope==="full","current full 160-cell scope required");
   bindings([plan.resourcePlan],"resource plan");
-  check(plan.resourcePlan.path===RESOURCE_PLAN&&plan.resourcePlan.sha256===PINS[RESOURCE_PLAN],"resource plan differs");
+  check(plan.resourcePlan.path===RESOURCE_PLAN&&plan.resourcePlan.sha256===SOURCE_BINDINGS[RESOURCE_PLAN],"resource plan differs");
   const c=plan.comparisonContract;
   closed(c,["declarationSha256","verifierSha256","scope","subjectSourceBindings","runtimeBindings"],"comparison contract");
-  check(c.scope==="full"&&c.verifierSha256===PINS[COMPARISON]&&
-    c.declarationSha256===PINS["reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md"],"comparison contract differs");
+  check(c.scope==="full"&&c.verifierSha256===SOURCE_BINDINGS[COMPARISON]&&
+    c.declarationSha256===SOURCE_BINDINGS["reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md"],"comparison contract differs");
   for(const [name,rows] of Object.entries({sources:c.subjectSourceBindings,runtime:c.runtimeBindings,operational:plan.operationalBindings,controls:plan.controlBindings}))bindings(rows,name);
   const expected=[CONSUMER,"scripts/eom/oracle/continuous_reception_roots_cached.py","scripts/eom/oracle/certified_history.py","scripts/eom/oracle/decimal_interval.py"];
   check(equal(c.subjectSourceBindings.map(b=>b.path).sort(),expected.sort()),"captured mathematical source closure differs");
-  for(const b of [...c.subjectSourceBindings,...plan.controlBindings])check(PINS[b.path]===b.sha256,"frozen source/control differs");
+  for(const b of [...c.subjectSourceBindings,...plan.controlBindings])check(SOURCE_BINDINGS[b.path]===b.sha256,"frozen source/control differs");
   check(equal(plan.controlBindings.map(b=>b.path).sort(),["tests/test_f6c_cached_continuous_reception_root_cover_preparation.py","tests/test_f6c_cached_continuous_reception_root_cover.py"].sort()),"control closure differs");
   for(const key of ["python","pythonRealPath","git","node"])check(path.isAbsolute(plan[key]),"absolute runtime path required");
   check(realpathSync(plan.python)===plan.pythonRealPath&&realpathSync(plan.node)===realpathSync(process.execPath)&&
@@ -112,7 +116,7 @@ export function validatePlan(plan,root,launcherSha,entrySha) {
   check(c.runtimeBindings.some(b=>b.path===plan.pythonRealPath)&&c.runtimeBindings.some(b=>b.path===plan.git),"Python/Git runtime closure missing");
   check(equal(plan.operationalBindings.map(b=>b.path).sort(),[ENTRY,LAUNCHER,OUTER,"/bin/ps","/usr/bin/memory_pressure",plan.node].sort()),"operational closure differs");
   for(const b of plan.operationalBindings) {
-    const expectedHash=b.path===ENTRY?entrySha:b.path===LAUNCHER?launcherSha:PINS[b.path];
+    const expectedHash=b.path===ENTRY?entrySha:b.path===LAUNCHER?launcherSha:SOURCE_BINDINGS[b.path];
     if(expectedHash)check(expectedHash===b.sha256,"operational source differs");
   }
   check(hex(launcherSha)&&hex(entrySha),"reviewed composition hashes required");
@@ -122,7 +126,8 @@ export function validatePlan(plan,root,launcherSha,entrySha) {
   return plan;
 }
 export function planBindings(plan,root) {
-  const all=[...Object.entries(PINS).map(([p,h])=>({path:path.resolve(root,p),sha256:h})),plan.resourcePlan,
+  requireSourceBindings();
+  const all=[sourceMapBinding,...sourceRecords,...Object.entries(SOURCE_BINDINGS).map(([p,h])=>({path:path.resolve(root,p),sha256:h})),plan.resourcePlan,
     ...plan.comparisonContract.subjectSourceBindings,...plan.comparisonContract.runtimeBindings,...plan.operationalBindings,...plan.controlBindings];
   const map=new Map();
   for(const b of all){const key=path.resolve(root,b.path),old=map.get(key);check(!old||old.sha256===b.sha256,"conflicting source binding");map.set(key,{...old,...b,path:key});}
@@ -169,12 +174,13 @@ export function remainingSeconds(deadline) {
   return `${ns/1000000000n}.${String(ns%1000000000n).padStart(9,"0")}`;
 }
 export function stageSpec({stage,plan,planBinding,root,output,manifest,budget}) {
+  requireSourceBindings();
   check(stage==="consumer"||stage==="comparison","unknown stage");
   check(typeof budget==="string"&&/^(?:0|[1-9]\d*)(?:\.\d+)?$/u.test(budget)&&Number(budget)>0&&Number(budget)<=1800,"bounded stage budget");
   const source=stage==="consumer"?CONSUMER:COMPARISON;
-  const args=["-I","-B","-c",PYTHON_BOOTSTRAP,path.join(root,source),PINS[source],
+  const args=["-I","-B","-c",PYTHON_BOOTSTRAP,path.join(root,source),SOURCE_BINDINGS[source],
     "--plan",planBinding.path,"--plan-sha256",planBinding.sha256,
-    stage==="consumer"?"--consumer-sha256":"--verifier-sha256",PINS[source]];
+    stage==="consumer"?"--consumer-sha256":"--verifier-sha256",SOURCE_BINDINGS[source]];
   if(stage==="consumer")args.push("--scope","full","--out-dir",path.join(output,"subject"),"--git-binary",plan.git);
   else {check(manifest?.path===path.join(output,"subject/cover-manifest.json")&&hex(manifest.sha256),"authenticated preceding manifest required");
     args.push("--manifest",manifest.path,"--manifest-sha256",manifest.sha256,"--out",path.join(output,"comparison.json"));}
@@ -249,7 +255,7 @@ export function admitStage(job) {
     checkBindings(records);
     const report=JSON.parse(readBound(records[0].path,records[0].sha256,true).data),a=report.analysis;
     check(report.schema==="braid-program/f6c-continuous-reception-root-cover-conformance.v1"&&report.accepted===true&&report.scope==="full"&&
-      equal(report.manifest,job.manifest)&&equal(report.launchPlan,planBinding)&&report.verifier?.sha256===PINS[COMPARISON]&&
+      equal(report.manifest,job.manifest)&&equal(report.launchPlan,planBinding)&&report.verifier?.sha256===SOURCE_BINDINGS[COMPARISON]&&
       equal(report.rows,job.consumer.outputs[0])&&equal(report.pieces,job.consumer.outputs[1]),"comparison source/output handoff differs");
     check(a?.accepted===false&&a.conditionalEnclosuresConformant===true&&a.cellCount===160&&a.pairCellCertificates===10240&&
       a.ordinaryNonselfRows===8960&&a.selfExclusionRows===1280&&a.distinctNonselfFaceChecks===17920&&a.pieceRecordCount===17920&&
@@ -282,8 +288,10 @@ async function main(argv) {
     return runSingleStage({command:argv[1],args:["-I","-B","-c",PYTHON_RUNTIME_INVENTORY]},{timeoutMs:5000});
   }
   const values={};for(let i=0;i<argv.length;i+=2){check(argv[i+1]&&!values[argv[i]],"paired unique stage arguments required");values[argv[i]]=argv[i+1];}
-  check(equal(Object.keys(values).sort(),["--plan","--plan-sha256","--entry-sha256","--launcher-sha256","--stage","--out","--deadline-ns","--manifest-sha256"].sort()),"closed stage arguments required");
-  const root=process.cwd(),planBinding=readBound(values["--plan"],values["--plan-sha256"],true,1024**2),plan=JSON.parse(planBinding.data);
+  check(equal(Object.keys(values).sort(),["--plan","--plan-sha256","--entry-sha256","--launcher-sha256","--stage","--out","--deadline-ns","--manifest-sha256","--source-map-sha256"].sort()),"closed stage arguments required");
+  const root=process.cwd();
+  await initializeSourceBindings(root,values["--source-map-sha256"]);
+  const planBinding=readBound(values["--plan"],values["--plan-sha256"],true,1024**2),plan=JSON.parse(planBinding.data);
   validatePlan(plan,root,values["--launcher-sha256"],values["--entry-sha256"]);
   checkBindings([...planBindings(plan,root),clean(planBinding)]);
   const output=path.resolve(values["--out"]),stage=values["--stage"];

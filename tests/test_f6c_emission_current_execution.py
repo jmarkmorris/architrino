@@ -1,5 +1,6 @@
 """Synthetic transport controls; these do not establish scientific acceptance."""
 import copy
+import hashlib
 import importlib.util
 from pathlib import Path
 from types import SimpleNamespace
@@ -7,6 +8,23 @@ import unittest
 from unittest.mock import Mock, patch
 
 ROOT = Path(__file__).resolve().parents[1]
+def current_execution_plan(plan):
+    """Copy the retained example into a current synthetic control, without changing its provenance."""
+    plan=copy.deepcopy(plan)
+    keys=('consumer','controls','rangeVerifier','producer','producerControls','verifier','verifierControls','executionBridge')
+    rows=[plan[k] for k in keys if k in plan]
+    for role in ('source-map', 'source-reader'):
+        filename=bridge.OPERATIONAL_SELECTION[role]; raw=(ROOT/filename).read_bytes()
+        plan['operationalBindings'].append(dict(path=filename,sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw)))
+    rows += plan['operationalBindings'] + plan.get('subjectSourceBindings',[])
+    for b in rows:
+        if b['path'].startswith(('scripts/','tests/')):
+            raw=(ROOT/b['path']).read_bytes()
+            b.update(sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw))
+    return plan
+
+
+
 
 
 def load(name, relative):
@@ -45,8 +63,9 @@ def plan_fixture():
         binding('scripts/eom/launch-f6c-emission-refinement-pilot.mjs'),
         binding('tests/f6c-emission-refinement-pilot.test.js'),
         binding('tests/f6c-emission-refinement-pilot-process.test.js'),
-        binding('scripts/eom/launch-prescribed-response-pilot.mjs', '72b181165cafe21f3237dca7638343a9d31ea4ee48f709d9b43761666d6e7ec5'),
-        binding('scripts/eom/launch-subfield-circular-root-pilot.mjs', 'e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920'),
+        binding('scripts/eom/launch-prescribed-response-pilot.mjs'),
+        binding('scripts/eom/launch-subfield-circular-root-pilot.mjs'),
+        binding(bridge.OPERATIONAL_SELECTION['source-map']), binding(bridge.OPERATIONAL_SELECTION['source-reader']),
         binding('/bin/ps'), binding('/usr/bin/memory_pressure', 'ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da'),
         binding('/synthetic/node')]
     return p
@@ -54,7 +73,7 @@ def plan_fixture():
 
 class CurrentPlanControls(unittest.TestCase):
     def validate(self, p):
-        return bridge.current_plan(p, m, ROOT, 'a'*64, support)
+        return bridge.current_plan(p, m, ROOT, 'a'*64, support, {role:'a'*64 for role in bridge.OPERATIONAL_SELECTION})
 
     def test_closed_plan_projects_without_mutating_original_or_runtime_bindings(self):
         p = plan_fixture(); before = copy.deepcopy(p)
@@ -63,6 +82,27 @@ class CurrentPlanControls(unittest.TestCase):
         self.assertEqual(result['schema'], m.PLAN_SCHEMA)
         self.assertEqual(result['operationalBindings'], p['operationalBindings'])
         self.assertNotIn('historicalInputs', result)
+
+    def test_external_selection_is_required_and_cannot_be_inferred_from_plan(self):
+        for selection in (None, {}, {'outer':'a'*64}, {role:'d'*64 for role in bridge.OPERATIONAL_SELECTION}):
+            with self.subTest(selection=selection), self.assertRaises(ValueError):
+                bridge.current_plan(plan_fixture(), m, ROOT, 'a'*64, support, selection)
+        for role, filename in bridge.OPERATIONAL_SELECTION.items():
+            p=plan_fixture()
+            next(row for row in p['operationalBindings'] if row['path']==filename)['sha256']='d'*64
+            with self.subTest(role=role), self.assertRaises(ValueError): self.validate(p)
+
+    def test_direct_cli_requires_every_external_selection_before_source_or_plan_use(self):
+        import subprocess, sys
+        base=['--stage','producer','--bridge-sha256','a'*64,'--plan','absent-plan',
+              '--plan-sha256','a'*64,'--budget-seconds','1']
+        selections=sum((['--'+role+'-sha256','a'*64] for role in bridge.OPERATIONAL_SELECTION),[])
+        for index in range(0,len(selections),2):
+            args=base+selections[:index]+selections[index+2:]
+            result=subprocess.run([sys.executable,'-I','-B',str(ROOT/bridge.SELF),*args],capture_output=True,text=True,timeout=3)
+            self.assertEqual(result.returncode,2)
+            self.assertIn(selections[index],result.stderr)
+            self.assertNotIn('FileNotFoundError',result.stderr)
 
     def test_rejects_data_route_escape_alias_collision_and_generation_change(self):
         for path in ('/reference/escaped.source', 'reference/../escaped.source', 'reference//x.source',
@@ -173,7 +213,7 @@ class PublicationLifecycle(unittest.TestCase):
         import json
         import tempfile
         plan_path = ROOT/'reference/priorities/development-process-review/evidence/emission-current-migration/emission-launch.v2.json'
-        plan = json.loads(plan_path.read_bytes())
+        plan = current_execution_plan(json.loads(plan_path.read_bytes()))
         own = Path(__file__).resolve()
         for b in plan['operationalBindings']:
             if ROOT/b['path'] == own:
@@ -208,6 +248,8 @@ class PublicationLifecycle(unittest.TestCase):
         with tempfile.TemporaryDirectory(dir=lane,prefix='synthetic-current-') as tmp:
             base = Path(tmp).resolve(); p=base/'plan.json'; raw=json.dumps(plan).encode(); p.write_bytes(raw)
             common=['--bridge-sha256',plan['executionBridge']['sha256'],'--plan',str(p),'--plan-sha256',hashlib.sha256(raw).hexdigest(),'--budget-seconds','30']
+            ops={b['path']:b for b in plan['operationalBindings']}
+            common+=sum((['--'+role+'-sha256',ops[filename]['sha256']] for role,filename in bridge.OPERATIONAL_SELECTION.items()),[])
             git=next(b['path'] for b in plan['runtimeBindings'] if b['path'].endswith('/git'))
             output=lane/(base.name+'-producer')
             def run(args):

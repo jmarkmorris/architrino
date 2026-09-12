@@ -1033,8 +1033,6 @@ between regular intervals.
 
 This delay-map theorem pack supplies a local root-geometry reference: regular charts with no boundary crossings preserve signed degree. Interior branch creation or annihilation requires a singular root; the ordinary fold law applies only with the stated nonzero second derivative and transverse unfolding. For example, $F(u;\lambda)=u^3-\lambda u$ changes from one to three simple roots across $\lambda=0$, where $F_{uu}=0$. This is a higher degeneracy, not an ordinary fold, although the signed degree remains one.
 
-<a id="signed-causal-root-complex"></a>
-
 #### Signed Causal-Root Grading
 
 For a receiver-transmitter pair $(i,j)$ on a regular retained interval, split the simple active roots by Jacobian sign. Take their formal real spans, with one basis vector per retained root:
@@ -3282,8 +3280,6 @@ $$
 [View →](../../../../equation-mapping.html#corpus-equation-cf9cd42b9c09c4f1)
 
 Therefore $D_r=D_t=c_f(1+\beta_f\sin\xi)$ and $W_{12}^{\mathrm{acc}}=(1+\beta_f\sin\xi)^{-1}$ on this uniform circular branch. Because $\sigma_{12}=-1$ for opposite polarities, the canonical branch acceleration is $-\kappa|q_1q_2|\hat{\mathbf{r}}_{12}/[r_{12}^2(1+\beta_f\sin\xi)]$, and projecting onto $\mathbf{e}_r(T)$ and $\mathbf{e}_\theta(T)$ yields the stated components. Since $\xi\in(0,\pi/2)$, every denominator is positive and $\sin\xi>0$, proving the sign claims. $\square$
-
-<a id="corollary-tangential-positivity-and-circular-instability"></a>
 
 #### Corollary (Tangential positivity and circular nonexistence)
 

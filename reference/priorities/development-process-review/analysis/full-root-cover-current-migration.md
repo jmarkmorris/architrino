@@ -1,5 +1,7 @@
 # Full root-cover current execution
 
+Current source admission is owned by the separately authorized [Option B full-profile transfer](option-b-cached-root-cover-full-cutover.md). The operational migration and retained evidence below remain their historical checkpoint; B changes the location and admission of current-source identities, not the full scientific subject, saved pilot plan or resource obligations.
+
 The operator's instruction to continue through campaign item 6 authorizes this operational migration. The current full-root-cover entry requires `braid-program/f6c-cached-root-cover-full-launch.v2`, binds the current registered supervisor and the current host memory observer, and rejects an old full-launch plan. Its 160-cell scope, original pilot evidence, mathematical subject and independent comparison remain unchanged. This prepares a current launch profile; it does not execute or authorize a new scientific full run.
 
 The existing Python consumer reads the closed `comparisonContract` independently of the outer schema in `validate_launch_contract`; its comparison counterpart has the same separation. Source review therefore supports changing the outer version without changing either mathematical instrument. The full resource plan and its historical pilot timings remain original evidence. A current run would still have to satisfy the original inclusive time, RSS, observation-gap, byte, admission and process-closure requirements; this migration does not predict its runtime from the historical estimate.

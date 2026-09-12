@@ -6,6 +6,33 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-09-12 — AWT-015 complete
+
+The operator approved the prepared regeneration batch. The generators applied the TOC, three reading copies, source-index fixture and startup router, then refreshed both dependent MCP response fixtures. The two MCP previews and complete byte comparisons establish that their changes are only the new snapshot digest; the query engine, stdio semantics and authority settings remain unchanged. The separately authorized cached-pilot Option B migration finished before the final complete validation selections.
+
+The [completion evidence](evidence/awt-015-post-merge-repair-2026-09-12.md#completion) records all final native logs: ordinary Node passes 2,716 tests with zero failures and one optional local-data fixture skip; slow Node passes 124/124; shared-venv Python passes 1,685/1,685; maintenance-inclusive integrity passes all 36 required checks. The tracked source/test/corpus diff and separately captured untracked source/test checksums remain identical through these runs. All 32 declared destinations exist, former locations are absent, and exact former-path `rg` across scripts, tests, source, apps, workflows and reference documents returns zero matches. The earlier intermittent nested-supervisor record loss is retained without claiming that later passes establish its cause.
+
+AWT-015 is removed from the live queue and current-focus list. This closes layout and operational validation only. Historical scientific references and acceptance boundaries remain preserved; no Git publication or scientific campaign was performed.
+
+The final integrity rerun after closure records again passes all 36 required checks, with no failures or unreached checks. Priority ranking and scoped whitespace checks pass. Owned-compute closeout reports clear across 898 retained leases, leaving the task stopped for operator repository actions.
+
+### 2026-09-12 — AWT-015 resumed repairs verified; generated repair checkpoint
+
+The operator resumed completion with a one-hour limit ending at 13:24:42 UTC. The [resumed checkpoint](evidence/awt-015-post-merge-repair-2026-09-12.md#resumed-terminal-results-and-regeneration-checkpoint) records the repaired historical/current test boundaries, exact anchor-only source-binding refresh, fixture-only MCP identity update and complete native logs. Full Python passes 1,685/1,685; complete slow Node passes 124/124. Complete ordinary Node reports 2,708 passes, two stale source-index fixture failures and one optional skip over 2,711 tests. All 69 streamed controls pass in that full run, while the earlier lost nested-supervisor record remains retained without an established cause.
+
+Maintenance-inclusive integrity reports 33 required passes, three generated-freshness failures, one optional sweep skip and zero unreached checks. The seven affected TOC, reading-copy, source-index and router targets have reproducible scratch previews and passing generator checks. Canonical regeneration remains pending the explicit operator decision required by AGENTS.md; the evidence records the exact dependency order and subsequent validation. The separately authorized Option B owner repaired the canonical map, which passes 13/13 controls. This task's unused map candidate remains local historical evidence.
+
+Owned-compute closeout reports clear across 887 retained leases; all current runs are terminal. The scoped tracked source/test/corpus diff is byte-identical before and after the final Node sweeps. AWT-015 remains In progress at the regeneration checkpoint, with no staging, commit, push, scientific execution or acceptance performed.
+
+### 2026-09-12 — AWT-015 runtime/source repair checkpoint; paused for repository actions
+
+The operator selected current runtime/caller repair and requested explanation of OPS-030, then asked to pause at a checkpoint for repository actions. The [repair and handoff record](evidence/awt-015-post-merge-repair-2026-09-12.md) records the reviewed source transitions, exact historical archives, fresh build-only preparation, synthetic controls, native full-suite logs and remaining counterexamples. Current launch, acceleration/emission/refined and circular controls pass 102/102. No numerical oracle file was edited, no scientific campaign was accepted, and no Git publication was performed.
+
+Full ordinary Node reports 2,691 passes, twelve failures and one skip over 2,704 tests; full Python reports 1,662 tests with one failure and one import error, so one module's test bodies remain unexecuted. The next repairs are the streamed lock assertion's ordinary-cleanup versus deadline-fallback distinction, original mapping selection in the conformance controls, and original versus current root-checker identity in the literal-entry control. The other eleven ordinary failures concern the pending OPS-030 map and concurrent equation-registry drift. Slow Node reports 119/124 passes; the deadline fixture's subsequent focused control passes, but the whole slow gate remains red. Maintenance-inclusive integrity stops at the missing canonical link for the newly added corpus display, with one failure and 34 checks unreached. Corpus/publication owns the subsequent authored equation-link and runtime-output regeneration.
+
+The owned-compute closeout reports clear with every current run terminal. Code changes stopped at the pause request; only checkpoint documentation was finalized afterwards. AWT-015 remains In progress and paused for the operator's repo actions. OPS-030 was explained and left unapplied; its decision and exact-head review remain separate from scientific approval.
+
+
 ### 2026-09-12 — AWT-015 methodology repair and complete validation attempt
 
 Resumed the existing data-layout residual without repeating any move. The [residual record](evidence/awt-015-residual-validation-2026-09-12.md) contains the baseline, exact commands, source transitions, native logs and remaining owner decisions. `git status`, binary diff and SHA-256 snapshots recorded the 13 pre-existing CRW-005 modified files before this task edited anything. Concurrent corpus/operations queue changes remain untouched.

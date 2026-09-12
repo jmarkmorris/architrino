@@ -12,17 +12,18 @@ import * as R from "../scripts/eom/run-f6c-root-cover-pilot.mjs";
 import * as L from "../scripts/eom/launch-f6c-root-cover-pilot.mjs";
 import { currentOwnedGroup, descendantRecords } from "../scripts/eom/launch-subfield-circular-root-pilot.mjs";
 const root=process.cwd(),digest=x=>createHash("sha256").update(x).digest("hex");
+await R.initializeSourceBindings(root,digest(readFileSync(R.SOURCE_MAP)));
 const temp=()=>mkdtempSync(path.join(tmpdir(),"f6c-pilot-control-"));
 const binding=(p,h="1".repeat(64))=>({path:p,sha256:h,bytes:1});
 function plan() {
   const python=path.resolve(process.env.AAA_VENV??"../.venv","bin/python"),node=realpathSync(process.execPath);
   const sources=[R.CONSUMER,"scripts/eom/oracle/continuous_reception_roots.py","scripts/eom/oracle/certified_history.py","scripts/eom/oracle/decimal_interval.py"];
-  return {schema:"braid-program/f6c-root-cover-pilot-launch.v2",scope:"pilot-cell-0",resourcePlan:binding(R.RESOURCE_PLAN,R.PINS[R.RESOURCE_PLAN]),
+  return {schema:"braid-program/f6c-root-cover-pilot-launch.v2",scope:"pilot-cell-0",resourcePlan:binding(R.RESOURCE_PLAN,R.SOURCE_BINDINGS[R.RESOURCE_PLAN]),
     python,pythonRealPath:realpathSync(python),git:realpathSync("/usr/bin/git"),node,
-    comparisonContract:{declarationSha256:R.PINS["reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md"],verifierSha256:R.PINS[R.COMPARISON],scope:"pilot-cell-0",
-      subjectSourceBindings:sources.map(p=>binding(p,R.PINS[p])),runtimeBindings:[binding(realpathSync(python)),binding(realpathSync("/usr/bin/git")),binding(path.resolve(python,"../../pyvenv.cfg"))]},
-    operationalBindings:[R.ENTRY,R.LAUNCHER,R.OUTER,"/bin/ps","/usr/bin/memory_pressure",node].map(p=>binding(p,R.PINS[p]??"1".repeat(64))),
-    controlBindings:["tests/test_f6c_continuous_reception_root_cover_preparation.py","tests/test_f6c_continuous_reception_root_cover.py"].map(p=>binding(p,R.PINS[p]))};
+    comparisonContract:{declarationSha256:R.SOURCE_BINDINGS["reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md"],verifierSha256:R.SOURCE_BINDINGS[R.COMPARISON],scope:"pilot-cell-0",
+      subjectSourceBindings:sources.map(p=>binding(p,R.SOURCE_BINDINGS[p])),runtimeBindings:[binding(realpathSync(python)),binding(realpathSync("/usr/bin/git")),binding(path.resolve(python,"../../pyvenv.cfg"))]},
+    operationalBindings:[R.ENTRY,R.LAUNCHER,R.OUTER,"/bin/ps","/usr/bin/memory_pressure",node].map(p=>binding(p,R.SOURCE_BINDINGS[p]??"1".repeat(64))),
+    controlBindings:["tests/test_f6c_continuous_reception_root_cover_preparation.py","tests/test_f6c_continuous_reception_root_cover.py"].map(p=>binding(p,R.SOURCE_BINDINGS[p]))};
 }
 test("machine plan is pilot-only and binds complete frozen sources/environment",()=>{
   const p=plan();assert.equal(R.validatePlan(p,root,"1".repeat(64),"1".repeat(64)),p);
@@ -33,7 +34,7 @@ test("machine plan is pilot-only and binds complete frozen sources/environment",
   }
 });
 test("all frozen hashes and comparison schema match disk without reading scientific data",()=>{
-  for(const [p,h] of Object.entries(R.PINS))if(!p.startsWith(".local-data/")&&!p.startsWith("/"))assert.equal(digest(readFileSync(p)),h,p);
+  for(const [p,h] of Object.entries(R.SOURCE_BINDINGS))if(!p.startsWith(".local-data/")&&!p.startsWith("/"))assert.equal(digest(readFileSync(p)),h,p);
   assert.match(readFileSync(R.COMPARISON,"utf8"),/REPORT_SCHEMA = "braid-program\/f6c-continuous-reception-root-cover-conformance.v1"/);
 });
 test("source capture rejects replacement, symlinks, byte bound and overwrite",()=>{
@@ -90,7 +91,7 @@ test("synthetic mechanical handoff checks exact output/gate/resource census",()=
 test("synthetic comparison admission requires authenticated preceding output and exact claims",()=>{
   const {job}=admissionFixture(),consumer=R.admitStage(job),stage="comparison";mkdirSync(path.join(job.output,stage+"-process"));
   const claims={reconstructedFamilyApplicabilityAuthenticated:true,conditionalRootCoverValidated:true,historicalTrajectoryIdentityEstablished:false,rootExecutionAuthorized:false,metricsAvailable:false,h3EvidenceEligible:false,scoreAuthorized:false,eomExecuted:false};
-  const report={schema:"braid-program/f6c-continuous-reception-root-cover-conformance.v1",accepted:true,scope:"pilot-cell-0",manifest:consumer.outputs[2],launchPlan:job.planBinding,verifier:{sha256:R.PINS[R.COMPARISON]},
+  const report={schema:"braid-program/f6c-continuous-reception-root-cover-conformance.v1",accepted:true,scope:"pilot-cell-0",manifest:consumer.outputs[2],launchPlan:job.planBinding,verifier:{sha256:R.SOURCE_BINDINGS[R.COMPARISON]},
     rows:consumer.outputs[0],pieces:consumer.outputs[1],analysis:{accepted:false,conditionalEnclosuresConformant:true,cellCount:1,pairCellCertificates:64,ordinaryNonselfRows:56,selfExclusionRows:8,distinctNonselfFaceChecks:112,pieceRecordCount:112,recordedGeometryPieceVisits:168},
     claims,libraryFlags:{premise_truth_authenticated:false,subject_membership_established:false,execution_authorized:false,metrics_available:false,h3_evidence_eligible:false}};
   const receipt=R.writeNew(path.join(job.output,"comparison.json"),report);
@@ -220,7 +221,7 @@ test("final publication needs completed stages and live inclusive clock",()=>{
   assert.equal(R.fileOperation(active).path,path.join(out,"pilot-admission.json"));assert.throws(()=>R.fileOperation(active));
 });
 test("launcher CLI requires all exact hashes and rejects path traversal",()=>{
-  const argv=["--out",".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/new","--plan","plan","--plan-sha256","1".repeat(64),"--launcher-sha256","2".repeat(64),"--entry-sha256","3".repeat(64)];
+  const argv=["--out",".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/new","--plan","plan","--plan-sha256","1".repeat(64),"--launcher-sha256","2".repeat(64),"--entry-sha256","3".repeat(64),"--source-map-sha256","4".repeat(64)];
   assert.equal(L.parseArgs(argv).entrySha256,"3".repeat(64));assert.throws(()=>L.parseArgs(argv.slice(0,-2)));
   const bad=[...argv];bad[1]="a/../b";assert.throws(()=>L.parseArgs(bad));
 });

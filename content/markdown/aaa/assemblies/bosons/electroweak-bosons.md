@@ -162,6 +162,8 @@ Gate B begins only after Gate A has supplied the propagation axis $\hat{\mathbf{
 
 This is the photon-specific consumer of the shared angular-momentum proof. It must inherit the conserved motion-plus-wake ledger rather than creating a photon-only spin rule.
 
+On a declared effective spatial chart, let $h_{ab}$ be a positive-definite metric, let $h^{ab}$ be its inverse, and let $\hat e^a$ be an $h$-unit propagation-axis direction. Choose transverse axes $(\hat{\mathbf{u}},\hat{\mathbf{v}})$ with $h_{ab}\hat u^a\hat u^b=h_{ab}\hat v^a\hat v^b=1$, $h_{ab}\hat u^a\hat v^b=0$, and $h_{ab}\hat e^a\hat u^b=h_{ab}\hat e^a\hat v^b=0$. This is effective observer-layer notation; it is not a metric or propagation direction added to the Euclidean void.
+
 The natural object is the rank-two transverse projector
 
 $$
@@ -239,6 +241,8 @@ $$
 [View →](../../../../../equation-mapping.html#corpus-equation-c039f4aaf09952a6)
 
 A free photon branch requires small $\Delta_Q^\gamma$, nonzero $\mathbf a_{\perp}^{\mathrm{sub}}$, and small $\Delta_{\parallel}^{\mathrm{sub}}$ in the same Gate A event window. These are closure conditions on the coaxial contra-rotating polarity-conjugate planar pair, not independent postulates about a photon field.
+
+The positive regularizers $\varepsilon_Q$, $\varepsilon_{\mathrm{amp}}$, and $\varepsilon_J$ have the units of charge-like exposure, acceleration amplitude, and angular momentum respectively. They prevent a zero denominator in these diagnostics; they are not acceptance thresholds. A branch evaluation must declare separate normalized thresholds and uncertainty bounds before the word “small” is used as an acceptance statement.
 
 Choose transverse axes $(\hat{\mathbf{u}},\hat{\mathbf{v}})$ and write the effective polarization ledger as
 
@@ -337,12 +341,12 @@ $$
 
 A clean free branch must route source remnant, recoil, material handoff, and unrelated medium rows outside the photon-only ledger through the event-balance equation. Only after Gate A, the event-window helicity projection, and the transverse leakage residual pass may the target be summarized by $\mathbf J_{\gamma}^{\mathrm{sub}}\approx\lambda_{\mathrm{hel}}\hbar\hat{\mathbf k}$. Reaction chapters consume this as the photon Gate B event residual, not as a source-free helicity proof.
 
-An analyzer is an assembly whose capture geometry selects an allowed transverse ledger direction $\hat{\mathbf{a}}=P_{\perp}\hat{\mathbf{a}}$. For a linearly polarized incoming axis $\hat{\mathbf{k}}_\gamma$, the closure target is
+An analyzer is an assembly whose capture geometry selects an allowed transverse ledger direction $\hat{\mathbf{a}}=P_{\perp}\hat{\mathbf{a}}$. For a linearly polarized incoming ledger, let $\hat{\mathbf{p}}_\gamma$ be its $h$-unit transverse polarization direction, so $h_{ab}\hat p_\gamma^a\hat e^b=0$. For an analyzer whose accepted direction is $\hat{\mathbf{a}}$, the closure target is
 
 $$
 \mathcal{A}_{\text{pass}}
 \propto
-\hat{\mathbf{k}}_\gamma\cdot\hat{\mathbf{a}}
+\hat{\mathbf{p}}_\gamma\cdot\hat{\mathbf{a}}
 =
 \cos\theta,
 \qquad
@@ -530,7 +534,7 @@ $$
 Y_{\mathsf e}^{W/Z}
 =
 \left(
-\Delta A_W,
+    \Delta A_{\mathrm{corr}},
 N_{\mathrm{NB}}^{\mathrm{corr}},
 E_{\mathrm{sh}\to W/Z},
 \mathcal Q_{\mathrm{corr}},
@@ -541,7 +545,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a206cb853fb81661)
 
-Here $\Delta A_W$ is the axial-inventory payload, $N_{\mathrm{NB}}^{\mathrm{corr}}$ records any neutral Noether braid scaffold recruited into the corridor, $E_{\mathrm{sh}\to W/Z}$ records shielded internal energy exposed as corridor stiffness or apparent weak-boson mass, and the $\mathcal Q$ rows carry energy, momentum, angular momentum, polarity, architrino inventory, path-history, and medium update terms. For each conserved or routed quantity $\mathcal Q\in\{E,\mathbf p,\mathbf J,\mathrm{pol},\mathrm{arch},\mathrm{path},\mathrm{med}\}$, the superscript $0$ marks the leading event-window contribution after the surrounding baseline has been subtracted, and closure requires a balance of the form
+Here $\Delta A_{\mathrm{corr}}$ is the corridor's routed axial-inventory payload, which may be nonzero for a charged transition and zero for a neutral $Z^0$ comparison; $N_{\mathrm{NB}}^{\mathrm{corr}}$ records any neutral Noether braid scaffold recruited into the corridor, $E_{\mathrm{sh}\to W/Z}$ records shielded internal energy exposed as corridor stiffness or apparent weak-boson mass, and the $\mathcal Q$ rows carry energy, momentum, angular momentum, polarity, architrino inventory, path-history, and medium update terms. For each conserved or routed quantity $\mathcal Q\in\{E,\mathbf p,\mathbf J,\mathrm{pol},\mathrm{arch},\mathrm{path},\mathrm{med}\}$, the superscript $0$ marks the leading event-window contribution after the surrounding baseline has been subtracted, and closure requires a balance of the form
 $$
 \Delta\mathcal Q_{\mathrm{src}}^{0}
 +
@@ -558,7 +562,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6b8cfae978cac162)
 
-This is the local mathematical burden behind the claim that a $W/Z$ corridor can appear massive and short-lived without becoming an elementary container that manufactures outgoing fermion identity.
+Here $E_{\mathrm{res}}^{\mathrm{corr}}$ is the residual corridor energy ledger after the displayed contributions are accounted for; its bound must be stated in the same energy convention as $\Delta E_{\mathrm{EW}}^{\mathsf e}$. This is the local mathematical burden behind the claim that a $W/Z$ corridor can appear massive and short-lived without becoming an elementary container that manufactures outgoing fermion identity.
 
 The exposed-energy burden is therefore stricter than saying that the weak corridor is heavy. The Standard Model $W/Z$ scale must be recovered as the apparent energy cost of a routed event in which shielded assembly energy becomes corridor stiffness and bounded Noether sea participation:
 $$
@@ -567,7 +571,7 @@ $$
 E_{\mathrm{stiff}}^{\mathrm{corr}}
 +E_{\mathrm{sh}\to W/Z}
 +E_{\mathrm{sea}}^{\mathrm{bound}}
-+O(\epsilon_{\mathrm{corr}}).
++E_{\mathrm{res}}^{\mathrm{corr}}.
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c61fb51b5bd596fb)
@@ -576,7 +580,7 @@ The same event record must also recover low-energy weak rates after the corridor
 
 | Corridor event | Participating architrinos | Neutral Noether braid provenance | Corridor payload | Required ledger closure |
 | --- | --- | --- | --- | --- |
-| Charged lepton current, $\nu_L \leftrightarrow e^-_L$ | The exposed weak-coupling triad on the left-channel ledger changes between active $3\epsilon_+$ and active $3\epsilon_-$. The shielded triad remains part of the assembly bookkeeping. | The incoming and outgoing lepton assemblies retain or relock their own neutral braid provenance; the corridor does not manufacture a new Noether braid. | The charged-corridor payload has magnitude $6\epsilon$: $W^-$ carries $-6\epsilon$ and $W^+$ carries $+6\epsilon$. Absorbing $W^-$ can drive $3\epsilon_+\to3\epsilon_-$, while emitting $W^-$ balances a source-side $3\epsilon_-\to3\epsilon_+$ change; $W^+$ supplies the inverse bookkeeping. | Energy, momentum, spin/angular momentum, axial polarity, path-history, and Noether sea recoil must close across the source assembly, target assembly or reaction products, corridor, and ambient Noether sea. |
+| Charged lepton current, $\nu_L \leftrightarrow e^-_L$ | The observer-level weak-coupling triad ledger changes between active $3\epsilon_+$ and active $3\epsilon_-$. For the neutrino leg this is effective weak bookkeeping, not a six-architrino inventory; the shielded triad remains part of the assembly bookkeeping. | The incoming and outgoing lepton assemblies retain or relock their own neutral braid provenance; the corridor does not manufacture a new Noether braid. | The charged-corridor payload has magnitude $6\epsilon$: $W^-$ carries $-6\epsilon$ and $W^+$ carries $+6\epsilon$. Absorbing $W^-$ can drive $3\epsilon_+\to3\epsilon_-$, while emitting $W^-$ balances a source-side $3\epsilon_-\to3\epsilon_+$ change; $W^+$ supplies the inverse bookkeeping. | Energy, momentum, spin/angular momentum, axial polarity, path-history, and Noether sea recoil must close across the source assembly, target assembly or reaction products, corridor, and ambient Noether sea. |
 | Quark charged current, $d_L \leftrightarrow u_L$ within a CKM-weighted weak basis | The active quark weak-coupling triad changes $3\epsilon_-\leftrightarrow3\epsilon_+$ while color axis-exceptionality and generation bookkeeping remain separate ledgers. | Source and product quark Noether braids provide the neutral scaffold and color record; CKM weighting belongs to overlap between weak basis and mass/branch basis, not to a new corridor inventory. | The corridor transports the compensating $\pm 6\epsilon$ payload for the active-triad transition and carries the energy-momentum needed for the branch transition. | Charge/polarity, baryon number, color-singlet embedding, spin/angular momentum, energy, momentum, and Noether sea recoil must all be accounted for in the full reaction ledger. |
 | Neutral current, $Z^0$ exchange | The weak-coupling-triad and shielded-triad records are read or rephased without a $3\epsilon_+\leftrightarrow3\epsilon_-$ charged transition. | The participating assemblies keep their neutral Noether braid provenance; no charged axial inventory is imported from the corridor. | No net charge payload; the corridor carries energy, momentum, phase, and vector angular-momentum transfer. | The event must close energy, momentum, spin/angular momentum, phase, wake, and Noether sea recoil while preserving electric charge and axial inventory. |
 
@@ -614,7 +618,7 @@ $$
 This is not a new substrate interaction. It is the low-energy observer limit of the same charged-corridor event after the finite-width mediator has been integrated out. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is therefore to derive the corridor stiffness or electroweak scale $v_{\mathrm{EW}}$ from Noether sea response and then recover $G_F$, beta rates, and charged-current branching fractions without fitting a separate contact coupling.
 
 ### Effective Mass Scales
-*   **Apparent Energy:** The "Mass" ($M_W \approx 80$ GeV, $M_Z \approx 91$ GeV; PDG comparison values) is not a rest mass of a solid object. It is the **Apparent Confinement Energy** of the corridor at the moment of creation. For a resolved weak event $\mathsf e$ observed through an event window $\mathcal W$, the effective mass-scale target can be written schematically as
+*   **Apparent Energy:** The quoted $M_W \approx 80$ GeV and $M_Z \approx 91$ GeV are observer rest-energy comparison values, not primitive masses. They summarize the **Apparent Confinement Energy** of the corridor at the moment of creation. For a resolved weak event $\mathsf e$ observed through an event window $\mathcal W$, the effective mass-scale target can be written schematically as
     $$
     M_{W/Z}^{\mathrm{eff}}(\mathsf e;\mathcal W)c_0^2
     =
@@ -652,7 +656,7 @@ The Higgs comparison is modeled here as a candidate resonance of the Noether sea
 *   **The Response:** This distortion changes the medium-dressed response of shielded internal causal history. The observer-facing inertial mass channel is the effective response, not ordinary dissipative drag.
 *   **The Boson:** If the Noether sea is driven hard enough, as in LHC-scale collisions, this radial ringing mode could be excited independently. Identifying that resonance with the observed Higgs boson remains an effective matching target anchored by the neutral scalar resonance near $125$ GeV; exact date-stamped values and uncertainties belong in validation and parameter ledgers rather than static chapter prose.
 
-The local proof obligation is a derivative test, not a new primitive field. If $\varphi$ parameterizes the radial Noether sea breathing displacement, the effective scalar coupling to an assembly $A$ is the change in the same mass-response map used by [Particle Masses](../particle-masses.md#higgs-and-yukawa-matching-residual):
+The local proof obligation is a derivative test, not a new primitive field. Let $\varphi$ be a canonically normalized effective scalar coordinate with $\varphi=0$ on the reference branch; the map from a dimensionless Noether sea displacement to $\varphi$, its normalization, and its gauge-invariant response are themselves closure obligations. If $\varphi$ parameterizes the radial Noether sea breathing displacement, the effective scalar coupling to an assembly $A$ is the change in the same mass-response map used by [Particle Masses](../particle-masses.md#higgs-and-yukawa-matching-residual):
 $$
 g_{H,A}^{\mathrm{eff}}(\theta)
 =
@@ -690,7 +694,7 @@ The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gam
 
 | Boson | Geometry | Payload | Propagation | Mass Origin |
 | :--- | :--- | :--- | :--- | :--- |
-| **Photon** | Coaxial contra-rotating polarity-conjugate planar pair | Neutral (0) | Planar-pair mode train at $c_\gamma$ | None (planar / edge-on) |
+| **Photon** | Coaxial contra-rotating polarity-conjugate planar pair | Neutral (0) | Planar-pair mode train at $c_\gamma$ | Null branch target; Gate A pending |
 | **W Boson** | Thickened charged recoupling corridor | Charged ($\pm 6\epsilon$) | Short-lived corridor (near-$c_f$, dissociates) | Corridor stiffness / Noether sea response |
 | **Z Boson** | Thickened neutral recoupling corridor | Neutral; no net axial payload | Short-lived corridor (near-$c_f$, dissociates) | Corridor stiffness / Noether sea response |
 | **Higgs** | Radial Noether sea oscillation | N/A | Local resonance | Medium stiffness |
@@ -724,7 +728,7 @@ with the direct row given by $\mathcal I_{\mathrm{sea}}^{\mathrm{req}}=\mathcal 
 
 ## Closure Interface: Corridor Operators for Mixing
 
-This chapter provides the interaction operator needed by the quark/lepton closure programs, while the full mixing derivations remain in fermion chapters.
+This chapter states the interaction-operator interface target used by the quark/lepton closure programs; it does not yet derive the operator action or its amplitudes. The full mixing derivations remain in fermion chapters.
 
 Define charged-corridor operators acting on weak basis states:
 $$

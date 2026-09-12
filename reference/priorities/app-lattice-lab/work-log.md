@@ -10,6 +10,27 @@ This file records dated planning, implementation status, validation evidence, fa
 
 ## Log Entries
 
+### 2026-09-12 — Two-polarity polyhedron manuscript expansion
+
+Integrated the operator-supplied Claude discussion, titled “Regular Polyhedra in Periodic 3D Lattices,” into [manuscript chapter 8](manuscript.md#8-regular-polyhedra-with-two-vertex-polarities), and moved the prior extension chapter to chapter 9. The supplied discussion is provenance and review input, not an independent mathematical authority. The earlier frozen manuscript fidelity review and coverage record apply to their recorded snapshot and have not been extended into an independent review of this addition.
+
+| Supplied claim or requested emphasis | Disposition and manuscript treatment |
+| --- | --- |
+| Fivefold symmetry excludes every periodic dodecahedral or icosahedral construction | Rejected in that generality. Chapter 8 distinguishes global crystallographic symmetry from finite motif symmetry, cites IUCr and the Torquato–Jiao primary packing paper, and derives the narrower rational squared-distance obstruction for the four cubic point sets and ideal HCP. |
+| Cubic coordinate families and cubic-coset decompositions | Accepted with explicit coordinates and regularity arguments. Corrected the statement that the listed families share a center; nested copies are not admitted stacks. |
+| Smaller BCC/FCC scale ladders are unresolved | Resolved for scaling about a lattice vertex by the Bravais-lattice integer-dilation proof. Basis-bearing sets receive sufficient congruence subsequences, including diamond and HCP. |
+| Ideal-HCP tetrahedra and octahedra occur only at a fixed nearest scale | Rejected. Explicit nearest-scale coordinates and the HCP scale subsequence establish larger copies; unrestricted HCP classification remains open. |
+| Oblique lattice appearance and ambiguous alternating planes | Accepted with exact primitive-vector dot products and distinction from neighbor directions. Live reads of `src/apps/lattice-lab/LatticeLabCase.js` identify the simple-cubic Z-plane rule, FCC half-conventional-height planes, and ideal-HCP AB basis; these are source-code observations, not browser verification. |
+| Checkerboard and alternating-plane bipolar motifs | Accepted with exact counts. In particular the odd axial octahedron under alternating planes is 4/2, not 3/3. Balanced vertex counts are distinguished from a bipartite edge graph. |
+| Stella octangula and opposite sites in octahedral holes | Retained only to explain exclusions. The compound has intersecting interiors; adding opposite sites in holes does not balance the skeleton's polyhedra, and overlaying both parity honeycombs violates the foreign-vertex interior restriction. |
+| Tetrahedral-octahedral honeycomb | Accepted with an elementary-cube partition proof and the 2:1 cell-number ratio. Added two explicit globally balanced colorings that separately emphasize balanced tetrahedra or balanced octahedra. Simultaneous balance of every cell is not classified. |
+| Shared vertices, no common vertices, and equal populations | Expanded with the balanced cubic honeycomb, separated cubes using the same simple-cubic inventory, general separated motifs, and single-vertex-contact chains for every Platonic solid. Proved shared-sign consistency, doubled color period, and unique-site population counts. |
+| Single gap-free mixture of all three cubic-compatible Platonic solids | Remains unclassified in this treatment; the two established honeycombs alone do not settle it. |
+
+The new results are derived geometry; no new cancellation, binding, stability, braid identity, simulation, or app implementation is asserted. The source constructions explicitly distinguish a selected polyhedron's vertices from unused ambient sites. Every admitted packing has disjoint interiors, a condition stronger than the operator's literal foreign-vertex exclusion. Existing queue ranking and acceptance status remain unchanged; this manuscript request does not complete LAT-104 or LAT-105 or activate a packing-history calculation.
+
+Validation: `node .tmp/priority-manuscript/app-lattice-lab/check-links.mjs --known-case` passed the existing/missing-link, fenced-example, and unclosed-math controls before the target run. Running that checker on the manuscript found five links, three local targets, and zero missing local targets. An in-session Node/KaTeX diagnostic first passed known inline/display extraction and invalid-command rejection, then rendered all 169 manuscript math expressions with errors enabled. A separate coordinate/count diagnostic first passed the known squared distances 1, 1, 2 of a right triangle and a balanced two-site count, then checked six integer cubic sizes, the explicitly constructed ideal-HCP tetrahedron and octahedron, and honeycomb color counts for 125 tetrahedra and 62 octahedra with lower-corner/center coordinates from -2 through 2. Those bounded arithmetic checks corroborate the written derivations; they are not exhaustive geometry certification or an independently authored review. `git diff --check -- reference/priorities/app-lattice-lab` is the scoped whitespace check. No generated artifacts were regenerated.
+
 ### 2026-09-03 — Edition 1.0 Operator-Document Pilot
 
 - Measured the complete live `reference/priorities/**/*.md` inventory before editing by sorting the path list in byte order. The scan returned `757` files; the newline-terminated list has SHA-256 `a667d973a34fd7cc7bd5613791b2c11ef39aad10da0d63bcc4ed6b38b58124e0`.

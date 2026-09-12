@@ -60,7 +60,7 @@ DECLARATION_SHA='a9d871a35e6e9f00e96ba07182798cb87f546eabe0664e7f170b67c820bb43f
 CORE='scripts/eom/oracle/f6c_refined_acceleration_conformance.py'
 CORE_SHA='7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e'
 REFERENCE='scripts/eom/verify-f6c-continuous-reception-acceleration.py'
-REFERENCE_SHA='6e3467a017c3477fb1b2baddd10e985687ed6112aeb5bc84c2fc92a9453cda83'
+REFERENCE_SHA='23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d'
 NAMED={
  'consumer':(CONSUMER,None),'consumerControls':(CONSUMER_CONTROLS,None),
  'verifier':(SELF,None),'verifierControls':(CONTROLS,None),

@@ -5,14 +5,28 @@ Starter prompt to paste into a new thread:
 ```text
 Converge the AAA corpus by turning priority, source, or corpus signals into concrete mathematical artifacts, safe scoped edits, and clear follow-up goals.
 
-Use the `architrino-converge` skill in self-running mode.
+Use the `architrino-converge` skill in campaign mode.
 ```
 
-Optionally follow it with a specific lane, shard, priority area, or edit-batch instruction.
+Optionally follow it with a specific lane, shard, priority area, or edit-batch instruction, or name a different mode from the [mode table](#mode-selection).
 
 Use this prompt when the AAA corpus needs an active convergence campaign: a recent batch may contain a newer theoretical signal, the priority ledgers may identify open issues that should be turned into mathematics, an external source may contain AAA-relevant physics that should be mined, or the corpus itself may contain underdeveloped proof routes, mathematical closure targets, newly visible insights, notation fixes, or occasional terminology corrections. Cross-linking and general cleanup are secondary unless they directly support a concrete mathematical advance.
 
-The highest-value use of this prompt is not mere phrase cleanup, a skimmed highlight list, or another paragraph saying work remains. Use the review to make concrete mathematical progress: propose definitions, equations, lemmas, invariants, estimates, closure conditions, proof sketches, toy models, counterexamples, or simulation hooks. Each recurring claim should be sorted as ontology, derivation/closure target, effective summary, or speculation, but that sorting is a launch point for work, not the final product. When the current user request grants convergence, integration, cleanup, source mining, or self-running authority, perform safe, low-risk, canon-conforming edits instead of withholding them for approval. Reserve approval or discussion for new theory leaps, terminology policy, Archie canon changes, broad scope expansion, or ambiguous operator intent. The final response should identify what was edited now, what mathematical object was attempted now, what valuable source material was intentionally deferred or rejected, what intuition deserves disciplined discussion with Op, and what should become a concrete priority action item.
+The highest-value use of this prompt is not mere phrase cleanup, a skimmed highlight list, or another paragraph saying work remains. Use the review to make concrete mathematical progress: propose definitions, equations, lemmas, invariants, estimates, closure conditions, proof sketches, toy models, counterexamples, or simulation hooks. Each recurring claim should be sorted as ontology, derivation/closure target, effective summary, or speculation, but that sorting is a launch point for work, not the final product. When the current user request grants convergence, integration, cleanup, source mining, or self-running authority, perform safe, low-risk, canon-conforming edits instead of withholding them for approval. Reserve approval or discussion for new theory leaps, terminology policy, Archie canon changes, broad scope expansion, or ambiguous operator intent. The final response should identify what was edited now, what mathematical object was attempted now, what valuable source material was intentionally deferred or rejected, what intuition deserves disciplined discussion with Op (the operator/developer), and what should become a concrete priority action item.
+
+## Mode Selection
+
+Callers name a mode by its trigger phrase; each mode maps to exactly one prompt block in this file. The request's authority statement, not the mode name, sets the edit boundary, and no mode expands authority beyond what the request grants.
+
+| Mode | Trigger phrase | Prompt block | Default action authority |
+| --- | --- | --- | --- |
+| Audit/report | `audit/report mode`, `report-only` | [Base campaign prompt](#base-campaign-prompt) with the report-only instruction in force | No corpus edits. Record findings, claim maps, and proposals in the owning priority material when the request permits working-record writes. |
+| Campaign | `campaign mode`, or no mode named | [Base campaign prompt](#base-campaign-prompt) | Safe, low-risk, canon-conforming edits when the request grants convergence, integration, cleanup, or source-mining authority. |
+| Edit batch | `edit-batch mode` | [Edit-Batch Variant](#edit-batch-variant) | Direct implementation of already-accepted convergence work, usually up to 8 AAA documents per batch. |
+| Self-running exploration | `self-running mode` | [Self-Running Exploration Variant](#self-running-exploration-variant) | Campaign authority plus autonomous target selection; claim cards when several threads run at once. |
+| Team-agent | `team-agent mode` | [Team-Agent Variant](#team-agent-variant) | Shard agents report only; the coordinator edits only under explicit team-agent edit authority. |
+
+Source mining is not a mode. It is a standard applied inside whichever mode the request selects; see [Source Mining Standard](#source-mining-standard).
 
 ## Authority Map
 
@@ -32,7 +46,7 @@ For reference selection, omission, durable identification, and reader-facing pre
 
 Follow [the operator explanation standard](../../../op/operator-explanation-standard.md) for response structure, live organized priority capture, questions, and recommended next actions. This protocol supplies convergence-specific evidence and authority requirements; it does not prescribe another response template.
 
-Writing style follows the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md). Each variant begins with the `AGENTS.md` access gate, generated router, and selected live owner. Git commands below are Codex-only examples; agents barred from git inspect current files and use applicable non-git validators. The operator explanation standard governs routine discussion capture and document selection. Respect explicit read-only boundaries within their stated scope; do not infer a blanket capture exemption merely from a review or explanation request. The selected mode and operator request govern implementation and corpus-edit authority. Standalone tasks, subagents, and persistent memory use the current environment's authorization rules.
+Writing style follows the [academic style guide](../../../../content/markdown/aaa/archie/academic-style-guide.md). Each variant begins with the `AGENTS.md` access gate, generated router, and selected live owner. Git commands below are inspection examples that any agent may run under the Git rule in `AGENTS.md`; prefer `git --no-optional-locks status` over plain `git status` so a sandbox cannot leave `.git/index.lock` behind. The operator explanation standard governs routine discussion capture and document selection. Respect explicit read-only boundaries within their stated scope; do not infer a blanket capture exemption merely from a review or explanation request. The selected mode and operator request govern implementation and corpus-edit authority. Standalone tasks, subagents, and persistent memory use the current environment's authorization rules.
 
 ## Source Mining Standard
 
@@ -86,9 +100,34 @@ Use this priority order:
 
 Do not call a requirement card theory progress by itself. It contributes to theory progress only if the campaign supplies an AAA-native derivation, equation, invariant, mechanism, simulation target with concrete variables, or proof route tied to existing ontology.
 
+## Shared Canon Reads and Constraints
+
+Every prompt block below applies this section by reference rather than restating it. The agent has this file open because the skill routed it here, so a block that says "apply the shared constraints" is complete when pasted.
+
+Canon reads. Before judging terminology, notation, or authored AAA prose, read the relevant Archie canon:
+
+- `content/markdown/aaa/archie/academic-style-guide.md`
+- `content/markdown/aaa/archie/mathematics-style-guide.md`
+- `content/markdown/aaa/archie/mathematics-terminology.md`
+- `content/markdown/aaa/archie/comparative-glossary.md`
+
+Constraints that hold in every mode:
+
+- Preserve TeX delimiters and TeX content exactly in every quoted or proposed edit, unless the task is specifically a notation correction.
+- Use canonical AAA terminology; reuse an existing project term exactly and do not introduce new project terminology without asking.
+- Do not link from `content/markdown/aaa` into `reference/priorities`; use relative links only in authored AAA markdown and keep it self-contained with respect to priority material.
+- Do not reference Research Office workflow material inside `content/markdown/aaa`.
+- Distinguish ontological claims, dynamical or symmetry-based derivations, effective summaries, and speculative extensions. Keep foundational insights strong, but name their scope and what still requires separate argument.
+- Do not silently convert a leap of intuition into doctrine. Mark it as an operator-discussion item unless the selected source signal already establishes it.
+- Do not edit Archie canon unless the operator explicitly asks for a canon-policy update.
+- Treat Lorentz behavior, nested shell braid minimality, and similar closure claims as theorem targets unless the local derivation is present. Treat mass/inertia as the externally exposed response of trapped internal causal history, shielding, and Noether sea coupling, never as ordinary dissipative drag. Keep `Noether sea` as the ontology term and `spacetime medium` as a bridge term.
+- If the campaign discovers a likely major theory breakthrough, stop at a discussion-ready proposal unless the operator has explicitly requested direct drafting.
+
 ## Thread State Handoff
 
 Record the current status, operating mode, authority used, changed files, validation, blockers, and any continuation context in the owning priority material. Surface the parts needed to assess the current result in the response under the operator explanation standard. No separate closing handoff block is required.
+
+Claim cards under `reference/office-of-research/research-history/exploration-reports/` are a parallel-thread coordination device, described in the self-running variant. A single-thread run records its status in the owning priority material and does not write a claim card unless the request asks for one or other active claims exist.
 
 For self-running exploration, distinguish claim-card writes from AAA prose edits. Record claim-card-only work separately from corpus edits without imposing a fixed response label.
 
@@ -99,6 +138,10 @@ Use one natural work packet per thread, but do not create an artificial stop jus
 Follow the operator explanation standard for the numbered next-action list and recommendations. Keep the complete set of unresolved proposals organized in the owning priorities, and surface relevant immediate choices in the response. A continuation prompt is useful when work needs a reusable brief: state the concrete task, context, scope, authority, constraints, expected evidence, and priority links. No fixed opening label is required. Provide such detail when useful rather than requiring a full prompt for every action.
 
 When the operator selects an action, execute within its stated authority. Clarify any conflicting choices or unresolved authority before dependent work.
+
+## Base Campaign Prompt
+
+This block serves the audit/report and campaign modes. For audit/report, the request states that the pass is report-only and step 10 then forbids edits.
 
 ```text
 Autonomously identify the strongest current theory signals and turn at least one of them into concrete mathematics. Start with recent AAA changes, the priority ledgers under `reference/priorities/`, and then targeted searches through `content/markdown/aaa`. Extract major advances or open issues, including new definitions, stronger claims, refined distinctions, notation changes, derivations, terminology, missing proof routes, and implications. Then compare those signals against the rest of the relevant markdown corpus, especially `content/markdown/aaa`, to find places where the corpus should be mathematically elevated or corrected.
@@ -134,17 +177,13 @@ Standing theory programs to watch for when relevant:
 - Cosmology ontology: the Euclidean void does not expand. `a(t)`, `H(t)`, redshift, temperature, and CMB summaries are effective observer variables for Noether sea evolution, transport, and clock-rate comparison.
 
 Required method:
-1. Run `git status --short` before any edit-oriented work. Do not revert existing changes.
+1. Run `git --no-optional-locks status --short` before any edit-oriented work. Do not revert existing changes.
 2. Identify source signals without requiring Op to paste paths:
    - recent changed AAA files from `git diff --name-only` and recent history,
    - `reference/priorities/aaa-work-threads/priorities.md`,
    - relevant files under `reference/priorities/`,
    - and high-signal AAA documents discovered by targeted `rg` searches.
-3. Read the relevant Archie canon guides and glossaries before judging terminology:
-   - content/markdown/aaa/archie/academic-style-guide.md
-   - content/markdown/aaa/archie/mathematics-style-guide.md
-   - content/markdown/aaa/archie/mathematics-terminology.md
-   - content/markdown/aaa/archie/comparative-glossary.md
+3. Read the canon named in the Shared Canon Reads and Constraints section of `reference/office-of-research/cto/prompts/convergence-campaign.md` before judging terminology.
 4. Build a concise list of the selected source signals' theory advances or priority-ledger issues.
 5. For source-mining tasks, continue until every AAA-relevant source signal has an outcome: edited now, converted into a concrete mathematical target, staged for Op discussion, or rejected with a short reason.
 6. Convert that list into a claim map using the four buckets: ontology, derivation/closure target, effective summary, speculation.
@@ -175,16 +214,7 @@ Infrastructure findings:
 - List leaps of intuition separately from edit recommendations. Each leap should say what prompted it, what it might advance, what evidence is missing, and the exact question to discuss with Op before editing it into AAA prose or canon.
 
 Important constraints:
-- Preserve TeX exactly.
-- Use canonical AAA terminology.
-- Do not introduce new project terminology without asking.
-- Do not link from content/markdown/aaa into reference/priorities.
-- Do not reference Research Office workflow material inside content/markdown/aaa.
-- Distinguish ontological claims, dynamical or symmetry-based derivations, effective summaries, and speculative extensions.
-- Keep foundational insights strong, but name their scope and what still requires separate argument.
-- Do not silently integrate a new intuitive leap as doctrine. Mark it as an Op-discussion item unless the selected source signal already establishes it.
-- In authored AAA markdown, use relative links only and keep content/markdown/aaa self-contained with respect to priority material.
-- If a canonical project term exists, reuse it exactly. Do not invent alternate wording for convenience.
+- Apply the Shared Canon Reads and Constraints section of `reference/office-of-research/cto/prompts/convergence-campaign.md`.
 
 Evidence to record in the owning priority material and explain where relevant under the operator explanation standard:
 1. Concrete mathematical advances attempted, including candidate definitions, equations, lemmas, proof routes, or validation targets.
@@ -212,13 +242,9 @@ Task:
 Do the selected batch of up to 8 affected AAA markdown documents. Search first, then edit. Preserve TeX carefully and keep edits scoped.
 
 Before editing:
-1. Run `git status --short`.
+1. Run `git --no-optional-locks status --short`.
 2. Do not revert existing changes.
-3. Read the relevant Archie canon if needed:
-   - content/markdown/aaa/archie/academic-style-guide.md
-   - content/markdown/aaa/archie/mathematics-style-guide.md
-   - content/markdown/aaa/archie/mathematics-terminology.md
-   - content/markdown/aaa/archie/comparative-glossary.md
+3. Read the canon named in the Shared Canon Reads and Constraints section of `reference/office-of-research/cto/prompts/convergence-campaign.md` if the batch touches terminology, notation, or authored AAA prose.
 
 Search strategy:
 1. Start with exact stale phrases from the previous audit.
@@ -238,12 +264,8 @@ Convergence priorities:
 - Do not expand gates, checkers, fixtures, or requirement ledgers by default. Add or recommend a new obligation artifact only after stating its incremental value over existing gates and confirming that it serves a live derivation or tested-physics contact point; otherwise prefer a theory-first derivation, equation, lemma, or proof scaffold. Do record low-maintenance success markers when an edit batch produces a recovery, benchmark pass, worked example, derivation milestone, or validation win under an existing gate.
 
 Constraints:
-- Use `apply_patch` for edits.
-- Preserve TeX delimiters and TeX content exactly unless the task is specifically a notation correction.
-- Do not introduce new project terminology without asking.
-- Do not link from content/markdown/aaa into reference/priorities.
-- Do not reference Research Office workflow material inside content/markdown/aaa.
-- Do not update Archie canon files unless the operator explicitly requested a canon-policy change.
+- Apply the Shared Canon Reads and Constraints section of `reference/office-of-research/cto/prompts/convergence-campaign.md`.
+- Make scoped in-place edits with the host's file-editing tool; do not rewrite whole files.
 
 After editing, run:
 - `git diff --check`
@@ -266,10 +288,12 @@ Explain the main cleanup, affected files, validation, and any generated-artifact
 
 Use this version when there is no single source document and the agent should actively look for the next high-value convergence target. This is an autonomous mathematical exploration mode, not a license to silently canonize new theory. It should explore priority ledgers, recent changes, corpus gaps, synthesize, follow promising intuition, make safe low-risk canon-conforming edits when the current request grants convergence authority, and return concrete mathematical advances or detailed prompt options for work outside that authority.
 
+The paste block is the per-run brief. The postures, lanes, shards, claim-card procedure, and evidence list it names are defined in the subsections that follow it, so they can be revised without editing a code fence.
+
 ```text
 Find the next highest-leverage theory-progress target without being given a specific source document, then push it as far as the current authority responsibly allows. Start with the priority ledgers unless Op supplied a different lane, then explore the idea space through recent changes, random deep dives, proof-target scans, missing-material scans, and occasional drift scans. Produce a ranked convergence report with concrete candidate definitions, equations, lemmas, proof or derivation targets, disciplined leaps of intuition, safe edits made now when authorized, safe edit candidates outside scope, and priority action items.
 
-Run a self-directed AAA convergence exploration campaign.
+Run a self-directed AAA convergence exploration campaign under the Self-Running Exploration Variant of `reference/office-of-research/cto/prompts/convergence-campaign.md`.
 
 Operating principle:
 This campaign should behave like an active research scout doing real mathematical work. It should not merely clean phrases, collect links, or narrate that something should happen later. Ideas are welcome: surface promising syntheses, analogies, proof routes, and unifying mechanisms even when they are not ready for canon. Label them by evidential status instead of suppressing them. The center of gravity is mathematical progress in theory and proofs: sharpen definitions, name lemmas, start derivations, write closure targets explicitly, and turn speculative mechanisms into testable theorem or simulation programs.
@@ -281,16 +305,24 @@ No empty future-work prose:
 Do not write paragraphs whose only content is that a topic deserves future attention. Either do the smallest useful mathematical step now, make the safe AAA edit when the current request authorizes it, draft the exact AAA edit for a later bounded pass, or record a concrete next action, with a reusable prompt when useful. If the item belongs in `reference/priorities`, name the owning priority file and the concrete action that should be added or updated.
 
 Before exploring:
-1. Run `git status --short`.
+1. Run `git --no-optional-locks status --short`.
 2. Do not revert existing changes.
-3. Read the relevant Archie canon if the pass touches terminology, notation, or authored AAA prose:
-   - content/markdown/aaa/archie/academic-style-guide.md
-   - content/markdown/aaa/archie/mathematics-style-guide.md
-   - content/markdown/aaa/archie/mathematics-terminology.md
-   - content/markdown/aaa/archie/comparative-glossary.md
+3. Read the canon named in the Shared Canon Reads and Constraints section of `reference/office-of-research/cto/prompts/convergence-campaign.md` if the pass touches terminology, notation, or authored AAA prose.
 
-Parallel-thread coordination:
-Use this protocol when Op starts multiple threads with this same prompt and wants broad coverage without overlap.
+Selecting territory:
+1. If several threads run this prompt at once, follow the Parallel-Thread Claim Cards procedure in the same file; a single-thread run skips the claim card unless the request asks for one or active claims already exist.
+2. Choose one or two postures from the Exploration Postures subsection, then 2-4 lanes from the Exploration Lanes subsection and one shard from the Path Shards subsection, applying the lane-distribution and lane-selection rules stated there. State the selections in the claim card, if any, and in the final report.
+
+Evidence:
+Capture the items listed under Evidence to Capture in the same file; use the operator explanation standard for response structure.
+
+Guardrails:
+- Apply the Shared Canon Reads and Constraints section of `reference/office-of-research/cto/prompts/convergence-campaign.md`.
+```
+
+### Parallel-Thread Claim Cards
+
+Use this protocol when Op starts multiple threads with this same prompt and wants broad coverage without overlap. A single-thread run skips the claim card unless the request asks for one or active claims already exist.
 
 1. Check for existing claim cards:
    - `rg --files reference/office-of-research/research-history/exploration-reports 2>/dev/null`
@@ -304,7 +336,8 @@ Use this protocol when Op starts multiple threads with this same prompt and want
 4. Treat claim cards older than 48 hours as historical unless they explicitly say work is still active.
 5. At the end, report the claim card path and the explored territory. If practical, update the claim card with final status and a one-paragraph summary.
 
-Default path shards:
+### Path Shards
+
 - Shard 1: `content/markdown/aaa/archie`, terminology, guides, glossary, canon policy.
 - Shard 2: `content/markdown/aaa/foundations`, `content/markdown/aaa/spacetime`, `content/markdown/aaa/philosophy-history/theory-bridges`.
 - Shard 3: `content/markdown/aaa/dynamics`, `content/markdown/aaa/interactions`, `content/markdown/aaa/assemblies`.
@@ -312,14 +345,16 @@ Default path shards:
 - Shard 5: `content/markdown/aaa/philosophy-history`, overviews, READMEs, reader-orientation documents.
 - Shard 6: `reference/priorities`, other reference material, app/scene/user-facing language, and non-AAA surfaces that echo AAA terms.
 
-Default lane distribution:
+Lane distribution across shards:
+
 - If few or no active claims exist, choose the priority-ledger convergence posture or Lane H as the primary lane unless Op supplied a different focus; choose one secondary lane from A-G to test and enrich the priority signal.
 - If a priority-ledger pass was just completed by another active claim, choose one primary lane from A-G and use Lane H only as a cross-check.
 - If several claims exist, choose the least-covered lane and least-covered path shard.
 - Avoid doing a broad all-corpus scan unless the active claims show no one else is currently covering the corpus.
 - During the current core theory push, choose Closure lab, Proof-route forge, Priority-ledger convergence, or Recent-change propagator before reader-completeness, cross-link, or hygiene postures unless Op explicitly requested those support modes.
 
-Internal exploration palette:
+### Exploration Postures
+
 If Op does not specify a lane, shard, or posture, choose one or two of these postures before choosing lanes. Give high priority to postures that can produce a concrete mathematical artifact now, bias away from active claim cards and recently covered territory, and keep hygiene postures as occasional secondary passes. State the selected posture in the claim card and final report.
 
 - **Priority-ledger convergence:** go through `reference/priorities/aaa-work-threads/priorities.md` and the relevant files under `reference/priorities/` to find operator-maintained issues that can move the AAA corpus toward canon. Convert priority items into present mathematical work: proof routes, definitions, equations, missing derivations, worked examples, validation ledgers, cross-document integration, or safe edit batches. Do not link from authored AAA prose to priority files; promote the substance into `content/markdown/aaa` when it belongs there.
@@ -337,15 +372,19 @@ If Op does not specify a lane, shard, or posture, choose one or two of these pos
 - **Reaction-provenance tracer:** follow energy, charge, polarity, architrino, and Noether braid provenance through reactions and identify missing ledgers.
 - **Validation/infrastructure scout:** secondary support posture; propose scripts, checks, claim-card improvements, closure-target ledgers, or repeatable search patterns only when they address a specific recurring failure.
 
-Choose 2-4 exploration lanes per run:
+### Exploration Lanes
+
+Choose 2-4 lanes per run.
 
 Lane selection bias:
+
 - Include at least one math/theory lane in every ordinary self-running pass, preferably Lane H, Lane B, Lane C, Lane E, Lane G, or a recent-change pass with explicit proof-route extraction.
 - Prefer the lane most likely to produce a concrete mathematical artifact in the current pass. Lane H is useful when priority files point to a live proof or derivation target, but do not let it become a future-work catalog.
 - Use Lane D as a secondary hygiene lane unless Op requests cleanup, active claims leave no better unclaimed territory, or drift is directly blocking a theory advance.
 - Rank mathematical advances above wording-only cleanup, linking, and infrastructure in the final report.
 
-Lane A: Recent-change theory harvest
+#### Lane A: Recent-change theory harvest
+
 - Inspect recent changes for possible theory advances using git history and current diffs.
 - Useful commands include:
   - `git diff --name-only`
@@ -355,7 +394,8 @@ Lane A: Recent-change theory harvest
 - Extract any new definitions, stronger claims, notation changes, theorem targets, or canonical phrases introduced recently.
 - Attempt one concrete mathematical propagation: a candidate definition, equation, lemma, proof-route paragraph, or exact edit that carries the new signal into a nearby document.
 
-Lane B: Random serious-document deep dive
+#### Lane B: Random serious-document deep dive
+
 - Choose one AAA markdown document at random and attempt a serious convergence audit.
 - Useful command: `rg --files content/markdown/aaa | sort | shuf -n 1`
 - If `shuf` is unavailable, choose a document by another reproducible method and state how it was chosen.
@@ -363,7 +403,8 @@ Lane B: Random serious-document deep dive
 - Ask: What is the strongest defensible mathematical improvement this document can support today?
 - Preserve the candidate mathematical improvement, safe edits, missing derivation targets, and Op-discussion leaps as evidence coverage under the operator explanation standard.
 
-Lane C: Missing-material and stub scan
+#### Lane C: Missing-material and stub scan
+
 - Search for unwritten, thin, placeholder, or future-work material.
 - Useful searches:
   - `rg -n -i "TODO|TBD|placeholder|stub|not yet|needs derivation|future work|to compute|mapping goal|pending derivation|unresolved|open question" content/markdown/aaa`
@@ -371,12 +412,14 @@ Lane C: Missing-material and stub scan
 - Distinguish a simple missing paragraph from a missing canonical bridge, missing theorem proof, missing reaction ledger, or missing derivation program.
 - Draft or outline the smallest useful fill-in: one definition, equation, lemma, worked example, ledger row, or validation criterion. Do not return only a list of absences.
 
-Lane D: Drift and canonicalization scan
+#### Lane D: Drift and canonicalization scan
+
 - Secondary hygiene lane. Search for recurring stale phrases and notation drift when those issues obstruct theory clarity or the randomized pass selects this lane.
 - Start with known drift classes: Noether sea usage, density/delay notation, photon ontology, mass/inertia language, Lorentz closure language, nested shell braid minimality, reaction provenance, and cosmology ontology.
 - Propose new automated audit patterns when a drift class appears in multiple files.
 
-Lane E: Closure-target ledger scan
+#### Lane E: Closure-target ledger scan
+
 - Search for repeated claims that need to be converted into theorem targets or proof paths.
 - Prioritize Lorentz closure, mass/inertia closure, nested shell braid minimality, photon stability, reaction provenance, emergent metric closure, and cosmology observer-variable closure.
 - For each target, identify:
@@ -387,12 +430,14 @@ Lane E: Closure-target ledger scan
   - files that should receive the mathematical clarification once the target is clarified,
   - whether the claim is currently overclaimed, underclaimed, or properly scoped.
 
-Lane F: Reader-completeness scan
+#### Lane F: Reader-completeness scan
+
 - Look for sections where a reader would naturally expect a definition, derivation step, bridge comparison, or worked example but the material is absent or too compressed.
 - Check READMEs, overview pages, bridge documents, and documents with many outgoing links but little local explanation.
 - Recommend or draft fill-ins that preserve self-contained AAA prose without linking to reference/priorities.
 
-Lane G: Intuition-to-proof synthesis
+#### Lane G: Intuition-to-proof synthesis
+
 - Choose a promising intuition, analogy, or cross-document pattern and translate it into a disciplined research target.
 - Identify:
   - trigger passages or documents,
@@ -403,7 +448,8 @@ Lane G: Intuition-to-proof synthesis
   - failure modes or counterexamples that would discipline the idea.
 - Treat the output as an Op-discussion theory card, not as settled doctrine.
 
-Lane H: Priority-ledger convergence
+#### Lane H: Priority-ledger convergence
+
 - Read `reference/priorities/aaa-work-threads/priorities.md` first, then inspect the specific priority files that look most actionable.
 - Treat priority files as a backlog of operator-maintained problems, not as source text to quote into authored AAA prose.
 - For each promising item, identify:
@@ -415,7 +461,8 @@ Lane H: Priority-ledger convergence
 - Prefer issues where one focused edit can turn a vague priority into a theorem target, provenance equation, derivation scaffold, or validation criterion.
 - If a priority item is completed during an edit-batch thread, remove or update it in the priority list and renumber following items as required by `AGENTS.md`.
 
-Evidence to capture during the work; use the operator explanation standard for response structure:
+### Evidence to Capture
+
 1. Claim card path if used, selected exploration posture(s), selected lane(s), selected path shard, and any active claims avoided.
 2. Exploration lanes used and why.
 3. Source signals found, including priority files, recent commits/diffs, or randomly selected documents.
@@ -466,17 +513,6 @@ Evidence to capture during the work; use the operator explanation standard for r
    - no request for Op approval unless approval is required to complete this thread's current task.
 12. Durable handoff details in the owning priorities. Distinguish claim-card-only work, report-only work, and edited files, and say whether any AAA prose changed.
 
-Guardrails:
-- Do not introduce new project terminology without asking.
-- Do not silently convert a leap of intuition into doctrine.
-- Do not edit Archie canon unless Op explicitly asks for a canon-policy update.
-- Do not link from content/markdown/aaa into reference/priorities.
-- Do not reference Research Office workflow material inside content/markdown/aaa.
-- Preserve TeX exactly in any quoted or proposed edit.
-- Keep foundational insights strong, but name their scope and what still requires separate argument.
-- If the campaign discovers a likely major theory breakthrough, stop at a discussion-ready proposal unless Op has explicitly requested direct drafting.
-```
-
 ## Team-Agent Variant
 
 Use this version when the corpus is large enough that the comparison should be split into non-overlapping shards. Shard agents should report findings only; the coordinator should merge, deduplicate, rank, and resolve terminology against canon.
@@ -487,13 +523,9 @@ Coordinate a non-overlapping team-agent convergence campaign that extracts concr
 Run a team-agent convergence campaign for the AAA markdown corpus.
 
 Coordinator:
-1. Run `git status --short` before any edit-oriented work. Do not revert existing changes.
+1. Run `git --no-optional-locks status --short` before any edit-oriented work. Do not revert existing changes.
 2. Identify source signals autonomously: recent AAA changes, `reference/priorities/aaa-work-threads/priorities.md`, relevant files under `reference/priorities/`, and high-signal AAA documents discovered by targeted searches.
-3. Read the relevant Archie canon guides and glossaries:
-   - content/markdown/aaa/archie/academic-style-guide.md
-   - content/markdown/aaa/archie/mathematics-style-guide.md
-   - content/markdown/aaa/archie/mathematics-terminology.md
-   - content/markdown/aaa/archie/comparative-glossary.md
+3. Read the canon named in the Shared Canon Reads and Constraints section of `reference/office-of-research/cto/prompts/convergence-campaign.md`.
 4. Extract the selected source signals' major advances or priority-ledger issues:
    - new or refined definitions
    - stronger claims
@@ -550,17 +582,8 @@ The coordinator must then:
 8. Make safe, non-overlapping edits only when Op explicitly granted team-agent edit authority; otherwise return scoped proposals for coordinator-led edit batches.
 
 Important constraints:
-- Preserve TeX exactly.
-- Use canonical AAA terminology.
-- Do not introduce new project terminology without asking.
-- Do not link from content/markdown/aaa into reference/priorities.
-- Do not reference Research Office workflow material inside content/markdown/aaa.
-- Distinguish ontological claims, dynamical or symmetry-based derivations, effective summaries, and speculative extensions.
-- Keep foundational insights strong, but name their scope and what still requires separate argument.
-- Surface leaps of intuition as discussion items for Op before canonizing them or asking shard agents to treat them as established.
-- Treat Lorentz behavior, nested shell braid minimality, and similar closure claims as theorem targets unless the local derivation is present.
-- Treat mass/inertia as externally exposed response of trapped internal causal history, shielding, and Noether sea coupling; do not recast it as ordinary dissipative drag.
-- Keep Noether sea as the ontology term and spacetime medium as a bridge term.
+- Apply the Shared Canon Reads and Constraints section of `reference/office-of-research/cto/prompts/convergence-campaign.md`.
+- Surface leaps of intuition as discussion items for Op before asking shard agents to treat them as established.
 - Shard agents must not edit files. The coordinator may edit only when Op explicitly grants team-agent edit authority or selects a follow-up edit-batch prompt.
 
 Evidence to record in the owning priority material and explain where relevant under the operator explanation standard:

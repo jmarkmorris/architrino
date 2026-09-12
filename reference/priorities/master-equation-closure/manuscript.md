@@ -125,6 +125,26 @@ The identity labels remain distinct at that event. The equation instead samples 
 
 The distinction separates three investigations. Coordinate reachability asks whether the evolving positions can meet. Root reachability asks whether the evolving history produces a particular causal-root boundary. Continuation asks whether the equation determines a future through an attained boundary. An answer to one is evidence for another only when the required implication is actually proved.
 
+Population and perturbation are separate assumptions. An isolated pair receives no contributions from other labels, but its supplied histories can still be perturbed. An infinite lattice is populated; the cancellation proved in Section 6 applies to its exact stationary reference. A perturbation means a change from a named reference history, and need not be random, continuously applied, or symmetry-breaking.
+
+| Scenario | Environment and perturbation assumption | Where the distinction matters |
+| --- | --- | --- |
+| Stationary isolated pair, Section 3.3 | No external labels; exact collinear stationary pasts | The first-boundary ordering is derived for that input. Isolation alone does not prove the ordering for perturbed pair histories. |
+| Four-particle contact, Section 3.2 | Two environmental labels evolve with the targets; the complete histories preserve reflection with polarity reversal | Environmental contributions are present, but the targets retain equal transverse displacements. Exact contact does not require an empty environment. |
+| One-target transverse change, Section 3.7 | One supplied history breaks that reflection symmetry; all four futures still obey the equation | The stated change turns contact into a derived miss over the stated interval. It models a changed past, not an imposed future disturbance. |
+| Stationary infinite lattice, Section 6.1 | Infinitely many sources; exact stationary histories and the declared grouping give zero total acceleration at each anchor | Equilibrium is a cancellation result. It is not evidence that the environment is absent or remains balanced after a disturbance. |
+| Two modified lattice histories, Sections 6.4–6.7 and 6.9 | A disturbance is supplied on two fixed labels; every future, including the environment, is evolved | In the smooth example, delayed reception gives a stationary waiting interval followed by a nonstationary response. Conclusions depend on the reception interval and coupling range. |
+| Coordinated distant-history changes, Sections 6.2 and 6.8 | Changes are prescribed across an infinite set, or a growing finite set, of source pasts | The resulting summation or continuity obstruction is not proved to arise by evolving a local disturbance. |
+
+The environmental effect on an encounter is determined by its contribution to relative acceleration. Let $\mathbf E_i$ and $\mathbf E_j$ be the complete acceleration sums from labels outside the target pair, whenever those sums exist under the declared prescription. For $\mathbf d=\mathbf X_i-\mathbf X_j$, $\mathbf w=\dot{\mathbf d}$ and $\mathbf h=\mathbf d\times\mathbf w$, the environmental term in the derived identity $\dot{\mathbf h}=\mathbf d\times\ddot{\mathbf d}$ is
+
+$$
+\left.\dot{\mathbf h}\right|_{\rm env}
+=\mathbf d\times(\mathbf E_i-\mathbf E_j).
+$$
+
+Population alone gives neither the sign nor the nonvanishing of this term. Its instantaneous vanishing also does not prove persistence: that requires symmetry or evolution bounds on the complete histories. In particular, the lattice's zero total acceleration does not mean that its environmental contribution relative to a selected pair is separately zero. Claims about robustness must therefore state the allowed history changes, preserved symmetries, and evolution interval; claims about frequency additionally need a specified population distribution.
+
 ### 3.2. A finite construction reaching coordinate contact
 
 A derived finite construction reaches distinct-label coordinate contact as the finite endpoint limit of a regular incoming evolution on one declared forward initial-history class. It uses four architrinos and complete prescribed pasts, followed by evolution of all four receivers under the Master Equation. Its purpose is an existence result; it does not settle the stationary two-particle problem or a general populated-universe claim.
@@ -174,7 +194,7 @@ $$
 
 The complete incoming analysis establishes that the first boundary is $u(T_*)=1$ while $q(T_*)>0$ and $R_*>0$. The partner factor $1-u(s)$ remains positive: the partner root is still simple. No positive-delay self root exists at the endpoint itself. This is a derived ordering result for the stated stationary input and regular branch, not a universal speed ceiling.
 
-The result answers a precise question: the regular incoming solution does not reach coordinate contact before it reaches a field-speed event. It does not prove that the particles rebound, pass through each other, or remain forever separated. Those claims require a continuation.
+The result answers a precise question: the regular incoming solution does not reach coordinate contact before it reaches a field-speed event. There are no environmental contributions in this control, and persistence under changes to the pair's own histories is a separate question. It does not prove that the particles rebound, pass through each other, or remain forever separated. Those claims require a continuation.
 
 ### 3.4. Present separation, delay, and near-field geometry
 
@@ -448,6 +468,8 @@ A useful complete-history control places equal-magnitude alternating polarities 
 
 At a stationary receiver anchor, this selected grouped sum is exactly zero. Reflection through that anchor pairs equal-polarity sources with opposite acceleration vectors in finite symmetric cubes. To transfer the cancellation to the fixed eight-source grouping, one must also control the unmatched boundary faces, edges and corners. Their total tends to zero, giving the same zero limit. Exact cancellation is therefore a derived property of this reference, despite divergence of the sum of individual magnitudes. It does not establish equality of every possible source ordering.
 
+The absence of motion here is an exact balance, not a consequence of infinite population size. Perturbing source histories or displacing a receiver changes the delayed contributions whose cancellation was proved. The following constructions distinguish the disturbed lattice from this stationary reference.
+
 ### 6.2. Finite changes and infinitely coordinated changes
 
 Changing a fixed finite set $F$ of source histories, while keeping the receiver history fixed and retaining regular finite root sums, gives
@@ -579,13 +601,13 @@ At $\theta_0$, the class permits acceleration magnitude at most $J\theta_0=1$, w
 
 | Coupling ratio | Derived conclusion for the unchanged smooth input |
 | --- | --- |
-| $0<g\leq16$ | Full first-pulse reception through $T=5\ell/16$, with the original class preserved |
+| $0<g\leq16$ | Full first-pulse reception through $T=5\ell/16$, extended through the second receiving shell to $79\ell/128$ in Section 6.9, with the original class preserved |
 | $16<g<2^{48}$ | A positive local response exists, but full-pulse continuation versus original-class loss remains unclassified |
 | $g\geq2^{48}$ | No original-class continuation through $T_*+2^{-16}\ell$, before pulse completion |
 
 Neither threshold is claimed sharp. The negative result follows from the equation and the fixed jerk ceiling, not from failure of a sufficient small-coupling estimate. It establishes neither a root singularity nor contact, does not determine which class ceiling is first encountered, and does not exclude regular continuation in a larger domain. Enlarging that domain would be a separate mathematical proposal; it is not adopted by this result. A positive local response for each fixed finite $g$ remains consistent because its duration can shrink as $g$ grows.
 
-For the accepted small-coupling range, the next old-pulse shell has anchor reception onset $t=\sqrt3-11/8$, beyond the present horizon. Continuing the same control through it requires an expanded finite receiving set, actual moving-receiver endpoints and uniform displacement, derivative and root bounds. If complete displacement stays below $d\ell$, cross ranges exclude nonnegative emission times while $t<1-2d$; this sufficient inequality grants no lifespan without those bounds. Once a newly generated emission does arrive, source and receiver variations both enter the delayed equation, and the receiver-only reduction must be replaced by a coupled-history estimate. No later evolution, target-contact conclusion, arbitrary-history continuity or physical selection of the class follows from the first-pulse theorem.
+For the accepted small-coupling range, the next old-pulse shell has anchor reception onset $t=\sqrt3-11/8$, beyond the first-pulse horizon. Section 6.9 supplies the expanded receiving set and new estimates needed to continue through it. More generally, if complete displacement stays below $d\ell$, cross ranges exclude nonnegative emission times while $t<1-2d$; this sufficient inequality grants no lifespan without those bounds. Once a newly generated emission does arrive, source and receiver variations both enter the delayed equation, and the receiver-only reduction must be replaced by a coupled-history estimate. Target contact, arbitrary-history continuity and physical selection of the class remain separate questions.
 
 ### 6.8. The topology and summation rule are part of the result
 
@@ -593,11 +615,83 @@ The original population class is a space of complete prescribed histories with q
 
 In the nonstationary counterexample, small old velocity changes can be coordinated over infinitely many labels so that the transmitter-factor correction has one sign. A cone of distant lattice sites then supplies a non-Cauchy block sum. A related finite-shell sequence has perturbation norm tending to zero while its acceleration correction stays bounded away from zero. Thus even extensions agreeing with every canonical finite-source correction cannot be continuous in the original norm. These are explicit lower-bound obstructions, stronger than merely finding a nonintegrable upper estimate.
 
+The obstruction persists under a stronger geometric restriction: each alternating eight-source cell can translate rigidly and preserve all signed spatial moments through quadratic order at every supplied time. In the selected cells, the vertices have distinct distances from the receiver, hence different emission times. One shared cell history can have different velocities at those times. At the exact received emissions, a prescribed pulse construction returns each vertex to its anchor but gives sampled velocity $\nu\sigma_j\mathbf e$, where $\mathbf e$ is a fixed unit direction. With $t_j=\mathbf n_j\cdot\mathbf e\ge1/2$, its acceleration correction is exactly
+
+$$
+\Delta\mathbf F_j
+=\frac{G\nu t_j\mathbf n_j}{d_j^2(1-\nu\sigma_jt_j)},\qquad
+\mathbf e\cdot\Delta\mathbf F_j
+\ge\frac{G\nu}{4(1+\nu)d_j^2}>0.
+$$
+
+Here $G=\kappa q_0^2>0$, $d_j$ is the anchor distance, $\mathbf n_j$ points from that anchor to receiver zero, and $0<\nu\le1/1024$. Complete root bounds give exactly one root in every cross channel and no positive-delay self root at release. In a fixed cone, the number of selected cells between radii $R$ and $2R$ grows as $R^3$, so the positive correction has a lower bound proportional to $\nu R$. The stationary cell series converges, and therefore cannot cancel this divergence. Taking only a finite distant shell with amplitude proportional to $1/R$ also gives histories tending to the stationary input while their acceleration corrections stay bounded away from zero. These are derived obstructions even with rigid internal geometry. They concern coordinated prescribed pasts on infinitely many cells or growing finite supports; they are not shown to arise from evolving a disturbance on two fixed labels.
+
+The corresponding conditional positive estimate sums moments of the actual received positions over every admitted root, with weight $\sigma_j/|D_b|$ for root $b$ of source $j$. Assume uniform bounds on actual-root offsets from fixed cell centers, uniform root-count bounds and a nonzero transmitter-factor floor. If the zeroth and first moments vanish uniformly, bounded second moments give $O(R^{-4})$ cell acceleration. The same bound for history derivatives requires the moment conditions to hold throughout the allowed family, with bounded source jets, controlled tangent variations and a persistent complete root chart. Cubic cell counts then give $O(R^{-1})$ acceleration and derivative tails. Differentiability of the infinite functional additionally needs a remainder estimate valid after summation, or a suitable parameter-chart argument supplying it. For example, a cell remainder bounded by $\varepsilon\omega(\varepsilon)R^{-4}$ is summable, where $\varepsilon$ is history-distance and $\omega(\varepsilon)\to0$. An unweighted small remainder for each cell alone does not justify the infinite passage. No evolving population preserving these delayed moment conditions is established by this estimate.
+
 A sufficient replacement proposal restricts the complete source histories by a decaying temporal envelope and an absolutely summable label-dependent remainder. With temporal power $p>1$, stationary subtraction permits summable acceleration and derivative tails. At the threshold $p=1$, coordinated source shells again defeat the desired continuity; a bound whose dyadic majorant fails to decay is not by itself a divergence proof, but the retained counterexample supplies the needed lower bound. The replacement class remains a mathematical proposal rather than a selected physical distribution.
 
 Three freedoms must stay separate: reordering whole cells of one partition, reordering individual sources, and changing the partition. Absolute convergence of a cell series permits the first. It does not grant the other two. Likewise, a convergent field at two chosen receivers does not establish a coupled infinite evolution. The first-pulse construction succeeds because it proves the common bounds and evolves every receiver on a fixed control; its result should neither be erased by the broader negative nor extended beyond its own horizon.
 
 To transfer a finite-population miss to a limiting evolution, one needs both a uniform difference bound on the acceleration functionals and a coupled stability estimate including the environmental histories. If the trajectory error is bounded by $C\eta_N$, a minimum separation exceeding $2C\eta_N$ can certify a miss in the limit. A sampled minimum approaching zero cannot certify contact. Exact contact requires an additional one-sided crossing or invariant-symmetry argument, and its genericity requires a differentiable admitted history family.
+
+### 6.9. Continuation through the second receiving shell
+
+The unchanged smooth two-target disturbance continues through the next received pulse for the same coupling range $0<g=G/\ell\le16$. In dimensionless time $t=T/\ell$, a common evolution reaches $H=79/128$. The improvement uses a sharper bound on the existing pulse, with no change to its amplitude or supplied past. For $\psi(v)=v(1-v^2)^4$,
+
+$$
+\psi'(v)=(1-v^2)^3(1-9v^2),\qquad |\psi'(v)|\le1.
+$$
+
+The bound follows from the extrema at $v^2=0,1/3,1$, with derivative values $1,-16/27,0$. The original amplitude $\varepsilon=2^{-16}$ and time scaling give complete-past source speed at most $8\varepsilon=1/8192$.
+
+Let $\mathbf y_i(t)=(\mathbf X_i(\ell t)-\ell i)/\ell$ and use the proof ball $\|\mathbf y_i\|\le b=1/1024$. The cubic stationary field and at most two changed-source corrections obey
+
+$$
+\|\mathbf S\|+\sum_j\|\mathbf Q_{i-j}\|
+\le\frac{1309b^3}{(1-b)^5}+
+2\frac{2\varepsilon+1/8192}{1-1/8192}
+<\frac1{3200}.
+$$
+
+The corrections retain their polarity products: the distance-squared-two product is positive and the distance-squared-three product is negative. Integrating the acceleration bound gives $\|\mathbf y_i\|\le gt^2/6400$ and $\|\mathbf y_i'\|\le gt/3200$. Because $H<5/8$ and $g\le16$, the former remains strictly below $1/1024$ and the latter below $1/320$. This excludes a first exit from the ball and supplies continuation of the smooth receiver equations to $H$. Differentiating their actual delayed roots bounds dimensionless jerk by $5g\le80$ and retains the smooth joins at pulse reception.
+
+Exactly 32 environmental labels have nonconstant future histories on this interval. The receiving set consists of labels at distance $\sqrt2$ or $\sqrt3$ from either target anchor in lattice units. There are 40 ordered source-receiver pulse pairs. Eight receivers belong to both sets and receive a pulse from each changed source. The original 24 histories remain nonconstant; the new eight labels are
+
+$$
+(-1,\pm1,\pm1),\qquad (2,\pm1,\pm1).
+$$
+
+Their first reception begins at $t_3=\sqrt3-11/8$. Relative to the relevant source, write $\mathbf k=i-j$ and $\theta=t-t_3$. The opposite-polarity product and the exact initial pulse expansion give the derived response
+
+$$
+\mathbf y_i(t_3+\theta)
+=\frac{g\mathbf k k_3}{45}\theta^5+O_g(\theta^6),
+\qquad \|\mathbf k\|^2=3,\quad k_3=\pm1.
+$$
+
+The coefficient is nonzero for every $g>0$, so counting these labels as newly moving does not rely on a numerical threshold. Both targets and all labels outside the receiving set stay stationary by the receiver equations and local uniqueness. No claim is made that every moving receiver has nonzero velocity at every instant.
+
+Pulse endpoints are determined at the moving receivers. For each receiving pair, the support-end equation is
+
+$$
+t_{ij}^{\rm end}+9/8
+=\|i-j+\mathbf y_i(t_{ij}^{\rm end})\|,
+\qquad
+\left|t_{ij}^{\rm end}-(\|i-j\|-9/8)\right|\le1/1024.
+$$
+
+The reception residual has derivative at least $319/320$, so this endpoint is unique. Every such pulse ends before $\sqrt3-9/8+1/1024<H$. The double receivers' second-pulse starts are also determined by their moving positions. Distance-one pulses have already passed before release, while the distance-two pulse cannot begin before $5/8-1/1024>H$. Completion of reception does not make a receiver stationary again.
+
+The entire supplied-and-evolved history has displacement below $\ell/1024$ and speed at most $1/320$. Thus every cross range is at least $511\ell/512$, every cross channel has exactly one positive-delay root with transmitter factor at least $319/320$, and all positive-delay self channels are empty. The original root tubes and complement margins remain valid. Every arriving emission satisfies
+
+$$
+s=T-r\le\left(\frac{79}{128}-\frac{511}{512}\right)\ell
+=-\frac{195\ell}{512}<0.
+$$
+
+This last bound identifies the receiver equations with the full EOM throughout the extended interval. The environmental futures evolve in response to the supplied old disturbance; their newly generated emissions have not yet arrived. The complete acceleration and jerk remain below the original class ceilings, and the stronger displacement bound retains the density and separation conditions. Uniqueness is established among classical continuations sharing this complete past and staying within displacement $b\ell$ and speed $1/4$; singular or unrestricted alternatives are outside that assertion.
+
+The next distance-two shell begins at anchor time $5/8$. Reaching its full pulse requires another receiving-set and motion estimate. The targets remain separated by $\ell$ on the interval proved here. This concrete environmental response establishes neither contact nor exclusion in general populations, and it does not imply that the original history class is invariant for arbitrary perturbations.
 
 ## 7. Wake transport, action, and conserved accounts
 
@@ -776,7 +870,7 @@ These downstream questions retain their dependencies. A root chart supplies neit
 
 The investigations separate properties that are easily conflated. A finite coordinate-contact construction establishes reachability within one forward-history class. The stationary pair's earlier self-boundary obstruction establishes failure of the unchanged regular continuation on a different input. A quintic candidate supplies a unique short mirror continuation only after modifying the boundary rule. A proposed speed cap and event completion can supply finite passage while leaving multiple future branches. Their histories, event types and equations differ.
 
-Infinite-population summation adds a distinct requirement. Exact stationary cancellation and finite modifications are viable under a selected reference, while independently coordinated complete histories can destroy convergence and continuity. A sufficient restricted history class addresses that functional problem. Separately, the fixed smooth two-source control has a self-consistent evolving population through its first received pulse in the proved coupling range. Neither result establishes a general invariant population class or later evolution after newly generated emissions arrive.
+Infinite-population summation adds a distinct requirement. Exact stationary cancellation and finite modifications are viable under a selected reference, while independently coordinated complete histories can destroy convergence and continuity. A sufficient restricted history class addresses that functional problem. Separately, the fixed smooth two-source control has a self-consistent evolving population through its first two receiving shells in the proved coupling range. Neither result establishes a general invariant population class or later evolution after newly generated emissions arrive.
 
 The surviving local scalar gradient, the rejected complete action, and the account obstructions likewise have different scopes. They narrow proposed constructions without selecting a conserved completion or excluding every possible one. Assembly root geometry and return diagnostics provide necessary information, while exact EOM existence, stability, and observer-level response remain additional burdens.
 

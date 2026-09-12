@@ -2,6 +2,26 @@
 // preflight. It never executes a ladder or declares its own plan reviewed.
 import {createHash} from 'node:crypto';
 import {existsSync,mkdirSync,readFileSync,realpathSync,writeFileSync} from 'node:fs';
+import {closeSync,constants,fstatSync,openSync} from 'node:fs';
+async function circularAdmission(root,digest,originalBindings=[]) {
+  if (!/^[a-f0-9]{64}$/u.test(digest??'')) throw Error('externally selected circular source-map digest required');
+  const initial=[...originalBindings];
+  const capture=(filename,expected)=>{
+    if(realpathSync(filename)!==filename)throw Error('canonical circular bootstrap source required');
+    const fd=openSync(filename,constants.O_RDONLY|constants.O_NOFOLLOW|constants.O_NONBLOCK);
+    try{const before=fstatSync(fd);if(!before.isFile()||before.size>2*1024**2)throw Error('bounded circular bootstrap source required');
+      const data=readFileSync(fd),after=fstatSync(fd);
+      if(data.length!==before.size||['dev','ino','size','mtimeMs','ctimeMs'].some(key=>before[key]!==after[key])||createHash('sha256').update(data).digest('hex')!==expected)throw Error('circular bootstrap source differs');
+      initial.push({path:filename,sha256:expected,identity:Object.fromEntries(['dev','ino','size','mtimeMs','ctimeMs'].map(key=>[key,before[key]]))});
+      return data;
+    }finally{closeSync(fd);}
+  };
+  const raw=capture(path.join(root,'reference/priorities/development-process-review/contracts/option-b-circular-sources.jsonld'),digest);
+  const rows=JSON.parse(raw)['@graph']?.filter(row=>row['@type']==='Source'&&row.role==='admission');
+  if(rows?.length!==1||rows[0].binding.path!=='scripts/eom/run-current-subfield-circular-root-pilot.mjs')throw Error('circular admission entry differs');
+  const module=await import('data:text/javascript;base64,'+capture(path.join(root,rows[0].binding.path),rows[0].binding.sha256).toString('base64'));
+  return module.loadCircularSourceMap(root,digest,initial);
+}
 import path from 'node:path';import {fileURLToPath} from 'node:url';import {Worker} from 'node:worker_threads';
 const sha=bytes=>createHash('sha256').update(bytes).digest('hex');const demand=(ok,message)=>{if(!ok)throw Error(message);};
 const dataURL=bytes=>'data:text/javascript;base64,'+Buffer.from(bytes).toString('base64');
@@ -20,31 +40,46 @@ async function main(){
  guard.on('error',()=>process.exit(125));guard.on('exit',()=>{if(!guardClosed)process.exit(125);});
  const check=()=>demand(performance.now()<completionEnd&&!controller.signal.aborted,'preflight original deadline/interruption');
  try{
-  demand(process.argv.length===6&&process.argv[2]==='--out'&&process.argv[4]==='--self-sha256'&&/^[0-9a-f]{64}$/u.test(process.argv[5]),'--out NEW --self-sha256 SHA required');
+  const args={};for(let i=2;i<process.argv.length;i+=2){demand(['--out','--self-sha256','--source-map-sha256','--pilot-review','--pilot-review-sha256'].includes(process.argv[i])&&process.argv[i+1]&&!args[process.argv[i]],'exact circular preparation options required');args[process.argv[i]]=process.argv[i+1];}
+  demand(Object.keys(args).length===5&&['--self-sha256','--source-map-sha256','--pilot-review-sha256'].every(key=>/^[a-f0-9]{64}$/u.test(args[key]??'')),'external source and prior review selections required');
   demand(process.execArgv.length===0&&!Object.keys(process.env).some(key=>(key.startsWith('DYLD_')||['NODE_OPTIONS','NODE_PATH','LD_PRELOAD','LD_LIBRARY_PATH'].includes(key))&&process.env[key]),'clean runtime required');
   const root=realpathSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..'));
-  const self=readFileSync(path.join(root,roles.self));demand(sha(self)===process.argv[5],'preparation source binding differs');
-  const ownerBytes=readFileSync(path.join(root,roles.processOwner));const {captureCircularFile,createCircularObservationOwner}=await import(dataURL(ownerBytes));
-  const sources=Object.entries(roles).map(([role,filename])=>({role,...captureCircularFile(path.join(root,filename))}));
-  demand(sources.find(row=>row.role==='self').sha256===process.argv[5]&&sources.find(row=>row.role==='processOwner').sha256===sha(ownerBytes),'source capture differs');
+  const admission=await circularAdmission(root,args['--source-map-sha256']);
+  demand(admission.source(roles.self).sha256===args['--self-sha256'],'preparation source binding differs');
+  const captured=await import(dataURL(admission.source(roles.self).data));
+  await captured.prepareCurrentCircularLadder({root,args,originalBindings:admission.bindings,began,completionEnd,controller,guard,check,
+    setOwners:(process,memory)=>{processOwner=process;memoryOwner=memory;},markWorkStarted:()=>{workStarted=true;}});
+ }catch(error){failure=error;}
+ const closed=!workStarted||(processOwner?.snapshot().probes.every(row=>row.closed)&&memoryOwner?.snapshot().probes.every(row=>row.closed));
+ if(closed){guardClosed=true;await guard.terminate();process.off('SIGINT',interrupt);process.off('SIGTERM',interrupt);}
+ if(failure){console.error(failure.stack);process.exitCode=1;}
+}
+export async function prepareCurrentCircularLadder({root,args,originalBindings,began,completionEnd,controller,guard,check,setOwners,markWorkStarted}) {
+ const admission=await circularAdmission(root,args['--source-map-sha256'],originalBindings);
+ demand(import.meta.url===dataURL(admission.source(roles.self).data),'captured circular ladder preparer required');
+ let processOwner,memoryOwner,output;
+  const {captureCircularFile,createCircularObservationOwner}=await import(dataURL(admission.source(roles.processOwner).data));
+  const sources=Object.entries(roles).map(([role,filename])=>({role,...admission.source(filename)}));
+  sources.push(...admission.bindings);
   const nodeImages=process.report.getReport().sharedObjects.filter(p=>!p.startsWith('/System/')&&!p.startsWith('/usr/lib/')).map(filename=>captureCircularFile(filename));
   sources.push(...nodeImages.map(row=>({role:'nodeRuntime',...row})));
   sources.push({role:'nodeExecutable',...captureCircularFile(process.execPath)});
   const get=role=>sources.find(row=>row.role===role);
   const rung=await import(dataURL(get('rung').data)),{createCircularMemoryOwner}=await import(dataURL(get('memoryOwner').data));
-  const review=captureCircularFile(path.join(root,rung.SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW.path),rung.SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW.sha256);const reviewValue=JSON.parse(review.data);
+  const selection={path:path.resolve(root,args['--pilot-review']),sha256:args['--pilot-review-sha256']};
+  const review=captureCircularFile(selection.path,selection.sha256);const reviewValue=JSON.parse(review.data);
   const joint=captureCircularFile(reviewValue.joint.path,reviewValue.joint.sha256),jointValue=JSON.parse(joint.data);
-  const authority=rung.acceptCurrentCircularPilot({...joint,value:jointValue},{...review,value:reviewValue});
+  const authority=rung.acceptCurrentCircularPilot({...joint,value:jointValue},{...review,value:reviewValue},selection);
   const ledger=captureCircularFile(authority.admission.summary.path,authority.admission.summary.sha256),ledgerValue=JSON.parse(ledger.data);
   demand(ledgerValue.accepted&&ledgerValue.phaseCount===32&&ledgerValue.rowCount===2448,'complete current pilot summary required');
   const dispositions=currentCircularDispositions(rung.SUBFIELD_CIRCULAR_IDS,reviewValue.candidateCosts);
   sources.push({...review,role:'pilotReview'},{...joint,role:'pilotAdmission'},{...ledger,role:'pilotSummary'});
-  const base=path.join(root,'.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1');output=path.resolve(root,process.argv[3]);demand(path.dirname(output)===base&&!existsSync(output)&&realpathSync(base)===base,'fresh direct output child required');mkdirSync(output);
+  const base=path.join(root,'.local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1');output=path.resolve(root,args['--out']);demand(path.dirname(output)===base&&!existsSync(output)&&realpathSync(base)===base,'fresh direct output child required');admission.recheck();mkdirSync(output);
   const python=path.resolve(root,process.env.AAA_VENV??'../.venv','bin/python');
   const shared={python,sources,root,completionEnd,signal:controller.signal};
   processOwner=createCircularObservationOwner({...shared,helper:get('processHelper').path,began});
   memoryOwner=createCircularMemoryOwner({...shared,helper:get('memoryHelper').path,capture:captureCircularFile});
-  workStarted=true;await processOwner.initialize();const table=await processOwner.inspect({remainingMs:2500,originalDeadlineMs:completionEnd,cleanup:false});
+  setOwners(processOwner,memoryOwner);markWorkStarted();await processOwner.initialize();const table=await processOwner.inspect({remainingMs:2500,originalDeadlineMs:completionEnd,cleanup:false});
   demand(table.some(row=>row.pid===process.pid&&row.pgid===process.pid),'owned isolated preflight process group required');guard.postMessage('group');
   await memoryOwner.initialize();let resourceObservation;
   try{resourceObservation=await memoryOwner.observe({policy:rung.SUBFIELD_CIRCULAR_RESOURCE_OBSERVATION,atLaunch:true});}catch(error){resourceObservation={accepted:false,failure:error.message};}
@@ -60,14 +95,11 @@ async function main(){
   writeFileSync(path.join(output,'first-rung-prior.json'),JSON.stringify(prior)+'\n',{flag:'wx'});
   let memoryReceipt;try{memoryReceipt=await memoryOwner.finish();}catch{memoryReceipt=memoryOwner.snapshot();}
   const processReceipt=await processOwner.finish();check();memoryOwner.recheck();
-  const receipt={schema:'circular-current-ladder-preparation.v1',accepted:resourceObservation.accepted&&memoryReceipt.closed&&processReceipt.closed,h3EvidenceEligible:false,laterLadderAuthorized:false,
+  admission.recheck();
+  const receipt={schema:'circular-current-ladder-preparation.v1',accepted:resourceObservation.accepted&&memoryReceipt.closed&&processReceipt.closed,h3EvidenceEligible:false,laterLadderAuthorized:false,sourceMap:admission.sourceMap,sourceBindings:admission.bindings,
    plan:captureCircularFile(planPath),resourceObservation,memory:memoryReceipt,process:processReceipt,elapsedSeconds:(performance.now()-began)/1000,conditionalOn:'exact external owner zero exit before original60seconddeadline'};
-  delete receipt.plan.data;writeFileSync(path.join(output,'preflight.json'),JSON.stringify(receipt)+'\n',{flag:'wx'});check();processOwner.recheck();memoryOwner.recheck();
+  delete receipt.plan.data;writeFileSync(path.join(output,'preflight.json'),JSON.stringify(receipt)+'\n',{flag:'wx'});check();processOwner.recheck();memoryOwner.recheck();admission.recheck();
   await new Promise((resolve,reject)=>process.stdout.write(JSON.stringify({accepted:receipt.accepted,laterLadderAuthorized:false,out:output})+'\n',error=>error?reject(error):resolve()));check();
-  if(!receipt.accepted)failure=Error(resourceObservation.failure??'resource preflight rejected');
- }catch(error){failure=error;}
- const closed=!workStarted||(processOwner?.snapshot().probes.every(row=>row.closed)&&memoryOwner?.snapshot().probes.every(row=>row.closed));
- if(closed){guardClosed=true;await guard.terminate();process.off('SIGINT',interrupt);process.off('SIGTERM',interrupt);}
- if(failure){console.error(failure.stack);process.exitCode=1;}
+  if(!receipt.accepted)throw Error(resourceObservation.failure??'resource preflight rejected');
 }
 if(import.meta.url.startsWith('file:')&&process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url))main();

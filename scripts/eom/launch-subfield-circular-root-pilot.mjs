@@ -9,10 +9,29 @@ import net from "node:net";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { Worker } from "node:worker_threads";
+import {readFileSync} from 'node:fs';
+async function circularAdmission(root,digest,originalBindings=[]) {
+  if (!/^[a-f0-9]{64}$/u.test(digest??'')) throw Error('externally selected circular source-map digest required');
+  const initial=[...originalBindings];
+  const capture=(filename,expected)=>{
+    if(realpathSync(filename)!==filename)throw Error('canonical circular bootstrap source required');
+    const fd=openSync(filename,constants.O_RDONLY|constants.O_NOFOLLOW|constants.O_NONBLOCK);
+    try{const before=fstatSync(fd);if(!before.isFile()||before.size>2*1024**2)throw Error('bounded circular bootstrap source required');
+      const data=readFileSync(fd),after=fstatSync(fd);
+      if(data.length!==before.size||['dev','ino','size','mtimeMs','ctimeMs'].some(key=>before[key]!==after[key])||createHash('sha256').update(data).digest('hex')!==expected)throw Error('circular bootstrap source differs');
+      initial.push({path:filename,sha256:expected,identity:Object.fromEntries(['dev','ino','size','mtimeMs','ctimeMs'].map(key=>[key,before[key]]))});
+      return data;
+    }finally{closeSync(fd);}
+  };
+  const raw=capture(path.join(root,'reference/priorities/development-process-review/contracts/option-b-circular-sources.jsonld'),digest);
+  const rows=JSON.parse(raw)['@graph']?.filter(row=>row['@type']==='Source'&&row.role==='admission');
+  if(rows?.length!==1||rows[0].binding.path!=='scripts/eom/run-current-subfield-circular-root-pilot.mjs')throw Error('circular admission entry differs');
+  const module=await import('data:text/javascript;base64,'+capture(path.join(root,rows[0].binding.path),rows[0].binding.sha256).toString('base64'));
+  return module.loadCircularSourceMap(root,digest,initial);
+}
 
 const SELF = "scripts/eom/launch-subfield-circular-root-pilot.mjs";
 const RUNNER = "scripts/eom/run-subfield-circular-root-pilot.mjs";
-const RUNNER_SHA = "e6d6fb08d6e33b8ada60e36b7552fadc97bb4e6f8907bab6273bebdd8109b1fc";
 const BASE = ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/";
 const sha = bytes => createHash("sha256").update(bytes).digest("hex");
 const requireThat = (condition, message) => { if (!condition) throw new Error(message); };
@@ -286,11 +305,16 @@ export function classifyPilotGateRoles(pilot, gates) {
 // Runs in a worker during final admission so parsing/hashing cannot block the
 // outer process watchdog. The caller also checks the deadline after it returns.
 export async function outerAdmissionOperation(job) {
+  const admission=await circularAdmission(job.root,job.sourceMapSha256,job.sourceBindings??[]);
+  requireThat(import.meta.url==='data:text/javascript;base64,'+admission.source(SELF).data.toString('base64'),'captured admitted circular supervisor required');
+  requireThat(admission.source(RUNNER).sha256===job.runnerSha256,'runner differs from selected circular map');
   const output = job.pilotOutput;
   requireThat(!existsSync(path.join(output, "terminal-rejection.json")), "runner final output was rejected");
   const terminal = readBound(path.join(output, "terminal.json"));
   const operation = readBound(path.join(output, "pilot-process.json"));
   const t = JSON.parse(terminal.data), p = JSON.parse(operation.data);
+  requireThat(p.sourceMap?.path===admission.sourceMap.path && p.sourceMap.sha256===job.sourceMapSha256,'pilot source-map receipt differs');
+  requireThat(admission.bindings.every(expected=>p.sourceBindings?.some(row=>path.resolve(job.root,row.path)===expected.path && row.sha256===expected.sha256 && JSON.stringify(row.identity)===JSON.stringify(expected.identity))),'pilot admitted source closure differs');
   requireThat(t.schema === "braid-program/subfield-circular-serial-pilot-terminal.v1" && t.accepted === true &&
     t.h3EvidenceEligible === false && t.admission === "await-external-post-write-deadline-check" &&
     t.operationalReceiptPath === operation.path && t.elapsedWallSeconds < 1800, "runner terminal is not admissible");
@@ -326,7 +350,9 @@ export async function outerAdmissionOperation(job) {
   });
   for (const candidate of candidateGateCosts) candidate.totalMeasuredCPUIncludingGates = candidate.runnerMeasuredCPUSeconds + candidate.gateUserSeconds + candidate.gateSystemSeconds;
   const compact = value => { const { data, ...record } = value; return record; };
+  admission.recheck();
   return { accepted: true, h3EvidenceEligible: false, terminal: compact(terminal), operation: compact(operation), summary: compact(summary),
+    sourceMap:admission.sourceMap,sourceBindings:admission.bindings,
     checkedEvidenceBindings: records.length, candidateGateCosts, gatePhaseAssignment: "exact --out phase role; --scope pilot shared summary output excluded from candidate totals" };
 }
 
@@ -338,12 +364,15 @@ export async function outerWorkerOperation(job) {
     return { accepted: false, h3EvidenceEligible: false, receipt: readBound(filename, undefined, false) };
   }
   if (job.kind !== "publication") return outerAdmissionOperation(job);
+  const admission=job.sourceMapSha256 ? await circularAdmission(job.root,job.sourceMapSha256,job.sourceBindings??[]) : null;
+  if(admission)requireThat(import.meta.url==='data:text/javascript;base64,'+admission.source(SELF).data.toString('base64'),'captured admitted circular supervisor required');
   const receipt = job.receipt;
   for (const record of [receipt.stdoutLog, receipt.stderrLog, ...job.sources]) readBound(record.path, record.sha256, false);
   requireThat(process.hrtime.bigint() < BigInt(job.deadlineNanoseconds), "outer publication deadline already reached");
   const filename = path.join(job.output, "outer-admission.json");
   writeJSON(filename, receipt);
   const result = readBound(filename, undefined, false);
+  admission?.recheck();
   if (process.hrtime.bigint() >= BigInt(job.deadlineNanoseconds)) {
     writeJSON(path.join(job.output, "outer-rejection.json"), { accepted: false, h3EvidenceEligible: false,
       failure: "outer evidence hashing/publication exceeded deadline", invalidates: result.sha256 });
@@ -946,28 +975,31 @@ export function parseLauncherArgs(argv) {
   const values = {};
   for (let index = 0; index < argv.length; index += 2) {
     const key = argv[index], value = argv[index + 1];
-    requireThat(["--out", "--launcher-sha256"].includes(key) && value && !values[key], "usage: --out NEW --launcher-sha256 REVIEWED-SHA256"); values[key] = value;
+    requireThat(["--out", "--launcher-sha256", "--source-map-sha256"].includes(key) && value && !values[key], "usage: --out NEW --launcher-sha256 SHA --source-map-sha256 SHA"); values[key] = value;
   }
-  requireThat(/^[0-9a-f]{64}$/u.test(values["--launcher-sha256"] ?? "") && values["--out"]?.startsWith(BASE) &&
+  requireThat(["--launcher-sha256","--source-map-sha256"].every(key=>/^[0-9a-f]{64}$/u.test(values[key]??"")) && values["--out"]?.startsWith(BASE) &&
     values["--out"].length > BASE.length && !values["--out"].includes("\\") &&
     values["--out"].split("/").every(part => part && part !== "." && part !== ".."), "reviewed hash and scoped fresh output required");
-  return { output: values["--out"], launcherSha256: values["--launcher-sha256"] };
+  return { output: values["--out"], launcherSha256: values["--launcher-sha256"], sourceMapSha256:values["--source-map-sha256"] };
 }
 
-export async function launchReviewedPilot({ began, deadlineNanoseconds, options, root, self, runner }) {
+export async function launchReviewedPilot({ began, deadlineNanoseconds, options, root, self, runner, originalBindings=[] }) {
+  const admission=await circularAdmission(root,options.sourceMapSha256,originalBindings);
+  const runnerSha256=admission.source(RUNNER).sha256;
   requireThat(import.meta.url === "data:text/javascript;base64," + Buffer.from(self.data).toString("base64") &&
-    sha(self.data) === options.launcherSha256 && sha(runner.data) === RUNNER_SHA, "launcher executing source differs from reviewed snapshot");
+    sha(self.data) === options.launcherSha256 && options.launcherSha256===admission.source(SELF).sha256 && sha(runner.data) === runnerSha256, "launcher executing source differs from reviewed snapshot");
   const output = path.join(root, options.output), pilotOutput = path.join(output, "pilot");
   let ancestor = output; while (!existsSync(ancestor)) ancestor = path.dirname(ancestor);
   requireThat(realpathSync(ancestor) === ancestor, "symlinked output is not allowed");
   let receipt, failure;
   try {
-    receipt = await superviseRegisteredPilot({ root, entry: RUNNER, args: ["--out", path.relative(root, pilotOutput), "--runner-sha256", RUNNER_SHA],
-      sources: [{ path: RUNNER, sha256: RUNNER_SHA, bytes: runner.data }], output, startedAtMs: began,
+    receipt = await superviseRegisteredPilot({ root, entry: RUNNER, args: ["--out", path.relative(root, pilotOutput), "--runner-sha256", runnerSha256, "--source-map-sha256", options.sourceMapSha256,...admission.identityArgs],
+      sources: [{ path: RUNNER, sha256: runnerSha256, bytes: runner.data }], output, startedAtMs: began,
       admit: ({ receipt: processReceipt, remainingMs, signal }) => runAdmissionWorker({ root, pilotOutput,
-        runnerBytes: runner.data, runnerSha256: RUNNER_SHA, gates: processReceipt.gates }, self.data, remainingMs, signal) });
+        runnerBytes: runner.data, runnerSha256, gates: processReceipt.gates,sourceMapSha256:options.sourceMapSha256,sourceBindings:admission.bindings }, self.data, remainingMs, signal) });
   } catch (error) { failure = error; receipt = error.outerReceipt ?? { accepted: false, h3EvidenceEligible: false, failure: error.message }; }
-  receipt.launcherBinding = { path: SELF, sha256: self.sha256 }; receipt.runnerBinding = { path: RUNNER, sha256: RUNNER_SHA };
+  receipt.launcherBinding = { path: SELF, sha256: self.sha256 }; receipt.runnerBinding = { path: RUNNER, sha256: runnerSha256 };
+  receipt.sourceMap=admission.sourceMap;receipt.sourceBindings=admission.bindings;
   receipt.runtimeCapabilities = [process.execPath, "/bin/ps"];
   receipt.launcherResourceUsage = process.resourceUsage(); receipt.launcherCPUIsSharedOverheadNotCandidateCPU = true;
   receipt.elapsedThroughAdmissionSeconds = (performance.now() - began) / 1000;
@@ -979,8 +1011,8 @@ export async function launchReviewedPilot({ began, deadlineNanoseconds, options,
       const controller = new AbortController(), interrupted = () => controller.abort(new Error("outer final publication interrupted"));
       process.on("SIGINT", interrupted); process.on("SIGTERM", interrupted);
       try {
-        const publication = await runAdmissionWorker({ kind: "publication", receipt, output, deadlineNanoseconds,
-          sources: [{ path: path.join(root, SELF), sha256: self.sha256 }, { path: path.join(root, RUNNER), sha256: RUNNER_SHA }] }, self.data, remainingMs, controller.signal);
+        const publication = await runAdmissionWorker({ kind: "publication", receipt, output, deadlineNanoseconds,root,sourceMapSha256:options.sourceMapSha256,sourceBindings:admission.bindings,
+          sources: admission.bindings }, self.data, remainingMs, controller.signal);
         if (!publication.accepted && receipt.accepted) failure ??= new Error("outer receipt publication was rejected");
         receipt.publication = publication;
       } catch (error) { failure ??= error; }
@@ -1001,9 +1033,11 @@ async function main() {
   const began = performance.now(), deadlineNanoseconds = String(process.hrtime.bigint() + 1800000000000n);
   const options = parseLauncherArgs(process.argv.slice(2));
   const root = realpathSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../.."));
-  const self = readBound(path.join(root, SELF), options.launcherSha256), runner = readBound(path.join(root, RUNNER), RUNNER_SHA);
+  const admission=await circularAdmission(root,options.sourceMapSha256);
+  const self = admission.source(SELF), runner = admission.source(RUNNER);
+  requireThat(self.sha256===options.launcherSha256,'selected circular launcher differs');
   const captured = await import("data:text/javascript;base64," + self.data.toString("base64"));
-  const result = await captured.launchReviewedPilot({ began, deadlineNanoseconds, options, root, self, runner });
+  const result = await captured.launchReviewedPilot({ began, deadlineNanoseconds, options, root, self, runner,originalBindings:admission.bindings });
   console.log(JSON.stringify(result));
 }
 if (import.meta.url.startsWith("file:") && process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url))

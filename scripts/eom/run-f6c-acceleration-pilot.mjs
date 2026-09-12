@@ -27,7 +27,7 @@ export const CHECKER='scripts/eom/verify-f6c-continuous-reception-acceleration.p
 export const CHECKER_TESTS='tests/test_f6c_continuous_reception_acceleration.py';
 // Separately authored checker and controls, independently accepted before this
 // operational generation. No subject or mathematical reference is altered.
-export const CHECKER_SHA='6e3467a017c3477fb1b2baddd10e985687ed6112aeb5bc84c2fc92a9453cda83';
+export const CHECKER_SHA='a0c546124828b5879a2e163b0f965d37b90c251d327301eaa72e031261824e53';
 export const CHECKER_TESTS_SHA='13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed';
 export const LANE='.local-data/braid-analysis/f6c-continuous-reception-acceleration-20260827';
 export const SHARED_LOCK_LANE='.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827';
@@ -64,14 +64,45 @@ export const FIXED=Object.freeze([
   ['rootTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md','db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc'],
   ['reconstructionTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md','710279f5c348a81fd36d58c6ca704730b3fa70da729ca30b9c92ae4e1cc6734b'],
 ].map(Object.freeze));
-export const PINS=Object.freeze({[BRIDGE]:'d452c03041a636ec182469ae8ed5e1c6ebe8902d2aae751aa7cfbde4fbb507fc',...Object.fromEntries(FIXED.map(([,p,h])=>[p,h])),
-  [CONSUMER]:'2ae92b41314643ec1dfcd33a8b197ba8301898c278bc26cdae7ea4c120824ea8',
-  [CONSUMER_TESTS]:'45f40e2c6580fa09a614a471e7375615c8d54e3fc295a68dbdb8ad2167b7690b',
-  [DECLARATION]:'3ef8fb9020bae71833b1e06a119672b49a4beb5395f697dcb3d037d088e7891e',
-  [OUTER]:'e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920',
-  [HELPERS]:'72b181165cafe21f3237dca7638343a9d31ea4ee48f709d9b43761666d6e7ec5',
-  [CHECKER]:CHECKER_SHA,[CHECKER_TESTS]:CHECKER_TESTS_SHA,
+export const SOURCE_MAP = "reference/priorities/development-process-review/contracts/option-b-f6c-acceleration-sources.jsonld";
+const SOURCE_READER = "scripts/equation-mapping/current-source-manifest.mjs";
+export const EVIDENCE_PINS = Object.freeze({
+  ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json": "f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1",
+  ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json": "7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43",
+  ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json": "86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880",
+  ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/cover-manifest.json": "19fae257f7f36d858fa60d9031125b3f29dbb8780e944802699aab5292275f4c",
+  ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/comparison.json": "6bf2b50ef4f0b46f43ae77a9881f82a2f9d504d5df757bc0ad215deb8eac36c6",
+  ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/pilot-admission.json": "1a814c90279eed456546b2c4959a8504657213ffc2d25c063060831814e930ee",
+  ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/rows.ndjson": "786785b2597bcdf024e350ba89c129fb32115afed693169a6db3137c6bdca383",
+  ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/pieces.ndjson": "2c064a5956e7684868cbda7aa7e312ac609e07760bf67f1cf121c934d6d4c411",
+  "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json": "5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86",
+  "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md": "8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378",
+  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md": "3ef8fb9020bae71833b1e06a119672b49a4beb5395f697dcb3d037d088e7891e"
 });
+export let SOURCE_BINDINGS;
+let sourceRecords, sourceMapBinding;
+export async function initializeSourceBindings(root, expectedMapDigest) {
+  SOURCE_BINDINGS = undefined; sourceRecords = undefined; sourceMapBinding = undefined;
+  check(hash(expectedMapDigest), "externally selected source-map digest required");
+  check(realpathSync(root) === root, "canonical Option B repository root required");
+  const readSource = (filename,...args) => {check(realpathSync(filename) === filename,"source symlink or path escape");return readBound(filename,...args);};
+  const captured = readSource(path.join(root, SOURCE_MAP), expectedMapDigest, true, 1024**2);
+  const metadata = JSON.parse(captured.data);
+  const readers = metadata["@graph"]?.filter(row => row.role === "manifest-reader" && row.binding?.path === SOURCE_READER);
+  check(readers?.length === 1 && hash(readers[0].binding.sha256), "exact manifest reader identity required");
+  const reader = readSource(path.join(root, SOURCE_READER), readers[0].binding.sha256, true, 1024**2);
+  const module = await import("data:text/javascript;base64," + reader.data.toString("base64"));
+  const admitted = module.admit(captured.data, {root, readBound:readSource, scope:"f6c-acceleration-pilot-current-source"});
+  // Capture-to-use closure: reject a manifest or reader replaced while validating.
+  checkBindings([clean(captured), clean(reader), ...admitted.bindings]);
+  sourceRecords = admitted.bindings; sourceMapBinding = clean(captured);
+  SOURCE_BINDINGS = Object.freeze({...admitted.pins, ...EVIDENCE_PINS});
+  return {sourceMap:sourceMapBinding, sources:sourceRecords};
+}
+function requireSourceBindings() {
+  check(SOURCE_BINDINGS && sourceRecords && sourceMapBinding, "Option B source admission required");
+}
+
 export const check=(ok,message)=>{if(!ok)throw new Error(message);};
 export const sha=b=>createHash('sha256').update(b).digest('hex');
 export const clean=({data,...b})=>b;
@@ -117,14 +148,15 @@ function binding(b){closed(b,['path','sha256','bytes'],'binding');check(typeof b
 function bindings(rows){check(Array.isArray(rows)&&rows.length>0&&rows.length<=256,'bounded binding list');rows.forEach(binding);check(new Set(rows.map(b=>b.path)).size===rows.length,'duplicate binding path');}
 const absolute=(b,root)=>({...b,path:path.resolve(root,b.path)});
 export function validatePlan(plan,root,launcherSha,entrySha,python,git) {
+  requireSourceBindings();
   check(hash(CHECKER_SHA)&&hash(CHECKER_TESTS_SHA),'independent checker review/pins incomplete');
   closed(plan,['schema','scope','consumer','controls','declaration','rangeVerifier','runtimeBindings','operationalBindings','limits','priorCoverClosure','declarationInput','executionBridge','historicalInputs'],'plan');
   check(plan.schema==='braid-program/f6c-continuous-reception-acceleration-launch.v2'&&plan.scope===SCOPE&&equal(plan.limits,LIMITS),'fixed scope/limits');
-  for(const [key,p] of [['consumer',CONSUMER],['controls',CONSUMER_TESTS],['declaration',DECLARATION],['rangeVerifier',CHECKER]]){binding(plan[key]);check(plan[key].path===p&&plan[key].sha256===PINS[p],'reviewed subject/checker binding');}
-  binding(plan.executionBridge);check(plan.executionBridge.path===BRIDGE&&plan.executionBridge.sha256===PINS[BRIDGE],'reviewed bridge required');
+  for(const [key,p] of [['consumer',CONSUMER],['controls',CONSUMER_TESTS],['declaration',DECLARATION],['rangeVerifier',CHECKER]]){binding(plan[key]);check(plan[key].path===p&&plan[key].sha256===SOURCE_BINDINGS[p],'reviewed subject/checker binding');}
+  binding(plan.executionBridge);check(plan.executionBridge.path===BRIDGE&&plan.executionBridge.sha256===SOURCE_BINDINGS[BRIDGE],'reviewed bridge required');
   const route=plan.declarationInput;closed(route,['originalPath','path','sha256','bytes'],'declaration route');
   const {originalPath,...physical}=route;binding(physical);
-  check(originalPath===DECLARATION&&physical.sha256===PINS[DECLARATION]&&physical.bytes===plan.declaration.bytes,'original declaration identity');
+  check(originalPath===DECLARATION&&physical.sha256===SOURCE_BINDINGS[DECLARATION]&&physical.bytes===plan.declaration.bytes,'original declaration identity');
   check(!path.isAbsolute(physical.path)&&path.normalize(physical.path)===physical.path&&!physical.path.split('/').includes('..')&&physical.path.startsWith('reference/')&&physical.path.endsWith('.source'),'nonexecuting declaration archive');
   check(Array.isArray(plan.historicalInputs)&&plan.historicalInputs.length===HISTORICAL.length,'exact historical theorem routes');
   plan.historicalInputs.forEach((r,i)=>{closed(r,['role','originalPath','path','sha256','bytes'],'historical route');const [role,p,h,n]=HISTORICAL[i];check(r.role===role&&r.originalPath===p&&r.sha256===h&&r.bytes===n,'original theorem identity');check(typeof r.path==='string'&&!path.isAbsolute(r.path)&&path.normalize(r.path)===r.path&&!r.path.split('/').includes('..')&&r.path.startsWith('reference/')&&r.path.endsWith('.source'),'nonexecuting theorem archive');});
@@ -138,12 +170,13 @@ export function validatePlan(plan,root,launcherSha,entrySha,python,git) {
   const node=realpathSync(process.execPath);
   const ops=[BRIDGE,BRIDGE_TESTS,ENTRY,LAUNCHER,TESTS,PROCESS_TESTS,HELPERS,OUTER,CHECKER_TESTS,'/bin/ps','/usr/bin/memory_pressure',node];
   check(equal(plan.operationalBindings.map(b=>b.path).sort(),ops.sort()),'exact operational source/control closure');
-  for(const b of plan.operationalBindings){const expected=b.path===ENTRY?entrySha:b.path===LAUNCHER?launcherSha:PINS[b.path];if(expected)check(b.sha256===expected,'operational generation differs');}
-  check(equal(plan.priorCoverClosure,{authority:'externally-reviewed-caller-observation',ownerSha256:PINS[FIXED[9][1]],admissionSha256:PINS[FIXED[5][1]],
+  for(const b of plan.operationalBindings){const expected=b.path===ENTRY?entrySha:b.path===LAUNCHER?launcherSha:SOURCE_BINDINGS[b.path];if(expected)check(b.sha256===expected,'operational generation differs');}
+  check(equal(plan.priorCoverClosure,{authority:'externally-reviewed-caller-observation',ownerSha256:SOURCE_BINDINGS[FIXED[9][1]],admissionSha256:SOURCE_BINDINGS[FIXED[5][1]],
     matchingFreshCompletionObserved:true,exitCode:0,elapsedSeconds:'8.534247625',processesClosed:true,independentAuditAccepted:true}),'prior externally observed closure');return plan;
 }
 export function planBindings(plan,root) {
-  const rows=[...FIXED.map(([role,p,h])=>{const r=plan.historicalInputs.find(r=>r.role===role);return r?{path:path.join(root,r.path),sha256:r.sha256,bytes:r.bytes}:{path:path.join(root,p),sha256:h};}),...['consumer','controls','rangeVerifier'].map(k=>absolute(plan[k],root)),absolute({path:plan.declarationInput.path,sha256:plan.declarationInput.sha256,bytes:plan.declarationInput.bytes},root),
+  requireSourceBindings();
+  const rows=[sourceMapBinding,...sourceRecords,...FIXED.map(([role,p,h])=>{const r=plan.historicalInputs.find(r=>r.role===role);return r?{path:path.join(root,r.path),sha256:r.sha256,bytes:r.bytes}:{path:path.join(root,p),sha256:h};}),...['consumer','controls','rangeVerifier'].map(k=>absolute(plan[k],root)),absolute({path:plan.declarationInput.path,sha256:plan.declarationInput.sha256,bytes:plan.declarationInput.bytes},root),
     ...plan.runtimeBindings.map(b=>absolute(b,root)),...plan.operationalBindings.map(b=>absolute(b,root))],map=new Map();
   for(const row of rows){const old=map.get(row.path);check(!old||(old.sha256===row.sha256&&(old.bytes===undefined||row.bytes===undefined||old.bytes===row.bytes)),'conflicting binding');map.set(row.path,{...old,...row});}return [...map.values()];
 }
@@ -181,9 +214,10 @@ for module in tuple(sys.modules.values()):
 print(json.dumps({'schema':'braid-program/f6c-acceleration-python-runtime-inventory.v1','scientificDataLoaded':False,'scientificModulesExecuted':False,'pythonInvocation':sys.executable,'pythonRealPath':str(pathlib.Path(sys.executable).resolve()),'files':[str(p) for p in sorted(files)]}))
 `;
 export function stageSpec({stage,plan,planBinding,root,output,python,git,candidate,budget}) {
+  requireSourceBindings();
   check(stage==='consumer'||stage==='comparison','unknown stage');check(typeof budget==='string'&&/^(?:0|[1-9]\d*)(?:\.\d+)?$/u.test(budget)&&Number(budget)>0&&Number(budget)<=1800,'positive stage budget');
   const paths=outputPaths(root,output);
-  const args=['-I','-B','-c',PYTHON_BOOTSTRAP,path.join(root,BRIDGE),PINS[BRIDGE],'--stage',stage,'--bridge-sha256',PINS[BRIDGE],'--plan',planBinding.path,'--plan-sha256',planBinding.sha256,'--out',stage==='consumer'?paths.candidate:paths.comparison];
+  const args=['-I','-B','-c',PYTHON_BOOTSTRAP,path.join(root,BRIDGE),SOURCE_BINDINGS[BRIDGE],'--stage',stage,'--bridge-sha256',SOURCE_BINDINGS[BRIDGE],'--plan',planBinding.path,'--plan-sha256',planBinding.sha256,'--out',stage==='consumer'?paths.candidate:paths.comparison];
   if(stage==='consumer')args.push('--git-binary',git);
   else{binding(candidate);check(candidate.path===paths.candidate,'preceding exact candidate required');args.push('--candidate',candidate.path,'--candidate-sha256',candidate.sha256);}
   args.push('--budget-seconds',budget);return {command:python,args};
@@ -251,8 +285,10 @@ export function fileOperation(job) {
 async function main(argv){
   if(argv[0]==='--runtime-inventory'){check(argv.length===2&&path.isAbsolute(argv[1]),'explicit shared Python inventory invocation');return runSingleStage({command:argv[1],args:['-I','-B','-c',PYTHON_RUNTIME_INVENTORY]},{timeoutMs:5000});}
   const v={};for(let i=0;i<argv.length;i+=2){check(argv[i+1]&&!v[argv[i]],'unique stage argument');v[argv[i]]=argv[i+1];}
-  closed(v,['--plan','--plan-sha256','--entry-sha256','--launcher-sha256','--stage','--out','--deadline-ns','--candidate-sha256','--python','--git-binary'],'stage arguments');
-  const root=realpathSync(process.cwd()),p=readBound(path.resolve(v['--plan']),v['--plan-sha256'],true,1024**2),plan=decode(p.data,1024**2);
+  closed(v,['--source-map-sha256','--plan','--plan-sha256','--entry-sha256','--launcher-sha256','--stage','--out','--deadline-ns','--candidate-sha256','--python','--git-binary'],'stage arguments');
+  const root=realpathSync(process.cwd());
+  await initializeSourceBindings(root,v['--source-map-sha256']);
+  const p=readBound(path.resolve(v['--plan']),v['--plan-sha256'],true,1024**2),plan=decode(p.data,1024**2);
   validatePlan(plan,root,v['--launcher-sha256'],v['--entry-sha256'],v['--python'],v['--git-binary']);const sources=[...planBindings(plan,root),clean(p)];checkBindings(sources);
   const output=path.resolve(v['--out']),paths=outputPaths(root,output),stage=v['--stage'];check(realpathSync(paths.operations)===paths.operations,'canonical owned operations sibling');
   const candidate=stage==='comparison'?clean(readBound(paths.candidate,v['--candidate-sha256'])):null;

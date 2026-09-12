@@ -4,6 +4,8 @@ This note records the geometric interpretation of the weak mixing angle inside t
 
 The measured Weinberg angle is an observer-level electroweak fact. This note does not reduce that fact to a bare visual tilt. It asks a narrower implementation question: whether the same six-pole assembly geometry that organizes weak exposure also supplies a discrete axial-frame increment that participates in the dressed electroweak mixing calculation.
 
+> Claim grade: guessed for the assembly interpretation, branch selection, and electroweak dressing; derived only for the conditional inventory, moment, and arithmetic identities stated below. The measured angle is an observer-level comparison target, not evidence that the proposed branch exists. Falsifier: a complete retained-history calculation that fails the stated inventory, frame, or observer-response conditions rejects this realization on its declared domain; it does not reject every possible assembly.
+
 ## Purpose
 
 The Weinberg angle $\theta_W$ is the electroweak mixing angle of the Standard Model. It parameterizes how the weak-isospin neutral boson $W^3$ and the hypercharge boson $B$ combine to form the physical photon $\gamma$ and the neutral weak boson $Z$. Equivalently, it sets the relative alignment between the SU(2) and U(1) electroweak sectors, so it appears wherever neutral-current and charged-current electroweak couplings are compared. This note does not assume that the measured Weinberg angle itself is literally an internal quark tilt. Instead, it uses the existing bare six-pole relation in $\mathbb{A}\mathbb{A}\mathbb{A}$ as a possible geometric increment for axial-frame misalignment.
@@ -15,14 +17,14 @@ This note records a constrained geometric hypothesis for fermion assemblies in $
 - the **Noether braid axes remain fixed** as the reference scaffold,
 - the **axial distribution** is allowed to rotate relative to that scaffold,
 - stable quark-like states may occupy a **discrete set of misalignment angles**,
-- the candidate branch increment for those angles is hypothesized, not derived here, to satisfy the existing six-pole electroweak value
+- the candidate branch increment for those angles is hypothesized, not derived here, to satisfy the candidate six-pole branch-increment value
 $$
 \sin^2\theta_{\mathrm{inc}}=\frac14
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5edccdb229904559)
 
-so that
+Under the convention that $\theta_{\mathrm{inc}}$ is the smallest positive representative in $0<\theta_{\mathrm{inc}}\le\pi/2$, this gives
 $$
 \theta_{\mathrm{inc}}=\frac{\pi}{6}=30^\circ
 $$
@@ -39,7 +41,7 @@ We separate two structures that are often spoken about together but should not b
 
 ### 1. Core frame
 
-The [Noether braid](../../noether-braid/noether-braid.md) is the neutral six-architrino scaffold. It defines:
+For the Generation-I candidate, the [Noether braid](../../noether-braid/noether-braid.md) is the neutral six-architrino scaffold. Higher-generation records can have depleted shielding support and are not assumed here to retain all six scaffold architrinos. The candidate scaffold defines:
 
 - generation via shielding level,
 - the retained matter-versus-polarity-conjugate branch relation,
@@ -85,10 +87,10 @@ In the Generation-I electron, the axial layer is $6\epsilon_-$. At coarse-graine
 
 - no axis is exceptional,
 - the load on the three axes is equivalent,
-- there is no color asymmetry,
+- there is no exceptional-axis label in the candidate color dictionary; color-singlet response remains an observer-level recovery target,
 - the weak-active and shielded sectors can be defined without introducing a shear between core and axial frames.
 
-The natural equilibrium statement is
+The reference convention for a candidate electron branch is
 $$
 R_{\text{rel}} = I
 $$
@@ -102,7 +104,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-42b29e1153c74876)
 
-This is the **isotropic limit** of the axial geometry, not a separate dynamical law. When all six axial architrinos share the same polarity, there is no internal reason for the axial frame to rotate away from the core triad.
+This is the **isotropic zero-misalignment convention** of the idealized axial geometry, not evidence that a retained equilibrium branch exists or a separate dynamical law. For exactly antipodal sites on three equivalent axes, an equal-polarity count supplies no preferred direction in the idealized moment record; displacement, wake dressing, or Noether sea response can still generate an anisotropic residue and must be tested on a retained branch.
 
 ---
 
@@ -113,7 +115,7 @@ Quarks are different for two independent reasons already present in the existing
 1. the axial layer is **charge-imbalanced**,
 2. one axis is **exceptional** relative to the other two, giving color structure.
 
-For up-type and down-type quarks the imbalance differs:
+For the up-type and down-type six-site axial templates, the imbalance differs:
 
 - up-type: $5\epsilon_+,1\epsilon_-$,
 - down-type: $2\epsilon_+,4\epsilon_-$.
@@ -125,7 +127,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-64ea267ec4594462)
 
-where $q_a\in\{+\epsilon,-\epsilon\}$ and $\mathbf{n}^{(a)}$ are the six polar-site directions measured in the core frame.
+where $q_a\in\{+\epsilon,-\epsilon\}$ and $\mathbf{n}^{(a)}$ are the six polar-site directions measured in the core frame. For an exactly antipodal polar dyad, the two directions are $+\hat{\mathbf n}$ and $-\hat{\mathbf n}$.
 
 Because $M_{ij}$ is even under $\mathbf{n}\mapsto-\mathbf{n}$, it detects signed same-polarity dyad loading but is blind to a perfectly antipodal mixed polar dyad. A mixed dyad with one $\epsilon_+$ and one $\epsilon_-$ cancels in $M_{ij}$ even though it is exactly the local axis-exceptional structure that matters for up-type quarks and one down-type family. The complementary odd moment is therefore required:
 $$
@@ -134,7 +136,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8f7ad26b23d4ce3a)
 
-A same-polarity polar dyad gives no contribution to $d_i$, while a mixed polar dyad contributes a vector $\pm2\epsilon\,\hat{\mathbf n}$ according to which pole carries which polarity. The axial frame should therefore be read from the joint moment record $(M_{ij},d_i)$, not from $M_{ij}$ alone.
+For an exactly antipodal same-polarity polar dyad, the two contributions to $d_i$ cancel, while an exactly antipodal mixed polar dyad contributes a vector $\pm2\epsilon\,\hat{\mathbf n}$ according to which pole carries which polarity. The axial frame should therefore be read from the joint moment record $(M_{ij},d_i)$, not from $M_{ij}$ alone.
 
 This also limits what the idealized on-axis polarity count can prove. In the symmetric charged-lepton limit $M_{ij}$ is proportional to the identity and $d_i=0$, so the axial frame is not separately distinguished. In an idealized quark pattern, $(M_{ij},d_i)$ can identify the exceptional axis while still remaining diagonal or axis-aligned in the core frame. The actual misalignment diagnostic belongs to the displaced equilibrium selected by the effective energy, with the off-diagonal axial-tensor load measured after the polar-site directions have relaxed:
 $$
@@ -145,7 +147,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3fcc2166922a10db)
 
-The axial-frame rotation target is $\mathcal{R}_{\mathrm{off}}>0$ on that relaxed record, or equivalently a joint principal frame for $(M_{ij},d_i)$ that is rotated away from $\mathcal{F}_{\text{core}}$. If $\mathcal{R}_{\mathrm{off}}=0$ while $d_i$ selects a core axis or the eigenvalues of $M_{ij}$ differ, the axial layer is exceptional or anisotropic while still aligned with the core frame; that case should not be counted as a misalignment branch.
+On a relaxed record, $\mathcal{R}_{\mathrm{off}}>0$ is a sufficient tensor indicator that the displayed core-frame axes do not diagonalize $M_{ij}$; it is not equivalent to a unique rotated joint principal frame. If $M_{ij}$ is isotropic, $d_i$ can carry the directional information while $\mathcal{R}_{\mathrm{off}}=0$, and degenerate eigenvalues make a principal frame nonunique. A joint-frame criterion therefore needs a declared nondegeneracy or tie-breaking rule. If $\mathcal{R}_{\mathrm{off}}=0$ while $d_i$ selects a core axis or the eigenvalues of $M_{ij}$ differ, the axial layer is exceptional or anisotropic while still aligned with the core frame; that case should not be counted as a misalignment branch.
 
 The proposal is not that quarks can take arbitrary rotations. The proposal is that the admissible minima are **discrete**. In that sense this note is also an interface to [Weak Mixing and CKM](../../philosophy-history/theory-bridges/weak-mixing-ckm.md), where the quark-sector overlap structure is pushed further.
 
@@ -160,17 +162,17 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fcc32a1815545064)
 
-This implies the candidate geometric branch increment
+Under the same smallest-positive representative convention, this gives the candidate geometric branch increment
 $$
 \theta_{\mathrm{inc}} = \frac{\pi}{6}=30^\circ
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fdac9415d858788b)
 
-The present idea is to reuse this as an **axial-frame increment**, not as a claim that the observed electroweak angle and internal quark orientation are numerically identical in all environments. The symbol $\theta_W^{\text{bare}}$ should be treated only as a comparison label for this branch-increment hypothesis until the six-pole quotient and electroweak dressing calculation are derived. A representative effective $Z$-pole target $\sin^2\theta_W^{\mathrm{eff}}\simeq0.2315$ (PDG comparison value) would require
+The present idea is to reuse this as an **axial-frame increment**, not as a claim that the observed electroweak angle and internal quark orientation are numerically identical in all environments. For this comparison only, write $\sin^2\theta_W^{\text{bare}}\equiv\sin^2\theta_{\mathrm{inc}}=1/4$; this is a label for the branch-increment hypothesis, not a derived identity. A representative effective $Z$-pole target $\sin^2\theta_W^{\mathrm{eff}}\simeq0.2315$ (an observer-level comparison value reported in the [PDG electroweak review](https://pdg.lbl.gov/2025/reviews/rpp2025-rev-standard-model.pdf), section 10.4.5) would require a total convention-dependent matching shift
 
 $$
-\Delta_{\mathrm{wake}}(m_Z)
+\Delta_{\mathrm{match}}(m_Z)
 \simeq
 \sin^2\theta_W^{\mathrm{eff}}-\sin^2\theta_W^{\mathrm{bare}}
 \simeq
@@ -179,7 +181,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-36f825eb57314c52)
 
-a downward correction of about $7.4\%$ relative to the bare value. Its exact value is scheme- and observable-dependent, but the sign and scale show that electroweak dressing is a substantive derivation rather than a negligible finishing term.
+a downward shift of about $7.4\%$ relative to the bare value. This is conditional arithmetic, not a calculation of a wake-only correction: the effective leptonic angle, a running coupling-ratio angle, and the on-shell mass-ratio angle require a common scheme and radiative matching before any part of $\Delta_{\mathrm{match}}$ can be attributed to Noether sea response.
 
 Define a discrete family of candidate equilibrium misalignment angles
 $$
@@ -191,18 +193,18 @@ $$
 
 Equivalently, $\alpha_n=n\times30^\circ$ for reader-facing degree notation. In energy or action functionals below, $\alpha$ and $\theta_{\mathrm{inc}}$ are radians.
 
-Because an axial frame is an oriented triad and because many rotations are physically equivalent up to sign flips, pole relabelings, or color-phase shifts, the physically distinct set is expected to be much smaller than all integers. A practical first working set is
+Because an axial frame is an oriented triad and because many rotations may be physically equivalent up to sign flips, pole relabelings, or color-phase shifts, the physically distinct set is expected to be much smaller than all integers. These are candidate redundancies to test, not identifications to assume. A practical first working set is
 $$
 \alpha \in \{0,30^\circ,60^\circ,90^\circ\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-05db8b7b6faffd21)
 
-with additional identifications made by symmetry.
+with additional identifications made only by demonstrated symmetry.
 
 This set is explicitly pre-quotient. In particular, the $90^\circ$ entry survives only if pole reversal and axis-flip equivalences do not reduce it to a lower representative.
 
-The electron occupies the $\alpha=0$ branch. Quarks would then occupy one of the nonzero branches.
+The electron candidate uses $\alpha=0$ as the reference convention. Candidate quark branches may occupy nonzero representatives, but branch existence and population remain unestablished.
 
 These internal branch increments are not Cabibbo or CKM angles. Cabibbo and CKM entries are overlaps between weak and mass bases after the branch quotient and dressing have been constructed; a numerical resemblance to $30^\circ$ or its multiples would not identify those observer-level mixing angles.
 
@@ -238,28 +240,29 @@ Those should be kept distinct unless a later derivation proves they collapse to 
 
 ## Minimal Geometric Parameterization
 
-A minimal way to encode the hypothesis is by one angle $\alpha$ and one discrete color label $c$.
+A minimal typed parameterization needs one angle, a declared spatial tilt axis, and one discrete exceptional-axis label.
 
 - $\alpha$: polar misalignment of the axial frame relative to the core frame,
-- $c \in \{1,2,3\}$: the persistent exceptional-axis index selecting the quark color sector.
+- $\hat{\mathbf u}\in S^2$: the declared spatial axis about which the one-parameter tilt acts,
+- $c \in \{1,2,3\}$: the persistent exceptional-axis record selecting the candidate quark color sector.
 
 Then a first-pass rotation may be written as
 $$
-R_{\text{rel}}(\alpha,c) = R_{\text{axis}}(c)\,R_{\text{tilt}}(\alpha)
+R_{\text{rel}}(\alpha,\hat{\mathbf u})=R_{\text{tilt}}(\alpha;\hat{\mathbf u})
+\equiv\exp\!\left(\alpha[\hat{\mathbf u}]_\times\right)\in SO(3),
+\qquad
+\mathcal{P}(c,\alpha,\hat{\mathbf u})=\bigl(c,R_{\text{rel}}(\alpha,\hat{\mathbf u})\bigr)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d04ee9f83c934a45)
 
-where:
-
-- $R_{\text{axis}}$ chooses the exceptional-axis sector,
-- $R_{\text{tilt}}$ sets the discrete axial misalignment.
+where $[\hat{\mathbf u}]_\times$ is the skew-symmetric matrix representing cross product with $\hat{\mathbf u}$. The discrete record $c$ is not multiplied as though it were an $SO(3)$ or $SU(3)$ transformation. A relation $\hat{\mathbf u}=\hat{\mathbf u}(c)$ would be an additional spatial-to-color map and must be declared or derived.
 
 In this language:
 
-- color remains the three-state exceptional-axis assignment,
+- $c$ remains the three-state exceptional-axis assignment, while
 - flavor-dependent quark structure enters through the allowed values of $\alpha$ and through the axial-tensor amplitudes,
-- electron-like states remain at $\alpha=0$ and color singlet.
+- electron-like candidates use $\alpha=0$ as a reference convention, with color-singlet response still an effective recovery target.
 
 So the proposal does **not** replace the color picture. It adds a second geometric datum: a discrete polar misalignment carried by the axial frame.
 
@@ -267,7 +270,7 @@ So the proposal does **not** replace the color picture. It adds a second geometr
 
 ## Why Up and Down Need Not Share a Branch
 
-The up and down quarks should not be distinguished only by total charge. Their axial tensors have different structure and therefore can support different equilibrium branches.
+The up and down quarks should not be distinguished only by total charge. Their axial tensors have different structure and therefore may support different candidate branches; no equilibrium or population result is supplied here.
 
 ### Up-type expectation
 
@@ -277,7 +280,7 @@ For $5\epsilon_+,1\epsilon_-$:
 - one axis contains the exceptional mixed or depleted structure,
 - the net axial moment is strongly one-sided.
 
-This suggests a relatively stiff anisotropy with a sharply defined exceptional direction. Such a configuration may favor one discrete nonzero angle, for example a single-step branch $\alpha = 30^\circ$ or a two-step branch $\alpha = 60^\circ$ depending on how the mixed axis loads the surrounding Noether sea.
+This suggests a candidate anisotropy with a sharply defined exceptional direction. Such a configuration may favor one discrete nonzero angle, for example a single-step branch $\alpha = 30^\circ$ or a two-step branch $\alpha = 60^\circ$, depending on how the mixed axis loads the surrounding Noether sea; no stiffness or branch preference has been calculated.
 
 ### Down-type expectation
 
@@ -285,7 +288,7 @@ For $2\epsilon_+,4\epsilon_-$:
 
 - the imbalance is weaker in net positive charge but stronger in electrino loading,
 - the exceptional axis can arise through more than one admissible family of axis assignments,
-- the outer field may be more sheared than sharply pointed.
+- the external response may be more sheared than sharply pointed.
 
 This suggests that down-type quarks need not minimize the same effective angle as up-type quarks. They may occupy a different branch even when the color azimuth is held fixed.
 
@@ -295,7 +298,7 @@ This gives a possible path for distinguishing quark flavors geometrically withou
 
 ## Effective Energy Functional
 
-To make the idea testable, the discrete-angle claim should be attached to an effective energy or action.
+To make the idea testable, the discrete-angle claim should be attached to a declared effective energy or action reduction. Such a functional is an observer-level comparison object, not an energy derived from the delayed acceleration law.
 
 A minimal phenomenological form is
 $$
@@ -319,9 +322,9 @@ Here:
 - $E_{\text{cross}}$ captures coupling between exceptional-axis choice and axial tilt,
 - $E_{\text{wake}}$ is the Noether sea response to the exposed axial geometry.
 
-The discrete-angle hypothesis is the statement that
+Conditioned on a fixed exceptional-axis record, declared boundary and medium data, and a valid reduced domain, the discrete-angle hypothesis requires
 $$
-\frac{\partial E_{\text{eff}}}{\partial \alpha}=0
+\left.\frac{\partial E_{\text{eff}}}{\partial \alpha}\right|_{\alpha=n\theta_{\mathrm{inc}}}=0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b82fb0a95a119a76)
@@ -333,7 +336,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1f1c79e6bbb2fe7b)
 
-and that these stationary points are true minima for the stable branches.
+and that the surviving points are strict local minima on the quotient after every demonstrated neutral symmetry direction is removed. Complete histories must satisfy the master equation before this reduced stability statement can be interpreted as a branch result.
 
 A simple toy realization, with $\alpha$ and $\theta_{\mathrm{inc}}$ measured in radians, is
 $$
@@ -342,7 +345,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c9c917aaf96da80f)
 
-where $f_{\text{type}}$ differs for up-type and down-type loading. This is not a derivation; it is just the minimal shape needed to encode discrete minima at multiples of the branch increment.
+where $A>0$ is an energy scale and $f_{\text{type}}$ is dimensionless. The periodic term alone has minima at multiples of $\theta_{\mathrm{inc}}$; an arbitrary nonzero $Bf_{\text{type}}$ can shift or remove them unless its derivative and second variation are constrained. Thus this is a shape ansatz, not a derivation or a guarantee of discrete minima.
 
 ### Closure handoff
 
@@ -418,7 +421,7 @@ Potential redundancies include:
 - relabelings of the color basis that can be absorbed into the existing SU(3)-like axis labeling,
 - matter/antimatter branch-record conjugation, where every architrino polarity reverses at fixed worldlines and the retained path-history, wake-history, causal-root, and stability rows transform with the same scaffold. The pro/anti ordered orientation is unchanged, while a charged-sector ledger maps to its opposite effective-charge row.
 
-So the real task is not to enumerate all multiples of $30^\circ$, but to identify the **small quotient set of inequivalent minima** after these symmetries are imposed.
+So the real task is not to enumerate all multiples of $30^\circ$, but to identify the **small quotient set of inequivalent minima** after those candidate symmetries are demonstrated on complete histories and observer records.
 
 ---
 
@@ -429,7 +432,7 @@ This idea becomes useful only if it improves closure rather than adding extra st
 ### Minimum closure targets
 
 1. The electron must remain the zero-misalignment limit.
-2. Up- and down-type quarks must emerge as different stable axial-frame branches.
+2. Up- and down-type quarks must emerge as different stable axial-frame branches if this hypothesis is to explain their distinction.
 3. The color construction must remain intact: one exceptional axis, three color sectors, baryon singlet closure.
 4. Charge quantization must remain exact in units of $e/6$.
 5. The rotated weak-coupling frame must not break the existing $Q=T_3+Y/2$ bookkeeping.
@@ -463,8 +466,8 @@ The sharpened hypothesis is:
 
 - the **Noether braid stays fixed**,
 - the **axial frame** may rotate relative to that fixed core,
-- the electron sits at the symmetric limit $\alpha=0$,
-- quarks occupy nonzero misalignment branches because their axial layers are both charge-imbalanced and axis-exceptional,
+- the electron candidate uses the symmetric reference convention $\alpha=0$,
+- candidate quark branches may occupy nonzero misalignment branches because their axial layers are both charge-imbalanced and axis-exceptional,
 - the stable branches may be quantized in increments of the branch-increment hypothesis
 $$
 \theta_{\mathrm{inc}}=30^\circ

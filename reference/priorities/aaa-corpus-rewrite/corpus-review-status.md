@@ -1,58 +1,11 @@
 # Unified Corpus Review Status
 
-This file is the authoritative priority-ordered document board for the 199-file AAA corpus inventory. The Foundations campaign remains recorded as historical provenance, but its nine documents use the same denominator, status symbols, and reopening rules as every other document. The active queue comes first: review-complete items awaiting adjudication or repair, in-progress reviews, then unopened backlog documents. Unopened documents follow the live textbook traversal where they are present; any live corpus files omitted from the generated navigation surface are appended afterward in path order. Completed documents are retained in the audit appendix. Use the symbols exactly as follows: ○ open/unopened, ◐ review in progress or complete but adjudication or repair pending, and ● review disposition complete at the recorded claim level.
+This file is the authoritative priority-ordered document board for the 199-file AAA corpus inventory. The Foundations campaign remains recorded as historical provenance, but its nine documents use the same denominator, status symbols, and reopening rules as every other document. The active queue contains only in-progress reviews and unopened backlog documents; completed documents are retained in the audit appendix. Unopened documents follow the live phase order: any remaining `foundations/` files first, then `dynamics/` files, then the remaining live textbook traversal, with `validation/simulations/action-energy/` intentionally held until the end. All nine Foundations files and all six `dynamics/` files are already complete, so the next eligible unread file is outside those completed phases. Any live corpus files omitted from the generated navigation surface are appended afterward in path order. Use the symbols exactly as follows: ○ open/unopened, ◐ review in progress or complete but adjudication or repair pending, and ● review disposition complete at the recorded claim level.
 
 ## Active priority queue
 
 | Status | Priority | Document | State | Finding IDs or next action |
 | --- | ---: | --- | --- | --- |
-| ● | 1 | [Effective Lagrangian](../../../content/markdown/aaa/dynamics/effective-lagrangian.md) | Bounded repairs implemented and validated; open obligations retained | EL-1–EL-16 |
-| ● | 2 | [Observer Framework](../../../content/markdown/aaa/spacetime/observer-framework.md) | Bounded repairs implemented and validated; E2 flow repair deferred and open obligations retained | D1–D5, O1–O5, E1–E2 |
-| ● | 3 | [Action Model Comparison](../../../content/markdown/aaa/validation/simulations/action-energy/action-model.md) | Bounded repairs implemented and validated; open obligations retained | D1–D6, O1–O3, E1–E3 |
-| ● | 4 | [Analytic Baselines](../../../content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md) | Bounded repairs implemented and validated; open obligations retained | D1–D5, O1–O3, E1–E2 |
-| ● | 5 | [Attraction](../../../content/markdown/aaa/validation/simulations/action-energy/attraction.md) | Bounded repairs implemented and validated; open obligations retained | F1–F6, O1–O2 |
-| ● | 6 | [Background and Simple Action](../../../content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md) | Bounded repairs implemented and validated; open obligations retained | D1–D2, O1–O3, E1–E4 |
-| ● | 7 | [Causal set and delay geometry](../../../content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md) | Bounded repairs implemented and validated; generated artifacts deferred | D1–D4, O1–O3, E1–E3 |
-| ● | 8 | [Delay Dynamics Energy](../../../content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md) | Bounded repairs implemented and validated; open obligations retained | DDE-1–DDE-4, ODE-1–ODE-4, EDE-1–EDE-2 |
-| ○ | 9 | [Informational ambiguity](../../../content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md) | Unread backlog document | Not yet reviewed |
-| ○ | 10 | [Numerical recipe and stability](../../../content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md) | Unread backlog document | Not yet reviewed |
-| ○ | 11 | [Radial Attraction](../../../content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md) | Unread backlog document | Not yet reviewed |
-| ○ | 12 | [Receiver velocity and work](../../../content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md) | Unread backlog document | Not yet reviewed |
-| ○ | 13 | [Like-Polarity Symmetric Repulsion](../../../content/markdown/aaa/validation/simulations/action-energy/repulsion.md) | Unread backlog document | Not yet reviewed |
-| ○ | 14 | [Self-Energy and Regularization](../../../content/markdown/aaa/validation/simulations/action-energy/self-energy.md) | Unread backlog document | Not yet reviewed |
-| ○ | 15 | [Self-interaction switch](../../../content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md) | Unread backlog document | Not yet reviewed |
-| ○ | 16 | [Superposition and locality](../../../content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md) | Unread backlog document | Not yet reviewed |
-| ○ | 17 | [Units and Constants](../../../content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md) | Unread backlog document | Not yet reviewed |
-| ○ | 18 | [Well-posedness and regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | Unread backlog document | Not yet reviewed |
-| ○ | 19 | [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Unread backlog document | Not yet reviewed |
-| ○ | 20 | [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md) | Unread backlog document | Not yet reviewed |
-| ○ | 21 | [Emergent Metric](../../../content/markdown/aaa/spacetime/emergent-metric.md) | Unread backlog document | Not yet reviewed |
-| ○ | 22 | [General Relativity](../../../content/markdown/aaa/spacetime/general-relativity.md) | Unread backlog document | Not yet reviewed |
-| ○ | 23 | [PPN Parameters](../../../content/markdown/aaa/spacetime/ppn-parameters.md) | Unread backlog document | Not yet reviewed |
-| ○ | 24 | [Gravitational Waves](../../../content/markdown/aaa/spacetime/gravitational-waves.md) | Unread backlog document | Not yet reviewed |
-| ○ | 25 | [Black Holes in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Framework](../../../content/markdown/aaa/spacetime/black-holes.md) | Unread backlog document | Not yet reviewed |
-| ○ | 26 | [Singularity Resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md) | Unread backlog document | Not yet reviewed |
-| ○ | 27 | [Horizon Chirality and Planar Spin](../../../content/markdown/aaa/spacetime/horizon-chirality.md) | Unread backlog document | Not yet reviewed |
-| ○ | 28 | [Gauge Structure Emergence](../../../content/markdown/aaa/assemblies/gauge-structure-emergence.md) | Unread backlog document | Not yet reviewed |
-| ○ | 29 | [Gauge Symmetries](../../../content/markdown/aaa/assemblies/gauge-symmetries.md) | Unread backlog document | Not yet reviewed |
-| ○ | 30 | [Particle Masses: Emergent Inertia in the Noether Sea](../../../content/markdown/aaa/assemblies/particle-masses.md) | Unread backlog document | Not yet reviewed |
-| ○ | 31 | [Color Charge and SU(3)](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md) | Unread backlog document | Not yet reviewed |
-| ○ | 32 | [Electron](../../../content/markdown/aaa/assemblies/fermions/electron.md) | Unread backlog document | Not yet reviewed |
-| ○ | 33 | [Muon and Tau](../../../content/markdown/aaa/assemblies/fermions/muon-tau.md) | Unread backlog document | Not yet reviewed |
-| ○ | 34 | [Neutrinos](../../../content/markdown/aaa/assemblies/fermions/neutrinos.md) | Unread backlog document | Not yet reviewed |
-| ○ | 35 | [Quantum Number Mapping: Architrino Geometry to Standard Model](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md) | Unread backlog document | Not yet reviewed |
-| ○ | 36 | [Quarks](../../../content/markdown/aaa/assemblies/fermions/quarks.md) | Unread backlog document | Not yet reviewed |
-| ○ | 37 | [Weak Mixing Angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md) | Unread backlog document | Not yet reviewed |
-| ○ | 38 | [Electroweak Bosons: Photons, W/Z, and Higgs](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | Unread backlog document | Not yet reviewed |
-| ○ | 39 | [Gluons and the Strong Force: Geometric Origins](../../../content/markdown/aaa/assemblies/bosons/gluons.md) | Unread backlog document | Not yet reviewed |
-| ○ | 40 | [Mesons](../../../content/markdown/aaa/assemblies/mesons/mesons.md) | Unread backlog document | Not yet reviewed |
-| ○ | 41 | [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) | Unread backlog document | Not yet reviewed |
-| ○ | 42 | [Nucleon Structure](../../../content/markdown/aaa/nuclear-atomic/nucleon-structure.md) | Unread backlog document | Not yet reviewed |
-| ○ | 43 | [Nuclear Binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md) | Unread backlog document | Not yet reviewed |
-| ○ | 44 | [Atomic Spectra](../../../content/markdown/aaa/nuclear-atomic/atomic-spectra.md) | Unread backlog document | Not yet reviewed |
-| ○ | 45 | [Hyde Periodic Table](../../../content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md) | Unread backlog document | Not yet reviewed |
-| ○ | 46 | [Molecular Geometry](../../../content/markdown/aaa/nuclear-atomic/molecular-geometry.md) | Unread backlog document | Not yet reviewed |
-| ○ | 47 | [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) | Unread backlog document | Not yet reviewed |
 | ○ | 48 | [Mode Taxonomy](../../../content/markdown/aaa/reactions/mode-taxonomy.md) | Unread backlog document | Not yet reviewed |
 | ○ | 49 | [Radiation](../../../content/markdown/aaa/reactions/radiation.md) | Unread backlog document | Not yet reviewed |
 | ○ | 50 | [Atomic Transition Radiation](../../../content/markdown/aaa/reactions/atomic-transition-radiation.md) | Unread backlog document | Not yet reviewed |
@@ -174,8 +127,9 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ○ | 166 | [UI Guidelines](../../../content/markdown/aaa/archie/ui-guidelines.md) | Unread backlog document | Not yet reviewed |
 | ○ | 167 | [Values](../../../content/markdown/aaa/archie/values.md) | Unread backlog document | Not yet reviewed |
 | ○ | 168 | [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) | Unread backlog document | Not yet reviewed |
+| ○ | 18 | [Well-posedness and regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | Unread backlog document; action-energy directory held until the end | Not yet reviewed |
 
-**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 160 unopened documents. The next action is the first ○ row, not the first alphabetic path.
+**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 122 unopened documents. The next action is the first ○ row in the recorded phase order, Mode Taxonomy; the remaining action-energy file is intentionally last.
 
 ## Completed audit appendix
 
@@ -220,5 +174,43 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ● | 37 | [Background and Simple Action](../../../content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md) | Bounded repairs implemented and validated; open obligations retained | D1–D2, O1–O3, E1–E4 |
 | ● | 38 | [Causal set and delay geometry](../../../content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md) | Bounded repairs implemented and validated; generated artifacts deferred | D1–D4, O1–O3, E1–E3 |
 | ● | 39 | [Delay Dynamics Energy](../../../content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md) | Bounded repairs implemented and validated; open obligations retained | DDE-1–DDE-4, ODE-1–ODE-4, EDE-1–EDE-2 |
+| ● | 40 | [Informational ambiguity](../../../content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md) | Bounded repairs implemented and validated; open obligations retained | IA-1–IA-7, OIA-1–OIA-3 |
+| ● | 41 | [Numerical recipe and stability](../../../content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md) | Bounded repairs implemented and validated; open obligations retained | NR-1–NR-8, ONR-1–ONR-4 |
+| ● | 42 | [Radial Attraction](../../../content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md) | Bounded repairs implemented and validated; open obligations retained | RA-1–RA-6 |
+| ● | 43 | [Receiver velocity and work](../../../content/markdown/aaa/validation/simulations/action-energy/receiver-velocity-and-work.md) | Bounded repairs implemented and validated; open obligations retained | RVW-1–RVW-5, ERVW-1, ORVW-1–ORVW-3 |
+| ● | 44 | [Like-Polarity Symmetric Repulsion](../../../content/markdown/aaa/validation/simulations/action-energy/repulsion.md) | Bounded repairs implemented and validated; open obligations retained | R-1–R-6, E-1, O-1–O-4 |
+| ● | 45 | [Self-Energy and Regularization](../../../content/markdown/aaa/validation/simulations/action-energy/self-energy.md) | Bounded repairs implemented and validated; open obligations retained | SE-1–SE-6, O-1–O-5 |
+| ● | 46 | [Self-interaction switch](../../../content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md) | Bounded repairs implemented and validated; open obligations retained | SIS-1–SIS-3, SIS-O1–SIS-O3 |
+| ● | 47 | [Superposition and locality](../../../content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md) | Bounded repairs implemented and validated; open obligations retained | SL-1–SL-4 |
+| ● | 48 | [Units and Constants](../../../content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md) | Bounded repairs implemented and validated; open obligations retained | UC-1–UC-7, OUC-1–OUC-4 |
+| ● | 49 | [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-proper-time-and-time-dilation-review-2026-09-12.md) | PT-01–PT-12 |
+| ● | 50 | [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-lorentz-kinematics-review-2026-09-12.md) | LK-01–LK-16 |
+| ● | 51 | [Emergent Metric](../../../content/markdown/aaa/spacetime/emergent-metric.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-emergent-metric-review-2026-09-12.md) | EM-01–EM-15 |
+| ● | 52 | [General Relativity](../../../content/markdown/aaa/spacetime/general-relativity.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-general-relativity-review-2026-09-12.md) | GR-01–GR-11 |
+| ● | 53 | [PPN Parameters](../../../content/markdown/aaa/spacetime/ppn-parameters.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-ppn-parameters-review-2026-09-12.md) | PPN-01–PPN-12 |
+| ● | 54 | [Gravitational Waves](../../../content/markdown/aaa/spacetime/gravitational-waves.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-gravitational-waves-review-2026-09-12.md) | GW-01–GW-15 |
+| ● | 55 | [Black Holes in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Framework](../../../content/markdown/aaa/spacetime/black-holes.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-black-holes-review-2026-09-12.md) | BH-01–BH-19 |
+| ● | 56 | [Singularity Resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-singularity-resolution-review-2026-09-12.md) | SR-01–SR-07 |
+| ● | 57 | [Horizon Chirality and Planar Spin](../../../content/markdown/aaa/spacetime/horizon-chirality.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-horizon-chirality-review-2026-09-12.md) | HC-01–HC-12 |
+| ● | 58 | [Gauge Structure Emergence](../../../content/markdown/aaa/assemblies/gauge-structure-emergence.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-gauge-structure-emergence-review-2026-09-12.md) | GSE-01–GSE-13 |
+| ● | 59 | [Gauge Symmetries](../../../content/markdown/aaa/assemblies/gauge-symmetries.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-gauge-symmetries-review-2026-09-12.md) | GS-01–GS-10 |
+| ● | 60 | [Particle Masses: Emergent Inertia in the Noether Sea](../../../content/markdown/aaa/assemblies/particle-masses.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-particle-masses-review-2026-09-12.md) | PM-01–PM-14 |
+| ● | 61 | [Color Charge and SU(3)](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-color-charge-su3-review-2026-09-12.md) | CCS-01–CCS-11 |
+| ● | 62 | [Electron](../../../content/markdown/aaa/assemblies/fermions/electron.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-electron-review-2026-09-12.md) | ELC-1–ELC-7 |
+| ● | 63 | [Muon and Tau](../../../content/markdown/aaa/assemblies/fermions/muon-tau.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-muon-tau-review-2026-09-12.md) | MT-1–MT-5 |
+| ● | 64 | [Neutrinos](../../../content/markdown/aaa/assemblies/fermions/neutrinos.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-neutrinos-review-2026-09-12.md) | NU-1–NU-8 |
+| ● | 65 | [Quantum Number Mapping: Architrino Geometry to Standard Model](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-quantum-number-mapping-review-2026-09-12.md) | QNM-01–QNM-13 |
+| ● | 66 | [Quarks](../../../content/markdown/aaa/assemblies/fermions/quarks.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-quarks-review-2026-09-12.md) | QK-01–QK-09 |
+| ● | 67 | [Weak Mixing Angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-weak-mixing-angle-review-2026-09-12.md) | WM-01–WM-06 |
+| ● | 68 | [Electroweak Bosons: Photons, W/Z, and Higgs](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-electroweak-bosons-review-2026-09-12.md) | EB-01–EB-10 |
+| ● | 69 | [Gluons and the Strong Force: Geometric Origins](../../../content/markdown/aaa/assemblies/bosons/gluons.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-gluons-review-2026-09-12.md) | GL-01–GL-10 |
+| ● | 70 | [Mesons](../../../content/markdown/aaa/assemblies/mesons/mesons.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-mesons-review-2026-09-12.md) | MES-001–MES-007 |
+| ● | 71 | [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-atomic-structure-review-2026-09-12.md) | AS-01–AS-05 |
+| ● | 72 | [Nucleon Structure](../../../content/markdown/aaa/nuclear-atomic/nucleon-structure.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-nucleon-structure-review-2026-09-12.md) | NS-01–NS-11 |
+| ● | 73 | [Nuclear Binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-nuclear-binding-review-2026-09-12.md) | NB-01–NB-14 |
+| ● | 74 | [Atomic Spectra](../../../content/markdown/aaa/nuclear-atomic/atomic-spectra.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-atomic-spectra-review-2026-09-12.md) | AS-01–AS-12 |
+| ● | 75 | [Hyde Periodic Table](../../../content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-hyde-periodic-table-review-2026-09-12.md) | HY-01–HY-10 |
+| ● | 76 | [Molecular Geometry](../../../content/markdown/aaa/nuclear-atomic/molecular-geometry.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-molecular-geometry-review-2026-09-12.md) | MG-01–MG-08 |
+| ● | 77 | [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-condensed-matter-review-2026-09-12.md) | CM-01–CM-15 |
 
-Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 39 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 160 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.
+Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 77 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 122 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.

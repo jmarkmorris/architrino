@@ -9,8 +9,6 @@ import {fileURLToPath} from 'node:url';
 
 const SELF='scripts/eom/launch-f6c-emission-refinement-pilot.mjs',ENTRY='scripts/eom/run-f6c-emission-refinement-pilot.mjs';
 const HELPERS='scripts/eom/launch-prescribed-response-pilot.mjs',OUTER='scripts/eom/launch-subfield-circular-root-pilot.mjs';
-const HELPER_SHA='72b181165cafe21f3237dca7638343a9d31ea4ee48f709d9b43761666d6e7ec5';
-const OUTER_SHA='e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920';
 const LIMIT_MS=1800000,FILE_LIMIT=64*1024**2,LOG_LIMIT=16*1024**2;
 const check=(yes,message)=>{if(!yes)throw Error(message);};
 const sha=b=>createHash('sha256').update(b).digest('hex');
@@ -24,7 +22,7 @@ export function captureBootstrapSource(filename,expected){
     check(identity(before)===identity(fstatSync(fd,{bigint:true}))&&identity(before)===identity(lstatSync(filename,{bigint:true}))&&sha(data)===expected,'source generation differs');return {path:filename,sha256:expected,bytes:data.length,data};
   }finally{closeSync(fd);}
 }
-export async function reviewedHelpers(bytes){check(sha(bytes)===HELPER_SHA,'reviewed helper generation differs');return import(url(bytes));}
+export async function reviewedHelpers(bytes,expected){check(/^[a-f0-9]{64}$/.test(expected)&&sha(bytes)===expected,'reviewed helper generation differs');return import(url(bytes));}
 export function assertNoCompetitor(table,pid){
   const own=new Set([pid]);let changed;
   do{changed=false;for(const row of table)if(own.has(row.ppid)&&!own.has(row.pid)){own.add(row.pid);changed=true;}}while(changed);
@@ -112,8 +110,11 @@ export function diagnosticGuard(stream=process.stderr){
 }
 export async function launchCaptured({root,options,self,entry,outerBytes,helperBytes,began,deadlineNanoseconds,diagnostics}){
   check(import.meta.url===url(self.data)&&sha(self.data)===options.launcherSha256,'executing launcher generation differs');
-  check(sha(outerBytes)===OUTER_SHA,'registered supervisor generation differs');
-  const C=await import(url(entry.data)),H=await reviewedHelpers(helperBytes),outer=await import(url(outerBytes));
+  const C=await import(url(entry.data));
+  await C.initializeSourceBindings(root,options.sourceMapSha256);
+  check(entry.sha256===C.SOURCE_BINDINGS[ENTRY]&&self.sha256===C.SOURCE_BINDINGS[SELF],'selected entry/launcher generation differs');
+  check(sha(outerBytes)===C.SOURCE_BINDINGS[OUTER],'registered supervisor generation differs');
+  const H=await reviewedHelpers(helperBytes,C.SOURCE_BINDINGS[HELPERS]),outer=await import(url(outerBytes));
   const output=path.resolve(root,options.output),paths=C.outputPaths(root,output),lockLane=path.join(root,C.SHARED_LOCK_LANE);
   check(!existsSync(output)&&!existsSync(paths.operations)&&realpathSync(lockLane)===lockLane,'fresh data/operations and canonical shared lock required');
   const abort=new AbortController(),owners=new Map(),probes=new Set(),pending=new Set(),stages=[],hostObservations=[];
@@ -137,7 +138,7 @@ export async function launchCaptured({root,options,self,entry,outerBytes,helperB
   const sample=rows=>{const owned=H.selectOwnedRows(rows,process.pid,owners,outer,probes),observation=H.acceptRSS(rss,owned,performance.now(),rows.sampleStartedMs);H.boundedLogAppend(monitorFD,Buffer.from(JSON.stringify({kind:'aggregate-rss',stage,elapsedSeconds:elapsed(began),...observation})+'\n'),monitor);poll();return observation;};
   const inspect=async()=>{const rows=await table();if(!abort.signal.aborted)try{sample(rows);}catch(error){fail(error);throw error;}return rows.map(({rssBytes,...row})=>row);};
   const host=async launch=>{try{const result=await probe('/usr/bin/memory_pressure',[],2000,1024**2),disk=statfsSync(root,{bigint:true});const value={kind:'host-resource',stage,elapsedSeconds:elapsed(began),...H.parseHostResource(result.text,disk.bavail*disk.bsize,launch)};hostObservations.push(value);log(value);poll();}catch(error){fail(error);throw error;}};
-  const worker=job=>H.runFileWorker({...job,deadlineNanoseconds},entry.data,remaining(),abort.signal);
+  const worker=job=>H.runFileWorker({...job,root,sourceMapSha256:options.sourceMapSha256,deadlineNanoseconds},entry.data,remaining(),abort.signal);
   const stopMonitors=async()=>{clearInterval(interval);clearTimeout(deadlineTimer);if(hostJob)await hostJob;if(rssJob)await rssJob;await Promise.allSettled([...pending]);};
   try{
     mkdirSync(paths.operations,{mode:0o700});reserved=true;
@@ -160,12 +161,12 @@ export async function launchCaptured({root,options,self,entry,outerBytes,helperB
     for(const name of ['producer','comparison']){
       stage=name;live();await worker({kind:'recheck',sources});const manifest=stages[0]?.admission?.outputs.at(-1);
       const args=['--plan',planBinding.path,'--plan-sha256',planBinding.sha256,'--entry-sha256',entry.sha256,'--launcher-sha256',self.sha256,
-        '--stage',stage,'--out',output,'--deadline-ns',deadlineNanoseconds,'--manifest-sha256',manifest?.sha256??'none','--python',options.python,'--git-binary',options.git];
+        '--stage',stage,'--out',output,'--deadline-ns',deadlineNanoseconds,'--manifest-sha256',manifest?.sha256??'none','--python',options.python,'--git-binary',options.git,'--source-map-sha256',options.sourceMapSha256];
       activeOuter=true;let receipt;
       try{receipt=await outer.superviseRegisteredPilot({root,entry:ENTRY,args,sources:[{path:ENTRY,sha256:entry.sha256,bytes:entry.data}],
         output:path.join(paths.operations,stage+'-process'),startedAtMs:began,limitMs:LIMIT_MS,heartbeatMs:15000,
         inspectProcesses:H.startupAbortInspection(inspect,abort.signal),admit:async({receipt:processReceipt,signal})=>{
-          live();return H.runFileWorker({kind:'admit',root,output,stage,plan,planBinding,sources,python:options.python,git:options.git,manifest,
+          live();return H.runFileWorker({kind:'admit',root,sourceMapSha256:options.sourceMapSha256,output,stage,plan,planBinding,sources,python:options.python,git:options.git,manifest,
             processReceipt,stdoutPath:path.join(paths.operations,stage+'-process/runner-stdout.log'),deadlineNanoseconds},entry.data,remaining(),signal);
         }});}catch(error){if(error.outerReceipt)stages.push({stage,process:error.outerReceipt});throw error;}finally{activeOuter=false;}
       stages.push({stage,process:receipt,admission:receipt.admission});
@@ -209,20 +210,23 @@ export async function launchCaptured({root,options,self,entry,outerBytes,helperB
   }
 }
 export function parseArgs(argv){const v={};for(let i=0;i<argv.length;i+=2){check(argv[i+1]&&!v[argv[i]],'unique paired arguments');v[argv[i]]=argv[i+1];}
-  check(Object.keys(v).sort().join('|')===['--out','--plan','--plan-sha256','--launcher-sha256','--entry-sha256','--python','--git-binary'].sort().join('|'),'closed launcher arguments');
-  for(const key of ['--plan-sha256','--launcher-sha256','--entry-sha256'])check(/^[a-f0-9]{64}$/u.test(v[key]),'reviewed SHA required');
+  check(Object.keys(v).sort().join('|')===['--source-map-sha256','--out','--plan','--plan-sha256','--launcher-sha256','--entry-sha256','--python','--git-binary'].sort().join('|'),'closed launcher arguments');
+  for(const key of ['--source-map-sha256','--plan-sha256','--launcher-sha256','--entry-sha256'])check(/^[a-f0-9]{64}$/u.test(v[key]),'reviewed SHA required');
   check(!v['--out'].split(/[\\/]/u).some(p=>p==='.'||p==='..'),'output traversal');
   for(const key of ['--python','--git-binary'])check(path.isAbsolute(v[key])&&path.resolve(v[key])===v[key],'explicit absolute runtime invocation');
-  return {output:v['--out'],plan:path.resolve(v['--plan']),planSha256:v['--plan-sha256'],launcherSha256:v['--launcher-sha256'],entrySha256:v['--entry-sha256'],python:v['--python'],git:v['--git-binary']};
+  return {output:v['--out'],plan:path.resolve(v['--plan']),planSha256:v['--plan-sha256'],launcherSha256:v['--launcher-sha256'],entrySha256:v['--entry-sha256'],python:v['--python'],git:v['--git-binary'],sourceMapSha256:v['--source-map-sha256']};
 }
 async function main(began,diagnostics){const deadlineNanoseconds=String(process.hrtime.bigint()+1800000000000n),options=parseArgs(process.argv.slice(2)),root=realpathSync(process.cwd());
-  const self=captureBootstrapSource(path.join(root,SELF),options.launcherSha256),entry=captureBootstrapSource(path.join(root,ENTRY),options.entrySha256),helpers=captureBootstrapSource(path.join(root,HELPERS),HELPER_SHA),outer=captureBootstrapSource(path.join(root,OUTER),OUTER_SHA);
-  const C=await import(url(entry.data)),plan=C.decode(C.readBound(options.plan,options.planSha256,true,1024**2).data,1024**2);
+  const self=captureBootstrapSource(path.join(root,SELF),options.launcherSha256),entry=captureBootstrapSource(path.join(root,ENTRY),options.entrySha256);
+  const C=await import(url(entry.data));
+  await C.initializeSourceBindings(root,options.sourceMapSha256);
+  const helpers=captureBootstrapSource(path.join(root,HELPERS),C.SOURCE_BINDINGS[HELPERS]),outer=captureBootstrapSource(path.join(root,OUTER),C.SOURCE_BINDINGS[OUTER]);
+  const plan=C.decode(C.readBound(options.plan,options.planSha256,true,1024**2).data,1024**2);
   C.validatePlan(plan,root,self.sha256,entry.sha256,options.python,options.git);
   C.checkBindings([...plan.operationalBindings.filter(b=>['/bin/ps','/usr/bin/memory_pressure',realpathSync(process.execPath)].includes(b.path)),...plan.runtimeBindings.filter(b=>path.resolve(root,b.path)===options.git)].map(b=>({...b,path:path.resolve(root,b.path)})));
   await ignoredOutputs(options.git,root,path.resolve(root,options.output));
   diagnostics.check();const captured=await import(url(self.data)),result=await captured.launchCaptured({root,options,self,entry,outerBytes:outer.data,helperBytes:helpers.data,began,deadlineNanoseconds,diagnostics});
-  const H=await reviewedHelpers(helpers.data);check(performance.now()-began<LIMIT_MS,'post-teardown deadline');
+  const H=await reviewedHelpers(helpers.data,C.SOURCE_BINDINGS[HELPERS]);check(performance.now()-began<LIMIT_MS,'post-teardown deadline');
   await drainDiagnostics({began,lastSampleStartedMs:result.lastRSSObservationStartedAtMs});diagnostics.check();result.elapsedSeconds=elapsed(began);
   await H.flushCompletion(result,{began,lastSampleStartedMs:result.lastRSSObservationStartedAtMs});
   diagnostics.check();await diagnostics.close(began);

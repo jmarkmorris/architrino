@@ -7,6 +7,20 @@ import tempfile
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
+def current_execution_plan(plan):
+    """Copy the retained example into a current synthetic control, without changing its provenance."""
+    plan=copy.deepcopy(plan)
+    keys=('consumer','controls','rangeVerifier','producer','producerControls','verifier','verifierControls','executionBridge')
+    rows=[plan[k] for k in keys if k in plan]
+    rows += plan['operationalBindings'] + plan.get('subjectSourceBindings',[])
+    for b in rows:
+        if b['path'].startswith(('scripts/','tests/')):
+            raw=(ROOT/b['path']).read_bytes()
+            b.update(sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw))
+    return plan
+
+
+
 spec = importlib.util.spec_from_file_location('acceleration_execution', ROOT/'scripts/eom/execute-f6c-acceleration.py')
 s = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(s)
@@ -85,7 +99,7 @@ class CurrentContract(unittest.TestCase):
     def test_real_v2_metadata_projects_to_both_unchanged_contracts(self):
         import json
         plan_path=ROOT/'reference/priorities/development-process-review/evidence/acceleration-migration/acceleration-launch.v2.json'
-        plan=json.loads(plan_path.read_text())
+        plan=current_execution_plan(json.loads(plan_path.read_text()))
         projected,_=s.scientific_plan(plan,ROOT,plan['executionBridge']['sha256'])
         for path,digest in [(s.SUBJECT,s.SUBJECT_SHA),(s.VERIFIER,s.VERIFIER_SHA)]:
             with s.Capture(ROOT/path,digest,capture=True) as captured:
@@ -111,7 +125,7 @@ class SyntheticExecution(unittest.TestCase):
         class ArtificialProjection:
             syntheticOnly: bool=True
         plan_path=ROOT/'reference/priorities/development-process-review/evidence/acceleration-migration/acceleration-launch.v2.json'
-        plan_raw=plan_path.read_bytes();plan=json.loads(plan_raw)
+        plan_raw=plan_path.read_bytes();plan=current_execution_plan(json.loads(plan_raw))
         original_instrument=s.instrument
         fail_publication=False
         @contextmanager
