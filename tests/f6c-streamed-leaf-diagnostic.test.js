@@ -18,11 +18,33 @@ const root=realpathSync(process.cwd()),python=path.resolve(process.env.AAA_VENV?
 const hash=x=>createHash('sha256').update(x).digest('hex');
 const bind=p=>({path:p,sha256:hash(readFileSync(p)),bytes:statSync(p).size});
 const load=async([p,h])=>{const raw=readFileSync(path.join(root,p));assert.equal(hash(raw),h);return import('data:text/javascript;base64,'+raw.toString('base64'));};
-const H=await load(C.PINS.helpers),D=await load(C.PINS.diagnostics);
+const Common=await import('../scripts/eom/f6c-bounded-operation.mjs');
+const currentAdmission=await Common.initializeSourceBindings(root,bind(path.join(root,Common.SOURCE_MAP)).sha256);
+const operationPins=Object.fromEntries(Object.entries(C.OPERATIONS).map(([k,p])=>[k,[p,currentAdmission.sources.find(b=>b.path===path.join(root,p)).sha256]]));
+const H=await load(operationPins.helpers),D=await load(operationPins.diagnostics);
 const transportArchive='reference/priorities/braid-program/evidence/source-replay/f6c-verify-f6c-refined-acceleration.py.source';
 const dependencyBytes=(key,rel)=>readFileSync(path.join(root,key==='transport'?transportArchive:rel));
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
 const absent=pid=>{try{process.kill(pid,0);return false;}catch(e){return e.code==='ESRCH';}};
+
+for(const mode of['missing-map','wrong-spec-map','wrong-reader','old-v5'])test('operational map launch rejects before provider: '+mode,async()=>{
+ const f=fixture();try{
+  if(mode==='missing-map')delete f.spec.bindings.sourceMap;
+  if(mode==='wrong-spec-map')f.spec.bindings.sourceMap.sha256='0'.repeat(64);
+  if(mode==='wrong-reader')f.spec.bindings.manifestReader.sha256='0'.repeat(64);
+  if(mode==='old-v5')f.spec.schema='braid-program/f6c-streamed-leaf-invocation.v5';
+  writeFileSync(f.specPath,JSON.stringify(f.spec)+'\n');f.specSha=bind(f.specPath).sha256;
+  const result=await runFixture(f);rejectedExit(result);assert(!existsSync(f.pidfile));assert(!existsSync(f.events));
+ }finally{cleanup(f);}
+});
+for(const role of['sourceMap','manifestReader'])test('operational map original identity survives registered boundary: '+role,async()=>{
+ const f=fixture();try{
+  alterFixture(f,source=>replaceOnce(source,'const body=sha(PYTHON);',
+   "const injectedFs=await import('node:fs');const selectedPath=spec.bindings."+role+".path;const selectedRaw=injectedFs.readFileSync(selectedPath);injectedFs.renameSync(selectedPath,selectedPath+'.original');injectedFs.writeFileSync(selectedPath,selectedRaw);const body=sha(PYTHON);",'same-byte operational source replacement after registered admission'));
+  const result=await runFixture(f);rejectedExit(result);
+  assert(existsSync(f.spec.bindings[role].path+'.original'),'replacement injection actually reached');
+ }finally{cleanup(f);}
+});
 
 const rejectedExit=r=>assert(r.code!==0||r.signal!==null,'actual nonzero/terminated exit, never successful completion');
 const replaceOnce=(source,needle,replacement,label)=>{
@@ -236,14 +258,22 @@ class LeafResponseSession:
   self.state=types.SimpleNamespace(plan=self.state.plan,status='unresolved'if MODE=='exhausted'else'pending',aggregate=None,next_generation=160,split_counts=(1,)*80,leaves=leaves,evaluations=done)
   return self.state
 `;
+function fixtureAdmission(dir){
+ const map=JSON.parse(readFileSync(path.join(root,C.SOURCE_MAP)));
+ const readerRelative='scripts/equation-mapping/current-source-manifest.mjs',readerPath=path.join(dir,readerRelative);
+ mkdirSync(path.dirname(readerPath),{recursive:true});if(!existsSync(readerPath))writeFileSync(readerPath,readFileSync(path.join(root,readerRelative)));
+ for(const row of map['@graph'].filter(r=>r['@type']==='Source'))row.binding.sha256=bind(path.join(dir,row.binding.path)).sha256;
+ const mapPath=path.join(dir,C.SOURCE_MAP);mkdirSync(path.dirname(mapPath),{recursive:true});writeFileSync(mapPath,JSON.stringify(map,null,2)+'\n');
+ return{sourceMap:bind(mapPath),sources:[...map['@graph'].filter(r=>r['@type']==='Source').map(r=>bind(path.join(dir,r.binding.path))),bind(mapPath)]};
+}
 function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64n*1024n**3n,runDisk=64n*1024n**3n}={}){
  const dir=realpathSync(mkdtempSync(path.join(os.tmpdir(),'f6c-stream-'))),output=path.join(dir,C.LANE,'synthetic');
  const supervisor=path.join(dir,'scripts/dev/owned-compute-supervisor.mjs');mkdirSync(path.dirname(supervisor),{recursive:true});writeFileSync(supervisor,readFileSync(path.join(root,'scripts/dev/owned-compute-supervisor.mjs')));
  mkdirSync(path.dirname(output),{recursive:true});mkdirSync(path.dirname(path.join(dir,C.LOCK)),{recursive:true});
  const entry=path.join(dir,C.SELF),controls=path.join(dir,C.CONTROL);mkdirSync(path.dirname(entry),{recursive:true});mkdirSync(path.dirname(controls),{recursive:true});writeFileSync(controls,'synthetic controls\n');
  const events=path.join(dir,'events'),pidfile=path.join(dir,'target.pid'),pins={};
- const wholeEntry=path.join(dir,C.PINS.operationCoordinator[0]);let wholeSource;
- for(const[key,[rel,digest]]of Object.entries(C.PINS)){
+ const wholeEntry=path.join(dir,C.OPERATIONS.operationCoordinator);let wholeSource;
+ for(const[key,[rel,digest]]of Object.entries({...C.PINS,...operationPins})){
   const filename=path.join(dir,rel);mkdirSync(path.dirname(filename),{recursive:true});
   let raw;
   if(key==='adapter')raw='MODE='+JSON.stringify(mode)+'\n'+adapterFake;
@@ -275,9 +305,9 @@ function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64
   }
   writeFileSync(filename,raw);pins[key]=[rel,hash(raw)];
  }
- let source=readFileSync(path.join(root,C.SELF),'utf8').replace(/export const PINS=Object.freeze\([\s\S]*?\n\);/u,'export const PINS=Object.freeze('+JSON.stringify(pins)+');');
+ let source=readFileSync(path.join(root,C.SELF),'utf8').replace(/export const PINS=Object.freeze\([\s\S]*?\n\);/u,'export const PINS=Object.freeze('+JSON.stringify(Object.fromEntries(Object.entries(pins).filter(([k])=>Object.hasOwn(C.PINS,k))))+');');
  // Formatting is intentionally robust to a one-line closing brace.
- if(source.includes(C.PINS.adapter[1]))source=source.replace(/export const PINS=Object.freeze\([\s\S]*?\n\}\);/u,'export const PINS=Object.freeze('+JSON.stringify(pins)+');');
+ if(source.includes(C.PINS.adapter[1]))source=source.replace(/export const PINS=Object.freeze\([\s\S]*?\n\}\);/u,'export const PINS=Object.freeze('+JSON.stringify(Object.fromEntries(Object.entries(pins).filter(([k])=>Object.hasOwn(C.PINS,k))))+');');
  assert(!source.includes(C.PINS.adapter[1]),'fixture source pins replaced');
  if(mode==='postpublish')source=source.replace("after_close_recheck();publication.verify();publication.close();live()","after_close_recheck();publication.verify();publication.close();live()\n  bad=pathlib.Path(bindings['diagnostic']['path']);replacement=bad.with_suffix('.swap');replacement.write_bytes(bad.read_bytes());replacement.replace(bad)");
  if(mode==='module-cleanup')source=source.replace("finally:require(sys.modules.get(name)is m,'module identity');del sys.modules[name]","finally:\n   require(sys.modules.get(name)is m,'module identity');del sys.modules[name]\n   if b['path'].endswith('f6c_single_leaf_diagnostic.py'):\n    bad=pathlib.Path(b['path']);other=bad.with_suffix('.swap');other.write_bytes(bad.read_bytes());other.replace(bad)");
@@ -290,7 +320,7 @@ function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64
   const alias=path.join(dir,'adapter-hardlink');linkSync(bindings.adapter.path,alias);runtimeList.push(bind(alias));
  }
  if(mode==='missing-runtime'||mode==='runtime-in-provenance')runtimeList.splice(runtimeList.findIndex(b=>b.path.endsWith('/_pylong.py')),1);
- const spec={schema:'braid-program/f6c-streamed-leaf-invocation.v5',scope:C.SCOPE,root:dir,output,python,git:'/usr/bin/git',bindings,runtimeBindings:runtimeList,parentRefinements:[],evidencePackage:null,acceptedParentEvidence:[],historicalEvidence:null,continuation:null,maxAdvances:maximum,limits:C.LIMITS};
+ const spec={schema:'braid-program/f6c-streamed-leaf-invocation.v6',scope:C.SCOPE,root:dir,output,python,git:'/usr/bin/git',bindings,runtimeBindings:runtimeList,parentRefinements:[],evidencePackage:null,acceptedParentEvidence:[],historicalEvidence:null,continuation:null,maxAdvances:maximum,limits:C.LIMITS};
  if(mode==='archives'||mode==='multi-occupant-archives'||mode==='archive-runtime'){
   const prior={};for(const k of['plan','manifest','comparison','operation','launcher_log','resource_log']){const p=path.join(dir,'prior-'+k);writeFileSync(p,'prior '+k);prior[k]=bind(p);}
   const archive=path.join(dir,mode==='archive-runtime'?'scripts/eom/archived-owner.py':'owner-archive');writeFileSync(archive,'prior-v1');const ar=bind(archive),original={...ar,path:bindings.readiness.path};
@@ -306,11 +336,12 @@ function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64
   spec.historicalEvidence={selection:{schema:'braid-program/variable-cell-historical-evidence.v1',routes:[{original:{...b,path:path.join(dir,'original.py')},physical:b}]},sourceBindings:[bindings.adapter,b]};
   if(mode==='retained-extra'){const extra=path.join(dir,'extra.source');writeFileSync(extra,'not consumed');spec.historicalEvidence.sourceBindings.push(bind(extra));}
  }
+ const admission=fixtureAdmission(dir);spec.bindings.sourceMap=admission.sourceMap;spec.bindings.manifestReader=admission.sources.find(b=>b.path===path.join(dir,'scripts/equation-mapping/current-source-manifest.mjs'));
  const specPath=path.join(dir,'invocation.json');writeFileSync(specPath,JSON.stringify(spec)+'\n');
  // check-ignore needs only a portable ignored synthetic checkout, never repo outputs.
  for(const args of [['init','-q',dir],['-C',dir,'config','core.hooksPath','/dev/null']])assert.equal(spawnSync('/usr/bin/git',args,{encoding:'utf8',env:Object.fromEntries(Object.entries(process.env).filter(([n])=>!/^GIT_(DIR|WORK_TREE|INDEX_FILE|PREFIX|COMMON_DIR)$/u.test(n)))}).status,0);
  writeFileSync(path.join(dir,'.gitignore'),'.local-data/\n');
- return{dir,output,entry,wholeEntry,wholeSource,wholeSha:bindings.operationCoordinator.sha256,events,pidfile,spec,specPath,specSha:bind(specPath).sha256,selfSha:bindings.coordinator.sha256,source};
+ return{admission,dir,output,entry,wholeEntry,wholeSource,wholeSha:bindings.operationCoordinator.sha256,events,pidfile,spec,specPath,specSha:bind(specPath).sha256,selfSha:bindings.coordinator.sha256,source};
 }
 function packageFixture(mode='package'){
  // Tiny synthetic transport only; these bytes are not a valid evidence package
@@ -358,7 +389,8 @@ async function runFixture(f,{interrupt=false,epipe=false}={}){
  const hostText=await new Promise((resolve,reject)=>execFile('/usr/bin/memory_pressure',[],{encoding:'utf8',timeout:2000,maxBuffer:1024**2},(e,out)=>e?reject(e):resolve(out)));
  const disk=statfsSync(f.dir,{bigint:true});H.parseHostResource(hostText,disk.bavail*disk.bsize,true);
  const wrapper=path.join(f.dir,'fixture-envelope.mjs'),pidPath=path.join(f.dir,'coordinator.pid');
- const args=[f.wholeEntry,'--streamed','--spec',f.specPath,'--spec-sha256',f.specSha,'--caller-sha256',f.selfSha,'--self-sha256',f.wholeSha];
+ const mapPath=path.join(f.dir,C.SOURCE_MAP);
+ const args=[f.wholeEntry,'--streamed','--spec',f.specPath,'--spec-sha256',f.specSha,'--caller-sha256',f.selfSha,'--self-sha256',f.wholeSha,'--source-map-sha256',f.admission.sourceMap.sha256];
  writeFileSync(wrapper,`import {spawn} from 'node:child_process';import {writeFileSync,existsSync} from 'node:fs';
  const child=spawn(process.execPath,${JSON.stringify(args)},{stdio:['ignore','pipe','pipe']});
  writeFileSync(${JSON.stringify(pidPath)},String(child.pid));
@@ -400,7 +432,8 @@ function alterWholeFixture(f,change){
  assert.notEqual(after,before,'specific shared-coordinator injection applied');
  writeFileSync(f.wholeEntry,after);f.wholeSource=after;f.spec.bindings.operationCoordinator=bind(f.wholeEntry);
  f.wholeSha=f.spec.bindings.operationCoordinator.sha256;
- alterFixture(f,source=>replaceOnce(source,old,f.wholeSha,'exact copied C source pin'));
+ f.admission=fixtureAdmission(f.dir);f.spec.bindings.sourceMap=f.admission.sourceMap;
+ writeFileSync(f.specPath,JSON.stringify(f.spec)+'\n');f.specSha=bind(f.specPath).sha256;
 }
 
 test('reviewed dependencies remain byte-exact',()=>{
@@ -464,12 +497,12 @@ test('closed spec caps and parent selection reject before target creation',()=>{
   const ModuleSource=f.source.replace(/if\(import.meta.url.startsWith\('file:'\)[\s\S]*$/u,'');
   // Pure validator imported from its captured source; no CLI starts.
   return import('data:text/javascript;base64,'+Buffer.from(ModuleSource).toString('base64')).then(M=>{
-   M.validateSpec(f.spec,f.selfSha);
+   M.validateSpec(f.spec,f.selfSha,f.admission);
    for(const mutate of[
     s=>s.maxAdvances=0,s=>s.maxAdvances=3281,s=>s.maxAdvances=1.5,s=>s.maxAdvances=true,
     s=>s.limits.scientificBytes++,s=>s.limits.wallSeconds++,s=>s.parentRefinements=[{parent_index:2}],s=>s.extra=true,
     s=>s.runtimeBindings.push(s.runtimeBindings[0]),s=>s.output+='/child']){
-    const s=structuredClone(f.spec);mutate(s);assert.throws(()=>M.validateSpec(s,f.selfSha));
+    const s=structuredClone(f.spec);mutate(s);assert.throws(()=>M.validateSpec(s,f.selfSha,f.admission));
    }
   }).finally(()=>cleanup(f));
  }catch(e){cleanup(f);throw e;}
@@ -553,7 +586,7 @@ test('every late publication callback preserves original identity and foreign ev
 test('package selection preserves logical descriptors and removes only admitted physical inputs',async()=>{
  const f=packageFixture();try{
   const M=await import('data:text/javascript;base64,'+Buffer.from(f.source).toString('base64'));
-  const original=JSON.stringify(f.spec.parentRefinements),sources=M.validateSpec(f.spec,f.selfSha),routes=M.packageInputs(f.spec).routes;
+  const original=JSON.stringify(f.spec.parentRefinements),sources=M.validateSpec(f.spec,f.selfSha,f.admission),routes=M.packageInputs(f.spec).routes;
   assert.equal(routes.size,28);assert.equal(JSON.stringify(f.spec.parentRefinements),original);
   for(const p of routes.keys())assert(!sources.some(b=>b.path===p),'loose payload not recaptured');
   for(const b of Object.values(f.spec.evidencePackage))assert(sources.some(s=>s.path===b.path&&s.sha256===b.sha256));
@@ -565,7 +598,7 @@ test('package selection preserves logical descriptors and removes only admitted 
    s=>s.evidencePackage.inventory.sha256='a'.repeat(64),s=>s.evidencePackage.inventory.bytes++,
    s=>s.parentRefinements[0].plan.sha256='a'.repeat(64),s=>s.parentRefinements[0].manifest.bytes++,
    s=>s.parentRefinements[1].archived_sources[0].archive.sha256='a'.repeat(64)]){
-   const spec=structuredClone(f.spec);mutate(spec);assert.throws(()=>M.validateSpec(spec,f.selfSha));
+   const spec=structuredClone(f.spec);mutate(spec);assert.throws(()=>M.validateSpec(spec,f.selfSha,f.admission));
   }
  }finally{cleanup(f);}
 });
@@ -587,10 +620,10 @@ test('parent-two historical wrapper routes require the exact original plan and s
   d.closure={owner:f.spec.bindings.readiness,operation:d.operation,original_caller_session:'12345',final_completion_chunk:'abc123',exit_code:0,elapsed_seconds:'3.125',processes_closed:true,independent_audit_accepted:true,authority:'attributed-versioned-acceptance-owner-not-fresh-process-observation'};
   d.archived_sources=Object.entries(expected).map(([role,[p,h,n]])=>({role,original:{path:path.join(f.dir,p),sha256:h,bytes:n},archive:b('parent2-'+role,h,n)}));
   const spec={...structuredClone(f.spec),parentRefinements:[d]},before=JSON.stringify(spec);
-  const observed=M.validateSpec(spec,f.selfSha);assert.equal(JSON.stringify(spec),before);
+  const observed=M.validateSpec(spec,f.selfSha,f.admission);assert.equal(JSON.stringify(spec),before);
   for(const r of d.archived_sources){assert(observed.some(b=>b.path===r.archive.path));assert(!observed.some(b=>b.path===r.original.path));}
   for(const mutate of [s=>s.parentRefinements[0].parent_index=1,s=>s.parentRefinements[0].parent_index=3,s=>s.parentRefinements[0].plan.path+='.other',s=>s.parentRefinements[0].plan.sha256='b'.repeat(64),s=>s.parentRefinements[0].plan.bytes++,s=>s.parentRefinements[0].archived_sources[0].original.sha256=C.ARCHIVE_SOURCES.producer[1],s=>s.parentRefinements[0].archived_sources[0].archive.path=s.bindings.adapter.path]){
-   const bad=structuredClone(spec);mutate(bad);assert.throws(()=>M.validateSpec(bad,f.selfSha));
+   const bad=structuredClone(spec);mutate(bad);assert.throws(()=>M.validateSpec(bad,f.selfSha,f.admission));
   }
  }finally{cleanup(f);}
 });
@@ -611,13 +644,13 @@ test('generic descriptors preserve exact archives, derived inventory and invocat
    first.archived_sources.push(r);second.archived_sources.push(structuredClone(r));
   }
   const spec=structuredClone(f.spec);spec.parentRefinements=[first,second,last];
-  const observed=M.validateSpec(spec,f.selfSha),relations=M.archiveRelations(spec);
+  const observed=M.validateSpec(spec,f.selfSha,f.admission),relations=M.archiveRelations(spec);
   assert.equal(relations.length,8);assert.equal(observed.length,Object.keys(spec.bindings).length+spec.runtimeBindings.length+18+8);
   assert.deepEqual(relations,[...first.archived_sources,second.archived_sources[0]]);
   for(const r of relations){assert(observed.some(b=>b.path===r.archive.path));if(r.role!=='acceptanceOwner')assert(!observed.some(b=>b.path===r.original.path));}
-  const before=JSON.stringify(spec);M.validateSpec(spec,f.selfSha);assert.equal(JSON.stringify(spec),before);
-  for(const elapsed of ['0.0001','+1800','18e2','1e-999']){const s=structuredClone(spec);s.parentRefinements[1].closure.elapsed_seconds=elapsed;M.validateSpec(s,f.selfSha);}
-  for(const index of [0,-1,160,true,1.5,'2',null]){const s=structuredClone(spec);s.parentRefinements[1].parent_index=index;assert.throws(()=>M.validateSpec(s,f.selfSha));}
+  const before=JSON.stringify(spec);M.validateSpec(spec,f.selfSha,f.admission);assert.equal(JSON.stringify(spec),before);
+  for(const elapsed of ['0.0001','+1800','18e2','1e-999']){const s=structuredClone(spec);s.parentRefinements[1].closure.elapsed_seconds=elapsed;M.validateSpec(s,f.selfSha,f.admission);}
+  for(const index of [0,-1,160,true,1.5,'2',null]){const s=structuredClone(spec);s.parentRefinements[1].parent_index=index;assert.throws(()=>M.validateSpec(s,f.selfSha,f.admission));}
   const mutations=[
    s=>s.parentRefinements.reverse(),s=>s.parentRefinements.splice(1,0,structuredClone(s.parentRefinements[0])),
    s=>s.parentRefinements[0].archived_sources.push(s.parentRefinements[0].archived_sources[0]),
@@ -637,15 +670,15 @@ test('generic descriptors preserve exact archives, derived inventory and invocat
    s=>s.parentRefinements[1].closure.original_caller_session=12345,
    s=>s.parentRefinements[1].closure.final_completion_chunk='x\n',
   ];
-  for(const[index,mutate]of mutations.entries()){const s=structuredClone(spec);mutate(s);assert.throws(()=>M.validateSpec(s,f.selfSha),undefined,'mutation '+index);}
+  for(const[index,mutate]of mutations.entries()){const s=structuredClone(spec);mutate(s);assert.throws(()=>M.validateSpec(s,f.selfSha,f.admission),undefined,'mutation '+index);}
   for(const elapsed of ['0','-1','1800.00000000000000000000000000001','NaN','Infinity','0x1','1e1001','1e-1001',3.125]){
-   const s=structuredClone(spec);s.parentRefinements[1].closure.elapsed_seconds=elapsed;assert.throws(()=>M.validateSpec(s,f.selfSha));
+   const s=structuredClone(spec);s.parentRefinements[1].closure.elapsed_seconds=elapsed;assert.throws(()=>M.validateSpec(s,f.selfSha,f.admission));
   }
   const reordered=structuredClone(spec);const old=reordered.parentRefinements[1].archived_sources[1].archive;
   reordered.parentRefinements[1].archived_sources[1].archive={bytes:old.bytes,sha256:old.sha256,path:old.path};
-  assert.deepEqual(M.archiveRelations(reordered),relations);M.validateSpec(reordered,f.selfSha);
-  const changed=structuredClone(f.spec);changed.bindings.readiness={...changed.bindings.readiness,sha256:'d'.repeat(64),bytes:999};M.validateSpec(changed,f.selfSha);
-  changed.bindings.adapter.sha256='d'.repeat(64);assert.throws(()=>M.validateSpec(changed,f.selfSha));
+  assert.deepEqual(M.archiveRelations(reordered),relations);M.validateSpec(reordered,f.selfSha,f.admission);
+  const changed=structuredClone(f.spec);changed.bindings.readiness={...changed.bindings.readiness,sha256:'d'.repeat(64),bytes:999};M.validateSpec(changed,f.selfSha,f.admission);
+  changed.bindings.adapter.sha256='d'.repeat(64);assert.throws(()=>M.validateSpec(changed,f.selfSha,f.admission));
   assert(!existsSync(f.output));assert(!existsSync(f.events));
  }finally{cleanup(f);}
 });
@@ -660,7 +693,7 @@ test('two explicit nonexecuting ancestry documents retain exact historical tuple
   for(const[role,[p,h,n]]of Object.entries(C.ANCESTRY_ARCHIVE_SOURCES)){
    d.archived_sources.push({role,original:{path:path.join(f.dir,p),sha256:h,bytes:n},archive:{path:path.join(f.dir,'document-'+role),sha256:h,bytes:n}});
   }
-  const sources=M.validateSpec(spec,f.selfSha);
+  const sources=M.validateSpec(spec,f.selfSha,f.admission);
   assert.equal(M.archiveRelations(spec).length,3);
   for(const r of d.archived_sources.slice(1))assert(sources.some(b=>b.path===r.archive.path));
   for(const mutate of[
@@ -671,7 +704,7 @@ test('two explicit nonexecuting ancestry documents retain exact historical tuple
    s=>s.parentRefinements[0].archived_sources[1].archive.path=s.parentRefinements[0].archived_sources[1].original.path,
    s=>s.parentRefinements[0].archived_sources[2].archive.path=s.parentRefinements[0].archived_sources[1].archive.path,
    s=>s.parentRefinements[0].archived_sources.push(s.parentRefinements[0].archived_sources[1]),
-  ]){const bad=structuredClone(spec);mutate(bad);assert.throws(()=>M.validateSpec(bad,f.selfSha));}
+  ]){const bad=structuredClone(spec);mutate(bad);assert.throws(()=>M.validateSpec(bad,f.selfSha,f.admission));}
  }finally{cleanup(f);}
 });
 test('shared competitor guard excludes only own descendants',()=>{
@@ -769,6 +802,7 @@ for(const mode of['normal','exhausted','archives','multi-occupant-archives']){
    const r=await runFixture(f);assert.equal(r.code,0,r.err.slice(-2000));const done=JSON.parse(r.out);
    conditionalCompletion(done); // Only the observed exit0 and actual absent lock finish the conditional wire.
    const op=JSON.parse(readFileSync(path.join(f.output+'-outer','operation.json'))),completion=op.process.admission.completion;
+   for(const role of['sourceMap','manifestReader']){const b=f.spec.bindings[role];assert(op.sourceBindings.some(s=>JSON.stringify(s)===JSON.stringify(b)));assert.equal(typeof completion.sourceIdentities[b.path],'string');}
    assert.equal(op.schema,'braid-program/f6c-streamed-leaf-operation.v2');assert.equal(op.accepted,false);assert.equal(op.scope,'conditional-operational-completion');
    assert.deepEqual(completion.historicalOwnerArchives,C.archiveRelations(f.spec));
    assert.equal(completion.completedAdvances,mode==='exhausted'?1:2);assert.equal(completion.stopReason,mode==='exhausted'?'no-outstanding-request':'explicit-maximum');
@@ -937,7 +971,7 @@ for(const index of [0,1])for(const replacement of [false,true]){
  });
 }
 
-test('version-five retained selection reaches adapter and frozen stream metadata',async()=>{
+test('version-six retained selection reaches adapter and frozen stream metadata',async()=>{
  const f=fixture('retained');try{
   const r=await runFixture(f);assert.equal(r.code,0,r.err);conditionalCompletion(JSON.parse(r.out));
   const line=readFileSync(path.join(f.output,'leaf-evidence.ndjson'),'utf8').split('\n')[0];

@@ -4,6 +4,90 @@ This is the chronological completion log for the CRW-005 assurance campaign. The
 
 ## Completed milestones
 
+### 2026-09-12 — Nucleon Structure NS-01–NS-11 bounded repair
+
+Implemented and validated the smallest safe repairs for 11 demonstrated findings, clarifying nucleon stability status, charge/radius and mass-response interfaces, magnetic and spin mappings, confinement/color transport scope, source precision, and reader-facing claim boundaries. Strict content validation, scoped diff and whitespace checks, known-case-first KaTeX and local-link checks, and 23 equation-mapping links passed. Physical branch existence, completed mass/spin and magnetic-sign derivations, and downstream nuclear/atomic closure remain open. The [bounded receipt](evidence/crw-005-nucleon-structure-review-2026-09-12.md) records exact hashes, falsifiers, and generated-registry drift.
+
+### 2026-09-12 — Weak Mixing Angle WM-01–WM-06 bounded repair
+
+Implemented and validated the smallest safe repairs for six demonstrated findings, correcting inverse-trigonometric representative handling, six-site and equilibrium scope, moment-diagnostic equivalence, discrete color versus spatial rotation, wake-only numerical interpretation, and discrete-minimum claims. Strict content validation, scoped diff and whitespace checks, KaTeX, local links, and equation-mapping links passed. Photon-sector closure and physical weak-angle derivation remain open. The [bounded receipt](evidence/crw-005-weak-mixing-angle-review-2026-09-12.md) records exact hashes, falsifiers, and generated-registry drift.
+
+### 2026-09-12 — Electroweak Bosons EB-01–EB-10 bounded repair
+
+Implemented and validated the smallest safe repairs for ten demonstrated findings, bounding effective-metric, analyzer, regularizer, W/Z payload, energy-residual, neutrino inventory, primitive-mass, Higgs normalization, photon, and closure-interface claims. Strict content validation, scoped diff and whitespace checks, KaTeX validation of 35 equations, and 51-link resolution passed. Photon Gate A, analyzer and weak-corridor derivations, scalar normalization, and downstream recovery remain open. The [bounded receipt](evidence/crw-005-electroweak-bosons-review-2026-09-12.md) records exact hashes and validation limits.
+
+### 2026-09-12 — Gluons GL-01–GL-10 bounded repair
+
+Implemented and validated the smallest safe repairs for ten demonstrated findings, narrowing scaffold, axial inventory, meta-assembly, carrier, conservation, $\mathfrak u(3)$, confinement, screening, self-interaction, and notation claims to their supported levels. Strict content validation, scoped diff and whitespace checks, known-case-first KaTeX/link checks, and 23 equation-link checks passed. Physical carrier, branch, confinement, and observer recovery remain open. The [bounded receipt](evidence/crw-005-gluons-review-2026-09-12.md) records exact hashes, falsifiers, and generated-registry drift.
+
+### 2026-09-12 — Mesons MES-001–MES-007 bounded repair
+
+Implemented and validated the smallest safe repairs for seven demonstrated findings, bounding stability, kaon/CP, dense-matter, mass, isospin, color-singlet, and $c_0$ notation claims. Strict content validation, scoped diff and whitespace checks, KaTeX/math control, seven chapter links, 19 report links, and 23 equation links passed. Physical branch, mass, isospin, and recovery mappings remain open. The [bounded receipt](evidence/crw-005-mesons-review-2026-09-12.md) records exact hashes, falsifiers, and generated-registry drift.
+
+### 2026-09-12 — Atomic Structure AS-01–AS-05 bounded repair
+
+Implemented and validated the smallest safe repairs for five demonstrated findings, clarifying effective stability language, channel-ordering claims, quark-envelope notation, selection-window scope, and residual/check-slot definitions. Strict content validation, scoped diff and whitespace checks, known-case-first KaTeX validation of 234 expressions including 42 displays, 23 registered equation links, and local-link checks passed. Physical atomic branch, stability, and recovery mappings remain open. The [bounded receipt](evidence/crw-005-atomic-structure-review-2026-09-12.md) records exact hashes, falsifiers, and generated-registry drift.
+
+### 2026-09-12 — Electron ELC-1–ELC-7 bounded repair
+
+Implemented and validated the smallest safe repairs for seven demonstrated findings, conditioning conjugation and mass-response claims, defining charge and readout domains, separating identity from spin/statistics, qualifying near-lossless motion, and aligning the precision interface. The joined strict validator, scoped diff check, three-display KaTeX/link check, and 30 local-path checks passed. Electron branch existence and physical-response derivations remain open. The [bounded receipt](evidence/crw-005-electron-review-2026-09-12.md) records exact hashes, the independent symmetry witness, falsifiers, and generated-registry drift.
+
+### 2026-09-12 — Muon and Tau MT-1–MT-5 bounded repair
+
+Implemented and validated the smallest safe repairs for five demonstrated findings, bounding generation, charge/weak/spin, reaction provenance, precision-interface, and sensitivity-ranking claims while preserving the displayed reaction equations. The joined strict validator, scoped diff check, and KaTeX validation of 42 expressions passed. Retained branches, population selection, quantitative masses/lifetimes, spin/weak-response maps, and reaction rates remain open. The [bounded receipt](evidence/crw-005-muon-tau-review-2026-09-12.md) records exact hashes, falsifiers, and generated-registry drift.
+
+### 2026-09-12 — Neutrinos NU-1–NU-8 bounded repair
+
+Implemented and validated the smallest safe repairs for eight demonstrated findings, separating candidate branches from propagation and response, correcting the PMNS convention and CP sign, and bounding handedness, mass, conservation, Dirac/Majorana, sterile, and benchmark claims. The joined strict validator, scoped diff check, and KaTeX validation of 122 expressions passed. Retained branches, spin/weak response, mass and observer maps, conservation, and reaction rates remain open. The [bounded receipt](evidence/crw-005-neutrinos-review-2026-09-12.md) records exact hashes, falsifiers, and generated-registry drift.
+
+### 2026-09-12 — Quantum Number Mapping QNM-01–QNM-13 bounded repair
+
+Implemented and validated the smallest safe repairs for 13 demonstrated findings, correcting charge normalization, triad selection, generation diagnostics, chirality/conjugation, color and spin claims, causal timing, and precision-comparison assumptions. The joined strict validator, scoped diff check, and KaTeX validation of 49 display and 449 inline expressions passed with all equation identifiers preserved. Physical branch retention and gauge, spin, mass, and lifetime derivations remain open. The [bounded receipt](evidence/crw-005-quantum-number-mapping-review-2026-09-12.md) records exact hashes, counterexamples, falsifiers, and generated-registry drift.
+
+### 2026-09-12 — Quarks QK-01–QK-09 bounded repair
+
+Implemented and validated the smallest safe repairs for nine demonstrated findings, correcting charge units, weak assignments, generation claims, SU(3), singlet, confinement, stability, and experimental-attribution boundaries. The joined strict validator, scoped diff check, and KaTeX/local-link validation of 222 expressions, 28 displays, and 42 local links passed. Physical branch existence, observable recovery, color transport, and confinement remain open. The [bounded receipt](evidence/crw-005-quarks-review-2026-09-12.md) records exact hashes, falsifiers, and generated-registry drift.
+
+### 2026-09-12 — Horizon Chirality and Planar Spin HC-01–HC-12 bounded repair
+
+Implemented and validated the smallest safe repairs for 12 demonstrated findings, separating local alignment from a global horizon, counting individual crossings, bounding writhe and conservation claims, defining circulation and planar domains, and retaining branch stability and observer recovery as open. Strict content validation, scoped whitespace checks, KaTeX rendering of 110 expressions, and the eight-sign/area checks passed. The [bounded receipt](evidence/crw-005-horizon-chirality-review-2026-09-12.md) records exact hashes, falsifiers, and generated-registry drift.
+
+### 2026-09-12 — Gauge Structure Emergence GSE-01–GSE-13 bounded repair
+
+Implemented and validated the smallest safe repairs for 13 finding groups, clarifying connection and holonomy domains, characteristic normalization, nontrivial loop phases, effective electroweak action assumptions, charge conventions, causal-root domains, and observer comparisons. Strict content validation passed; KaTeX accepted 283 expressions and local-link/whitespace checks passed. Gauge emergence, branch persistence, action matching, and anomaly recovery remain open. The [bounded receipt](evidence/crw-005-gauge-structure-emergence-review-2026-09-12.md) records exact findings and validation limits.
+
+### 2026-09-12 — Gauge Symmetries GS-01–GS-10 bounded repair
+
+Implemented and validated the smallest safe repairs for 10 demonstrated findings, defining action and boundary hypotheses, gauge orbits, hypercharge and electromagnetic conventions, covariant-derivative scope, phase-sector tests, flux domains, color-transport limits, and the conditional comparison action. Strict content validation, scoped whitespace checks, and KaTeX validation of 251 expressions with all 37 equation identifiers preserved passed. Gauge emergence, assembly persistence, and effective matching remain open. The [bounded receipt](evidence/crw-005-gauge-symmetries-review-2026-09-12.md) records exact hashes and generated-drift limits.
+
+### 2026-09-12 — Particle Masses PM-01–PM-14 bounded repair
+
+Implemented and validated the smallest safe repairs for 14 demonstrated findings, separating exposure, energy, momentum, inertia, stability, charge conventions, action-ladder hypotheses, particle comparisons, and observer-level mass targets. Strict content validation, scoped whitespace checks, and KaTeX validation of 283 expressions passed. Retained assemblies, physical energy, sea response, and observer mappings remain open. The [bounded receipt](evidence/crw-005-particle-masses-review-2026-09-12.md) records exact hashes, counterexamples, falsifiers, and validation limits.
+
+### 2026-09-12 — Color Charge and SU(3) CCS-01–CCS-11 bounded repair
+
+Implemented and validated the smallest safe repairs for 11 demonstrated findings, correcting representation and bracket conventions, singlet and phase-cancellation claims, family-selection assumptions, flavor comparisons, confinement diagnostics, and dimensional/spectral definitions. Strict content validation, scoped whitespace checks, KaTeX validation of 231 expressions, and preservation of all 32 equation identifiers passed. Physical color transport, branch retention, family populations, and confinement recovery remain open. The [bounded receipt](evidence/crw-005-color-charge-su3-review-2026-09-12.md) records exact hashes and generated-registry limits.
+
+### 2026-09-12 — General Relativity GR-01–GR-11 bounded repair
+
+Implemented and validated the smallest safe repairs for 11 demonstrated findings, clarifying the substrate-to-observer route, diagnostic acceptance domains, clock endpoints, optical measures, EFT conventions, equivalence tests, preferred-frame labels, gravitational-wave timing, and the distinction between an alignment candidate and a global horizon. Strict content validation, scoped whitespace checks, KaTeX rendering of 148 expressions, and preservation of all 25 equation identifiers passed. Constitutive recovery, continuation, and observer-level horizon mapping remain open. The [bounded receipt](evidence/crw-005-general-relativity-review-2026-09-12.md) records exact hashes, findings, falsifiers, and generated-registry drift.
+
+### 2026-09-12 — PPN Parameters PPN-01–PPN-12 bounded repair
+
+Implemented and validated the smallest safe repairs for 12 demonstrated findings, correcting the preferred-frame coefficient map, clock-ratio expansion, zero-leakage condition, ADM ordering, apparatus/model boundaries, source attribution, statistical interpretation, and synthetic screen claims. Strict content validation, scoped whitespace checks, and controlled parsing/KaTeX checks for all 92 display equations passed with equation identifiers retained. Native Noether-sea recovery and empirical acceptance remain open. The [bounded receipt](evidence/crw-005-ppn-parameters-review-2026-09-12.md) records exact hashes, derivations, falsifiers, and validation limits.
+
+### 2026-09-12 — Gravitational Waves GW-01–GW-15 bounded repair
+
+Implemented and validated the smallest safe repairs for 15 demonstrated findings, including native carrier and observer-map boundaries, wave-operator sign, propagation assumptions, phase and population definitions, polarization counting, event acceptance, detector projection, occupation/classicality claims, source attribution, flux conventions, and unsupported KaTeX third derivatives. Strict content validation, scoped whitespace checks, and KaTeX/parser checks for 170 display equations and 36 local links passed with equation identifiers preserved. Native tensor dynamics, source coupling, and energy balance remain open. The [bounded receipt](evidence/crw-005-gravitational-waves-review-2026-09-12.md) records exact hashes, counterexamples, falsifiers, and validation limits.
+
+### 2026-09-12 — Black Holes BH-01–BH-19 bounded repair
+
+Implemented and validated the smallest safe repairs for 19 demonstrated findings, separating alignment from causal horizons, correcting entropy double counting and detailed balance, removing unsupported native energy identifications, and bounding observational and dimensional-scale claims. Strict content validation, scoped whitespace checks, and KaTeX/parser checks for 68 display equations passed with all 68 mapping identifiers preserved. Binding, stability, continuation, and release mechanisms remain open. The [bounded receipt](evidence/crw-005-black-holes-review-2026-09-12.md) records exact hashes, counterexamples, falsifiers, and generated-registry drift.
+
+### 2026-09-12 — Singularity Resolution SR-01–SR-07 bounded repair
+
+Implemented and validated the smallest safe repairs for seven demonstrated findings, distinguishing singularity meanings, conditional clock loss, theorem hypotheses, scaling domains, coarse bounds from regularity, finite records from unique histories, and source attributions. Scoped checks passed with 107 expressions, 18 equation links preserved, 28 local paths resolved, and whitespace validation clean; the latest strict check recorded an out-of-scope Black Holes link error. Physical existence, regulator-independent continuation, uniqueness, and observer recovery remain open. The [bounded receipt](evidence/crw-005-singularity-resolution-review-2026-09-12.md) records exact hashes, falsifiers, and validation limits.
+
 ### 2026-09-12 — Proper Time and Time Dilation PT-01–PT-12 bounded repair
 
 Implemented and validated the smallest safe repairs for 12 demonstrated findings, including observer-time conversion, reference normalization, acceleration regularization, whole-turn phase extraction, spectral inversion, and the PPN mixed coefficient. Strict content, local-link, whitespace, and KaTeX checks passed, with 93 display equations and 400 inline expressions rendered and all 93 equation anchors preserved. Physical clock retention, constitutive response, observer recovery, root/history control, and empirical acceptance remain open. The [bounded receipt](evidence/crw-005-proper-time-and-time-dilation-review-2026-09-12.md) records exact hashes, findings, falsifiers, and validation limits.

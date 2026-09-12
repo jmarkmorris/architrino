@@ -253,16 +253,16 @@ Each row below has one final disposition. Prior office review is reused for its 
 
 | File | Disposition | Finding or review focus |
 | --- | --- | --- |
-| [.agents/skills/aaa-corpus-advancement/SKILL.md](../../.agents/skills/architrino-converge/SKILL.md) | Updated; source and workflow conformance reviewed | Routing and scope exercised within bounded tests |
-| [.agents/skills/aaa-corpus-advancement/agents/openai.yaml](../../.agents/skills/architrino-converge/agents/openai.yaml) | Metadata updated and validated | Skill identity and discoverable purpose |
-| [.agents/skills/corpus-review-workflow/SKILL.md](../../.agents/skills/architrino-review/SKILL.md) | Updated; source and workflow conformance reviewed | Routing and scope exercised within bounded tests |
-| [.agents/skills/corpus-review-workflow/agents/openai.yaml](../../.agents/skills/architrino-review/agents/openai.yaml) | Metadata updated and validated | Skill identity and discoverable purpose |
-| [.agents/skills/math-preview/SKILL.md](../../.agents/skills/architrino-math-preview/SKILL.md) | Updated; source and workflow conformance reviewed | Routing and scope exercised within bounded tests |
-| [.agents/skills/math-preview/agents/openai.yaml](../../.agents/skills/architrino-math-preview/agents/openai.yaml) | Metadata reviewed and validated; retained | Skill identity and discoverable purpose |
-| [.agents/skills/math-preview/assets/preview.css](../../.agents/skills/architrino-math-preview/assets/preview.css) | Support implementation retained; preview tests passed | Ten tests and bounded browser rendering; no code changes |
-| [.agents/skills/math-preview/scripts/render-preview.mjs](../../.agents/skills/architrino-math-preview/scripts/render-preview.mjs) | Support implementation retained; preview tests passed | Ten tests and bounded browser rendering; no code changes |
-| [.agents/skills/research-exploration/SKILL.md](../../.agents/skills/architrino-explore/SKILL.md) | Updated; source and workflow conformance reviewed | Routing and scope exercised within bounded tests |
-| [.agents/skills/research-exploration/agents/openai.yaml](../../.agents/skills/architrino-explore/agents/openai.yaml) | Metadata updated and validated | Skill identity and discoverable purpose |
+| [.agents/skills/architrino-converge/SKILL.md](../../.agents/skills/architrino-converge/SKILL.md) | Updated; source and workflow conformance reviewed | Routing and scope exercised within bounded tests |
+| [.agents/skills/architrino-converge/agents/openai.yaml](../../.agents/skills/architrino-converge/agents/openai.yaml) | Metadata updated and validated | Skill identity and discoverable purpose |
+| [.agents/skills/architrino-review/SKILL.md](../../.agents/skills/architrino-review/SKILL.md) | Updated; source and workflow conformance reviewed | Routing and scope exercised within bounded tests |
+| [.agents/skills/architrino-review/agents/openai.yaml](../../.agents/skills/architrino-review/agents/openai.yaml) | Metadata updated and validated | Skill identity and discoverable purpose |
+| [.agents/skills/architrino-math-preview/SKILL.md](../../.agents/skills/architrino-math-preview/SKILL.md) | Updated; source and workflow conformance reviewed | Routing and scope exercised within bounded tests |
+| [.agents/skills/architrino-math-preview/agents/openai.yaml](../../.agents/skills/architrino-math-preview/agents/openai.yaml) | Metadata reviewed and validated; retained | Skill identity and discoverable purpose |
+| [.agents/skills/architrino-math-preview/assets/preview.css](../../.agents/skills/architrino-math-preview/assets/preview.css) | Support implementation retained; preview tests passed | Ten tests and bounded browser rendering; no code changes |
+| [.agents/skills/architrino-math-preview/scripts/render-preview.mjs](../../.agents/skills/architrino-math-preview/scripts/render-preview.mjs) | Support implementation retained; preview tests passed | Ten tests and bounded browser rendering; no code changes |
+| [.agents/skills/architrino-explore/SKILL.md](../../.agents/skills/architrino-explore/SKILL.md) | Updated; source and workflow conformance reviewed | Routing and scope exercised within bounded tests |
+| [.agents/skills/architrino-explore/agents/openai.yaml](../../.agents/skills/architrino-explore/agents/openai.yaml) | Metadata updated and validated | Skill identity and discoverable purpose |
 
 ##### Geometry and dynamics role dependencies
 

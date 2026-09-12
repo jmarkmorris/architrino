@@ -6,27 +6,6 @@ This file is the authoritative priority-ordered document board for the 199-file 
 
 | Status | Priority | Document | State | Finding IDs or next action |
 | --- | ---: | --- | --- | --- |
-| ○ | 22 | [General Relativity](../../../content/markdown/aaa/spacetime/general-relativity.md) | Unread backlog document | Not yet reviewed |
-| ○ | 23 | [PPN Parameters](../../../content/markdown/aaa/spacetime/ppn-parameters.md) | Unread backlog document | Not yet reviewed |
-| ○ | 24 | [Gravitational Waves](../../../content/markdown/aaa/spacetime/gravitational-waves.md) | Unread backlog document | Not yet reviewed |
-| ○ | 25 | [Black Holes in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Framework](../../../content/markdown/aaa/spacetime/black-holes.md) | Unread backlog document | Not yet reviewed |
-| ○ | 26 | [Singularity Resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md) | Unread backlog document | Not yet reviewed |
-| ○ | 27 | [Horizon Chirality and Planar Spin](../../../content/markdown/aaa/spacetime/horizon-chirality.md) | Unread backlog document | Not yet reviewed |
-| ○ | 28 | [Gauge Structure Emergence](../../../content/markdown/aaa/assemblies/gauge-structure-emergence.md) | Unread backlog document | Not yet reviewed |
-| ○ | 29 | [Gauge Symmetries](../../../content/markdown/aaa/assemblies/gauge-symmetries.md) | Unread backlog document | Not yet reviewed |
-| ○ | 30 | [Particle Masses: Emergent Inertia in the Noether Sea](../../../content/markdown/aaa/assemblies/particle-masses.md) | Unread backlog document | Not yet reviewed |
-| ○ | 31 | [Color Charge and SU(3)](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md) | Unread backlog document | Not yet reviewed |
-| ○ | 32 | [Electron](../../../content/markdown/aaa/assemblies/fermions/electron.md) | Unread backlog document | Not yet reviewed |
-| ○ | 33 | [Muon and Tau](../../../content/markdown/aaa/assemblies/fermions/muon-tau.md) | Unread backlog document | Not yet reviewed |
-| ○ | 34 | [Neutrinos](../../../content/markdown/aaa/assemblies/fermions/neutrinos.md) | Unread backlog document | Not yet reviewed |
-| ○ | 35 | [Quantum Number Mapping: Architrino Geometry to Standard Model](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md) | Unread backlog document | Not yet reviewed |
-| ○ | 36 | [Quarks](../../../content/markdown/aaa/assemblies/fermions/quarks.md) | Unread backlog document | Not yet reviewed |
-| ○ | 37 | [Weak Mixing Angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md) | Unread backlog document | Not yet reviewed |
-| ○ | 38 | [Electroweak Bosons: Photons, W/Z, and Higgs](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | Unread backlog document | Not yet reviewed |
-| ○ | 39 | [Gluons and the Strong Force: Geometric Origins](../../../content/markdown/aaa/assemblies/bosons/gluons.md) | Unread backlog document | Not yet reviewed |
-| ○ | 40 | [Mesons](../../../content/markdown/aaa/assemblies/mesons/mesons.md) | Unread backlog document | Not yet reviewed |
-| ○ | 41 | [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) | Unread backlog document | Not yet reviewed |
-| ○ | 42 | [Nucleon Structure](../../../content/markdown/aaa/nuclear-atomic/nucleon-structure.md) | Unread backlog document | Not yet reviewed |
 | ○ | 43 | [Nuclear Binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md) | Unread backlog document | Not yet reviewed |
 | ○ | 44 | [Atomic Spectra](../../../content/markdown/aaa/nuclear-atomic/atomic-spectra.md) | Unread backlog document | Not yet reviewed |
 | ○ | 45 | [Hyde Periodic Table](../../../content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md) | Unread backlog document | Not yet reviewed |
@@ -155,7 +134,7 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ○ | 168 | [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) | Unread backlog document | Not yet reviewed |
 | ○ | 18 | [Well-posedness and regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | Unread backlog document; action-energy directory held until the end | Not yet reviewed |
 
-**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 148 unopened documents. The next action is the first ○ row in the recorded phase order, General Relativity; the remaining action-energy file is intentionally last.
+**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 127 unopened documents. The next action is the first ○ row in the recorded phase order, Nuclear Binding; the remaining action-energy file is intentionally last.
 
 ## Completed audit appendix
 
@@ -212,5 +191,26 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ● | 49 | [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-proper-time-and-time-dilation-review-2026-09-12.md) | PT-01–PT-12 |
 | ● | 50 | [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-lorentz-kinematics-review-2026-09-12.md) | LK-01–LK-16 |
 | ● | 51 | [Emergent Metric](../../../content/markdown/aaa/spacetime/emergent-metric.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-emergent-metric-review-2026-09-12.md) | EM-01–EM-15 |
+| ● | 52 | [General Relativity](../../../content/markdown/aaa/spacetime/general-relativity.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-general-relativity-review-2026-09-12.md) | GR-01–GR-11 |
+| ● | 53 | [PPN Parameters](../../../content/markdown/aaa/spacetime/ppn-parameters.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-ppn-parameters-review-2026-09-12.md) | PPN-01–PPN-12 |
+| ● | 54 | [Gravitational Waves](../../../content/markdown/aaa/spacetime/gravitational-waves.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-gravitational-waves-review-2026-09-12.md) | GW-01–GW-15 |
+| ● | 55 | [Black Holes in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Framework](../../../content/markdown/aaa/spacetime/black-holes.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-black-holes-review-2026-09-12.md) | BH-01–BH-19 |
+| ● | 56 | [Singularity Resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-singularity-resolution-review-2026-09-12.md) | SR-01–SR-07 |
+| ● | 57 | [Horizon Chirality and Planar Spin](../../../content/markdown/aaa/spacetime/horizon-chirality.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-horizon-chirality-review-2026-09-12.md) | HC-01–HC-12 |
+| ● | 58 | [Gauge Structure Emergence](../../../content/markdown/aaa/assemblies/gauge-structure-emergence.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-gauge-structure-emergence-review-2026-09-12.md) | GSE-01–GSE-13 |
+| ● | 59 | [Gauge Symmetries](../../../content/markdown/aaa/assemblies/gauge-symmetries.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-gauge-symmetries-review-2026-09-12.md) | GS-01–GS-10 |
+| ● | 60 | [Particle Masses: Emergent Inertia in the Noether Sea](../../../content/markdown/aaa/assemblies/particle-masses.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-particle-masses-review-2026-09-12.md) | PM-01–PM-14 |
+| ● | 61 | [Color Charge and SU(3)](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-color-charge-su3-review-2026-09-12.md) | CCS-01–CCS-11 |
+| ● | 62 | [Electron](../../../content/markdown/aaa/assemblies/fermions/electron.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-electron-review-2026-09-12.md) | ELC-1–ELC-7 |
+| ● | 63 | [Muon and Tau](../../../content/markdown/aaa/assemblies/fermions/muon-tau.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-muon-tau-review-2026-09-12.md) | MT-1–MT-5 |
+| ● | 64 | [Neutrinos](../../../content/markdown/aaa/assemblies/fermions/neutrinos.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-neutrinos-review-2026-09-12.md) | NU-1–NU-8 |
+| ● | 65 | [Quantum Number Mapping: Architrino Geometry to Standard Model](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-quantum-number-mapping-review-2026-09-12.md) | QNM-01–QNM-13 |
+| ● | 66 | [Quarks](../../../content/markdown/aaa/assemblies/fermions/quarks.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-quarks-review-2026-09-12.md) | QK-01–QK-09 |
+| ● | 67 | [Weak Mixing Angle](../../../content/markdown/aaa/assemblies/fermions/weak-mixing-angle.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-weak-mixing-angle-review-2026-09-12.md) | WM-01–WM-06 |
+| ● | 68 | [Electroweak Bosons: Photons, W/Z, and Higgs](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-electroweak-bosons-review-2026-09-12.md) | EB-01–EB-10 |
+| ● | 69 | [Gluons and the Strong Force: Geometric Origins](../../../content/markdown/aaa/assemblies/bosons/gluons.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-gluons-review-2026-09-12.md) | GL-01–GL-10 |
+| ● | 70 | [Mesons](../../../content/markdown/aaa/assemblies/mesons/mesons.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-mesons-review-2026-09-12.md) | MES-001–MES-007 |
+| ● | 71 | [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-atomic-structure-review-2026-09-12.md) | AS-01–AS-05 |
+| ● | 72 | [Nucleon Structure](../../../content/markdown/aaa/nuclear-atomic/nucleon-structure.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-nucleon-structure-review-2026-09-12.md) | NS-01–NS-11 |
 
-Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 51 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 148 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.
+Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 72 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 127 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.

@@ -30,8 +30,8 @@ const fixture = () => {
 };
 
 test("explicit arguments reject duplicates, omitted prerequisites and foreign options", () => {
-  assert.deepEqual(parseRunArgs(["--preparation", "a", "--api-proof", "b", "--out", "c"]),
-    { "--preparation": "a", "--api-proof": "b", "--out": "c" });
+  assert.deepEqual(parseRunArgs(["--preparation", "a", "--api-proof", "b", "--out", "c", "--source-map-sha256", "a".repeat(64)]),
+    { "--preparation": "a", "--api-proof": "b", "--out": "c", "--source-map-sha256": "a".repeat(64) });
   for (const args of [[], ["--out", "x"], ["--preparation", "a", "--preparation", "b"], ["--samples", "128"]]) {
     assert.throws(() => parseRunArgs(args));
   }

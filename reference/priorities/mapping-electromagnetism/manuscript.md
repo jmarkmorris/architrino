@@ -161,6 +161,68 @@ inside the uniform-field region. Its axial null is specific to that ideal geomet
 
 The native burden is to recover both surface descriptions from one evolving account of transport, exposure, source work, sea response if present, and boundary flux. No assumption that every changing field must be a photon is needed. A separately identified radiative carrier is required when radiation is claimed.
 
+### 3.4. The four-potential as imported observer-level apparatus
+
+Observer-level electromagnetism packages the electric scalar potential $\phi$ and the magnetic vector potential $\mathbf A$ into one four-component object, the electromagnetic four-potential $A^\mu=(\phi/c,\ \mathbf A)$, chosen so that it transforms as a four-vector under Lorentz transformations. Its purpose is that both fields are derivatives of it, $\mathbf E=-\nabla\phi-\partial_t\mathbf A$ and $\mathbf B=\nabla\times\mathbf A$, which in covariant form is the single statement $F_{\mu\nu}=\partial_\mu A_\nu-\partial_\nu A_\mu$ for the six-component field tensor. The two source-free Maxwell equations then hold identically, and the two sourced equations become one wave equation for $A^\mu$ driven by the four-current $J^\mu=(c\rho,\mathbf J)$, which in Lorenz gauge reads $\Box A^\mu=\mu_0J^\mu$. The potential is not unique: $A_\mu\to A_\mu+\partial_\mu\chi$ leaves $F_{\mu\nu}$ unchanged for any scalar $\chi$, and fixing $\chi$ is a gauge choice. It is nevertheless the variable that couples to matter, through $J^\mu A_\mu$ in the classical action and through the covariant derivative $\partial_\mu+iqA_\mu/\hbar$ in the quantum theory, and closed-loop integrals $\oint A_\mu\,dx^\mu$ carry measurable phase even where $F_{\mu\nu}=0$.
+
+In this lane $A^\mu$ is an observer-level recovery target and comparison instrument. The [comparative glossary](../../../content/markdown/aaa/archie/comparative-glossary.md) classifies gauge connections as effective variables reconstructed from the causal-wake and action record, and [gauge-structure emergence](../../../content/markdown/aaa/assemblies/gauge-structure-emergence.md) records the obligation that the reconstruction recover the time-dependent $\partial_t\mathbf A$ contribution and not only an electrostatic gradient. Nothing in the present section inserts $A^\mu$, $\mathbf E$, or $\mathbf B$ into the architrino acceleration law.
+
+Two properties of the standard theory bear directly on the magnetic recovery problem. First, $\mathbf B$ is not determined by $\mathbf E$ in a single frame: a uniform static $\mathbf B$ with $\mathbf E=\mathbf 0$ everywhere is a lawful configuration, Faraday's law $\nabla\times\mathbf E=-\partial_t\mathbf B$ fixes only the time derivative of $\mathbf B$, and $F_{\mu\nu}$ has six independent components of which $\mathbf E$ supplies three. Second, that independence is a property of superposed sources, not of one source. The delayed solution for a single point charge, developed next, satisfies an exact relation between its magnetic and electric parts.
+
+### 3.5. One delayed source: the Liénard–Wiechert solution against the per-hit kernel
+
+The Liénard–Wiechert solution is the observer-level potential and field of one point charge $q$ in arbitrary motion. Let $t_{\mathrm{d}}$ be the delayed time at which the charge's worldline meets the past light cone of the field event $(\mathbf x,t)$, let $R$ be the distance from the charge's position at $t_{\mathrm d}$ to $\mathbf x$, let $\hat{\mathbf n}$ be the unit vector along that displacement, and let $\boldsymbol\beta=\mathbf v/c$ and $\dot{\boldsymbol\beta}$ be the charge's velocity and acceleration at $t_{\mathrm d}$, all evaluated at the delayed time and written $[\cdot]_{\mathrm d}$. The potentials are
+
+$$
+\phi=\frac{q}{4\pi\varepsilon_0}\left[\frac{1}{(1-\hat{\mathbf n}\cdot\boldsymbol\beta)\,R}\right]_{\mathrm d},
+\qquad
+\mathbf A=\frac{\boldsymbol\beta}{c}\,\phi,
+$$
+
+and the fields are
+
+$$
+\mathbf E=\frac{q}{4\pi\varepsilon_0}\left[\frac{(1-\beta^2)(\hat{\mathbf n}-\boldsymbol\beta)}{(1-\hat{\mathbf n}\cdot\boldsymbol\beta)^3R^2}\right]_{\mathrm d}
++\frac{q}{4\pi\varepsilon_0 c}\left[\frac{\hat{\mathbf n}\times\big((\hat{\mathbf n}-\boldsymbol\beta)\times\dot{\boldsymbol\beta}\big)}{(1-\hat{\mathbf n}\cdot\boldsymbol\beta)^3R}\right]_{\mathrm d},
+\qquad
+\mathbf B=\frac{1}{c}\,[\hat{\mathbf n}]_{\mathrm d}\times\mathbf E .
+$$
+
+The first term of $\mathbf E$ is the velocity field, falling as $R^{-2}$; the second is the acceleration field, falling as $R^{-1}$ and carrying radiated energy to infinity. The relation $\mathbf B=\hat{\mathbf n}\times\mathbf E/c$ holds for the whole field. For one source, therefore, the magnetic datum is nothing beyond $\mathbf E$ and the delayed direction $\hat{\mathbf n}$; the datum is lost under superposition because each source has its own $\hat{\mathbf n}$ and a sum of cross products is not the cross product of the sum. The solution assumes $|\boldsymbol\beta|<1$, under which the delayed time is unique.
+
+The [Master Equation per-hit contribution](../../../content/markdown/aaa/dynamics/master-equation.md#per-hit-acceleration) is built from the same delay geometry. With $c_f=1$, one admitted causal root $T_t\in\mathcal C_{ij}(T_r)$ satisfies $r_{ij}=T_r-T_t$, which is the light-cone condition $R=c(t-t_{\mathrm d})$ with the field speed in place of $c$; the line of action $\hat{\mathbf r}_{ij}$ from the transmitter's delayed position to the receiver's present position is $\hat{\mathbf n}$; and the transmitter-side factor $D_{t,ij}=1-\mathbf V_j(T_t)\cdot\hat{\mathbf r}_{ij}$ is $1-\hat{\mathbf n}\cdot\boldsymbol\beta$. The per-hit acceleration on receiver $i$ is
+
+$$
+\mathbf A_{ij}
+=\kappa\,\sigma_{ij}\,\frac{|q_iq_j|}{r_{ij}^2}\,\frac{1}{|1-\mathbf V_j(T_t)\cdot\hat{\mathbf r}_{ij}|}\,\hat{\mathbf r}_{ij}.
+$$
+
+For a sub-field-speed transmitter the absolute value is inert, and the comparison can be made term by term. The table takes a receiver at rest, so that the observer-level acceleration would be proportional to $\mathbf E$ alone and the magnetic term of the Lorentz response does not enter.
+
+| Element | Liénard–Wiechert (observer level) | Master Equation per hit (architrino level) | Status |
+| --- | --- | --- | --- |
+| Delay condition | $R=c(t-t_{\mathrm d})$, unique root for $\lvert\boldsymbol\beta\rvert<1$ | $r_{ij}=c_f(T_r-T_t)$, root set $\mathcal C_{ij}(T_r)$ may hold several roots for super-field-speed history | Same geometry; the multi-root and self-hit regimes have no standard counterpart |
+| Line of action | $\hat{\mathbf n}$ enters through $\hat{\mathbf n}-\boldsymbol\beta$ | $\hat{\mathbf r}_{ij}$, purely radial | Direction differs at first order in transmitter speed |
+| Delay-compression factor | $(1-\hat{\mathbf n}\cdot\boldsymbol\beta)^{-1}$ in $\phi$; $(1-\hat{\mathbf n}\cdot\boldsymbol\beta)^{-3}$ in $\mathbf E$ | $W^{\mathrm{acc}}_{ij}=(1-\mathbf V_j\cdot\hat{\mathbf r}_{ij})^{-1}$ | Identical to the potential's factor; the field carries two more powers |
+| Transmitter acceleration | Enters the $R^{-1}$ acceleration field | Absent at one hit by the fixed-hit acceleration-order boundary | Radiative structure must arise from hit sequences, wake-state exchange, or identified carriers |
+| Receiver velocity | Enters the response only through $\mathbf v\times\mathbf B$, which for one source is $\mathbf v\times(\hat{\mathbf n}\times\mathbf E)/c$ | Absent from the instantaneous multiplier; enters only root playback $m_{ij}$ and the root sequence | The whole single-source magnetic response is a recovery gap |
+
+Three consequences follow. The first is an exact structural identity: the per-hit weight $W^{\mathrm{acc}}_{ij}$ is the Doppler factor of the Liénard–Wiechert scalar potential, so that, up to constants, the per-hit acceleration magnitude is $\phi_{\mathrm{LW}}/R$ rather than $|\nabla\phi|$ or any component of $-\nabla\phi-\partial_t\mathbf A$. The Master Equation acts as a potential-weighted radial density evaluated on the causal root, not as the gradient of a potential. This is a derived statement about the two formulas and carries no claim that either describes the other's regime. The same observation is recorded in one sentence in [Lorentz kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), where the transmitter-side factor is identified with the Liénard–Wiechert delay factor and the Lorentz answer is reserved for computation on the native branch.
+
+The second is a first-order discrepancy that fixes the size of the recovery problem for one source. Expanding both expressions to first order in transmitter speed, with $c_f=1$ and a receiver at rest,
+
+$$
+\text{per hit:}\quad
+\frac{\hat{\mathbf r}\,\big(1+\hat{\mathbf r}\cdot\mathbf V\big)}{r^2},
+\qquad
+\text{velocity field:}\quad
+\frac{\hat{\mathbf n}\,\big(1+3\,\hat{\mathbf n}\cdot\boldsymbol\beta\big)-\boldsymbol\beta}{R^2}.
+$$
+
+Both reduce to the inverse-square radial contribution at zero speed. They differ already at first order: the radial Doppler coefficient is $1$ against $3$, and the observer-level field has a transverse term $-\boldsymbol\beta/R^2$, antiparallel to the source velocity, that the per-hit kernel does not contain. This is not a defect of the Master Equation, whose subject is one architrino. A laboratory charge is an assembly, and the discrepancy states what assembly organization, any derived sea response, and the observer-level maps must jointly supply before the velocity field of one charge is recovered. Grade: derived at the level of the two formulas; the claim that the gap is closed by assembly structure is a recovery target with no present evidence.
+
+The third concerns magnetism. Because $\mathbf B=\hat{\mathbf n}\times\mathbf E/c$ for one source, the information a magnetic response needs is already present in one hit, namely the radial magnitude and the delayed direction. What the hit lacks is any coupling of that information to receiver velocity. Section 5.1 draws the same conclusion from the native side; the single-source identity shows that the standard theory locates the magnetic datum in the same place, so the recovery target is precisely the coupling $\mathbf v\times(\hat{\mathbf n}\times\mathbf E)/c=[\hat{\mathbf n}(\mathbf v\cdot\mathbf E)-\mathbf E(\mathbf v\cdot\hat{\mathbf n})]/c$ and not a separate magnetic variable. Falsifier for the single-source comparison: a per-hit code path that reads transmitter acceleration or receiver velocity in the multiplier would falsify the architrino-level column of the table; an executable assembly source whose net delayed response on a resting receiver reproduces the $3\hat{\mathbf n}(\hat{\mathbf n}\cdot\boldsymbol\beta)-\boldsymbol\beta$ structure at first order, under the unchanged law, would establish the first step of the recovery. The many-source case in which $\mathbf E$ vanishes while $\mathbf B$ persists, a neutral steady current loop, is the sharpest subsequent target and is not treated here.
+
 ## 4. Electric response of complete receivers
 
 ### 4.1. Group translation and internal deformation

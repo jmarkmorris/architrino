@@ -6,60 +6,64 @@ The standard color label is extremely successful as algebra. The implementation 
 
 That means the word `color` should be read as a structured bookkeeping channel, not as a colored substance. The three color states are the three possible exceptional-axis records; `SU(3)` is the effective transformation algebra that must be recovered when those records are compressed into observer-level quark language.
 
+An [architrino](../../foundations/architrino.md) is a point transceiver with definite polarity and a retained path history. Its expanding causal wakes reach other architrinos at speed $c_f$ through the fixed [Euclidean void](../../foundations/euclidean-void.md), with events ordered by [absolute time](../../foundations/absolute-time.md). The [Master Equation](../../dynamics/master-equation.md#the-master-equation-canonical-form) sums admitted causal-root acceleration contributions. A Noether braid is a candidate neutral assembly of such histories; the Noether sea is the ambient assembly medium. Quantum chromodynamics (QCD), the standard effective theory of color interactions, is a recovery target throughout this chapter, never an architrino-level equation of motion.
+
+> Claim grade: guessed for the assembly-to-color interpretation; derived only for the stated inventory counts and conditional matrix identities. The proposed map fails if retained assemblies do not preserve the three-axis record, if its observer response distinguishes supposedly gauge-equivalent records, or if its transport cannot recover the required local color action. Branch existence, stability, and the response map remain unestablished here. All new numerical instantiations use normalized wake-speed units with $c_f=1$.
+
 ---
 
 ## Ontology, Notation, and Generations
 
 ### Coincident-Midpoint Orthogonal-Axis Braid Scaffold
 
-The working Gen-I fermion mapping uses a candidate **coincident-midpoint orthogonal-axis braid scaffold**: three persistently indexed electrino:positrino binaries whose positive radii and frequencies are independently assignable, whose axes are mutually orthogonal at the orthogonal-axis three-binary near-rest endpoint, and whose axes converge toward the group-translation direction along the prescribed flattening coordinate. Phases, axial half-separations, transverse orbit radii, and circulation remain explicit binary coordinates. **Noether braid** remains the broader neutral six-architrino class; see [Noether Braid](../../noether-braid/noether-braid.md). The taxonomy defines this prescribed geometry only; it does not establish a quark assignment, retention, stability, or color mechanism.
+The working Gen-I fermion mapping uses a candidate **coincident-midpoint orthogonal-axis braid scaffold**: three persistently indexed electrino:positrino binaries whose positive radii and frequencies are independently assignable, whose axes are mutually orthogonal at the orthogonal-axis three-binary near-rest endpoint, and whose axes converge toward the group-translation direction along the prescribed flattening coordinate. Phases, transverse orbit radii, and circulation remain explicit binary coordinates; the coincident-midpoint member used here has zero axial half-separations. Nonzero axial half-separations belong to the axially separated orthogonal-axis family. **Noether braid** remains the broader neutral assembly class, of which this is a six-worldline member; see [Noether Braid](../../noether-braid/noether-braid.md). The taxonomy defines this prescribed geometry only; it does not establish a quark assignment, retention, stability, or color mechanism.
 
-The scaffold supplies the stable reference triad. The axial layer supplies the visible polarity pattern. Color appears only when those two facts together leave one axis distinguishable from the other two.
+The scaffold supplies a prescribed reference triad. The axial layer is the proposed six-site polarity pattern attached to it; binding and retention of that layer remain unproved. The candidate color dictionary records which axis has a different dyad class from the other two.
 
-The illustrative source record used in this chapter assigns the following dynamical regimes to the persistent binary indices:
+The illustrative branch hypothesis used in this chapter assigns the following dynamical regimes to the persistent binary indices. Here $v_a$ denotes the prescribed constituent site speed in binary $a$:
 
 - **Binary 1**
   - Smallest radius
-  - Velocity $v_1 > c_f$
+  - Site speed $v_1 > c_f$
   - Self‑hit regime (strong path memory, highest curvature/energy)
 
 - **Binary 2**
   - Intermediate radius
-  - Velocity $v_2 = c_f$
+  - Site speed $v_2 = c_f$
   - Symmetry‑breaking “pivot” scale
 
 - **Binary 3**
   - Largest radius
-  - Velocity $v_3 < c_f$
+  - Site speed $v_3 < c_f$
   - Lowest curvature; exposed-envelope expansion/contraction behavior
 
-These speed, radius, curvature, and shielding roles are hypotheses of this source record. They are not meanings of indices 1, 2, and 3, and another coincident-midpoint orthogonal-axis braid branch may assign the derived roles differently.
+These speed, radius, curvature, and shielding roles are hypotheses of this illustrative branch. They are not meanings of indices 1, 2, and 3, and another coincident-midpoint orthogonal-axis braid branch may assign the derived roles differently.
 
-Each binary defines one **axis** with two **polar sites**. We use $\epsilon=|e|/6$ for the polarity-unit magnitude, with $\epsilon_-\equiv-\epsilon$ and $\epsilon_+\equiv+\epsilon$. Each polar site is occupied by either:
+Each binary defines one **axis** with two **polar sites**. We use $e>0$ for the elementary electric-charge magnitude and $\epsilon=e/6$ for its polarity-unit convention, with $\epsilon_-\equiv-\epsilon$ and $\epsilon_+\equiv+\epsilon$. This is observer-level electric bookkeeping; [Architrino](../../foundations/architrino.md#polarity-and-electric-bookkeeping) explains why the six-unit normalization and a protected six-site inventory remain separate recovery targets. Each polar site is occupied by either:
 
 - Electrino ($\epsilon_-$), or
 - Positrino ($\epsilon_+$).
 
-So each Noether braid has 3 axes (1, 2, 3) × 2 poles = **6 polar sites**.
+This prescribed three-binary scaffold offers 3 axes (1, 2, 3) × 2 poles = **6 candidate polar sites**. The six axial architrinos are additional inventory, not the neutral scaffold itself.
 
 We distinguish:
 
 - **Scaffold architrinos**: the three electrino:positrino pairs in the 1, 2, 3 binaries (2 per binary → 6 per quark).
 - **Axial architrinos**: the six $\epsilon_\pm$ axial-inventory entries bound to the polar sites.
 
-For a Gen‑I quark:
+For the proposed Gen-I quark construction:
 
 - 6 scaffold architrinos (3 binaries × 2)
 - 6 axial architrinos
 - Total per quark: 12.
 
-For a Gen‑I baryon (3 quarks):
+For the proposed Gen-I baryon construction (3 quarks):
 
 - 18 scaffold architrinos
 - 18 axial architrinos
 - **36 architrinos** total.
 
-We use **coincident-midpoint orthogonal-axis braid** only for this prescribed indexed orthogonal-axis three-binary member and **Noether braid** for the broader neutral six-architrino class. Every color and particle assignment in this chapter remains a candidate mapping.
+We use **coincident-midpoint orthogonal-axis braid** only for this prescribed indexed orthogonal-axis three-binary member and **Noether braid** for the broader neutral assembly class. Every color and particle assignment in this chapter remains a candidate mapping.
 
 
 
@@ -79,9 +83,9 @@ Standard Model “generations” are interpreted as candidate **excitation state
   - 1 remains coherently assembled as shielding support.
   - 2 and 3 support are depleted on the branch lifetime window; the 1 self-hit core is effectively naked.
 
-We treat these as **different assembly states**, not ordinary dissociation products in time. Heavier generations require energy input to form and relax back via W/Z/$\gamma$/$\nu$ emission, but the depletion signal still has to propagate to the weakly bound axial layer through causal wakes and relocking cycles before the branch opens its reaction corridor.
+These are candidate assembly states. Their formation and relaxation must be derived through causal wakes and axial-layer reconfiguration before the resulting channels can be identified with observer-level W/Z/$\gamma$/$\nu$ emission.
 
-In this section, color is defined on the ordered axial frame $\{D_1,D_2,D_3\}$, not on the count of shielding tiers that remain coherent. Here $D_1,D_2,D_3$ denote the three polar-dyad records carried by the 1, 2, and 3 axes. Higher generations inherit the same color triplet through this metastable 1/2/3 axial record even when one or more shielding tiers are depleted. This separation is required because top and bottom quarks must remain color triplets while carrying Generation-III mass and lifetime behavior.
+In this section, color is defined on the ordered axial frame $\{D_1,D_2,D_3\}$, not on the count of shielding tiers that remain coherent. Here $D_1,D_2,D_3$ denote the three polar-dyad records carried by the 1, 2, and 3 axes. Higher-generation recovery requires the same color triplet to survive in the 1/2/3 axial record even when one or more shielding tiers are depleted; that retained record has not been exhibited here. This separation is required because top and bottom quarks must remain color triplets while carrying Generation-III mass and lifetime behavior.
 
 
 
@@ -92,19 +96,19 @@ Beyond which binaries are present, the orientation of their persistent indexed f
 - **Pro orientation:** indexed-frame order $1 \to 2 \to 3$.
 - **Anti orientation:** indexed-frame order $1 \to 3 \to 2$.
 
-This is the fermion-sector consumer of the pro/anti orientation basis defined in [Noether Sea Pro/Anti Coupling](../../spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis). The retained carrier is the indexed-frame orientation sign $o_{\mathrm{PA}}$, not a frequency or precession ordering. The orientation is parity-facing: parity exchanges the two orders. It does not distinguish particles from antiparticles. Matter/antimatter instead follows whole-branch polarity conjugation at fixed worldlines, which preserves the pro/anti order. Color is independent of both binary labels.
+This is the fermion-sector consumer of the pro/anti orientation basis defined in [Noether Sea Pro/Anti Coupling](../../spacetime/noether-sea-pro-anti-coupling.md#proanti-noether-braid-basis). The retained carrier is the indexed-frame orientation sign $o_{\mathrm{PA}}$, not a frequency or precession ordering. The orientation is parity-facing: parity reverses a declared nondegenerate orientation carrier, while the written orders are mnemonics rather than a proof of that transformation. It does not distinguish particles from antiparticles. Matter/antimatter instead follows whole-branch polarity conjugation at fixed worldlines, which preserves the pro/anti order. The exceptional-axis index is unchanged by whole-branch polarity conjugation and is a separate label from pro/anti orientation. This bookkeeping separation does not prove dynamical decoupling of the corresponding responses.
 
 
 
 ## Colorless Fermions: Axis Uniformity
 
-**Core rule:** Color charge appears only when the indexed coincident-midpoint orthogonal-axis braid axes are **not equivalent**. If all three axes carry the same axial pattern, there is no “which axis is special?” degree of freedom → **no color**.
+**Candidate dictionary:** An axis-uniform dyad inventory has no exceptional-axis label. Its intended observer assignment is a color singlet, meaning a state unchanged by every effective color transformation. Uniformity of dyad classes alone does not establish that transformation law or the absence of a color response.
 
-This is the entry point for the whole chapter. Leptons are colorless because their axial pattern does not single out axis 1, 2, or 3. Quarks are colored because their axial pattern does.
+The lepton and quark assignments below test this dictionary. Equality of dyad classes is weaker than equality of full path histories: axes with distinct radii, frequencies, or wake responses remain physically distinguishable until an observer map removes that distinction.
 
 ### Stealth and color neutrality
 
-The guiding physical picture is that long-lived assemblies must suppress time-dependent far-field leakage. A useful test state is the equal-phase triad
+Suppression of time-dependent far-field leakage is a proposed retention mechanism. A useful scalar comparison is the equally spaced phase triad
 $$
 \phi \in \left\{0,\frac{2\pi}{3},\frac{4\pi}{3}\right\}
 $$
@@ -118,33 +122,35 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c6a24b397e517747)
 
-This does not derive the full color algebra by itself, but it gives a clean geometric reason why three-way closure is special: three balanced phase channels can hide the leading dipole signal. In that heuristic sense, color-singlet organization is not just algebraic neutrality but a **stealth condition** that helps the Noether braid survive without strong radiative leakage.
+The identity is derived for three equal scalar amplitudes at one common frequency. With a common vector response it also cancels that vector signal; a different response map requires its own weighted cancellation. Orthogonal unit response vectors instead give a complex vector sum of squared norm 3, because all cross terms vanish. Thus the identity supplies a phase-cancellation comparison, not a dipole, radiation, or stability result for orthogonal axes. A physical stealth claim requires the complete delayed wake response and an independently defined far-boundary energy flux.
 
 ### Electron and positron
+
+The following charge sums are derived from the declared inventories; the singlet assignments are observer-level recovery targets.
 
 - **Electron**: $(\text{1},\text{2},\text{3}) = (-/-,\ -/- ,\ -/-)$
   - Each axis: net $-2\epsilon$.
   - Total: $-6\epsilon=-e$.
-  - All axes identical → SU(3)$_c$ singlet.
+  - All dyad classes identical; target representation: $SU(3)_c$ singlet.
 
 - **Positron**: $(+/+,\ +/+,\ +/+)$
   - Each axis: net $+2\epsilon$.
   - Total: $+6\epsilon=+e$.
-  - All axes identical → singlet.
+  - All dyad classes identical; target representation: singlet.
 
 ### Neutrinos: near-photon colorless neutral pairs
 
 Neutrinos are treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar polarity-conjugate Noether braid pairing close to the photon channel, but not fully locked into the photon mode.
 
-The photon lock used as this comparison point has not been exhibited: the declared planar polarity-conjugate family fails its binding gate. Neutrino residual-mass and oscillation quantities defined as departures from that lock are therefore referent-pending. The color conclusion below does not depend on those residuals; it uses only the absence of a quark-like exceptional-axis inventory in the proposed neutral-pair construction.
+The photon lock used as this comparison point has not been exhibited: the declared planar polarity-conjugate family fails its binding gate. Neutrino residual-mass and oscillation quantities defined as departures from that lock are therefore referent-pending. The absence of a quark-like exceptional-axis inventory is a definition of the proposed neutral-pair construction. Recovering a trivial color response still requires a retained branch and observer map; electric neutrality alone cannot establish it.
 
-This makes the color statement sharper:
+The proposed neutrino dictionary has the following scope:
 
-- The neutrino has no stable quark-like axial layer on which one 1, 2, or 3 axis can become exceptional.
-- Its polarity-conjugate pairing cancels charge-like exposure and leaves no color triplet degree of freedom.
+- The proposed neutrino inventory omits a quark-like axial layer on which axis 1, 2, or 3 can become exceptional.
+- Its polarity-conjugate inventory has zero net electric bookkeeping charge; cancellation of spatially resolved exposure and color-singlet response remain dynamical targets.
 - The balanced $3\epsilon_+,3\epsilon_-$ notation used in weak bookkeeping is an interaction projection, not a constituent color pattern.
 
-Older neutral-axis patterns such as
+Neutral-axis patterns such as
 $$
 (-/+,\ -/+,\ -/+)
 $$
@@ -166,15 +172,15 @@ A PMNS-level derivation remains a closure target in the [neutrino section](./neu
 
 ## Quarks: Axis Exceptionality and Admissible Patterns
 
-Quarks are color‑charged because **one axis is in a different axial class than the other two**.
+The proposed quark dictionary assigns color to **one axis in a different dyad class from the other two**. The counting lemma establishes that combinatorial pattern under the stated inventory assumption.
 
 ### Charged-sector dyad-counting lemma
 
 Let each axis pattern be coarse‑classified as:
 
-- **negative-polarity dyad**: two Electrinos, $(\epsilon_-,\epsilon_-)$
-- **positive-polarity dyad**: two Positrinos, $(\epsilon_+,\epsilon_+)$
-- **mixed dyad**: one Electrino and one Positrino, $(\epsilon_-,\epsilon_+)$ or $(\epsilon_+,\epsilon_-)$, net neutral and dipolar
+- **negative-polarity dyad**: two electrinos, $(\epsilon_-,\epsilon_-)$
+- **positive-polarity dyad**: two positrinos, $(\epsilon_+,\epsilon_+)$
+- **mixed dyad**: one electrino and one positrino, $(\epsilon_-,\epsilon_+)$ or $(\epsilon_+,\epsilon_-)$, net neutral and dipolar
 
 For a six-site inventory, let $n_+$, $n_-$, and $n_m$ count positive-polarity, negative-polarity, and mixed dyads. Then
 
@@ -188,13 +194,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-37437a664aa7329c)
 
-For the up-type inventory $(N_+,N_-)=(5,1)$, the unique nonnegative solution is $(n_+,n_-,n_m)=(2,0,1)$. For the down-type inventory $(2,4)$, the solutions are $(1,2,0)$ and $(0,1,2)$. Thus every charged quark inventory forces exactly two axes into one dyad class and one axis into a different class. The pattern is a counting consequence, not an added stability postulate.
+For the up-type inventory $(N_+,N_-)=(5,1)$, the unique nonnegative solution is $(n_+,n_-,n_m)=(2,0,1)$. For the down-type inventory $(2,4)$, the solutions are $(1,2,0)$ and $(0,1,2)$. Thus each of these two inventories forces exactly two axes into one dyad class and one axis into a different class; the polarity-conjugate inventories obey the same conclusion. The pattern is a counting consequence, not an added stability postulate.
 
 An all-three-different pattern has $(n_+,n_-,n_m)=(1,1,1)$ and therefore $(N_+,N_-)=(3,3)$: it belongs to the neutral inventory, not either charged quark row. Whether any neutral three-different assembly is dynamically retained remains a separate stability question.
 
 Accordingly, the axis-class dictionary is:
 
-- **Colorless**: 1,2,3 all same class, for example all negative-polarity dyads or all mixed dyads.
+- **No exceptional-axis label**: 1,2,3 all same class, for example all negative-polarity dyads or all mixed dyads; colorlessness is the intended effective assignment.
 - **Colored quark**: 1,2,3 pattern is one of:
   - two background dyads and one exceptional dyad where the exceptional dyad class differs from the background dyad class.
 
@@ -204,9 +210,9 @@ Color degree of freedom is then: **which axis carries the exceptional dyad?**
 
 ### Up‑type quarks ($5\epsilon_+,1\epsilon_-$)
 
-Up‑type (u,c,t) Gen‑I quarks have:
+The up-type axial template for u, c, and t has the following inventory; only u is Generation I:
 
-- 1 Electrino and 5 Positrinos among 6 polar sites.
+- 1 electrino and 5 positrinos among 6 polar sites.
 
 At axis‑class level:
 
@@ -224,19 +230,19 @@ Define color basis:
 - $|u_2\rangle$: 2 exceptional.
 - $|u_3\rangle$: 3 exceptional.
 
-These span the color space: $\mathcal{H}^{\text{color}}_u = \mathrm{span}\{|u_1\rangle,|u_2\rangle,|u_3\rangle\} \cong \mathbb{C}^3.$
+As an effective representation ansatz, assign orthonormal basis vectors to these records and define: $\mathcal{H}^{\text{color}}_u = \mathrm{span}\{|u_1\rangle,|u_2\rangle,|u_3\rangle\} \cong \mathbb{C}^3.$
 
-Pole assignment inside the exceptional axis (which pole hosts the electrino) changes local dipole structure but not which axis is exceptional; at the level of color it’s a **gauge‑like internal redundancy**.
+Pole assignment inside the exceptional axis changes the local dipole while preserving the coarse exceptional-axis label. These are distinct microconfigurations in the same dictionary class. Calling the exchange gauge requires equality of the relevant observer records and compatible dynamics, neither of which follows from forgetting the pole label.
 
-Anti-up quarks use the polarity-conjugate coincident-midpoint orthogonal-axis braid branch with 5 electrinos and 1 positrino in the axial layer, forming the conjugate triplet **3̄** with basis $|\bar u_1\rangle,|\bar u_2\rangle,|\bar u_3\rangle$.
+The anti-up template reverses every polarity of the full branch and has 5 electrinos and 1 positrino in the axial layer. Its target is the conjugate triplet $\bar 3$, with basis $|\bar u_1\rangle,|\bar u_2\rangle,|\bar u_3\rangle$ transforming by $U^*$ when the quark basis transforms by $U$. Polarity reversal supplies the inventory; an observer response map must still establish the conjugate representation.
 
 
 
 ### Down‑type quarks ($4\epsilon_-,2\epsilon_+$)
 
-Down‑type (d,s,b) Gen‑I quarks have:
+The down-type axial template for d, s, and b has the following inventory; only d is Generation I:
 
-- 4 Electrinos and 2 Positrinos among 6 slots.
+- 4 electrinos and 2 positrinos among 6 slots.
 
 All admissible axis‑class patterns consistent with $4\epsilon_-,2\epsilon_+$ and the “two‑same + one‑different” rule group naturally into two **families**.
 
@@ -268,7 +274,7 @@ In both families, the same structural pattern appears:
 
 > Two axes share one class; one axis in the other class.
 
-Thus for down‑type $d$ we again define:
+For a fixed family $F\in\{I,II\}$, define a separate effective basis $|d_a;F\rangle$. Suppressing $F$ only after choosing it, write:
 
 - $|d_1\rangle$: 1 axis is exceptional, either a positive-polarity dyad among negative-polarity dyads or a negative-polarity dyad among mixed dyads.
 - $|d_2\rangle$: 2 exceptional.
@@ -280,92 +286,88 @@ and: $\mathcal{H}^{\text{color}}_d = \mathrm{span}\{|d_1\rangle,|d_2\rangle,|d_3
 
 The branch rule must avoid over‑prediction.
 
-- If **both** families were independently stable and long‑lived for the same down‑flavor, we’d have extra down‑like quarks beyond d/s/b. That is not observed.
-- Therefore, the dynamics must:
+- If both families were retained, appreciably populated, and distinguishable by the same observer record in one declared regime, the map would predict an additional branch whose signatures must be compared with observations. Stability alone proves neither population nor a new particle species.
+- The single-family mapping adopted here requires a derived selection mechanism, for example:
 
   1. Select exactly one family for each realized down-type branch over a declared stability window, or
   2. Make one family metastable/short‑lived only at high energies, or
   3. Contextually select families inside hadrons (baryon environment determines which pattern survives).
 
-The shared branch-selection rule is therefore:
+The proposed single-family rule is:
 $$
-F_\star(q,\mathcal{B})\in\{I,II\},\qquad q\in\{d,s,b\}
+F_\star(q,\mathcal C_{\mathrm{env}})\in\{I,II\},\qquad q\in\{d,s,b\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b1634b00731f6506)
 
-where $\mathcal{B}$ denotes the local branch context: generation tier, hadron boundary conditions, effective forcing window, and Noether sea environment. Once $F_\star$ is selected, its three 1/2/3 permutations form the red/green/blue triplet for that down-type quark. The other family is a competing branch sector, not an additional observed species.
+where $\mathcal C_{\mathrm{env}}$ denotes the local branch context: generation tier, hadron boundary conditions, external driving window, and Noether sea environment. Once $F_\star$ is selected, its three exceptional-axis choices label the proposed triplet. Continuous color transport within that selected sector remains a separate requirement. The other family is a competing branch sector, not automatically another observed species.
 
-### Rigorous low-energy branch-selection criterion
+### Conditional low-energy branch-selection criterion
 
-Fix one down flavor and let $\Omega_I,\Omega_{II}$ be the Family I/II constrained sectors of the full 9-axis baryon network phase space (after quotienting axis-label gauge redundancy).
+A scalar energy minimum is not automatically a solution of the delayed acceleration law. First supply complete histories for Family I and Family II, including all admitted causal roots and environmental boundary data, and establish that the proposed equilibria or periodic branches satisfy the [Master Equation](../../dynamics/master-equation.md#the-master-equation-canonical-form). Only then is a stability calculation about those objects meaningful.
 
-Define the reduced energy minima
+For a separately justified finite-dimensional effective reduction, let $\Omega_I,\Omega_{II}$ be the constrained family sectors and let $\mathcal E$ be their common assembly-energy function. Quotient only demonstrated symmetries of the complete history and observer record; the axis labels cannot be declared gauge merely to reduce the state count. Assume the following minima are attained:
 $$
-E_F^\star \equiv \min_{X\in\Omega_F}\mathcal{E}(X),\qquad F\in\{I,II\}
+E_F^\star \equiv \min_{\mathsf z\in\Omega_F}\mathcal E(\mathsf z),\qquad F\in\{I,II\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4e0dda62c362d76d)
 
-and local Hessians
+Here $\mathsf z$ denotes dimensionless reduced coordinates, not a history-free replacement for the underlying dynamics. On the nonzero reduced modes define
 $$
-H_F \equiv D^2\mathcal{E}(X_F^\star)
+H_F \equiv D_{\mathsf z}^2\mathcal E(\mathsf z_F^\star)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-80764e22d02435e2)
 
-For finite but low noise/temperature scale $T_{\mathcal Q,W}$, with temperature understood as a same-record ensemble variable in the sense of [Entropy](../../dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable), use the harmonic free-energy approximation
+A thermal occupation comparison additionally requires a common Gibbs measure derived for this effective reduction, equilibration between sectors, equal reduced dimension $n$, positive-definite $H_F$, and declared measure weights $g_F>0$. With $\vartheta=k_B T_{\mathcal Q,W}$, the temperature in energy units using the observer-level Boltzmann conversion constant $k_B$, Gaussian integration near a nondegenerate well gives
 $$
-\mathcal{F}_F(T_{\mathcal Q,W})
+\mathcal F_F(T_{\mathcal Q,W})
 =
-E_F^\star+\frac{T_{\mathcal Q,W}}{2}\log\det H_F
-+\mathcal{O}(T_{\mathcal Q,W}^2)
+E_F^\star+\frac{\vartheta}{2}\log\det(H_F/E_{\mathrm{ref}})
+-\vartheta\log g_F+C(T_{\mathcal Q,W})
++\mathcal O(\vartheta^2/E_{\mathrm{ref}})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-26b0a28b74e0ec23)
 
-Linearize the delay dynamics about each minimizer and let
+$E_{\mathrm{ref}}>0$ is one common reference energy, making the determinant dimensionless. $C(T_{\mathcal Q,W})=-n\vartheta\log(2\pi\vartheta/E_{\mathrm{ref}})/2$ is a common term that cancels in family differences. This expansion assumes sufficient smoothness and isolated wells; zero modes, unequal dimensions, and different measures need their own integrals. It follows by evaluating $Z_F\simeq g_F e^{-E_F^\star/\vartheta}(2\pi\vartheta)^{n/2}/\sqrt{\det H_F}$ and setting $\mathcal F_F=-\vartheta\log Z_F$. [Entropy](../../dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable) owns the ensemble and temperature boundary. This conditional comparison supplies no thermal law for one architrino or a generic deterministic delay flow.
+
+For an actually retained periodic branch, let $\mu_j^{(F)}$ be the multipliers of its differentiable complete-history return map, which advances one declared period. After removing every demonstrated neutral symmetry direction, define
 $$
-\rho_F\equiv \max_{j\neq 1}|\mu_j^{(F)}|
+\rho_F\equiv\sup_{j\in J_{\mathrm{trans},F}}|\mu_j^{(F)}|
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9b04cfae33bdb36c)
 
-be the Floquet spectral radius of nontrivial multipliers.
+$J_{\mathrm{trans},F}$ contains the remaining transverse modes. This multiplier test requires a spectral setting in which the listed modes control the return operator; omitted continuous or essential spectrum cannot be ignored. Then $\rho_F<1$ is the transverse linear stability condition, $\rho_F>1$ gives a linear instability, and $\rho_F=1$ is inconclusive. For a static equilibrium use the full characteristic spectrum of the delay equation, rather than assuming a periodic orbit or discarding a multiplier by index.
 
-**Theorem (Single-family low-energy survival).** Assume there exists $F_\star\in\{I,II\}$ such that:
-
-1. **Local dynamical stability:** $\rho_{F_\star}<1$.
-2. **Competitor exclusion:** either $\rho_{\bar F}\ge 1$ (linearly unstable), or $\rho_{\bar F}<1$ and
+**Conditional occupation statement.** Suppose both sectors admit the same equilibrated Gibbs ensemble and let $\bar F$ denote the competitor to $F_\star$. For their exact restricted free energies define
 $$
-\Delta\mathcal{F}\equiv \mathcal{F}_{\bar F}-\mathcal{F}_{F_\star}>0
+\Delta\mathcal F\equiv\mathcal F_{\bar F}-\mathcal F_{F_\star}>0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5796b4e75f8a39f8)
 
-3. **Low-energy regime:** $T_{\mathcal Q,W}\ll \Delta\mathcal{F}$ and forcing amplitude is below the inter-family escape barrier.
-
-Then stationary occupation satisfies
+Their stationary probabilities obey the derived identity
 $$
 \frac{\pi_{\bar F}}{\pi_{F_\star}}
-\lesssim
-\exp\!\left(-\frac{\Delta\mathcal{F}}{T_{\mathcal Q,W}}\right)
+=
+\exp\!\left(-\frac{\Delta\mathcal F}{k_B T_{\mathcal Q,W}}\right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8eeb0253a343f421)
 
-so $\pi_{\bar F}\to 0$ as $T_{\mathcal Q,W}\to 0$. Hence exactly one down-family survives as the low-energy ambient family.
+This is $\pi_{\bar F}/\pi_{F_\star}=Z_{\bar F}/Z_{F_\star}$, not a consequence of Floquet stability. A uniform positive lower bound on $\Delta\mathcal F$ gives vanishing competitor weight as $T_{\mathcal Q,W}\to0$ after equilibration. At finite positive temperature the weight remains nonzero. Initial occupation and escape times still matter on finite windows; without equilibration a history can stay trapped in a higher-energy stable sector. An unstable competitor requires a separate basin and residence-time analysis, not the same well formula.
 
-*Proof sketch:* stable branches are metastable wells of the same delay flow; occupation ratio follows from large-deviation/Kramers scaling with free-energy gap, and unstable branches have zero asymptotic weight. The harmonic free-energy and Kramers steps are part of the approximation burden: the reduced state-dependent delay record must admit this metastable-well reduction before the criterion becomes quantitative.
-
-**Concrete screening corollary (Family II preference test).** If the reduced minimum can be decomposed as
+**Conditional screening comparison.** Suppose a derived reduced energy admits the decomposition
 $$
 E_F^\star = E_{\text{core},F}+E_{\text{self-hit},F}+E_{\text{strain},F}-s\,N_{\mathrm{mix}}^{(F)}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-93d87b36626184d3)
 
-with $N_{\mathrm{mix}}^{(I)}=0$, $N_{\mathrm{mix}}^{(II)}=2$, then Family II is selected whenever
+Here the three energy terms summarize the core, self-hit, and deformation accounts on one branch, and $s$ is an energy benefit per mixed dyad. With $N_{\mathrm{mix}}^{(I)}=0$ and $N_{\mathrm{mix}}^{(II)}=2$, the inequality
 $$
 2s>
 \big(E_{\text{core},II}-E_{\text{core},I}\big)
@@ -375,23 +377,23 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-43164c6e0accf6cf)
 
-and the stability condition $\rho_{II}<1$ holds.
+is exactly $E_{II}^\star<E_I^\star$. It selects the lower reduced energy only. Entropy, stability, formation, and population do not follow from that inequality or from a chosen value of $s$.
 
-**Failure condition (theory-level, explicit).** The model fails this selection requirement if, over the low-energy ambient window relevant to nucleons,
+A potentially unresolved two-family outcome is
 $$
 \rho_I<1,\qquad \rho_{II}<1,\qquad
-|\mathcal{F}_{II}-\mathcal{F}_I|\le \varepsilon_F
+|\mathcal F_{II}-\mathcal F_I|\le \varepsilon_F
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-66f8ed6018bf8bb6)
 
-for tolerance $\varepsilon_F$ set by simulation uncertainty and environmental broadening. In that case both families are generically long-lived and comparably populated, which over-predicts down-type species and requires revision of the assembly-selection mechanism.
+$\varepsilon_F$ is a declared energy uncertainty. Even under the Gibbs assumptions, comparable population requires the free-energy difference to be small compared with $k_B T_{\mathcal Q,W}$, not merely with a numerical tolerance. This outcome leaves the single-family rule unestablished; it falsifies a particle map only if both sectors are retained, populated, observationally distinct, and incompatible with the declared experimental bounds.
 
-
+> Claim grade: derived for the conditional Gaussian and Gibbs identities; guessed for their applicability to these candidate assemblies. Falsifiers: failure of branch existence, positive-definite reduction, common measure, equilibration, or the required population suppression defeats this selection route. No family is selected by this chapter.
 
 ## Color Hilbert Space and SU(3) Structure
 
-For any quark flavor $q$, define the color state space
+As an effective representation ansatz for a fixed quark flavor $q$ and selected family, define the complex color state space
 $$
 \mathcal{H}^{\text{color}}_q \equiv \mathrm{span}\{|q_1\rangle,|q_2\rangle,|q_3\rangle\}\cong\mathbb{C}^3
 $$
@@ -405,23 +407,29 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-30a5c9141568d298)
 
+The span is over $\mathbb C$, with the displayed basis declared orthonormal. A three-element label set alone supplies neither complex amplitudes nor their probability interpretation. A pure-state response map $\Pi_{q,W}:\Gamma_{q,W}\to\mathcal H_q^{\mathrm{color}}$ remains to be derived on a specified family of complete branch histories $\Gamma_{q,W}$ and observation window $W$, with preparation, apparatus, and medium data declared. It must reproduce the relevant records through the effective amplitudes and their transport. General statistical preparations need the corresponding ensemble map.
+
 ### Admissible color transformations
 
-We model internal color reconfiguration by linear maps $U:\mathcal{H}^{\text{color}}_q\to\mathcal{H}^{\text{color}}_q$ satisfying:
+The effective ansatz admits linear maps $U:\mathcal{H}^{\text{color}}_q\to\mathcal{H}^{\text{color}}_q$ satisfying:
 
 - Preserve net electric charge and total axial inventory.
 - Preserve the one-axis-exceptionality sector (map superpositions of $|q_1\rangle,|q_2\rangle,|q_3\rangle$ to itself).
-- Preserve Born norm (probability conservation): $U^\dagger U=I$.
-- Preserve oriented color volume (gauge-fixed convention): $\det U=1$.
+- Preserve the Hermitian norm: $U^\dagger U=I$. Interpreting squared amplitudes as probabilities is the Born-rule recovery target, not a substrate postulate.
+- Preserve a chosen complex volume form: $\det U=1$. This is an imposed representation condition, not the physical pro/anti orientation of a spatial frame.
 
-So the effective color action is represented by
+The full group of such matrices is, by definition,
 $$
 U\in SU(3)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d1916ab721488ee2)
 
-The usual global phase map $|q\rangle\to e^{i\theta}|q\rangle$ is treated as unobservable gauge redundancy (it does not change which axis is exceptional or relative axis phases).
+These conditions characterize candidate matrices; they do not prove that branch dynamics realizes the full group. Only the identity or a proper subgroup could be dynamically available. Discrete permutations of axis records also do not supply a continuous action.
+
+An overall phase is invisible in an effective ray description. Choosing a determinant-one representative of a unitary matrix leaves a central $\mathbb Z_3$ ambiguity: the three scalar cube roots of unity act identically on rays. The faithful projective action is $SU(3)/\mathbb Z_3$, while $SU(3)$ acts on fundamental amplitudes. The physical gauge group and its representations therefore require more than a phase convention.
+
+Local gauge recovery means that basis choices can vary over an effective observer chart $(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)$ without changing observable records, with a derived connection providing transport between those choices. Its eight color components, coupling, curvature, and flavor-preserving response must come from the same retained history and medium map. They are not established by listing eight matrices. Passive relabeling of a complete record must also remain distinct from actively moving an exceptional dyad between physically different axes.
 
 ### Generator basis from axis operations
 
@@ -442,7 +450,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-303a244bf5bcafe7)
 
-These eight matrices are exactly the standard $T^a=\lambda_a/2$ basis in the indexed-axis ordering.
+These eight matrices are the standard Hermitian generators $T^a=\lambda_a/2$, with $\operatorname{tr}(T^aT^b)=\delta^{ab}/2$. Here $\lambda_a$ are the Gell-Mann matrices; the list below is ordered by their conventional indices $1,2,4,5,6,7,3,8$. The matrices and their parameters are dimensionless effective representation data.
 
 ### Algebra closure (rigorous statement)
 
@@ -453,22 +461,23 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7d62774375504791)
 
-is an 8-dimensional Lie algebra isomorphic to $\mathfrak{su}(3)$; equivalently,
+is an 8-dimensional real Lie algebra under the bracket $[A,B]_{\mathrm H}=-i(AB-BA)$. It is isomorphic to $\mathfrak{su}(3)$, the traceless anti-Hermitian matrices with ordinary commutator, by $A\mapsto-iA$. In the conventional numbered Hermitian basis, the ordinary matrix identity is
 $$
 [T^a,T^b]=i f^{abc}T^c
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c4dd5017232ecae4)
 
-for the standard SU(3) structure constants in this basis.
+where the real numbers $f^{abc}$ are the structure constants and repeated $c$ is summed.
 
-**Proof.** Each element of $\mathcal{B}$ is Hermitian and traceless, and there are eight linearly independent such matrices. Under the basis identification above, $\mathcal{B}$ maps one-to-one to the Gell-Mann basis $\{\lambda_a/2\}_{a=1}^8$, whose commutator algebra is $\mathfrak{su}(3)$. Therefore the axis-exceptionality generators close under commutator with the same structure constants.
+**Proof.** A Hermitian $3\times3$ matrix has three real diagonal entries and three complex off-diagonal entries. Tracelessness removes one real degree of freedom, leaving eight. The six off-diagonal matrices and two independent diagonal matrices displayed above span that space. For Hermitian $A,B$, $AB-BA$ is anti-Hermitian and traceless, so $-i(AB-BA)$ lies in the same real span. Bilinearity, antisymmetry, and Jacobi follow from the matrix commutator, and $A\mapsto-iA$ preserves the respective brackets. Ordinary commutation alone does not close the real Hermitian span: $[T^{(x)}_{12},T^{(y)}_{12}]=iH_1$.
 
-### Eightfold-way recovery residual
+> Claim grade: derived for this matrix algebra. Falsifier: a failed bracket identity, linear dependence, or trace-normalization mismatch. The proof establishes a representation construction, not a retained quark branch or a gluon response law.
 
-The historical Eightfold Way lesson is useful here only as an algebraic recovery target: $SU(3)$ first classified hadrons by triplet, conjugate-triplet, and adjoint/octet representations before supplying the underlying strong-sector dynamics. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that means the axis-exceptionality construction must recover the representation bookkeeping while keeping the Noether braid as the ontology.
+### Color representations and a separate flavor-spectrum comparison
 
-The branch condition is:
+The Eightfold Way classifies light hadrons using approximate flavor $SU(3)$, which organizes the up, down, and strange labels. Color $SU(3)_c$ is a different action on the color index of each flavor. The two use the same abstract group but different state spaces and physical meanings; [the PDG quark-model review](https://pdg.lbl.gov/2024/reviews/rpp2024-rev-quark-model.pdf) explains that distinction. The color representation targets are
+
 $$
 \mathcal{H}^{\text{color}}_q\cong 3,\qquad
 \mathcal{H}^{\text{color}}_{\bar q}\cong \bar 3,\qquad
@@ -477,7 +486,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-892ca4158548e42b)
 
-with the observable closed sectors assembled through the usual singlet-containing products
+where the adjoint action on the real Hermitian span is $A\mapsto UAU^\dagger$. The familiar tensor-product decompositions supply candidate singlet sectors:
 $$
 3\otimes\bar 3=1\oplus 8,\qquad
 3\otimes 3\otimes 3\supset 1
@@ -485,25 +494,25 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-adca47545bca5d8c)
 
-This does not identify the Eightfold Way flavor octets with color itself. It says that any successful color branch must reproduce the same algebraic fact that eight traceless generators organize an octet-class residual, while native confinement and color-singlet closure still come from axis exceptionality, braid closure, and Noether sea energetics.
-
-Symmetry breaking is then tested as a residual, not promoted to a second color rule. Let $M_{\mathrm{obs}}$ be the observed hadron mass vector for a chosen baryon or meson octet, and let $M_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)$ be the mass vector predicted after projecting a closed color-singlet assembly onto its flavor and axial-layer labels. The admissible branch must support a decomposition
+These color identities do not establish confinement or hadron mass splittings. Flavor spectroscopy supplies a separate observer-level comparison. For a chosen light spin-1/2 baryon flavor octet, order its eight members and let $M_{\mathrm{obs}}\in\mathbb R^8$ be the measured mass vector. In the isospin-symmetric comparison, define dimensionless vectors $(t_8)_i=Y_i$ and $(d_8)_i=I_i(I_i+1)-Y_i^2/4$, where $Y_i$ is flavor hypercharge and $I_i$ is isospin, the flavor label grouping up/down partners. These vectors are not color generators. A Gell-Mann–Okubo comparison template is
 $$
-M_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)=m_0\mathbf{1}+\alpha T_8+\beta D_8+\Delta_{\mathrm{axis}}(\theta)
+M_{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)=m_0\mathbf 1+\alpha t_8+\beta d_8+\Delta_{\mathrm{axis}}(\theta)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-54d131a82e3e8d73)
 
-where $T_8$ and $D_8$ denote the two octet-breaking directions available to the adjoint classification, and $\Delta_{\mathrm{axis}}(\theta)$ is the native correction from indexed-axis response differences, axial-layer family selection, and braid energy. The recovery residual is
+Here $\mathbf1\in\mathbb R^8$ has every component equal to one; $m_0,\alpha,\beta$ carry mass units. $\theta$ denotes independently constrained assembly parameters, and $\Delta_{\mathrm{axis}}(\theta)\in\mathbb R^8$ is a mass correction predicted from their response map. This is a typed comparison form, not a derived mass map. The corresponding residual is
 $$
-\mathcal{R}_{8}
-=\min_{m_0,\alpha,\beta,\theta}
-\left\|M_{\mathrm{obs}}-\left(m_0\mathbf{1}+\alpha T_8+\beta D_8+\Delta_{\mathrm{axis}}(\theta)\right)\right\|
+\mathcal R_8
+=\min_{(m_0,\alpha,\beta,\theta)\in\Theta_{\mathrm{adm}}}
+\left\|M_{\mathrm{obs}}-\left(m_0\mathbf 1+\alpha t_8+\beta d_8+\Delta_{\mathrm{axis}}(\theta)\right)\right\|_{\Sigma_M^{-1}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-63e3efed5cc57877)
 
-A branch fails this Eightfold-way check if $\mathcal{R}_{8}$ can be made small only by fitting unrelated parameters separately for baryons, mesons, and color confinement, or if $\Delta_{\mathrm{axis}}$ erases the triplet/conjugate-triplet and adjoint structure above. The source signal to preserve is therefore narrow: algebraic classification and Gell-Mann-Okubo-style mass splitting are recovery constraints on the emergent branch, not evidence that the classification algebra is the underlying medium.
+$\Theta_{\mathrm{adm}}$ is a declared admissible parameter set fixed before this comparison; use the displayed minimum only when attained, and otherwise its infimum. $\Sigma_M$ is a positive-definite covariance for the compared mass vector, and $\|v\|_{\Sigma_M^{-1}}=(v^\mathsf T\Sigma_M^{-1}v)^{1/2}$ makes the residual dimensionless. Any rank reduction or correlation treatment must be fixed with the data. An unconstrained correction vector would set the residual to zero by definition and test nothing. Fitting the comparison coefficients tests the flavor pattern; predicting them from a branch is a stronger claim. Meson applications require their own multiplet, mixing treatment, and declared mass or mass-squared convention; different effective coefficients are not by themselves a failure of common underlying dynamics.
+
+No mass residual is evaluated here. A fixed branch prediction inconsistent with the declared data and uncertainties would falsify that prediction. The displayed color algebra places no bound on this independent flavor residual.
 
 ### Example: 1↔2 axis-swap generator
 
@@ -520,13 +529,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-06f8440b2a0e9bc5)
 
-It continuously rotates exceptionality between 1 and 2 while leaving 3 unchanged at first order. Together with $T^{(y)}_{12}=\lambda_2/2$, it generates the embedded SU(2) subgroup acting on the $(1,2)$ color plane.
+The effective transformation is $U(\alpha_{\mathrm{mix}})=\exp(-i\alpha_{\mathrm{mix}} T^{(x)}_{12})$, with real dimensionless parameter $\alpha_{\mathrm{mix}}$. It mixes the first two amplitudes and leaves the third unchanged exactly. Together with $T^{(y)}_{12}=\lambda_2/2$ and their bracket $H_1$, it generates an embedded $SU(2)$ subgroup. This continuous amplitude transformation has not been realized as a physical axis swap by the delayed dynamics.
 
 
 
 ## Baryons, Color Singlets, and the 9‑Axis Braid
 
-A Gen‑I baryon (e.g., proton or neutron) consists of:
+The proposed Gen-I baryon architecture, intended to map to a proton or neutron, contains:
 
 - 3 quarks → 3 Noether braids
 - Each with 1, 2, 3 axes
@@ -541,7 +550,7 @@ In SU(3):
 
 In geometry based on the coincident-midpoint orthogonal-axis braid:
 
-- A color singlet baryon is a configuration where each of 1, 2, 3 is exceptional **once** across the three quarks, and the 9 axes form a **closed coupling network** (a closed braid).
+- The proposed geometric counterpart has each of 1, 2, 3 exceptional once across the three quarks, with a closed nine-axis coupling network. These conditions describe a candidate network; they do not prove that its observer export is a singlet.
 - Example proton (uud, schematic):
 
   - Quark 1 (u): exceptional on 1 → $|u_1\rangle$
@@ -550,79 +559,68 @@ In geometry based on the coincident-midpoint orthogonal-axis braid:
 
 The displayed assignment is one component of the fully antisymmetrized color singlet; the physical SU(3) singlet sums the 1/2/3 assignments with the Levi-Civita color tensor.
 
-At large distances, axis‑dependent multipoles from each regime cancel:
+In an orthonormal color basis the normalized singlet is $|B_c\rangle=6^{-1/2}\sum_{a,b,c=1}^3\epsilon_{abc}|abc\rangle$, where $\epsilon_{abc}$ is the Levi-Civita antisymmetric tensor. Its invariance follows from $U^{\otimes3}|B_c\rangle=(\det U)|B_c\rangle=|B_c\rangle$. The single assignment $|123\rangle$ is not invariant: applying the sum of $T^{(x)}_{12}$ on the three factors gives $(|223\rangle+|113\rangle)/2$. Thus one-of-each counting needs the full antisymmetric amplitude map. For spatially separated factors a local gauge description additionally requires compatible color transport to a common reference.
 
-- 1‑exceptionality from one quark is compensated by 2 and 3 exceptionality from others in the composite singlet combination.
-- Net color flux into the surrounding Noether sea is zero; only isotropic observer-level monopole readouts (charge, baryon number, effective mass) remain.
+Color singlet invariance does not prove cancellation of spatial multipoles. Effective electric and magnetic responses, shape dependence, and finite-range strong response can remain in a color-singlet composite. Any vanishing far-boundary color response in the proposed network must follow from the same recovered connection and medium response; a color label is not a spatial multipole calculation.
 
-This closed 3‑strand braid (in color space) is **topologically distinct** from 2‑strand configurations (mesons). Breaking a baryon into pure leptons/mesons would require nonlocal rupture of the Noether braids: that is the topological underpinning for **baryon number conservation** in this model (proton stability).
-
+Nor does calling the network a three-strand braid prove baryon-number conservation. A protection argument must specify a configuration/history space, allowed transitions, a deformation-invariant quantity on that space, and its map to observer baryon number. Counting three quark factors versus two meson factors supplies none of those dynamical restrictions. Baryon stability is a separate recovery target of the retained assembly and reaction laws.
 
 ## Residual Strong Force and Nuclear Binding
 
-Even for color‑singlet nucleons:
+The proposed mechanism is incomplete screening of retained axial structure at finite nucleon separations. Selected down-family sectors, relative geometry, and medium response would determine whether that mechanism produces attraction, repulsion, or neither. The illustrative binary-index roles above are branch-specific; no index has an intrinsic exposure rank.
 
-- Internal 1, 2, 3 structures and down‑quark family choices determine how perfectly the 9‑axis braid is screened at distances $\lesssim 1$–$2\,\mathrm{fm}$.
-
-Heuristic:
-
-- At inter-nucleon separations ~ a few fm, the source record's more exposed axis-3 channels (and to some degree axis-2 channels) from neighboring nucleons begin to overlap and couple through the Noether sea.
-- These residual couplings act like **meson exchange** in standard nuclear physics, producing an attractive Yukawa‑like force with a hard‑core repulsion scale tied to the less exposed indexed channels.
-
-The downstream nucleon-potential derivation must use:
-
-- the selected down‑quark Family-I or Family-II sector,
-- Axis‑overlap geometry (3‑3, 3‑2 interactions),
-
-as its inputs for nucleon–nucleon potentials and binding energies in the nuclear section. The local interface is:
-
-> Residual strong force emerges from the same axis/braid structure as color, via imperfect screening of 1/2/3 at finite nucleon separations.
+Meson exchange and a Yukawa-type dependence, an exponentially screened interaction proportional to $e^{-r/L}/r$, are observer-level nuclear comparison forms. Here $r$ is observer separation and $L$ a fitted or predicted response length. Neither that form, its sign, nor its length scale follows from axis overlap alone. Recovering a nucleon potential requires the retained nucleon branches, a calibrated distance/energy map, and the same delayed-response calculation. This section supplies a guessed mechanism, not a computed nuclear interaction; disagreement of its resulting scattering or binding predictions with the declared observer data would falsify it.
 
 ## Closure Interface: Confinement Energy Scaling
 
-The algebraic SU(3) closure above is necessary but not sufficient for full confinement closure.
+The conditional matrix construction supplies no confinement law. Confinement recovery requires a retained assembly branch and a derived observer-level color connection, with energy and response obtained from the same path-history record.
 
-Energy-side target inherited from the topological program:
+For the following effective QCD comparisons, choose a reference observer length $L_{\mathrm{ref}}>0$ and energy $E_{\mathrm{ref}}=\hbar_{\mathrm{eff}}c_{\mathrm{eff}}/L_{\mathrm{ref}}$. The quantities $c_{\mathrm{eff}}$ and $\hbar_{\mathrm{eff}}$ are observer conversion scales whose recovery is separate from choosing substrate units $c_f=1$. In this section, $E_{\mathrm{open}},E_0,E_{\mathrm{closed}},E_\infty$ are energies divided by $E_{\mathrm{ref}}$, $\ell_{\mathrm{corr}},R_{\mathrm{eff}},L_E,L_{\mathrm{box}}$ are observer lengths divided by $L_{\mathrm{ref}}$, and $\sigma_{\mathrm{eff}}$ is physical string tension multiplied by $L_{\mathrm{ref}}/E_{\mathrm{ref}}$. Every exponent below is therefore dimensionless. $L_E$ is Euclidean comparison time multiplied by $c_{\mathrm{eff}}$ and divided by $L_{\mathrm{ref}}$; it is not native absolute time.
+
+The open-sector energy target is
 $$
 E_{\mathrm{open}}(\ell_{\mathrm{corr}})=\sigma_{\mathrm{eff}}\ell_{\mathrm{corr}}+E_0+\mathcal{O}(1/\ell_{\mathrm{corr}}),\qquad \sigma_{\mathrm{eff}}>0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-426bafde2669cfd1)
 
-for open color braids/flux sectors, while closed singlet sectors satisfy
+within a declared unscreened string regime of a static source/antisource sector, with the short-distance corrections and subtraction convention fixed. In pure gauge comparisons this can be an asymptotic target; with dynamical quarks the ground-state string can break, so linear growth is not imposed at arbitrarily large separation. A distinct finite-energy target for a fixed localized singlet is
 $$
-E_{\mathrm{closed}}(\ell_{\mathrm{corr}})\to E_{\infty}<\infty
+E_{\mathrm{closed}}(L_{\mathrm{box}})\to E_{\infty}<\infty
+\qquad (L_{\mathrm{box}}\to\infty)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e3d515945a0108c7)
 
-and vanishing far-field color flux. Here $\ell_{\mathrm{corr}}$ is the open color-corridor length, distinct from binary index 3.
+after subtracting the common vacuum/background energy and holding the object fixed as the box grows. This does not assert bounded energy when a closed tube itself is stretched. The open-corridor length $\ell_{\mathrm{corr}}$ and the enclosing-box size $L_{\mathrm{box}}$ are different limits; neither is binary index 3.
 
-The Wilson-loop benchmark is the observer-level gauge-theory diagnostic for the same distinction. For a rectangular loop $C_{R,T}$ in the fundamental color representation, with $R$ and $T$ retained as standard lattice loop-extents rather than native axis or absolute-time labels, the strong-sector branch should recover
+A Wilson loop is the normalized trace of color parallel transport around a closed contour in the effective connection. It tests the gauge-invariant transport of a static color pair. For a rectangle $C_{R_{\mathrm{eff}},L_E}$ in the fundamental representation, the area-law comparison is
 $$
-\left\langle W(C_{R,T})\right\rangle_{\theta}
+\left\langle W(C_{R_{\mathrm{eff}},L_E})\right\rangle_{\theta}
 \sim
-\exp\!\left[-\sigma_{\mathrm{eff}}(\theta)\,R\,T+\mathcal{O}(R+T)\right]
+\exp\!\left[-\sigma_{\mathrm{eff}}(\theta)R_{\mathrm{eff}}L_E+\mathcal{O}(R_{\mathrm{eff}}+L_E)\right]
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2008de96bfe403b9)
 
-in the confining window, while non-confining or screened limits must show the corresponding perimeter-law or string-breaking behavior. This target is not a claim that the lattice Wilson loop is fundamental ontology; it is the tested gauge-invariant way to compare open color-corridor energy with QCD.
+in the corresponding unscreened window, with regulator and perimeter terms controlled. Here the branch parameters $\theta$ also specify the induced effective ensemble and its fixed boundary conditions. Extracting its potential requires the large-$L_E$ limit at each fixed separation, followed by the spatial comparison; a finite-time apparent area law is insufficient. Screened sectors require the appropriate string-breaking analysis. These are effective QCD diagnostics, not a Euclidean-time dynamics postulate for architrinos; see [Bali, §§4.1, 4.7.1 and 4.9](https://arxiv.org/abs/hep-ph/0001312).
 
-The same branch must also provide a closed-sector mass-gap diagnostic. For a pair of gauge-invariant closed color probes separated by $R$,
+A separate closed-sector spectral comparison uses a zero-spatial-momentum, gauge-invariant probe $\mathcal O_{\mathrm{closed}}$, projected onto a declared channel. Its connected correlator subtracts the vacuum expectation:
 $$
-\left\langle \mathcal{O}_{\mathrm{closed}}(0)\mathcal{O}_{\mathrm{closed}}(R)\right\rangle_{\theta}
-\sim
-\exp\!\left[-M_{\mathrm{gap}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)R\right],
+C_{\mathrm{closed}}(L_E)
+\equiv
+\left\langle \mathcal O_{\mathrm{closed}}^\dagger(L_E)\mathcal O_{\mathrm{closed}}(0)\right\rangle_\theta
+-\left|\left\langle\mathcal O_{\mathrm{closed}}\right\rangle_\theta\right|^2
+\sim A_{\mathrm{closed}}\exp\!\left[-M_{\mathrm{gap}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)L_E\right],
 \qquad
 M_{\mathrm{gap}}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)>0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-183a360c95c75bde)
 
-This is the mass-gap recovery target for closed strong-sector braids, separate from the open-string tension target.
+Here $A_{\mathrm{closed}}>0$ is the probe overlap amplitude and $M_{\mathrm{gap}}^{\mathbb{A}\mathbb{A}\mathbb{A}}$ is the lowest excitation energy with nonzero probe overlap, divided by $E_{\mathrm{ref}}$. The exponential interpretation assumes an effective positive spectral representation, an isolated leading level, and controlled finite-volume and finite-time limits. One probe only tests its coupled channel; proving a full gap requires ruling out lower uncoupled channels. A spatial or finite-temperature screening length alone is not this zero-temperature energy gap. The connected spectral construction is described by [Bali, §3.4](https://arxiv.org/abs/hep-ph/0001312).
 
-This energy law is a closure target, not a restatement of QCD in native vocabulary. The observer-level benchmarks to preserve are the static-potential string tension, the absence of asymptotic free color charge, a finite pure-gauge mass gap, and the hadron-spectrum constraints currently organized by QCD and lattice calculations. A useful confinement residual is
+The comparisons must declare their theory and channel: pure-gauge string tension and glueball energy levels are not automatically full-QCD hadron masses or direct measurements. Absence of free-color signals is an observer-level bound with a specified production and detector model. An unevaluated comparison template is
 $$
 \mathcal{R}_{\mathrm{conf}}(\theta)
 =
@@ -635,21 +633,24 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-836ac00bb9ffc403)
 
-where the terms compare the extracted open-sector tension, the lowest closed strong-sector excitation scale, and the predicted free-color signal against the corresponding accepted benchmark or bound. The same branch record must drive all three terms. If $\sigma_{\mathrm{eff}}$, the mass gap, and free-color suppression require independent Noether sea variables or separate color-sector fits, the confinement program has reproduced the appearance of QCD rather than deriving its non-perturbative content.
+Here $\sigma_{\mathrm{QCD}}$ is a specified reference tension; $M_{\mathrm{glue}}^{\mathbb{A}\mathbb{A}\mathbb{A}}$ and $M_{\mathrm{glue}}^{\mathrm{lat}}$ are the predicted and lattice-reference glueball excitation energies in one matched channel, each normalized by $E_{\mathrm{ref}}$; and $O_{\mathrm{color}}$ is a predicted nonnegative free-color signal with bound $O_{\mathrm{color}}^{\max}$. For positive declared scales $s_\sigma,s_{\mathrm{gap}},s_{\mathrm{free}}$, take $d_\sigma(a,b)=|a-b|/s_\sigma$, $d_{\mathrm{gap}}(a,b)=|a-b|/s_{\mathrm{gap}}$, and $d_{\mathrm{free}}(a,b)=\max(0,a-b)/s_{\mathrm{free}}$. The scales, regulator limits, reference ensemble, probe channel, and detector acceptance must be fixed before evaluation. No numerical benchmark or residual is supplied here.
 
-This chapter therefore carries:
-- **already closed:** color Hilbert space, generator construction, and $\mathfrak{su}(3)$ algebra closure;
-- **to close quantitatively:** open-vs-closed energy scaling with explicit $\sigma_{\mathrm{eff}}$ extraction from medium shear/torsion, finite mass-gap recovery, and bounded free-color residuals.
+One underlying response model must explain these comparisons under their explicitly different boundary conditions and pure-gauge/full-QCD limits. Independent fitted outputs cannot be counted as a derivation from that model; legitimate different effective parameters or environments are not themselves a contradiction. An incompatible fixed prediction would falsify the proposed map in its declared regime.
+
+The derived content is the inventory count and the conditional $\mathfrak{su}(3)$ matrix construction. The color Hilbert-space export, local connection, branch retention, energy accounting, string regime, spectrum, and free-color suppression remain recovery targets. Calling a candidate tube shear or torsion does not supply its constitutive energy law.
 
 Primary topology spine: [dynamics/causal-action-functional.md](../../dynamics/causal-action-functional.md).
 
 ## Summary and Interfaces
 
-- **coincident-midpoint orthogonal-axis braid** is the current three-axis $(1,2,3)$ scaffold candidate used here for carrying conserved charge labels through internal symmetries; delayed-dynamics retention remains a theorem target.
-- **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon polarity-conjugate neutral pairs; neither route supplies quark-like axis exceptionality.
-- **Quarks** have “two‑same + one‑different” axis‑class patterns:
-  - Up‑type: two positive-polarity dyads, one mixed dyad.
-  - Down‑type: either two negative-polarity dyads with one positive-polarity dyad, or two mixed dyads with one negative-polarity dyad.
-- Color = which axis (1,2,3) is exceptional. This yields a natural triplet color space $\mathbb{C}^3$ on which SU(3) acts via charge‑preserving, det‑1 reconfigurations of axis exceptionality and phase.
-- **Baryon color singlets** = closed 9‑axis braids; **flux tubes** = open braids in the Noether sea with linear energy cost per unit length → confinement.
-- Down‑quark pattern families, indexed-axis response differences, and braid orientation are downstream interfaces for neutrino oscillation modeling, proton-neutron mass and moment differences, residual nuclear forces, and QCD phase-transition or early-universe thermodynamics. Those applications must inherit the same color-exceptionality and confinement ledger rather than introducing separate color rules.
+- The coincident-midpoint orthogonal-axis braid supplies a prescribed three-axis scaffold. A retained scaffold, axial layer, and higher-generation axis record still require delayed-dynamics existence and stability evidence.
+- The declared charged inventories give a derived two-same/one-different dyad pattern. Lepton singlets, quark triplets, and antiquark conjugate triplets are the intended observer assignments of those inventories.
+- Adding a complex inner product and determinant-one transport constructs the effective $SU(3)$ representation. The physical amplitude map, local gauge transport, and eight gluon response components remain to be recovered.
+- A baryon singlet uses the antisymmetric color tensor. A closed nine-axis network is a proposed realization, with spatial screening, protected topology, and baryon stability requiring separate derivations.
+- Family selection, flavor masses, nuclear interactions, and confinement comparisons must consume specified retained histories and one consistent response model. None follows from the axis count or the matrix algebra alone.
+
+## Source Notes
+
+C. Amsler, V. Crede, and T. DeGrand, “Quark Model,” in S. Navas et al. (Particle Data Group), *Review of Particle Physics* (2024), [Phys. Rev. D 110, 030001](https://doi.org/10.1103/PhysRevD.110.030001), §§15.1–15.3 and 15.5, supports the distinction between color and flavor representations and the scope of hadron classification and mass comparisons. It does not support the proposed architrino inventory or its dynamical realization.
+
+G. S. Bali, *QCD Forces and Heavy Quark Bound States*, Physics Reports 343 (2001), 1–136, [arXiv:hep-ph/0001312](https://arxiv.org/abs/hep-ph/0001312), §§3.4, 4.1, 4.7.1 and 4.9, supplies the effective spectral, Wilson-loop, finite-time, and string-breaking comparison boundaries. These source results constrain the observer-level recovery target; they are not substrate premises.

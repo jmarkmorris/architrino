@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1643
+      "sections": 1651
     }
   },
   "tocRoot": {
@@ -4248,6 +4248,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Source Notes",
+                "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
+                "markdownSection": "Source Notes",
+                "sectionKey": "source notes",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Related Chapters",
                 "markdownPath": "content/markdown/aaa/spacetime/general-relativity.md",
                 "markdownSection": "Related Chapters",
@@ -4465,6 +4473,14 @@
                 "markdownSection": "Energy Flux",
                 "sectionKey": "energy flux",
                 "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Claim Boundary and Sources",
+                "markdownPath": "content/markdown/aaa/spacetime/gravitational-waves.md",
+                "markdownSection": "Claim Boundary and Sources",
+                "sectionKey": "claim boundary and sources",
+                "headingLevel": 2
               }
             ]
           },
@@ -4629,6 +4645,14 @@
                 "markdownSection": "Maximal Curvature vs Planck Scale",
                 "sectionKey": "maximal curvature vs planck scale",
                 "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Source Notes",
+                "markdownPath": "content/markdown/aaa/spacetime/singularity-resolution.md",
+                "markdownSection": "Source Notes",
+                "sectionKey": "source notes",
+                "headingLevel": 2
               }
             ]
           },
@@ -4682,10 +4706,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Exterior Planar Angular-Momentum Basis",
+                "title": "Exterior Planar Circulation Basis",
                 "markdownPath": "content/markdown/aaa/spacetime/horizon-chirality.md",
-                "markdownSection": "Exterior Planar Angular-Momentum Basis",
-                "sectionKey": "exterior planar angular momentum basis",
+                "markdownSection": "Exterior Planar Circulation Basis",
+                "sectionKey": "exterior planar circulation basis",
                 "headingLevel": 2
               },
               {
@@ -4905,6 +4929,14 @@
                 "markdownSection": "Observer-Level Electroweak Closure Map (Working)",
                 "sectionKey": "observer level electroweak closure map working",
                 "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Source Notes",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md",
+                "markdownSection": "Source Notes",
+                "sectionKey": "source notes",
+                "headingLevel": 2
               }
             ]
           },
@@ -4978,6 +5010,14 @@
                 "markdownPath": "content/markdown/aaa/assemblies/gauge-symmetries.md",
                 "markdownSection": "Failure Conditions",
                 "sectionKey": "failure conditions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Source Notes",
+                "markdownPath": "content/markdown/aaa/assemblies/gauge-symmetries.md",
+                "markdownSection": "Source Notes",
+                "sectionKey": "source notes",
                 "headingLevel": 2
               }
             ]
@@ -5102,6 +5142,14 @@
                     "markdownSection": "Summary and Interfaces",
                     "sectionKey": "summary and interfaces",
                     "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Source Notes",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
+                    "markdownSection": "Source Notes",
+                    "sectionKey": "source notes",
+                    "headingLevel": 2
                   }
                 ]
               },
@@ -5147,6 +5195,14 @@
                   },
                   {
                     "kind": "markdown-section",
+                    "title": "Mass, Retention, and Lifetime",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
+                    "markdownSection": "Mass, Retention, and Lifetime",
+                    "sectionKey": "mass retention and lifetime",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
                     "title": "Weak-Reaction Provenance",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
                     "markdownSection": "Weak-Reaction Provenance",
@@ -5159,6 +5215,14 @@
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
                     "markdownSection": "`g-2` and Form-Factor Gates",
                     "sectionKey": "g 2 and form factor gates",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Source Notes",
+                    "markdownPath": "content/markdown/aaa/assemblies/fermions/muon-tau.md",
+                    "markdownSection": "Source Notes",
+                    "sectionKey": "source notes",
                     "headingLevel": 2
                   },
                   {
@@ -5197,10 +5261,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Handedness: Why the Observed Neutrino Is Left-Handed",
+                    "title": "Handedness and Weak-Channel Selection",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
-                    "markdownSection": "Handedness: Why the Observed Neutrino Is Left-Handed",
-                    "sectionKey": "handedness why the observed neutrino is left handed",
+                    "markdownSection": "Handedness and Weak-Channel Selection",
+                    "sectionKey": "handedness and weak channel selection",
                     "headingLevel": 2
                   },
                   {
@@ -5213,10 +5277,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "PMNS closure program (primary lepton integration)",
+                    "title": "PMNS Mixing as an Effective Recovery Target",
                     "markdownPath": "content/markdown/aaa/assemblies/fermions/neutrinos.md",
-                    "markdownSection": "PMNS closure program (primary lepton integration)",
-                    "sectionKey": "pmns closure program primary lepton integration",
+                    "markdownSection": "PMNS Mixing as an Effective Recovery Target",
+                    "sectionKey": "pmns mixing as an effective recovery target",
                     "headingLevel": 2
                   },
                   {

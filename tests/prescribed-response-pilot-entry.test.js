@@ -10,6 +10,7 @@ import { fileURLToPath } from 'node:url';
 import * as E from '../scripts/eom/run-prescribed-response-pilot.mjs';
 
 const ROOT=path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+await E.initializeSourceBindings(ROOT,E.sha(readFileSync(E.SOURCE_MAP)));
 const clone=value=>structuredClone(value),H='a'.repeat(64),EH='b'.repeat(64),LH='c'.repeat(64);
 function fixture(t){
   const root=realpathSync(mkdtempSync(path.join(os.tmpdir(),'prescribed-entry-controls-')));
@@ -21,7 +22,7 @@ function fixture(t){
   const originalBindings=E.ORIGINALS.map(([role,p,sha256])=>({role,path:p?path.join(root,p):pythonRealPath,originalPath:p?path.join(root,p):pythonRealPath,sha256:sha256??H,bytes:100}));
   const runtimeBindings=[{path:pythonRealPath,sha256:H,bytes:100},{path:path.join(path.dirname(path.dirname(python)),'pyvenv.cfg'),sha256:H,bytes:100}];
   const operationalBindings=[E.ENTRY,E.ENTRY_TESTS,E.LAUNCH_TESTS,E.PROCESS_TESTS,E.LAUNCHER,E.OUTER,E.PUBLISHER,'tests/test_prescribed_acceleration_response_publication.py']
-    .map(p=>({path:path.join(root,p),sha256:p===E.ENTRY?EH:p===E.LAUNCHER?LH:E.PINS[p]??H,bytes:100}))
+    .map(p=>({path:path.join(root,p),sha256:p===E.ENTRY?EH:p===E.LAUNCHER?LH:E.SOURCE_BINDINGS[p]??H,bytes:100}))
     .concat([node,'/bin/ps','/usr/bin/memory_pressure'].map(p=>({path:p,sha256:H,bytes:100})));
   const plan={schema:'braid-program/prescribed-response-pilot-launch.v2',scope:'f5-release',originalBindings,operationalBindings,
     runtimeBindings,python,pythonRealPath,node,limits:{...E.LIMITS},
@@ -40,7 +41,7 @@ function measured(){return {startedAt:'2026-08-27T12:00:00Z',elapsedSeconds:5,ex
 
 test('closed first-pilot machine plan validates metadata only',t=>{
   const f=fixture(t);assert.equal(E.validatePlan(f.plan,f.root,LH,EH),f.plan);
-  assert.equal(f.plan.originalBindings.length,19);assert.equal(E.planBindings(f.plan,f.root).length,31);
+  assert.equal(f.plan.originalBindings.length,19);assert.equal(E.planBindings(f.plan,f.root).length,47);
 });
 test('fixed original role order, paths, source hashes and complete census',t=>{
   const f=fixture(t);
@@ -83,7 +84,7 @@ test('repeated binding path may not contradict size or hash',t=>{
 test('compute command is one isolated direct Python source with fixed inputs',t=>{
   const {job,spec}=specJob(t);assert.equal(spec.command,job.plan.python);
   assert.deepEqual(spec.args.slice(0,3),['-I','-B',path.join(job.root,E.CONSUMER)]);
-  assert.equal(spec.args[spec.args.indexOf('--consumer-sha256')+1],E.PINS[E.CONSUMER]);
+  assert.equal(spec.args[spec.args.indexOf('--consumer-sha256')+1],E.SOURCE_BINDINGS[E.CONSUMER]);
   assert.equal(spec.args[spec.args.indexOf('--out-dir')+1],job.output);
   assert.equal(spec.args[spec.args.indexOf('--watcher-sha256')+1],LH);
   assert.equal(spec.args.includes('--coupling'),false);assert.equal(spec.args.includes('--strength'),false);
@@ -179,7 +180,7 @@ test('publication cannot begin from an unclosed or unauthenticated compute',()=>
 });
 test('all frozen source pins still match; entry imports no science or F6c module',()=>{
   for(const p of [E.CONSUMER,E.PUBLISHER,'tests/test_prescribed_acceleration_response_consumer.py','tests/test_prescribed_acceleration_response_publication.py',
-    'scripts/eom/oracle/prescribed_acceleration_response.py'])assert.equal(E.sha(readFileSync(path.join(ROOT,p))),E.PINS[p]);
+    'scripts/eom/oracle/prescribed_acceleration_response.py'])assert.equal(E.sha(readFileSync(path.join(ROOT,p))),E.SOURCE_BINDINGS[p]);
   const source=readFileSync(path.join(ROOT,E.ENTRY),'utf8');assert(!source.includes('evaluate_response('));
   assert(!/from ['"][^'"]*f6c/u.test(source));assert(!source.includes('proof_package('));
 });

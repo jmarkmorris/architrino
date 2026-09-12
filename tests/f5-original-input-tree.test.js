@@ -7,6 +7,8 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { captureF5OriginalInputs, prepareF5OriginalInputTree, readF5RegularBytes, verifyF5OriginalInputTree } from '../scripts/eom/prepare-f5-original-input-tree.mjs';
 
+import {SOURCE_MAP} from '../scripts/eom/f5-current-source-admission.mjs';
+const sourceMapSha256=createHash('sha256').update(readFileSync(SOURCE_MAP)).digest('hex');
 test('regular-byte capture passes a known byte and digest control before real inputs', () => {
   const dir = realpathSync(mkdtempSync(path.join(tmpdir(), 'f5-input-control-')));
   try {
@@ -44,27 +46,27 @@ test('exact original routes reject byte substitutions, false sizes and path trav
   } finally { rmSync(dir, { recursive: true }); }
 });
 
-test('missing, duplicate, wrong-identity and unsafe destinations cannot create an execution root', () => {
+test('missing, duplicate, wrong-identity and unsafe destinations cannot create an execution root', async () => {
   assert.throws(() => captureF5OriginalInputs(process.cwd(), []), /census/);
   assert.throws(() => captureF5OriginalInputs(process.cwd(), Array(5).fill({ originalPath: 'duplicate' })), /census/);
   assert.throws(() => captureF5OriginalInputs(process.cwd(), Array.from({ length: 5 }, (_, i) => ({ originalPath: String(i) }))), /identity/);
   for (const destination of ['/tmp/f5-disallowed', '.local-data/f5-original-input-trees', '.local-data/f5-original-input-trees/a/b']) {
-    assert.throws(() => prepareF5OriginalInputTree(destination), /direct child/);
+    await assert.rejects(prepareF5OriginalInputTree(destination,process.cwd(),sourceMapSha256), /direct child/);
   }
 });
 
-test('execution-root check rejects omitted census and changed captured bytes', () => {
+test('execution-root check rejects omitted census and changed captured bytes', async () => {
   const destination = `.local-data/f5-original-input-trees/mutation-control-${randomUUID()}`;
-  const record = prepareF5OriginalInputTree(destination);
+  const record = await prepareF5OriginalInputTree(destination,process.cwd(),sourceMapSha256);
   try {
-    assert.deepEqual(verifyF5OriginalInputTree(destination), record);
-    assert.throws(() => prepareF5OriginalInputTree(destination), /already exists/);
+    assert.deepEqual(await verifyF5OriginalInputTree(destination,process.cwd(),sourceMapSha256), record);
+    await assert.rejects(prepareF5OriginalInputTree(destination,process.cwd(),sourceMapSha256), /already exists/);
     const filename = path.join(destination, 'f5-original-input-tree.json');
     const omitted = structuredClone(record); omitted.files.pop();
     writeFileSync(filename, JSON.stringify(omitted));
-    assert.throws(() => verifyF5OriginalInputTree(destination), /record differs/);
+    await assert.rejects(verifyF5OriginalInputTree(destination,process.cwd(),sourceMapSha256), /record differs/);
     writeFileSync(filename, JSON.stringify(record));
     writeFileSync(path.join(destination, record.files[0].logicalPath), 'changed captured source');
-    assert.throws(() => verifyF5OriginalInputTree(destination), /file changed/);
+    await assert.rejects(verifyF5OriginalInputTree(destination,process.cwd(),sourceMapSha256), /file changed/);
   } finally { rmSync(destination, { recursive: true }); }
 });

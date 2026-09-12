@@ -24,7 +24,7 @@ The [full resource plan](../../braid-program/evidence/2026-08-27-f6c-cached-root
 
 The entry/launcher diff and retained unit controls preserve sequential consumer/comparison dispatch, the inclusive 1800-second deadline, 2 GiB aggregate RSS ceiling, at-most-one-second observation gap, 15-second heartbeat, launch minima of 40 percent free memory and 64 GiB disk, stop minima of 20 percent and 16 GiB, 64 MiB scientific-file bounds and 16 MiB log bounds. This transfer does not rerun or revise the historical timing estimate, reuse a pilot prefix, or execute the EOM solver.
 
-All three root-cover profiles now require external manifest selection in the actual launch and stage CLIs. Shared controls cover captured workers, changed/deleted source files, changed reader or graph bytes, wrong/missing digests, missing coverage and all six directed cross-profile substitutions. A rejected initialization clears prior bindings. The remaining A current-binding test covers prescribed-response and acceleration.
+All three root-cover profiles now require external manifest selection in the actual launch and stage CLIs. Shared controls cover captured workers, changed/deleted source files, changed reader or graph bytes, wrong/missing digests, missing coverage and all six directed cross-profile substitutions. A rejected initialization clears prior bindings. At this full-profile checkpoint the remaining A current-binding test covered prescribed-response and acceleration; the subsequent [paired transfer](option-b-prescribed-response-and-acceleration-cutover.md) now completes those profiles.
 
 ## Verification
 
@@ -54,6 +54,4 @@ Claim grade: measured for the stated byte comparisons and selected tests; inferr
 
 ## Continuation
 
-1. ○ Not done — migrate prescribed-response current-source admission next, retaining its independent scientific and historical obligations.
-2. ○ Not done — migrate acceleration with its own baseline and complete consumer inventory.
-3. ○ Not done — disposition scientific preparation/verifier source bindings separately before changing inherited scientific identities. The three operational transfers do not relax those controls.
+The subsequent [paired transfer](option-b-prescribed-response-and-acceleration-cutover.md) completes prescribed-response and acceleration. The [remaining migration plan](option-b-remaining-migration-plan.md) now owns B-REM-1 through B-REM-5, including scientific-source dispositions and repository-wide closeout; these transfers do not relax scientific controls.

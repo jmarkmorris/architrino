@@ -12,7 +12,7 @@ Angular momentum and spin enter this chapter only through downstream closure tar
 
 Atomic structure sits on three coupled layers. Each layer is real at its own resolution, but none of them should be mistaken for the whole atom by itself:
 
-1. **Nucleon layer:** Protons and neutrons are modeled as stable color-singlet nucleon assemblies embedded in the Noether sea.
+1. **Nucleon layer:** At the effective interface, protons and neutrons are treated as stable color-singlet nucleon assemblies embedded in the Noether sea; here `stable` denotes the observer-level nucleon record, not a certified retained architrino branch.
 2. **Residual nuclear layer:** The strong-sector interaction that matters for atoms is the short-range residual coupling between nucleons, including meson-like corridors and over-compression costs near the self-hit threshold.
 3. **Electronic resonance layer:** Atomic orbitals are standing resonance patterns of electron assemblies in the combined nuclear, Noether sea, and exclusion-volume environment.
 
@@ -357,7 +357,7 @@ where $\Delta_{\mathrm H,X}^{(\mu)}$ is the channel stability residual after per
 | Packing | Accepted neighboring-core stability range in $(R_{\parallel},R_{\perp},\lambda,\xi,\mathcal S_{\mathrm{excl}}^{ab})$ | Allowed adjacency deformation before the branch ceases to count as stable packing |
 | Penetration | Trial-path acceleration, deflection, and phase-disruption limits | Allowed path disturbance before transit through the fermion envelope becomes dynamically unstable |
 
-The corridor row is the strictest hydrogen constraint: the proton's $\mathcal L_{\mathrm{strong}}^{uud}$ contribution remains inside the matter ledger, so any corridor tolerance must also satisfy the nucleon source-envelope color test before the atomic window treats the proton as one source envelope. In acceptance-set form,
+The corridor row is a distinct hydrogen constraint: the proton's $\mathcal L_{\mathrm{strong}}^{uud}$ contribution remains inside the matter ledger, so any corridor tolerance must also satisfy the nucleon source-envelope color test before the atomic window treats the proton as one source envelope. In acceptance-set form,
 
 $$
 \mathfrak A_{\mathrm{corr,H},X}^{(\ell)}
@@ -407,7 +407,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-44d819179dd3fe83)
 
-where $R_{\mathrm{NC},f}$ is the Noether braid envelope scale of fermion $f$, $R_f$ is the fermion's effective exclusion scale including axial-layer exposure, $R_p$ is the proton color-singlet envelope scale, and $R_{\mathrm{orb}}$ is the electron resonance-envelope scale. Atomic medium calculations should use a window satisfying
+where $R_{\mathrm{NC},f}$ is the Noether braid envelope scale of fermion $f$, $R_{u,d}$ denotes the declared effective envelope scale of the up- and down-type quark branches rather than an observer-level measured quark radius, $R_f$ is the fermion's effective exclusion scale including axial-layer exposure, $R_p$ is the proton color-singlet envelope scale, and $R_{\mathrm{orb}}$ is the electron resonance-envelope scale. Atomic medium calculations should use a window satisfying
 
 $$
 d_N\ll \ell_{\mathrm{atom}}\ll R_{\mathrm{orb}}
@@ -563,7 +563,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7ef347c3168ac3c3)
 
-The spectral, clock, and transport channels normally start in $I_X^{\mathrm{atom}}$, because they read the electron envelope and the surrounding Noether sea response. Proton-sensitive corridor, packing, or penetration tests may require $I_X^{p}$, but then the color-singlet proton source envelope $\mathcal W_{p,X}^{\mathrm{locked}}$ must still be recovered before returning to the atomic window. The scan fails if the chosen $\ell$ averages away the electron envelope in a spectral calculation or resolves the proton into free quark assemblies in an atomic calculation.
+For the remainder of this scan, $I_X$ denotes the one declared window selected for channel $X$: $I_X=I_X^{\mathrm{atom}}$ or $I_X=I_X^{p}$. The spectral, clock, and transport channels normally start in $I_X^{\mathrm{atom}}$, because they read the electron envelope and the surrounding Noether sea response. Proton-sensitive corridor, packing, or penetration tests may require $I_X^{p}$, but then the color-singlet proton source envelope $\mathcal W_{p,X}^{\mathrm{locked}}$ must still be recovered before returning to the atomic window. The scan fails if the chosen $\ell$ averages away the electron envelope in a spectral calculation or resolves the proton into free quark assemblies in an atomic calculation.
 
 For every accepted $\ell\in I_X$, the extracted response is the channel map
 
@@ -881,4 +881,4 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e9fb2dc00f6f1d8f)
 
-tests azimuthal single-valuedness, $\Delta_{\Omega}$ tests the angular operator against $\ell(\ell+1)$ and $m$, $\Delta_{\ell m}$ enforces $\ell\in\mathbb N_0$, $m\in\mathbb Z$, and $|m|\le\ell$, and $\Delta_{\mathrm{int}}$ checks that the observer-level orbital envelope has not been mistaken for the internal Noether braid spin ledger. The orbital packet is promotable only when all five entries pass for the same envelope branch, with $\mathcal R_{\mathrm{env}}$ understood as the bundled first entry rather than one scalar residual.
+tests azimuthal single-valuedness, $\Delta_{\Omega}$ is the declared angular-operator residual against $\ell(\ell+1)$ and $m$, $\Delta_{\ell m}$ is the label-domain residual enforcing $\ell\in\mathbb N_0$, $m\in\mathbb Z$, and $|m|\le\ell$, and $\Delta_{\mathrm{int}}$ is the ledger-separation check that the observer-level orbital envelope has not been mistaken for the internal Noether braid spin ledger; their exact normalization and tolerances remain part of the recovery target. The orbital packet is promotable only when all five entries pass for the same envelope branch, with $\mathcal R_{\mathrm{env}}$ understood as the bundled first entry rather than one scalar residual.

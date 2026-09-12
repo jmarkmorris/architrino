@@ -19,8 +19,8 @@ This file is not the authority. If this file conflicts with a source file, the s
 | --- | --- | --- | --- |
 | Default thread startup | Choose the smallest live procedure that fits the requested work, then read only the linked files needed for that procedure. | [reference/op/brainstorming.md](brainstorming.md)<br>[reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md)<br>selected specialized procedure | Use the live source files when the task asks about policy, exact command order, branch state, validation, or source authority. |
 | Principal Investigator research | Launch one Principal Investigator with a bounded brief, then select only the role-based Specialists needed for independent research or implementation. | [reference/office-of-research/cto/prompts/start-pi.md](../office-of-research/cto/prompts/start-pi.md)<br>[reference/office-of-research/cto/prompts/start-research.md](../office-of-research/cto/prompts/start-research.md)<br>relevant Foundations and live owner files | Check active task status before dispatch, preserve claim boundaries, and treat every role as an analytical lens rather than theory or acceptance authority. |
-| Corpus convergence | Move the corpus toward current canon by turning priority, source, or corpus signals into concrete mathematical artifacts and safe scoped edits when authority allows. | [reference/office-of-research/cto/prompts/convergence-campaign.md](../office-of-research/cto/prompts/convergence-campaign.md)<br>[reference/op/theory-orientation.md](theory-orientation.md)<br>relevant priority or corpus files | Read the full protocol before running a campaign, because it owns modes, edit authority, handoff shape, and priority action prompts. |
-| Source mining | Acquire and map source material into current AAA terminology, claim levels, proof routes, and corpus or priority destinations. | [content/markdown/aaa/archie/about-architrino.md](../../content/markdown/aaa/archie/about-architrino.md)<br>[reference/office-of-research/cto/prompts/convergence-campaign.md](../office-of-research/cto/prompts/convergence-campaign.md)<br>[reference/op/source-mining-best-practice.md](source-mining-best-practice.md)<br>source-family addendum | About Architrino owns reference selection, presentation, and source-checking policy; use the mining guide for acquisition, traceability, and source-family procedures. |
+| Corpus convergence | Move the corpus toward current canon by turning priority, source, or corpus signals into concrete mathematical artifacts and safe scoped edits when authority allows. | [reference/op/skills/skill-architrino-converge.md](skills/skill-architrino-converge.md)<br>[reference/office-of-research/cto/prompts/convergence-campaign.md](../office-of-research/cto/prompts/convergence-campaign.md)<br>[reference/op/theory-orientation.md](theory-orientation.md)<br>relevant priority or corpus files | Enter through the skill owner so its exclusions apply, then read the full protocol before running a campaign, because it owns modes, edit authority, handoff shape, and priority action prompts. |
+| Source mining | Acquire and map source material into current AAA terminology, claim levels, proof routes, and corpus or priority destinations. | [reference/op/skills/skill-architrino-sources.md](skills/skill-architrino-sources.md)<br>[content/markdown/aaa/archie/about-architrino.md](../../content/markdown/aaa/archie/about-architrino.md)<br>[reference/office-of-research/cto/prompts/convergence-campaign.md](../office-of-research/cto/prompts/convergence-campaign.md)<br>[reference/op/source-mining-best-practice.md](source-mining-best-practice.md)<br>source-family addendum | Enter through the skill owner so bounded verification is not widened into mining; About Architrino owns reference selection, presentation, and source-checking policy; use the mining guide for acquisition, traceability, and source-family procedures. |
 | Corpus review | Prepare a review-only pass across a directory in scene or textbook order, one file per turn. | [reference/office-of-research/cto/prompts/corpus-reviewer.md](../office-of-research/cto/prompts/corpus-reviewer.md)<br>[content/markdown/aaa/archie/about-architrino.md](../../content/markdown/aaa/archie/about-architrino.md)<br>[reference/op/theory-orientation.md](theory-orientation.md)<br>style and terminology guides listed by the prompt | Read the live target file and nearby canon before raising file-specific findings. |
 | Review comment integration | Classify review comments, integrate the valid ones, perform a full-document editorial self-review, and stage larger issues in priorities. Independent validation requires a separate mathematical reference or instrument. | [reference/office-of-research/cto/prompts/integrator-reviewer.md](../office-of-research/cto/prompts/integrator-reviewer.md)<br>target document<br>nearby corpus and style authorities | Review comments are input, not authority; verify against live canon before editing. |
 | Priority lane resume | Resume a named priority workstream from live state and make the next scoped progress step. | [reference/office-of-research/cto/prompts/priority-lane-resume.md](../office-of-research/cto/prompts/priority-lane-resume.md)<br>[reference/priorities/README.md](../priorities/README.md)<br>priorities.md, work-queue.md, brainstorming.md, and work-log.md | Do not rely on memory for queue state; read work-queue.md and its owning packet. |
@@ -69,23 +69,23 @@ Regenerate it only during explicit regeneration, fix-drift, or final branch/PR f
 node scripts/build-agent-startup-orientation.mjs --write
 ```
 
-The full content-integrity gate includes this check.
+The full content-integrity gate includes this check. The check fails only when the workflow cards, standing rules, prompt index, or a linked path changes; the fingerprint table below is informational and is refreshed at regeneration.
 
 ## Source Fingerprints
 
-A source hash change means this target should be regenerated and then skimmed for whether the compact guidance still reflects the live policy.
+A changed hash means a startup source was edited after the last regeneration. It does not fail `--check`; skim the affected card when regenerating during the branch/PR process.
 
 | Source | Lines | SHA-256 |
 | --- | ---: | --- |
-| [AGENTS.md](../../AGENTS.md) | 167 | `1a14cc71599af87c` |
-| [README.md](../../README.md) | 220 | `36a303599a5a3c02` |
+| AGENTS.md | 167 | `1a14cc71599af87c` |
+| README.md | 220 | `36a303599a5a3c02` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 24 | `ea8da8bb87d4206f` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 38 | `3666ac9286628a8e` |
-| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 295 | `f5bd80f66dd3b88c` |
-| [reference/op/brainstorming.md](brainstorming.md) | 380 | `da4b2d965e309e0d` |
+| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 299 | `b94c00b595b18930` |
+| [reference/op/brainstorming.md](brainstorming.md) | 380 | `a64f54974e729b23` |
 | [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 208 | `328459c22faedf60` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 190 | `2c685c5e25ca8643` |
-| [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 101 | `7c4b39325bf1840d` |
+| [reference/op/codex-multiprompt.md](codex-multiprompt.md) | 101 | `ff8827802d4bd427` |
 | [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `6e7d85fadab80fc0` |
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 60 | `421e58e6c3ced0d5` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `aea014967bca3b04` |
@@ -94,7 +94,7 @@ A source hash change means this target should be regenerated and then skimmed fo
 | [reference/office-of-research/cto/prompts/README.md](../office-of-research/cto/prompts/README.md) | 64 | `44455776ef041094` |
 | [reference/office-of-research/cto/prompts/start-pi.md](../office-of-research/cto/prompts/start-pi.md) | 72 | `4e0ff61a310d3916` |
 | [reference/office-of-research/cto/prompts/start-research.md](../office-of-research/cto/prompts/start-research.md) | 104 | `ad41a664553d2087` |
-| [reference/office-of-research/cto/prompts/convergence-campaign.md](../office-of-research/cto/prompts/convergence-campaign.md) | 575 | `8a7b0a0d05f9197b` |
+| [reference/office-of-research/cto/prompts/convergence-campaign.md](../office-of-research/cto/prompts/convergence-campaign.md) | 573 | `d3862ed8934251e4` |
 | [reference/office-of-research/cto/prompts/corpus-reviewer.md](../office-of-research/cto/prompts/corpus-reviewer.md) | 108 | `07d11f4dadb19c19` |
 | [reference/office-of-research/cto/prompts/selective-reference-pass.md](../office-of-research/cto/prompts/selective-reference-pass.md) | 65 | `fdb289ec504b8176` |
 | [reference/office-of-research/cto/prompts/integrator-reviewer.md](../office-of-research/cto/prompts/integrator-reviewer.md) | 113 | `7c21c30e5018aeb5` |

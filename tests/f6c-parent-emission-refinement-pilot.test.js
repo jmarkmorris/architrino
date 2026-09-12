@@ -23,7 +23,8 @@ test('fixed math census/limits and source pins remain unchanged',()=>{
  assert.deepEqual(B.CENSUS,{cells:1,members:8,queries:3584,pairRows:64,ordinaryPairs:56,selfZeros:8,pieceRecords:112});
  assert.deepEqual(B.ALGORITHM,{lowerQueriesPerPair:32,upperQueriesPerPair:32,upperSearchRestartsFromOriginal:true,receptionSubdivision:false,automaticRetry:false});
  for(const name of ['proposalReference','comparisonReference']){const[p,h]=B.NAMED[name];assert.equal(sha(readFileSync(path.join(root,p))),h);}
- assert.equal(sha(readFileSync(path.join(root,B.COORDINATOR[0]))),B.COORDINATOR[1]);
+ const selected=JSON.parse(readFileSync(path.join(root,'reference/priorities/development-process-review/contracts/option-b-f6c-bounded-operation-sources.jsonld')))['@graph'].find(r=>r.role==='admission').binding;
+ assert.equal(B.COORDINATOR,selected.path);assert.equal(sha(readFileSync(path.join(root,B.COORDINATOR))),selected.sha256);
  assert.ok(Object.values(B.CLAIMS).every(v=>v===false));
 });
 test('closed JSON parser rejects duplicate keys/trailing syntax/unsafe integers',()=>{

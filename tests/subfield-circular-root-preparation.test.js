@@ -13,7 +13,7 @@ test("sub-field circular build preparation accepts only a fresh scoped directory
   assert.throws(() => parsePrepareSubfieldCircularArgs(["--out", ".tmp/subfieldCircular-build"]));
   assert.throws(() => parsePrepareSubfieldCircularArgs(["--out", ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/../escape"]));
   assert.throws(() => parsePrepareSubfieldCircularArgs(["--out", "x", "--run", "yes"]), /Usage/u);
-  assert.equal(parsePrepareSubfieldCircularArgs(["--out", ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/control"]),
+  assert.equal(parsePrepareSubfieldCircularArgs(["--out", ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/control","--self-sha256","a".repeat(64),"--source-map-sha256","b".repeat(64)]),
     path.join(root, ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/control"));
 });
 

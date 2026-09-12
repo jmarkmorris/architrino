@@ -20,6 +20,7 @@ function entrySource(mode){
     "import{spawn}from'node:child_process';import{mkdirSync,readFileSync,realpathSync}from'node:fs';import path from'node:path';import{fileURLToPath}from'node:url';",
     'import * as U from '+JSON.stringify(pathToFileURL(path.join(root,entryPath)).href)+';',
     'export const LANE='+JSON.stringify(lane)+';export const clean=U.clean,readBound=U.readBound,writeNew=U.writeNew,equal=U.equal,EXECUTION_SCOPE=U.EXECUTION_SCOPE,FALSE_CLAIMS=U.FALSE_CLAIMS;',
+  'export async function initializeSourceBindings(){};export const SOURCE_BINDINGS='+JSON.stringify({'scripts/eom/launch-subfield-circular-root-pilot.mjs':digest(outer)})+';', // Synthetic transport fixture only.
     'export function fileOperation(job){',
     " if(job.kind==='preflight')return{plan:{node:realpathSync(process.execPath)},planBinding:{path:job.planPath,sha256:job.planSha256,bytes:1},sources:[]};",
     " if(job.kind==='recheck')return U.checkBindings(job.sources);",
@@ -62,7 +63,7 @@ async function runFixture(mode){
   const sigint=process.listenerCount('SIGINT'),sigterm=process.listenerCount('SIGTERM');
   try{
     const module=await import('data:text/javascript;base64,'+self.toString('base64')),began=performance.now();
-    const operation=module.launchCaptured({root:dir,options:{output:data,plan:path.join(dir,'fake-plan'),planSha256:'1'.repeat(64),launcherSha256:digest(self)},
+    const operation=module.launchCaptured({root:dir,options:{output:data,plan:path.join(dir,'fake-plan'),planSha256:'1'.repeat(64),launcherSha256:digest(self),sourceMapSha256:'2'.repeat(64)},
       self:{path:path.join(root,'scripts/eom/launch-prescribed-response-pilot.mjs'),sha256:digest(self),bytes:self.length,data:self},
       entry:{path:path.join(dir,entryPath),sha256:digest(entry),bytes:entry.length,data:entry},outerBytes:outer,began,
       deadlineNanoseconds:String(process.hrtime.bigint()+1800000000000n)});

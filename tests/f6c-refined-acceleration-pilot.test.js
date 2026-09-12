@@ -12,7 +12,9 @@ import * as E from '../scripts/eom/run-f6c-refined-acceleration-pilot.mjs';
 import * as L from '../scripts/eom/launch-f6c-refined-acceleration-pilot.mjs';
 import {materializeSourceReplay} from '../scripts/dev/materialize-source-replay.mjs';
 const root=realpathSync(process.cwd()),hash=b=>createHash('sha256').update(b).digest('hex'),H='a'.repeat(64);
-const helperBytes=readFileSync(E.HELPERS),helpers=await L.reviewedHelpers(helperBytes);
+const selected=await E.initializeSourceBindings(root,hash(readFileSync(E.SOURCE_MAP)));
+const operational=Object.fromEntries(selected.sources.map(b=>[path.relative(root,b.path),{path:path.relative(root,b.path),sha256:b.sha256,bytes:b.bytes}]));
+const helperBytes=readFileSync(E.HELPERS),helpers=await L.reviewedHelpers(helperBytes,E.SOURCE_BINDINGS[E.HELPERS]);
 const python=path.resolve(process.env.AAA_VENV??path.join(root,'../.venv'),'bin/python');
 const pythonReal=realpathSync(python),node=realpathSync(process.execPath),git='/synthetic/git';
 const binding=(p,sha256=H,bytes=1)=>({path:p,sha256,bytes});
@@ -22,7 +24,7 @@ function directory(){const dir=realpathSync(mkdtempSync(path.join(tmpdir(),'f6c-
 function planFixture(){return {schema:'braid-program/f6c-refined-acceleration-launch.v1',scope:E.SCOPE,
  ...Object.fromEntries(Object.entries(E.NAMED).map(([k,p])=>[k,binding(p,E.PINS[p])])),
  runtimeBindings:[binding(pythonReal),binding(path.join(path.dirname(path.dirname(python)),'pyvenv.cfg')),binding(git)],
- operationalBindings:[E.ENTRY,E.LAUNCHER,E.TESTS,E.PROCESS_TESTS,E.HELPERS,E.OUTER,'/bin/ps','/usr/bin/memory_pressure',node].map(p=>binding(p,E.PINS[p]??H)),
+ operationalBindings:[E.ENTRY,E.LAUNCHER,E.TESTS,E.PROCESS_TESTS,E.HELPERS,E.OUTER,'/bin/ps','/usr/bin/memory_pressure',node].map(p=>operational[p]??binding(p,E.PINS[p]??H)),
  limits:{...E.LIMITS},priorRefinementClosure:{...E.PRIOR_CLOSURE}};}
 
 test('historical scientific implementation/control pins retain their exact source generation',()=>{
@@ -30,8 +32,9 @@ test('historical scientific implementation/control pins retain their exact sourc
   const replay=path.join(parent,'root');
   try {
   materializeSourceReplay({rootDir:root,manifest:JSON.parse(readFileSync('reference/priorities/braid-program/evidence/source-replay/f6c-refined-source-replay.v1.json','utf8')),outputDir:replay});
-  for(const p of [...Object.values(E.NAMED),E.HELPERS,E.OUTER,...E.FIXED.filter(([,p])=>!p.startsWith('.local-data')).map(([,p])=>p)])
-    assert.equal(hash(readFileSync(path.join(replay,p))),E.PINS[p],p);
+  for(const p of [...Object.values(E.NAMED),...E.FIXED.filter(([,p])=>!p.startsWith('.local-data')).map(([,p])=>p)])
+    assert.equal(hash(readFileSync(path.join(replay,p))),(E.SOURCE_BINDINGS[p]??E.PINS[p]),p);
+  for(const [p,h]of [[E.HELPERS,'f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31'],[E.OUTER,'35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826']])assert.equal(hash(readFileSync(path.join(replay,p))),h,'retained historical helper '+p);
   assert.equal(E.FIXED.length,16);assert.equal(E.CHECKER_SHA,'e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae');
   } finally {rmSync(parent,{recursive:true,force:true});}
 });
@@ -39,12 +42,12 @@ test('closed plan has no invented runtime/default fields and exact operational c
   const plan=planFixture();
   // The Git path is explicit and checked against its real filesystem identity.
   const actualGit=realpathSync('/usr/bin/git');plan.runtimeBindings[2]=binding(actualGit);
-  assert.equal(E.validatePlan(plan,root,H,H,python,actualGit),plan);
+  assert.equal(E.validatePlan(plan,root,E.SOURCE_BINDINGS[E.LAUNCHER],E.SOURCE_BINDINGS[E.ENTRY],python,actualGit),plan);
   for(const mutate of [p=>p.limits.inclusiveSeconds++,p=>p.scope='full',p=>p.python=python,
     p=>p.consumer.sha256=H,p=>p.verifier.sha256=H,p=>p.priorRefinementClosure.exitCode=false,
     p=>p.operationalBindings.pop(),p=>p.operationalBindings.push(p.operationalBindings[0]),
     p=>p.runtimeBindings.splice(1,1),p=>p.priorRefinementClosure.independentAuditAccepted=false]){
-    const changed=structuredClone(plan);mutate(changed);assert.throws(()=>E.validatePlan(changed,root,H,H,python,actualGit));
+    const changed=structuredClone(plan);mutate(changed);assert.throws(()=>E.validatePlan(changed,root,E.SOURCE_BINDINGS[E.LAUNCHER],E.SOURCE_BINDINGS[E.ENTRY],python,actualGit));
   }
   const rows=E.FIXED.map(([,p,h])=>({path:path.join(root,p),sha256:h}));assert.equal(E.mergeBindings([...rows,...rows]).length,16);
 });
@@ -61,7 +64,7 @@ test('bounded source read and write preserve exact bytes and reject symlink/over
   assert.throws(()=>L.captureBootstrapSource(p,H));
 });
 test('pure helper capture refuses changed bytes and exposes only operational functions used here',async()=>{
-  await assert.rejects(L.reviewedHelpers(Buffer.concat([helperBytes,Buffer.from('\n')])));
+  await assert.rejects(L.reviewedHelpers(Buffer.concat([helperBytes,Buffer.from('\n')]),E.SOURCE_BINDINGS[E.HELPERS]));
   for(const name of ['selectOwnedRows','acceptRSS','parseHostResource','runFileWorker','reserveLock','releaseLock','flushCompletion'])assert.equal(typeof helpers[name],'function');
 });
 test('data/outer siblings are distinct and stage CLI preserves original candidate and deadline',()=>{
@@ -231,7 +234,7 @@ test('shared exclusion recognizes old/cached/full/root/range and both F5 stages'
   }
 });
 test('explicit runtime launch options reject extras missing values unsafe hash and traversal',()=>{
-  const args=['--out','child','--plan','plan','--plan-sha256',H,'--launcher-sha256',H,'--entry-sha256',H,'--python',python,'--git-binary','/usr/bin/git'];
+  const args=['--out','child','--plan','plan','--plan-sha256',H,'--launcher-sha256',H,'--entry-sha256',H,'--python',python,'--git-binary','/usr/bin/git','--source-map-sha256',selected.sourceMap.sha256];
   assert.equal(L.parseArgs(args).python,python);assert.throws(()=>L.parseArgs(args.concat('--extra','x')));assert.throws(()=>L.parseArgs(args.slice(0,-2)));
   const bad=[...args];bad[1]='../child';assert.throws(()=>L.parseArgs(bad));
 });

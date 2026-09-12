@@ -5,7 +5,33 @@ import { createHash } from "node:crypto";
 import { closeSync, existsSync, mkdirSync, openSync, readFileSync, realpathSync, writeFileSync, writeSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { runWatched, scopedPath, validateProofReceipt, verifyFrozenReferences } from "./prepare-f5-enclosed-root.mjs";
+import * as f5Fs from "node:fs";
+import * as f5Crypto from "node:crypto";
+// Bootstrap uses Node builtins only; no repository module runs before selection.
+export async function bootstrapF5(root, sourceMapSha256, originalIdentities = {}) {
+  if (!/^[a-f0-9]{64}$/u.test(sourceMapSha256 ?? "")) throw Error("externally selected F5 source-map digest required");
+  const capture = (filename, expected) => {
+    if (f5Fs.realpathSync(filename) !== filename) throw Error("canonical F5 bootstrap source required");
+    const fd = f5Fs.openSync(filename, f5Fs.constants.O_RDONLY | f5Fs.constants.O_NOFOLLOW | f5Fs.constants.O_NONBLOCK);
+    try {
+      const before = f5Fs.fstatSync(fd, {bigint:true});
+      const identity = s => [s.dev,s.ino,s.size,s.mtimeNs,s.ctimeNs].join(":");
+      if (!before.isFile() || before.size <= 0n || before.size > 1024n**2n) throw Error("bounded F5 bootstrap source");
+      const data = f5Fs.readFileSync(fd), sha256 = f5Crypto.createHash("sha256").update(data).digest("hex");
+      if (sha256 !== expected || identity(before) !== identity(f5Fs.fstatSync(fd,{bigint:true})) || identity(before) !== identity(f5Fs.lstatSync(filename,{bigint:true}))) throw Error("F5 bootstrap source digest/original identity changed");
+      if (Object.hasOwn(originalIdentities,filename) && originalIdentities[filename] !== identity(before)) throw Error("F5 original bootstrap identity changed");
+      return {data,identity:identity(before),path:filename};
+    } finally {f5Fs.closeSync(fd);}
+  };
+  const mapPath = path.join(root,"reference/priorities/development-process-review/contracts/option-b-f5-operational-sources.jsonld");
+  const map = capture(mapPath,sourceMapSha256), admissionPath = "scripts/eom/f5-current-source-admission.mjs";
+  const rows = JSON.parse(map.data)["@graph"]?.filter(r=>r.role==="admission"&&r.binding?.path===admissionPath);
+  if (rows?.length !== 1 || !/^[a-f0-9]{64}$/u.test(rows[0].binding.sha256)) throw Error("exact F5 admission module selection required");
+  const helper = capture(path.join(root,admissionPath),rows[0].binding.sha256);
+  const module = await import("data:text/javascript;base64,"+helper.data.toString("base64"));
+  return module.admitF5Sources(root,sourceMapSha256,{...originalIdentities,[map.path]:map.identity,[helper.path]:helper.identity});
+}
+
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const BASE = ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/";
@@ -160,12 +186,12 @@ export function validateLedgerReceipt(checked, { manifestBinding, manifest, pack
 export function parseRunArgs(argv) {
   const result = {};
   for (let i = 0; i < argv.length; i += 2) {
-    if (!["--preparation", "--api-proof", "--out"].includes(argv[i]) || !argv[i + 1] || result[argv[i]]) {
+    if (!["--preparation", "--api-proof", "--out", "--source-map-sha256"].includes(argv[i]) || !argv[i + 1] || result[argv[i]]) {
       throw new Error("Usage: --preparation FILE --api-proof FILE --out NEW-RUN-DIRECTORY");
     }
     result[argv[i]] = argv[i + 1];
   }
-  if (Object.keys(result).length !== 3) throw new Error("preparation, API proof, and fresh output directory are required");
+  if (Object.keys(result).length !== 4 || !/^[a-f0-9]{64}$/u.test(result["--source-map-sha256"] ?? "")) throw new Error("preparation, API proof, and fresh output directory are required");
   return result;
 }
 
@@ -224,6 +250,8 @@ function readNdjson(filename) {
 
 export async function runF5(argv, { admitCurrentBuild } = {}) {
   const args = parseRunArgs(argv);
+  const operational = await bootstrapF5(ROOT, args["--source-map-sha256"]);
+  const {runWatched,scopedPath,validateProofReceipt,verifyFrozenReferences} = await operational.importModule("scripts/eom/prepare-f5-enclosed-root.mjs");
   const preparationPath = scopedPath(args["--preparation"], BASE);
   const apiPath = scopedPath(args["--api-proof"], BASE);
   const output = scopedPath(args["--out"], BASE);
@@ -266,10 +294,14 @@ export async function runF5(argv, { admitCurrentBuild } = {}) {
   mkdirSync(path.dirname(output), { recursive: true }); mkdirSync(output);
   const receipt = { schema: "braid-program/f5-enclosed-root-run.v1", campaignId: preparation.campaignId,
     runId: preparation.runId, startedAt: new Date().toISOString(), status: "incomplete", h3EvidenceEligible: false,
+    sourceMap: operational.sourceMap, operationalSources: operational.sources,
     dependencies, stages: [], rungs: [], runtimePremises: ["finite IEEE binary64 nearest rounding", "gradual underflow"],
     authority: "prescribed-root evidence only; independent final review required; no ordinary evolution or physical claim" };
-  const watched = (stage, command, commandArgs, limitMs = 1800000) => runWatched(command, commandArgs,
-    { stage, logPath: path.join(output, `${stage}.log`), limitMs });
+  const watched = async (stage, command, commandArgs, limitMs = 1800000) => {
+    operational.recheck();
+    const result = await runWatched(command, commandArgs, {stage,logPath:path.join(output, `${stage}.log`),limitMs});
+    operational.recheck();return result;
+  };
   try {
     const compilerPath = path.join(output, "resolved-compiler.json"), compilerBinding = writeJson(compilerPath, actualCompiler);
     const reviewedBuildPath = path.join(output, "reviewed-build.json");
@@ -341,11 +373,13 @@ export async function runF5(argv, { admitCurrentBuild } = {}) {
     if (error.projectedFinalRungSeconds) receipt.projectedFinalRungSeconds = error.projectedFinalRungSeconds;
     throw error;
   } finally {
+    operational.recheck();
     receipt.finishedAt = new Date().toISOString(); writeJson(path.join(output, "run.json"), receipt);
+    operational.recheck();
     console.log(JSON.stringify({ status: receipt.status, output: relative(output), h3EvidenceEligible: false }));
   }
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (import.meta.url.startsWith("file:") && !new URL(import.meta.url).search && process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   runF5(process.argv.slice(2)).catch((error) => { console.error(error.message); process.exitCode = 1; });
 }

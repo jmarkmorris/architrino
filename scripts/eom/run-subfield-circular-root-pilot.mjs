@@ -1,12 +1,32 @@
 // Serial subject-side composition. Only the frozen, fresh ledger CLI supplies
 // mathematical phase acceptance. This pilot never supplies H3 authorization.
 import { createHash, randomUUID } from "node:crypto";
-import { closeSync, constants, existsSync, fstatSync, mkdirSync, openSync, readSync,
+import { closeSync, constants, existsSync, fstatSync, lstatSync, mkdirSync, openSync, readSync,
   realpathSync, writeFileSync } from "node:fs";
 import { registerHooks } from "node:module";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { Worker } from "node:worker_threads";
+import { readFileSync } from 'node:fs';
+async function circularAdmission(root,digest,originalBindings=[]) {
+  if (!/^[a-f0-9]{64}$/u.test(digest??'')) throw Error('externally selected circular source-map digest required');
+  const initial=[...originalBindings];
+  const capture=(filename,expected)=>{
+    if(realpathSync(filename)!==filename)throw Error('canonical circular bootstrap source required');
+    const fd=openSync(filename,constants.O_RDONLY|constants.O_NOFOLLOW|constants.O_NONBLOCK);
+    try{const before=fstatSync(fd);if(!before.isFile()||before.size>2*1024**2)throw Error('bounded circular bootstrap source required');
+      const data=readFileSync(fd),after=fstatSync(fd);
+      if(data.length!==before.size||['dev','ino','size','mtimeMs','ctimeMs'].some(key=>before[key]!==after[key])||createHash('sha256').update(data).digest('hex')!==expected)throw Error('circular bootstrap source differs');
+      initial.push({path:filename,sha256:expected,identity:Object.fromEntries(['dev','ino','size','mtimeMs','ctimeMs'].map(key=>[key,before[key]]))});
+      return data;
+    }finally{closeSync(fd);}
+  };
+  const raw=capture(path.join(root,'reference/priorities/development-process-review/contracts/option-b-circular-sources.jsonld'),digest);
+  const rows=JSON.parse(raw)['@graph']?.filter(row=>row['@type']==='Source'&&row.role==='admission');
+  if(rows?.length!==1||rows[0].binding.path!=='scripts/eom/run-current-subfield-circular-root-pilot.mjs')throw Error('circular admission entry differs');
+  const module=await import('data:text/javascript;base64,'+capture(path.join(root,rows[0].binding.path),rows[0].binding.sha256).toString('base64'));
+  return module.loadCircularSourceMap(root,digest,initial);
+}
 
 const SELF = "scripts/eom/run-subfield-circular-root-pilot.mjs";
 const BASE = ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/";
@@ -19,9 +39,6 @@ const LEDGER = "src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.m
 const LEDGER_CLI = "scripts/eom/reduce-subfield-circular-root-ledger.mjs";
 const PROOF = "scripts/eom/verify-subfield-circular-history.mjs";
 const PINS = Object.freeze({
-  [HELPER]: "15a844adc1731a6ea47f0636f86d9e0d7196d6b15dd963006a278c129cc328f1",
-  [BRIDGE]: "00cd8290a9929e0e099c91aeff03c52cf06ec5d9cad329ffad00092c61815e02",
-  [WATCH]: "3431be1ca2f17474775572358baa88eae8de3ce93403d58e4b1fa36d9e367d50",
   [LEDGER]: "6dabe54a991ccd7a8c1ca5da41139c0669e62f521d17fff4c9a0c52b51b2dda9",
   [LEDGER_CLI]: "2b3eb236b561c1901e6dfc58603f97f1104fc045e79d2d7a10d8879da02fd60a",
   [PROOF]: "b2fc83aa828ac9f175d7c3ae7bf43b66fcda54a702de6f2f80812852aebd5f38",
@@ -54,10 +71,13 @@ function regularBytes(filename, maximum = MAX_FILE) {
 }
 
 function bind(root, record) {
-  const filename = absolute(root, record.path), fd = openSync(filename, constants.O_RDONLY | constants.O_NONBLOCK);
+  const filename = absolute(root, record.path);
+  if (record.identity) demand(realpathSync(filename)===filename,'canonical circular binding required');
+  const fd = openSync(filename, constants.O_RDONLY | constants.O_NONBLOCK);
   let actual;
   try {
     const before = fstatSync(fd), digest = createHash("sha256"), buffer = Buffer.allocUnsafe(65536);
+    if (record.identity) demand(Object.entries(record.identity).every(([key,value])=>before[key]===value),'original circular binding identity changed');
     demand(before.isFile() && before.size <= 2 * 1024 ** 3, `bounded regular binding file required: ${filename}`);
     let length = 0;
     for (;;) {
@@ -69,6 +89,12 @@ function bind(root, record) {
     const after = fstatSync(fd);
     demand(length === before.size && after.size === before.size && after.mtimeMs === before.mtimeMs &&
       after.ctimeMs === before.ctimeMs, `binding changed while reading: ${filename}`);
+    if (record.identity) {
+      const current = lstatSync(filename);
+      demand(current.isFile() && realpathSync(filename) === filename &&
+        ['dev','ino','size','mtimeMs','ctimeMs'].every(key => current[key] === record.identity[key]),
+        'original circular binding path identity changed');
+    }
     actual = { path: record.path, realPath: realpathSync(filename), sha256: digest.digest("hex"), bytes: length };
   } finally { closeSync(fd); }
   for (const field of ["sha256", "realPath", "bytes"]) {
@@ -81,16 +107,16 @@ export function parsePilotArgs(argv) {
   const result = {};
   for (let index = 0; index < argv.length; index += 2) {
     const flag = argv[index], value = argv[index + 1];
-    demand(["--out", "--runner-sha256"].includes(flag) && value && !value.startsWith("--") && !result[flag],
+    demand(["--out", "--runner-sha256", "--source-map-sha256", "--source-identities"].includes(flag) && value && value.length<=65536 && !value.startsWith("--") && !result[flag],
       "usage: --out NEW-SUBFIELD-CIRCULAR-DIRECTORY --runner-sha256 REVIEWED-SHA256");
     result[flag] = value;
   }
-  demand(typeof result["--out"] === "string" && /^[0-9a-f]{64}$/u.test(result["--runner-sha256"] ?? ""),
+  demand(typeof result["--out"] === "string" && ["--runner-sha256","--source-map-sha256"].every(key=>/^[0-9a-f]{64}$/u.test(result[key] ?? "")),
     "new output directory and externally reviewed runner SHA-256 are required");
   const output = result["--out"];
   demand(output.startsWith(BASE) && output.length > BASE.length && !path.isAbsolute(output) && !output.includes("\\") &&
     output.split("/").every(part => part && part !== "." && part !== ".."), "output must be a new relative child of the sub-field circular run lane");
-  return { output, runnerSha256: result["--runner-sha256"] };
+  return { output, runnerSha256: result["--runner-sha256"], sourceMapSha256: result["--source-map-sha256"], ...(result['--source-identities']?{sourceIdentities:JSON.parse(Buffer.from(result['--source-identities'],'base64'))}:{}) };
 }
 
 export function pilotSchedule() {
@@ -270,6 +296,10 @@ export function installPilotSnapshot(sources, root) {
 }
 
 export async function runSerialSubfieldCircularPilot({ root, options, sources, runtime, startedAtMs = performance.now(), startedAt = new Date().toISOString() }) {
+  const admission = await circularAdmission(root,options.sourceMapSha256,options.sourceIdentities??sources);
+  demand(options.runnerSha256 === admission.source(SELF).sha256, 'runner differs from circular source selection');
+  for (const [relative,digest] of Object.entries(PINS)) demand(admission.source(relative).sha256===digest, `frozen scientific source differs: ${relative}`);
+  demand(admission.sources.every(expected=>sources.some(row=>row.path===expected.path && row.sha256===expected.sha256 && sha(row.bytes)===expected.sha256)), 'complete admitted circular runtime sources required');
   const began = startedAtMs, abort = new AbortController();
   const elapsed = () => (performance.now() - began) / 1000;
   const remaining = () => {
@@ -283,7 +313,7 @@ export async function runSerialSubfieldCircularPilot({ root, options, sources, r
   const receipt = { schema: "braid-program/subfield-circular-serial-cost-pilot.v1", status: "incomplete", accepted: false,
     authority: "serial-pilot-operational-composition-only", h3EvidenceEligible: false, rootExecutionAuthorized: false,
     laterLadderAuthorized: false, startedAt, wallLimitSeconds: 1800, heartbeatSeconds: 15, workerCount: 1,
-    sourceBindings: sources.map(({ bytes, ...record }) => record), buildReceipt: { path: absolute(root, BUILD), sha256: BUILD_SHA },
+    sourceMap: admission.sourceMap, sourceBindings: [...sources.map(({ bytes, ...record }) => record),...admission.bindings], buildReceipt: { path: absolute(root, BUILD), sha256: BUILD_SHA },
     buildReview: "external-independent-provenance-review-accepted; immutable-build-receipt-label-preserved",
     phases: [], candidates: [], stages: [], phaseReceipts: [], schedule,
     claimBoundary: "Two-phase prescribed-history pilot only. No H3, ordinary evolution, binding, retention, stability, score, or physical claim." };
@@ -324,7 +354,7 @@ export async function runSerialSubfieldCircularPilot({ root, options, sources, r
     const observedRuntime = await inspect([{ path: process.execPath }, { path: "/usr/bin/time" },
       { path: "/System/Library/CoreServices/SystemVersion.plist" }]);
     const instruments = sources.map(({ bytes, ...record }) => record);
-    fastBindings = [...build.fastBindings, ...instruments, ...observedRuntime,
+    fastBindings = [...build.fastBindings, ...instruments, ...admission.bindings, ...observedRuntime,
       { path: BUILD, sha256: BUILD_SHA }];
     receipt.runtimeBindings = observedRuntime; receipt.nodeVersion = process.version; receipt.nodeVersions = process.versions;
     receipt.platformDependencyBoundary = build.platformDependencyBoundary;
@@ -477,11 +507,10 @@ export async function runSerialSubfieldCircularPilot({ root, options, sources, r
 async function main() {
   const startedAtMs = performance.now(), startedAt = new Date().toISOString();
   const options = parsePilotArgs(process.argv.slice(2)), root = realpathSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../.."));
-  const sources = [SELF, ...Object.keys(PINS)].map(relative => {
-    const bytes = regularBytes(absolute(root, relative), 2 * 1024 * 1024), digest = sha(bytes);
-    demand(digest === (relative === SELF ? options.runnerSha256 : PINS[relative]), `reviewed source differs: ${relative}`);
-    return { path: relative, sha256: digest, bytes };
-  });
+  const admission = await circularAdmission(root,options.sourceMapSha256,options.sourceIdentities??[]), sources = admission.sources;
+  options.sourceIdentities=admission.bindings;
+  demand(admission.source(SELF).sha256 === options.runnerSha256, 'runner differs from circular source selection');
+  for (const [relative,digest] of Object.entries(PINS)) demand(admission.source(relative).sha256===digest, `frozen scientific source differs: ${relative}`);
   const snapshot = installPilotSnapshot(sources, root);
   try {
     const [runner, helper, bridge, watcher] = await Promise.all([SELF, HELPER, BRIDGE, WATCH].map(snapshot.import));

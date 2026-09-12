@@ -6,6 +6,16 @@ This operator-selected recovery campaign has no global research rank. The operat
 
 **Recovery resumed on the published successor by operator instruction.** Preserve the accepted first-candidate [checkpoint](analysis/circular-current-execution.md#paused-checkpoint-and-restart). The [accepted finite scope](priorities.md#accepted-finite-operational-closeout--september-8) selects operational repairs and retains scientific continuation separately. G1–G5 mechanical work has its completed checkpoint in the owner record; no publication is requested.
 
+## Operator-selected Option B work
+
+B-REM-1 is complete for the enumerated F6c operational source-binding family and removed from the executable queue. The [family transfer record](analysis/option-b-f6c-family-cutover.md) and [independent review](evidence/option-b-f6c-family-review.md) retain its validation and scientific/reference boundaries. The operator selected every remaining package in the [finite migration plan](analysis/option-b-remaining-migration-plan.md). This does not reopen the deferred scientific recovery items below.
+
+B-REM-4's source-role review is complete and removed from this executable queue. B-REM-3's implementation and local controls are complete, but its shared-caller validation remains open. The [circular transfer](analysis/option-b-circular-cutover.md), [independent dispositions](evidence/option-b-remaining-binding-dispositions.md) and [integrated validation](analysis/option-b-repository-reconciliation.md) retain the accepted interfaces, corrected identity controls and 563-test selected pass. Scientific acceptance and deferred full-ladder execution remain separate.
+
+1. **B-REM-2 — ◐ Partial — Resource-blocked validation:** run the final-generation F5 handoff build launcher once the unchanged 40% free-memory launch gate is met. Source admission and the final enclosed-root build are complete; the [F5 owner](analysis/option-b-f5-cutover.md#exact-build-only-resumption) records the remaining command and exact candidate.
+2. **B-REM-3 — ◐ Partial — Resource-blocked shared-caller validation:** rerun `tests/f6c-streamed-leaf-diagnostic.test.js` and `tests/option-b-f6c-coordinator-process.test.mjs` once their unchanged launch guard permits execution. The corrected circular family passes 133 controls inside the consolidated selection; these two shared-supervisor consumers are still part of its dependency-closed completion obligation.
+3. **B-REM-5 — ◐ Partial — Final validation:** retain the completed 196-row inventory accounting and 563-test selected pass; reconcile the preceding validation results and close the generated scene-graph failure in required Content Integrity on the [integrated candidate](analysis/option-b-repository-reconciliation.md). Regeneration needs separate authority. Do not weaken resource guards or replace historical/scientific references.
+
 ## Ranked Next Objects
 
 No executable repair remains in the accepted finite closeout. G8's reviewed historical/current mapping, regeneration and affected-consumer checks are complete in the [semantic record](analysis/semantic-closeout-review.md#g8-receipt-projection-resolution). Blocked inputs and deferred work below retain their original conditions.

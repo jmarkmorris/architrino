@@ -1,6 +1,6 @@
 # Particle Masses: Emergent Inertia in the Noether Sea
 
-Mass is where the reader first sees why assemblies matter. In $\mathbb{A}\mathbb{A}\mathbb{A}$, an architrino does not carry its own particle-specific mass tag. What a Physical Observer calls mass is the externally exposed response of a stable assembly whose internal causal history is partly shielded and partly coupled to the surrounding Noether sea.
+Mass is where the reader first sees why assemblies matter. An [architrino](../foundations/architrino.md) is a point transceiver with polarity and a retained path history; it has no physical mass. Its wake is the expanding causal record emitted along that history. The [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) sums the acceleration contributions from earlier emissions that reach each receiver. What a Physical Observer calls mass is an effective collective response. This chapter investigates the hypothesis that a stable assembly's exposed internal history and its coupling to the surrounding Noether sea determine that response.
 
 This chapter gives the reader-facing statement of that mass thesis and outlines the path toward quantitative mass predictions. The active derivation of a numerical mass map remains open until the shielding, stability, internal-energy, and medium-response terms are computed from retained assembly branches rather than fitted particle by particle.
 
@@ -9,7 +9,7 @@ This chapter gives the reader-facing statement of that mass thesis and outlines 
 ## The Mass Hypothesis: Inertia as Medium Interaction
 
 ### Core Thesis
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, **mass is not a fundamental property** of individual architrinos. There is no intrinsic particle-specific "mass parameter" $m$ assigned at the substrate level. Instead, what we observe as mass, especially **inertial resistance to acceleration**, is treated as an emergent response of stable assemblies embedded in the surrounding [Noether sea](../spacetime/noether-sea.md), the physical medium composed of neutral Noether braid assemblies.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, **mass is not a fundamental property** of individual architrinos. There is no physical mass parameter assigned at the substrate level. Observed **inertial resistance to acceleration** is an effective assembly response; its proposed explanation through stable assemblies embedded in the [Noether sea](../spacetime/noether-sea.md), a population of neutral Noether braid assemblies, remains a constitutive hypothesis. A Noether braid is a candidate neutral scaffold of coupled architrino worldlines, whose persistence must be established from those worldlines' delayed dynamics.
 
 The conservative thesis is:
 
@@ -25,7 +25,7 @@ That response is shaped by internal energy storage, shielding, and the medium-dr
 
 ### Assembly-Level Reduction
 
-The compact mass-map roadmap formula is an expression over an assembly $A$:
+The compact mass-map roadmap formula is an expression over an assembly $A$. Here $E_{\text{internal}}(A)$ is a candidate branch-energy account with a declared reference level, history boundary, and energy-unit conversion; a quadratic velocity proxy or the [causal action statistic](../dynamics/causal-action-functional.md) alone does not supply physical energy. Throughout this chapter, $\zeta(A)$ denotes the **probe-facing exposure fraction**, corresponding to $\zeta_{\text{probe}}(A)$ in [Energy](../dynamics/energy.md#emergent-inertia-mass-from-shielded-energy). It is distinct from that chapter's raw far-field exposure. The probe, sea-coupled, and unresolved contributions must be separated before assigning the inertial source, so the same energy is not counted twice.
 
 $$
 m_{\text{inertial}}(A)
@@ -35,9 +35,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2a2075ec65e1346a)
 
-This is the clean scalar form of the thesis. It says that the observer-facing inertial mass is controlled by the shielded part of the internal assembly ledger, with $\alpha_{\mathrm{m}}$ fixed once by a reference assembly in the regime where the effective low-energy closure is being matched. Here $\alpha_{\mathrm{m}}$ denotes the single mass-normalization constant for the declared weak homogeneous regime; it is not the fine-structure constant and not a per-particle fit parameter.
+This is the scalar hypothesis for the probe-facing part of the internal assembly account. The single positive normalization $\alpha_{\mathrm{m}}$ is fixed once by a reference assembly in a declared weak homogeneous regime. It is distinct from the fine-structure constant. Its constancy across other assemblies is a prediction to test using independently calibrated response measurements, not a consequence of writing the same symbol for every particle.
 
-The scalar form is not the whole derivation. In a resolved Noether sea environment, the denominator $c_{\text{eff}}^2$ is the isotropic weak-field limit of a medium-response tensor:
+The tensor version is a small-group-velocity response ansatz. Its isotropic weak-field limit replaces the tensor by $h^{ab}/c_{\text{eff}}^2$, where $c_{\text{eff}}$ is the effective signal speed in the declared medium record:
 
 $$
 p_{\text{int}}^a
@@ -52,7 +52,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-411d1d3b387d574d)
 
-in a homogeneous isotropic Noether sea cell. Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor version is the sharper target because it carries direction dependence, gradient response, and the distinction between primitive wake speed and observer-facing effective signal speed. Until the internal ledger, shielding coefficient, and medium-response tensor are derived from stable assembly closure, this remains a roadmap formula rather than a theorem.
+Here $h^{ab}$ is the inverse Euclidean spatial metric; $a,b,c\in\{1,2,3\}$ are spatial components, with repeated indices summed. $p_{\text{int}}^a$ is the candidate momentum response associated with the internal source. $V_{\text{cm},b}$ denotes group velocity relative to the local sea flow, extracted from a declared response center in absolute time $T$. The center-of-mass notation does not authorize mass-weighting the primitive architrinos. Its equality with an observer center-of-mass velocity requires the [center-of-response map](../dynamics/energy.md). The homogeneous isotropic example fixes the sea flow to zero in the void frame. A populated sea must supply its history ensemble, number density, orientation/cadence distribution, boundary conditions, and response window; neutrality of one candidate braid does not determine those collective data. Until energy, exposure, and response are derived, the tensor is a roadmap rather than a measured momentum law.
 
 #### Rest Energy and Moving Energy
 
@@ -68,7 +68,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f0f7f32e3ecc23bf)
 
-In a locally homogeneous isotropic Noether sea cell, the scalar rest/internal readout is the branch invariant
+In a locally homogeneous isotropic Noether sea cell, define the candidate rest readout by evaluating the trace at zero group velocity:
 
 $$
 M_0(A)
@@ -91,9 +91,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ac10483c983d9784)
 
-This equation is the $\mathbb{A}\mathbb{A}\mathbb{A}$ reading of $E_0=m_0c^2$: Physical Observers measure a scalar rest mass because they couple to the exposed part of the closed causal ledger, not because every unit of internal circulation is visible at long range. The rest/internal invariant is therefore downstream of branch stability, shielding extraction, and the same medium-response tensor used by the acceleration response.
+This is a proposed recovery of the observer relation $E_0=m_0c^2$. Identifying $M_0$ with measured rest mass requires independently characterized inertial and energy channels. Rotational invariance of a tensor trace alone does not prove invariance under boosts, changes of sea state, or branch evolution.
 
-For a moving assembly in the same weak homogeneous regime, the effective energy-momentum closure is instead
+For a moving assembly in the same weak homogeneous regime, the effective energy-momentum recovery target is
 
 $$
 E_{\text{CM}}^2
@@ -109,11 +109,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-42779d1e3131f345)
 
-Here $M_0$ remains the rest/internal invariant of the accepted branch, while $\gamma_{\text{eff}}$ is the observer-level boost-response factor read from the moving center-of-mass energy, momentum, clock, and ruler channels. Thus the theory does not need a velocity-dependent rest mass. It needs a proof that translating assemblies retune their causal-root ledger, shielding, clock channel, and Noether sea response so that the same $\gamma_{\text{eff}}$ controls all four channels. The detailed energy statement is the effective closure test in [Energy](../dynamics/energy.md#effective-energy-momentum-closure), and the clock-side cross-check is in [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#effective-energy-momentum-closure-test).
+Here $E_{\text{CM}}$, $p_{\text{CM}}$, and the group speed $v_{\text{CM}}$ used below are effective observer readouts in one specified inertial chart; their map from the absolute record must be established. $M_0$ is the rest-mass parameter to preserve, and $\gamma_{\text{eff}}=(1-v_{\text{CM}}^2/c_{\text{eff}}^2)^{-1/2}$ is the target boost factor for $0\le v_{\text{CM}}<c_{\text{eff}}$. Recovery requires the same factor in independently extracted energy, momentum, clock, and ruler channels. Defining these channels from the displayed relation would only repeat the target. The detailed test is in [Energy](../dynamics/energy.md#effective-energy-momentum-closure), with the clock comparison in [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md#effective-energy-momentum-closure-test).
 
 #### Exposed Inertial-Response Trace
 
-The scalar shielding coefficient $\zeta(A)$ should be read as the isotropic trace part of a larger exposed response. For an accepted assembly branch $A$, let $\mathcal{L}_A(\hat R)$ denote the mass-facing scalar angular far-field ledger over extraction direction $\hat R$, and let $\|\mathcal{L}_{\text{naive}}\|$ denote the corresponding unshielded constituent-sum norm. The monopole extraction is
+For a retained assembly branch $A$, let $\mathcal{L}_A(\hat R)$ be an integrable **probe-facing scalar** angular ledger after the exposed-energy partition, with unit extraction direction $\hat R$ and solid-angle measure $d\Omega$. The positive finite denominator $\|\mathcal{L}_{\text{naive}}\|$ is the correspondingly normalized unshielded constituent reference in the same units and channel. It is fixed independently of the desired mass. The monopole extraction is
 $$
 \zeta(A)
 =
@@ -124,7 +124,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7e076692c993e259)
 
-The trace-free exposed leakage is
+Interpreting this signed angular average as an exposure fraction requires $0\le\zeta\le1$ on the admitted branch; neither positivity nor that upper bound follows from a signed wake sum. A raw polarity amplitude is not an energy fraction without an independently derived conversion. The trace-free second angular moment is
 $$
 \mathcal{Z}_{\mathrm{tf}}^{ab}(A)
 =
@@ -140,7 +140,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ad437ad30fc323d5)
 
-The exposed-response tensor is therefore
+The tensor that retains these zeroth and second angular moments is
 $$
 \mathcal{Z}_{A}^{ab}
 =
@@ -151,9 +151,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-52e3c50ec07e1ea2)
 
-A candidate mechanism, at hypothesis level, says that the geometry of an accessory record helps set the size of this exposure. An [Accessory Configuration](../noether-braid/braid-mathematics.md#accessory-configuration) is six additional architrinos placed inside, across, or outside the braid envelope, with the polarity and position of every site declared. Its first nonvanishing polarity-signed moment may help order exposed response, but applying that ordering requires the actual six-site record, its strain on the braid core, and its retained far-field ledger. Thus the relationship between $\mathcal{Z}_{\mathrm{tf}}^{ab}(A)$, $\zeta(A)$, and Accessory Configuration geometry remains a routing hypothesis rather than a computed extraction.
+This tensor does not retain higher angular moments; their effect on a proposed mass map needs a separate bound. A candidate mechanism, at hypothesis level, says that an [Accessory Configuration](../noether-braid/braid-mathematics.md#accessory-configuration), six additional architrinos with declared positions and polarities, helps set the exposure. Its first nonvanishing polarity-signed moment may help order response, but this requires the six-site record, its perturbation of the braid, and its retained far-field ledger. No computed relation between those moments and physical mass is asserted.
 
-For the scalar inertial readout, only the reversible symmetric part of the Noether sea response belongs in the mass trace. Define
+For the following inertial ansatz, $\mathcal{M}_{\text{sea}}$ must first be extracted as a reversible response on a declared probe-frequency and history window, with any loss or memory remainder separately bounded. Spatial symmetrization alone does not establish reversibility: an isotropic dissipative response is also symmetric. On that restricted response record, define
 $$
 \mathcal{M}_{+}^{ab}
 \equiv
@@ -190,13 +190,13 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7b2652e107ea2b60)
 
-In the homogeneous isotropic limit this reduces to the roadmap scalar formula. Pure exposure anisotropy changes direction-dependent inertia without changing the scalar trace unless it contracts with a trace-free part of the medium response. Antisymmetric response residue belongs to orientation, transport, loss accounting, or branch transition, not to scalar rest mass.
+The trace contraction is algebraically derived within this ansatz. In an isotropic medium it reduces to the scalar roadmap even when exposure is anisotropic; identification with a direction-independent measured mass additionally requires an isotropic total inertial response. A trace-free exposure affects this scalar only through its contraction with a trace-free medium response. Positive trace does not imply positive response in every direction, so an admitted massive branch must separately satisfy $u_a\mathsf I_A^{ab}u_b>0$ for every nonzero probe vector $u$. Spatial antisymmetry drops out of the scalar contraction but does not by itself diagnose loss, transport, or a transition.
 
 #### Reference-Normalized Mass Ratio
 
 Because $\alpha_{\mathrm{m}}$ is a single normalization for a declared weak homogeneous regime, the first nontrivial mass-map prediction is not an absolute mass. It is a reference-normalized ratio in which $\alpha_{\mathrm{m}}$ cancels.
 
-For two accepted assemblies $A$ and $B$ in the same homogeneous isotropic Noether sea response record, if both assemblies are evaluated through the same scalar exposure quotient and share the same low-energy response limit
+For two retained assemblies $A$ and $B$, require positive internal-energy and probe-source denominators and the same homogeneous isotropic Noether sea response record. If both assemblies use the same scalar exposure prescription and share the low-energy response limit
 $$
 \mathcal{M}_{\text{sea}}^{ab}\to\frac{h^{ab}}{c_{\text{eff}}^2}
 $$
@@ -224,7 +224,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d67a4e77d8f87678)
 
-In anisotropic or pressure-dependent cells, the same anti-fitting principle must be stated directionally. Let $\mathsf{I}_{A}^{ab}$ be the exposed inertial-response tensor for $A$ and let $\hat v$ be a declared probe direction. The directional mass readout is
+In anisotropic or pressure-dependent cells, the comparison is directional. Let $\hat v$ be a unit probe direction in the declared Euclidean frame and $\mathsf I_A^{ab}$ the candidate inertial-response tensor. On branches with positive directional response, define
 
 $$
 m_{\hat v}(A)
@@ -268,7 +268,7 @@ $$
 
 The composite branch has its own coupling ledger: color-corridor closure for hadrons, residual-strong and nuclear-binding terms for nuclei, shared shielding, multipole cancellation, recoil channels, and local Noether sea polarization. Those entries change $\mathsf{I}_{C}^{ab}$ before the scalar trace is taken. Apparent mass is additive only in the limiting case where the interaction ledger, binding energy, shared shielding, and medium-response cross terms are negligible on the declared comparison window.
 
-This is the mass-map reading of the familiar nuclear and hadronic warning that a proton, neutron, or deuteron is not weighed by adding the observer-facing masses of the quark or nucleon records visible at a different resolution. Conservation is still enforced at the full event ledger: any decrease in the composite scalar mass appears as binding energy, radiation, recoil, neutrino rows when weak channels participate, or a changed Noether sea response record. The nuclear-side bookkeeping is stated in [Nuclear Binding](../nuclear-atomic/nuclear-binding.md), while the nucleon-side source envelope is stated in [Nucleon Structure](../nuclear-atomic/nucleon-structure.md).
+This is a candidate mass-map account of nuclear and hadronic nonadditivity. Observer-level conservation requires an independently closed event balance, including binding, radiation, recoil, weak-reaction products when present, and changes in the medium and retained wake history. A decrease in a fitted scalar trace does not prove that the corresponding energy has entered those channels. The balance and its recovery from delayed dynamics remain distinct obligations. See [Nuclear Binding](../nuclear-atomic/nuclear-binding.md), [Nucleon Structure](../nuclear-atomic/nucleon-structure.md), and [Energy](../dynamics/energy.md).
 
 #### Charge-Conjugate Mass Equality
 
@@ -281,7 +281,7 @@ $$
 
 Here $q_a$ is a polarity ledger entry in the charged-sector projection. Electrino/Positrino polarity is not the matter/antimatter label.
 
-If the mass-facing ledger depends on polarity through even data such as $q_aq_b$, $|q_a|$, causal-root topology, shielding, and polarity-neutral medium response, then complete conjugation leaves the scalar mass trace invariant:
+If the mass-facing ledger depends on polarity through even data such as $q_aq_b$, $|q_a|$, causal-root topology, and shielding, and the environment is also conjugated or its response ensemble is invariant under complete polarity reversal, then conjugation leaves the scalar mass trace invariant:
 $$
 E_{\text{internal}}(\bar A)=E_{\text{internal}}(A),
 \qquad
@@ -301,11 +301,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3c8eb1f27cbf7400)
 
-not the rest-mass response. This is why the electron and positron can have opposite electric bookkeeping while sharing the same mass-facing causal buildup: complete branch-record conjugation preserves every internal pair product, every polarity-even exposure term, and the identity-bearing history rows. The constraint does not permit arbitrary partial polarity replacement, and it does not identify Electrino versus Positrino with matter versus antimatter. Flipping only part of an axial inventory or only one internal component can change $q_aq_b$, branch stability, shielding leakage, the causal-root ledger, and the wake-history provenance, so it is generally a different assembly rather than the antiparticle of $A$.
+This conditional equality supplies the electron/positron mass comparison only after both particle mappings and the common response domain are established. Global conjugation preserves internal pair products. Conjugating only $A$ inside an unchanged sea reverses its cross products with sea constituents, so net neutrality of the sea alone does not prove the same response. Partial replacement of an assembly's polarity inventory can also change internal pair products, stability, and exposure. Polarity species are not matter/antimatter labels, and a polarity-conjugate branch is not the anti-Noether braid orientation.
 
-Thus a candidate mass map fails if an accepted matter branch and its complete anti-branch receive different scalar rest masses in the same neutral Noether sea environment, unless the model explicitly supplies a conjugation-odd medium or branch-asymmetry term and keeps the resulting mass splitting within the declared particle-antiparticle bounds.
+A candidate mass map must therefore compare a matter branch with its complete polarity-conjugate partner under matched, conjugation-invariant environmental conditions. A predicted splitting must identify the symmetry-breaking response and be tested against the relevant observer-level bounds; net neutrality is not a substitute for that symmetry test.
 
-Superfluid-vacuum and Nambu-Jona-Lasinio-style comparisons add a useful caution: an excitation gap can look like a rest-energy term without being the ontology of mass. For an accepted assembly branch $A$, the native analogue would be a branch gap
+An excitation gap is a useful comparison observable, but equality between a gap and a rest-energy scale is not automatic. For a retained branch $A$ and a declared response record $\theta$, define the gap to a specified first excitation by
 $$
 \Delta_A^\theta
 =
@@ -316,7 +316,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3c205d7d4ed5ded5)
 
-computed from the same causal ledger, shielding, and Noether sea response record as the mass map. A compact comparison residual is
+where both energies require a common reference, a defined excitation class, and an independently justified energy account. A proposed consistency residual is
 $$
 \mathcal{R}_{\mathrm{gap}\to m}(A;\theta)
 =
@@ -339,7 +339,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-06d1c731faa6c767)
 
-If this residual is small, the gap comparison supports the mass-map thesis. If it is small only after choosing a separate gap for each particle species, the comparison has merely renamed the observed mass table.
+Here $\theta_{\mathrm{sea}}$ denotes dimensionless, predeclared sea parameters; $\epsilon_\Delta$ and $\epsilon_{\mathrm{env}}$ are positive scales in the units of their respective numerators, with a fixed norm for the derivative vector. A small residual tests consistency of the two extracted channels only when neither was defined by the other. Shared use of one energy ansatz does not independently validate that ansatz, and an arbitrarily chosen gap does not define the rest mass.
 
 #### Sector Exposure Quotient
 
@@ -427,7 +427,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5cd3163a1e73b213-2)
 
-and the same source is then inserted into the exposed inertial-response tensor through the reversible symmetric medium response. To first order around a weak homogeneous reference cell, the scalar trace has the form
+Insert that source into the candidate tensor through the reversible symmetric medium response. Define the dimensionless perturbations by $\mathcal M_+^{ab}=c_{\text{eff},0}^{-2}[(1+\delta\mathcal M_0)h^{ab}+\delta\mathcal M_{\mathrm{tf}}^{ab}]$, with $h_{ab}\delta\mathcal M_{\mathrm{tf}}^{ab}=0$. At fixed reference speed $c_{\text{eff},0}>0$, contraction gives
 
 $$
 m_{\mathrm{tr}}(A)
@@ -448,7 +448,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9390f5d70e893929)
 
-Here $\delta\mathcal{M}_{0}$ is the trace part of the reversible medium-response perturbation, $\delta\mathcal{M}_{\mathrm{tf}}^{ab}$ is its trace-free part, and $\mathcal{R}_{\mathrm{chain}}$ holds terms that have not yet been derived from a branch record. This formula is stronger than the scalar roadmap relation because it names the only first-order places where scalar mass can change: the quotient-visible source, the trace medium response, and the trace-free exposure / trace-free medium contraction.
+The displayed terms are an algebraic contraction within the proposed tensor model. $\mathcal R_{\mathrm{chain}}$ has mass units and denotes independently bounded terms omitted by the effective reduction. If those terms have not been derived or bounded, the expression is an incomplete model rather than a controlled first-order prediction. $\delta\mathcal M_0$ is one third of the normalized trace perturbation; the anisotropic correction is the contraction of the two trace-free tensors.
 
 The quotient test must therefore apply to the whole composed trace, not only to $M_0^{\mathrm{src}}(A)$. If two restored representatives are identified by the scalar quotient, write $\Delta_dF=F[d_1]-F[d_2]$. The first-order trace defect is
 
@@ -467,11 +467,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e83b5e1334b51838)
 
-For scalar mass to be quotient-visible, this defect must remain below the declared trace tolerance. A scalar source can pass its no-hidden-handle test while the composed tensor trace still fails; in that case the discarded label is invisible in the homogeneous scalar source but mass-visible in anisotropic or pressure-sensitive response.
+This defect compares representatives at the same fixed medium response and has energy units. Multiply it by $\alpha_{\mathrm m}/c_{\text{eff},0}^2$ and include the difference in the bounded remainder to compare with a mass tolerance. If the representatives change the medium record, its changes must also enter the difference. Equality of the scalar source alone does not establish equality of the composed mass in an anisotropic environment.
 
 The trace-free part of this test is limited by what the branch actually probes. If $\mathcal{V}_{\mathcal M}$ is the span of retained reversible trace-free response tensors, then scalar mass only sees the projection of $E_{\text{internal}}\mathcal{Z}_{\mathrm{tf},ab}$ onto $\mathcal{V}_{\mathcal M}$. Full trace-free descent is required only when the retained response directions reconstruct the full trace-free tensor. Otherwise the scalar mass claim is a projected claim: labels that move response-visible components are mass handles, while labels that move only orthogonal unprobed components remain invisible to scalar mass at this order.
 
-The pressure specialization has the same discipline. For a branch-preserving pressure perturbation,
+For an infinitesimal branch-preserving pressure perturbation about the unperturbed homogeneous isotropic reference cell, hold $c_{\text{eff},0}$ fixed and evaluate undisplaced source and exposure factors at that cell. The first variation is
 
 $$
 \delta_{\!P}m_{\mathrm{tr}}(A)
@@ -494,7 +494,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-528ea3ac76c12e16)
 
-Thus pressure cannot improve a mass prediction by adding a hidden scalar row. It must either change the quotient-visible source, change the shared reversible medium-response tensor, or leave the scalar trace unchanged to first order. In a density-only pressure channel with packing headroom $s_n$ and density modulus $K_{\mathrm{pack}}$, the corresponding limit is
+At this reference point, the first variation changes the source or shared medium response. Away from it, the full product rule also retains variations of exposure contracted with an already anisotropic medium. $\mathcal R_P$ must bound the omitted response independently. A density-only pressure model illustrates a conditional saturation limit: let $n$ be normalized braid number density, $s_n\ge0$ a dimensionless remaining packing fraction, and $K_{\mathrm{pack}}>0$ a pressure scale. If the constitutive law gives $\partial n/\partial P=s_n/K_{\mathrm{pack}}$, while $\partial m_{\mathrm{tr}}/\partial n$ stays bounded and $K_{\mathrm{pack}}$ stays bounded away from zero, then
 
 $$
 \left.
@@ -512,15 +512,15 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7047ff9989825559)
 
-This does not mean dense matter stops responding to pressure. It means the scalar density channel stops carrying that response when packing headroom closes; any remaining response must appear in exposed-source drift, envelope ratios $\lambda$ and $\xi$, trace-free strain, reversible wake/contact stiffness, tensor response, or a threshold/branch event.
+The conclusion follows from the chain rule under those assumptions; it is not derived from packing geometry alone. A singular mass sensitivity or vanishing modulus can invalidate the limit. Other pressure responses can involve exposure, envelope shape, trace-free strain, wake coupling, or branch transitions, all of which require the same resolved population and constitutive record.
 
 ### The Noether Braid as Causal Ledger Closure
 
-A Noether braid can be read as a stable closure of delayed path-history relations. The three indexed binaries continually exchange partner-hit, self-hit, and inter-binary wakes. When those returns close with stable phase and integer ledger structure, the assembly traps geometric history in a localized causal circuit.
+A retained Noether braid would localize delayed path-history relations in a persistent assembly. On a declared three-binary chart, every partner, self, and inter-binary contribution must be included where its causal roots exist. Phase return and integer labels alone do not demonstrate dynamical retention or stability.
 
-When the braid moves or is placed under a gradient, the closure does not remain a static set of circular binaries. The planes of binaries $a\in\{1,2,3\}$ are drawn into a coupled spiral-helical pattern: pitch, radius, phase, and inter-binary timing retune together so delayed wakes still return to the correct partners and binary records. This spiral-helical relocking is the geometric carrier of inertia in the present thesis.
+Spiral-helical relocking is one proposed geometric mechanism for response to motion or a gradient: pitch, radius, phase, and inter-binary timing change together while delayed wakes continue to reach the relevant constituents. Neither this motion nor an inertial law follows from the prescribed chart without evolved histories.
 
-In this view, rest energy is the energy stored in the closed causal ledger, and mass is the externally exposed response of that ledger when the braid is accelerated, perturbed, or placed in a Noether sea gradient. Shielding determines how much of the internal closure couples to the far field.
+In this hypothesis, $E_{\text{internal}}$ belongs to the full branch account, whereas the exposed rest-energy target is $M_0c_{\text{eff}}^2\approx\alpha_{\mathrm m}\zeta E_{\text{internal}}$. The two are not interchangeable. Shielding and the medium determine which part is available to the calibrated inertial probe.
 
 The useful ledger split is:
 
@@ -536,9 +536,9 @@ The useful ledger split is:
 Apparent inertial mass is expected to arise from a connected stack of effects:
 
 #### Internal Energy Shielding ($\zeta$-Factor)
-- **Energy Storage:** Assemblies contain enormous internal energy in the form of high-speed Noether braid rotations. For a Noether braid, the total internal energy $E_{\text{internal}}$ can be orders of magnitude larger than the observed rest-energy scale $m c_{\text{eff}}^2$.
-- **Shielding:** The pro/anti structure of the [Noether braid](../noether-braid/noether-braid.md) creates destructive interference in the far field. The external "handle" (the field observable at large distances) represents only a small fraction $\zeta \ll 1$ of the total internal energy.
-- **Result:** When an external force attempts to accelerate the assembly, the effective far-field response couples only to the exposed, shielded part of the internal ledger:
+- **Energy Storage:** The hypothesis permits a branch's internal-energy account to exceed its exposed rest-energy scale. High constituent speed alone does not establish that reservoir; architrinos have no primitive kinetic mass.
+- **Shielding:** Polarity-weighted delayed wake contributions can cancel in a declared extraction channel. A pro/anti orientation label alone neither proves that cancellation nor fixes $\zeta\ll1$. The energy-to-probe conversion must be extracted from the same retained branch.
+- **Response target:** An independently calibrated external assembly perturbation is proposed to couple through the probe-facing source. Suppressing the fixed normalization only for this scaling relation,
   $$
   m_{\text{apparent}}c_{\text{eff}}^2 \sim \zeta(A)\,E_{\text{internal}}(A)
   $$
@@ -549,7 +549,7 @@ Apparent inertial mass is expected to arise from a connected stack of effects:
 
 #### Medium-Dressed Inertial Response
 - **The Medium:** The Noether sea is not empty space; it is a dynamic population of neutral Noether braid assemblies. Moving or accelerating an assembly changes how its internal causal ledger closes relative to the Noether sea.
-- **The Response:** The assembly resists acceleration because its internal path-history exchange must relock under a biased causal geometry. This should be modeled as a medium-dressed response tensor, not as ordinary dissipative friction.
+- **The Response:** Biased causal geometry is proposed to retune internal path-history exchange. Recovering inertia requires a reversible response derived from that exchange; ordinary dissipative friction cannot stand in for it.
 - **Velocity Dependence:** In the homogeneous weak-field limit, the same closure geometry should recover the effective relativistic response without changing the rest/internal invariant $M_0$:
   $$
   E_{\text{CM}}=\gamma_{\text{eff}}M_0c_{\text{eff}}^2,
@@ -576,39 +576,39 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5e9288585fc61ca2)
 
-where $N(x_{\mathrm{eff}}^i)$ is the universal effective lapse reconstructed from the local Noether sea state and $\delta_A$ is the assembly-dependent residue after the shared response has been removed. The weak equivalence target is then
+where $N$ is the shared effective clock-rate factor and $\delta_A$ is a dimensionless assembly-dependent clock residue. Clock-rate differences are not themselves free-fall acceleration differences. For a specified gravitational source and measurement axis, let $a_A^{\mathrm{obs}}$ and $a_B^{\mathrm{obs}}$ be the matched observer-level free-fall accelerations, with nonzero sum. Define $\eta_{AB}=2(a_A^{\mathrm{obs}}-a_B^{\mathrm{obs}})/(a_A^{\mathrm{obs}}+a_B^{\mathrm{obs}})$. The weak-equivalence comparison is
 
 $$
-|\delta_A-\delta_B|
-\lesssim
-10^{-13}
+|\eta_{AB}|
+\le
+\epsilon_{\mathrm{EP}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-08e08e577dca0d00)
 
-across tested material pairs after the corresponding inertial and gravitational response maps are compared. The exact bound belongs to the selected experimental class, but the structural point is fixed: if $\delta_A$ carries unsuppressed composition dependence, or if the acceleration contribution and gradient row use different Noether sea records, the scalar mass relation is only a fitted average rather than a branch consequence.
+where $\epsilon_{\mathrm{EP}}$ is the dimensionless tolerance from the selected experiment, with its material pair, source, analysis, and confidence convention. MICROSCOPE's comparison uses differential free fall, as defined by P. Touboul et al., [Result of the MICROSCOPE Weak Equivalence Principle test](https://arxiv.org/abs/2209.15488) (2022). Relating this observable to $\delta_A$ requires a derived acceleration map; a constant clock normalization offset alone supplies no such relation.
 
-Equivalently, the tensor response that maps exposed internal energy into $p_{\text{int}}^a$ must have the same homogeneous low-energy limit in acceleration and gradient probes:
+A stronger model-specific consistency target compares the acceleration- and gradient-probe response tensors in the same units and frame. With a predeclared dimensionless tensor tolerance $\epsilon_{\mathcal M}$, write
 
 $$
+c_{\text{eff},0}^2\left\|
 \mathcal{M}_{\text{sea,acc}}^{ab}(A)
--
-\mathcal{M}_{\text{sea,grad}}^{ab}(A)
-=
-O(\epsilon_{\mathrm{EP}})
+-\mathcal{M}_{\text{sea,grad}}^{ab}(A)
+\right\|_h
+\le \epsilon_{\mathcal M}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fbe3cf5049115093)
 
-with any residual reported as direction-dependent inertia, composition dependence, transport loss, or branch failure instead of being hidden inside $\zeta(A)$.
+Here $\|\cdot\|_h$ is the Euclidean tensor norm and the reference speed makes the residual dimensionless. Its relation to the experimental $\epsilon_{\mathrm{EP}}$ must be derived. Equality of these tensors alone does not establish universal free fall without the full assembly equations, source coupling, and common observer readout.
 
 ### Stability Constraint
-A critical requirement: assemblies in **equilibrium** with the Noether sea (e.g., atoms in stable orbitals) must experience no dissipative drag in the ordinary sense. Otherwise, electron orbitals would lose stability, radiate energy, and collapse into the nucleus (the classical electron catastrophe).
+Stable atomic states constrain any proposed medium coupling: over the declared observation window, it must not predict an unobserved secular loss of the energy supporting the state. The collapse of a radiating classical electron orbit is a historical comparison, not an Architrino-level derivation of an atomic instability. A lossless response and a dynamically stable branch are separate requirements.
 
 **Resolution Hypothesis:**
-- Stable configurations are phase-locked causal ledgers whose perturbations remain in an attracting basin.
-- The relevant diagnostic is not a phenomenological friction coefficient but a stability test: nearby phase errors should decay under the return map or Floquet analysis of the closed assembly cycle.
-- The Noether sea can still shape inertia, but a stable bound state must not leak energy through a dissipative drag channel.
+- First establish that the same retained delayed history satisfies the acceleration law and returns on the declared cycle or remains in the specified invariant family.
+- Only then analyze the return map or Floquet multipliers, which describe perturbation evolution over one cycle. Decaying non-symmetry perturbations establish attraction; bounded nondecaying modes may describe stability without attraction and require their own analysis.
+- Any transient relaxation must account for exchange with the sea and boundary history. An attracting reduced description is not evidence that the complete system is lossless, and reversible inertia is not proved by a favorable stability spectrum.
 
 The condensed-matter cross-check is the Noether sea transport residual in [Condensed Matter](../nuclear-atomic/condensed-matter.md). Stable inertial response belongs to $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$, where the response is reversible retuning rather than ordinary drag. Crossing $\mathcal{R}_{\text{tr},*}$ is a transition or failure condition that must route into excitation, radiation-like transport, medium heating, action shedding, or branch transition; it is not the origin of mass itself.
 
@@ -618,7 +618,7 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 | Concept | Status in $\mathbb{A}\mathbb{A}\mathbb{A}$ |
 |:--------|:-------------------------------|
 | **Architrino Position/Velocity** | Fundamental (substrate level) |
-| **Architrino polarity magnitude $\epsilon$** | Fundamental at the polarity layer; observer-level electric charge is assembly-level inventory recovered as $|e|=6\epsilon$ |
+| **Architrino polarity magnitude $\epsilon$** | Primitive polarity unit; $|e|=6\epsilon$ is the observer-level charge convention, whose six-unit assembly realization remains to be derived. |
 | **Noether sea state** | Emergent density, compliance, drift, and clock-response fields |
 | **Inertial Mass ($m$)** | **Emergent** (shielded internal energy + medium-dressed response) |
 | **Gravitational Mass** | **Emergent** (Noether sea gradient response) |
@@ -637,9 +637,9 @@ It is crucial to clarify what is **fundamental** versus what is **emergent**:
 
 ### The Substrate Mass Unit and Size Anchor
 
-Claim level: a dimensional anchor plus a native size measurement; the extraction of an actual particle mass from it is gated on a retained free object and remains open.
+Claim grade: derived for the dimensional relations under the stated extra action-unit assumption; guessed for a universal physical action unit and particle-mass realization. Falsifier: dimensional inconsistency would refute the scale relation, while a retained branch with incompatible calibrated action or response would refute the proposed physical identification.
 
-The substrate carries no mass dimension of its own: its three constants — the coupling $\kappa$, the polarity unit $\epsilon$, and the field speed $c_f$ — span only length, time, and charge. A mass scale enters only with the action quantum $\hbar_{\mathrm{act}}$ of the fold-crossing ledger, and dimensional analysis then fixes the natural mass unit uniquely:
+The primitive constants have dimensions $[\kappa]=L^3T^{-2}Q^{-2}$, $[\epsilon]=Q$, and $[c_f]=LT^{-1}$, where $Q$ is the polarity unit. They supply the length $\ell_\kappa=\kappa\epsilon^2/c_f^2$ but no mass dimension. If an independently calibrated physical action unit $\hbar_{\mathrm{act}}$ with dimensions $ML^2T^{-1}$ is supplied, the only mass monomial built from these quantities is, up to a dimensionless factor,
 
 $$
 M_\star \sim \frac{\hbar_{\mathrm{act}}\,c_f}{\kappa\,\epsilon^2}.
@@ -647,24 +647,24 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1657b22cc37a1322)
 
-Here $M_\star$ is the universal dimensional mass unit, distinct from the branch-specific rest invariant $M_0(A)$. Every emergent inertial mass in this chapter is a pure number times $M_\star$; the roadmap formula $M_0(A)c_{\mathrm{eff}}^2\sim\zeta(A)E_{\mathrm{internal}}(A)$ is the statement that the number is set by the shielded internal energy of the retained branch.
+Indeed $[\hbar_{\mathrm{act}}c_f/(\kappa\epsilon^2)]=M$. This conditional unit $M_\star$ does not derive a physical action quantum or its equality with observer $\hbar$. Fold crossings and a scalar history statistic alone establish neither. Writing a measured mass as a dimensionless multiple of a chosen unit is bookkeeping; predicting the multiple requires a retained branch, a physical energy/action map, and calibrated medium response.
 
-The same constants are expected to fix an absolute size: a self-supporting braid configuration, if one exists, would carry a native equilibrium radius of order $\kappa\epsilon^2/c_f^2$ — the coupling-scale unit — and that radius would be the length half of the mass map, fixing the scale at which a candidate braid sits. No verified equilibrium radius is currently carried in this chapter: an earlier single-instrument value was retired with the failed search campaign, and the derivation awaits the validated engine. What the length half must still be joined by is the energy half — a retained free object from which $E_{\mathrm{internal}}$, and hence the pure number multiplying $M_\star$, can be extracted. Both halves are gated on the same open retained-object question, so the first-particle mass remains a target rather than a computed value.
+Likewise, $\ell_\kappa$ is a coupling-scale length, not an equilibrium radius. A radius, if dynamically realized, has a branch-dependent dimensionless factor that dimensional analysis does not determine or bound to order one. No independently verified equilibrium radius or first-particle mass is supplied here. Numerical instantiations use $c_f=1$; conversion to laboratory units requires a separately declared calibration.
 
 ### The Action Ladder
 
-Claim level: interpretation and derivation target; assigning specific rungs to specific particles is the open mass-map work, not asserted here.
+Claim grade: guessed for discrete action levels and their particle interpretation. Falsifier: retained branches with a continuous admissible action range, or transitions incompatible with one independently calibrated action unit, would reject this ladder hypothesis.
 
-Because the family is iso-frequency — one shared internal cadence — an added or removed quantum of action cannot land on one layer as a private frequency change; it must re-tune the whole common-frequency coordinate structure together. The hypothesis of this section is that the re-tuning is quantized into integer rungs: all three layer radii co-move and the three tilts re-tune together under one shared constraint, so the layers' shares are fixed by the same closure conditions that fix the rest geometry. No settling dynamics and no speed-holding mechanism are asserted — an earlier proposed rail-pinning mechanism was retired when its own condition was measured false — and the rung structure is a derivation target for the validated engine.
+On a specifically declared common-frequency candidate, the three binaries share one cadence. This restriction is not a property of every Noether braid and is not implied by the general independently assignable-frequency chart below. A proposed action transaction must satisfy the coupled closure equations, but those equations have not been shown to force every radius and tilt to change together or to select integer action levels. The [cadence-scale retuning hypothesis](../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#cadence-scale-retuning-hypothesis) permits changes in cadence, radii, orientation, strain, and wake exchange.
 
-Read as a spectrum, this would be a substrate origin of energy quantization. Each rung is a discrete allowed state; the spacing is one action quantum; a rung-to-rung transition is the emission or absorption of a quantum. The ladder carries the form $E=n\,h\,f$, tying the level index, the action quantum, and the internal cadence in one relation. Through the cadence-radius coupling, a higher cadence forces a smaller envelope, so climbing the ladder makes the object smaller and its observed inertial response larger — the emergent-mass counterpart of the observed mass–Compton-length relation. One geometric family, climbable through a very large (near-Planck) number of integer rungs, thus spans a whole spectrum from the lightest retained states up to the Planck-scale top ($\xi\to0$, the [singularity-resolution](../spacetime/singularity-resolution.md) limit). Which rung corresponds to which observed particle is the open extraction the mass map owns; the structure — an integer action ladder whose rungs are the allowed states — is the candidate statement targeted for promotion.
+The candidate action ledger is $A_N=N h_{\mathrm{act}}$, with integer $N$, independently defined closed-cycle action unit $h_{\mathrm{act}}=2\pi\hbar_{\mathrm{act}}$, and branch-dependent cadence $f_N$. The proposed $E_N=A_Nf_N$ has energy dimensions but is not implied by integer action spacing. Even in an action-angle comparison, $dE/dI=\omega(I)$ gives an integral of frequency, not generally $I\omega(I)$. Equality with an observer photon relation using Planck's constant requires a separate calibration and transition derivation. The circular-chart relation $v_a=2\pi R_af_a$ implies shrinking radius with increasing cadence only if that channel's speed is held fixed. No such speed constraint, common shrinking trend, mass–Compton-length recovery, upper rung count, or Planck-scale endpoint is established here; [Singularity Resolution](../spacetime/singularity-resolution.md) is a separate strong-field comparison target.
 
 ### Mass-Channel Categories
 
-The mass thesis must keep the particle categories separate. The photon channel is treated as a massless coaxial contra-rotating polarity-conjugate planar pair transport mode: it carries phase, momentum, source/event-ledger energy, and transverse helicity, but it does not have a rest-frame clock or a stable volumetric internal-energy ledger. This is a two-gate statement, and its base referent is still open: the declared planar-pair family does not bind, so photon-lock quantities remain referent-pending until an equilibrium branch is exhibited. Gate A must supply the null kinematic branch with no rest proper-time clock; Gate B must supply the transverse polarization/spin ledger, including helicity $\pm1$, analyzer coupling, Malus' law, and no physical longitudinal free photon mode. A longitudinal or mixed-axis vector component belongs to a different massive or medium-bound channel, not to the massless free photon branch. The $W/Z$ channels are different massive vector corridors whose apparent masses come from localized recoupling, longitudinal or mixed-axis structure, and medium-dressed Noether sea response. The Higgs comparison is different again: it concerns a scalar medium mode rather than a directed vector corridor. This category split depends on the angular-momentum and vector-mode closure program; it is not itself a derivation of photon helicity or massive-vector spin. For the electroweak version of this split, see [Electroweak Bosons](./bosons/electroweak-bosons.md#photon-referent-status), and for the spin ledger see [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md).
+The mass thesis must keep the particle categories separate. The photon-channel recovery target is a massless coaxial contra-rotating polarity-conjugate planar pair transport mode: it carries phase, momentum, source/event-ledger energy, and transverse helicity, but it does not have a rest-frame clock or a stable volumetric internal-energy ledger. The kinematic and spin comparison has two parts, and its base referent is still open: the tested declared planar-pair construction has no established retained equilibrium, so photon-lock quantities remain referent-pending until an equilibrium branch is exhibited. Gate A must supply the null kinematic branch with no rest proper-time clock; Gate B must supply the transverse polarization/spin ledger, including helicity $\pm1$, analyzer coupling, Malus' law, and no physical longitudinal free photon mode. A longitudinal or mixed-axis vector component belongs to a different massive or medium-bound channel, not to the massless free photon branch. The $W/Z$ channels are candidate massive vector mappings whose mass mechanism is proposed to involve localized recoupling and medium response. Those assignments require retained branches and an observer spin/longitudinal-mode map. The Higgs comparison is different again: it concerns a scalar medium mode rather than a directed vector corridor. This category split depends on the angular-momentum and vector-mode closure program; it is not itself a derivation of photon helicity or massive-vector spin. For the electroweak version of this split, see [Electroweak Bosons](./bosons/electroweak-bosons.md#photon-referent-status), and for the spin ledger see [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 
 ### Comparison to Standard Model
-In the Standard Model, mass arises via the **Higgs Mechanism**: particles acquire mass by coupling to a background Higgs field (a scalar condensate with vacuum expectation value $v \approx 246$ GeV).
+In the Standard Model, the Higgs mechanism supplies the $W/Z$ and charged-fermion mass terms through a scalar background with vacuum expectation value near $246$ GeV in observer natural-unit notation. It does not explain all composite mass by itself. The comparison conventions and Yukawa relations are summarized by M. Cepeda, L. Reina, and P. Savard, [Status of Higgs Boson Physics](https://pdg.lbl.gov/2025/reviews/rpp2025-rev-higgs-boson.pdf), Sections 11.2.1–11.2.2 (PDG, 2025). These are effective matching targets here.
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Higgs-sector comparison is an effective matching problem, not yet a derived replacement. The working expectation is that Standard Model mass parameters and Yukawa couplings would be reinterpreted as effective summaries of assembly geometry, shielding, and Noether sea response. The benchmark is a neutral scalar-compatible resonance near $125$ GeV with signal-strength normalization near the Standard Model expectation. Exact date-stamped masses, uncertainties, and signal-strength entries belong in validation and parameter ledgers; modeling the resonance as a collective medium excitation is a theorem target, not an established result.
 
@@ -672,7 +672,7 @@ For the electroweak medium interpretation behind this replacement, see [Gauge St
 
 ### Higgs and Yukawa Matching Residual
 
-A mass fit alone does not recover the Higgs sector. The same record must also explain why the scalar channel couples to massive assemblies with strengths that, at the effective Standard Model level, are summarized by Yukawa parameters. Let $\varphi$ be a normalized radial perturbation of the local Noether sea scalar mode, with $\varphi=0$ on the weak homogeneous branch. The effective scalar coupling to an assembly $A$ should be the response derivative of the same shielding map:
+A mass fit alone does not recover the Higgs sector. To compare with dimensionless Standard Model Yukawa couplings, express all masses in this subsection as observer rest-energy equivalents in one fixed natural-unit convention. This convention does not set the primitive speed equal to the observer signal speed. Let $\varphi$ be a canonically normalized scalar perturbation with the same mass dimension as $v_{\mathrm{EW}}^{\mathrm{eff}}$, with $\varphi=0$ on the reference branch. The map from a dimensionless sea perturbation to this field normalization must be derived independently; otherwise its rescaling arbitrarily changes the coupling derivative. The candidate effective coupling is
 $$
 g_{H,A}^{\mathrm{eff}}(\theta)
 \equiv
@@ -720,7 +720,7 @@ $$
 
 Here $\mathfrak{F}_{H}$ is the set of fermion channels with measured Higgs-coupling information, $M_H^{\mathrm{obs}}$ is the observed scalar resonance near $125$ GeV, and $M_H^{\mathrm{breath}}(\theta)$ is the predicted radial Noether sea breathing-mode mass on the same branch. The benchmark fails if Yukawa-like numbers are inserted as independent per-particle constants, if $v_{\mathrm{EW}}^{\mathrm{eff}}$ is fitted separately from the gauge-sector normalization, or if the $125$ GeV scalar match uses a different Noether sea record than the inertial-mass map.
 
-The date-stamped LHC scalar validation surface makes the residual sharper than a single mass entry. Let $M_H^{\mathrm{ledger}}$, $\sigma_H^{\mathrm{ledger}}$, $\mu_H^{\mathrm{ledger}}$, and $\sigma_{\mu_H}^{\mathrm{ledger}}$ denote the parameter-ledger entries for the scalar mass and production-and-branching normalization, with ATLAS and CMS treated as independent benchmark rows; the mass entry is expected to remain near $125$ GeV. A candidate scalar branch must recover the mass, rate normalization, channel pattern, and absence of broad additional scalar signals in the excluded windows:
+The date-stamped LHC scalar validation surface makes the residual sharper than a single mass entry. Let $M_H^{\mathrm{ledger}}$, $\sigma_H^{\mathrm{ledger}}$, $\mu_H^{\mathrm{ledger}}$, and $\sigma_{\mu_H}^{\mathrm{ledger}}$ denote the parameter-ledger entries for the scalar mass and production-and-branching normalization, with ATLAS and CMS retained as separate experimental rows and shared systematic uncertainties included in their covariance; the mass entry is expected to remain near $125$ GeV. The following schematic residual organizes the mass and channel comparisons. A candidate scalar branch must recover the mass, rate normalization, channel pattern, and absence of broad additional scalar signals in the excluded windows:
 $$
 \mathcal{R}_{\mathrm{Higgs\,validation}}(\theta)
 =
@@ -752,11 +752,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-65b6ac76aab7ff42)
 
-Here $\mu_H^{\mathrm{eff}}$ is the observer-level production-and-branching normalization, and $Z_c$ records the channel significance or equivalent likelihood contribution for the high-resolution $ZZ^{(*)}\to4\ell$, $\gamma\gamma$, and $WW^{(*)}$ channels. The $\gamma\gamma$ channel also protects the scalar-vs-vector distinction: it supports a spin-$0$-compatible comparison and rules against treating the Higgs benchmark as another photon or massive-vector corridor.
+Here $\mu_H^{\mathrm{eff}}$ is the production-and-branching normalization. The channel variable $Z_c$ can be compared only after the same luminosity, detector response, event selection, and statistical model have been supplied; an observed significance is not a branch property or a Gaussian measurement with an automatic independent error bar. The displayed sum is at most a declared diagnostic approximation. A quantitative test uses the joint likelihood or justified covariance and avoids counting the same events again through both inclusive and channel summaries. The $ZZ^{(*)}\to4\ell$ and $\gamma\gamma$ channels provide narrow mass peaks; $WW^{(*)}$ with neutrinos requires a different reconstruction. The diphoton channel excludes a spin-one interpretation under the standard on-shell two-photon assumptions, but does not alone establish spin zero. These observer comparisons remain distinct from deriving a scalar sea mode.
 
 ### Naturalness Comparison: QCD Running
 
-Quantum chromodynamics supplies a useful comparison standard for hierarchy claims. In QCD, a dimensionless coupling runs logarithmically with energy, and the hadronic mass scale appears when that coupling becomes strong. The large ratio between the Planck scale and the proton scale is therefore not explained by inserting a small mass parameter; it is generated by slow logarithmic flow and the threshold at which a bound-state regime turns on.
+Quantum chromodynamics provides a comparison of how a dimensionless coupling and a scale are related. At high energy its running coupling varies logarithmically; specifying that coupling at a reference scale determines the associated QCD scale within a stated scheme. This permits a large scale separation, but does not predict the numerical Planck-to-proton ratio without the reference input and hadronic dynamics. See J. Huston, K. Rabbertz, and G. Zanderighi, [Quantum Chromodynamics](https://pdg.lbl.gov/2025/reviews/rpp2025-rev-qcd.pdf), Section 9.1 (PDG, 2025). No QCD mechanism is a substrate premise here.
 
 The mass program in $\mathbb{A}\mathbb{A}\mathbb{A}$ should meet an analogous naturalness standard without borrowing the QCD mechanism as its own. A successful shielding map should show that large internal energy ratios can become ordinary observer-level masses through stable causal ledgers, exposed far-field coupling, and the medium-response tensor, with no per-particle mass parameter inserted after the fact. In formula language, the target is not merely
 
@@ -770,7 +770,7 @@ $$
 
 but a derivation in which $\zeta(A)$ is fixed by the same root ledger, shielding geometry, and Noether sea response that also preserves stability and equivalence-principle behavior. If $\zeta(A)$ has to be tuned independently for each particle family, the analogy to QCD naturalness fails and the hierarchy has only been renamed.
 
-This is the hierarchy-problem version of the mass thesis. The small observer mass does not require that the accepted branch contain little internal energy; it requires that most of that internal energy be hidden from the scalar mass channel by branch geometry. The quantitative burden is therefore
+Within the shielding hypothesis, a small exposed mass can coexist with a large internal energy only if the branch fixes a suitably small probe-facing fraction under the common normalization. A norm expression for that fraction is
 $$
 \zeta(A)
 =
@@ -780,7 +780,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e637a5d9e0127ad3)
 
-with $\Pi_{\mathrm{mass}}$ fixed by the sector exposure quotient. A derivation of this ratio from the accepted branch would explain why large internal scales can coexist with small exposed masses without fine tuning.
+provided $\Pi_{\mathrm{mass}}$ selects the same nonnegative scalar monopole and its norm is normalized to reproduce the earlier angular average; $\epsilon_{\mathrm{quot}}$ bounds a dimensionless extraction error. A generic norm of a signed angular ledger is not its monopole: a pure nonzero quadrupole has zero mean but positive norm. If that agreement or positivity fails, the norm ratio is a different diagnostic and cannot replace $\zeta$ in the mass formula.
 
 ### Generation-Mass Fitting Packet
 
@@ -817,9 +817,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4a315581fd3ade46)
 
-Here $\zeta_{\mathrm{sh}}$ depends on the shielding class, $\alpha_{\mathrm{m}}$ is a single mass normalization for the declared weak homogeneous regime, and $E_{\mathrm{sector}}$ is zero for charged leptons while quark contributions must be derived from the same color/topology and strong-sector ledger used in the hadronic chapters. The allowed family dependence is therefore carried by axial inventory, color/topology, and internal-energy bookkeeping, not by changing the shielding law.
+Here $\zeta_{\mathrm{sh}}$ depends on the shielding class, $\alpha_{\mathrm{m}}$ is a single mass normalization for the declared weak homogeneous regime, and $E_{\mathrm{sector}}$ is zero for charged leptons while quark contributions must be derived from the same color/topology and strong-sector ledger used in the hadronic chapters. The allowed family dependence is therefore carried by axial inventory, color/topology, and internal-energy bookkeeping, not by changing the shielding law. The sector term must not duplicate energy already included in the probe-facing source. Electromagnetic or other lepton corrections are not declared absent by setting this specifically strong-sector term to zero.
 
-The first hierarchy residual should be ratio-first. It is evaluated only after the branch ledger, scalar exposure quotient, internal energy, sector term, and shared response record have emitted predicted values $M_{\mathrm{sh}}(A_c;\theta)$ without using the observed mass table. Let $c=(f,a)$ range over the nine generation channels, write $A_c=A_{f,a}$ and $m_c^{\mathrm{obs}}=m_{f,a}^{\mathrm{obs}}$, and fix a reference channel $c_{\mathrm{ref}}$ before evaluating the benchmark rather than choosing it to improve the residual. For quark channels, $m_c^{\mathrm{obs}}$ denotes the predeclared scheme-and-scale benchmark row with its covariance, not a scheme-free constituent mass. The ratio residual is
+The first hierarchy residual should be ratio-first. It is evaluated only after the branch ledger, scalar exposure quotient, internal energy, sector term, and shared response record have emitted predicted values $M_{\mathrm{sh}}(A_c;\theta)$ without using the observed mass table. Let $c=(f,a)$ range over the nine generation channels, write $A_c=A_{f,a}$ and $m_c^{\mathrm{obs}}=m_{f,a}^{\mathrm{obs}}$, and fix a reference channel $c_{\mathrm{ref}}$ before evaluating the benchmark rather than choosing it to improve the residual. For quark channels, $m_c^{\mathrm{obs}}$ denotes the predeclared scheme-and-scale benchmark row with its covariance, not a scheme-free constituent mass. All predicted and benchmark masses entering logarithms must be positive. The reference calibration uncertainty $\sigma_{c_{\mathrm{ref}}}$ below is a dimensionless log-mass uncertainty, with benchmark and model uncertainties treated in the same convention. The ratio residual is
 $$
 \mathcal{R}_{\mathrm{gen\,ratio}}(\theta)
 =
@@ -872,7 +872,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-10de69537538e40c)
 
-Here $\theta_f$ denotes the record that would be used if family $f$ were fit separately, while $\theta_{\mathrm{shared}}$ is the one promoted record. The split term is the no-retuning guard: it penalizes any attempt to fit charged leptons, up-type quarks, and down-type quarks with different shielding maps or different medium-response coefficients. The null-result term prevents the fit from improving the observed masses by adding partner branches, extra gauge modes, or proton-instability channels that are not independently suppressed.
+Here $\theta_f$ denotes a diagnostic family-specific fit and $\theta_{\mathrm{shared}}$ the proposed common record. A finite split penalty cannot enforce equality: a fit can pay the penalty to improve its mass residual. The no-retuning requirement is therefore the hard restriction $\theta_f=\theta_{\mathrm{shared}}$ on the shared response parameters, with the split term used only to diagnose violations. The distance and $\lambda_{\mathrm{split}}$ require a fixed dimensionless parameter normalization. Similarly, excluded partner modes and instability channels must satisfy their own observation-specific bounds; a weighted null-result penalty cannot make a violation admissible. Ratio and scale residuals must retain their shared-reference covariance in a joint statistical test.
 
 The first benchmark is not exact mass prediction. It is monotone hierarchy and shared-map survival:
 $$
@@ -891,21 +891,21 @@ for $f=\ell,u,d$, while the same $\zeta_{\mathrm{sh}}$, $\alpha_{\mathrm{m}}$, a
 
 The charged-lepton mass triplet is unusual enough that it is worth recording one explicit benchmark, while keeping the status clear: this is **speculative** and should not be presented as a derivation.
 
-Let
+Let $m_e,m_\mu,m_\tau>0$ be the charged-lepton pole-mass benchmarks in one unit convention, and define
 $$
 \mathbf{r} = \left(\sqrt{m_e},\sqrt{m_\mu},\sqrt{m_\tau}\right)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5337186ea8f93a53)
 
-The empirical Koide relation can be written as
+The exact Koide surface used as a comparison target is
 $$
 \frac{(r_e+r_\mu+r_\tau)^2}{r_e^2+r_\mu^2+r_\tau^2}=\frac{3}{2}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-940315065452388b)
 
-Within $\mathbb{A}\mathbb{A}\mathbb{A}$, the natural place to test this is the generation-by-shielding ladder. If the three charged leptons are the same candidate braid-scaffold-plus-axial-layer architecture viewed through three shielding-support vectors, then a mass-root relation may be an external clue that the exposure map from full, Generation-II, and Generation-III shielding branches is more constrained than a generic monotone hierarchy. This particle map does not assign a braid-taxonomy member.
+Observed pole masses lie close to this surface; its displayed equality is a benchmark relation, not an exact empirical law or a native derivation. Yoshio Koide's [What Physics Does The Charged Lepton Mass Relation Tell Us?](https://arxiv.org/abs/1809.00425) (2018; revised 2019) states this pole-mass comparison. Its use here is speculative: a derived generation-by-shielding map can be tested against it after the mass extraction is fixed. It does not assign a braid-taxonomy member.
 
 The conservative use of Koide here is therefore:
 
@@ -917,53 +917,53 @@ If a first-principles shielding model naturally lands near the Koide surface for
 
 ### Why Quarks Should Not Be Expected to Obey Koide
 
-Even if the charged leptons approximately follow a simple shielding geometry, quarks should not be expected to do so.
+The charged-lepton benchmark does not automatically extend to quarks. The quark mass rows used above are scheme- and scale-dependent parameters inferred from hadronic observations, not measured inertial masses of isolated quarks.
 
-The reason is that quark inertial mass is not just bare core exposure. Quarks carry axis-exceptional color structure, induce persistent flux-tube tension, and require continual axis-reconfiguration exchange through the strong sector. In that regime, the measured effective mass is contaminated by confinement energy and Noether sea response to the color disturbance.
+Constituent-quark model masses, QCD running masses, and complete hadron masses are distinct quantities. The [PDG Quark Masses review](https://pdg.lbl.gov/2025/reviews/rpp2025-rev-quark-masses.pdf), Sections 60.1–60.2 (2025), makes this distinction explicit. A proposed axis-exceptional color and Noether sea mechanism must recover the chosen running-mass scheme through its own observable map; adding an unspecified confinement-energy contribution to a running mass would change the quantity being compared.
 
 So the working distinction is:
 
-- **charged leptons:** closest available probe of the bare shielding ladder; see [Electron](./fermions/electron.md),
-- **quarks:** shielding ladder plus strong-sector contamination; see [Quarks](./fermions/quarks.md).
+- **Charged leptons:** pole-mass benchmark for the proposed shielding ladder; see [Electron](./fermions/electron.md).
+- **Quarks:** a separate scheme-and-scale comparison requiring the strong-sector map; see [Quarks](./fermions/quarks.md).
 
-That means a Koide-like benchmark, if it is useful at all, belongs first to the charged leptons. Failure of quarks to lie on the same mass-root surface should be treated as expected in the present ontology, not as an immediate contradiction.
+Failure of a specified quark mass triplet to satisfy Koide does not falsify the charged-lepton benchmark. Neither does it by itself confirm a proposed shielding or confinement mechanism.
 
 ---
 
 ## Quantitative Derivation Path
 
-To advance from qualitative thesis to quantitative mass prediction, the active mass program must close five linked steps.
+Quantitative mass prediction requires five linked derivations. A particular prescribed braid chart is a candidate for this sequence, not a mandatory geometry for every mass-bearing assembly.
 
-1. **Stable coincident-midpoint orthogonal-axis braid attractor target:** derive one robust Noether braid attractor family whose three persistent binaries have independently assignable positive radii and frequencies, mutually orthogonal axes at the orthogonal-axis three-binary near-rest endpoint, and axes that converge toward the group-translation direction along the prescribed flattening coordinate; record the remaining binary coordinates, branch data, and stability diagnostics. The `coincident-midpoint orthogonal-axis braid` label fixes this prescribed chart but does not prejudge retention.
-2. **Internal energy ledger:** compute the dimensionless internal energy stored in that attractor without assuming the particle mass being derived.
-3. **Shielding extraction:** derive $\zeta(A)$ from far-field wake cancellation and exposed coupling geometry.
+1. **Retained assembly:** establish a free object under the complete delayed acceleration law, then test its perturbations and allowed environment. The coincident-midpoint orthogonal-axis three-binary chart is one candidate: its near-rest axes, positive radii and frequencies, and proposed alignment response specify a comparison geometry without establishing retention.
+2. **Internal energy ledger:** derive the branch-energy account, its history/boundary terms, and the conversion from dimensionless diagnostics to physical energy without inserting the mass being predicted.
+3. **Shielding extraction:** extract raw far-field response, separate probe-facing and sea-coupled channels, and derive the probe fraction $\zeta(A)$.
 4. **Medium-dressed response:** derive the response tensor that turns shielded internal energy into inertial and gravitational response in the weak-field regime.
 5. **Benchmark prediction:** use the derived quantities to target a baseline electron mass and at least one hierarchy check, such as $m_\mu/m_e$.
 
 ### Reference Attractor Gate
 
-The first mass-side calculation should not begin by fitting the electron mass. It should begin with a calibration-free reference attractor, denoted $A_0$: a neutral rest-branch candidate constrained to the coincident-midpoint orthogonal-axis braid prescribed coordinates in a weak homogeneous Noether sea cell. This gate turns the mass thesis from a symbolic relation into a concrete closure target that can be checked before particle labels, charged-lepton ratios, or measured constants enter the calculation. Failure to retain the coincident-midpoint orthogonal-axis braid coordinate relations on the same evolved record rejects this candidate before any mass comparison.
+A mass-side calculation begins with a retained object and independent energy and response extraction before any absolute mass calibration. The symbol $A_0$ below names one proposed neutral reference in the coincident-midpoint orthogonal-axis three-binary chart. Its specialized certificate describes what would be needed to use that candidate; it does not establish an attractor or make this chart the unique route to particle mass. Dynamical existence precedes linearized stability and particle labeling.
 
-This attractor should not be pictured as three independent circular binaries. Its source record assigns different causal-speed regimes to the persistent indices: binary 1 is self-hit and super-field-speed on the active branch, binary 2 sits near the $v=c_f$ fold, and binary 3 remains sub-field-speed as the shielding and boundary-coupling channel. These assignments define the $A_0$ candidate record; they are not taxonomy-assigned roles. Circular or elliptic pictures can still be useful as carrier charts, but only after the coupled root ledger, phase lock, and stability diagnostics are respected.
+The specialized $A_0$ hypothesis assigns binary 1 a super-field-speed self-hit channel, binary 2 a near-fold channel, and binary 3 a sub-field-speed boundary-coupling channel. These are proposed constraints to test, not measured properties or meanings of the persistent indices. Speed above $c_f$ alone does not prove a self-hit; every admitted history needs its actual root inventory. At a fold, where the transmitter-side root derivative vanishes, the ordinary simple-root formula requires a separately controlled continuation.
 
-For the mass program, this distinction controls which internal corrections matter. Nonresonant fast structure in source-record binary 1 may average out of the leading far-field shielding estimate, especially when the binary scales differ strongly. Resonant corrections, near-separator corrections, and small leakage asymmetries cannot be discarded in the same way, because they can change the accepted branch, the Floquet gap, or the extracted $\zeta(A_0)$ itself. The fast role is measured on the record and is not a meaning of index 1.
+For the mass program, this distinction controls which internal corrections matter. Nonresonant fast structure in source-record binary 1 may average out of the leading far-field shielding estimate, especially when the binary scales differ strongly. Resonant corrections, near-separator corrections, and small leakage asymmetries cannot be discarded in the same way, because they can change the accepted branch, the Floquet gap, or the extracted $\zeta(A_0)$ itself. Any fast-channel role and any averaging error must be extracted from that record; index 1 supplies neither.
 
 The minimal $A_0$ output contract is:
 
 | Output class | Required content | Why it matters |
 | --- | --- | --- |
-| Geometry and winding | $R_1,R_2,R_3$, binary-plane normals, handedness, phase offsets, binary windings, and inter-binary closure integers | fixes the attractor as an integer-labeled Noether braid state rather than a loose configuration sketch |
+| Geometry and winding | $R_1,R_2,R_3$, binary-plane normals, handedness, phase offsets, binary windings, and inter-binary closure integers | defines the candidate chart without proving that the dynamics occupy it |
 | Root ledger and stability | partner-hit counts, self-hit counts, inter-layer hit channels, closure residuals, return-map residuals, and the non-symmetry Floquet gap $\Delta_{\mathbf{k}}$ | separates stable closed cycles from integer-looking but dynamically unstable candidates |
-| Internal energy ledger | $E_I,E_M,E_O$, interaction and wake terms, total $E_{\text{internal}}(A_0)$, and action per closed cycle | supplies the unshielded reservoir in the mass-map roadmap formula |
+| Internal energy ledger | Persistent-index entries $E_1,E_2,E_3$, interaction and wake terms, total $E_{\text{internal}}(A_0)$, energy reference and unit map, and independently justified action per cycle | tests the internal account without assigning energy roles by radius order |
 | Group-velocity anisotropy | declared $\mathbf{V}_{\text{cm}}$, causal speed $c_\star$, $\beta_\star$, envelope ratio, forward/backward delay ratio, and anisotropy tensor $\mathcal{A}_{\mathrm{gv}}^{ij}$ | keeps motion-induced deformation separate from far-field shielding leakage |
 | Shielding extraction | far-field wake coefficients, the naive constituent sum, preliminary $\zeta(A_0)$, and residual leakage $\mathcal{L}_{\text{aniso}}$ | turns shielding from a symbolic term into an extracted geometric response |
 | Medium response | the homogeneous baseline for $\mathcal{M}_{\text{sea}}^{ab}$, plus acceleration and gradient probes | connects inertial response, gravitational response, and equivalence-principle tests |
 
-The detailed simulation-facing schema is the $A_0$ branch certificate packet: `metadata`, `sea_cell`, `branch_label`, `z_lambda`, conditional `branch_chart_revision`, `state_vector`, `closure_system`, `root_ledger`, `term_classification`, `residuals`, `stability`, `group_velocity_anisotropy`, `energy_ledger`, `far_field_shielding`, `medium_response`, `mass_summary`, `certificate_gates`, and `failure_code`. The canonical chapter names this interface so the mass thesis has a concrete handoff; the detailed protocol belongs in [$A_0$ Branch Certificate Protocol](../validation/simulations/a0-branch-certificate-protocol.md).
+The [$A_0$ Branch Certificate Protocol](../validation/simulations/a0-branch-certificate-protocol.md) retains the detailed interface for this specialized candidate. Its schema is a method for reporting evidence, not evidence that the branch exists.
 
-The accepted $A_0$ branch must have small closure residuals over at least one closed cycle, a positive non-symmetry Floquet gap, no secular drift after symmetry modes are removed, a group-velocity anisotropy diagnostic that remains separate from shielding leakage, and a shielding estimate stable under increasing far-field extraction radius and angular resolution. No observed particle mass, charged-lepton ratio, electron radius, or measured $\alpha$ value should be used as an input to this gate.
+Before any Floquet analysis, the candidate must satisfy the full acceleration law on the same retained cycle, including history and boundary terms. A return map compares nearby compatible histories after one cycle; an attracting candidate requires every non-symmetry multiplier inside the unit circle, with numerical error controlled. Small closure residuals on one window alone prove neither existence nor stability. Shielding must also stabilize under increasing extraction radius, angular resolution, root/history refinement, and declared averaging. No observed particle mass, lepton ratio, electron radius, or measured fine-structure constant supplies an input to this calibration-free stage.
 
-Compact-carrier diagnostics have reached a finite-coordinate no-go for the compact branch chart tested so far. That result is a branch-certificate status blocker, not a mass result: $E_{\text{internal}}(A_0)$, $\zeta(A_0)$, $\mathcal{M}_{\text{sea}}^{ab}$, and the baseline mass prediction remain unavailable until a predeclared branch-chart revision and an accepted branch packet pass the same gates above. Even if a branch-chart checker clears a revised coordinate, the clearance authorizes only a Tier 1 rerun candidate; it does not accept the branch, supply accepted $A_0$ history, or make the downstream mass-facing quantities available.
+No accepted $A_0$ history, internal energy, exposure, medium-response tensor, or baseline mass prediction is supplied here. A rejection of a tested compact chart applies to that chart and domain; it cannot exclude all candidate assemblies. Clearance of revised prescribed coordinates only nominates a further dynamics test. The first open obligation is a persistent object under the Master Equation, followed by the energy, population, and observer-response maps.
 
 This chapter carries the interface needed to state the mass thesis, define its terms, and identify the open derivations. The linked simulation chapter owns the detailed protocol for the $A_0$ state vector and output schema.
 
@@ -977,8 +977,8 @@ This chapter carries the interface needed to state the mass thesis, define its t
 3. **Why do neutrinos have mass at all?** If a [neutrino](./fermions/neutrinos.md) is a near-photon polarity-conjugate braid pair, which residual internal-binary exposure breaks exact photon-like cancellation? The magnitude of that exposure is referent-pending; it cannot be assigned before the base photon lock exists and the exposure map is extracted.
 
 ### Potential Falsifications
-- **If $\zeta(A)E_{\text{internal}}(A)$ cannot reproduce $m(A)c_{\text{eff}}^2$ after the response tensor is fixed:** The shielding-based mass map is wrong.
-- **If the medium response behaves like dissipative drag in stable atoms:** The stability condition fails; the model is incompatible with chemistry.
+- **If $\alpha_{\mathrm m}\zeta(A)E_{\text{internal}}(A)$ cannot reproduce an independently measured $m(A)c_{\text{eff}}^2$ within declared errors after the shared normalization and response tensor are fixed:** the admitted scalar shielding-based mass map fails.
+- **If the medium model predicts secular dissipation or instability of an observed stable atomic state beyond the declared experimental allowance:** that assembly/medium model fails the stability comparison.
 - **If generational masses do not scale with shielding coherence:** The shielding-depletion explanation for the hierarchy is wrong.
 
 ---

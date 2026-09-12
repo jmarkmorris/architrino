@@ -1,0 +1,216 @@
+{
+  "@context": {
+    "@vocab": "https://architrino.com/knowledge/current-source/",
+    "from": {
+      "@type": "@id"
+    },
+    "to": {
+      "@type": "@id"
+    }
+  },
+  "schemaVersion": "current-source-manifest/v1",
+  "scope": "f6c-bounded-operation-current-source",
+  "repository": "https://github.com/jmarkmorris/architrino.git",
+  "baseline": {
+    "commit": "ab3ed93a59e69a5807397c24cefcfcb3a9642487",
+    "entry": "scripts/eom/f6c-bounded-operation.mjs",
+    "authority": "operator-directed-existing-A-transfer"
+  },
+  "revisionId": "b-rem-5/v1",
+  "@graph": [
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-prescribed-response-pilot.mjs",
+      "@type": "Source",
+      "revisionId": "cutover/v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/launch-prescribed-response-pilot.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "fc758e8ffc1feaa566cc8e1849f73a0c8907f5ad7567e43fffd151eeceac30a1"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "@type": "Source",
+      "revisionId": "b-rem-5/v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "e55cc27ca8e7d6bc0141b72cd65e1b2dce26d0c13d47d92427e68887d4de4e8a"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-f6c-emission-refinement-pilot.mjs",
+      "@type": "Source",
+      "revisionId": "cutover/v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "37fc8aab3e33229878ba1bd50182d7b6eb75b41cdbe171817ece7fcf7b0309e7"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Source",
+      "revisionId": "cutover/v1",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-manifest.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "9097ef3fd3fb2040b48c601d81c184188e8a992aa4464694860d05d0bf76a56e"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Ff6c-bounded-operation.mjs",
+      "@type": "Source",
+      "revisionId": "cutover/v1",
+      "role": "admission",
+      "binding": {
+        "path": "scripts/eom/f6c-bounded-operation.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "f0a310b0902b66b60b98ab2f6b2109f352a1263ad23cc1bd5b53763c197bcd7c"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/tests%2Ff6c-bounded-operation.test.js",
+      "@type": "Source",
+      "revisionId": "cutover/v1",
+      "role": "current-source",
+      "binding": {
+        "path": "tests/f6c-bounded-operation.test.js",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "a71ef095189f0bae802db6286868c4b99f4a756382c111e7980e9fa38ad4504b"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks/0",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Ff6c-bounded-operation.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-prescribed-response-pilot.mjs",
+      "toRevision": "cutover/v1",
+      "role": "operational-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn/0",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Ff6c-bounded-operation.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-prescribed-response-pilot.mjs",
+      "toRevision": "cutover/v1",
+      "role": "operational-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks/1",
+      "@type": "Relationship",
+      "revisionId": "b-rem-5/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Ff6c-bounded-operation.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "toRevision": "b-rem-5/v1",
+      "role": "operational-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn/1",
+      "@type": "Relationship",
+      "revisionId": "b-rem-5/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Ff6c-bounded-operation.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "toRevision": "b-rem-5/v1",
+      "role": "operational-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks/2",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Ff6c-bounded-operation.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-f6c-emission-refinement-pilot.mjs",
+      "toRevision": "cutover/v1",
+      "role": "operational-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn/2",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Ff6c-bounded-operation.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-f6c-emission-refinement-pilot.mjs",
+      "toRevision": "cutover/v1",
+      "role": "operational-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks/3",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Ff6c-bounded-operation.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "cutover/v1",
+      "role": "operational-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn/3",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Ff6c-bounded-operation.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "cutover/v1",
+      "role": "operational-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/checks/4",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Ff6c-bounded-operation.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ff6c-bounded-operation.test.js",
+      "toRevision": "cutover/v1",
+      "role": "operational-source"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/dependsOn/4",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Ff6c-bounded-operation.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ff6c-bounded-operation.test.js",
+      "toRevision": "cutover/v1",
+      "role": "operational-source"
+    }
+  ]
+}

@@ -6,6 +6,10 @@ Use [priorities.md](priorities.md) for strategy, claim boundaries, ownership, bl
 
 ## Log Entries
 
+### 2026-09-12 — Four-potential and Liénard–Wiechert comparison added to the manuscript
+
+Added manuscript sections 3.4 and 3.5 from an operator discussion of the electromagnetic four-potential, whether $\mathbf B$ is derivable from $\mathbf E$, and the Liénard–Wiechert solution. The comparison reads the per-hit kernel from the live [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md#per-hit-acceleration) and states the first-order expansions of both sides for a resting receiver with $c_f=1$; the expansions were checked numerically against the exact expressions in a scratch Node script (not retained) at one sample direction and speed. No score, queue row, or claim level changed. The steady-loop many-source case was identified as the next target and left unqueued.
+
 ### 2026-09-02 — EMAP-001 common-axis source/moment/field matrix
 
 Completed the report-only [Common-Axis Source, Moment, and Field Matrix](evidence/common-axis-source-moment-field-matrix.md). The packet defines separate exposed-charge, polarity-weighted circulation, group-translation, and raw exposed-current-moment rows; binds `EQ-13` and `EQ-27` projections to one source, wake, sea, boundary, and observation record; and gives the six required axis-null, circulation-reversal, polarity-conjugation, translation-reversal, proper-rotation, and neutral-far-field comparisons.

@@ -1,0 +1,551 @@
+{
+  "@context": {
+    "@vocab": "https://architrino.com/knowledge/current-source/",
+    "from": {
+      "@type": "@id"
+    },
+    "to": {
+      "@type": "@id"
+    }
+  },
+  "schemaVersion": "current-source-manifest/v1",
+  "scope": "prescribed-response-pilot-current-source",
+  "repository": "https://github.com/jmarkmorris/architrino.git",
+  "baseline": {
+    "commit": "7c957f86c1ca8c7ff8d4cf8341f2b3e2748b4b09",
+    "entry": "scripts/eom/run-prescribed-response-pilot.mjs",
+    "authority": "operator-directed-existing-A-transfer"
+  },
+  "revisionId": "b-rem-5/v1",
+  "@graph": [
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fprescribed_acceleration_response.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "independent-reference",
+      "binding": {
+        "path": "scripts/eom/oracle/prescribed_acceleration_response.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "e630c2f4c48c9fcfc56866166e8b5977d70ab83c6ca3f2b08ad9ea4f3f5e910c"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/tests%2Ftest_prescribed_acceleration_response.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/test_prescribed_acceleration_response.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "4b0e66feb308544aa6294b126a05f6a3c9fbb403580e8193d3140a7b52c370f1"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Freduce-prescribed-acceleration-response.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/reduce-prescribed-acceleration-response.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "e5b6ce3274f0cfdef107c03a966508896f8e7874372c4735fcd8ad55a339cd16"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/tests%2Ftest_prescribed_acceleration_response_consumer.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/test_prescribed_acceleration_response_consumer.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "eeb85745d0175fabc3306e3a00e5b6dc3df3418b29fe40df9b89b765ac468875"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fdecimal_interval.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "independent-reference",
+      "binding": {
+        "path": "scripts/eom/oracle/decimal_interval.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fcertified_history.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "independent-reference",
+      "binding": {
+        "path": "scripts/eom/oracle/certified_history.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fcontinuous_reception_roots.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "independent-reference",
+      "binding": {
+        "path": "scripts/eom/oracle/continuous_reception_roots.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Freference_kernel.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "independent-reference",
+      "binding": {
+        "path": "scripts/eom/oracle/reference_kernel.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "a3b94301b2994c29e1107de44d627db9566abe9cda60ec8e00b89d9351a275f6"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fcertified_acceleration.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "independent-reference",
+      "binding": {
+        "path": "scripts/eom/oracle/certified_acceleration.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "62787f1bb0d14329c0ad1f3586ef1f1cbeb666fe8c11f8831f7ad761d7c42b83"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "@type": "Source",
+      "revisionId": "b-rem-5/v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "e55cc27ca8e7d6bc0141b72cd65e1b2dce26d0c13d47d92427e68887d4de4e8a"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fpublish-prescribed-acceleration-response.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "current-source",
+      "binding": {
+        "path": "scripts/eom/publish-prescribed-acceleration-response.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "dc9d6db86b564297c0b21b5cf79afefd150b0eeb55d0bbedc71621eee0c30be4"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/tests%2Ftest_prescribed_acceleration_response_publication.py",
+      "@type": "Source",
+      "revisionId": "transfer/v1",
+      "role": "scientific-control",
+      "binding": {
+        "path": "tests/test_prescribed_acceleration_response_publication.py",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "fe57d4ed40110d530044b0d6aecb7a17da865b4d56d6186a3ad14497282e217f"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "@type": "Source",
+      "revisionId": "cutover/v1",
+      "role": "admission",
+      "binding": {
+        "path": "scripts/eom/run-prescribed-response-pilot.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "361137c6bd4b160060abe7468b3bdcc41937c6a5812fa3fbdbe7979ed1c80c28"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-prescribed-response-pilot.mjs",
+      "@type": "Source",
+      "revisionId": "cutover/v1",
+      "role": "launcher",
+      "binding": {
+        "path": "scripts/eom/launch-prescribed-response-pilot.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "fc758e8ffc1feaa566cc8e1849f73a0c8907f5ad7567e43fffd151eeceac30a1"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Source",
+      "revisionId": "cutover/v1",
+      "role": "manifest-reader",
+      "binding": {
+        "path": "scripts/equation-mapping/current-source-manifest.mjs",
+        "selector": {
+          "kind": "whole"
+        },
+        "contract": "fixed-byte-selection/v1",
+        "sha256": "9097ef3fd3fb2040b48c601d81c184188e8a992aa4464694860d05d0bf76a56e"
+      }
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2FdependsOn%2Fscripts%2Feom%2Foracle%2Fprescribed_acceleration_response.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fprescribed_acceleration_response.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2Fchecks%2Fscripts%2Feom%2Foracle%2Fprescribed_acceleration_response.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fprescribed_acceleration_response.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2FdependsOn%2Ftests%2Ftest_prescribed_acceleration_response.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_prescribed_acceleration_response.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2Fchecks%2Ftests%2Ftest_prescribed_acceleration_response.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_prescribed_acceleration_response.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2FdependsOn%2Fscripts%2Feom%2Freduce-prescribed-acceleration-response.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Freduce-prescribed-acceleration-response.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2Fchecks%2Fscripts%2Feom%2Freduce-prescribed-acceleration-response.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Freduce-prescribed-acceleration-response.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2FdependsOn%2Ftests%2Ftest_prescribed_acceleration_response_consumer.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_prescribed_acceleration_response_consumer.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2Fchecks%2Ftests%2Ftest_prescribed_acceleration_response_consumer.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_prescribed_acceleration_response_consumer.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2FdependsOn%2Fscripts%2Feom%2Foracle%2Fdecimal_interval.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fdecimal_interval.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2Fchecks%2Fscripts%2Feom%2Foracle%2Fdecimal_interval.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fdecimal_interval.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2FdependsOn%2Fscripts%2Feom%2Foracle%2Fcertified_history.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fcertified_history.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2Fchecks%2Fscripts%2Feom%2Foracle%2Fcertified_history.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fcertified_history.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2FdependsOn%2Fscripts%2Feom%2Foracle%2Fcontinuous_reception_roots.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fcontinuous_reception_roots.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2Fchecks%2Fscripts%2Feom%2Foracle%2Fcontinuous_reception_roots.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fcontinuous_reception_roots.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2FdependsOn%2Fscripts%2Feom%2Foracle%2Freference_kernel.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Freference_kernel.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2Fchecks%2Fscripts%2Feom%2Foracle%2Freference_kernel.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Freference_kernel.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2FdependsOn%2Fscripts%2Feom%2Foracle%2Fcertified_acceleration.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fcertified_acceleration.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2Fchecks%2Fscripts%2Feom%2Foracle%2Fcertified_acceleration.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Foracle%2Fcertified_acceleration.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2FdependsOn%2Fscripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "@type": "Relationship",
+      "revisionId": "b-rem-5/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "toRevision": "b-rem-5/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2Fchecks%2Fscripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "@type": "Relationship",
+      "revisionId": "b-rem-5/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
+      "toRevision": "b-rem-5/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2FdependsOn%2Fscripts%2Feom%2Fpublish-prescribed-acceleration-response.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fpublish-prescribed-acceleration-response.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2Fchecks%2Fscripts%2Feom%2Fpublish-prescribed-acceleration-response.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Fpublish-prescribed-acceleration-response.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2FdependsOn%2Ftests%2Ftest_prescribed_acceleration_response_publication.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_prescribed_acceleration_response_publication.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2Fchecks%2Ftests%2Ftest_prescribed_acceleration_response_publication.py",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/tests%2Ftest_prescribed_acceleration_response_publication.py",
+      "toRevision": "transfer/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2FdependsOn%2Fscripts%2Feom%2Flaunch-prescribed-response-pilot.mjs",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-prescribed-response-pilot.mjs",
+      "toRevision": "cutover/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2Fchecks%2Fscripts%2Feom%2Flaunch-prescribed-response-pilot.mjs",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-prescribed-response-pilot.mjs",
+      "toRevision": "cutover/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2FdependsOn%2Fscripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "dependsOn",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "cutover/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/prescribed-response-pilot-current-source%2Fchecks%2Fscripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Fequation-mapping%2Fcurrent-source-manifest.mjs",
+      "toRevision": "cutover/v1",
+      "role": "current source admission"
+    },
+    {
+      "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs/checks-self",
+      "@type": "Relationship",
+      "revisionId": "cutover/v1",
+      "kind": "checks",
+      "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "fromRevision": "cutover/v1",
+      "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-prescribed-response-pilot.mjs",
+      "toRevision": "cutover/v1",
+      "role": "current source admission"
+    }
+  ]
+}

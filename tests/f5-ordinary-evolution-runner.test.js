@@ -1,4 +1,6 @@
 import test from 'node:test';
+import {admitF5Sources,EVOLUTION_MAP} from '../scripts/eom/f5-current-source-admission.mjs';
+const operationalAdmission=()=>admitF5Sources(realpathSync(process.cwd()),sha256(readFileSync(EVOLUTION_MAP)),{},'evolution');
 import assert from 'node:assert/strict';
 import { closeSync, existsSync, mkdtempSync, mkdirSync, openSync, readFileSync, realpathSync, renameSync, rmSync, symlinkSync, unlinkSync, writeFileSync, writeSync } from 'node:fs';
 import { execFileSync, spawn } from 'node:child_process';
@@ -311,7 +313,7 @@ test('bounded registered gate preserves input/output bytes and genuine target ex
   const dir=temporary(t), input='exact synthetic bytes\n\u0000tail';
   const source="const a=[];process.stdin.on('data',b=>a.push(b));process.stdin.on('end',()=>{process.stdout.write(Buffer.concat(a));process.stderr.write('synthetic error bytes');process.exitCode=2;});";
   const result=await runWatched({command:process.execPath,args:['-e',source],input,output:resolve(dir,'gated'),limits:controlLimits,
-    delegation:syntheticDelegation(),testHooks:{probe:healthyProbe,processTable:realTable}});
+    delegation:syntheticDelegation(),operational:await operationalAdmission(),testHooks:{probe:healthyProbe,processTable:realTable}});
   assert.equal(result.exit.code,2);assert.equal(result.processSucceeded,false);assert.equal(result.processGroupClosed,true);
   assert.equal(readFileSync(resolve(dir,'gated/stdout.json'),'utf8'),input);
   assert.equal(readFileSync(resolve(dir,'gated/stderr.log'),'utf8'),'synthetic error bytes');
@@ -321,7 +323,7 @@ test('bounded registered gate preserves input/output bytes and genuine target ex
 test('bounded registered gate rechecks admission after ACK and never launches rejected target', {skip:!processControls,timeout:10000}, async t=>{
   const dir=temporary(t),marker=resolve(dir,'forbidden');let admissions=0;
   const result=await runWatched({command:process.execPath,args:['-e',`require('fs').writeFileSync(${JSON.stringify(marker)},'bad')`],
-    output:resolve(dir,'gated'),limits:controlLimits,delegation:syntheticDelegation(),
+    output:resolve(dir,'gated'),limits:controlLimits,delegation:syntheticDelegation(),operational:await operationalAdmission(),
     beforeSpawn:()=>{if(++admissions===2)throw Error('synthetic binding changed after registration');},
     testHooks:{probe:healthyProbe,processTable:realTable}});
   assert.equal(admissions,2);assert.equal(result.processSucceeded,false);assert(!existsSync(marker));
@@ -359,7 +361,8 @@ test('bounded gate enforces its own deadline while controller remains alive', {s
   const source=`process.on('SIGTERM',()=>{});require('fs').writeFileSync(${JSON.stringify(marker)},String(process.pid));setInterval(()=>{},1000);`;
   const spec={stageId,workerPid:process.pid,cwd:process.cwd(),command:process.execPath,args:['-e',source],environment:{PATH:'/usr/bin:/bin',LC_ALL:'C',LANG:'C'},
     inputBytes:0,inputSha256:sha256(''),deadlineEpochMs:Date.now()+800};
-  const child=spawn(process.execPath,[STAGE_GATE,JSON.stringify(spec)],{detached:true,stdio:['pipe','pipe','pipe','ipc'],env:spec.environment});
+  const admission=await operationalAdmission();
+  const child=spawn(process.execPath,admission.invocation('scripts/eom/f5-registered-stage-gate.mjs',[JSON.stringify(spec),'--source-map-sha256',admission.sourceMap.sha256]),{detached:true,stdio:['pipe','pipe','pipe','ipc'],env:spec.environment});
   t.after(()=>{if(isAlive(-child.pid))try{process.kill(-child.pid,'SIGKILL');}catch{}});
   child.on('message',m=>{if(m.event==='gate-ready')child.send({event:'go',stageId});});child.stdin.end();
   const exit=await new Promise((done,fail)=>{child.once('error',fail);child.once('close',(code,signal)=>done({code,signal}));});

@@ -2,7 +2,7 @@
 
 ## Current disposition
 
-All three root-cover profiles now use B for current-source admission. The separately requested [cached-pilot transfer](option-b-cached-root-cover-cutover.md) preserves 22 inherited repository identities and three numerical-evidence bindings; the [cached-full transfer](option-b-cached-root-cover-full-cutover.md) preserves 23 inherited source identities and 11 fixed evidence identities, including the historical pilot plan. Both preserve their original comparison controls. The first-profile evidence below retains its original measured scope; its test and write-set counts are historical checkpoints, not totals for these transfers.
+All five original launch profiles now use B for current-source admission. The [paired prescribed-response and acceleration record](option-b-prescribed-response-and-acceleration-cutover.md) completes the two remaining profiles; the [remaining migration plan](option-b-remaining-migration-plan.md) inventories repository-wide responsibilities in five bounded work packages. The separately requested [cached-pilot transfer](option-b-cached-root-cover-cutover.md) preserves 22 inherited repository identities and three numerical-evidence bindings; the [cached-full transfer](option-b-cached-root-cover-full-cutover.md) preserves 23 inherited source identities and 11 fixed evidence identities, including the historical pilot plan. Both preserve their original comparison controls. The first-profile evidence below retains its original measured scope; its test and write-set counts are historical checkpoints, not totals for these transfers.
 
 ## First-profile disposition
 
@@ -23,12 +23,12 @@ This is the complete current-source boundary of the first operational entry/laun
 | Root-cover pilot operational entry and launcher | ✓ Done for scoped source admission | B manifest, captured reader, transfer checker and admission tests |
 | Cached root-cover pilot | ✓ Done for scoped source admission | [Cached-profile transfer](option-b-cached-root-cover-cutover.md); historical construction controls preserved |
 | Cached root-cover full | ✓ Done for scoped source admission | [Full-profile transfer](option-b-cached-root-cover-full-cutover.md); full-run evidence and resource requirements preserved |
-| Prescribed-response pilot | ○ Not done for B migration | Existing A source admission and explicit historical data routes |
-| Acceleration pilot | ○ Not done for B migration | Existing A source admission and scientific/historical comparison controls |
+| Prescribed-response pilot | ✓ Done for scoped source admission | [Paired transfer](option-b-prescribed-response-and-acceleration-cutover.md); scientific/frozen input and historical routes retained |
+| Acceleration pilot | ✓ Done for scoped source admission | [Paired transfer](option-b-prescribed-response-and-acceleration-cutover.md); one explicit operational helper successor, scientific/historical controls retained |
 | Scientific preparation, execution and verifier bridges | ○ Not done for broader current-source transfer | Their retained scientific and historical owners; inventory by actual obligation before changes |
 | Moving-single-root and finite-ledger mathematical maps | ✓ Done for stale-selector repair; separate report-only authority | Existing mathematical trial and review owners |
 
-All three root-cover profiles are removed from `tests/current-launch-bindings.test.js`; that A test retains prescribed-response and acceleration. Required Content Integrity checks execute B schema/admission controls and the source transfer checker for all three profiles. The original publication receipt still covers the repository candidate. No additional publication authorization is inferred.
+All five original profiles have left the A loop in `tests/current-launch-bindings.test.js`; that test now checks the exact B migration census. Required Content Integrity checks execute B schema/admission controls and the source transfer checker for all five profiles. The original publication receipt still covers the repository candidate. No additional publication authorization is inferred.
 
 ## Parallel comparison and controls
 
@@ -63,9 +63,14 @@ Two additional relationship justifications covered the measurement paragraph. Re
 
 ## Continuation
 
-1. ○ Not done — extend the manifest contract to prescribed-response, then acceleration. Use the same explicit invocation trust boundary, establish each retained baseline, inventory its scientific/historical exceptions, and prove coverage before retiring that profile's A loop.
-2. ○ Not done — inventory the preparation/execution/verifier bridges for current-source identity roles. Their fixed scientific reference and evidence controls need separately justified dispositions; hash syntax alone cannot establish redundancy.
-3. ○ Not done — establish a successor baseline when changing inherited scientific source bytes. The initial transfer checker intentionally requires identity equality with its retained A generation; a scientifically changed reference requires its own review and cannot be admitted by editing the old descriptor.
+B-REM-1's [connected F6c operational transfer](option-b-f6c-family-cutover.md) is complete, with independent review and 327 passing consolidated controls. The remaining four packages are:
+
+1. ○ Not done — B-REM-2: migrate the F5 current execution/build family.
+2. ○ Not done — B-REM-3: migrate circular-root current admission, including dependent users of its shared supervisor.
+3. ○ Not done — B-REM-4: disposition and transfer justified current-source roles in scientific bridges, references and certifiers without changing their scientific obligations.
+4. ○ Not done — B-REM-5: reconcile every inventory candidate and nonliteral owner, then validate one stable candidate against the explicit closure criteria.
+
+The [remaining migration plan](option-b-remaining-migration-plan.md) owns exact paths, acceptance criteria and the scope-change rule. Inventory/planning and B-REM-1 are complete; these four packages remain unimplemented. A later scientific-source change still needs a separately justified successor baseline.
 
 Claim grade: measured for the stated commands and file scopes; inferred for the suitability of this bounded transfer. A stale source admitted under the previous manifest digest, an omitted original binding, a changed numerical-evidence identity, or failure of the retained scientific/process controls would overturn the corresponding result. The wider all-current-source campaign remains incomplete.
 

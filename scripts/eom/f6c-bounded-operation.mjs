@@ -38,11 +38,9 @@ export const LIMITS=Object.freeze({inclusiveMilliseconds:1800000,aggregateRSSByt
   scientificBytes:67108864,combinedLogBytes:16777216,sourceFiles:512,sourceBytes:1073741824,
   outputFiles:512,serialWorkers:1,startFreePercent:40,startDiskBytes:68719476736,
   stopFreePercent:20,stopDiskBytes:17179869184});
-export const PINS=Object.freeze({
-  helpers:['scripts/eom/launch-prescribed-response-pilot.mjs','05cd35574276841795077ea28a2b6d6e47534379184f7164a9dafe473e156a7f'],
-  outer:['scripts/eom/launch-subfield-circular-root-pilot.mjs','71974054ddce7fc29b8464b9a7a63f8fbb04ee5b425dc997df4d40b2804341aa'],
-  diagnostics:['scripts/eom/launch-f6c-emission-refinement-pilot.mjs','bbc2c5e1c801a224dc0849777e987310ac7581e4b535a2adcd2de1d802926b40'],
-});
+export const DEPENDENCIES=Object.freeze({helpers:'scripts/eom/launch-prescribed-response-pilot.mjs',outer:'scripts/eom/launch-subfield-circular-root-pilot.mjs',diagnostics:'scripts/eom/launch-f6c-emission-refinement-pilot.mjs'});
+export const SOURCE_MAP='reference/priorities/development-process-review/contracts/option-b-f6c-bounded-operation-sources.jsonld';
+const SOURCE_READER='scripts/equation-mapping/current-source-manifest.mjs';
 const check=(ok,message)=>{if(!ok)throw Error(message);};
 const sha=raw=>createHash('sha256').update(raw).digest('hex');
 const url=raw=>'data:text/javascript;base64,'+Buffer.from(raw).toString('base64');
@@ -118,6 +116,31 @@ export function originalIdentities(captured){
   const result={};
   for(const c of captured){binding(clean(c));check(typeof c.identity==='string'&&/^[0-9]+:[0-9]+:[0-9]+:[0-9]+:[0-9]+$/u.test(c.identity),'captured source identity required');check(!Object.hasOwn(result,c.path)||result[c.path]===c.identity,'conflicting original source identity');result[c.path]=c.identity;}
   return result;
+}
+
+export async function initializeSourceBindings(root,expectedMapDigest,live=()=>{}){
+  hashToken(expectedMapDigest);absolute(root);check(realpathSync(root)===root,'canonical source admission root');live();
+  const map=readBound(path.join(root,SOURCE_MAP),expectedMapDigest,true,1048576,live),metadata=JSON.parse(map.data);
+  const readers=metadata['@graph']?.filter(r=>r.role==='manifest-reader'&&r.binding?.path===SOURCE_READER);
+  check(readers?.length===1,'one captured source reader');hashToken(readers[0].binding.sha256);
+  const reader=readBound(path.join(root,SOURCE_READER),readers[0].binding.sha256,true,1048576,live);
+  const M=await import(url(reader.data));live();
+  const admitted=M.admit(map.data,{root,scope:'f6c-bounded-operation-current-source',readBound:(p,h,collect)=>readBound(p,h,collect,LIMITS.sourceBytes,live)});
+  const rows=admitted.document['@graph'].filter(r=>r['@type']==='Source');
+  const expectedRoles={[SELF]:'admission',[SOURCE_READER]:'manifest-reader',[CONTROLS]:'current-source',...Object.fromEntries(Object.values(DEPENDENCIES).map(p=>[p,'current-source']))};
+  check(rows.length===Object.keys(expectedRoles).length&&rows.every(r=>expectedRoles[r.binding.path]===r.role),'exact operational source composition');
+  const captured=[map,reader,...admitted.bindings],identities=originalIdentities(captured),sources=sourceUnion(captured.map(clean));
+  captureUnion(sources,identities,live);live();
+  return{sourceMap:clean(map),sources,identities,dependencies:Object.fromEntries(Object.entries(DEPENDENCIES).map(([k,p])=>[k,[p,admitted.pins[p]]]))};
+}
+
+export async function admitPlanSourceBindings(plan,live=()=>{}){
+  const map=plan.sources.find(b=>b.path===path.join(plan.root,SOURCE_MAP));check(map,'externally selected plan source map');binding(map);
+  const admitted=await initializeSourceBindings(plan.root,map.sha256,live);
+  check(equal(admitted.sourceMap,map),'selected plan map size');
+  const declared=sourceUnion([...plan.sources,plan.hookModule,plan.hookControls,...plan.stages.flatMap(s=>[s.entry,...s.sources,...s.runtimeBindings])]);
+  for(const b of admitted.sources)check(declared.some(s=>equal(s,b)),'selected operational source missing from plan');
+  return admitted;
 }
 
 export function noCompetitor(table,ownPid){
@@ -548,10 +571,14 @@ async function lifetimeHost(s,launch){
   lifetimeLog(s,{kind:'host-resource',...record});return record;
 }
 
-async function initializeLifetime(s,selfSha){
+async function initializeLifetime(s,selfSha,sourceMapSha256){
   s.live();hashToken(selfSha);check(realpathSync(s.root)===s.root&&import.meta.url===pathToFileURL(path.join(s.root,SELF)).href,'one canonical file-C owner');
   s.self=readBound(path.join(s.root,SELF),selfSha,true,1048576,()=>s.live());
-  s.deps=Object.fromEntries(Object.entries(PINS).map(([k,[p,h]])=>[k,readBound(path.join(s.root,p),h,true,1048576,()=>s.live())]));
+  const admitted=await s.bounded(()=>initializeSourceBindings(s.root,sourceMapSha256,()=>s.live()),'source manifest admission');
+  check(admitted.sources.some(b=>equal(b,clean(s.self))),'externally selected coordinator agrees with map');
+  s.sourceAdmission=Object.freeze({root:s.root,sourceMapSha256:admitted.sourceMap.sha256});
+  bindLifetimeSources(s,{sources:admitted.sources,identities:admitted.identities});
+  s.deps=Object.fromEntries(Object.entries(admitted.dependencies).map(([k,[p,h]])=>[k,readBound(path.join(s.root,p),h,true,1048576,()=>s.live())]));
   s.H=await s.bounded(()=>import(url(s.deps.helpers.data)),'captured helper import');
   s.outer=await s.bounded(()=>import(url(s.deps.outer.data)),'captured K import');
   s.D=await s.bounded(()=>import(url(s.deps.diagnostics.data)),'captured diagnostics import');
@@ -652,7 +679,7 @@ function lifetimeFileWorker(s,job,bytes,{signal=s.abort.signal}={}){
   }
   const signalBoth=signal===s.abort.signal?signal:AbortSignal.any([signal,s.abort.signal]);
   s.workerStarts++;
-  const worker=s.H.runFileWorker({...job,deadlineNanoseconds:s.deadlineNanoseconds,priorContext:s.priorContext},bytes,s.remainingMs(),signalBoth);
+  const worker=s.H.runFileWorker({...job,...(s.mode==='plan'?s.sourceAdmission:{}),deadlineNanoseconds:s.deadlineNanoseconds,priorContext:s.priorContext},bytes,s.remainingMs(),signalBoth);
   const actual=s.track(worker.then(result=>job.kind==='publish'?rememberPublication(s,result):result,error=>{
     // H does not distinguish a rejected operation from rejected termination.
     // Conservatively retain uncertainty; settled is not a closed-worker proof.
@@ -852,8 +879,8 @@ export async function runBoundedOperation({planPath,planSha256,selfSha256,began,
 }
 
 export function parseArguments(argv){
-  check(Array.isArray(argv)&&argv.length===6&&argv[0]==='--plan'&&argv[2]==='--plan-sha256'&&argv[4]==='--self-sha256','usage: --plan ABS --plan-sha256 SHA --self-sha256 SHA');
-  absolute(argv[1]);hashToken(argv[3]);hashToken(argv[5]);return {planPath:argv[1],planSha256:argv[3],selfSha256:argv[5]};
+  check(Array.isArray(argv)&&argv.length===8&&argv[0]==='--plan'&&argv[2]==='--plan-sha256'&&argv[4]==='--self-sha256'&&argv[6]==='--source-map-sha256','usage: --plan ABS --plan-sha256 SHA --self-sha256 SHA --source-map-sha256 SHA');
+  absolute(argv[1]);for(const i of[3,5,7])hashToken(argv[i]);return {planPath:argv[1],planSha256:argv[3],selfSha256:argv[5],sourceMapSha256:argv[7]};
 }
 
 export async function coordinate({root,self,planPath,planSha256,began,deadlineNanoseconds,lifetime}){
@@ -903,10 +930,10 @@ export async function coordinate({root,self,planPath,planSha256,began,deadlineNa
 function parseWholeArguments(argv){
   if(argv[0]==='--control-plan')return{mode:'plan',control:true,...parseArguments(['--plan',...argv.slice(1)])};
   if(argv[0]!=='--streamed')return{mode:'plan',...parseArguments(argv)};
-  check(argv.length===9&&argv[1]==='--spec'&&argv[3]==='--spec-sha256'&&argv[5]==='--caller-sha256'&&argv[7]==='--self-sha256',
-    'usage: --streamed --spec ABS --spec-sha256 SHA --caller-sha256 SHA --self-sha256 SHA');
-  absolute(argv[2]);for(const i of[4,6,8])hashToken(argv[i]);
-  return{mode:'streamed',specPath:argv[2],specSha:argv[4],callerSha:argv[6],selfSha256:argv[8]};
+  check(argv.length===11&&argv[1]==='--spec'&&argv[3]==='--spec-sha256'&&argv[5]==='--caller-sha256'&&argv[7]==='--self-sha256'&&argv[9]==='--source-map-sha256',
+    'usage: --streamed --spec ABS --spec-sha256 SHA --caller-sha256 SHA --self-sha256 SHA --source-map-sha256 SHA');
+  absolute(argv[2]);for(const i of[4,6,8,10])hashToken(argv[i]);
+  return{mode:'streamed',specPath:argv[2],specSha:argv[4],callerSha:argv[6],selfSha256:argv[8],sourceMapSha256:argv[10]};
 }
 
 async function wholeAttemptMain(){
@@ -920,7 +947,7 @@ async function wholeAttemptMain(){
   let s;
   try{
     s=makeLifetime(began,deadlineNanoseconds,control);await s.ready();
-    const options=parseWholeArguments(process.argv.slice(2));check(Boolean(options.control)===control,'unchanged first-token budget selection');s.mode=options.mode;await initializeLifetime(s,options.selfSha256);
+    const options=parseWholeArguments(process.argv.slice(2));check(Boolean(options.control)===control,'unchanged first-token budget selection');s.mode=options.mode;await initializeLifetime(s,options.selfSha256,options.sourceMapSha256);
     if(options.mode==='plan')await runBoundedOperation({...options,began,deadlineNanoseconds,lifetime:s.capability});
     else{
       s.live();const caller=readBound(path.join(s.root,STREAMED),options.callerSha,true,1048576,()=>s.live());

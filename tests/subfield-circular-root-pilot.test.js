@@ -21,8 +21,8 @@ const directory = () => realpathSync(mkdtempSync(path.join(os.tmpdir(), "subfiel
 const source = relative => { const bytes = readFileSync(path.join(ROOT, relative)); return { path: relative, bytes, sha256: sha(bytes) }; };
 
 test("pilot CLI requires a new scoped directory and exact external reviewed source hash", () => {
-  const args = ["--out", BASE + "synthetic", "--runner-sha256", "a".repeat(64)];
-  assert.deepEqual(parsePilotArgs(args), { output: BASE + "synthetic", runnerSha256: "a".repeat(64) });
+  const args = ["--out", BASE + "synthetic", "--runner-sha256", "a".repeat(64),"--source-map-sha256","b".repeat(64)];
+  assert.deepEqual(parsePilotArgs(args), { output: BASE + "synthetic", runnerSha256: "a".repeat(64),sourceMapSha256:"b".repeat(64) });
   for (const invalid of [[], args.slice(0, 2), [...args, "--out", "second"], ["--out", BASE + "../escape", ...args.slice(2)],
     ["--out", "/absolute", ...args.slice(2)], ["--out", BASE + "synthetic/", ...args.slice(2)],
     ["--out", BASE + "synthetic", "--runner-sha256", "A".repeat(64)]]) assert.throws(() => parsePilotArgs(invalid));

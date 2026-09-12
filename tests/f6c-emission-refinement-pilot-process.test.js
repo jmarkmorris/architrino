@@ -10,6 +10,7 @@ import {syncBuiltinESMExports} from 'node:module';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
+import * as Admission from '../scripts/eom/run-f6c-emission-refinement-pilot.mjs';
 const root=realpathSync(process.cwd()),hash=b=>createHash('sha256').update(b).digest('hex');
 const outer=readFileSync('scripts/eom/launch-subfield-circular-root-pilot.mjs');
 const helper=readFileSync('scripts/eom/launch-prescribed-response-pilot.mjs');
@@ -45,6 +46,7 @@ function entrySource(mode,program,digest){return Buffer.from([
   "import{readFileSync,realpathSync}from'node:fs';import path from'node:path';import{fileURLToPath}from'node:url';",
   'import * as U from '+JSON.stringify(pathToFileURL(path.join(root,entryPath)).href)+';',
   'export const LANE=U.LANE,SHARED_LOCK_LANE=U.SHARED_LOCK_LANE,SCOPE=U.SCOPE,CENSUS=U.CENSUS;',
+  'export const initializeSourceBindings=U.initializeSourceBindings;export {SOURCE_BINDINGS} from '+JSON.stringify(pathToFileURL(path.join(root,entryPath)).href)+';',
   'export const outputPaths=U.outputPaths,clean=U.clean,readBound=U.readBound,writeNew=U.writeNew,equal=U.equal;',
   'export function fileOperation(job){',
   " if(job.kind==='preflight')return{plan:{syntheticOnly:true},planBinding:{path:job.planPath,sha256:job.planSha256,bytes:1},sources:[]};",
@@ -66,6 +68,7 @@ function entrySource(mode,program,digest){return Buffer.from([
   " throw Error('unknown synthetic operation');}",
   "if(import.meta.url.startsWith('file:')&&process.argv[1]===fileURLToPath(import.meta.url)){",
   " const args=process.argv.slice(2),get=k=>args[args.indexOf(k)+1];",
+  " await U.initializeSourceBindings(realpathSync(process.cwd()),get('--source-map-sha256'));",
   ' await U.runSingleStage({command:'+JSON.stringify(python)+",args:['-I','-B','-c',U.PYTHON_BOOTSTRAP,"+JSON.stringify(program)+','+JSON.stringify(digest)+",get('--out'),get('--stage'),"+JSON.stringify(mode)+']});',
   " console.error(JSON.stringify({kind:'f6c-refinement-entry-process-resources',resourceUsage:process.resourceUsage()}));}",
 ].join('\n'));}
@@ -73,7 +76,14 @@ async function runFixture(mode){
   const dir=realpathSync(mkdtempSync(path.join(tmpdir(),'f6c-refinement-registered-control-')));
   mkdirSync(path.join(dir,lane),{recursive:true});mkdirSync(path.join(dir,lockLane),{recursive:true});mkdirSync(path.join(dir,'scripts/eom'),{recursive:true});
   const program=path.join(dir,'synthetic.py'),programBytes=pythonSource();writeFileSync(program,programBytes);
-  const entry=entrySource(mode,program,hash(programBytes));writeFileSync(path.join(dir,entryPath),"throw Error('uncaptured disk entry must never run');\n");
+  const entry=entrySource(mode,program,hash(programBytes));writeFileSync(path.join(dir,entryPath),entry);
+  const map=JSON.parse(readFileSync(Admission.SOURCE_MAP));
+  for(const row of map['@graph'].filter(r=>r['@type']==='Source')){
+    const p=row.binding.path,filename=path.join(dir,p);mkdirSync(path.dirname(filename),{recursive:true});
+    const bytes=p===entryPath?entry:readFileSync(path.join(root,p));writeFileSync(filename,bytes);row.binding.sha256=hash(bytes);
+  }
+  const mapPath=path.join(dir,Admission.SOURCE_MAP),mapBytes=Buffer.from(JSON.stringify(map,null,2)+'\n');
+  mkdirSync(path.dirname(mapPath),{recursive:true});writeFileSync(mapPath,mapBytes);
   const original=cp.execFile,originalWrite=fs.writeSync;let psCalls=0,diagnosticTimer;
   cp.execFile=function(command,args,options,callback){
     if(command==='/usr/bin/memory_pressure'){setImmediate(()=>callback(null,'System-wide memory free percentage: 100%\n'));return {pid:-1000};}
@@ -91,7 +101,7 @@ async function runFixture(mode){
   const output=path.join(dir,lane,'attempt'),ops=output+'-outer';
   try{
     const L=await import('data:text/javascript;base64,'+self.toString('base64')),began=performance.now();
-    const operation=L.launchCaptured({root:dir,options:{output,plan:path.join(dir,'fake-plan'),planSha256:'1'.repeat(64),launcherSha256:hash(self),python,git:'/usr/bin/git'},
+    const operation=L.launchCaptured({root:dir,options:{output,sourceMapSha256:hash(mapBytes),plan:path.join(dir,'fake-plan'),planSha256:'1'.repeat(64),launcherSha256:hash(self),python,git:'/usr/bin/git'},
       self:{path:path.join(root,'scripts/eom/launch-f6c-emission-refinement-pilot.mjs'),sha256:hash(self),bytes:self.length,data:self},
       entry:{path:path.join(dir,entryPath),sha256:hash(entry),bytes:entry.length,data:entry},outerBytes:outer,helperBytes:helper,began,deadlineNanoseconds:String(process.hrtime.bigint()+1800000000000n)});
     if(mode==='broken-diagnostic')diagnosticTimer=setInterval(()=>{const targetFile=path.join(ops,'synthetic-target.json');if(!existsSync(targetFile))return;clearInterval(diagnosticTimer);
@@ -167,6 +177,7 @@ test('real active-target diagnostic EPIPE cancels owned group releases lock and 
   'const helper=readFileSync('+JSON.stringify(path.join(root,'scripts/eom/launch-prescribed-response-pilot.mjs'))+');',
   'const self=readFileSync('+JSON.stringify(path.join(root,'scripts/eom/launch-f6c-emission-refinement-pilot.mjs'))+');',
   'const entryPath='+JSON.stringify(entryPath)+',lane='+JSON.stringify(lane)+',lockLane='+JSON.stringify(lockLane)+',python='+JSON.stringify(python)+';',
+  'const Admission=await import('+JSON.stringify(pathToFileURL(path.join(root,entryPath)).href)+');',
   pythonSource.toString(),entrySource.toString(),runFixture.toString(),
   'const L=await import('+JSON.stringify(pathToFileURL(path.join(root,'scripts/eom/launch-f6c-emission-refinement-pilot.mjs')).href)+');',
   "try{await runFixture('broken-diagnostic');await new Promise(resolve=>process.send({checked:true},resolve));",

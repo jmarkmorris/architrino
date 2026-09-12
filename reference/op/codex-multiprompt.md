@@ -73,7 +73,7 @@ Return:
 - Validation run and results.
 - Remaining risks or blockers.
 - Any priority item removed or deferred.
-- Closure goal for the next concrete step.
+- The next concrete step, with a recommendation and reason.
 ```
 
 ## Reasoning Effort Guidance

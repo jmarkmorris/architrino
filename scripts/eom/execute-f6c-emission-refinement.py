@@ -22,6 +22,12 @@ PRODUCER_SHA = '2e4b020647a6ecbb5843df13667f672c809c65ac504bb6801e2b7249a8356618
 VERIFIER = 'scripts/eom/verify-f6c-emission-refinement.py'
 VERIFIER_SHA = '42b5cee3bbaf42dc417c868d54078a70070a9769e27668ba0c6f7ea6a4e34709'
 SCHEMA = 'braid-program/f6c-emission-refinement-launch.v2'
+OPERATIONAL_SELECTION = {
+    'helpers': 'scripts/eom/launch-prescribed-response-pilot.mjs',
+    'outer': 'scripts/eom/launch-subfield-circular-root-pilot.mjs',
+    'source-map': 'reference/priorities/development-process-review/contracts/option-b-f6c-emission-operational-sources.jsonld',
+    'source-reader': 'scripts/equation-mapping/current-source-manifest.mjs',
+}
 
 
 def require(ok, message):
@@ -46,7 +52,7 @@ def support(root):
         held.recheck()
 
 
-def current_plan(raw, verifier, root, bridge_sha, infrastructure):
+def current_plan(raw, verifier, root, bridge_sha, infrastructure, operational_selection):
     extras = {'executionBridge', 'declarationInput', 'historicalInputs'}
     verifier.keys(raw, set(verifier.PLAN_KEYS) | extras)
     require(raw['schema'] == SCHEMA, 'current v2 plan required')
@@ -82,15 +88,21 @@ def current_plan(raw, verifier, root, bridge_sha, infrastructure):
              'scripts/eom/launch-f6c-emission-refinement-pilot.mjs',
              'tests/f6c-emission-refinement-pilot.test.js', 'tests/f6c-emission-refinement-pilot-process.test.js',
              'scripts/eom/launch-prescribed-response-pilot.mjs', 'scripts/eom/launch-subfield-circular-root-pilot.mjs',
-             '/bin/ps', '/usr/bin/memory_pressure'}
+             '/bin/ps', '/usr/bin/memory_pressure',
+             OPERATIONAL_SELECTION['source-map'], OPERATIONAL_SELECTION['source-reader']}
     require(known < set(ops) and len(ops) == len(known) + 1, 'closed current operational census')
     node = Path(next(iter(set(ops) - known)))
     require(node.is_absolute() and node.name == 'node', 'resolved Node binding required')
     require(ops[SELF] == bridge and ops[SUPPORT]['sha256'] == SUPPORT_SHA, 'bridge/support execution census differs')
-    expected = {'scripts/eom/launch-prescribed-response-pilot.mjs': '05cd35574276841795077ea28a2b6d6e47534379184f7164a9dafe473e156a7f',
-                'scripts/eom/launch-subfield-circular-root-pilot.mjs': '71974054ddce7fc29b8464b9a7a63f8fbb04ee5b425dc997df4d40b2804341aa',
-                }
-    require(all(ops[p]['sha256'] == h for p, h in expected.items()), 'current operational generation differs')
+    # Node supplies these from its captured B graph. Direct CLI use supplies
+    # the same external byte selections; plan identity alone does not claim
+    # Node graph admission or confer scientific acceptance.
+    require(type(operational_selection) is dict and set(operational_selection) == set(OPERATIONAL_SELECTION),
+            'complete external operational selection required')
+    require(all(type(h) is str and len(h) == 64 and all(c in '0123456789abcdef' for c in h)
+                for h in operational_selection.values()), 'external operational digest required')
+    require(all(ops[p]['sha256'] == operational_selection[role] for role, p in OPERATIONAL_SELECTION.items()),
+            'current operational generation differs')
     return plan
 
 
@@ -143,7 +155,8 @@ def compare_current(m, packet, plan, plan_binding, producer, fixed, execution, d
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    for key in ('stage', 'bridge-sha256', 'plan', 'plan-sha256', 'budget-seconds'):
+    for key in ('stage', 'bridge-sha256', 'plan', 'plan-sha256', 'budget-seconds',
+                'helpers-sha256', 'outer-sha256', 'source-map-sha256', 'source-reader-sha256'):
         parser.add_argument('--' + key, required=True)
     for key in ('out-dir', 'out', 'git-binary', 'manifest', 'manifest-sha256'):
         parser.add_argument('--' + key)
@@ -180,7 +193,8 @@ def main(argv=None):
                 try:
                     plan_file = capture(args.plan, args.plan_sha256, True)
                     raw_plan = m.decode(plan_file.data)
-                    plan = current_plan(raw_plan, m, root, args.bridge_sha256, common)
+                    plan = current_plan(raw_plan, m, root, args.bridge_sha256, common,
+                                        {role: getattr(args, role.replace('-', '_') + '_sha256') for role in OPERATIONAL_SELECTION})
                     routes = {r['originalPath']: r for r in [raw_plan['declarationInput'], *raw_plan['historicalInputs']]}
                     def logical(p, h, collect=False):
                         route = routes.get(p)

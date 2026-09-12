@@ -22,6 +22,26 @@ const sha = bytes => createHash('sha256').update(bytes).digest('hex');
 const demand = (value, message) => { if (!value) throw Error(message); };
 const dataURL = bytes => 'data:text/javascript;base64,' + Buffer.from(bytes).toString('base64');
 
+async function circularAdmission(root,digest,originalBindings=[]) {
+  if (!/^[a-f0-9]{64}$/u.test(digest??'')) throw Error('externally selected circular source-map digest required');
+  const initial=[...originalBindings];
+  const capture=(filename,expected)=>{
+    if(realpathSync(filename)!==filename)throw Error('canonical circular bootstrap source required');
+    const fd=openSync(filename,constants.O_RDONLY|constants.O_NOFOLLOW|constants.O_NONBLOCK);
+    try{const before=fstatSync(fd);if(!before.isFile()||before.size>2*1024**2)throw Error('bounded circular bootstrap source required');
+      const data=readFileSync(fd),after=fstatSync(fd);
+      if(data.length!==before.size||['dev','ino','size','mtimeMs','ctimeMs'].some(key=>before[key]!==after[key])||createHash('sha256').update(data).digest('hex')!==expected)throw Error('circular bootstrap source differs');
+      initial.push({path:filename,sha256:expected,identity:Object.fromEntries(['dev','ino','size','mtimeMs','ctimeMs'].map(key=>[key,before[key]]))});
+      return data;
+    }finally{closeSync(fd);}
+  };
+  const raw=capture(path.join(root,'reference/priorities/development-process-review/contracts/option-b-circular-sources.jsonld'),digest);
+  const rows=JSON.parse(raw)['@graph']?.filter(row=>row['@type']==='Source'&&row.role==='admission');
+  if(rows?.length!==1||rows[0].binding.path!=='scripts/eom/run-current-subfield-circular-root-pilot.mjs')throw Error('circular admission entry differs');
+  const module=await import('data:text/javascript;base64,'+capture(path.join(root,rows[0].binding.path),rows[0].binding.sha256).toString('base64'));
+  return module.loadCircularSourceMap(root,digest,initial);
+}
+
 function read(filename, digest) {
   demand(realpathSync(filename) === path.resolve(filename), 'canonical current-launch input required');
   const fd = openSync(filename, constants.O_RDONLY | constants.O_NOFOLLOW | constants.O_NONBLOCK);
@@ -37,10 +57,10 @@ function read(filename, digest) {
 export function parseCurrentCircularRungArgs(argv) {
   const options = {};
   for (let i = 0; i < argv.length; i += 2) {
-    demand(['--profile','--profile-sha256','--out'].includes(argv[i]) && argv[i+1] && !options[argv[i]], 'current rung requires --profile PATH --profile-sha256 SHA --out NEW');
+    demand(['--profile','--profile-sha256','--out','--source-map-sha256'].includes(argv[i]) && argv[i+1] && !options[argv[i]], 'current rung requires profile, output and source-map selection');
     options[argv[i]] = argv[i+1];
   }
-  demand(Object.keys(options).length === 3 && /^[0-9a-f]{64}$/u.test(options['--profile-sha256']), 'complete reviewed profile required');
+  demand(Object.keys(options).length === 4 && ['--profile-sha256','--source-map-sha256'].every(key=>/^[a-f0-9]{64}$/u.test(options[key]??'')), 'complete reviewed profile and source map required');
   demand(path.dirname(options['--out']) === BASE && /^[A-Za-z0-9][A-Za-z0-9._-]*$/u.test(path.basename(options['--out'])), 'fresh direct circular output child required');
   return options;
 }
@@ -78,6 +98,7 @@ function startGuard(began, deadlineNanoseconds) {
 export async function runCurrentCircularRung({root, options, began, deadlineNanoseconds, guard}) {
   try {
   guard.check();
+  const admission = await circularAdmission(root,options['--source-map-sha256']);
   const profilePath = path.resolve(root, options['--profile']), profileBytes = read(profilePath, options['--profile-sha256']);
   const profile = JSON.parse(profileBytes);
   demand(profile.schema === 'circular-current-rung-launch-profile.v1' && profile.limitMs === 1800000 && profile.h3EvidenceEligible === false,
@@ -87,6 +108,7 @@ export async function runCurrentCircularRung({root, options, began, deadlineNano
   for (const [role, filename] of Object.entries(PATHS)) {
     const binding = profile.sources[role];
     demand(binding.path === filename && /^[0-9a-f]{64}$/u.test(binding.sha256), 'current source role/path differs');
+    demand(binding.sha256 === admission.source(filename).sha256, 'profile differs from selected circular map');
     captured[role] = {path:path.join(root,filename), sha256:binding.sha256, data:read(path.join(root,filename),binding.sha256)};
   }
   demand(import.meta.url === dataURL(captured.entry.data), 'current entry must execute captured reviewed bytes');
@@ -115,7 +137,7 @@ export async function runCurrentCircularRung({root, options, began, deadlineNano
     review.entrySha256 === captured.entry.sha256 && review.memoryOwnerSha256 === captured.memoryOwner.sha256 &&
     review.memoryHelperSha256 === captured.memoryHelper.sha256, 'exact independent plan and entry review required');
   const priorPath = path.resolve(root,profile.prior.path); read(priorPath,profile.prior.sha256);
-  const extraBindings = [{path:planPath,sha256:profile.plan.sha256},{path:reviewPath,sha256:profile.planReview.sha256},
+  const extraBindings = [...admission.bindings,{path:planPath,sha256:profile.plan.sha256},{path:reviewPath,sha256:profile.planReview.sha256},
     {path:priorPath,sha256:profile.prior.sha256}];
   guard.check();
   const output = path.resolve(root,options['--out']);
@@ -156,21 +178,21 @@ export async function runCurrentCircularRung({root, options, began, deadlineNano
     processReceipt = await supervisor.superviseRegisteredPilot({root,entry:PATHS.runner,
       args:['--plan',planPath,'--plan-sha256',profile.plan.sha256,'--candidate',profile.candidateId,'--rung',String(profile.rung),
         '--prior-phase-receipts',priorPath,'--prior-phase-receipts-sha256',profile.prior.sha256,
-        '--out',path.relative(root,runOutput),'--runner-sha256',captured.runner.sha256],
+        '--out',path.relative(root,runOutput),'--runner-sha256',captured.runner.sha256,'--source-map-sha256',options['--source-map-sha256'],...admission.identityArgs],
       sources:[{path:PATHS.runner,sha256:captured.runner.sha256,bytes:captured.runner.data}],
       output:path.join(output,'supervision'),startedAtMs:began,limitMs:profile.limitMs-10000,
-      inspectProcesses: context => owner.inspect(context),
+      inspectProcesses: context => { admission.recheck(); return owner.inspect(context); },
       admit: ({receipt,remainingMs,signal}) => dispatcher.watchedSubfieldCircularDispatchOperation({kind:'admit',root,
-        rungBytes:captured.runner.data,rungSha256:captured.runner.sha256,runOutput,candidateId:profile.candidateId,rung:profile.rung,
+        sourceMapSha256:options['--source-map-sha256'],rungBytes:captured.runner.data,rungSha256:captured.runner.sha256,runOutput,candidateId:profile.candidateId,rung:profile.rung,
         wallLimitSeconds:1800,processReceipt:receipt,bindings,plan:{path:planPath,sha256:profile.plan.sha256}},
         {bytes:captured.dispatcher.data,sha256:captured.dispatcher.sha256,
           limitMs:Math.floor(Math.min(remainingMs,completionEnd-25000-performance.now())),signal})});
     await stopSampling(); if(memoryFailure) throw memoryFailure;
     await sample(false); memoryReceipt = await memoryOwner.finish();
-    observationReceipt = await owner.finish(); guard.check();
+    observationReceipt = await owner.finish(); admission.recheck(); guard.check();
     demand(processReceipt.accepted && processReceipt.processesClosed && processReceipt.guardClosed && observationReceipt.closed &&
       memoryReceipt.closed && !memoryReceipt.failure && !guard.controller.signal.aborted, 'joint circular closure incomplete');
-    const receipt = {schema:'circular-current-rung-admission.v1',accepted:true,h3EvidenceEligible:false,
+    const receipt = {schema:'circular-current-rung-admission.v1',accepted:true,h3EvidenceEligible:false,sourceMap:admission.sourceMap,sourceBindings:admission.bindings,
       rootExecutionAuthorized:false,laterLadderAuthorized:false,process:processReceipt,observations:observationReceipt,memory:memoryReceipt,resourceObservations,
       candidateId:profile.candidateId,rung:profile.rung,plan:{path:planPath,sha256:profile.plan.sha256},
       currentEntryResourceUsageBeforePublication:process.resourceUsage(),
@@ -182,13 +204,13 @@ export async function runCurrentCircularRung({root, options, began, deadlineNano
       publicationRequires:'This conditional file and stdout require the exact owner process to exit zero before its original deadline; no scientific authority.'};
     const bytes = Buffer.from(JSON.stringify(receipt)+'\n'); demand(bytes.length <= 64 * 1024 ** 2, 'current admission receipt exceeds storage bound');
     const filename = path.join(output,'current-admission.json');
-    owner.recheck(); memoryOwner.recheck(); guard.check(); writeFileSync(filename,bytes,{flag:'wx'});
+    owner.recheck(); memoryOwner.recheck(); admission.recheck(); guard.check(); writeFileSync(filename,bytes,{flag:'wx'});
     demand(sha(readFileSync(filename)) === sha(bytes), 'current admission changed after publication');
-    owner.recheck(); memoryOwner.recheck(); guard.check();
+    owner.recheck(); memoryOwner.recheck(); admission.recheck(); guard.check();
     published = {path:filename,sha256:sha(bytes),bytes:bytes.length};
     await new Promise((resolve,reject) => process.stdout.write(JSON.stringify({accepted:true,h3EvidenceEligible:false,
       admission:published,terminalClosure:'pending-exact-owner-exit-zero',deadlineNanoseconds})+'\n',error=>error?reject(error):resolve()));
-    owner.recheck(); memoryOwner.recheck(); guard.check();
+    owner.recheck(); memoryOwner.recheck(); admission.recheck(); guard.check();
   } catch (error) { failure = error; processReceipt ??= error.outerReceipt; }
   await stopSampling();
   if (failure) {

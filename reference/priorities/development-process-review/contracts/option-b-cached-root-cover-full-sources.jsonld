@@ -16,12 +16,12 @@
     "entry": "scripts/eom/run-f6c-cached-root-cover-full.mjs",
     "authority": "operator-directed-existing-A-transfer"
   },
-  "revisionId": "option-b-cached-full-cutover/v1",
+  "revisionId": "b-rem-5/v1",
   "@graph": [
     {
       "@id": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
       "@type": "Source",
-      "revisionId": "transfer/v1",
+      "revisionId": "b-rem-5/v1",
       "role": "current-source",
       "binding": {
         "path": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
@@ -29,7 +29,7 @@
           "kind": "whole"
         },
         "contract": "fixed-byte-selection/v1",
-        "sha256": "71974054ddce7fc29b8464b9a7a63f8fbb04ee5b425dc997df4d40b2804341aa"
+        "sha256": "e55cc27ca8e7d6bc0141b72cd65e1b2dce26d0c13d47d92427e68887d4de4e8a"
       }
     },
     {
@@ -385,12 +385,12 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/checks%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%3Ascripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
       "@type": "Relationship",
-      "revisionId": "option-b-cutover/v1",
+      "revisionId": "b-rem-5/v1",
       "kind": "checks",
       "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
       "fromRevision": "option-b-cutover/v1",
       "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
-      "toRevision": "transfer/v1",
+      "toRevision": "b-rem-5/v1",
       "role": "exact source admission"
     },
     {
@@ -671,12 +671,12 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Flaunch-f6c-cached-root-cover-full.mjs%3Ascripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
       "@type": "Relationship",
-      "revisionId": "option-b-cutover/v1",
+      "revisionId": "b-rem-5/v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-f6c-cached-root-cover-full.mjs",
       "fromRevision": "option-b-cutover/v1",
       "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
-      "toRevision": "transfer/v1",
+      "toRevision": "b-rem-5/v1",
       "role": "registered outer supervisor"
     },
     {
@@ -693,12 +693,12 @@
     {
       "@id": "https://architrino.com/knowledge/current-source/dependsOn%3Ascripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs%3Ascripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
       "@type": "Relationship",
-      "revisionId": "option-b-cutover/v1",
+      "revisionId": "b-rem-5/v1",
       "kind": "dependsOn",
       "from": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Frun-f6c-cached-root-cover-full.mjs",
       "fromRevision": "option-b-cutover/v1",
       "to": "https://architrino.com/knowledge/current-source/scripts%2Feom%2Flaunch-subfield-circular-root-pilot.mjs",
-      "toRevision": "transfer/v1",
+      "toRevision": "b-rem-5/v1",
       "role": "inherited source admission obligation"
     },
     {

@@ -10,6 +10,15 @@ test("default gate excludes opt-in maintenance checks", () => {
   assert.ok(maintenance.some(({ name }) => name.includes("Borg registry")));
 });
 
+test("all remaining Option B admission and finite-disposition controls are required", () => {
+  const checks = selectedChecks({});
+  const admission = checks.find(row => row.name === "Test Option B current-source admission and dependency controls");
+  assert.ok(admission && !admission.reporting && !admission.skipWhen);
+  for (const file of ["tests/option-b-f5-admission.test.mjs", "tests/option-b-f5-evolution-admission.test.mjs", "tests/option-b-circular-admission.test.mjs", "tests/option-b-operational-successor.test.mjs", "tests/option-b-disposition-coverage.test.mjs"]) assert.ok(admission.args.includes(file), file);
+  const census = checks.find(row => row.args[0] === "scripts/equation-mapping/check-current-source-dispositions.mjs");
+  assert.ok(census && !census.reporting && !census.skipWhen);
+});
+
 function scenario(checks, results) {
   const output = [], invoked = [];
   const report = runChecks({ checks, log: line => output.push(line), error: line => output.push(line),

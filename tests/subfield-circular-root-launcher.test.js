@@ -68,7 +68,7 @@ async function isolatedUnresolvedAdmission() {
 }
 
 test("launcher arguments require reviewed bytes and fresh scoped output", () => {
-  const good = ["--out", ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/new", "--launcher-sha256", "a".repeat(64)];
+  const good = ["--out", ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/new", "--launcher-sha256", "a".repeat(64),"--source-map-sha256","b".repeat(64)];
   assert.equal(parseLauncherArgs(good).launcherSha256, "a".repeat(64));
   for (const args of [[], good.slice(0, 2), [...good, "--out", "duplicate"], ["--out", "/tmp/x", ...good.slice(2)],
     ["--out", good[1] + "/../x", ...good.slice(2)]]) assert.throws(() => parseLauncherArgs(args));

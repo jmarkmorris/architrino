@@ -175,6 +175,6 @@ The feasibility answer remains **NO**. The declared $0.10$ width is unchanged. S
 
 ## Disposition
 
-Disposition: **priority-only failed pilot; no promotion**. The `aaa-corpus-advancement` routing therefore classifies this packet as `priority-only`: it records an executable binding defect and a derived finite-length size floor, but supplies no accepted numerical evidence for the canonical null.
+Disposition: **priority-only failed pilot; no promotion**. The convergence-campaign promotion triage therefore classifies this packet as `priority-only`: it records an executable binding defect and a derived finite-length size floor, but supplies no accepted numerical evidence for the canonical null.
 
 Thread state: DONE Mode: edit-batch Authority used: edited only the authorized pilot report and evidence directory Files changed: `reference/priorities/app-eom/evidence/parallel-stream-pilot-2026-07/` Validation: passed JSON parsing, SHA-256 inventory, frozen-manifest lock, file-scope audit, and runner exit with no live exec session Closure goal: choose whether to authorize a new predeclared P5A budget/evidence binding; do not rerun this frozen pilot Op next action: separate operator decision required before any new instrument or scale selection New-thread prompt: none

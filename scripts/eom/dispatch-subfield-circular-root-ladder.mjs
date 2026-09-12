@@ -4,10 +4,30 @@ import { appendFileSync, closeSync, constants, existsSync, fstatSync, mkdirSync,
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { Worker } from "node:worker_threads";
+import { readFileSync } from 'node:fs';
+async function circularAdmission(root,digest,originalBindings=[]) {
+  if (!/^[a-f0-9]{64}$/u.test(digest??'')) throw Error('externally selected circular source-map digest required');
+  const initial=[...originalBindings];
+  const capture=(filename,expected)=>{
+    if(realpathSync(filename)!==filename)throw Error('canonical circular bootstrap source required');
+    const fd=openSync(filename,constants.O_RDONLY|constants.O_NOFOLLOW|constants.O_NONBLOCK);
+    try{const before=fstatSync(fd);if(!before.isFile()||before.size>2*1024**2)throw Error('bounded circular bootstrap source required');
+      const data=readFileSync(fd),after=fstatSync(fd);
+      if(data.length!==before.size||['dev','ino','size','mtimeMs','ctimeMs'].some(key=>before[key]!==after[key])||createHash('sha256').update(data).digest('hex')!==expected)throw Error('circular bootstrap source differs');
+      initial.push({path:filename,sha256:expected,identity:Object.fromEntries(['dev','ino','size','mtimeMs','ctimeMs'].map(key=>[key,before[key]]))});
+      return data;
+    }finally{closeSync(fd);}
+  };
+  const raw=capture(path.join(root,'reference/priorities/development-process-review/contracts/option-b-circular-sources.jsonld'),digest);
+  const rows=JSON.parse(raw)['@graph']?.filter(row=>row['@type']==='Source'&&row.role==='admission');
+  if(rows?.length!==1||rows[0].binding.path!=='scripts/eom/run-current-subfield-circular-root-pilot.mjs')throw Error('circular admission entry differs');
+  const module=await import('data:text/javascript;base64,'+capture(path.join(root,rows[0].binding.path),rows[0].binding.sha256).toString('base64'));
+  return module.loadCircularSourceMap(root,digest,initial);
+}
 
 const SELF = "scripts/eom/dispatch-subfield-circular-root-ladder.mjs", RUNG = "scripts/eom/run-subfield-circular-root-rung.mjs";
 const BASE = ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/";
-const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs", OUTER_SHA = "71974054ddce7fc29b8464b9a7a63f8fbb04ee5b425dc997df4d40b2804341aa";
+const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs";
 const sha = bytes => createHash("sha256").update(bytes).digest("hex");
 const check = (ok, message, code = "SHARED_INPUT_REJECTED") => { if (!ok) throw Object.assign(new Error(message), { failureCode: code }); };
 const writeJSON = (filename, value) => writeFileSync(filename, JSON.stringify(value) + "\n", { flag: "wx" });
@@ -40,12 +60,12 @@ export function sourceBytes(filename, expected) {
 }
 
 export function parseSubfieldCircularDispatchArgs(argv) {
-  const allowed = ["--plan", "--plan-sha256", "--out", "--dispatcher-sha256"], result = {};
+  const allowed = ["--plan", "--plan-sha256", "--out", "--dispatcher-sha256", "--source-map-sha256"], result = {};
   for (let index = 0; index < argv.length; index += 2) {
     check(allowed.includes(argv[index]) && argv[index + 1] && !result[argv[index]], "unknown/missing/duplicate dispatch argument");
     result[argv[index]] = argv[index + 1];
   }
-  check(allowed.every(key => result[key]) && ["--plan-sha256", "--dispatcher-sha256"].every(key => /^[0-9a-f]{64}$/u.test(result[key])) &&
+  check(allowed.every(key => result[key]) && ["--plan-sha256", "--dispatcher-sha256", "--source-map-sha256"].every(key => /^[0-9a-f]{64}$/u.test(result[key])) &&
     result["--out"].startsWith(BASE) && result["--out"].length > BASE.length && !result["--out"].includes("\\") &&
     result["--out"].split("/").every(part => part && part !== "." && part !== ".."), "authenticated plan/code and fresh scoped output required");
   return result;
@@ -142,25 +162,37 @@ export async function subfieldCircularDispatchFileOperation(job) {
   if (job.kind === "read") return job.files.map(record => readBound(path.resolve(job.root, record.path), record.sha256, record.json));
   if (job.kind === "prior") { writeJSON(job.filename, job.value); return readBound(job.filename); }
   if (job.kind === "disk") { const disk = statfsSync(job.root, { bigint: true }); return String(disk.bavail * disk.bsize); }
+  const admission = await circularAdmission(job.root,job.sourceMapSha256);
+  check(import.meta.url==='data:text/javascript;base64,'+admission.source(SELF).data.toString('base64'),'captured admitted dispatcher required');
+  check(admission.bindings.every(expected=>job.bindings?.some(row=>path.resolve(job.root,row.path)===expected.path && row.sha256===expected.sha256 && JSON.stringify(row.identity)===JSON.stringify(expected.identity))), 'complete original dispatcher source identities required');
+  for (const row of job.bindings ?? []) if (row.identity) {
+    const current = admission.bindings.find(item=>item.path===path.resolve(job.root,row.path));
+    check(current && current.sha256===row.sha256 && JSON.stringify(current.identity)===JSON.stringify(row.identity), 'original dispatcher source identity changed');
+  }
   const rungBytes = Buffer.from(job.rungBytes);
   check(sha(rungBytes) === job.rungSha256, "captured rung source differs");
+  check(admission.source(RUNG).sha256===job.rungSha256,'rung differs from circular map');
   const rung = await import("data:text/javascript;base64," + rungBytes.toString("base64"));
   if (job.kind === "shared") {
     for (const binding of job.bindings) readBound(path.resolve(job.root, binding.path), binding.sha256);
-    const pilotBytes = sourceBytes(path.join(job.root, rung.SUBFIELD_CIRCULAR_RUNTIME_PATHS.pilot), rung.SUBFIELD_CIRCULAR_RUNTIME_HASHES.pilot);
+    const pilotBytes = admission.source(rung.SUBFIELD_CIRCULAR_RUNTIME_PATHS.pilot).data;
     const pilot = await import("data:text/javascript;base64," + pilotBytes.toString("base64"));
     pilot.pilotFileOperation({ kind: "build", root: job.root }); return { sharedBytesMatch: true };
   }
   if (job.kind === "publish") {
-    const bytes = sourceBytes(path.join(job.root, OUTER), OUTER_SHA);
+    const bytes = admission.source(OUTER).data;
     const outer = await import("data:text/javascript;base64," + bytes.toString("base64"));
     return outer.outerWorkerOperation({ kind: job.failed ? "failure-publication" : "publication", output: job.output,
+      root:job.root,sourceMapSha256:job.sourceMapSha256,sourceBindings:admission.bindings,
       receipt: job.receipt, sources: job.bindings.map(binding => ({ ...binding, path: path.resolve(job.root, binding.path) })),
       deadlineNanoseconds: job.deadlineNanoseconds });
   }
   check(job.kind === "admit", "unknown dispatch file operation");
   check(!existsSync(path.join(job.runOutput, "rung-rejection.json")), "rung final output rejected");
   const bound = readBound(path.join(job.runOutput, "rung-process.json"), undefined, true), record = bound.value;
+  check(record.sourceMap?.sha256===job.sourceMapSha256 && record.sourceMap.path===admission.sourceMap.path,'rung source-map receipt differs');
+  check(admission.bindings.every(expected=>record.sourceBindings?.some(row=>path.resolve(job.root,row.path)===expected.path && row.sha256===expected.sha256 && JSON.stringify(row.identity)===JSON.stringify(expected.identity))), 'rung admission source closure differs');
+  check(Array.isArray(record.runtimeBindings) && record.runtimeBindings.some(row=>row.path===process.execPath) && record.runtimeBindings.some(row=>row.path==='/usr/bin/time') && record.runtimeBindings.every(row=>/^[a-f0-9]{64}$/u.test(row.sha256??'')), 'rung runtime bindings incomplete');
   check(record.schema === "braid-program/subfield-circular-candidate-rung-process.v1" && record.accepted === true && record.h3EvidenceEligible === false &&
     record.rootExecutionAuthorized === false && record.candidateId === job.candidateId && record.rung === job.rung &&
     record.wallLimitSeconds === job.wallLimitSeconds && record.elapsedWallSeconds < job.wallLimitSeconds && record.phases.length === job.rung &&
@@ -200,7 +232,9 @@ export async function subfieldCircularDispatchFileOperation(job) {
     currentBindings.get(path.resolve(job.root,binding.path)) ?? readBound(path.resolve(job.root,binding.path),binding.sha256)), bound,
     readBound(record.priorReceipts.path, record.priorReceipts.sha256), job.processReceipt.stdoutLog, job.processReceipt.stderrLog], maximumPrecisionBits);
   delete bound.value;
+  admission.recheck();
   return { accepted: true, h3EvidenceEligible: false, authority: "external-complete-rung-ledger-and-process-admission-only",
+    sourceMap:admission.sourceMap,sourceBindings:admission.bindings,
     candidateId: job.candidateId, rung: job.rung, plan: record.plan, rungProcess: bound, phaseReceipts: record.phaseReceipts,
     summary: record.summary, ...(record.ladderSummary ? { ladderSummary: record.ladderSummary } : {}),
     resources: { ...record.resources, ...gates, ...named, totalMeasuredCPUIncludingGates: record.resources.measuredCPUSeconds + gates.gateCPUSeconds },
@@ -225,6 +259,8 @@ export async function watchedSubfieldCircularDispatchOperation(job, { bytes, sha
 }
 
 export async function runSubfieldCircularMeasuredDispatch({ root, args, selfBytes, rungBytes, runtime }) {
+  const admission = await circularAdmission(root,args['--source-map-sha256']);
+  check(admission.source(SELF).sha256===args['--dispatcher-sha256'] && sha(selfBytes)===args['--dispatcher-sha256'],'selected dispatcher differs');
   const output = path.join(root, args["--out"]), started = performance.now();
   let ancestor = output; while (!existsSync(ancestor)) ancestor = path.dirname(ancestor);
   check(realpathSync(ancestor) === ancestor && !existsSync(output), "new nonsymlinked dispatch directory required");
@@ -247,7 +283,7 @@ export async function runSubfieldCircularMeasuredDispatch({ root, args, selfByte
   const heartbeat = setInterval(() => console.error(JSON.stringify({ stage: "candidate-ladder-dispatch", elapsedWallSeconds: (performance.now() - started) / 1000,
     candidates: receipt.candidates.map(row => ({ id: row.candidateId, status: row.status, completedRungs: row.rungs.filter(item => item.status === "accepted").length })),
     sharedStopped: sharedStop, h3EvidenceEligible: false })), 15000);
-  const operation = (job, limitMs = 1800000, signal) => watchedSubfieldCircularDispatchOperation({ root, rungBytes, rungSha256: sha(rungBytes), ...job },
+  const operation = (job, limitMs = 1800000, signal) => watchedSubfieldCircularDispatchOperation({ root, sourceMapSha256:args['--source-map-sha256'],rungBytes, rungSha256: sha(rungBytes), ...job },
     { bytes: selfBytes, sha256: sha(selfBytes), limitMs, signal });
   let bindings = [], resourceTimer, resourceInFlight, pool = [];
   const observe = (policy, atLaunch = false) => {
@@ -269,14 +305,14 @@ export async function runSubfieldCircularMeasuredDispatch({ root, args, selfByte
     const plan = runtime.rung.validateSubfieldCircularResourcePlan(planBinding.value);
     check(plan.dispatcherSha256 === sha(selfBytes) && plan.runnerSha256 === sha(rungBytes), "reviewed dispatch/rung generation differs");
     const [pilot] = await operation({ kind: "read", files: [{ ...plan.pilotAdmission, json: true }] });
-    const [pilotReview] = await operation({kind:'read',files:[{...runtime.rung.SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW,json:true}]});
-    const pilotAuthority=runtime.rung.acceptCurrentCircularPilot(pilot,pilotReview);
+    const [pilotReview] = await operation({kind:'read',files:[{...plan.pilotIndependentReview,json:true}]});
+    const pilotAuthority=runtime.rung.acceptCurrentCircularPilot(pilot,pilotReview,plan.pilotIndependentReview);
     const [pilotSummary] = await operation({ kind: "read", files: [{ ...pilotAuthority.admission.summary, json: true }] });
     check(pilotSummary.value.scope === "pilot" && pilotSummary.value.phaseCount === 32 && pilotSummary.value.rowCount === 2448 &&
       pilotSummary.value.accepted === true, "complete pilot phase chain required");
     bindings = [receipt.plan, plan.pilotAdmission, { path: SELF, sha256: sha(selfBytes) }, { path: RUNG, sha256: sha(rungBytes) },
-      ...Object.entries(runtime.rung.SUBFIELD_CIRCULAR_RUNTIME_PATHS).map(([key, relative]) => ({ path: relative, sha256: runtime.rung.SUBFIELD_CIRCULAR_RUNTIME_HASHES[key] })),
-      ...runtime.lifetime.bindings, runtime.rung.SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW,
+      ...admission.bindings,
+      ...runtime.lifetime.bindings, plan.pilotIndependentReview,
       ...plan.cohorts.filter(cohort => cohort.resourceReturn).map(cohort => cohort.resourceReturn)];
     receipt.runtimeCapabilities = [process.execPath, "/bin/ps"];
     await operation({ kind: "shared", bindings });
@@ -311,7 +347,7 @@ export async function runSubfieldCircularMeasuredDispatch({ root, args, selfByte
           processReceipt = await runtime.outer.superviseRegisteredPilot({ root, entry: RUNG,
             args: ["--plan", receipt.plan.path, "--plan-sha256", receipt.plan.sha256, "--candidate", candidateId, "--rung", String(rung),
               "--prior-phase-receipts", prior.path, "--prior-phase-receipts-sha256", prior.sha256,
-              "--out", path.relative(root, runOutput), "--runner-sha256", plan.runnerSha256],
+              "--out", path.relative(root, runOutput), "--runner-sha256", plan.runnerSha256,"--source-map-sha256",args['--source-map-sha256']],
             sources: [{ path: RUNG, bytes: rungBytes, sha256: plan.runnerSha256 }], output: outerOutput,
             limitMs: wallLimitSeconds * 1000, startedAtMs: began,
             inspectProcesses: async context => {
@@ -393,9 +429,11 @@ export async function runSubfieldCircularMeasuredDispatch({ root, args, selfByte
 
 async function main() {
   const args = parseSubfieldCircularDispatchArgs(process.argv.slice(2)), root = realpathSync(path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../.."));
+  const admission = await circularAdmission(root,args['--source-map-sha256']);
+  check(false, 'full circular ladder lifetime admission remains deferred; use the current single-rung entry', 'SHARED_RUNTIME_REJECTED');
   const selfBytes = sourceBytes(path.join(root, SELF), args["--dispatcher-sha256"]);
   const plan = readBound(path.resolve(args["--plan"]), args["--plan-sha256"], true).value;
-  const rungBytes = sourceBytes(path.join(root, RUNG), plan.runnerSha256), outerBytes = sourceBytes(path.join(root, OUTER), OUTER_SHA);
+  const rungBytes = sourceBytes(path.join(root, RUNG), plan.runnerSha256), outerBytes = admission.source(OUTER).data;
   const dispatcher = await import("data:text/javascript;base64," + selfBytes.toString("base64"));
   const runtime = { rung: await import("data:text/javascript;base64," + rungBytes.toString("base64")), outer: await import("data:text/javascript;base64," + outerBytes.toString("base64")) };
   const result = await dispatcher.runSubfieldCircularMeasuredDispatch({ root, args, selfBytes, rungBytes, runtime });

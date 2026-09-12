@@ -5,7 +5,26 @@ import { accessSync, closeSync, constants, existsSync, fsyncSync, mkdirSync,
   openSync, readFileSync, readdirSync, realpathSync, statSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { runWatched, scopedPath } from "./prepare-f5-enclosed-root.mjs";
+import { fstatSync } from 'node:fs';
+async function circularAdmission(root,digest,originalBindings=[]) {
+  if (!/^[a-f0-9]{64}$/u.test(digest??'')) throw Error('externally selected circular source-map digest required');
+  const initial=[...originalBindings];
+  const capture=(filename,expected)=>{
+    if(realpathSync(filename)!==filename)throw Error('canonical circular bootstrap source required');
+    const fd=openSync(filename,constants.O_RDONLY|constants.O_NOFOLLOW|constants.O_NONBLOCK);
+    try{const before=fstatSync(fd);if(!before.isFile()||before.size>2*1024**2)throw Error('bounded circular bootstrap source required');
+      const data=readFileSync(fd),after=fstatSync(fd);
+      if(data.length!==before.size||['dev','ino','size','mtimeMs','ctimeMs'].some(key=>before[key]!==after[key])||createHash('sha256').update(data).digest('hex')!==expected)throw Error('circular bootstrap source differs');
+      initial.push({path:filename,sha256:expected,identity:Object.fromEntries(['dev','ino','size','mtimeMs','ctimeMs'].map(key=>[key,before[key]]))});
+      return data;
+    }finally{closeSync(fd);}
+  };
+  const raw=capture(path.join(root,'reference/priorities/development-process-review/contracts/option-b-circular-sources.jsonld'),digest);
+  const rows=JSON.parse(raw)['@graph']?.filter(row=>row['@type']==='Source'&&row.role==='admission');
+  if(rows?.length!==1||rows[0].binding.path!=='scripts/eom/run-current-subfield-circular-root-pilot.mjs')throw Error('circular admission entry differs');
+  const module=await import('data:text/javascript;base64,'+capture(path.join(root,rows[0].binding.path),rows[0].binding.sha256).toString('base64'));
+  return module.loadCircularSourceMap(root,digest,initial);
+}
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const SELF = "scripts/eom/prepare-subfield-circular-root.mjs";
@@ -15,7 +34,6 @@ const BASE = ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v
 const PINNED = Object.freeze({
   [SUBJECT]: "a06246ca3aac60d500981b19fcffabb9612dc3a4085fc4fb3c441e8839726b7a",
   "src/eom/CMakeLists.txt": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4",
-  [SUPERVISOR]: "3431be1ca2f17474775572358baa88eae8de3ce93403d58e4b1fa36d9e367d50",
 });
 const CANDIDATES = ["coincident-midpoint-common-frequency", "coincident-midpoint-equal-radius-common-frequency", "coincident-midpoint-3-2-1-frequency", "phase-compensated-equal-geometry", "axially-separated-common-frequency", "axially-separated-equal-radius-common-frequency", "axially-separated-3-2-1-frequency", "axial-transverse-coincident-axis-interior", "high-axial-coincident-axis-interior", "planar-common-center-three-binary", "coincident-center-two-component-circular-co-rotating", "coincident-center-two-component-circular-counter-rotating", "coaxial-separated-two-component-circular-co-rotating", "coaxial-separated-two-component-circular-counter-rotating", "coaxial-separated-two-planar-braid-co-rotating", "coaxial-separated-two-planar-braid-counter-rotating"];
 const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
@@ -162,8 +180,14 @@ export function compileInput(entry, compiler) {
 }
 
 export function parsePrepareSubfieldCircularArgs(argv) {
-  if (argv.length !== 2 || argv[0] !== "--out" || !argv[1]) throw new Error("Usage: node scripts/eom/prepare-subfield-circular-root.mjs --out <new-sub-field circular-run-directory>");
-  return scopedPath(argv[1], BASE);
+  const options={};
+  for(let i=0;i<argv.length;i+=2){if(!['--out','--self-sha256','--source-map-sha256'].includes(argv[i])||!argv[i+1]||options[argv[i]])throw Error('Usage: --out NEW --self-sha256 SHA --source-map-sha256 SHA');options[argv[i]]=argv[i+1];}
+  if(Object.keys(options).length!==3||!['--self-sha256','--source-map-sha256'].every(key=>/^[a-f0-9]{64}$/u.test(options[key])))throw Error('Usage: complete external build source selection required');
+  const value=options['--out'];
+  if(!value.startsWith(BASE)||value===BASE||value.includes('\\\\')||value.split('/').some(part=>!part||part==='.'||part==='..'))throw Error('fresh scoped circular build output required');
+  const output=path.join(ROOT,value);let ancestor=output;while(!existsSync(ancestor))ancestor=path.dirname(ancestor);
+  if(realpathSync(ancestor)!==ancestor)throw Error('canonical circular build output required');
+  return output;
 }
 
 function resolveTool(name) {
@@ -190,20 +214,31 @@ function cacheField(cache, name) {
   return value;
 }
 
-export async function prepareSubfieldCircular(argv) {
+export async function prepareSubfieldCircular(argv, captured) {
+  const began = captured?.began ?? performance.now();
   const output = parsePrepareSubfieldCircularArgs(argv);
+  const admission=captured?.admission ?? await circularAdmission(ROOT,argv[argv.indexOf('--source-map-sha256')+1]);
+  if(admission.source(SELF).sha256!==argv[argv.indexOf('--self-sha256')+1])throw Error('selected circular build entry differs');
+  if(!captured){
+    const pilot=await import('data:text/javascript;base64,'+admission.source('scripts/eom/run-subfield-circular-root-pilot.mjs').data.toString('base64'));
+    const snapshot=pilot.installPilotSnapshot(admission.sources,ROOT);
+    try { const runner=await snapshot.import(SELF), watcher=await snapshot.import(SUPERVISOR);
+      return await runner.prepareSubfieldCircular(argv,{admission,began,runWatched:watcher.runWatched});
+    } finally {snapshot.close();}
+  }
+  if(!new URL(import.meta.url).search.startsWith('?subfield-circular-pilot-snapshot='))throw Error('captured circular build entry required');
+  admission.recheck(); const {runWatched}=captured;
   if (existsSync(output)) throw new Error("output already exists; fresh exclusive run directory required");
   if (process.platform !== "darwin") throw new Error("this recorded-build procedure currently targets the declared macOS host");
   for (const variable of ["LD_PRELOAD", "DYLD_INSERT_LIBRARIES", "DYLD_LIBRARY_PATH", "DYLD_FRAMEWORK_PATH"]) {
     if (process.env[variable]) throw new Error(`injected dynamic-library environment is inadmissible: ${variable}`);
   }
-  const began = performance.now();
   const receipt = { schema: "braid-program/subfield-circular-root-build.v1", status: "incomplete",
     authority: "recorded-build-identity-pending-independent-review", rootExecutionAuthorized: false,
     h3EvidenceEligible: false, historiesPrepared: false, rootCalls: 0,
     startedAt: new Date().toISOString(), outputDirectory: path.relative(ROOT, output),
     sourceIdentityScope: "observed-before-and-after-build-bytes; operational JavaScript is not a mathematical oracle",
-    sourcesBefore: sourceSnapshot(), referencesBefore: referenceSnapshot(), stages: [] };
+    sourceMap:admission.sourceMap,operationalBindings:admission.bindings,sourcesBefore: sourceSnapshot(), referencesBefore: referenceSnapshot(), stages: [] };
   mkdirSync(path.dirname(output), { recursive: true }); mkdirSync(output);
   const build = path.join(output, "build"), dependencies = path.join(output, "dependencies");
   mkdirSync(build); mkdirSync(dependencies);
@@ -213,6 +248,7 @@ export async function prepareSubfieldCircular(argv) {
     return value;
   };
   const watched = async (stage, command, args, cwd = ROOT) => {
+    admission.recheck();
     const logPath = path.join(output, `${stage}.log`), startedAt = new Date().toISOString();
     try {
       const result = await runWatched(command, args, { cwd, stage, logPath, limitMs: remaining(), heartbeatMs: 15000 });
@@ -326,7 +362,7 @@ export async function prepareSubfieldCircular(argv) {
     writeJson(path.join(output, "sources-after.json"), receipt.sourcesAfter);
     writeJson(path.join(output, "references-after.json"), receipt.referencesAfter);
     // Host tools and package/runtime libraries remain live capabilities; no historical byte records are emitted.
-    remaining(); receipt.status = "build-recorded-pending-independent-review";
+    admission.recheck(); remaining(); receipt.status = "build-recorded-pending-independent-review";
     receipt.dependencyBoundary = "Authored sources, references, and repository headers are byte-bound; compilers, build tools, SDKs, packages, and runtime libraries are current execution capabilities and are not historical identity records.";
     return receipt;
   } catch (error) {
@@ -334,11 +370,12 @@ export async function prepareSubfieldCircular(argv) {
   } finally {
     receipt.finishedAt = new Date().toISOString(); receipt.elapsedWallSeconds = (performance.now() - began) / 1000;
     writeJson(path.join(output, "preparation.json"), receipt);
+    admission.recheck();
     console.log(JSON.stringify({ status: receipt.status, outputDirectory: receipt.outputDirectory,
       elapsedWallSeconds: receipt.elapsedWallSeconds, h3EvidenceEligible: false, rootExecutionAuthorized: false }));
   }
 }
 
-if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+if (!new URL(import.meta.url).search && process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   prepareSubfieldCircular(process.argv.slice(2)).catch((error) => { console.error(error.message); process.exitCode = 1; });
 }

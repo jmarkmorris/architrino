@@ -5,10 +5,11 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { SUBFIELD_CIRCULAR_BUILD_PATH, SUBFIELD_CIRCULAR_BUILD_SHA, SUBFIELD_CIRCULAR_IDS, SUBFIELD_CIRCULAR_RESOURCE_OBSERVATION, SUBFIELD_CIRCULAR_RUNG_PATH, SUBFIELD_CIRCULAR_RUNTIME_PATHS,
-  SUBFIELD_CIRCULAR_RUNTIME_HASHES, authenticateSubfieldCircularPriorPhases, candidateRungDispositions, candidateRungSchedule, candidateWallLimit,
+  SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES, authenticateSubfieldCircularPriorPhases, candidateRungDispositions, candidateRungSchedule, candidateWallLimit,
   checkRepeatedSubfieldCircularPhase, parseSubfieldCircularRungArgs, rungSha, validateSubfieldCircularResourcePlan, validateSubfieldCircularRungSummary,
   captureSubfieldCircularRungSource, summarizeSubfieldCircularNamedOutputs, watchedSubfieldCircularRepeatedPhases } from "../scripts/eom/run-subfield-circular-root-rung.mjs";
 import { subfieldCircularExactDecimal } from "../src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.mjs";
+import {circularFixture} from './option-b-circular-fixture.mjs';
 
 // Pure scheduling and synthetic receipt plumbing, not independent mathematics.
 // No histories are prepared and no EOM root call is made by these controls.
@@ -35,7 +36,7 @@ test("only exact reviewed resource predicates and separately accepted cohort ext
 
 test("rung CLI rejects incomplete authority, changed rungs and output escape", () => {
   const a=["--plan","plan.json","--plan-sha256",hash,"--candidate","coincident-center-two-component-circular-co-rotating","--rung","8","--prior-phase-receipts","prior.json",
-    "--prior-phase-receipts-sha256",hash,"--out",".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/new","--runner-sha256",hash];
+    "--prior-phase-receipts-sha256",hash,"--out",".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/new","--runner-sha256",hash,"--source-map-sha256",hash];
   assert.equal(parseSubfieldCircularRungArgs(a)["--rung"],"8");
   for(const b of [a.slice(0,-2),[...a,"--rung","32"],a.map(x=>x==="8"?"2":x),a.map(x=>x.endsWith("/new")?x+"/../escape":x)])assert.throws(()=>parseSubfieldCircularRungArgs(b));
 });
@@ -97,10 +98,12 @@ test("complete rung summary needs exact scope,census,phase order and hash chain"
     assert.throws(()=>validateSubfieldCircularRungSummary({...summary,...mutation},{candidateId:"coincident-midpoint-common-frequency",rung:8},phases,"candidate-rung"));
 });
 
-test("captured frozen runtime import exposes the exact APIs used by the composition",async()=>{
+test("captured selected runtime import exposes exact APIs and preserves scientific selections",async t=>{
+  const {admission}=await circularFixture(t);
   const api={outer:["processTable","superviseRegisteredPilot","outerWorkerOperation"],pilot:["installPilotSnapshot","watchedPilotFileOperation","validatePilotPhase","validatePilotProof"],
     helper:["runSubfieldCircularPhaseProcess"],bridge:["openSubfieldCircularPhaseLedgerWorker"],watch:["runWatched"],reducer:["subfieldCircularExactDecimal"]};
-  for(const[key,names]of Object.entries(api)){const bytes=readFileSync(SUBFIELD_CIRCULAR_RUNTIME_PATHS[key]);assert.equal(rungSha(bytes),SUBFIELD_CIRCULAR_RUNTIME_HASHES[key]);
+  for(const[key,names]of Object.entries(api)){const bytes=readFileSync(SUBFIELD_CIRCULAR_RUNTIME_PATHS[key]);assert.equal(rungSha(bytes),admission.source(SUBFIELD_CIRCULAR_RUNTIME_PATHS[key]).sha256);
+    if(SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES[key])assert.equal(rungSha(bytes),SUBFIELD_CIRCULAR_SCIENTIFIC_HASHES[key]);
     if(key==="watch")continue; // This module needs its original file URL; covered by the frozen snapshot control below.
     const m=await import("data:text/javascript;base64,"+bytes.toString("base64"));for(const name of names)assert.equal(typeof m[name],"function",`${key}.${name}`);}
   const sources=[{path:SUBFIELD_CIRCULAR_RUNG_PATH,bytes:readFileSync(SUBFIELD_CIRCULAR_RUNG_PATH)},...Object.values(SUBFIELD_CIRCULAR_RUNTIME_PATHS).map(path=>({path,bytes:readFileSync(path)}))]

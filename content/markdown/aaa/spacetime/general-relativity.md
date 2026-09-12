@@ -1,22 +1,24 @@
 # General Relativity
 
-This chapter is the observer-facing checklist for the spacetime branch. It says, in one place, which general-relativistic observables must be matched by the constitutive medium picture and where the framework is allowed to differ only after that closure is secured.
+General relativity (GR) describes gravity through a spacetime metric: a rule relating clock intervals, ruler distances, signal paths, and freely falling motion. This chapter collects the observer-level measurements that the Architrino Assembly Architecture, $\mathbb{A}\mathbb{A}\mathbb{A}$, must recover from its assembly and medium dynamics. A constitutive map is the response law connecting those dynamics to the measured quantities.
 
-Read it as a phenomenology gate rather than as a derivation chapter. The metric and PPN notes carry the constitutive work; this page states the observable obligations and their regime boundaries.
+The [Emergent Metric](emergent-metric.md) and [PPN Parameters](ppn-parameters.md) chapters develop that map. The parameterized post-Newtonian (PPN) framework compares weak-gravity corrections to Newtonian motion through dimensionless coefficients. The formulas below are effective comparison targets; none is an added premise of the architrino acceleration law.
 
-The central question is not whether $\mathbb{A}\mathbb{A}\mathbb{A}$ can describe gravity in different words. The question is whether one Noether sea response record can reproduce the network of tested GR observables without switching hidden assumptions between rows. Redshift, Shapiro delay, bending, orbital precession, equivalence-principle behavior, and gravitational waves must come from the same effective-geometry map in the regime where GR already works.
+The open recovery question is whether one constitutive law can reproduce the network of tested GR observables. Redshift compares clock or received signal frequencies; Shapiro delay measures excess signal travel time; lensing measures path deflection; orbital precession measures the turning of an orbit; equivalence-principle tests compare gravitational responses; and gravitational-wave tests measure propagating gravitational disturbances. These observations must be consistent with the same law and its declared domain.
 
 ## Purpose
 
-This chapter is the observer-level checklist for where the spacetime branch of $\mathbb{A}\mathbb{A}\mathbb{A}$ must reproduce general relativity and where it is allowed to differ. It is not the constitutive derivation itself. That work lives in the metric and PPN chapters. The role of this page is to collect the observable-facing map in one place.
+This chapter specifies recovery conditions, not a completed recovery. A standard comparison identity can be derived within GR while its realization by architrino dynamics remains open. The quantum-gravity effective-field-theory comparison and strong-field alignment hypothesis below have separate conditional scopes; they are not established observations merely because they appear beside tested classical effects.
 
 ## Core Interpretation
 
-At the substrate level:
+The underlying route begins with [architrinos](../foundations/architrino.md), point transceivers carrying polarity and persistent path history. Their emitted causal wakes are expanding records of earlier positions. A receiver is accelerated when a wake reaches its current event: the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) sums the admitted delayed contributions, including positive-delay self-hits when present. On a simple-root chart its acceleration weight is $W^{\mathrm{acc}}=c_f/|D_t|$, where $D_t$ is the transmitter-side derivative of the causal-root condition. Root completeness, nonzero separation, transversality, and a declared continuation at singular events are prerequisites for using that route.
 
-- space remains Euclidean,
-- time remains absolute,
-- and the [Noether sea](noether-sea.md) is the dynamical medium.
+The layer assignments are:
+
+- the [Euclidean void](../foundations/euclidean-void.md) is the fixed spatial container with metric $h_{ij}$,
+- [absolute time](../foundations/absolute-time.md) $T$ orders the constituent histories,
+- and the [Noether sea](noether-sea.md) is the assembly-level medium of coupled neutral braids occupying that container.
 
 At the observer level, the same Noether sea must generate the effective metric behavior usually attributed to curved spacetime. Therefore the phenomenology requirement is:
 
@@ -30,13 +32,17 @@ $$
 
 The closure demand is not merely qualitative resemblance. The same constitutive map must jointly recover redshift, Shapiro delay, light bending, perihelion precession, and gravitational-wave propagation in the regimes where GR is already tested.
 
-Every row below should be treated as a test of the same medium record. If a clock result, a lensing result, and a gravitational-wave result require different hidden records, the branch has produced separate fits rather than a GR recovery.
+For one experiment, its clock, ruler, signal, source, and boundary channels must be projections of one compatible record. Different experiments can have different source and medium states, all evolved under the same constitutive law; the common-law requirement does not make their histories identical. Write $\theta$ for that law's coefficients together with the declared records and calibrations for the comparison family.
 
-Notation convention: $G_N$ denotes the standard Newtonian and low-energy GR comparison constant in the observable benchmark formulas below. $G_{\mathrm{eff}}(\theta)$ denotes the recovered constitutive coefficient of a candidate Noether sea record, and a validated weak-field branch must make $G_{\mathrm{eff}}(\theta)\to G_N$ in the same record that recovers the clock, lensing, PPN, and gravitational-wave rows. Nearby standard-comparison formulas may retain $G$ as ordinary GR shorthand; this chapter writes $G_N$ when the constant belongs to the benchmark rather than to the constitutive map.
+The observer chart $(t_{\mathrm{eff}},x_{\mathrm{eff}}^i)$ is reconstructed from those records; it is not a relabeling of $(T,\mathbf X)$. A physical observer is an assembly whose clocks and rulers supply that reconstruction, and $\tau$ denotes its derived clock readout. An effective metric encodes those responses. Its connection compares directions at neighboring events and its curvature describes their variation; neither is curvature of the void. Recovering selected observables does not derive Einstein's field equations, which relate effective curvature to effective stress and energy. That stronger recovery still requires the common constitutive dynamics and their conservation and domain assumptions.
+
+> Claim grade: guessed for the proposed Noether-sea realization of GR; the formulas below specify its recovery targets. Falsifier: independently evolved admissible histories whose observer records miss an applicable measured bound, or require incompatible constitutive laws for the same calibrated channels, reject the candidate in that domain. An absent derivation leaves recovery unresolved rather than demonstrating a failed prediction.
+
+Notation convention: $G_N$ denotes the standard Newtonian and low-energy GR comparison constant in the observable benchmark formulas below. $G_{\mathrm{eff}}(\theta)$ denotes the recovered constitutive coefficient of a candidate Noether sea record, and a validated weak-field branch must make $G_{\mathrm{eff}}(\theta)\to G_N$ in the same record that recovers the clock, lensing, PPN, and gravitational-wave channels. Nearby standard-comparison formulas may retain $G$ as ordinary GR shorthand; this chapter writes $G_N$ when the constant belongs to the benchmark rather than to the constitutive map.
 
 ### Network evidence and nuisance separation
 
-The empirical gravity lesson is that one precise test is not enough to establish an effective metric branch. A measurement can accidentally agree with the right number while sharing an unmodeled nuisance with the theory input, as in historical redshift and solar-system cases (Pound–Rebka thermal-gradient control; Eddington-1919 eclipse-systematics). The phenomenology gate therefore treats GR recovery as a network constraint:
+One precise test is insufficient to establish an effective metric branch: agreement can share calibration or source-model errors with the prediction. A joint comparison therefore retains nuisance parameters, quantities such as calibration offsets that affect the measurement without being the gravitational effect under test. One possible network statistic is
 $$
 \mathcal{E}_{\mathrm{GR}}(\theta)
 =
@@ -47,7 +53,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9aea7b28c80cb8ea)
 
-where $\mathbf{r}_{\mathrm{net}}$ contains the redshift, Shapiro, lensing, 1PN, preferred-frame, equivalence-principle, gravitational-wave, and CMB-derived gravity rows that are claimed by the same record $\theta$. The covariance $C_{\mathrm{net}}$ must include detector calibration, astrophysical nuisance parameters, foregrounds, and external-source uncertainty. A channel passes only when the same $\theta$ survives this joint network; agreement in a single row is a prompt for cross-checks, not closure.
+where $\mathbf{r}_{\mathrm{net}}$ contains prediction-minus-observation residuals for the claimed channels, including cosmic microwave background (CMB) inferences only when their cosmological and foreground assumptions are declared. The covariance $C_{\mathrm{net}}$ records their uncertainties and correlations, including calibration and source-model uncertainty. It must be invertible on the retained residual space; redundant components require restriction to an independent subspace. This quadratic statistic is dimensionless when residuals and covariance use consistent units. An acceptance claim additionally needs a specified likelihood or sampling distribution, uncertainty treatment, and threshold. Naming the statistic supplies none of them.
 
 ### Causal-order and scale recovery
 
@@ -70,15 +76,15 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-af59c20f2dc02694)
 
-The causal-order term tests the effective light-cone structure, the clock term supplies local scale, and the preferred-frame term keeps preferred-frame signatures below observational bounds. Passing this check does not replace the redshift, Shapiro, lensing, 1PN, quantum-gravity EFT, or gravitational-wave tests below; it prevents them from being fit by mutually incompatible causal and clock conventions.
+Here $\prec_{\mathrm{eff}}$ and $\prec_{\mathrm{GR}}$ are the inferred and comparison causal orders on the same sampled events; $d_{\mathrm{ord}}$ is a declared dimensionless mismatch of those orders. The norm $\|\cdot\|_W$ measures clock-rate mismatch over the declared observation window, and $\lambda_\tau,\lambda_{\mathrm{PF}}>0$ are fixed dimensionless diagnostic weights. These choices and the event sample must be specified before evaluation. The clock term tests local scale only on that sample. A small weighted sum does not replace individual preferred-frame bounds, since a small weight can conceal an excessive coefficient. This structural diagnostic supplements the separate observable tests below.
 
 The labels $\tau_{\mathrm{eff}}$ and $\tau_{\mathrm{GR}}$ mark the candidate observer-record clock readout and the GR comparison clock readout. They are scale readouts in the effective observer layer, not additional substrate time variables. The observer cannot be allowed to recover one causal story from photons, a different clock story from matter, and a third timing story from gravitational waves. The tested regime must look like one effective spacetime to the Physical Observer.
 
 ### Global continuation and cosmic-censorship comparison
 
-Global hyperbolicity, Cauchy surfaces, Cauchy horizons, and cosmic censorship are standard GR comparison tools for asking when initial data determine a maximal observer-level spacetime. They are not substrate assumptions in $\mathbb{A}\mathbb{A}\mathbb{A}$, because the native dynamics live in absolute timespace with path-history records. Their retained value is as an extension discipline: when the effective metric comparison would treat a region as losing unique continuation, the native account must identify which finite boundary wake data, Noether sea state, and closure-label ensemble determine the continuation.
+Global hyperbolicity supplies a GR setting with Cauchy surfaces, each intersecting every inextendible causal curve once, on which initial data can determine a development under the field equations. A Cauchy horizon bounds the region determined by such data. Cosmic censorship comprises conjectures about the visibility or extendibility of singular behavior, not a general proved continuation rule. These are observer-level comparison tools, not substrate assumptions in $\mathbb{A}\mathbb{A}\mathbb{A}$, whose dynamics use absolute timespace and path history. Where a metric comparison loses unique continuation, the native account must identify the histories and boundary data on which its continuation claim depends.
 
-The comparison burden can be stated as a finite-access residual rather than as an imported global axiom. For a compact comparison region $\Omega$ and window $W=[T_i,T_f]$, the strong-field or cosmology packet must specify a continuation map from the same record class used by the weak-field observables,
+The [Master Equation's finite-continuation criterion](../dynamics/master-equation.md#finite-continuation-criterion-for-global-comparisons) supplies a conditional comparison target. For a compact region $\Omega$ and absolute-time window $W=[T_i,T_f]$, specify a continuation map from compatible initial history and boundary data,
 $$
 \mathcal{T}_{\Omega,W}^{\theta}:
 \left(
@@ -93,7 +99,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-cf60cb273ecd8b69)
 
-where $\mathcal{S}_{\Omega}(T_f)$ is the finite accepted endpoint or branch-label set. A GR comparison that assumes global hyperbolicity can be used only after the same $\theta$ also recovers the local causal-order, clock, PPN, and gravitational-wave observables above. If $\mathcal{S}_{\Omega}(T_f)$ is empty, infinite without a finite ledger, or selected by an external global assumption rather than by the recorded boundary data, the effective-metric continuation has not closed.
+where $X_\Omega(T_i)$ denotes the subsystem's instantaneous state, $\mathcal H_\Omega^{<T_i}$ its required retained history, $\mathcal B_{\partial\Omega}|_W$ the incoming boundary wake record, and $N_{\text{sea}}|_{\Omega\times W}$ the compatible medium history. This last symbol is a sea-state record, not the metric lapse $N$. It must be evolved consistently or declared as prescribed environmental data; supplying the desired future sea history is not a prediction of it. The set $\mathcal S_\Omega(T_f)$ contains endpoint states or explicitly resolved branch labels.
+
+The finite-family criterion inherits the dynamics owner's regularization, compatible-history, distance, transversality, and bounded-branch assumptions. It is a conditional target, not a theorem that finite observer data determine a unique future or that every sharp-root singularity has a continuation. An empty, nonfinite, or unaccountably selected family fails that specified criterion. GR global-extension tools remain available for comparison before recovery; claiming that their conclusions describe the same physical records additionally requires the clock, causal-order, motion, and signal comparisons to pass. Finite continuation alone proves neither global hyperbolicity nor cosmic censorship.
 
 ## Weak-Field Observables That Must Match GR
 
@@ -103,12 +111,12 @@ The clock channel must reproduce
 $$
 \frac{d\tau}{dt_{\mathrm{eff}}}
 \approx
-\sqrt{1+\frac{2\Phi_N}{c_0^2}-\frac{\|\mathbf w\|^2}{c_0^2}}
+\sqrt{1+\frac{2\Phi_N}{c_0^2}-\frac{\|\mathbf w_{\mathrm{eff}}\|_h^2}{c_0^2}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a10eac89a256ff66)
 
-in the weak-field, low-velocity observer regime, where $\mathbf w$ is the sea-relative group velocity of the clock in the weak homogeneous limit and $c_0\equiv c_{\text{eff}}(\infty)$ is the dressed asymptotic clock/signal speed. The primitive wake speed $c_f$ still belongs inside delayed-root and self-hit equations; it is not the default denominator for observer clock dilation unless a closure result identifies the relevant dressed branch with $c_f$. For static clocks this reduces to
+in a stationary weak-field zero-shift comparison chart, where $\mathbf w_{\mathrm{eff}}=d\mathbf x_{\mathrm{eff}}/dt_{\mathrm{eff}}-\mathbf u_{\mathrm{sea,eff}}$ is the clock velocity relative to projected sea flow and the norm uses the Euclidean reference metric $h$. The Newtonian comparison potential is $\Phi_N=-G_NM/r$ for an isolated spherical source, with zero at infinity; $M$ and $r$ are observer-level source mass and radial coordinate. Both $|\Phi_N|/c_0^2$ and $\|\mathbf w_{\mathrm{eff}}\|_h^2/c_0^2$ are small. The square root fixes leading terms only, not second-order PPN coefficients. The speed $c_0\equiv c_{\text{eff}}(\infty)>0$ is calibrated in the homogeneous reference region. Primitive wake speed $c_f$ remains distinct until a clock, ruler, and signal derivation relates them. For two identically calibrated static clocks this gives the rate comparison
 $$
 \frac{\Delta \nu}{\nu}
 \approx
@@ -117,13 +125,15 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ec3c33cf92fa48dd)
 
-Operationally, GPS offsets, Pound-Rebka, and related clock-comparison tests are the direct acceptance layer. Height-resolved optical-clock comparisons (mm-baseline Sr optical-lattice clock comparison, Bothwell-class) sharpen this layer: near Earth's surface, $\Delta\nu/\nu\approx gL/c_0^2$, so a $1\,\mathrm{mm}$ clock-sample separation corresponds to about $1.1\times10^{-19}$ and a $33\,\mathrm{cm}$ separation to about $3.6\times10^{-17}$. The same clock law must handle both separated clocks and extended collective clock samples without replacing the constitutive coefficients used for Shapiro delay and lensing.
+Here $\Delta\Phi_N=\Phi_N(B)-\Phi_N(A)$ and $\Delta\nu/\nu=[\nu_B-\nu_A]/\nu_A$, with both clock rates referred to the same coordinate time. A higher clock has a positive rate shift. For a photon sent from $A$ to $B$, the received-to-emitted local frequency ratio instead obeys $\nu_{B\leftarrow A}/\nu_A^{\mathrm{emit}}\approx1-[\Phi_N(B)-\Phi_N(A)]/c_0^2$ in this stationary comparison: upward propagation is redshifted. The endpoint clock factors explain the opposite signs; the photon and clock-rate comparisons must not be interchanged.
+
+Clock-comparison experiments provide observer-level constraints. Near Earth's surface the leading rate shift is $gL/c_0^2$, with local gravitational acceleration $g$ and upward height difference $L$. Bothwell and collaborators measured a frequency gradient consistent with this relation across a millimetre-scale strontium sample, using spatially resolved optical-clock spectroscopy; see the source note below. This measurement tests the clock comparison, not the proposed Noether-sea mechanism. The same constitutive law must describe separated clocks and extended samples while retaining the signal and ruler calibration used for delay and lensing.
 
 ### Shapiro delay
 
-In the refractive-medium picture, one-way path time is
+For a stationary, isotropic, zero-shift comparison chart, define Euclidean reference path length by $d\ell_h^2=h_{ij}dx_{\mathrm{eff}}^idx_{\mathrm{eff}}^j$. Conditional on the dressed signal sharing the effective metric's null paths, its coordinate speed is $c_{\text{eff}}=d\ell_h/dt_{\mathrm{eff}}$, and one-way path time is
 $$
-t_{\mathrm{eff}}[\Gamma]=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(x_{\mathrm{eff}}^i)\,ds_{\mathrm{eff}}
+t_{\mathrm{eff}}[\Gamma]=\frac{1}{c_0}\int_\Gamma \bar{\chi}_{\text{sea}}(x_{\mathrm{eff}}^i)\,d\ell_h
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a8e4c7a114562af9)
@@ -142,7 +152,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3d4b17ebd2600bbe)
 
-For a point mass, the resulting delay is
+Here $\bar\chi_{\text{sea}}$ is the reference-normalized delay factor and $\chi_{\text{sea}}=c_f/c_{\text{eff}}$ uses common speed units. The integration measure is not the null spacetime interval, which vanishes on a light ray, or the local ruler length, which would count spatial compliance twice. The [metric derivation](emergent-metric.md#minimal-weak-field-constitutive-map-for-ppn-matching) supplies this distinction. The displayed expansion is a PPN matching condition, not a derived sea response.
+
+For a spherical static source, let $r_1,r_2$ be the endpoint distances from its center and $R$ their separation in the same reference chart. Integrating the first-order perturbation along the unperturbed path gives the excess over $R/c_0$,
 $$
 \Delta t_{\mathrm{eff}}
 =
@@ -153,7 +165,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-427734dc658fe45c)
 
-which must match the GR coefficient at current solar-system precision.
+where the ray stays outside the source and $G_NM/(b c_0^2)\ll1$ at closest approach $b>0$. The logarithm requires $r_1+r_2>R$. The GR coefficient is the target at the precision and nuisance assumptions of the selected solar-system dataset; a ray through the point-source singularity is outside this approximation.
 
 ### Light bending
 
@@ -167,7 +179,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9ce389605d4f4747)
 
-with impact parameter $b$. In the GR-matching limit $\gamma_{\mathrm{PPN}}=1$, this reduces to the standard
+for the asymptotic deflection of a ray with impact parameter $b$ around the same isolated source. Finite-distance endpoints, source multipoles, motion, and higher-order corrections require their corresponding terms. In the GR-matching limit $\gamma_{\mathrm{PPN}}=1$, this reduces to the standard
 $$
 \Delta\theta \approx \frac{4G_N M}{b\,c_0^2}
 $$
@@ -184,7 +196,7 @@ The effective metric subclass must also reproduce the standard 1PN orbital corre
 - geodetic precession,
 - and other weak-field orbital tests
 
-must all be reproduced by the same $(\gamma_{\mathrm{PPN}},\beta_{\mathrm{PPN}},\alpha_i)$ package already used for light and clock observables.
+must all be reproduced by the same constitutive law already used for light and clock observables. Here $\gamma_{\mathrm{PPN}}$ measures the spatial-distance response per unit potential and $\beta_{\mathrm{PPN}}$ the nonlinear clock-metric response. This reduced set does not exhaust PPN: preferred-location and momentum-conservation coefficients also require the tests described in [Remaining PPN Parameters](ppn-parameters.md#remaining-ppn-parameters).
 
 For the classical weak-field suite, the comparison record can be made explicit. On an observation window $W$, let $\theta_W$ denote the retained Noether sea state, source assembly record, observer clock/ruler state, signal-channel data, boundary wake data, and the ADM/Cartan projection
 $$
@@ -199,7 +211,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b0e43cf5e15c9c7c)
 
-The observable residual bundle is then
+In this projection, $N$ is the clock-rate lapse, $u^i_{\mathrm{sea,eff}}$ is the projected drift, $e^a{}_i$ maps coordinate increments to local ruler components, and $\gamma_{ij}^{\mathrm{eff}}=\delta_{ab}e^a{}_ie^b{}_j$ is the spatial compliance metric. The potential $\Phi_{\text{eff}}$ is extracted from the clock response; $\chi_{\text{sea}}$ comes from the same calibrated signal channel. These are outputs to derive, not independent fit inputs.
+
+A reduced observable residual bundle is
 $$
 \mathbf{r}_{\mathrm{GR}}(\theta_W)
 =
@@ -217,12 +231,16 @@ R_{\mathrm{1PN}}\\
 R_{\mathrm{acc}}
 =
 \frac{\left\|\frac{d^2x_{\mathrm{eff}}^i}{dt_{\mathrm{eff}}^2}+(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W}
-{\left\|(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W+\varepsilon}
+{\left\|(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\text{eff}}\right\|_W+\varepsilon_{\mathrm{acc}}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-99b0736a014e40c6)
 
-The redshift, Shapiro, lensing, acceleration, 1PN, and preferred-frame rows are acceptable only when they are projections of this same $\theta_W$. If any row requires replacing $N$, $u^i_{\mathrm{sea,eff}}$, $e^a{}_i$, $\gamma_{ij}^{\mathrm{eff}}$, $\Phi_{\text{eff}}$, $\chi_{\text{sea}}$, or the boundary/noise record, the phenomenology pass has become a set of separate fits rather than a GR recovery.
+The symbols $R_{\mathrm{red}},R_{\mathrm{Shap}},R_{\mathrm{lens}},R_{\mathrm{1PN}}$ denote dimensionless prediction-minus-comparison residuals, each divided by a declared positive uncertainty scale. For the displayed acceleration diagnostic, $\|\cdot\|_W$ is the supremum of the Euclidean-reference vector norm along the selected observer trajectory over its mapped window, and $\varepsilon_{\mathrm{acc}}>0$ is an acceleration-valued floor fixed before comparison. Near zero comparison acceleration an absolute error bound must accompany this ratio; increasing the floor cannot count as improved agreement.
+
+The acceleration formula tests only the leading Newtonian limit in a stationary zero-shift Cartesian reference chart, with slow test motion and $\Phi_{\mathrm{eff}}\to\Phi_N$. For $\Phi_{\mathrm{eff}}=c_0^2\ln N$, the exact zero-velocity metric term is $-N^2(\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_j\Phi_{\mathrm{eff}}$; finite velocity also introduces connection terms. The omitted terms must lie below the comparison tolerance, as detailed in the [weak-field geodesic handoff](emergent-metric.md#weak-field-geodesic-handoff-adm-constitutive-subclass). A passing $R_{\mathrm{acc}}$ therefore does not establish 1PN motion. The trajectory must be independently projected from constituent dynamics; generating it with the comparison acceleration would test only that imposed model.
+
+All channels must use the compatible outputs of the same $\theta_W$. Replacing a clock, drift, ruler, potential, delay, or boundary record independently to improve one channel produces separate fits. This reduced vector supplements, and does not replace, equivalence-principle and remaining PPN constraints.
 
 Solar oblateness supplies the nuisance-control version of the same rule. Mercury-type precession may be written as
 $$
@@ -236,9 +254,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5faf9cf10e07397c)
 
-where $\Delta\varpi_{J_{2,\odot}}$ is the contribution from the Sun's quadrupole moment and the remaining terms collect other modeled ephemeris corrections. A constitutive map cannot improve its PPN fit by silently moving a mismatch into $\Delta\varpi_{J_{2,\odot}}$ or by using a solar-interior assumption inconsistent with helioseismology and light-deflection records. The precession row closes only after the nuisance record is fixed independently enough that $\Delta\varpi_{\mathrm{PPN}}$ is the recovered effect rather than a residual after subtraction.
+where $\Delta\varpi_{J_{2,\odot}}$ is the contribution from the Sun's quadrupole moment and the remaining terms collect other modeled ephemeris corrections. A constitutive map cannot improve its PPN fit by silently moving a mismatch into $\Delta\varpi_{J_{2,\odot}}$ or by using a solar-interior assumption inconsistent with helioseismology and light-deflection records. The precession test closes only after the nuisance record is fixed independently enough that $\Delta\varpi_{\mathrm{PPN}}$ is the recovered effect rather than a residual after subtraction.
 
-The perihelion row should carry the explicit GR target rather than only the name of the test. For a weak-field bound orbit with semi-major axis $a$ and eccentricity $e$,
+For a weak-field test-body orbit about a spherical nonrotating source, with semi-major axis $a>0$ and eccentricity $0<e<1$, the GR perihelion advance is
 $$
 \Delta\varpi_{\mathrm{GR}}
 =
@@ -247,7 +265,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-96ce30e1a9d51242)
 
-per orbit. In the PPN projection this is the special case of
+per orbit, with $G_NM/[a(1-e^2)c_0^2]\ll1$. In the conservative PPN comparison with other parameters at their GR values and source multipoles treated separately, this is the special case of
 $$
 \Delta\varpi_{\mathrm{PPN}}
 =
@@ -261,9 +279,9 @@ so Mercury-type precession is a joint test of the same spatial-compliance coeffi
 
 ### Low-Energy Quantum-Gravity EFT Benchmark
 
-The classical weak-field observables above do not exhaust the recovery gate. Standard low-energy effective-field-theory calculations treat GR as a valid long-distance theory and separate unknown high-energy local terms from calculable infrared behavior. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not take the quantized metric as microscopic ontology, but it must recover the same long-distance observer-level data product where the expansion is controlled.
+A low-energy effective field theory (EFT) separates long-distance predictions from unresolved short-distance physics. Quantum GR supplies a useful conditional comparison of this kind. Its quantum correction below is a theoretical prediction, not an established measurement or an additional substrate premise. Agreement is required when claiming recovery of that specified EFT limit; it is not an unconditional acceptance condition for the tested classical GR effects.
 
-For two slowly moving masses, use the schematic benchmark
+For two slowly moving effective masses $m_1,m_2>0$ at observer-coordinate separation $r>0$, retain the schematic potential comparison
 
 $$
 V_{\mathrm{GR\text{-}EFT}}(r)
@@ -279,7 +297,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7ff05941ab8aef49)
 
-where $\alpha_{\mathrm{1PN}}$ and $\alpha_{\hbar}$ are fixed by the standard low-energy calculation rather than fitted as new $\mathbb{A}\mathbb{A}\mathbb{A}$ parameters. A useful closure residual is
+where $\hbar$ is the observer-level reduced Planck constant. The coefficients $\alpha_{\mathrm{1PN}}$ and $\alpha_\hbar$ are fixed only after specifying the effective particle content, coordinate and momentum conventions, and potential prescription, including whether lower-order iterations have been subtracted. Both $G_N(m_1+m_2)/(c_0^2r)$ and $G_N\hbar/(c_0^3r^2)$ must be small. The potential is not itself an invariant observable. Bjerrum-Bohr, Donoghue, and Holstein derive the correction and discuss these prescriptions in the source below. With identical prescriptions on both sides, a dimensionless diagnostic is
 
 $$
 \mathcal{R}_{\mathrm{qG}}(r;\theta)
@@ -296,13 +314,13 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-221850cce9a25c2d)
 
-This residual is not a demand that the Noether sea be rewritten as a graviton field. It is a demand that the same weak-field constitutive record that yields redshift, lensing, and wave propagation also recover the long-distance quantum correction in the regime where the effective theory is predictive.
+This is a conditional matched-convention diagnostic. A physical recovery test compares the resulting scattering or interference observable, including the kinetic and iteration terms needed in that convention. A coordinate change can alter a displayed potential coefficient without changing that observable. The candidate $V_{\mathbb{A}\mathbb{A}\mathbb{A}}$ must be derived from the same admitted assembly and medium law as the classical tests; it cannot be filled in by copying the benchmark. No such quantum derivation is supplied here. Its falsifier would be a nonzero observable mismatch beyond controlled truncation and extraction errors in the specified EFT domain, not a raw potential mismatch between different conventions.
 
 Massive-superposition entanglement experiments add a second low-energy quantum-gravity benchmark. If two isolated massive probes acquire an entanglement witness through gravity alone, the retained data product is the branch-dependent interaction phase, not a decision between graviton-field ontology and quantized-geometry ontology. The corresponding validation packet in [Massive-Superposition Gravity Validation Packet](../validation/massive-superposition-gravity.md) requires the same effective-metric record $\theta$ to generate the mediated-entanglement phase while keeping non-gravitational coupling residuals bounded and preventing the gravity-side response from becoming an unmodeled which-path record.
 
 ## Equivalence-Principle Channels
 
-The weak equivalence principle and the strong equivalence principle are distinct benchmark rows. For two compact test assemblies $A$ and $B$ falling toward an external source $S$, define the composition residual
+The weak equivalence principle requires test bodies of different composition to share the same gravitational acceleration under matched conditions. The strong principle additionally tests the influence of gravitational binding energy and other self-gravity effects. For compact test assemblies $A$ and $B$ falling toward an external source $S$, let $a_A^S,a_B^S$ be positive accelerations projected along the same source-directed measurement axis, with nonzero sum. Define the composition residual
 $$
 \eta_{AB}^{S}
 =
@@ -311,7 +329,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-de660d9fa2c2b12b)
 
-The weak equivalence row requires $\eta_{AB}^{S}$ to vanish within the material-composition bounds while the same clock, signal, and PPN record is held fixed. The point is not to assume equivalence as a substrate axiom, but to recover it as an observer-level constraint on the same record $\theta_W$. If local clock/ruler states for different apparatuses are allowed to absorb the gravitational response through material-dependent scale factors $\lambda_A(x_{\mathrm{eff}}^i;\theta_W)$, the residual must also satisfy
+The weak equivalence test requires $\eta_{AB}^{S}$ to vanish within the material-composition bounds while the same clock, signal, and PPN record is held fixed. The point is not to assume equivalence as a substrate axiom, but to recover it as an observer-level constraint on the same record $\theta_W$. If local clock/ruler states for different apparatuses are allowed to absorb the gravitational response through material-dependent scale factors $\lambda_A(x_{\mathrm{eff}}^i;\theta_W)$, the residual must also satisfy
 $$
 \mathcal{R}_{\mathrm{scale\text{-}EP}}^{S}(\theta_W)
 =
@@ -321,20 +339,20 @@ $$
 \nabla\ln\!\left(\lambda_A/\lambda_B\right)
 \right\|_W
 }{
-\left\|\nabla\Phi_{\text{eff}}\right\|_W/c_0^2+\varepsilon
+\left\|\nabla\Phi_{\text{eff}}\right\|_W/c_0^2+\varepsilon_{\mathrm{scale}}
 }
 \ll 1
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-54307dedc8cf70bd)
 
-with the source assembly, boundary wake data, cosmological record, and PPN coefficients held fixed. This forbids a flat-description or local-unit rewriting from replacing universal gravitational acceleration by apparatus-specific material response.
+with the source assembly, boundary wake data, cosmological record, and PPN coefficients held fixed. Here $\lambda_A,\lambda_B>0$ are dimensionless material calibration factors, the gradient has components $(\nabla f)^i=h^{ij}\partial_{x_{\mathrm{eff}}^j}f$ in the declared effective reference chart, and $\varepsilon_{\mathrm{scale}}>0$ has inverse-length units, unlike $\varepsilon_{\mathrm{acc}}$. The norm is taken over the same sampled domain. The symbol $\ll1$ states a diagnostic target; an experiment needs an explicit tolerance and an apparatus-response derivation relating scale gradients to measured differential acceleration. A constant calibration ratio is invisible to this gradient diagnostic, so it does not replace $\eta_{AB}^S$ or clock-universality tests.
 
-The same statement can be read in mechanism language. Inertial response and gravitational response need not have identical substrate triggers: one can come from imposed acceleration of the assembly ledger, while the other can come from a Noether sea gradient. They recover the equivalence principle only if both triggers perturb the same shielded internal ledger through the same weak homogeneous response map. Any Mach-like dependence on the surrounding matter distribution must therefore appear as a common-mode feature of $\theta_W$, not as a body-specific adjustment of inertia.
+One candidate mechanism assigns imposed assembly acceleration and a Noether sea gradient a common internal response. This is a hypothesis to derive, not a necessary microscopic mechanism established by the equivalence principle. The tested requirement is universal observer-level response within measured bounds. Any proposed dependence of inertia on the surrounding matter distribution must use the same environmental record and predict its composition residual rather than remove that residual by an apparatus-specific adjustment.
 
-Equivalence recovery therefore couples the torsion-balance row, clock-comparison row, and cosmological/boundary record: a Mach-like dependence of inertial standards on the surrounding matter distribution is admissible only if it is common to the accepted observer record and leaves no composition-dependent acceleration residue.
+Equivalence recovery therefore couples the torsion-balance test, clock-comparison test, and cosmological/boundary record: a Mach-like dependence of inertial standards on the surrounding matter distribution is admissible only if it is common to the accepted observer record and leaves no composition-dependent acceleration residue.
 
-A separate strong-equivalence row tests whether gravitational self-energy or medium binding changes the acceleration of extended bodies:
+A separate strong-equivalence diagnostic tests whether gravitational self-energy or medium binding changes the acceleration of extended bodies:
 
 $$
 \eta_{\mathrm{SEP}}
@@ -350,20 +368,20 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2f24cc6685527a81)
 
-where the denominator compares gravitational binding-energy fractions for two bodies in the same external field. This row is a recovery target for lunar-ranging, binary-pulsar, and compact-body tests; it is not interchangeable with the material-composition torsion-balance row. The same residual bundle must also keep active, passive, inertial, and energy-defined mass equal in the nonrelativistic limit, or else the Newtonian and PPN rows are being fit with inconsistent mass concepts.
+where $\Delta a_{\mathrm{self}}$ is the differential acceleration attributed to self-gravity after other effects are controlled, $a>0$ is the common external acceleration scale, and $E_{\mathrm{grav},K}<0$ is the signed gravitational binding energy of body $K$. The denominator must be nonzero and uses effective inertial masses $m_K$. This weak-self-gravity sensitivity is a lunar-ranging comparison target; exporting it to compact bodies requires a body-dependent strong-field response calculation. It does not exhaust the strong equivalence principle. Active source mass, passive gravitational response, inertial response, and energy-defined mass must share a consistent calibration in the nonrelativistic limit. A material-composition or self-gravity residual above its applicable bound falsifies that recovery claim even if the light and clock tests pass.
 
 ## Preferred-Frame Leakage
 
 Because the ontology contains an absolute frame, the observer-level phenomenology must still suppress preferred-frame signatures.
 
-That means the effective PPN group-speed parameters
+That means the preferred-frame PPN coefficients
 $$
 \alpha_1,\alpha_2,\alpha_3
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-46405bc13afbbc08)
 
-must be observationally negligible in validated regimes. This is not optional. If the Noether sea leaves a measurable preferred-frame residue in the solar-system and pulsar regimes, the spacetime branch fails regardless of its conceptual elegance.
+must satisfy their applicable observational bounds; $\alpha_3$ also tests effective momentum nonconservation. They are dimensionless response coefficients, not group speeds. A predicted residue exceeding a bound rejects the candidate in the tested regime. Pulsar constraints require the declared extension from weak-field PPN coefficients to self-gravitating bodies; an arbitrary strong-field coefficient cannot be substituted for its weak-field counterpart.
 
 ## Gravitational-Wave Channel
 
@@ -376,13 +394,15 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-be17db24e72ca918)
 
-Here $\varepsilon_{\mathrm{GW}}$ is the multi-messenger speed tolerance owned by the [GW Speed](../validation/constraint-ledger.md#gw-speed) ledger row. In this framework, gravitational waves are propagating collective disturbances of the Noether sea. Their speed, dispersion, and polarization content must remain consistent with current timing bounds and detector-mode constraints. Any large medium-dispersion signature or unsuppressed scalar/vector/longitudinal response in already-tested bands is excluded. A cosmological-scale finite-range response must therefore decouple from the weak-field gravitational-wave channel through the same constitutive coefficient record, not through an observational-channel-specific patch.
+Here $v_{\mathrm{GW}}$ is the gravitational signal's group speed in the same calibration as $c_0$, and $\varepsilon_{\mathrm{GW}}$ represents the declared tolerance of the [GW Speed](../validation/constraint-ledger.md#gw-speed) comparison. Actual timing bounds can be asymmetric and depend on source emission delays and propagation history; this symmetric summary does not replace them. The Noether-sea interpretation assigns gravitational waves to collective disturbances of the medium, a constitutive hypothesis whose propagation and detector response remain to be derived.
+
+The falsifier is a predicted timing, dispersion, or polarization residual outside the applicable measurement's uncertainty model and frequency range. Polarizations describe independent patterns of detector deformation. GR predicts two tensor patterns; a test favoring pure tensor signals over pure scalar or vector alternatives does not by itself exclude every mixed signal. The source note identifies this limitation in the GW170817 analysis. A proposed large-distance modification must retain compatibility with these tests under the same law and declared environmental states.
 
 ## Strong-Field Regime
 
-Weak-field GR matching is the conservative requirement. Strong-field behavior is where the theory may differ.
+Strong-field departures must also respect tested compact-object observations. Passing weak-field tests does not by itself constrain every strong-field continuation or authorize disagreement with measured strong-field behavior.
 
-Use the canonical event-horizon alignment condition defined in [singularity-resolution.md](./singularity-resolution.md#canonical-strong-field-alignment-condition).
+The [canonical strong-field alignment condition](./singularity-resolution.md#canonical-strong-field-alignment-condition) specifies a candidate assembly boundary. Its relation to an effective horizon is a constitutive hypothesis. Local speed or alignment conditions alone do not establish an event horizon, which in the GR comparison is the boundary of events able to send outgoing signals to the asymptotic exterior. That claim needs the global signal continuation; finite substrate time or flat void geometry does not supply it or prove singularity resolution.
 
 The strong-field interpretation is therefore:
 
@@ -401,29 +421,29 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d7ef96253ade83c7)
 
-for the Schwarzschild comparison branch. The first is the effective horizon radius, the second the null photon-orbit radius, and the third the innermost stable circular orbit for massive test bodies in the nonrotating exterior comparison. A native black-hole record may reinterpret what the horizon is made of, but it must still recover these exterior scales, or provide a declared residual template, before using strong-field ontology to explain compact-object observations.
+for the Schwarzschild comparison branch, a spherical, nonrotating, uncharged, asymptotically flat exterior. These are areal radii, defined by sphere area $4\pi r^2$, not the isotropic radial coordinates used in a weak-field optical chart. The first is the comparison horizon radius, the second the unstable circular null-orbit radius, and the third the innermost stable circular orbit for massive test bodies. Their realization in the substrate is open. A proposed alternative must derive its exterior signal and orbit predictions and compare them with measured quantities; simply listing these scales or naming an alignment state does not pass that comparison.
 
 ## Closure Targets
 
-This chapter is closed only if the spacetime branch can demonstrate all of the following from one constitutive map:
+Classical recovery on a declared domain requires all of the following from one constitutive law with compatible records:
 
 1. clock slowing / redshift,
 2. Shapiro delay,
 3. light bending,
 4. 1PN orbital corrections,
-5. the standard long-distance quantum-gravity EFT correction as an observer-level weak-field benchmark,
+5. composition and self-gravity equivalence tests, with consistent mass calibration,
 6. negligible preferred-frame leakage in tested regimes,
 7. gravitational-wave speed, dispersion, and two-mode polarization compatibility,
 8. non-arbitrary finite-boundary continuation wherever a strong-field or cosmological comparison invokes global extension assumptions.
 
-The same coefficient set must survive all eight.
+The same law must survive every applicable test. Finite-boundary continuation remains conditional on the stated dynamics domain. Recovering the quantum-gravity EFT limit adds the matched-observable comparison described above when that stronger claim is made; it is separate from this classical acceptance set.
 
 ## Falsification Gate
 
 The GR-observables interface fails if any of the following occur:
 
 - redshift, lensing, and Shapiro delay require different constitutive parameter choices,
-- the long-distance quantum correction to the Newtonian potential requires an independent weak-field coefficient set,
+- Newtonian acceleration, orbital motion, or composition and self-gravity responses exceed their applicable bounds,
 - preferred-frame leakage exceeds the bounds recorded in [constraint-ledger.md](../validation/constraint-ledger.md),
 - gravitational-wave propagation departs from observational timing, dispersion, or polarization bounds in validated regimes,
 - a strong-field or cosmology packet needs an unrecorded global assumption to select its continuation,
@@ -439,7 +459,7 @@ $$
 \cap
 \mathcal{C}_{\text{1PN}}
 \cap
-\mathcal{C}_{\text{qG-EFT}}
+\mathcal{C}_{\text{EP}}
 \cap
 \mathcal{C}_{\text{PF}}
 \cap
@@ -451,7 +471,15 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-05d464d7eef89585)
 
-If that intersection is empty, the effective-metric program is not yet viable.
+Each $\mathcal C$ is the subset of the declared candidate-law and record space satisfying the named test at fixed tolerances; $\mathcal C_{\text{1PN}}$ includes the Newtonian limit and applicable remaining PPN constraints, and $\mathcal C_{\text{EP}}$ includes composition, self-gravity, and mass-calibration tests. The intersection is a necessary compatibility condition, not a proof that a candidate exists. An empty intersection rejects that candidate family and domain. Failure to construct or search the family leaves existence unresolved and does not establish emptiness or exclude every possible constitutive law.
+
+## Source Notes
+
+- Clifford M. Will, [*The Confrontation between General Relativity and Experiment*](https://arxiv.org/abs/1403.7377) (2014), sections 3.2 and 4.1–4.2, defines the PPN coefficients and the domains of the light-propagation and perihelion comparisons. These are effective-theory benchmarks.
+
+- Tobias Bothwell and collaborators, [*Resolving the gravitational redshift within a millimeter atomic sample*](https://arxiv.org/abs/2109.12238), arXiv:2109.12238, published in *Nature* 602, 420–424 (2022), report spatially resolved strontium-clock spectroscopy consistent with the gravitational frequency gradient. This supports the clock measurement, not an Architrino constitutive derivation.
+- N. E. J. Bjerrum-Bohr, J. F. Donoghue, and B. R. Holstein, [*Quantum Gravitational Corrections to the Nonrelativistic Scattering Potential of Two Masses*](https://arxiv.org/abs/hep-th/0211072) (2003), especially sections 2.1 and 4.1, derive a long-distance quantum comparison and specify potential and coordinate conventions. This is theoretical EFT support, not an observation of the correction.
+- B. P. Abbott and collaborators, [*Tests of General Relativity with GW170817*](https://dcc-lho.ligo.org/LIGO-P1800059-v9/public) (2019), constrain selected propagation and polarization alternatives. The polarization analysis compares pure tensor, vector, and scalar hypotheses; it explicitly leaves mixed-mode content outside that test.
 
 ## Related Chapters
 

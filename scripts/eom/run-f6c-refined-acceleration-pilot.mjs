@@ -92,13 +92,37 @@ export const PINS=Object.freeze({...Object.fromEntries([...FIXED,...REFINED,...P
  [NAMED.comparisonCoreControls]:'147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921',
  [NAMED.rangeComparison]:'23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d',
  [NAMED.rangeComparisonControls]:'13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed',
- [OUTER]:'35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826',
- [HELPERS]:'f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31',
  [CHECKER]:CHECKER_SHA,[CHECKER_TESTS]:CHECKER_TESTS_SHA,
 });
 export const PRIOR_CLOSURE=Object.freeze({authority:'externally-reviewed-caller-observation',ownerSha256:PINS[DECLARATION],admissionSha256:REFINED.find(([k])=>k==='admission')[2],matchingFreshCompletionObserved:true,exitCode:0,elapsedSeconds:'238.116677375',processesClosed:true,independentAuditAccepted:true});
 export const CANDIDATE_KEYS=Object.freeze('schema scope status accepted launchPlan consumer declaration verifier sourceBindings ancestryBindings refinementBindings runtimeBindings operationalBindings priorRefinementClosure projection ranges census claims publicationRequires'.split(' '));
 export const CANDIDATE_PUBLICATION='fresh successful completion, independent range comparison, external inclusive deadline and closed owned processes';
+
+
+export const SOURCE_MAP='reference/priorities/development-process-review/contracts/option-b-f6c-refined-operational-sources.jsonld';
+const SOURCE_READER='scripts/equation-mapping/current-source-manifest.mjs';
+export let SOURCE_BINDINGS;
+let sourceRecords,sourceMapBinding;
+export async function initializeSourceBindings(root,expectedMapDigest,live=()=>{}) {
+ SOURCE_BINDINGS=undefined;sourceRecords=undefined;sourceMapBinding=undefined;
+ check(hash(expectedMapDigest),'externally selected source-map digest required');
+ check(realpathSync(root)===root,'canonical Option B repository root required');
+ const captured=readBound(path.join(root,SOURCE_MAP),expectedMapDigest,true,1024**2,live);
+ const metadata=decode(captured.data,1024**2),readers=metadata['@graph']?.filter(r=>r.role==='manifest-reader'&&r.binding?.path===SOURCE_READER);
+ check(readers?.length===1&&hash(readers[0].binding.sha256),'exact manifest reader identity required');
+ const reader=readBound(path.join(root,SOURCE_READER),readers[0].binding.sha256,true,1024**2,live);
+ const M=await import('data:text/javascript;base64,'+reader.data.toString('base64'));
+ const admitted=M.admit(captured.data,{root,scope:'f6c-refined-operational-current-source',readBound:(...args)=>{live();return readBound(...args);}});
+ const roles=new Map([[ENTRY,'admission'],[LAUNCHER,'launcher'],[SOURCE_READER,'manifest-reader'],[TESTS,'current-source'],[PROCESS_TESTS,'current-source'],[HELPERS,'current-source'],[OUTER,'current-source']]);
+ const rows=admitted.document['@graph'].filter(r=>r['@type']==='Source');
+ check(rows.length===roles.size&&rows.every(r=>roles.get(r.binding.path)===r.role),'exact operational source roles required');
+ const pins=Object.fromEntries(rows.map(r=>[r.binding.path,r.binding.sha256]));
+ if(import.meta.url.startsWith('data:'))check(sha(Buffer.from(import.meta.url.split(',')[1],'base64'))===pins[ENTRY],'executing entry generation differs');
+ checkBindings([clean(captured),clean(reader),...admitted.bindings],live);
+ sourceRecords=admitted.bindings;sourceMapBinding=clean(captured);SOURCE_BINDINGS=Object.freeze(pins);
+ return {sourceMap:sourceMapBinding,sources:sourceRecords};
+}
+function requireSourceBindings(){check(SOURCE_BINDINGS&&sourceRecords&&sourceMapBinding,'Option B source admission required');}
 
 export const check=(ok,message)=>{if(!ok)throw new Error(message);};
 export const sha=b=>createHash('sha256').update(b).digest('hex');
@@ -146,6 +170,8 @@ function binding(b){closed(b,['path','sha256','bytes'],'binding');check(typeof b
 function bindings(rows){check(Array.isArray(rows)&&rows.length>0&&rows.length<=512,'bounded binding list');rows.forEach(binding);check(new Set(rows.map(b=>b.path)).size===rows.length,'duplicate binding path');}
 const absolute=(b,root)=>({...b,path:path.resolve(root,b.path)});
 export function validatePlan(plan,root,launcherSha,entrySha,python,git) {
+ requireSourceBindings();
+ check(entrySha===SOURCE_BINDINGS[ENTRY]&&launcherSha===SOURCE_BINDINGS[LAUNCHER],'selected entry/launcher generation differs');
   closed(plan,['schema','scope',...Object.keys(NAMED),'runtimeBindings','operationalBindings','limits','priorRefinementClosure'],'plan');
   check(plan.schema==='braid-program/f6c-refined-acceleration-launch.v1'&&plan.scope===SCOPE&&equal(plan.limits,LIMITS),'fixed scope/limits');
   for(const [key,p]of Object.entries(NAMED)){binding(plan[key]);check(plan[key].path===p&&plan[key].sha256===PINS[p],'reviewed source/control generation');}
@@ -156,7 +182,7 @@ export function validatePlan(plan,root,launcherSha,entrySha,python,git) {
   check(runtime.includes(realpathSync(python))&&runtime.includes(path.join(path.dirname(path.dirname(python)),'pyvenv.cfg'))&&runtime.includes(git),'shared interpreter/venv/Git absent');
   const ops=[ENTRY,LAUNCHER,TESTS,PROCESS_TESTS,HELPERS,OUTER,'/bin/ps','/usr/bin/memory_pressure',realpathSync(process.execPath)];
   check(equal(plan.operationalBindings.map(b=>b.path).sort(),ops.sort()),'exact nine operational bindings');
-  for(const b of plan.operationalBindings){const expected=b.path===ENTRY?entrySha:b.path===LAUNCHER?launcherSha:PINS[b.path];if(expected)check(b.sha256===expected,'operational generation differs');}
+  for(const b of plan.operationalBindings){const expected=SOURCE_BINDINGS[b.path]??PINS[b.path];if(expected)check(b.sha256===expected,'operational generation differs');}
   check(equal(plan.priorRefinementClosure,PRIOR_CLOSURE),'refined external closure premise');
   return plan;
 }
@@ -186,7 +212,8 @@ export function priorSourceBindings(root,live=()=>{}){
  return mergeBindings(rows);
 }
 export function planBindings(plan,root,live=()=>{}) {
- const rows=[...[...FIXED,...REFINED,...PRIOR_OPERATIONS].map(([,p,h,bytes])=>({path:path.join(root,p),sha256:h,...(bytes?{bytes}:{})})),
+ requireSourceBindings();
+ const rows=[sourceMapBinding,...sourceRecords,...[...FIXED,...REFINED,...PRIOR_OPERATIONS].map(([,p,h,bytes])=>({path:path.join(root,p),sha256:h,...(bytes?{bytes}:{})})),
   ...Object.keys(NAMED).map(k=>absolute(plan[k],root)),...plan.runtimeBindings.map(b=>absolute(b,root)),
   ...plan.operationalBindings.map(b=>absolute(b,root)),...priorSourceBindings(root,live)];
  return mergeBindings(rows);
@@ -225,6 +252,7 @@ for module in tuple(sys.modules.values()):
 print(json.dumps({'schema':'braid-program/f6c-refined-acceleration-python-runtime-inventory.v1','scientificDataLoaded':False,'scientificModulesExecuted':False,'pythonInvocation':sys.executable,'pythonRealPath':str(pathlib.Path(sys.executable).resolve()),'files':[str(p) for p in sorted(files)]}))
 `;
 export function stageSpec({stage,plan,planBinding,root,output,python,git,candidate,budget}) {
+ requireSourceBindings();
   check(stage==='consumer'||stage==='comparison','unknown stage');check(typeof budget==='string'&&/^(?:0|[1-9]\d*)(?:\.\d+)?$/u.test(budget)&&Number(budget)>0&&Number(budget)<=1800,'positive stage budget');
   const paths=outputPaths(root,output),source=stage==='consumer'?CONSUMER:CHECKER,digest=stage==='consumer'?PINS[CONSUMER]:plan.verifier.sha256;
   const args=['-I','-B','-c',PYTHON_BOOTSTRAP,path.join(root,source),digest,'--plan',planBinding.path,'--plan-sha256',planBinding.sha256,
@@ -289,7 +317,9 @@ export function admitStage(job) {
     mathematicalAuthority:stage==='comparison'?'frozen independent conditional range-output conformance only':'none; candidate pending independent comparison'};
 }
 export function fileOperation(job) {
-  const live=()=>check(process.hrtime.bigint()<BigInt(job.deadlineNanoseconds),'inclusive file operation deadline');live();
+ requireSourceBindings();
+ check(job.sourceMapSha256===sourceMapBinding.sha256&&path.join(job.root,SOURCE_MAP)===sourceMapBinding.path,'worker selected source map differs');
+  const live=()=>check(process.hrtime.bigint()<BigInt(job.deadlineNanoseconds),'inclusive file operation deadline');live();checkBindings([sourceMapBinding,...sourceRecords],live);
   if(job.kind==='preflight'){
     const captured=readBound(job.planPath,job.planSha256,true,1024**2,live),plan=decode(captured.data,1024**2);
     validatePlan(plan,job.root,job.launcherSha256,job.entrySha256,job.python,job.git);
@@ -302,8 +332,9 @@ export function fileOperation(job) {
 async function main(argv){
   if(argv[0]==='--runtime-inventory'){check(argv.length===2&&path.isAbsolute(argv[1]),'explicit shared Python inventory invocation');return runSingleStage({command:argv[1],args:['-I','-B','-c',PYTHON_RUNTIME_INVENTORY]},{timeoutMs:5000});}
   const v={};for(let i=0;i<argv.length;i+=2){check(argv[i+1]&&!v[argv[i]],'unique stage argument');v[argv[i]]=argv[i+1];}
-  closed(v,['--plan','--plan-sha256','--entry-sha256','--launcher-sha256','--stage','--out','--deadline-ns','--candidate-sha256','--python','--git-binary'],'stage arguments');
-  const root=realpathSync(process.cwd()),p=readBound(path.resolve(v['--plan']),v['--plan-sha256'],true,1024**2),plan=decode(p.data,1024**2);
+  closed(v,['--source-map-sha256','--plan','--plan-sha256','--entry-sha256','--launcher-sha256','--stage','--out','--deadline-ns','--candidate-sha256','--python','--git-binary'],'stage arguments');
+  const root=realpathSync(process.cwd());await initializeSourceBindings(root,v['--source-map-sha256']);
+ const p=readBound(path.resolve(v['--plan']),v['--plan-sha256'],true,1024**2),plan=decode(p.data,1024**2);
   validatePlan(plan,root,v['--launcher-sha256'],v['--entry-sha256'],v['--python'],v['--git-binary']);const sources=[...planBindings(plan,root),clean(p)];checkBindings(sources);
   const output=path.resolve(v['--out']),paths=outputPaths(root,output),stage=v['--stage'];check(realpathSync(paths.operations)===paths.operations,'canonical owned operations sibling');
   const candidate=stage==='comparison'?clean(readBound(paths.candidate,v['--candidate-sha256'])):null;

@@ -35,7 +35,7 @@ Closure is the destination; convergence is the process. As understanding advance
 | Convergence Target | A priority item in `reference/priorities`. |
 | Convergence Debt | The priority ledgers, collectively. |
 | Convergence Frontier | [closure-join-matrix.md](../priorities/aaa-work-threads/analysis/closure-join-matrix.md) and the current core geometry focus. |
-| Theory Closure | The objective already named by the `Closure goal:` prompt convention, which is unchanged. |
+| Theory Closure | The objective formerly named by the `Closure goal:` prompt-opening convention. That label was retired by the [operator explanation standard](../op/operator-explanation-standard.md#next-possible-actions), which requires no fixed opening line; the objective itself is unchanged (superseding note, 2026-09-12). |
 
 ## Scope Boundary
 

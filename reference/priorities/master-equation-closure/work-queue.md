@@ -4,7 +4,7 @@
 
 **Current aim:** develop the [integrated manuscript](manuscript.md) while resolving the actual two-particle population release conditions and the existing quintic candidate's regulator question. Changed history classes and physical laws remain proposals.
 
-**Dispatched now:** no scientific worker. The full-pulse adjudication is integrated into manuscript Sections 6.6–6.7, with separate editorial fidelity and scoped document validation completed. The old pulse worker remains stopped. The next old-pulse-shell theorem is a recommendation awaiting a bounded scientific assignment; it is not a manuscript-lane task or a publication action.
+**Dispatched now:** no scientific worker. The rigid-cell mathematical adjudication and capture-fidelity review are complete. The full-pulse adjudication remains integrated into manuscript Sections 6.6–6.7; the old pulse worker remains stopped. The next old-pulse-shell theorem remains a separate recommendation awaiting a bounded scientific assignment.
 
 ## Work to do
 
@@ -34,6 +34,7 @@ The [quintic independent review](analysis/quintic-mirror-boundary-independent-ad
 - **The stationary two-particle EOM reaches a root-free field-speed endpoint at positive separation.** Its established continuation obstruction remains unchanged. [Mirror result](analysis/mirror-close-approach-causal-root-boundary.md).
 - **A positive self-delay floor is independently accepted under explicit regularity, cone, velocity and opposing-remainder hypotheses.** Its finite-event extension is accepted conditionally and does not resolve the zero-delay mirror boundary. [Accepted delay-floor review](analysis/mec-008-self-delay-independent-adjudication.md).
 - **The proposed infinite-history class fails the required summation and continuity properties.** This blocks that construction, not every possible dense EOM solution.
+- **Equal-time cell moments are insufficient even with rigid internal geometry**, by the [independently accepted rigid-cell obstruction](analysis/population-rigid-cell-independent-adjudication.md). Its signed divergence and growing-finite-support discontinuity concern coordinated prescribed histories, not EOM-generated motion from two changed labels. The conditional delayed-moment derivative result requires a remainder that survives summation. The fixed finite-support pulse control remains intact; expanding-population EOM convergence cannot be tested on a witness already divergent at release.
 
 For strategy and claim boundaries, see [priorities](priorities.md). For explanations, see [brainstorming](brainstorming.md) and the linked mathematical owners. Source-packet P/Leg/D labels and old numbered assignments are preserved in the [historical work log](work-log.md#2026-09-09--queue-presentation-simplified); they are not additional live tasks.
 

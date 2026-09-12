@@ -74,11 +74,15 @@ const REQUIRED_CHECKS = [
   },
   {
     name: "Test Option B current-source admission and dependency controls",
-    args: ["--test", "--test-concurrency=1", "tests/current-source-manifest.test.mjs", "tests/option-b-root-cover-admission.test.mjs"],
+    args: ["--test", "--test-concurrency=1", "tests/current-source-manifest.test.mjs", "tests/option-b-root-cover-admission.test.mjs", "tests/option-b-f6c-coordinator-admission.test.mjs", "tests/option-b-f6c-paired-admission.test.mjs", "tests/option-b-f6c-family-admission.test.mjs", "tests/f6c-bounded-operation-current-closure.test.js", "tests/option-b-operational-successor.test.mjs", "tests/option-b-f5-admission.test.mjs", "tests/option-b-f5-evolution-admission.test.mjs", "tests/option-b-circular-admission.test.mjs", "tests/option-b-disposition-coverage.test.mjs"],
   },
   {
     name: "Verify Option B root-cover profile transfers against retained A baselines",
     args: ["scripts/equation-mapping/check-current-source-maps.mjs"],
+  },
+  {
+    name: "Verify Option B finite migration binding dispositions",
+    args: ["scripts/equation-mapping/check-current-source-dispositions.mjs"],
   },
   {
     name: "Validate private MCP secure-tunnel deployment contract",

@@ -1,0 +1,31 @@
+{
+  "schema": "option-b-circular-retained-baseline/v1",
+  "claimBoundary": "Pre-edit operational byte provenance, not independent scientific acceptance or a runnable current build.",
+  "capturedOn": "2026-09-12",
+  "localCopyDirectory": ".local-data/option-b-circular-baseline-20260912",
+  "copyMethod": "cp -p before operational source edits; basename copies retained locally",
+  "bindings": [
+    {"path":"scripts/eom/run-subfield-circular-root-pilot.mjs","sha256":"06e9b919294a55eb3da83b696c8727e0d455e6ea7b6a6ab11532aa31d7b57849"},
+    {"path":"scripts/eom/launch-subfield-circular-root-pilot.mjs","sha256":"71974054ddce7fc29b8464b9a7a63f8fbb04ee5b425dc997df4d40b2804341aa"},
+    {"path":"scripts/eom/run-subfield-circular-root-rung.mjs","sha256":"25edfefeff63b70c61ef92e880b1ac9e20cbe2578d7f603f3fcc45162c74741c"},
+    {"path":"scripts/eom/dispatch-subfield-circular-root-ladder.mjs","sha256":"c118f240dfb00a26541792b5d668417f6d50d12c0a992bdafb75fdaa5c19f4b4"},
+    {"path":"scripts/eom/prepare-current-subfield-circular-prior.mjs","sha256":"46aa0a4c79597882a9cf6279fe66b1c9c857b9f035ffaaa577e336655045c206"},
+    {"path":"scripts/eom/run-current-subfield-circular-root-pilot.mjs","sha256":"f5e835c4c478f2a101be91b127d2ae91524dee5d7a7fdd5a9edc019b085a3b7e"},
+    {"path":"scripts/eom/run-current-subfield-circular-root-rung.mjs","sha256":"a2893b62c7780a031c6296cc5b0d5c4cf25818773c2c9042c388241177d5760b"},
+    {"path":"scripts/eom/prepare-current-subfield-circular-ladder.mjs","sha256":"836ee6a27b64e79edae8d0a8e0bf0d3d354e4d61dc30ce1d890471927f65c725"},
+    {"path":"scripts/eom/prepare-subfield-circular-root.mjs","sha256":"31224420d48181f8834e0a6290f7dd2957fbb0e4072e3f6aa2062d76a8cd6e43"},
+    {"path":"scripts/equation-mapping/current-source-manifest.mjs","sha256":"9097ef3fd3fb2040b48c601d81c184188e8a992aa4464694860d05d0bf76a56e"}
+  ],
+  "frozenScientificBindings": [
+    {"path":"src/prescribed-path-analysis/SubfieldCircularRootLedgerReducer.mjs","sha256":"6dabe54a991ccd7a8c1ca5da41139c0669e62f521d17fff4c9a0c52b51b2dda9"},
+    {"path":"scripts/eom/reduce-subfield-circular-root-ledger.mjs","sha256":"2b3eb236b561c1901e6dfc58603f97f1104fc045e79d2d7a10d8879da02fd60a"},
+    {"path":"scripts/eom/verify-subfield-circular-history.mjs","sha256":"b2fc83aa828ac9f175d7c3ae7bf43b66fcda54a702de6f2f80812852aebd5f38"},
+    {"path":"src/eom/native/eom_subfield_circular_root_cli.cpp","sha256":"a06246ca3aac60d500981b19fcffabb9612dc3a4085fc4fb3c441e8839726b7a"},
+    {"path":"src/eom/CMakeLists.txt","sha256":"dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4"}
+  ],
+  "historicalBuild": {
+    "path":".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/current-v3-build-20260908-execution-review/preparation.json",
+    "sha256":"c80526d097c81627186cbbfcea7e0005d9d73288e331f4535f07982cc2bef944",
+    "status":"Retained historical evidence; source-generation rejection is not waived by operational migration."
+  }
+}

@@ -1,5 +1,7 @@
 # Acceleration current execution transport
 
+Current source admission now uses Option B under the [paired migration record](option-b-prescribed-response-and-acceleration-cutover.md). That later operational transfer preserves the scientific and historical boundaries measured in this transport record; its newer test counts and manifest identities are recorded separately.
+
 The acceleration interface now passes the declared operational controls without changing the numerical subject, independent rational comparator or range reference. `git diff --exit-code` over those three source files reports no changes, and the current binding tests authenticate their selected digests. The new `scripts/eom/execute-f6c-acceleration.py` captures and invokes their existing numerical functions. These results establish current transport and historical-record authentication within the tests below; no new scientific evaluation or acceptance is claimed.
 
 ## Contract and provenance

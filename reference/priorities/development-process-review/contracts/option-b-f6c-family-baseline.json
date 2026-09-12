@@ -1,0 +1,360 @@
+{
+  "schema": "option-b-f6c-family-pre-edit/v1",
+  "commit": "ab3ed93a59e69a5807397c24cefcfcb3a9642487",
+  "meaning": "Measured live pre-edit source and retained declarations; not scientific acceptance or a claim all bytes equal Git HEAD",
+  "sources": [
+    {
+      "path": "scripts/eom/run-f6c-parent-emission-refinement-pilot.mjs",
+      "sha256": "9fbfc43b297069a5956ae6992d7aedfb9116b3150dab77a0860e5689aa0d9f27",
+      "bytes": 57763,
+      "PINS": {
+        "helpers": [
+          "scripts/eom/launch-prescribed-response-pilot.mjs",
+          "fc758e8ffc1feaa566cc8e1849f73a0c8907f5ad7567e43fffd151eeceac30a1"
+        ],
+        "outer": [
+          "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+          "71974054ddce7fc29b8464b9a7a63f8fbb04ee5b425dc997df4d40b2804341aa"
+        ],
+        "diagnostics": [
+          "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
+          "8a7759d803c49470f471ef4e58171bbe010466aaf0d7abe92f6f9897881bbbb0"
+        ]
+      },
+      "NAMED": {
+        "declaration": [
+          "reference/priorities/braid-program/evidence/2026-08-27-f6c-parent-emission-refinement-reference.md",
+          "c9f0924cd24745bd10e2b51ee5b60a09c0c0576b5dec3bc14f647c9c7ee6fc47"
+        ],
+        "producer": [
+          "scripts/eom/prepare-f6c-parent-emission-refinement.py",
+          null
+        ],
+        "producerControls": [
+          "tests/test_f6c_parent_emission_refinement_preparation.py",
+          null
+        ],
+        "proposalReference": [
+          "scripts/eom/f6c_parent_emission_refinement.py",
+          "67fa74c149769d0533ef09a5add96da30a35cf603979bc206bcba059217e4e57"
+        ],
+        "proposalReferenceControls": [
+          "tests/test_f6c_parent_emission_refinement.py",
+          "f1650b5e73a06ecd7ed05bff10ba97949b42aa5330e84fb3514c2f868eff0fc2"
+        ],
+        "verifier": [
+          "scripts/eom/verify-f6c-parent-emission-refinement.py",
+          null
+        ],
+        "verifierControls": [
+          "tests/test_f6c_parent_emission_refinement_verification.py",
+          null
+        ],
+        "comparisonReference": [
+          "scripts/eom/oracle/f6c_parent_emission_refinement_conformance.py",
+          "9bca879b94386d033597bb9d1e3a4ceeb9943925615c916299feb91e482391ad"
+        ],
+        "comparisonReferenceControls": [
+          "tests/test_f6c_parent_emission_refinement_conformance.py",
+          "2eafcd7551a6d64c5f6c7bc6923507da8d27084af74bc5742583d63eb708aebb"
+        ]
+      },
+      "DEPENDENCIES": {
+        "transport": [
+          "scripts/eom/verify-f6c-refined-acceleration.py",
+          "e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae"
+        ],
+        "transportControls": [
+          "tests/test_f6c_refined_acceleration.py",
+          "d65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd"
+        ],
+        "scientificDecoder": [
+          "scripts/eom/oracle/f6c_refined_acceleration_conformance.py",
+          "7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e"
+        ],
+        "scientificDecoderControls": [
+          "tests/test_f6c_refined_acceleration_conformance.py",
+          "147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921"
+        ],
+        "productionHelper": [
+          "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py",
+          "d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841"
+        ],
+        "productionHelperControls": [
+          "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py",
+          "5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2"
+        ],
+        "historyReference": [
+          "scripts/eom/oracle/certified_history.py",
+          "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7"
+        ],
+        "decimalReference": [
+          "scripts/eom/oracle/decimal_interval.py",
+          "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a"
+        ],
+        "decimalControls": [
+          "tests/test_eom_decimal_interval.py",
+          "22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44"
+        ],
+        "rootLibrary": [
+          "scripts/eom/oracle/continuous_reception_roots_cached.py",
+          "daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf"
+        ],
+        "rootControls": [
+          "tests/test_eom_continuous_reception_roots_cached.py",
+          "a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb"
+        ],
+        "independentRootReference": [
+          "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py",
+          "3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7"
+        ],
+        "independentRootControls": [
+          "tests/test_f6c_cached_continuous_reception_root_cover.py",
+          "09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3"
+        ],
+        "cacheEquivalence": [
+          "reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md",
+          "a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d"
+        ]
+      },
+      "ORIGINAL": {
+        "export": [
+          ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json",
+          "f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1"
+        ],
+        "reconstruction": [
+          ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json",
+          "7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43"
+        ],
+        "guards": [
+          ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json",
+          "86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880"
+        ],
+        "fullEntry": [
+          "scripts/eom/run-f6c-cached-root-cover-full.mjs",
+          "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b"
+        ],
+        "fullRows": [
+          ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/subject/rows.ndjson",
+          "28491edb2f1faec7adf248f535d29a1600b8bd69f5a46706fd26dbb3eb848b5c",
+          22585784
+        ],
+        "fullPieces": [
+          ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/subject/pieces.ndjson",
+          "b3a2ddf2c8cd5b586ef7b374eee94afc395f63496c849ec574e71bf1f487a9ab",
+          7505144
+        ],
+        "fullManifest": [
+          ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/subject/cover-manifest.json",
+          "61b0cdfad85696a0b5ead7df838119c9005a28656e9ac3daa26df139054410e2",
+          42922
+        ],
+        "fullComparison": [
+          ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/comparison.json",
+          "1c423aece2009a2d7d0852e9558c16464c640abbc5bea3743211af3805b6eed2",
+          43377
+        ],
+        "fullAdmission": [
+          ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/full-admission.json",
+          "8fe8f0f9651fd8de15467a69f0534f08bbe19e0e3fdb64a86c6422be857eb77f",
+          332567
+        ],
+        "fullLauncherLog": [
+          ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/launcher-stderr.log",
+          "b976d8deb556d8faba5a3aff73a09b77ec26c6da84e42726167eec4ec7a43314",
+          30969
+        ],
+        "fullResourceLog": [
+          ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/resource-observations.ndjson",
+          "66eb0cfa1811d0a834d18d3bd8e749a941e1964f7276898b80a4e12136d69d03",
+          1710278
+        ],
+        "fullPlan": [
+          "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-launch.v1.json",
+          "5dd7e27084a2e8e5b2c3ed8daf8cf66248a437108710ce91281977e728197ddc",
+          45282
+        ]
+      },
+      "PACKAGE_PINS": null,
+      "GENERIC_PINS": null,
+      "FRESH_CLOSURE_PINS": null
+    },
+    {
+      "path": "scripts/eom/run-f6c-streamed-leaf-diagnostic.mjs",
+      "sha256": "6ab2a05742d018c5e725a22501fca7036436b9039c715c134342c68ba0f61e5b",
+      "bytes": 95051,
+      "PINS": {
+        "operationCoordinator": [
+          "scripts/eom/f6c-bounded-operation.mjs",
+          "f0a310b0902b66b60b98ab2f6b2109f352a1263ad23cc1bd5b53763c197bcd7c"
+        ],
+        "operationCoordinatorControls": [
+          "tests/f6c-bounded-operation.test.js",
+          "a71ef095189f0bae802db6286868c4b99f4a756382c111e7980e9fa38ad4504b"
+        ],
+        "adapter": [
+          "scripts/eom/f6c_variable_cell_adapter.py",
+          "8431df6a2dbf6716330d6bc0319cc1e4ad8dd19c0140553dd1e75294eb8cbe80"
+        ],
+        "adapterControls": [
+          "tests/test_f6c_variable_cell_adapter.py",
+          "94a2a80a1dd0d8f06dde78a11a3eba220a1d86a92dd9888b99e02f2598dc1e63"
+        ],
+        "diagnostic": [
+          "scripts/eom/f6c_single_leaf_diagnostic.py",
+          "88b8fece4d8facc4943b01ebb5eb1cac2fe1061fecc86cae157a5d3ba4658a1e"
+        ],
+        "diagnosticControls": [
+          "tests/test_f6c_single_leaf_diagnostic.py",
+          "52f0a68016d444f50a8365b5183e2268e63757c2d53bdf698f73f1674672d766"
+        ],
+        "stream": [
+          "scripts/eom/f6c_streamed_leaf_session.py",
+          "12503e98995464abdca6b1c54616c27797f7ba8849d12217e8677fab7825e46a"
+        ],
+        "streamControls": [
+          "tests/test_f6c_streamed_leaf_session.py",
+          "8768e22871054f903da53075078c12a230e63df3863e1882c5d99048904123a9"
+        ],
+        "continuation": [
+          "scripts/eom/f6c_leaf_continuation.py",
+          "b98cce1a5dc1a1e3903146de39e8ff25d4bae996bd9bcd99ca4205fcb2ee6b0a"
+        ],
+        "continuationControls": [
+          "tests/test_f6c_leaf_continuation.py",
+          "ec3e156d1d1f71729c6649cbaf43db40779d873e37cfa0d1dd223966bde91743"
+        ],
+        "codec": [
+          "scripts/eom/f6c_leaf_evidence_codec.py",
+          "371f6eff5a7a50514816b9af04c98fdae18084cc364b35b565fc53acae76a79f"
+        ],
+        "codecControls": [
+          "tests/test_f6c_leaf_evidence_codec.py",
+          "af39c302680ce1a9d55c5539dfa3084f20132a12113d9b6285d6abbec074c648"
+        ],
+        "storage": [
+          "scripts/eom/f6c_leaf_stream_publication.py",
+          "5a638da1aa91ce80b9dcdfe503f4e2193a981c43e903719e4e18b5bb17c9658e"
+        ],
+        "storageControls": [
+          "tests/test_f6c_leaf_stream_publication.py",
+          "b1c8e0a789ec2215d12a20e601dfc5175df3516c450373a624c8049b060d49ae"
+        ],
+        "readiness": [
+          "reference/priorities/braid-program/evidence/2026-08-27-braid-search-launch-readiness.md",
+          null
+        ],
+        "transport": [
+          "scripts/eom/verify-f6c-refined-acceleration.py",
+          "e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae"
+        ],
+        "helpers": [
+          "scripts/eom/launch-prescribed-response-pilot.mjs",
+          "fc758e8ffc1feaa566cc8e1849f73a0c8907f5ad7567e43fffd151eeceac30a1"
+        ],
+        "outer": [
+          "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+          "71974054ddce7fc29b8464b9a7a63f8fbb04ee5b425dc997df4d40b2804341aa"
+        ],
+        "diagnostics": [
+          "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
+          "8a7759d803c49470f471ef4e58171bbe010466aaf0d7abe92f6f9897881bbbb0"
+        ]
+      },
+      "NAMED": null,
+      "DEPENDENCIES": null,
+      "ORIGINAL": null,
+      "PACKAGE_PINS": {
+        "reader": [
+          "scripts/eom/f6c_evidence_package.py",
+          "9d888682514f23652b39bfaa53fdfb3ceab66e6ba88cf34222c156d226764ad6"
+        ],
+        "readerControls": [
+          "tests/test_f6c_evidence_package.py",
+          "f2c52fd510cad3da99f65ab2497dde754f8842d18004c3e1ae98d1bbdcb6d3d8"
+        ],
+        "inventory": [
+          "tests/fixtures/f6c-lossless-packaging-expectations.v1.json",
+          "901687bd92fdc686dc26b8634d8f58ecd46bd9f81208ca68563ad4cff983b09b"
+        ]
+      },
+      "GENERIC_PINS": null,
+      "FRESH_CLOSURE_PINS": {
+        "instrument": [
+          ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/independent_parent_batch_closure.py",
+          "3eefbb8767a0337024066f8949770fbf47f39edc308aaf598372cf95b3dba223"
+        ],
+        "controls": [
+          ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/independent_parent_batch_closure_controls.py",
+          "f45ccfb0ff9609fe267f25c1ba2521ec58134f9caf7d128b09e0adfde9e6a979"
+        ],
+        "contract": [
+          ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/fresh-parent-batch-closure-validator-expectations.md",
+          "7132bcf6db99bef0b2255418f656e3fb5900eb23fac9d1400d294d5ba8fd2eed"
+        ]
+      }
+    },
+    {
+      "path": "scripts/eom/run-f6c-evidence-packaging.mjs",
+      "sha256": "8faba5eee856f89b3bfb30f6c09ebbab4794c87cf47e6e18fc1f219946ecb1b9",
+      "bytes": 27584,
+      "PINS": {
+        "inventory": [
+          "tests/fixtures/f6c-lossless-packaging-expectations.v1.json",
+          "901687bd92fdc686dc26b8634d8f58ecd46bd9f81208ca68563ad4cff983b09b"
+        ],
+        "contract": [
+          "reference/priorities/braid-program/evidence/2026-08-28-f6c-lossless-packaging-expectations.md",
+          "75177ad5b16b34fd1f387689ec7ef2db77ed7196c5995c5621a54799539460cf"
+        ],
+        "packageModule": [
+          "scripts/eom/f6c_evidence_package.py",
+          "9d888682514f23652b39bfaa53fdfb3ceab66e6ba88cf34222c156d226764ad6"
+        ],
+        "packageControls": [
+          "tests/test_f6c_evidence_package.py",
+          "f2c52fd510cad3da99f65ab2497dde754f8842d18004c3e1ae98d1bbdcb6d3d8"
+        ],
+        "independentDecoder": [
+          ".local-data/braid-analysis/f6c-whole-history-20260828/packaging-review/independent-package-review.mjs",
+          "328120d4f0c0716d78d38362cfb2f1c27b5a33382c6a3870fb10ca501f9d0273"
+        ]
+      },
+      "NAMED": null,
+      "DEPENDENCIES": null,
+      "ORIGINAL": null,
+      "PACKAGE_PINS": null,
+      "GENERIC_PINS": {
+        "inventoryParser": [
+          "scripts/eom/f6c_parent_evidence_inventory.py",
+          "d69db22ad20881a94a950102e70d438792493fa52efde666575bc53100bd784b"
+        ],
+        "inventoryParserControls": [
+          "tests/test_f6c_parent_evidence_inventory.py",
+          "369091d5a0996fb547a70ba8e9aa8b3fe5570cf046863872bfaeb491bd0cf551"
+        ],
+        "inventoryContract": [
+          ".local-data/braid-analysis/f6c-whole-history-20260828/numerical-review/generic-inventory-v2-closed-schema-expectations.md",
+          "856c05077241bf9c28d75c21fcb50beac0afd23546c4bbbad9be7abd5d0f6710"
+        ],
+        "genericIndependentReader": [
+          ".local-data/braid-analysis/f6c-whole-history-20260828/packaging-review/independent-generic-package-review.mjs",
+          "693da598db446dbe6045d07ab4bbd13175c54fc2cd5da3b4b110e2bd94ea763f"
+        ]
+      },
+      "FRESH_CLOSURE_PINS": null
+    },
+    {
+      "path": "scripts/eom/prepare-f6c-streamed-leaf-invocation.mjs",
+      "sha256": "a47755f7a7d130f7aa5cfb040a02f4fbe84be79956e6e0eb224919e2236af97e",
+      "bytes": 4962,
+      "PINS": null,
+      "NAMED": null,
+      "DEPENDENCIES": null,
+      "ORIGINAL": null,
+      "PACKAGE_PINS": null,
+      "GENERIC_PINS": null,
+      "FRESH_CLOSURE_PINS": null
+    }
+  ]
+}

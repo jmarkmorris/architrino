@@ -10,12 +10,12 @@ The guiding rule is level discipline. Quark branch structure matters inside the 
 
 ## Core Claim
 
-A nucleon is a confined three-quark color-singlet assembly built from three Generation-I Noether braids linked by shared strong-sector flux structure. In this architecture:
+The candidate Generation-I nucleon architecture is a three-quark color-singlet assembly built from three Generation-I Noether braids linked by a proposed shared strong-sector corridor. At the observer level, its intended proton and neutron records are:
 
-- a **proton** is the ground-state `uud` color-singlet baryon assembly,
-- a **neutron** is the ground-state `udd` color-singlet baryon assembly.
+- a **proton** is the ground-state `uud` color-singlet baryon target,
+- a **neutron** is the ground-state `udd` color-singlet baryon target.
 
-Each constituent quark is itself a Noether braid assembly with an axial layer of the kind cataloged in [quarks.md](../assemblies/fermions/quarks.md). The proton or neutron is not a bag of three independent quarks; the native target is a retained branch in which those three quark records close as one color-singlet assembly.
+Each constituent quark is itself a candidate Noether braid assembly with an axial layer of the kind cataloged in [quarks.md](../assemblies/fermions/quarks.md). The proton or neutron is not modeled as three independent quarks; the proposed mapping is a retained-branch target in which those three quark records close as one color-singlet assembly.
 
 ## Constituents and Counting
 
@@ -27,7 +27,7 @@ For Generation-I quarks:
 
 Each six-architrino Noether braid scaffold contains three electrinos and three positrinos and is therefore polarity-neutral. The axial layer supplies the quark's net observer-level electric charge; the scaffold count contributes no additional net-charge term.
 
-Therefore a nucleon contains $3 \times 12 = 36$ architrinos at the Noether braid bookkeeping level, before adding any effective mesonic or medium-level dressing. This count is inventory, not a mass formula. The observed nucleon mass response is produced only after color closure, corridor terms, cross terms, shielding, and local Noether sea response are included.
+Under this proposed coherent inventory, a Generation-I nucleon contains $3 \times 12 = 36$ architrinos at the Noether braid bookkeeping level, before adding any effective mesonic or medium-level dressing. This count is inventory, not a mass formula. Its observer-level mass response remains a recovery target that must be evaluated after color closure, corridor terms, cross terms, shielding, and local Noether sea response are derived.
 
 The constituent content is:
 $$
@@ -38,27 +38,27 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3469a5c7b05eb186)
 
-With the quark charge assignments
+With the quark charge assignments, written in units of the positive elementary charge,
 $$
-Q_u=+\frac{2}{3},
+\frac{Q_u}{e}=+\frac{2}{3},
 \qquad
-Q_d=-\frac{1}{3}
+\frac{Q_d}{e}=-\frac{1}{3}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-89f41ebbbbfbe6ac)
 
 one immediately gets
 $$
-Q_p = 2Q_u+Q_d = +1,
+\frac{Q_p}{e} = 2\frac{Q_u}{e}+\frac{Q_d}{e} = +1,
 \qquad
-Q_n = Q_u+2Q_d = 0
+\frac{Q_n}{e} = \frac{Q_u}{e}+2\frac{Q_d}{e} = 0
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2af091a364c5a864)
 
 ## Color-Singlet Closure
 
-The nucleon is not three independent quarks sitting side by side. It is a closed 9-axis color-singlet baryon assembly, with three indexed Noether braid axes contributed by each of the three quark branches. The strong-sector closure picture matches the corridor and flux descriptions in [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md).
+The nucleon is not modeled as three independent quarks sitting side by side. The proposed 9-axis color-singlet record has three indexed Noether braid axes contributed by each of the three quark branches. Its strong-sector closure picture is a candidate counterpart of the corridor and flux descriptions in [Gluons and the Strong Force: Geometric Origins](../assemblies/bosons/gluons.md).
 
 At the bookkeeping level, each constituent quark occupies one of the three color sectors
 $$
@@ -67,9 +67,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-30014fffc3ef5a2f)
 
-or equivalently Red, Green, Blue. A baryon singlet uses each exceptional-axis sector once, so the net color flux closes.
+or equivalently Red, Green, Blue. In the effective comparison, a baryon singlet uses each exceptional-axis sector once as an occupancy condition; that bookkeeping does not by itself prove physical flux closure or a retained branch.
 
-This is the nucleon-level meaning of
+At the effective color-representation comparison level, this is the nucleon-level meaning of
 $$
 3\otimes 3\otimes 3 \supset 1
 $$
@@ -78,11 +78,11 @@ $$
 
 In geometric language:
 
-- each quark contributes one exceptional axis,
-- the three exceptional axes occur once each across the closed 9-axis braid,
-- the shared flux structure closes the baryon assembly into a singlet.
+- the proposed record assigns one exceptional axis to each of the three quark slots,
+- those assignments form a candidate occupancy component of the 9-axis record,
+- physical singlet response and shared flux closure require the full antisymmetrized color map and compatible transport ledger.
 
-Color closure is necessary for a proton or neutron to be a long-lived hadronic branch rather than an open-color transient, but the occupancy rule alone does not establish retained-branch stability or an attractor basin. Later nuclear binding chapters can use declared proton and neutron source envelopes without counting the three quark branches as free atomic or nuclear sources, provided they preserve that effective-interface boundary.
+Color closure is a necessary effective acceptance condition for a proton or neutron to be a long-lived hadronic branch rather than an open-color transient, but the occupancy rule alone does not establish retained-branch stability or an attractor basin. Later nuclear binding chapters can use declared proton and neutron source envelopes without counting the three quark branches as free atomic or nuclear sources, provided they preserve that effective-interface boundary.
 
 ## Proton Source-Envelope Closure Target
 
@@ -100,7 +100,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-07895e8bb69a87be)
 
-The second condition is the color-singlet occupancy rule: the exceptional-axis sectors occur once each. Let $\mathcal L_{\mathrm{strong}}^{uud}(T)$ denote the strong-sector corridor ledger required to lock these three quark branches into one candidate proton branch. At proton-sensitive resolution, the candidate source envelope in response channel $X$ is
+The second condition is the color-singlet occupancy rule: the exceptional-axis sectors occur once each. Let $\mathcal L_{\mathrm{strong}}^{uud}(T)$ denote the strong-sector corridor ledger required to lock these three quark branches into one candidate proton branch. Here $d_N$ is the ambient Noether sea braid spacing and $R_p$ is the declared effective proton color-singlet envelope scale; neither is a measured substrate radius. At proton-sensitive resolution, the candidate source envelope in response channel $X$ is
 
 $$
 \mathcal W_{p,X}^{\mathrm{locked}}
@@ -178,7 +178,7 @@ $$
 
 This is the nucleon-side handoff used by the hydrogen response map in [Atomic Structure](atomic-structure.md#hydrogen-boundary-theorem-target). It lets the atomic calculation see a proton source envelope with retained charge, multipole, shielding, and corridor coefficients, while preventing the three quark Noether braids from being counted as free atomic sources.
 
-The proton boundary tolerance inherited by hydrogen is therefore an admissible-source condition, not a fitted proton radius. For channel $X$,
+The proton boundary tolerance inherited by hydrogen is therefore an admissible-source condition, not a fitted proton radius. For channel $X$, $\mathcal A_{\mathrm H}(T)$ denotes the exact hydrogen matter ledger used by [Atomic Structure](atomic-structure.md#hydrogen-boundary-theorem-target),
 
 $$
 \mathfrak A_{p,X}^{\mathrm{tol}}
@@ -241,7 +241,7 @@ $$
 
 Here $\mathsf{I}_{\mathrm{strong},uud}^{ab}$ denotes the closed color-corridor and flux contribution, $\mathsf{I}_{\mathrm{cross},uud}^{ab}$ denotes branch-cross terms created by locking the three quark records into one baryon, and $\mathsf{I}_{\mathrm{sea},uud}^{ab}$ denotes the retained local Noether sea response for the proton branch. This is hadronic composite closure, not a conversion of Generation-I quarks into higher-generation exposed cores. Strong-sector exchange may change color exceptionality and flux routing, but on the strong-interaction timescale it must preserve the generation tier unless a separate weak or high-energy branch-transition ledger is supplied.
 
-The proton-current-quark mass mismatch is therefore a required benchmark for the hadronic mass map: most of the proton's observed rest response should come from the declared composite strong-sector ledger and its Noether sea response, not from isolated current-quark mass addition and not from ordinary nuclear binding. Nuclear binding starts one level higher, after proton and neutron source envelopes have been admitted as coarse-grained nucleon interfaces.
+The proton-current-quark mass mismatch is therefore a comparison benchmark for the hadronic mass map: a successful closure must determine whether most of the proton's observed rest response comes from the declared composite strong-sector ledger and its Noether sea response, rather than from isolated current-quark mass addition or ordinary nuclear binding. Nuclear binding starts one level higher, after proton and neutron source envelopes have been admitted as coarse-grained nucleon interfaces.
 
 ### Proton Spin Budget
 
@@ -400,7 +400,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-80aa62f1e6a60401)
 
-The tolerance scale shows what kind of proof is required. Using the declared comparison values $d_n^{\max}=1.8\times10^{-26}\,e\cdot\mathrm{cm}$ from the [PSI ultracold-neutron measurement](https://doi.org/10.1103/PhysRevLett.124.081803) and $R_n=0.8\,\mathrm{fm}$ gives
+The tolerance scale shows what kind of proof is required. Using the declared comparison value $d_n^{\max}=1.8\times10^{-26}\,e\cdot\mathrm{cm}$, the 90%-confidence upper limit reported by the [PSI ultracold-neutron measurement](https://doi.org/10.1103/PhysRevLett.124.081803), and $R_n=0.8\,\mathrm{fm}$ gives
 
 $$
 \vartheta_n^{\mathrm{tol}}
@@ -431,7 +431,7 @@ Each constituent quark carries:
 
 ### 2. Shared strong-sector corridor
 
-The three quarks are joined by a shared strong-sector flux network. At coarse level this can be treated as a Y-junction or closed 9-axis braid. The important point is not the exact visual motif. The important point is that the strong-sector energy is stored in the shared closure of the three cores, not in any one quark alone.
+The three quarks are proposed to join through a shared strong-sector flux network. At coarse level this can be treated as a Y-junction or candidate closed 9-axis braid. The important point is not the exact visual motif. The closure target is to determine whether the strong-sector energy is stored in the shared response of the three cores rather than assigned to any one quark alone.
 
 ### 3. External nucleon envelope
 
@@ -474,7 +474,7 @@ The observer-level sign structure is a recovery constraint:
 - the proton should have a positive magnetic moment,
 - the neutron should have a nonzero negative magnetic moment.
 
-The current axial inventory establishes that internal electric circulation is available, but it does not determine either sign. In particular, residual uncompensated circulation alone cannot fix the neutron's negative sign. The proton and neutron signs must be computed from the same radius-weighted axial circulation, color-corridor angular-momentum, and exposed mass-response ledger used for the magnitudes; otherwise the sign statement remains an unproved benchmark.
+The current axial inventory provides charge sites from which an internal electric-circulation contribution could be constructed, but it does not establish that such circulation is retained or determine either sign. In particular, residual uncompensated circulation alone cannot fix the neutron's negative sign. The proton and neutron signs must be computed from the same radius-weighted axial circulation, color-corridor angular-momentum, and exposed mass-response ledger used for the magnitudes; otherwise the sign statement remains an unproved benchmark.
 
 ## Proton-Neutron Mass Difference
 
@@ -503,7 +503,7 @@ This chapter does not yet fix those terms numerically. It fixes the decompositio
 
 ## Residual Strong Interaction Interface
 
-The nucleon is the object that enters nuclear physics. The residual nuclear force is therefore not a direct quark-to-quark long-range force. It is a nucleon-to-nucleon effective interaction generated by:
+The nucleon is the object that enters nuclear physics. In this chapter, the residual nuclear interaction is modeled as a nucleon-to-nucleon effective interaction rather than a direct quark-to-quark long-range force, with candidate contributions from:
 
 - polarization of the surrounding Noether sea,
 - meson-like exchange channels,
@@ -520,7 +520,7 @@ That is why this chapter feeds directly into [nuclear-binding.md](./nuclear-bind
 
 ## Closure Targets
 
-This chapter is in good enough shape to serve as the canonical nucleon reference, but several derivations remain open:
+The definitions above specify the nucleon interface; several derivations remain open:
 
 1. quantitative proton and neutron magnetic moments,
 2. proton spin decomposition from the completed single-assembly angular-momentum ledger and hadron-level color-corridor ledger,
@@ -530,7 +530,7 @@ This chapter is in good enough shape to serve as the canonical nucleon reference
 6. the nucleon-to-$\Delta$ excitation spectrum from the same color-corridor and angular-momentum ledger, including the $N$-$\Delta$ splitting,
 7. the $\Delta^{++}$ `uuu` branch as a color-occupancy and exchange-statistics stress test.
 
-Those are now downstream derivations, not missing definitions.
+These are downstream derivations that depend on the interface defined above, not additional definitions of proton or neutron identity.
 
 ## Related Chapters
 

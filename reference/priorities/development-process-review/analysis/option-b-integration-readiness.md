@@ -1,6 +1,6 @@
 # Option B one-chain implementation readiness
 
-The report-only mathematical trial below retains its own scope and approval limits. The separately authorized September 12 [current-source transfers](option-b-current-source-cutover-inventory.md) now replace inline operational bindings for all three root-cover entry/launcher pairs under the [admission contract](../contracts/option-b-current-source-admission.md). It does not promote these mathematical maps or change their scientific acceptance boundary.
+The report-only mathematical trial below retains its own scope and approval limits. The separately authorized September 12 [current-source transfers](option-b-current-source-cutover-inventory.md) now replace inline operational bindings for all five original entry/launcher profiles: the three root-cover profiles, prescribed-response and acceleration under the [admission contract](../contracts/option-b-current-source-admission.md). It does not promote these mathematical maps or change their scientific acceptance boundary.
 
 **Recommendation: implement one library-based Node validation/reporting adapter using `jsonld`, `n3`, and `@comunica/query-sparql-rdfjs` for the corrected scalar-gradient candidate, and bind its evidence into the existing PR receipt. Retire no existing enforcement or scientific pin.** This is the next bounded implementation decision. The [corrected candidate](option-b-corrected-candidate-review.md) supplies reviewed relationship meanings; its Python experiment is retained evidence, not production code to copy wholesale.
 
