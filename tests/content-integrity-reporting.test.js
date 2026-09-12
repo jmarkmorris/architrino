@@ -1,6 +1,22 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { runChecks, selectedChecks } from "../scripts/check-content-integrity.mjs";
+import { runChecks, selectedChecks, MAC_DEPENDENT_TESTS } from "../scripts/check-content-integrity.mjs";
+
+test("GitHub assigns exactly two Python tests locally without weakening the local gate", () => {
+  const pattern = new RegExp(MAC_DEPENDENT_TESTS);
+  assert.ok(pattern.test("current Python handoff retains real runtime inventory with external admission and no scientific data"));
+  assert.ok(pattern.test("Python admission rejects wrong Node capability, omitted census and same-byte Node replacement"));
+  assert.equal(pattern.test("captured file worker admits known build metadata, then rejects omitted map and substituted gates"), false);
+  const local = selectedChecks({ GITHUB_ACTIONS: "true" });
+  const github = selectedChecks({}, "github");
+  assert.equal(local.length, github.length);
+  assert.equal(local.filter(c => c.args.some(a => a.startsWith("--test-skip-pattern"))).length, 0);
+  assert.equal(github.filter(c => c.args.some(a => a.startsWith("--test-skip-pattern"))).length, 1);
+  for (const [i, check] of local.entries()) {
+    assert.deepEqual(github[i].args.filter(a => !a.startsWith("--test-skip-pattern")), check.args);
+  }
+  assert.throws(() => selectedChecks({}, "unknown"), /Unknown validation profile/);
+});
 
 test("default gate excludes opt-in maintenance checks", () => {
   const required = selectedChecks({});

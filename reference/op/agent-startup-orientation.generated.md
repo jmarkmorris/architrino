@@ -81,7 +81,7 @@ A changed hash means a startup source was edited after the last regeneration. It
 | README.md | 220 | `36a303599a5a3c02` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 24 | `ea8da8bb87d4206f` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 38 | `3666ac9286628a8e` |
-| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 299 | `b94c00b595b18930` |
+| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 310 | `752ef83823c17a08` |
 | [reference/op/brainstorming.md](brainstorming.md) | 380 | `a64f54974e729b23` |
 | [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 208 | `328459c22faedf60` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 190 | `2c685c5e25ca8643` |
@@ -89,7 +89,7 @@ A changed hash means a startup source was edited after the last regeneration. It
 | [reference/op/theory-orientation.md](theory-orientation.md) | 64 | `6e7d85fadab80fc0` |
 | [reference/op/long-running-test-heartbeats.md](long-running-test-heartbeats.md) | 60 | `421e58e6c3ced0d5` |
 | [reference/op/source-mining-best-practice.md](source-mining-best-practice.md) | 493 | `aea014967bca3b04` |
-| [reference/op/git/pr-lifecycle.md](git/pr-lifecycle.md) | 860 | `011c1f567d848cf9` |
+| [reference/op/git/pr-lifecycle.md](git/pr-lifecycle.md) | 862 | `ef75eccd7dd3c8ab` |
 | [reference/priorities/README.md](../priorities/README.md) | 125 | `f93aee4d2c7b7b80` |
 | [reference/office-of-research/cto/prompts/README.md](../office-of-research/cto/prompts/README.md) | 64 | `44455776ef041094` |
 | [reference/office-of-research/cto/prompts/start-pi.md](../office-of-research/cto/prompts/start-pi.md) | 72 | `4e0ff61a310d3916` |

@@ -26,7 +26,7 @@ export const VALIDATION_COMMANDS = [
   },
   {
     name: "Content Integrity",
-    args: ["scripts/check-content-integrity.mjs"],
+    args: ["scripts/check-content-integrity.mjs", "--profile=local"],
   },
   {
     name: "Animator runtime wiring",

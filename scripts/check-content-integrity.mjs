@@ -186,10 +186,16 @@ const MAINTENANCE_CHECKS = [
   { name: "Check supported launch profiles' current repository bindings", args: ["--test", "tests/current-launch-bindings.test.js"] },
 ];
 
-export function selectedChecks(env = process.env) {
-  return env.AAA_CONTENT_MAINTENANCE === "run"
+export const MAC_DEPENDENT_TESTS = "^(current Python handoff retains real runtime inventory with external admission and no scientific data|Python admission rejects wrong Node capability, omitted census and same-byte Node replacement)$";
+
+export function selectedChecks(env = process.env, profile = "local") {
+  if (!["local", "github"].includes(profile)) throw new Error("Unknown validation profile");
+  const checks = env.AAA_CONTENT_MAINTENANCE === "run"
     ? [...REQUIRED_CHECKS, ...MAINTENANCE_CHECKS]
     : REQUIRED_CHECKS;
+  return checks.map(check => profile === "github" && check.args.includes("tests/option-b-f5-admission.test.mjs")
+    ? { ...check, args: [check.args[0], `--test-skip-pattern=${MAC_DEPENDENT_TESTS}`, ...check.args.slice(1)] }
+    : check);
 }
 
 function formatDuration(ms) {
@@ -294,5 +300,10 @@ export function runChecks({ checks = selectedChecks(), execute = spawnSync, log 
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  process.exitCode = runChecks().exitCode;
+  const args = process.argv.slice(2);
+  if (args.length > 1 || (args.length && !["--profile=local", "--profile=github"].includes(args[0]))) throw new Error("Usage: check-content-integrity.mjs [--profile=local|--profile=github]");
+  const profile = args[0]?.split("=")[1] ?? "local";
+  console.log(`[content-integrity] profile: ${profile}`);
+  if (profile === "github") console.log("[content-integrity] Two shared-venv Python admission tests are assigned to mandatory local PR validation, not certified by this run.");
+  process.exitCode = runChecks({ checks: selectedChecks(process.env, profile) }).exitCode;
 }

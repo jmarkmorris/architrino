@@ -300,6 +300,8 @@ git add path/to/file1 path/to/file2
 
 ### 4. Run the exact-state PR gate
 
+Local and GitHub validation have explicit responsibilities. The exact-state receipt invokes Content Integrity with `--profile=local`, including the two F5 Python admission tests that require the approved shared Mac venv. An unavailable shared venv fails local publication; do not substitute system Python. GitHub invokes `--profile=github`, which assigns only those two named tests to local validation while retaining portable admission, source-map, content, fresh-checkout reconstruction, and Pages build checks. GitHub installs locked JavaScript dependencies and ripgrep before validation. A GitHub pass does not certify the assigned local tests, and a local pass does not replace the required GitHub checks.
+
 This gate is mandatory after final staging and before commit. It runs:
 
 - foundational-impact routing against the exact current `origin/main`;
