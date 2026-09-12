@@ -1,3 +1,6 @@
+import optionBIdentities from './fixtures/option-b-retained-test-identities.json' with { type: 'json' };
+const RETAINED_HASHES = Object.freeze([...optionBIdentities.byConsumer["tests/coincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js"].sha256]);
+if (RETAINED_HASHES.length !== 1 || !RETAINED_HASHES.every(value => typeof value === 'string' && /^[a-f0-9]{64}$/u.test(value))) throw new Error('Malformed retained test identities');
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
@@ -35,7 +38,7 @@ const rootSheetSummary = JSON.parse(await readFile(
 
 test("coincident-midpoint common-frequency three-axis circular configuration structural ledger locks its grid, rows, resources, and null score", () => {
   const validated = validateCoincidentMidpointCommonFrequencyStructuralRootLedgerProtocol(protocol);
-  assert.equal(validated.sourceConfiguration.scientificIdentity.modelRevisionSha256, "2a289a6fe32f64922ab71bae973acc80bef8ebc2369329a26822f3f0d7f159d6");
+  assert.equal(validated.sourceConfiguration.scientificIdentity.modelRevisionSha256, RETAINED_HASHES[0]);
   assert.deepEqual(validated.sampling.alpha1, [7 / 8, 29 / 32, 15 / 16]);
   assert.deepEqual(validated.sampling.alpha3, [17 / 16, 35 / 32, 9 / 8]);
   assert.equal(validated.sampling.phaseNodeCount, 24);

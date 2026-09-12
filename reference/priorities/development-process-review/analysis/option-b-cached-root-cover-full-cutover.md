@@ -1,5 +1,7 @@
 # Cached root-cover full Option B transfer
 
+Current status: this record preserves its migration-stage evidence and commands. The former standalone profile test is now [retired into the required B suite](option-b-repository-reconciliation.md#authorized-retirement-cleanup-and-full-b-direction); links to its source select the preserved Git revision.
+
 ## Result and authority
 
 The operator requested migration of cached root-cover full after the two pilot transfers. Its operational entry and launcher now use the shared captured B reader, a profile-specific external source manifest and the caller-selected `--source-map-sha256` argument. The [admission contract](../contracts/option-b-current-source-admission.md) owns this mechanism. Source admission permits existing operational checks to proceed; it does not authorize scientific execution or accept a numerical result.
@@ -48,7 +50,7 @@ Claim grade: measured for the stated byte comparisons and selected tests; inferr
 ## Authored write set
 
 - Operational integration: [full entry](../../../../scripts/eom/run-f6c-cached-root-cover-full.mjs) and [full launcher](../../../../scripts/eom/launch-f6c-cached-root-cover-full.mjs).
-- Admission and controls: [transfer checker](../../../../scripts/equation-mapping/check-current-source-maps.mjs), [shared admission tests](../../../../tests/option-b-root-cover-admission.test.mjs), [full unit tests](../../../../tests/f6c-cached-root-cover-full.test.js), [full process tests](../../../../tests/f6c-cached-root-cover-full-process.test.js) and [remaining A tests](../../../../tests/current-launch-bindings.test.js).
+- Admission and controls: [transfer checker](../../../../scripts/equation-mapping/check-current-source-maps.mjs), [shared admission tests](../../../../tests/option-b-root-cover-admission.test.mjs), [full unit tests](../../../../tests/f6c-cached-root-cover-full.test.js), [full process tests](../../../../tests/f6c-cached-root-cover-full-process.test.js) and [remaining A tests](https://github.com/jmarkmorris/architrino/blob/859f2b07cb17889ca2c239d82fd61455c2ba903c/tests/current-launch-bindings.test.js).
 - Source records: [full baseline](../contracts/option-b-cached-root-cover-full-baseline.json), [full manifest](../contracts/option-b-cached-root-cover-full-sources.jsonld) and [shared contract](../contracts/option-b-current-source-admission.md).
 - Integration and evidence: this record, [inventory](option-b-current-source-cutover-inventory.md), [cached-pilot continuation](option-b-cached-root-cover-cutover.md), [full operational owner](full-root-cover-current-migration.md), [readiness](option-b-integration-readiness.md), [architecture](../../../op/git/git-backed-knowledge-architecture.md), [priorities](../priorities.md), [campaign](../processes-git-codex-claude.md) and [work log](../work-log.md).
 

@@ -21,7 +21,232 @@
       "liveCandidateFiles": 155
     }
   },
+  "accountingReviewScope": "The preceding accountingReview is preserved v1 history, not acceptance of the v2 checker. The retirementReview below owns the current extension.",
+  "retirementReview": {
+    "decision": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#authorized-retirement-cleanup-and-full-b-direction",
+    "reviewerAgentId": "01a096b8-6794-78d1-84c8-01c761a89219",
+    "disposition": "Independently accepted bounded v2 structural extension; role and mathematical acceptance remain separately scoped",
+    "checkerSha256": "6d07a96ce73859e17b53b4eaaf39c5bbecea6ace4a91ae3995d2eb9247e1e826",
+    "controlsSha256": "67c3b94b78f6e643f379dbcea014536f676c18b706695eb80ae95727f22dff99",
+    "knownControls": {"pass": 7, "fail": 0, "durationMs": 92.705417},
+    "targetResult": {"discoveryFiles": 157, "liveCandidateFiles": 155, "dispositionRows": 197, "retiredRows": 1},
+    "combinedRun": "352df42b-6156-428c-b5c9-21d226e1b597",
+    "combinedResult": {"pass": 67, "fail": 0, "skipped": 0, "cancelled": 0, "elapsedWallSeconds": 8.597, "processGroupClosed": true}
+  },
   "additionalOwners": [
+    {
+      "path": "scripts/equation-mapping/current-source-transition.mjs",
+      "disposition": "retained",
+      "owner": "Required B-to-B acceptance",
+      "reason": "Exact externally selected checkpoint, transition and current graph/source capture; scientific/reference and graph-coverage changes remain protected",
+      "roles": [
+        {
+          "binding": "Exact externally selected checkpoint, transition and current graph/source capture; scientific/reference and graph-coverage changes remain protected",
+          "targets": [
+            "tests/option-b-current-source-transition.test.mjs"
+          ],
+          "meaning": "Exact externally selected checkpoint, transition and current graph/source capture; scientific/reference and graph-coverage changes remain protected",
+          "selection": "Explicit B record or control; preserved history and current authority remain distinct",
+          "consumer": "tests/option-b-current-source-transition.test.mjs",
+          "independentCheck": "Known positive and negative controls plus independent source review; no scientific correctness inferred from structural consistency"
+        }
+      ]
+    },
+    {
+      "path": "tests/option-b-current-source-transition.test.mjs",
+      "disposition": "retained",
+      "owner": "Required B-to-B controls",
+      "reason": "Independent known graph/source changes and negative controls for external selection, protected roles, revision continuity, coverage and final identity",
+      "roles": [
+        {
+          "binding": "Independent known graph/source changes and negative controls for external selection, protected roles, revision continuity, coverage and final identity",
+          "targets": [
+            "scripts/equation-mapping/current-source-transition.mjs"
+          ],
+          "meaning": "Independent known graph/source changes and negative controls for external selection, protected roles, revision continuity, coverage and final identity",
+          "selection": "Explicit B record or control; preserved history and current authority remain distinct",
+          "consumer": "scripts/equation-mapping/current-source-transition.mjs",
+          "independentCheck": "Known positive and negative controls plus independent source review; no scientific correctness inferred from structural consistency"
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-five-profile-accepted-b.json",
+      "disposition": "retained",
+      "owner": "Accepted B predecessor",
+      "reason": "Exact original-five accepted B map texts and historical evidence roles, distinct from current candidates",
+      "roles": [
+        {
+          "binding": "Exact original-five accepted B map texts and historical evidence roles, distinct from current candidates",
+          "targets": [
+            "scripts/equation-mapping/current-source-transition.mjs"
+          ],
+          "meaning": "Exact original-five accepted B map texts and historical evidence roles, distinct from current candidates",
+          "selection": "Explicit B record or control; preserved history and current authority remain distinct",
+          "consumer": "scripts/equation-mapping/current-source-transition.mjs",
+          "independentCheck": "Known positive and negative controls plus independent source review; no scientific correctness inferred from structural consistency"
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-five-profile-transition.json",
+      "disposition": "retained",
+      "owner": "Reviewed B transition",
+      "reason": "Exact predecessor binding and per-profile candidate digests/deltas; initial generation changes no source",
+      "roles": [
+        {
+          "binding": "Exact predecessor binding and per-profile candidate digests/deltas; initial generation changes no source",
+          "targets": [
+            "scripts/equation-mapping/current-source-transition.mjs"
+          ],
+          "meaning": "Exact predecessor binding and per-profile candidate digests/deltas; initial generation changes no source",
+          "selection": "Explicit B record or control; preserved history and current authority remain distinct",
+          "consumer": "scripts/equation-mapping/current-source-transition.mjs",
+          "independentCheck": "Known positive and negative controls plus independent source review; no scientific correctness inferred from structural consistency"
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-five-profile-selection.json",
+      "disposition": "retained",
+      "owner": "Required B caller selection",
+      "reason": "Four external expected values reviewed with Content Integrity configuration; never computed from candidates",
+      "roles": [
+        {
+          "binding": "Four external expected values reviewed with Content Integrity configuration; never computed from candidates",
+          "targets": [
+            "scripts/check-content-integrity.mjs"
+          ],
+          "meaning": "Four external expected values reviewed with Content Integrity configuration; never computed from candidates",
+          "selection": "Explicit B record or control; preserved history and current authority remain distinct",
+          "consumer": "scripts/check-content-integrity.mjs",
+          "independentCheck": "Known positive and negative controls plus independent source review; no scientific correctness inferred from structural consistency"
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-five-profile-historical-transfer.json",
+      "disposition": "retained",
+      "owner": "Historical transfer evidence",
+      "reason": "Captured pre-edit checker source, original descriptors and passing original-five transfer; retained as data, never executed by current acceptance",
+      "roles": [
+        {
+          "binding": "Captured pre-edit checker source, original descriptors and passing original-five transfer; retained as data, never executed by current acceptance",
+          "targets": [
+            "scripts/equation-mapping/current-source-transition.mjs"
+          ],
+          "meaning": "Captured pre-edit checker source, original descriptors and passing original-five transfer; retained as data, never executed by current acceptance",
+          "selection": "Explicit B record or control; preserved history and current authority remain distinct",
+          "consumer": "scripts/equation-mapping/current-source-transition.mjs",
+          "independentCheck": "Known positive and negative controls plus independent source review; no scientific correctness inferred from structural consistency"
+        }
+      ]
+    },
+    {
+      "path": "scripts/equation-mapping/fixtures/mathematical-acceptance-selection.json",
+      "disposition": "retained",
+      "owner": "Report-only B caller selection",
+      "reason": "Exact accepted mathematical predecessor record digest; does not approve new candidates",
+      "roles": [
+        {
+          "binding": "Exact accepted mathematical predecessor record digest; does not approve new candidates",
+          "targets": [
+            "scripts/equation-mapping/check-moving-single-root-map.mjs"
+          ],
+          "meaning": "Exact accepted mathematical predecessor record digest; does not approve new candidates",
+          "selection": "Explicit B record or control; preserved history and current authority remain distinct",
+          "consumer": "scripts/equation-mapping/check-moving-single-root-map.mjs",
+          "independentCheck": "Known positive and negative controls plus independent source review; no scientific correctness inferred from structural consistency"
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-mathematical-map-acceptance.jsonld",
+      "disposition": "retained",
+      "owner": "Accepted mathematical map scope",
+      "reason": "Operator-attributed exact predecessor scopes and copied review artifacts; no new scientific or production authority",
+      "roles": [
+        {
+          "binding": "Operator-attributed exact predecessor scopes and copied review artifacts; no new scientific or production authority",
+          "targets": [
+            "scripts/equation-mapping/check-moving-single-root-map.mjs"
+          ],
+          "meaning": "Operator-attributed exact predecessor scopes and copied review artifacts; no new scientific or production authority",
+          "selection": "Explicit B record or control; preserved history and current authority remain distinct",
+          "consumer": "scripts/equation-mapping/check-moving-single-root-map.mjs",
+          "independentCheck": "Known positive and negative controls plus independent source review; no scientific correctness inferred from structural consistency"
+        }
+      ]
+    },
+    {
+      "path": "tests/option-b-mathematical-acceptance.test.mjs",
+      "disposition": "retained",
+      "owner": "Report-only B acceptance controls",
+      "reason": "Known preflight and exact predecessor, scope, artifact, candidate and capture rejection cases",
+      "roles": [
+        {
+          "binding": "Known preflight and exact predecessor, scope, artifact, candidate and capture rejection cases",
+          "targets": [
+            "scripts/equation-mapping/check-moving-single-root-map.mjs"
+          ],
+          "meaning": "Known preflight and exact predecessor, scope, artifact, candidate and capture rejection cases",
+          "selection": "Explicit B record or control; preserved history and current authority remain distinct",
+          "consumer": "scripts/equation-mapping/check-moving-single-root-map.mjs",
+          "independentCheck": "Known positive and negative controls plus independent source review; no scientific correctness inferred from structural consistency"
+        }
+      ]
+    },
+    {
+      "path": "scripts/equation-mapping/fixtures/known-hash-answers.json",
+      "disposition": "retained",
+      "owner": "Option B external known-answer records",
+      "reason": "Known SHA-256 expectations move unchanged from executable test sources into independently selected fixture data; source files still execute the known-answer assertion before target use.",
+      "roles": [{
+        "binding": "SHA-256 abc published known answer; explicit UTF-8 input and lowercase hexadecimal output",
+        "targets": ["tests/current-source-manifest.test.mjs", "tests/source-replay.test.js", "tests/f5-current-handoff.test.js", "tests/f5-original-input-tree.test.js", "tests/f5-current-build-admission.test.js", "tests/subfield-circular-current-prior.test.js", "tests/subfield-circular-current-context.test.js", "scripts/equation-mapping/dependency-map-reader.mjs", "tests/option-b-current-source-transition.test.mjs", "tests/option-b-mathematical-acceptance.test.mjs"],
+        "meaning": "Independent hash implementation known-answer control, not a current-source approval",
+        "selection": "Canonical external B fixture; exact original literal retained from the recorded source generation",
+        "consumer": "Explicit JSON imports in the named tests",
+        "independentCheck": "Published SHA test vector and one-time exact-literal comparison with the retained Git source; known-answer failures remain test failures"
+      }]
+    },
+    {
+      "path": "tests/fixtures/option-b-retained-test-identities.json",
+      "disposition": "retained",
+      "owner": "Option B external test-identity records",
+      "reason": "Vendor integrity, fixed prescribed-seed, historical source/output and synthetic fixture identities leave executable test sources while retaining the original expected values and assertions. Each consumer's roles and fixed values are explicit in the external record. The F5 interpolation caller additionally selects the unchanged previously accepted B original-input-tree map; this transport selection does not refresh its instrument or scientific expectations.",
+      "roles": [{
+        "binding": "Mermaid runtime/license SHA-256 and package SHA-512 integrity; prescribed seed, source/output and synthetic fixture expectations",
+        "targets": ["tests/mermaid-markdown-runtime.test.js", "tests/orthogonal-plane-weave-balance.test.js", "tests/coincident-midpoint-common-frequency-outer-radius-band-expansion.test.js", "tests/coincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js", "tests/coincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js", "tests/coincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js", "tests/coincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js", "tests/coincident-axis-three-binary-streaming-reductions.test.js", "tests/f6c-parent-refinement-batch-preparation.test.js", "tests/borg-assembly-view-session.test.js", "tests/f5-phase-varying-campaign-spec.test.js", "tests/f5-independent-interpolation-enclosure.test.js", "tests/f6c-parent-emission-refinement-pilot.test.js"],
+        "meaning": "Fixed dependency-security, retained historical source/output and fixture identity expectations; numerical or behavioral assertions remain separate",
+        "selection": "Canonical external B fixture, algorithm and consumer named per record",
+        "consumer": "Explicit JSON imports with primitive capture or frozen selected values and malformed-value rejection",
+        "independentCheck": "One-time original literal comparison; actual vendor assets/package and independently selected assembly spec are still checked"
+      }]
+    },
+    {
+      "path": "tests/current-launch-bindings.test.js",
+      "disposition": "retired",
+      "owner": "Option B required admission controls",
+      "reason": "Standalone five-profile guard consolidated into the required admission suite without dropping its exact profile census or admission assertions.",
+      "roles": [
+        {
+          "binding": "Exact original five-profile set and current entry interface",
+          "targets": ["scripts/equation-mapping/check-current-source-maps.mjs", "tests/option-b-root-cover-admission.test.mjs"],
+          "meaning": "Detect an omitted original profile, a restored operational PINS export, or absent B initialization.",
+          "selection": "Required successor test; original standalone source remains in Git history at 859f2b07cb17889ca2c239d82fd61455c2ba903c.",
+          "consumer": "scripts/check-content-integrity.mjs required admission selection",
+          "independentCheck": "Exact five-profile assertion plus captured admission and negative controls in the required successor suite."
+        }
+      ],
+      "retirement": {
+        "authority": "operator-approved",
+        "decision": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#authorized-retirement-cleanup-and-full-b-direction",
+        "outcome": "replaced",
+        "replacements": ["tests/option-b-root-cover-admission.test.mjs"],
+        "verification": "Required suite preserves the exact five names, invokes initializeSourceBindings and rejects PINS exports; the maintenance invocation is removed."
+      }
+    },
     {
       "discoveryClass": "source-reachable-owner",
       "disposition": "migrated",
@@ -495,10 +720,17 @@
     },
     {
       "discoveryClass": "new-source-or-control",
-      "disposition": "retained",
+      "disposition": "retired",
       "owner": "Original five-profile transfer",
       "path": "scripts/equation-mapping/legacy-role-bindings.mjs",
-      "reason": "Retain extraction grammar and original baseline identities; extractor parity does not accept scientific bytes.",
+      "reason": "One-time A source extraction is complete and preserved in Git and the accepted B checkpoint's historical proof; routine B acceptance no longer consumes this parser.",
+      "retirement": {
+        "authority": "operator-approved",
+        "decision": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#b-to-b-continuation",
+        "outcome": "ended",
+        "replacements": [],
+        "verification": "No remaining source import by basename/API rg over scripts and tests after checker/test cutover; known extraction and original transfer evidence remain preserved at the recorded Git generation. Current acceptance selects B records."
+      },
       "roles": [
         {
           "binding": "Retained ORIGINALS/FIXED/PINS role-table syntax",
@@ -686,10 +918,17 @@
     },
     {
       "discoveryClass": "new-source-or-control",
-      "disposition": "retained",
+      "disposition": "retired",
       "owner": "B-REM-3 / independent successor controls",
       "path": "tests/option-b-operational-successor.test.mjs",
-      "reason": "Keep original helper identity as historical baseline and abc as known answer; no arbitrary scientific override.",
+      "reason": "The two special-case successor controls are superseded by required generic B-to-B controls; original helper identities remain historical data rather than inline exceptions.",
+      "retirement": {
+        "authority": "operator-approved",
+        "decision": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#b-to-b-continuation",
+        "outcome": "replaced",
+        "replacements": ["tests/option-b-current-source-transition.test.mjs"],
+        "verification": "Required generic controls preserve known SHA, predecessor/successor identity, scope, role, reader, source/check coverage and changed-source rejection, and additionally reject revision reuse, altered external selection and same-byte source replacement."
+      },
       "roles": [
         {
           "binding": "Literal abc; imported original OUTER71974054; exact successor paths/roles",
@@ -4013,12 +4252,13 @@
     "assignment": "B-REM-4 scientific binding review",
     "id": "Nietzsche"
   },
-  "schema": "option-b-remaining-binding-dispositions/v1",
+  "schema": "option-b-remaining-binding-dispositions/v2",
   "semantics": {
     "inspectedSha256": "Measured snapshot identity only, not a freshness gate or authority to repin scientific sources.",
     "migrated": "The identified operational role and inspected generation have an independently reviewed B transfer. This does not accept arbitrary successor bytes, new mathematical evidence, or unrun final builds.",
     "pending": "An identified current operational role, dependency or associated target control awaits integration and independent acceptance.",
     "retained": "A specific historical, scientific/reference, fixture, output or platform role remains under its named owner; retention does not certify that the scientific calculation is correct.",
+    "retired": "The original responsibility remains recorded with operator-attributed decision, replacement or ended-purpose disposition, and verification. The retired file must be absent; live owners and replacement files must remain present. This is structural accounting, not automated semantic approval.",
     "roles": "Grouped by named binding table and consumer obligation; semantic classifications are authored review judgments, not parser-generated acceptance."
   },
   "status": "binding-role census complete; reviewed operational source roles accepted; final builds and combined global validation are separate outstanding obligations"

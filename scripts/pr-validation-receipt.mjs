@@ -5,6 +5,7 @@ import crypto from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import mathematicalAcceptanceSelection from './equation-mapping/fixtures/mathematical-acceptance-selection.json' with { type: 'json' };
 
 export const RECEIPT_SCHEMA = "pr-validation-receipt.v1";
 export const DEFAULT_RECEIPT_PATH =
@@ -34,7 +35,7 @@ export const VALIDATION_COMMANDS = [
   },
   {
     name: "Option B two-chain trial (report-only)",
-    args: ["scripts/equation-mapping/check-moving-single-root-map.mjs"],
+    args: ["scripts/equation-mapping/check-moving-single-root-map.mjs", "--acceptance-sha256", mathematicalAcceptanceSelection.acceptance.sha256],
     reportOnly: true,
     reportPath: ".local-data/option-b-trial/report.json",
   },

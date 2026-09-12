@@ -1,0 +1,9 @@
+{
+  "schema": "option-b-mathematical-acceptance-selection/v1",
+  "role": "external-report-only-predecessor-selection",
+  "acceptance": {
+    "path": "reference/priorities/development-process-review/contracts/option-b-mathematical-map-acceptance.jsonld",
+    "sha256": "beda05997949de6a92cc2152f6cc199e6804ee8681fdee5bc91da4bfd99c02e0"
+  },
+  "boundary": "Selects the operator-accepted exact B predecessor record, not current candidate bytes. Update only with a separately authorized acceptance selection; never compute this expectation from the candidate during a run."
+}

@@ -81,7 +81,7 @@ A changed hash means a startup source was edited after the last regeneration. It
 | README.md | 220 | `36a303599a5a3c02` |
 | [.githooks/pre-commit](../../.githooks/pre-commit) | 24 | `ea8da8bb87d4206f` |
 | [.githooks/pre-push](../../.githooks/pre-push) | 38 | `3666ac9286628a8e` |
-| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 310 | `752ef83823c17a08` |
+| [scripts/check-content-integrity.mjs](../../scripts/check-content-integrity.mjs) | 319 | `10ec3090acc481d3` |
 | [reference/op/brainstorming.md](brainstorming.md) | 380 | `a64f54974e729b23` |
 | [reference/op/operator-explanation-standard.md](operator-explanation-standard.md) | 208 | `328459c22faedf60` |
 | [reference/op/codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md) | 190 | `2c685c5e25ca8643` |

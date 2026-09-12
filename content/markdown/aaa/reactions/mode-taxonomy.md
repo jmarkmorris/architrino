@@ -12,18 +12,18 @@ This taxonomy records the reaction channel grouping; it does not derive the angu
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Assembly-Level Interpretation
 
-At assembly level, these terms refer to substrate dynamics in absolute time:
+An assembly is a configuration of [architrinos](../foundations/architrino.md), the point entities with fixed polarity and no primitive mass. Their causal wakes record past emissions and determine later acceleration through the [Master Equation](../dynamics/master-equation.md). The [Noether sea](../spacetime/noether-sea.md) names ambient assembly contents in the Euclidean void; absolute time $T$ orders their histories. The following terms classify proposed transitions in those histories:
 
-- **Mode-lock event:** a discrete stability transition where a driven Noether braid/wake configuration settles into an allowed propagating or bound mode.
-- **Wake-strain threshold:** the local instability boundary in Noether sea-coupled transport; below threshold, energy disperses into medium excitations, above threshold, stable mode formation is allowed.
+- **Mode-lock event:** a transition in the assembly classification when a driven Noether braid/wake configuration enters a propagating or bound mode. Calling the classification discrete does not impose a discontinuity on constituent paths; the candidate mode's existence, formation, and persistence require separate dynamical evidence.
+- **Wake-strain threshold:** a proposed channel-specific boundary in admissible path-history space, expressed through a declared diagnostic of delayed acceleration and assembly response. A threshold crossing alone establishes neither capture into a mode nor its stability.
 - **Nucleation:** relocking/reorganization of existing substrate content (with provenance-preserving architrino bookkeeping), not creation ex nihilo.
-- **Planar-mode nucleation (photon channels):** lock-in to a stable coaxial contra-rotating polarity-conjugate planar-pair mode carrying Gate A energy-momentum data and Gate B transverse-ledger data.
+- **Planar-mode nucleation (photon channels):** proposed lock-in to a coaxial contra-rotating polarity-conjugate planar-pair mode, with Gate A energy-momentum targets and Gate B transverse-ledger targets.
 - **Corridor-mode nucleation (weak channels):** lock-in to corridor-type interaction modes used for $W^\pm/Z$ channel bookkeeping.
 - **Pair nucleation:** local substrate recruitment/reconfiguration into $e^+e^-$ assemblies under threshold-satisfying two-photon forcing, constrained to recover standard kinematic and rate limits in validated regimes. The incoming photon ledgers close at the vertex; the outgoing charged-assembly identities require identity-routed substrate content rather than relabeling the photon constituents.
 
-The coaxial contra-rotating polarity-conjugate planar pair is a proposed photon carrier whose acceleration-balance closure remains open. Consequently, `lock-in` and `stable planar-pair mode` vocabulary throughout this taxonomy is referent-pending; see Photon Referent Status in [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md).
+The coaxial contra-rotating polarity-conjugate planar pair is a proposed photon carrier whose acceleration-balance closure remains open. Consequently, `lock-in` and `stable planar-pair mode` vocabulary throughout this taxonomy is referent-pending; see Photon Referent Status in [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md). The charged-pair and corridor assignments also require their own dynamical realizations. A compatible retained history must satisfy the acceleration law before perturbations can establish stability. Charge counts and channel names alone establish neither result.
 
-Observer-level equations remain the operational layer. Assembly-level language is accepted only when it preserves threshold, cross-section, timing, and conservation closure against standard phenomenology.
+Observer-level equations remain the operational layer. Agreement with threshold, cross-section, timing, and conservation benchmarks is necessary for an assembly interpretation; agreement obtained by inserting those benchmark equations is a comparison, not an independent derivation of the assembly mechanism.
 
 ## Low-Energy Standard Model Assemblies in the Noether Sea
 
@@ -31,9 +31,9 @@ This section is the canonical stepwise map for low-energy Standard Model channel
 
 ### Regime Assumptions
 
-- Low-energy means interaction scales where validated SM/QED/QCD effective descriptions already succeed and no beyond-tested deviation is introduced by default.
-- The substrate is modeled as the Noether sea, which can store, transport, and relock assembly content under local conservation constraints.
-- "Low-energy" here includes laboratory, beamline, plasma, and most astrophysical transport contexts outside unresolved near-horizon/extreme-density limits.
+- Each channel declares its energy and momentum-transfer range and the approximation used. The Standard Model (SM), quantum electrodynamics (QED), and quantum chromodynamics (QCD) supply observer-level comparison descriptions within their specified domains.
+- The Noether sea supplies candidate ambient assembly content and response; its storage, transport, and relocking laws require derivation. It is physical content within absolute time and the Euclidean void, not their replacement.
+- A laboratory or astrophysical location does not itself define a low-energy regime. Weak contact interactions require momentum transfers small compared with the mediator scale; classical radiation additionally requires control of quantum recoil and strong-field effects. The scenarios below have separate validity conditions.
 
 ### Hybrid Standard Model Routing
 
@@ -58,13 +58,13 @@ The reaction row therefore records a Standard Model prediction as a structured o
 - energy-momentum closure,
 - timing/frame closure.
 
-3. **Initialize assembly state** Represent each incoming participant as an assembly state tuple: `(identity, provenance path, charge sector, momentum, local Noether sea state)`. Path history is part of identity bookkeeping in absolute time.
+3. **Initialize assembly state** Record an observer-facing summary tuple: `(identity, provenance path, charge sector, momentum, local Noether sea state)`. This tuple is not sufficient initial data for the delayed acceleration law. Its provenance pointer must resolve to constituent identities, polarities, positions, velocities, compatible retained histories, boundary inputs, and all admitted causal roots, including self-hits. Any finite history truncation needs an omitted-history bound. Momentum is an assembly/observer readout, not a primitive architrino property.
 
-4. **Characterize local Noether sea state** Specify Noether sea state variables used by mapping, with arguments suppressed only when the local context is clear: $(\rho_{\text{NS}}(\mathbf X,T), n(\mathbf X,T), \chi_{\text{sea}}(\mathbf X,T), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{sea}}^{\mathrm{th}}, J_{\mathrm{loc}})$. Here $\mathcal{V}_{\mathrm{NS}}$ is the effective Noether sea anisotropy/vorticity map used by the magnetic-like channel below, $T_{\mathrm{sea}}^{\mathrm{th}}$ is the local effective temperature characterizing internal mode excitation as in [Dark Energy](../cosmology/dark-energy.md) — a temperature entry, not a time coordinate — and $J_{\mathrm{loc}}$ is the local causal-root/Jacobian data — including the same-record transmitter-side acceleration weight — entering the delayed-branch sums below. These variables are mapping handles, not replacement observables.
+4. **Characterize local Noether sea state** Specify Noether sea state variables used by mapping, with arguments suppressed only when the local context is clear: $(\rho_{\text{NS}}(\mathbf X,T), n(\mathbf X,T), \chi_{\text{sea}}(\mathbf X,T), \mathcal{V}_{\mathrm{NS}}, \nabla \rho_{\text{NS}}, \Phi_{\text{eff}}, T_{\mathrm{sea}}^{\mathrm{th}}, J_{\mathrm{loc}})$. Here $\rho_{\text{NS}}$ is the coarse-grained braid number density, $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ its normalization to a declared reference density, and $\chi_{\text{sea}}=c_f/c_{\text{eff}}$ the delay factor for the dressed assembly channel. The gradient acts on native position $\mathbf X$, while $\Phi_{\text{eff}}$ is an effective potential whose observer map must be supplied. The quantity $\mathcal{V}_{\mathrm{NS}}$ is the candidate anisotropy/vorticity response used below, $T_{\mathrm{sea}}^{\mathrm{th}}$ is the effective temperature of an ensemble of internal excitations as in [Dark Energy](../cosmology/dark-energy.md), and $J_{\mathrm{loc}}$ records the causal roots, their Jacobians, and same-record transmitter-side acceleration weights. These summaries require extraction from the retained histories; they do not define a closed constitutive evolution by themselves.
 
-Magnetic-like observer language belongs at this mapping layer. It is not a substrate-level law and is not imported from rotating-frame coordinates. At substrate level each primitive hit remains line-of-action; the magnetic-like transverse channel is the part of the delayed-branch sum that survives after projection perpendicular to the assembly group velocity and after Noether sea anisotropy/vorticity dressing.
+Magnetic-like observer language belongs at this mapping layer. At substrate level each primitive contribution acts along the delayed line joining an architrino transmitter to an architrino receiver. Projection perpendicular to an assembly's group velocity defines a transverse diagnostic; identifying any part of it with a magnetic response requires a separate effective-law derivation. Direct wakes, sea-mediated response, and mixed contributions remain possible until that derivation separates them.
 
-For an assembly $A$ with $\|\mathbf{V}_A\| > 0$, define
+For an assembly $A$, choose a center and an averaging convention, and let $\mathbf V_A$ be that center's group velocity relative to the declared frame. With $\|\mathbf{V}_A\| > 0$, define
 $$
 \Pi_{\perp}^{ij}(A)
 =
@@ -75,21 +75,23 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f749e629ce4f75fc)
 
-A minimal transverse-channel map is
+Here $i,j$ are Cartesian component indices and $\delta^{ij}$ is the Euclidean identity tensor. The projector removes the component parallel to $\mathbf V_A$; it is undefined at zero group velocity, where a channel must retain the full vector response or declare a separate physical axis. A candidate transverse-channel representation is
 $$
-A_{\perp,A}^{i}(T)
+A_{\perp,A}^{i}(T_r)
 =
 \Pi_{\perp}^{ij}(A)
-\sum_{k}\sum_{T_t\in\mathcal{C}_{Ak}(T)}
-\mathcal{K}_{Ak}\!\left(T;T_t,\mathcal{V}_{\mathrm{NS}},R_A\right)
-\hat r_{Ak,j}(T;T_t)
+\sum_{k}\sum_{T_t\in\mathcal{C}_{Ak}(T_r)}
+\mathcal{K}_{Ak}\!\left(T_r;T_t,\mathcal{V}_{\mathrm{NS}},R_A\right)
+\hat r_{Ak,j}(T_r;T_t)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-89a7192db3da63be)
 
-The weight $\mathcal{K}_{Ak}$ packages the inverse-square causal-wake factor, the transmitter-side acceleration-weight factor of the $W^{\mathrm{acc}}$ family, the polarity sign, and the local Noether sea anisotropy/vorticity response; the transmitter-side (causal) Jacobian $D_t$ enters only as the transversality and root-density data that make each causal root legal, not as a separate multiplicative factor stacked on $W^{\mathrm{acc}}$ (which already carries the $1/D_t$ branch density). It is named $\mathcal{K}$ rather than $W$ because it is a channel-level composite, not the canonical per-hit acceleration weight alone. The argument $R_A$ is the assembly envelope scale-and-orientation record inherited from Noether braid geometry. This equation is the allowed bridge to magnetic-like language: transverse acceleration is to be recovered as a projected consequence of delayed branch geometry plus medium response, not as an independent $\mathbf{v}\times\mathbf{B}$ substrate term.
+The weight $\mathcal{K}_{Ak}$ has acceleration units and packages a declared constituent-to-center response, inverse-square causal-wake geometry, polarity, and the transmitter-side weight $W^{\mathrm{acc}}=c_f/|D_t|$. The factor $D_t$ records root transversality; its magnitude already supplies the branch density in $W^{\mathrm{acc}}$ and must not be multiplied in a second time. Retain a nonzero transversality floor and a complete root inventory on the simple-root chart; singular roots need the corresponding continuation or regularization treatment. Any Noether sea response in $\mathcal K$ must be independently derived or explicitly modeled, with its overlap with explicitly summed sea constituents removed. The argument $R_A$ records the assembly envelope scale and orientation. Neither this composite weight nor a fit to transverse acceleration derives an independent magnetic response law.
 
-In this expression, $\mathcal{C}_{Ak}(T)$ is the causal-root set for source branch $k$ acting on assembly $A$, and $\hat r_{Ak,j}(T;T_t)$ is the $j$ component of the delayed line-of-action unit vector. The formula therefore preserves the primitive line-of-action law while naming the observer-level transverse projection.
+In this representation, $k$ must retain both a constituent receiver in $A$ and an architrino transmitter; $\mathcal{C}_{Ak}(T_r)$ is their causal-root set at reception time $T_r$, and $\hat r_{Ak,j}(T_r;T_t)$ is the corresponding delayed unit-direction component. Repeated $j$ is summed. An assembly center is not a primitive receiver. For fixed center weights $w_a$ with $\sum_a w_a=1$, the center acceleration is $\sum_a w_a\mathbf A_a$; a time-dependent center rule adds derivatives of its weights and must be accounted for separately. This explains the aggregation required before the displayed map can describe a physical assembly response.
+
+The identity $\mathbf V_A\cdot\Pi_\perp\mathbf A=0$ holds for every vector $\mathbf A$, including a transverse electric comparison response. It therefore certifies only orthogonality. Recovery of magnetic deflection needs the correct dependence on charge, velocity, source geometry, and frame; orthogonality alone supplies neither that law nor a conserved assembly energy.
 
 Electromagnetic field variables used in reaction chapters are effective observer/channel variables. They are not imported as substrate ontology. A reaction page that claims electromagnetic recovery should therefore pass an effective EM Gate residual,
 
@@ -132,13 +134,13 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9d522820850a7f72)
 
-with $\chi_{\mathrm g}$ the gauge function, subscripted to keep it distinct from the delay-factor family $\chi_{\text{sea}}$, $\chi_\gamma$, $\chi_{\mathrm{eff}}$.
+Here $t_{\mathrm{eff}}$ and $\nabla_{\mathrm{eff}}$ refer to the declared observer chart, $\rho_{\mathrm{eff}}$ and $\mathbf J_{\mathrm{eff}}$ are its charge density and current, and $A_\mu^{\mathrm{eff}}$ is its electromagnetic potential. The gauge function $\chi_{\mathrm g}$ changes the potential description without changing the physical observable. The displayed test applies to observables written as functionals of the potential after other dependencies are consistently included or eliminated. If charged matter fields are explicit, they must transform along with the potential under the same charge and derivative convention. Allowed gauge functions must also respect the declared boundary conditions; changing a physical boundary input is not a gauge test. The subscript keeps $\chi_{\mathrm g}$ distinct from the delay-factor family $\chi_{\text{sea}}$, $\chi_\gamma$, $\chi_{\mathrm{eff}}$.
 
-The energy, momentum, and angular-momentum components are defined by the effective electromagnetic energy-momentum gate in [Radiation](radiation.md). A channel passes only when these components vanish in the declared validated limit or when each nonzero term is assigned to a named photon, material, recoil, wake, or remnant row. This keeps Maxwell-level ledgers as recovery tests for channel bookkeeping rather than as primitive Noether sea dynamics.
+The energy, momentum, and angular-momentum components are defined by the effective electromagnetic energy-momentum gate in [Radiation](radiation.md). A nonzero subsystem balance can represent exchange with a named photon, material, recoil, wake, or remnant contribution only when that transfer is evaluated independently and counted once. The complete residual must then vanish in the declared limit or lie within a stated error bound. Naming an unmeasured remainder does not close the balance, and neither a continuity nor a gauge failure can be repaired by assigning it to heat. These conditions make the effective ledger a recovery test rather than a conservation law inserted into the substrate dynamics.
 
-5. **Evaluate wake-strain trigger** Compute whether interaction forcing crosses the relevant mode boundary.
-- If below threshold: no mode-lock event, energy routes into transport/heating/scattering channels.
-- If above threshold: mode-lock event allowed and channel-specific nucleation/relock proceeds.
+5. **Evaluate wake-strain trigger** Evaluate a channel-specific diagnostic from the delayed acceleration and response history, with its threshold and observation interval declared.
+- Below a proposed threshold, the selected mode is unavailable within that model; elastic transport, stored internal excitation, recoil, other radiation, and medium exchange remain separately evaluated possibilities. Heating requires an ensemble thermalization account.
+- Above a proposed threshold, test whether the history enters the candidate mode's basin, the set of admissible histories that actually approach it. Crossing alone supplies neither a capture probability nor a stable product. Without a derived diagnostic and basin, this step remains a proposed mechanism.
 
 6. **Apply channel-specific lock rule** Select the mode family:
 - planar-mode for photon emission channels,
@@ -177,13 +179,13 @@ Here $\Delta_A$ is the photon Gate A residual; $\Delta_Q^\gamma$, $\Delta_{\math
 
 7. **Execute provenance-conserving relock** Update assembly graph by relocking existing substrate content. No ex nihilo creation is permitted in ontology bookkeeping; recruitment comes from local Noether braid availability.
 
-8. **Enforce local conservation** Close event-level budgets:
+8. **Test complete event balances** Derive and evaluate the assembly/observer accounts, including boundary exchange and any recruited sea inventory:
 - $\sum Q_{\mathrm{in}}=\sum Q_{\mathrm{out}}$,
 - $\sum p^\mu_{\mathrm{in}}=\sum p^\mu_{\mathrm{out}}$,
 - spin/angular-momentum ledger balance for emitted, absorbed, or converted vector modes,
 - provenance ledger balance across reactants, products, and recruited substrate content.
 
-The spin/angular-momentum line is a conservation requirement. Its channel-specific content must be supplied by the angular-momentum ledger, photon Gate B, the massive-vector corridor model, or the spin-statistics proof as appropriate.
+Here $Q$ is effective electric charge and $p^\mu$ is four-momentum in one declared effective inertial chart; they are not architrino masses or primitive four-vectors. A finite event includes all input/output fluxes, retained wake changes, recoil, medium changes, and remnants. Primitive identity and polarity counts are preserved by the ontology, but this alone does not derive energy, momentum, or angular-momentum conservation. The spin/angular-momentum line is a recovery requirement whose channel content belongs to the angular-momentum ledger, photon Gate B, the massive-vector corridor model, or the spin-statistics proof as appropriate.
 
 9. **Project back to observer-level outputs** Compute spectra, cross-sections, rates, and timing in standard variables. Accept mapping only if closure targets from Step 2 are recovered within validated limits.
 
@@ -193,13 +195,13 @@ Observer channel: $e^\pm + Z \rightarrow e^\pm + Z + \gamma$.
 
 Step map:
 1. Incoming charged assembly follows a deflected trajectory in target potential.
-2. Deflection induces wake-strain concentration in local Noether sea coupling, with received forcing sharpened or diluted by transmitter-side acceleration weight during the scattering history.
-3. If wake-strain crosses planar-mode threshold, a photon mode nucleates as a coaxial contra-rotating polarity-conjugate planar pair.
-4. If not crossed, energy stays in non-radiative channels (heating/collective excitation).
+2. In the candidate assembly interpretation, deflection changes the causal-root geometry and transmitter-side acceleration weights; a derived response functional must determine the resulting wake-strain diagnostic.
+3. A planar-mode threshold nominates a photon-formation opportunity. Formation of the proposed coaxial contra-rotating polarity-conjugate planar pair additionally requires a compatible history, capture dynamics, and persistence.
+4. Without that capture, retain elastic scattering, recoil, internal excitation, and any other radiative or medium channels in the event balance; absence of the selected photon output does not imply heating.
 5. Event closure requires recoil plus emitted-photon momentum balance at vertex level.
 6. Observer-level result must recover standard $d\sigma/dk$ with screening/form-factor corrections in the validated regime.
 
-Minimum closure equations:
+Minimum observer-level closure equations, for a resolved target $Z$ whose initial and final states include its recoil and any retained excitation:
 
 $$
 e^\pm + Z \rightarrow e^\pm + Z + \gamma
@@ -226,6 +228,8 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2234c027eda6b60d)
 
+Here $p_e^\mu$ and $p_Z^\mu$ are electron/positron and target four-momenta, $k_\gamma^\mu$ is photon four-momentum, and $k$ in $d\sigma/dk$ denotes photon energy. The cross-section $\sigma$ is the channel event rate per target divided by the incident flux. The displayed balance is the closed-channel comparison limit; additional material, medium, or wake transfers require explicit contributions. Agreement is tested for a declared target, energy range, screening model, and detector acceptance, using predictions fixed before comparison.
+
 ### Detailed Scenario B: Synchrotron Emission and Pair-Loaded Loop
 
 Observer channels:
@@ -233,17 +237,17 @@ Observer channels:
 - pair channel: $\gamma + \gamma \rightarrow e^+ + e^-$.
 
 Step map:
-1. Directional magnetic state $B$ is represented as observer shorthand for the effective Noether sea anisotropy/vorticity map $\mathcal{V}_{\mathrm{NS}}$ together with delayed branch geometry, transmitter-side factors, and transmitter-side acceleration weights that generate observer-level transverse forcing.
+1. Directional magnetic state $B$ is an observer-level field. Its representation through $\mathcal{V}_{\mathrm{NS}}$, delayed branch geometry, and transmitter-side acceleration weights is a constitutive recovery target; the direct-wake and sea-mediated shares are not fixed by the taxonomy.
 2. Curved charged-assembly transport drives repeated planar-mode opportunities.
 3. Emitted photons propagate and may enter pair threshold windows in dense radiation zones.
-4. Pair nucleation relocks local substrate content into $e^+e^-$ assemblies with provenance updates.
-5. New pairs re-enter emission transport, closing the cascade loop.
+4. The pair-nucleation hypothesis requires an identity-resolved relocking history and complete energy-momentum accounts for the local substrate.
+5. A continuing cascade additionally requires conversion and emission rates sufficient over the residence interval. Kinematically accessible channels alone do not establish a pair-loaded loop.
 6. Observer-level closures required:
 - pair threshold $s \ge 4m_e^2$,
 - Breit-Wheeler rate-limit recovery,
 - synchrotron cooling/polarization recovery in weak-gravity Lorentzian limits.
 
-Minimum closure equations, with magnetic-energy expressions in Gaussian units, invariant-mass thresholds in $c=1$ units, and the synchrotron power taken in the ultrarelativistic limit $\beta\to1$ (the general form carries an extra $\beta^2$):
+Minimum observer-level closure equations, with magnetic-energy expressions in Gaussian units and invariant-mass thresholds in comparison units $c=1$. The power below is the classical ultrarelativistic average over isotropically distributed pitch angles at fixed $\gamma$; pitch angle is the angle between electron velocity and $B$. Before this average, the benchmark is $P(\alpha)=2\sigma_T c U_B\gamma^2\beta^2\sin^2\alpha$, with $\langle\sin^2\alpha\rangle=2/3$. Taking $\beta\to1$ gives the displayed coefficient; a beam at one pitch angle requires the angle-dependent expression. These are classical comparison formulas with quantum-recoil and strong-field corrections negligible, not substrate laws.
 
 $$
 P_{\mathrm{syn}}=\frac{4}{3}\sigma_T c\,U_B\,\gamma^2,
@@ -258,6 +262,8 @@ $$
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f6999760323a2911)
+
+The symbols $\sigma_T$, $U_B$, and $E_e$ denote the Thomson cross-section, magnetic energy density, and electron energy. The factors $\beta=v/c$ and $\gamma=(1-\beta^2)^{-1/2}$ use standard observer comparison notation. Here $c$ is the calibrated observer speed, not an assumed identification with primitive $c_f$; new native numerical evaluations use $c_f=1$. The quantity $\tau_{\mathrm{syn}}$ is the comparison cooling timescale measured in the same effective frame as $E_e$ and $P_{\mathrm{syn}}$, not substrate absolute time or an automatically identified proper-clock reading. The scaling requires a specified field and pitch distribution and synchrotron-dominated losses.
 
 $$
 s=(k_1+k_2)^2 \ge 4m_e^2
@@ -278,8 +284,8 @@ Observer channel: $\gamma + \gamma \rightarrow e^+ + e^-$.
 
 Step map:
 1. Two photon modes, each modeled as a coaxial contra-rotating polarity-conjugate planar pair, enter overlap geometry with center-of-momentum invariant $s$.
-2. Threshold gate: channel allowed only for $s \ge 4m_e^2$.
-3. Above threshold, local substrate relock recruits Noether braid content into charged pair assemblies.
+2. Threshold gate: the isolated two-photon comparison channel is kinematically accessible only for $s \ge 4m_e^2$; this is a necessary energy condition, not a formation or nonzero-rate certificate.
+3. Above threshold, the proposed substrate mechanism must supply a compatible relocking history into charged pair assemblies. Threshold satisfaction alone does not produce that history.
 4. Provenance ledger records conversion path from incoming photon modes plus recruited substrate pool.
 5. Projected observer-level rate must match Breit-Wheeler behavior in validated regimes.
 
@@ -303,6 +309,8 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e24a26c65e73f194)
 
+These two equations use a local effective inertial chart with signature $(+,-,-,-)$ and comparison units $c=1$: $k_i^\mu=(E_i,\mathbf k_i)$ are on-shell photon four-momenta, $m_e$ is the observer electron mass, and $\theta$ is the angle between the incoming photon directions. Expanding the square with $k_i^2=0$ gives $s=2E_1E_2(1-\cos\theta)$; parallel photons give $s=0$, regardless of their separate energies. The displayed two-body balance applies only when omitted surroundings have zero net four-momentum change. A sea-recruitment model instead requires $k_1^\mu+k_2^\mu+P_{\mathrm{sea,in}}^\mu=p_{e^-}^\mu+p_{e^+}^\mu+P_{\mathrm{sea,out}}^\mu$, with the sea symbols covering all omitted ambient, wake, and remnant accounts over the same event boundary. Recovery of the isolated Breit-Wheeler limit must demonstrate that their net contribution vanishes or is bounded at the declared accuracy; conserved constituent counts do not imply this cancellation.
+
 $$
 \sigma_{\gamma\gamma,\mathrm{map}}(s) \rightarrow \sigma_{\gamma\gamma,\mathrm{BW}}(s)
 \quad \text{(validated limit)}
@@ -315,7 +323,7 @@ $$
 Observer examples: low-energy beta-process channels using $W^\pm$ exchange language.
 
 Step map:
-1. Use standard weak-interaction observer equations and couplings.
+1. Use standard weak-interaction equations and couplings as observer-level comparison targets; a calculation that takes those couplings as input is a benchmark calculation, not their substrate derivation.
 2. At ontology layer, reserve corridor-mode terminology for weak-channel lock bookkeeping only.
 3. Do not reuse corridor-mode terms for photon channels.
 4. Accept mapping only if weak-channel rates and branching behavior remain consistent with validated limits.
@@ -354,9 +362,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-375afdbe6ba0b446)
 
-where $\mathbf y_{\mathrm{PDG}}$ may include $M_W$, $\Gamma_W$, $M_Z$, $\Gamma_Z$, weak mixing angles, CKM entries, PMNS entries, lifetimes, or branching fractions, and $C_{\mathrm{weak}}$ is the declared covariance or uncertainty rule for those rows. If a row is an upper limit, an asymmetric uncertainty, or a result with separated statistical and systematic errors, the channel must preserve that convention instead of converting it into an unmarked symmetric error.
+Here the Particle Data Group (PDG) supplies the selected observer comparison data, and $\mathbf y_{\mathrm{map}}$ contains the corresponding mapped predictions. The data vector may include boson masses $M_W,M_Z$, widths $\Gamma_W,\Gamma_Z$, weak mixing angles, quark mixing entries (CKM), neutrino mixing entries (PMNS), lifetimes, or branching fractions. The displayed whitening formula applies when $C_{\mathrm{weak}}$ is a specified symmetric positive-definite covariance matrix for the residual vector; a general uncertainty convention is not a matrix inverse. It rescales correlated discrepancies to dimensionless components. A singular covariance needs independent coordinates or a justified restriction to its supported subspace, with exact constraints checked separately. Upper limits and asymmetric or separately reported statistical/systematic errors require their published likelihood or comparison rule, not an unmarked symmetric covariance. State the dataset version, correlations, theory uncertainty, and which data were used to fit parameters; a small fitted residual alone is not predictive validation.
 
-For low-energy charged weak processes the same mapping must also recover the contracted current-current limit
+For charged weak processes with momentum transfer well below the $W$ mass scale, the same mapping must also recover the leading contracted current-current comparison limit in units $\hbar=c=1$:
 $$
 \mathcal{L}_{\mathrm{map}}^{\mathrm{low}}
 \rightarrow
@@ -365,7 +373,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-411cbec73e234e62)
 
-with $G_F$ supplied by the electroweak corridor scale rather than by an independent contact parameter. This keeps corridor-mode bookkeeping tied to measured beta-reaction and muon-reaction limits (SM labels: `beta decay`, `muon decay`) while leaving the finite $W^\pm$ channel as the higher-energy provenance record.
+Here $J_+^\mu$ and $J_-^\mu$ are conjugate charged weak currents using the left-chiral projector $P_L=(1-\gamma^5)/2$, including the applicable flavor factors; $\gamma^5$ is the standard chirality matrix. With currents written using $1-\gamma^5$ instead, their product is four times larger and the coefficient is $-G_F/\sqrt2$. The symbols $\mathcal L_{\mathrm{map}}^{\mathrm{low}}$ and $G_F$ denote the effective interaction density and Fermi coupling. Deriving $G_F$ from a corridor scale is an open recovery obligation, as explained in [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md#low-energy-four-fermi-limit); it is not achieved by inserting the measured value. Precision comparisons also require matching corrections and the relevant nuclear or hadronic matrix elements. This ties the target to beta-reaction and muon-reaction measurements (SM labels: `beta decay`, `muon decay`) while keeping finite-mediator exchange at its appropriate comparison scale.
 
 $$
 \sum Q_{\mathrm{in}}=\sum Q_{\mathrm{out}},
@@ -378,15 +386,15 @@ $$
 ### Practical Authoring Rule for `reactions/*.md`
 
 Each reaction chapter should include three short blocks:
-- `Core Channels (Inclusion Rule)` using `BR > 1%` where PDG branching exists or `>1% contribution` where transport dominance is the relevant criterion.
+- `Core Channels (Inclusion Rule)` using `BR > 1%` where PDG branching exists or `>1% contribution` where transport dominance is the relevant criterion. This is a presentation rule, not a license to discard smaller channels from conservation or precision calculations. Define the denominator, regime, and source of each contribution, retain channels required by the observable, and bound the combined omitted contribution.
 - $\mathbb{A}\mathbb{A}\mathbb{A}$ Assembly Interpretation by Channel using the stepwise map above.
 - `Observer-Level Closure Checks` listing thresholds/rates/conservation/timing gates that keep mapping scientifically constrained.
 
 ## Core Terms
 
-- **Mode-lock event:** generic lock-in transition where transport energy is reorganized into a stable propagating or bound assembly mode.
-- **Wake-strain threshold:** local trigger condition where trajectory forcing and Noether sea state exceed stability boundary for a mode-lock event.
-- **Nucleation:** formation of a stable assembly mode from local substrate reconfiguration, with conservation/provenance bookkeeping.
+- **Mode-lock event:** transition into a candidate propagating or bound assembly mode under the history and stability conditions stated above.
+- **Wake-strain threshold:** channel-specific diagnostic boundary whose relation to capture must be derived from admissible histories.
+- **Nucleation:** formation of an assembly mode from existing substrate content; its persistence and effective conservation accounts require separate evidence.
 
 ## Channel-Specific Terms
 
@@ -411,6 +419,12 @@ Each reaction chapter should include three short blocks:
   - explicit frame/timing conventions.
 
 If these are not maintained, standard QED/SM transport language is authoritative for that regime.
+
+## Sources and Comparison Scope
+
+Condon and Ransom, *Essential Radio Astronomy* (2016), [§5.2.3, equations 5.37–5.42](https://www.cv.nrao.edu/~sransom/web/Ch5.html), supplies the classical pitch-angle dependence and isotropic average used in Scenario B. It supports the observer benchmark, not the proposed assembly mechanism.
+
+Erler and Freitas, “Electroweak Model and Constraints on New Physics,” in the Particle Data Group's *Review of Particle Physics* (2024), [§10.1, equation 10.6 and the following low-momentum limit](https://pdg.lbl.gov/2024/reviews/rpp2024-rev-standard-model.pdf), supplies the weak-current normalization and comparison-scale condition in Scenario D. Channel-specific measurements still require their own identified dataset and uncertainty convention.
 
 ## Related Chapters
 

@@ -1,3 +1,6 @@
+import optionBIdentities from './fixtures/option-b-retained-test-identities.json' with { type: 'json' };
+const RETAINED_HASHES = Object.freeze([...optionBIdentities.byConsumer["tests/coincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js"].sha256]);
+if (RETAINED_HASHES.length !== 1 || !RETAINED_HASHES.every(value => typeof value === 'string' && /^[a-f0-9]{64}$/u.test(value))) throw new Error('Malformed retained test identities');
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
@@ -30,7 +33,7 @@ test("minimum provider freezes the accepted coincident-midpoint common-frequency
   assert.deepEqual(validated.sourceConfiguration.scientificIdentity, {
     assemblyId: "asm-2a289a6fe32f64922ab71bae973acc80",
     modelRevisionSha256:
-      "2a289a6fe32f64922ab71bae973acc80bef8ebc2369329a26822f3f0d7f159d6",
+      RETAINED_HASHES[0],
   });
   assert.equal(validated.actionCandidate.fieldSpeed, 1);
   assert.equal(validated.sealedCoincidentMidpointCommonFrequencyControl.radiusOrHistoryMutationAuthorized, false);

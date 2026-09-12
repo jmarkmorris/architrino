@@ -1,3 +1,6 @@
+import optionBIdentities from './fixtures/option-b-retained-test-identities.json' with { type: 'json' };
+const RETAINED_HASHES = Object.freeze([...optionBIdentities.byConsumer["tests/f6c-parent-emission-refinement-pilot.test.js"].sha256]);
+if (RETAINED_HASHES.length !== 2 || !RETAINED_HASHES.every(value => typeof value === 'string' && /^[a-f0-9]{64}$/u.test(value))) throw new Error('Malformed retained test identities');
 // Synthetic batch transport controls. Frozen independent mathematical controls
 // remain separate; no retained history, provider or numerical launch occurs.
 import test from 'node:test';
@@ -78,7 +81,7 @@ test('hook leaves completion binding ownership to frozen coordinator',()=>{
  const source=readFileSync(path.join(root,B.SELF),'utf8');assert.ok(source.includes('return coordinatorAdmission(result,job.stdoutLog)'));
 });
 test('exact historical tuples are separate logical/physical bindings',()=>{
- const rows=[['2026-08-27-f6c-cached-root-cover-full-resource-plan.md','daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b',10021],['2026-08-27-f6c-root-cover-full-resource-plan.md','46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021]].map(([name,h,n])=>({original:b(path.join(root,'reference/priorities/braid-program/evidence',name),h,n),physical:b('/synthetic/archives/'+h+'.source',h,n)}));
+ const rows=[['2026-08-27-f6c-cached-root-cover-full-resource-plan.md',RETAINED_HASHES[0],10021],['2026-08-27-f6c-root-cover-full-resource-plan.md',RETAINED_HASHES[1],13021]].map(([name,h,n])=>({original:b(path.join(root,'reference/priorities/braid-program/evidence',name),h,n),physical:b('/synthetic/archives/'+h+'.source',h,n)}));
  const routes=B.historicalRoutes(rows,root);assert.deepEqual(B.physicalSource(rows[0].original,{historicalDocumentRoutes:routes}),rows[0].physical);
  assert.deepEqual(B.historicalRoutes([],root),[]);assert.deepEqual(B.historicalRoutes([rows[1]],root),[rows[1]]);
  for(const mutate of [v=>v.push(v[0]),v=>v[0].physical.sha256='0'.repeat(64),v=>v[0].original.bytes++,v=>v[0].physical.path=v[0].original.path,v=>v[0].original.path='/scripts/executable.py']){const v=structuredClone(rows);mutate(v);assert.throws(()=>B.historicalRoutes(v,root));}

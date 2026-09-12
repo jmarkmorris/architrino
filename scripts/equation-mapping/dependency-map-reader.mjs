@@ -3,12 +3,11 @@ import { isDeepStrictEqual } from 'node:util';
 import jsonld from 'jsonld';
 import { Store, Parser, DataFactory } from 'n3';
 import { QueryEngine } from '@comunica/query-sparql-rdfjs';
+import knownHashAnswers from './fixtures/known-hash-answers.json' with { type: 'json' };
 
 export const NS = 'https://example.invalid/option-b-corrected/';
 export const CONTEXT = { '@vocab': NS, kind: { '@type': '@vocab' }, fromObject: { '@type': '@id' }, toObject: { '@type': '@id' } };
-export const HISTORICAL = 'reference/priorities/development-process-review/evidence/option-b-corrected-candidate';
 export const MAP_PATH = 'reference/priorities/master-equation-closure/contracts/moving-single-root-dependencies.jsonld';
-export const BASELINE_COMMIT = '83da8fb83f984e36ac44279e5399e219e887953e';
 export const sha256 = raw => crypto.createHash('sha256').update(raw).digest('hex');
 const kinds = new Set(['dependsOn', 'verifies', 'checks', 'usesInput', 'generatedBy']);
 const types = new Set(['Assumption', 'EquationOccurrence', 'Derivation', 'CalculationSpecification', 'Result', 'CheckObligation', 'CalculationRun']);
@@ -49,13 +48,6 @@ export function select(files, binding) {
 export function bindingsOf(document) { return document['@graph'].flatMap(r => r.sourceBindings ?? r.justifications ?? []); }
 export function sourcePaths(document) { return [...new Set(bindingsOf(document).map(b => safePath(b.path)))].sort(); }
 
-// This fixed migration preserves the reviewed pilot's scientific records and IDs.
-// It resolves four historical artifact paths; it does not approve new bytes.
-export function migrateReviewedPilot(pilot) {
-  const result = structuredClone(pilot); result['@context'] = CONTEXT; result.schemaVersion = 'option-b-map/v1';
-  for (const b of bindingsOf(result)) if (!b.path.includes('/')) b.path = `${HISTORICAL}/${b.path}`;
-  return result;
-}
 export async function validate(files, document) {
   keys(document, ['@context', 'schemaVersion', 'scope', 'approval', 'sourceCommit', '@graph']);
   requireValue(isDeepStrictEqual(document['@context'], CONTEXT), 'Unsupported context');
@@ -128,7 +120,8 @@ export function compareDisplayedResult(text, output) {
   return { status: Math.abs(displayed - actual) <= tolerance ? 'pass' : 'reject', displayed, actual, tolerance, coverage: 'one displayed maximum only' };
 }
 export async function preflight() {
-  requireValue(sha256(Buffer.from('abc')) === 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad', 'SHA control');
+  requireValue(knownHashAnswers.schema === 'known-hash-answers/v1' && /^[a-f0-9]{64}$/u.test(knownHashAnswers.sha256?.abc ?? '') &&
+    sha256(Buffer.from('abc')) === knownHashAnswers.sha256.abc, 'SHA control');
   const raw = Buffer.from('one\r\ntwo\nthree'), files = new Map([['known.txt', raw]]);
   const binding = { path: 'known.txt', selector: { kind: 'lines', first: 1, last: 1 }, contract: 'fixed-byte-selection/v1', sha256: sha256(Buffer.from('one\r\n')) };
   requireValue(select(files, binding).equals(Buffer.from('one\r\n')), 'CRLF control');

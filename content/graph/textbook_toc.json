@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1654
+      "sections": 1658
     }
   },
   "tocRoot": {
@@ -6359,6 +6359,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Sources and Comparison Scope",
+                "markdownPath": "content/markdown/aaa/reactions/mode-taxonomy.md",
+                "markdownSection": "Sources and Comparison Scope",
+                "sectionKey": "sources and comparison scope",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Related Chapters",
                 "markdownPath": "content/markdown/aaa/reactions/mode-taxonomy.md",
                 "markdownSection": "Related Chapters",
@@ -6510,6 +6518,14 @@
                 "markdownSection": "Closure Targets",
                 "sectionKey": "closure targets",
                 "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Sources for Comparison Limits",
+                "markdownPath": "content/markdown/aaa/reactions/radiation.md",
+                "markdownSection": "Sources for Comparison Limits",
+                "sectionKey": "sources for comparison limits",
+                "headingLevel": 2
               }
             ]
           },
@@ -6584,6 +6600,14 @@
                 "markdownSection": "Closure Status",
                 "sectionKey": "closure status",
                 "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Comparison Source",
+                "markdownPath": "content/markdown/aaa/reactions/atomic-transition-radiation.md",
+                "markdownSection": "Comparison Source",
+                "sectionKey": "comparison source",
+                "headingLevel": 2
               }
             ]
           },
@@ -6629,10 +6653,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Micro-Physical Derivation (Interpretive Map)",
+                "title": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Micro-Physical Mapping",
                 "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
-                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Micro-Physical Derivation (Interpretive Map)",
-                "sectionKey": "mathbb a mathbb a mathbb a micro physical derivation interpretive map",
+                "markdownSection": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Micro-Physical Mapping",
+                "sectionKey": "mathbb a mathbb a mathbb a micro physical mapping",
                 "headingLevel": 2
               },
               {
@@ -6669,10 +6693,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "IR Regularization as a Stability Floor",
+                "title": "Infrared Behavior and the Candidate Stability Floor",
                 "markdownPath": "content/markdown/aaa/reactions/bremsstrahlung.md",
-                "markdownSection": "IR Regularization as a Stability Floor",
-                "sectionKey": "ir regularization as a stability floor",
+                "markdownSection": "Infrared Behavior and the Candidate Stability Floor",
+                "sectionKey": "infrared behavior and the candidate stability floor",
                 "headingLevel": 2
               },
               {
@@ -6907,6 +6931,14 @@
                 "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
                 "markdownSection": "Conditions for a Useful Reinterpretation",
                 "sectionKey": "conditions for a useful reinterpretation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Sources and Comparison Limits",
+                "markdownPath": "content/markdown/aaa/reactions/synchrotron.md",
+                "markdownSection": "Sources and Comparison Limits",
+                "sectionKey": "sources and comparison limits",
                 "headingLevel": 2
               }
             ]

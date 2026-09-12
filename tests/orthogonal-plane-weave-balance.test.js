@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
+import identities from "./fixtures/option-b-retained-test-identities.json" with { type: "json" };
+
+const WEAVE_SHA = identities.orthogonalWeave.modelRevisionSha256;
+assert.match(WEAVE_SHA, /^[a-f0-9]{64}$/u);
 
 import {
   evaluateOrthogonalPlaneWeaveCycle,
@@ -83,7 +87,7 @@ test("the exact six-member orthogonal-plane weave seed is validated and routed f
   assert.equal(spec.identity.assemblyId, "asm-b7fdeb1b3f9aa074cacbab3c593a2273");
   assert.equal(
     spec.identity.modelRevisionSha256,
-    "b7fdeb1b3f9aa074cacbab3c593a227332178e7b97f50409f759f420cec4cb34",
+    WEAVE_SHA,
   );
   assert.equal(spec.constituents.length, 6);
   assert.equal(spec.relationships.neutralPairs.length, 3);

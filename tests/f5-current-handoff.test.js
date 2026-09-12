@@ -1,3 +1,5 @@
+import knownHashes from '../scripts/equation-mapping/fixtures/known-hash-answers.json' with { type: 'json' };
+const ABC_SHA = knownHashes.sha256.abc;
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, writeFileSync, rmSync } from 'node:fs';
@@ -10,7 +12,7 @@ test('current F5 external admission controls reject substituted bridge and chang
  try {
  const put=(name,value)=>{const p=path.join(dir,name);writeFileSync(p,typeof value==='string'?value:JSON.stringify(value));return readBound(p);};
  const plan=put('plan','abc'), bridge=put('bridge','bridge'), handoff=put('handoff','data');
- assert.equal(plan.sha256,'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');
+ assert.equal(plan.sha256,ABC_SHA);
  const packet={schema:'braid-program/f5-current-handoff-stage.v1',stage:'produce',completed:true,accepted:false,h3EvidenceEligible:false,evolutionAuthorized:false,requiresFreshExternalCompletion:true,plan,bindings:{bridge,plan},handoff,inspectorClosed:true};
  const receipt=put('stage.json',packet);const stdout=put('stdout',{completed:true,accepted:false,stage:'produce',h3EvidenceEligible:false,receipt});
  const lease={status:'completed',exitCode:0,exitSignal:null,processGroupClosed:true,stdoutPath:stdout.path};

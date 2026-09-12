@@ -31,9 +31,9 @@ jobs:
       - name: Install locked dependencies
         run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Verify B controls and real entrypoints
-        run: node --test --test-concurrency=1 tests/equation-dependency-map.test.mjs
+        run: node --test --test-concurrency=1 tests/equation-dependency-map.test.mjs tests/option-b-mathematical-acceptance.test.mjs
       - name: Run B candidate trial
-        run: node scripts/equation-mapping/check-moving-single-root-map.mjs
+        run: node scripts/equation-mapping/check-moving-single-root-map.mjs --acceptance-sha256 "$(node -p 'require("./scripts/equation-mapping/fixtures/mathematical-acceptance-selection.json").acceptance.sha256')"
       - name: Expose B outcome independently of A
         id: summary
         if: always()
@@ -47,7 +47,7 @@ jobs:
           catch { report = { status: 'error', error: 'B report unavailable; inspect install, controls and trial steps.' }; }
           const status = process.env.PRIOR_JOB_STATUS === 'success' ? report.status : 'error';
           fs.appendFileSync(process.env.GITHUB_OUTPUT, `status=${status}\n`);
-          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## Option B: ${status}\n\nReport-only moving-single-root and finite-ledger trials. Existing A checks retain authority.\n\n\`\`\`json\n${JSON.stringify(report, null, 2)}\n\`\`\`\n`);
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, `## Option B: ${status}\n\nReport-only moving-single-root and finite-ledger comparison uses accepted B predecessors, not the retired A operational identity reader. Scientific checks are unchanged; this report grants no production or scientific approval.\n\n\`\`\`json\n${JSON.stringify(report, null, 2)}\n\`\`\`\n`);
           JS
       - name: Retain explicit B report and execution outputs
         if: always()

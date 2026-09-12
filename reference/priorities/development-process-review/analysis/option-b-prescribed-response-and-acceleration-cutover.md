@@ -1,14 +1,16 @@
 # Prescribed-response and acceleration Option B transfers
 
+Current status: this record preserves its migration-stage evidence and commands. The former standalone profile test is now [retired into the required B suite](option-b-repository-reconciliation.md#authorized-retirement-cleanup-and-full-b-direction); links to its source select the preserved Git revision.
+
 ## Result and authority
 
-The operator requested the next two migrations, followed by the remaining repository-wide inventory and finite plan. Prescribed-response and acceleration now use the same externally selected source-map admission protocol as the three previously migrated root-cover profiles. The [shared transfer checker](../../../../scripts/equation-mapping/check-current-source-maps.mjs) passes all five profiles, and [the former A-loop test](../../../../tests/current-launch-bindings.test.js) now asserts that exact five-profile transfer rather than keeping a vacuous empty loop.
+The operator requested the next two migrations, followed by the remaining repository-wide inventory and finite plan. Prescribed-response and acceleration now use the same externally selected source-map admission protocol as the three previously migrated root-cover profiles. The [shared transfer checker](../../../../scripts/equation-mapping/check-current-source-maps.mjs) passes all five profiles, and [the former A-loop test](https://github.com/jmarkmorris/architrino/blob/859f2b07cb17889ca2c239d82fd61455c2ba903c/tests/current-launch-bindings.test.js) now asserts that exact five-profile transfer rather than keeping a vacuous empty loop.
 
 The [remaining migration plan](option-b-remaining-migration-plan.md) completes the requested inventory/planning step. It defines five bounded work packages, not five individual file migrations. Scientific acceptance, mathematical-map baseline approval, generator writes and Git publication are not included.
 
 ## Retained baseline and source roles
 
-Both descriptors use the independently retained A generation at commit `7c957f86c1ca8c7ff8d4cf8341f2b3e2748b4b09`. The checker retrieves each entry with `git show`; the new [restricted role-table extractor](../../../../scripts/equation-mapping/legacy-role-bindings.mjs) reads its quoted constants and ORIGINALS/FIXED construction without executing historical code. Before target extraction, a known role-table fixture returned the expected bindings; before edits, extraction of the two actual A entries agreed with their inspected exported maps at 21 and 24 entries. The regression suite retains that known-case check and rejects unknown constants and malformed rows. This extractor supports these two fixed source constructions, not arbitrary JavaScript.
+Both descriptors use the independently retained A generation at commit `7c957f86c1ca8c7ff8d4cf8341f2b3e2748b4b09`. The checker retrieves each entry with `git show`; the new [restricted role-table extractor](https://github.com/jmarkmorris/architrino/blob/859f2b07cb17889ca2c239d82fd61455c2ba903c/scripts/equation-mapping/legacy-role-bindings.mjs) reads its quoted constants and ORIGINALS/FIXED construction without executing historical code. Before target extraction, a known role-table fixture returned the expected bindings; before edits, extraction of the two actual A entries agreed with their inspected exported maps at 21 and 24 entries. The regression suite retains that known-case check and rejects unknown constants and malformed rows. This extractor supports these two fixed source constructions, not arbitrary JavaScript.
 
 | Profile | Complete A bindings | Current-source transfer | Retained evidence | B source records / relationships |
 | --- | ---: | --- | ---: | --- |

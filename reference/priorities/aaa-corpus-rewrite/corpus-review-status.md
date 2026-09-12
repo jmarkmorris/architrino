@@ -6,11 +6,6 @@ This file is the authoritative priority-ordered document board for the 199-file 
 
 | Status | Priority | Document | State | Finding IDs or next action |
 | --- | ---: | --- | --- | --- |
-| ○ | 48 | [Mode Taxonomy](../../../content/markdown/aaa/reactions/mode-taxonomy.md) | Unread backlog document | Not yet reviewed |
-| ○ | 49 | [Radiation](../../../content/markdown/aaa/reactions/radiation.md) | Unread backlog document | Not yet reviewed |
-| ○ | 50 | [Atomic Transition Radiation](../../../content/markdown/aaa/reactions/atomic-transition-radiation.md) | Unread backlog document | Not yet reviewed |
-| ○ | 51 | [Bremsstrahlung](../../../content/markdown/aaa/reactions/bremsstrahlung.md) | Unread backlog document | Not yet reviewed |
-| ○ | 52 | [Synchrotron](../../../content/markdown/aaa/reactions/synchrotron.md) | Unread backlog document | Not yet reviewed |
 | ○ | 53 | [Quantum Summary](../../../content/markdown/aaa/quantum/quantum-summary.md) | Unread backlog document | Not yet reviewed |
 | ○ | 54 | [Reality Quantum Causality](../../../content/markdown/aaa/quantum/reality-quantum-causality.md) | Unread backlog document | Not yet reviewed |
 | ○ | 55 | [Wavefunction Ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md) | Unread backlog document | Not yet reviewed |
@@ -129,7 +124,7 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ○ | 168 | [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) | Unread backlog document | Not yet reviewed |
 | ○ | 18 | [Well-posedness and regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | Unread backlog document; action-energy directory held until the end | Not yet reviewed |
 
-**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 122 unopened documents. The next action is the first ○ row in the recorded phase order, Mode Taxonomy; the remaining action-energy file is intentionally last.
+**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 117 unopened documents. The next action is the first ○ row in the recorded phase order, Quantum Summary; the remaining action-energy file is intentionally last.
 
 ## Completed audit appendix
 
@@ -212,5 +207,10 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ● | 75 | [Hyde Periodic Table](../../../content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-hyde-periodic-table-review-2026-09-12.md) | HY-01–HY-10 |
 | ● | 76 | [Molecular Geometry](../../../content/markdown/aaa/nuclear-atomic/molecular-geometry.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-molecular-geometry-review-2026-09-12.md) | MG-01–MG-08 |
 | ● | 77 | [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-condensed-matter-review-2026-09-12.md) | CM-01–CM-15 |
+| ● | 78 | [Mode Taxonomy](../../../content/markdown/aaa/reactions/mode-taxonomy.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-mode-taxonomy-review-2026-09-12.md) | MT-01–MT-12 |
+| ● | 79 | [Radiation](../../../content/markdown/aaa/reactions/radiation.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-radiation-review-2026-09-12.md) | RAD-01–RAD-19 |
+| ● | 80 | [Atomic Transition Radiation](../../../content/markdown/aaa/reactions/atomic-transition-radiation.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-atomic-transition-radiation-review-2026-09-12.md) | ATR-01–ATR-11 |
+| ● | 81 | [Bremsstrahlung](../../../content/markdown/aaa/reactions/bremsstrahlung.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-bremsstrahlung-review-2026-09-12.md) | BR-01–BR-15 |
+| ● | 82 | [Synchrotron](../../../content/markdown/aaa/reactions/synchrotron.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-synchrotron-review-2026-09-12.md) | SYN-01–SYN-18 |
 
-Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 77 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 122 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.
+Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 82 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 117 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.

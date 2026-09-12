@@ -1,5 +1,7 @@
 # Cached root-cover pilot Option B transfer
 
+Current status: this record preserves its migration-stage evidence and commands. The former standalone profile test is now [retired into the required B suite](option-b-repository-reconciliation.md#authorized-retirement-cleanup-and-full-b-direction); links to its source select the preserved Git revision.
+
 ## Result and authority
 
 The operator requested migration of the cached root-cover pilot after the first root-cover transfer. Its operational entry and launcher now use the shared B reader, a profile-specific external source manifest, and the caller-selected `--source-map-sha256` argument. The [admission contract](../contracts/option-b-current-source-admission.md) owns that mechanism and its authority limits. Source admission permits the existing checks to proceed; it does not authorize scientific execution or accept a numerical result.
@@ -50,7 +52,7 @@ Claim grade: measured for the named byte comparisons and tests at their stated s
 | Group | Files |
 | --- | --- |
 | Cached operational integration | [Entry](../../../../scripts/eom/run-f6c-cached-root-cover-pilot.mjs), [launcher](../../../../scripts/eom/launch-f6c-cached-root-cover-pilot.mjs) |
-| Shared B integration | [Transfer checker](../../../../scripts/equation-mapping/check-current-source-maps.mjs), [admission controls](../../../../tests/option-b-root-cover-admission.test.mjs), [Content Integrity label](../../../../scripts/check-content-integrity.mjs), [remaining A profiles](../../../../tests/current-launch-bindings.test.js) |
+| Shared B integration | [Transfer checker](../../../../scripts/equation-mapping/check-current-source-maps.mjs), [admission controls](../../../../tests/option-b-root-cover-admission.test.mjs), [Content Integrity label](../../../../scripts/check-content-integrity.mjs), [remaining A profiles](https://github.com/jmarkmorris/architrino/blob/859f2b07cb17889ca2c239d82fd61455c2ba903c/tests/current-launch-bindings.test.js) |
 | Cached and downstream controls | [Cached unit](../../../../tests/f6c-cached-root-cover-pilot-launcher.test.js), [cached process](../../../../tests/f6c-cached-root-cover-pilot-process.test.js), [full historical control](../../../../tests/f6c-cached-root-cover-full.test.js) |
 | Policy and data | [Baseline](../contracts/option-b-cached-root-cover-baseline.json), [manifest](../contracts/option-b-cached-root-cover-sources.jsonld), [admission contract](../contracts/option-b-current-source-admission.md) |
 | Integration and evidence | [This record](option-b-cached-root-cover-cutover.md), [inventory](option-b-current-source-cutover-inventory.md), [readiness](option-b-integration-readiness.md), [architecture](../../../op/git/git-backed-knowledge-architecture.md), [priorities](../priorities.md), [campaign](../processes-git-codex-claude.md), [work log](../work-log.md) |

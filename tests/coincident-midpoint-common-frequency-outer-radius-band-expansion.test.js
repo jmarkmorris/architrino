@@ -1,3 +1,6 @@
+import optionBIdentities from './fixtures/option-b-retained-test-identities.json' with { type: 'json' };
+const RETAINED_HASHES = Object.freeze([...optionBIdentities.byConsumer["tests/coincident-midpoint-common-frequency-outer-radius-band-expansion.test.js"].sha256]);
+if (RETAINED_HASHES.length !== 1 || !RETAINED_HASHES.every(value => typeof value === 'string' && /^[a-f0-9]{64}$/u.test(value))) throw new Error('Malformed retained test identities');
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
@@ -125,7 +128,7 @@ test("one outer band preserves the complete 36-channel topology and projection",
   );
   assert.equal(
     summary.summaryHash,
-    "a68b1f12cf3e79fe40e55f5b1b4fc750b00991ba2b4ac4b94a45d6d81f07c95e",
+    RETAINED_HASHES[0],
   );
 });
 

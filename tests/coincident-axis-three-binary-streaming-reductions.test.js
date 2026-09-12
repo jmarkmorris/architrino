@@ -1,3 +1,6 @@
+import optionBIdentities from './fixtures/option-b-retained-test-identities.json' with { type: 'json' };
+const RETAINED_HASHES = Object.freeze([...optionBIdentities.byConsumer["tests/coincident-axis-three-binary-streaming-reductions.test.js"].sha256]);
+if (RETAINED_HASHES.length !== 1 || !RETAINED_HASHES.every(value => typeof value === 'string' && /^[a-f0-9]{64}$/u.test(value))) throw new Error('Malformed retained test identities');
 import fs from "node:fs";
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -90,7 +93,7 @@ function staticSixSourceRecord() {
     recordId: "coincident-axis-three-binary-streaming-independent-static-six-source",
     assemblyId: "asm-02d73c88ccf8244e6873d2ee2cd58973",
     modelRevisionSha256:
-      "02d73c88ccf8244e6873d2ee2cd58973dc35d2475df102173726563210a39c27",
+      RETAINED_HASHES[0],
     sourceSchema: "independent-static-six-source.v1",
     engineId: "prescribed-geometry",
     engineVersion: "independent-test-fixture.v1",

@@ -1,10 +1,10 @@
 # Atomic Transition Radiation
 
-Atomic transition radiation is an exploratory mapping of the effective line-emission and line-absorption channel into AAA event records. In the target mapping, an effective electron-assembly envelope moves between recovered atomic resonance basins and the excess action is routed through a photon planar-mode channel, recoil, medium excitation, or residual atomic energy. The atomic labels and transition mechanism remain downstream recovery targets, not established substrate premises.
+Atomic transition radiation is an exploratory mapping of atomic line emission and absorption into Architrino Assembly Architecture, $\mathbb{A}\mathbb{A}\mathbb{A}$. A line is a narrow range of emitted or absorbed frequencies. An assembly is a collection of [architrinos](../foundations/architrino.md), point transceivers whose past emissions supply delayed acceleration contributions; an envelope basin is a candidate persistent atomic response pattern. In this mapping an electron-assembly envelope changes basin, and the released energy is partitioned among a photon channel, recoil, medium excitation, and residual atomic energy. Action, which has energy-times-time units, requires its own derived ledger and is not interchangeable with the energy entries below. The atomic labels and transition mechanism remain recovery targets.
 
 This page specializes the shared routing skeleton in [Radiation](radiation.md). The envelope energies and spectral labels are inherited from [Atomic Spectra](../nuclear-atomic/atomic-spectra.md), while photon ontology and Gate A/B/C closure requirements are inherited from [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md#photon-closure-interface). Reaction provenance follows [Reaction Ledger](../validation/reaction-ledger.md), and cosmology-facing photon records remain downstream of [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md).
 
-This chapter is not a completed derivation of atomic transition rates. Its role is to state the first event record for the Gate C vertex: how a bound atomic envelope sheds or captures a photon modeled as a coaxial contra-rotating polarity-conjugate planar pair while preserving energy, momentum, angular momentum, local Noether sea state, and path-history provenance.
+The proposed photon carrier is a coaxial contra-rotating polarity-conjugate planar pair: two planar braid configurations sharing an axis, circulating oppositely, and related by reversal of constituent polarities. Gate A tests its propagation and energy-frequency relation; Gate B tests its polarization and angular-momentum content; Gate C tests its emission and capture transitions. These are inherited proof requirements. This chapter specifies the atomic event record and the balances that a completed derivation must establish. The local [Noether sea](../spacetime/noether-sea.md), the proposed ambient population of neutral assemblies, can change during the event; its pre/post state must be accounted for rather than assumed unchanged.
 
 ## Basin Transition
 
@@ -21,9 +21,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b9be97b2cf002651)
 
-Here $\mathcal W_{\mathrm{nuc}}$ is the effective nuclear causal-wake envelope, $\rho_{\text{NS}}(\mathbf X,T)$ is the physical Noether braid density, $n(\mathbf X,T)$ is the normalized Noether braid density, and $\chi_{\text{sea}}(\mathbf X,T)$ is the Noether sea delay factor. The gap is an effective atomic quantity, not a proof that the underlying Noether braid ledgers of the nucleus or electron have already been derived.
+Here $\mathcal W_{\mathrm{nuc}}$ summarizes the nuclear constituents' delayed wakes, $\rho_{\text{NS}}(\mathbf X,T)$ is the physical Noether braid density, $n(\mathbf X,T)=\rho_{\text{NS}}(\mathbf X,T)/\rho_{\text{NS},0}$ is its normalization by a fixed reference density, and $\chi_{\text{sea}}(\mathbf X,T)$ is the Noether sea delay factor. Positions $\mathbf X$ lie in the fixed Euclidean void and $T$ is absolute time. Both envelope energies use one common environment and energy calibration. For a changing environment, the reference gap minus the actual pre/post envelope-energy drop must be included exactly once in the resolved environment correction. The gap is an effective atomic quantity; existence and stability of its candidate basins remain dynamical obligations.
 
-The local line energy, before observer clock/rate conversion, is
+In the one-photon comparison, $h$ is the observer-level Planck energy-frequency calibration and $\nu_{a\to b}^{\mathrm{loc}}$ is the local phase frequency before observer clock/rate conversion. With all energy entries in that same calibration, the target line energy is
 
 $$
 h\nu_{a\to b}^{\mathrm{loc}}
@@ -39,7 +39,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-85d921c8becb36d5)
 
-The observer-level frequency comparison then applies the $\left(\Gamma_N^{(\ell)}\right)^{-1}$ clock-rate conversion owned by [Atomic Spectra](../nuclear-atomic/atomic-spectra.md) and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md); this page does not perform that conversion. In the ideal isolated line limit, the non-photon terms are negligible and $E_\gamma\simeq h\nu_{a\to b}^{\mathrm{loc}}$. In dense media, strong gradients, or unresolved recoil regimes, those terms must remain in the ledger rather than being silently absorbed into the line frequency.
+The changes $\Delta E_{\mathrm{recoil}}$, $\Delta E_{\mathrm{med}}$, and $\Delta E_{\mathrm{rem}}$ mean final minus initial center-of-mass kinetic energy, medium/environment energy, and residual internal energy not already included in the envelope labels. The partition must allocate interactions and environmental corrections without overlap. These changes can be negative; nonnegative shares describe the restricted case of an initially resting atom and passive channels taking up energy. An excitation already contained in $E_{\mathrm{env}}(b)$ cannot also be charged to $\Delta E_{\mathrm{rem}}$.
+
+The observer-level frequency comparison then applies the $\left(\Gamma_N^{(\ell)}\right)^{-1}$ clock-rate conversion owned by [Atomic Spectra](../nuclear-atomic/atomic-spectra.md) and [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), where $\Gamma_N^{(\ell)}$ is the cadence-stretch diagnostic at the declared coarse-graining length $\ell$. Its physical derivation remains open. Gate A supplies the separate recovery target $E_\gamma\simeq h\nu_\gamma^{\mathrm{loc}}$; negligible non-photon terms additionally give $E_\gamma\simeq\Delta E_{a\to b}^{\mathrm{env}}$. In dense media, strong gradients, or unresolved recoil regimes, the non-photon terms remain explicit.
 
 ## Hydrogen Line Benchmark Record
 
@@ -89,7 +91,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2e0c9ac5db9d4b6b)
 
-The frequency readout must then agree with the local photon record:
+For this residual, $\varepsilon_{\mathrm{evt}}>0$ is a fixed energy normalization floor and $\Delta_{\mathrm{evt}}^{\mathrm{tol}}>0$ is a dimensionless tolerance declared with the measurement or computation uncertainty. Neither may be retuned to make an event pass. Each balance entry must be extracted independently of the equality being tested: defining the remnant as the missing balance would make the residual identically zero.
+
+The frequency readout must then agree with the local photon record through a separately evaluated Gate A relation:
 
 $$
 \mathcal E_{ab}^{\gamma}
@@ -113,11 +117,13 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4bd962be19ab37c8)
 
-The benchmark fails if a Rydberg-consistent line can be obtained only by dropping recoil, medium excitation, or residual atomic energy from the ledger; if the planar-mode gate is changed between hydrogen lines; if the photon-channel speed used by the spectral comparison differs from the emitted photon record; or if path-history provenance is not sufficient to replay which envelope transition produced the coaxial contra-rotating polarity-conjugate planar pair.
+Here $\varepsilon_\gamma>0$ has energy units and $\Delta_\gamma^{\mathrm{tol}}>0$ is dimensionless. The phase frequency must be measured from the photon record with an independently fixed $h$ calibration, rather than defined by $E_\gamma/h$. A small residual tests the declared readouts and uncertainty budget; it does not derive energy conservation or establish a photon branch.
+
+The benchmark fails if a Rydberg-consistent line can be obtained only by dropping recoil, medium excitation, or residual atomic energy from the ledger; if the planar-mode gate is changed between hydrogen lines; if the photon-channel speed used by the spectral comparison differs from the emitted photon record; or if path-history provenance is not sufficient to replay which envelope transition produced the candidate pair. The leading Rydberg comparison also inherits Atomic Spectra's line-dependent correction budget; a common fitted scale alone does not predict its absolute value.
 
 ## Planar-Mode Gate
 
-A basin transition is not automatically photon emission. It becomes atomic transition radiation only when the available gap and the local channel geometry cross the planar-mode nucleation gate inherited from the radiation program:
+A basin transition is not automatically photon emission. The proposed planar-mode nucleation criterion in the radiation program includes the following necessary tests in the passive energy-sharing case:
 
 $$
 \mathcal S_{\gamma}^{\mathrm{at}}
@@ -133,9 +139,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0d48d686f1b59903)
 
-The symbol $\mathcal S_{\gamma}^{\mathrm{at}}$ denotes the atomic-transition specialization of the photon-channel drive. Its arguments record the pre/post atomic microstates $\Gamma_a,\Gamma_b$, the nuclear causal-wake envelope, local Noether sea density and delay state, and the local causal-root/Jacobian data including the same-record transmitter-side acceleration weight. This is a derivation target: the completed Gate C account must compute this drive from the assembly return map and delayed causal-wake ledger, not fit it separately for each line.
+The symbol $\mathcal S_{\gamma}^{\mathrm{at}}$ denotes the proposed photon-channel drive, and $\mathcal S_{\gamma,*}$ its threshold in the same units. Its arguments record the pre/post atomic microstates $\Gamma_a,\Gamma_b$, the nuclear causal-wake envelope, local Noether sea state, and causal-root/Jacobian data $J_{\mathrm{loc}}$ including the transmitter-side acceleration weight. A causal root pairs a receiver event with a past transmitter emission whose wake reaches it; the Jacobian records how that root changes with time. The completed Gate C account must compute the drive from the delayed dynamics, not fit it separately for each line. The energy scale $E_{\gamma,\min}$ is a speculative minimum stable photon energy, not an established positive threshold.
 
-If the gate is not crossed, the same basin transition may still route energy into recoil, medium excitation, internal remnant energy, or a non-radiative material update. The channel distinction is therefore:
+The usable photon energy is the gap after all signed non-photon changes above have been included. It must be positive and, if the chosen model has an active minimum, at least $E_{\gamma,\min}$. Thus the displayed raw-gap test is insufficient: a gap larger than the minimum can still leave too little energy after recoil. Dynamic accessibility, constituent inventory, momentum and angular-momentum compatibility, and inherited Gate A/B acceptance are separate requirements.
+
+The following two-case sketch is restricted to transitions for which those other requirements have already been established. Its photon-output case assumes the usable-energy test, and its non-radiative case assumes an accessible alternative channel. Outside that restricted domain a threshold comparison alone decides neither outcome; the event can remain unresolved or the transition can fail to occur:
 
 $$
 \text{envelope basin transition}
@@ -150,7 +158,7 @@ $$
 
 ## Event Ledger
 
-A resolved emission event should close the local energy record
+A resolved emission event is tested against the following effective energy balance over one declared event boundary and time window. All entries share a reference frame, calibration, and disjoint allocation of stored and exchanged energy:
 
 $$
 \Delta E_{a\to b}^{\mathrm{env}}
@@ -182,9 +190,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-24c602bf263c5241)
 
-Here $\Delta \mathbf p_{\mathrm{atom}}$ is the internal envelope-redistribution row and $\Delta \mathbf p_{\mathrm{recoil}}$ is the center-of-mass recoil row; for an isolated atom the internal row closes to zero and the recoil row is the atom's whole momentum change, so the two rows partition the atomic side rather than double-count it.
+Here $\Delta \mathbf p_{\mathrm{atom}}$ is the internal envelope-redistribution entry and $\Delta \mathbf p_{\mathrm{recoil}}$ is the center-of-mass recoil entry. In a declared center-of-mass decomposition the internal momentum sums to zero and the recoil entry is the atom's whole momentum change; this is a bookkeeping convention whose effective momentum map must be supplied. The medium entry must include the remaining boundary and wake-associated momentum exchange. If that partition has not been established, the displayed four-term balance is incomplete.
 
-Angular momentum and wake-carried angular momentum must close at the same vertex:
+Angular momentum is tested component by component about one common origin and over the same event window. The following compact ledger requires a disjoint decomposition: the atomic term excludes center-of-mass recoil and any remnant or handoff contribution listed separately:
 
 $$
 \Delta \mathcal J_{\mathrm{atom}}
@@ -206,7 +214,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-92574b5038daf361)
 
-The photon term $\mathcal J_{\gamma}^{\perp}$ is a Gate B handoff. Recoil, wake, material handoff, medium, and remnant rows are shown explicitly because a clean photon transverse ledger is not enough to close the event. This page records that an emitted or absorbed photon assembly must carry the transverse angular-momentum ledger, polarization basis, helicity label where applicable, accepted/rejected handoff where applicable, and no-longitudinal-mode status. It does not locally prove photon spin, Malus' law, or the squared-amplitude capture rule.
+The photon term $\mathcal J_{\gamma}^{\perp}$ is a Gate B handoff from the two-transverse-polarization sector. To use it in this balance, that handoff must supply the complete photon angular-momentum contribution, including orbital contribution about the declared origin; a polarization projection alone is insufficient. The superscript does not assert that the total angular-momentum vector is perpendicular to propagation. Recoil, wake, material handoff, medium, and remnant entries must also be independently defined and may not count the same transfer twice. A photon record carries its transverse polarization basis, helicity label where applicable, capture outcome, and no-longitudinal-polarization status. Photon spin, Malus' polarization-intensity law, and the squared-amplitude capture rule remain inherited derivations.
 
 The minimum event record is:
 
@@ -220,11 +228,13 @@ The minimum event record is:
 | Polarization handoff | Transverse basis, helicity label where applicable, accepted/rejected capture channel, Gate B event-residual status, and closure status |
 | Recoil and medium terms | $\Delta E_{\mathrm{recoil}}$, $\Delta \mathbf p_{\mathrm{recoil}}$, $\Delta E_{\mathrm{med}}$, $\Delta \mathbf p_{\mathrm{med}}$, and any residual atomic excitation |
 | Path-history provenance | Source identities, emission times, active causal-root branches, branch Jacobians, and delayed wake history needed for deterministic replay |
+| Constituent routing | Before/after identities and $\epsilon_+/\epsilon_-$ polarity counts for atom, candidate photon, and participating Noether sea content, including any material returned after capture |
+| Accounting and statistics | Common boundary, frame, time window, energy calibration, signed disjoint energy/momentum/angular-momentum entries, ensemble preparation, normalized source-basin measure, and declared uncertainties |
 | Closure status | Baseline, provisional map, derivation target, failed map, or inherited gate |
 
 ## Absorption and Stimulated Channels
 
-Absorption is the inverse Gate C vertex: an incoming photon, modeled as a coaxial contra-rotating polarity-conjugate planar pair, is captured by the atomic assembly and folded into a higher envelope basin when the capture geometry and gap condition match. In compact form,
+Absorption is the opposite energy-transfer channel to emission: an incoming candidate photon is captured while the atom enters a higher envelope basin. This channel description does not establish a literal time reversal of the full delayed history or a capture probability. For a matched environment and negligible remnant change, its compact energy target is
 
 $$
 b+\gamma \to a,
@@ -240,11 +250,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8e7a69364d20e9b9)
 
-with all rows non-negative in the same convention as the emission ledger: the incoming photon must supply the envelope gap plus the recoil kinetic energy and any medium uptake, which is the source of the emission/absorption line offset measured by recoil-sensitive spectroscopy.
+where the changes are evaluated for this absorption event, not copied from an emission event. If the remnant changes, $\Delta E_{\mathrm{rem}}$ must also be added to the right-hand side. For an initially resting atom in a passive environment, the photon supplies the gap plus recoil and any other uptake. This produces the recoil contribution to an emission/absorption line offset in the effective comparison. A moving atom or an excited medium can supply energy, so its change need not be positive.
 
-All energy rows in both ledgers are non-negative magnitudes. Emission subtracts recoil, medium, and remnant shares from the available gap; absorption adds those required shares to the incoming-photon demand.
+In the momentum and angular-momentum balances, replace the outgoing photon contribution by the negative of the incoming contribution for absorption, and use the actual absorption pre/post atomic and medium states. The same event boundary and sign convention apply to every entry.
 
-This is ordinary photon capture by the same atomic assembly. It changes the assembly's envelope basin and closes the incoming photon ledger, but it is not a general particle-production rule. If the event has different outgoing Standard Model assemblies, the channel must be written as a reaction or pair channel with a separate identity-routing row for the target or Noether sea content that supplies those outgoing inventories.
+This is a proposed account of ordinary photon capture by the same atomic assembly. Atomic identity does not remove the constituent-routing obligation: the incoming pair's architrinos must remain explicitly assigned to the post-event atom, medium, or outgoing content. If the event has different outgoing Standard Model assemblies, the channel must additionally identify the target or Noether sea content supplying those inventories.
 
 The same event record must decide whether the photon is absorbed, re-emitted, scattered, reflected, or routed into medium excitation. A failed capture is not an ontology failure; it is a channel-routing outcome whose energy and momentum must still close.
 
@@ -268,9 +278,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-44c7979f1ff98aac)
 
-This is the same Gate C vertex as atomic absorption, but with the final state distributed over the material branch rather than one isolated envelope label. A Vantablack-like branch is a high-depth repeated-capture limit with $E_{\gamma,\mathrm{out}}\approx0$ after many cells. A metal-like branch is a coherent re-release limit in which the conduction-electron response carries most of the incoming ledger back into an outgoing planar-pair mode. Both limits remain provisional until the same basin-measure and event-ledger program recovers standard absorption, reflection, scattering, and thermalization behavior.
+Here $\Delta E_{e\text{-env}}$, $\Delta E_{\mathrm{lat}}$, and $\Delta E_{\mathrm{sea}}$ are signed changes in electron-envelope, lattice, and Noether sea energy; the remnant excludes them. The equation assumes no unlisted external work or boundary flux. This extends the Gate C target to a distributed material final state. A Vantablack-like branch is the proposed limit of little escaping light after repeated interactions; small $E_{\gamma,\mathrm{out}}$ in a finite window alone does not distinguish absorption from delayed escape or storage. A metal-like branch is a proposed coherent outgoing-light channel. Neither limit is established by its name or energy balance; absorption, reflection, scattering, and thermalization require the corresponding response and transport histories.
 
-Stimulated emission and absorption belong to the same Gate C rate program. In the weak homogeneous validated limit, the coarse-grained transition ledger must recover the usual detailed-balance relation:
+Stimulated emission and absorption belong to the same Gate C rate program. In the weak homogeneous thermal-equilibrium comparison, pairwise detailed balance means equal forward and reverse ensemble fluxes. For resolved atomic sublevels and a matched photon mode, the target is:
 
 $$
 \Gamma_{a\to b+\gamma}\,f_a\,(1+\bar n_\gamma)
@@ -280,17 +290,17 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2036c6f12a4f721e)
 
-Here $f_a$ and $f_b$ are ensemble occupation weights for the atomic basins and $\bar n_\gamma$ is the effective photon occupation. This is an observer-level recovery target, not a substrate postulate.
+Here $f_a$ and $f_b$ are occupation weights of resolved atomic sublevels, and $\bar n_\gamma$ is the mean occupation of the matched photon mode. The two $\Gamma$ coefficients exclude the explicit occupation factors; $1+\bar n_\gamma$ separates spontaneous and stimulated emission in this comparison. If $a,b$ group degenerate sublevels, the coefficients must include the consistent sublevel sums and averages. An arbitrary weak homogeneous ensemble need not obey this equality: when $f_a>0$ and $\bar n_\gamma=0$, the emission flux can be positive while the absorption flux vanishes. Away from equilibrium their difference governs population change. The equilibrium condition and occupation factors remain observer-level recovery targets.
 
 Optical dispersion adds the line-strength version of the same target. In the old Lorentz-Drude comparison, anomalous dispersion and absorption were summarized by an effective population of resonant oscillators for each line. The quantum correction was to read that measured coefficient through Einstein transition probabilities rather than as a literal count of independently vibrating electrons. In this chapter that coefficient belongs with Einstein coefficients and oscillator strengths as an observer-level comparison object. It must be recovered from the same Gate C rate ledger that supplies emission, absorption, stimulated channels, and detailed balance.
 
 Matrix mechanics is the algebraic face of this Gate C target. Heisenberg's replacement of classical Fourier modes by indexed transition amplitudes is safe here only as observer-level comparison: the indices label pre/post atomic basins, the intensities project from Gate C rates, and the noncommutative product records how sequential transition quantities compose through intermediate basin labels. The multiplication rule is a recovery target for effective operator algebra, not a substrate postulate.
 
-The practical rule is that a line may not use one event record for its frequency and another for its strength. For a transition pair $a,b$, the envelope gap, photon-capture or photon-emission rate, absorption strength, dispersion strength, and stimulated-channel coefficients all have to project from the same pre/post atomic basins, local Noether sea state, photon branch, recoil rows, and ensemble occupation weights. If optical dispersion can be matched only by assigning a separate resonator population unrelated to the Gate C basin-measure rate, the standard dispersion formula has been fitted rather than recovered.
+The practical rule is that a line may not use incompatible models for its frequency and strength. For a transition pair $a,b$, the gap, emission and absorption rates, dispersion response, and stimulated coefficients must share one event family, environment, photon branch, recoil convention, and ensemble preparation. A single deterministic event supplies neither an ensemble rate nor a complex transition amplitude. Dispersion and matrix composition additionally need the phase-sensitive response: magnitudes alone do not determine interference or the product of effective operators. A separate resonator population unrelated to the Gate C ensemble would be a fit rather than the stated recovery.
 
 ## Gate C Rate Target
 
-The native rate target should be a basin-measure statement over deterministic atomic, photon, and local Noether sea microstates. For a record window of duration $T_W$ — subscripted to keep it distinct from absolute time $T$ — a schematic form is
+The native rate target uses an ensemble of atomic, photon, and local Noether sea histories. First define a finite-window transition probability divided by its duration $T_W>0$, measured in absolute time. The symbol $\Gamma_{a\to b+\gamma}^{\mathbb{A}\mathbb{A}\mathbb{A}}$ in this schematic expression denotes that window-dependent diagnostic, not an established constant transition rate:
 
 $$
 \Gamma_{a\to b+\gamma}^{\mathbb{A}\mathbb{A}\mathbb{A}}
@@ -304,9 +314,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-241c2b2b9867e389)
 
-The set $\mathcal B_a$ denotes the resolved microstate basin corresponding to the effective atomic state $a$, $\mathcal B_{b+\gamma}$ denotes the basin in which the lower atomic state and outgoing photon assembly are accepted, $\Phi_{T_W}$ is the deterministic return map across the record window, and $\mu_{T_W}$ is the unresolved-material measure induced by the local ensemble and path-history distribution.
+The set $\mathcal B_a$ denotes the prepared source basin, $\zeta$ includes the admissible delayed history and boundary data, and $\mu_{T_W}$ is a dimensionless probability measure conditioned on that preparation, with $\mu_{T_W}(\mathcal B_a)=1$. Its window restrictions must come from one declared ensemble rather than separate fits. The map $\Phi_{T_W}$ evolves that history over the window on a domain where existence and uniqueness hold. The target set $\mathcal B_{b+\gamma}$ includes a durable record that the specified transition occurred. If it records only the endpoint atomic state, an emission followed by recapture can be missed. Repeated events require an event count and source-basin residence time, not this single-event indicator.
 
-In the validated weak-coupling limit, this rate must reduce to the familiar transition-rate structure:
+For a normalized indicator probability $P_{ab}(T_W)$, the displayed diagnostic satisfies $0\le P_{ab}(T_W)/T_W\le1/T_W$. Hence its limit at fixed preparation as $T_W\to\infty$ is zero. For example, a comparison process with constant escape rate $\lambda>0$ has $P_{ab}(T_W)=1-\exp(-\lambda T_W)$: division by the window approximates $\lambda$ only while $\lambda T_W\ll1$. A survival probability $S_a(T_W)$ instead defines the conditional escape rate $-d\ln S_a/dT_W$ where differentiable; channel-specific rates additionally resolve the competing exits. These identities constrain how a rate is estimated; they do not supply the physical ensemble or transition law.
+
+The weak-coupling recovery target is a rate extracted in a scale-separated window, long compared with the relevant correlation time but short compared with source depletion and finite-system recurrence. A plateau of the finite-window diagnostic in that domain, together with a justified continuum approximation, must recover the following observer-level structure:
 
 $$
 \Gamma_{a\to b+\gamma}^{\mathbb{A}\mathbb{A}\mathbb{A}}
@@ -320,9 +332,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-56ce8a6c189f5810)
 
-The operator $\widehat V_{\mathrm{eff}}$ is only an effective comparison object. The foundation-up burden is to show that its matrix-element behavior emerges from overlap and capture probabilities between the atomic assembly and the photon planar-mode branch. The same passage must recover the effective electromagnetic coupling scale $\alpha$ without treating $\alpha$ as a separate ontology.
+Here $\hbar=h/(2\pi)$, $\widehat V_{\mathrm{eff}}$ is an effective interaction operator, and $\rho_\gamma(\Delta E)$ is the density of available final states per unit energy under the same photon-mode normalization. The states $|a;0\rangle$ and $|b;\gamma\rangle$ label the initial atom with no photon in the selected mode and the final atom with one photon. The photon energy and available final states must include the recoil and other corrections already present in the event ledger; using the bare envelope gap is the ideal zero-correction limit. A density-only factorization further assumes that matrix-element variation over the summed states is controlled. Otherwise the squared matrix element belongs inside the state sum or integral. This formula uses one declared clock convention; any comparison with an observer rate requires the corresponding duration conversion.
 
-The finite-window definition above supplies the provenance version of the same limit: for long windows and weak coupling, the basin-measure rate must factor into an effective amplitude squared and a final-state density. Equivalently,
+The operator remains a comparison object. Its amplitudes, relative phases, state normalization, and coupling scale $\alpha$ must emerge from the same assembly and photon histories. Neither capture probabilities alone nor writing a squared-amplitude formula establishes that recovery.
+
+For a general final channel $f$, the same scale-separated, consistently normalized comparison target is
 $$
 \Gamma_{a\to f}^{\mathbb{A}\mathbb{A}\mathbb{A}}
 \rightarrow
@@ -333,9 +347,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-542b0eccb2bd0902)
 
-The important closure is not the symbol $\mathcal{M}$ itself; it is that the same event window, source basin, accepted photon branch, recoil row, and residual row generate both the discrete line rate and the continuum final-state density used by the comparison formula.
+Here $\mathcal M_{a\to f}^{\mathrm{eff}}$ is the effective transition matrix element and $\rho_f$ the final-state density per unit energy, with the same sum-or-integral qualification. The arrows denote a recovery obligation, not an infinite-window limit of a bounded probability divided by time. Discrete atomic labels and continuum photon or recoil states must be derived and counted under one compatible ensemble and normalization.
 
-Selection rules should be carried as Gate C closure targets. In this framing, an allowed line corresponds to a nonzero basin measure for the accepted photon channel after energy, momentum, transverse angular momentum, parity-like geometry, and local Noether sea constraints are applied. A forbidden or suppressed line corresponds to zero or small basin measure in the leading channel, with possible recovery through higher-order routing, medium coupling, or multi-photon channels only when the event ledger closes.
+Selection rules are Gate C closure targets for which channels have zero, small, or appreciable transition weight after the full event constraints are applied. Each statement names its approximation, ensemble, and channel; a forbidden leading contribution can coexist with higher-order, medium-assisted, or multi-photon transitions. Observing no events in a finite sample does not prove zero measure. Exact exclusion needs a symmetry or dynamical argument, while suppression requires an uncertainty bound relative to a declared rate scale.
 
 ## Observer-Level Recovery
 
@@ -364,3 +378,7 @@ Effective summaries: orbital labels, line frequencies, Einstein coefficients, os
 Speculative extensions: minimum stable photon energy, Noether sea-dependent line deviations, and basin-escape explanations of linewidths should remain provisional until the standard isolated-atom limits are recovered.
 
 If the mapping reproduces standard line data only by preserving the same independent fit inputs and supplies no new cross-channel consistency constraint, its remaining value is interpretive rather than a derived reduction of the atomic-radiation description.
+
+## Comparison Source
+
+MIT OpenCourseWare, *8.06 Quantum Physics III* (Spring 2016), [Chapter 2: Time-Dependent Approximation Methods](https://www.ocw.mit.edu/courses/8-06-quantum-physics-iii-spring-2016/0c27511c09675d8d385577023328248b_MIT8_06S16_chap2.pdf), §§2.1–2.3, supplies the observer-level transition-rate, spontaneous/stimulated-emission, and thermal-equilibrium comparisons. Its quantum operators and photon occupation factors are comparison targets here. The bounded-probability argument above is a separate mathematical check on the proposed basin-measure definition.
