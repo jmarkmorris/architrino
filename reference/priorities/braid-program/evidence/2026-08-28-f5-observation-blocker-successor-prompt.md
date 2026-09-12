@@ -14,7 +14,7 @@ Plainly: establish whether the next experiment has a defensible observation path
 
 Work in the existing Architrino checkout. Read `AGENTS.md`, the generated startup router, the live goal-seeking procedure and only the owners needed below. Do not create a worktree. Preserve unrelated changes and every historical source, binary, plan, failed outcome and review.
 
-The [phase-varying display representative session report](2026-08-28-f5-unattended-certification-session.md) is closed at documentation scope. Its original scientific campaign remains stopped and unmet: zero complete evaluations launched, observation retries exhausted, and no accepted diagnostic EOM build or failed-trial capture. The report's SHA-256 at this prompt's preparation is `99e611863fd741b378422a8a472fac102c1e24aad8cd7464858913c804b36a95`. Any original campaign prompt reached through these records is historical context, not renewed execution authority.
+The former phase-varying display representative session report is retired at documentation scope. Its original scientific campaign remains stopped and unmet: zero complete evaluations launched, observation retries exhausted, and no accepted diagnostic EOM build or failed-trial capture. Any original campaign prompt reached through these records is historical context, not renewed execution authority.
 
 Use this repository-relative evidence root, called `B` below:
 

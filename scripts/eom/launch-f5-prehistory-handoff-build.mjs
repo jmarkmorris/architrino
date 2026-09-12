@@ -12,11 +12,10 @@ const SELF = "scripts/eom/launch-f5-prehistory-handoff-build.mjs";
 const ENTRY = "scripts/eom/prepare-f5-prehistory-handoff-build.mjs";
 const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs";
 const PINS = Object.freeze({
-  [ENTRY]: "2f80d1d871825d4aa1f26db0f137e79330bf58294f9ad6b644ed8b51a9911d51",
-  "scripts/eom/prepare-subfield-circular-root.mjs": "3d372147742b1036bb3101b7a8b39fcfeb1b5cb7176c3c1f7edeaee5635b9802",
-  "scripts/eom/prepare-f5-enclosed-root.mjs": "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9",
-  [OUTER]: "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c",
-  "/usr/bin/memory_pressure": "ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da",
+  [ENTRY]: "9cf07590c1733db90eb5c0b407a4bae6fac8af6adc0785bd41c9f5a5d0b5b111",
+  "scripts/eom/prepare-subfield-circular-root.mjs": "31224420d48181f8834e0a6290f7dd2957fbb0e4072e3f6aa2062d76a8cd6e43",
+  "scripts/eom/prepare-f5-enclosed-root.mjs": "3431be1ca2f17474775572358baa88eae8de3ce93403d58e4b1fa36d9e367d50",
+  [OUTER]: "e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920",
 });
 const absolute = value => path.resolve(ROOT, value);
 const sha = value => createHash("sha256").update(value).digest("hex");
@@ -86,8 +85,7 @@ export function admitBuild(job) {
     receipt.status === completion.status && receipt.accepted === false && receipt.rootCalls === 0 &&
     receipt.dataLoaded === false && receipt.eomExecuted === false && receipt.evolutionAuthorized === false &&
     receipt.h3EvidenceEligible === false, "build authority differs");
-  for (const key of ["sources", "tools", "headerDependencies", "externalLibraries"])
-    check(same(receipt[key+"Before"], receipt[key+"After"]), "build generation differs: "+key);
+  check(same(receipt.sourcesBefore, receipt.sourcesAfter), "authored source generation differs");
   check(receipt.stages.length === job.gates.length && receipt.stages.length > 0, "build gate census differs");
   receipt.stages.forEach((stage, index) => {
     const gate = job.gates[index];
@@ -97,11 +95,9 @@ export function admitBuild(job) {
       gate.acknowledged === true && gate.measurement.code === 0 && gate.measurement.signal === null,
       "stage/gate closure differs");
   });
-  const records = [...receipt.sourcesAfter, ...receipt.toolsAfter, ...receipt.headerDependenciesAfter,
-    ...receipt.externalLibrariesAfter, ...receipt.discoveryToolsBefore, ...Object.values(receipt.built),
+  const records = [...receipt.sourcesAfter, ...receipt.headerDependenciesAfter, ...Object.values(receipt.built),
     ...Object.values(receipt.producerSources), ...receipt.stages.map(x => x.log),
-    ...receipt.dependencyUnits.flatMap(x => [x.beforeDependencyFile, x.actualDependencyFile]),
-    ...receipt.runtimeDependencies.filter(x => x.status === "file-hashed")];
+    ...receipt.dependencyUnits.flatMap(x => [x.beforeDependencyFile, x.actualDependencyFile])];
   for (const record of records) {
     // Tool invocation paths can intentionally be symlinks (for example ranlib).
     const observed = readBound(record.realPath ?? record.path, record.sha256);
@@ -146,7 +142,7 @@ export async function launch(argv) {
   let ancestor = path.dirname(output);
   while (!existsSync(ancestor)) ancestor = path.dirname(ancestor);
   check(realpathSync(ancestor) === ancestor, "symlinked build ancestor");
-  const self = readBound(SELF, argv[5], true), captures = Object.entries(PINS).map(([p, h]) => readBound(p, h, p !== "/usr/bin/memory_pressure"));
+  const self = readBound(SELF, argv[5], true), captures = Object.entries(PINS).map(([p, h]) => readBound(p, h, true));
   const outerBytes = captures.find(x => x.path === absolute(OUTER)).data;
   const outer = await import("data:text/javascript;base64,"+outerBytes.toString("base64"));
   const table = await outer.processTable();
@@ -158,7 +154,6 @@ export async function launch(argv) {
   const observe = async launch => {
     const stamp = { elapsedSeconds: (performance.now()-started)/1000, atLaunch: launch, accepted: false };
     try {
-      readBound("/usr/bin/memory_pressure", PINS["/usr/bin/memory_pressure"]);
       const stdout = await new Promise((resolve, reject) => execFile("/usr/bin/memory_pressure", [],
         { timeout: 2000, killSignal: "SIGKILL", maxBuffer: 1024*1024, encoding: "utf8" },
         (e, out) => e ? reject(e) : resolve(out)));

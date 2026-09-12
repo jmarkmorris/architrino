@@ -1,9 +1,14 @@
-import test from "node:test";
+import test, { after } from "node:test";
 import assert from "node:assert/strict";
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { parsePrepareArgs, prepareF5, runWatched, scopedPath, validateProofReceipt, verifyFrozenReferences } from "../scripts/eom/prepare-f5-enclosed-root.mjs";
+import { pathToFileURL } from "node:url";
+import { createF5SourceReplay } from "./helpers/f5-source-replay.mjs";
+const replay = createF5SourceReplay();
+after(() => replay.close());
+const { parsePrepareArgs, prepareF5, runWatched, scopedPath, validateProofReceipt, verifyFrozenReferences } =
+  await import(pathToFileURL(path.join(replay.rootDir, "scripts/eom/prepare-f5-enclosed-root.mjs")));
 
 test("preparation requires explicit fresh scoped output and build directories", () => {
   assert.throws(() => parsePrepareArgs([]), /required/);

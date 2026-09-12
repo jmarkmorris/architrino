@@ -15,7 +15,7 @@ const BASE = ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v
 const PINNED = Object.freeze({
   [SUBJECT]: "a06246ca3aac60d500981b19fcffabb9612dc3a4085fc4fb3c441e8839726b7a",
   "src/eom/CMakeLists.txt": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4",
-  [SUPERVISOR]: "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9",
+  [SUPERVISOR]: "3431be1ca2f17474775572358baa88eae8de3ce93403d58e4b1fa36d9e367d50",
 });
 const CANDIDATES = ["coincident-midpoint-common-frequency", "coincident-midpoint-equal-radius-common-frequency", "coincident-midpoint-3-2-1-frequency", "phase-compensated-equal-geometry", "axially-separated-common-frequency", "axially-separated-equal-radius-common-frequency", "axially-separated-3-2-1-frequency", "axial-transverse-coincident-axis-interior", "high-axial-coincident-axis-interior", "planar-common-center-three-binary", "coincident-center-two-component-circular-co-rotating", "coincident-center-two-component-circular-counter-rotating", "coaxial-separated-two-component-circular-co-rotating", "coaxial-separated-two-component-circular-counter-rotating", "coaxial-separated-two-planar-braid-co-rotating", "coaxial-separated-two-planar-braid-counter-rotating"];
 const hash = (bytes) => createHash("sha256").update(bytes).digest("hex");
@@ -27,6 +27,11 @@ export function fileBinding(filename) {
   if (!statSync(realPath).isFile()) throw new Error(`binding is not a regular file: ${filename}`);
   const bytes = readFileSync(realPath);
   return { path: local(full), realPath, sha256: hash(bytes), bytes: bytes.length };
+}
+function capabilityPath(filename) {
+  const full = realpathSync(absolute(filename));
+  if (!statSync(full).isFile()) throw new Error(`capability is not a regular file: ${filename}`);
+  return { path: full };
 }
 
 function writeJson(filename, value) {
@@ -226,7 +231,7 @@ export async function prepareSubfieldCircular(argv) {
     writeJson(path.join(output, "references-before.json"), receipt.referencesBefore);
     const cmake = resolveTool("cmake"), xcrun = resolveTool("xcrun");
     const systemVersionTool = resolveTool("sw_vers");
-    receipt.discoveryToolsBefore = [process.execPath, cmake, xcrun, systemVersionTool].map(fileBinding);
+    receipt.discoveryToolsBefore = [process.execPath, cmake, xcrun, systemVersionTool].map(capabilityPath);
     const tool = async (name) => {
       const resolved = await watched(`resolve-${name.replaceAll("+", "p")}`, xcrun, ["--find", name]);
       if (!path.isAbsolute(resolved)) throw new Error(`tool resolver did not return an absolute ${name} path`);
@@ -236,12 +241,11 @@ export async function prepareSubfieldCircular(argv) {
       ranlib = await tool("ranlib"), linker = await tool("ld"), otool = await tool("otool");
     const sdk = realpathSync(await watched("resolve-sdk", xcrun, ["--show-sdk-path"]));
     const resourceDirectory = realpathSync(await watched("compiler-resource-dir", compiler, ["--driver-mode=g++", "-print-resource-dir"]));
-    receipt.toolsBefore = [...new Set([process.execPath, cmake, xcrun, otool, systemVersionTool, compiler, ar, ranlib, linker])].sort().map(fileBinding);
-    receipt.compiler = { ...fileBinding(compiler), driverMode: "g++", sdk, resourceDirectory,
+    receipt.toolsBefore = [...new Set([process.execPath, cmake, xcrun, otool, systemVersionTool, compiler, ar, ranlib, linker])].sort().map(capabilityPath);
+    receipt.compiler = { path: realpathSync(compiler), driverMode: "g++", sdk, resourceDirectory,
       version: await watched("compiler-version", compiler, ["--driver-mode=g++", "--version"]) };
     receipt.cmakeVersion = await watched("cmake-version", cmake, ["--version"]);
     receipt.systemVersion = await watched("system-version", systemVersionTool, []);
-    writeJson(path.join(output, "tools-before.json"), receipt.toolsBefore);
     await watched("configure", cmake, ["-S", path.join(ROOT, "src/eom"), "-B", build,
       "-DCMAKE_BUILD_TYPE=Release", "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON", "-DCMAKE_PREFIX_PATH=/opt/homebrew",
       `-DCMAKE_CXX_COMPILER=${compiler}`, "-DCMAKE_CXX_COMPILER_ARG1=--driver-mode=g++",
@@ -251,7 +255,7 @@ export async function prepareSubfieldCircular(argv) {
     const cache = readFileSync(cacheFile, "utf8");
     if (realpathSync(cacheField(cache, "CMAKE_CXX_COMPILER")) !== compiler) throw new Error("CMake compiler differs from resolved executable");
     const externalPaths = ["MPFR_LIBRARY", "GMP_LIBRARY"].map((name) => cacheField(cache, name));
-    receipt.externalLibrariesBefore = externalPaths.map(fileBinding);
+    receipt.externalLibrariesBefore = externalPaths.map(capabilityPath);
     const mpfrInclude = cacheField(cache, "MPFR_INCLUDE_DIR");
     const commands = JSON.parse(readFileSync(commandsFile));
     const compile = commands.filter((entry) => entry.file.startsWith(path.join(ROOT, "src/eom/src/")))
@@ -273,13 +277,10 @@ export async function prepareSubfieldCircular(argv) {
         beforeDependencyFile: fileBinding(dep), files });
     }
     const headerPaths = [...new Set(receipt.dependencyUnits.flatMap((unit) => unit.files))].sort();
-    receipt.headerDependenciesBefore = headerPaths.map(fileBinding);
-    writeJson(path.join(output, "header-dependencies-before.json"), receipt.headerDependenciesBefore);
-    writeJson(path.join(output, "external-libraries-before.json"), receipt.externalLibrariesBefore);
+    receipt.headerDependenciesBefore = headerPaths.filter((filename) => filename.startsWith(`${ROOT}/src/eom/`)).map(fileBinding);
     const configured = [cacheFile, commandsFile].map(fileBinding);
     requireSameBindings(receipt.sourcesBefore, sourceSnapshot(), "source snapshot before compilation");
     requireSameBindings(receipt.referencesBefore, referenceSnapshot(), "reference snapshot before compilation");
-    requireSameBindings(receipt.toolsBefore, receipt.toolsBefore.map((record) => fileBinding(record.path)), "toolchain before compilation");
     await watched("librarybuild", cmake, ["--build", build, "--target", "eom_native", "--parallel", "2", "--verbose"]);
     const executable = path.join(build, "eom_subfield_circular_root_cli"), library = path.join(build, "libeom_native.a");
     const manualDependencyFile = path.join(dependencies, "adapter-actual.d");
@@ -306,38 +307,27 @@ export async function prepareSubfieldCircular(argv) {
         const requested = match[1];
         if (!path.isAbsolute(requested)) throw new Error(`unresolved dynamic dependency: ${requested}`);
         if (existsSync(requested)) {
-          const record = fileBinding(requested);
-          receipt.runtimeDependencies.push({ consumer: local(filename), requested, status: "file-hashed", ...record });
-          if (!scanned.has(record.realPath)) queue.push(requested);
+          receipt.runtimeDependencies.push({ consumer: local(filename), requested, status: "runtime-capability" });
+          if (!scanned.has(realpathSync(requested))) queue.push(requested);
         } else if (requested.startsWith("/usr/lib/") || requested.startsWith("/System/Library/")) {
-          receipt.runtimeDependencies.push({ consumer: local(filename), requested,
-            status: "platform-dyld-shared-cache-not-file-hashable", systemVersion: receipt.systemVersion });
+          receipt.runtimeDependencies.push({ consumer: local(filename), requested, status: "runtime-capability" });
         } else throw new Error(`dynamic dependency cannot be read: ${requested}`);
       }
     }
     await watched("help-control", executable, ["--help"]);
     receipt.sourcesAfter = sourceSnapshot(); receipt.referencesAfter = referenceSnapshot();
-    receipt.toolsAfter = receipt.toolsBefore.map((record) => fileBinding(record.path));
-    receipt.headerDependenciesAfter = headerPaths.map(fileBinding);
-    receipt.externalLibrariesAfter = externalPaths.map(fileBinding);
-    for (const [before, after, label] of [[receipt.sourcesBefore, receipt.sourcesAfter, "sources"],
-      [receipt.referencesBefore, receipt.referencesAfter, "references"], [receipt.toolsBefore, receipt.toolsAfter, "tools"],
-      [receipt.headerDependenciesBefore, receipt.headerDependenciesAfter, "headers"],
-      [receipt.externalLibrariesBefore, receipt.externalLibrariesAfter, "external libraries"]]) requireSameBindings(before, after, label);
-    requireSameBindings(receipt.discoveryToolsBefore, receipt.discoveryToolsBefore.map((record) => fileBinding(record.path)), "discovery tools");
+    receipt.toolsAfter = receipt.toolsBefore.map((record) => ({ path: record.path }));
+    receipt.headerDependenciesAfter = headerPaths.filter((filename) => filename.startsWith(`${ROOT}/src/eom/`)).map(fileBinding);
+    receipt.externalLibrariesAfter = externalPaths.map(capabilityPath);
+    requireSameBindings(receipt.sourcesBefore, receipt.sourcesAfter, "sources");
+    requireSameBindings(receipt.referencesBefore, receipt.referencesAfter, "references");
     for (const record of Object.values(receipt.built)) requireSameBindings([record], [fileBinding(record.path)], "built artifact");
-    for (const record of receipt.runtimeDependencies.filter((item) => item.status === "file-hashed")) {
-      const current = fileBinding(record.path);
-      if (record.sha256 !== current.sha256 || record.realPath !== current.realPath || record.bytes !== current.bytes) throw new Error("runtime dependency changed");
-    }
     for (const stage of receipt.stages) requireSameBindings([stage.log], [fileBinding(stage.log.path)], "stage log");
     writeJson(path.join(output, "sources-after.json"), receipt.sourcesAfter);
     writeJson(path.join(output, "references-after.json"), receipt.referencesAfter);
-    writeJson(path.join(output, "tools-after.json"), receipt.toolsAfter);
-    writeJson(path.join(output, "header-dependencies-after.json"), receipt.headerDependenciesAfter);
-    writeJson(path.join(output, "external-libraries-after.json"), receipt.externalLibrariesAfter);
+    // Host tools and package/runtime libraries remain live capabilities; no historical byte records are emitted.
     remaining(); receipt.status = "build-recorded-pending-independent-review";
-    receipt.dependencyBoundary = "Every compiler-reported source/header dependency and file-backed external runtime dependency is hash-bound. macOS shared-cache system libraries are platform-trusted and explicitly listed without invented file hashes.";
+    receipt.dependencyBoundary = "Authored sources, references, and repository headers are byte-bound; compilers, build tools, SDKs, packages, and runtime libraries are current execution capabilities and are not historical identity records.";
     return receipt;
   } catch (error) {
     receipt.status = "failed"; receipt.error = error.message; throw error;

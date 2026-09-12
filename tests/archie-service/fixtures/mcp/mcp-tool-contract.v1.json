@@ -39,7 +39,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "bb04303ab376f05ae648d515357fe0edb7ff82eea6eee550346d5443c372fd77",
+          "snapshotSha256": "be7bfe480c079c32e1c1b949e2015c10ee0d252d810fc34529840eedfaebe325",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -111,7 +111,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "bb04303ab376f05ae648d515357fe0edb7ff82eea6eee550346d5443c372fd77",
+          "snapshotSha256": "be7bfe480c079c32e1c1b949e2015c10ee0d252d810fc34529840eedfaebe325",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -183,7 +183,7 @@
         "status": "not_found",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "bb04303ab376f05ae648d515357fe0edb7ff82eea6eee550346d5443c372fd77",
+          "snapshotSha256": "be7bfe480c079c32e1c1b949e2015c10ee0d252d810fc34529840eedfaebe325",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -222,7 +222,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "bb04303ab376f05ae648d515357fe0edb7ff82eea6eee550346d5443c372fd77",
+          "snapshotSha256": "be7bfe480c079c32e1c1b949e2015c10ee0d252d810fc34529840eedfaebe325",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -281,7 +281,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "bb04303ab376f05ae648d515357fe0edb7ff82eea6eee550346d5443c372fd77",
+          "snapshotSha256": "be7bfe480c079c32e1c1b949e2015c10ee0d252d810fc34529840eedfaebe325",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -358,7 +358,7 @@
         "status": "excluded_visibility",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "bb04303ab376f05ae648d515357fe0edb7ff82eea6eee550346d5443c372fd77",
+          "snapshotSha256": "be7bfe480c079c32e1c1b949e2015c10ee0d252d810fc34529840eedfaebe325",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -396,7 +396,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "bb04303ab376f05ae648d515357fe0edb7ff82eea6eee550346d5443c372fd77",
+          "snapshotSha256": "be7bfe480c079c32e1c1b949e2015c10ee0d252d810fc34529840eedfaebe325",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"
@@ -459,7 +459,7 @@
         "status": "ok",
         "snapshot": {
           "snapshotId": "source_snapshot_fixture_001",
-          "snapshotSha256": "bb04303ab376f05ae648d515357fe0edb7ff82eea6eee550346d5443c372fd77",
+          "snapshotSha256": "be7bfe480c079c32e1c1b949e2015c10ee0d252d810fc34529840eedfaebe325",
           "repositoryRef": "fixture-ref",
           "visibilityPolicyVersion": "visibility_fixture_v1",
           "freshnessState": "fresh"

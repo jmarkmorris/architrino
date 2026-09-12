@@ -1,6 +1,6 @@
 # Bremsstrahlung
 
-Bremsstrahlung ("braking radiation") is electromagnetic emission generated when a charged particle is accelerated by another charge, typically an electron deflected by an ion or nucleus. Because the acceleration history spans many scattering angles and impact parameters, bremsstrahlung produces a broad continuum rather than a line spectrum. In practice it is a core process in nuclear and particle experiments, hot-plasma diagnostics, and high-energy astrophysical source modeling.
+Bremsstrahlung ("braking radiation") is the Standard Model comparison process in which electromagnetic emission accompanies the acceleration of a charged particle by another charge, typically an electron deflected by an ion or nucleus. Because the acceleration history spans many scattering angles and impact parameters, bremsstrahlung produces a broad continuum rather than a line spectrum. In practice it is a core process in nuclear and particle experiments, hot-plasma diagnostics, and high-energy astrophysical source modeling. The AAA material below is an exploratory mapping of this effective channel, not a claim that atomic or electron-envelope structure is a substrate premise.
 
 ## Teaching Path
 

@@ -48,17 +48,7 @@ AAA Core is not an end-user application. It has no public scene, visitor launch 
 
 ## Current Blocker
 
-The accepted [`aaa_core_path_interchange/v0`](contracts/path-interchange-v0.md) contract now fixes the logical path-set, chunk, stream-envelope, view, and derived-product records with normalized units, numeric profiles, immutable identity, provenance, authority, source closure, and fail-closed fixtures. No application should create a competing local path schema.
-
-The accepted [`aaa_core_codec_registry/v0`](contracts/codec-registry-v0.md) contract now fixes capability negotiation and concrete conformance examples for authoritative-history, precision-bounded-analysis, and display-stream profiles. It registers Core canonical JSON and quantized display capabilities, the Core-owned Potential fixture-map codec, and a source-preserving experimental fixture decoder. These are registry and synthetic conformance results, not production representation selections or performance evidence.
-
-The accepted [`aaa_core_accepted_history_stream/v0`](contracts/accepted-history-stream-v0.md) contract now fixes producer sequencing, two bounded subscriptions, idempotent duplicates, acknowledgement, backpressure, disconnect/reconnect cursors, retained replay, sealing, exact halt propagation, and deterministic consumer receipts over a three-chunk synthetic path bundle. This is in-process conformance, not a deployed transport or performance result.
-
-The accepted [`aaa_core_query_transform_publication/v0`](contracts/query-transform-publication-v0.md) contract now fixes equivalent request normalization, order-sensitive transform and reusable cache identities, exact source closure, provisional versus sealed state, non-escalating authority, and receipt-bound cross-application retrieval. Its conformance fixtures use complete and incomplete path-interchange sources and cover all fifteen named refusal codes. This is synthetic software conformance, not a production query, cache, catalog, transport, kernel, or scientific result.
-
-The accepted [`aaa_core_client/v0`](contracts/client-v0.md) now exposes the four contracts through one defensive-copy operation surface. Topo and Equation Mapping validate and query the same fixture records, subscribe through one shared accepted-history session, inspect the same progress, reuse one equivalent sealed publication, and retrieve it by exact receipt without application-local path logic. This is synchronous in-process client conformance, not a network SDK or production service.
-
-The accepted [`aaa_core_potential/v1`](contracts/potential-v1.md) is the sole supported application-facing Potential calculation boundary. Lorentz Geometry consumes it from its surface scheduler, while Topo exposes a thin consumer module for a separately approved Potential display mode. Complete finite contribution accounting is mandatory; missing, unavailable, duplicate, or nonfinite output fails closed. Core owns no Potential page, scene, controls, or visualization.
+The accepted path, codec, accepted-history, query/publication, client, and Potential contracts are the current service boundaries. Their detailed synthetic-conformance results and closure history remain in the focused contract owners and [work log](work-log.md); they establish neither production transport or service behavior nor scientific or performance acceptance. No application should create a competing local path schema, and Core owns no Potential page, scene, controls, or visualization.
 
 Plainly: Core computes and packages Potential results; applications decide how to show them, and no application fills a missing result with zero.
 

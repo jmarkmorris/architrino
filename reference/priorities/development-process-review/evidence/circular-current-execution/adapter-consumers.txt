@@ -4,7 +4,6 @@ reference/priorities/development-process-review/analysis/f5-circular-build-revie
 reference/priorities/development-process-review/evidence/f5-circular-build-review/60e777bd-8ae9-49f3-9763-af49b766e7a0.stdout.log
 reference/priorities/development-process-review/evidence/f5-circular-build-review/build-consumers.txt
 reference/priorities/development-process-review/evidence/f5-circular-build-review/build-pin-integration.json
-reference/priorities/development-process-review/evidence/f5-circular-build-review/current-build-review.json
 reference/priorities/development-process-review/evidence/f5-circular-build-review/pin-history.json
 reference/priorities/development-process-review/evidence/f5-circular-build-review/review-pin-history.cjs
 reference/priorities/development-process-review/evidence/f5-circular-build-review/reviewed-sources.json

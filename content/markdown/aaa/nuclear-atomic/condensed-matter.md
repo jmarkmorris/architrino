@@ -1,6 +1,6 @@
 # Condensed Matter
 
-This chapter states the condensed-matter closure target for medium-level behavior in the Noether sea. It focuses on Noether sea transport: the distinction between reversible inertial response, true resistance, and threshold behavior when matter moves through a densely coupled background of neutral Noether braids.
+This chapter is an exploratory mapping study for the effective condensed-matter behavior recovered from AAA. It focuses on a proposed Noether-sea transport map: the distinction between reversible inertial response, true resistance, and threshold behavior when effective matter moves through a densely coupled background of neutral Noether braids. The map is not a completed derivation of atomic, molecular, or chemical behavior.
 
 This note bridges [Atomic Structure](atomic-structure.md), [Particle Masses](../assemblies/particle-masses.md), [Noether Sea Pro/Anti Coupling](../spacetime/noether-sea-pro-anti-coupling.md), and [Molecular Exclusion and Noether Sea Response](../spacetime/molecular-exclusion-and-noether-sea-response.md), since all four depend on how the Noether sea stores stress and permits transport.
 
@@ -8,7 +8,7 @@ The transport account is a closure target rather than a finished derivation. Its
 
 ## Noether Sea Transport
 
-The condensed-matter claim is not that ordinary matter feels a continuous dissipative drag from the Noether sea. In the validated weak regime, a stable assembly should move by reversible retuning: its internal causal ledger and local Noether sea coupling deform, store stress, and return that stress without opening a net loss channel.
+The exploratory transport hypothesis is not that ordinary matter feels a continuous dissipative drag from the Noether sea. In the proposed weak-regime map, a stable effective assembly would move by reversible retuning: its internal causal ledger and local Noether sea coupling deform, store stress, and return that stress without opening a net loss channel. This remains a mapping target; its falsifier is a controlled calculation in which the same retained record produces net loss below the declared threshold or cannot recover the effective transport benchmark.
 
 ### Transport Residual and Critical Surface
 

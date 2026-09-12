@@ -3,13 +3,19 @@ from __future__ import annotations
 import hashlib
 import json
 import subprocess
+import sys
 import tempfile
 import unittest
 from decimal import Decimal, getcontext
 from pathlib import Path
 
 
-REPO_ROOT = Path(__file__).resolve().parents[1]
+from source_replay_support import create_source_replay
+
+
+REPO_ROOT = create_source_replay(
+    "reference/priorities/braid-program/evidence/source-replay/orthogonal-plane-source-replay.v1.json"
+)
 PROTOCOL_PATH = (
     REPO_ROOT
     / "src/prescribed-path-analysis/protocols/"
@@ -126,7 +132,7 @@ class OrthogonalPlaneWeaveFoldLimitCertificateTests(unittest.TestCase):
             output = Path(directory) / "receipt.json"
             subprocess.run(
                 [
-                    str(REPO_ROOT.parent / ".venv/bin/python"),
+                    sys.executable,
                     str(CERTIFICATE_PATH),
                     "--write-receipt",
                     str(output),

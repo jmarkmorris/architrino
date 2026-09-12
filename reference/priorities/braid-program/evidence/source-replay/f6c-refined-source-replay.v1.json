@@ -1,0 +1,132 @@
+{
+  "schema": "architrino.source-replay.v1",
+  "claimBoundary": "Historical source identity only. No F6c scientific run, new acceptance, or refresh of frozen launch expectations.",
+  "files": [
+    {
+      "path": "scripts/eom/prepare-f6c-refined-acceleration.py",
+      "source": "reference/priorities/braid-program/evidence/source-replay/f6c-prepare-f6c-refined-acceleration.py.source",
+      "sha256": "00684a4779e3636e984d46cf76a6d462c648eb771a3084b7645ba81347eb1af4",
+      "role": "historical-source",
+      "gitBlob": "5132bf25a4541bf2cb0f5bbc5f48495685c5809e",
+      "originalPath": "scripts/eom/prepare-f6c-refined-acceleration.py",
+      "sourceCommit": "6bddaa9802684c96ea51a5483733b3f21ff4fc15"
+    },
+    {
+      "path": "tests/test_f6c_refined_acceleration_preparation.py",
+      "source": "tests/test_f6c_refined_acceleration_preparation.py",
+      "sha256": "28ac5b67e594f52ea151fa00ddb04dabbbe8a522108a7421ec56550b70e87252",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "scripts/eom/verify-f6c-refined-acceleration.py",
+      "source": "reference/priorities/braid-program/evidence/source-replay/f6c-verify-f6c-refined-acceleration.py.source",
+      "sha256": "e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae",
+      "role": "historical-source",
+      "gitBlob": "3b59325e8bd6c8d8abd5b5ba6c3ffc4e2e6b99c9",
+      "originalPath": "scripts/eom/verify-f6c-refined-acceleration.py",
+      "sourceCommit": "6bddaa9802684c96ea51a5483733b3f21ff4fc15"
+    },
+    {
+      "path": "tests/test_f6c_refined_acceleration.py",
+      "source": "tests/test_f6c_refined_acceleration.py",
+      "sha256": "d65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-refined-cover-acceleration-projection.md",
+      "source": "reference/priorities/braid-program/evidence/2026-08-27-f6c-refined-cover-acceleration-projection.md",
+      "sha256": "a9d871a35e6e9f00e96ba07182798cb87f546eabe0664e7f170b67c820bb43fc",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "scripts/eom/oracle/f6c_refined_acceleration_conformance.py",
+      "source": "scripts/eom/oracle/f6c_refined_acceleration_conformance.py",
+      "sha256": "7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "tests/test_f6c_refined_acceleration_conformance.py",
+      "source": "tests/test_f6c_refined_acceleration_conformance.py",
+      "sha256": "147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "scripts/eom/oracle/continuous_reception_acceleration.py",
+      "source": "scripts/eom/oracle/continuous_reception_acceleration.py",
+      "sha256": "abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "tests/test_eom_continuous_reception_acceleration.py",
+      "source": "tests/test_eom_continuous_reception_acceleration.py",
+      "sha256": "26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "scripts/eom/verify-f6c-continuous-reception-acceleration.py",
+      "source": "scripts/eom/verify-f6c-continuous-reception-acceleration.py",
+      "sha256": "23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "tests/test_f6c_continuous_reception_acceleration.py",
+      "source": "tests/test_f6c_continuous_reception_acceleration.py",
+      "sha256": "13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "scripts/eom/launch-prescribed-response-pilot.mjs",
+      "source": "reference/priorities/braid-program/evidence/source-replay/f6c-launch-prescribed-response-pilot.mjs.source",
+      "sha256": "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31",
+      "role": "historical-source",
+      "gitBlob": "075c7886c81815fb354a32c3ec9780ae55ba5a19",
+      "originalPath": "scripts/eom/launch-prescribed-response-pilot.mjs",
+      "sourceCommit": "713c53a0acf5c8c78002873d9ebc8887bd8d4bcc"
+    },
+    {
+      "path": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+      "source": "reference/priorities/braid-program/evidence/source-replay/f6c-launch-subfield-circular-root-pilot.mjs.source",
+      "sha256": "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826",
+      "role": "historical-source",
+      "gitBlob": "0f7721f85615a5118e0e9dfa95a05038a24e8928",
+      "originalPath": "scripts/eom/launch-subfield-circular-root-pilot.mjs",
+      "sourceCommit": "713c53a0acf5c8c78002873d9ebc8887bd8d4bcc"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json",
+      "source": "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json",
+      "sha256": "5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md",
+      "source": "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-full-resource-plan.md",
+      "sha256": "8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md",
+      "source": "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-reference.md",
+      "sha256": "8d2c7819962db6bac0e1ea0939292992145dbe342a28b51928efb81e74478179",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md",
+      "source": "reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md",
+      "sha256": "7d4c202ce935256168ccef52e3588ffa72eb4d6509db432e814eba65ed5568bc",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md",
+      "source": "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md",
+      "sha256": "db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md",
+      "source": "reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md",
+      "sha256": "710279f5c348a81fd36d58c6ca704730b3fa70da729ca30b9c92ae4e1cc6734b",
+      "role": "unchanged-control"
+    }
+  ]
+}

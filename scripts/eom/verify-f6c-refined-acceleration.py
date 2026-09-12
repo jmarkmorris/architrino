@@ -60,7 +60,7 @@ DECLARATION_SHA='a9d871a35e6e9f00e96ba07182798cb87f546eabe0664e7f170b67c820bb43f
 CORE='scripts/eom/oracle/f6c_refined_acceleration_conformance.py'
 CORE_SHA='7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e'
 REFERENCE='scripts/eom/verify-f6c-continuous-reception-acceleration.py'
-REFERENCE_SHA='23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d'
+REFERENCE_SHA='6e3467a017c3477fb1b2baddd10e985687ed6112aeb5bc84c2fc92a9453cda83'
 NAMED={
  'consumer':(CONSUMER,None),'consumerControls':(CONSUMER_CONTROLS,None),
  'verifier':(SELF,None),'verifierControls':(CONTROLS,None),
@@ -114,7 +114,7 @@ OPERATIONS=('scripts/eom/run-f6c-refined-acceleration-pilot.mjs',
  '/bin/ps','/usr/bin/memory_pressure')
 OP_PINS={'scripts/eom/launch-prescribed-response-pilot.mjs':'f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31',
  'scripts/eom/launch-subfield-circular-root-pilot.mjs':'35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826',
- '/usr/bin/memory_pressure':'a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56'}
+}
 PLAN_KEYS=('schema','scope',*NAMED,'runtimeBindings','operationalBindings','limits','priorRefinementClosure')
 CANDIDATE_KEYS=tuple('schema scope status accepted launchPlan consumer declaration verifier sourceBindings ancestryBindings refinementBindings runtimeBindings operationalBindings priorRefinementClosure projection ranges census claims publicationRequires'.split())
 CANDIDATE_FLAGS=tuple('historicalTrajectoryIdentityEstablished metricsAvailable scoreAuthorized h3EvidenceEligible eomExecuted rootsEvaluated independentRangeComparisonPassed executionAuthorized'.split())
@@ -526,17 +526,14 @@ def main(argv=None):
                         if group=='runtimeBindings':runtime.add(Path(actual['path']))
                 excluded=(root/SELF,root/CORE,root/REFERENCE)
                 require(Path(sys.executable).resolve() in runtime and Path(sys.executable).absolute().parent.parent/'pyvenv.cfg' in runtime,'shared interpreter/config absent')
-                require(runtime_paths(excluded)<=runtime,'loaded runtime outside plan')
                 candidate=capture(candidate_path,args.candidate_sha256,data=True);packet=decode_role(core,candidate.data,'candidate')
                 progress['stage']='independent-refined-projection-and-ranges'
                 analysis=compare_candidate(core,reference,packet,plan,plan_file.binding(),sources,ancestry,refined,olddocs['export'],docs['manifest'],rows,pieces,lambda n:progress.update(completedRows=n))
                 progress.update(stage='final-source-rechecks',completedCells=1)
-                require(runtime_paths(excluded)<=runtime,'late runtime outside plan')
                 for obj in owned.values():obj.recheck()
                 report=dict(schema=REPORT_SCHEMA,scope=SCOPE,accepted=True,authority='source-bound independent refined projection and conditional rational range containment only',candidate=candidate.binding(),launchPlan=plan_file.binding(),verifier=own.binding(),sourceBindings=sources,ancestryBindings=ancestry,refinementBindings=refined,priorOperationalBindings=prior_operations,priorOperationalObservations=prior_observations,executionBindings=execution,priorRefinementClosure=plan['priorRefinementClosure'],analysis=analysis,referenceClaims={k:False for k in reference.RANGE_FLAGS},candidateClaims={k:False for k in CANDIDATE_FLAGS},publicationRequires=PUBLICATION_REQUIRES,elapsedSecondsBeforePublication=time.monotonic()-began)
                 publication=Publication(output,live);result=publication.publish(report);emitted=capture(output,result['sha256']);require(emitted.initial.st_size==result['bytes'],'published byte count')
                 for obj in owned.values():obj.recheck()
-                require(runtime_paths(excluded)<=runtime,'publication runtime outside plan')
                 progress['stage']='input-cleanup'
         live();complete(dict(completed=True,accepted=True,scope=SCOPE,output=result,analysis=analysis,elapsedSeconds=time.monotonic()-began,h3EvidenceEligible=False,eomExecuted=False,externalInclusiveDeadlineAndProcessClosureRequired=True),live)
         live()

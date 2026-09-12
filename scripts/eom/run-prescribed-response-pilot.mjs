@@ -71,7 +71,7 @@ export const ORIGINALS = Object.freeze([
   ['scripts/eom/oracle/certified_acceleration.py','scripts/eom/oracle/certified_acceleration.py','62787f1bb0d14329c0ad1f3586ef1f1cbeb666fe8c11f8831f7ad761d7c42b83'],
 ].map(row=>Object.freeze(row)));
 export const PINS = Object.freeze({...Object.fromEntries(ORIGINALS.filter(r=>r[1]).map(r=>[r[1],r[2]])),
-  [OUTER]:'58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c',
+  [OUTER]:'e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920',
   [PUBLISHER]:'dc9d6db86b564297c0b21b5cf79afefd150b0eeb55d0bbedc71621eee0c30be4',
   'tests/test_prescribed_acceleration_response_publication.py':'fe57d4ed40110d530044b0d6aecb7a17da865b4d56d6186a3ad14497282e217f'});
 export const check = (ok,message)=>{if(!ok)throw new Error(message);};

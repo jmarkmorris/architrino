@@ -1,0 +1,141 @@
+{
+  "schema": "architrino.source-replay.v1",
+  "claimBoundary": "Historical F5 inputs and unchanged numerical validators with explicitly reviewed current orchestration; no new scientific acceptance or launch approval.",
+  "files": [
+    {
+      "path": "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
+      "source": "reference/priorities/braid-program/evidence/source-replay/f5-approved-config.json.source",
+      "sha256": "e92e450c8ea83086b60184d31ff5b07fe8a470b1e20088ea312592f2b38800fb",
+      "role": "historical-input",
+      "gitBlob": "99ba2c5c98fed7508cf22738daafdb1bcdbc6f72",
+      "originalPath": "reference/priorities/braid-program/configurations/f5-phase-varying-campaign.v2.json"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json",
+      "source": "reference/priorities/braid-program/evidence/source-replay/f5-pilot-fixture.json.source",
+      "sha256": "bda39fe695e8b446ac91aee96a9f867c7f48b8228f2c9f6ac547c8172e0da344",
+      "role": "historical-input",
+      "gitBlob": "7963ef61230fb5ed275e9ba829ea56ab93609d65",
+      "originalPath": "reference/priorities/braid-program/evidence/2026-08-26-f5-phase-varying-root-pilot-source.v2.json"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md",
+      "source": "reference/priorities/braid-program/evidence/source-replay/f5-restart-predeclaration.md.source",
+      "sha256": "1bc458d0b80c0a4f9e5b5c22e83d7e360306f020526296a937ae26742a6296e5",
+      "role": "historical-input",
+      "gitBlob": "a76a8c7c408ba39c69b8bb59c25003ddb3207d06",
+      "originalPath": "reference/priorities/braid-program/evidence/2026-08-26-f5-enclosed-root-restart-predeclaration.md"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-26-f5-independent-interpolation-enclosure.md",
+      "source": "reference/priorities/braid-program/evidence/source-replay/f5-enclosure-evidence.md.source",
+      "sha256": "931f5d88a209648bde63dfbdd1f24303b7a33e101e11565e75fd608be347d496",
+      "role": "historical-input",
+      "gitBlob": "e319e4dae710c6aae9aa2dbdeee45dd9c2414aaf",
+      "originalPath": "reference/priorities/braid-program/evidence/2026-08-26-f5-independent-interpolation-enclosure.md"
+    },
+    {
+      "path": ".local-data/braid-analysis/parallel-agent-search/parallel-braid-prescribed-search-20260826-v1/f5-independent-enclosure/accepted-enclosure-report.v1.json",
+      "source": "reference/priorities/braid-program/evidence/source-replay/f5-accepted-enclosure-report.json.source",
+      "sha256": "2f8fa7bdd40df643a661b2efae4a1007683120077d074165f8f506a4b9941bd9",
+      "role": "historical-input"
+    },
+    {
+      "path": "scripts/eom/oracle/decimal_interval.py",
+      "source": "scripts/eom/oracle/decimal_interval.py",
+      "sha256": "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a",
+      "role": "unchanged-implementation"
+    },
+    {
+      "path": "scripts/eom/oracle/f5_actual_cubic_conformance.py",
+      "source": "scripts/eom/oracle/f5_actual_cubic_conformance.py",
+      "sha256": "4a90227cd79a4acfe319c723a05b711df1947953cc229f87114c4bc7babf6e09",
+      "role": "unchanged-implementation"
+    },
+    {
+      "path": "scripts/eom/oracle/f5_history_manifest_conformance.py",
+      "source": "scripts/eom/oracle/f5_history_manifest_conformance.py",
+      "sha256": "c34cd3f368398fd1ecd3a227c8026508efd319e9219b0ae8819eb4dfab646c74",
+      "role": "unchanged-implementation"
+    },
+    {
+      "path": "scripts/eom/oracle/f5_api_domain_conformance.py",
+      "source": "scripts/eom/oracle/f5_api_domain_conformance.py",
+      "sha256": "d33d90d1b292466e03846c86017a2444e6228c45927ddd3bb49e28c3daf500d3",
+      "role": "unchanged-implementation"
+    },
+    {
+      "path": "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs",
+      "source": "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs",
+      "sha256": "1b5051928406482ffa3fecfaa60b1e94d3f1372ed87ea2ea5e7442523ddc8fd0",
+      "role": "unchanged-implementation"
+    },
+    {
+      "path": "scripts/eom/reduce-f5-enclosed-root-ledger.mjs",
+      "source": "scripts/eom/reduce-f5-enclosed-root-ledger.mjs",
+      "sha256": "9c4d5730613597d7931b59c37d77c405bcf928de2421d55d3c76f78b7228a73a",
+      "role": "unchanged-implementation"
+    },
+    {
+      "path": "scripts/eom/prepare-f5-enclosed-root.mjs",
+      "source": "scripts/eom/prepare-f5-enclosed-root.mjs",
+      "sha256": "3431be1ca2f17474775572358baa88eae8de3ce93403d58e4b1fa36d9e367d50",
+      "role": "reviewed-current-orchestration",
+      "review": "AWT-015 2026-09-12 current host-capability recording transition; no production toolchain acceptance"
+    },
+    {
+      "path": "scripts/eom/verify-f5-enclosed-root-prefix.mjs",
+      "source": "scripts/eom/verify-f5-enclosed-root-prefix.mjs",
+      "sha256": "c5894a68aaad645a68b3d74d146c8f23ada96a4e28eb21721a33344aad09f6da",
+      "role": "unchanged-implementation"
+    },
+    {
+      "path": "src/eom/native/eom_f5_enclosed_root_cli.cpp",
+      "source": "src/eom/native/eom_f5_enclosed_root_cli.cpp",
+      "sha256": "16a067847d77348b4c4d809dbaece8a4a80b91a6e9568198603b0338407d38f6",
+      "role": "unchanged-implementation"
+    },
+    {
+      "path": "src/eom/CMakeLists.txt",
+      "source": "src/eom/CMakeLists.txt",
+      "sha256": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4",
+      "role": "unchanged-implementation"
+    },
+    {
+      "path": "src/eom/src/History.cpp",
+      "source": "src/eom/src/History.cpp",
+      "sha256": "cd732843db488de66798953278d1e3b15151163c826b9d5b93eed98363a8b4c5",
+      "role": "unchanged-implementation"
+    },
+    {
+      "path": "src/eom/src/Interval.cpp",
+      "source": "src/eom/src/Interval.cpp",
+      "sha256": "5da66e8473f78439dbb075857918af85b7789b2749e5046c83d9b58d944023a5",
+      "role": "unchanged-implementation"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/History.hpp",
+      "source": "src/eom/include/architrino/eom/History.hpp",
+      "sha256": "0e326f15c70a0b0dc5786b1c14a2f2378324754c28cc597b92d82c0c1da3c8f3",
+      "role": "unchanged-implementation"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/Interval.hpp",
+      "source": "src/eom/include/architrino/eom/Interval.hpp",
+      "sha256": "880a98273244c65f85ebcce2e08026a177c4af633633b8e29078948b54143dd9",
+      "role": "unchanged-implementation"
+    },
+    {
+      "path": "src/eom/include/architrino/eom/ExactPairBatch.hpp",
+      "source": "src/eom/include/architrino/eom/ExactPairBatch.hpp",
+      "sha256": "bc4e09892c01f6b855bd4b1378c90999aefda0a747fdd5a816d86283a0e8d751",
+      "role": "unchanged-implementation"
+    },
+    {
+      "path": "src/eom/src/ExactPairBatch.cpp",
+      "source": "src/eom/src/ExactPairBatch.cpp",
+      "sha256": "c82b71c8335bd02a98941439d26a17ba3fc452318adb91cb5f42a015933e23c1",
+      "role": "unchanged-implementation"
+    }
+  ]
+}

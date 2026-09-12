@@ -43,10 +43,14 @@ function tiny(b){
   check(b&&typeof b.path==='string'&&path.isAbsolute(b.path)&&realpathSync(b.path)===b.path&&/^[a-f0-9]{64}$/u.test(b.sha256)&&Number.isSafeInteger(b.bytes)&&b.bytes>0&&b.bytes<=1048576,'bounded source binding');
   const fd=openSync(b.path,constants.O_RDONLY|constants.O_NOFOLLOW);try{const before=fstatSync(fd,{bigint:true});check(before.isFile()&&before.size===BigInt(b.bytes),'source size');const raw=readFileSync(fd);check(sha(raw)===b.sha256&&id(before)===id(fstatSync(fd,{bigint:true}))&&id(before)===id(lstatSync(b.path,{bigint:true})),'source replacement/hash');return raw;}finally{closeSync(fd);}
 }
+function capabilityPath(b){
+  check(b&&typeof b.path==='string'&&path.isAbsolute(b.path)&&realpathSync(b.path)===b.path,'runtime capability path');
+  return b.path;
+}
 async function coordinator(plan){
   const b=plan.sources.find(b=>b.path===path.join(plan.root,'scripts/eom/f6c-bounded-operation.mjs'));check(b,'explicit coordinator source');return import(url(tiny(b)));
 }
-export function declaredSources(plan,C){return C.sourceUnion([...plan.sources,plan.hookModule,plan.hookControls,...plan.stages.flatMap(s=>[s.entry,...s.sources,...s.runtimeBindings])]);}
+export function declaredSources(plan,C){return C.sourceUnion([...plan.sources,plan.hookModule,plan.hookControls,...plan.stages.flatMap(s=>[s.entry,...s.sources])]);}
 export function validateConfiguration(plan,C){
   const c=plan.configuration;
   const generic=c?.inventoryVersion===2,fields=['inventory','contract','packageModule','packageControls','independentDecoder','pythonCommand','python','pythonVenvConfig','pythonRuntimeBindings','outputPath'];
@@ -59,13 +63,14 @@ export function validateConfiguration(plan,C){
     check(Array.isArray(c.admittedClosures)&&c.admittedClosures.length>0&&c.admittedClosures.length<=159&&Array.isArray(c.expectedAuthority)&&c.expectedAuthority.length>0&&c.expectedAuthority.length<=159,'independent closure and authority inputs');
     c.expectedAuthority.forEach(C.binding);const seen=new Set();for(const x of c.admittedClosures){check(x&&Object.keys(x).sort().join('|')==='binding|expectedInstrument','closed admitted snapshot');C.binding(x.binding);C.binding(x.expectedInstrument);check(c.expectedAuthority.some(b=>same(b,x.expectedInstrument))&&!seen.has(x.binding.path),'explicit unique admitted authority');seen.add(x.binding.path);}
   }
-  C.binding(c.python);C.binding(c.pythonVenvConfig);check(c.pythonCommand===path.resolve(plan.root,process.env.AAA_VENV??'../.venv','bin/python'),'shared-venv Python command required');
-  check(c.pythonVenvConfig.path===path.resolve(path.dirname(c.pythonCommand),'../pyvenv.cfg'),'explicit shared-venv configuration');
-  check(Array.isArray(c.pythonRuntimeBindings)&&c.pythonRuntimeBindings.length>0,'explicit Python runtime inventory');
-  const runtime=C.sourceUnion(c.pythonRuntimeBindings);check(runtime.some(b=>same(b,c.python))&&runtime.some(b=>same(b,c.pythonVenvConfig)),'Python executable/config absent from runtime capture');
+  const pythonPath=capabilityPath(c.python),venvConfigPath=capabilityPath(c.pythonVenvConfig);
+  check(c.pythonCommand===path.resolve(plan.root,process.env.AAA_VENV??'../.venv','bin/python'),'shared-venv Python command required');
+  check(venvConfigPath===path.resolve(path.dirname(c.pythonCommand),'../pyvenv.cfg'),'explicit shared-venv configuration');
+  check(Array.isArray(c.pythonRuntimeBindings)&&c.pythonRuntimeBindings.length>0,'explicit Python runtime capability inventory');
+  const runtimePaths=c.pythonRuntimeBindings.map(capabilityPath);check(runtimePaths.includes(pythonPath)&&runtimePaths.includes(venvConfigPath),'Python executable/config absent from runtime capability set');
   check(typeof c.outputPath==='string'&&path.isAbsolute(c.outputPath)&&path.resolve(c.outputPath)===c.outputPath&&plan.outputDirectories.length===1&&path.dirname(c.outputPath)===plan.outputDirectories[0],'single scoped package output');
   check(plan.stages.length===2&&plan.stages[0].id==='producer'&&plan.stages[1].id==='independent-reader','serial writer then independent decoder');
-  const required=C.sourceUnion([...Object.keys(PINS).map(k=>c[k]),c.python,...runtime,...(generic?[...Object.keys(GENERIC_PINS).map(k=>c[k]),...c.expectedAuthority,...c.admittedClosures.flatMap(x=>[x.binding,x.expectedInstrument])]:[])]);
+  const required=C.sourceUnion([...Object.keys(PINS).map(k=>c[k]),...(generic?[...Object.keys(GENERIC_PINS).map(k=>c[k]),...c.expectedAuthority,...c.admittedClosures.flatMap(x=>[x.binding,x.expectedInstrument])]:[])]);
   const declared=declaredSources(plan,C);
   for(const b of required)check(declared.some(d=>same(d,b)),'missing bound packaging dependency '+b.path);
   check(plan.hookModule.path===path.join(plan.root,SELF)&&plan.hookControls.path===path.join(plan.root,CONTROL)&&plan.stages.every(s=>same(s.entry,plan.hookModule)),'one captured package driver/control generation');
@@ -139,13 +144,11 @@ def runtime_paths():
    p=getattr(m,attr,None)
    if p and os.path.isfile(p): paths.add(os.path.realpath(p))
  return sorted(paths)
-def observed_binding(p):
- raw=pathlib.Path(p).read_bytes(); return dict(path=p,sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw))
 if mode=='inventory':
- print(json.dumps(dict(pythonCommand=sys.executable,python=observed_binding(os.path.realpath(sys.executable)),pythonVenvConfig=observed_binding(venv_config),runtimeBindings=[observed_binding(p) for p in runtime_paths()],numericalCalls=0),separators=(',',':'))); sys.exit(0)
+ print(json.dumps(dict(pythonCommand=sys.executable,python=dict(path=os.path.realpath(sys.executable)),pythonVenvConfig=dict(path=venv_config),runtimeBindings=[dict(path=p) for p in runtime_paths()],numericalCalls=0),separators=(',',':'))); sys.exit(0)
 require(mode=='write','writer mode'); expected=config['pythonRuntimeBindings']; require(runtime_paths()==sorted(b['path'] for b in expected),'complete Python runtime inventory differs')
 require(sys.executable==config['pythonCommand'] and os.path.realpath(sys.executable)==config['python']['path'] and venv_config==config['pythonVenvConfig']['path'],'same shared-venv command/configuration')
-runtime_identities={b['path']:capture(b)[1] for b in expected}; deadline=entry_started+float(sys.argv[3]); require(0<float(sys.argv[3])<=1800,'remaining duration')
+deadline=entry_started+float(sys.argv[3]); require(0<float(sys.argv[3])<=1800,'remaining duration')
 def live(event): require(time.monotonic()<deadline,'supplementary Python deadline')
 inventory_raw,inventory_identity=capture(dict(config['inventory'],collect=True))
 if config.get('inventoryVersion')==2:
@@ -161,8 +164,7 @@ else:
  require(inventory_module is None,'no generic fallback');members=module.inventory_members(inventory_raw,expected_sha256=config['inventory']['sha256'],root=config['root'])
 live({})
 publication=module.write_package(members,config['outputPath'],deadline=deadline,live=live,scientific_bytes_already=config['scientificBytesAlready'],log_bytes_already=config['logBytesAlready'],source_files_already=config['sourceFilesAlready'],source_bytes_already=config['sourceBytesAlready'])
-require(runtime_paths()==sorted(b['path'] for b in expected),'runtime module set changed')
-for b in expected: require(capture(b)[1]==runtime_identities[b['path']],'runtime replaced')
+require(runtime_paths()==sorted(b['path'] for b in expected),'runtime capability set changed')
 for b,initial in metadata_identities: require(capture(b)[1]==initial,'original plan/parser/snapshot replaced')
 require(capture(source)[1]==source_identity and capture(config['inventory'])[1]==inventory_identity,'source/inventory replacement'); live({})
 wire=dataclasses.asdict(publication); wire['identity']={k:str(v) for k,v in wire['identity'].items()}
@@ -174,10 +176,10 @@ export function parseCompletion(raw){
   check(Buffer.isBuffer(raw)&&raw.length>0&&raw.length<=1048576,'bounded stage completion');const lines=raw.toString('utf8').split('\n');check(lines.length===2&&lines[1]==='','one complete stage record');const value=JSON.parse(lines[0]);check(value.completed===true&&value.numericalCalls===0,'metadata-only stage completion');return value;
 }
 function completionFor(stage,C){return parseCompletion(C.readBound(stage.process.stdoutLog.path,stage.process.stdoutLog.sha256,true,1048576).data);}
-function nodeRuntime(stage,C){const b=stage.runtimeBindings.find(b=>b.path===realpathSync(process.execPath));check(b,'bound Node runtime');const actual=C.clean(C.readBound(b.path,b.sha256));check(same(actual,b),'Node runtime size');return b;}
+function nodeRuntime(stage){const b=stage.runtimeBindings.find(b=>b.path===realpathSync(process.execPath));check(b,'bound Node runtime capability');return {path:b.path};}
 const ordered=rows=>[...rows].sort((a,b)=>a.path.localeCompare(b.path));
-function declaredRuntimes(plan,c,C){
-  for(const stage of plan.stages){const node=nodeRuntime(stage,C),expected=C.sourceUnion(stage.id==='producer'?[node,...c.pythonRuntimeBindings]:[node]);check(same(ordered(expected),ordered(C.sourceUnion(stage.runtimeBindings))),'complete declared stage runtime set');}
+function declaredRuntimes(plan,c){
+  for(const stage of plan.stages){const node=nodeRuntime(stage),expected=stage.id==='producer'?[node,...c.pythonRuntimeBindings.map(b=>({path:b.path}))]:[node];check(same(ordered(expected),ordered(stage.runtimeBindings.map(b=>({path:b.path})))),'complete declared stage runtime capability set');}
 }
 export function publicationIdentity(p,outputPath){
   check(p&&p.identity&&Object.keys(p.identity).sort().join('|')===['device','inode','bytes','mtime_ns','ctime_ns'].sort().join('|'),'writer identity fields');

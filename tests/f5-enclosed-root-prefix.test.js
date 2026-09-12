@@ -4,8 +4,9 @@ import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import test from "node:test";
+import test, { after } from "node:test";
 import { fileURLToPath } from "node:url";
+import { createF5SourceReplay } from "./helpers/f5-source-replay.mjs";
 
 import {
   APPENDIX_SHA256, BRIDGE_PATH, EXPORT_APPENDIX, PREFIX_SCHEMA,
@@ -13,7 +14,9 @@ import {
   verifyPrefixSnapshot,
 } from "../scripts/eom/verify-f5-enclosed-root-prefix.mjs";
 
-const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const replay = createF5SourceReplay();
+after(() => replay.close());
+const ROOT = replay.rootDir;
 const sha = (bytes) => createHash("sha256").update(bytes).digest("hex");
 const H = "a".repeat(64), OTHER = "b".repeat(64);
 

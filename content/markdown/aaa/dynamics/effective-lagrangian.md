@@ -125,7 +125,7 @@ The operational bridge is:
 1. ordinary mechanics uses $L_{\mathrm{std}}(q_{\mathrm{std}},dq_{\mathrm{std}}/dt_{\mathrm{std}},t_{\mathrm{std}})$ and tests $\delta S_{\mathrm{std}}=0$;
 2. $\mathbb{A}\mathbb{A}\mathbb{A}$ uses a regularized delayed action $S_\eta[\{\mathbf X_i\}]$ over path history;
 3. the action is accepted as a generator only if its variation yields the Master EOM on the retained branch chart;
-4. failure is measured by the variation residual $\mathbf{R}_i^{(\eta)}(T)$ and the window diagnostic $\epsilon_{\mathrm{var}}^{(\eta)}(W)$ defined below.
+4. failure is measured by the complete action residual, with the scale-only diagnostic and its window summary defined below; the displayed scale comparison is not itself a complete Euler derivative.
 
 Thus the Lagrangian question in $\mathbb{A}\mathbb{A}\mathbb{A}$ is not whether one can write a familiar-looking $T-V$ expression. The question is whether a delayed action with the same causal-root, transmitter-side factor, transmitter-side acceleration-weight, boundary, and wake-history conventions as the Master EOM has a stationary variation whose residual closes. Only then do Noether-style energy, momentum, and angular-momentum statements become theorem-grade rather than diagnostic.
 
@@ -216,7 +216,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a0bfe0d7c31089ab)
 
-when the relative phase connection closes on the branch. This is the topological content of integer resonance lock: the lock ratios $(m,n)$ in [Three-Binary 4:2:1 Frequency Lock](../noether-braid/three-binary-4-2-1-frequency-lock.md) make the phase-entry data integral rather than irrationally drifting. The symbol $c_1$ is retained as the established phase-entry notation, but here it means return-map degree data, not a scalar curvature integral. The effective Hamiltonian chart is therefore globally valid only on resonance-locked branches where the returned phase torus and causal-root ledger close together. Off-lock, the same $I_\alpha$ may exist on a local patch but acquires monodromy under return, so quantization and measure preservation become local fitting statements rather than global chart facts.
+when the relative phase connection closes on the branch. This is the topological content of integer resonance lock: the lock ratios $(m,n)$ in [Three-Binary 4:2:1 Frequency Lock](../noether-braid/three-binary-4-2-1-frequency-lock.md) make the phase-entry data integral rather than irrationally drifting. The symbol $c_1$ is retained as the established phase-entry notation, but here it means return-map degree data, not a scalar curvature integral. Resonance-locked branches are a useful restricted domain for testing whether a returned phase torus and causal-root ledger close together; resonance is not established here as necessary for every global Hamiltonian chart. Off-lock, global validity and any monodromy must be tested for the actual branch rather than inferred from phase drift alone.
 
 The proposed global interpretation is that the action variables $I_\alpha$ form sections of a flat action bundle over the retained branch family. This interpretation is not derived by the local action-angle construction. It requires the return holonomy to be trivial on the admitted observables and the phase-return degree pair to close by integer multiples of $2\pi$ on the same causal-root ledger. A Bohr-Sommerfeld-like condition is admissible only after those conditions have been established:
 
@@ -381,7 +381,7 @@ $$
 
 with the understanding that the displayed finite-$\eta$ integral is a branch-selector surrogate. Its weak limit must be recomputed so that the retained branch law carries the transmitter-side factor $W^{\mathrm{acc}}$. The derivative term in $\nabla_{\mathbf X_i}\mathcal{K}_{ij}$ is cleared only after the full delayed variation is assembled and the branch reduction is performed. If it survives in the interior, this action candidate fails to derive the Master EOM.
 
-A derivation, reduction, or simulation that claims action-derived dynamics must therefore report the variation residual
+A derivation, reduction, or simulation that claims action-derived dynamics must therefore distinguish the scale-only diagnostic below from the complete Euler derivative. The scale-only row checks agreement with the desired native acceleration scale, but a small value does not establish that the candidate action varies to that law, because receiver, transmitter, constraint, self-history, and boundary terms may remain.
 $$
 \mathbf{R}_{A,i}^{(\eta)}(T)
 =
@@ -577,7 +577,7 @@ $$
 \left|
 \Delta_W\left(K+E_{\text{wake}}^{(\eta)}\right)
 -
-\int_W\sum_i\mathbf V_i\cdot\mathbf{R}_i^{(\eta)}\,dT
+\int_W\sum_i\mathbf V_i\cdot\mathbf{R}_{A,i}^{(\eta)}\,dT
 -
 \int_W\mathcal{B}_E^{(\eta)}\,dT
 \right|
@@ -608,7 +608,7 @@ $$
 \left\|
 \Delta_W\left(\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake}}^{(\eta)}\right)
 -
-\int_W\sum_i\mathbf{R}_i^{(\eta)}\,dT
+\int_W\sum_i\mathbf{R}_{A,i}^{(\eta)}\,dT
 -
 \int_W\boldsymbol{\mathcal{B}}_P^{(\eta)}\,dT
 \right\|
@@ -631,7 +631,7 @@ $$
 \left\|
 \Delta_W\left(\mathbf{J}_{\mathrm{mech}}+\mathbf{J}_{\mathrm{wake}}^{(\eta)}\right)
 -
-\int_W\sum_i\mathbf X_i(T)\times\mathbf{R}_i^{(\eta)}\,dT
+\int_W\sum_i\mathbf X_i(T)\times\mathbf{R}_{A,i}^{(\eta)}\,dT
 -
 \int_W\boldsymbol{\mathcal{B}}_J^{(\eta)}\,dT
 \right\|
@@ -969,7 +969,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-23c2058112f4157f-2)
 
-with the integer tied to the phase-return degree pair above. Thus quantization in this reduction is a topological single-valuedness condition on a retained phase-locked bundle, not a global quantization convention imposed on every smooth effective observable.
+with the integer tied to the phase-return degree pair above. Thus the displayed integer condition is a conditional recovery target on a retained phase-locked bundle, not a derived quantization law or a global quantization convention imposed on every smooth effective observable.
 
 ## Topological Constraints and Assembly Stability
 
@@ -1040,7 +1040,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-6165139131460889)
 
-and the interfaces $\rho_q=0$ are polarity domain walls. The envelope map is faithful only on a region where $\sigma$ is constant. When a loop $\gamma$ encloses domain-wall crossings, the phase chart must carry the lost sign sheet as a $\mathbb{Z}_2$ bundle datum:
+and the interfaces $\rho_q=0$ may serve as candidate polarity domain walls. The envelope map is faithful only on a region where $\sigma$ is constant. A zero set alone does not define a double cover; if a loop $\gamma$ is assigned domain-wall crossings, the phase chart must carry the lost sign sheet as an explicitly defined $\mathbb{Z}_2$ bundle datum:
 
 $$
 \oint_{\gamma}

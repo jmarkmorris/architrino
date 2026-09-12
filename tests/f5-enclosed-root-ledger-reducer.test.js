@@ -3,9 +3,15 @@ import { createHash } from "node:crypto";
 import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import test from "node:test";
+import test, { after } from "node:test";
+import { pathToFileURL } from "node:url";
+import { createF5SourceReplay } from "./helpers/f5-source-replay.mjs";
 
-import {
+const originalCwd = process.cwd();
+const replay = createF5SourceReplay();
+process.chdir(replay.rootDir);
+after(() => { process.chdir(originalCwd); replay.close(); });
+const {
   F5_FIXED_BINDINGS,
   F5_HISTORY_MANIFEST_SCHEMA,
   F5_REDUCTION_SCHEMA,
@@ -14,17 +20,14 @@ import {
   reduceF5EnclosedRootLedgersForTests,
   verifyF5ImplementationBindings,
   writeF5ReductionOnce,
-} from "../src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs";
+} = await import(pathToFileURL(path.join(replay.rootDir, "src/prescribed-path-analysis/F5EnclosedRootLedgerReducer.mjs")));
 
 const ZERO_SHA = "0".repeat(64);
 const PERIOD = decimal("19.63359163663986");
 const POSITION_WIDTH = "1.528724905003159e-10";
 const VELOCITY_WIDTH = "2.866983034112353e-7";
 const CONFIG = JSON.parse(readFileSync(
-  new URL(
-    "../reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json",
-    import.meta.url,
-  ),
+  path.join(replay.rootDir, "reference/priorities/braid-program/configurations/phase-varying-prescribed-display-history.v3.json"),
   "utf8",
 ));
 

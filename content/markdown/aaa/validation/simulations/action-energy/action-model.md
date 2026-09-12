@@ -1,6 +1,6 @@
 # Action Model Comparison
 
-This note compares three modeling options for the emission-propagation-interaction pipeline and recommends a primary approach, with supporting roles for the others. The comparison uses normalized [wake](../../../foundations/architrino.md)-speed units with $c_f=1$ unless stated otherwise; a wake is the expanding disturbance emitted by an architrino. Emission cadence and per-wavefront amplitude are constant at the transmitter; per-hit accelerations are directed along $\hat{\mathbf{r}}$ with inverse-square geometric decay and transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; $H(0)=0$ excludes coincident-time self-acceleration; no cross products or right-hand-rule terms appear.
+This note compares three modeling options for the emission-propagation-interaction pipeline and recommends a primary approach, with supporting roles for the others. The comparison uses normalized [wake](../../../foundations/architrino.md)-speed units with $c_f=1$ for every numerical instantiation; symbolic dependence on $c_f$ remains where needed. A wake is the expanding disturbance emitted by an architrino. Emission cadence and per-wavefront amplitude are constant at the transmitter; per-hit accelerations are directed along $\hat{\mathbf{r}}$ with inverse-square geometric decay and transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$, where $D_t=c_f-\mathbf V_t\!\cdot\!\hat{\mathbf r}$; $H(0)=0$ excludes coincident-time self-acceleration; no cross products or right-hand-rule terms appear.
 
 ---
 
@@ -181,7 +181,7 @@ In standard wave-equation solutions, a Jacobian factor $|1 - \mathbf{n}\!\cdot\!
 If $\mathbf X_t(T_t)=\mathbf X_0$ (transmitter fixed) and $q(T_t)=Q\,\delta(T_t-T_{t,0})$ (single wake surface at $T_{t,0}$), then the formula reduces to the intuitive result:
 
 * The field at $(\mathbf X,T)$ is nonzero only when $T-T_{t,0}=\|\mathbf X-\mathbf X_0\|/c_f$, i.e., when the causal wake surface of radius $r=c_f(T-T_{t,0})$ reaches $\mathbf X$.
-* The amplitude is $\displaystyle \phi(\mathbf X,T) = \frac{Q}{4\pi\,r}$ (no extra Jacobian factor because $v_s=0$).
+* The field is the distribution $\displaystyle \phi(\mathbf X,T) = \frac{Q}{4\pi\,r}\,\delta\!\left(T-T_{t,0}-\frac{r}{c_f}\right)$ (no extra Jacobian factor because the transmitter is stationary). Equivalently, $Q/(4\pi r)$ is the time-integrated probe response.
 
 ### How wake surfaces show up here
 
@@ -228,7 +228,7 @@ Per-hit equation of motion (EOM)
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-ba3fb2308de0f62e)
 
-- Each root contributes a line-of-action acceleration
+- Let $q_j,q_{o'}\in\{+\epsilon,-\epsilon\}$ denote intrinsic transmitter and receiver polarities, let $\sigma_{q_jq_{o'}}=\operatorname{sign}(q_jq_{o'})$, and let $\kappa>0$ be the declared acceleration coupling. Each root contributes a line-of-action acceleration
   $$
   \mathbf A_{o'\leftarrow j}(T_r;T_t)
   \;=\;
@@ -240,7 +240,9 @@ Per-hit equation of motion (EOM)
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-257a5ab02e2be0c7)
 
-  with $W_{o'j}^{\mathrm{acc}}=c_f/\lvert D_{t,o'j}\rvert$, $D_{t,o'j}=c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}$, and $D_{r,o'j}=c_f-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf{r}}$. Total acceleration is the sum over transmitters and roots. Convention $H(0)=0$ removes instantaneous self-acceleration at zero delay. Optional mollification replaces $\delta(\cdot)$ by $\delta_\eta(\cdot)$ to produce smooth acceleration contributions.
+with $W_{o'j}^{\mathrm{acc}}=c_f/\lvert D_{t,o'j}\rvert$, $D_{t,o'j}=c_f-\mathbf V_j(T_t)\cdot\hat{\mathbf{r}}$, and $D_{r,o'j}=c_f-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf{r}}$. Total acceleration is the sum over transmitters and roots. Convention $H(0)=0$ removes instantaneous self-acceleration at zero delay. Optional mollification replaces $\delta(\cdot)$ by $\delta_\eta(\cdot)$ to produce smooth acceleration contributions.
+
+For a continuous source density, an ordinary simple causal root contributes to the acceleration at each reception time on its regular branch; it is not itself a delta impulse in reception time. Event tracking is a numerical organization of those contributions. A true impulse requires a declared pulse-train quadrature weight or a separately proved singular limit.
 
 Implementation checklist
 - Root finding: solve $F(T_t;T_r)=\|\mathbf X_{o'}(T_r)-\mathbf X_j(T_t)\|-c_f(T_r-T_t)=0$ for all transmitters $j$ (including $j=o'$ for self-hits when kinematics permit).
@@ -249,8 +251,8 @@ Implementation checklist
 - Self-interaction: a super-field-speed history interval nominates the channel, but an admitted self-hit still requires a nonzero-delay same-transmitter root and the declared branch floors; accepted self-hits are repulsive (like-on-like).
 
 Relation to Methods 1 and 2
-- This is a transport/continuity model, not the scalar wave equation. The $1/r^2$ factor is a surface-density normalization (Gauss-like on the spherically expanding causal wake surfaces); it is compatible with conserving total emission per wake surface. In Method 2 the $\!1/(4\pi r)$ factor appears for a wave amplitude; taking gradients connects these scalings when mapping to accelerations.
-- The Doppler-type Jacobian $1-\mathbf{n}\!\cdot\!\mathbf V_t/c_f$ from Method 2 is the transmitter-side branch-transversality factor. Geometric constants are absorbed into $\kappa$ by convention, but the canonical per-hit strength uses the transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; no additional transmitter-speed amplitude factor is introduced.
+- This is a transport/continuity model, not the scalar wave equation. The $1/r^2$ factor is a surface-density normalization (Gauss-like on the spherically expanding causal wake surfaces); it is compatible with conserving total emission per wake surface. In Method 2 the $1/(4\pi r)$ factor appears for a wave amplitude; a gradient can connect these scalings only after a declared observable map, and the moving-source wave scalar is not automatically the canonical acceleration scalar.
+- The Doppler-type Jacobian $1-\mathbf{n}\!\cdot\!\mathbf V_t/c_f$ from Method 2 is the transmitter-side branch-transversality factor. Geometric constants are absorbed into $\kappa$ by convention, but the canonical per-hit acceleration uses the transmitter-side weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; emission strength and Jacobian transport remain separate, and no additional transmitter-speed amplitude factor is introduced.
 - Numerically, this method targets particle dynamics directly (per-hit ODEs) rather than evolving a full field (Method 1) or evaluating fields at sparse probes (Method 2).
 
 Operator diagnostics (finite-window checks)
@@ -264,6 +266,8 @@ Operator diagnostics (finite-window checks)
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-e42c5aa6dbc91b27)
 
+  Here $\varepsilon_G>0$ is the declared Gauss-residual denominator floor, with units matching the two Gauss terms.
+
 - For any oriented smooth surface $S\subset\Sigma_T$ with boundary $\partial S$, define the Stokes residual
   $$
   R_S[S,T;\mathbf{Y}_\eta]\equiv
@@ -273,13 +277,17 @@ Operator diagnostics (finite-window checks)
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-01ccdd4818c686c6)
 
-- A PDE surrogate and event-root reconstruction are comparable only after a common observable map, normalization, boundary condition, and regulator have been declared. Their agreement then tests the implementations of that declared map; it is not independent evidence for the canonical acceleration law. If $\Delta\mathbf{Y}_\eta=\mathbf{Y}^{\mathrm{PDE}}_\eta-R(\mathbf{Y}^{\mathrm{root}}_\eta)$, use
+  Here $\varepsilon_S>0$ is the declared Stokes-residual denominator floor, with units matching the two Stokes terms. Any direct comparison norm likewise requires its own positive $\varepsilon_{\mathrm{cmp}}$ in the declared units.
+
+- A PDE surrogate and event-root reconstruction are comparable only after a common observable map, normalization, boundary condition, and regulator have been declared. Their agreement then tests the implementations of that declared map; it is not independent evidence for the canonical acceleration law. If $\Delta\mathbf{Y}_\eta=\mathbf{Y}^{\mathrm{PDE}}_\eta-R(\mathbf{Y}^{\mathrm{root}}_\eta)$, use the following operator-consistency residual:
   $$
   E_{\mathrm{op}}(V,S,T)\equiv
   \max\!\left\{R_G[V,T;\Delta\mathbf{Y}_\eta],\,R_S[S,T;\Delta\mathbf{Y}_\eta]\right\}
   $$
 
   [View →](../../../../../../equation-mapping.html#corpus-equation-a73f55aca07554f3)
+
+  The residuals above test whether each reconstructed channel satisfies its own divergence and curl identities; they do not measure the difference between the PDE and root fields. For direct cross-method comparison, after the common observable map, normalization, boundary condition, and regulator have been fixed, also evaluate a declared discrepancy norm such as $\|\Delta\mathbf{Y}_\eta\|_{L^2(V)}/(\|\mathbf{Y}^{\mathrm{PDE}}_\eta\|_{L^2(V)}+\varepsilon_{\mathrm{cmp}})$ with a stated positive denominator floor and acceptance tolerance. This direct norm is the field-agreement diagnostic; $R_G$ and $R_S$ remain operator-consistency checks. Agreement in either class of diagnostic is implementation evidence for the declared comparison map, not independent evidence for the canonical acceleration law.
 
   For the conservative potential channel $\mathbf{Y}_\eta=\nabla\Phi_\eta$, nonzero circulation is a numerical, boundary, or coordinate-operator error unless a non-gradient effective channel has been explicitly declared.
 
@@ -296,7 +304,7 @@ Short worked example — stationary transmitter, continuous source term (consist
 - Setup: transmitter at origin $\mathbf X_t=0$ with $q(T)\equiv q_0$ (constant).
 - Method 1: for a source active since $T_0$, solving the wave PDE with $S(\mathbf X,T)=q_0\,\delta(\mathbf X)H(T-T_0)$ gives $\phi(r,T)=q_0H(T-T_0-r/c_f)/(4\pi r)$ under the declared normalization.
 - Method 2: the path-history formula gives the same switched-on profile, with the path-history time $T_t=T-r/c_f$ admitted only when $T_t\ge T_0$.
-- Method 3: the path-history condition selects the single causal time $T_t=T-r/c_f$; the per-hit EOM yields one radial acceleration contribution along $\hat{\mathbf{r}}$ with $1/r^2$ scaling, consistent with taking spatial gradients of the $1/r$ potential to connect amplitude to acceleration.
+- Method 3: away from the switching front, with $T-T_0-r/c_f>0$ and a declared positive front margin, the path-history condition selects the single causal time $T_t=T-r/c_f$ and the per-hit EOM yields one radial acceleration contribution along $\hat{\mathbf{r}}$ with $1/r^2$ scaling. The front derivative is a separate distributional contribution and is not included in this interior comparison.
 
 Practical implementation notes (concise)
 - PDE: smear $\delta(\mathbf X-\mathbf X_t)$ to grid scale; enforce CFL ($c_f\,\Delta T/\Delta X$ within the scheme’s bound).
@@ -313,29 +321,29 @@ Practical implementation notes (concise)
 ## Differential analysis (criteria-by-criteria)
 
 Axiomatic fidelity (delayed-only, line-of-action, constant transmitter emission)
-- Method 1: Partially aligned. The PDE yields $1/(4\pi r)$ wave amplitudes; mapping to $1/r^2$ per-hit accelerations requires gradients and conventions. Radial-only action is not built-in.
+- Method 1: Partially aligned. The PDE yields $1/(4\pi r)$ wave amplitudes; mapping to $1/r^2$ per-hit accelerations requires a declared observable map, gradients, and conventions. Radial-only action is not built-in.
 - Method 2: Causality and superposition are exact; amplitudes are $1/(4\pi r)$ with a transmitter-side Jacobian $\left|1-\mathbf{n}\cdot\mathbf V_t/c_f\right|^{-1}$ when evaluating the path-history time delta. The canonical law keeps the corresponding transmitter-side factor as root-transversality data, while received acceleration magnitude uses $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$ and overall geometric normalizations are absorbed into $\kappa$ when comparing accelerations.
 - Method 3: Exact match. Delayed-only, line-of-action per-hit with constant transmitter emission is native, and the transmitter-side acceleration weight appears explicitly in the received acceleration magnitude. Geometric normalizations are conventionally absorbed into $\kappa$.
 
 Causal root structure, self-interaction, multiplicity
 - Method 1: Self-hits and multiple roots are implicit in the evolving field; they are not directly enumerated as discrete events.
 - Method 2: Causal roots arise via solving $T-T_t=r(T_t)/c_f$; multiple roots and tangencies are explicit but require robust root-finding.
-- Method 3: Roots are primitive; multi-hit and self-hit regimes are treated natively. Conventions H(0)=0 and exclusion of $r=0$ beyond $T_t=0$ are explicit.
+- Method 3: Roots are primitive; multi-hit and self-hit regimes are treated natively. The convention $H(0)=0$ excludes zero delay, $T_r-T_t=0$; it does not mean that emissions with $T_t=0$ are excluded at later reception times.
 
 Energetics and work
 - Method 1: Continuum energy bookkeeping is natural ($\phi$, $\partial_T\phi$, $\nabla_{\mathbf X}\phi$). Mapping to radial per-hit work needs careful averaging and alignment with the EOM.
-- Method 2: Exact potentials in free space; gradients give acceleration contributions; care is needed near $\left|1-\mathbf{n}\cdot\mathbf V_t/c_f\right|\to0$ geometries.
-- Method 3: Energetics are tested via $\eta$-mollified potentials $\Phi_\eta$ and work–energy residuals on resolved windows. An impulsive $\eta\to0$ claim requires a separate weak-convergence result with stable root identity.
+- Method 2: Exact potentials for the declared scalar-wave surrogate in free space; gradients give that surrogate's acceleration-like contributions, not automatically the canonical acceleration. Care is needed near $\left|1-\mathbf{n}\cdot\mathbf V_t/c_f\right|\to0$ geometries.
+- Method 3: Energetics may be tested via declared $\eta$-mollified potentials $\Phi_\eta$ and work–energy residuals on resolved windows. An impulsive $\eta\to0$ claim requires a separate weak-convergence result with stable root identity.
 
 Numerical stability and well-posedness
-- Method 1: CFL constraints; dispersion/reflection control needed; robust under regularized sources; well posed on grids.
+- Method 1: CFL constraints specific to the chosen stencil; dispersion/reflection control needed; robust under regularized sources; well posed on grids only under the declared numerical conditions.
 - Method 2: Stable as an evaluation formula; computational issues concentrate in robust, multi-root solving and handling near-tangency Jacobians.
 - Method 3: Event handling or $\eta$-regularization supplies a candidate numerical chart. Well-posedness still requires the declared history class, root floors, continuation bounds, and regulator-refinement checks.
 
 Computational scaling
 - Method 1: Work and storage scale with grid volume, spatial resolution, duration, and the CFL-limited step count.
 - Method 2: Work scales with receivers × sample times × transmitters × causal roots, plus the cost of root solving.
-- Method 3: Work scales with receivers × transmitters × active roots per step and with retained-history reconstruction. Actual wall time and memory must be profiled for the declared implementation.
+- Method 3: Work scales with receivers × transmitters × active roots per step and with retained-history reconstruction. Actual wall time and memory must be profiled for the declared implementation; the scaling statement does not establish a universal cost ranking.
 
 Boundaries, media, and heterogeneity
 - Method 1: Natural for comparison media and boundaries—modify effective coefficients such as $c_{\mathrm{eff}}(\mathbf X,T)$, damping, and boundary data without changing the primitive wake speed $c_f$.
@@ -360,8 +368,8 @@ Operational guidance — when to use which method
 ## Pros and cons (comparative)
 
 Method 1 — Time-based PDE (wave equation)
-- Pros
-- Physically standard propagation at fixed speed $c_f$; expanding causal wake surfaces emerge automatically.
+  - Pros
+  - Propagation at fixed speed $c_f$ in the comparison surrogate; expanding causal wake surfaces emerge automatically.
   - Robust on grids; handles inhomogeneous media, damping, and boundaries.
   - Good for full-field visualization and energy bookkeeping in continuum form.
 - Cons
@@ -373,7 +381,7 @@ Method 2 — Green’s function (path-history integral)
 - Pros
   - Exact for the declared scalar-wave comparison problem in homogeneous free space; no grid or time stepping for that surrogate field.
   - Makes causality explicit via path-history times; captures Doppler/Jacobian $1-\mathbf{n}\!\cdot\!\mathbf V_t/c_f$ automatically.
-  - Efficient for field evaluation at a few observation points; excellent for analysis and cross-checks.
+  - Often efficient for field evaluation at a few observation points; useful for analysis and cross-checks, subject to the declared workload.
 - Cons
   - Requires root-finding for each receiver-time pair; multiple roots are possible when transmitters outrun wake surfaces.
   - Costly when many receivers and transmitters are present; bookkeeping grows quickly.
@@ -382,8 +390,8 @@ Method 2 — Green’s function (path-history integral)
 Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
 - Pros
   - Directly implements the project’s delayed, radial-only interaction law with constant emission cadence.
-  - Natural support for self-hits and superposition; local $1/r^2$ weighting makes nearby coherent roots dominate once the far-field cutoff, screening, cancellation, or summation prescription is declared.
-  - Numerically lightweight for particle dynamics; works cleanly with impulsive or mollified ODE integration.
+  - Natural support for self-hits and superposition; local $1/r^2$ weighting favors nearby coherent roots with all other factors fixed, but does not by itself bound far-root weights, multiplicity, cancellation, or omitted-tail error.
+  - Can be numerically lightweight for particle dynamics on a declared workload; works with impulsive or mollified ODE integration under the stated root and regulator conditions.
 - Cons
   - Not derived from the scalar wave equation; global field-energy accounting is indirect (via mollified potentials).
   - Must retain the transmitter-side factor and transmitter-side acceleration weight from the Master EOM; a reduced test harness that omits either one is a noncanonical approximation rather than a calibration of $\kappa$.
@@ -394,7 +402,7 @@ Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
 ## Recommendation
 
 - Use Method 3 as the primary engine for architrino and assembly dynamics. It directly implements radial-only action and constant emission cadence.
-- Adopt Method 2 as an analytic comparison instrument for the scalar-wave surrogate. Fix normalization on the stationary-transmitter case, then verify that the moving-source Jacobian maps once, and only once, to $W^{\mathrm{acc}}$ under the declared observable map. Because both methods share that map, their agreement is implementation parity rather than an independent oracle.
+- Adopt Method 2 as an analytic comparison instrument for the scalar-wave surrogate. Fix normalization on the stationary-transmitter case, then define and verify any moving-source observable map separately; the wave-potential Jacobian does not automatically become the canonical $W^{\mathrm{acc}}$. Agreement under a declared map is implementation parity rather than an independent oracle.
 - Baseline formula (stationary transmitter at origin): with $q(T)\equiv q_0$, $\displaystyle \phi(r,T)=\frac{q_0}{4\pi r}$ since the path-history condition selects $T_t=T-r/c_f$; if $q$ varies, $\displaystyle \phi(r,T)=\frac{q(T-r/c_f)}{4\pi r}$.
 - Reserve Method 1 for full-field studies (visualization, media, boundary effects) and for end-to-end tests of numerical stability; it is valuable but unnecessary for routine ODE-based assembly simulations.
 - Keep the continuity-form wake definition and per-hit EOM as the canonical statement. Any density-to-potential comparison must declare the operator that maps the $1/r^2$ surface measure to the $1/r$ scalar surrogate, including normalization and boundary conditions.
@@ -402,13 +410,13 @@ Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
   - Always smear $\delta(\mathbf X-\mathbf X_t)$ to a normalized kernel of width $\sigma$ comparable to the grid spacing in PDE runs to avoid grid-scale artifacts.
   - Enforce CFL: choose $\Delta T$ so that $c_f\,\Delta T/\Delta X$ meets the stability bound for the chosen stencil to prevent instability.
   - Path history solving: solve $T-T_t=r(T_t)/c_f$ carefully; near $\|\mathbf V_t\|\approx c_f$, root finding and the factor $1-\mathbf{n}\cdot\mathbf V_t/c_f$ require extra care.
-  - Finite temporal thickness: if wake surfaces have duration, replace $\delta(T-T_t)$ with a smooth profile to model finite-width wavefronts.
+  - Finite temporal thickness: if wake surfaces have duration, replace the arrival selector $\delta(T-T_t-r/c_f)$, or equivalently the distance selector $\delta(r-c_f(T-T_t))$ with its stated Jacobian, by a normalized smooth profile. A profile applied only to $\delta(T-T_t)$ smooths emission timing, not propagation arrival.
 
 The event-driven radial method governs dynamics, the path-history integral checks the declared comparison map, and the PDE supplies whole-field pictures or explicitly modeled comparison media.
 
 ## Implementation Summary
 - Model the transmitter through the source term $S(\mathbf X,T)=q(T)\,\delta\!\big(\mathbf X-\mathbf X_t(T)\big)$ (time-based emission density).
-- Method 1: easiest for grid-based whole-field runs; wake surfaces emerge at speed $c_f$.
+- Method 1: generally simplest for grid-based whole-field runs on a declared domain and resolution; wake surfaces emerge at speed $c_f$.
 - Method 2: exact path-history formula; contributions occur only when $T-T_t=\|\mathbf X-\mathbf X_t(T_t)\|/c_f$, with amplitude decaying as $1/(4\pi r)$ and a geometric $1-\mathbf{n}\cdot\mathbf V_t/c_f$ factor in evaluation.
 
 The comparison ends at propagation and acceleration-method selection. Particle-penetration, shielding, neutrino, photon, and dark-sector claims require their own assembly records and observer-level instruments; this method note does not assign those outcomes.

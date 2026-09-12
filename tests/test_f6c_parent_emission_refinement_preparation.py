@@ -104,7 +104,6 @@ def plan_fixture(root):
         originalBindings={k:dict(path=v[0],sha256=v[1],bytes=v[2] if len(v)>2 else 1) for k,v in s.ORIGINAL.items()},
         acceptanceOwner=b(s.OWNER,'c'*64),priorCoverClosure=s.closure_premise(),runtimeBindings=[b(str(root/'python'),'d'*64)],
         operationalBindings=[b(str(root/'node'),'e'*64)],limits=dict(w.LIMITS))
-    plan['unavailableHistoricalEnvironment']=[]
     plan['historicalDocumentRoutes']=[dict(original=dict(path=s.PREFIX+name,sha256=h,bytes=n),physical=dict(path=str(root/('archive-'+h+'.source')),sha256=h,bytes=n)) for name,h,n in (
         ('2026-08-27-f6c-cached-root-cover-full-resource-plan.md','daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b',10021),
         ('2026-08-27-f6c-root-cover-full-resource-plan.md','46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021))]

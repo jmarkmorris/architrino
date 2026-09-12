@@ -45,8 +45,8 @@ def plan_fixture():
         binding('scripts/eom/launch-f6c-emission-refinement-pilot.mjs'),
         binding('tests/f6c-emission-refinement-pilot.test.js'),
         binding('tests/f6c-emission-refinement-pilot-process.test.js'),
-        binding('scripts/eom/launch-prescribed-response-pilot.mjs', '9af9a6a33b3b1c5889550953496be13d0698e5d24e9033dbdd5ffcb82deeafe2'),
-        binding('scripts/eom/launch-subfield-circular-root-pilot.mjs', '58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c'),
+        binding('scripts/eom/launch-prescribed-response-pilot.mjs', '72b181165cafe21f3237dca7638343a9d31ea4ee48f709d9b43761666d6e7ec5'),
+        binding('scripts/eom/launch-subfield-circular-root-pilot.mjs', 'e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920'),
         binding('/bin/ps'), binding('/usr/bin/memory_pressure', 'ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da'),
         binding('/synthetic/node')]
     return p

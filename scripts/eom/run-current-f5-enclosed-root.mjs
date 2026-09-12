@@ -13,6 +13,12 @@ export function checkBinding(record, root) {
       (record.realPath && realpathSync(filename) !== record.realPath)) throw new Error(`bound bytes or target changed: ${filename}`);
   return { ...record, path: filename };
 }
+function checkCapability(record, root) {
+  if (!record || typeof record.path !== 'string' || !path.isAbsolute(record.path)) throw new Error('invalid capability path');
+  const filename = path.resolve(root, record.path);
+  if (!realpathSync(filename)) throw new Error(`capability unavailable: ${filename}`);
+  return { ...record, path: filename };
+}
 export function validateAdmission(admission) {
   if (admission?.schema !== 'braid-program/f5-current-build-admission.v1' || admission.accepted !== true ||
       !path.isAbsolute(admission.buildRoot ?? '') || !same(admission.originalApiBindings, API_SUBJECT_BINDINGS) ||
@@ -57,28 +63,23 @@ export function currentBuildAdmission(admissionPath, admissionSha256) {
     if (build.schema !== 'braid-program/f5-enclosed-root-current-build.v1' || build.status !== 'build-recorded-pending-independent-review' ||
         build.accepted !== false || !build.stages?.length || !build.buildDriver?.make || !build.buildDriver?.shell)
       throw new Error('complete captured current build required');
-    for (const name of ['sources', 'tools', 'headerDependencies', 'externalLibraries']) {
-      const before = build[`${name}Before`], after = build[`${name}After`];
-      if (!before?.length || !same(before, after)) throw new Error(`incomplete before/after ${name}`);
-      before.forEach(record => add(record));
-    }
+    if (!build.sourcesBefore?.length || !same(build.sourcesBefore, build.sourcesAfter)) throw new Error('incomplete authored source census');
     for (const stage of build.stages) {
       if (stage.code !== 0 || stage.signal || stage.timedOut || stage.interrupted || !stage.processGroupClosed || stage.descendantsAfterClose)
         throw new Error('build stage did not close successfully');
       add(stage.log);
     }
-    build.discoveryToolsBefore.forEach(record => add(record));
+    build.discoveryToolsBefore.forEach(record => checkCapability(record, admission.buildRoot));
     build.dependencyUnits.forEach(unit => { add(unit.beforeDependencyFile); add(unit.actualDependencyFile); });
     Object.values(build.built).forEach(record => add(record));
-    add(build.buildDriver.make); add(build.buildDriver.shell); add(build.pythonRuntime);
-    for (const runtime of build.runtimeDependencies) {
-      if (runtime.status === 'file-hashed') add(runtime);
-      else if (runtime.status !== 'platform-dyld-shared-cache-not-file-hashable') throw new Error('unknown runtime dependency boundary');
-    }
-    const actualCompiler = add(build.compiler);
+    checkCapability(build.buildDriver.make, admission.buildRoot); checkCapability(build.buildDriver.shell, admission.buildRoot);
+    checkCapability(build.pythonRuntime, admission.buildRoot);
+    for (const runtime of build.runtimeDependencies ?? [])
+      if (runtime.status !== 'runtime-capability') throw new Error('unknown runtime capability boundary');
+    const actualCompiler = checkCapability(build.compiler, admission.buildRoot);
     const executingNode = build.toolsBefore.find(record => realpathSync(path.resolve(admission.buildRoot, record.path)) === realpathSync(process.execPath));
     if (!executingNode) throw new Error('executing Node runtime absent from reviewed tool census');
-    add(executingNode);
+    checkCapability(executingNode, admission.buildRoot);
     const relative = record => ({ ...record, path: path.relative(root, path.resolve(admission.buildRoot, record.path)) });
     const localBuilt = ['executable', 'library'].map(name => {
       const copy = executionCopy(build.built[name], admission.executionArtifacts?.[name], root);
@@ -86,7 +87,7 @@ export function currentBuildAdmission(admissionPath, admissionSha256) {
       return copy;
     });
     const toolchain = { built: localBuilt,
-      externalLibraries: build.externalLibrariesAfter.map(relative), compiler: actualCompiler };
+      externalLibraries: (build.externalLibrariesAfter ?? []).map(relative), compiler: actualCompiler };
     dependencies.push(checkBinding({ path: fileURLToPath(import.meta.url), sha256: digest(readFileSync(fileURLToPath(import.meta.url))) }, root));
     return { toolchainInput: { binding: buildBinding, value: build }, toolchain, actualCompiler, dependencies,
       adapterSourceSha256: admission.currentApiBindings.find(x => x.path === 'src/eom/native/eom_f5_enclosed_root_cli.cpp').sha256,

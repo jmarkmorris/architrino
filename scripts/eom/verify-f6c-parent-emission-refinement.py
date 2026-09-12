@@ -60,8 +60,8 @@ DEPENDENCIES = {
  'transportControls': ('tests/test_f6c_refined_acceleration.py','d65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd'),
  'scientificDecoder': ('scripts/eom/oracle/f6c_refined_acceleration_conformance.py','7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e'),
  'scientificDecoderControls': ('tests/test_f6c_refined_acceleration_conformance.py','147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921'),
- 'productionHelper': ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5'),
- 'productionHelperControls': ('tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','3bee7599b03f2500ede6eeeea31c46e1aac82410f456e967102c13e820b93221'),
+ 'productionHelper': ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841'),
+ 'productionHelperControls': ('tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2'),
  'historyReference': ('scripts/eom/oracle/certified_history.py','ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'),
  'decimalReference': ('scripts/eom/oracle/decimal_interval.py','fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'),
  'decimalControls': ('tests/test_eom_decimal_interval.py','22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44'),
@@ -89,7 +89,7 @@ ORIGINAL = {
  'fullEntry': ('scripts/eom/run-f6c-cached-root-cover-full.mjs','1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b'),
  **FULL,
 }
-PLAN_KEYS = ('schema','scope','parentIndex',*NAMED,'dependencies','originalBindings','acceptanceOwner','priorCoverClosure','runtimeBindings','operationalBindings','historicalDocumentRoutes','unavailableHistoricalEnvironment','limits')
+PLAN_KEYS = ('schema','scope','parentIndex',*NAMED,'dependencies','originalBindings','acceptanceOwner','priorCoverClosure','runtimeBindings','operationalBindings','historicalDocumentRoutes','limits')
 MANIFEST_KEYS = tuple('schema scope status accepted launchPlan producer verifier declaration parent members originalBindings acceptanceOwner priorCoverClosure historicalSourceBindings historicalEvidenceVerification subjectSourceBindings runtimeBindings operationalBindings algorithm restrictions census helperCalls queries rows pieces libraryFlags claims publicationRequires'.split())
 REPORT_KEYS = tuple('schema scope accepted authority manifest queries rows pieces launchPlan verifier sourceBindings historicalSourceBindings historicalEvidenceVerification originalBindings acceptanceOwner priorCoverClosure parent analysis candidateClaims publicationRequires elapsedSecondsBeforePublication'.split())
 COMPLETION_KEYS = tuple('completed accepted scope output publicationRecord elapsedSecondsBeforeCompletion publicationRequires'.split())
@@ -136,19 +136,18 @@ def validate_plan(w, plan, own_sha, root):
             if len(pin)==3: integer(b['bytes'],pin[2])
     b=w.binding(plan['acceptanceOwner']);require(b['path']==OWNER,'reviewed plan-selected owner path')
     require(plan['verifier']['sha256']==own_sha and w.equal(plan['priorCoverClosure'],closure_premise()),'verifier/closure premise')
-    for role in ('runtimeBindings','operationalBindings'): w.binding_list(plan[role])
-    require(all(Path(b['path']).is_absolute() for b in plan['runtimeBindings']),'absolute runtime paths required')
+    require(all(type(b) is dict and isinstance(b.get('path'),str) and Path(b['path']).is_absolute() for b in plan['runtimeBindings']),
+            'runtime capability paths only')
+    w.binding_list(plan['operationalBindings'])
     # The exact separately reviewed plan binds operational layout and census.
     # This wrapper neither invents a future launcher nor admits one from its name.
     subject=[*[plan[k] for k in NAMED],*plan['dependencies'].values()]
     require(len(w.source_map(subject,root))==23,'unique23 subject sources')
-    for role in ('runtimeBindings','operationalBindings'):
-        require(len(w.source_map(plan[role],root))==len(plan[role]),'normalized duplicate '+role)
-    new_sources=[*subject,*plan['runtimeBindings'],*plan['operationalBindings']]
+    require(len(w.source_map(plan['operationalBindings'],root))==len(plan['operationalBindings']),'normalized duplicate operational bindings')
+    new_sources=[*subject,*plan['operationalBindings']]
     require(len(w.source_map(new_sources,root))==len(new_sources),'new subject/runtime/operation duplicate')
     # Logical historical generations are distinct from the current physical union.
     historical_routes(plan['historicalDocumentRoutes'],root,w)
-    validate_environment(plan['unavailableHistoricalEnvironment'],root,w)
     return plan
 
 
@@ -231,28 +230,13 @@ HISTORICAL_ARCHIVES = {
   26659
  ]
 }
-HISTORICAL_HOSTS = {
- "/usr/bin/git": [
-  "179301dcb41ea78accc3fa0048a7e6f6710d891945a751a34addd622020c1818",
-  118928
- ],
- "/bin/ps": [
-  "472992c470606d28f577590decfecd7f4a20f832fd92c671bebc6d44790b5d02",
-  170816
- ],
- "/usr/bin/memory_pressure": [
-  "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56",
-  135248
- ]
-}
-
 def historical_routes(rows,root,w):
     require(type(rows) is list and len(rows)<=198,'bounded consumed archive routes')
     result={}
     for row in rows:
         keys(row,('original','physical'));old=w.normalized(row['original'],root);physical=w.normalized(row['physical'],root)
         relative=os.path.relpath(old['path'],root)
-        expected=HISTORICAL_ARCHIVES.get(relative) or HISTORICAL_HOSTS.get(old['path'])
+        expected=HISTORICAL_ARCHIVES.get(relative)
         require(expected is not None and [old['sha256'],old['bytes']]==expected,'exact admitted historical tuple')
         require(physical['path']!=old['path'] and physical['path'].endswith('.source') and (physical['sha256'],physical['bytes'])==(old['sha256'],old['bytes']),'nonexecuting unchanged archive bytes')
         require(old['path'] not in result and physical['path'] not in {r['physical']['path'] for r in result.values()},'duplicate archive route')
@@ -260,21 +244,10 @@ def historical_routes(rows,root,w):
     return result
 
 
-def validate_environment(rows,root,w):
-    require(type(rows) is list and len(rows)<=3,'bounded unavailable historical environment')
-    result={}
-    for raw in rows:
-        b=w.normalized(raw,root)
-        require(HISTORICAL_HOSTS.get(b['path'])==[b['sha256'],b['bytes']],'exact unavailable historical host tuple')
-        require(b['path'] not in result,'duplicate historical host');result[b['path']]=b
-    return result
-
-
-def historical_evidence(missing):
+def historical_evidence():
     return dict(schema='braid-program/retained-historical-evidence.v1',retainedScientificBytesVerified=True,
-        recordedProvenanceVerified=True,fullOriginalEnvironmentVerified=not missing,
-        unavailableHistoricalEnvironment=sorted(missing,key=lambda b:b['path']),
-        authority='retained artifacts and recorded conditional provenance only; no fresh historical observation or replay')
+        recordedProvenanceVerified=True,
+        authority='retained authored artifacts and recorded provenance only; no environment replay')
 
 
 @contextmanager
@@ -312,7 +285,7 @@ def captured_module(raw, filename, digest):
 
 class Pool:
     def __init__(self, stack, transport, root, live):
-        self.stack=stack;self.w=transport;self.root=root;self.live=live;self.files={};self.inodes={};self.total=0;self.routes={};self.used_routes=set();self.unavailable={};self.used_unavailable=set();self.allowed=None;self.outputs=set()
+        self.stack=stack;self.w=transport;self.root=root;self.live=live;self.files={};self.inodes={};self.total=0;self.routes={};self.used_routes=set();self.allowed=None;self.outputs=set()
     def capture(self,path,digest,*,data=False,limit=MAX_SOURCE_BYTES):
         path=self.root/path;key=str(path)
         if self.allowed is not None:
@@ -341,7 +314,6 @@ class Pool:
         return [(self.files[k].binding(),self.w.BoundFile.identity(self.files[k].initial)) for k in sorted(self.files)]
     def historical_file(self,b,*,data=False):
         old=self.w.normalized(b,self.root)
-        require(old['path'] not in self.unavailable,'unavailable archive cannot supply bytes')
         route=self.routes.get(old['path'])
         if route is not None:
             require(self.w.equal(route['original'],old),'archive original identity differs')
@@ -351,10 +323,7 @@ class Pool:
         return self.files[physical['path']]
     def historical(self,b):
         old=self.w.normalized(b,self.root)
-        if old['path'] in self.unavailable:
-            require(old['path'] not in self.routes and self.w.equal(old,self.unavailable[old['path']]),'exact unavailable original tuple')
-            self.used_unavailable.add(old['path'])
-        else:self.historical_file(old)
+        self.historical_file(old)
         return old
     def admit_operation(self,filename,digest):
         file=self.capture(filename,digest,data=True,limit=MAX_BYTES);doc=json.loads(file.data)
@@ -445,7 +414,6 @@ def authenticate_full(w, ref, docs, originals, entry_raw, owner_raw, pool):
         w.binding_list(group,n);expected.extend(pool.historical(b) for b in group)
     expected.extend((pool.historical(p['resourcePlan']),originals['fullPlan']))
     require(pool.used_routes==set(pool.routes),'unused archive route')
-    require(pool.used_unavailable==set(pool.unavailable),'unused unavailable historical host')
     expected=w.source_map(expected,pool.root);require(len(expected)==198,'original198 derived source closure')
     w.binding_list(a['sourceBindings'],198);require(w.equal(w.source_map(a['sourceBindings'],pool.root),expected),'original receipt cannot invent membership')
     require(c['schema']==ref.REPORT_SCHEMA and c['scope']=='full' and c['accepted'] is True,'original comparison disposition')
@@ -574,7 +542,7 @@ def compare_manifest(w, core, ref, packet, plan, launch, originals, historical, 
     integer(parent['parentIndex'],plan['parentIndex'])
     for key,value in (('launchPlan',launch),('producer',streams['producer']),('verifier',streams['verifier']),('declaration',streams['declaration']),
         ('parent',parent),('originalBindings',originals),('acceptanceOwner',streams['acceptanceOwner']),('priorCoverClosure',plan['priorCoverClosure']),
-        ('historicalSourceBindings',historical),('historicalEvidenceVerification',historical_evidence(list(validate_environment(plan['unavailableHistoricalEnvironment'],Path('/'),w).values()))),('subjectSourceBindings',streams['subjectSourceBindings']),('runtimeBindings',streams['runtimeBindings']),('operationalBindings',streams['operationalBindings']),
+        ('historicalSourceBindings',historical),('historicalEvidenceVerification',historical_evidence()),('subjectSourceBindings',streams['subjectSourceBindings']),('runtimeBindings',streams['runtimeBindings']),('operationalBindings',streams['operationalBindings']),
         ('algorithm',ALGORITHM),('census',CENSUS),('helperCalls',CALLS),('libraryFlags',LIBRARY_FLAGS),('claims',CLAIMS),('publicationRequires',PUBLICATION_REQUIRES)):
         require(w.equal(packet[key],value),'candidate field differs: '+key)
     members=[{k:h[k] for k in ('id','pathKey','polarity','charge','historyFingerprint')} for h in histories]
@@ -693,21 +661,16 @@ def main(argv=None):
             launch=pool.capture(args.plan,args.plan_sha256,data=True,limit=MAX_BYTES);plan=validate_plan(w,decode_role(w,decoder,launch.data,'plan'),args.verifier_sha256,root)
             pool.admit_operation(args.operation_plan,args.operation_plan_sha256)
             pool.routes=historical_routes(plan['historicalDocumentRoutes'],root,w)
-            pool.unavailable=validate_environment(plan['unavailableHistoricalEnvironment'],root,w)
             pool.outputs={str(Path(args.manifest).parent/n) for n in ('queries.ndjson','rows.ndjson','pieces.ndjson','cover-manifest.json')}|{str(output)}
             subject=[pool.read_binding(plan[k]) for k in NAMED]+[pool.read_binding(plan['dependencies'][k]) for k in DEPENDENCIES]
             subject=sorted(subject,key=lambda b:b['path']);originals={k:w.normalized(plan['originalBindings'][k],root) for k in ORIGINAL}
             for b in originals.values():pool.historical_file(b)
             owner=pool.read_binding(plan['acceptanceOwner']);owner_raw=pool.read_binding(plan['acceptanceOwner'],data=True)
-            runtime=set()
-            for group in ('runtimeBindings','operationalBindings'):
-                for b in plan[group]:
-                    actual=pool.read_binding(b)
-                    if group=='runtimeBindings':runtime.add(Path(actual['path']))
+            runtime={Path(b['path']) for b in plan['runtimeBindings']}
+            for b in plan['operationalBindings']:pool.read_binding(b)
             excluded=[root/SELF,root/transport_path,*[root/(NAMED if k in NAMED else DEPENDENCIES)[k][0] for k in loaded]]
             def check_runtime():
-                require(Path(sys.executable).resolve() in runtime and Path(sys.executable).absolute().parent.parent/'pyvenv.cfg' in runtime,'shared interpreter/config absent')
-                require(w.runtime_paths(excluded)<=runtime,'loaded runtime outside plan');live()
+                require(all(path.is_absolute() for path in runtime),'runtime capability paths only');live()
             check_runtime()
             docs={k:decode_role(w,decoder,pool.historical_file(plan['originalBindings'][k],data=True).data,k) for k in ('export','reconstruction','guards','fullPlan','fullManifest','fullComparison','fullAdmission')}
             for k in ('fullLauncherLog','fullResourceLog'):docs[k]=pool.historical_file(plan['originalBindings'][k],data=True).data
@@ -730,7 +693,7 @@ def main(argv=None):
             progress['stage']='source-rechecks';check_runtime();pool.recheck();candidate_layout(path,packet,pool,manifest_binding=manifest.binding())
             report=dict(schema=REPORT_SCHEMA,scope=parent_scope(plan['parentIndex']),accepted=True,authority='source-bound independent original-parent query replay and conditional final cover only',
                 manifest=manifest.binding(),queries=streams['queries'],rows=streams['rows'],pieces=streams['pieces'],launchPlan=launch.binding(),verifier=own.binding(),
-                sourceBindings=pool.bindings(),historicalSourceBindings=historical,historicalEvidenceVerification=historical_evidence(list(pool.unavailable.values())),originalBindings=originals,acceptanceOwner=owner,priorCoverClosure=plan['priorCoverClosure'],parent=parent,
+                sourceBindings=pool.bindings(),historicalSourceBindings=historical,historicalEvidenceVerification=historical_evidence(),originalBindings=originals,acceptanceOwner=owner,priorCoverClosure=plan['priorCoverClosure'],parent=parent,
                 analysis=analysis,candidateClaims=dict(CLAIMS),publicationRequires=PUBLICATION_REQUIRES,elapsedSecondsBeforePublication=time.monotonic()-began)
             require(re.fullmatch(r'(?:0|[1-9][0-9]*)',args.scientific_bytes_already) and re.fullmatch(r'[1-9][0-9]*',args.maximum_stage_output_bytes),'canonical global byte baseline and stage allocation')
             keys(report,REPORT_KEYS);publication=Publication(output,live,int(args.scientific_bytes_already),int(args.maximum_stage_output_bytes));result=publication.publish(report)

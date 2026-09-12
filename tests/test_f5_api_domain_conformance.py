@@ -17,7 +17,9 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from scripts.eom.oracle import f5_api_domain_conformance as api
+from source_replay_support import load_f5_replay_module
+api, _replay_root = load_f5_replay_module(
+    "f5_api_domain_replay", "scripts/eom/oracle/f5_api_domain_conformance.py")
 
 
 class F5ApiDomainTests(unittest.TestCase):

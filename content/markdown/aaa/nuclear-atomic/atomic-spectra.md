@@ -1,6 +1,6 @@
 # Atomic Spectra
 
-This chapter treats atomic spectra as resonance structure in the Noether sea rather than as a purely abstract orbital postulate. A spectral line is a candidate record of an assembly transition, a photon-channel event, and a local clock/rate conversion. The central question is which spectral constants and redshift effects can be recovered as medium-sensitive resonance data.
+This chapter is an exploratory mapping study from AAA assembly and medium records to the effective atomic spectra described by the Standard Model. A spectral line is treated as a candidate record of an assembly transition, a photon-channel event, and a local clock/rate conversion; this is a proposed recovery route, not an established substrate mechanism. The central question is which spectral constants and redshift effects can be recovered as medium-sensitive resonance data.
 
 The required components are developed in [Atomic Structure](atomic-structure.md), [Electron](../assemblies/fermions/electron.md), [Condensed Matter](condensed-matter.md), [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), and [Atomic Transition Radiation](../reactions/atomic-transition-radiation.md), because the proposed spectral shifts depend on local assembly structure, the effective clock/rate layer, and the photon-channel event record.
 

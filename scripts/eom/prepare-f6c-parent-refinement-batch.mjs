@@ -10,7 +10,7 @@ import {fileURLToPath} from 'node:url';
 export const SELF='scripts/eom/prepare-f6c-parent-refinement-batch.mjs';
 export const CONTROLS='tests/f6c-parent-refinement-batch-preparation.test.js';
 export const COORDINATOR=['scripts/eom/f6c-bounded-operation.mjs','e100a96f0771d82664fa62b66865cbf5924cced1216588c631836ed361d6a252'];
-export const EXPECTATIONS=['reference/priorities/development-process-review/contracts/historical-evidence-and-external-closure-v1.md','88692213f16b093a81f9aac34ac2789fc31fd4dbb722383b7961ed94b8311d18'];
+export const EXPECTATIONS=['reference/priorities/development-process-review/contracts/streamed-leaf-historical-invocation-v5.md','576fade32f3f923b88c5490fb44f4411b6a744199857ddea872a70e55c378ccc'];
 export const OBSERVER='scripts/eom/observe-parent-batch.mjs';
 export const CLOSURE_CHECKER='scripts/eom/verify-f6c-bounded-operation-closure.mjs';
 export const CLOSURE_CONTROLS='tests/f6c-bounded-operation-closure.test.js';
@@ -41,7 +41,7 @@ function bootstrap(filename,expected,live){
  }finally{closeSync(fd);}
 }
 export function validateConfiguration(c,C,root){
- keys(c,['schema','root','template','coordinator','composition','compositionControls','preparationControls','observer','closureChecker','closureControls','expectations','sources','sourceIdentities','runtimeBindings','operationalBindings','acceptanceOwner','historicalDocumentRoutes','unavailableHistoricalEnvironment','pythonCommand','git','operationDirectory','parents','closureReserveBytes','ownerTask']);
+ keys(c,['schema','root','template','coordinator','composition','compositionControls','preparationControls','observer','closureChecker','closureControls','expectations','sources','sourceIdentities','runtimeBindings','operationalBindings','acceptanceOwner','historicalDocumentRoutes','pythonCommand','git','operationDirectory','parents','closureReserveBytes','ownerTask']);
  check(c.schema==='braid-program/f6c-parent-refinement-batch-preparation.v2'&&c.root===root,'preparation root/schema');absolute(root);absolute(c.operationDirectory);absolute(c.pythonCommand);absolute(c.git);
  for(const k of ['template','coordinator','composition','compositionControls','preparationControls','observer','closureChecker','closureControls','expectations','acceptanceOwner'])C.binding(c[k]);
  check(c.coordinator.path===path.join(root,COORDINATOR[0])&&c.coordinator.sha256===COORDINATOR[1],'frozen coordinator');
@@ -61,7 +61,7 @@ export function validateConfiguration(c,C,root){
 }
 export function derivePlans({configuration:c,template,admission,exported,self,configurationBinding,outDirectory,C,B}){
  validateConfiguration(c,C,c.root);absolute(outDirectory);
- const plans=B.makeParentPlans({template,indices:c.parents.map(p=>p.parentIndex),sourceBindings:c.sources,runtimeBindings:c.runtimeBindings,operationalBindings:c.operationalBindings,acceptanceOwner:c.acceptanceOwner,historicalDocumentRoutes:c.historicalDocumentRoutes,unavailableHistoricalEnvironment:c.unavailableHistoricalEnvironment});
+ const plans=B.makeParentPlans({template,indices:c.parents.map(p=>p.parentIndex),sourceBindings:c.sources,runtimeBindings:c.runtimeBindings,operationalBindings:c.operationalBindings,acceptanceOwner:c.acceptanceOwner,historicalDocumentRoutes:c.historicalDocumentRoutes});
  const inputs=plans.map(p=>B.validatePlan(p,{root:c.root,selfSha:c.composition.sha256,python:c.pythonCommand,git:c.git}));
  check(c.composition.path===path.join(c.root,B.SELF)&&c.compositionControls.path===path.join(c.root,B.CONTROL),'exact reviewed composition paths');
  check(admission.schema==='braid-program/f6c-cached-root-cover-full-admission.v1'&&admission.scope==='full'&&admission.accepted===true&&admission.processesClosed===true&&Array.isArray(admission.sourceBindings)&&admission.sourceBindings.length===198,'bound complete original ancestry');

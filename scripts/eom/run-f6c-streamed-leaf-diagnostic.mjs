@@ -104,11 +104,11 @@ export const PINS=Object.freeze({
  ],
  "helpers": [
   "scripts/eom/launch-prescribed-response-pilot.mjs",
-  "9af9a6a33b3b1c5889550953496be13d0698e5d24e9033dbdd5ffcb82deeafe2"
+  "72b181165cafe21f3237dca7638343a9d31ea4ee48f709d9b43761666d6e7ec5"
  ],
  "outer": [
   "scripts/eom/launch-subfield-circular-root-pilot.mjs",
-  "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c"
+  "e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920"
  ],
  "diagnostics": [
   "scripts/eom/launch-f6c-emission-refinement-pilot.mjs",
@@ -164,7 +164,7 @@ export const FRESH_CLOSURE_PINS=Object.freeze({
 });
 export const CONTINUATION_MATH=Object.freeze([
  ['scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py','3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7',41336],
- ['scripts/eom/verify-f6c-continuous-reception-acceleration.py','23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d',42580],
+ ['scripts/eom/verify-f6c-continuous-reception-acceleration.py','6e3467a017c3477fb1b2baddd10e985687ed6112aeb5bc84c2fc92a9453cda83',42580],
  ['scripts/eom/oracle/f6c_residual_integral_supremum.py','fc170a91b2747923bda89ef00b58d529c98bf96b01cc7b2c05c035042fc79c5a',20129],
  ['scripts/eom/oracle/f6c_gk13_protocol.py','a70a15481f793e913440628068f9c53bab611fe9d92f36206a401c01e91478eb',24388],
  ['scripts/eom/oracle/f6c_correlated_residual_enclosure.py','b86907236e849124f3fa9c6bcad0f65492ecc6fbeb1b51a27438655c45b037b1',7830],
@@ -460,10 +460,10 @@ export function prepareContinuation(spec,read=readBound){
 }
 export function historicalEvidenceInputs(spec){
  const h=spec.historicalEvidence;if(h===null)return [];
- keys(h,['selection','sourceBindings']);keys(h.selection,['schema','routes','unavailableHistoricalEnvironment']);
+ keys(h,['selection','sourceBindings']);keys(h.selection,['schema','routes']);
  check(h.selection.schema==='braid-program/variable-cell-historical-evidence.v1','explicit retained evidence version');
- const {routes,unavailableHistoricalEnvironment:missing}=h.selection;
- check(Array.isArray(routes)&&routes.length<=198&&Array.isArray(missing)&&missing.length<=3,'bounded retained evidence routes');
+ const {routes}=h.selection;
+ check(Array.isArray(routes)&&routes.length<=198,'bounded retained evidence routes');
  check(Array.isArray(h.sourceBindings)&&h.sourceBindings.length>0,'explicit complete retained physical source union');
  const sources=boundedSourceUnion(h.sourceBindings),byPath=new Map(sources.map(b=>[b.path,b])),keysSeen=new Set(),targets=new Set();
  check(sources.length===h.sourceBindings.length,'duplicate retained physical source');
@@ -475,7 +475,6 @@ export function historicalEvidenceInputs(spec){
   check(byPath.has(b.path)&&equalBinding(byPath.get(b.path),b),'archive absent from physical union');
   check(!spec.runtimeBindings.some(r=>r.path===b.path)&&!Object.values(spec.bindings).some(r=>r.path===b.path),'archive cannot supply executable/runtime source');
  }
- const absent=new Set();for(const b of missing){binding(b);check(!absent.has(b.path)&&!routes.some(r=>r.original.path===b.path),'conflicting missing historical environment');absent.add(b.path);}
  // The adapter owns the finite original tuple catalogue and verifies all routes
  // were consumed. This layer authenticates transport, never historical truth.
  return sources;

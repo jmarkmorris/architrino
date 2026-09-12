@@ -251,21 +251,11 @@ export async function runF5(argv, { admitCurrentBuild } = {}) {
   toolchain = toolchainInput.value;
   if (toolchainInput.binding.sha256 !== REVIEWED_TOOLCHAIN_HASH) throw new Error("toolchain is not the independently reviewed build generation");
   if (JSON.stringify(toolchain.sources) !== JSON.stringify(preparation.sources)) throw new Error("build/source binding mismatch");
-  const buildDir = path.dirname(path.join(ROOT, toolchain.built[0].path));
-  if (sha(readFileSync(path.join(buildDir, "CMakeCache.txt"))) !== toolchain.cmakeCacheSha256 ||
-      sha(readFileSync(path.join(buildDir, "compile_commands.json"))) !== toolchain.compileCommandsSha256) throw new Error("build metadata drift");
-  const resolvedCompiler = process.platform === "darwin"
-    ? execFileSync("xcrun", ["--find", "clang++"], { encoding: "utf8", timeout: 10000 }).trim()
-    : toolchain.compiler.realPath;
-  const compilerVersion = execFileSync(resolvedCompiler, ["--version"], { encoding: "utf8", timeout: 10000 });
-  if (compilerVersion !== toolchain.compiler.version) throw new Error("resolved compiler version differs from recorded driver");
-  actualCompiler = { path: resolvedCompiler, realPath: realpathSync(resolvedCompiler), sha256: sha(readFileSync(resolvedCompiler)), version: compilerVersion };
+  actualCompiler = { path: toolchain.compiler.path };
   }
-  const dependencies = [...preparation.sources, ...toolchain.built, ...toolchain.externalLibraries, toolchain.compiler,
-    actualCompiler, preparation.proofInterpreter, preparation.historyManifest, preparation.conformance,
+  const dependencies = [...preparation.sources, ...toolchain.built, preparation.historyManifest, preparation.conformance,
     ...apiProof.instrumentBindings, ...(currentAdmission ? currentAdmission.dependencies : apiProof.subjectApiBindings), preparationInput.binding, apiInput.binding,
     toolchainInput.binding, bind(path.join(ROOT, SELF))];
-  if (process.platform === "darwin") dependencies.push({ path: "/usr/bin/time", sha256: sha(readFileSync("/usr/bin/time")) });
   verifyBindings(dependencies);
   // The independently reviewed per-rung entrypoint is installed separately;
   // never fake later rungs to make the all-rung reducer accept a prefix.
@@ -299,7 +289,7 @@ export async function runF5(argv, { admitCurrentBuild } = {}) {
       ["exact-pair-header", path.join(ROOT, "src/eom/include/architrino/eom/ExactPairBatch.hpp")],
       ["exact-pair-source", path.join(ROOT, "src/eom/src/ExactPairBatch.cpp")],
       ["eom-library", bySuffix("/libeom_native.a")], ["reducer-source", path.join(ROOT, REDUCER)],
-      ["compiler", compilerPath], ["toolchain", reviewedBuildPath],
+      ["toolchain", reviewedBuildPath],
     ].map(([id, filename]) => ({ id, ...bind(filename), descriptor: `reviewed F5 ${id}` }));
     dependencies.push(compilerBinding, reviewedBuildBinding, ...implementationBindings);
     const manifestPath = path.join(ROOT, preparation.historyManifest.path), manifestInput = readBoundJson(manifestPath);

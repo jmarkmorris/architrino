@@ -15,8 +15,8 @@ export const RESOURCE_PLAN = "reference/priorities/braid-program/evidence/2026-0
 export const LANE = ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827";
 export const LIMIT_MS = 1800000, LOG_LIMIT = 16*1024**2, FILE_LIMIT = 64*1024**2;
 export const PINS = Object.freeze({
-  [OUTER]: "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c",
-  [CONSUMER]: "6229e8227d26abdb1acc415ae10f0456d325ced5649ad68eb261790c585ae0a3",
+  [OUTER]: "e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920",
+  [CONSUMER]: "9da7863fe51777de48ee44e0d9dab73cb9844039768b6742310ead3d60702d82",
   [COMPARISON]: "1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36",
   [RESOURCE_PLAN]: "1a6327933b0060905aec97022e87c243b54f353af8c7aec83712967b285b010d",
   "tests/test_f6c_continuous_reception_root_cover_preparation.py": "68a940c40b2e3b463555b95858031f96796e2ac94963a86b3a9ae6fd74dc3742",
@@ -33,7 +33,6 @@ export const PINS = Object.freeze({
   ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json": "f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1",
   ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json": "7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43",
   ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json": "86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880",
-  "/usr/bin/memory_pressure": "ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da",
 });
 export const check = (condition, message) => { if (!condition) throw new Error(message); };
 export const sha = bytes => createHash("sha256").update(bytes).digest("hex");

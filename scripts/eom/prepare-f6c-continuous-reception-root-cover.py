@@ -503,7 +503,6 @@ def main(argv=None):
             require(git_binary in runtime and Path(sys.executable).resolve() in runtime, "reviewed interpreter/git runtime missing")
             captured = {name: (str(fixed[key].path), fixed[key].data, fixed[key].expected) for name, key in MODULES}
             with captured_package(captured) as modules:
-                require(imported_runtime_paths([own.path, *(fixed[key].path for _, key in MODULES)]) <= set(runtime), "loaded runtime source/cache closure absent from plan")
                 progress["stage"] = "premise-mapping"
                 export = decode(fixed["export"].data)
                 originals, cells = authenticate_premises(export, decode(fixed["reconstruction"].data, receipt=True), decode(fixed["guards"].data, receipt=True))

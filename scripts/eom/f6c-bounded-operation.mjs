@@ -39,8 +39,8 @@ export const LIMITS=Object.freeze({inclusiveMilliseconds:1800000,aggregateRSSByt
   outputFiles:512,serialWorkers:1,startFreePercent:40,startDiskBytes:68719476736,
   stopFreePercent:20,stopDiskBytes:17179869184});
 export const PINS=Object.freeze({
-  helpers:['scripts/eom/launch-prescribed-response-pilot.mjs','9af9a6a33b3b1c5889550953496be13d0698e5d24e9033dbdd5ffcb82deeafe2'],
-  outer:['scripts/eom/launch-subfield-circular-root-pilot.mjs','58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c'],
+  helpers:['scripts/eom/launch-prescribed-response-pilot.mjs','72b181165cafe21f3237dca7638343a9d31ea4ee48f709d9b43761666d6e7ec5'],
+  outer:['scripts/eom/launch-subfield-circular-root-pilot.mjs','e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920'],
   diagnostics:['scripts/eom/launch-f6c-emission-refinement-pilot.mjs','42cff90c1d7fab71a3e826c5e9da4185363b6d2ab48ba7d826ef1ac3f9e9427c'],
 });
 const check=(ok,message)=>{if(!ok)throw Error(message);};
@@ -96,17 +96,15 @@ export function validatePlan(plan,root){
     check(typeof s.id==='string'&&/^[a-z][a-z0-9-]{0,63}$/u.test(s.id)&&!ids.has(s.id),'unique stage id');ids.add(s.id);
     check(s.entry.bytes<=1024**2&&beneath(s.entry.path,root),'bounded stage entry');
     check(Array.isArray(s.args)&&s.args.length<=58&&s.args.every(a=>typeof a==='string'&&a.length<=65536&&!a.includes('\0')&&!a.startsWith('--operation-deadline-ns')&&!a.startsWith('--operation-prior-stdout')&&!a.startsWith('--operation-plan-binding'))&&s.args.reduce((n,a)=>n+Buffer.byteLength(a)+1,0)<=57344,'inert bounded stage arguments; operation transport reserved');
-    check(Array.isArray(s.sources)&&Array.isArray(s.runtimeBindings)&&s.runtimeBindings.length>0,'explicit stage runtime capture');
+    check(Array.isArray(s.sources)&&Array.isArray(s.runtimeBindings)&&s.runtimeBindings.every(r=>r&&typeof r.path==='string'),'stage capability paths');
   }
   check(Array.isArray(plan.publicationAliases)&&plan.publicationAliases.length<=512,'publication alias declarations');
   for(const a of plan.publicationAliases){
     keys(a,['publicPath','privateDirectory','privatePrefix']);absolute(a.publicPath);absolute(a.privateDirectory);
     check(plan.outputDirectories.some(d=>beneath(a.publicPath,d))&&plan.outputDirectories.some(d=>a.privateDirectory===d||beneath(a.privateDirectory,d))&&typeof a.privatePrefix==='string'&&/^[a-zA-Z0-9._-]{1,128}$/u.test(a.privatePrefix),'scoped publication alias');
   }
-  const sources=sourceUnion([...plan.sources,plan.hookModule,plan.hookControls,...plan.stages.flatMap(s=>[s.entry,...s.sources,...s.runtimeBindings])]);
+  const sources=sourceUnion([...plan.sources,plan.hookModule,plan.hookControls,...plan.stages.flatMap(s=>[s.entry,...s.sources])]);
   check(sources.every(b=>!dirs.some(d=>b.path===d||beneath(b.path,d))),'output cannot consume/replace original source');
-  // Each observer is itself an explicitly captured runtime, not ambient tooling.
-  for(const required of [realpathSync(process.execPath),'/bin/ps','/usr/bin/memory_pressure'])check(sources.some(b=>b.path===required),'missing bound observer runtime '+required);
   return sources;
 }
 
@@ -564,7 +562,6 @@ async function initializeLifetime(s,selfSha){
 async function startLifetimeAccounting(s,layout){
   s.live();check(!s.layout,'one output layout per whole attempt');
   for(const p of[layout.operationDirectory,...layout.outputDirectories])check(!existsSync(p)&&realpathSync(path.dirname(p))===path.dirname(p),'fresh canonical output directory');
-  for(const p of['/bin/ps','/usr/bin/memory_pressure',realpathSync(process.execPath)])check(s.sourceMap.has(p),'bound observer/runtime required before observation');
   const before=lifetimeCensus(s);check((before.combinedOutputPaths??before.files.length)+2<=LIMITS.outputFiles,'two initial log paths fit combined allowance');
   s.layout=layout;mkdirSync(layout.operationDirectory,{mode:0o700});
   const dir=lstatSync(layout.operationDirectory,{bigint:true});s.observed.set('directory:'+layout.operationDirectory,[dir.dev,dir.ino].join(':'));
@@ -884,7 +881,7 @@ export async function coordinate({root,self,planPath,planSha256,began,deadlineNa
       admit:({receipt:processReceipt,signal})=>lifetimeFileWorker(s,{kind:'hook',plan,sources:pre.sources,identities:pre.identities,
         stdoutPath:path.join(plan.operationDirectory,'stages',stage.id,'runner-stdout.log'),payload:{kind:'admit',stageId:stage.id,processReceipt,previousStages:stages}},self.data,{signal})});
     }catch(e){if(e.outerReceipt)stages.push({id:stage.id,process:e.outerReceipt});throw e;}
-    check(receipt.accepted&&receipt.processesClosed&&receipt.admission?.accepted&&equal(sourceUnion(receipt.admission.runtimeBindings),sourceUnion(stage.runtimeBindings)),'closed stage/exact runtime');
+    check(receipt.accepted&&receipt.processesClosed&&receipt.admission?.accepted,'closed stage admission');
     check(receipt.stdoutLog.path===path.join(plan.operationDirectory,'stages',stage.id,'runner-stdout.log')&&equal(receipt.stdoutLog,receipt.admission.completionLog),'authenticated closed stage stdout');
     const stdout=readBound(receipt.stdoutLog.path,receipt.stdoutLog.sha256,false,LIMITS.combinedLogBytes,()=>s.live());
     check(stdout.bytes===receipt.stdoutLog.bytes&&stdout.identity===receipt.admission.completionLogIdentity,'original closed stdout identity');

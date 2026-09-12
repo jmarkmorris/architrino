@@ -1,6 +1,6 @@
 # Atomic Transition Radiation
 
-Atomic transition radiation is the line-emission and line-absorption channel in which an electron-assembly envelope moves between effective atomic resonance basins and the excess action is routed through a photon planar-mode channel, recoil, medium excitation, or residual atomic energy.
+Atomic transition radiation is an exploratory mapping of the effective line-emission and line-absorption channel into AAA event records. In the target mapping, an effective electron-assembly envelope moves between recovered atomic resonance basins and the excess action is routed through a photon planar-mode channel, recoil, medium excitation, or residual atomic energy. The atomic labels and transition mechanism remain downstream recovery targets, not established substrate premises.
 
 This page specializes the shared routing skeleton in [Radiation](radiation.md). The envelope energies and spectral labels are inherited from [Atomic Spectra](../nuclear-atomic/atomic-spectra.md), while photon ontology and Gate A/B/C closure requirements are inherited from [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md#photon-closure-interface). Reaction provenance follows [Reaction Ledger](../validation/reaction-ledger.md), and cosmology-facing photon records remain downstream of [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md).
 

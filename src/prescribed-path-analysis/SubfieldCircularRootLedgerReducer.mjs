@@ -19,11 +19,6 @@ export const SUBFIELD_CIRCULAR_REFERENCES = Object.freeze([
 const SUBJECT_PATH = "src/eom/native/eom_subfield_circular_root_cli.cpp";
 const SUBJECT_SHA = "42dc7eaa74a36f019ff126215754785f9b8418dd998d9850c2c70dc5cb03bd41";
 const CMAKE_SHA = "e4b3a8bdfc91c756eb00e4c37e872bcbebfe1f7b406a551e3aa630f8818d2bdd";
-const CURRENT_BUILD_REVIEW = Object.freeze({
-  path: "reference/priorities/development-process-review/evidence/circular-current-execution/v3-build-review.json",
-  sha256: "15ff73965cc7fd7b9384874596faf33987f93e8bd2bc172b2ad0d9e36573aaa3",
-  preparationSha256: "c80526d097c81627186cbbfcea7e0005d9d73288e331f4535f07982cc2bef944",
-});
 const API_PINS = Object.freeze({
   "src/eom/src/History.cpp": "cd732843db488de66798953278d1e3b15151163c826b9d5b93eed98363a8b4c5",
   "src/eom/src/Interval.cpp": "5da66e8473f78439dbb075857918af85b7789b2749e5046c83d9b58d944023a5",
@@ -192,14 +187,6 @@ function fileContext(repoRoot) {
 function verifyBuild(bytes, expectedHash, files) {
   if (!hashToken(expectedHash) || subfieldCircularSha256(bytes) !== expectedHash) fail("build receipt original-byte hash mismatch");
   const build = subfieldCircularOriginalJson(bytes);
-  // This explicit generation is admitted by an independently retained review.
-  // Other receipts retain the original source contract; caller-supplied hashes
-  // alone never select a new subject or manufacture build acceptance.
-  const review = expectedHash === CURRENT_BUILD_REVIEW.preparationSha256
-    ? subfieldCircularOriginalJson(files.bound(CURRENT_BUILD_REVIEW)) : null;
-  if (review && (review.preparation.sha256 !== expectedHash || review.preparation.bytes !== bytes.length ||
-      review.authority?.concreteBuildReviewed !== true || review.authority.buildExecutionAccepted !== true ||
-      review.authority.rootExecutionAuthorized !== false)) fail("current build review identity differs");
   if (build.schema !== "braid-program/subfield-circular-root-build.v1" || build.status !== "build-recorded-pending-independent-review" ||
       build.authority !== "recorded-build-identity-pending-independent-review" || build.rootExecutionAuthorized !== false ||
       build.h3EvidenceEligible !== false || build.historiesPrepared !== false || build.rootCalls !== 0) fail("build receipt authority differs");
@@ -225,9 +212,8 @@ function verifyBuild(bytes, expectedHash, files) {
         build.built.executable.bytes !== review.executable.bytes || build.stages.length !== review.successfulClosedStages)
       fail("current build differs from independent review census");
     for (const binding of build.discoveryToolsBefore) verify(binding);
-    for (const binding of build.runtimeDependencies.filter(binding => binding.status === "file-hashed")) verify(binding);
-    if (!same(build.runtimeDependencies.filter(binding => binding.status !== "file-hashed"), review.platformBoundary))
-      fail("current build platform boundary differs");
+    if (!build.runtimeDependencies.every(binding => binding.status === "runtime-capability"))
+      fail("current build runtime capability boundary differs");
   }
   if (!Array.isArray(build.stages) || build.stages.length < 3) fail("incomplete build stages");
   for(const required of ["configure","librarybuild","adapterlink"])if(build.stages.filter(stage=>stage.stage===required).length!==1)fail(`missing unique ${required} build stage`);

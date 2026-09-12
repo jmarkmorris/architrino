@@ -56,7 +56,6 @@ def plan_fixture():
     p['originalBindings']={k:binding(v[0],v[1],v[2] if len(v)==3 else 1) for k,v in s.ORIGINAL.items()}
     p.update(acceptanceOwner=binding(s.OWNER),priorCoverClosure=s.closure_premise(),
         runtimeBindings=[binding('/synthetic/python'),binding('/synthetic/pyvenv.cfg')],operationalBindings=[binding('synthetic/operation')],limits=deepcopy(w.LIMITS))
-    p['unavailableHistoricalEnvironment']=[]
     p['historicalDocumentRoutes']=[dict(original=binding(s.PREFIX+name,h,n),physical=binding('/synthetic/archive-'+h+'.source',h,n)) for name,h,n in (
         ('2026-08-27-f6c-cached-root-cover-full-resource-plan.md','daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b',10021),
         ('2026-08-27-f6c-root-cover-full-resource-plan.md','46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021))]
@@ -81,7 +80,7 @@ def candidate_fixture(velocity=F(0)):
     packet=dict(schema=s.MANIFEST_SCHEMA,scope=s.parent_scope(1),status='conditional_complete',accepted=False,launchPlan=launch,
         producer=streams['producer'],verifier=streams['verifier'],declaration=streams['declaration'],parent=parent,
         members=[{k:h[k] for k in ('id','pathKey','polarity','charge','historyFingerprint')} for h in hs],originalBindings=originals,
-        acceptanceOwner=streams['acceptanceOwner'],priorCoverClosure=p['priorCoverClosure'],historicalSourceBindings=historical,historicalEvidenceVerification=s.historical_evidence([]),
+        acceptanceOwner=streams['acceptanceOwner'],priorCoverClosure=p['priorCoverClosure'],historicalSourceBindings=historical,historicalEvidenceVerification=s.historical_evidence(),
         subjectSourceBindings=streams['subjectSourceBindings'],runtimeBindings=streams['runtimeBindings'],operationalBindings=streams['operationalBindings'],
         algorithm=deepcopy(s.ALGORITHM),restrictions=restrictions,census=deepcopy(s.CENSUS),helperCalls=deepcopy(s.CALLS),
         queries=streams['queries'],rows=streams['rows'],pieces=streams['pieces'],libraryFlags=deepcopy(s.LIBRARY_FLAGS),claims=deepcopy(s.CLAIMS),publicationRequires=s.PUBLICATION_REQUIRES)

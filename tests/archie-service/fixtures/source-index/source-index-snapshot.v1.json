@@ -19,9 +19,9 @@
   },
   "generatedArtifactDigests": {
     "markdownIndex": "43f2c5f5e1aa19e6088e518e1ffa459c9a3ad078aa2323a246e6c520ecae7611",
-    "readingCopies": "d4d5ae37248f00721868aff90b460935648bcc6c433b4a152c2eae341d8b0924",
+    "readingCopies": "dc3828ec76889fd095fef33da33ea210022b43ef24e06f259b277f46a617c451",
     "sceneGraph": "4444d446677a091f13c381e530a6eafb58bdcbfb7207bf21c71f98570f524d78",
-    "textbookToc": "6f6b1d077aaa2db82fb50afc05d2ee737ac43bbf54f638a7ba328621ceb891b9"
+    "textbookToc": "b3434097b84b11d8ff30b1e19bb8a3b40cbe2f3adf8d136c1af829cb9f8a21a9"
   },
   "sourceRecordCountByClass": {
     "published_corpus": 1,
@@ -371,5 +371,5 @@
       "sha256": "6ce866fec72d0914e6118a319140fa9b174a7aa9847b7611ceb3ed02a4fe7698"
     }
   },
-  "snapshotSha256": "bb04303ab376f05ae648d515357fe0edb7ff82eea6eee550346d5443c372fd77"
+  "snapshotSha256": "be7bfe480c079c32e1c1b949e2015c10ee0d252d810fc34529840eedfaebe325"
 }

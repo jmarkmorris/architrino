@@ -95,8 +95,8 @@ FROZEN_SUBJECT=(
  ('tests/test_eom_decimal_interval.py','22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44'),
  (HELPER,HELPER_SHA),(HELPER_CONTROLS,HELPER_CONTROLS_SHA),(PURE,PURE_SHA),(PURE_CONTROLS,PURE_CONTROLS_SHA),
  ('reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md','a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d'),
- ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5'),
- ('tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','3bee7599b03f2500ede6eeeea31c46e1aac82410f456e967102c13e820b93221'))
+ ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841'),
+ ('tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2'))
 SOURCE_PLAN_KEYS=('declaration','producer','producerControls','verifier','verifierControls','comparisonReference','comparisonReferenceControls')
 
 def prior_closure():

@@ -15,11 +15,11 @@ export const RESOURCE_PLAN = "reference/priorities/braid-program/evidence/2026-0
 export const LANE = ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827";
 export const LIMIT_MS = 1800000, LOG_LIMIT = 16*1024**2, FILE_LIMIT = 64*1024**2;
 export const PINS = Object.freeze({
-  [OUTER]: "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c",
-  [CONSUMER]: "7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5",
+  [OUTER]: "e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920",
+  [CONSUMER]: "d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841",
   [COMPARISON]: "3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7",
   [RESOURCE_PLAN]: "8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378",
-  "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py": "3bee7599b03f2500ede6eeeea31c46e1aac82410f456e967102c13e820b93221",
+  "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py": "5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2",
   "tests/test_f6c_cached_continuous_reception_root_cover.py": "09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3",
   "scripts/eom/oracle/continuous_reception_roots_cached.py": "daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf",
   "scripts/eom/oracle/certified_history.py": "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7",
@@ -33,7 +33,6 @@ export const PINS = Object.freeze({
   ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json": "f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1",
   ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json": "7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43",
   ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json": "86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880",
-  "/usr/bin/memory_pressure": "ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da",
   "tests/test_eom_continuous_reception_roots_cached.py": "a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb",
   "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md": "3b20e5d7bce4b57dfd41c0d1efcc34f9242dcd41a02b35676f45ba0984499578",
   "scripts/eom/oracle/continuous_reception_roots.py": "f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c",

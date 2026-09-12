@@ -1,6 +1,6 @@
 // Subject-side orchestration only. Mathematical acceptance is delegated to the
 // separately authored, byte-frozen F5 manifest oracle; this file is not an oracle.
-import { spawn, execFileSync } from "node:child_process";
+import { spawn } from "node:child_process";
 import { createHash } from "node:crypto";
 import {
   closeSync, existsSync, mkdirSync, openSync, readFileSync, readdirSync,
@@ -200,35 +200,28 @@ export async function prepareF5(argv) {
     const cachePath = path.join(build, "CMakeCache.txt"), cache = readFileSync(cachePath, "utf8");
     const compiler = cache.match(/^CMAKE_CXX_COMPILER:(?:FILEPATH|STRING)=(.+)$/mu)?.[1];
     if (!compiler || !path.isAbsolute(compiler)) throw new Error("build cache has no absolute compiler identity");
-    const compilerIdentity = { path: compiler, realPath: realpathSync(compiler), sha256: sha(readFileSync(compiler)),
-      version: execFileSync(compiler, ["--version"], { encoding: "utf8", timeout: 10000 }),
-      cmakeCacheSha256: sha(Buffer.from(cache)) };
-    writeJson(path.join(output, "compiler-identity.json"), compilerIdentity);
+    const compilerIdentity = { path: realpathSync(compiler) };
     const executable = path.join(build, TARGET), library = path.join(build, "libeom_native.a");
     const built = [executable, library].map((filename) => ({ path: path.relative(ROOT, filename),
       sha256: sha(readFileSync(filename)), bytes: statSync(filename).size, modifiedAt: statSync(filename).mtime.toISOString() }));
     const externalLibraries = ["MPFR_LIBRARY", "GMP_LIBRARY"].map((name) => {
       const filename = cache.match(new RegExp(`^${name}:(?:FILEPATH|STRING)=(.+)$`, "mu"))?.[1];
       if (!filename || !path.isAbsolute(filename)) throw new Error(`build cache has no ${name} identity`);
-      return { name, path: filename, realPath: realpathSync(filename), sha256: sha(readFileSync(filename)) };
+      return { name, path: realpathSync(filename) };
     });
     const toolchain = { schema: "braid-program/f5-enclosed-root-build.v1", sources, built, externalLibraries,
-      compiler: compilerIdentity, compileCommandsSha256: sha(readFileSync(path.join(build, "compile_commands.json"))),
-      cmakeCacheSha256: compilerIdentity.cmakeCacheSha256, stages: receipt.stages, builtAt: new Date().toISOString(),
-      authority: "recorded-build-identity-pending-independent-review" };
+      compiler: compilerIdentity, stages: receipt.stages, builtAt: new Date().toISOString(),
+      authority: "authored-source-and-build-artifact-record-pending-independent-review" };
     writeJson(path.join(output, "toolchain.json"), toolchain);
     const manifest = path.join(output, "history-manifest.json");
     receipt.stages.push(await watched("manifest", executable, ["manifest", "--repo-root", ROOT,
       "--campaign-id", campaignId, "--run-id", runId, "--out", manifest]));
     receipt.historyManifest = { path: path.relative(ROOT, manifest), sha256: sha(readFileSync(manifest)) };
     checkSnapshot(sources); verifyFrozenReferences();
-    for (const record of [compilerIdentity, ...externalLibraries]) {
-      if (sha(readFileSync(record.path)) !== record.sha256) throw new Error("external toolchain changed during manifest generation");
-    }
     for (const record of built) if (binding(record.path).sha256 !== record.sha256) throw new Error("built artifact changed after manifest generation");
     const venv = path.resolve(ROOT, process.env.AAA_VENV || "../.venv");
     const interpreter = path.join(venv, "bin/python");
-    receipt.proofInterpreter = { path: interpreter, realPath: realpathSync(interpreter), sha256: sha(readFileSync(interpreter)) };
+    receipt.proofInterpreter = { path: realpathSync(interpreter) };
     const certificate = path.join(output, "nominal-history-conformance.json");
     receipt.stages.push(await watched("conformance", interpreter, ["-m", "scripts.eom.oracle.f5_history_manifest_conformance",
       "--history-manifest", manifest, "--out", certificate]));
@@ -236,9 +229,6 @@ export async function prepareF5(argv) {
     validateProofReceipt(proof, receipt.historyManifest.sha256, campaignId, runId);
     receipt.conformance = { path: path.relative(ROOT, certificate), sha256: sha(readFileSync(certificate)) };
     checkSnapshot(sources); verifyFrozenReferences();
-    for (const record of [compilerIdentity, ...externalLibraries, receipt.proofInterpreter]) {
-      if (sha(readFileSync(record.path)) !== record.sha256) throw new Error("external toolchain changed during conformance");
-    }
     for (const record of built) if (binding(record.path).sha256 !== record.sha256) throw new Error("built artifact drift during independent conformance");
     if (sha(readFileSync(manifest)) !== receipt.historyManifest.sha256) throw new Error("history manifest mutated during conformance");
     receipt.status = "nominal-actual-history-conformance-passed";

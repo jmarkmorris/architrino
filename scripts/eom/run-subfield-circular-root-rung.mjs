@@ -19,7 +19,7 @@ export const SUBFIELD_CIRCULAR_RUNTIME_PATHS = Object.freeze({
 });
 export const SUBFIELD_CIRCULAR_RUNTIME_HASHES = Object.freeze({
   pilot: "18479b39de068129423ecdffd103feb9c06a3f870648d55cbd7b0a3264926774",
-  outer: "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c",
+  outer: "e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920",
   helper: "15a844adc1731a6ea47f0636f86d9e0d7196d6b15dd963006a278c129cc328f1",
   bridge: "00cd8290a9929e0e099c91aeff03c52cf06ec5d9cad329ffad00092c61815e02",
   watch: "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9",
@@ -285,11 +285,10 @@ export async function runSubfieldCircularCandidateRung({ root, args, sources, ru
       "prior phase census differs", "PLAN_REJECTED");
     const build = await fileJob({ kind: "build", out: path.join(output, "build-before.json") });
     [receipt.buildBefore] = await inspect([{ path: path.join(output, "build-before.json") }]);
-    const runtimeBindings = await inspect([{ path: process.execPath }, { path: "/usr/bin/time" }]);
-    shared = [...build.fastBindings, ...receipt.sourceBindings, ...runtimeBindings, receipt.plan, receipt.priorReceipts, plan.pilotAdmission,
+    shared = [...build.fastBindings, ...receipt.sourceBindings, receipt.plan, receipt.priorReceipts, plan.pilotAdmission,
       ...prior.phaseReceipts, ...prior.rungAdmissions, pilotAuthority.admission.summary, SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW,
       { path: SUBFIELD_CIRCULAR_DISPATCH_PATH, sha256: plan.dispatcherSha256 }, ...(cohort.resourceReturn ? [cohort.resourceReturn] : [])];
-    receipt.runtimeBindings = runtimeBindings;
+    receipt.runtimeCapabilities = [process.execPath, "/usr/bin/time"];
     const executable = path.resolve(root, build.built.executable.path), reducerSource = sources.find(record => record.path === SUBFIELD_CIRCULAR_RUNTIME_PATHS.reducer);
     for (const expected of schedule) {
       const started = elapsed(), directory = path.join(output, `phase-${expected.phase}`); mkdirSync(directory);

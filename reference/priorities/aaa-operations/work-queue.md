@@ -20,19 +20,19 @@ This is the current execution ledger for deployment, hosting, cost, reliability,
 - **Directory inventory:**
   - ● `aaa-corpus-dragnet` — complete.
   - ◐ `aaa-corpus-rewrite` — in progress; active owner; `CRW-005`.
-  - ◐ `aaa-operations` — in progress; active owner; `OPS-028`.
-  - ○ `aaa-work-threads` — todo.
-  - ○ `app-aaa-core` — todo.
-  - ○ `app-borg` — todo.
-  - ○ `app-equation-mapping` — todo.
-  - ○ `app-lattice-lab` — todo.
-  - ○ `app-photon` — todo.
-  - ○ `app-simulation` — todo.
-  - ○ `app-solver` — todo.
-  - ○ `app-topo` — todo.
-  - ○ `app-ui-guidelines` — todo.
+  - ● `aaa-operations` — complete; `OPS-028`.
+  - ● `aaa-work-threads` — complete.
+  - ● `app-aaa-core` — complete.
+  - ● `app-borg` — reviewed; complete.
+  - ● `app-equation-mapping` — reviewed; complete.
+  - ● `app-lattice-lab` — reviewed; complete.
+  - ● `app-photon` — reviewed; complete.
+  - ● `app-simulation` — reviewed; complete.
+  - ● `app-solver` — reviewed; complete.
+  - ● `app-topo` — reviewed; complete.
+  - ● `app-ui-guidelines` — reviewed; complete.
   - ○ `braid-program` — todo.
-  - ○ `category-theory` — todo.
+  - ● `category-theory` — reviewed; complete.
   - ○ `development-process-review` — todo.
   - ○ `dormant-deferred` — todo; inventory only, not reactivated.
   - ○ `field-speed-ceiling` — todo.
@@ -47,7 +47,7 @@ This is the current execution ledger for deployment, hosting, cost, reliability,
   - ○ `mapping-strong-field` — todo.
   - ○ `master-equation-closure` — todo.
   - ○ `source-mining` — todo.
-- **Current disposition:** `aaa-corpus-dragnet` is the first completed directory in the linked work-log record. `aaa-corpus-rewrite` and `aaa-operations` are active and remain under their current owners; this action coordinates with them and does not overwrite their live work. `dormant-deferred` is inventoried but is not reactivated by this row.
+- **Current disposition:** `aaa-corpus-dragnet`, `aaa-operations`, `aaa-work-threads`, and `app-aaa-core` are complete in the linked review record. `aaa-corpus-rewrite` remains active under its current owner; this action coordinates with it and does not overwrite its live work. `dormant-deferred` is inventoried but is not reactivated by this row.
 - **Acceptance:** Every inventoried directory has a dated review record naming its live owner and next disposition; every present `manuscript.md` receives a bounded review disposition; directories without a manuscript are explicitly recorded as such; newly written manuscript work is routed to the owning queue or a named follow-up action; no scientific, editorial or dormant-work status is strengthened merely by inventory.
 - **Owner:** `aaa-operations`, coordinating with each directory's owner; `aaa-corpus-rewrite` retains authority for reader-facing rewrite work.
 

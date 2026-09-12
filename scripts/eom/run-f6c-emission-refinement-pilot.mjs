@@ -71,8 +71,8 @@ export const SUBJECT_PATHS=Object.freeze([PRODUCER,PRODUCER_TESTS,DECLARATION,
  COMPARISON,COMPARISON_TESTS,'reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md',
  'scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','tests/test_f6c_cached_continuous_reception_root_cover_preparation.py']);
 export const PINS=Object.freeze({...Object.fromEntries(FIXED.map(([,p,h])=>[p,h])),
- [BRIDGE]:'6b86f369a5fac07dc3c515ddf3ce37bdcd655c2a6eb7623267c02126aa306ca2',
- [SUPPORT]:'c67359fbf8ffeee9bb6d6fc2887c4a35dc7bf4b6af7da4d7577ef017e42ce789',
+ [BRIDGE]:'c6039590f68eab3e41d0df5f5695eadc49b2d6a22dd1bca8f854b960f4be519b',
+ [SUPPORT]:'2aa6b414566c0d47cd60443b95dccb746e68d4992e3a2b6ee56c54b2417276ec',
  // Separately authored frozen generations; actual launch requires independent review.
  [PRODUCER]:'ec254ad004fb38612d3e895f5c150d8e5bec8fe53142739a50b15e073bd9783d',
  [PRODUCER_TESTS]:'c238f49b3316e43244ee0db3fdf3263b2390b4f6f91a67f6a6b7133ccfff000b',
@@ -81,8 +81,8 @@ export const PINS=Object.freeze({...Object.fromEntries(FIXED.map(([,p,h])=>[p,h]
  [DECLARATION]:'53f3398ba083218948c9efd93f10db09cbf5d617bc0270988f5adea24c48f037',
  [COMPARISON]:'0f21d676f4f50702e8375f7ba9c1f362cca82ad3d636316e7121ab819a2dbc7b',
  [COMPARISON_TESTS]:'bac7357186fb05c5b7ea35154c5564e7527075a9a94177a8b600f9a02119adb5',
- [HELPERS]:'9af9a6a33b3b1c5889550953496be13d0698e5d24e9033dbdd5ffcb82deeafe2',
- [OUTER]:'58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c',
+ [HELPERS]:'72b181165cafe21f3237dca7638343a9d31ea4ee48f709d9b43761666d6e7ec5',
+ [OUTER]:'e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920',
  'scripts/eom/oracle/continuous_reception_roots_cached.py':'daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf',
  'tests/test_eom_continuous_reception_roots_cached.py':'a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb',
  'scripts/eom/oracle/certified_history.py':'ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7',
@@ -91,9 +91,9 @@ export const PINS=Object.freeze({...Object.fromEntries(FIXED.map(([,p,h])=>[p,h]
  'scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py':'3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7',
  'tests/test_f6c_cached_continuous_reception_root_cover.py':'09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3',
  'reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md':'a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d',
- 'scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py':'7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5',
- 'tests/test_f6c_cached_continuous_reception_root_cover_preparation.py':'3bee7599b03f2500ede6eeeea31c46e1aac82410f456e967102c13e820b93221',
- '/usr/bin/memory_pressure':'ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da'});
+ 'scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py':'d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841',
+ 'tests/test_f6c_cached_continuous_reception_root_cover_preparation.py':'5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2',
+});
 export const check=(ok,message)=>{if(!ok)throw new Error(message);};
 export const sha=b=>createHash('sha256').update(b).digest('hex');
 export const clean=({data,...b})=>b;
