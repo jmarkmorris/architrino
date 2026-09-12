@@ -4,6 +4,26 @@ This is the chronological completion log for the CRW-005 assurance campaign. The
 
 ## Completed milestones
 
+### 2026-09-12 — Nuclear Binding NB-01–NB-14 bounded repair
+
+Implemented and validated the smallest safe repairs for 14 demonstrated findings, clarifying the omitted shell term, reaction-energy accounting, escape-probability interpretation, and unsupported binding and stability conclusions. Strict content validation reported 0 errors and 0 warnings; complete reread, scoped diff and whitespace checks, controlled KaTeX/math/local-link checks, and byte-preservation checks for all 17 original displayed equations passed. Physical branch existence, nuclear derivations, EOM solver acceptance, and downstream closure remain open. Generated equation-registry refresh is deferred; the [bounded receipt](evidence/crw-005-nuclear-binding-review-2026-09-12.md) records the exact hash, falsifiers, and deferred command.
+
+### 2026-09-12 — Atomic Spectra AS-01–AS-12 bounded repair
+
+Implemented and validated the smallest safe repairs for 12 demonstrated findings, clarifying clock conversion, spectral calibration, shared-input replay, shell-gap limitations, and magnetic and recoil comparison assumptions. Strict content validation reported 0 errors and 0 warnings; complete reread, scoped diff and whitespace checks, controlled KaTeX/math/local-link checks, and byte-preservation checks for all 24 original displayed equations passed. Physical branch existence and stability, independent spectral prediction, energy and clock derivations, and transition amplitudes remain open. Generated equation-registry refresh is deferred; the [bounded receipt](evidence/crw-005-atomic-spectra-review-2026-09-12.md) records the exact hash, falsifiers, and deferred command.
+
+### 2026-09-12 — Hyde Periodic Table HY-01–HY-10 bounded repair
+
+Implemented and validated the smallest safe repairs for 10 demonstrated findings, distinguishing derived arithmetic and effective atomic benchmarks from proposed assembly physics. Strict content validation reported 0 errors, 0 warnings, and 30 out-of-scope informational notes; complete reread, known-control-first KaTeX/math/local-link/preservation/whitespace checks, and display-equation preservation checks passed. Full historical-source verification, artwork auditing, and physical derivations remain open. Generated equation-registry refresh is deferred; the [bounded receipt](evidence/crw-005-hyde-periodic-table-review-2026-09-12.md) records the exact hash, falsifiers, and deferred command.
+
+### 2026-09-12 — Molecular Geometry MG-01–MG-08 bounded repair
+
+Implemented and validated the smallest safe repairs for 8 demonstrated findings, distinguishing energy minima from delayed-dynamics stability, frozen from relaxed curvature, and Hessian stiffness from mass-weighted vibration modes. Strict content validation reported 0 errors, 0 warnings, and 30 informational notes; complete reread, scoped diff and whitespace checks, controlled KaTeX/math/local-link/equation-ID checks, and byte-preservation checks for all 4 original displayed equations passed. Molecular histories, conservative energy reduction, mass and clock response, matched benchmarks, and spin and statistics recovery remain open. Generated equation-registry refresh is deferred; the [bounded receipt](evidence/crw-005-molecular-geometry-review-2026-09-12.md) records the exact hash, falsifiers, and deferred command.
+
+### 2026-09-12 — Condensed Matter CM-01–CM-15 bounded repair
+
+Implemented and validated the smallest safe repairs for 15 demonstrated findings, including the distinctions between speed preservation and energy conservation, and between achievable packing density and an upper bound. Strict content validation reported 0 errors and 0 warnings; complete reread, scoped diff and whitespace checks, controlled KaTeX/local-link checks over 209 expressions, 8 arithmetic witness groups, and preservation checks for all 54 viewer identities passed. Physical branches, constitutive recovery, EOM solver acceptance, theory closure, and downstream closure remain open. The [bounded receipt](evidence/crw-005-condensed-matter-review-2026-09-12.md) records the exact hash, falsifiers, and final generator-check result.
+
 ### 2026-09-12 — Nucleon Structure NS-01–NS-11 bounded repair
 
 Implemented and validated the smallest safe repairs for 11 demonstrated findings, clarifying nucleon stability status, charge/radius and mass-response interfaces, magnetic and spin mappings, confinement/color transport scope, source precision, and reader-facing claim boundaries. Strict content validation, scoped diff and whitespace checks, known-case-first KaTeX and local-link checks, and 23 equation-mapping links passed. Physical branch existence, completed mass/spin and magnetic-sign derivations, and downstream nuclear/atomic closure remain open. The [bounded receipt](evidence/crw-005-nucleon-structure-review-2026-09-12.md) records exact hashes, falsifiers, and generated-registry drift.

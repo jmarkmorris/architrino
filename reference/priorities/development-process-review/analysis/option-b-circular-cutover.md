@@ -70,6 +70,12 @@ node --test --test-name-pattern='stage binding admits literal' tests/option-b-ci
 
 The corrected pilot SHA-256 is `7ea12ef02b4a1d5ba2da1a353b0e7720e30cfd5d3f59bfb2db0177ad11fd737f`, replacing `1586faefe6aab0dff19a55f3fc920c29b44c4de511798ad0246c4c31760374ce` in the canonical circular map. This follow-up edits only that pilot, its circular admission test, the canonical map, and this record. OUTER, reader, F5 helper, scientific files, and retained baselines are unchanged. The eight-file focused command above passes 68/68 after the fix; main's previously 132-test combined selection gains this one control and requires its own post-fix result. Independent acceptance of BR4-5 remains the reviewer's decision.
 
+## Final dependency-closed validation
+
+Main's consolidated final-generation 51-file selection passes 563 controls under lease `3c38de5a-0fc7-4994-bf2b-68056b2e3875`, including the corrected 133-control circular family. After host memory recovery, the previously excluded `tests/f6c-streamed-leaf-diagnostic.test.js` and `tests/option-b-f6c-coordinator-process.test.mjs` pass all 77 controls under lease `7e1ab305-01cb-48d4-a094-546258d78a80`, with zero failures/skips/cancellations, exit zero and closed process group in 214.066 seconds. The exact command, source preservation checks and observer receipt are in the [reconciliation owner](option-b-repository-reconciliation.md#resumed-terminal-results).
+
+Together these retained results discharge B-REM-3's enumerated shared-caller regression dependency. They do not execute the deferred circular ladder, replace historical build applicability, or establish scientific acceptance. The original 170-path source snapshot and the two resumed test-file hashes match after validation; no source, map, resource limit or scientific reference changed during this resumption.
+
 ## Files and falsifiers
 
 Operational edits are limited to the nine files enumerated in the baseline descriptor. New artifacts are the canonical map, retained-baseline descriptor, this record, `tests/option-b-circular-admission.test.mjs`, and `tests/option-b-circular-fixture.mjs`. Existing circular operational tests were updated only for required map arguments, selected operational fixtures, explicit prior selection, and actual worker receipt transport. The map records every final source digest; `shasum -a 256` and the real-map admission test are the handoff verification instruments.

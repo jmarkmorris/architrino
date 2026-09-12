@@ -46043,13 +46043,13 @@ These are downstream derivations that depend on the interface defined above, not
 
 This chapter gives the first effective-level nuclear-binding picture for the nuclear branch. The reader should keep one distinction in view from the start: nuclear binding is not the same thing as opening the internal structure of a proton or neutron. Ordinary nuclear energy comes from rearranging a multi-nucleon assembly ledger, not from exposing the deeply shielded branch energy of the surviving nucleons.
 
-The account is not yet a precision nuclear model. It defines the binding ingredients and coarse-graining level clearly enough that deuteron-scale, alpha-scale, fission, fusion, and saturation questions can be posed in one shared language.
+The account is an effective organizing model, with proposed mechanisms for deuteron-scale, alpha-scale, fission, fusion, and saturation behavior. A nucleon is a proton or neutron; its declared source envelope summarizes its charge, mass, spin, and response without resolving its quark constituents. The [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the proposed ambient population of neutral assemblies, and a residual-strong corridor denotes a shared interaction configuration between nucleon envelopes. These mechanisms remain recovery targets under [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md) and [Mesons](../../../../markdown/aaa/assemblies/mesons/mesons.md); this chapter does not establish retained nuclear branches. At the primitive level, [architrinos](../../../../markdown/aaa/foundations/architrino.md) carry polarity and follow the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), which sums delayed acceleration contributions in absolute time through the Euclidean void. The energy and potential accounts below are effective descriptions to recover from that dynamics.
 
 #### Binding-Energy Intuition
 
-The traditional nuclear-binding curve compares how much energy is missing from a nucleus relative to the same protons and neutrons separated as free nucleons. A large binding energy means the bound nucleus has lower total mass-energy. This sign convention is the common source of confusion: the iron-group region is a peak if the vertical axis is binding energy per nucleon, but it is a trough if the vertical axis is total mass-energy per nucleon.
+The traditional nuclear-binding curve compares how much energy is missing from a nucleus relative to the same protons and neutrons separated as free nucleons. At fixed proton and neutron inventory, greater binding means lower total rest energy. The iron-group region illustrates strong binding per nucleon, but the exact sign reversal is between binding per nucleon and energy per nucleon measured relative to each nucleus's separated-nucleon reference. Absolute rest energy per nucleon also includes the composition-dependent proton-neutron mass contribution; its minimum need not coincide with the maximum of binding per nucleon.
 
-The core intuition is this: nature releases exposed nuclear energy when a reaction moves the nucleon inventory toward a cheaper assembly ledger. Light nuclei can release energy by joining into better-packed states. Very heavy nuclei can release energy by splitting into less overburdened daughter states. Both paths move toward the same total-energy basin.
+The core intuition is that an energetically allowed reaction releases exposed nuclear energy when its complete final inventory has lower rest energy than its initial inventory. Light nuclei can release energy by joining into more strongly bound states; very heavy nuclei can release energy by splitting into more strongly bound daughters. This energy ordering neither supplies a reaction route nor determines its rate.
 
 A nucleus is not only a list of protons and neutrons. It is a packed nuclear assembly whose nucleons share short-range residual-strong corridors and polarize the surrounding Noether sea. Good packing lowers the total energy because the shared corridor and sea-polarization state is cheaper than the same nucleons held in less favorable arrangements. Bad packing raises the total energy because Coulomb repulsion, short-range exclusion, deformation, and shell mismatch leave energy in a stressed nuclear configuration.
 
@@ -46057,7 +46057,7 @@ Fusion releases energy on the light side of the curve because very light nuclei 
 
 Fission releases energy on the heavy side of the curve for the opposite geometrical reason. A very heavy nucleus has many protons whose electrical repulsion reaches across the whole assembly, while residual strong attraction is short-ranged and saturates after each nucleon has used only a limited number of favorable packing relationships. Splitting the nucleus can replace one overburdened assembly with two better-packed daughter assemblies. Even though the word `fission` sounds like simply breaking a bond, the final daughters can carry greater total binding than the parent.
 
-The shared insight is therefore not that joining always releases energy or that splitting always releases energy. The shared insight is that both processes can move the nucleon inventory toward the iron-group trough in total mass-energy. Fusion moves light nuclei upward in binding energy from the left. Fission moves heavy nuclei upward in binding energy from the right. On the total-energy plot, both move downhill toward the same basin.
+The shared insight is therefore not that joining always releases energy or that splitting always releases energy. Both processes can increase total binding for their conserved nucleon inventory. The broad binding curve helps organize this comparison; a particular reaction still requires its actual daughter inventory, any free nucleons, and any weak-reaction products. Fission need not produce iron-group daughters, and a binding curve is not a dynamical basin.
 
 From the $\mathbb{A}\mathbb{A}\mathbb{A}$ perspective, the released energy was held in the initial nuclear assembly ledger: in less favorable residual-strong corridor use, Coulomb stress, short-range exclusion and deformation cost, shell mismatch, and the Noether sea polarization state around the nucleus. It should not be read as a fuel stored inside a single proton or neutron. Ordinary fission and fusion rearrange nucleons; they do not split a proton, neutron, electron, or photon into its deeper architrino constituents.
 
@@ -46065,9 +46065,9 @@ For that reason, ordinary fission and fusion should not be treated as direct rel
 
 This is the main accounting point. The same final energy can be reported as a mass defect in observer language, but the physical story still has to say where the released ledger difference goes: fragment kinetic energy, photons, recoil, medium excitation, local Noether sea update, or heat.
 
-The speed symbol in these energy rows belongs to a declared observer-level branch. Primitive delayed-root calculations use $c_f=1$; $c_{\mathrm{eff}}(\mathbf X,T)$ is the Noether sea dressed assembly-channel speed, $c_\gamma(\mathbf X,T)$ is the photon-channel speed, and $c_0$ is the recovered weak-homogeneous observer normalization. This chapter keeps $c_{\mathrm{eff}}$ symbolic until the branch and environment are declared, following the [speed convention in Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md).
+The speed symbol in these energy entries belongs to a declared observer-level branch. Primitive delayed-root calculations use $c_f=1$; $c_{\mathrm{eff}}(\mathbf X,T)$ is the Noether sea dressed assembly-channel speed, $c_\gamma(\mathbf X,T)$ is the photon-channel speed, and $c_0$ is the asymptotic observer calibration. This chapter keeps $c_{\mathrm{eff}}$ symbolic, following the [speed convention in Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md). Factoring a common $c_{\mathrm{eff}}^2$ out of a mass difference assumes one matched observer calibration and environment for every mass entry; equality with the photon-channel speed is a separate recovery target.
 
-The same accounting applies to fission. The mass defect is exposed nuclear-assembly energy because the daughter arrangement has a cheaper corridor, Coulomb, shell, deformation, and Noether sea polarization ledger than the parent arrangement. At a prompt event boundary, before prompt product motion thermalizes and before delayed daughter decays add later reaction ledgers, a schematic fission ledger is
+The same accounting applies to an energetically allowed fission channel. Its mass defect is assigned to the exposed nuclear-assembly account, with a lower-energy daughter arrangement in the proposed corridor, Coulomb, shell, deformation, and Noether sea polarization description. For a parent at rest, with any initial excitation included in its declared mass and no unlisted incoming projectile or external work, a schematic prompt fission ledger is
 
 $$
 \Delta E_{\mathrm{fis}}^{\mathrm{prompt}}
@@ -46088,7 +46088,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-99fa22483822e626)
 
-where the daughter masses $M_d$, emitted product masses $M_b$, fragment kinetic energy, prompt-neutron kinetic energy, prompt photon output, medium internal excitation already transferred by the event cutoff, bulk recoil of the surrounding target, lattice, containment, or apparatus, and the local Noether sea update all belong to the exposed nuclear ledger. The fragment and neutron kinetic rows already contain the daughter-product motion; $K_{\mathrm{env-recoil}}^{\mathrm{prompt}}$ is only the momentum transferred outside those products and is zero for an isolated event with no external receiver. Later thermalization is a downstream reclassification of the prompt kinetic and medium-excitation channels, not another sibling energy release. Daughter beta-family reactions and antineutrino output belong to later ledgers or to an explicitly extended observation window. This time boundary prevents prompt kinetic energy from being counted again as asymptotic heat. The accounting is different from claiming that ordinary fission releases the shielded internal branch energy of the surviving nucleons.
+where $M_{\mathrm{parent}}$ is the specified parent-state mass, $M_d$ are the daughter-state masses at the event cutoff, and $M_b$ are the emitted massive-product masses, restricted here to prompt neutrons. Any excitation still retained in a daughter is included in $M_d$; using ground-state masses instead requires a separate retained-excitation term. The fragment and neutron kinetic entries $K_{\mathrm{frag}}$ and $K_n^{\mathrm{prompt}}$ contain daughter-product motion, $E_\gamma^{\mathrm{prompt}}$ is emitted photon energy, $\Delta E_{\mathrm{med}}^{\mathrm{prompt}}$ is the change in non-sea medium internal energy, and $\Delta E_{\mathrm{sea}}$ is the separately assigned Noether sea energy change. $K_{\mathrm{env-recoil}}^{\mathrm{prompt}}$ is kinetic energy transferred to external receivers and is zero for an isolated event; it must not duplicate product motion or medium internal energy. At a finite cutoff, any remaining interaction or wake-history energy must be assigned once to the stated endpoint accounts. Incoming kinetic energy, a projectile, external work, or other emitted species requires an extended balance. Later thermalization reclassifies prompt energy rather than adding another release, and daughter beta-family reactions and antineutrino output belong to later ledgers. This is effective event accounting, not evidence that the shielded internal branch energy of surviving nucleons was released.
 
 ##### Fusion Reaction Ledger Benchmark
 
@@ -46102,7 +46102,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6e4ca4aff83606ce)
 
-In this interpretation, $\Delta E$ is the difference between two nuclear assembly ledgers, not a literal conversion of nucleon substance into energy. The event should be recorded as
+In this interpretation, $\Delta E$ is the difference between two nuclear assembly ledgers, not a literal conversion of nucleon substance into energy. $M_D$, $M_T$, $M_\alpha$, and $M_n$ below denote the masses of the specified deuteron, triton, alpha, and neutron states, all using nuclear rather than mixed nuclear/atomic mass conventions. In the center-of-mass frame, the displayed balance assumes negligible incoming kinetic energy and no external work:
 
 $$
 \Delta E_{\mathrm{DT}}^{\mathrm{prompt}}
@@ -46119,11 +46119,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2c80d685ce6455fc)
 
-after the branch convention for $c_{\text{eff}}$ and the environment is declared. The right side names where the exposed binding-energy difference leaves the prompt event: kinetic energy of the helium and neutron products, possible prompt photon output, medium excitation transferred by the event cutoff, bulk recoil transferred to the surrounding target, lattice, containment, or apparatus, and the local Noether sea update. The environment-recoil row is zero for an isolated event and must not duplicate motion already counted in $K_{\alpha}$ or $K_n$. These entries must not be silently collapsed into one release value before the prompt ledger closes. Later thermalization is a downstream reclassification of those transferred channels, not another sibling energy release; delayed daughter reactions belong to later ledgers. The surviving nucleons still carry their own internal branch histories. A stronger claim that fusion exposes quark-level or architrino-level shielded energy would require a separate particle-level reaction ledger.
+after the branch convention for $c_{\text{eff}}$ and the environment is declared. For a collision with non-negligible incoming kinetic energy $K_{\mathrm{in}}$, the outgoing account equals $\Delta E_{\mathrm{DT}}^{\mathrm{prompt}}+K_{\mathrm{in}}$, with external work added when present. The right side names helium and neutron kinetic energies, prompt photon output when present, non-sea medium internal-energy change, external-receiver recoil, and the separately assigned Noether sea energy change. Product excitation and remaining interaction energy follow the endpoint convention of the fission ledger. The environment-recoil entry is zero for an isolated event and must not duplicate $K_{\alpha}$ or $K_n$. Later thermalization reclassifies these transferred channels, and delayed reactions belong to later ledgers. The surviving nucleons retain their own internal branch histories; claiming release of quark-level or architrino-level shielded energy requires a separate particle-level reaction account.
 
 #### Core Claim
 
-Nuclear binding is the residual strong interaction between color-singlet nucleons. It arises when neighboring proton and neutron assemblies couple through the surrounding Noether sea and through meson-like exchange channels, lowering the total energy relative to separated nucleons.
+The proposed mechanism for nuclear binding is residual strong coupling between color-singlet nucleons, meaning nucleon envelopes with no net effective color charge. Neighboring proton and neutron assemblies share Noether sea response and meson-like exchange channels. Binding requires their complete nuclear energy to fall below the separated-nucleon reference; the existence and magnitude of that reduction remain to be derived from the same constituent histories.
 
 The word `residual` matters. The nuclear calculation starts from a declared interface in which quark records have been coarse-grained into proton and neutron source envelopes. It does not thereby claim that the native quark-to-nucleon closure has been derived.
 
@@ -46135,7 +46135,7 @@ So the nuclear problem is already coarse-grained one level above quarks:
 
 #### Effective Binding Decomposition
 
-At first pass, write the nuclear energy of a nucleus with proton number $Z$ and neutron number $N$ as
+For an effective nucleus at rest, with proton number $Z$ and neutron number $N$, use the following proposed decomposition relative to separated nucleons in the same calibrated environment:
 $$
 E_{\text{nuc}}
 =
@@ -46153,12 +46153,14 @@ with $A=Z+N$.
 
 Here:
 
-- $M_a$ are the accepted isolated-nucleon mass readouts, the $m_{\mathrm{tr}}$ values of [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), so that $B$ below reduces to the standard mass-defect definition,
+- $M_a$ are isolated-nucleon rest masses supplied at observer-comparison level; identifying them with the zero-group-velocity $m_{\mathrm{tr}}$ values of [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) requires that chapter's independent mass and energy recovery,
 - $E_{\text{res-strong}} < 0$ is the attractive residual strong contribution,
-- $E_{\text{Coul}} > 0$ is proton-proton electrical repulsion,
+- $E_{\text{Coul}} > 0$ is proton-proton electrical repulsion when proton pairs are present, and the monopole term vanishes when none are present,
 - $E_{\text{excl}} > 0$ is short-range core exclusion or over-compression cost,
 - $E_{\text{shell}}$ is the nuclear-structure term associated with filling and pairing patterns; its sign is left open because shell and pairing corrections can raise or lower the ledger relative to a smooth baseline,
 - $E_{\text{sea-pol}} < 0$ is the energy gain from local Noether sea polarization and meson-like corridor formation.
+
+The negative signs identify the attractive contributions being proposed, not a theorem for every spin channel or medium state. A quantitative functional must assign corridor exchange and sea polarization disjointly: the same medium-mediated contribution cannot be included in both $E_{\text{res-strong}}$ and $E_{\text{sea-pol}}$. It must also locate relative nucleon motion, deformation, and any many-nucleon contributions within a complete account. The exclusion and shell entries are placeholders for the stated compression and occupancy costs, not a demonstrated substitute for all those contributions. The displayed sum is therefore a decomposition target, not a derived complete nuclear energy.
 
 The residual-strong term must carry channel composition rather than one composition-blind attraction:
 
@@ -46174,7 +46176,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f2519938cb692cd4)
 
-with each contribution computed from the realized corridor inventory and spin-statistics sector. This corridor-composition response is only one part of the asymmetry recovery: the exclusion and shell ledgers must also supply the occupancy cost of maintaining unequal proton-side and neutron-side filling. After coarse-graining, the combined corridor-composition and occupancy/statistics response must recover a positive asymmetry cost proportional to $(N-Z)^2/A$ in the applicable smooth-nucleus limit. That observer-level dependence is a joint recovery target for the nuclear functional, not a premise inserted into the substrate dynamics or assigned wholly to the residual-strong corridor term.
+where the superscripts label proton-neutron, proton-proton, and neutron-neutron contributions. Their assignment requires a declared corridor inventory and spin-statistics sector; an irreducible many-nucleon term needs its own allocation rather than an assumed sum of pair potentials. This corridor-composition response is only one part of the asymmetry recovery: the exclusion and shell ledgers must also supply the occupancy cost of maintaining unequal proton-side and neutron-side filling. After coarse-graining, the combined response must recover a positive asymmetry cost proportional to $(N-Z)^2/A$ in the applicable smooth-nucleus limit. That observer-level dependence is a joint recovery target for the nuclear functional, not a premise inserted into the substrate dynamics or assigned wholly to the residual-strong corridor term.
 
 Then the binding energy is
 $$
@@ -46186,7 +46188,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-20c092bedaa315ca)
 
-Binding requires the negative medium-plus-residual-strong terms to outweigh the positive Coulomb and exclusion costs.
+Subtracting the proposed decomposition gives $B=-(E_{\text{res-strong}}+E_{\text{Coul}}+E_{\text{excl}}+E_{\text{shell}}+E_{\text{sea-pol}})$. Thus $B>0$ requires the sum of all five corrections to be negative, including the sign-indefinite shell contribution. This is an algebraic condition relative to complete separation into nucleons; it does not prove a retained branch or stability against every fragmentation or weak channel.
 
 The first quantitative comparison surface is the semi-empirical mass formula. Its volume, surface, Coulomb, asymmetry, and pairing coefficients should be recovered from the residual-strong saturation, boundary-corridor loss, electric repulsion, combined channel-composition and occupancy/exclusion cost, and shell/pairing entries above. Those coefficients are downstream summaries; fitting them independently would not derive the nuclear ledger.
 
@@ -46194,7 +46196,7 @@ The first quantitative comparison surface is the semi-empirical mass formula. It
 
 ##### Residual strong attraction
 
-The dominant attractive channel is expected to come from meson-like exchange and shared polarization corridors between neighboring nucleons. In the residual-exchange picture, pions are the lightest and therefore longest-range residual exchange packets.
+The proposed attractive channel comes from meson-like exchange and shared polarization corridors between neighboring nucleons. Pions are the lightest hadrons in the observer-level comparison. Their association with the longest-range massive hadronic exchange is an effective interaction target; pion mass ordering alone does not derive a corridor range from delayed architrino dynamics.
 
 So, at coarse level,
 $$
@@ -46204,11 +46206,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6c62adeb884f6273)
 
-for separations in the nuclear window, with the attraction strongest where meson-like exchange is cheap but direct core overlap is still avoided.
+for the attractive contribution in a declared spin and composition channel. Here $r$ is the effective separation between nucleon envelope centers in one calibrated observer chart, not a primitive transmitter-receiver causal distance. The location and depth of the attractive window remain to be calculated.
 
 ##### Short-range exclusion
 
-Nucleons are not point masses. Each is a structured Noether braid assembly with an exclusion volume and a strong internal stress network. If two nucleons are pushed too close together, the cost rises steeply, idealized here as a divergence:
+The proposed nucleon envelopes have internal structure and a channel-dependent exclusion response. A steep over-compression cost is represented by the following effective hard-core idealization, where $r_{\text{core}}$ is a proposed limiting envelope separation:
 $$
 V_{\text{excl}}(r)\to +\infty
 \quad\text{as}\quad
@@ -46217,7 +46219,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-61ddda21fda3cb40)
 
-This is the geometric origin of the short-range nuclear hard core. The literal infinity is schematic shorthand: the assembly-level over-compression cost is steep but finite, ending in a branch transition near the self-hit threshold rather than an infinite wall.
+The literal infinity is schematic shorthand, not a derived divergence of the nuclear response. A finite compression cost and a transition involving self-hits are possible mechanisms to investigate; neither the transition nor its location follows from the geometric idealization. Self-hit means a constituent receives its own earlier wake, and its onset depends on the full path history, not on a nuclear separation threshold alone.
 
 ##### Coulomb repulsion
 
@@ -46228,19 +46230,19 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9a4ce224fa6d1c9f)
 
-at effective level. Here $\epsilon_{\text{eff}}$ is an in-medium dressing of the observer-level $\epsilon_0$ response described in [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md), not the polarity unit $\epsilon=|e|/6$. Nuclear binding must therefore come from the residual strong and sea-polarization channels, not from any cancellation trick in the electric sector.
+at effective level, for separations where the monopole approximation is adequate. Here $e>0$ is the proton's electric-charge magnitude and $\epsilon_{\text{eff}}>0$ is the assumed effective permittivity, an in-medium dressing of the observer-level $\epsilon_0$ response described in [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md), distinct from the polarity unit $\epsilon=|e|/6$. Finite-size, multipole, and screening corrections require their own response calculation. Repulsion in this term must be outweighed in the complete binding account.
 
 ##### Sea polarization
 
-Neighboring nucleons polarize the local Noether sea. This lowers the total energy when the surrounding Noether sea can support a shared hadronic corridor more cheaply than two isolated hadronic envelopes. That is the current $\mathbb{A}\mathbb{A}\mathbb{A}$ replacement for saying that the ambient Noether sea participates in nuclear binding.
+In the proposed sea-polarization mechanism, neighboring nucleons change the local Noether sea state. The assigned energy change is negative only when a shared hadronic corridor costs less than the matched isolated-envelope reference. Establishing that ordering requires a constitutive response and the disjoint accounting defined above; polarization by itself does not fix the sign.
 
 #### Shape of the Effective Potential
 
-The minimal expected two-nucleon effective potential is therefore:
+For a binding candidate in a specified spin and composition channel, the schematic effective potential has the intended shape:
 
 - repulsive at very short range,
 - attractive in an intermediate nuclear window,
-- and negligible at sufficiently large separation.
+- and an interaction tending to zero at large separation, with a long-range repulsive Coulomb tail in an unscreened proton-proton channel.
 
 In symbols, a first schematic form is
 $$
@@ -46254,7 +46256,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8eaaf6a3deb8ae12)
 
-where $c \in \{pp, pn, nn\}$ labels the two-nucleon channel and $V_{\text{Coul}}$ is present only in the $pp$ channel, with
+where $c \in \{pp, pn, nn\}$ labels composition and $V_{\text{Coul}}$ is the proton-proton monopole term. Every contribution also depends on the declared spin, medium, and averaging prescription, although those labels are suppressed. $V_{\pi/\text{corr}}$ denotes the meson-like corridor contribution and $V_{\text{sea-pol}}$ the separately assigned sea response. The radial notation is a schematic central projection; a full response can also depend on orientation, spin, and history. The attractive entries are proposed to satisfy
 $$
 V_{\pi/\text{corr}}(r)+V_{\text{sea-pol}}(r)<0
 $$
@@ -46263,7 +46265,7 @@ $$
 
 through the binding window.
 
-This is enough structure to explain why nuclei are finite-sized bound objects rather than collapsed lumps or diffuse neutral gases.
+This sign pattern motivates a finite-separation candidate; it does not establish a two-nucleon bound state or a finite many-nucleon nucleus. Binding depends on the magnitudes and widths of the contributions, relative motion, and spin constraints. Retention and stability additionally require a solution of the delayed dynamics and its perturbations. A local minimum of a guessed potential is not that solution.
 
 #### Deuteron as the First Binding Test
 
@@ -46274,7 +46276,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7f0fde4634d7f114)
 
-In this language, the deuteron should exist if the proton-neutron channel admits
+For a retained proton-neutron branch identified with the deuteron, its effective rest energy must satisfy
 $$
 E_{pn}^{\text{bound}}
 <
@@ -46283,7 +46285,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d3cbfe56ae476763)
 
-The qualitative reasons this channel is favored are:
+The qualitative motivations for seeking this branch are:
 
 - no proton-proton Coulomb penalty on the neutron side,
 - efficient pion-like charge-exchange corridor between proton and neutron,
@@ -46291,7 +46293,7 @@ The qualitative reasons this channel is favored are:
 
 This list is not enough without the spin-channel constraint. The $pn$ benchmark must recover a bound triplet channel while the identical-proton $pp$ channel is spin-statistics-restricted to the singlet sector in the s-wave ($L=0$) channel; that singlet channel must remain unbound even before the Coulomb term is added. This dependency is inherited from the spin-statistics program in [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md) and the same-record spinor-label pullback in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#same-record-spinor-label-pullback), not solved locally by the nuclear potential shorthand.
 
-Binding alone is not enough. The same $pn$ corridor functional must recover the deuteron's nonzero electric quadrupole moment and therefore an anisotropic, noncentral response in the observer-level nuclear channel. A purely central potential that binds the deuteron but cannot produce that quadrupole response is a false positive.
+Binding alone is not enough. The same $pn$ branch and electromagnetic readout must recover the deuteron's nonzero electric quadrupole moment, which measures a rank-two anisotropy of its charge response. In the standard point-nucleon charge model, a pure s-wave has zero quadrupole moment; tensor coupling and orbital mixing provide the familiar recovery route. With composite envelopes, the charge-response operator and exchange contributions also matter, so the measured moment alone does not uniquely identify a noncentral term in the nuclear potential. A binding model whose complete electromagnetic response gives zero quadrupole moment fails this benchmark; see the source note below.
 
 If the eventual effective potential cannot bind the deuteron while staying compatible with proton-proton and neutron-neutron nonbinding, or if it misses the deuteron quadrupole response, the nuclear branch is in immediate trouble.
 
@@ -46299,13 +46301,13 @@ If the eventual effective potential cannot bind the deuteron while staying compa
 
 Nuclear matter does not bind by letting every nucleon interact equally with every other nucleon at the same strength. Binding saturates.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the natural geometric reason is:
+The proposed geometric explanation combines:
 
 - each nucleon has only a limited number of favorable corridor and packing relationships,
 - the residual strong channel is short-ranged,
 - and overcompression rapidly activates the exclusion cost.
 
-So the binding energy per nucleon should not grow without bound with $A$. At coarse level, saturation follows from the competition
+To obtain a bound on attraction per nucleon, both the favorable-neighbor count and the attractive contribution per neighbor must be bounded independently of $A$, with any many-nucleon and sea contributions controlled as well. A finite equilibrium density additionally requires a minimum of the complete energy per nucleon under compression. The intended competition is
 $$
 \text{short-range attraction}
 \quad\text{vs}\quad
@@ -46314,22 +46316,24 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-dddca010ec49aab7)
 
+These are conditions to derive, not a proof of saturation. The nuclear-matter comparison separates the strong sector from unscreened bulk Coulomb energy; finite charged nuclei retain their Coulomb cost and can lose stability as proton number grows.
+
 #### Why Alpha-Like Structures Should Be Special
 
 A four-nucleon cluster with two protons and two neutrons is expected to be especially favorable in the assembly picture because it combines:
 
-- charge balance,
+- equal proton and neutron counts, while retaining total electric charge $+2e$,
 - multiple proton-neutron attractive channels,
 - compact packing,
 - and comparatively low net external multipole stress.
 
-That makes the alpha-like cluster a natural closed local minimum of the effective nuclear energy landscape. This is the nuclear-level analogue of how balanced pro/anti or color-singlet combinations are favored at lower levels of the assembly ladder.
+These features motivate an alpha-like candidate. They do not prove a local minimum, spin pairing, or dynamical retention; those require the complete four-nucleon response and comparison with competing fragment channels. Equal proton and neutron counts do not cancel electric charge, and neither pro/anti orientation nor color-singlet bookkeeping supplies this missing nuclear stability argument.
 
 #### Alpha-Emission Barrier Benchmark
 
 Alpha emission (SM label: `alpha decay`) turns the alpha-like-cluster claim into a quantitative recovery target. A heavy nucleus can contain an alpha-like sub-assembly in a bound interior while the effective Coulomb barrier outside the touching radius is higher than the kinetic energy of the outgoing alpha assembly. Standard quantum mechanics treats the event as barrier penetration: the interior alpha-like cluster repeatedly samples the barrier, the escape probability is dominated by the action accumulated through the forbidden region, and the measured half-life follows from an attempt rate times that escape probability.
 
-At effective level, the benchmark has the form
+For a stationary effective population with an approximately constant alpha-emission rate, the benchmark has the form
 
 $$
 \lambda_{\alpha}\simeq\nu_{\mathrm{hit}}P_{\mathrm{esc}},
@@ -46339,9 +46343,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7d8a7b9cb9c4adc7)
 
-Here $\nu_{\mathrm{hit}}$ is the effective barrier-sampling frequency of the bound alpha-like cluster, $P_{\mathrm{esc}}$ is the finite-window escape probability, and $\lambda_{\alpha}$ is the observer-level emission constant. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this probability cannot be inserted as formal wavefunction leakage alone. It must be recovered as a basin measure over deterministic nuclear assembly histories that cross the retained separatrix tube, while the energy ledger still routes the outgoing alpha assembly, daughter remnant, recoil, photon output if present, medium exchange, and Noether sea update.
+Here $\nu_{\mathrm{hit}}$ is the effective number of barrier-sampling opportunities per unit observer time, $P_{\mathrm{esc}}$ is the conditional escape probability per opportunity, and $\lambda_{\alpha}$ is the alpha-channel rate with units of inverse observer time. The product approximation requires a stationary sampling model with controlled correlations and rare escape per opportunity; the opportunity rate must include the probability of forming an eligible alpha-like cluster, or a separate formation factor is needed. For repeated trials with the same conditional probability, survival after $n$ trials is $(1-P_{\mathrm{esc}})^n$, giving $\lambda_\alpha=-\nu_{\mathrm{hit}}\ln(1-P_{\mathrm{esc}})\simeq\nu_{\mathrm{hit}}P_{\mathrm{esc}}$. An escape probability over an arbitrary observation window cannot be substituted for $P_{\mathrm{esc}}$. The displayed $t_{1/2}$ is the alpha partial half-life; it equals the total parent half-life only when this is the sole removal channel. Competing constant rates add before computing the total half-life.
 
-Polonium-212 is a compact numerical check: the standard comparison channel is ${}^{212}\mathrm{Po}\to{}^{208}\mathrm{Pb}+\alpha$, with outgoing alpha energy near $8.78\,\mathrm{MeV}$ and observed half-life near $0.3\,\mu\mathrm{s}$. A single rectangular-barrier approximation can miss the half-life by many orders of magnitude, while resolving the Coulomb barrier into multiple segments already moves the estimate close to the observed value. The lesson for the nuclear branch is that barrier shape, turning points, and attempt rate are not disposable fitting details; they are the effective observables that a native nuclear assembly model must recover.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the probability is a recovery target for the fraction of a declared ensemble of deterministic nuclear histories that crosses the boundary between retained and escaping histories. Neither the ensemble measure nor its approximately exponential survival law follows from the existence of one escape route. The event account must still include the outgoing alpha assembly, daughter remnant, recoil, photons when present, medium exchange, and Noether sea update.
+
+Polonium-212 supplies an observer-level benchmark: ${}^{212}\mathrm{Po}\to{}^{208}\mathrm{Pb}+\alpha$, with outgoing alpha energy near $8.78\,\mathrm{MeV}$ and half-life near $0.3\,\mu\mathrm{s}$. The evaluated total release energy includes daughter recoil and is larger than the alpha kinetic energy; the source note identifies the comparison data. A segmented barrier is a numerical approximation whose accuracy requires convergence checks at fixed barrier shape, turning points, formation factor, and sampling rate. No half-life calculation is supplied here, so agreement with this benchmark cannot be inferred from segmentation alone. The corresponding quantities remain outputs to recover from nuclear assembly dynamics.
 
 The family-level target is the Geiger-Nuttall relation across declared alpha-emitting isotope chains: the same barrier and attempt-rate map must recover the systematic dependence of $\log t_{1/2}$ on inverse square-root release energy without per-isotope barrier retuning. The Polonium-212 point is one check on that curve, not the curve by itself.
 
@@ -46349,7 +46355,7 @@ The family-level target is the Geiger-Nuttall relation across declared alpha-emi
 
 At effective grade, a radioactive material is a material whose isotope inventory contains metastable nuclear assembly branches. A parent isotope can remain in a locally retained basin while one or more lower-energy daughter-and-product routes have nonzero escape rates. The radioactivity belongs first to that nuclear branch structure, not to bulk temperature or ordinary molecular vibration.
 
-Heat, lattice vibration, recoil, and medium excitation are usually outputs or environmental couplings of the nuclear reaction. They become causes only when a worked case shows that they materially change the nuclear route. Likewise, the action ledger enters through cycle bookkeeping, photon-frequency rows, and branch-transition accounting; radioactivity is not caused by a scalar stockpile of action units. The physical cause is an admissible route from the parent nuclear assembly ledger to a cheaper daughter-and-product ledger.
+Heat, lattice vibration, recoil, and medium excitation are outputs or environmental couplings of a nuclear reaction, and an environmental trigger requires a worked case showing how it changes the route. The action ledger enters through cycle bookkeeping, photon-frequency entries, and branch-transition accounting; radioactivity is not caused by a scalar stockpile of action units. A lower-energy daughter-and-product account supplies an energetic possibility. A nonzero observed rate additionally requires dynamically accessible escaping histories with nonzero weight in the prepared population.
 
 A route-level record can be organized as
 
@@ -46371,18 +46377,18 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6f03f03d3b55fc80)
 
-Here $\mathcal I_{\mathrm{iso}}$ is the isotope inventory, $\mathcal B_{\mathrm{meta}}$ is the retained metastable nuclear branch record, $\mathcal C_{\mathrm{route}}$ names the alpha, beta/lepton, neutron, gamma/photon, neutrino, or non-radiative route family, and $\lambda_{\mathrm{route}}$ is the observer-level rate or half-life extracted from the retained route. A quantitative recovery requires one parent/daughter/product event ledger that names emitted products, recoil, heat, photon rows when present, the Noether sea update, path-history provenance, and the shielded-energy boundary without hidden loss. Until such a record is supplied, the metastability account is an effective organizing statement and a derivation target, not a native half-life derivation.
+Here $\mathcal I_{\mathrm{iso}}$ is the isotope inventory, $\mathcal B_{\mathrm{meta}}$ the proposed retained metastable branch record, and $\mathcal C_{\mathrm{route}}$ the reaction-family label. $\lambda_{\mathrm{route}}$ is an inverse-time rate, not a half-life; for a constant rate its partial half-life is $\ln 2/\lambda_{\mathrm{route}}$. $\mathcal Y_{\mathrm{emit}}$ records emitted-product identities and yields, $\mathcal R_{\mathrm{recoil}}$ recoil, $\mathcal H_{\mathrm{heat}}$ energy thermalized by the stated cutoff, and $\mathcal L_{E\mathbf p\mathbf J}$ the energy, momentum, and angular-momentum account. $\Delta\theta_{\mathrm{sea}}$ is the change in declared sea-state variables, distinct from the sea energy change $\Delta E_{\mathrm{sea}}$ above. A quantitative recovery requires one parent/daughter/product history and a population measure, with photons, medium exchange, retained excitation, and the shielded-energy boundary accounted for without duplicate or hidden energy. Until supplied, this is an effective organizing statement and a derivation target, not a half-life derivation.
 
 #### Beta Stability Interface
 
-Nuclear binding is tied to weak stability because a nucleus can trade between proton and neutron count through weak channels. At coarse level, beta stability is the condition that the total nuclear energy cannot be lowered by the neutron-side channel
+Nuclear binding is tied to weak stability because a nucleus can trade between proton and neutron count through weak channels. At effective level, energetic stability against a specified beta-family reaction compares the complete initial and final energies, including lepton rest energies, atomic or electronic state changes, recoil, and medium exchange. The neutron-side constituent shorthand is
 $$
 n \to p + e^- + \bar\nu_e
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-53d27094f56b1c47)
 
-or by the proton-side channels, positron emission $p \to n + e^+ + \nu_e$ and electron capture $p + e^- \to n + \nu_e$, inside the bound environment.
+and the proton-side shorthands are positron emission $p \to n + e^+ + \nu_e$ and electron capture $p + e^- \to n + \nu_e$ inside the bound environment. Here $e^\pm$ are the positron/electron and $\nu_e,\bar\nu_e$ the electron-neutrino/antineutrino channel labels. These are inventory changes within parent and daughter nuclei, not assertions that each free-nucleon reaction is allowed. A lower daughter nuclear energy alone is insufficient to permit positron emission; its lepton cost must also be met. Electron capture consumes an available electron, whose state and energy belong to the initial account. Energetic permission remains distinct from a nonzero transition rate, and stability against one such channel does not exclude other single or multiple weak transitions.
 
 So a realistic nuclear theory here must eventually combine:
 
@@ -46409,13 +46415,19 @@ If the effective nuclear potential cannot satisfy the sign structure and compari
 
 #### Relation to Mesons
 
-Mesons are not an optional add-on in this story. They are the main residual-strong exchange channel already identified elsewhere in the repo.
+Meson-like configurations are the proposed residual-strong exchange channel of this account. Their role and retained-history obligations are developed in the meson chapter; using that interface does not establish nuclear binding.
 
 The division of labor is:
 
 - [nucleon-structure.md](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md) defines the baryonic building blocks,
 - [mesons.md](../../../../markdown/aaa/assemblies/mesons/mesons.md) defines the transient exchange packets,
 - this chapter defines the effective multi-nucleon binding problem.
+
+#### Source Notes
+
+K. Auranen and E. A. McCutchan, [ENSDF adopted levels for polonium-212](https://www.nndc.bnl.gov/ensnds/212/Po/adopted.pdf), evaluated August 2020, Nuclear Data Sheets 168, 117, p. 1, gives a ground-state half-life of $294.3(8)\,\mathrm{ns}$ and a total alpha release energy of $8954.20(11)\,\mathrm{keV}$. These support the rounded lifetime and release-energy scale above; the approximate alpha kinetic energy also requires the daughter-recoil partition. They are observer-level comparison data, not a calculation from $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+A. A. Filin and collaborators, [High-accuracy calculation of the deuteron charge and quadrupole form factors in chiral effective field theory](https://arxiv.org/abs/2009.08911), 2020, arXiv:2009.08911, treats both nuclear potentials and one- and two-nucleon charge operators. It supports the distinction between a bound-state model and its electromagnetic response; the effective-field-theory machinery is a comparison, not a primitive input here.
 
 #### Related Chapters
 
@@ -46428,7 +46440,7 @@ The division of labor is:
 
 ### Atomic Spectra
 
-This chapter is an exploratory mapping study from AAA assembly and medium records to the effective atomic spectra described by the Standard Model. A spectral line is treated as a candidate record of an assembly transition, a photon-channel event, and a local clock/rate conversion; this is a proposed recovery route, not an established substrate mechanism. The central question is which spectral constants and redshift effects can be recovered as medium-sensitive resonance data.
+This chapter is an exploratory mapping study from Architrino Assembly Architecture, $\mathbb{A}\mathbb{A}\mathbb{A}$, to effective atomic spectra: the frequencies emitted or absorbed when an atom changes state. An assembly is a candidate bound collection of [architrinos](../../../../markdown/aaa/foundations/architrino.md), point transceivers whose past emissions supply delayed acceleration contributions. The [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the proposed ambient population of neutral assemblies. A spectral line is treated as a candidate record of an assembly transition, a photon-channel event, and a local clock/rate conversion; this is a proposed recovery route, not an established substrate mechanism. The central question is which spectral constants and redshift effects can be recovered as medium-sensitive resonance data.
 
 The required components are developed in [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Electron](../../../../markdown/aaa/assemblies/fermions/electron.md), [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Atomic Transition Radiation](../../../../markdown/aaa/reactions/atomic-transition-radiation.md), because the proposed spectral shifts depend on local assembly structure, the effective clock/rate layer, and the photon-channel event record.
 
@@ -46440,7 +46452,7 @@ Spin-sensitive spectral structure is downstream of the angular-momentum proof pr
 
 Electron orbitals are treated here as stable resonance patterns of electron assemblies coupled to the local Noether sea. This is an effective atomic model, not yet a derivation from the constituent master equation.
 
-The simple picture is that an electron assembly does not orbit an isolated point nucleus in empty space. It settles into stable envelope basins shaped by the proton source envelope, the surrounding Noether sea state, and the record-facing clock/rate conversion. The standard orbital labels are kept because they organize the observed spectra, but they are recovery labels for those basins.
+The proposed picture places the electron assembly in an envelope basin, a persistent response pattern shaped by the nuclear source envelope and surrounding Noether sea state. The clock/rate map then converts that response into a declared frequency readout; a readout conversion does not itself establish or stabilize a basin. The standard orbital labels organize observed spectra and remain recovery labels for candidate basins. Existence and stability require compatible histories satisfying the constituent master equation and a separate perturbation analysis.
 
 The foundation-up route treats those resonance patterns as responses to structured causal-wake boundary data. In a completed derivation, the integer-closed Noether braid ledgers of the nuclear constituents should determine an effective causal-wake envelope $\mathcal W_{\text{nuc}}$, and the electron assembly should occupy stable envelope basins labeled by the recovered quantum numbers $(n,\ell,m)$. The route is one-way:
 
@@ -46458,7 +46470,7 @@ $$
 
 The labels $(n,\ell,m)$ are therefore spectral and orbital recovery labels for the effective envelope. They should not be used backward as evidence that the internal nuclear or electron Noether braid ledgers have already been derived. The label is the observer-level tag on a recovered basin; it is not the cause of the basin.
 
-The direct angular consumer is the effective angular-envelope recovery lemma from [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#effective-angular-envelope-recovery-lemma). Once the native extractor supplies a central record-facing envelope whose angular part is a regular single-valued function on $S^2$, the angular step is
+The direct angular consumer is the effective angular-envelope recovery lemma from [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#effective-angular-envelope-recovery-lemma). Once the native extractor supplies a central record-facing envelope, take a nonzero angular eigenfunction $Y$ in the self-adjoint domain of the scalar Laplacian on the unit sphere $S^2$. Regularity and single-valuedness at all angles give the conditional mathematical spectrum
 
 $$
 -\Delta_{S^2}Y=\lambda Y
@@ -46472,9 +46484,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-418e63ca889da8b9)
 
-Atomic spectra then consume $(n,\ell,m)$ as envelope labels for energy gaps and line strengths. The spectral burden remains the native extraction of the electron-envelope basin, its radial energy functional, and the local clock/rate conversion; the angular lemma does not by itself derive the Rydberg constant or spin-sensitive splittings.
+Here $\lambda$ is the angular eigenvalue, $\ell$ the nonnegative orbital angular label, and $m$ the chosen-axis projection label in a simultaneous angular eigenbasis; a general superposition in the same $\ell$ eigenspace need not have one definite $m$. Atomic spectra consume $(n,\ell,m)$ as envelope labels, with $n$ the principal label in this tuple. The spectral burden remains the native extraction of the electron-envelope basin, its radial energy functional, transition amplitudes, and local clock/rate conversion; the angular lemma alone supplies neither principal labels, line strengths, the Rydberg constant, nor spin-sensitive splittings.
 
-The standard hydrogen derivation supplies the ordered comparison packet for the ideal central limit. After the electron-proton channel is reduced to a central effective envelope, the observer-level solution separates as
+The standard hydrogen derivation supplies an observer-level comparison for the ideal central limit. In the following comparison, $(r,\theta,\phi)$ are spherical coordinates in a declared effective relative-position chart, not unqualified substrate coordinates. A separated mode plus its non-separable remainder is written as
 
 $$
 \Psi_{\mathrm{env}}(r,\theta,\phi)
@@ -46490,7 +46502,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-eed101a9dbd8972b)
 
-Here $\left\|\cdot\right\|_\theta$ is the $L^2$ norm over the angular sector $S^2$ at fixed $r$, with the bound required to hold at every admissible radius, so $\varepsilon_{\mathrm{sep}}$ controls the worst-case angular non-separability. The angular part is the $S^2$ eigenmode statement above. The radial part must be a normalizable envelope,
+Here $\left\|\cdot\right\|_\theta$ is the $L^2(S^2,d\Omega)$ norm at fixed $r$, where $d\Omega$ is solid-angle measure, and $\varepsilon_{\mathrm{sep}}>0$ has the same units as the envelope amplitude. The bound holds at every declared admissible radius. It controls angular non-separability there; by itself it does not bound the full radial norm or the energy error. The angular part is the $S^2$ eigenmode statement above. For the regular bound states of the ideal Schrödinger Coulomb comparison, the nonzero radial mode is square-integrable and its radial node count $N_{\mathrm{rad}}$ obeys
 
 $$
 \int_0^\infty
@@ -46512,11 +46524,11 @@ In the standard Schrödinger calculation, the second condition is enforced by te
 
 The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether braid density $\rho_{\text{NS}}(\mathbf X,T)$, the normalized density $n(\mathbf X,T)$, the Noether sea delay factor $\chi_{\text{sea}}(\mathbf X,T)$, and the local clock/rate response encoded by the native cadence-stretch diagnostic $\Gamma_N(\mathbf X,T)$. The spectral readout below uses the projected channel value $\Gamma_N^{(\ell)}$ after the hydrogen response map has selected an admissible resolution; it is not a separate observer-chart definition of $\Gamma_N$. The important discipline is to keep $n$ as normalized density, $\chi_{\text{sea}}$ as the delay factor, and $\Gamma_N$ as the cadence-stretch diagnostic.
 
-Notation guard: the standalone field $n(\mathbf X,T)$ is normalized Noether braid density throughout this chapter, while subscripted integers such as $n_a$ and $n_b$ are recovered principal envelope labels. The notation stays canonical; the argument list and subscripts carry the distinction.
+The field $n(\mathbf X,T)=\rho_{\text{NS}}(\mathbf X,T)/\rho_{\text{NS},0}$ is normalized Noether braid density, with fixed positive reference density $\rho_{\text{NS},0}$; it is not an independent density input in addition to $\rho_{\text{NS}}$. In $(n,\ell,m)$, $R_{n\ell}$, and $N_{\mathrm{rad}}=n-\ell-1$, $n$ is the standard principal label, as are the state-specific integers $n_a$ and $n_b$. Resolution arguments and superscripts $(\ell)$ below refer to the coarse-graining length selected by the channel scan, not to orbital angular momentum. The density fields use absolute time $T$ and position $\mathbf X$ in the Euclidean void; their effective projections require the declared channel map.
 
 That separation matters because spectra are one of the main ways observers infer the wider cosmos. A line frequency can change because the emitting assembly differs, because the local Noether sea and clock/rate conversion differ, because the photon path changes the received channel, or because the receiver's own clock comparison changes. A spectral model that merges those effects into one fitted number has lost the accounting.
 
-Spectral lines should then be recovered as transitions between effective envelope basins:
+For a downward transition from a higher-energy basin $a$ to a lower-energy basin $b$, the ideal local gap comparison is
 
 $$
 h\nu_{a\to b}
@@ -46528,9 +46540,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4b79334aabcb6b6e)
 
-with the local clock/rate conversion applied before comparing to observer frequencies. This keeps the atomic spectrum tied to geometry and causal-wake closure without claiming that the standard orbital postulate has already been derived.
+Here $h$ is Planck's constant as the observer energy-frequency benchmark, $E_{\text{env}}$ is the proposed envelope-energy functional in one common calibration, and the unqualified $\nu_{a\to b}$ is the local frequency before the stated clock/rate conversion. This equality defines the ideal isolated one-photon comparison, with recoil, medium excitation, and other event-energy terms set to zero. A finite event requires their separate accounting in [Atomic Transition Radiation](../../../../markdown/aaa/reactions/atomic-transition-radiation.md#basin-transition). Neither $h$ nor an envelope energy is a primitive input to the architrino acceleration law.
 
-For hydrogen, the spectral channel should be the first channel-scan case inherited from [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md#hydrogen-channel-scan-proof-target). In this channel the scan fixes $X=\mathrm{spec}$, chooses $\ell\in I_{\mathrm{spec}}^{\mathrm{atom}}$, and extracts the electron-envelope branch and local Noether sea response through
+For hydrogen, the spectral channel is the channel-scan target inherited from [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md#hydrogen-channel-scan-proof-target). The scan fixes $X=\mathrm{spec}$ and chooses a coarse-graining length $\ell\in I_{\mathrm{spec}}^{\mathrm{atom}}$, the admissible atomic window that averages many sea assemblies while retaining the electron envelope. The proposed readout functional $F_{\mathrm{spec}}$ acts on the shared hydrogen channel ledger $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ and the proton and electron channel-boundary diagnostics $D_{p,\mathrm{spec}}^{(\ell)}$ and $D_{e,\mathrm{spec}}^{(\ell)}$:
 
 $$
 \mathcal O_{\mathrm H,\mathrm{spec}}^{(\ell)}
@@ -46560,7 +46572,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9a990d63e52de7a1)
 
-with $E_{\text{env}}^{(\ell)}$ still depending on $\mathcal W_{\text{nuc}}$, $\rho_{\text{NS}}$, $n$, and $\chi_{\text{sea}}$ in the same declared window. A schematic observer-frequency comparison can then be written as
+with $E_{\text{env}}^{(\ell)}$ still depending on $\mathcal W_{\text{nuc}}$, $\rho_{\text{NS}}$, $n$, and $\chi_{\text{sea}}$ in the same declared window. In the same ideal zero-event-residual limit, the candidate observer-frequency comparison is
 
 $$
 \nu_{a\to b}^{\mathrm{obs},(\ell)}
@@ -46575,7 +46587,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4ae84456fc8f8541)
 
-where $\Gamma_N^{(\ell)}$ stands for the local cadence-stretch readout and $\left(\Gamma_N^{(\ell)}\right)^{-1}$ is the corresponding clock-rate conversion from [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target). The spectral scan first declares the composite residual that couples the clock norm to the envelope-gap readout:
+Here $\Gamma_N^{(\ell)}>0$ is the local cadence-stretch readout and $\left(\Gamma_N^{(\ell)}\right)^{-1}$ is the candidate clock-rate conversion from [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md#hydrogen-spectral-clock-rate-conversion-target). Both the energy calibration and the reference clock are fixed before testing a line. The displayed conversion applies the cadence factor once: an energy already expressed as $h\nu^{\mathrm{obs}}$ cannot be multiplied by it again. A nonideal comparison adds the independently bounded frequency residual defined by the clock owner and separately controls propagation and detector conversion. The spectral scan first declares the composite residual that couples the clock norm to the envelope-gap readout:
 
 $$
 \left\|
@@ -46605,9 +46617,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7ff1abc0c53a7bc8)
 
-This makes the spectral channel a composite readout, not a separate fitted surface. The clock norm supplies the phase/cadence/delay part, while the envelope-gap term tests whether the same electron branch and proton source envelope recover the line spacing. If the line can be matched only by changing $\Gamma_N^{(\ell)}$, $\chi_{\text{sea}}^{(\ell)}$, or the electron-envelope branch after the transition pair is chosen, the spectral channel has split from the hydrogen boundary scan.
+This is a proposed dimensionless comparison norm. The deviations $\delta E_{\mathrm{env}}^{(\ell)}$ and $\delta\Gamma_N^{(\ell)}$ are differences from a declared reference evaluation in the same calibration, not adjustable line offsets. The positive scale $\epsilon_{\mathrm{gap}}$ has energy units, $\epsilon_\Gamma$ is a positive dimensionless relative-cadence scale, and $\|\mathcal E_{\mathrm{clock}}\|_{\mathrm{clock}}$ is the dimensionless phase/cadence/delay residual inherited from the clock channel. The reference, scales, correlations, and acceptance threshold must be fixed before testing. This sum is bookkeeping rather than a statistical independence assertion: shared clock and cadence inputs cannot be counted as independent evidence. If the line can be matched only by changing $\Gamma_N^{(\ell)}$, $\chi_{\text{sea}}^{(\ell)}$, or the electron-envelope branch after the transition pair is chosen, the spectral channel has split from the hydrogen boundary scan.
 
-After this composite readout is declared, the spectral scan passes only if the same hydrogen ledger and Noether sea complement produce a stable line readout under the refinement condition inherited from the hydrogen channel scan:
+After this composite readout is declared, the refinement comparison requires the following bound for every declared pair $\ell,\ell'\in I_{\mathrm{spec}}^{\mathrm{atom}}$, with the same transition, preparation, reference clock, and projection to common frequency units:
 
 $$
 \Delta_{\mathrm{spec}}(\ell,\ell')
@@ -46631,11 +46643,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6c868b1ea6aae2d0)
 
-The failure modes are direct: the spectral target fails if $(n,\chi_{\text{sea}})$ collapse into one parameter, if $(n,\ell,m)$ are used as inputs rather than recovered labels, if the proton source envelope is replaced by three free quark sources, or if $R_\infty$ must be fitted independently of the same $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ record that supplies the line gaps.
+The normalization floor $\varepsilon_{\mathrm{spec}}>0$ has frequency units and $\Delta_{\mathrm{spec}}^{\mathrm{tol}}>0$ is dimensionless; both are fixed before comparison. A finite scan establishes only the tested pairs unless an interpolation or uniform bound covers the full admissible window. Refinement agreement establishes insensitivity of this readout to resolution, not existence or dynamical stability of an atomic branch. The spectral target fails if $(n,\chi_{\text{sea}})$ collapse into one parameter, if $(n,\ell,m)$ are used as substrate inputs rather than recovered labels, if the proton source envelope is replaced by three free quark sources, or if $R_\infty$ must be fitted independently of the same $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ record that supplies the line gaps.
 
 #### Hydrogen Rydberg Benchmark Target
 
-The first calibration-free hydrogen benchmark should use ordinary isolated hydrogen lines only after the envelope labels have been recovered. Let $\mathcal L_{\mathrm H}^{0}$ be a chosen weak-homogeneous line set with transitions $a\to b$, where $a$ and $b$ carry recovered principal labels $n_a > n_b$ and no external field or material branch is active. Define the observer-level line factor
+The first hydrogen benchmark tests a common leading Rydberg scale without a per-line fit, after the envelope labels have been recovered. Let $\mathcal L_{\mathrm H}^{0}$ be a finite set containing at least two distinct downward transitions $a\to b$, with positive principal integers $n_a > n_b$ and no external field or material branch active. Define the dimensionless observer-level line factor
 
 $$
 \Lambda_{ab}
@@ -46647,7 +46659,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c0a401297a2bc754)
 
-Standard hydrogen spectroscopy names familiar subfamilies inside this same line set. Lyman, Balmer, Paschen, Brackett, and Pfund are fixed-lower-label slices with $n_b=1,2,3,4,5$ respectively and $n_a > n_b$. In this benchmark those names remain observer-level groupings, not independent fitted surfaces. A successful scan must recover the same $\widehat R_{\mathrm H}^{(\ell)}$, the same $c_{\gamma,0}^{(\ell)}$, and the same local Noether sea and clock/rate record across whichever named series are included in $\mathcal L_{\mathrm H}^{0}$.
+Standard hydrogen spectroscopy names familiar subfamilies inside this same line set. Lyman, Balmer, Paschen, Brackett, and Pfund are fixed-lower-label slices with $n_b=1,2,3,4,5$ respectively and $n_a > n_b$. These are observer-level groupings of the leading Coulomb comparison. An isolated atom still has fine structure, hyperfine structure, Lamb shifts, finite nuclear structure, and recoil. A use of the uncorrected readout below must bound those contributions within a declared line-dependent uncertainty budget; a more precise comparison must remove independently specified corrections and propagate their uncertainties, following the [hydrogen spectral residual separation](../../../../markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md#hydrogen-spectral-residual-separation). The corrections cannot be retuned to enforce a common Rydberg value.
 
 For each line in this set, the spectral scan extracts a Rydberg readout from the same channel record:
 
@@ -46663,7 +46675,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-597a5d89d5f5d344)
 
-where $c_{\gamma,0}^{(\ell)}$ is the local photon-channel speed in the same weak homogeneous reference used for the line comparison; in the weak homogeneous limit $c_{\gamma,0}^{(\ell)}\to c_0$, which ties this composite symbol to the canonical speed ladder. The benchmark is not that the symbol $R_\infty$ is inserted by hand. The target is that the hydrogen line set has one transition-independent readout,
+Here $\widehat R_{\mathrm H}^{(\ell)}$ has inverse-length units and $c_{\gamma,0}^{(\ell)}>0$ is the independently calibrated photon-channel speed in the same weak homogeneous reference. The limit $c_{\gamma,0}^{(\ell)}\to c_0$ is the weak homogeneous photon-calibration target; it does not identify the observer calibration $c_0$ with the primitive wake speed $c_f$. The same photon speed and clock/rate map must apply across the selected lines. A common fitted Rydberg scale tests line ratios; predicting its absolute value additionally requires an independently fixed energy, clock, and length calibration. Within the declared leading-spectrum uncertainty, the transition-independence target is
 
 $$
 \max_{(a,b),(c,d)\in\mathcal L_{\mathrm H}^{0}}
@@ -46686,7 +46698,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5cdf3517c5daf5ce)
 
-after using the same $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$, $\Gamma_N^{(\ell)}$, and $\chi_{\text{sea}}^{(\ell)}$ for every line in the set. The infinite-nuclear-mass limit is then a recovery target,
+after using the same $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$, $\Gamma_N^{(\ell)}$, and $\chi_{\text{sea}}^{(\ell)}$ for every line in the set. Here $\varepsilon_R>0$ is a fixed inverse-length normalization floor and $\Delta_R^{\mathrm{tol}}>0$ is a dimensionless tolerance that includes the declared correction budget. The infinite-nuclear-mass limit, with the electron response, medium, and calibration held fixed, is then a leading-spectrum recovery target,
 
 $$
 \lim_{M_p/m_e\to\infty}
@@ -46701,7 +46713,7 @@ with $m_e$ and $M_p$ read as externally exposed mass responses rather than primi
 
 Deuterium supplies the immediate isotope falsifier. With the electron branch and $Z=1$ source class held fixed, the hydrogen/deuterium line ratio must follow from the independently exposed nuclear mass responses and the same envelope functional, with no isotope-specific Rydberg fit. Hydrogen-like ions such as $\mathrm{He}^{+}$ and $\mathrm{Li}^{2+}$ then test the recovered $Z^2$ scaling and its declared finite-size and recoil corrections using the same $\mathcal W_{\text{nuc}}$ machinery.
 
-The line-gap residual is the companion check:
+The line-gap residual is the companion ideal-event check, applicable when the separately bounded event and spectroscopic corrections lie within its stated budget:
 
 $$
 \mathcal E_{ab}^{\mathrm{gap},(\ell)}
@@ -46730,19 +46742,19 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9048fdaff041ed7e)
 
-This residual keeps the spectral benchmark tied to the envelope calculation. It fails if each line requires a separate $R_\infty$ adjustment, if reduced mass, recoil, or clock/rate effects are absorbed into the envelope energy without being named, if $c_{\gamma,0}^{(\ell)}$ is changed between lines, or if the local Noether sea variables are retuned after the line set is chosen. The event-level emission and absorption ledger that tests the same gaps belongs to [Atomic Transition Radiation](../../../../markdown/aaa/reactions/atomic-transition-radiation.md#hydrogen-line-benchmark-record).
+Here $\varepsilon_E>0$ is a fixed energy normalization floor and $\Delta_E^{\mathrm{tol}}>0$ is dimensionless. Larger non-photon event terms require the full residual-bearing comparison from the clock and radiation owners, not relaxation of this tolerance. The envelope gaps and cadence stretch must be predicted independently of the line frequencies used to test them; otherwise a small residual can be an algebraic consequence of fitted inputs. The test fails if each line requires a separate $R_\infty$ adjustment, if reduced mass, recoil, or clock/rate effects are hidden in the envelope energy, if $c_{\gamma,0}^{(\ell)}$ is changed between lines, or if local Noether sea variables are retuned after the line set is chosen. The event-level emission and absorption ledger belongs to [Atomic Transition Radiation](../../../../markdown/aaa/reactions/atomic-transition-radiation.md#hydrogen-line-benchmark-record).
 
-The coefficient row version of the same benchmark is the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../../../../markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md). Its input variables are the shared hydrogen channel ledger, the line set $\mathcal L_{\mathrm H}^{0}$, the envelope gaps, the observer frequencies, the clock-facing deformation record $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, and the declared residual budgets. The scan accepts only rows that preserve $b_\xi=1$ (the inherited Lorentz-branch constraint entry), satisfy the weak static endpoint constraint, and use the same $C_N=\Gamma_N^{-1}$ clock-rate conversion for every selected transition. It therefore turns the Rydberg benchmark into a coefficient row constraint rather than a per-line fitting surface.
+The coefficient row version of the same benchmark is the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../../../../markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md). Its inputs include the shared hydrogen channel ledger, selected lines, envelope gaps, observer frequencies, and declared residual budgets. The vector $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ contains the logarithmic density, delay, scale, shape, and braid-core response entries used by the clock map. The condition $b_\xi=1$ fixes the coefficient of its negative logarithmic shape entry only under the homogeneous Lorentz branch's remainder assumptions. The scan also imposes the weak static endpoint constraint and the common $C_N=\Gamma_N^{-1}$ conversion. These are conditional coefficient constraints, not independently established properties of a hydrogen branch.
 
 The first executable scaffold for that scan keeps the hydrogen labels theory-facing while the envelope solver remains open. It derives $\Lambda_{ab}$ from recovered principal labels, sets the normalized observer-frequency entries to that line factor, derives the replay envelope gaps from one shared line-inferred cadence stretch, and carries two $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ records with different density/delay/scale/core splits. Those entries are placeholders only where the corpus has not yet supplied the native calculation: the envelope calculation must later replace the scaffolded cadence stretch with computed gap entries, the hydrogen response map must replace the $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ entries, and the static response calculation must replace the declared $(a_n,a_\chi,a_\lambda,a_R)$ row (the static Noether sea response row) without changing the line-by-line clock factor.
 
-The scaffold is therefore a coefficient-row constraint, not a completed hydrogen spectral derivation. The derivation closes only when the hydrogen branch supplies the envelope gaps, $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, observer frequencies, and static response row from the same spectral channel ledger and Noether sea cell.
+The scaffold tests coefficient handling and arithmetic consistency. Because its frequencies and replay gaps are constructed from the same line factors and chosen cadence stretch, their agreement is not independent evidence for hydrogen spectroscopy or the clock law. Physical recovery additionally requires retained hydrogen dynamics, an independently derived envelope-energy and response map, and comparison with independent measured line frequencies under a declared calibration and correction budget. Sharing a spectral channel ledger and Noether sea cell is necessary bookkeeping, but does not by itself close those obligations.
 
 Two nuclear-corridor-free comparison branches help order that derivation. Positronium tests two polarity-conjugate lepton envelopes with equal exposed mass responses, while muonium tests unequal lepton mass responses without a baryonic color corridor. These systems do not replace hydrogen, because their assembly records differ, but they can falsify an electron-envelope or clock/rate map before the unresolved proton source envelope is introduced.
 
 ##### Lamb-Shift Recovery Target
 
-The hydrogen Lamb shift is specifically the $2s_{1/2}$-$2p_{1/2}$ splitting. Once the spinor ledger supplies the downstream $j$ labels, the final precision target is
+The hydrogen Lamb-shift benchmark here is the $2s_{1/2}$-$2p_{1/2}$ interval, with hyperfine components reduced to a consistently defined hyperfine-free comparison. The letter $s$ denotes orbital $\ell=0$, $p$ denotes orbital $\ell=1$, and $j$ labels total electronic angular momentum at the effective level. Once the spinor ledger supplies those labels, the envelope-energy target is
 
 $$
 \Delta E_{\mathrm{Lamb}}^{(\ell)}
@@ -46770,11 +46782,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-694ad0e1021a0f7c)
 
-which measures deviation from ideal central Coulomb $\ell$-degeneracy and is not yet the complete Lamb-shift observable. The $2p_{3/2}$ branch belongs to the separate fine-structure recovery and must not be folded into $\Delta E_{\mathrm{Lamb}}^{(\ell)}$.
+The pre-spin difference measures deviation from equality of ideal central Coulomb energies at different orbital $\ell$; it is not yet the complete Lamb-shift observable. The $2p_{3/2}$ branch belongs to the separate fine-structure recovery. Both displayed differences are envelope energies at resolution $(\ell)$, before the declared clock/rate conversion. Comparing either with a measured frequency interval requires that conversion, the same energy calibration, and the appropriate bounded event, hyperfine, and nuclear corrections.
 
 The native calculation must derive the final nonzero $2s_{1/2}$-$2p_{1/2}$ difference from the declared electron envelope, proton-adjacent response, causal-wake dressing, local Noether sea record, photon-channel event ledger, and the same spinor-label pullback that distinguishes the two $2p_j$ branches. Standard radiative and vacuum-response language may supply the observer-level benchmark, but it is not a substrate mechanism. A fit that inserts an independent $2s$ offset, or retunes $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ only for this pair, fails the same-record requirement.
 
-For element comparisons, shell closure should enter through the realized envelope and its stability gap, not through the periodic-table family name. A local shell-closure diagnostic can be written as
+For element comparisons, shell closure is a proposed relation between an electron-envelope branch and its competing states. An energy separation alone is not a perturbative stability margin. For an admitted branch $\mathcal B_e$, a conditional energy-gap diagnostic can be written as
 
 $$
 C_{\mathrm{shell}}(\mathcal B_e)
@@ -46803,9 +46815,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8529c8bcc823bd53)
 
-where $\mathfrak B_{\mathrm{adm}}$ is the discrete set of realized admissible electron-envelope branches for the same nuclear source and Noether sea record. The minimum runs over distinct stable branches, not over continuous deformations of $\mathcal B_e$, so a closed shell reads as a large energy gap to the nearest competing branch.
+Here $\mathfrak B_{\mathrm{adm}}$ is a declared set of admitted electron-envelope branches with the same electron inventory, nuclear source, medium record, energy reference, and boundary conditions. The displayed minimum is defined only when the competitor set is nonempty and its lowest energy difference is attained, for example in a finite enumerated set. Discreteness alone does not ensure attainment. A positive value requires the reference branch to lie below every competitor by a positive gap; a degenerate competitor gives zero and a lower competitor gives a negative value. An empty or incomplete inventory supplies no closed-shell verdict. Continuous perturbations, ionization channels, and dynamical stability require separate analysis.
 
-Closed-shell atoms should correspond to large $C_{\mathrm{shell}}$ and weak low-order external envelope multipoles. Transition metals should correspond to several nearby anisotropic electron-envelope branches, especially in $d$-envelope recovery. Iron-group elements add isotope-specific nuclear binding and, in material states, magnetic or lattice branches. The words `closed shell`, `transition metal`, and `iron group` are therefore observer-level summaries until translated into $\mathcal B_e$, $\mathcal W_{\text{nuc}}$, $C_{\mathrm{shell}}$, and any realized bonding or lattice branch.
+The shell-closure proposal associates closed shells with a positive $C_{\mathrm{shell}}$ large relative to a declared excitation scale and with weak low-order external envelope multipoles, the angular moments of the exposed response. It associates transition metals with several nearby anisotropic branches, especially in $d$-envelope recovery. These identifications remain hypotheses until the branches, comparison scale, and response are derived. Iron-group elements also require isotope-specific nuclear binding and, in material states, magnetic or lattice branches. The words `closed shell`, `transition metal`, and `iron group` remain observer-level summaries.
 
 This chapter owns the envelope gap and observer-level spectral comparison. The emission, absorption, recoil, non-radiative alternatives, and Gate C transition-rate record belong to [Atomic Transition Radiation](../../../../markdown/aaa/reactions/atomic-transition-radiation.md).
 
@@ -46815,7 +46827,7 @@ For the medium-level gravitational side of that program, see [Emergent Metric](.
 
 #### Magnetic and Recoil Spectral Benchmarks
 
-External magnetic spectra should be treated as recovery benchmarks for the same effective U(1) connection used by radiation and material-response closure. In a weak homogeneous magnetic branch, the observer-level Landau comparison asks for an effective cyclotron spacing
+External magnetic spectra are recovery benchmarks for the effective U(1) connection, the phase-transport description used in electromagnetic comparisons. The Landau comparison concerns quantized transverse motion of a free effective carrier, or a carrier in an isotropic parabolic material band, in a uniform magnetic field. It is not the general bound-atom level spacing. In this nonrelativistic comparison, with spin splitting treated separately, the target is
 
 $$
 \Delta E_{\mathrm{LL}}
@@ -46829,9 +46841,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2a51a19c0389f010)
 
-where $m_*$ is the material or envelope effective mass when the electron assembly is in a branch environment. This is not a primitive Lorentz-force postulate. It is a test that the envelope branch, effective magnetic-state map, and exposed mass response combine to reproduce the standard spacing in the validated limit.
+Here $\hbar=h/(2\pi)$ is the reduced observer action scale, $e>0$ the elementary charge magnitude, $B\ge0$ the effective magnetic flux-density magnitude, $\omega_c$ the cyclotron angular frequency, and $m_*>0$ the scalar effective mass for the stated free-carrier or parabolic-band comparison. An anisotropic or nonparabolic band needs its corresponding cyclotron response, rather than an arbitrary scalar mass substitution. Recovery from the same envelope, magnetic-state map, and exposed mass response remains open.
 
-Zeeman splitting should remain downstream of the spin ledger, but it gives a useful coefficient target:
+For atomic Zeeman splitting, take a weak field that preserves the chosen total-angular-momentum labels and neglect or separately resolve hyperfine mixing and higher-order shifts. A line component's signed energy shift has the compact target
 
 $$
 \Delta E_Z
@@ -46841,7 +46853,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9f4a61d2a0d70648)
 
-The normal Zeeman limit gives a sharper staged benchmark. In that limit the external magnetic branch should split one observer-level line into the standard polarization-resolved pattern:
+Here $\mu_B=e\hbar/(2m_e)$ is the observer Bohr magneton. For a component joining magnetic sublevels of levels $a$ and $b$, define $g_{\mathrm{eff}}=g_a m_{j,a}-g_b m_{j,b}$, where $g_a,g_b$ are their level magnetic-response factors and $m_{j,a},m_{j,b}$ their chosen-axis projection labels. Thus $g_{\mathrm{eff}}$ includes the sublevel projections; it is not one universal level factor. The [NIST Zeeman comparison](https://www.nist.gov/pml/atomic-spectroscopy-compendium-basic-ideas-notation-data-and-formulas/atomic-spectroscopy-zeeman), equation (6), gives a level shift proportional to its own projection. The component frequency shift is $\Delta E_Z/h$, and a difference of two component shifts gives their separation.
+
+The normal Zeeman limit gives a sharper staged benchmark for electric-dipole lines with the normal orbital response. Its polarization-resolved pattern depends on viewing direction and on which components the preparation and analyzer admit:
 
 | Viewing direction | Observer-level components | Recovery burden |
 | --- | --- | --- |
@@ -46878,9 +46892,9 @@ $$
 
 so the normal-Zeeman side spacing is one half of the corresponding cyclotron coefficient when the same exposed mass response applies. Here $m_{\mathrm{resp}}$ is the exposed mass-response readout for the same branch environment; the nearby $m_*$ notation is reserved for the standard material or envelope effective-mass comparison, as in the Landau spacing. Recovering the factor of two, polarization basis, and charge-to-mass readout from one magnetic-state map and photon-channel event record is part of the benchmark. The anomalous Zeeman cases then become the next benchmark: extra components and non-normal spacings must be routed through the completed internal spinor ledger and measurement-response model, not patched by assigning a free line-by-line $g_{\mathrm{eff}}$. In isolated-atom comparisons this protects fine, hyperfine, and Zeeman recovery from being fitted independently of the base spectral envelope.
 
-Solar and stellar Zeeman observations sharpen this as a source-reconstruction benchmark, not merely a laboratory line-splitting example. Hale's 1908 sunspot measurements used viewing geometry and analyzer response to distinguish the longitudinal circularly polarized doublet from the transverse linearly polarized components. For this chapter, the recovery target is therefore a same-record map from source magnetic state, viewing direction, line family, analyzer response, and photon-channel polarization ledger to split line positions and intensities. The lab calibration and the solar or stellar inference must consume the same effective magnetic-state map; otherwise the inferred field strength is only a spectroscopic fit.
+Solar and stellar Zeeman observations sharpen this as a source-reconstruction benchmark. [George E. Hale, “On the Probable Existence of a Magnetic Field in Sun-Spots” (1908)](https://articles.adsabs.harvard.edu/pdf/1908ApJ....28..315H), *Astrophysical Journal* 28, 315–343, used analyzer-dependent polarization and laboratory comparisons to support a sunspot magnetic-field inference. The paper's limb tests and addendum distinguish line-dependent patterns; its observations should not be reduced to a universal normal triplet. The recovery target here is a map from source magnetic state, viewing direction, line family, analyzer response, and photon-channel polarization ledger to split line positions and intensities. Laboratory calibration and stellar inference must use the same effective magnetic-state map.
 
-Nuclear recoil-free resonant absorption supplies a separate material-coupled benchmark. For a photon of energy $E_\gamma$ absorbed by a free atom of mass $M$, the observer-level recoil scale is
+Nuclear recoil-free resonant absorption supplies a separate material-coupled benchmark. For an initially stationary free atom with positive exposed mass response $M$, the leading nonrelativistic recoil scale follows from the observer comparisons $p_\gamma=E_\gamma/c_0$ and $E_{\mathrm{kin}}=p_\gamma^2/(2M)$:
 
 $$
 E_{\mathrm{recoil}}
@@ -46890,7 +46904,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-da024186a0209e47)
 
-In a solid branch, a recoil-free event is allowed only when the momentum is routed coherently through the material branch with no phonon occupation change in the relevant channel. In ledger form,
+This scale assumes $E_\gamma/(Mc_0^2)\ll1$ and a weak homogeneous photon calibration; it is not exact recoil kinematics or a primitive architrino mass law. A recoil-free event in a solid requires momentum transfer through the coherent material response with no phonon occupation change in the relevant channel. A phonon is an effective quantized lattice vibration. In a closed absorption event, define $\Delta E_\gamma>0$ as energy delivered by the incoming photon and the right-hand terms as signed changes of nuclear internal energy, center-of-mass recoil energy, and lattice vibrational energy, all in the same observer calibration:
 
 $$
 \Delta E_{\gamma}
@@ -46910,7 +46924,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b0a89145ad5ba47a)
 
-with $V$ the crystal volume and $\Delta N_s(\mathbf k)$ the dimensionless per-mode occupation change. The recoil-free spectral line is the branch with $\Delta N_s(\mathbf k)=0$ for the emitted or absorbed channel and with recoil assigned to the coherent material response rather than to a single free nucleus. This benchmark connects atomic spectra to [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md#lattice-scattering-and-phonon-response) without turning the lattice into a new nuclear source.
+Here $V$ is crystal volume, $s$ a phonon branch, $\mathbf k$ an effective crystal wavevector in the Brillouin zone $\mathrm{BZ}$, $\omega_s(\mathbf k)$ its angular frequency, and $\Delta N_s(\mathbf k)$ the dimensionless per-mode occupation change at fixed harmonic frequencies. Changes of those frequencies or of the material background energy require additional terms. The measure $V\,d^3k/(2\pi)^3$ counts modes in the continuum approximation. For emission, the same signed ledger uses negative delivered photon energy; the positive outgoing energy is its negative. Unresolved boundary or other excitation exchanges must be included before using this closed-event equality.
+
+The zero-phonon candidate has $\Delta N_s(\mathbf k)=0$ mode by mode, with recoil assigned to the coherent material response. A vanishing sum of vibrational energy changes alone is weaker, since changes in different modes can cancel. Neither zero phonon change nor coherent momentum accounting proves a nonzero transition amplitude or a recoil-free fraction; those are material and event-response recovery targets. This benchmark connects atomic spectra to [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md#lattice-scattering-and-phonon-response) without turning the lattice into a new nuclear source.
 
 #### Spin-Sensitive Spectral Targets
 
@@ -46930,7 +46946,7 @@ Read the Hyde table as a geometry lesson, not as a replacement for chemistry. Th
 
 The useful question is therefore not whether the spiral is the law. The useful question is what physical regularities the spiral preserves, what it highlights, and which of those highlights can become recovery targets for assembly geometry.
 
-This document does not propose the periodic table as an AAA input or substrate mechanism. Atomic number, shell structure, valence, and chemical regularities are effective Standard Model outputs; any connection to assembly geometry is an exploratory mapping hypothesis to be tested downstream.
+In Architrino Assembly Architecture, $\mathbb{A}\mathbb{A}\mathbb{A}$, atomic number, shell structure, valence, and chemical regularities are observer-level constraints to recover. Standard electronic structure supplies comparison descriptions of those regularities; it is not a premise of architrino dynamics. An [architrino](../../../../markdown/aaa/foundations/architrino.md) is a point transceiver with polarity and path history, whose delayed wake contributions determine acceleration. Any connection between the table and assemblies of those primitives remains an exploratory mapping hypothesis.
 
 #### Scope
 
@@ -46947,41 +46963,43 @@ This document treats the periodic table as a scientific structure first, then an
 
 ##### Atomic-number ordering
 
-The modern periodic law is indexed by atomic number $Z$ (nuclear charge), not atomic mass. Any valid table layout must preserve monotonic ordering in $Z$ and recover family-level chemical recurrence.
+The modern periodic law is indexed by atomic number $Z$, the integer proton count; the nuclear electric charge is $Ze$, where $e>0$ is the elementary charge magnitude in observer-level bookkeeping. Atomic mass does not determine this order. A table must make increasing $Z$ and recurring chemical families recoverable along its declared reading path; neither Cartesian coordinate nor distance from the diagram's center must increase monotonically.
 
 ##### Electronic shell and subshell capacities
 
-For principal quantum number $n$, the shell capacity is:
+In the standard observer-level orbital description, principal quantum number $n$ is a positive integer labeling a shell, and $N_{\text{shell}}$ is its maximum electron occupancy:
 
 $$N_{\text{shell}} = 2n^2$$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a134096a2afea7f8)
 
-For subshell angular momentum $\ell$, the capacity is:
+For a fixed $n$, the allowed subshell labels are the integers $\ell=0,\ldots,n-1$. Each subshell has $2\ell+1$ spatial modes and two spin states per mode, giving its maximum electron occupancy $N_{\ell}$:
 
 $$N_{\ell} = 2(2\ell+1)$$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4dff3ed9dcfc1966)
 
-This yields:
+The factor of two uses the standard spin-state count and Pauli rule: each complete spatial-and-spin state admits at most one electron. Summing $2(2\ell+1)$ over $\ell=0,\ldots,n-1$ gives $2n^2$, because the first $n$ odd integers sum to $n^2$. This is derived arithmetic within the declared effective state-counting description, not a derivation of those states from architrino packing. The subshell capacities are:
 
 1. $s$ ($\ell=0$): 2
 2. $p$ ($\ell=1$): 6
 3. $d$ ($\ell=2$): 10
 4. $f$ ($\ell=3$): 14
 
-These capacities are invariant; the chart geometry can change, but these occupancy limits do not.
+These state-counting capacities are independent of chart layout. A shell need not be full in a neutral atom, and a capacity does not specify an energy or a physical radius.
 
 ##### Filling sequence and period lengths
 
-To first order, filling follows the Madelung ($n+\ell$) ordering with known exceptions in transition and heavy elements. This produces canonical period lengths:
+The Madelung rule orders subshells by increasing $n+\ell$, breaking ties by smaller $n$. It is an approximate neutral-atom filling mnemonic, with known transition- and heavy-element exceptions, rather than a universal ordering of orbital energies in atoms and ions. The conventional period lengths are:
 
 | 2 | 8 | 8 | 18 | 18 | 32 | 32 |
 | --- | --- | --- | --- | --- | --- | --- |
 
 Thus, any alternative representation must still encode $s/p/d/f$ block capacities and resulting periodic recurrences.
 
-The sharper constraint is interleaving, not capacity alone. The recovery must place $4s$ before $3d$ in the relevant neutral-atom sequence, then reproduce the documented chromium- and copper-family exceptions from one energy-ordering rule rather than by relabeling shell totals after the fact. A packing model that yields $2/8/18/32$ capacities but cannot produce cross-tier filling order has not recovered periodic structure.
+Shell capacities and period lengths count different things. The third shell can hold 18 electrons, while the third period contains eight elements because its neutral ground-state sequence fills the $3s$ and $3p$ subshells before the $3d$ series begins in period four. The same effective state count permits $2/8/18/32$ shell capacities without making them the successive period lengths.
+
+The sharper constraint is interleaving, not capacity alone. The recovery must account for $4s$ occupation in potassium and calcium before the $3d$ transition series, then recover ground configurations and the chromium and copper exceptions through one common atomic response rule. NIST's configuration compilation gives chromium as $[\mathrm{Ar}]3d^5 4s^1$ and copper as $[\mathrm{Ar}]3d^{10}4s^1$, where $[\mathrm{Ar}]$ denotes the argon core. These are observer-level comparison assignments. A packing model that yields $2/8/18/32$ capacities but cannot recover cross-tier filling and those configurations has not recovered periodic structure; a scalar energy-ordering description also needs justification from the delayed dynamics.
 
 ---
 
@@ -47021,7 +47039,7 @@ Benfey's 2009 historical account gives an explicit lineage for the Hyde table.
 1. Clark (1933): early oval/spiral periodic chart architecture.
 2. Life (1949): high-visibility oval adaptation for a broad scientific audience.
 3. Benfey/Jacobs Chemistry spiral (1964): the recognizable "snail" rendering, first used in Seaborg's plutonium context.
-4. Hyde (1976): axis-modified refinement with H-C-Si central alignment.
+4. Hyde (1976 publication): axis-modified refinement with H-C-Si central alignment. The Commons reproduction used here describes a design as of 1975; that artwork date is distinct from the publication date.
 
 Therefore Hyde did not originate the spiral family; he modified an existing spiral lineage with a specific structural emphasis.
 
@@ -47031,7 +47049,7 @@ The historical account records two distinct geometric modifications over time.
 
 1. First protrusion: introduced to avoid severe lanthanide compression in the earlier oval/spiral form.
 2. Later protrusion logic: associated with superactinide-era shell-filling discussions, including the Weiner-Seaborg exchange.
-3. Historical extension argument: a 50-element period expectation based on $2+6+10+14+18$ was explicitly discussed in later superheavy-period speculation.
+3. Historical extension argument: a 50-element period expectation based on $2+6+10+14+18$ was explicitly discussed in later superheavy-period speculation. The sum is exact arithmetic for the proposed block count; it does not establish the filling order, existence, or stability of such elements.
 
 ##### Hyde's conceptual intervention
 
@@ -47047,11 +47065,11 @@ In Benfey's own account, the spiral was designed to improve visibility of period
 
 ##### Continuous topological embedding
 
-Rectangular tables encode periodicity on a Cartesian grid with detached $f$-block rows. Hyde-style embedding keeps a near-continuous trajectory in $Z$, reducing topological breaks and emphasizing sequence continuity.
+Common compact rectangular tables detach the $f$-block rows; extended rectangular layouts can keep them attached. Hyde-style embedding emphasizes a near-continuous reading trajectory in $Z$. This is continuity of a diagram, not a topology theorem about atomic configurations.
 
 ##### Radial/curvilinear shell progression
 
-The concentric-curvilinear organization can be read as shell-period progression outward from low-$Z$ regions toward heavier elements. This does not alter quantum mechanics; it is a reparameterization of the same ordering constraints.
+The concentric-curvilinear organization can be read as period progression from low-$Z$ regions toward heavier elements. Its loops are not measurements of atomic radii or surfaces of constant principal quantum number: subshell interleaving separates period order from shell capacity. The diagram reorganizes the same element sequence without changing its electronic-structure constraints.
 
 ##### Lobe structure and chemical polarity
 
@@ -47059,9 +47077,9 @@ The two-lobed (peanut/lemniscate-like) morphology separates strongly electroposi
 
 ##### Carbon-silicon axis emphasis
 
-Hyde's explicit H-C-Si axis emphasizes group-14 centrality between electropositive and electronegative domains and links carbon-rich and silicon-rich materials regimes.
+Hyde's explicit H-C-Si axis emphasizes carbon and silicon, both in group 14, between electropositive and electronegative domains and links their materials regimes. Hydrogen's placement on this axis does not make it a group-14 element or give it four valence electrons.
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ working interpretation, this axis corresponds to the radial tier where four candidate valence Noether braids could achieve a near-symmetric tetrahedral docking arrangement with maximally exposed neutral axes, giving a geometric route to catenation and directional covalency. This atomic mapping does not identify a taxonomy member.
+The assembly proposal associates carbon/silicon bonding with a candidate arrangement of four valence electron assemblies in tetrahedral directions. A [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) is a neutral braided architrino scaffold; the [electron candidate](../../../../markdown/aaa/assemblies/fermions/electron.md) additionally carries a charged six-site axial organization. In this proposal, docking means a persistent relative position and orientation maintained by delayed interaction; a neutral-axis docking direction denotes a proposed direction selected from the neutral scaffold's geometry, not an independently established bonding channel. Tetrahedral docking is a guessed route to catenation, the formation of chains of like atoms, and directional covalent bonding. Neither four valence electrons nor a printed H-C-Si axis establishes that arrangement, maximal exposure, a common radial tier for the three elements, or a retained taxonomy member.
 
 ##### Branches and heavy-series treatment
 
@@ -47080,75 +47098,77 @@ In technical reading, the Hyde linework can be interpreted as layered semantic s
 
 #### $\mathbb{A}\mathbb{A}\mathbb{A}$ Geometric-Periodicity Hypotheses
 
-The points below are collected as a framework-internal research program, not as established consensus chemistry.
+The points below are assembly hypotheses, with claim grade guessed. Their physical realization remains unresolved. They must be tested against the delayed [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), which sums acceleration contributions from all admitted past wake intersections in the Euclidean void using absolute time. Any numerical realization uses normalized wake-speed units with $c_f=1$.
 
 ##### Central Claim
 
-- The 1976 Hyde periodic chart abandons the rigid Cartesian block structure of the Mendeleev-style table in favor of a continuous spiral topology, and this topology is proposed to map directly to geometric packing constraints of Noether braid assemblies.
+- The Hyde spiral motivates a proposed correspondence between diagram adjacency and geometric packing of candidate electron assemblies. A map from three-dimensional assembly histories to the chart must be specified and tested; the drawn spiral alone does not determine it.
 
 ##### Assumptions
 
-- The $s, p, d, f$ orbital labels are treated as recovered labels for electron resonance and observer-level detection basins; the substrate-side hypothesis is that those basins are shaped by volume-exclusion zones of oblate spheroidal candidate electron-braid envelopes carrying six axial architrinos.
-- Candidate electron braids are assumed to couple to the nuclear assembly ledger through the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$ and local Noether sea density gradients.
+- The $s, p, d, f$ orbital labels are targets for electron resonance and observer-level detection basins, sets of prepared histories that produce the same declared detection outcome. The proposed packing model uses oblate spheroidal candidate electron envelopes, with two equal transverse axes and one shorter axis, and the electron's separate six-architrino axial inventory. This shape is a selected ansatz, not a universal property or a demonstrated electron branch. Its [packing interface](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#assembly-noether-sea-interface-diagnostic) is a channel-specific response boundary, not a hard material wall or the observer's orbital probability distribution.
+- Candidate electron assemblies couple, in the proposed reduction, to $\mathcal W_{\text{nuc}}$, the effective nuclear causal-wake envelope obtained from constituent histories. The [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the ambient assembly population inside the void. Its density, delay, orientation, and stress response must be declared separately, following [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md#element-dependent-sea-response); a density gradient alone does not supply the constitutive law relating that population to electron response.
 - Periodicity is assumed to be a geometric and dynamical outcome of finite-volume assembly constraints, not only a formal quantum-number indexing result.
 
 ##### Mechanism and Derivation Sketch
 
-- Spiral-to-core symmetry mapping: Hyde's 2D spiral is treated as a projection of 3D docking topology around the nuclear source envelope $\mathcal W_{\text{nuc}}$, where each subshell bifurcation corresponds to a specific set of neutral-axis docking vectors.
-- Radial quantization condition: each concentric Hyde loop is treated as a discrete boundary where the local Noether sea pressure gradient drops enough to stabilize an additional atomic layer of precessing candidate braids; `pressure` here and below means the isotropic part of the canonical Noether sea stress $\Sigma_{\text{sea}}$, not a new medium variable.
-- In this view, the 2/8/18/32 shell periodicity emerges from finite-volume packing limits of Noether braid assemblies under these boundary conditions.
-- Volume-exclusion hypothesis: each candidate electron braid displaces the local Noether sea, and overlap of two precessing oblate spheroidal exclusion envelopes generates a sharply rising displacement-pressure gradient.
-- Dynamical resolution rule: when exclusion volumes intersect, assemblies must either separate into orthogonal precession phases or move to a larger-radius tier.
-- Pauli exclusion is therefore modeled as a mechanical non-overlap constraint enforced by Noether sea displacement pressure rather than only an abstract occupancy postulate.
+- Spiral-to-core symmetry mapping: the proposed projection must relate the 2D chart to 3D docking around $\mathcal W_{\text{nuc}}$ and explain any association between a subshell and neutral-axis docking directions. No such projection is derived here.
+- Radial quantization hypothesis: discrete stable electron-envelope layers are proposed to arise from the local Noether sea response. A change of pressure gradient alone supplies neither a balance condition nor stability. Here `pressure` denotes the isotropic part of the canonical Noether sea stress $\Sigma_{\text{sea}}$; a response law must relate it to the retained assembly histories before it can select a layer. Chart loops remain period labels, not established physical layer boundaries.
+- The $2/8/18/32$ shell capacities are recovery targets for finite-volume packing under those conditions. The arithmetic above does not derive them from that packing model.
+- Volume-exclusion hypothesis: overlapping precessing candidate envelopes are proposed to alter the ambient population and its stress. Whether that response rises sharply, and over which overlap and phase domain, requires a constitutive derivation.
+- Proposed resolution channels include changed relative precession phases and a larger-radius tier. They are not exhaustive: excitation, reconfiguration, dissociation, or persistent non-stationary motion must remain possible outcomes of the declared dynamics.
+- Pauli recovery concerns exclusion of the same complete spatial-and-spin state. Two opposite-spin electrons may share a spatial orbital, so a blanket ban on spatial overlap would fail this comparison. Relative precession phases cannot be identified with orthogonal effective spin states without the corresponding state map.
 - This is a candidate realization of the geometric packing side of Pauli behavior. It must inherit the exchange-sign and state-counting recovery from [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md) and the ordered-frame spinor proof program in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), rather than standing as an independent Pauli derivation.
-- Subshell branching hypothesis ($s, p, d, f$): branching reflects the number and symmetry of available neutral-axis docking geometries permitted by six polar sites.
-- Secondary-relationship hypothesis: Hyde-highlighted diagonal and bridging relations are interpreted as shared exposed neutral-axis geometry in candidate valence braids, which controls preferred bonding directions.
-- Carbon-silicon centrality hypothesis: the H-C-Si axis is identified with the first tier permitting a symmetric four-site tetrahedral outer-docking pattern, giving a direct structural basis for group-14 bonding behavior.
+- Subshell branching hypothesis ($s, p, d, f$): the six polar sites, attachment sites in the candidate electron's axial organization, are proposed to constrain docking symmetry. Counting those sites does not derive the $2\ell+1$ spatial modes, their two spin states, or subshell energies.
+- Secondary-relationship hypothesis: Hyde-highlighted diagonal and bridging relations are proposed comparisons for exposed neutral-axis geometry and bonding direction. Their correspondence must follow from the assembly response rather than being assigned from chart position.
+- Carbon-silicon centrality hypothesis: a four-site tetrahedral outer-docking pattern is a candidate explanation of specified group-14 bonding environments. Its existence, environmental domain, and mapping to measured bonding remain open; the H-C-Si axis does not establish a first common radial tier.
 
 ##### Predictions and Observables
 
 - If shell structure is a packing phenomenon, fixed-electron-count isoelectronic sequences should expose any systematic high-$Z$ residual after the declared relativistic, radiative, correlation, recoil, and finite-nuclear-size comparison terms are removed. Holding electron count fixed makes the proposed geometric contribution more discriminating than a raw walk through neutral-element ionization energies.
-- Candidate mechanism for the deviation: increasing nuclear mass steepens the local Noether sea density gradient, geometrically compressing core-region candidate braids and driving a declared indexed internal binary toward the field-speed threshold $v=c_f$. [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation) supplies the causal-root and stability meaning of that threshold. The taxonomy assigns no permanent binary to the role, so the candidate branch must declare the index and retained root ledger.
-- This proposed core-region geometric strain changes the effective shielding potential seen by candidate valence braids, producing measurable departures from standard relativistic-correction-only trends.
+- Candidate mechanism for the deviation: changing the nuclear constituent history is proposed to alter the Noether sea response and compress a core-region electron candidate. Increasing $Z$ along an isoelectronic sequence and changing isotope mass at fixed $Z$ are distinct comparisons; neither nuclear mass nor $Z$ alone establishes the sign of a density or stress gradient. Isotope, nuclear structure, electron state, and ambient response must be specified together.
+- A declared indexed internal binary may then be tested for approach to wake speed using the absolute constituent speed $\|\mathbf V_a(T)\|$, where $a$ identifies the tracked architrino. Equality with $c_f$ is not by itself a singular causal root or a stability threshold. The transmitter condition is $D_t=c_f-\mathbf V_t(T_t)\cdot\hat{\mathbf r}_t=0$ at an admitted emission event, where $\hat{\mathbf r}_t$ points from that event to the receiver; an ordinary fold needs additional nondegeneracy conditions. [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#separator-taxonomy) distinguishes these events. The [coincident-midpoint candidate treatment](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation) supplies a proposed branch setting, not a certified threshold. Binary and constituent identities must remain persistent in the same retained history.
+- The proposed strain is hypothesized to alter effective shielding, the reduction of nuclear influence on outer electrons by the rest of the atomic state. No magnitude, sign, or detectable departure is predicted here. A discriminating prediction must be fixed before comparison with the full declared relativistic, radiative, correlation, recoil, and finite-nuclear-size baseline, including its uncertainties; a residual against relativistic corrections alone would not isolate this mechanism.
 
 ##### Failure Modes and Falsification Criteria
 
-- If multi-body simulations of candidate braids with axial layers do not spontaneously produce discrete 2/8/18/32 packing regimes, the geometric-periodicity derivation fails.
-- If the same energy functional does not recover Madelung interleaving and its declared transition-metal exceptions, matching shell capacities alone is insufficient.
-- If the model collapses into continuous charge distributions with no discrete angular nodes, the orbital-geometry mapping is falsified.
-- If predicted high-$Z$ residuals are absent in fixed-electron-count sequences beyond uncertainty and declared correction terms, the proposed finite-volume mechanism is disfavored.
+- A converged calculation that misses the claimed capacities in a declared family, preparation domain, and response model rejects that model in that domain. An unsuccessful finite search alone does not exclude every candidate assembly or establish nonexistence of a branch.
+- The same derived atomic response must recover neutral-atom configurations and the declared filling exceptions. An effective energy functional may summarize that response only after its relation to the delayed dynamics is justified; matching shell capacities alone is insufficient.
+- The orbital map fails if its extracted spatial-and-spin state count or angular response disagrees with the declared atomic benchmark. A smooth probability density is not itself a failure, and an $s$ orbital has no angular node; smooth effective distributions can still encode discrete states.
+- If a specified high-$Z$ residual is absent in fixed-electron-count sequences at sensitivity sufficient to resolve the predicted size, the corresponding finite-volume prediction is disfavored. Without a quantitative prediction and a complete uncertainty model, a null residual does not adjudicate the general mechanism.
 
 ##### Geometric-Periodicity Closure Program
 
-The Hyde hypothesis becomes useful only if it can be converted into a closure program with explicit geometric tests. The first step is to translate Hyde's 2D spiral ordering into a 3D close-packing algorithm for oblate spheroidal electron Noether braid assemblies.
+The Hyde hypothesis requires a testable projection from candidate assembly histories to periodic structure. A 3D close-packing algorithm for the selected oblate spheroidal envelopes can provide a geometric screening model, but its imposed constraints do not establish that the master equation generates or maintains those envelopes.
 
-The first constrained benchmark should be the Neon core ($Z=10$), with explicit boundary conditions:
+A proposed constrained benchmark is the isolated neutral neon atom ($Z=10$), with ten candidate electron assemblies and declared isotope and nuclear source history. Its effective closed-shell configuration is $1s^2 2s^2 2p^6$. A geometric screening calculation can impose:
 
-- an inner phase-locked electron-assembly pair at the innermost stable tier,
-- exactly eight outer electron assemblies,
+- an inner candidate electron-assembly pair at a prescribed tier,
+- exactly eight outer candidate electron assemblies,
 - a local Noether sea density and delay profile fixed before optimization,
-- and a no-overlap exclusion rule for precessing oblate spheroidal exclusion envelopes.
+- and a declared packing-channel exclusion rule for the precessing candidate envelopes, distinct from overlap of observer-level orbitals.
 
-The outer-shell success criterion is that the eight outer assemblies converge to a stable cubic-like or antiprismatic phase-locked configuration that minimizes transport stress without exclusion-volume intersection. The important test is dynamical: this eight-body outer geometry must appear as an attractor of the modeled constraints, not merely as a manually tuned configuration.
+With that imposed two-plus-eight split, a cubic-like or antiprismatic arrangement is a proposed screening outcome, not a derived neon geometry or a test of the number eight. A stress-minimizing arrangement is not automatically a dynamically retained state. Before stability analysis, the same complete history must satisfy acceleration balance or the corresponding time-dependent evolution condition under the declared interaction law; perturbation and return tests must then include all ten electron assemblies and their nuclear and medium response, rather than freezing the inner pair's support without accounting for it.
 
-Only after Neon stability and node discreteness are established should the program extend to higher-$Z$ shells. At that point, the predicted high-$Z$ ionization-energy deviations can be compared against known relativistic, QED, and finite-nuclear-size corrections.
+An attractor in a constrained model establishes only that model's behavior. Recovery of the shell population requires a separate calculation allowing redistribution between tiers, with the electron total fixed by the neutral-atom preparation, and recovery of the complete effective state count. Branch persistence, spin and exchange, spectra, and medium response must be supported independently of the chart and imposed packing rule before an atomic interpretation is credited. Only a quantitatively specified higher-$Z$ continuation can test the proposed ionization-energy residual against the full comparison baseline above. None of those physical obligations is discharged by this geometry lesson.
 
 #### References
 
 - Theodor Benfey, "The Biography of a Periodic Spiral: from Chemistry magazine, via Industry, to a Foucault Pendulum," *Bulletin for the History of Chemistry* 34, no. 2 (2009): 141-145, [doi:10.70359/bhc2009v034p141](https://doi.org/10.70359/bhc2009v034p141).
 - Hyde artwork used in this project: Rezmason, "The chemical elements and their periodic relationships" SVG, CC BY-SA 4.0; see [Licenses, Attribution & Source Use](../../../../markdown/aaa/archie/licenses-attributions.md) and the [local asset](../../../../assets/images/nuclear/hyde-periodic-table-relationships-commons.svg).
+- NIST, *Atomic Reference Data for Electronic Structure Calculations: Electronic Configurations of the Elements*, [neutral and singly positive ion compilation](https://www.nist.gov/pml/atomic-reference-data-electronic-structure-calculations/atomic-reference-data-electronic-8). This supplies comparison configurations, including neon, chromium, and copper; it does not support the proposed assembly geometry.
 
 ### Molecular Geometry
 
-This chapter is an exploratory mapping study, not a molecular-level derivation. It records how AAA might eventually map its assembly and medium primitives to the effective molecular geometries recovered by the Standard Model. A molecular shape is therefore a downstream recovery target; atomic assemblies, bonding corridors, exclusion geometry, phase compatibility, and local Noether sea response are proposed mapping variables, not established AAA mechanisms.
+This chapter is an exploratory mapping study for the Architrino Assembly Architecture, $\mathbb{A}\mathbb{A}\mathbb{A}$. Molecular geometry means the arrangement of atomic nuclei, described by bond lengths and angles. The proposed route starts with architrinos, point entities with fixed polarity and no primitive mass, whose earlier emissions form causal wakes. The [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) uses those delayed path histories to determine acceleration in the fixed Euclidean void and absolute time. Atomic assemblies and the Noether sea, the proposed ambient population of neutral assemblies, belong to higher levels whose molecular response remains to be derived.
 
-Start with the ordinary fact: molecules have repeatable shapes. Water is bent, carbon dioxide is linear, methane is tetrahedral, and those shapes come with repeatable bond lengths, bond angles, and vibration spectra. In $\mathbb{A}\mathbb{A}\mathbb{A}$, those patterns are not imported as orbital pictures that already explain themselves. They are targets that the assembly, corridor, exclusion, phase, and Noether sea response story has to recover.
+Observed molecules have repeatable shapes: water is bent, carbon dioxide is linear, and methane has four bond directions toward the vertices of a tetrahedron. Their bond lengths, angles, and vibration spectra are observer-level recovery targets. A bonding corridor here means a proposed region of coupled assembly and wake response linking atomic constituents; exclusion geometry describes restrictions on compatible occupancy, and phase compatibility describes the maintenance of relative timing between repeated motions. These are proposed mapping variables, not established molecular mechanisms.
 
-A proposed mapping hypothesis is that a stable molecular arrangement corresponds to bonding corridors that share wake structure, avoid incompatible exclusion, maintain phase-compatible resonances, and remain stable in a local Noether sea response. This is an exploratory hypothesis whose falsifier is failure of one common AAA-derived functional to recover the observed geometries and vibrational responses across the declared benchmark set.
+The mapping hypothesis is that stable molecular arrangements correspond to bonding corridors that share wake structure, avoid incompatible exclusion, and maintain phase-compatible resonances in a local Noether sea response. Its claim grade is guessed. Once a common functional and its domain, parameters, and comparison tolerances are specified, a controlled mismatch with the declared geometry or vibration benchmarks rejects that candidate on that domain. An absent derivation leaves the proposal unresolved; failure of one candidate does not exclude every assembly-based account.
 
-The required atomic constituents, resonance behavior, medium response, and exclusion geometry are developed in [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), and [Molecular Exclusion and Noether Sea Response](../../../../markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md).
+The proposed atomic constituents, resonance behavior, medium response, and exclusion geometry are discussed in [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), and [Molecular Exclusion and Noether Sea Response](../../../../markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md). Those interfaces do not establish a molecular branch.
 
-Spin and Pauli language in this chapter is downstream of [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) and [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md). Molecular singlet/triplet labels, bonding selection rules, electron-pair exclusion, and orbital-hybridization language should be treated as validation targets for those lower proofs, not as separate explanations.
+Spin and Pauli language in this chapter is downstream of [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) and [Fermi-Dirac and Bose-Einstein Statistics](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md). Spin labels describe effective angular-momentum transformation and measurement behavior; Pauli exclusion restricts occupation of the same complete effective electron state, not all spatial overlap. Singlet/triplet labels distinguish total-spin sectors, selection rules specify allowed transitions or bonding channels, and orbital hybridization combines effective orbital descriptions into directional ones. These are recovery targets for the lower proof programs.
 
 #### Derivation Boundary
 
@@ -47162,7 +47182,7 @@ At the constituent level this points back to [Electron](../../../../markdown/aaa
 
 #### Binding Corridors and Angle Selection
 
-The exploratory molecular-bonding map is not an AAA claim that electron sharing is already understood at the substrate level. It proposes that, after effective atomic interfaces are recovered, a bond may be represented by a corridor in which assemblies lower their combined effective energy through shared wake structure, exclusion geometry, and local Noether sea response. The corridor is not assumed to be a Noether-sea-free gap. In this proposed map, bond length is the radial equilibrium of the corridor and bond angle is the angular equilibrium after neighboring corridors compete for exclusion cost and phase compatibility. The falsifier is a failure to derive these observables from common AAA variables without inserting molecule-specific orbital, Pauli, or chemical templates.
+The exploratory molecular-bonding map proposes that, after effective atomic interfaces are recovered, a bond can be represented by a corridor in which assemblies lower their combined effective energy through shared wake structure, exclusion geometry, and local Noether sea response. The corridor need not exclude the Noether sea. In this proposed map, bond length and bond angle follow from simultaneous radial and angular equilibrium; neighboring corridors couple through exclusion cost and phase compatibility. The candidate must predict these observables from common $\mathbb{A}\mathbb{A}\mathbb{A}$ variables without inserting molecule-specific orbital, Pauli, or chemical templates.
 
 A first useful decomposition is:
 
@@ -47173,7 +47193,7 @@ A first useful decomposition is:
 
 This decomposition can organize molecular shape before the spin proof is complete, but it cannot close molecular occupancy by itself. The exclusion-cost term must eventually inherit Pauli/statistics closure, while phase compatibility must eventually be connected to the completed atomic spin and orbital ledger.
 
-The first mathematical object should be an effective corridor functional on nuclear positions, electron-envelope branch data, and local Noether sea response:
+The proposed mathematical object is an effective corridor energy functional, a scalar assigned to nuclear positions, electron-envelope branch data, bonding-corridor records, and local Noether sea response:
 
 $$
 \mathcal E_{\mathrm{mol}}
@@ -47188,9 +47208,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8a8a41fe393b8ba9)
 
-with one bonding-corridor record $\mathcal B_{\mathrm{bond},k}$ per realized bond.
+Here $\mathbf R_A$ is the position of nucleus $A$ in a declared effective molecular Cartesian chart, $\mathcal B_{e,n}$ is electron-envelope branch record $n$, and $N$ is the number of those records. An envelope summarizes the spatial response of a candidate electron assembly. There is one bonding-corridor record $\mathcal B_{\mathrm{bond},k}$ per bond represented on the selected candidate branch, with $K$ such records. The symbol $\mathcal{N}_{\mathrm{sea}}^{(\ell)}$ denotes the local Noether sea record at averaging resolution $\ell$. Assigning these arguments does not define the functional or prove that its gradient reproduces molecular response.
 
-Equilibrium molecular geometry is the stationary branch
+For the derivatives below, a smooth branch with fixed electronic state and bond connectivity must specify how electron, corridor, and medium variables respond to nuclear displacement at fixed external conditions. If those variables relax along the branch, write $\mathcal E_{\mathrm{mol}}$ for the resulting reduced function of nuclear positions and include their induced changes when differentiating it. Holding them fixed gives a different, frozen-response Hessian. A conservative reduction is an additional recovery assumption: the resulting restoring response must agree with the coarse-grained delayed dynamics. The [Energy](../../../../markdown/aaa/dynamics/energy.md) and [Causal Action Functional](../../../../markdown/aaa/dynamics/causal-action-functional.md) chapters do not license a molecular variational law merely by supplying scalar bookkeeping.
+
+For a twice continuously differentiable reduced energy, a candidate local minimum must satisfy the necessary conditions
 
 $$
 \frac{\partial\mathcal E_{\mathrm{mol}}}{\partial R_A^i}=0,
@@ -47203,11 +47225,15 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8af2343fe5f88db3)
 
-after removing overall translation and rotation modes: linear molecules reduce by five zero modes, nonlinear molecules by six. A rigid stable geometry requires $\mathcal H\succ0$ on the reduced space; the semidefinite boundary case is admitted only when a declared soft mode, such as a near-free torsion, remains. The Hessian $\mathcal H$ is the molecular analogue of the lattice dynamical matrix: its eigenvalues give the local vibrational stiffnesses, while its eigenvectors identify stretching, bending, and torsional response. This supplies a concrete way to test bond lengths and angles without importing an orbital-hybridization template as the cause.
+Here $R_A^i$ is Cartesian component $i$ of nucleus $A$, and $\mathcal H$ is the Hessian, the matrix of second derivatives on the declared reduced branch. The symbol $\succeq0$ means that every displacement has nonnegative quadratic energy change. A positive definite Hessian, $\mathcal H\succ0$, on the internal displacement space is sufficient for a nondegenerate local minimum. A zero eigenvalue is inconclusive: for a scalar displacement $z$, the energies $z^4$ and $-z^4$ have the same zero gradient and Hessian at $z=0$ but a minimum and a maximum, respectively. Thus a declared soft mode, a direction with weak restoring response, does not by itself resolve stability. Nonlinear terms along zero modes must be examined. None of these energy tests proves stability under the full delayed dynamics without the conservative reduction.
 
-The stationary solution defines the equilibrium geometry, so the first bond-length and bond-angle comparisons should use equilibrium values $r_e$. Vibrationally averaged values such as $r_0$ belong to the small-oscillation calculation below and must not be absorbed into the corridor stiffness as if they were the stationary geometry.
+Remove only actual rigid-motion symmetries of the effective energy. For an isolated molecule in a homogeneous isotropic environment, the nuclear Cartesian displacement space has three translational zero modes and either two rotational modes for a linear configuration or three for a nonlinear one. Rotation about the axis of a linear molecule leaves all its nuclear positions unchanged and adds no displacement mode. For $N_{\mathrm{nuc}}$ nuclei this leaves $3N_{\mathrm{nuc}}-5$ or $3N_{\mathrm{nuc}}-6$ internal modes, respectively. A fixed boundary, spatial gradient, or directional Noether sea response can lift these symmetries; the five- or six-mode subtraction then requires reconsideration.
 
-For a stable molecule, the small-oscillation target is
+The Hessian describes local energy stiffness in these coordinates. Its eigenvectors need not be physical vibration modes when inertial responses differ; those modes require the mass-response matrix below. Stretching changes bond lengths, bending changes bond angles, and torsion changes relative orientation around a bond.
+
+A verified local minimum defines a candidate equilibrium geometry. Compare its bond lengths with equilibrium values $r_e$ and its angles with equilibrium angles in the same structural convention. The effective $r_0$ structure is inferred from ground-vibrational-state rotational constants; it is not generally the mean internuclear geometry. Predicting such readouts requires a declared vibrational state or ensemble, the measurement map, and the relevant vibration-rotation and anharmonic corrections. The harmonic Hessian alone supplies neither that state nor those corrections. Their effects must not be absorbed into fitted corridor stiffness as if they were stationary geometry.
+
+After equilibrium and the response reduction have been established, the observer-level harmonic target for small oscillations is
 
 $$
 \omega_s^2\,u_{s,Ai}
@@ -47221,13 +47247,17 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fa2efe0a271db22d)
 
-where $u_{s,Ai}$ are the displacement-eigenvector components of mode $s$ and $M$ is the observer-level mass-response matrix of the participating nuclei or molecular fragments. For numerical work the equivalent symmetric mass-weighted form $M^{-1/2}\mathcal H M^{-1/2}$ has the same eigenvalues. The normal-mode spectrum is therefore a validation surface for the same corridor, exclusion, and medium-response functional that fixes shape. A geometry fit fails if it recovers equilibrium angles only by using one functional while vibrational frequencies require an unrelated stiffness map.
+Here $s$ labels a mode, $\omega_s$ is its angular frequency measured in effective observer time $t_{\mathrm{eff}}$, and $u_{s,Ai}$ is the displacement of nuclear component $Ai$ in that mode. The sums run over nuclei $B,C$ and Cartesian components $j,k$. The matrix $M$ is the observer-level nuclear mass response in the same coordinates and environment; it assigns no mass to primitive architrinos. This equation assumes that $M$ is real, symmetric, positive definite, and independent of frequency over the declared band, with dissipation and unresolved memory negligible at the stated accuracy. A fragment model needs its own reduced coordinates and projected operators.
+
+Under these assumptions, $M^{-1/2}\mathcal H M^{-1/2}$ is symmetric and has the same eigenvalues as $M^{-1}\mathcal H$ by similarity through $M^{1/2}$. Its eigenvector is $M^{1/2}u_s$, not generally $u_s$. Remove rigid modes in this mass-weighted space or use the corresponding restricted generalized eigenproblem. Recovering this approximation, the mass response, and the clock conversion from absolute time remains a physical obligation. Significant delay, damping, or dispersion requires a response problem that retains those effects.
+
+The normal-mode spectrum tests the same effective branch that fixes shape. A candidate is rejected if matched geometry and vibration benchmarks require incompatible stiffness maps or independently retuned mass responses outside its declared uncertainties. Harmonic frequencies must be compared with harmonic reference values or with measured spectral transitions after the required anharmonic and readout corrections.
 
 #### Closure Targets
 
-A completed molecular-geometry derivation should recover, at minimum, the familiar qualitative sequence of linear, bent, trigonal-planar, trigonal-pyramidal, and tetrahedral arrangements from assembly geometry rather than imposing them as orbital templates. The first practical benchmark should be a small set of molecules whose standard geometries are sharply constrained: $\mathrm{H}_2$, $\mathrm{H}_2\mathrm{O}$, $\mathrm{CO}_2$, $\mathrm{BF}_3$, $\mathrm{NH}_3$, and $\mathrm{CH}_4$.
+A completed molecular-geometry derivation should recover linear, bent, trigonal-planar, trigonal-pyramidal, and tetrahedral arrangements from assembly geometry. In the trigonal cases, three bond directions lie in one plane or form a pyramid with the central atom. The proposed first benchmark set is $\mathrm{H}_2$, $\mathrm{H}_2\mathrm{O}$, $\mathrm{CO}_2$, $\mathrm{BF}_3$, $\mathrm{NH}_3$, and $\mathrm{CH}_4$. Each quantitative comparison must declare the isotopic composition, electronic and vibrational state, environment, structural convention, reference uncertainty, and model error tolerance. These specifications are not yet a completed benchmark dataset.
 
-Within that set, the sharp qualitative success criterion is the monotone bond-angle compression
+Within that set, a qualitative recovery target is the ordering of the rounded observer-level bond angles
 
 $$
 \angle\mathrm{HCH}
@@ -47245,15 +47275,23 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2602f15ed942ed30)
 
-from methane through ammonia to water. The corridor-plus-exclusion functional must recover this pattern without inserting lone-pair or hybridization templates as substrate causes. Ethane adds the first soft-mode case: the same Hessian and branch functional should recover a finite hindered-rotation barrier and the associated torsional mode rather than classifying the motion as either perfectly rigid or freely rotating.
+from methane through ammonia to water; the central letter in each angle names its vertex atom. These rounded values illustrate the ordering and are not three precision equilibrium measurements under an established common convention. The corridor-plus-exclusion functional must recover the corresponding convention-matched pattern without inserting lone-pair or hybridization templates as substrate causes. A lone pair is an effective pair of electrons not assigned to a bond, not an added substrate ingredient.
+
+Ethane adds a hindered-rotation target: relative rotation of its two methyl groups encounters a finite energy barrier. The full branch functional along a declared relaxed torsional path determines that barrier. The Hessian and mass response at a minimum determine only the local harmonic torsional frequency; local curvature does not fix the barrier without additional assumptions about the potential along the path. This separates a soft but restoring torsion from a freely rotating zero mode.
 
 The immediate derivation target is therefore a corridor-plus-exclusion functional that predicts equilibrium bond length and angle for those cases while remaining compatible with [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md), [Condensed Matter](../../../../markdown/aaa/nuclear-atomic/condensed-matter.md), and [Molecular Exclusion and Noether Sea Response](../../../../markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md).
 
 For spin-sensitive chemistry, the later derivation should recover singlet/triplet distinctions and bonding selection rules only after the atomic angular-momentum ledger and spin-statistics proof are available. Until then, this chapter should keep molecular geometry as a corridor-plus-exclusion closure target, not a foundation for spin or Pauli behavior.
 
+#### Source Notes
+
+NIST's *Computational Chemistry Comparison and Benchmark Database*, Standard Reference Database 101, Release 22 (2022), supplies the observer-level geometry comparison in its entries for [methane](https://cccbdb.nist.gov/exp2x.asp?casno=74828&charge=0), [ammonia](https://cccbdb.nist.gov/exp2x.asp?casno=7664417&charge=0), and [water](https://cccbdb.nist.gov/exp2x.asp?casno=7732185&charge=0). Their tabulated angles support the rounded ordering above; each entry retains its own source and structural comments. NIST's [Essential Statistical Thermodynamics](https://cccbdb.nist.gov/thermox.asp) distinguishes harmonic, free-rotor, and hindered-rotor comparisons for ethane. These are effective comparison data and methods, not evidence for a molecular Architrino branch.
+
+M. D. Harmony and colleagues, [*Molecular structures of gas-phase polyatomic molecules determined by spectroscopic methods*](https://doi.org/10.1063/1.555605), *Journal of Physical and Chemical Reference Data* 8, 619–722 (1979), distinguishes equilibrium, average, substitution, and effective structural parameters. That distinction governs the geometry readout; it does not provide the missing assembly-to-molecule derivation.
+
 ### Condensed Matter
 
-This chapter is an exploratory mapping study for the effective condensed-matter behavior recovered from AAA. It focuses on a proposed Noether-sea transport map: the distinction between reversible inertial response, true resistance, and threshold behavior when effective matter moves through a densely coupled background of neutral Noether braids. The map is not a completed derivation of atomic, molecular, or chemical behavior.
+This chapter is an exploratory mapping study for effective condensed-matter behavior in the Architrino Assembly Architecture, $\mathbb{A}\mathbb{A}\mathbb{A}$. Its proposed Noether sea transport map distinguishes reversible inertial response, resistance, and threshold behavior of matter in a coupled medium of neutral Noether braids. An [architrino](../../../../markdown/aaa/foundations/architrino.md) is a point entity with polarity and a retained path history; its expanding causal wake contributes to other architrinos' acceleration through the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). A Noether braid is a candidate neutral assembly of such histories, and the [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) is their proposed ambient population. The transport map is not a completed derivation of atomic, molecular, or chemical behavior.
 
 This note bridges [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md), [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), [Noether Sea Pro/Anti Coupling](../../../../markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md), and [Molecular Exclusion and Noether Sea Response](../../../../markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md), since all four depend on how the Noether sea stores stress and permits transport.
 
@@ -47282,9 +47320,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f1e6b138902c1fde)
 
-Here $\mathbf{V}_{\text{cm}}$ and $\mathbf{a}_{\text{cm}}$ record center-of-mass transport, $\rho_{\text{NS}}$ and $\chi_{\text{sea}}$ record the local Noether sea state, $\mathcal{M}_{\text{sea}}^{ab}$ records the medium-response tensor, and $\Delta_{\mathbf{k}}$ is the canonical assembly non-symmetry Floquet gap inherited from the branch certificate. It is unrelated to the Bloch wavevector $\mathbf k$ used later in this chapter. The equation defines the diagnostic target; it does not yet prove the constitutive form of $\mathcal{R}_{\text{tr}}$.
+Here $\mathbf{V}_{\text{cm}}$ is assembly group velocity relative to the local sea flow, extracted from a declared response center in absolute time $T$, and $\mathbf{a}_{\text{cm}}=d\mathbf V_{\text{cm}}/dT$. The center-of-mass label does not assign mass weights to primitive architrinos; its observer interpretation requires the response-center map in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md). The number density $\rho_{\text{NS}}$, delay factor $\chi_{\text{sea}}=c_f/c_{\text{eff}}$, and tensor $\mathcal{M}_{\text{sea}}^{ab}$ describe the same medium record. The assembly non-symmetry Floquet gap $\Delta_{\mathbf{k}}$ measures separation of the non-neutral return-map modes from the declared stability boundary, when a periodic retained branch and its certificate supply that quantity. It is unrelated to the Bloch wavevector $\mathbf k$ used later. This argument list proposes a diagnostic; its norm, units, history window, sufficiency, and constitutive form remain to be derived.
 
-The critical surface is
+The proposed critical level set is
 
 $$
 \mathcal{R}_{\text{tr}}
@@ -47294,13 +47332,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f45f41d4bdc27fc0)
 
-It separates three regimes:
+The following classification is a hypothesis to test after the residual, its orientation, and its critical value have been independently specified. A level set is a regular surface only where the residual is differentiable with nonzero gradient; neither regularity nor the classification follows from naming the residual.
 
 | Regime | Meaning |
 | --- | --- |
-| $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$ | Reversible medium-dressed inertial response; no ordinary drag term is allowed. |
-| $\mathcal{R}_{\text{tr}}\approx\mathcal{R}_{\text{tr},*}$ | Onset of medium excitation, action shedding, or branch instability. |
-| $\mathcal{R}_{\text{tr}} > \mathcal{R}_{\text{tr},*}$ | Dissipative transport, radiation-like shedding, medium heating, or structural transition must be logged. |
+| $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$ | Proposed reversible regime after material scattering, driving, and boundary exchanges have been separated. |
+| $\mathcal{R}_{\text{tr}}\approx\mathcal{R}_{\text{tr},*}$ | Candidate onset region, with a declared comparison tolerance. |
+| $\mathcal{R}_{\text{tr}} > \mathcal{R}_{\text{tr},*}$ | Candidate excitation or transition regime; the actual outgoing channel must be established from the record. |
 
 ##### Reversible Response Below Threshold
 
@@ -47315,7 +47353,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-20365054f2b08d21)
 
-This is the condensed-matter version of medium-dressed inertial response. The Noether sea may shape the response tensor, the local delay factor, and the stability margin, but it must not drain energy from a stable bound state merely because that state is moving through the Noether sea.
+This is a small-group-velocity response ansatz, not an established momentum law. The assembly label $A$, positive calibration $\alpha_{\mathrm m}$, probe-facing exposure fraction $\zeta(A)$, and candidate internal energy $E_{\text{internal}}(A)$ inherit the reference level, energy units, and separation from sea-coupled energy in [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md). The no-drag target concerns uniform unforced transport on the declared branch. Internal binding alone does not exclude loss of translational energy or exchange with a driven medium.
 
 The algebraic reason for this distinction is that the reversible kinetic scalar can consume only the symmetric part of the medium-response tensor. Decompose
 
@@ -47347,7 +47385,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ee1f858bd8d144c9)
 
-The below-threshold reversible energy is the quadratic form
+For fixed assembly and medium data, take a real, velocity-independent response tensor in a Euclidean orthonormal frame, with repeated spatial indices summed. The candidate reversible energy is the quadratic form
 
 $$
 K_{\mathrm{rev}}
@@ -47365,7 +47403,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ea7571efc9fc9808)
 
-The antisymmetric part drops out of the scalar energy because
+The stated derivative holds with the prefactor and tensor held fixed; velocity-dependent coefficients contribute additional derivatives. A positive kinetic-energy interpretation further requires the prefactor times $\mathcal M_+$ to be positive definite on the admitted velocity directions. Neither requirement is a stability proof. The antisymmetric part drops out of the scalar energy because
 
 $$
 V_{\text{cm},a}\mathcal{M}_{-}^{ab}V_{\text{cm},b}=0
@@ -47373,7 +47411,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f45d9b5503a1757b)
 
-but it need not vanish from the momentum response. Define the branch-preserving gyroscopic contribution by
+but it need not vanish from the proposed momentum response. Define its antisymmetric, or gyroscopic, contribution by
 
 $$
 p_{\mathrm{gyro}}^{a}
@@ -47410,9 +47448,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cded86daf17ca75b)
 
-may therefore record a finite reversible exchange with the material-orientation or Noether sea circulation ledger. It must not be classified as dissipation unless the completed cycle leaves an unreturned excitation or heating channel.
+may therefore be nonzero even when the velocity returns to its initial value. A reversible interpretation requires a derived exchange with the material-orientation or Noether sea circulation account and recovery of the full state on the relevant cycle. An unreturned coherent excitation is stored energy, not automatically heat; dissipation requires an identified loss or thermalization channel in the declared reduced description.
 
-A sufficient acceleration-level form for a strictly workless transverse response is instead
+A sufficient acceleration-level form for preserving Euclidean speed instantaneously is
 
 $$
 A_{\mathrm{gyro}}^a
@@ -47426,7 +47464,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a14da50e76e59777)
 
-This row changes direction without changing $V_{\text{cm}}^2$ at that instant. The momentum-response and acceleration-response forms are not interchangeable without the constitutive map that relates $\mathcal M_-^{ab}$, $\mathcal G^{ab}$, and the medium exchange record.
+This contribution changes direction without changing $V_{\text{cm}}^2$ at that instant. It is workless for a stationary isotropic quadratic energy, but not for an arbitrary anisotropic $\mathcal M_+$: the latter requires $V_{\text{cm},a}\mathcal M_+^{ab}A_{\mathrm{gyro},b}=0$. Changes in the energy coefficients add further exchange terms. The momentum-response and acceleration-response forms are not interchangeable without the constitutive map relating $\mathcal M_-^{ab}$, $\mathcal G^{ab}$, and the medium exchange account.
 
 Thus the directional inertial readout below threshold is
 
@@ -47439,7 +47477,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a3830ba90fdb2d71)
 
-The dimensional convention is fixed by the weak isotropic limit $\mathcal{M}_{\text{sea}}^{ab}\to\delta^{ab}/c_{\text{eff}}^2$, so $m_{\mathrm{eff}}$ reduces to the roadmap scalar $\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A)/c_{\text{eff}}^2$ of [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md). This is not a completed derivation of $\mathcal{M}_{+}^{ab}$, $\mathcal{M}_{-}^{ab}$, or $\mathcal G^{ab}$; it is the reversible-response lemma that any derivation must satisfy. Below $\mathcal{R}_{\text{tr},*}$, a nonzero antisymmetric momentum term is admissible in steady transport or with its acceleration-cycle exchange balanced by the orientation/circulation ledger. A strictly workless transverse term must satisfy the acceleration-level contraction above. Any drag-like coefficient or net work-loss term must instead vanish in the branch-preserving limit or be routed to an excitation, heating, radiation-like, boundary-exchange, or branch-transition channel.
+Here $\hat v$ is a unit direction and $\theta_{\mathrm{sea}}$ denotes the retained medium state. The weak isotropic convention $\mathcal{M}_{\text{sea}}^{ab}\to\delta^{ab}/c_{\text{eff}}^2$ gives the roadmap scalar $\alpha_{\mathrm{m}}\zeta(A)E_{\text{internal}}(A)/c_{\text{eff}}^2$ of [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md), with the tensor carrying inverse-speed-squared units. The symmetric/antisymmetric identities are derived algebra under the stated assumptions; the physical response tensors, energy assignment, and no-drag regime remain constitutive proposals. An antisymmetric momentum term needs a consistent full-cycle exchange account. A workless acceleration must be tested against the actual energy metric, and any loss must be assigned to a resolved material, medium, radiation, or boundary channel.
 
 #### Lattice and Band-Response Recovery
 
@@ -47454,19 +47492,19 @@ $$
 and a Brillouin zone $\mathrm{BZ}$ given by the Wigner-Seitz cell of the reciprocal lattice. The effective electron-envelope states should admit a Bloch-form recovery
 
 $$
-\psi_{\alpha\mathbf k}(\mathbf x)
+\psi_{\alpha\mathbf k}(\mathbf x_{\mathrm{eff}})
 =
-e^{i\mathbf k\cdot\mathbf x}
-u_{\alpha\mathbf k}(\mathbf x),
+e^{i\mathbf k\cdot\mathbf x_{\mathrm{eff}}}
+u_{\alpha\mathbf k}(\mathbf x_{\mathrm{eff}}),
 \qquad
-u_{\alpha\mathbf k}(\mathbf x+\mathbf R)=u_{\alpha\mathbf k}(\mathbf x),
+u_{\alpha\mathbf k}(\mathbf x_{\mathrm{eff}}+\mathbf R)=u_{\alpha\mathbf k}(\mathbf x_{\mathrm{eff}}),
 \qquad
 \mathbf R\in\Lambda
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8754efcd4b0fb4ef)
 
-with $\mathbf k$ identified modulo reciprocal-lattice vectors, $\Lambda$ the direct Bravais lattice generated by the $\mathbf a_i$, and $\Lambda^*$ its reciprocal lattice. Here $\mathbf x$, and later $t$, are effective material-chart coordinates; the native closure still owes the map from $(T,\mathbf X)$ into that chart. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is an effective envelope statement: the periodic material branch constrains the electron assembly's resonance envelope, while the underlying causal-wake and Noether sea records remain the native dynamics.
+with $\mathbf k$ identified modulo reciprocal-lattice vectors, $\Lambda$ the direct Bravais lattice generated by the $\mathbf a_i$, and $\Lambda^*$ its reciprocal lattice. The band index is $\alpha$, and $u_{\alpha\mathbf k}$ is the cell-periodic part of the effective envelope. The coordinates $\mathbf x_{\mathrm{eff}}$ and time $t_{\mathrm{eff}}$ belong to an effective material chart; its map from $(T,\mathbf X)$ remains owed. Bloch form requires an effective linear spectral problem invariant under lattice translations. A periodic arrangement alone does not derive that spectral problem from delayed architrino dynamics.
 
 The corresponding band residual should compare the recovered dispersion $E_\alpha(\mathbf k)$ to the observed material branch without fitting a separate rule for each probe:
 
@@ -47497,7 +47535,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0cce5aa29136cf0e)
 
-This tensor is a material-response readout, not the primitive mass of the electron assembly. It belongs beside the medium-dressed inertial response above: the exposed assembly mass determines how the electron assembly enters the material branch, while the band curvature determines how that branch responds to slow envelope perturbations.
+This is a local curvature readout of a twice-differentiable isolated band, with $\hbar$ the reduced observer-level action quantum. It need not be positive: a band maximum has negative curvature and is conventionally described through holes. Its relation to assembly inertia is a recovery obligation; no primitive architrino mass or equality with the medium-response tensor follows.
 
 The Fermi-surface target is likewise a recovery target. For a chemical potential $\mu$,
 
@@ -47512,7 +47550,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0d3160ceecccadfa)
 
-Metal-like branches have a nonempty $\mathcal F_\alpha$ and therefore low-energy response at arbitrarily small excitation cost along the surface. Band-insulator branches have filled bands separated by a positive gap,
+In the zero-temperature independent-band comparison, a partially filled dispersive band with accessible states on both sides of $\mu$ supplies the usual metallic response in the thermodynamic limit. A nonempty level set alone is insufficient: it can be an isolated band-edge point or a flat band without the assumed transport response. Band-insulator branches have filled bands separated from empty bands by a positive gap,
 
 $$
 \Delta_{\mathrm{band}}
@@ -47527,23 +47565,23 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-12d57e2d9a64aa49)
 
-Semiconductor, Mott-insulator, and topological-insulator comparisons should enter as refinements of this gap-and-branch classification. A Mott branch cannot be recovered by single-electron band filling alone; it requires an interaction or exclusion residual that blocks double occupancy or its assembly-level analogue. A topological branch cannot be promoted from gap size alone; it needs a Berry-curvature or boundary-mode invariant tied to the same effective connection used by the electromagnetic recovery program.
+Semiconductor, Mott-insulator, and topological-insulator comparisons refine this classification. Mott behavior requires an interaction-driven charge gap beyond independent-band filling; suppressing double occupancy alone does not establish an insulating phase. Topological classification requires a defined occupied-state bundle and its protecting symmetries or invariant. Its momentum-space Berry connection describes changes of band basis and is distinct from the real-space electromagnetic connection; their relation in electromagnetic response must be derived.
 
-The minimal transport consistency condition is that a perfect periodic branch has no ordinary Drude loss term. If a current relaxes, the relaxation time $\tau$ must be traced to disorder, vacancies, phonons, boundary exchange, or another logged branch disturbance. The observer-level Drude comparison may keep
+In the ideal static, noninteracting periodic comparison, coherent Bloch evolution has no scattering relaxation term. Periodicity alone does not exclude current relaxation in an interacting material: momentum transfer to the lattice, including Umklapp processes that change crystal momentum by a reciprocal vector, can matter. The relaxation time $\tau_{\mathrm{rel}}$ must be derived from the admitted collision and boundary channels. For one isotropic carrier channel, the observer-level Drude comparison is
 
 $$
 \sigma
 =
-\frac{e^2\tau n_{\mathrm{car}}}{m_*}
+\frac{e^2\tau_{\mathrm{rel}} n_{\mathrm{car}}}{m_*}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-429648e1cef4b658)
 
-but $\tau^{-1}$ must vanish in the ideal branch limit and must not be confused with Noether sea drag below $\mathcal{R}_{\text{tr},*}$. This is the condensed-matter version of the no-drag rule: stable Bloch transport is coherent envelope transport until a material imperfection, lattice excitation, or branch transition opens a logged loss channel.
+where $e>0$ is the elementary-charge magnitude, $n_{\mathrm{car}}$ the carrier number density, and $m_*>0$ the channel's effective mass. Only when all current-relaxing channels vanish does $\tau_{\mathrm{rel}}^{-1}\to0$; the resulting ballistic limit does not supply a finite steady dissipative conductivity. Material resistance and the proposed Noether sea no-drag condition are separate tests.
 
 #### Lattice Scattering and Phonon Response
 
-The scattering target should recover reciprocal-lattice selectivity before interpreting material images or diffraction data. For incident and outgoing wavevectors $\mathbf k$ and $\mathbf k'$, let $\mathbf q=\mathbf k-\mathbf k'$. A periodic lattice branch must give constructive elastic scattering only on reciprocal-lattice transfers,
+The scattering target should recover reciprocal-lattice selectivity before interpreting diffraction data. For incident and outgoing wavevectors $\mathbf k$ and $\mathbf k'$, let $\mathbf q=\mathbf k-\mathbf k'$. In the infinite, perfectly periodic kinematic-scattering limit, coherent elastic Bragg peaks lie on reciprocal-lattice transfers,
 
 $$
 \mathbf q\in\Lambda^*
@@ -47577,9 +47615,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8926a2ad442dba57)
 
-tests whether the declared lattice branch, basis, and atom-local Noether sea response generate the same reciprocal-space selection rule. Thermal or zero-point lattice motion may reduce peak intensity through an effective Debye-Waller factor, but it should not move the reciprocal-lattice condition unless the material branch itself changes.
+tests whether the declared lattice branch, basis, and atom-local Noether sea response reproduce the selection rule. The basis positions are $\mathbf d_i$ and their scattering amplitudes are $f_i(\mathbf q)$; a zero structure factor extinguishes an otherwise allowed reflection. Finite samples broaden peaks and disorder or motion can produce diffuse or inelastic scattering away from reciprocal points. A Debye-Waller factor describes coherent-intensity reduction at fixed mean lattice geometry; thermal expansion can shift peak locations by changing that geometry.
 
-Phonons are the next material-response layer. For a branch displacement vector $\mathbf u_n(t)$ about equilibrium sites, the harmonic branch is governed by a dynamical matrix $D_{ij}(\mathbf k)$:
+Phonons are effective collective lattice modes. After the same material configuration satisfies its equilibrium equations, expand its effective dynamics to harmonic order in displacements $\mathbf u_n(t_{\mathrm{eff}})$. A mass-normalized dynamical matrix $D_{ij}(\mathbf k)$ then defines the comparison eigenproblem:
 
 $$
 \omega_s^2(\mathbf k)\,e_{s,i}(\mathbf k)
@@ -47589,18 +47627,18 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6f127603d0fb4b14)
 
-with $e_{s,i}(\mathbf k)$ the mode polarization vectors; the symbol $\epsilon$ stays reserved for the polarity unit.
+with $\omega_s$ the mode angular frequency and $e_{s,i}$ its polarization. For a multi-atom cell, $i,j$ combine basis-site and spatial-component indices. In the conservative harmonic comparison, a Hermitian nonnegative dynamical matrix gives real nonnegative squared frequencies after the relevant symmetry modes are identified. This effective spectrum neither proves native equilibrium nor certifies an assembly Floquet gap.
 
-In a long-wavelength isotropic elastic limit, the same branch should reduce to a displacement field $u_i(\mathbf x,t)$ in the effective material chart declared above. The strain is
+In a homogeneous, long-wavelength isotropic elastic limit, the same branch should reduce to a displacement field $u_i(\mathbf x_{\mathrm{eff}},t_{\mathrm{eff}})$. The strain is
 
 $$
 u_{ij}
 =
 \frac{1}{2}
 \left(
-\frac{\partial u_i}{\partial x_j}
+\frac{\partial u_i}{\partial x_{\mathrm{eff}}^j}
 +
-\frac{\partial u_j}{\partial x_i}
+\frac{\partial u_j}{\partial x_{\mathrm{eff}}^i}
 \right)
 $$
 
@@ -47611,31 +47649,31 @@ and elastic action
 $$
 S_{\mathrm{el}}
 =
-\int dt\,d^3x
+\int dt_{\mathrm{eff}}\,d^3x_{\mathrm{eff}}
 \left[
 \frac{\rho_{\mathrm{mat}}}{2}
 \left(
-\frac{\partial u_i}{\partial t}
+\frac{\partial u_i}{\partial t_{\mathrm{eff}}}
 \right)^2
 -
-\mu u_{ij}u_{ij}
+\mu_{\mathrm{el}} u_{ij}u_{ij}
 -
-\frac{\lambda}{2}u_{ii}u_{jj}
+\frac{\lambda_{\mathrm{el}}}{2}u_{ii}u_{jj}
 \right]
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-04de828484fba635)
 
-Here $\mu$ and $\lambda$ are the standard Lamé coefficients of the material branch, not the chemical potential $\mu$ used elsewhere in this chapter and not the canonical envelope scale ratio $\lambda$. The acoustic recovery target is
+Here $\rho_{\mathrm{mat}}>0$ is effective material mass density, and $\mu_{\mathrm{el}}$ and $\lambda_{\mathrm{el}}$ are its Lamé elastic coefficients. Positive isotropic strain energy requires $\mu_{\mathrm{el}}>0$ and $3\lambda_{\mathrm{el}}+2\mu_{\mathrm{el}}>0$. Variation of this assumed effective action gives the acoustic comparison
 
 $$
 \omega_{\mathrm L}^2
 =
-\frac{2\mu+\lambda}{\rho_{\mathrm{mat}}}k^2,
+\frac{2\mu_{\mathrm{el}}+\lambda_{\mathrm{el}}}{\rho_{\mathrm{mat}}}k^2,
 \qquad
 \omega_{\mathrm T}^2
 =
-\frac{\mu}{\rho_{\mathrm{mat}}}k^2
+\frac{\mu_{\mathrm{el}}}{\rho_{\mathrm{mat}}}k^2
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-08e361307cf0b9f7)
@@ -47655,7 +47693,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0a04478195f31bed)
 
-where $V$ is the crystal volume and $\Delta N_s$ is the dimensionless per-mode phonon occupation change in the effective branch description. A coherent recoil-free or elastic event has $\Delta N_s=0$ for the relevant phonon channels and must route momentum through the whole branch or boundary record. This is the material analogue of distinguishing reversible retuning from heating.
+where $V$ is crystal volume and $\Delta N_s$ is the dimensionless per-mode occupation change at fixed harmonic frequencies. Changes in the frequencies or background energy require additional terms. A no-phonon elastic event has $\Delta N_s=0$ and routes momentum through the whole branch or boundary record. Coherent phonon excitation can have nonzero $\Delta N_s$ without being thermalized heat, so phonon creation alone is not a dissipation criterion.
 
 #### Order-Parameter Defects and Critical Transport
 
@@ -47666,7 +47704,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f28384fbdf809f56)
 
-be an observer-level order-parameter map for a material region with defect set $D$ and target space $\mathcal{Q}$. A loop $\gamma$ around a line defect may then carry a homotopy label
+be a continuous observer-level order-parameter map on a material region $\Omega$ away from the defect set $D$, with target space $\mathcal{Q}$. An order parameter records local material order, such as a phase where its amplitude is nonzero. A closed loop $\gamma$ avoiding $D$ may carry a homotopy label, the class unchanged by continuous deformation within that target space:
 $$
 \mathcal{I}_\gamma
 =
@@ -47687,7 +47725,7 @@ $$
 
 These are recovery or comparison objects. They do not replace the architrino, causal-wake, or Noether sea branch records that must generate the effective material description.
 
-The transport consequence is a gap rule. A stable branch may deform, strain, or retune without changing its defect label while the relevant stability gap remains open:
+Homotopy invariance follows when $Q$ stays continuous and defined on the tracked loop throughout the deformation, the target space remains fixed, and no defect crosses the loop or its tracking boundary. For the proposed transport map, one can require
 $$
 \Delta_{\mathbf{k}}>0
 \quad\Longrightarrow\quad
@@ -47696,7 +47734,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5a29e240f1fbea66)
 
-for branch-preserving perturbations. If a material event changes the topological label, creates a vortex or dislocation, unbinds a defect pair, or opens an edge mode, the event has crossed a branch threshold. In the condensed-matter closure target that means
+only for perturbations already shown to preserve those homotopy conditions. Here $\Delta\mathcal I_\gamma=0$ means equality of classes, not subtraction in a possibly non-abelian group. An assembly Floquet gap does not establish that a material order parameter remains defined. The proposed diagnostic implication
 $$
 \Delta\mathcal{I}_\gamma\ne0
 \quad\Longrightarrow\quad
@@ -47707,11 +47745,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-47b7f6e464fe79fc)
 
-Below that threshold the response remains reversible retuning or coherent transport. Above it, the energy and momentum ledger must route the event through lattice excitation, surface transport, heating, radiation-like shedding, boundary exchange, or structural transition.
+therefore needs a separate relation between assembly stability, order-parameter singularities, and transport. A defect can cross a measurement loop through boundary transport without a bulk gap closing; edge modes can already exist on a fixed gapped branch. Such events require an explicit boundary or excitation account and cannot be assigned a universal scalar threshold from topology alone.
 
 #### Hall and Topological Response Benchmarks
 
-Hall response is a high-value comparison because it separates ordinary transport loss from transverse, nondissipative response. The classical Hall branch supplies the baseline tensor target
+Hall response compares longitudinal resistance with transverse response. Adopt $E_i=\rho_{ij}j_j$, $j_i=\sigma_{ij}E_j$, and $\boldsymbol\sigma=\boldsymbol\rho^{-1}$ in an oriented material plane. For one isotropic electron channel of charge $-e$ in a perpendicular signed field $B$, the classical comparison is
 
 $$
 \rho_{xy}
@@ -47720,14 +47758,14 @@ $$
 \qquad
 \rho_{xx}
 =
-\frac{m_*}{n_{\mathrm{car}}e^2\tau}
+\frac{m_*}{n_{\mathrm{car}}e^2\tau_{\mathrm{rel}}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-13c92fa67d65752b)
 
-This baseline is observer-level bookkeeping. The effective magnetic-state map must still be derived from the photon/action ledger and material branch, and the Lorentz-force form must remain a recovery target rather than a primitive substrate law.
+Here $\rho_{yx}=-\rho_{xy}$; matrix inversion gives $\sigma_{xy}=-\rho_{xy}/(\rho_{xx}^2+\rho_{xy}^2)$ in this isotropic convention. For a sheet, use areal carrier density and sheet resistance/conductance throughout; for a bulk sample, use volumetric density and bulk units. The effective magnetic-state map remains to be derived from the photon/action ledger and material branch; the Lorentz-force form is an observer-level recovery target.
 
-The integer quantum Hall recovery target is stronger. In a two-dimensional gapped branch, the Hall conductivity must reduce to
+For the integer quantum Hall band comparison, require a two-dimensional effective spectral problem, a fixed occupied subspace separated by a bulk gap, zero-temperature linear response for exact quantization, and consistent current and orientation conventions. Low but nonzero temperature gives an approximation whose corrections must be controlled. Its target is
 
 $$
 \sigma_{xy}
@@ -47739,7 +47777,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c88fc143217cb216)
 
-where $C$ is the first Chern number of the filled effective band bundle,
+where $C=C_{\mathrm{filled}}$ is the signed first Chern number of the occupied bundle in the convention
 
 $$
 C
@@ -47757,9 +47795,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ae35dcfd1eb9ce3f)
 
-Here $A_i(\mathbf k)=-i\langle u_{\mathbf k}|\partial_{k_i}u_{\mathbf k}\rangle$ is an effective Berry connection over the Brillouin zone. This is a comparison/recovery object: it tests whether the effective U(1) connection and material branch reproduce topological quantization. It should not be imported as a fundamental gauge-potential ontology.
+Here $A_i(\mathbf k)=-i\langle u_{\mathbf k}|\partial_{k_i}u_{\mathbf k}\rangle$ is the Berry connection for a normalized occupied state on a local momentum-space patch. Multiple isolated occupied bands require summing their curvatures; for a degenerate occupied subspace use the trace of its bundle curvature. Nonzero $C$ requires compatible patches rather than one globally smooth periodic eigenvector, whose exact curvature would integrate to zero on the Brillouin torus. The minus sign defines $C$ for the stated Berry and conductivity conventions; reversing an orientation or connection convention requires translating the signs together. This momentum-space connection is not itself a primitive wake or the real-space electromagnetic potential.
 
-The robustness condition is that a small branch perturbation cannot change $C$ while the gap stays open:
+For a continuous family on the same compact Brillouin torus, with fixed-rank occupied projectors and the bulk spectral gap $\Delta_{\mathrm{top}}$ open throughout, integer-valued continuity gives
 
 $$
 \Delta_{\mathrm{top}}>0
@@ -47769,7 +47807,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0bb6b552ca638c2c)
 
-Disorder may localize non-transporting states and widen observed plateaux, but the plateau value must come from the topological invariant of the extended branch, not from disorder as a fitted correction. A compact Hall residual is
+Disordered systems need a mobility-gap or real-space formulation when Bloch momentum is unavailable; the clean Brillouin-zone formula cannot simply be reused. A compact comparison score is
 
 $$
 \mathcal R_{\mathrm{QH}}
@@ -47787,11 +47825,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-29c80575bd6a49a0)
 
+Both tolerance denominators are positive, $\rho_{xx}$ is the passive longitudinal sheet resistance, and the first term compares signed sheet conductivity with the same $C_{\mathrm{filled}}$. This score does not certify a gap: its last term is zero even at $\Delta_{\mathrm{top}}=0$. Acceptance separately requires a resolved positive gap margin, the occupied-bundle hypotheses, and the declared conductivity tolerance.
+
 Fractional quantum Hall states, anyons, non-Abelian edge sectors, Chern-Simons effective actions, and chiral boundary liquids are valuable comparison material, but they should stay in the recovery/comparison bucket unless a local $\mathbb{A}\mathbb{A}\mathbb{A}$ closure target consumes them directly. The safe present requirement is narrower: recover quantized Hall response, edge robustness, fractional charge/statistics as observer-level collective behavior where experimentally required, and keep every topological field description downstream of the effective material branch rather than treating it as substrate ontology.
 
 ##### Superconducting Response Benchmark
 
-Superconductivity is the strongest low-loss transport benchmark for the threshold picture. A superconducting material branch must recover persistent current and vanishing longitudinal resistive loss below its declared critical surface while remaining distinct from an ideal normal-metal branch. Crossing a critical temperature, current, magnetic loading, vortex-motion threshold, or material defect must open the corresponding excitation, heating, or branch-transition channel rather than being hidden as Noether sea drag.
+Superconductivity tests persistent current and vanishing longitudinal resistance together with magnetic expulsion, distinguishing it from an ideal normal-metal conductor. Temperature, current, magnetic loading, pinning, and material defects define branch-specific limits; a defect or a change of magnetic loading does not necessarily destroy superconductivity. Any dissipative response requires an identified material or medium channel.
 
 The magnetic comparison has two coupled requirements. The same effective U(1) material connection must recover the Meissner response in the applicable branch and the conventional paired-branch flux quantum
 
@@ -47803,7 +47843,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7c77191a24746bb2)
 
-as an observer-level benchmark. The factor $2e$ tests the branch's composite pairing and exchange-statistics map; it is not inserted as a new substrate carrier or as proof that every superconducting branch shares one microscopic mechanism. Type-II vortex transport further sharpens the threshold ledger: pinned vortices may preserve a zero-loss branch, while vortex motion must appear as a logged resistive channel.
+as an observer-level benchmark, with $h=2\pi\hbar$. In a paired condensate, single-valued phase constrains the fluxoid, which includes a circulating-current contribution; magnetic flux alone approaches integer multiples of $\Phi_0$ when that contribution vanishes on the chosen contour. The factor $2e$ tests effective paired charge and does not by itself prove exchange statistics or one universal pairing mechanism. Type-II materials admit flux-carrying vortices; their motion needs a resolved response account, and only its dissipative component constitutes longitudinal resistive loss.
 
 A minimal same-record residual may be organized as
 
@@ -47827,7 +47867,7 @@ where the five entries test zero longitudinal resistance, magnetic expulsion, fl
 
 ##### Photon-Coupled Surface Transport
 
-Photon absorption, reflection, and surface heating are thresholded transport events in the same condensed-matter sense. The incoming photon ledger does not permit a continuous drag term on the material, and the material does not act as a hard spatial wall. A surface cell supplies electron-envelope, bonding or lattice, nuclear-source, and local Noether sea records that route the incoming planar-pair ledger into coherent re-release, capture, scattering, heat, recoil, or retained excitation.
+Photon absorption, reflection, and surface heating test channel-dependent material response. Their rates and thresholds do not follow from the transport residual's name. The proposed [photon](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) carrier is a coaxial contra-rotating polarity-conjugate planar pair, whose retained existence and transition dynamics remain open. A surface cell's electron-envelope, bonding or lattice, nuclear, and sea records must determine its coupling. Continuous illumination can transfer momentum and cause radiation pressure or radiation drag; the no-drag target for unforced translation does not prohibit this driven exchange.
 
 This surface-transport language is not a hidden particle-production rule. If a photon-coupled material event yields different outgoing Standard Model assemblies, the local reaction record must add a separate identity-routing row for the target or Noether sea content that supplies those inventories.
 
@@ -47848,9 +47888,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5071023c2a21c6f1)
 
-where $a_{\perp}$ is the incoming photon transverse ledger, $\mathcal B_e$ is the realized electron-envelope branch, $\mathcal B_{\mathrm{lat}}$ is the material bonding or lattice branch, $\Theta_E^{(\ell)}$ is the local Noether sea response record, $\mathcal M_{\text{sea}}^{ab}$ is the medium-response tensor, and $\Delta_{\mathbf{k}}$ is the relevant stability gap. The surface channel becomes dissipative only when the selected route opens a logged excitation or heating channel; otherwise the event is coherent transport or reversible retuning.
+where $a_{\perp}$ denotes the proposed incoming photon's transverse accounting data, $\mathcal B_e$ the electron-envelope branch, $\mathcal B_{\mathrm{lat}}$ the material branch, and $\Theta_E^{(\ell)}$ the local medium response averaged on scale $\ell$. The tensor $\mathcal M_{\text{sea}}^{ab}$ and assembly gap $\Delta_{\mathbf{k}}$ retain their earlier meanings. A coherent stored excitation is distinct from thermalized heating, and both must be separated from escaping radiation and boundary transfer.
 
-The corresponding energy row is
+For one declared event window and energy reference, the proposed energy balance is
 
 $$
 E_{\gamma,\mathrm{in}}
@@ -47870,7 +47910,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-204583549c087acb)
 
-For a metal-like branch, the conduction-electron response supports a coherent re-release channel with large $E_{\gamma,\mathrm{out}}$. For an ultra-black multiple-capture branch, repeated capture and dephasing through the material geometry drive $E_{\gamma,\mathrm{out}}$ toward zero while the ledger closes through electron-envelope excitation, lattice heating, Noether sea update, recoil, and remnant terms. Ordinary optical surface routing must preserve nuclear inventory, so $\Delta Z=0$ and $\Delta A=0$ unless a separate nuclear-reaction gate is supplied.
+The outgoing photon energy includes every outgoing photon within the event's declared accounting boundary; the increments partition electron-envelope, lattice, sea, recoil, and remaining stored or exported energy without overlap. This is a balance target, not a derived conservation theorem. A reflecting metal and a strongly absorbing surface select different channel weights according to frequency, angle, material, and geometry; metallicity alone does not fix reflectivity. Delayed thermal emission remains outgoing energy when the window includes it. Ordinary optical routing keeps nuclear charge number $Z$ and mass number $A$ fixed unless a separate nuclear reaction is established.
 
 ##### Earth-Core Iron as a Boundary Case
 
@@ -47890,15 +47930,15 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-65cf91c16a6adc5a)
 
-for ordinary planetary differentiation. Here $\mathcal{N}_{\mathrm{Fe}}$ is the number density of iron nuclei and $\mathbf{J}_{\mathrm{Fe}}$ is their segregation flux. A nonzero $S_{\mathrm{Fe}}^{\mathrm{nuc}}$ would be a nuclear-reaction claim, not a condensed-matter pressure claim; it would have to preserve proton, neutron, charge, energy, momentum, and medium-provenance bookkeeping in the same spirit as [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md) and [Nuclear Binding](../../../../markdown/aaa/nuclear-atomic/nuclear-binding.md).
+for an effective description restricted to ordinary differentiation without iron-producing or iron-consuming nuclear reactions. Here $\mathcal{N}_{\mathrm{Fe}}$ is iron-nucleus number density and $\mathbf{J}_{\mathrm{Fe}}$ its total number flux, including advection when present. A nonzero $S_{\mathrm{Fe}}^{\mathrm{nuc}}$ requires explicit reactant/product inventories and charge, energy, momentum, and medium provenance. Proton and neutron counts must be tracked but need not be separately conserved in weak reactions; [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md) and [Nuclear Binding](../../../../markdown/aaa/nuclear-atomic/nuclear-binding.md) own the reaction comparison.
 
-The pressure-side bridge may instead use a segregation functional of the form
+In an isothermal, diffusion-only effective approximation, a candidate constitutive number flux is
 
 $$
 \mathbf{J}_{\mathrm{Fe}}
 =
 -D_{\mathrm{Fe}}\nabla_{\mathrm{eff}}\!\left[
-\mu_{\mathrm{Fe}}(P,T,\theta_{\mathrm{sea}})
+\mu_{\mathrm{Fe}}(P,T_{\mathrm{temp}},\theta_{\mathrm{sea}})
 +
 M_{\mathrm{sh}}(\mathrm{Fe};\theta_{\mathrm{sea}})\Phi_{\mathrm{eff}}
 \right]
@@ -47906,24 +47946,24 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-084e8d113c9b36a7)
 
-where $\theta_{\mathrm{sea}}$ denotes the local Noether sea state record, including $\rho_{\text{NS}}$, $\chi_{\text{sea}}$, $\mathcal{M}_{\text{sea}}^{ab}$, and strain data. The term $M_{\mathrm{sh}}(\mathrm{Fe};\theta_{\mathrm{sea}})$ is the medium-dressed exposed mass response of an iron assembly, not a new nuclear species; the symbol $A$ stays reserved in this section for the nuclear mass number. In this form the reason iron sinks is not that the center creates iron, but that existing iron-bearing assemblies minimize the relevant chemical, gravitational, and medium-response potential in dense planetary interiors.
+Here $P$ is pressure, $T_{\mathrm{temp}}$ thermodynamic temperature, $\mu_{\mathrm{Fe}}$ chemical potential per iron nucleus, and $\Phi_{\mathrm{eff}}$ effective gravitational potential per unit mass. The coefficient $D_{\mathrm{Fe}}\ge0$ is a number-flux mobility, with units of number divided by length, time, and energy; it is not a bare diffusivity. The term $M_{\mathrm{sh}}(\mathrm{Fe};\theta_{\mathrm{sea}})$ is a candidate effective mass response and $\theta_{\mathrm{sea}}$ contains the medium variables and strain. This ansatz moves existing iron down the declared potential gradient; multicomponent flow, buoyancy, convection, and non-isothermal transport need additional terms. It does not derive planetary segregation from assembly dynamics.
 
-The sharper equilibrium hypothesis is that the iron-rich metallic branch is compatible with higher normalized Noether braid density than a silicate branch at the same pressure and temperature. Let
+The sharper hypothesis compares iron in metallic and silicate-hosted environments at the same pressure and temperature. For a chemical preference, both potentials below must refer to the same transferred iron inventory, the same per-nucleus energy reference, and specified host compositions. Comparing an arbitrary iron potential with an unrelated silicate formula-unit potential would not establish phase preference. With $\mu_{\mathrm{silicate}}$ denoting that iron transfer potential in the silicate host, let
 
 $$
 \Delta\mu_{\mathrm{Fe/silicate}}^{\mathrm{metal}}
 \left(
-n,P,T,\mathcal B_{\mathrm{lat}}
+n,P,T_{\mathrm{temp}},\mathcal B_{\mathrm{lat}}
 \right)
 =
 \mu_{\mathrm{Fe}}^{\mathrm{metal}}
 \left(
-n,P,T,\mathcal B_{\mathrm{lat}}
+n,P,T_{\mathrm{temp}},\mathcal B_{\mathrm{lat}}
 \right)
 -
 \mu_{\mathrm{silicate}}
 \left(
-n,P,T,\mathcal B_{\mathrm{sil}}
+n,P,T_{\mathrm{temp}},\mathcal B_{\mathrm{sil}}
 \right)
 $$
 
@@ -47940,11 +47980,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-06879c8305291ea1)
 
-along the planetary-interior branch, with $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$. This does not say that Noether sea density creates iron. It says that, after iron already exists, the metallic iron branch may reduce relative chemical and medium-response cost as ambient Noether braid density increases. In ordinary terms, iron-rich material sinks because it is dense; in the native theory, density must eventually be derived from assembly packing, exclusion-volume response, metallic bonding, pressure response, and Noether sea coupling.
+on a declared branch interval, with $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ and pressure, temperature, composition, and other independent coordinates held fixed in the partial derivative. If those variables change along a planetary profile, the total derivative has additional chain-rule terms. A negative derivative indicates a decreasing relative cost; it does not imply that the cost is negative or that either phase exists in equilibrium. Assembly packing, exclusion, bonding, and medium response must still supply the physical functions.
 
 [Atomic Structure](../../../../markdown/aaa/nuclear-atomic/atomic-structure.md#element-dependent-sea-response) states the general $\Delta\mu_{E/Y}^{B}$ record. This section specializes that record to Earth-core iron and carries the packing sufficient condition explicitly.
 
-A local sufficient condition can be stated by differentiating the packing ceiling rather than treating it as a fixed phase label. The exclusion-envelope geometry is inherited from [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#dynamic-exclusion-envelope), while [Molecular Exclusion and Noether Sea Response](../../../../markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md#levels-of-excluded-volume) keeps the ordinary matter-channel occupancy baseline separate from Noether sea response. Use a convex packing-penalty function $\Psi(z)$ on the occupancy ratio $z_X$; $\Psi'(z_X)$ is the marginal penalty for pushing the branch toward its oblate exclusion-envelope packing ceiling. For a material branch $X$, let
+A conditional sufficient inequality follows by differentiating a proposed packing penalty. The dynamic exclusion envelope in [Braid Envelope Geometry](../../../../markdown/aaa/noether-braid/braid-envelope-geometry.md#dynamic-exclusion-envelope) is a channel-dependent region of disruptive wake response, not a rigid body. Its replacement by a hard packing envelope requires a separate derivation; [Molecular Exclusion and Noether Sea Response](../../../../markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md#levels-of-excluded-volume) preserves that distinction. On a declared interval, assume a positive differentiable ceiling $n_{\max,X}^{\mathrm{obl}}(n)$, a differentiable convex nondecreasing penalty $\Psi$, and a fixed nonnegative energy coefficient $A_X$. For material branch $X$, let
 
 $$
 z_X(n)
@@ -47954,7 +47994,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2dde8b7c21ec9fd6)
 
-and define the marginal packing term
+and define the derivative of the penalty $A_X\Psi(z_X(n))$ as the marginal packing term
 
 $$
 \mathcal{P}_X(n)
@@ -47974,7 +48014,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-57acf9549143e9f9)
 
-The factor $1-n\,\partial_n\ln n_{\max,X}^{\mathrm{obl}}$ is the packing-headroom correction: if the branch-derived oblate-envelope packing ceiling rises with ambient density, the marginal exclusion penalty is reduced. For each material branch, decompose the marginal dense-medium response of the branch potential as
+The factor $1-n\,\partial_n\ln n_{\max,X}^{\mathrm{obl}}$ comes from differentiating the density-dependent denominator. At fixed $z_X$ and ceiling value, a positive ceiling derivative reduces this factor, but it can also make the marginal term negative; convexity alone does not fix that sign. If $A_X$ or other penalty parameters vary, their derivatives must be added or bounded explicitly. Decompose the candidate branch-potential derivative as
 
 $$
 \frac{\partial\mu_X}{\partial n}
@@ -47994,7 +48034,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-bd93854327385862)
 
-where $G_X \ge 0$ collects the density-favorable coordination and Noether sea coupling gains, $\mathcal{P}_X$ is the marginal packing term above, $\mathcal{D}_X$ collects the delay, strain, and pressure derivative terms, and $b_X$ bounds the remaining coefficient drift. Subtracting the iron and silicate rows shows the sign condition $\partial_n\Delta\mu_{\mathrm{Fe/silicate}}^{\mathrm{metal}} < 0$ is guaranteed on a branch interval if
+where $G_X\ge0$ denotes hypothesized density-favorable gains, $\mathcal P_X$ the defined packing derivative, $\mathcal D_X$ other explicit medium-response derivatives under the same held-fixed convention, and $b_X$ the remaining error with a uniform bound $B_{\mathrm{coeff}}\ge0$. All terms share the units and inventory normalization of $\partial_n\mu_X$. Since $b_{\mathrm{Fe}}-b_{\mathrm{sil}}\le B_{\mathrm{coeff}}$, subtraction proves $\partial_n\Delta\mu_{\mathrm{Fe/silicate}}^{\mathrm{metal}}<0$ wherever
 
 $$
 G_{\mathrm{Fe}}-G_{\mathrm{sil}}
@@ -48012,7 +48052,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d3797c9992eca35e)
 
-This is a sufficient inequality, not yet a completed derivation. It becomes a derivation only when $n_{\max,X}^{\mathrm{obl}}(n)$ comes from exclusion-envelope packing, $G_X$ comes from metallic coordination and Noether sea coupling, and $\mathcal{D}_X$ comes from the same local Noether sea state record used for clock, delay, strain, and transport response.
+This implication is already derived arithmetic under the stated decomposition and bound. Its physical antecedent remains unverified: the ceiling, gains, other derivatives, and error bound must come from the same retained assembly and medium record. Selecting favorable functions in this decomposition establishes only a model example, not an iron or silicate constitutive law.
 
 The support-function version of the packing burden is concrete. For a declared branch exclusion envelope $E_X$, let
 
@@ -48025,7 +48065,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9de952aee0240ecb)
 
-be its support function in direction $\hat{\mathbf n}$. For branch-cell directions $\hat{\mathbf{b}}_{X,i}$, define support-function spacings
+be its support function in unit direction $\hat{\mathbf n}$. Assume a compact centrally symmetric envelope centered at the chosen origin, three linearly independent cell-edge unit directions $\hat{\mathbf b}_{X,i}$, and declared nonnegative wake and lattice clearances. Define candidate spacings
 
 $$
 D_{X,i}
@@ -48039,9 +48079,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ae33a8d6e0fb2808)
 
-where $2\bar{s}_X$ is the full envelope width for a centrally symmetric envelope such as a centered oblate spheroid; a non-centered envelope would instead need $\bar{s}_X(\hat{\mathbf{b}})+\bar{s}_X(-\hat{\mathbf{b}})$,
+where $2\bar{s}_X$ is the directional width under the centered symmetry assumption. A general envelope, including a centered but asymmetric one, requires $\bar{s}_X(\hat{\mathbf b})+\bar{s}_X(-\hat{\mathbf b})$. Directional widths alone do not prove simultaneous non-overlap for an oblique cell and its neighboring copies.
 
-and the support-function cell volume
+For the chosen spacings, define the support-function cell volume
 
 $$
 V_{\mathrm{cell},X}^{\mathrm{sf}}
@@ -48059,7 +48099,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9cca1c577b16e4f5)
 
-Then the oblate packing ceiling must satisfy
+where $c_{\mathrm{cell},X}>0$ is a declared dimensionless cell factor. The determinant formula gives a volume for the specified edge vectors; it does not establish that volume as a minimum over admissible cells. Only if $V_{\mathrm{cell},X}^{\mathrm{sf}}$ is independently proved to be a lower bound on cell volume for a fixed braid count and a declared packing class does its class-restricted ceiling obey
 
 $$
 n_{\max,X}^{\mathrm{obl}}
@@ -48070,14 +48110,14 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9edec181cc74e5f7)
 
-where $N_{\mathrm{cell},X}$ is the declared braid count per branch cell and the $\rho_{\text{NS},0}$ normalization keeps the ceiling dimensionless for comparison with $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$. Equality is only a replay assumption for a declared branch cell. The Fe/silicate sign can therefore be credited to packing only when the Fe metallic branch earns a smaller support-function cell volume, higher effective coordination, or lower spacing anisotropy from the declared exclusion-envelope geometry.
+where $N_{\mathrm{cell},X}$ is the fixed braid count and $\rho_{\text{NS},0}>0$ a reference number density, making the ratio dimensionless. Constructing one admissible cell instead gives an achievable density and hence a lower bound on the maximum over a class containing it. Equality needs both admissibility and an optimality proof in that class. Neither cell volume nor a larger ceiling alone fixes the Fe/silicate derivative sign; the complete marginal inequality above still has to hold.
 
 The metallic-phase side can be written as
 
 $$
 \Delta G_{\mathrm{Fe}}^{\mathrm{metal/silicate}}
 =
-\Delta G_{\mathrm{std}}(P,T)
+\Delta G_{\mathrm{std}}(P,T_{\mathrm{temp}})
 +
 \delta G_{\mathrm{sea}}\!\left(
 \rho_{\text{NS}},
@@ -48089,7 +48129,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9a0b310bf5f438d5)
 
-The $\delta G_{\mathrm{sea}}$ term is admissible as a medium-response correction to phase stability, conductivity, elastic response, or transport. The stress argument uses $\Sigma_{\text{sea},ij}$, the component form of the canonical Noether sea stress $\Sigma_{\text{sea}}$ from [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). It is not admissible as a hidden transmutation channel. Branch-preserving retuning of an iron assembly must keep the nuclear inventory fixed, for example $\Delta Z_{\mathrm{Fe}}=0$ and $\Delta A_{\mathrm{Fe}}=0$, while any cadence, envelope, or transport change remains subordinate to the clock and retuning programs in [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) and [Retuning-Map Toy Model](../../../../markdown/aaa/validation/simulations/retuning-map-toy-model.md).
+This proposed free-energy difference must use a fixed transferred inventory or a balanced phase reaction, with one common energy normalization. The $\Delta G_{\mathrm{std}}$ term is a standard comparison baseline; $\delta G_{\mathrm{sea}}$ is a candidate correction that must avoid counting medium effects already represented by that baseline. A free-energy difference alone does not determine conductivity or transport rates. The stress argument $\Sigma_{\text{sea},ij}$ uses the canonical stress in [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md). Retuning keeps $\Delta Z_{\mathrm{Fe}}=0$ and $\Delta A_{\mathrm{Fe}}=0$; its clock and envelope interpretation remains subject to [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md) and the explicitly limited [Retuning-Map Toy Model](../../../../markdown/aaa/validation/simulations/retuning-map-toy-model.md).
 
 The corresponding closure residual is
 
@@ -48109,13 +48149,17 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b6447516ad4a51bc)
 
-The source term enforces the no-new-iron guardrail, the segregation and phase terms test the density-sorting and metallic-response claims, $\mathcal{R}_{\Gamma}$ tests the local clock-cadence handoff, and $\mathcal{R}_{\text{tr}}$ tests whether transport remains reversible or crosses into logged excitation, heating, radiation-like shedding, or branch transition. The bridge fails if it requires unlogged iron-nucleus creation, independent medium parameters for phase and clock behavior, or an ordinary drag channel below the transport threshold.
+The source term tests the no-new-iron condition, the segregation and phase terms test material response, $\mathcal R_\Gamma$ tests clock-cadence matching, and $\mathcal R_{\text{tr}}$ tests the proposed transport classification. As in the superconducting score, every addend must be a finite nonnegative dimensionless mismatch using a declared norm and positive tolerance; raw signed or dimensionful quantities cannot be added as an acceptance score. A small sum does not replace the individual domain, stability, and source requirements. The bridge fails on the declared benchmark if it requires unlogged nuclear reactions, inconsistent medium records, or unaccounted energy loss.
 
 ##### Threshold Crossing and Failure Modes
 
-Crossing $\mathcal{R}_{\text{tr},*}$ is the point at which reversible transport stops being the adequate description. Above threshold, some transported energy or action must route into an explicit channel: medium excitation, radiation-like transport, local heating, action shedding, or branch transition. For the dynamical bookkeeping of those channels, see [Energy](../../../../markdown/aaa/dynamics/energy.md) and [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation).
+The proposed threshold marks departure from reversible transport only after a channel-resolved constitutive calculation establishes that classification. Energy or action assigned to medium excitation, radiation, heating, or branch transition needs a defined account and conversion; those quantities are not interchangeable merely because both appear in a ledger. Their dynamical obligations remain in [Energy](../../../../markdown/aaa/dynamics/energy.md) and [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../../../../markdown/aaa/noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation).
 
-The main failure modes are therefore sharp. If $\mathcal{R}_{\text{tr}} < \mathcal{R}_{\text{tr},*}$ still produces ordinary dissipative drag in stable atoms, the framework loses chemical stability. If $\mathcal{R}_{\text{tr}} > \mathcal{R}_{\text{tr},*}$ occurs without a logged excitation, radiation, heating, or branch-transition channel, the energy ledger is incomplete. If the threshold cannot be expressed in terms of assembly motion, local Noether sea state, medium response, and stability gap data, the medium-transport picture has not matured into a usable transport closure.
+A controlled below-threshold loss in the declared unforced regime would falsify this no-drag transport map; it would not alone demonstrate loss of internal chemical binding or falsify the primitive acceleration law. A measured above-threshold event inconsistent with the predicted channels would refute the classification, while an unbalanced independently defined energy account would expose a bookkeeping failure. If histories with the same proposed diagnostic arguments have different outcomes, the reduced argument list is insufficient and must retain the missing history or boundary information.
+
+#### Comparison Sources
+
+David Tong's *Solid State Physics* lecture notes (2017), [Electron Dynamics in Solids, §§3.1–3.2](https://davidtong.org/pdfs/teaching/solid-state-physics/solidstate3.pdf), and [Phonons, §§4.1–4.2](https://davidtong.org/pdfs/teaching/solid-state-physics/solidstate4.pdf), supply the independent-band and harmonic-lattice comparison assumptions. His *Lectures on the Quantum Hall Effect* (2016), [§§1.2, 2.2–2.3, arXiv:1606.06687](https://arxiv.org/abs/1606.06687), explains the Hall tensor and occupied-band topological comparison. These effective theories constrain the recovery targets; they do not establish Architrino assemblies, medium response, or the proposed transport threshold.
 
 ## Reactions
 

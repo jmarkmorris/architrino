@@ -94,7 +94,7 @@ A changed hash means a startup source was edited after the last regeneration. It
 | [reference/office-of-research/cto/prompts/README.md](../office-of-research/cto/prompts/README.md) | 64 | `44455776ef041094` |
 | [reference/office-of-research/cto/prompts/start-pi.md](../office-of-research/cto/prompts/start-pi.md) | 72 | `4e0ff61a310d3916` |
 | [reference/office-of-research/cto/prompts/start-research.md](../office-of-research/cto/prompts/start-research.md) | 104 | `ad41a664553d2087` |
-| [reference/office-of-research/cto/prompts/convergence-campaign.md](../office-of-research/cto/prompts/convergence-campaign.md) | 573 | `d3862ed8934251e4` |
+| [reference/office-of-research/cto/prompts/convergence-campaign.md](../office-of-research/cto/prompts/convergence-campaign.md) | 598 | `c23b33e65d40cbb2` |
 | [reference/office-of-research/cto/prompts/corpus-reviewer.md](../office-of-research/cto/prompts/corpus-reviewer.md) | 108 | `07d11f4dadb19c19` |
 | [reference/office-of-research/cto/prompts/selective-reference-pass.md](../office-of-research/cto/prompts/selective-reference-pass.md) | 65 | `fdb289ec504b8176` |
 | [reference/office-of-research/cto/prompts/integrator-reviewer.md](../office-of-research/cto/prompts/integrator-reviewer.md) | 113 | `7c21c30e5018aeb5` |

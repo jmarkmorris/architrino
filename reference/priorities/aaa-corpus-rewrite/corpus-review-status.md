@@ -6,11 +6,6 @@ This file is the authoritative priority-ordered document board for the 199-file 
 
 | Status | Priority | Document | State | Finding IDs or next action |
 | --- | ---: | --- | --- | --- |
-| ○ | 43 | [Nuclear Binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md) | Unread backlog document | Not yet reviewed |
-| ○ | 44 | [Atomic Spectra](../../../content/markdown/aaa/nuclear-atomic/atomic-spectra.md) | Unread backlog document | Not yet reviewed |
-| ○ | 45 | [Hyde Periodic Table](../../../content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md) | Unread backlog document | Not yet reviewed |
-| ○ | 46 | [Molecular Geometry](../../../content/markdown/aaa/nuclear-atomic/molecular-geometry.md) | Unread backlog document | Not yet reviewed |
-| ○ | 47 | [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) | Unread backlog document | Not yet reviewed |
 | ○ | 48 | [Mode Taxonomy](../../../content/markdown/aaa/reactions/mode-taxonomy.md) | Unread backlog document | Not yet reviewed |
 | ○ | 49 | [Radiation](../../../content/markdown/aaa/reactions/radiation.md) | Unread backlog document | Not yet reviewed |
 | ○ | 50 | [Atomic Transition Radiation](../../../content/markdown/aaa/reactions/atomic-transition-radiation.md) | Unread backlog document | Not yet reviewed |
@@ -134,7 +129,7 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ○ | 168 | [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) | Unread backlog document | Not yet reviewed |
 | ○ | 18 | [Well-posedness and regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | Unread backlog document; action-energy directory held until the end | Not yet reviewed |
 
-**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 127 unopened documents. The next action is the first ○ row in the recorded phase order, Nuclear Binding; the remaining action-energy file is intentionally last.
+**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 122 unopened documents. The next action is the first ○ row in the recorded phase order, Mode Taxonomy; the remaining action-energy file is intentionally last.
 
 ## Completed audit appendix
 
@@ -212,5 +207,10 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ● | 70 | [Mesons](../../../content/markdown/aaa/assemblies/mesons/mesons.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-mesons-review-2026-09-12.md) | MES-001–MES-007 |
 | ● | 71 | [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-atomic-structure-review-2026-09-12.md) | AS-01–AS-05 |
 | ● | 72 | [Nucleon Structure](../../../content/markdown/aaa/nuclear-atomic/nucleon-structure.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-nucleon-structure-review-2026-09-12.md) | NS-01–NS-11 |
+| ● | 73 | [Nuclear Binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-nuclear-binding-review-2026-09-12.md) | NB-01–NB-14 |
+| ● | 74 | [Atomic Spectra](../../../content/markdown/aaa/nuclear-atomic/atomic-spectra.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-atomic-spectra-review-2026-09-12.md) | AS-01–AS-12 |
+| ● | 75 | [Hyde Periodic Table](../../../content/markdown/aaa/nuclear-atomic/hyde-periodic-table.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-hyde-periodic-table-review-2026-09-12.md) | HY-01–HY-10 |
+| ● | 76 | [Molecular Geometry](../../../content/markdown/aaa/nuclear-atomic/molecular-geometry.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-molecular-geometry-review-2026-09-12.md) | MG-01–MG-08 |
+| ● | 77 | [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-condensed-matter-review-2026-09-12.md) | CM-01–CM-15 |
 
-Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 72 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 127 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.
+Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 77 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 122 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.

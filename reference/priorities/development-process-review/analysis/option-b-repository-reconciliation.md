@@ -4,7 +4,7 @@
 
 The operator selected B-REM-2 through B-REM-5 together. This record owns integration of their current-source admission and inventory coverage. A current-source manifest selects executable and supporting source bytes; it does not replace historical evidence, mathematical reference applicability, package authenticity, or an exact-state publication receipt. The [finite plan](option-b-remaining-migration-plan.md) supplies the discovery set and completion requirements. The independent per-file dispositions retain their separate review ownership.
 
-Status: ◐ Partial — all selected migration implementation and source-role review are complete; final validation is not. B-REM-4 is complete. B-REM-2 needs the final handoff build, B-REM-3 needs two shared-caller suites after the resource gate is met, and B-REM-5 needs those results and the required scene-graph gate. The 563-test selected pass below does not close those outstanding conditions. No new scientific campaign or mathematical-map acceptance is selected.
+Status: ✓ Done — all five finite migration packages, including final required-gate validation. The [authorized registry refresh](#authorized-equation-registry-refresh-and-final-gate) closes the last generated-output condition with all 30 required Content Integrity checks passing. The [authorized resumption](#authorized-validation-resumption--september-12) and [independent operational review](../evidence/option-b-remaining-binding-dispositions.md#b-rem-5-independent-final-validation--authorized-resumption) retain the completed F5 builds, prior 563-test selection and complete 77-test residual selection on the unchanged migration generation. No universal test-health, scientific campaign or mathematical-map acceptance follows.
 
 ## Pre-integration baseline
 
@@ -52,7 +52,7 @@ The F5 owner reports final-generation enclosed-root build lease `85206a8f-4dc2-4
 
 The final executable Node selection comprises 51 explicit files, including all F5 process controls enabled through `F5_RUN_PROCESS_CONTROLS=1`, the corrected circular family and affected original/F6c profiles. It deliberately excludes `tests/f6c-streamed-leaf-diagnostic.test.js` and `tests/option-b-f6c-coordinator-process.test.mjs`, whose complete prior runs remain resource-blocked. A green result for this selection cannot close those two obligations. The final candidate capture expands to 170 map/source/required-gate/test paths and is compared again after validation.
 
-## Final validation and remaining conditions
+## Pre-resumption validation and remaining conditions
 
 The consolidated command retained in lease `3c38de5a-0fc7-4994-bf2b-68056b2e3875` runs the 51 files listed in that lease with `F5_RUN_PROCESS_CONTROLS=1` and serial file scheduling. It reports **563 passed, zero failed, skipped or cancelled**, test duration 140.102 seconds, supervisor duration 140.18 seconds, exit zero and a closed group. The independent reviewer inspected the command, stdout, empty stderr and lease closure. This is the post-correction circular/F5/shared-profile selection, not the two excluded F6c families. The 170-path SHA-256 snapshot is unchanged before and after this run by direct recomputation/comparison.
 
@@ -60,7 +60,9 @@ The final `node scripts/equation-mapping/check-current-source-dispositions.mjs` 
 
 Required `node scripts/check-content-integrity.mjs` under lease `77d83fcf-35e3-4db7-8d9c-6622f9ca23d5` reports **29 required passed, one required failed, one optional reporting sweep skipped and no unreached checks**, exit one, closed group, 37.74 seconds. All required operational admission, transfer and disposition checks pass. The only failure is the scene-graph check's two stale outputs, `content/graph/textbook_toc.json` and `content/generated/markdown/textbook/toc.md`, also observed in the pre-implementation baseline. No numerical defect or causal author is inferred from that drift. The exact repair command is `node scripts/build-scene-graph.mjs --write`, followed by its strict check and the required gate; tracked regeneration has not been authorized or performed in this task.
 
-| Remaining owner | Exact completion condition |
+The following table preserves the conditions at the pre-resumption checkpoint. All three are subsequently discharged in the authorized resumption below.
+
+| Remaining owner at that checkpoint | Exact completion condition |
 | --- | --- |
 | B-REM-2 — ◐ Partial | Run only the remaining handoff build command in the [F5 resumption owner](option-b-f5-cutover.md#exact-build-only-resumption), after measuring at least 40% host free memory and satisfying all other unchanged resource limits. The final enclosed-root build already passed and must not be repeated merely for a new receipt. |
 | B-REM-3 — ◐ Partial | Rerun `tests/f6c-streamed-leaf-diagnostic.test.js` and `tests/option-b-f6c-coordinator-process.test.mjs` with owned supervision and sufficient host resources. Their retained failures are launch-guard failures, not passes or scientific negatives. |
@@ -69,6 +71,72 @@ Required `node scripts/check-content-integrity.mjs` under lease `77d83fcf-35e3-4
 The last direct `/usr/bin/memory_pressure -Q` after Content Integrity reports 38%, below the existing 40% launch gate. No further build or resource-bound test retry is made at that observation. The optional reporting sweep, deferred numerical campaigns, general historical reacceptance, full-ladder execution and mathematical-map acceptance were not run or claimed complete.
 
 Owner-aware `owned-compute-supervisor.mjs closeout --owner-task "$CODEX_SESSION_ID"` reports `clear` after validation. The 170-path snapshot remains unchanged after required Content Integrity. Scoped `git diff --check` over migration code, controls and evidence reports no whitespace errors. These are scoped completion checks, not permission to publish or acceptance of the outstanding build/test/generator conditions.
+
+## Authorized validation resumption — September 12
+
+The operator authorized the remaining validation, explicitly including scene-graph regeneration, after closing other applications. Initial `/usr/bin/memory_pressure -Q` reports 69% free and `df -k .` reports 912055608 KiB available; both exceed the unchanged launch requirements. `git rev-parse HEAD` reports `66e0e47de3797be86855acf6318aaab6c503031c`. Despite that checkout advancement, `shasum -a 256 -c .local-data/development-process-review/b-rem-2-5-baseline/final-candidate-source-sha256.txt` passes every one of the 170 recorded paths. No migration source or selected reference is changed for this resumption.
+
+The initial strict scene-graph check already passes. The authorized `node scripts/build-scene-graph.mjs --write` is a no-op, followed by `node scripts/build-scene-graph.mjs --check --strict` with zero errors and warnings; `git diff --stat` over its three generated targets is empty. This task does not attribute the intervening freshness repair to an author or commit.
+
+Required `node scripts/check-content-integrity.mjs`, supervised with a 180-second deadline and 15-second heartbeat, passes **30 required checks, zero required or reporting failures, one optional sweep skipped and zero not reached**. Lease `5ec21b15-5774-4757-b3d9-4fc3e284acc9` records exit zero, no signal, closed process group and 37.695 seconds; its exact stdout/stderr are under `.local-data/owned-compute/logs/` with the same run ID. This closes the earlier required scene-graph failure for the current candidate without claiming the optional broad sweep ran. F5 handoff and the two shared-caller suites retain their separate terminal-evidence requirements.
+
+The final F5 handoff build succeeds under lease `4189d820-4efc-4331-bf8e-cea724861221`, exit zero and closed process group in 22.392 seconds. Its terminal output reports `build-process-admission-only`, 41 successful stages/gates and 194 checked bindings. The [F5 completion record](option-b-f5-cutover.md#final-handoff-build--september-12-completion) supplies the exact build receipt `269b566a8e9bc83188ff3434b19e9a86a2b9c2c80d00c8b9d657c42f8478533d`, outer admission receipt `7ec1cb15901d1e218ed7abac05b70ea06e48ea04cbf2c77c414a340c642e54b6`, paths and source readback. The successful enclosed-root build was not repeated. No scientific data or evolution was executed.
+
+The remaining two-file serial Node selection is supervised under lease `7e1ab305-01cb-48d4-a094-546258d78a80`, with a 600-second deadline and 15-second heartbeat; immediately before launch, `memory_pressure -Q` reports 68% and `df -k .` reports 912023484 KiB available. The lease's exact command is:
+
+```bash
+node scripts/dev/owned-compute-supervisor.mjs run --owner-task "$CODEX_SESSION_ID" --deadline-seconds 600 --heartbeat-seconds 15 -- node --test --test-concurrency=1 tests/f6c-streamed-leaf-diagnostic.test.js tests/option-b-f6c-coordinator-process.test.mjs
+```
+
+The two resumed test files were measured before launch with `shasum -a 256`: `tests/f6c-streamed-leaf-diagnostic.test.js` is `7a63cddd4812553e25d6dcf4dc666adc5ace1bd5e52aa7d2e16ac2e0720c8431`; `tests/option-b-f6c-coordinator-process.test.mjs` is `2cea4c0287bca6c194d8374c099cae95efc6c050722a658979162ab9aedcb539`. The shared venv executes Python 3.13.2. Their synthetic and explicitly declared stationary controls establish operational behavior, not original-data scientific acceptance.
+
+### Resumed terminal results
+
+The complete two-file command reports **77 passed, zero failed, skipped or cancelled**, test duration 213989.966209 ms. Lease `7e1ab305-01cb-48d4-a094-546258d78a80` records exit zero, no signal, empty stderr, 214.066 seconds and `processGroupClosed:true`. Its stdout and stderr remain at the exact same-run paths under `.local-data/owned-compute/logs/`. This is the complete previously blocked selection, not a filtered successful subset.
+
+The serial coordinator's actual independently selected observer writes `.local-data/braid-analysis/option-b-current-closure-oEzf39/observer/closure.json`. A known field-projection control passed before readback; the receipt records schema `braid-program/f6c-bounded-operation-external-closure.v2`, `accepted:true`, `processesClosed:true`, `lockReleased:true` and `wholeGuardClosed:true`. The test also rejects wrong external coordinator/map identities before dispatch. These are operational closure results only.
+
+After terminal execution, the full 170-path `shasum -a 256 -c` comparison passes again, and separate SHA-256 measurements of both resumed test files match their prelaunch values above. The source-role and original-five transfer checkers also pass. Final direct memory measurement is 68%. Owner-aware supervisor `closeout --owner-task "$CODEX_SESSION_ID"` reports `clear`, checking 957 leases. No owned computation is left running.
+
+The earlier 563-test selection remains valid for its unchanged selected source generation; the new 77-test result supplies the two deliberately excluded families. These separate receipts are not presented as one new monolithic run or universal test coverage. Required Content Integrity passes its full declared selection; its optional broad sweep remains unexecuted. The earlier failed records remain retained rather than overwritten.
+
+### Finite package closeout
+
+The independent reviewer authenticated the new required-gate, handoff-build and two-file regression receipts and accepted final operational validation in the [review record](../evidence/option-b-remaining-binding-dispositions.md#b-rem-5-independent-final-validation--authorized-resumption). The reviewer independently repeated the 170-path preservation check after execution and authenticated the serial observer's selected source/output bindings.
+
+| Package | Final disposition and evidence |
+| --- | --- |
+| B-REM-1 | ✓ Done — connected F6c operational transfer and its preserved independent review. |
+| B-REM-2 | ✓ Done — captured F5 build/evolution admission, prior selected controls, both final-generation builds and independent handoff process review. |
+| B-REM-3 | ✓ Done — captured circular admission, corrected local controls and all enumerated shared-caller regressions, including the resumed 77-test selection. |
+| B-REM-4 | ✓ Done — independently reviewed roles for all 157 original candidates and 39 additional owners. |
+| B-REM-5 | ✓ Done — migration-specific reconciliation, independent operational validation and authorized registry freshness repair with all 30 required checks passing. |
+
+All five completed package rows are removed from the executable queue. This finite operational completion leaves the optional broad reporting sweep, deferred scientific campaigns, historical-input recovery, full-ladder capabilities, mathematical-map acceptance and general all-selection repository verification with their existing owners. No numerical result is reaccepted by a source-map update, and no Git publication is performed in this resumption. The resume skill preserved the original package completion conditions; the compute skill kept both resumed jobs under owned supervision and unchanged resource limits.
+
+### Latest required gate after TOC regeneration
+
+A final `validate-content.mjs --check --strict` reports zero errors/warnings across 1687 Markdown files, but the following strict scene-graph check detects fresh drift in the same two TOCs. The authorized `build-scene-graph.mjs --write` then updates only `content/graph/textbook_toc.json` and `content/generated/markdown/textbook/toc.md`; its strict check passes with 1654 sections. Their scoped Git diff contains three newly indexed headings from nuclear binding, molecular geometry and condensed matter; direct `rg` confirms those headings in the live authored files. This task did not edit those authored sources.
+
+The subsequent required Content Integrity lease `887835f4-25db-4700-b750-c7f16cc248cc` reports **29 required passed, one required failed, one optional sweep skipped and zero unreached**, exit one, no signal, closed process group and 37.43 seconds. The scene-graph check passes; the sole failure is `content/generated/equation-mapping/corpus-equations.json` freshness. Its owning `node scripts/build-equation-mapping-corpus.mjs --check` independently reproduces that exact drift. The earlier 30-pass gate remains a valid earlier receipt, not the current whole-checkout gate result. All 170 migration snapshot paths still match after this failure.
+
+The operator's explicit regeneration scope covers the two TOCs, not this newly failing equation registry. Inspection of `buildEquationMappingCorpus` distinguishes `--build`, which regenerates only the registry after validation, from `--write`, which can also insert links into authored Markdown. The proposed bounded follow-up is `node scripts/build-equation-mapping-corpus.mjs --build`, followed by `--check` and required Content Integrity once current corpus editing is stable. It has not been executed or authorized here.
+
+B-REM-1 through B-REM-4 remain complete. B-REM-5's migration-specific validation is independently accepted, but its latest required-gate condition is partial until this separate generated artifact is refreshed and checked. Candidate-specific acceptance remains valid; main uses the stricter current-gate status because the requested final validation includes the freshly regenerated TOCs and the subsequent failed gate must remain visible. This supersedes the temporary all-five-complete status reached after the earlier green gate; it does not reopen source migrations or the completed memory-intensive work. Owner-aware compute closeout again reports `clear`, checking 959 leases. Final authored/document and generated-TOC changes pass scoped `git diff --check`.
+
+### Authorized equation registry refresh and final gate
+
+The operator's subsequent “do item 1” authorizes the generated-only equation-registry refresh and required validation. The initial `node scripts/build-equation-mapping-corpus.mjs --check` reproduces registry drift. `node scripts/build-equation-mapping-corpus.mjs --build` then succeeds, followed by `--check` with zero errors: 199 Markdown files, 4685 display equations, 23 promoted equations and 30436 symbol definitions. The strict scene-graph check also passes with 1654 sections. These are structural/freshness measurements, not mathematical acceptance.
+
+The final registry SHA-256 is `e60ec69a3313753275e76af8eb7f202a9976560f695b0589b374088b0d1c5ff3`, measured by `shasum -a 256`. `git ls-files` returns no tracked registry path, while `git check-ignore` reports that exact path ignored. The generator's `--build` branch emits only the validated registry; the authored-link-changing `--write` branch was not used. Before/after `rg --files ... -0 | xargs -0 shasum -a 256` captures over `content/markdown/aaa` and `content/scenes` have identical path/digest sets. A known two-list difference control passed before comparison; an initial raw-string comparison differed only because discovery order varied.
+
+Required Content Integrity lease `f59ba5e8-ee00-4c5d-b19f-60379dc2adb4` reports **30 required passed, zero required/reporting failures, one optional sweep skipped and zero unreached**, exit zero, no signal, empty stderr, closed process group and 37.271 seconds. Exact logs are `.local-data/owned-compute/logs/f59ba5e8-ee00-4c5d-b19f-60379dc2adb4.stdout.log` and its `.stderr.log` sibling. The launch command was:
+
+```bash
+node scripts/dev/owned-compute-supervisor.mjs run --owner-task "$CODEX_SESSION_ID" --deadline-seconds 180 --heartbeat-seconds 15 -- node scripts/check-content-integrity.mjs
+```
+
+The 170-path migration descriptor again passes `shasum -a 256 -c` after the gate. Owner-aware compute closeout reports `clear`, checking 961 leases. No completed build or 77-test regression family was repeated, no scientific/source-map/reference code changed, and no Git publication was performed by this task. B-REM-5 is complete and removed from the executable queue. This final successful gate supersedes the preceding registry-freshness blocker without erasing its retained failed receipt. A failing named gate on this selected state, a registry/check mismatch or changed selected migration bytes would overturn the corresponding completion claim.
 
 ## Nonliteral owner dispositions
 

@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1651
+      "sections": 1654
     }
   },
   "tocRoot": {
@@ -6096,6 +6096,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Source Notes",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+                "markdownSection": "Source Notes",
+                "sectionKey": "source notes",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Related Chapters",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
                 "markdownSection": "Related Chapters",
@@ -6207,6 +6215,14 @@
                 "markdownSection": "Closure Targets",
                 "sectionKey": "closure targets",
                 "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Source Notes",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
+                "markdownSection": "Source Notes",
+                "sectionKey": "source notes",
+                "headingLevel": 2
               }
             ]
           },
@@ -6256,6 +6272,14 @@
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
                 "markdownSection": "Hall and Topological Response Benchmarks",
                 "sectionKey": "hall and topological response benchmarks",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Comparison Sources",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/condensed-matter.md",
+                "markdownSection": "Comparison Sources",
+                "sectionKey": "comparison sources",
                 "headingLevel": 2
               }
             ]
