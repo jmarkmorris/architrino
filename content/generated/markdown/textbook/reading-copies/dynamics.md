@@ -9336,6 +9336,8 @@ $$
 \qquad W^{\mathrm{acc}}=\frac{c_f}{|D_t|}
 $$
 
+[View →](../../../../../equation-mapping.html#corpus-equation-cd180315de09143c)
+
 Here $q_a$ is the fixed nonzero polarity and $\kappa>0$ is the acceleration coupling, with $\kappa q_a^2$ having acceleration-times-area units. The dimensionless weight $W^{\mathrm{acc}}$ comes from resolving emission history at a simple root. Receiver velocity affects which history is encountered as time advances; it supplies no additional instantaneous acceleration multiplier.
 
 A regular branch record retains positive separation and delay margins, controlled transmitter derivatives and weights, all active roots, and exclusions or bounds for omitted roots and history. A singular root with $D_t=0$ is an unresolved event requiring the applicable continuation or regularization treatment; it is not evidence that the self-interaction contribution vanishes. Finding isolated roots or evaluating this formula alone does not certify an EOM solver trajectory.

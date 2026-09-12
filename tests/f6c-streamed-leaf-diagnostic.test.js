@@ -351,6 +351,7 @@ const observeTable=()=>new Promise((resolve,reject)=>execFile('/bin/ps',['-axo',
  if(error){reject(error);return;}try{resolve(raw.trim().split('\n').map(line=>{const m=/^\s*(\d+)\s+(\d+)\s+(\d+)\s+(.{24})\s+(\S+)\s+(.+)$/u.exec(line);assert(m,'complete external process row');return{pid:Number(m[1]),ppid:Number(m[2]),pgid:Number(m[3]),started:m[4].replace(/\s+/gu,' '),command:m[6]};}));}catch(e){reject(e);}
 }));
 async function runFixture(f,{interrupt=false,epipe=false}={}){
+ try{
  // A separate, unchanged owner bounds the complete coordinator process group.
  // The adapter and registered guards retain their own stronger obligations.
  const {runOwned}=await import(pathToFileURL(path.join(f.dir,'scripts/dev/owned-compute-supervisor.mjs')));
@@ -386,8 +387,9 @@ async function runFixture(f,{interrupt=false,epipe=false}={}){
  f.closed=true;
  if(process.env.AAA_RETAIN_FIXTURES==='1')console.error('retained fixture '+f.dir);
  return{code:lease.exitCode,signal:lease.exitSignal,out,err,childPid,lease};
+ }catch(error){f.failure=error;throw error;}
 }
-function cleanup(f){assert(!f.started||f.closed,'unresolved fixture retained for investigation: '+f.dir);if(process.env.AAA_RETAIN_FIXTURES!=='1')rmSync(f.dir,{recursive:true,force:true});}
+function cleanup(f){assert(!f.started||f.closed,'unresolved fixture retained for investigation: '+f.dir+'; original failure: '+(f.failure?.stack??'not recorded'));if(process.env.AAA_RETAIN_FIXTURES!=='1')rmSync(f.dir,{recursive:true,force:true});}
 function alterFixture(f,change){
  const before=readFileSync(f.entry,'utf8'),after=change(before);assert.notEqual(after,before,'specific bounded injection applied');
  writeFileSync(f.entry,after);f.spec.bindings.coordinator=bind(f.entry);writeFileSync(f.specPath,JSON.stringify(f.spec)+'\n');
@@ -816,12 +818,20 @@ for(const mode of['missing-runtime','runtime-in-provenance','archive-runtime','l
   const f=fixture(mode);try{
    const r=await runFixture(f);
    if(mode==='postpublish'){
-    // A replaced authored source prevents the coordinator from certifying its
-    // own cleanup. The independent owner still closes the original group.
+    // Source replacement rejects publication. Ordinary certified cleanup may
+    // release the lock; deadline fallback must retain unresolved ownership.
     rejectedExit(r);assert.equal(r.lease.processGroupClosed,true);
     const errors=readFileSync(path.join(f.output+'-outer','process','runner-stderr.log'),'utf8');
     assert.match(errors,/original postcleanup source replaced/);
-    assert(existsSync(path.join(f.dir,C.LOCK)),'uncertified cleanup retains its lock');
+    if(r.code===1){
+     const rejection=JSON.parse(readFileSync(path.join(f.output+'-outer','rejection.json')));
+     assert.equal(rejection.ordinaryProcessesClosed,true);
+     assert.equal(rejection.cleanupFailure,null);
+     assert(!existsSync(path.join(f.dir,C.LOCK)),'certified failed cleanup releases its lock');
+    }else{
+     assert.equal(r.lease.status,'timed_out');
+     assert(existsSync(path.join(f.dir,C.LOCK)),'uncertified cleanup retains its lock');
+    }
    }else assert.equal(r.code,1);
    assert.equal(r.out,'');assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));
    if(mode==='missing-runtime'||mode==='runtime-in-provenance'||mode==='archive-runtime'||mode==='late-runtime'){
@@ -837,7 +847,7 @@ for(const mode of['missing-runtime','runtime-in-provenance','archive-runtime','l
     const rejection=JSON.parse(readFileSync(path.join(f.output+'-outer','rejection.json')));assert.match(rejection.failure,/physical source hardlink alias/);
    }
    else {assert(existsSync(f.events));assert(existsSync(f.output));}
-   assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));
+   if(mode!=='postpublish')assert(!existsSync(path.join(f.dir,C.LOCK)));assert(absent(r.childPid));
   }finally{cleanup(f);}
  });
 }

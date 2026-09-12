@@ -12,17 +12,19 @@ import * as R from "../scripts/eom/run-f6c-cached-root-cover-full.mjs";
 import * as L from "../scripts/eom/launch-f6c-cached-root-cover-full.mjs";
 import { currentOwnedGroup, descendantRecords } from "../scripts/eom/launch-subfield-circular-root-pilot.mjs";
 const root=process.cwd(),digest=x=>createHash("sha256").update(x).digest("hex");
+const sourceMapDigest=digest(readFileSync(R.SOURCE_MAP));
+await R.initializeSourceBindings(root,sourceMapDigest);
 const temp=()=>mkdtempSync(path.join(tmpdir(),"f6c-pilot-control-"));
 const binding=(p,h="1".repeat(64))=>({path:p,sha256:h,bytes:1});
 function plan() {
   const python=path.resolve(process.env.AAA_VENV??"../.venv","bin/python"),node=realpathSync(process.execPath);
   const sources=[R.CONSUMER,"scripts/eom/oracle/continuous_reception_roots_cached.py","scripts/eom/oracle/certified_history.py","scripts/eom/oracle/decimal_interval.py"];
-  return {schema:"braid-program/f6c-cached-root-cover-full-launch.v2",scope:"full",resourcePlan:binding(R.RESOURCE_PLAN,R.PINS[R.RESOURCE_PLAN]),
+  return {schema:"braid-program/f6c-cached-root-cover-full-launch.v2",scope:"full",resourcePlan:binding(R.RESOURCE_PLAN,R.SOURCE_BINDINGS[R.RESOURCE_PLAN]),
     python,pythonRealPath:realpathSync(python),git:realpathSync("/usr/bin/git"),node,
-    comparisonContract:{declarationSha256:R.PINS["reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md"],verifierSha256:R.PINS[R.COMPARISON],scope:"full",
-      subjectSourceBindings:sources.map(p=>binding(p,R.PINS[p])),runtimeBindings:[binding(realpathSync(python)),binding(realpathSync("/usr/bin/git")),binding(path.resolve(python,"../../pyvenv.cfg"))]},
-    operationalBindings:[R.ENTRY,R.LAUNCHER,R.OUTER,"/bin/ps","/usr/bin/memory_pressure",node].map(p=>binding(p,R.PINS[p]??"1".repeat(64))),
-    controlBindings:["tests/test_f6c_cached_continuous_reception_root_cover_preparation.py","tests/test_f6c_cached_continuous_reception_root_cover.py"].map(p=>binding(p,R.PINS[p]))};
+    comparisonContract:{declarationSha256:R.SOURCE_BINDINGS["reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md"],verifierSha256:R.SOURCE_BINDINGS[R.COMPARISON],scope:"full",
+      subjectSourceBindings:sources.map(p=>binding(p,R.SOURCE_BINDINGS[p])),runtimeBindings:[binding(realpathSync(python)),binding(realpathSync("/usr/bin/git")),binding(path.resolve(python,"../../pyvenv.cfg"))]},
+    operationalBindings:[R.ENTRY,R.LAUNCHER,R.OUTER,"/bin/ps","/usr/bin/memory_pressure",node].map(p=>binding(p,R.SOURCE_BINDINGS[p]??"1".repeat(64))),
+    controlBindings:["tests/test_f6c_cached_continuous_reception_root_cover_preparation.py","tests/test_f6c_cached_continuous_reception_root_cover.py"].map(p=>binding(p,R.SOURCE_BINDINGS[p]))};
 }
 test("machine plan is full-only and binds complete frozen sources/environment",()=>{
   const p=plan();assert.equal(R.validatePlan(p,root,"1".repeat(64),"1".repeat(64)),p);
@@ -33,7 +35,7 @@ test("machine plan is full-only and binds complete frozen sources/environment",(
   }
 });
 test("all frozen hashes and comparison schema match disk without reading scientific data",()=>{
-  for(const [p,h] of Object.entries(R.PINS))if(!p.startsWith(".local-data/")&&!p.startsWith("/"))assert.equal(digest(readFileSync(p)),h,p);
+  for(const [p,h] of Object.entries(R.SOURCE_BINDINGS))if(!p.startsWith(".local-data/")&&!p.startsWith("/"))assert.equal(digest(readFileSync(p)),h,p);
   assert.match(readFileSync(R.COMPARISON,"utf8"),/REPORT_SCHEMA = "braid-program\/f6c-continuous-reception-root-cover-conformance.v1"/);
 });
 test("source capture rejects replacement, symlinks, byte bound and overwrite",()=>{
@@ -90,7 +92,7 @@ test("synthetic mechanical handoff checks exact output/gate/resource census",()=
 test("synthetic comparison admission requires authenticated preceding output and exact claims",()=>{
   const {job}=admissionFixture(),consumer=R.admitStage(job),stage="comparison";mkdirSync(path.join(job.output,stage+"-process"));
   const claims={reconstructedFamilyApplicabilityAuthenticated:true,conditionalRootCoverValidated:true,historicalTrajectoryIdentityEstablished:false,rootExecutionAuthorized:false,metricsAvailable:false,h3EvidenceEligible:false,scoreAuthorized:false,eomExecuted:false};
-  const report={schema:"braid-program/f6c-continuous-reception-root-cover-conformance.v1",accepted:true,scope:"full",manifest:consumer.outputs[2],launchPlan:job.planBinding,verifier:{sha256:R.PINS[R.COMPARISON]},
+  const report={schema:"braid-program/f6c-continuous-reception-root-cover-conformance.v1",accepted:true,scope:"full",manifest:consumer.outputs[2],launchPlan:job.planBinding,verifier:{sha256:R.SOURCE_BINDINGS[R.COMPARISON]},
     rows:consumer.outputs[0],pieces:consumer.outputs[1],analysis:{accepted:false,conditionalEnclosuresConformant:true,cellCount:160,pairCellCertificates:10240,ordinaryNonselfRows:8960,selfExclusionRows:1280,distinctNonselfFaceChecks:17920,pieceRecordCount:17920,recordedGeometryPieceVisits:168},
     claims,libraryFlags:{premise_truth_authenticated:false,subject_membership_established:false,execution_authorized:false,metrics_available:false,h3_evidence_eligible:false}};
   const receipt=R.writeNew(path.join(job.output,"comparison.json"),report);
@@ -220,7 +222,7 @@ test("final publication needs completed stages and live inclusive clock",()=>{
   assert.equal(R.fileOperation(active).path,path.join(out,"full-admission.json"));assert.throws(()=>R.fileOperation(active));
 });
 test("launcher CLI requires all exact hashes and rejects path traversal",()=>{
-  const argv=["--out",".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/new","--plan","plan","--plan-sha256","1".repeat(64),"--launcher-sha256","2".repeat(64),"--entry-sha256","3".repeat(64)];
+  const argv=["--out",".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/new","--plan","plan","--plan-sha256","1".repeat(64),"--launcher-sha256","2".repeat(64),"--entry-sha256","3".repeat(64),"--source-map-sha256",sourceMapDigest];
   assert.equal(L.parseArgs(argv).entrySha256,"3".repeat(64));assert.throws(()=>L.parseArgs(argv.slice(0,-2)));
   const bad=[...argv];bad[1]="a/../b";assert.throws(()=>L.parseArgs(bad));
 });
@@ -246,7 +248,7 @@ function comparisonFixture() {
   const {job}=admissionFixture(),consumer=R.admitStage(job),stage="comparison";
   mkdirSync(path.join(job.output,stage+"-process"));
   const report={schema:"braid-program/f6c-continuous-reception-root-cover-conformance.v1",accepted:true,scope:"full",
-    manifest:consumer.outputs[2],launchPlan:job.planBinding,verifier:{sha256:R.PINS[R.COMPARISON]},
+    manifest:consumer.outputs[2],launchPlan:job.planBinding,verifier:{sha256:R.SOURCE_BINDINGS[R.COMPARISON]},
     rows:consumer.outputs[0],pieces:consumer.outputs[1],analysis:{accepted:false,conditionalEnclosuresConformant:true,
       cellCount:160,pairCellCertificates:10240,ordinaryNonselfRows:8960,selfExclusionRows:1280,
       distinctNonselfFaceChecks:17920,pieceRecordCount:17920,recordedGeometryPieceVisits:168},
@@ -317,10 +319,10 @@ test("full machine plan refuses pilot scope and prior resource plan without rela
     p=>p.resourcePlan.sha256="1a6327933b0060905aec97022e87c243b54f353af8c7aec83712967b285b010d",
   ]){const p=plan();patch(p);assert.throws(()=>R.validatePlan(p,root,"1".repeat(64),"1".repeat(64)));}
   assert.equal(R.LIMIT_MS,1800000);assert.equal(R.LOG_LIMIT,16*1024**2);assert.equal(R.FILE_LIMIT,64*1024**2);
-  assert.equal(R.PINS["reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md"],
+  assert.equal(R.SOURCE_BINDINGS["reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md"],
     "1a6327933b0060905aec97022e87c243b54f353af8c7aec83712967b285b010d");
-  assert.equal(R.PINS[R.CONSUMER],"d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841");
-  assert.equal(R.PINS[R.COMPARISON],"3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7");
+  assert.equal(R.SOURCE_BINDINGS[R.CONSUMER],"d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841");
+  assert.equal(R.SOURCE_BINDINGS[R.COMPARISON],"3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7");
 });
 
 const FULL_COMMON_REPLACEMENTS=[
@@ -601,15 +603,21 @@ test("all32 original operational obligations survive full scope retargeting unch
   assert.equal(prior.match(/^test\(/gmu)?.length,26);
   const actual=frozen("reference/priorities/development-process-review/evidence/full-root-cover-migration/f6c-cached-root-cover-full.test.js.09ce766c3965.source","09ce766c39654afe12381060eefda95b018df0c130e12361a583186b6d8199b3").split("\n// Full-scope binding/census controls;")[0];
   assert.equal(actual,retarget(prior,FULL_TEST_REPLACEMENTS));
-  const process=frozen("tests/f6c-cached-root-cover-pilot-process.test.js","433452397ac00c2deaa6a9300b84510f553943c491fd49c965a7573a691b0cf7");
+  const baseline=JSON.parse(readFileSync("reference/priorities/development-process-review/contracts/option-b-cached-root-cover-baseline.json"));
+  const process=execFileSync("git",["show",`${baseline.commit}:tests/f6c-cached-root-cover-pilot-process.test.js`],{encoding:"utf8"});
+  assert.equal(digest(process),"433452397ac00c2deaa6a9300b84510f553943c491fd49c965a7573a691b0cf7");
   assert.equal(process.match(/^test\(/gmu)?.length,6);
-  assert.equal(readFileSync("tests/f6c-cached-root-cover-full-process.test.js","utf8"),retarget(process,FULL_COMMON_REPLACEMENTS));
+  const fullProcess=execFileSync("git",["show",`${baseline.commit}:tests/f6c-cached-root-cover-full-process.test.js`],{encoding:"utf8"});
+  assert.equal(digest(fullProcess),"fb00c3446cdc90c804202017a3f789bca8d3841d8bcf93eaeae230651007ac8c");
+  assert.equal(fullProcess,retarget(process,FULL_COMMON_REPLACEMENTS));
 });
 test("measured full resource rule and every frozen pilot input are mandatory source bindings",()=>{
-  const bindings=new Map(R.planBindings(plan(),root).map(b=>[b.path,b.sha256]));
-  for(const[p,h]of FULL_EXTRA_PINS){assert.equal(R.PINS[p],h);assert.equal(bindings.get(path.resolve(root,p)),h);}
-  assert.equal(R.PINS[R.RESOURCE_PLAN],"8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378");
-  const resource=frozen(R.RESOURCE_PLAN,R.PINS[R.RESOURCE_PLAN]);
+  const currentPlan=plan();
+  currentPlan.operationalBindings=currentPlan.operationalBindings.map(b=>[R.ENTRY,R.LAUNCHER].includes(b.path)?binding(b.path,digest(readFileSync(b.path))):b);
+  const bindings=new Map(R.planBindings(currentPlan,root).map(b=>[b.path,b.sha256]));
+  for(const[p,h]of FULL_EXTRA_PINS){assert.equal(R.SOURCE_BINDINGS[p],h);assert.equal(bindings.get(path.resolve(root,p)),h);}
+  assert.equal(R.SOURCE_BINDINGS[R.RESOURCE_PLAN],"8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378");
+  const resource=frozen(R.RESOURCE_PLAN,R.SOURCE_BINDINGS[R.RESOURCE_PLAN]);
   assert.ok(resource.includes("160\\times 8.534247625=1365.47962"));
   // Exact integer arithmetic verifies the frozen planning numbers, not actual timing.
   assert.equal(160n*8534247625n,1365479620000n);

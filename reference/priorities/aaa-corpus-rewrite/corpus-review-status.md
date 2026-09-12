@@ -6,9 +6,6 @@ This file is the authoritative priority-ordered document board for the 199-file 
 
 | Status | Priority | Document | State | Finding IDs or next action |
 | --- | ---: | --- | --- | --- |
-| ○ | 19 | [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Unread backlog document | Not yet reviewed |
-| ○ | 20 | [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md) | Unread backlog document | Not yet reviewed |
-| ○ | 21 | [Emergent Metric](../../../content/markdown/aaa/spacetime/emergent-metric.md) | Unread backlog document | Not yet reviewed |
 | ○ | 22 | [General Relativity](../../../content/markdown/aaa/spacetime/general-relativity.md) | Unread backlog document | Not yet reviewed |
 | ○ | 23 | [PPN Parameters](../../../content/markdown/aaa/spacetime/ppn-parameters.md) | Unread backlog document | Not yet reviewed |
 | ○ | 24 | [Gravitational Waves](../../../content/markdown/aaa/spacetime/gravitational-waves.md) | Unread backlog document | Not yet reviewed |
@@ -158,7 +155,7 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ○ | 168 | [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) | Unread backlog document | Not yet reviewed |
 | ○ | 18 | [Well-posedness and regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | Unread backlog document; action-energy directory held until the end | Not yet reviewed |
 
-**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 151 unopened documents. The next action is the first ○ row in the recorded phase order; the remaining action-energy file is intentionally last.
+**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 148 unopened documents. The next action is the first ○ row in the recorded phase order, General Relativity; the remaining action-energy file is intentionally last.
 
 ## Completed audit appendix
 
@@ -212,5 +209,8 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ● | 46 | [Self-interaction switch](../../../content/markdown/aaa/validation/simulations/action-energy/self-interaction-switch.md) | Bounded repairs implemented and validated; open obligations retained | SIS-1–SIS-3, SIS-O1–SIS-O3 |
 | ● | 47 | [Superposition and locality](../../../content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md) | Bounded repairs implemented and validated; open obligations retained | SL-1–SL-4 |
 | ● | 48 | [Units and Constants](../../../content/markdown/aaa/validation/simulations/action-energy/units-and-constants.md) | Bounded repairs implemented and validated; open obligations retained | UC-1–UC-7, OUC-1–OUC-4 |
+| ● | 49 | [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-proper-time-and-time-dilation-review-2026-09-12.md) | PT-01–PT-12 |
+| ● | 50 | [Lorentzian Conspiracy and Emergent Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-lorentz-kinematics-review-2026-09-12.md) | LK-01–LK-16 |
+| ● | 51 | [Emergent Metric](../../../content/markdown/aaa/spacetime/emergent-metric.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-emergent-metric-review-2026-09-12.md) | EM-01–EM-15 |
 
-Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 48 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 151 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.
+Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 51 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 148 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.

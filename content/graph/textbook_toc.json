@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1642
+      "sections": 1643
     }
   },
   "tocRoot": {
@@ -4056,6 +4056,14 @@
                 "markdownPath": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
                 "markdownSection": "Canonical Dependencies",
                 "sectionKey": "canonical dependencies",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Source notes",
+                "markdownPath": "content/markdown/aaa/spacetime/lorentz-kinematics.md",
+                "markdownSection": "Source notes",
+                "sectionKey": "source notes",
                 "headingLevel": 2
               }
             ]

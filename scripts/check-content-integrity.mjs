@@ -73,6 +73,14 @@ const REQUIRED_CHECKS = [
     args: ["scripts/check-owned-compute-launch-policy.mjs"],
   },
   {
+    name: "Test Option B current-source admission and dependency controls",
+    args: ["--test", "--test-concurrency=1", "tests/current-source-manifest.test.mjs", "tests/option-b-root-cover-admission.test.mjs"],
+  },
+  {
+    name: "Verify Option B root-cover profile transfers against retained A baselines",
+    args: ["scripts/equation-mapping/check-current-source-maps.mjs"],
+  },
+  {
     name: "Validate private MCP secure-tunnel deployment contract",
     args: ["scripts/archie-service/manage-secure-mcp-tunnel.mjs", "--check"],
   },

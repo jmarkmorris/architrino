@@ -15,6 +15,7 @@ from decimal import Decimal, localcontext, ROUND_FLOOR, ROUND_CEILING
 from fractions import Fraction as F
 import hashlib
 import importlib.util
+from importlib.machinery import SourceFileLoader
 import json
 from pathlib import Path
 import sys
@@ -24,13 +25,14 @@ from unittest.mock import patch
 
 ROOT=Path(__file__).resolve().parents[1]
 def load(name,relative):
-    p=ROOT/relative;spec=importlib.util.spec_from_file_location(name,p)
+    p=ROOT/relative;spec=importlib.util.spec_from_file_location(name,p,loader=SourceFileLoader(name,str(p)))
     module=importlib.util.module_from_spec(spec);sys.modules[name]=module;spec.loader.exec_module(module)
     return module
 s=load('refined_range_core','scripts/eom/oracle/f6c_refined_acceleration_conformance.py')
-r=load('frozen_independent_range_helpers','scripts/eom/verify-f6c-continuous-reception-acceleration.py')
+REFERENCE='reference/priorities/braid-program/evidence/source-replay/verify-f6c-continuous-reception-acceleration.6e3467a017c3.py.source'
 SHA='6e3467a017c3477fb1b2baddd10e985687ed6112aeb5bc84c2fc92a9453cda83'
-assert hashlib.sha256((ROOT/'scripts/eom/verify-f6c-continuous-reception-acceleration.py').read_bytes()).hexdigest()==SHA
+assert hashlib.sha256((ROOT/REFERENCE).read_bytes()).hexdigest()==SHA
+r=load('frozen_independent_range_helpers',REFERENCE)
 IDS=('0+','0-','1+','1-','2+','2-','3+','3-')
 Q='0.1666666666666666666666666666666667';K='10.304229970992187';RULER='0.5320012303229503'
 ROLES=('original_export','reconstruction_receipt','guards_receipt','root_cover','root_cover_comparison','member_acceleration_predeclaration','continuous_reception_enclosure_contract')

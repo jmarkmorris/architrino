@@ -685,7 +685,7 @@ class SessionSyntheticAdapter(BisectedSyntheticAdapter):
 def genuine_session_adapter(*, refined_indices=(0,)):
     """Independent stationary family, using the genuine frozen adapter methods."""
     V = load('provider_adapter_fixture_helpers', 'tests/test_f6c_variable_cell_adapter.py',
-             '3f033a807ac4d4d3986a2f43e73b7c51d4c8cc8ece9d1e8ecb62001a793bea47')
+             '94a2a80a1dd0d8f06dde78a11a3eba220a1d86a92dd9888b99e02f2598dc1e63')
     metadata = SessionSyntheticAdapter()
     times = tuple(frame.time for frame in metadata.frames)
     grid_tokens = ('-8', '-1', metadata.parents[0].reception.lower) + tuple(p.reception.upper for p in metadata.parents)

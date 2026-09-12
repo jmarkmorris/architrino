@@ -22,7 +22,6 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 10. `full_ppn_completion` — Status: `Deferred / blocked`.
 11. `horizon_diagnostics_consumer` — Status: `Deferred / blocked`.
 12. `speed_symbol_consolidation` — Status: `Deferred / blocked`.
-13. `data_file_layout_completion` — Owner: this queue. Status: `In progress`.
 
 ## In progress
 
@@ -39,13 +38,6 @@ This is the canonical cross-workstream routing queue. It does not replace any ow
 - **Request / acceptance:** Close the causal wake update, finite coincident same-transmitter continuation, and all three conserved accounts on the same update.
 - **Evidence / blocker:** Master-Equation Closure owns the derivation and joint acceptance.
 - **Completion:** The owner queue records a jointly accepted update and accounts, or a decisive no-go.
-
-### AWT-015 — Data-file layout completion
-
-- **Status:** In progress
-- **Request / acceptance:** File the 32 machine-readable data files still at the top level of nine active lanes into their layout subdirectories, updating every consumer that references them by path. Scope, destinations, consumers, hazards, and validation are in [campaigns/data-file-layout-completion.md](campaigns/data-file-layout-completion.md).
-- **Evidence / blocker:** Filing is complete; residual acceptance remains open. The operator requested a pause for repository actions after the September 12 repair checkpoint. The [current checkpoint](evidence/awt-015-post-merge-repair-2026-09-12.md#checkpoint-results) records current caller/runtime repairs, explicit original-source replay, and 102/102 focused passes. Full ordinary Node reports 2,691 passes, twelve failures and one skip over 2,704 tests; full Python reports 1,662 tests with one failure and one import error, whose module bodies remain unexecuted. Three repair issues remain: streamed lock disposition after source replacement, the conformance test's original mapping route, and original versus current root-checker identity. Ten Node failures concern the unapplied OPS-030 map, and one concerns equation-registry drift from concurrent corpus edits. Slow Node reports 119/124 passes; its deadline-fixture failure subsequently passes a focused check, while four corpus/runtime-output failures remain. Maintenance-inclusive integrity stops at the missing new equation link, with one failure and 34 checks unreached. The owned-compute closeout is clear. Resume after operator repository actions; no scientific acceptance, ranking change or Git publication occurred.
-- **Completion:** Every content-digest pin affected by the layout pass is resolved, each by verifying the bound document's substance before refreshing its digest, or by the review its gate requires. The full Node and Python suites pass on a machine with the shared venv, and the content-integrity gate passes apart from the separately tracked [OPS-017](../aaa-operations/work-queue.md#ops-017--feedback-app-resource-closure-adjudication).
 
 ## Deferred / blocked
 

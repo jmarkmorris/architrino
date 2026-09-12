@@ -12,17 +12,19 @@ import * as R from "../scripts/eom/run-f6c-cached-root-cover-pilot.mjs";
 import * as L from "../scripts/eom/launch-f6c-cached-root-cover-pilot.mjs";
 import { currentOwnedGroup, descendantRecords } from "../scripts/eom/launch-subfield-circular-root-pilot.mjs";
 const root=process.cwd(),digest=x=>createHash("sha256").update(x).digest("hex");
+const sourceMapDigest=digest(readFileSync(R.SOURCE_MAP));
+await R.initializeSourceBindings(root,sourceMapDigest);
 const temp=()=>mkdtempSync(path.join(tmpdir(),"f6c-pilot-control-"));
 const binding=(p,h="1".repeat(64))=>({path:p,sha256:h,bytes:1});
 function plan() {
   const python=path.resolve(process.env.AAA_VENV??"../.venv","bin/python"),node=realpathSync(process.execPath);
   const sources=[R.CONSUMER,"scripts/eom/oracle/continuous_reception_roots_cached.py","scripts/eom/oracle/certified_history.py","scripts/eom/oracle/decimal_interval.py"];
-  return {schema:"braid-program/f6c-cached-root-cover-pilot-launch.v2",scope:"pilot-cell-0",resourcePlan:binding(R.RESOURCE_PLAN,R.PINS[R.RESOURCE_PLAN]),
+  return {schema:"braid-program/f6c-cached-root-cover-pilot-launch.v2",scope:"pilot-cell-0",resourcePlan:binding(R.RESOURCE_PLAN,R.SOURCE_BINDINGS[R.RESOURCE_PLAN]),
     python,pythonRealPath:realpathSync(python),git:realpathSync("/usr/bin/git"),node,
-    comparisonContract:{declarationSha256:R.PINS["reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md"],verifierSha256:R.PINS[R.COMPARISON],scope:"pilot-cell-0",
-      subjectSourceBindings:sources.map(p=>binding(p,R.PINS[p])),runtimeBindings:[binding(realpathSync(python)),binding(realpathSync("/usr/bin/git")),binding(path.resolve(python,"../../pyvenv.cfg"))]},
-    operationalBindings:[R.ENTRY,R.LAUNCHER,R.OUTER,"/bin/ps","/usr/bin/memory_pressure",node].map(p=>binding(p,R.PINS[p]??"1".repeat(64))),
-    controlBindings:["tests/test_f6c_cached_continuous_reception_root_cover_preparation.py","tests/test_f6c_cached_continuous_reception_root_cover.py"].map(p=>binding(p,R.PINS[p]))};
+    comparisonContract:{declarationSha256:R.SOURCE_BINDINGS["reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md"],verifierSha256:R.SOURCE_BINDINGS[R.COMPARISON],scope:"pilot-cell-0",
+      subjectSourceBindings:sources.map(p=>binding(p,R.SOURCE_BINDINGS[p])),runtimeBindings:[binding(realpathSync(python)),binding(realpathSync("/usr/bin/git")),binding(path.resolve(python,"../../pyvenv.cfg"))]},
+    operationalBindings:[R.ENTRY,R.LAUNCHER,R.OUTER,"/bin/ps","/usr/bin/memory_pressure",node].map(p=>binding(p,R.SOURCE_BINDINGS[p]??"1".repeat(64))),
+    controlBindings:["tests/test_f6c_cached_continuous_reception_root_cover_preparation.py","tests/test_f6c_cached_continuous_reception_root_cover.py"].map(p=>binding(p,R.SOURCE_BINDINGS[p]))};
 }
 test("machine plan is pilot-only and binds complete frozen sources/environment",()=>{
   const p=plan();assert.equal(R.validatePlan(p,root,"1".repeat(64),"1".repeat(64)),p);
@@ -33,7 +35,7 @@ test("machine plan is pilot-only and binds complete frozen sources/environment",
   }
 });
 test("all frozen hashes and comparison schema match disk without reading scientific data",()=>{
-  for(const [p,h] of Object.entries(R.PINS))if(!p.startsWith(".local-data/")&&!p.startsWith("/"))assert.equal(digest(readFileSync(p)),h,p);
+  for(const [p,h] of Object.entries(R.SOURCE_BINDINGS))if(!p.startsWith(".local-data/")&&!p.startsWith("/"))assert.equal(digest(readFileSync(p)),h,p);
   assert.match(readFileSync(R.COMPARISON,"utf8"),/REPORT_SCHEMA = "braid-program\/f6c-continuous-reception-root-cover-conformance.v1"/);
 });
 test("source capture rejects replacement, symlinks, byte bound and overwrite",()=>{
@@ -90,7 +92,7 @@ test("synthetic mechanical handoff checks exact output/gate/resource census",()=
 test("synthetic comparison admission requires authenticated preceding output and exact claims",()=>{
   const {job}=admissionFixture(),consumer=R.admitStage(job),stage="comparison";mkdirSync(path.join(job.output,stage+"-process"));
   const claims={reconstructedFamilyApplicabilityAuthenticated:true,conditionalRootCoverValidated:true,historicalTrajectoryIdentityEstablished:false,rootExecutionAuthorized:false,metricsAvailable:false,h3EvidenceEligible:false,scoreAuthorized:false,eomExecuted:false};
-  const report={schema:"braid-program/f6c-continuous-reception-root-cover-conformance.v1",accepted:true,scope:"pilot-cell-0",manifest:consumer.outputs[2],launchPlan:job.planBinding,verifier:{sha256:R.PINS[R.COMPARISON]},
+  const report={schema:"braid-program/f6c-continuous-reception-root-cover-conformance.v1",accepted:true,scope:"pilot-cell-0",manifest:consumer.outputs[2],launchPlan:job.planBinding,verifier:{sha256:R.SOURCE_BINDINGS[R.COMPARISON]},
     rows:consumer.outputs[0],pieces:consumer.outputs[1],analysis:{accepted:false,conditionalEnclosuresConformant:true,cellCount:1,pairCellCertificates:64,ordinaryNonselfRows:56,selfExclusionRows:8,distinctNonselfFaceChecks:112,pieceRecordCount:112,recordedGeometryPieceVisits:168},
     claims,libraryFlags:{premise_truth_authenticated:false,subject_membership_established:false,execution_authorized:false,metrics_available:false,h3_evidence_eligible:false}};
   const receipt=R.writeNew(path.join(job.output,"comparison.json"),report);
@@ -220,7 +222,7 @@ test("final publication needs completed stages and live inclusive clock",()=>{
   assert.equal(R.fileOperation(active).path,path.join(out,"pilot-admission.json"));assert.throws(()=>R.fileOperation(active));
 });
 test("launcher CLI requires all exact hashes and rejects path traversal",()=>{
-  const argv=["--out",".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/new","--plan","plan","--plan-sha256","1".repeat(64),"--launcher-sha256","2".repeat(64),"--entry-sha256","3".repeat(64)];
+  const argv=["--out",".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/new","--plan","plan","--plan-sha256","1".repeat(64),"--launcher-sha256","2".repeat(64),"--entry-sha256","3".repeat(64),"--source-map-sha256",sourceMapDigest];
   assert.equal(L.parseArgs(argv).entrySha256,"3".repeat(64));assert.throws(()=>L.parseArgs(argv.slice(0,-2)));
   const bad=[...argv];bad[1]="a/../b";assert.throws(()=>L.parseArgs(bad));
 });
@@ -331,28 +333,31 @@ const CACHED_EXPECTED_PINS={
 };
 const CACHED_REGEX_REPLACEMENT=["/reduce-prescribed-acceleration-response\\.py|(?:run|launch)-f6c-root-cover-pilot\\.mjs|prepare-f6c-continuous-reception-root-cover\\.py/u","/reduce-prescribed-acceleration-response\\.py|(?:run|launch)-f6c(?:-cached)?-root-cover-pilot\\.mjs|prepare-f6c(?:-cached)?-continuous-reception-root-cover\\.py/u"];
 const replacePaths=source=>{for(const[a,b]of CACHED_PATH_REPLACEMENTS)source=source.split(a).join(b);return source;};
-const frozen=(p,h)=>{const bytes=readFileSync(p);assert.equal(digest(bytes),h,p);return bytes.toString("utf8");};
-test("current cached composition exact source delta is binding/address-only, not operational logic",()=>{
+// These are historical construction checks against the pre-B source generation.
+// Preserve their original hashes and transformations; retrieve bytes without execution.
+const constructionBaseline=JSON.parse(readFileSync("reference/priorities/development-process-review/contracts/option-b-root-cover-baseline.json"));
+const frozen=(p,h)=>{const bytes=execFileSync("git",["show",`${constructionBaseline.commit}:${p}`]);assert.equal(digest(bytes),h,p);return bytes.toString("utf8");};
+test("cached composition retains its exact historical pre-B construction delta",()=>{
   const oldEntry=frozen("scripts/eom/run-f6c-root-cover-pilot.mjs","4c9e2ea18c78b86db36ce18160ee1f852d04fab0aa33fe9e672e6851c280f71a");
   let expected=replacePaths(oldEntry);
   for(const[a,b]of CACHED_HASH_REPLACEMENTS){assert.equal(expected.split(a).length,2);expected=expected.replace(a,b);}
   const marker='  ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json": "86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880",\n';
   assert.equal(expected.split(marker).length,2);expected=expected.replace(marker,marker+CACHED_EXTRA_PINS);
-  assert.equal(readFileSync(R.ENTRY,"utf8"),expected);
+  assert.equal(frozen(R.ENTRY,"74d7be0a7d23b703f63de4939b5a133b991b4ea40f8ccbd3f919d7b0080ac30a"),expected);
   const oldLauncher=frozen("scripts/eom/launch-f6c-root-cover-pilot.mjs","22e855b8d084ab3c1dd44e64554c24bede56fc4def9843e16a15ac62dca829a9");
   expected=replacePaths(oldLauncher);
   const[a,b]=CACHED_REGEX_REPLACEMENT;assert.equal(expected.split(a).length,2);expected=expected.replace(a,b);
-  assert.equal(readFileSync(R.LAUNCHER,"utf8"),expected);
-  assert.deepEqual(R.PINS,CACHED_EXPECTED_PINS);
+  assert.equal(frozen(R.LAUNCHER,"9c7ef17b46dbdd7f4ae75283f59610f5a85ac4fdc23456af03fb6b7144a6fcfa"),expected);
+  assert.deepEqual(R.SOURCE_BINDINGS,CACHED_EXPECTED_PINS);
 });
-test("all32 original entry/launcher/process control obligations survive exact retargeting",()=>{
+test("historical 32 entry/launcher/process obligations retain exact retargeting",()=>{
   const unit=frozen("tests/f6c-root-cover-pilot.test.js","00e9c947ef8082e596bca7c1bb8d4c61fd9029cbf136ee9d7910b765ca3cec9d");
   const proc=frozen("tests/f6c-root-cover-pilot-process.test.js","159244ee6d45bc92463ff5e27ac60d416114820b187a6ab767983ec01e228c6b");
   assert.equal((unit.match(/^test\(/gmu)??[]).length,26);
   assert.equal((proc.match(/^test\(/gmu)??[]).length,6);
-  const actual=readFileSync("tests/f6c-cached-root-cover-pilot-launcher.test.js","utf8");
+  const actual=frozen("tests/f6c-cached-root-cover-pilot-launcher.test.js","86336174713bea95164a0fbda3e40352c8bbb5dad9859c9e9b210ebcf2035bf0");
   assert.equal(actual.slice(0,actual.indexOf("\n// Cached successor binding controls;")),replacePaths(unit));
-  assert.equal(readFileSync("tests/f6c-cached-root-cover-pilot-process.test.js","utf8"),replacePaths(proc));
+  assert.equal(frozen("tests/f6c-cached-root-cover-pilot-process.test.js","433452397ac00c2deaa6a9300b84510f553943c491fd49c965a7573a691b0cf7"),replacePaths(proc));
 });
 test("old or mixed launch bindings cannot select the cached composition",()=>{
   for(const mutate of [
@@ -369,9 +374,11 @@ test("all20 comparison fixed bindings occur in actual preflight closure, includi
   const block=text.split("FIXED = (\n")[1].split("\n)\nKNOT_SHA")[0];
   const fixed=block.trim().split("\n").map(line=>JSON.parse("["+line.trim().slice(1,-2).replace(/\bDECLARATION_SHA\b/gu,JSON.stringify(h)).replace(/\bDECLARATION\b/gu,JSON.stringify(decl))+"]"));
   assert.equal(fixed.length,20);
-  const bindings=new Map(R.planBindings(plan(),root).map(b=>[b.path,b.sha256]));
-  for(const[role,p,hash]of fixed){assert.equal(R.PINS[p],hash,role);assert.equal(bindings.get(path.resolve(root,p)),hash,role);}
-  assert.equal(R.PINS["reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md"],"2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40");
+  const currentPlan=plan();
+  currentPlan.operationalBindings=currentPlan.operationalBindings.map(b=>[R.ENTRY,R.LAUNCHER].includes(b.path)?binding(b.path,digest(readFileSync(b.path))):b);
+  const bindings=new Map(R.planBindings(currentPlan,root).map(b=>[b.path,b.sha256]));
+  for(const[role,p,hash]of fixed){assert.equal(R.SOURCE_BINDINGS[p],hash,role);assert.equal(bindings.get(path.resolve(root,p)),hash,role);}
+  assert.equal(R.SOURCE_BINDINGS["reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md"],"2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40");
 });
 test("cached and baseline pilot addresses share exclusion and the unchanged lock lane",()=>{
   assert.equal(R.LANE,".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827");

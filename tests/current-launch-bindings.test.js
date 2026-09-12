@@ -10,7 +10,8 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const sha=raw=>createHash('sha256').update(raw).digest('hex');
 assert.equal(sha('abc'),'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');
 const recovered=JSON.parse(readFileSync(path.join(root,'reference/priorities/development-process-review/evidence/next-caller-inputs/source-identities.json')));
-for(const profile of ['run-f6c-root-cover-pilot','run-f6c-cached-root-cover-pilot','run-f6c-cached-root-cover-full','run-prescribed-response-pilot','run-f6c-acceleration-pilot']) {
+// All three root-cover profiles moved to option-b-root-cover-admission.test.mjs.
+for(const profile of ['run-prescribed-response-pilot','run-f6c-acceleration-pilot']) {
   test(`${profile}: current repository bindings reject changed bytes`,async()=>{
     const entry=await import(pathToFileURL(path.join(root,`scripts/eom/${profile}.mjs`)));
     let checked=0;

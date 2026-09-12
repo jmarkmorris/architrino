@@ -495,6 +495,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - **Ch 4.6.10** [Failure Conditions](../../../markdown/aaa/spacetime/lorentz-kinematics.md?section=Failure+Conditions)
     - **Ch 4.6.11** [Position in the $\mathbb{A}\mathbb{A}\mathbb{A}$ Program](../../../markdown/aaa/spacetime/lorentz-kinematics.md?section=Position+in+the+%24%5Cmathbb%7BA%7D%5Cmathbb%7BA%7D%5Cmathbb%7BA%7D%24+Program)
     - **Ch 4.6.12** [Canonical Dependencies](../../../markdown/aaa/spacetime/lorentz-kinematics.md?section=Canonical+Dependencies)
+    - **Ch 4.6.13** [Source notes](../../../markdown/aaa/spacetime/lorentz-kinematics.md?section=Source+notes)
   - **Ch 4.7** [Emergent Metric](../../../scenes/spacetime/emergent_metric.json)
     - **Ch 4.7.1** [Absolute Frame vs. Effective Geometry](../../../markdown/aaa/spacetime/emergent-metric.md?section=Absolute+Frame+vs.+Effective+Geometry)
     - **Ch 4.7.2** [Ontological Picture](../../../markdown/aaa/spacetime/emergent-metric.md?section=Ontological+Picture)

@@ -4,6 +4,18 @@ This is the chronological completion log for the CRW-005 assurance campaign. The
 
 ## Completed milestones
 
+### 2026-09-12 — Proper Time and Time Dilation PT-01–PT-12 bounded repair
+
+Implemented and validated the smallest safe repairs for 12 demonstrated findings, including observer-time conversion, reference normalization, acceleration regularization, whole-turn phase extraction, spectral inversion, and the PPN mixed coefficient. Strict content, local-link, whitespace, and KaTeX checks passed, with 93 display equations and 400 inline expressions rendered and all 93 equation anchors preserved. Physical clock retention, constitutive response, observer recovery, root/history control, and empirical acceptance remain open. The [bounded receipt](evidence/crw-005-proper-time-and-time-dilation-review-2026-09-12.md) records exact hashes, findings, falsifiers, and validation limits.
+
+### 2026-09-12 — Lorentzian Conspiracy and Emergent Lorentz Kinematics LK-01–LK-16 bounded repair
+
+Implemented and validated the smallest safe repairs for 16 demonstrated findings, including primitive/effective-layer separation, complete causal-root accounting, rest-shape normalization, clock-coordinate conversion, the squared lapse factor, theorem remainders, hierarchy bounds, and conditional theorem domains. Strict content validation, focused parser/ID checks, KaTeX, and independent symbolic checks passed. Branch existence, stability, action construction, observer recovery, and physical Lorentz closure remain open. The [bounded receipt](evidence/crw-005-lorentz-kinematics-review-2026-09-12.md) records exact hashes, counterexamples, and generated-drift limits.
+
+### 2026-09-12 — Emergent Metric EM-01–EM-15 bounded repair
+
+Implemented and validated the smallest safe repairs for 15 grouped findings, including metric-domain conditions, geodesic terms, null-path measure, proper-acceleration norm, PPN dimensional expansion, horizon flux, entropy-counting assumptions, and medium-response boundaries. Focused math/link/anchor checks, strict content validation, equation-registry freshness, and scoped whitespace checks passed. Constitutive response, thermodynamic recovery, photon agreement, and physical metric identification remain open. The [bounded receipt](evidence/crw-005-emergent-metric-review-2026-09-12.md) records exact hashes, counterexamples, and validation limits.
+
 ### 2026-09-11 — Noether Sea NS-1–NS-13
 
 Accepted and implemented all 13 Noether Sea repairs. Full-document reread, independent mathematical comparisons, KaTeX and equation-ID preservation, link checks, strict content validation, equation-registry check, and scoped whitespace validation passed. Physical population realization, branch calibration, stability, and constitutive closure remain open.
