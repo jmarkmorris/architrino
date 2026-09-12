@@ -219,17 +219,170 @@ Earlier designs included a Lattice Primer, an overview card, named camera preset
 
 A source requirements packet can preserve an earlier design alongside later amendments. Its presence is not proof that every proposed control exists. The retained history separates initial implementation, later presentation changes, verification-only reconciliation and superseded requests. This manuscript follows that distinction: it explains the accepted roles while retaining exact earlier requirements and outcomes as historical supporting material.
 
-## 8. Remaining work and the boundary of extension
+## 8. Regular polyhedra with two vertex polarities
 
-### 8.1. New periodic patterns and teaching structures
+### 8.1. Embedding, repetition, and permitted contacts
+
+A polyhedron in this chapter is the convex hull of a finite set of vertices in the Euclidean void. An electrino or positrino labels each occupied vertex; the edges and enclosed volume are geometric constructions, not material struts or solid architrino interiors. The results below are derived geometry under the stated coordinate and coloring rules. They establish neither an assembly history nor stationary acceleration cancellation.
+
+Three questions have different answers. An **embedding** places every vertex on a specified point set. A **periodic packing** repeats polyhedra in three independent translation directions with disjoint interiors, allowing gaps. A **honeycomb** additionally fills all space without gaps. A periodic packing of polyhedra need not have all its vertices on a single Bravais lattice: its translation lattice can carry a finite basis of vertex positions.
+
+The stacking scope excludes a vertex of one selected polyhedron lying strictly inside another. Write $V(P)$ for the vertices of polyhedron $P$, and $\operatorname{int}Q$ for the interior of $Q$. The literal exclusion is
+
+$$
+V(P)\cap\operatorname{int}Q=\varnothing
+\qquad\text{for every ordered pair }P\ne Q.
+$$
+
+This test alone does not exclude crossing polyhedra whose vertices all remain outside one another. Therefore each construction described here as a packing also proves $\operatorname{int}P\cap\operatorname{int}Q=\varnothing$. The two requested cases are then $V(P)\cap V(Q)\ne\varnothing$ for common vertices and $V(P)\cap V(Q)=\varnothing$ for no common vertices. Face and edge sharing can include common vertices; contact alone does not necessarily do so. The separated examples below have a positive gap, avoiding that ambiguity.
+
+An unused ambient lattice site is a separate accounting issue. A tiling can have extra ambient sites inside its cells even though no vertex of another selected cell enters them. Such sites must remain disclosed. If every occupied site must be a selected polyhedron vertex, the stronger requirement is that the ambient inventory equal the union of cell vertices. The primary examples below either satisfy this stronger requirement or explicitly identify their unused sites.
+
+### 8.2. What crystallographic symmetry does and does not forbid
+
+The crystallographic restriction concerns rotations preserving an entire periodic lattice, not every finite motif repeated within it. A motif can possess fivefold symmetry even when its translation pattern does not. This distinction is stated in Wondratschek's [IUCr treatment of crystallographic symmetry](https://www.iucr.org/what-we-do/education/pamphlets/matrices-mappings-and-crystallographic-symmetry). Consequently regular dodecahedra and icosahedra are not excluded from periodic packings; periodic packing constructions are also studied directly by [Torquato and Jiao](https://arxiv.org/abs/0909.0940).
+
+There is nevertheless an exact obstruction to placing their vertices on the cubic point sets considered here. Simple cubic, BCC, FCC, and diamond cubic all have rational Cartesian coordinates in units of a conventional cubic edge $a$. Ratios of nonzero squared distances between their sites are therefore rational. In a regular pentagon, the diagonal-to-edge squared ratio is $\varphi^2=(3+\sqrt5)/2$, where $\varphi=(1+\sqrt5)/2$ is the golden ratio. Every regular dodecahedron contains such a face. The five neighbors of an icosahedron vertex likewise form a regular pentagon. Both solids therefore require an irrational squared-distance ratio and cannot have all their vertices on any of these four point sets, at any scale or orientation. This is a derived metric obstruction, independent of the shape's orientation.
+
+The same argument applies to ideal HCP. With basal vectors $\mathbf u=a(1,0,0)$, $\mathbf v=a(1/2,\sqrt3/2,0)$ and vertical vector $\mathbf w=a(0,0,\sqrt{8/3})$, the matrix of their dot products divided by $a^2$ has rational entries. HCP sites have rational coefficients in this basis, so all squared-distance ratios remain rational. This proof covers ideal HCP and other declared rational squared height ratios; it is not an exclusion theorem for every adjustable hexagonal metric.
+
+### 8.3. Exact scale families on cubic and hexagonal point sets
+
+Let $a>0$ be the conventional cubic edge and $n$ a positive integer. The following site sets in $a\mathbb Z^3$ give direct regularity witnesses:
+
+| Solid | Vertices, in units of $a$ | Edge length | Reason |
+| --- | --- | --- | --- |
+| Cube | $(i,j,k)$ with each coordinate in $\{0,n\}$ | $na$ | Three equal orthogonal edge directions |
+| Octahedron | $(\pm n,0,0),(0,\pm n,0),(0,0,\pm n)$ | $\sqrt2na$ | Six axial vertices; all nonopposite pairs have that distance |
+| Tetrahedron | $(0,0,0),(n,n,0),(n,0,n),(0,n,n)$ | $\sqrt2na$ | All six pair distances agree |
+
+These are separate embeddings. Increasing $n$ does not produce an admissible stack of nested copies, and the listed cube, octahedron, and tetrahedron do not have a common center as written. They can be translated for comparison without changing regularity.
+
+BCC is the union of $a\mathbb Z^3$ and its shift by $a(1/2,1/2,1/2)$. FCC is the union of four cubic cosets with offsets $a(0,0,0)$, $a(0,1/2,1/2)$, $a(1/2,0,1/2)$, and $a(1/2,1/2,0)$. Diamond adds a copy of those four cosets shifted by $a(1/4,1/4,1/4)$. Translating the table onto each coset supplies all three shape families at every integer $n$. This proves geometric availability; it does not prove mixed polarity, use of every site in one packing, or empty interiors relative to the ambient inventory.
+
+The smaller families in a Bravais lattice also have an integer ladder. If vertices $\mathbf X_j$ belong to a Bravais lattice and $\mathbf X_0$ is one of them, then
+
+$$
+\mathbf X_j^{(n)}=\mathbf X_0+n(\mathbf X_j-\mathbf X_0)
+$$
+
+belongs to that lattice for every integer $n\geq1$, since vertex differences are lattice vectors. The map multiplies every length by $n$ and preserves regularity. Thus any exact BCC or FCC seed, including an FCC octahedron of edge $a/\sqrt2$, has an unbroken integer ladder about a lattice vertex. Scaling about an empty geometric center instead can impose additional congruence conditions.
+
+For a point set with a basis, a sufficient replacement is equally explicit. If all basis coordinates relative to translation vectors have denominator dividing $m$, scaling about a translation-lattice origin by $n\equiv1\pmod m$ preserves every basis coset. Diamond therefore admits this construction for $n\equiv1\pmod4$. For HCP written as $\Lambda\cup(\Lambda+\mathbf b)$ with $\mathbf b=(\mathbf u+\mathbf v)/3+\mathbf w/2$, $n\equiv1\pmod6$ suffices. These are sufficient scale subsequences, not classifications of every possible scale.
+
+At the ideal HCP height ratio, the triangle $\{\mathbf0,\mathbf u,\mathbf v\}$ and the vertex $\mathbf b$ form a regular tetrahedron of edge $a$: the upper vertex has horizontal squared distance $a^2/3$ from each triangle corner and height squared $2a^2/3$. A regular octahedron has lower vertices $\{\mathbf u,\mathbf v,\mathbf u+\mathbf v\}$ and upper vertices $\{\mathbf b,\mathbf b+\mathbf u,\mathbf b+\mathbf v\}$. Their equilateral triangular faces have aligned centers and opposite orientation; separation $a\sqrt{2/3}$ is the regular-octahedron face separation. The scale lemma gives larger exact copies of these seeds. Hence ideal-HCP tetrahedra and octahedra are not restricted to isolated nearest-scale examples. No complete classification of HCP cubes or nonideal-HCP embeddings is asserted here.
+
+Oblique lines in a lattice drawing do not by themselves identify a tilted polyhedron. BCC nearest-neighbor directions follow body diagonals, while FCC nearest-neighbor directions follow face diagonals. A conventional cubic cell still has orthogonal edges. One standard BCC primitive-vector choice is $a(-1,1,1)/2$, $a(1,-1,1)/2$, $a(1,1,-1)/2$: pairwise dot products give angle $\arccos(-1/3)$. The FCC choice $a(0,1,1)/2$, $a(1,0,1)/2$, $a(1,1,0)/2$ gives angle $\pi/3$. These are particular oblique translation cells, not intrinsic tilts of the full point sets; the selected polarity-preserving cell can differ again. The simple-cubic alternating-plane case means fully occupied square planes with alternating signs. An AB shift changes occupied positions, as in HCP, and is a distinct construction.
+
+### 8.4. Equal populations are weaker than alternating every edge
+
+Let $s(v)=+1$ denote a positrino and $s(v)=-1$ an electrino at vertex $v$. A polyhedron is individually 50/50 when $\sum_{v\in V(P)}s(v)=0$. A periodic arrangement is globally 50/50 when that sum vanishes over uniquely owned sites in a polarity-preserving translation cell. These are different constraints when vertices are shared.
+
+All five Platonic solids have even vertex counts, so each permits an isolated equal-population assignment. Requiring $s(u)=-s(v)$ on every edge is stronger: it requires a bipartite edge graph, meaning every closed edge cycle has even length. Alternation around an odd cycle returns the wrong sign to the starting vertex.
+
+| Solid | Positrinos / electrinos per balanced solid | Opposite polarity on every edge? | Obstruction or construction |
+| --- | ---: | --- | --- |
+| Tetrahedron | 2 / 2 | No | Triangular faces; a 2/2 assignment has four unlike and two like edges |
+| Cube | 4 / 4 | Yes | Coordinate-sum parity changes on every cube edge |
+| Octahedron | 3 / 3 | No | Triangular faces; opposite signs on each antipodal pair give six unlike and six like edges |
+| Dodecahedron | 10 / 10 | No | Pentagonal faces |
+| Icosahedron | 6 / 6 | No | Triangular faces |
+
+Here an antipodal pair consists of two vertices opposite through the center. Assigning opposite signs to every antipodal pair balances the cube, octahedron, dodecahedron, and icosahedron. It need not alternate their edges. The tetrahedron has no antipodal vertex pairs and is balanced by selecting any two vertices for each sign. These are combinatorial constructions, not polarity assignments automatically inherited from an ambient lattice.
+
+For the simple-cubic embeddings of §8.3, compare checkerboard polarity $s(i,j,k)=(-1)^{i+j+k}$ with alternating-plane polarity $s(i,j,k)=(-1)^k$. Counts below are unordered between species because translating a motif can exchange the signs.
+
+| Shape and size | Checkerboard population | Alternating-plane population |
+| --- | --- | --- |
+| Cube, odd $n$ | 4 / 4 | 4 / 4 |
+| Tetrahedron, odd $n$ | 4 / 0 | 2 / 2 |
+| Octahedron, odd $n$ | 6 / 0 | 4 / 2 |
+| Any of these, even $n$ | Monochromatic | Monochromatic |
+
+These counts follow by substituting the displayed coordinates into the two parity rules. In particular, alternating planes do not give a 3/3 octahedron in this axial family. In the checkerboard cube, the two monochromatic alternate-corner tetrahedra together use all eight vertices, but their convex interiors intersect. This stella-octangula compound is a shape-recognition example outside the packing catalogue, even though neither tetrahedron has a vertex strictly inside the other.
+
+The distinction also explains several gallery cases. Under BCC corner/body-center polarity, each cubic coset is monochromatic, so the within-coset families above do not supply balanced polyhedra. Under diamond's two-FCC-set polarity, tetrahedra formed by the four nearest neighbors of a site are monochromatic. Under ideal-HCP alternating A/B layer polarity, a nearest tetrahedron has a 3/1 layer split while a nearest octahedron has a 3/3 split. These conclusions concern the named motifs and decorations, not every embedding in those point sets.
+
+### 8.5. Cubes and the tetrahedral-octahedral honeycomb
+
+The unit cubes $a([i,i+1]\times[j,j+1]\times[k,k+1])$ tile space with common faces, edges, and vertices. Under either simple-cubic coloring above, every cube is 4/4 and the global site population is 50/50. Under checkerboard coloring, all cube edges additionally join opposite polarities. Interiors of distinct cubes are disjoint, and every site of $a\mathbb Z^3$ belongs to the vertex inventory. This is the most direct example satisfying local balance, global balance, shared vertices, and the interior exclusion simultaneously.
+
+For the tetrahedral-octahedral honeycomb, use the FCC set
+
+$$
+\mathcal F=\{a(i,j,k):i+j+k\text{ is even}\}.
+$$
+
+Take the four even-parity corners of every elementary cube as a tetrahedron. Around every odd-parity integer site take the six adjacent even-parity sites as an octahedron. All edges have length $\sqrt2a$. Inside each elementary cube, its central tetrahedron has volume $a^3/3$ and the four corner portions of neighboring octahedra each have volume $a^3/6$. The corresponding planar cuts partition the cube, giving total $a^3$ with disjoint interiors. This supplies a local coverage proof, not just a sum of volumes. A complete octahedron has volume $4a^3/3$; there is one tetrahedron per elementary cube and one octahedron per two cubes, so the cell-number ratio is two tetrahedra to one octahedron. Its vertex inventory is exactly $\mathcal F$.
+
+If $\mathcal F$ inherits the simple-cubic checkerboard sign, all these vertices have the same polarity. Adding the omitted odd sites creates a 50/50 ambient population but places those sites at octahedron centers. This does not produce balanced polyhedra and is not a preferred construction for the present vertex-only stacking question. The other parity FCC honeycomb cannot be superposed as a second admitted stack: its vertices lie inside octahedra of the first.
+
+A genuinely bipolar decoration of $\mathcal F$ is $s(i,j,k)=(-1)^k$. Translation by $a(1,0,1)$ preserves $\mathcal F$ and exchanges the signs, proving equal global populations. Every honeycomb tetrahedron is 2/2, since its two occupied corners on each of two consecutive planes have opposite signs. Every octahedron is 4/2, since four vertices lie on its center plane and two on the adjacent planes. Thus this exact shared-vertex honeycomb has balanced tetrahedra but unbalanced octahedra.
+
+A different periodic coloring illustrates the converse emphasis:
+
+$$
+s(i,j,k)=(-1)^{\lfloor i/2\rfloor+\lfloor j/2\rfloor+\lfloor k/2\rfloor}
+\qquad((i,j,k)\in\mathcal F).
+$$
+
+Translation by $2a$ along any coordinate axis exchanges signs, and translation by $4a$ preserves them. Opposite octahedron vertices differ by two in one coordinate, so every octahedron is 3/3. Tetrahedra are 2/2 when the three lower-corner coordinate parities of their elementary cube are mixed, and monochromatic when those parities are all equal. To see this, increasing a coordinate by one changes its floor parity exactly when the lower coordinate is odd; on the four selected corners, any nonconstant parity restriction splits two and two. Neither example establishes a coloring that balances every tetrahedron and every octahedron simultaneously. That stronger classification remains unresolved here.
+
+Shared ownership can be checked without double counting. If $m(v)$ is the number of incident selected cells at a site, a periodic incidence sum satisfies
+
+$$
+\sum_{P\ \mathrm{mod}\ \Lambda}\ \sum_{v\in V(P)}\frac{s(v)}{m(v)}
+=\sum_{v\ \mathrm{mod}\ \Lambda}s(v).
+$$
+
+Here $\Lambda$ is a polarity-preserving translation lattice; incidences crossing its cell boundary are included with their multiplicities. Each site's incident copies contribute $m(v)$ weights of $1/m(v)$. Cubic-honeycomb sites meet eight cubes; tetrahedral-octahedral sites meet eight tetrahedra and six octahedra. Local balance implies global balance under uniform incidence multiplicity, but this implication is not automatic for an arbitrary mixed complex with varying multiplicities.
+
+### 8.6. Periodic examples with no common vertices
+
+Every Platonic solid admits a separated periodic 50/50 construction. Place its center at the origin, let $R$ be its circumradius, and repeat one balanced vertex motif with centers on $L\mathbb Z^3$, where $L>2R$. Distinct circumscribed balls are separated, so the polyhedra have disjoint interiors, no common vertices, and no vertices inside another copy. Each translation cell owns exactly one balanced motif. This is a derived existence construction for all five solids; it claims neither close packing nor space filling. For dodecahedra and icosahedra its vertices form a periodic point set with a basis, rather than any of the fixed rational cubic point sets excluded in §8.2.
+
+A fixed simple-cubic example avoids even that distinction. Take the eight vertices of the unit cube and repeat by $2a\mathbb Z^3$. Distinct cubes have gaps and no common vertices; every integer site belongs to exactly one such cube because each coordinate has a unique representation $2q+r$ with $r\in\{0,1\}$. Both checkerboard and alternating-plane assignments give every cube 4/4 and the global population 50/50. Compare this with the unit-step cubic honeycomb: the same site inventory supports either shared-vertex cells filling space or separate cubes with gaps, depending on the chosen incidence overlay.
+
+The construction for an arbitrary finite motif already embedded in a periodic decorated point set is similar: choose three sufficiently large polarity-preserving translations so that translated bounding regions are disjoint. This preserves the seed's coloring and local population. It does not turn a monochromatic seed into a balanced one, and it can leave unused ambient sites that must be reported.
+
+### 8.7. Periodic examples meeting only at common vertices
+
+All five Platonic solids also admit a periodic construction in which adjacent copies meet at exactly one vertex, while every polyhedron and the global inventory are 50/50. Choose a longest vertex-to-vertex displacement $\mathbf t=\mathbf v_+-\mathbf v_-$. These two vertices are the unique support points in the direction of $\mathbf t$ and its negative. Indeed, another vertex with an equally large projection would have greater distance from the opposite endpoint unless it were the same vertex, contradicting maximality. The solid lies in the slab between the two perpendicular support planes.
+
+The chain $P+k\mathbf t$, for integer $k$, consequently has disjoint interiors and consecutive copies meet only at $\mathbf v_++k\mathbf t=\mathbf v_-+(k+1)\mathbf t$. Nonconsecutive slabs are separated. Repeat the chain in two perpendicular transverse directions at spacing greater than $2R$. Distinct chains are separated by their transverse bounding disks. The complete arrangement is periodic in three dimensions but has gaps between chains.
+
+Choose a balanced sign assignment $s_0$ on $P$ with $s_0(\mathbf v_+)=-s_0(\mathbf v_-)$. Give copy $k$ the signs $(-1)^k s_0$. At a shared endpoint the signs then agree, so one physical site receives one label. Every copy remains individually balanced, and the colored repeat length is $2\mathbf t$. In that doubled repeat there are $2N-2$ uniquely owned vertices for an $N$-vertex solid: two endpoint incidences have been identified. The two identified sites have opposite signs, leaving $N-1$ positrinos and $N-1$ electrinos. This proves global balance as well as local balance.
+
+The doubled coloring matters. If both contact endpoints had the same sign and an unchanged coloring were repeated, each geometric repeat would lose one count of that sign after shared-site identification; balanced isolated copies would then give an unbalanced global inventory. Shared vertices constrain the coloring and its repeat period, not just the drawing.
+
+### 8.8. Comparison and geometric verification boundary
+
+| Construction | Common vertices? | Every solid 50/50? | Global sites 50/50? | Fills space? |
+| --- | --- | --- | --- | --- |
+| Unit cubic honeycomb, checkerboard or planes | Yes | Yes, 4/4 | Yes | Yes |
+| FCC tetrahedral-octahedral honeycomb, alternating planes | Yes | Tetrahedra 2/2; octahedra 4/2 | Yes | Yes |
+| Same honeycomb, floor-parity coloring | Yes | Octahedra 3/3; tetrahedra partly monochromatic | Yes | Yes |
+| Separated unit cubes repeated by $2a$ | No | Yes, 4/4 | Yes | No |
+| Separated balanced motifs, any Platonic solid | No | Yes | Yes | No |
+| Alternately colored vertex-contact chains, any Platonic solid | Yes, one per adjoining pair | Yes | Yes | No |
+
+Every admitted row has disjoint polyhedron interiors and excludes vertices inside another selected polyhedron. The constructions prove existence and the displayed population statements, not exhaustiveness or optimal density. For a proposed extension, exact vertex coordinates establish regularity; supporting planes establish separation; shared-coordinate identities establish contact; and uniquely owned signed counts establish balance. A single unequal required edge, strictly interior foreign vertex, contradictory sign at a shared coordinate, or nonzero signed count in the declared repeat overturns the corresponding claim. A vertex-only containment test cannot establish the stronger disjoint-interior condition; for general convex polyhedra, a separating-axis test must include face normals and cross products of edge directions.
+
+The existence of the cubic and tetrahedral-octahedral honeycombs does not establish a single gap-free honeycomb using cubes, regular tetrahedra, and regular octahedra together. Such a mixed construction is not classified here; matching edge lengths or adding cell volumes alone would not prove it.
+
+These overlays are defined at the undeformed geometry. Uniform scaling preserves regularity, whereas the laboratory's nonuniform uniaxial deformation generally does not. An invertible linear deformation preserves incidence and disjoint interiors but does not preserve the Platonic classification. The construction inventory therefore belongs to geometry teaching; new acceleration results still require the separate history and summation arguments of §§3–5.
+
+## 9. Remaining work and the boundary of extension
+
+### 9.1. New periodic patterns and teaching structures
 
 The active queue proposes an optional primitive-cell tiling demonstration, additional periodic equal-population families and shared-vertex Platonic cell complexes. These are different extensions. A tiling demonstration must specify primitive vectors and owned basis sites and distinguish its translation tile from a conventional cell or a Voronoi construction. Adjacent copies use integer translations of the same vectors, with unique ownership and the accepted relationship graph preserved.
 
 New polarity families require an exact point set, polarity assignment, minimal preserving translation cell, balanced cell count, boundary convention and independently reconstructed identities. Coordination, shell polarity correlation and motif incidence remain geometry observations separate from acceleration. A familiar lattice name or equal population does not inherit a certificate for a different decoration.
 
-Shared-vertex complexes require cells to refer to the same global site inventory. Cubic and tetrahedral-octahedral honeycombs are initial objects; the two alternate cube-corner tetrahedra form a compound rather than a space tiling. Any further periodic complex needs exact coordinate and incidence construction. The ledger must report both shared participation and sites unused by the selected overlay, distinguish cell boundaries from neighbor or acceleration graphs, and establish volume coverage for any claimed tiling. This is not a packing of independent braids, and a cell overlay does not assign a braid or prove retention.
+Chapter 8 supplies exact candidate geometry for shared and separate vertex inventories, including balanced cubic tilings, tetrahedral-octahedral colorings, and balanced vertex-contact chains. Implementing these constructions still requires cells to refer to one global site inventory. The ledger must report both shared participation and sites unused by the selected overlay, distinguish cell boundaries from neighbor or acceleration graphs, enforce the stated interior exclusion, and establish volume coverage for any claimed tiling. A geometric packing does not assign independent braids or prove retention. The intersecting alternate cube-corner tetrahedra remain a compound outside the admitted packing cases.
 
-### 8.2. What has not been authorized by a picture
+### 9.2. What has not been authorized by a picture
 
 Polarity editing remains deferred, and nonzero-deformation HCP requires renewed authorization before its unresolved all-space work proceeds. The broader periodic-proof acceptance object remains open despite the bounded certificates already retained. The scientific lane is active, but this synthesis does not execute or reprioritize its queue.
 
