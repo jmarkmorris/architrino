@@ -22,6 +22,20 @@ function sha256(relativePath) {
     .digest("hex");
 }
 
+function actionUses(source) {
+  return [...source.matchAll(/^\s*(?:-\s*)?uses:\s*([^\s#]+)(?:\s+#.*)?$/gmu)]
+    .map((match) => match[1]);
+}
+
+test("action-reference census includes composite steps and local references", () => {
+  assert.deepEqual(actionUses([
+    "# uses: ignored/example@main",
+    "steps:", "  - uses: actions/checkout@123 # version",
+    "  - name: named step", "    uses: ./.github/actions/build-pages",
+    "  - uses: actions/setup-node@456",
+  ].join("\n")), ["actions/checkout@123", "./.github/actions/build-pages", "actions/setup-node@456"]);
+});
+
 test("accepted public-security policy matches the exact npm dependency graph", () => {
   const policy = readJson("reference/priorities/aaa-operations/contracts/public-security-policy.v1.json");
   const packageJson = readJson("package.json");
@@ -58,24 +72,29 @@ test("reviewed vendored bytes remain bound to their accepted hashes", () => {
 
 test("every external GitHub Action is pinned to the accepted full commit SHA", () => {
   const policy = readJson("reference/priorities/aaa-operations/contracts/public-security-policy.v1.json");
-  const workflowDirectory = path.join(ROOT, ".github/workflows");
-  const uses = fs
-    .readdirSync(workflowDirectory)
-    .filter((name) => /\.ya?ml$/u.test(name))
-    .flatMap((name) => {
-      const source = fs.readFileSync(path.join(workflowDirectory, name), "utf8");
-      return [...source.matchAll(/^\s*(?:-\s*)?uses:\s*([^\s#]+)(?:\s+#.*)?$/gmu)].map(
-        (match) => match[1]
-      );
-    });
+  const yamlFiles = (directory) => fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
+    const filename = path.join(directory, entry.name);
+    return entry.isDirectory() ? yamlFiles(filename) : /\.ya?ml$/u.test(filename) ? [filename] : [];
+  });
+  const uses = [".github/workflows", ".github/actions"]
+    .flatMap((directory) => yamlFiles(path.join(ROOT, directory)))
+    .flatMap((filename) => actionUses(fs.readFileSync(filename, "utf8")));
 
   assert.ok(uses.length > 0);
+  const externalUses = new Set();
   for (const use of uses) {
+    if (use.startsWith("./")) {
+      const localDirectory = path.resolve(ROOT, use);
+      assert.ok(localDirectory.startsWith(path.join(ROOT, ".github/actions") + path.sep), `local action outside declared action directory: ${use}`);
+      assert.ok(["action.yml", "action.yaml"].some((name) => fs.existsSync(path.join(localDirectory, name))), `missing local action: ${use}`);
+      continue;
+    }
     const match = use.match(/^([^@]+)@([0-9a-f]{40})$/u);
     assert.ok(match, `non-immutable action reference: ${use}`);
     assert.equal(policy.githubActionsPolicy.pins[match[1]], match[2]);
+    externalUses.add(use);
   }
-  assert.equal(new Set(uses).size, Object.keys(policy.githubActionsPolicy.pins).length);
+  assert.equal(externalUses.size, Object.keys(policy.githubActionsPolicy.pins).length);
 });
 
 test("weekly dependency review covers npm and GitHub Actions", () => {

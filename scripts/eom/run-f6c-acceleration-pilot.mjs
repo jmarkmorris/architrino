@@ -27,7 +27,7 @@ export const CHECKER='scripts/eom/verify-f6c-continuous-reception-acceleration.p
 export const CHECKER_TESTS='tests/test_f6c_continuous_reception_acceleration.py';
 // Separately authored checker and controls, independently accepted before this
 // operational generation. No subject or mathematical reference is altered.
-export const CHECKER_SHA='23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d';
+export const CHECKER_SHA='6e3467a017c3477fb1b2baddd10e985687ed6112aeb5bc84c2fc92a9453cda83';
 export const CHECKER_TESTS_SHA='13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed';
 export const LANE='.local-data/braid-analysis/f6c-continuous-reception-acceleration-20260827';
 export const SHARED_LOCK_LANE='.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827';
@@ -64,14 +64,14 @@ export const FIXED=Object.freeze([
   ['rootTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md','db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc'],
   ['reconstructionTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md','710279f5c348a81fd36d58c6ca704730b3fa70da729ca30b9c92ae4e1cc6734b'],
 ].map(Object.freeze));
-export const PINS=Object.freeze({[BRIDGE]:'c67359fbf8ffeee9bb6d6fc2887c4a35dc7bf4b6af7da4d7577ef017e42ce789',...Object.fromEntries(FIXED.map(([,p,h])=>[p,h])),
-  [CONSUMER]:'8fa7a73487a2658814dc130f3f6d0827bd4066bad23ab95bf88935b264efc618',
+export const PINS=Object.freeze({[BRIDGE]:'d452c03041a636ec182469ae8ed5e1c6ebe8902d2aae751aa7cfbde4fbb507fc',...Object.fromEntries(FIXED.map(([,p,h])=>[p,h])),
+  [CONSUMER]:'2ae92b41314643ec1dfcd33a8b197ba8301898c278bc26cdae7ea4c120824ea8',
   [CONSUMER_TESTS]:'45f40e2c6580fa09a614a471e7375615c8d54e3fc295a68dbdb8ad2167b7690b',
   [DECLARATION]:'3ef8fb9020bae71833b1e06a119672b49a4beb5395f697dcb3d037d088e7891e',
-  [OUTER]:'58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c',
-  [HELPERS]:'9af9a6a33b3b1c5889550953496be13d0698e5d24e9033dbdd5ffcb82deeafe2',
+  [OUTER]:'e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920',
+  [HELPERS]:'72b181165cafe21f3237dca7638343a9d31ea4ee48f709d9b43761666d6e7ec5',
   [CHECKER]:CHECKER_SHA,[CHECKER_TESTS]:CHECKER_TESTS_SHA,
-  '/usr/bin/memory_pressure':'ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da'});
+});
 export const check=(ok,message)=>{if(!ok)throw new Error(message);};
 export const sha=b=>createHash('sha256').update(b).digest('hex');
 export const clean=({data,...b})=>b;

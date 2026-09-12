@@ -1,7 +1,7 @@
 {
   "schema": "architrino.operations-public-security-policy.v1",
   "status": "accepted",
-  "effectiveDate": "2026-09-01",
+  "effectiveDate": "2026-09-12",
   "scope": [
     "public static web payload",
     "repository dependency manifests and vendored browser libraries",
@@ -13,9 +13,12 @@
     "lockfile": "package-lock.json",
     "lockfileVersion": 3,
     "directDependencies": {
-      "mermaid": "11.17.2"
+      "@comunica/query-sparql-rdfjs": "5.3.0",
+      "jsonld": "9.0.0",
+      "mermaid": "11.17.2",
+      "n3": "2.7.12"
     },
-    "lockedProductionEntries": 113,
+    "lockedProductionEntries": 653,
     "versionRule": "exact_direct_versions_and_lockfile_integrity",
     "auditCommand": "npm audit --package-lock-only --audit-level=moderate --omit=dev",
     "auditThreshold": "moderate",
@@ -94,6 +97,7 @@
     "pins": {
       "actions/checkout": "3d3c42e5aac5ba805825da76410c181273ba90b1",
       "actions/setup-node": "820762786026740c76f36085b0efc47a31fe5020",
+      "actions/upload-artifact": "ea165f8d65b6e75b540449e92b4886f43607fa02",
       "actions/upload-pages-artifact": "fc324d3547104276b827a68afc52ff2a11cc49c9",
       "actions/configure-pages": "45bfe0192ca1faeb007ade9deae92b16b8254a0d",
       "actions/deploy-pages": "cd2ce8fcbc39b97be8ca5fce6e763baed58fa128"

@@ -1,10 +1,10 @@
 # crw-005: Independent attraction chapter review
 
-Review date: 2026-09-11. Reviewer: Codex, independent chapter review. Scope: report only in the existing shared checkout; no corpus, shared tracker, generated-artifact, or Git writes are authorized.
+Review date: 2026-09-11. Reviewer: Codex, independent chapter review and authorized repair pass. Scope: the Attraction chapter and this evidence record only; shared trackers, generated artifacts, and Git publication remain out of scope.
 
 ## Source identity and review scope
 
-The assigned source is [Attraction](../../../../content/markdown/aaa/validation/simulations/action-energy/attraction.md). Initial `shasum -a 256` measured `7c7344fa6ce56b79a0141deea6aa2882f7dcfa4fab0afe10a4782493813119b1`; `wc -l` measured 118 newline-terminated lines. All chapter line references below refer to these bytes. Full coverage means every line, including equations, equation links, setup, and deliverables, receives a disposition; it does not mean every linked owner receives a separate full review.
+The assigned source is [Attraction](../../../../content/markdown/aaa/validation/simulations/action-energy/attraction.md). Initial `shasum -a 256` measured `7c7344fa6ce56b79a0141deea6aa2882f7dcfa4fab0afe10a4782493813119b1`; `wc -l` measured 118 newline-terminated lines. The authorized repair pass changed the source to SHA-256 `355541b573439c1291adbcb446127bf07e4db8dc17edacd7dc0365472aced262` and 127 newline-terminated lines. The original findings table and coverage partition refer to the pre-repair bytes; the disposition and post-repair record below bind the current bytes. Full coverage means every line, including equations, equation links, setup, and deliverables, receives a disposition; it does not mean every linked owner receives a separate full review.
 
 The review follows the live `AGENTS.md`, generated startup router, corpus-review skill and its live owner, Corpus Reviewer, and the requested Integrator Reviewer procedure. Integration and tracker edits are excluded by the explicit assignment. No other review report or reviewer conclusion was consulted. Nearby corpus pages serve as current theory and terminology owners, not as independent experimental evidence. The review's independent mathematical references are the explicit derivations and counterexamples below; generated-registry agreement is only a structural check.
 
@@ -258,6 +258,14 @@ The link check establishes local file existence, equation identifier presence, a
 The intended history's eventual behavior remains open. In particular, none of the prescribed counterexamples establishes that a freely released initially static pair reaches a multi-root, self-hit, or caustic configuration. The exact early-time solution is restricted by its emission-time and regular-domain assumptions. No equilibrium stability analysis was performed, and no primitive physical mass or force balance was introduced.
 
 Recommended disposition: address F1–F5 before presenting the page as an exact computational specification. Retain the correct attractive signs, transmitter-only weight, relative subtraction, and conditional midpoint kinematics. The smallest coherent revision declares a concrete symmetric past, the partner-only/no-self time domain, explicit transmitter derivatives and simple-root bounds, and an all-root vector expression. F6 can then be handled as local exposition cleanup. O1 and O2 remain stated mathematical limits, without a new tracker, validator, or research campaign being required by this report.
+
+## Authorized repair record
+
+The operator authorized the smallest safe repair pass after the interactive F1 discussion. The chapter now has a concrete stationary prescribed past and release convention; explicit native-time, strict-past, history-domain, root-residual, and transmitter-derivative definitions; an explicit partner-only scope; a finite complete simple-root chart with positive distance and derivative floors; conditional midpoint symmetry; an ordered-coordinate boundary; a real central-origin heading; and a non-planning deliverables statement. The vector equations remain byte-stable in their generated displays and are now labeled as per-root partner contributions, with the total obtained by the corresponding root sums.
+
+Disposition: F1 accepted and repaired; F2 accepted and repaired by per-root labeling plus an explicit summation statement; F3 partially accepted—the chapter now declares its partner-only/no-self restriction, while the complete canonical same-transmitter channel remains an open obligation rather than being silently added; F4 accepted and repaired; F5 accepted and repaired for the sharp-law domain, with continuation beyond a failed floor explicitly left open; F6 accepted and repaired where it was local exposition and terminology. No repair promotes the prescribed past to a freely evolving equilibrium or establishes later stability, collision avoidance, caustic behavior, conservation, or physical realization.
+
+The report’s original pre-repair line-by-line coverage remains historical evidence; the current chapter was re-read after the repair. No tracker or generated artifact was edited. The equation checker reports `sameRecord=false` for all eight equation identifiers because inserted prose shifted source line ranges and the vector display’s labels changed; the exact generated-registry `--write` command is intentionally deferred to the publication/regeneration workflow.
 
 ## Validation working record
 

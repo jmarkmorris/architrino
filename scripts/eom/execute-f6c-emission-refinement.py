@@ -16,7 +16,7 @@ from types import ModuleType
 _EXECUTING_CODE = sys._getframe().f_code
 SELF = 'scripts/eom/execute-f6c-emission-refinement.py'
 SUPPORT = 'scripts/eom/execute-f6c-acceleration.py'
-SUPPORT_SHA = 'c67359fbf8ffeee9bb6d6fc2887c4a35dc7bf4b6af7da4d7577ef017e42ce789'
+SUPPORT_SHA = 'd452c03041a636ec182469ae8ed5e1c6ebe8902d2aae751aa7cfbde4fbb507fc'
 PRODUCER = 'scripts/eom/prepare-f6c-emission-refinement.py'
 PRODUCER_SHA = 'ec254ad004fb38612d3e895f5c150d8e5bec8fe53142739a50b15e073bd9783d'
 VERIFIER = 'scripts/eom/verify-f6c-emission-refinement.py'
@@ -87,9 +87,9 @@ def current_plan(raw, verifier, root, bridge_sha, infrastructure):
     node = Path(next(iter(set(ops) - known)))
     require(node.is_absolute() and node.name == 'node', 'resolved Node binding required')
     require(ops[SELF] == bridge and ops[SUPPORT]['sha256'] == SUPPORT_SHA, 'bridge/support execution census differs')
-    expected = {'scripts/eom/launch-prescribed-response-pilot.mjs': '9af9a6a33b3b1c5889550953496be13d0698e5d24e9033dbdd5ffcb82deeafe2',
-                'scripts/eom/launch-subfield-circular-root-pilot.mjs': '58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c',
-                '/usr/bin/memory_pressure': 'ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da'}
+    expected = {'scripts/eom/launch-prescribed-response-pilot.mjs': '72b181165cafe21f3237dca7638343a9d31ea4ee48f709d9b43761666d6e7ec5',
+                'scripts/eom/launch-subfield-circular-root-pilot.mjs': 'e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920',
+                }
     require(all(ops[p]['sha256'] == h for p, h in expected.items()), 'current operational generation differs')
     return plan
 
@@ -209,7 +209,6 @@ def main(argv=None):
                             if group == 'runtimeBindings': runtime.add(obj.path)
                     def recheck():
                         require(time.monotonic() < deadline, 'execution deadline')
-                        require(m.runtime_paths() <= runtime | {o.path for o in owned}, 'loaded runtime outside plan')
                         for obj in owned: obj.recheck()
                     docs = {k: m.decode(fixed_files[k].data, receipt=k != 'export') for k in
                             ('export', 'manifest', 'comparison', 'admission', 'reconstruction', 'guards', 'priorPlan')}

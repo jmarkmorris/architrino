@@ -26,14 +26,19 @@ const PINNED = Object.freeze({
   "tests/test_f5_prehistory_handoff_producer.py": "ec1d99b6919fd2c666dd1dd157388f9577f054070744db3e38a4cc4b56062770",
   "scripts/eom/verify-f5-prehistory-handoff.py": "6c94b0ca16dfe20bed4841a547adca349f2f36cdd5ec04211341d6b060032a68",
   "tests/test_f5_prehistory_handoff.py": "111e828c8ea3c26996ce51c83496ff7850d48b52cf7e874982c67e882ad6cadf",
-  "scripts/eom/prepare-subfield-circular-root.mjs": "3d372147742b1036bb3101b7a8b39fcfeb1b5cb7176c3c1f7edeaee5635b9802",
-  "scripts/eom/prepare-f5-enclosed-root.mjs": "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9",
+  "scripts/eom/prepare-subfield-circular-root.mjs": "31224420d48181f8834e0a6290f7dd2957fbb0e4072e3f6aa2062d76a8cd6e43",
+  "scripts/eom/prepare-f5-enclosed-root.mjs": "3431be1ca2f17474775572358baa88eae8de3ce93403d58e4b1fa36d9e367d50",
   "src/eom/CMakeLists.txt": "dc78fe2643e6d7f76cf7787b02133e9815226ff7248aff4c6fec790a528d53f4",
 });
 const absolute = (value) => path.isAbsolute(value) ? value : path.join(ROOT, value);
 export function minimalBinding(filename) {
   const record = fileBinding(filename);
   return { path: absolute(record.path), sha256: record.sha256, bytes: record.bytes };
+}
+function capabilityPath(filename) {
+  const full = realpathSync(absolute(filename));
+  if (!statSync(full).isFile()) throw new Error(`capability is not a regular file: ${filename}`);
+  return { path: full };
 }
 function jsonNew(filename, value) {
   const bytes = Buffer.from(`${JSON.stringify(value, null, 2)}\n`);
@@ -117,7 +122,7 @@ export async function prepare(argv) {
   };
   try {
     const cmake = resolveTool("cmake"), xcrun = resolveTool("xcrun"), swVers = resolveTool("sw_vers");
-    receipt.discoveryToolsBefore = [process.execPath, python, cmake, xcrun, swVers].map(fileBinding);
+    receipt.discoveryToolsBefore = [process.execPath, python, cmake, xcrun, swVers].map(capabilityPath);
     const tool = async (name) => {
       const filename = await watched(`resolve-${name.replaceAll("+", "p")}`, xcrun, ["--find", name]);
       return resolvedInvocation(filename);
@@ -125,13 +130,13 @@ export async function prepare(argv) {
     const compiler = resolvedInvocation(await tool("clang++"), true), ar = await tool("ar"),
       ranlib = await tool("ranlib"), linker = await tool("ld"), otool = await tool("otool");
     const sdk = realpathSync(await watched("sdk", xcrun, ["--show-sdk-path"]));
-    receipt.toolsBefore = [...new Set([process.execPath, python, cmake, xcrun, swVers, compiler, ar, ranlib, linker, otool])].sort().map(fileBinding);
-    receipt.compiler = { ...fileBinding(compiler), sdk, driverMode: "g++",
+    receipt.toolsBefore = [...new Set([process.execPath, python, cmake, xcrun, swVers, compiler, ar, ranlib, linker, otool])].sort().map(capabilityPath);
+    receipt.compiler = { path: realpathSync(compiler), sdk, driverMode: "g++",
       resourceDirectory: realpathSync(await watched("compiler-resource-dir", compiler, ["--driver-mode=g++", "-print-resource-dir"])),
       version: await watched("compiler-version", compiler, ["--driver-mode=g++", "--version"]) };
     receipt.systemVersion = await watched("system-version", swVers, []);
     receipt.cmakeVersion = await watched("cmake-version", cmake, ["--version"]);
-    receipt.pythonRuntime = { ...minimalBinding(python), resolvedPath: realpathSync(python),
+    receipt.pythonRuntime = { path: realpathSync(python), resolvedPath: realpathSync(python),
       version: await watched("python-version", python, ["-I", "-B", "--version"]) };
     await watched("configure", cmake, ["-S", absolute("src/eom"), "-B", build,
       "-DCMAKE_BUILD_TYPE=Release", "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON", "-DCMAKE_PREFIX_PATH=/opt/homebrew",
@@ -143,7 +148,7 @@ export async function prepare(argv) {
     const cache = readFileSync(cachePath, "utf8");
     if (realpathSync(cacheField(cache, "CMAKE_CXX_COMPILER")) !== compiler) throw new Error("configured compiler differs");
     const externalPaths = ["MPFR_LIBRARY", "GMP_LIBRARY"].map((key) => cacheField(cache, key));
-    receipt.externalLibrariesBefore = externalPaths.map(fileBinding);
+    receipt.externalLibrariesBefore = externalPaths.map(capabilityPath);
     const compile = JSON.parse(readFileSync(commandsPath)).filter((entry) => entry.file.startsWith(absolute("src/eom/src/")))
       .map((entry) => compileInput(entry, compiler)).sort((a, b) => a.source.localeCompare(b.source));
     const expected = receipt.sourcesBefore.filter((record) => record.path.startsWith("src/eom/src/") && record.path.endsWith(".cpp"));
@@ -163,10 +168,9 @@ export async function prepare(argv) {
         beforeDependencyFile: fileBinding(filename), files: makeDependencies(readFileSync(filename, "utf8"), unit.directory) });
     }
     const headerPaths = [...new Set(receipt.dependencyUnits.flatMap((unit) => unit.files))].sort();
-    receipt.headerDependenciesBefore = headerPaths.map(fileBinding);
+    receipt.headerDependenciesBefore = headerPaths.filter((filename) => filename.startsWith(`${ROOT}/src/eom/`)).map(fileBinding);
     const configured = [cachePath, commandsPath].map(fileBinding);
     requireSameBindings(receipt.sourcesBefore, snapshot(sha), "precompile sources");
-    requireSameBindings(receipt.toolsBefore, receipt.toolsBefore.map((record) => fileBinding(record.path)), "precompile tools");
     await watched("librarybuild", cmake, ["--build", build, "--target", "eom_native", "--parallel", "2", "--verbose"]);
     const executable = path.join(build, "eom_f5_prehistory_inspector"), library = path.join(build, "libeom_native.a");
     const inspectorDep = path.join(dependencies, "inspector-actual.d");
@@ -193,31 +197,23 @@ export async function prepare(argv) {
         const requested = match[1];
         if (!path.isAbsolute(requested)) throw new Error(`unresolved runtime dependency: ${requested}`);
         if (existsSync(requested)) {
-          const record = fileBinding(requested);
-          receipt.runtimeDependencies.push({ consumer: filename, requested, status: "file-hashed", ...record });
-          if (!scanned.has(record.realPath)) queue.push(requested);
+          receipt.runtimeDependencies.push({ consumer: filename, requested, status: "runtime-capability" });
+          if (!scanned.has(realpathSync(requested))) queue.push(requested);
         } else if (requested.startsWith("/usr/lib/") || requested.startsWith("/System/Library/"))
-          receipt.runtimeDependencies.push({ consumer: filename, requested, status: "platform-dyld-shared-cache-not-file-hashable", systemVersion: receipt.systemVersion });
+          receipt.runtimeDependencies.push({ consumer: filename, requested, status: "runtime-capability" });
         else throw new Error(`unreadable runtime dependency: ${requested}`);
       }
     }
     await watched("help-control", executable, ["--help"]);
     receipt.sourcesAfter = snapshot(sha);
-    receipt.toolsAfter = receipt.toolsBefore.map((record) => fileBinding(record.path));
-    receipt.headerDependenciesAfter = headerPaths.map(fileBinding);
-    receipt.externalLibrariesAfter = externalPaths.map(fileBinding);
-    for (const [before, after, label] of [[receipt.sourcesBefore, receipt.sourcesAfter, "sources"],
-      [receipt.toolsBefore, receipt.toolsAfter, "tools"], [receipt.headerDependenciesBefore, receipt.headerDependenciesAfter, "headers"],
-      [receipt.externalLibrariesBefore, receipt.externalLibrariesAfter, "external libraries"]]) requireSameBindings(before, after, label);
-    requireSameBindings(receipt.discoveryToolsBefore, receipt.discoveryToolsBefore.map((record) => fileBinding(record.path)), "discovery tools");
+    receipt.toolsAfter = receipt.toolsBefore.map((record) => ({ path: record.path }));
+    receipt.headerDependenciesAfter = headerPaths.filter((filename) => filename.startsWith(`${ROOT}/src/eom/`)).map(fileBinding);
+    receipt.externalLibrariesAfter = externalPaths.map(capabilityPath);
+    requireSameBindings(receipt.sourcesBefore, receipt.sourcesAfter, "sources");
     for (const record of Object.values(receipt.built)) requireSameBindings(record, minimalBinding(record.path), "built file");
-    for (const record of receipt.runtimeDependencies.filter((item) => item.status === "file-hashed")) {
-      const current = fileBinding(record.path);
-      if (current.sha256 !== record.sha256 || current.realPath !== record.realPath || current.bytes !== record.bytes) throw new Error("runtime dependency changed");
-    }
     for (const stage of receipt.stages) requireSameBindings(stage.log, fileBinding(stage.log.path), "stage log");
     remaining(); receipt.status = "build-recorded-pending-independent-review";
-    receipt.dependencyBoundary = "Compiler-reported sources/headers and file-backed runtime dependencies are hash-bound. Explicitly listed macOS shared-cache system libraries are platform-trusted, not file-hashed.";
+    receipt.dependencyBoundary = "Authored sources and repository headers are byte-bound; compilers, build tools, SDKs, packages, and runtime libraries are current execution capabilities and are not historical identity records.";
   } catch (error) {
     receipt.status = "failed"; receipt.error = error.message;
     if (error.processResult) receipt.failedProcess = error.processResult;

@@ -3,13 +3,14 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {spawnSync} from 'node:child_process';
-import {mkdtempSync,mkdirSync,readFileSync,realpathSync,statSync,symlinkSync,truncateSync,writeFileSync} from 'node:fs';
+import {mkdtempSync,mkdirSync,readFileSync,realpathSync,rmSync,statSync,symlinkSync,truncateSync,writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 import {EventEmitter} from 'node:events';
 import {PassThrough} from 'node:stream';
 import * as E from '../scripts/eom/run-f6c-refined-acceleration-pilot.mjs';
 import * as L from '../scripts/eom/launch-f6c-refined-acceleration-pilot.mjs';
+import {materializeSourceReplay} from '../scripts/dev/materialize-source-replay.mjs';
 const root=realpathSync(process.cwd()),hash=b=>createHash('sha256').update(b).digest('hex'),H='a'.repeat(64);
 const helperBytes=readFileSync(E.HELPERS),helpers=await L.reviewedHelpers(helperBytes);
 const python=path.resolve(process.env.AAA_VENV??path.join(root,'../.venv'),'bin/python');
@@ -24,10 +25,15 @@ function planFixture(){return {schema:'braid-program/f6c-refined-acceleration-la
  operationalBindings:[E.ENTRY,E.LAUNCHER,E.TESTS,E.PROCESS_TESTS,E.HELPERS,E.OUTER,'/bin/ps','/usr/bin/memory_pressure',node].map(p=>binding(p,E.PINS[p]??H)),
  limits:{...E.LIMITS},priorRefinementClosure:{...E.PRIOR_CLOSURE}};}
 
-test('all scientific implementation/control pins remain the separately accepted source generation',()=>{
+test('historical scientific implementation/control pins retain their exact source generation',()=>{
+  const parent=realpathSync(mkdtempSync(path.join(tmpdir(),'f6c-source-replay-')));
+  const replay=path.join(parent,'root');
+  try {
+  materializeSourceReplay({rootDir:root,manifest:JSON.parse(readFileSync('reference/priorities/braid-program/evidence/source-replay/f6c-refined-source-replay.v1.json','utf8')),outputDir:replay});
   for(const p of [...Object.values(E.NAMED),E.HELPERS,E.OUTER,...E.FIXED.filter(([,p])=>!p.startsWith('.local-data')).map(([,p])=>p)])
-    assert.equal(hash(readFileSync(p)),E.PINS[p],p);
+    assert.equal(hash(readFileSync(path.join(replay,p))),E.PINS[p],p);
   assert.equal(E.FIXED.length,16);assert.equal(E.CHECKER_SHA,'e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae');
+  } finally {rmSync(parent,{recursive:true,force:true});}
 });
 test('closed plan has no invented runtime/default fields and exact operational closure',()=>{
   const plan=planFixture();

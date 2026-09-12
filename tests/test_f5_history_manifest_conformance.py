@@ -12,14 +12,15 @@ from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from scripts.eom.oracle.f5_history_manifest_conformance import (
-    FIXED_BINDINGS, MANIFEST_SCHEMA, POSITION_WIDTH, VELOCITY_WIDTH,
-    decode_json, history_fingerprint, load_frozen_sources, sha256,
-    validate_manifest_shape, verify_manifest_bytes,
-)
+from source_replay_support import load_f5_replay_module
 
-
-ROOT = Path(__file__).resolve().parents[1]
+_oracle, ROOT = load_f5_replay_module(
+    "f5_history_manifest_replay", "scripts/eom/oracle/f5_history_manifest_conformance.py")
+FIXED_BINDINGS, MANIFEST_SCHEMA = _oracle.FIXED_BINDINGS, _oracle.MANIFEST_SCHEMA
+POSITION_WIDTH, VELOCITY_WIDTH = _oracle.POSITION_WIDTH, _oracle.VELOCITY_WIDTH
+decode_json, history_fingerprint = _oracle.decode_json, _oracle.history_fingerprint
+load_frozen_sources, sha256 = _oracle.load_frozen_sources, _oracle.sha256
+validate_manifest_shape, verify_manifest_bytes = _oracle.validate_manifest_shape, _oracle.verify_manifest_bytes
 
 
 def encode(value):
@@ -168,8 +169,8 @@ assert wrapper.certify_f5_segment.__module__.startswith("_f5_proof_snapshot_")
                 clock[0] = 1801.0
             return read(path)
 
-        with patch("scripts.eom.oracle.f5_history_manifest_conformance.certify_f5_segment", mocked_proof), \
-                patch("scripts.eom.oracle.f5_history_manifest_conformance.time.monotonic", lambda: clock[0]), \
+        with patch.object(_oracle, "certify_f5_segment", mocked_proof), \
+                patch.object(_oracle.time, "monotonic", lambda: clock[0]), \
                 patch.object(Path, "read_bytes", slow_final_read):
             result = verify_manifest_bytes(encode(self.manifest))
         self.assertFalse(result["accepted"])
@@ -181,7 +182,7 @@ assert wrapper.certify_f5_segment.__module__.startswith("_f5_proof_snapshot_")
         # Mocked proof results test census/progress only and are never written as
         # evidence. Production exposes no callback to replace the proof.
         events = []
-        with patch("scripts.eom.oracle.f5_history_manifest_conformance.certify_f5_segment",
+        with patch.object(_oracle, "certify_f5_segment",
                    return_value={"accepted": True, "reason": "mocked-test-only"}) as proof:
             result = verify_manifest_bytes(encode(self.manifest), progress=events.append)
         self.assertEqual(proof.call_count, 12384)

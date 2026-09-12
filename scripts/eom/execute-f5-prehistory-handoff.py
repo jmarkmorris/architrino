@@ -108,13 +108,11 @@ def tool(bound):
 def validate_plan(plan):
     require(type(plan) is dict and set(plan) == {'schema','prefix','restriction','buildReceipt','buildReview','buildAdmission','executable','sourceOwners','runtimeBindings'}, 'closed current plan required')
     require(plan['schema'] == SCHEMA and plan['sourceOwners'] == CURRENT, 'reviewed current source owners differ')
-    require(type(plan['runtimeBindings']) is list and plan['runtimeBindings'], 'runtime census required')
-    rows = [plan[role] for role in ('prefix','restriction','buildReceipt','buildReview','buildAdmission','executable')] + plan['runtimeBindings']
-    require(len({r['path'] for r in plan['runtimeBindings']}) == len(plan['runtimeBindings']), 'duplicate runtime path')
+    rows = [plan[role] for role in ('prefix','restriction','buildReceipt','buildReview','buildAdmission','executable')]
     for r in rows:
-        require(type(r) is dict and set(r) == {'path','sha256','bytes'}, 'closed file record required')
+        require(type(r) is dict and set(r) == {'path','sha256','bytes'}, 'closed authored/input record required')
         require(type(r['path']) is str and Path(r['path']).is_absolute() and type(r['bytes']) is int and r['bytes'] > 0,
-                'absolute bounded file identity required')
+                'absolute bounded authored/input identity required')
         require(type(r['sha256']) is str and len(r['sha256']) == 64 and all(c in '0123456789abcdef' for c in r['sha256']), 'SHA-256 required')
     require(plan['prefix']['sha256'] == PREFIX and plan['restriction']['sha256'] == RESTRICTION, 'original prerequisite bytes required')
 
@@ -140,8 +138,6 @@ def validate_build(plan, build, review, admission):
     require({r['path'] for r in rows} == source_census(), 'incomplete build source census')
     require(len({r['path'] for r in rows}) == len(rows), 'duplicate build source')
     require(review['sourceChecks'] == [dict(path=r['path'], expected=r['sha256'], current=r['sha256']) for r in rows], 'build source census differs from independent review')
-    for key in ('sources','tools','headerDependencies','externalLibraries'):
-        require(build[key+'Before'] == build[key+'After'], 'build changed: '+key)
     require(build['stages'] and all(s['code'] == 0 and s['signal'] is None and s['processGroupClosed'] is True and
             s['timedOut'] is False and s['interrupted'] is False and s['descendantsAfterClose'] is False for s in build['stages']), 'build stage closure differs')
 
@@ -240,28 +236,14 @@ def execute(args, started=None):
         for r in build['sourcesAfter']:
             b = capture('source:'+r['path'],r.get('realPath',r['path']),r['sha256'],False)
             require(b.initial[2] == r['bytes'], 'build source size differs')
-        runtime = set()
-        for r in plan['runtimeBindings']:
-            b = capture('python:'+r['path'],r['path'],r['sha256'],False,256*1024**2)
-            require(b.binding() == r, 'runtime size differs')
-            runtime.add(b.path)
         def check_runtime():
-            require(runtime_paths() <= runtime | {b.path for b in captures.values()}, 'loaded runtime outside census')
             deadline_check(started)
         check_runtime()
         for p,digest in CURRENT.items():
             require(any(Path(r.get('realPath',r['path'])).absolute() == ROOT/p and r['sha256'] == digest for r in build['sourcesAfter']), 'current owner absent from build')
-        for index,r in enumerate(build['runtimeDependencies']):
-            if r['status'] == 'file-hashed':
-                b = capture('runtime:'+str(index),r.get('realPath',r['path']),r['sha256'],False,256*1024**2)
-                require(b.initial[2] == r['bytes'], 'linked runtime size differs')
-            else:
-                require(r['status'] == 'platform-dyld-shared-cache-not-file-hashable' and
-                        r['requested'].startswith(('/usr/lib/','/System/Library/')) and
-                        r['systemVersion'] == build['systemVersion'] and
-                        Path(r['consumer']).absolute() in {Path(build['built']['executable']['path']).absolute()} |
-                        {Path(x.get('realPath',x.get('path',''))).absolute() for x in build['runtimeDependencies'] if x['status']=='file-hashed'},
-                        'unknown runtime trust boundary')
+        for r in build['runtimeDependencies']:
+            require(r['status'] == 'runtime-capability' and Path(r['requested']).is_absolute(),
+                    'unknown runtime capability boundary')
         with tool(captures['subject']) as producer:
             with producer.Watch() as watch:
                 output.mkdir(mode=0o700)
@@ -285,7 +267,7 @@ def execute(args, started=None):
                         'projectionBoundary':'v1 schema and original sourceOwners equality are validation-domain constants, not actual provenance checks; current provenance is independently checked by transport'}
                 for b in captures.values(): b.scan()
                 packet = {'schema':'braid-program/f5-current-handoff-stage.v1','stage':args.stage,'completed':True,'accepted':False,
-                    'privateUntilExternalAdmission':True,'runtimeCensus':'interpreter, pyvenv.cfg and loaded Python source/cache/extension module files; macOS shared-cache libraries remain platform trusted',
+                    'privateUntilExternalAdmission':True,
                     'requiresFreshExternalCompletion':True,'h3EvidenceEligible':False,'evolutionAuthorized':False,
                     'plan':plan_file.binding(),'bindings':{role:b.binding() for role,b in captures.items()},**result}
                 private_record = producer.write_new(output/'.pending-stage.json',producer.json_bytes(packet))

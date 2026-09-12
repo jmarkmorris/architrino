@@ -277,8 +277,8 @@ const CACHED_PATH_REPLACEMENTS=[
 ];
 const CACHED_HASH_REPLACEMENTS=[
   [
-    "6229e8227d26abdb1acc415ae10f0456d325ced5649ad68eb261790c585ae0a3",
-    "7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5"
+    "9da7863fe51777de48ee44e0d9dab73cb9844039768b6742310ead3d60702d82",
+    "d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841"
   ],
   [
     "1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36",
@@ -286,7 +286,7 @@ const CACHED_HASH_REPLACEMENTS=[
   ],
   [
     "68a940c40b2e3b463555b95858031f96796e2ac94963a86b3a9ae6fd74dc3742",
-    "3bee7599b03f2500ede6eeeea31c46e1aac82410f456e967102c13e820b93221"
+    "5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2"
   ],
   [
     "5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5",
@@ -303,11 +303,11 @@ const CACHED_HASH_REPLACEMENTS=[
 ];
 const CACHED_EXTRA_PINS="  \"tests/test_eom_continuous_reception_roots_cached.py\": \"a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md\": \"3b20e5d7bce4b57dfd41c0d1efcc34f9242dcd41a02b35676f45ba0984499578\",\n  \"scripts/eom/oracle/continuous_reception_roots.py\": \"f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c\",\n  \"scripts/eom/verify-f6c-continuous-reception-root-cover.py\": \"1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36\",\n  \"tests/test_f6c_continuous_reception_root_cover.py\": \"5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md\": \"a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md\": \"2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40\",\n";
 const CACHED_EXPECTED_PINS={
-  "scripts/eom/launch-subfield-circular-root-pilot.mjs": "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c",
-  "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py": "7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5",
+  "scripts/eom/launch-subfield-circular-root-pilot.mjs": "e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920",
+  "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py": "d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841",
   "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py": "3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7",
   "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md": "1a6327933b0060905aec97022e87c243b54f353af8c7aec83712967b285b010d",
-  "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py": "3bee7599b03f2500ede6eeeea31c46e1aac82410f456e967102c13e820b93221",
+  "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py": "5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2",
   "tests/test_f6c_cached_continuous_reception_root_cover.py": "09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3",
   "scripts/eom/oracle/continuous_reception_roots_cached.py": "daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf",
   "scripts/eom/oracle/certified_history.py": "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7",

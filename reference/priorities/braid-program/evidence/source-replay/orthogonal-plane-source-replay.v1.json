@@ -1,0 +1,50 @@
+{
+  "schema": "architrino.source-replay.v1",
+  "claimBoundary": "Historical certificate replay with its original Master Equation; deterministic receipt reproduction is not new independent evidence.",
+  "files": [
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-fold-separated-interval.v1.json",
+      "source": "reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-fold-separated-interval.v1.json",
+      "sha256": "d65d556bd25ed6b40d8281aad53d6138daab042e80deb120cb97ae244a1b7b27",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "scripts/prescribed-path-analysis/oracle/orthogonal_plane_weave_interval_oracle.py",
+      "source": "scripts/prescribed-path-analysis/oracle/orthogonal_plane_weave_interval_oracle.py",
+      "sha256": "b54a5ae488edb49dca8d58fbed8627f3edf912358dd4f4599e077b5136ffdec1",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "content/markdown/aaa/dynamics/master-equation.md",
+      "source": "reference/priorities/braid-program/evidence/source-replay/orthogonal-plane-master-equation.md.source",
+      "sha256": "0e8219c7a3cc750747c43030d5b998ddbf2de525a5469d32fa5e52fbae5ec63f",
+      "role": "historical-input",
+      "gitBlob": "c0f3356988b645098bfe65f5c58393db44ff582f",
+      "originalPath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "path": "src/prescribed-path-analysis/OrthogonalPlaneWeaveBalance.mjs",
+      "source": "src/prescribed-path-analysis/OrthogonalPlaneWeaveBalance.mjs",
+      "sha256": "109094c43b2df92dbe22338412dd2761e1933cf202b8e4957385d8716da252be",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "src/prescribed-path-analysis/protocols/orthogonal-plane-weave-fold-limiting-exclusion-protocol.v1.json",
+      "source": "src/prescribed-path-analysis/protocols/orthogonal-plane-weave-fold-limiting-exclusion-protocol.v1.json",
+      "sha256": "d93bec1afdb104f682296281a0fd0bd3003cc9860d0492fd7c861f344beca91b",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "scripts/prescribed-path-analysis/oracle/orthogonal_plane_weave_fold_limit_certificate.py",
+      "source": "scripts/prescribed-path-analysis/oracle/orthogonal_plane_weave_fold_limit_certificate.py",
+      "sha256": "e6d0274eb27a613e21f5dd308a431bf0fe3a66bafeeca7c100cdaeaaa83295ca",
+      "role": "unchanged-control"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-fold-limiting-exclusion.v1.json",
+      "source": "reference/priorities/braid-program/evidence/2026-08-29-orthogonal-plane-weave-fold-limiting-exclusion.v1.json",
+      "sha256": "49626d24c8888efe40b1320e50f73f51e05f2460e4ca0d95e39dab324fa78fc6",
+      "role": "unchanged-control"
+    }
+  ]
+}

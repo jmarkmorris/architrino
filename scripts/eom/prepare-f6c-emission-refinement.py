@@ -43,7 +43,7 @@ COMPARISON_SHA = "0f21d676f4f50702e8375f7ba9c1f362cca82ad3d636316e7121ab819a2dbc
 COMPARISON_CONTROLS = "tests/test_f6c_emission_refinement_conformance.py"
 COMPARISON_CONTROLS_SHA = "bac7357186fb05c5b7ea35154c5564e7527075a9a94177a8b600f9a02119adb5"
 HELPER = "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py"
-HELPER_SHA = "7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5"
+HELPER_SHA = "d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841"
 BASE = ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/"
 FIXED = (
     ('export', '.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json', 'f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1'),
@@ -67,7 +67,7 @@ FIXED = (
 # Source/control closure is explicit even for bound but unexecuted references.
 EXTRA = (
     (HELPER, HELPER_SHA),
-    ("tests/test_f6c_cached_continuous_reception_root_cover_preparation.py", "3bee7599b03f2500ede6eeeea31c46e1aac82410f456e967102c13e820b93221"),
+    ("tests/test_f6c_cached_continuous_reception_root_cover_preparation.py", "5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2"),
     ("scripts/eom/oracle/continuous_reception_roots_cached.py", "daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf"),
     ("tests/test_eom_continuous_reception_roots_cached.py", "a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb"),
     ("scripts/eom/oracle/certified_history.py", "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7"),
@@ -120,7 +120,6 @@ OPERATIONS = (
 OP_PINS = {
     OPERATIONS[4]: "f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31",
     OPERATIONS[5]: "35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826",
-    "/usr/bin/memory_pressure": "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56",
 }
 
 

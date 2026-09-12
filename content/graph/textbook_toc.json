@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1634
+      "sections": 1640
     }
   },
   "tocRoot": {
@@ -1294,10 +1294,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Objectives",
+                    "title": "Scope and Solvability",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/attraction.md",
-                    "markdownSection": "Objectives",
-                    "sectionKey": "objectives",
+                    "markdownSection": "Scope and Solvability",
+                    "sectionKey": "scope and solvability",
                     "headingLevel": 2
                   },
                   {
@@ -1340,6 +1340,38 @@
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
                     "markdownSection": "Dynamical Geometry",
                     "sectionKey": "dynamical geometry",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Causal Roots and Their Weights",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
+                    "markdownSection": "Causal Roots and Their Weights",
+                    "sectionKey": "causal roots and their weights",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Regular History Domain",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
+                    "markdownSection": "Regular History Domain",
+                    "sectionKey": "regular history domain",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Continuous Emission and Acceleration",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
+                    "markdownSection": "Continuous Emission and Acceleration",
+                    "sectionKey": "continuous emission and acceleration",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Persistent Hits and the Meaning of Action",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
+                    "markdownSection": "Persistent Hits and the Meaning of Action",
+                    "sectionKey": "persistent hits and the meaning of action",
                     "headingLevel": 2
                   }
                 ]
@@ -1442,6 +1474,22 @@
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
                     "markdownSection": "Degeneracies and Inference Limits",
                     "sectionKey": "degeneracies and inference limits",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Surrogate-Location Recast",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
+                    "markdownSection": "Surrogate-Location Recast",
+                    "sectionKey": "surrogate location recast",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Additional Records and Reconstruction",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md",
+                    "markdownSection": "Additional Records and Reconstruction",
+                    "sectionKey": "additional records and reconstruction",
                     "headingLevel": 2
                   }
                 ]
@@ -1558,14 +1606,6 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Objectives",
-                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
-                    "markdownSection": "Objectives",
-                    "sectionKey": "objectives",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
                     "title": "Delay Differential Equations",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
                     "markdownSection": "Delay Differential Equations",
@@ -1574,18 +1614,18 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Solvability Status",
+                    "title": "Symmetry and Outward Acceleration",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
-                    "markdownSection": "Solvability Status",
-                    "sectionKey": "solvability status",
+                    "markdownSection": "Symmetry and Outward Acceleration",
+                    "sectionKey": "symmetry and outward acceleration",
                     "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Deliverables",
+                    "title": "Solvability Status",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/repulsion.md",
-                    "markdownSection": "Deliverables",
-                    "sectionKey": "deliverables",
+                    "markdownSection": "Solvability Status",
+                    "sectionKey": "solvability status",
                     "headingLevel": 2
                   }
                 ]
@@ -1628,6 +1668,14 @@
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
                     "markdownSection": "Sign-resolved bookkeeping",
                     "sectionKey": "sign resolved bookkeeping",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Source Note",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/self-energy.md",
+                    "markdownSection": "Source Note",
+                    "sectionKey": "source note",
                     "headingLevel": 2
                   }
                 ]

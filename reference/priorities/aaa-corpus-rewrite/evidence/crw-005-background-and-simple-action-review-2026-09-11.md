@@ -207,3 +207,120 @@ Residual limits: no coupled trajectory was evolved; no all-root inventory, branc
 ## Next HQ adjudication boundary
 
 HQ should first decide whether the chapter is intended as a short conceptual primer or as a standalone simulation law. In either case, D1 should be corrected or explicitly restricted before the chapter is used to design event-driven numerical behavior. If the chapter is retained as a law-facing document, HQ must also adjudicate D2 and O1–O3: define the emission measure and one-time Jacobian collapse, state the regular branch domain, and separate ordinary event-driven root tracking from variational-action and finite-impulse claims. E1–E4 can be handled as bounded terminology/source repairs after that mathematical disposition. No source edit is authorized by this report.
+
+
+## Owner-authorized implementation closeout — 2026-09-11
+
+This section records the subsequent authorized repair of CRW-005 item 6 by Codex as implementation owner. It supersedes the report-only disposition above; the original findings, counterexamples, and snapshot references remain historical evidence. The operator authorized edits to this chapter and this evidence report only, leaving shared-board integration to HQ.
+
+**Bounded result:** both demonstrated defects and all four editorial issues are repaired; O1's normalization ambiguity is resolved; O2 and O3 receive scope repairs while their scientific obligations remain open. This completes the bounded review/disposition work, with equation-mapping regeneration deferred as required. It establishes no theory closure, complete self-action, global delayed-history coverage, solver certification, conservation, or empirical acceptance.
+
+### Source identity and changed files
+
+- The input chapter measured SHA-256 `28199f92eb75f85ed2158dcbcb72a5a073d58475c081677236939afd185b22a1` by `shasum -a 256`, matching the independently reviewed snapshot. Scoped `git status` and `git diff` printed no pending changes to either authorized file before implementation.
+- The original report measured SHA-256 `f015280abd2525be33806b134783530b164ac6f1eaebde126e84187ebdf9fa5d` by `shasum -a 256`. This closeout is appended; the original evidence is retained.
+- The repaired [Background and Simple Action](../../../../content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md) measures 102 lines and SHA-256 `ba279045264bbdc88d1fb033dd809029d8208e0e241fbea5db64965f8d180f87` by `wc -l` and `shasum -a 256`. Chapter line references below address these repaired bytes.
+- The only files written by this implementation are that canonical chapter and this evidence report. No shared board, priority, queue, work log, dependency chapter, generated artifact, or validation instrument was edited; no staging, commit, push, regeneration, or worktree operation was performed.
+
+The dependency review used the live Master Equation's path-history integral, emission-labeled wake state, branch chart, and canonical per-hit law. Causal Action Functional measured SHA-256 `7e585c26bd6702dcb01efbf329431ae17295d3293d19d373816c7c28657d62dd` by `shasum -a 256`. Delay Dynamics Energy was being repaired concurrently: its hash changed from `2d6184d8c36e6dd33149953b381016e764d7486f65f12c46966fbb8636d3d5e8` at initial reading to `f0bcfbb6321e6dac628568526575c71c6845d2d32ffa635b2f5a861aaaa32f54` at the dependency recheck. Its changed construction, continuation, and conservation passages were reread with `git diff`; the chapter's conditional energy statement remains compatible with them. These are snapshot identities, not authorship or scientific-acceptance claims.
+
+### Finding-by-finding disposition
+
+| Finding | Disposition | Implemented repair and evidence boundary | Reopening condition |
+| --- | --- | --- | --- |
+| D1 | ✓ Done — accepted mathematical repair | Lines 98–100 use per-hit acceleration, derive the persistent stationary prescribed-history example, define inertial motion by zero total acceleration over an interval, and reserve finite impulse for an established velocity-change integral. The undefined mollification/pulse assertion is removed. | Reopen if the example fails substitution into the causal condition and regular law, or pulse/inertial-gap claims return without a temporal-support hypothesis. |
+| D2 | ✓ Done — accepted definitional repair | Lines 34–47 define the support function, both derivatives, signed playback, units, and unsigned weight. Lines 51–57 give the strict-past retained root set; lines 74–92 count each ordered root once. No nonzero receiver-factor condition is imposed. | Reopen if per-hit strength gains a playback multiplier or the derivatives disagree with the causal condition. |
+| O1 | ✓ Done — accepted normalization repair | Lines 65–81 define the signed emission measure, spherical density, and single emission-time delta collapse. Line 92 declares coupling normalization and units. No double counting was demonstrated in the old formula. | Reopen if surface integration fails to return the declared measure or any geometry/Jacobian factor is counted twice. Energy-current construction remains separate. |
+| O2 | ✓ Done — accepted scope repair; scientific extension open | Lines 49–61 specify compatible finite histories, finite root count, separation/Jacobian floors, endpoint margins, inactive-root coverage, self-root conditions, and the end of the regular formula at boundary failure. Lines 76–81 exclude both integration endpoints. Exact full-law equality requires zero omitted total contribution; a nonzero truncation bound supports only an approximation. | Reopen extension work with a concrete complete-root/omitted-history certificate or singular transition. A missing root, lost margin, or uncontrolled omitted contribution invalidates application on that record. |
+| O3 | ✓ Done — accepted claim-boundary repair; variational and energy closure open | Lines 3 and 102 define action as causal response and distinguish the comparison statistic from a variational generator. Complete receiver/transmitter variation, self-history, endpoints, and independent conservation remain obligations under the linked owners. | Reopen stronger claims only with a complete functional variation reproducing the same acceleration and an independent history/boundary account. |
+| E1 | ✓ Done — accepted editorial-only repair | Line 3 replaces primitive “massless” with a carrier having no primitive mass property. No mass map is introduced. | Reopen only if controlled terminology changes the primitive description. |
+| E2 | ✓ Done — accepted editorial/source-scope repair | Lines 9–11 state absolute time, Euclidean space, and free motion directly; the unqualified external-framework label is removed. No external premise or citation is required. | Reopen if a comparison framework is introduced without stating its role and assumptions. |
+| E3 | ✓ Done — accepted editorial repair coupled to O1 | Lines 65–72 replace ambiguous flux with a signed surface measure and exclude an inferred energy or momentum current. | Reopen a transport claim only after its independent current and balance are constructed. |
+| E4 | ✓ Done — accepted editorial-only repair | Lines 22–32 retain the original outward unit vector and align its prose; line 92 states like-polarity outward and unlike-polarity inward acceleration. | Reopen if prose reverses the vector or omits the separate polarity sign. |
+
+No finding was rejected or silently discarded. O2 and O3 are complete as bounded dispositions, not as scientific closures. The chapter retains its title, substrate, original causal-distance and unit-vector equations and IDs, radial response, inverse-square geometry, and transmitter-side weight.
+
+### Mathematical self-review and separate analytical check
+
+The editor reviewed the complete repaired chapter. A separate read-only agent independently derived the two support derivatives, playback quotient, emission-time collapse, polarity normalization, and persistent-root counterexample. Its full-document pass found one further scope error in the repair draft: a bounded omitted-history contribution had been allowed to imply exact equality. That sentence was corrected to distinguish exact zero omission from controlled approximation. The editor also made the open integration interval explicit so no endpoint, including zero-delay self coincidence, contributes silently.
+
+The independent references are the direct change-of-variables derivation and analytic prescribed histories, not agreement between agents. The stationary unit-separation example at normalized wake speed has a root at every reception time; differentiating the causal identity gives the playback quotient. Neither calculation evolves the coupled EOM. The unchanged causal-wake test suite separately checks a known affine root and numerical fixed-reception collapse against the closed form. These checks establish local identities and examples, not the acceleration postulate as a model of nature.
+
+### Validation commands and results
+
+| Command or instrument | Result and scope |
+| --- | --- |
+| `git diff --check` | Passed with exit 0 over the shared tracked diff at the recorded run. Whitespace validation only. |
+| `node scripts/validate-content.mjs --check --strict` | Passed with exit 0: 0 errors, 0 warnings, 30 notes; 391 scenes, 199 corpus Markdown files, and 1638 repository Markdown files audited at the initial repaired-chapter run. Structural validation, not a proof or solver check. |
+| `node --test tests/causal-wake-update-law.test.js` | Passed with exit 0: 6 tests, 6 passed, 0 failed. Existing unmodified tests cover surface transport, normal direction, affine-root reduction and quadrature, transmitter projection, and the distinct moving-center alternative. |
+| Node syntax/local-file instrument below | Initial target run passed under KaTeX 0.16.47: chapter 7 display expressions, 69 inline expressions, 11 local links; original report 3 display expressions, 86 inline expressions, 14 local links. Its known fixture passed before target access. Final appended-report verification is recorded below. This checks TeX syntax and file targets, not visual layout or link fragments. |
+| `node scripts/build-equation-mapping-corpus.mjs --check` | Exit 1: five missing canonical source links and stale `content/generated/equation-mapping/corpus-equations.json`. The run discovered 199 Markdown files, 4666 display equations, 23 promoted equations, and 30191 symbol definitions. Overall generated freshness is not claimed. |
+
+The five new chapter displays lack generated links. The check reported IDs `corpus-equation-64ee29567fb2e6aa`, `corpus-equation-6e68e862aa5efb32`, `corpus-equation-9c165fd0ccf57a2d`, `corpus-equation-ca9a7334a66b7f31`, and `corpus-equation-817cee980597181e`. The required command is `node scripts/build-equation-mapping-corpus.mjs --write`, followed by `node scripts/build-equation-mapping-corpus.mjs --check`, under authorized regeneration/publication ownership. Concurrent corpus edits can change the global registry before that run; this receipt reports observed drift rather than attributing all staleness to this chapter.
+
+Final appended-report checks passed under KaTeX 0.16.47: chapter 7 display expressions, 69 inline expressions, 11 local file links; appended report 3 display expressions, 86 inline expressions, 20 local file links. A Node byte comparison against the hash-verified original report from `git show HEAD:<report-path>` confirmed that all original report bytes remain its prefix; the existing display parser confirmed that both original chapter equations and their IDs are unchanged. The separate read-only reviewer verified the final chapter hash above and returned a bounded disposition pass after the equality and open-endpoint corrections.
+
+An intermediate shared-tree `node scripts/validate-content.mjs --check --strict` rerun exited 1 with 1 error, 0 warnings, and 30 notes: `reference/priorities/aaa-corpus-rewrite/evidence/crw-005-delay-dynamics-energy-review-2026-09-11.md:200` contained a Markdown link target `time` resolving to the missing path `reference/priorities/aaa-corpus-rewrite/evidence/time`. That report is outside this owner's two-file write authority and was not edited here. A subsequent `sed` read found the receipt's literal example removed during concurrent work; the final strict rerun then passed with exit 0, 0 errors, 0 warnings, and 30 notes over the same 391 scenes, 199 corpus Markdown files, and 1638 repository Markdown files. This resolves the observed shared content-check failure without changing this implementation's write scope. Generated-equation freshness remains deferred as recorded above.
+
+The reproducible syntax/local-file instrument uses the existing display parser and Markdown link lexer. Its known fixture checks one display expression, one inline expression, one real link, and exclusion of inline code and fenced content before target access. Run the following JavaScript from the repository root through `CRW005_TARGETS=1 node --input-type=module` on standard input; omit the environment variable to run only the fixture.
+
+```js
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
+import katex from "katex";
+import { marked } from "marked";
+import { parseCorpusDisplayEquations } from "./scripts/build-equation-mapping-corpus.mjs";
+function scan(sourcePath, source) {
+  const displays = parseCorpusDisplayEquations(sourcePath, source);
+  const lines = source.split("\n");
+  for (const b of displays) for (let n=b.startLine-1;n<b.endLine;n++) lines[n]="";
+  let fence=null;
+  const text = lines.map(line => {
+    const m=line.match(/^\s*(\x60{3,}|~{3,})/);
+    if (m) { fence=fence ? null : m[1][0]; return ""; }
+    return fence ? "" : line.replace(/(\x60+)[\s\S]*?\1/g,"");
+  }).join("\n");
+  const inline = [...text.matchAll(/(?<!\\)\$([^$\n]+?)(?<!\\)\$/g)].map(m=>m[1]);
+  const links=[];
+  marked.walkTokens(marked.lexer(source), token=>{if(token.type==="link") links.push(token.href);});
+  return {displays, inline, links};
+}
+const fixture = "# Case\n\n$$\nx^2\n$$\n\nInline $y+1$ and \x60$ignored$\x60.\n\n\x60\x60\x60\n$ignored$ [code](missing.md)\n\x60\x60\x60\n\n[real](AGENTS.md)\n";
+const known=scan("case.md",fixture);
+assert.deepEqual(known.displays.map(x=>x.tex),["x^2"]);
+assert.deepEqual(known.inline,["y+1"]);
+assert.deepEqual(known.links,["AGENTS.md"]);
+for(const x of [...known.displays.map(b=>b.tex),...known.inline]) katex.renderToString(x,{throwOnError:true});
+console.log("KNOWN CASE PASS: 1 display, 1 inline, 1 link; inline code and fenced content excluded.");
+if (process.env.CRW005_TARGETS === "1") {
+  for (const sourcePath of [
+    "content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md",
+    "reference/priorities/aaa-corpus-rewrite/evidence/crw-005-background-and-simple-action-review-2026-09-11.md"
+  ]) {
+    const result=scan(sourcePath,fs.readFileSync(sourcePath,"utf8"));
+    for (const b of result.displays) katex.renderToString(b.tex,{displayMode:true,throwOnError:true});
+    for (const tex of result.inline) katex.renderToString(tex,{displayMode:false,throwOnError:true});
+    let local=0;
+    for(const href of result.links) {
+      if (/^[a-z][a-z0-9+.-]*:/i.test(href) || href.startsWith("#")) continue;
+      const target=path.resolve(path.dirname(sourcePath),decodeURIComponent(href.split("#")[0]));
+      assert.ok(fs.existsSync(target),sourcePath+" => "+href); local++;
+    }
+    console.log(JSON.stringify({sourcePath,display:result.displays.length,inline:result.inline.length,localLinks:local,katex:katex.version}));
+  }
+}
+```
+
+### Unresolved obligations and HQ handoff
+
+| Status | Obligation and existing owner | Evidence needed to reopen |
+| --- | --- | --- |
+| ○ Deferred — full-history application | [Master Equation branch chart](../../../../content/markdown/aaa/dynamics/master-equation.md#branch-chart-closure-object) | A complete retained-root record and omitted-history/member/endpoint control. A finite horizon alone is insufficient. |
+| ○ Deferred — singular and self-action extension | [Master Equation self-hit regime](../../../../content/markdown/aaa/dynamics/master-equation.md#self-hit-regime) and [Causal Action Functional singular limits](../../../../content/markdown/aaa/dynamics/causal-action-functional.md#limits-at-singular-events) | A specified finite-width or event law, coincidence convention, regular limit, and applicable integrated transition account. Positive delay alone is insufficient. |
+| ○ Deferred — variational generation | [Master Equation action residual](../../../../content/markdown/aaa/dynamics/master-equation.md#transmitter-side-roots-acceleration-weight-and-action-residual) | Complete variation, including both causal roles, admitted self-history, pair normalization, and common boundaries, equal to the acceleration on the same record. |
+| ○ Deferred — energy and transport | [Delay Dynamics Energy](../../../../content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md#accepted-construction-routes) | An independent wake/history/boundary construction and balance. A kinematic measure or work-defined constant total is insufficient. |
+| ○ Deferred — generated links and registry | Existing equation-mapping generator | The recorded write/check pair under explicit regeneration or final publication authority. No generator write occurred here. |
+| ○ Not done here — shared record integration | HQ's CRW-005 record | HQ can mark item 6 complete at bounded review/disposition level using this receipt. Shared-board edits remain outside this implementation's authority. |
+
+There is no decision needed from the operator to complete this authorized repair. The next recommended action is HQ integration of this receipt; scientific extensions remain with their current owners and require the evidence above.

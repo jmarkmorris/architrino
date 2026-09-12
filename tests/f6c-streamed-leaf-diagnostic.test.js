@@ -140,7 +140,7 @@ def open_adapter(root,**kw):
   selection=kw['historical_evidence'];assert selection['schema']=='braid-program/variable-cell-historical-evidence.v1'
   for route in selection['routes']:
    b=route['physical'];raw=pathlib.Path(b['path']).read_bytes();assert hashlib.sha256(raw).hexdigest()==b['sha256'] and len(raw)==b['bytes'];extras.append(SourceBinding(**b))
-  a.historical_evidence_verification={'schema':'synthetic-retained-verification','fullOriginalEnvironmentVerified':False}
+  a.historical_evidence_verification={'schema':'synthetic-retained-verification','retainedScientificBytesVerified':true,'recordedProvenanceVerified':true}
  for d in kw['parent_refinements']:
   extras.extend(getattr(d,k)for k in ('plan','manifest','comparison','operation','launcher_log','resource_log'))
   extras.extend(r.archive for r in d.archived_sources)
@@ -301,7 +301,7 @@ function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64
  }
  if(mode.startsWith('retained')){
   const physical=path.join(dir,'evidence','original.source');mkdirSync(path.dirname(physical),{recursive:true});writeFileSync(physical,'inert historical bytes');const b=bind(physical);
-  spec.historicalEvidence={selection:{schema:'braid-program/variable-cell-historical-evidence.v1',routes:[{original:{...b,path:path.join(dir,'original.py')},physical:b}],unavailableHistoricalEnvironment:[]},sourceBindings:[bindings.adapter,b]};
+  spec.historicalEvidence={selection:{schema:'braid-program/variable-cell-historical-evidence.v1',routes:[{original:{...b,path:path.join(dir,'original.py')},physical:b}]},sourceBindings:[bindings.adapter,b]};
   if(mode==='retained-extra'){const extra=path.join(dir,'extra.source');writeFileSync(extra,'not consumed');spec.historicalEvidence.sourceBindings.push(bind(extra));}
  }
  const specPath=path.join(dir,'invocation.json');writeFileSync(specPath,JSON.stringify(spec)+'\n');
@@ -920,7 +920,7 @@ test('version-five retained selection reaches adapter and frozen stream metadata
  const f=fixture('retained');try{
   const r=await runFixture(f);assert.equal(r.code,0,r.err);conditionalCompletion(JSON.parse(r.out));
   const line=readFileSync(path.join(f.output,'leaf-evidence.ndjson'),'utf8').split('\n')[0];
-  const decoded=JSON.parse(line);assert(line.includes('synthetic-retained-verification'));assert(line.includes('fullOriginalEnvironmentVerified'));assert(line.includes('historicalEvidence'));
+  const decoded=JSON.parse(line);assert(line.includes('synthetic-retained-verification'));assert(line.includes('retainedScientificBytesVerified'));assert(line.includes('historicalEvidence'));
   const checkHeader=String.raw`import hashlib,json,pathlib,sys,types
 p=pathlib.Path(sys.argv[1]);raw=p.read_bytes();assert hashlib.sha256(raw).hexdigest()==sys.argv[2]
 m=types.ModuleType('frozen_header');exec(compile(raw,str(p),'exec'),m.__dict__)
@@ -929,7 +929,7 @@ with pathlib.Path(sys.argv[3]).open('rb')as source:
  first=d.feed(next(source))
  for line in source:d.feed(line)
 d.finish();h=first['header'];assert h['accepted']is False
-assert h['sourceBindings']['historicalEvidenceVerification']=={'schema':'synthetic-retained-verification','fullOriginalEnvironmentVerified':False}
+assert h['sourceBindings']['historicalEvidenceVerification']=={'schema':'synthetic-retained-verification','retainedScientificBytesVerified':True,'recordedProvenanceVerified':True}
 assert h['spec']['historicalEvidence']==json.loads(pathlib.Path(sys.argv[4]).read_text())['historicalEvidence']
 `;
   const result=spawnSync(python,['-I','-B','-c',checkHeader,path.join(root,C.PINS.codec[0]),C.PINS.codec[1],path.join(f.output,'leaf-evidence.ndjson'),f.specPath],{encoding:'utf8',timeout:3000,maxBuffer:1024**2});assert.equal(result.status,0,result.stderr);

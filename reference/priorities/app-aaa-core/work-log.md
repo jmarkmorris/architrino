@@ -4,6 +4,12 @@ This file is the chronological work log for `app-aaa-core`. Use [priorities.md](
 
 ## Log Entries
 
+### 2026-09-11 — Priority tracker audit and OPS-028 review closure
+
+- Audited `priorities.md` against the current priority-file partition. The detailed accepted-contract closure narratives were compacted into current service-boundary and evidence-limit prose; their detailed records remain in the focused contract owners and this work log.
+- The `app-aaa-core` review under OPS-028 is complete. The lane remains blocked only on measured representative workloads, a selected public experimental dataset and scientific comparison mapping, and accelerator evidence as recorded in the live queue.
+- This review changes tracker organization and review status only. It does not change contract authority, scientific evidence grade, production readiness or the deferred queue.
+
 ### 2026-09-02 — AAA Core Classified As The Shared Headless Application Platform
 
 - Classified AAA Core as shared headless application infrastructure rather than an end-user product, while retaining the `app-aaa-core` compatibility path and every accepted `aaa_core_*` schema, capability, class, and refusal interface.

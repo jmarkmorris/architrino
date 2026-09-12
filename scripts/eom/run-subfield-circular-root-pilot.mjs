@@ -189,7 +189,7 @@ export function pilotFileOperation(job) {
     demand(build.schema === "braid-program/subfield-circular-root-build.v1" && build.status === "build-recorded-pending-independent-review" &&
       build.rootExecutionAuthorized === false && build.h3EvidenceEligible === false && build.rootCalls === 0,
       "build receipt authority differs");
-    for (const field of ["sources", "references", "tools", "headerDependencies", "externalLibraries"])
+    for (const field of ["sources", "references"])
       demand(JSON.stringify(build[`${field}Before`]) === JSON.stringify(build[`${field}After`]), `build ${field} changed`);
     demand(build.stages.every(stage => stage.code === 0 && stage.signal === null && !stage.timedOut && !stage.interrupted &&
       !stage.descendantsAfterClose && stage.processGroupClosed), "recorded build has unclosed or failed stages");
@@ -205,12 +205,10 @@ export function pilotFileOperation(job) {
     }
     visit(build);
     const checked = [...collected.values()].map(record => bind(job.root, record));
-    const fast = [...build.sourcesBefore, ...build.referencesBefore, ...build.toolsBefore,
-      ...build.externalLibrariesBefore, ...Object.values(build.built),
-      ...build.runtimeDependencies.filter(record => record.status === "file-hashed")];
+    const fast = [...build.sourcesBefore, ...build.referencesBefore, ...Object.values(build.built)];
     const result = { buildReceipt: { path: absolute(job.root, BUILD), sha256: BUILD_SHA },
       checkedBindingCount: checked.length, built: build.built, fastBindings: fast,
-      platformDependencyBoundary: build.runtimeDependencies.filter(record => record.status !== "file-hashed") };
+      runtimeCapabilities: build.runtimeDependencies.map(record => ({ consumer: record.consumer, requested: record.requested })) };
     if (job.out) jsonWrite(job.out, { ...result, checkedBindings: checked });
     return result;
   }

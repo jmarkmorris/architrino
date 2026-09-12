@@ -319,7 +319,7 @@ test("full machine plan refuses pilot scope and prior resource plan without rela
   assert.equal(R.LIMIT_MS,1800000);assert.equal(R.LOG_LIMIT,16*1024**2);assert.equal(R.FILE_LIMIT,64*1024**2);
   assert.equal(R.PINS["reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md"],
     "1a6327933b0060905aec97022e87c243b54f353af8c7aec83712967b285b010d");
-  assert.equal(R.PINS[R.CONSUMER],"7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5");
+  assert.equal(R.PINS[R.CONSUMER],"d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841");
   assert.equal(R.PINS[R.COMPARISON],"3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7");
 });
 

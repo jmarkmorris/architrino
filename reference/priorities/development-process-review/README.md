@@ -12,9 +12,7 @@ The [F5 acceptance chain](analysis/f5-remaining-callers.md) and [circular pilot]
 
 The [first bounded process investigation](analysis/first-process-investigation.md) now supplies local synthetic controls, raw outputs, receipts, and a reproducible diagnostic instrument. The subsequently authorized [process repair and validation](analysis/process-repair-validation.md) records 85 passing process regressions; the [consequential repair audit](analysis/consequential-repair-audit.md) separates historical-binding errors and a remaining preparation-pin failure from that repair.
 
-The subsequent [source recovery and binding repair](analysis/source-recovery-and-binding-repair.md) reconstructs the exact intermediate preparation version, preserves all 19 changed or missing repository sources from the historical full-run receipt, and repairs the reviewed current composition. It identifies the separate archive-contract gap and three unrecovered historical host utilities; historical authentication remains open.
-
-The latest [archive-contract and coordinator review](analysis/archive-contract-and-coordinator-review.md) explains why old host binaries block the current implementation, proposes separate historical-evidence and environment-availability claims, and traces the coordinator mismatch to an incompatible completion-interface replacement. The operator subsequently approved both implementations; the same document now contains the [current implementation and validation](analysis/archive-contract-and-coordinator-review.md#approved-implementation-and-current-disposition). The current parent path verifies retained historical evidence and uses separately observed operational closure. Wider scientific-consumer and binding defects remain explicit in the work queue.
+The subsequent [source recovery and binding repair](analysis/source-recovery-and-binding-repair.md) reconstructs the exact intermediate preparation version, preserves authored repository sources from the historical full-run receipt, and repairs the reviewed current composition. Runtime tools and packages are current execution capabilities; they are not historical source inputs or acceptance evidence. Wider scientific-consumer and binding defects remain explicit in the work queue.
 
 ## Evidence inventory
 
@@ -32,14 +30,14 @@ Substantive analysis of all five reports is in the linked cross-report assessmen
 
 ## Variable-cell historical migration
 
-The [migration analysis](analysis/variable-cell-historical-migration.md) explains the repaired original bindings, exact source archives, retained-data construction, passing Python controls, and still-failing Node diagnostic entry. The [validation run inventory](evidence/variable-cell-migration/validation-runs.json) records the complete validation logs; its containing directory also retains the explicit selection, recovery instruments, and results.
+The variable-cell source-binding repair is complete within its scoped owner; current runtime capabilities are not retained as historical records.
 
 ## Streamed-leaf launch migration
 
-The [launch migration analysis](analysis/streamed-leaf-launch-migration.md) records the version-five historical source transport, bounded whole-process controls, two operational defects found during validation, the final 158 passing tests, and remaining caller audit. The [validation records](evidence/streamed-leaf-migration/validation-runs.json) preserve unsuccessful and successful runs.
+The streamed-leaf current invocation remains an operational owner item; its process controls do not establish scientific consumer acceptance.
 
 ## Shared-helper caller audit
 
-The [caller audit](analysis/shared-helper-caller-audit.md) attributes the new unmatched helper selections to the streamed repair, reproduces the failing cached-root binding test, and documents every selected occurrence's current or historical role. The [source and dependency inventory](evidence/shared-helper-audit/inventory.json) records measured mismatches and consumer references. Current-profile migration remains open; the earlier passing tests do not cover these launch blockers.
+The [caller audit](analysis/shared-helper-caller-audit.md) records the remaining current-profile migration boundary without retaining mutable runtime inventories.
 
 The September 8 [bounded closeout review and preservation map](analysis/recovery-closeout-review.md) reconciles completed substeps, required repairs, blocked historical inputs, scientific continuation and final validation. The subsequent operator-delegated finite operational scope is accepted in [current priorities](priorities.md); earlier broader plan tables remain the preserved starting scope, not a requirement to execute deferred scientific campaigns for incident closeout.

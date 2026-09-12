@@ -18,12 +18,11 @@ parents1..159. Each needs separately bound independent acceptance. Historical
 source generations may be read only through explicit ArchivedSource relations;
 logical historical bindings and current physical provenance remain distinct.
 historical_evidence explicitly selects variable-cell-historical-evidence.v1:
-routes contain original/physical binding tuples, and
-unavailableHistoricalEnvironment contains only the exact three admitted old
-host tuples. Every selection must be consumed. Current executable modules
-bypass these routes. historical_evidence_verification separately reports
-retained-record verification and missing original-environment bytes; it does
-not accept new operational closure receipts as scientific parent evidence.
+routes contain original/physical binding tuples for authored historical
+artifacts only. Every selection must be consumed. Current executable modules
+bypass these routes. The verification result reports retained-record and
+recorded-provenance status; it does not accept new operational closure
+receipts as scientific parent evidence.
 An explicit EvidencePackage may replace only the frozen accepted parent1/2
 payload inventory. It preserves logical records and archive attribution, holds
 one checked physical package handle, and never falls back to loose members.
@@ -166,7 +165,7 @@ PARENT_FIXED=(
 SOURCES = (
  ('transport','scripts/eom/verify-f6c-refined-acceleration.py','e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae'),
  ('transportControls','tests/test_f6c_refined_acceleration.py','d65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd'),
- ('mapping','scripts/eom/verify-f6c-continuous-reception-acceleration.py','23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d'),
+ ('mapping','scripts/eom/verify-f6c-continuous-reception-acceleration.py','6e3467a017c3477fb1b2baddd10e985687ed6112aeb5bc84c2fc92a9453cda83'),
  ('mappingControls','tests/test_f6c_continuous_reception_acceleration.py','13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed'),
  ('decoder','scripts/eom/oracle/f6c_refined_acceleration_conformance.py','7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e'),
  ('decoderControls','tests/test_f6c_refined_acceleration_conformance.py','147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921'),
@@ -188,8 +187,8 @@ SOURCES = (
  ('fullEntry','scripts/eom/run-f6c-cached-root-cover-full.mjs','1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b'),
  ('geometry','scripts/eom/f6c_reception_geometry_restriction.py','e4bc1ff8bd23346f58a934ace429dbf65b11d0b2bb71ebc55dc34036ab9c51e7'),
  ('geometryControls','tests/test_f6c_reception_geometry_restriction.py','b6c4b4e6a82a11b4ee84c782bf208df4b141860bb8d01f1ad2b2a1ca749a6c7b'),
- ('captureHelper','scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5'),
- ('captureHelperControls','tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','3bee7599b03f2500ede6eeeea31c46e1aac82410f456e967102c13e820b93221'),
+ ('captureHelper','scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841'),
+ ('captureHelperControls','tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2'),
  ('geometryHistory','scripts/eom/oracle/certified_history.py','ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'),
  ('geometryRoots','scripts/eom/oracle/continuous_reception_roots_cached.py','daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf'),
  ('geometryRootsControls','tests/test_eom_continuous_reception_roots_cached.py','a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb'),
@@ -301,21 +300,6 @@ REFINED_ARCHIVES = {('reference/priorities/braid-program/evidence/2026-08-26-f6c
                                                                                                                                18422],
  ('tests/test_f6c_emission_refinement.py', '1d3af80d89834b31968cfe5dd7fb016bb0ac4eee6ce77fbabaeea21a9a905bc7'): ['1d3af80d89834b31968cfe5dd7fb016bb0ac4eee6ce77fbabaeea21a9a905bc7',
                                                                                                                  31668]}
-HISTORICAL_HOSTS = {
- "/usr/bin/git": [
-  "179301dcb41ea78accc3fa0048a7e6f6710d891945a751a34addd622020c1818",
-  118928
- ],
- "/bin/ps": [
-  "472992c470606d28f577590decfecd7f4a20f832fd92c671bebc6d44790b5d02",
-  170816
- ],
- "/usr/bin/memory_pressure": [
-  "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56",
-  135248
- ]
-}
-
 LABELS=('0+','0-','1+','1-','2+','2-','3+','3-')
 CHARGE='0.1666666666666666666666666666666667'
 COUPLING='10.304229970992187'
@@ -961,39 +945,27 @@ class _AncestryPool:
 
 
 class _ArchivePool:
-    """Explicit retained-evidence view; current module captures bypass this view.
-
-    Selection is caller data with a closed schema. Only exact frozen tuples can
-    route, and unavailable host records can supply bindings, never bytes.
-    """
+    """Explicit retained-evidence view for authored historical artifacts only."""
     def __init__(self,pool,selection):
-        _keys(selection,('schema','routes','unavailableHistoricalEnvironment'))
+        _keys(selection,('schema','routes'))
         require(selection['schema']=='braid-program/variable-cell-historical-evidence.v1','explicit historical evidence version')
         self._pool=pool;self.root=pool.root;self.w=pool.w;self.live=pool.live;self.files=pool.files
-        self.routes={};self.missing={};self.used=set();self.used_missing=set()
-        rows=selection['routes'];missing=selection['unavailableHistoricalEnvironment']
-        require(type(rows)is list and len(rows)<=198 and type(missing)is list and len(missing)<=3,'bounded historical selection')
+        self.routes={};self.used=set();rows=selection['routes']
+        require(type(rows)is list and len(rows)<=198,'bounded historical selection')
         targets=set()
         for row in rows:
             _keys(row,('original','physical'))
             old=self.w.normalized(row['original'],self.root);new=self.w.normalized(row['physical'],self.root)
             relative=os.path.relpath(old['path'],self.root)
-            expected=REFINED_ARCHIVES.get((relative,old['sha256']))or HISTORICAL_ARCHIVES.get(relative)or HISTORICAL_HOSTS.get(old['path'])
-            require(expected==[old['sha256'],old['bytes']],'exact historical archive tuple')
+            expected=REFINED_ARCHIVES.get((relative,old['sha256']))or HISTORICAL_ARCHIVES.get(relative)
+            require(expected==[old['sha256'],old['bytes']],'exact authored historical archive tuple')
             require(old['path']!=new['path'] and new['path'].endswith('.source')
                 and (old['sha256'],old['bytes'])==(new['sha256'],new['bytes']),'nonexecuting identical archive')
             key=(old['path'],old['sha256'])
             require(key not in self.routes and new['path']not in targets,'duplicate historical archive')
             self.routes[key]=(old,new);targets.add(new['path'])
-        for row in missing:
-            old=self.w.normalized(row,self.root)
-            require(HISTORICAL_HOSTS.get(old['path'])==[old['sha256'],old['bytes']],'exact unavailable host tuple')
-            require(not any(k[0]==old['path']for k in self.routes) and old['path']not in self.missing,'conflicting unavailable host')
-            self.missing[old['path']]=old
     def capture(self,path,digest,*,data=False,size=None):
         self.live();key=str(self.root/Path(path));route=self.routes.get((key,digest))
-        if key in self.missing:
-            raise ValueError('unavailable historical host cannot supply bytes')
         if route is None or digest!=route[0]['sha256']:
             return self._pool.capture(path,digest,data=data,size=size)
         old,new=route
@@ -1002,23 +974,17 @@ class _ArchivePool:
         self.used.add((key,digest))
         return _LogicalFile(physical,SourceBinding(**old))
     def read_binding(self,b,*,capture=False):
-        old=self.w.normalized(b,self.root);key=old['path']
-        if key in self.missing:
-            self.live()
-            require(not capture and self.w.equal(old,self.missing[key]),'unavailable historical host binding only')
-            self.used_missing.add(key);return old
-        file=self.capture(key,old['sha256'],data=capture,size=old['bytes'])
+        old=self.w.normalized(b,self.root)
+        file=self.capture(old['path'],old['sha256'],data=capture,size=old['bytes'])
         return file.data if capture else file.binding()
     def recheck(self):
-        require(self.used==set(self.routes) and self.used_missing==set(self.missing),'unused historical selection')
+        require(self.used==set(self.routes),'unused historical selection')
         self._pool.recheck()
     def verification(self):
         self.recheck()
         return MappingProxyType(dict(schema='braid-program/retained-historical-evidence.v1',
             retainedScientificBytesVerified=True,recordedProvenanceVerified=True,
-            fullOriginalEnvironmentVerified=not self.missing,
-            unavailableHistoricalEnvironment=tuple(SourceBinding(**b)for _,b in sorted(self.missing.items())),
-            authority='retained artifacts and recorded conditional provenance only; no fresh historical observation or replay'))
+            authority='retained authored artifacts and recorded provenance only; no environment replay'))
     @property
     def metadata(self):return self._pool.metadata
     def read_identity(self,b):
@@ -1817,11 +1783,7 @@ def _full_chain(w,core,docs,bound,entry_raw,pool,owner_raw):
         and contract['declarationSha256']=='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4','full comparison contract')
     expected=[]
     for path,digest in _entry_pins(entry_raw).items():
-        host=HISTORICAL_HOSTS.get(path)
-        if host is not None:
-            require(digest==host[0],'original entry host identity')
-            expected.append(pool.read_binding(dict(path=path,sha256=digest,bytes=host[1])))
-        else:expected.append(pool.capture(path,digest).binding())
+        expected.append(pool.capture(path,digest).binding())
     for group,n in ((contract['subjectSourceBindings'],4),(contract['runtimeBindings'],158),(p['operationalBindings'],6),(p['controlBindings'],2)):
         w.binding_list(group,n);expected.extend(pool.read_binding(b)for b in group)
     expected.extend((pool.read_binding(p['resourcePlan']),bound['plan']))
@@ -1969,17 +1931,6 @@ def open_adapter(repo_root,*,adapter_sha256,controls_sha256,closure_owner_sha256
             refined_files={role:pool.capture(p,h,data=True)for role,p,h in w.REFINED};refined={k:v.binding()for k,v in refined_files.items()}
             rdocs={k:w.decode_role(core,refined_files[k].data,k)for k in ('manifest','comparison','admission','plan')}
             fixed=reference.FIXED
-            if historical_evidence is not None:
-                recorded=rdocs['manifest']['fixedBindings'];require(set(recorded)=={r for r,_,_ in fixed},'complete historical ancestry roles')
-                historical_fixed=[]
-                for role,path,digest in fixed:
-                    b=w.normalized(recorded[role],root)
-                    require(b['path']==str(root/path),'original ancestry role path')
-                    if b['sha256']!=digest:
-                        allowed=REFINED_ARCHIVES.get((path,b['sha256']))or HISTORICAL_ARCHIVES.get(path)
-                        require(allowed==[b['sha256'],b['bytes']],'exact historical ancestry generation')
-                    historical_fixed.append((role,path,b['sha256']))
-                fixed=historical_fixed
             ancestry_files={role:pool.capture(p,h,data=role in ('export','manifest','comparison','admission','reconstruction','guards','priorPlan'))for role,p,h in fixed}
             ancestry={k:v.binding()for k,v in ancestry_files.items()}
             old={k:w.decode_role(core,ancestry_files[k].data,k)for k in ('export','manifest','comparison','admission','reconstruction','guards','priorPlan')}

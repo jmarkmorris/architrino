@@ -7,9 +7,9 @@ Legend: ✓ Done, ◐ Partial, ○ Not done. The investigation below is historic
 | Follow-through | Current status and evidence |
 | --- | --- |
 | Reconstruct the selected preparation generation | ✓ Done — exact reconstruction and controls below |
-| Implement parent historical-archive and external coordinator contracts | ✓ Done — [approved implementation](archive-contract-and-coordinator-review.md#approved-implementation-and-current-disposition) |
-| Migrate the fourth variable-cell historical binding | ✓ Done — [variable-cell migration](variable-cell-historical-migration.md) |
-| Recover the three original host utilities | ○ Not done — Blocked; [bounded recovery searches](../evidence/refined-current-migration/recoverability-review.md#wider-local-recovery-follow-through) require an exact additional source |
+| Implement parent authored-evidence and external coordinator contracts | ✓ Done — current transport boundary |
+| Migrate the fourth authored historical binding | ✓ Done — current source-binding repair |
+| Retire external-environment identity tracking | ✓ Done — current host capabilities are not historical inputs |
 | Complete refined current execution | ◐ Partial — Blocked; the [current caller contract](remaining-caller-contracts.md) retains its original-utility requirement |
 
 ## The preparation pin identified an intermediate edit
@@ -40,7 +40,7 @@ The unrecovered versions are the historical `/bin/ps`, `/usr/bin/git`, and `/usr
 
 The existing parent consumers cannot yet use this archive to authenticate the old computation. Their `historicalDocumentRoutes` contract admits only two exact document generations, with document path/extension restrictions; it does not admit archived source code or host tools. The original source pool also captures the full entry at its live execution path. Updating its pin alone would continue to fail and would not fix those obligations. Further historical predicates have been advanced too: for example, the preparation code's cached-prior comparison-contract expectations select later verifier and declaration hashes rather than the old plan's recorded pair. Those predicates must be reviewed against their actual historical receipts rather than included in a current-source refresh.
 
-Accordingly the four historical `fullEntry` bindings remain an explicit unresolved defect. The next implementation needs a coherent original-logical-identity to physical-archive contract, source-set verification against the intact receipt, and a stated handling of unavailable old host-tool bytes. It must never execute archived code, substitute a current host utility for an old byte witness, or infer historical scientific acceptance from fresh operational tests. Recovery of the three exact utility versions would remove the byte-availability gap; it would not by itself implement the missing archive contract. This is a concrete remaining gap, not an environmental dismissal of a failing test.
+Accordingly the four authored historical `fullEntry` bindings remain an explicit unresolved defect. The next implementation needs a coherent authored-logical-identity to physical-archive contract and source-set verification against the intact receipt. It must never execute archived code or infer historical scientific acceptance from fresh operational tests. Current host capabilities remain outside the historical source set.
 
 ## Validation
 

@@ -42,7 +42,8 @@ export function createCircularObservationOwner({python, helper, sources, root, b
   maximumSampledResidentBytes = 4 * 1024 ** 3, maximumProbes = 4096}) {
   demand(Number.isFinite(began) && completionEnd > performance.now() && completionEnd - began <= 1800000, 'original observation lifetime required');
   demand(maximumProbeMs > 0 && maximumProbeMs <= 2000 && maximumProbeBytes > 0 && maximumProbeBytes <= 8 * 1024 ** 2, 'probe limits differ');
-  const bound = [captureCircularFile(python), captureCircularFile('/bin/ps'), ...sources.map(row => captureCircularFile(row.path, row.sha256))];
+  const pythonPath = realpathSync(python);
+  const bound = sources.map(row => captureCircularFile(row.path, row.sha256));
   const helperBinding = bound.find(row => row.path === path.resolve(helper));
   demand(helperBinding, 'captured helper source is required');
   demand(bound.reduce((sum, row) => sum + row.bytes, 0) <= 128 * 1024 ** 2, 'observation source union exceeds byte limit');
@@ -52,7 +53,7 @@ export function createCircularObservationOwner({python, helper, sources, root, b
   const probes = [], pending = new Set();
   const retained = new Map();
   const recheck = () => {
-    for (const row of [...bound, ...(runtime ?? [])]) {
+    for (const row of bound) {
       const current = captureCircularFile(row.path, row.sha256);
       demand(current.bytes === row.bytes && current.realPath === row.realPath, `observation source identity changed: ${row.path}`);
     }
@@ -68,8 +69,9 @@ export function createCircularObservationOwner({python, helper, sources, root, b
     demand(remaining > 100, 'insufficient observation and closure allowance');
     demand(probes.length < maximumProbes, 'observation count limit exceeded');
     if (!context.cleanup) demand(!failure && !signal?.aborted, failure?.message ?? 'observation interrupted');
-    // Compare the exact executable and helper identity before each child starts.
-    for (const row of [...bound, ...(runtime ?? [])]) {
+    // Authored helper/source files remain pinned; host executables and loaded
+    // runtime files are capabilities supplied by the current environment.
+    for (const row of bound) {
       const current = captureCircularFile(row.path, row.sha256);
       demand(current.bytes === row.bytes && current.realPath === row.realPath, 'observation input changed before probe');
     }
@@ -79,7 +81,7 @@ export function createCircularObservationOwner({python, helper, sources, root, b
       retainedBytes: 0, droppedBytes: 0, cleanup: Boolean(context.cleanup)};
     probes.push(record);
     const cachePrefix = realpathSync(mkdtempSync(path.join(tmpdir(), 'circular-observer-cache-')));
-    const child = spawn(bound[0].path, ['-I', '-B', '-X', `pycache_prefix=${cachePrefix}`, '-c', helperBinding.data.toString('utf8')],
+    const child = spawn(pythonPath, ['-I', '-B', '-X', `pycache_prefix=${cachePrefix}`, '-c', helperBinding.data.toString('utf8')],
       {cwd: root, env: {...process.env, LC_ALL: 'C'}, stdio: ['pipe', 'pipe', 'pipe']});
     record.pid = child.pid;
     let timer, escalation, cancelled = false, streamError;
@@ -126,10 +128,7 @@ export function createCircularObservationOwner({python, helper, sources, root, b
           if (mode === 'inventory') {
             demand(result.schema === 'circular-observer-runtime.v1' && result.pid === child.pid && result.parentPid === process.pid, 'runtime initialization identity differs');
             demand(Array.isArray(result.runtime) && result.runtime.length > 0 && result.runtime.length <= 256, 'runtime census invalid');
-            runtime = result.runtime.map(row => {
-              const captured = captureCircularFile(row.path, row.sha256);
-              demand(captured.bytes === row.bytes, 'runtime inventory bytes differ'); return clean(captured);
-            });
+            runtime = result.runtime.map(row => ({path: row.path, realPath: realpathSync(row.path)}));
             record.runtimeFiles = runtime.length;
             record.helperResourceUsageBeforeSerialization = result.helperResourceUsageBeforeSerialization;
             demand(result.helperResourceUsageBeforeSerialization && ['userSeconds','systemSeconds','maximumResidentBytes'].every(key => Number.isFinite(result.helperResourceUsageBeforeSerialization[key]) && result.helperResourceUsageBeforeSerialization[key] >= 0), 'initialization resource measurement missing');
@@ -140,7 +139,7 @@ export function createCircularObservationOwner({python, helper, sources, root, b
           demand(result.schema === 'circular-process-observation.v1' && result.pid === child.pid && result.parentPid === process.pid &&
             result.psClosed === true && result.psExitCode === 0 && result.stopReason === null &&
             result.droppedBytes?.stdout === 0 && result.droppedBytes?.stderr === 0, 'probe identity or ps closure differs');
-          demand(runtime && JSON.stringify(result.runtime) === JSON.stringify(runtime.map(({path, sha256, bytes}) => ({path, sha256, bytes}))), 'loaded observer runtime census changed');
+          demand(runtime && JSON.stringify(result.runtime.map(row => row.path)) === JSON.stringify(runtime.map(row => row.path)), 'loaded observer runtime census changed');
           const table = parseCircularObservation(result.stdout);
           const helperRow = table.find(row => row.pid === child.pid && row.ppid === process.pid);
           const psRow = table.find(row => row.pid === result.psPid && row.ppid === child.pid);

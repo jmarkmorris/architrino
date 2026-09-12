@@ -11,7 +11,7 @@
 - Coincident same-transmitter root birth: `fail-closed`
 - Higher or undeclared singular strata: `fail-closed`
 - Canonical document: [Master Equation](../../../../content/markdown/aaa/dynamics/master-equation.md)
-- Source snapshot SHA-256: `c402cc83621b60f0a80ad4f1f48a4db1a6fa12a5a6c2874d02b9d93e03c2cf05`
+- Source snapshot SHA-256: `bb7357868a4f900aa566b8a43107d111dcd435cab677361f9bba3dceaadb384b`
 
 The two `fail-closed` labels above are retained binding values. In current human-facing terminology, verification is incomplete for both unresolved singular-event classes and their disposition is not advanced.
 

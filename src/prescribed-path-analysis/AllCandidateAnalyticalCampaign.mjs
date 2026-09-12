@@ -326,7 +326,7 @@ export function validateMethodologyCoverageContract(coverage, methodologyBytes) 
   const methodologySha256 = sha256Bytes(methodologyBytes);
   if (methodologySha256 !== coverage.methodology.sha256 ||
       coverage.methodology.impactReview !==
-        "reviewed-for-exact-configuration-complete-cycle-campaign-v2-2026-09-08") {
+        "reviewed-for-exact-configuration-complete-cycle-campaign-v2-2026-09-12") {
     fail(
       `methodology hash ${methodologySha256} requires an explicit analytical coverage impact review.`,
     );

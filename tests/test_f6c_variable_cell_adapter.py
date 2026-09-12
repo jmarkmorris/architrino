@@ -526,129 +526,6 @@ class AncestryArchiveTests(unittest.TestCase):
             self.assertEqual(view.data,b'original link');self.assertEqual(view.binding(),asdict(r.original));pool.recheck()
 
 
-class HistoricalEvidenceTests(unittest.TestCase):
-    def test_old_gate_schema_projection_preserves_flags_and_rejects_current_schema(self):
-        read=subject._historical_observation_decoder(w.decode_operational)
-        old=dict(schema='braid-program/abc-pilot-outer-heartbeat.v1',h3EvidenceEligible=False,stopping=False)
-        raw=encoded(old);result=read(raw)
-        self.assertEqual(result,{**old,'schema':'braid-program/subfield-circular-pilot-outer-heartbeat.v1'})
-        self.assertEqual(encoded(old),raw)
-        with self.assertRaises(ValueError):read(encoded(result))
-        self.assertEqual(read(encoded(dict(kind='host-resource'))),dict(kind='host-resource'))
-
-    @contextmanager
-    def fixture(self):
-        with tempfile.TemporaryDirectory()as temp,ExitStack()as stack:
-            root=Path(temp).resolve();old=root/'entry.py';archive=root/'entry.py.source'
-            old.write_bytes(b'current');archive.write_bytes(b'original')
-            bind=lambda p,raw:dict(path=str(p),sha256=hsh(raw),bytes=len(raw))
-            original=bind(old,b'original');physical=bind(archive,b'original')
-            # Literal known fake host is admitted only inside this fixture.
-            host=dict(path='/old/test-host',sha256='a'*64,bytes=7)
-            selection=dict(schema='braid-program/variable-cell-historical-evidence.v1',
-                routes=[dict(original=original,physical=physical)],unavailableHistoricalEnvironment=[host])
-            with patch.object(subject,'HISTORICAL_ARCHIVES',{'entry.py':[hsh(b'original'),8]}),patch.object(subject,'HISTORICAL_HOSTS',{'/old/test-host':['a'*64,7]}):
-                base=subject._Pool(stack,w,root,lambda:None)
-                yield root,base,selection,original,host
-
-    def consume(self,pool,old,host):
-        self.assertEqual(pool.read_binding(old,capture=True),b'original')
-        self.assertEqual(pool.read_binding(host),host)
-
-    def test_exact_original_tuple_and_separate_physical_current_bytes(self):
-        with self.fixture()as(root,base,s,old,host):
-            pool=subject._ArchivePool(base,s);self.consume(pool,old,host)
-            self.assertEqual(base.capture('entry.py',hsh(b'current'),data=True).data,b'current')
-            self.assertEqual(pool.read_binding(old),old)
-            self.assertNotIn('/old/test-host',pool.files)
-            result=pool.verification()
-            self.assertTrue(result['retainedScientificBytesVerified']);self.assertTrue(result['recordedProvenanceVerified'])
-            self.assertFalse(result['fullOriginalEnvironmentVerified'])
-            self.assertEqual(asdict(result['unavailableHistoricalEnvironment'][0]),host)
-            with self.assertRaises(TypeError):result['fullOriginalEnvironmentVerified']=True
-
-    def test_host_cannot_supply_bytes_or_excuse_different_generation(self):
-        with self.fixture()as(root,base,s,old,host):
-            pool=subject._ArchivePool(base,s)
-            for changed,capture in ((host,True),({**host,'sha256':'b'*64},False),({**host,'bytes':8},False)):
-                with self.assertRaises(ValueError):pool.read_binding(changed,capture=capture)
-            with self.assertRaises(ValueError):pool.capture(host['path'],host['sha256'])
-            self.consume(pool,old,host);pool.recheck()
-
-    def test_two_historical_generations_at_one_path_remain_distinct(self):
-        with self.fixture()as(root,base,s,old,host):
-            second=root/'second.source';second.write_bytes(b'older')
-            prior=dict(path=old['path'],sha256=hsh(b'older'),bytes=5)
-            s['routes'].append(dict(original=prior,physical={**prior,'path':str(second)}))
-            with patch.object(subject,'REFINED_ARCHIVES',{('entry.py',prior['sha256']):[prior['sha256'],5]}):
-                pool=subject._ArchivePool(base,s);self.consume(pool,old,host)
-                self.assertEqual(pool.read_binding(prior,capture=True),b'older')
-                self.assertEqual(pool.read_binding(prior),prior)
-                with self.assertRaises(ValueError):base.capture('entry.py',old['sha256'],data=True)
-                # The failed executable capture did not use either archive.
-                pool.recheck()
-
-    def test_explicit_closed_selection_and_wrong_archive_reject(self):
-        with self.fixture()as(root,base,s,old,host):
-            mutations=(lambda x:x.update(schema='operational-closure.v1'),lambda x:x.update(extra=True),
-                lambda x:x['routes'].append(deepcopy(x['routes'][0])),
-                lambda x:x['routes'][0]['original'].update(sha256='b'*64),
-                lambda x:x['routes'][0]['physical'].update(bytes=9),
-                lambda x:x['routes'][0]['physical'].update(path=str(root/'executable.py')),
-                lambda x:x['unavailableHistoricalEnvironment'].append(host),
-                lambda x:x['unavailableHistoricalEnvironment'][0].update(path='/unknown'))
-            for mutate in mutations:
-                changed=deepcopy(s);mutate(changed)
-                with self.assertRaises(ValueError):subject._ArchivePool(base,changed)
-
-    def test_unused_archive_or_missing_host_rejects(self):
-        with self.fixture()as(root,base,s,old,host):
-            pool=subject._ArchivePool(base,s)
-            with self.assertRaisesRegex(ValueError,'unused'):pool.recheck()
-            pool.read_binding(old)
-            with self.assertRaisesRegex(ValueError,'unused'):pool.recheck()
-            pool.read_binding(host);pool.recheck()
-
-    def test_mutation_replacement_and_hardlink_reject(self):
-        for mode in ('mutation','replacement','hardlink'):
-            with self.fixture()as(root,base,s,old,host):
-                pool=subject._ArchivePool(base,s);self.consume(pool,old,host)
-                file=root/'entry.py.source'
-                with self.assertRaises(ValueError):
-                    if mode=='mutation':file.write_bytes(b'different');pool.recheck()
-                    elif mode=='replacement':
-                        new=root/'replacement';new.write_bytes(b'original');os.replace(new,file);pool.recheck()
-                    else:
-                        alias=root/'alias';os.link(file,alias);base.capture(alias,old['sha256'])
-
-    def test_original_full_entry_and_old_closure_instrument_stay_pinned(self):
-        self.assertEqual(next(h for r,p,h in subject.SOURCES if r=='fullEntry'),
-            '1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b')
-        self.assertEqual(subject.FRESH_CLOSURE_SOURCES[0][2],
-            '3eefbb8767a0337024066f8949770fbf47f39edc308aaf598372cf95b3dba223')
-        self.assertEqual(len(subject.HISTORICAL_HOSTS),3)
-
-    def test_prior_identity_projection_preserves_records_and_rejects_wrong_generation(self):
-        docs=dict(priorPlan=dict(comparisonContract=dict(
-            verifierSha256='19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132',
-            declarationSha256='7c2a8b0bb06f46da158e0dfe2cb313dd72e2edff3c411e87c1588aa6d028f9e4')),
-            comparison=dict(verifier=dict(sha256='19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132'),accepted=False))
-        before=deepcopy(docs);calls=[]
-        def check(view,ancestry):
-            calls.append(view)
-            self.assertEqual(view['priorPlan']['comparisonContract']['verifierSha256'],
-                '3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7')
-            self.assertFalse(view['comparison']['accepted'])
-        subject._authenticate_historical_prior(SimpleNamespace(authenticate_prior=check),docs,{})
-        self.assertEqual(docs,before);self.assertEqual(len(calls),1)
-        for target,key in ((docs['priorPlan']['comparisonContract'],'verifierSha256'),
-            (docs['priorPlan']['comparisonContract'],'declarationSha256'),(docs['comparison']['verifier'],'sha256')):
-            value=target[key];target[key]='f'*64
-            with self.assertRaises(ValueError):subject._authenticate_historical_prior(SimpleNamespace(authenticate_prior=check),docs,{})
-            target[key]=value
-        self.assertEqual(len(calls),1)
-
-
 class PackageRoutingTests(unittest.TestCase):
     """Independent literal byte container; never uses the package writer."""
     @contextmanager
@@ -1186,7 +1063,7 @@ class CaptureTests(unittest.TestCase):
         entry=(ROOT/'reference/priorities/development-process-review/evidence/source-recovery/original-full-entry.mjs.source').read_bytes()
         pins=subject._entry_pins(entry)
         record=lambda p,h='a'*64,n=1:dict(path=str(ROOT/p),sha256=h,bytes=n)
-        pinned=[record(p,h,subject.HISTORICAL_HOSTS[p][1]if p in subject.HISTORICAL_HOSTS else 1)for p,h in pins.items()]
+        pinned=[record(p,h,1) for p,h in pins.items()]
         runtime=[record('synthetic-runtime/'+str(n))for n in range(158)]
         ops=pinned[:2]+[record('synthetic-ops/'+str(n))for n in range(4)]
         resource=next(b for b in pinned if b['path'].endswith('2026-08-27-f6c-cached-root-cover-full-resource-plan.md'))

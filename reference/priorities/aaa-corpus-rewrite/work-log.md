@@ -16,6 +16,38 @@ Accepted and implemented the six bounded repairs. The chapter now separates imba
 
 CRW-005-2 is closed at the bounded review-disposition level. The assembly-to-molecule mapping remains explicitly exploratory, and the accepted framing repair preserves the hypothesis without presenting it as a derivation. F1–F6 remain preserved as deferred, reopenable local findings rather than silently accepted repairs. Upstream braid realization is routed to the Braid Program, particle-branch mapping to the geometry-first Standard Model lane, and ambient assembly response to the Noether Sea constitutive-response lane. This closeout does not claim molecular derivation, stable fermion braids, or theory closure.
 
+### 2026-09-11 — Action Model Comparison D1–D6 and E1–E3 bounded repair
+
+Implemented and validated the smallest safe repairs for the six demonstrated defects and three editorial issues. The chapter now separates direct field-discrepancy norms from operator residuals, retains arrival selectors and continuous causal-root contributions, qualifies moving-source and switched-on comparisons, and defines the local comparison conventions. O1–O3 remain open obligations concerning initial/boundary data, energy and singular continuation, and near-source dominance.
+
+### 2026-09-11 — Analytic Baselines D1–D5 and E1–E2 bounded repair
+
+Implemented and validated the history-transport sign, single-root benchmark restrictions, complete partner/self root accounting, full-history self-hit condition, member-sum bookkeeping, mollifier regularity limits, and local claim/source qualifications. O1–O3 remain open obligations concerning common energy construction, virial closure, root completeness/existence, stability, and regulator convergence.
+
+### 2026-09-11 — Attraction F1–F6 bounded repair
+
+Implemented and validated the prescribed-past release convention, complete-history and root-sum boundaries, partner-only scope, conditional symmetry, and continuation limits. The chapter does not claim a freely evolving equilibrium, later stability, collision avoidance, caustic formation, conservation, or physical realization; O1–O2 remain open.
+
+### 2026-09-11 — Effective Lagrangian EL-1–EL-16 bounded repair
+
+Implemented and validated the bounded claim-preserving repair pass. The chapter now distinguishes the scale-only acceleration diagnostic from the complete delayed-action Euler derivative, qualifies finite-window residuals and resonance language, conditions the integer-action statement, and retains the polarity-wall double-cover construction as a candidate pending its missing bundle derivation. The complete delayed-action variation, history and endpoint conventions, wake-energy derivation, response maps, symplectic descent, continuation, and assembly reduction remain open obligations.
+
+### 2026-09-11 — Observer Framework D1–D5 and E1 bounded repair
+
+Implemented and validated the smallest safe repairs. The chapter now uses an explicit observer-record and finite-precision map for the tolerance quotient, retains cross-covariance terms unless a common-law independence condition is supplied, specifies incoming fixed-boundary scope, declares the residual feature space, qualifies preferred-frame wording, and names the optional Oreshkov–Costa–Brukner comparison with its assumptions. E2 reader-flow reordering remains deferred; O1–O5 remain open.
+
+### 2026-09-11 — Background and Simple Action D1–D2, O1–O3, E1–E4 bounded repair
+
+Implemented and validated the bounded repair pass. The chapter now distinguishes persistent causal-root acceleration from impulses, defines the causal derivatives and root-collapse factors, states the regular-domain conditions, separates exact full-history equality from finite-history approximation, and keeps variational generation and energy closure open. Equation-mapping regeneration remains deferred to the authorized publication pass.
+
+### 2026-09-11 — Causal Set and Delay Geometry D1–D4, O1–O3, E1–E3 bounded repair
+
+Implemented and validated the bounded repair pass. The chapter now states the symbolic wake-speed root condition, restricts uniqueness claims to declared intervals, separates sub-field, characteristic, and super-field cases, qualifies local root branches, and keeps self-hit realization, singular continuation, and generated-artifact freshness open.
+
+### 2026-09-11 — Delay Dynamics Energy DDE-1–DDE-4, ODE-1–ODE-4, EDE-1–EDE-2 bounded repair
+
+Implemented and validated the bounded repair pass. The chapter now separates action-boundary, work, flux, acceleration, power, and energy residuals; corrects signs, weighting, domains, and member sums; and retains independent energy construction, root completeness, exchange accounting, regulator limits, stability, and physical recovery as open obligations.
+
 ### 2026-09-10 — Causal Action Functional CAF-1–CAF-12
 
 Accepted, implemented, and validated all 12 findings. The work queue records the equations, counterexamples, preserved claim limits, and receipt.
@@ -38,11 +70,6 @@ Accepted, implemented, and validated all 16 findings. The substrate equation rem
 
 ## Pending work
 
-- `EL-1–EL-16`: Effective Lagrangian adjudication and repair.
-- Observer Framework `D1–D5`, `O1–O5`, `E1–E2`: adjudication and repair.
-- Action Model Comparison `D1–D6`, `O1–O3`, `E1–E3`: report complete; HQ adjudication pending.
-- Analytic Baselines `D1–D5`, `O1–O3`, `E1–E2`: report complete; HQ adjudication pending.
-- Attraction `F1–F6`, `O1–O2`: report complete; HQ adjudication pending.
-- Background and Simple Action, Causal Set and Delay Geometry, and Delay Dynamics Energy: independent reports complete; HQ adjudication pending.
+No CRW-005 report-complete items remain awaiting HQ adjudication. The current unread backlog is maintained in the unified status board.
 
 The status symbols and current state for these rows are maintained only in the [unified corpus review status board](corpus-review-status.md#active-priority-queue), not duplicated here.

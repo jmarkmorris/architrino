@@ -78,7 +78,6 @@ export function verifyClosure({invocation,lease,elapsedMilliseconds,wire,operati
   check(stage.id===plan.stages[i].id&&p?.accepted===true&&p.processesClosed===true&&same(p.exit,{code:0,signal:null})&&!p.failure&&!p.cleanupFailure&&same(p.signals,[]),'complete successful original stage');
   check(p.admission?.accepted===true&&p.admission.h3EvidenceEligible===false&&same(p.stdoutLog,p.admission.completionLog),'stage admission and completion binding');
   check(p.guardClosed===true&&p.rootGuard?.acknowledged===true&&p.stdoutDroppedBytes===0&&p.stderrDroppedBytes===0,'acknowledged stage guard and complete stage logs');
-  check(same(p.admission.runtimeBindings,plan.stages[i].runtimeBindings),'stage runtime identity');
   check(Array.isArray(p.gates),'declared stage gates');
   for(const g of p.gates)check(g.retired===true&&g.acknowledged===true&&g.measurement?.code===0&&g.measurement.signal===null,'retired original gate');
   retain(p);

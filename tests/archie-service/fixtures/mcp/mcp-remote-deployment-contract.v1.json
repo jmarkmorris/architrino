@@ -118,9 +118,9 @@
   },
   "snapshotPublication": {
     "candidatePath": "content/generated/source-index/local-full-corpus-snapshot.v1.json",
-    "candidateSnapshotId": "source_snapshot_full_corpus_v1_96a7ddf5ba18a44daf43",
-    "candidateSnapshotSha256": "fd75267ad9c80fb85c78d1868704de409fa2ccd4fbbf5393479adbdcada03e82",
-    "candidateRepositoryRef": "local-source-state:96a7ddf5ba18a44daf437cdb2855c11783115495767dcb25036818742a693957",
+    "candidateSnapshotId": "source_snapshot_full_corpus_v1_9709a82c31aaff3a49af",
+    "candidateSnapshotSha256": "dd25b137c2c4d047543173b685466d4848c08aa2f110430c8fd424e0ae061d2b",
+    "candidateRepositoryRef": "local-source-state:9709a82c31aaff3a49af40c72997edd1cc606a35a3366b7afd0c2acd07583a9c",
     "acceptedMainRequiredForRemote": true,
     "candidateIsAcceptedMain": false,
     "loadMode": "startup_once",

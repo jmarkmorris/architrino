@@ -25,7 +25,7 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 SUBJECT = ROOT/'scripts/eom/f6c_parent_emission_refinement.py'
 PINS = {
-    'helper': ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py', '7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5'),
+    'helper': ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py', 'd627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841'),
     'certified_history': ('scripts/eom/oracle/certified_history.py', 'ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'),
     'decimal_interval': ('scripts/eom/oracle/decimal_interval.py', 'fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'),
     'continuous_reception_roots': ('scripts/eom/oracle/continuous_reception_roots_cached.py', 'daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf'),

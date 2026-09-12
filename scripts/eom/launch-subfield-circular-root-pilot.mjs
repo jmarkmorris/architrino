@@ -960,7 +960,6 @@ export async function launchReviewedPilot({ began, deadlineNanoseconds, options,
   const output = path.join(root, options.output), pilotOutput = path.join(output, "pilot");
   let ancestor = output; while (!existsSync(ancestor)) ancestor = path.dirname(ancestor);
   requireThat(realpathSync(ancestor) === ancestor, "symlinked output is not allowed");
-  const runtimeBindings = [process.execPath, "/bin/ps"].map(filename => readBound(filename, undefined, false));
   let receipt, failure;
   try {
     receipt = await superviseRegisteredPilot({ root, entry: RUNNER, args: ["--out", path.relative(root, pilotOutput), "--runner-sha256", RUNNER_SHA],
@@ -969,7 +968,7 @@ export async function launchReviewedPilot({ began, deadlineNanoseconds, options,
         runnerBytes: runner.data, runnerSha256: RUNNER_SHA, gates: processReceipt.gates }, self.data, remainingMs, signal) });
   } catch (error) { failure = error; receipt = error.outerReceipt ?? { accepted: false, h3EvidenceEligible: false, failure: error.message }; }
   receipt.launcherBinding = { path: SELF, sha256: self.sha256 }; receipt.runnerBinding = { path: RUNNER, sha256: RUNNER_SHA };
-  receipt.runtimeBindings = runtimeBindings;
+  receipt.runtimeCapabilities = [process.execPath, "/bin/ps"];
   receipt.launcherResourceUsage = process.resourceUsage(); receipt.launcherCPUIsSharedOverheadNotCandidateCPU = true;
   receipt.elapsedThroughAdmissionSeconds = (performance.now() - began) / 1000;
   if (receipt.outputReserved) {
@@ -981,7 +980,7 @@ export async function launchReviewedPilot({ began, deadlineNanoseconds, options,
       process.on("SIGINT", interrupted); process.on("SIGTERM", interrupted);
       try {
         const publication = await runAdmissionWorker({ kind: "publication", receipt, output, deadlineNanoseconds,
-          sources: [{ path: path.join(root, SELF), sha256: self.sha256 }, { path: path.join(root, RUNNER), sha256: RUNNER_SHA }, ...runtimeBindings] }, self.data, remainingMs, controller.signal);
+          sources: [{ path: path.join(root, SELF), sha256: self.sha256 }, { path: path.join(root, RUNNER), sha256: RUNNER_SHA }] }, self.data, remainingMs, controller.signal);
         if (!publication.accepted && receipt.accepted) failure ??= new Error("outer receipt publication was rejected");
         receipt.publication = publication;
       } catch (error) { failure ??= error; }

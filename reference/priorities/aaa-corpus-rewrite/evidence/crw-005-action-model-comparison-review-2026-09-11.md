@@ -2,7 +2,7 @@
 
 ## crw-005 action model comparison review — scope, source identity, and disposition
 
-This is a review-only assessment of [Action Model Comparison](../../../../content/markdown/aaa/validation/simulations/action-energy/action-model.md). All findings are proposed for HQ adjudication. This report does not accept corrections, change campaign status, or certify dynamics. The only authorized output is this report; the chapter, trackers, and generated artifacts are outside the edit scope.
+This began as a review-only assessment of [Action Model Comparison](../../../../content/markdown/aaa/validation/simulations/action-energy/action-model.md). The findings were subsequently authorized for a bounded repair pass. The repair does not change campaign status, certify dynamics, edit shared trackers, or modify generated artifacts.
 
 Claim grade: measured. The complete assigned chapter was read with `nl -ba` over lines 1–425. At initial inspection, `shasum -a 256` returned `4bbca4d645699662dde2500466f659bc80d4984180d33e49da68ec663763bb38`, and `wc -l` returned 425 newline-terminated lines. Scoped `git --no-optional-locks status --short -- <chapter> <report>` returned no entries before writing; a subsequent `test ! -e <report>` confirmed that the report did not exist. Falsifier: different bytes or a different line count at review consumption invalidate the snapshot-specific references and require reassessment.
 
@@ -200,6 +200,14 @@ Here $k_a$ are the three spatial wave-number components and $\omega$ is the disc
 **Smallest repair or disposition:** replace the time condition with zero delay $T_r-T_t=0$; consolidate repeated recommendations into one method-selection summary; make the three Method 1 pro entries siblings. Preserve mathematical expressions and all existing equation links in any future authorized edit.
 
 **Falsifier:** a valid causal root with $r=0$ and $T_r>T_t$ at positive $c_f$ would refute the time correction. For the editorial part, a rendered hierarchy or substantive distinction between the repeated blocks that supplies otherwise missing instruction would support retaining it.
+
+## crw-005 action model comparison review — bounded repair receipt
+
+The authorized repair pass applied the smallest safe chapter changes for D1–D6 and E1–E3. D1 now separates operator-consistency residuals from a direct normalized field-discrepancy norm. D2 restores the arrival-time delta for a single impulse. D3 narrows moving-source gradient language and keeps Jacobian transport separate from canonical emission strength. D4 limits the stationary switched-on comparison to the regular interior and identifies the front derivative as separate. D5 smooths the arrival selector rather than the zero-delay emission selector. D6 distinguishes continuous regular causal-root acceleration from true impulses. E1 defines the load-bearing coupling, polarity, transmitter denominator, residual floors, and normalized-unit rule locally; E2 qualifies workload and stencil-dependent performance language; E3 corrects the zero-delay wording and the malformed Method 1 list hierarchy.
+
+O1–O3 remain open: neutrality does not supply initial or boundary data; mollification does not complete global energy or singular-continuation proofs; and inverse-square weighting does not establish near-source dominance without bounds on weights, multiplicity, cancellation, and omitted tails. No new acceptance claim is made for these obligations.
+
+Focused validation after the repair returned no `git diff --check` errors for the chapter or report. The repair did not regenerate equation mappings. Falsifier: a rerun of the chapter-specific mathematical checks that finds a remaining D1–D6 or E1–E3 statement inconsistent with the repaired bytes requires reopening the corresponding disposition.
 
 ## crw-005 action model comparison review — preservation checks and concerns not sustained
 

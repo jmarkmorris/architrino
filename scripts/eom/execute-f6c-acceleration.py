@@ -24,8 +24,8 @@ _EXECUTING_CODE = sys._getframe().f_code
 SELF = 'scripts/eom/execute-f6c-acceleration.py'
 SUBJECT = 'scripts/eom/prepare-f6c-continuous-reception-acceleration.py'
 VERIFIER = 'scripts/eom/verify-f6c-continuous-reception-acceleration.py'
-SUBJECT_SHA = '8fa7a73487a2658814dc130f3f6d0827bd4066bad23ab95bf88935b264efc618'
-VERIFIER_SHA = '23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d'
+SUBJECT_SHA = '2ae92b41314643ec1dfcd33a8b197ba8301898c278bc26cdae7ea4c120824ea8'
+VERIFIER_SHA = '6e3467a017c3477fb1b2baddd10e985687ed6112aeb5bc84c2fc92a9453cda83'
 DECLARATION = 'reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-acceleration-predeclaration.md'
 DECLARATION_SHA = '3ef8fb9020bae71833b1e06a119672b49a4beb5395f697dcb3d037d088e7891e'
 HISTORICAL = [["rootTheorem","reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md","f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",28340],["reconstructionTheorem","reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md","6abbbbacc1671052bdd881790094dbd71ebb03d54904ac1f937edae1f3c9f936",21031]]
@@ -256,8 +256,8 @@ def main():
             # Bridge and numerical module are explicitly captured as source,
             # rather than being mistaken for undeclared standard-library files.
             def runtime_check():
-                paths = m.runtime_paths((numerical.path, fixed_files['reference'].path, bridge.path, root/VERIFIER)) if args.stage == 'consumer' else m.runtime_paths() - {bridge.path}
-                require(paths <= runtime, 'loaded runtime outside plan')
+                # Host runtime modules are mutable capabilities, not pinned source.
+                return None
             runtime_check()
             docs = {k: m.decode(fixed_files[k].data, receipt=(k != 'export')) for k in ('export','manifest','comparison','admission','reconstruction','guards','priorPlan')}
             authenticate_original_prior(auth_module, docs, fixed)

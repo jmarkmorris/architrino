@@ -34,7 +34,7 @@ The seven adapter controls cover fresh binary selection, six-member and twelve-m
 
 ## Concrete build acceptance
 
-The [v3 build review](../evidence/circular-current-execution/v3-build-review.json), produced by the retained [review instrument](../evidence/circular-current-execution/review-build.cjs), verifies 49 source bindings, 23 reference bindings, matching before/after sources, references, tools, headers, and external libraries, and all 40 successful closed build stages. It also rechecks the built outputs and stage logs. Known SHA and positive/negative symbol controls precede the target. `nm -C` on the resulting binary finds `certify_exact_pair` and none of the three named coupled acceleration/step/evolution entrypoints; this is a named-symbol check, not a complete call-graph proof.
+The current build review verifies authored source bindings, matching before/after source records, and successful closed build stages within its declared scope. Positive/negative symbol controls precede the target. `nm -C` on the resulting binary finds `certify_exact_pair` and none of the three named coupled acceleration/step/evolution entrypoints; this is a named-symbol check, not a complete call-graph proof. Host runtime libraries remain platform capabilities, not file-hash records.
 
 The current preparation digest is `c80526d097c81627186cbbfcea7e0005d9d73288e331f4535f07982cc2bef944`; the linked executable digest is `b15799584810810aff587e64ce0e6e6c32c07f12c53f34df8614b6012fd219f6`. Their paths and sizes are in the review. Build preparation itself loads no histories and performs no root calls. The subsequent data-path probe deliberately prepares and independently checks one history manifest, while still sending no root requests. The initial pre-repair build review is preserved as historical evidence and does not describe the current edited adapter.
 
@@ -55,7 +55,7 @@ This was the prerequisite at the end of the adapter repair. The subsequent conte
 
 ## Current context implementation, September 8
 
-The production reducer now recognizes the exact previously reviewed preparation through the original bytes of `v3-build-review.json`. It verifies the entire reviewed source/reference/tool/header/library census, discovery tools, file-backed runtime dependencies, platform-library boundary, build outputs and closed stages. The original receipt still selects its original source contract. An arbitrary caller-supplied receipt hash cannot authorize a new source generation. Both the retained review and all consumed files participate in the final recheck.
+The production reducer recognizes the declared authored build receipt and verifies its current authored source/reference records, build outputs, and closed stages. Host runtime libraries remain current capabilities, not historical source records. The original receipt still selects its original source contract. An arbitrary caller-supplied receipt hash cannot authorize a new source generation. All consumed authored files participate in the final recheck.
 
 Inspection also found an unrelated proof-binding defect: the seven-element reference array was indexed at position seven and sliced as if it had eight elements. The unchanged whole-manifest producer emits six frozen references, the candidate and its own verifier binding. The reducer now selects the verifier by its declared identifier and checks that exact independently produced order. No interval, root, row-census or mathematical predicate changes, and neither the adapter nor the whole-manifest verifier changes in this batch.
 

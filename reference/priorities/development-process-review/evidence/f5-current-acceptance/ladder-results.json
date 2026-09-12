@@ -5,10 +5,6 @@
     "command": "node",
     "args": [
       "scripts/eom/run-current-f5-enclosed-root.mjs",
-      "--admission",
-      "/Users/markmorris/vibe/architrino/reference/priorities/development-process-review/evidence/f5-remaining-callers/current-build-admission.json",
-      "--admission-sha256",
-      "c129a2662a032b5259ef44659f88a1cd20a5e4a27f03456848aede4eda90893f",
       "--preparation",
       ".local-data/braid-analysis/2026-08-26-f5-enclosed-root-restart/current-acceptance-a/preparation.json",
       "--api-proof",

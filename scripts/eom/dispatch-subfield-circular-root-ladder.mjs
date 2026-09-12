@@ -7,7 +7,7 @@ import { Worker } from "node:worker_threads";
 
 const SELF = "scripts/eom/dispatch-subfield-circular-root-ladder.mjs", RUNG = "scripts/eom/run-subfield-circular-root-rung.mjs";
 const BASE = ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/";
-const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs", OUTER_SHA = "58f5fa058727e212cc98a32f04eb3d94c64c6a8185f9cc8a8114d9a034343b8c";
+const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs", OUTER_SHA = "e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920";
 const sha = bytes => createHash("sha256").update(bytes).digest("hex");
 const check = (ok, message, code = "SHARED_INPUT_REJECTED") => { if (!ok) throw Object.assign(new Error(message), { failureCode: code }); };
 const writeJSON = (filename, value) => writeFileSync(filename, JSON.stringify(value) + "\n", { flag: "wx" });
@@ -278,8 +278,7 @@ export async function runSubfieldCircularMeasuredDispatch({ root, args, selfByte
       ...Object.entries(runtime.rung.SUBFIELD_CIRCULAR_RUNTIME_PATHS).map(([key, relative]) => ({ path: relative, sha256: runtime.rung.SUBFIELD_CIRCULAR_RUNTIME_HASHES[key] })),
       ...runtime.lifetime.bindings, runtime.rung.SUBFIELD_CIRCULAR_CURRENT_PILOT_REVIEW,
       ...plan.cohorts.filter(cohort => cohort.resourceReturn).map(cohort => cohort.resourceReturn)];
-    receipt.runtimeBindings = await operation({ kind: "read", files: [{ path: process.execPath }, { path: "/bin/ps" }] });
-    bindings.push(...receipt.runtimeBindings);
+    receipt.runtimeCapabilities = [process.execPath, "/bin/ps"];
     await operation({ kind: "shared", bindings });
     await observe(plan.resourceObservation, true);
     resourceTimer = setInterval(() => { if (!sharedStop) void observe(plan.resourceObservation).catch(() => {}); }, plan.resourceObservation.cadenceSeconds * 1000);

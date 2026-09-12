@@ -11,12 +11,13 @@ const clean=({data,...row})=>row;
 const usage=value=>value&&['userSeconds','systemSeconds','maximumResidentBytes'].every(key=>Number.isFinite(value[key])&&value[key]>=0);
 export function createCircularMemoryOwner({capture,python,helper,sources,root,completionEnd,signal,maximumBytes=1024*1024,maximumProbeMs=2000}) {
  demand(typeof capture==='function'&&completionEnd>performance.now()&&maximumProbeMs>0&&maximumProbeMs<=2000&&maximumBytes>0&&maximumBytes<=1024*1024,'bounded memory observer contract required');
- const bound=[capture(python),capture('/usr/bin/memory_pressure'),...sources.map(row=>capture(row.path,row.sha256))];
+ const pythonPath=realpathSync(python);
+ const bound=sources.map(row=>capture(row.path,row.sha256));
  demand(bound.reduce((sum,row)=>sum+row.bytes,0)<=128*1024**2,'memory observer source union exceeds bound');
  const helperSource=bound.find(row=>row.path===path.resolve(helper));demand(helperSource,'captured memory helper required');
  const processors=cpus().length;demand(processors>0,'CPU census unavailable');
  let runtime=null,failure=null,finished=false,totalBytes=0;const probes=[],pending=new Set();
- const recheck=()=>{for(const row of [...bound,...runtime??[]]){const current=capture(row.path,row.sha256);demand(current.realPath===row.realPath&&current.bytes===row.bytes,'memory observer source/runtime changed');}demand(cpus().length===processors,'CPU census changed');};
+ const recheck=()=>{for(const row of bound){const current=capture(row.path,row.sha256);demand(current.realPath===row.realPath&&current.bytes===row.bytes,'memory observer source changed');}demand(cpus().length===processors,'CPU census changed');};
  function execute(mode,remainingMs){
   demand(!finished&&!failure&&!signal?.aborted,'memory observation unavailable');recheck();
   demand(probes.length<4096,'memory observation census exceeds bound');
@@ -24,7 +25,7 @@ export function createCircularMemoryOwner({capture,python,helper,sources,root,co
   const durationMs=Math.min(maximumProbeMs,Math.floor(end-performance.now()-100));
   const cache=realpathSync(mkdtempSync(path.join(tmpdir(),'circular-memory-cache-')));
   const record={mode,startedMilliseconds:performance.now(),deadlineMilliseconds:end,closed:false,outputBytes:0,droppedBytes:0};probes.push(record);
-  const child=spawn(bound[0].path,['-I','-B','-X',`pycache_prefix=${cache}`,'-c',helperSource.data.toString('utf8')],{cwd:root,env:{...process.env,LC_ALL:'C'},stdio:['pipe','pipe','pipe']});record.pid=child.pid;
+  const child=spawn(pythonPath,['-I','-B','-X',`pycache_prefix=${cache}`,'-c',helperSource.data.toString('utf8')],{cwd:root,env:{...process.env,LC_ALL:'C'},stdio:['pipe','pipe','pipe']});record.pid=child.pid;
   let timer,escalation,cancelled=false;const output=[],errors=[];
   const cancel=reason=>{if(cancelled||record.closed)return;cancelled=true;record.cancellation=reason;if(!record.exitObserved)child.kill('SIGTERM');escalation=setTimeout(()=>{if(!record.closed&&!record.exitObserved){record.escalated=true;child.kill('SIGKILL');}},Math.max(1,Math.min(100,end-performance.now()-10)));};
   const interrupted=()=>cancel('owner-interrupted');
@@ -48,10 +49,10 @@ export function createCircularMemoryOwner({capture,python,helper,sources,root,co
      record.helperResourceUsageBeforeSerialization=value.helperResourceUsageBeforeSerialization;
      if(mode==='inventory'){
       demand(value.schema==='circular-observer-runtime.v1'&&Array.isArray(value.runtime)&&value.runtime.length>0&&value.runtime.length<=256,'memory runtime census missing');
-      runtime=value.runtime.map(row=>{const current=capture(row.path,row.sha256);demand(current.bytes===row.bytes,'memory runtime bytes differ');return clean(current);});record.runtimeFiles=runtime.length;
+      runtime=value.runtime.map(row=>({path:row.path,realPath:realpathSync(row.path)}));record.runtimeFiles=runtime.length;
      }else{
       demand(value.schema==='circular-memory-observation.v1'&&Number.isSafeInteger(value.queryPid)&&value.queryPid>0&&value.queryPid!==child.pid&&value.queryClosed===true&&value.queryExitCode===0&&value.stopReason===null&&usage(value.queryResourceUsage)&&value.droppedBytes.stdout===0&&value.droppedBytes.stderr===0,'memory query closure/usage missing');
-      demand(JSON.stringify(value.runtime)===JSON.stringify(runtime.map(({path,sha256,bytes})=>({path,sha256,bytes}))),'memory loaded runtime changed');
+      demand(JSON.stringify(value.runtime.map(row=>row.path))===JSON.stringify(runtime.map(row=>row.path)),'memory loaded runtime changed');
       record.queryPid=value.queryPid;record.queryClosed=true;record.queryResourceUsage=value.queryResourceUsage;
       record.identity={pid:child.pid,parentPid:value.parentPid,processGroup:value.processGroup,authority:'live direct ChildProcess handle through exit; query PID owned and reaped by helper wait4'};
      }

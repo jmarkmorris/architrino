@@ -1654,6 +1654,7 @@ $$
 \mathbf X_j(T_t)\notin\Omega,\quad
 T_t<T_{\mathrm{cross}}\le T,\quad
 \mathbf X_{\mathrm{cross}}\in\partial\Omega,\quad
+\widehat{\mathbf r}_{j,\mathrm{cross}}\cdot\mathbf n_{\mathrm{out}}(\mathbf X_{\mathrm{cross}})<0,\quad
 \|\mathbf X_{\mathrm{cross}}-\mathbf X_j(T_t)\|
 =c_f(T_{\mathrm{cross}}-T_t)
 \right\}
@@ -1676,7 +1677,7 @@ $$
 
 where $\widehat{\mathbf r}_{j,\mathrm{cross}}$ points from the transmitter event to the boundary crossing. At a transmitter-side fold, $D_{t,j}=0$ and the simple-root weight diverges. Such an entry is fail-closed unless the chart also retains the root multiplicity and the next nonzero derivative needed for a fold or multi-root evaluation; substituting a finite simple-root weight is not an admissible boundary approximation.
 
-The crossing time $T_{\mathrm{cross}}$ separates instantaneous influx from already admitted exterior history. An interior receiver at $T$ may depend on a boundary entry with $T_{\mathrm{cross}}<T$, so the boundary ledger is accumulated rather than only evaluated at the present boundary. For non-convex $\Omega$, the ledger retains each boundary-crossing event rather than assuming that the active exterior causal wake surface still intersects $\partial\Omega$ at the evaluation time.
+The crossing time $T_{\mathrm{cross}}$ separates instantaneous influx from already admitted exterior history. The displayed set assumes a fixed spatial region $\Omega$ and retains incoming crossings only; tangencies require a separate convention, and a moving boundary requires a relative normal-velocity condition. An interior receiver at $T$ may depend on a boundary entry with $T_{\mathrm{cross}}<T$, so the boundary ledger is accumulated rather than only evaluated at the present boundary. For non-convex $\Omega$, the ledger retains each boundary-crossing event rather than assuming that the active exterior causal wake surface still intersects $\partial\Omega$ at the evaluation time.
 
 The subsystem evolution therefore has the schematic form
 $$
@@ -1751,13 +1752,13 @@ Here $\widehat{\mathcal{B}}_{\partial\Omega}(T;\theta)$ denotes the boundary wak
 
 The boundary term above also supplies the native home for covariance matrices used by observer-level measurement diagnostics. A covariance is not fundamental randomness. It is a finite-access summary of boundary wake histories, detector states, and Noether sea variables not resolved by a Physical Observer.
 
-With this notation, the unresolved boundary residual is
+Let $b$ map each retained boundary history into a declared linear feature space that contains the features used by the readout model. With this notation, the unresolved boundary residual is
 $$
-\delta\mathcal{B}_{\partial\Omega}(T;\theta)
+\delta b_{\partial\Omega}(T;\theta)
 =
-\mathcal{B}_{\partial\Omega}(T)
+ b(\mathcal{B}_{\partial\Omega}(T))
 -
-\widehat{\mathcal{B}}_{\partial\Omega}(T;\theta)
+ b(\widehat{\mathcal{B}}_{\partial\Omega}(T;\theta))
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-db369d1f5d950f7c)
@@ -1811,11 +1812,17 @@ $$
 \mathsf N^{\mathrm{det}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')
 +
 \mathsf N^{\mathrm{env}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')
+ +\mathsf C^{\mathrm{bw,det}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)
+ +\mathsf C^{\mathrm{det,bw}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)
+ +\mathsf C^{\mathrm{bw,env}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)
+ +\mathsf C^{\mathrm{env,bw}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}';\theta)
+ +\mathsf C^{\mathrm{det,env}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')
+ +\mathsf C^{\mathrm{env,det}}_{AB}(t_{\mathrm{eff}},t_{\mathrm{eff}}')
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-388721577cb3d390)
 
-The same decomposition should be reused across weak-probe, interferometric, and precision-gravity comparisons. If a proposed measurement model must retune the unresolved boundary covariance separately for each branch or observable, the observer-level closure has failed rather than discovered a new ontology.
+The displayed sum is valid when the cross-kernels vanish under the same joint conditional law; otherwise those kernels must be retained. The same joint decomposition should be reused across weak-probe, interferometric, and precision-gravity comparisons. If a proposed measurement model must retune the unresolved boundary covariance separately for each branch or observable, the observer-level closure has failed rather than discovered a new ontology.
 
 For weak-field GR comparisons, this page treats the ADM/Cartan projection defined by [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md) as an input consumed by the observer record. The observer layer should carry the whole channel bundle at once:
 $$
@@ -1909,7 +1916,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ae6894a4e5c2651c)
 
-Here $d_{\mathrm{ord}}$ measures mismatch of inferred causal order on the comparison domain, the clock term supplies the missing local scale, and the preferred-frame term penalizes residual PPN group velocity coefficients. The labels $\tau_{\mathrm{eff}}$ and $\tau_{\mathrm{GR}}$ mark the candidate observer-record clock readout and the GR comparison clock readout; they are not additional substrate time variables. This is a closure target for the observer layer, not a claim that substrate spacetime is Lorentzian.
+Here $d_{\mathrm{ord}}$ measures mismatch of inferred causal order on the comparison domain, the clock term supplies local scale only on the declared sampled and controlled domain, and the preferred-frame term penalizes residual PPN preferred-frame parameters. The labels $\tau_{\mathrm{eff}}$ and $\tau_{\mathrm{GR}}$ mark the candidate observer-record clock readout and the GR comparison clock readout; they are not additional substrate time variables. This is a closure target for the observer layer, not a claim that substrate spacetime is Lorentzian.
 
 A causal-set comparison adds a useful uniqueness discipline after the effective-metric map has supplied the candidate metric family. It is not enough for Physical Observer records to fit one effective metric; the same causal-order, clock, ruler, and preferred-frame data should not also fit macroscopically distinct effective metrics at the same declared coarse-graining scale. For a scale $\ell$ and tolerance $\varepsilon$, let $\mathcal{G}_{\ell,\varepsilon}(\theta)$ be the family of GR comparison metrics on the domain whose coarse-grained causal-order and clock/ruler diagnostics satisfy $\mathcal{R}_{\mathrm{causal}}(\theta;g)\le\varepsilon$, using the same residual above with $g$ supplying the target causal order and GR proper-time terms. Define the observer-side reconstruction-uniqueness residual
 $$
@@ -1923,7 +1930,7 @@ $$
 
 Small $\mathcal{H}_{\mathrm{eff}}$ says that the observer record determines a unique effective geometry up to the declared coarse-graining scale. Large $\mathcal{H}_{\mathrm{eff}}$ means the observer layer has not supplied enough scale, transport, or preferred-frame information to identify a stable GR comparison geometry. This residual is unrelated to the path-history ledger $\mathcal{H}_{\Omega}^{<T}$ above. It is an effective-reconstruction test only; it does not promote a Lorentzian metric to substrate ontology.
 
-Process-matrix and indefinite-causal-order formalisms are useful here only as comparison frameworks. They test whether operational records can be represented without assuming a prior observer-level causal order, but their generalized process object is not a substrate replacement for absolute timespace. For settings or interventions $\mathbf{s}$ and records $\mathbf{r}$, let $P_{\mathrm{proc}}(\mathbf{r}|\mathbf{s})$ be the external process-table benchmark and let $P_{\mathrm{rec}}^\theta(\mathbf{r}|\mathbf{s})$ be the record distribution derived from Physical Observer laboratories, boundary wake data, apparatus kernels, and the candidate observer-state record $\theta$. A compact diagnostic is
+Process-matrix and indefinite-causal-order formalisms are useful here only as comparison frameworks. The Oreshkov–Costa–Brukner causal-inequality benchmark is one possible external comparison; if selected, its laboratory-closure and independent-setting assumptions must be retained. These formalisms test whether operational records can be represented without assuming a prior observer-level causal order, but their generalized process object is not a substrate replacement for absolute timespace. For settings or interventions $\mathbf{s}$ and records $\mathbf{r}$, let $P_{\mathrm{proc}}(\mathbf{r}|\mathbf{s})$ be the external process-table benchmark and let $P_{\mathrm{rec}}^\theta(\mathbf{r}|\mathbf{s})$ be the record distribution derived from Physical Observer laboratories, boundary wake data, apparatus kernels, and the candidate observer-state record $\theta$. A compact diagnostic is
 $$
 \Delta_{\mathrm{proc}}(\theta)
 =

@@ -94,14 +94,7 @@ export async function runCurrentCircularRung({root, options, began, deadlineNano
   demand(process.execArgv.length === 0 && !Object.keys(process.env).some(key=>
     (key.startsWith('DYLD_') || ['NODE_OPTIONS','NODE_PATH','LD_PRELOAD','LD_LIBRARY_PATH'].includes(key)) && process.env[key]),
     'runtime injection options are not allowed');
-  demand(profile.node?.path === process.execPath && /^[0-9a-f]{64}$/u.test(profile.node.sha256) &&
-    profile.node.version === process.version && profile.node.platform === process.platform && profile.node.arch === process.arch,
-    'reviewed Node runtime/platform binding required');
-  const nodeBinding = {path:realpathSync(process.execPath),sha256:profile.node.sha256};
-  const nodeLibraries = () => process.report.getReport().sharedObjects.filter(filename => !filename.startsWith('/System/') && !filename.startsWith('/usr/lib/')).map(filename=>realpathSync(filename)).sort();
-  demand(Array.isArray(profile.node.sharedObjects) && profile.node.sharedObjects.length <= 128 &&
-    JSON.stringify(profile.node.sharedObjects.map(row=>row.path).sort()) === JSON.stringify(nodeLibraries()) &&
-    profile.node.sharedObjects.every(row=>/^[0-9a-f]{64}$/u.test(row.sha256)), 'reviewed Node shared library census required');
+  demand(profile.node?.path === process.execPath, 'Node runtime capability path differs');
   const observationModule = await import(dataURL(captured.observationOwner.data));
   const supervisor = await import(dataURL(captured.supervisor.data));
   const rung = await import(dataURL(captured.runner.data));
@@ -131,10 +124,10 @@ export async function runCurrentCircularRung({root, options, began, deadlineNano
   mkdirSync(output);
   const completionEnd = began + profile.limitMs;
   const owner = observationModule.createCircularObservationOwner({python:profile.python, helper:captured.observerHelper.path,
-    sources:[...Object.values(captured), nodeBinding, ...profile.node.sharedObjects, {path:profilePath,sha256:options['--profile-sha256']}, ...extraBindings], root,began,completionEnd,
+    sources:[...Object.values(captured), {path:profilePath,sha256:options['--profile-sha256']}, ...extraBindings], root,began,completionEnd,
     signal:guard.controller.signal});
   const memoryOwner = memoryModule.createCircularMemoryOwner({capture:observationModule.captureCircularFile,
-    python:profile.python,helper:captured.memoryHelper.path,sources:[...Object.values(captured),nodeBinding,...profile.node.sharedObjects,
+    python:profile.python,helper:captured.memoryHelper.path,sources:[...Object.values(captured),
     {path:profilePath,sha256:options['--profile-sha256']},...extraBindings],root,completionEnd,signal:guard.controller.signal});
   guard.workloadStarted = true;
   let processReceipt, failure, observationReceipt, memoryReceipt, published, memoryTimer, memoryPending, memoryFailure;
@@ -158,7 +151,7 @@ export async function runCurrentCircularRung({root, options, began, deadlineNano
     guard.armGroup(); guard.check();
     await memoryOwner.initialize(); await sample(true); schedule();
     const bindings = [...Object.values(captured).map(({path,sha256})=>({path,sha256})), ...extraBindings,
-      nodeBinding,...profile.node.sharedObjects,{path:profilePath,sha256:options['--profile-sha256']}];
+      {path:profilePath,sha256:options['--profile-sha256']}];
     const runOutput = path.join(output,'rung');
     processReceipt = await supervisor.superviseRegisteredPilot({root,entry:PATHS.runner,
       args:['--plan',planPath,'--plan-sha256',profile.plan.sha256,'--candidate',profile.candidateId,'--rung',String(profile.rung),
@@ -175,7 +168,6 @@ export async function runCurrentCircularRung({root, options, began, deadlineNano
     await stopSampling(); if(memoryFailure) throw memoryFailure;
     await sample(false); memoryReceipt = await memoryOwner.finish();
     observationReceipt = await owner.finish(); guard.check();
-    demand(JSON.stringify(profile.node.sharedObjects.map(row=>row.path).sort()) === JSON.stringify(nodeLibraries()), 'Node shared library census changed');
     demand(processReceipt.accepted && processReceipt.processesClosed && processReceipt.guardClosed && observationReceipt.closed &&
       memoryReceipt.closed && !memoryReceipt.failure && !guard.controller.signal.aborted, 'joint circular closure incomplete');
     const receipt = {schema:'circular-current-rung-admission.v1',accepted:true,h3EvidenceEligible:false,

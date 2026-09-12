@@ -1,8 +1,12 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { spawnSync } from "node:child_process";
+import { Worker } from "node:worker_threads";
 
 import {
   assertProtocolPacketContract,
+  assertCalibrationExecutionEnabled,
+  CALIBRATION_EXECUTION_STATUS,
   buildSurfaceLadderProtocol,
   classifyPair,
   clopperPearsonOneSidedUpper,
@@ -11,7 +15,6 @@ import {
   EXPECTED,
   FROZEN_IMPLEMENTATION_HASH,
   FULL_PROTOCOL_HASH,
-  implementationIdentity,
   RECEIPT_SHA256,
   RECEIPT_INSTANTIATION_STATUS,
   RECEIPT_UNINSTANTIATED_REASON,
@@ -68,7 +71,7 @@ test("the sealed v1 priority packet cannot be rebound as current v2 evidence", (
   );
 });
 
-test("current producer, full protocol, and coverage protocol match frozen identities", () => {
+test("retired calibration preserves protocol and historical implementation identities", () => {
   const loaded = loadAllCandidateCampaignRegistry();
   assert.equal(sha256Canonical(loaded.protocol), FULL_PROTOCOL_HASH);
   assert.equal(
@@ -77,8 +80,8 @@ test("current producer, full protocol, and coverage protocol match frozen identi
   );
   assert.equal(loaded.protocol.eventEvaluator.fieldSpeed, 1);
   assert.equal(
-    implementationIdentity().implementationHash,
     FROZEN_IMPLEMENTATION_HASH,
+    "7cceed6734253268c47ec53bfa81fcd204a9db626816825ff0e78b657dd47c65",
   );
   assert.deepEqual(
     [...TARGET_CONFIGURATIONS].sort((left, right) =>
@@ -94,6 +97,21 @@ test("current producer, full protocol, and coverage protocol match frozen identi
       }))
       .sort((left, right) => left.sourceSlug.localeCompare(right.sourceSlug)),
   );
+});
+
+test("retired calibration refuses both coordinator and worker execution before source loading", async () => {
+  assert.equal(CALIBRATION_EXECUTION_STATUS, "retired");
+  assert.throws(assertCalibrationExecutionEnabled, /BP-007 calibration execution is retired/u);
+  const script = new URL("../scripts/eom/run-coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.mjs", import.meta.url);
+  const coordinator = spawnSync(process.execPath, [script.pathname], { encoding: "utf8", timeout: 10000 });
+  assert.equal(coordinator.status, 1);
+  assert.match(coordinator.stderr, /BP-007 calibration execution is retired/u);
+  const worker = new Worker(script, { workerData: { mode: "calibration-worker", registryPath: "/missing-retired-control" } });
+  let failure;
+  worker.on("error", (error) => { failure = error; });
+  const exit = await new Promise((resolve) => worker.once("exit", resolve));
+  assert.equal(exit, 1);
+  assert.match(failure?.message ?? "", /BP-007 calibration execution is retired/u);
 });
 
 test("target selection binds factual source slugs to their exact reference identities", () => {

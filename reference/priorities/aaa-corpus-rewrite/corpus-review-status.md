@@ -6,14 +6,14 @@ This file is the authoritative priority-ordered document board for the 199-file 
 
 | Status | Priority | Document | State | Finding IDs or next action |
 | --- | ---: | --- | --- | --- |
-| ◐ | 1 | [Effective Lagrangian](../../../content/markdown/aaa/dynamics/effective-lagrangian.md) | Review complete; adjudication and repair pending | EL-1–EL-16 |
-| ◐ | 2 | [Observer Framework](../../../content/markdown/aaa/spacetime/observer-framework.md) | Review complete; adjudication and repair pending | D1–D5, O1–O5, E1–E2 |
-| ◐ | 3 | [Action Model Comparison](../../../content/markdown/aaa/validation/simulations/action-energy/action-model.md) | Review complete; adjudication pending | D1–D6, O1–O3, E1–E3 |
-| ◐ | 4 | [Analytic Baselines](../../../content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md) | Review complete; adjudication pending | D1–D5, O1–O3, E1–E2 |
-| ◐ | 5 | [Attraction](../../../content/markdown/aaa/validation/simulations/action-energy/attraction.md) | Review complete; adjudication pending | F1–F6, O1–O2 |
-| ◐ | 6 | [Background and Simple Action](../../../content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md) | Review complete; HQ adjudication pending | Independent report filed |
-| ◐ | 7 | [Causal set and delay geometry](../../../content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md) | Review complete; HQ adjudication pending | Independent report filed |
-| ◐ | 8 | [Delay Dynamics Energy](../../../content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md) | Review complete; HQ adjudication pending | Independent report filed |
+| ● | 1 | [Effective Lagrangian](../../../content/markdown/aaa/dynamics/effective-lagrangian.md) | Bounded repairs implemented and validated; open obligations retained | EL-1–EL-16 |
+| ● | 2 | [Observer Framework](../../../content/markdown/aaa/spacetime/observer-framework.md) | Bounded repairs implemented and validated; E2 flow repair deferred and open obligations retained | D1–D5, O1–O5, E1–E2 |
+| ● | 3 | [Action Model Comparison](../../../content/markdown/aaa/validation/simulations/action-energy/action-model.md) | Bounded repairs implemented and validated; open obligations retained | D1–D6, O1–O3, E1–E3 |
+| ● | 4 | [Analytic Baselines](../../../content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md) | Bounded repairs implemented and validated; open obligations retained | D1–D5, O1–O3, E1–E2 |
+| ● | 5 | [Attraction](../../../content/markdown/aaa/validation/simulations/action-energy/attraction.md) | Bounded repairs implemented and validated; open obligations retained | F1–F6, O1–O2 |
+| ● | 6 | [Background and Simple Action](../../../content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md) | Bounded repairs implemented and validated; open obligations retained | D1–D2, O1–O3, E1–E4 |
+| ● | 7 | [Causal set and delay geometry](../../../content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md) | Bounded repairs implemented and validated; generated artifacts deferred | D1–D4, O1–O3, E1–E3 |
+| ● | 8 | [Delay Dynamics Energy](../../../content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md) | Bounded repairs implemented and validated; open obligations retained | DDE-1–DDE-4, ODE-1–ODE-4, EDE-1–EDE-2 |
 | ○ | 9 | [Informational ambiguity](../../../content/markdown/aaa/validation/simulations/action-energy/informational-ambiguity.md) | Unread backlog document | Not yet reviewed |
 | ○ | 10 | [Numerical recipe and stability](../../../content/markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md) | Unread backlog document | Not yet reviewed |
 | ○ | 11 | [Radial Attraction](../../../content/markdown/aaa/validation/simulations/action-energy/radial-attraction.md) | Unread backlog document | Not yet reviewed |
@@ -175,7 +175,7 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ○ | 167 | [Values](../../../content/markdown/aaa/archie/values.md) | Unread backlog document | Not yet reviewed |
 | ○ | 168 | [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) | Unread backlog document | Not yet reviewed |
 
-**Active queue count:** 8 review-complete items awaiting adjudication or repair, no reviews in progress, and 160 unopened documents. The next action is the first ◐ row, not the first alphabetic path.
+**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 160 unopened documents. The next action is the first ○ row, not the first alphabetic path.
 
 ## Completed audit appendix
 
@@ -212,5 +212,13 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ● | 29 | [Noether Sea Pro/Anti Coupling](../../../content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md) | Accepted, implemented, and validated | F1–F6 |
 | ● | 30 | [Noether Sea](../../../content/markdown/aaa/spacetime/noether-sea.md) | Accepted, implemented, and validated | NS-1–NS-13 |
 | ● | 31 | [Molecular Exclusion and Noether Sea Response](../../../content/markdown/aaa/spacetime/molecular-exclusion-and-noether-sea-response.md) | Disposition complete by deferral; exploratory hypothesis retained and upstream obligations routed | F1–F7 |
+| ● | 32 | [Action Model Comparison](../../../content/markdown/aaa/validation/simulations/action-energy/action-model.md) | Bounded repairs implemented and validated; open obligations retained | D1–D6, O1–O3, E1–E3 |
+| ● | 33 | [Analytic Baselines](../../../content/markdown/aaa/validation/simulations/action-energy/analytic-baselines.md) | Bounded repairs implemented and validated; open obligations retained | D1–D5, O1–O3, E1–E2 |
+| ● | 34 | [Attraction](../../../content/markdown/aaa/validation/simulations/action-energy/attraction.md) | Bounded repairs implemented and validated; open obligations retained | F1–F6, O1–O2 |
+| ● | 35 | [Effective Lagrangian](../../../content/markdown/aaa/dynamics/effective-lagrangian.md) | Bounded repairs implemented and validated; open obligations retained | EL-1–EL-16 |
+| ● | 36 | [Observer Framework](../../../content/markdown/aaa/spacetime/observer-framework.md) | Bounded repairs implemented and validated; E2 flow repair deferred and open obligations retained | D1–D5, O1–O5, E1–E2 |
+| ● | 37 | [Background and Simple Action](../../../content/markdown/aaa/validation/simulations/action-energy/background-and-simple-action.md) | Bounded repairs implemented and validated; open obligations retained | D1–D2, O1–O3, E1–E4 |
+| ● | 38 | [Causal set and delay geometry](../../../content/markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md) | Bounded repairs implemented and validated; generated artifacts deferred | D1–D4, O1–O3, E1–E3 |
+| ● | 39 | [Delay Dynamics Energy](../../../content/markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md) | Bounded repairs implemented and validated; open obligations retained | DDE-1–DDE-4, ODE-1–ODE-4, EDE-1–EDE-2 |
 
-Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 31 complete, 8 review-complete items awaiting adjudication or repair, no reviews in progress, and 160 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.
+Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 39 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 160 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.

@@ -5,7 +5,7 @@ import {historicalEvidenceInputs} from '../scripts/eom/run-f6c-streamed-leaf-dia
 const binding=(path,sha256='a'.repeat(64),bytes=3)=>({path,sha256,bytes});
 function fixture(){
  const original=binding('/repo/old.py'),physical=binding('/repo/evidence/old.py.source');
- return {bindings:{adapter:binding('/repo/adapter.py','b'.repeat(64))},runtimeBindings:[binding('/python','c'.repeat(64))],historicalEvidence:{selection:{schema:'braid-program/variable-cell-historical-evidence.v1',routes:[{original,physical}],unavailableHistoricalEnvironment:[]},sourceBindings:[physical]}};
+ return {bindings:{adapter:binding('/repo/adapter.py','b'.repeat(64))},runtimeBindings:[binding('/python','c'.repeat(64))],historicalEvidence:{selection:{schema:'braid-program/variable-cell-historical-evidence.v1',routes:[{original,physical}]},sourceBindings:[physical]}};
 }
 test('literal retained selection includes exact nonexecuting physical source',()=>{
  const spec=fixture(),before=structuredClone(spec);assert.deepEqual(historicalEvidenceInputs(spec),spec.historicalEvidence.sourceBindings);assert.deepEqual(spec,before);
@@ -19,9 +19,4 @@ test('archive/runtime confusion, substitution, omitted and duplicate sources rej
 test('distinct historical generations at one logical path remain distinct',()=>{
  const s=fixture(),second={original:binding('/repo/old.py','b'.repeat(64),4),physical:binding('/repo/evidence/second.source','b'.repeat(64),4)};
  s.historicalEvidence.selection.routes.push(second);s.historicalEvidence.sourceBindings.push(second.physical);assert.equal(historicalEvidenceInputs(s).length,2);
-});
-test('missing original environment is explicit metadata, never a physical source exemption',()=>{
- const s=fixture(),missing=binding('/old-host');s.historicalEvidence.selection.unavailableHistoricalEnvironment=[missing];
- assert.deepEqual(historicalEvidenceInputs(s),s.historicalEvidence.sourceBindings);
- s.historicalEvidence.selection.unavailableHistoricalEnvironment.push(missing);assert.throws(()=>historicalEvidenceInputs(s));
 });

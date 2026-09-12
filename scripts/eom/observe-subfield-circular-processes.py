@@ -1,6 +1,4 @@
 """Bounded process observation; no solver or scientific acceptance authority."""
-import hashlib
-import ctypes
 import json
 import os
 import resource
@@ -12,56 +10,12 @@ import sys
 import time
 
 
-def file_record(name):
-    fd = os.open(name, os.O_RDONLY | os.O_NONBLOCK | os.O_NOFOLLOW)
-    try:
-        before = os.fstat(fd)
-        if not stat.S_ISREG(before.st_mode) or before.st_size > 128 * 1024 * 1024:
-            raise ValueError("bounded regular runtime file required")
-        digest = hashlib.sha256()
-        count = 0
-        while True:
-            block = os.read(fd, min(65536, before.st_size + 1 - count))
-            if not block:
-                break
-            count += len(block)
-            if count > before.st_size:
-                raise ValueError("runtime file grew")
-            digest.update(block)
-        after = os.fstat(fd)
-        if count != before.st_size or (before.st_size, before.st_mtime_ns, before.st_ctime_ns) != (after.st_size, after.st_mtime_ns, after.st_ctime_ns):
-            raise ValueError("runtime file changed")
-        return {"path": name, "sha256": digest.hexdigest(), "bytes": count}
-    finally:
-        os.close(fd)
-
-
 def runtime_files():
     paths = {os.path.realpath(sys.executable)}
     config = os.path.join(sys.prefix, "pyvenv.cfg")
     if os.path.isfile(config):
         paths.add(os.path.realpath(config))
-    for module in tuple(sys.modules.values()):
-        value = getattr(module, "__file__", None)
-        if value:
-            paths.add(os.path.realpath(value))
-    if sys.platform != "darwin":
-        raise ValueError("reviewed macOS runtime inventory required")
-    dyld = ctypes.CDLL(None)
-    dyld._dyld_image_count.restype = ctypes.c_uint32
-    dyld._dyld_get_image_name.argtypes = [ctypes.c_uint32]
-    dyld._dyld_get_image_name.restype = ctypes.c_char_p
-    count = dyld._dyld_image_count()
-    if count > 1024:
-        raise ValueError("loaded runtime image census exceeds bound")
-    for index in range(count):
-        image = dyld._dyld_get_image_name(index)
-        if not image:
-            raise ValueError("loaded runtime image name unavailable")
-        name = image.decode("utf-8", "strict")
-        if not name.startswith(("/System/", "/usr/lib/")):
-            paths.add(os.path.realpath(name))
-    return [file_record(name) for name in sorted(paths)]
+    return [{"path": name} for name in sorted(paths)]
 
 
 def usage(value):

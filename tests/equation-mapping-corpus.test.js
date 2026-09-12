@@ -33,6 +33,27 @@ function listMarkdownFiles(directory) {
   });
 }
 
+// Independent delimiter census: it does not call the registry's parser or ID
+// allocator. Known Markdown controls run before this census is used on sources.
+function countSourceDisplays(source) {
+  const prose = source
+    .replace(/(^|\n)[ \t]*(`{3,}|~{3,})[^\n]*\n[\s\S]*?\n[ \t]*\2[ \t]*(?=\n|$)/gu, "$1")
+    .replace(/(`+)[^\n]*?\1/gu, "");
+  return [...prose.matchAll(/\$\$([\s\S]*?)\$\$/gu)]
+    .filter((match) => match[1].trim()).length;
+}
+
+test("independent display census excludes code and counts container and inline displays", () => {
+  const source = [
+    "# Known four-equation control", "$$", "a=b", "$$", "",
+    "> $$", "> c=d", "> $$", "", "  $$e=f$$", "Prose $$g=h$$.",
+    "`$$not math$$`", "```tex", "$$ignored$$", "```",
+    "~~~text", "$$also ignored$$", "~~~", "$$ $$",
+  ].join("\n");
+  assert.equal(countSourceDisplays(source), 4);
+  assert.equal(countSourceDisplays("No display: $a=b$, `$$x$$`."), 0);
+});
+
 test("generated equation registry covers every corpus display equation", () => {
   const result = buildEquationMappingCorpus({
     rootDir: new URL("..", import.meta.url).pathname,
@@ -40,10 +61,13 @@ test("generated equation registry covers every corpus display equation", () => {
   });
 
   assert.equal(result.errors.length, 0);
-  assert.equal(result.files, 199);
-  assert.equal(result.equations, 4658);
+  const files = listMarkdownFiles(path.join(repoRoot, "content/markdown/aaa"));
+  const expectedEquations = files.reduce((sum, file) => sum + countSourceDisplays(readFileSync(file, "utf8")), 0);
+  assert.ok(expectedEquations > 0);
+  assert.equal(result.files, files.length);
+  assert.equal(result.equations, expectedEquations);
   assert.equal(result.promoted, 23);
-  assert.equal(result.symbolDefinitions, 30035);
+  assert.equal(result.symbolDefinitions, payload.records.reduce((sum, record) => sum + record.symbols.length, 0));
 });
 
 test("every equation registry record is addressable, sourced, and symbol-defined", () => {
@@ -51,7 +75,7 @@ test("every equation registry record is addressable, sourced, and symbol-defined
   const semanticIds = new Set(normalized.records.map((record) => record.semanticId));
 
   assert.equal(normalized.schema, EQUATION_MAPPING_CORPUS_REGISTRY_SCHEMA);
-  assert.equal(normalized.records.length, 4658);
+  assert.equal(normalized.records.length, payload.records.length);
   assert.equal(semanticIds.size, normalized.records.length);
   assert.equal(normalized.records.filter((record) => record.promoted).length, 23);
   assert.equal(normalized.records.every((record) => record.source.sourcePath && record.source.sourceHeading), true);
@@ -74,7 +98,7 @@ test("corpus loader and public registry expose basic direct equation pages", asy
   const basicRecord = records.find((record) => !record.promoted);
   const page = api.get(basicRecord.semanticId);
 
-  assert.equal(api.list().length, 4658);
+  assert.equal(api.list().length, records.length);
   assert.equal(page.semanticId, basicRecord.semanticId);
   assert.equal(page.promoted, false);
   assert.equal(page.source.sourcePath, basicRecord.source.sourcePath);
@@ -92,8 +116,8 @@ test("promotion changes carousel membership but not baseline equation access", (
     window: {},
   });
 
-  assert.equal(documents.length, 4658);
-  assert.equal(runtime.getVisibleDocumentList().length, 4658);
+  assert.equal(documents.length, payload.records.length);
+  assert.equal(runtime.getVisibleDocumentList().length, documents.length);
   assert.equal(runtime.getCarouselDocumentList().length, 23);
   assert.equal(runtime.activeDocument.id, basicDocument.id);
   assert.equal(runtime.activeDocument.source.sourcePath, basicDocument.source.sourcePath);

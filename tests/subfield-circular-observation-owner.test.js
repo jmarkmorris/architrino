@@ -103,15 +103,3 @@ hostTest('changed source rejects before another probe and at final recheck', asy
     assert.equal(f.owner.snapshot().probes.length, 1);
   } finally { rmSync(f.directory, {recursive:true}); }
 });
-hostTest('changed captured runtime dependency rejects before ps and final admission', async()=>{
-  const directory=realpathSync(mkdtempSync(path.join(tmpdir(),'circular-runtime-control-')));
-  const library=path.join(directory,'known-runtime-dependency');writeFileSync(library,'known runtime bytes');
-  const f=fixture('',source=>source.replace('    paths = {os.path.realpath(sys.executable)}',`    paths = {os.path.realpath(sys.executable), ${JSON.stringify(library)}}`));
-  try {
-    const inventory=await f.owner.initialize();assert(inventory.runtime.some(row=>row.path===library));
-    writeFileSync(library,'changed runtime bytes');
-    assert.throws(()=>f.owner.inspect(f.context()),/hash differs/);
-    await assert.rejects(f.owner.finish(),/hash differs/);
-    assert.equal(f.owner.snapshot().probes.length,1);
-  } finally {rmSync(f.directory,{recursive:true});rmSync(directory,{recursive:true});}
-});

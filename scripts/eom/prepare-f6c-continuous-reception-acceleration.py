@@ -525,8 +525,6 @@ def main(argv=None):
                 if b in plan['runtimeBindings']: runtime[obj.path.resolve()]=obj
             git=Path(args.git_binary).resolve()
             require(git in runtime and Path(sys.executable).resolve() in runtime,'reviewed interpreter/git absent')
-            project_paths=(own.path,fixed['reference'].path)
-            require(runtime_paths(project_paths)<=set(runtime),'runtime closure incomplete')
             documents={k:decode(fixed[k].data,receipt=(k!='export')) for k in
                        ('export','manifest','comparison','admission','reconstruction','guards','priorPlan')}
             bindings={k:v.binding() for k,v in fixed.items()}
@@ -538,7 +536,6 @@ def main(argv=None):
             check_output(root,output,git); output.mkdir(mode=0o700)
             publication=Publication(output/'range.json',deadline)
             with captured_reference(fixed['reference'].path,fixed['reference'].data) as reference:
-                require(runtime_paths(project_paths)<=set(runtime),'reference import runtime closure incomplete')
                 roles=(('original_export','export'),('reconstruction_receipt','reconstruction'),('guards_receipt','guards'),
                        ('root_cover','manifest'),('root_cover_comparison','comparison'),
                        ('member_acceleration_predeclaration','memberPredeclaration'),('continuous_reception_enclosure_contract','rootTheorem'))

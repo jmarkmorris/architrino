@@ -1,5 +1,13 @@
 # Data-File Layout Completion
 
+## Current execution boundary
+
+The layout moves in both stages are complete, as recorded in [the work log](../work-log.md#2026-09-05--data-file-layout-stage-b-and-a-systemic-side-effect-of-the-layout-pass). Resume [AWT-015](../work-queue.md#awt-015--data-file-layout-completion) at residual validation, not at relocation. Its live completion condition requires reviewed resolution of every affected content-digest pin, passing full Node and shared-venv Python suites, and content integrity apart from the separately recorded OPS-017 exception. The [September 12 residual record](../evidence/awt-015-residual-validation-2026-09-12.md) owns the current source review, measured results and remaining blockers. Earlier stage instructions below retain the original campaign context; current operator authorization and repository policy govern execution.
+
+Use both canonical duration selections for complete Node file coverage: `node scripts/run-test-sweep.mjs` and `node scripts/run-test-sweep.mjs --slow`. They apply serial execution and the corresponding per-test timeouts. The package's direct invocation is `node --test --test-concurrency=1`; default discovery works, whereas Node 26.3.0 rejects the historical `tests/` directory argument as a module path. Python uses `VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" -m unittest discover -s tests -p 'test_*.py' -v`. Apply the managed-compute policy to long runs and record every failure and omission; a passing focused selection is not a passing full suite.
+
+## Original campaign
+
 This campaign finishes the workstream directory layout pass recorded in [../work-log.md](../work-log.md) under 2026-09-05. That pass filed 236 Markdown documents into layout subdirectories across the 27 active priority lanes. It covered Markdown only, so 32 machine-readable data files still sit at the top level of nine of those lanes, where the layout says supporting material does not belong.
 
 Twenty-six of those files are referenced by scripts, tests, or runtime source through pinned paths, so moving them means editing their consumers in the same change. Six had no measured consumer and move on their own. The campaign runs in two stages for that reason: the unpinned six first, as a rehearsal that exercises the destination judgment without touching any consumer, then the pinned twenty-six.

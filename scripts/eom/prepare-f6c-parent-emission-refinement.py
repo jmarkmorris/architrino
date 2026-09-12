@@ -66,8 +66,8 @@ DEPENDENCIES = {
  'transportControls': ('tests/test_f6c_refined_acceleration.py','d65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd'),
  'scientificDecoder': ('scripts/eom/oracle/f6c_refined_acceleration_conformance.py','7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e'),
  'scientificDecoderControls': ('tests/test_f6c_refined_acceleration_conformance.py','147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921'),
- 'productionHelper': ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','7b81efbf67b67c78c759fcb1c49e757ffb7f513f75ca8489178bfda71f4f31c5'),
- 'productionHelperControls': ('tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','3bee7599b03f2500ede6eeeea31c46e1aac82410f456e967102c13e820b93221'),
+ 'productionHelper': ('scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py','d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841'),
+ 'productionHelperControls': ('tests/test_f6c_cached_continuous_reception_root_cover_preparation.py','5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2'),
  'historyReference': ('scripts/eom/oracle/certified_history.py','ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7'),
  'decimalReference': ('scripts/eom/oracle/decimal_interval.py','fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a'),
  'decimalControls': ('tests/test_eom_decimal_interval.py','22242cb7335cdddeb56416b8584793972195ee1aa6b460d8a43ea6baeb693b44'),
@@ -96,7 +96,7 @@ ORIGINAL = {
  **FULL,
 }
 PLAN_KEYS = ('schema','scope','parentIndex',*NAMED,'dependencies','originalBindings','acceptanceOwner',
-             'priorCoverClosure','runtimeBindings','operationalBindings','historicalDocumentRoutes','unavailableHistoricalEnvironment','limits')
+             'priorCoverClosure','runtimeBindings','operationalBindings','historicalDocumentRoutes','limits')
 MANIFEST_KEYS = tuple('schema scope status accepted launchPlan producer verifier declaration parent members originalBindings acceptanceOwner priorCoverClosure historicalSourceBindings historicalEvidenceVerification subjectSourceBindings runtimeBindings operationalBindings algorithm restrictions census helperCalls queries rows pieces libraryFlags claims publicationRequires'.split())
 COMPLETION_KEYS = tuple('completed accepted scope parentIndex outputs publicationRecords census helperCalls elapsedSeconds processUserSeconds processSystemSeconds maximumIndividualProcessResidentBytes independentComparisonRequired externalInclusiveDeadlineAndProcessClosureRequired claims'.split())
 HISTORY_KEYS = tuple('id pathKey polarity charge historyFingerprint coverageStart coverageEnd segments'.split())
@@ -211,13 +211,15 @@ def validate_plan(plan, own_sha, root, transport):
     owner=binding(plan['acceptanceOwner'],root);require(owner['path']==str(root/OWNER),'acceptance-owner path')
     # No automatic acceptance of the current owner's bytes; only the plan SHA.
     subjects=[binding(plan[k],root) for k in NAMED]+[binding(plan['dependencies'][k],root) for k in DEPENDENCIES]
-    runtime=binding_list(plan['runtimeBindings'],root);ops=binding_list(plan['operationalBindings'],root)
+    runtime=[{'path':str(Path(v['path']).resolve())} for v in plan['runtimeBindings'] if type(v) is dict and isinstance(v.get('path'),str)]
+    require(len(runtime)==len(plan['runtimeBindings']),'runtime capability path records')
+    require(len({v['path'] for v in runtime})==len(runtime),'duplicate runtime capability')
+    ops=binding_list(plan['operationalBindings'],root)
     new=subjects+runtime+ops
     require(len({b['path'] for b in new})==len(new),'duplicate new execution source')
     originals=[binding(v,root) for v in plan['originalBindings'].values()]+[owner]
     require(len({b['path'] for b in originals})==len(originals),'duplicate original role')
     validate_routes(plan['historicalDocumentRoutes'], root)
-    validate_environment(plan['unavailableHistoricalEnvironment'],root)
     return subjects,runtime,ops
 
 
@@ -300,28 +302,12 @@ HISTORICAL_ARCHIVES = {
   26659
  ]
 }
-HISTORICAL_HOSTS = {
- "/usr/bin/git": [
-  "179301dcb41ea78accc3fa0048a7e6f6710d891945a751a34addd622020c1818",
-  118928
- ],
- "/bin/ps": [
-  "472992c470606d28f577590decfecd7f4a20f832fd92c671bebc6d44790b5d02",
-  170816
- ],
- "/usr/bin/memory_pressure": [
-  "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56",
-  135248
- ]
-}
-
-
 def validate_routes(rows, root):
     require(type(rows) is list and len(rows)<=198,'bounded consumed archive routes')
     result={}
     for row in rows:
         closed(row,('original','physical'));old=binding(row['original'],root);physical=binding(row['physical'],root)
-        expected=HISTORICAL_ARCHIVES.get(os.path.relpath(old['path'],root)) or HISTORICAL_HOSTS.get(old['path'])
+        expected=HISTORICAL_ARCHIVES.get(os.path.relpath(old['path'],root))
         require(expected is not None and [old['sha256'],old['bytes']]==expected,'exact admitted historical tuple')
         require(physical['path']!=old['path'] and physical['path'].endswith('.source') and physical['sha256']==old['sha256'] and physical['bytes']==old['bytes'],'nonexecuting lossless archive route')
         require(old['path'] not in result and physical['path'] not in {r['physical']['path'] for r in result.values()},'duplicate historical route')
@@ -329,21 +315,10 @@ def validate_routes(rows, root):
     return result
 
 
-def validate_environment(rows,root):
-    require(type(rows) is list and len(rows)<=3,'bounded unavailable historical environment')
-    result={}
-    for raw in rows:
-        b=binding(raw,root)
-        require(HISTORICAL_HOSTS.get(b['path'])==[b['sha256'],b['bytes']],'exact unavailable historical host tuple')
-        require(b['path'] not in result,'duplicate unavailable historical host');result[b['path']]=b
-    return result
-
-
-def historical_evidence(missing):
+def historical_evidence():
     return dict(schema='braid-program/retained-historical-evidence.v1',retainedScientificBytesVerified=True,
-        recordedProvenanceVerified=True,fullOriginalEnvironmentVerified=not missing,
-        unavailableHistoricalEnvironment=sorted(missing,key=lambda b:b['path']),
-        authority='retained artifacts and recorded conditional provenance only; no fresh historical observation or replay')
+        recordedProvenanceVerified=True,
+        authority='retained authored artifacts and recorded provenance only; no environment replay')
 
 
 def canonical_plan(plan,root):
@@ -351,7 +326,8 @@ def canonical_plan(plan,root):
     for key in NAMED:result[key]=binding(plan[key],root)
     for key in ('dependencies','originalBindings'):result[key]={k:binding(v,root) for k,v in plan[key].items()}
     result['acceptanceOwner']=binding(plan['acceptanceOwner'],root)
-    for key in ('runtimeBindings','operationalBindings'):result[key]=binding_list(plan[key],root)
+    result['runtimeBindings']=[{'path':str(Path(v['path']).resolve())} for v in plan['runtimeBindings']]
+    result['operationalBindings']=binding_list(plan['operationalBindings'],root)
     return result
 
 
@@ -389,7 +365,7 @@ def bootstrap(path,digest,live):
 
 class CapturePool:
     def __init__(self,stack,transport,root,live):
-        self.stack,self.w,self.root,self.live=stack,transport,root,live;self.files={};self.routes={};self.used_routes=set();self.unavailable={};self.used_unavailable=set();self.allowed=None;self.total=0;self.inodes=set()
+        self.stack,self.w,self.root,self.live=stack,transport,root,live;self.files={};self.routes={};self.used_routes=set();self.allowed=None;self.total=0;self.inodes=set()
     def capture(self,raw,*,data=False,limit=MAX_SOURCE_BYTES):
         b=binding(raw,self.root);path=b['path'];require(b['bytes']<=limit,'capture role size')
         if self.allowed is not None: require(path in self.allowed and equal(self.allowed[path],b),'source absent from original operation union')
@@ -408,7 +384,7 @@ class CapturePool:
         f=self.capture(b,data=capture,limit=MAX_BYTES if capture else MAX_SOURCE_BYTES)
         return f.data if capture else f.binding()
     def historical_file(self,b,*,data=False):
-        old=binding(b,self.root);require(old['path'] not in self.unavailable,'unavailable archive cannot supply bytes')
+        old=binding(b,self.root)
         route=self.routes.get(old['path'])
         if route is not None:
             require(equal(route['original'],old),'historical route original tuple')
@@ -417,10 +393,7 @@ class CapturePool:
         return self.capture(physical,data=data,limit=MAX_BYTES if data else MAX_SOURCE_BYTES)
     def historical(self,b):
         old=binding(b,self.root)
-        if old['path'] in self.unavailable:
-            require(old['path'] not in self.routes and equal(old,self.unavailable[old['path']]),'exact unavailable original tuple')
-            self.used_unavailable.add(old['path'])
-        else:self.historical_file(old)
+        self.historical_file(old)
         return old
     def admit_operation(self, filename, digest):
         p=Path(filename);require(p.is_absolute() and p==p.resolve(),'canonical operation plan')
@@ -510,7 +483,6 @@ def authenticate_full_chain(w,docs,files,pool,owner_raw):
         for b in binding_list(group,pool.root,n): expected.append(pool.historical(b))
     expected.extend((pool.historical(p['resourcePlan']),files['fullPlan'].binding()))
     require(pool.used_routes==set(pool.routes),'unused historical route')
-    require(pool.used_unavailable==set(pool.unavailable),'unused unavailable historical host')
     unique={}
     for b in expected:
         require(b['path'] not in unique or equal(unique[b['path']],b),'conflicting historical source');unique[b['path']]=b
@@ -811,7 +783,7 @@ def make_manifest(plan,plan_binding,own,bindings,history,parent,result,historica
     members=[dict(id=h['id'],pathKey=h['pathKey'],polarity=h['polarity'],charge=h['charge'],historyFingerprint=h['historyFingerprint']) for h in history]
     value=dict(schema=SCHEMA,scope=parent_scope(plan['parentIndex']),status='conditional_complete',accepted=False,
         launchPlan=plan_binding,producer=own,verifier=plan['verifier'],declaration=plan['declaration'],parent=plain(parent),members=members,
-        originalBindings=plan['originalBindings'],acceptanceOwner=owner,priorCoverClosure=plan['priorCoverClosure'],historicalSourceBindings=historical,historicalEvidenceVerification=historical_evidence(list(validate_environment(plan['unavailableHistoricalEnvironment'],Path('/')).values())),
+        originalBindings=plan['originalBindings'],acceptanceOwner=owner,priorCoverClosure=plan['priorCoverClosure'],historicalSourceBindings=historical,historicalEvidenceVerification=historical_evidence(),
         subjectSourceBindings=subjects,runtimeBindings=runtime,operationalBindings=ops,algorithm=ALGORITHM,
         restrictions=plain(result.restrictions),census=CENSUS,helperCalls=CALLS,queries=bindings[0],rows=bindings[1],pieces=bindings[2],
         libraryFlags=LIBRARY_FLAGS,claims=CLAIMS,publicationRequires=PUBLICATION_REQUIRES)
@@ -830,11 +802,8 @@ def runtime_paths(excluded=()):
 
 
 def check_runtime(runtime,subjects,git_binary):
-    planned={Path(b['path']) for b in runtime}
-    required=runtime_paths(excluded=[b['path'] for b in subjects])|{git_binary,Path(sys.executable).resolve()}
-    config=Path(sys.prefix)/'pyvenv.cfg'
-    if config.is_file():required.add(config.resolve())
-    require(required<=planned,'late runtime outside plan')
+    require(all(type(row) is dict and set(row)=={'path'} and Path(row['path']).is_absolute() for row in runtime),
+            'runtime capability paths only')
 
 
 def check_output(root,output,git_binary):
@@ -896,11 +865,9 @@ def main(argv=None):
                 selected_parent=plan['parentIndex']
                 pool.admit_operation(args.operation_plan,args.operation_plan_sha256)
                 pool.routes=validate_routes(plan['historicalDocumentRoutes'],root)
-                pool.unavailable=validate_environment(plan['unavailableHistoricalEnvironment'],root)
                 subjects=sorted(subjects,key=lambda b:b['path']);runtime=plan['runtimeBindings'];ops=plan['operationalBindings']
-                for group in (subjects,runtime,ops):
+                for group in (subjects,ops):
                     for b in group:pool.capture(b)
-                require(str(git_binary) in {b['path'] for b in runtime},'Git is not runtime-bound')
                 check_output(root,output,git_binary);live()
                 original_files={role:pool.historical_file(plan['originalBindings'][role],data=True) for role in ORIGINAL}
                 docs={k:w.decode_role(core,original_files[k].data,k) for k in ('export','reconstruction','guards')}

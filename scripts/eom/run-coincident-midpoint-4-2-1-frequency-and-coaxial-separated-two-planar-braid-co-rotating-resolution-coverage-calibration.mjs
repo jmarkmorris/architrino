@@ -59,6 +59,10 @@ export const CALIBRATION_SCHEMA =
   "prescribed-path-analysis/coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.v2";
 export const RECEIPT_SHA256 = null;
 export const RECEIPT_INSTANTIATION_STATUS = "uninstantiated";
+export const CALIBRATION_EXECUTION_STATUS = "retired";
+export function assertCalibrationExecutionEnabled() {
+  throw new Error("BP-007 calibration execution is retired; reopening requires a named consumer and a separately reviewed source/evidence packet.");
+}
 export const RECEIPT_UNINSTANTIATED_REASON =
   "no terminal v2 exact-configuration sweep receipt and factual v2 calibration packet have been produced";
 export const COVERAGE_PROTOCOL_HASH =
@@ -1360,6 +1364,7 @@ function workerRuntime(registryPath) {
 }
 
 function startWorkerThread() {
+  assertCalibrationExecutionEnabled();
   const context = workerRuntime(workerData.registryPath);
   let lastProgress = 0;
   parentPort.on("message", (task) => {
@@ -2590,6 +2595,9 @@ function help() {
   const script =
     "scripts/eom/run-coincident-midpoint-4-2-1-frequency-and-coaxial-separated-two-planar-braid-co-rotating-resolution-coverage-calibration.mjs";
   console.log([
+    "BP-007 calibration execution is retired. Coordinator and worker launches are refused.",
+    "Historical artifact verification remains available with --verify.",
+    "",
     "Usage:",
     `  node ${script}`,
     "    --packet PATH --sweep-input PATH --sweep-receipt PATH --output PATH",
@@ -2605,6 +2613,7 @@ function help() {
 }
 
 async function runCalibration(options) {
+  assertCalibrationExecutionEnabled();
   const coordinatorStarted = performance.now();
   const binding = verifyReceiptAndPacket({
     packetPath: options.packetPath,
