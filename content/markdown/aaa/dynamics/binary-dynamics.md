@@ -1205,8 +1205,6 @@ $$
 
 is the chapter's speed ratio. Physical root counts are constant between true birth/death or retained-boundary events. Changes of reduced-angle representation at $s=\pi/2$ or $s=m\pi$ do not create roots. Higher interior births have $J=0$; the principal self birth is instead an excluded coincident endpoint.
 
-<a id="root-ledger-as-a-one-parameter-morse-complex"></a>
-
 #### Root Counts and Signed Degree
 
 For a fixed reception event on a one-parameter family of branch histories, write the root function as

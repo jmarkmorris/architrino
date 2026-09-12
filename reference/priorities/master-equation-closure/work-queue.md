@@ -37,11 +37,6 @@ The [quintic independent review](analysis/quintic-mirror-boundary-independent-ad
 
 For strategy and claim boundaries, see [priorities](priorities.md). For explanations, see [brainstorming](brainstorming.md) and the linked mathematical owners. Source-packet P/Leg/D labels and old numbered assignments are preserved in the [historical work log](work-log.md#2026-09-09--queue-presentation-simplified); they are not additional live tasks.
 
-<a id="coordinated-campaign-execution-order"></a>
-<a id="effort-contracts"></a>
-<a id="coordinator-ownership-and-dispatch"></a>
-<a id="wake-reception-review-action-register"></a>
-
 <details>
 <summary>Strategic ranking metadata — not another execution queue</summary>
 
@@ -54,12 +49,6 @@ This block preserves the repository's machine-checked workstream ranking. These 
 3. `pairwise_causal_root_ledger_closure` — [Root provenance](analysis/pairwise-causal-root-ledger-closure.md). Status: `Queued`.
 4. `finite_coincident_same_transmitter_transition` — [Boundary continuation](analysis/diagonal-birth-lineage-causal-wake-candidate.md). Status: `Deferred / blocked`.
 5. `same_update_conserved_accounts` — [Joint accounts](analysis/independent-causal-wake-state-closure.md). Status: `Deferred / blocked`.
-
-<a id="mec-002--causal-wake-update-law"></a>
-<a id="mec-008--same-transmitter-coincidence-domain-reachability"></a>
-<a id="mec-005--pairwise-causal-root-ledger-closure"></a>
-<a id="mec-003--finite-coincident-same-transmitter-transition"></a>
-<a id="mec-004--same-update-conserved-accounts"></a>
 
 The corresponding mathematical owners above contain each obligation's definitions, acceptance boundaries and evidence. Existing incoming fragment links are retained for source provenance.
 

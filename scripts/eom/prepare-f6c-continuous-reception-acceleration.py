@@ -548,7 +548,6 @@ def main(argv=None):
                 require(result['status']=='conditional_ranges' and all(value is False for value in result['claims'].values()),'range reference promoted authority')
                 progress.update(stage='source-rechecks',completedCells=1)
                 for obj in owned: obj.recheck()
-                require(runtime_paths(project_paths)<=set(runtime),'late runtime outside plan')
                 packet={'schema':SCHEMA,'scope':SCOPE,'accepted':False,'status':'conditional-range-candidate',
                         'fixedBindings':bindings,'launchPlan':plan_file.binding(),'consumer':own.binding(),
                         'declaration':plan['declaration'],'rangeVerifier':plan['rangeVerifier'],

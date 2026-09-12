@@ -16,11 +16,11 @@ from types import ModuleType
 _EXECUTING_CODE = sys._getframe().f_code
 SELF = 'scripts/eom/execute-f6c-emission-refinement.py'
 SUPPORT = 'scripts/eom/execute-f6c-acceleration.py'
-SUPPORT_SHA = 'd452c03041a636ec182469ae8ed5e1c6ebe8902d2aae751aa7cfbde4fbb507fc'
+SUPPORT_SHA = '02b1b58eed0fda3cba96df90117a03095297fd9e38bfaf95a81788e3d28549ac'
 PRODUCER = 'scripts/eom/prepare-f6c-emission-refinement.py'
-PRODUCER_SHA = 'ec254ad004fb38612d3e895f5c150d8e5bec8fe53142739a50b15e073bd9783d'
+PRODUCER_SHA = '2e4b020647a6ecbb5843df13667f672c809c65ac504bb6801e2b7249a8356618'
 VERIFIER = 'scripts/eom/verify-f6c-emission-refinement.py'
-VERIFIER_SHA = 'a2fc4b009e4cc3289134b933b258eb223d9281c35945fa8e83cba280ab47a025'
+VERIFIER_SHA = '42b5cee3bbaf42dc417c868d54078a70070a9769e27668ba0c6f7ea6a4e34709'
 SCHEMA = 'braid-program/f6c-emission-refinement-launch.v2'
 
 
@@ -87,8 +87,8 @@ def current_plan(raw, verifier, root, bridge_sha, infrastructure):
     node = Path(next(iter(set(ops) - known)))
     require(node.is_absolute() and node.name == 'node', 'resolved Node binding required')
     require(ops[SELF] == bridge and ops[SUPPORT]['sha256'] == SUPPORT_SHA, 'bridge/support execution census differs')
-    expected = {'scripts/eom/launch-prescribed-response-pilot.mjs': '72b181165cafe21f3237dca7638343a9d31ea4ee48f709d9b43761666d6e7ec5',
-                'scripts/eom/launch-subfield-circular-root-pilot.mjs': 'e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920',
+    expected = {'scripts/eom/launch-prescribed-response-pilot.mjs': '05cd35574276841795077ea28a2b6d6e47534379184f7164a9dafe473e156a7f',
+                'scripts/eom/launch-subfield-circular-root-pilot.mjs': '71974054ddce7fc29b8464b9a7a63f8fbb04ee5b425dc997df4d40b2804341aa',
                 }
     require(all(ops[p]['sha256'] == h for p, h in expected.items()), 'current operational generation differs')
     return plan

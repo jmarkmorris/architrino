@@ -19,6 +19,8 @@ const hash=x=>createHash('sha256').update(x).digest('hex');
 const bind=p=>({path:p,sha256:hash(readFileSync(p)),bytes:statSync(p).size});
 const load=async([p,h])=>{const raw=readFileSync(path.join(root,p));assert.equal(hash(raw),h);return import('data:text/javascript;base64,'+raw.toString('base64'));};
 const H=await load(C.PINS.helpers),D=await load(C.PINS.diagnostics);
+const transportArchive='reference/priorities/braid-program/evidence/source-replay/f6c-verify-f6c-refined-acceleration.py.source';
+const dependencyBytes=(key,rel)=>readFileSync(path.join(root,key==='transport'?transportArchive:rel));
 const pause=ms=>new Promise(r=>setTimeout(r,ms));
 const absent=pid=>{try{process.kill(pid,0);return false;}catch(e){return e.code==='ESRCH';}};
 
@@ -140,7 +142,7 @@ def open_adapter(root,**kw):
   selection=kw['historical_evidence'];assert selection['schema']=='braid-program/variable-cell-historical-evidence.v1'
   for route in selection['routes']:
    b=route['physical'];raw=pathlib.Path(b['path']).read_bytes();assert hashlib.sha256(raw).hexdigest()==b['sha256'] and len(raw)==b['bytes'];extras.append(SourceBinding(**b))
-  a.historical_evidence_verification={'schema':'synthetic-retained-verification','retainedScientificBytesVerified':true,'recordedProvenanceVerified':true}
+  a.historical_evidence_verification={'schema':'synthetic-retained-verification','retainedScientificBytesVerified':True,'recordedProvenanceVerified':True}
  for d in kw['parent_refinements']:
   extras.extend(getattr(d,k)for k in ('plan','manifest','comparison','operation','launcher_log','resource_log'))
   extras.extend(r.archive for r in d.archived_sources)
@@ -246,7 +248,7 @@ function fixture(mode='normal',maximum=2,{launchFree=40,runFree=40,launchDisk=64
   let raw;
   if(key==='adapter')raw='MODE='+JSON.stringify(mode)+'\n'+adapterFake;
   else if(key==='diagnostic')raw='MODE='+JSON.stringify(mode)+'\nEVENTS='+JSON.stringify(events)+'\nPID='+JSON.stringify(pidfile)+'\nEXTRA='+JSON.stringify(path.join(dir,'unbound.py'))+'\n'+driverFake;
-  else if(['helpers','outer','diagnostics','transport','codec','storage','stream','operationCoordinator'].includes(key)){raw=readFileSync(path.join(root,rel));assert.equal(hash(raw),digest);}
+  else if(['helpers','outer','diagnostics','transport','codec','storage','stream','operationCoordinator'].includes(key)){raw=dependencyBytes(key,rel);assert.equal(hash(raw),digest);}
   else raw='synthetic metadata only\n';
   if(key==='operationCoordinator'){
    // Only the copied coordinator's host-observation inputs are synthetic.
@@ -400,7 +402,7 @@ function alterWholeFixture(f,change){
 }
 
 test('reviewed dependencies remain byte-exact',()=>{
- for(const[k,[p,h]]of Object.entries(C.PINS)){if(k==='readiness'){assert.equal(h,null);assert(existsSync(path.join(root,p)));}else assert.equal(hash(readFileSync(path.join(root,p))),h);}
+ for(const[k,[p,h]]of Object.entries(C.PINS)){if(k==='readiness'){assert.equal(h,null);assert(existsSync(path.join(root,p)));}else assert.equal(hash(dependencyBytes(k,p)),h);}
  assert(C.PYTHON.length<65536);
 });
 test('genuine two-refined-parent provider connects to frozen stream and codec',()=>{
@@ -812,7 +814,16 @@ for(const mode of ['package','package-runtime']){
 for(const mode of['missing-runtime','runtime-in-provenance','archive-runtime','late-runtime','source-count-overflow','source-hardlink','cleanup-replacement','module-cleanup','postpublish','trailing','final-cleanup']){
  test('literal Python rejects and preserves only private evidence: '+mode,async()=>{
   const f=fixture(mode);try{
-   const r=await runFixture(f);assert.equal(r.code,1);assert.equal(r.out,'');assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));
+   const r=await runFixture(f);
+   if(mode==='postpublish'){
+    // A replaced authored source prevents the coordinator from certifying its
+    // own cleanup. The independent owner still closes the original group.
+    rejectedExit(r);assert.equal(r.lease.processGroupClosed,true);
+    const errors=readFileSync(path.join(f.output+'-outer','process','runner-stderr.log'),'utf8');
+    assert.match(errors,/original postcleanup source replaced/);
+    assert(existsSync(path.join(f.dir,C.LOCK)),'uncertified cleanup retains its lock');
+   }else assert.equal(r.code,1);
+   assert.equal(r.out,'');assert(!existsSync(path.join(f.output,'leaf-evidence.ndjson')));
    if(mode==='missing-runtime'||mode==='runtime-in-provenance'||mode==='archive-runtime'||mode==='late-runtime'){
     assert(!existsSync(f.events),'missing runtime stopped before first provide');
     const errors=readFileSync(path.join(f.output+'-outer','process','runner-stderr.log'),'utf8');assert.match(errors,/runtime outside declared inventory/);

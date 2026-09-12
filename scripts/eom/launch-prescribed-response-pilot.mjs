@@ -10,7 +10,7 @@ import { Worker } from "node:worker_threads";
 
 const SELF="scripts/eom/launch-prescribed-response-pilot.mjs",ENTRY="scripts/eom/run-prescribed-response-pilot.mjs";
 const OUTER="scripts/eom/launch-subfield-circular-root-pilot.mjs";
-const OUTER_SHA="e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920";
+const OUTER_SHA="71974054ddce7fc29b8464b9a7a63f8fbb04ee5b425dc997df4d40b2804341aa";
 const LIMIT_MS=1800000,LOG_LIMIT=16*1024**2,OUTPUT_LIMIT=8*1024**2,RSS_LIMIT=2*1024**3;
 const SHARED_LOCK_LANE=".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827";
 const check=(yes,message)=>{if(!yes)throw new Error(message);};

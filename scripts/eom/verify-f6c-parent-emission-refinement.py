@@ -136,8 +136,12 @@ def validate_plan(w, plan, own_sha, root):
             if len(pin)==3: integer(b['bytes'],pin[2])
     b=w.binding(plan['acceptanceOwner']);require(b['path']==OWNER,'reviewed plan-selected owner path')
     require(plan['verifier']['sha256']==own_sha and w.equal(plan['priorCoverClosure'],closure_premise()),'verifier/closure premise')
-    require(all(type(b) is dict and isinstance(b.get('path'),str) and Path(b['path']).is_absolute() for b in plan['runtimeBindings']),
-            'runtime capability paths only')
+    require(type(plan['runtimeBindings']) is list and len(plan['runtimeBindings'])<=256,'bounded runtime capabilities')
+    require(all(type(b) is dict and set(b)=={'path'} and type(b['path']) is str and Path(b['path']).is_absolute()
+                and str(Path(b['path']))==b['path'] and '..' not in Path(b['path']).parts for b in plan['runtimeBindings']),
+            'normalized absolute runtime capability paths only')
+    runtime_paths=[b['path'] for b in plan['runtimeBindings']]
+    require(len(set(runtime_paths))==len(runtime_paths),'duplicate runtime capability')
     w.binding_list(plan['operationalBindings'])
     # The exact separately reviewed plan binds operational layout and census.
     # This wrapper neither invents a future launcher nor admits one from its name.
@@ -145,7 +149,8 @@ def validate_plan(w, plan, own_sha, root):
     require(len(w.source_map(subject,root))==23,'unique23 subject sources')
     require(len(w.source_map(plan['operationalBindings'],root))==len(plan['operationalBindings']),'normalized duplicate operational bindings')
     new_sources=[*subject,*plan['operationalBindings']]
-    require(len(w.source_map(new_sources,root))==len(new_sources),'new subject/runtime/operation duplicate')
+    require(len(w.source_map(new_sources,root))==len(new_sources),'new subject/operation duplicate')
+    require(not set(runtime_paths).intersection(w.source_map(new_sources,root)),'runtime aliases authored source')
     # Logical historical generations are distinct from the current physical union.
     historical_routes(plan['historicalDocumentRoutes'],root,w)
     return plan
@@ -686,7 +691,7 @@ def main(argv=None):
             for key,record_key,n in (('queries','queryRecords',3584),('rows','rowRecords',64),('pieces','pieceRecords',112)):
                 streams[record_key]=records(files[key].data,decoder.decode_document,n,live=live)
             streams.update(producer=pool.read_binding(plan['producer']),verifier=own.binding(),declaration=pool.read_binding(plan['declaration']),acceptanceOwner=owner,subjectSourceBindings=subject,
-                runtimeBindings=[w.normalized(b,root) for b in plan['runtimeBindings']],operationalBindings=[w.normalized(b,root) for b in plan['operationalBindings']])
+                runtimeBindings=[dict(b) for b in plan['runtimeBindings']],operationalBindings=[w.normalized(b,root) for b in plan['operationalBindings']])
             progress['stage']='independent-query-and-final-cover'
             def advance(q,r):live();progress.update(completedQueries=q,completedRows=r)
             analysis=compare_manifest(w,core,ref,packet,plan,launch.binding(),originals,historical,parent,histories,streams,progress=advance)

@@ -7,7 +7,7 @@ import { Worker } from "node:worker_threads";
 
 const SELF = "scripts/eom/dispatch-subfield-circular-root-ladder.mjs", RUNG = "scripts/eom/run-subfield-circular-root-rung.mjs";
 const BASE = ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1/";
-const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs", OUTER_SHA = "e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920";
+const OUTER = "scripts/eom/launch-subfield-circular-root-pilot.mjs", OUTER_SHA = "71974054ddce7fc29b8464b9a7a63f8fbb04ee5b425dc997df4d40b2804341aa";
 const sha = bytes => createHash("sha256").update(bytes).digest("hex");
 const check = (ok, message, code = "SHARED_INPUT_REJECTED") => { if (!ok) throw Object.assign(new Error(message), { failureCode: code }); };
 const writeJSON = (filename, value) => writeFileSync(filename, JSON.stringify(value) + "\n", { flag: "wx" });

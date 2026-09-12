@@ -153,13 +153,13 @@ test("closed runtime loader rejects a newly introduced uncaptured file import", 
   finally { snapshot.close(); }
 });
 
-test("reviewed current build binds before execution and substituted receipt fails closed", () => {
-  const result = pilotFileOperation({ kind: "build", root: ROOT });
-  assert.equal(result.buildReceipt.sha256, "c80526d097c81627186cbbfcea7e0005d9d73288e331f4535f07982cc2bef944");
-  assert.ok(result.checkedBindingCount > 0);
+test("historical reviewed build rejects changed source and substituted receipt", () => {
+  // Fresh current-context admission is exercised with an explicitly supplied
+  // new build in subfield-circular-current-context; it grants no pilot authority.
+  assert.throws(() => pilotFileOperation({ kind: "build", root: ROOT }), /sha256 changed: scripts\/eom\/prepare-f5-enclosed-root\.mjs/u);
   const root = mkdtempSync(path.join(os.tmpdir(), "circular-wrong-build-"));
   try {
-    const target = path.join(root, path.relative(ROOT, result.buildReceipt.path));
+    const target = path.join(root, BASE + "current-v3-build-20260908-execution-review/preparation.json");
     mkdirSync(path.dirname(target), { recursive: true });
     writeFileSync(target, "{}\n");
     assert.throws(() => pilotFileOperation({ kind: "build", root }), /reviewed build receipt bytes differ/u);

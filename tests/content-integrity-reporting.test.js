@@ -1,6 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { runChecks } from "../scripts/check-content-integrity.mjs";
+import { runChecks, selectedChecks } from "../scripts/check-content-integrity.mjs";
+
+test("default gate excludes opt-in maintenance checks", () => {
+  const required = selectedChecks({});
+  const maintenance = selectedChecks({ AAA_CONTENT_MAINTENANCE: "run" });
+  assert.ok(required.length < maintenance.length);
+  assert.ok(required.every(({ name }) => !name.includes("Borg registry")));
+  assert.ok(maintenance.some(({ name }) => name.includes("Borg registry")));
+});
 
 function scenario(checks, results) {
   const output = [], invoked = [];

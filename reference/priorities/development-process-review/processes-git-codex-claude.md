@@ -143,8 +143,6 @@ Closure covers the current supported workflow: dedicated command routes, success
 
 This plan authorizes documenting the future workflow. Building the protocol, changing hooks or permissions, starting a publication, and delegating merge authority are separate implementation or execution steps.
 
-<a id="36-migration-to-b--accepted-deferred"></a>
-
 ### 3.6. Migration to B — bounded integration complete, broader adoption deferred
 
 The operator authorized the bounded trial after the earlier design-only phase. Two chains now run in local publication validation and a separate report-only GitHub job. The operator now affirms a measured migration toward B: continue useful bounded migration with A and B in parallel, keep A authoritative until explicit acceptance supports a transfer, and defer any retirement of A to a later decision. The Option B task is archived at the operator's request; this does not disable its checks or accept its maps as baselines.

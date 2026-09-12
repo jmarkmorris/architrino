@@ -13,9 +13,10 @@
     },
     {
       "path": "tests/test_f6c_refined_acceleration_preparation.py",
-      "source": "tests/test_f6c_refined_acceleration_preparation.py",
+      "source": "reference/priorities/braid-program/evidence/source-replay/tests__test_f6c_refined_acceleration_preparation.py.source",
       "sha256": "28ac5b67e594f52ea151fa00ddb04dabbbe8a522108a7421ec56550b70e87252",
-      "role": "unchanged-control"
+      "role": "historical-control",
+      "recoveredFrom": "4a8e760bae44dbc868714e579ba60779ae0be9d2"
     },
     {
       "path": "scripts/eom/verify-f6c-refined-acceleration.py",
@@ -28,9 +29,10 @@
     },
     {
       "path": "tests/test_f6c_refined_acceleration.py",
-      "source": "tests/test_f6c_refined_acceleration.py",
+      "source": "reference/priorities/braid-program/evidence/source-replay/tests__test_f6c_refined_acceleration.py.source",
       "sha256": "d65b86400a00fe333e88c624d5e4654b00187ffbcfed978cb385e862978d90fd",
-      "role": "unchanged-control"
+      "role": "historical-control",
+      "recoveredFrom": "4a8e760bae44dbc868714e579ba60779ae0be9d2"
     },
     {
       "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-refined-cover-acceleration-projection.md",
@@ -40,15 +42,17 @@
     },
     {
       "path": "scripts/eom/oracle/f6c_refined_acceleration_conformance.py",
-      "source": "scripts/eom/oracle/f6c_refined_acceleration_conformance.py",
+      "source": "reference/priorities/braid-program/evidence/source-replay/scripts__eom__oracle__f6c_refined_acceleration_conformance.py.source",
       "sha256": "7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e",
-      "role": "unchanged-control"
+      "role": "historical-control",
+      "recoveredFrom": "4a8e760bae44dbc868714e579ba60779ae0be9d2"
     },
     {
       "path": "tests/test_f6c_refined_acceleration_conformance.py",
-      "source": "tests/test_f6c_refined_acceleration_conformance.py",
+      "source": "reference/priorities/braid-program/evidence/source-replay/tests__test_f6c_refined_acceleration_conformance.py.source",
       "sha256": "147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921",
-      "role": "unchanged-control"
+      "role": "historical-control",
+      "recoveredFrom": "4a8e760bae44dbc868714e579ba60779ae0be9d2"
     },
     {
       "path": "scripts/eom/oracle/continuous_reception_acceleration.py",
@@ -64,9 +68,10 @@
     },
     {
       "path": "scripts/eom/verify-f6c-continuous-reception-acceleration.py",
-      "source": "scripts/eom/verify-f6c-continuous-reception-acceleration.py",
+      "source": "reference/priorities/braid-program/evidence/source-replay/scripts__eom__verify-f6c-continuous-reception-acceleration.py.source",
       "sha256": "23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d",
-      "role": "unchanged-control"
+      "role": "historical-control",
+      "recoveredFrom": "4a8e760bae44dbc868714e579ba60779ae0be9d2"
     },
     {
       "path": "tests/test_f6c_continuous_reception_acceleration.py",

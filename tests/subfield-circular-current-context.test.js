@@ -9,16 +9,18 @@ test("SHA control precedes recorded current-context checks", () => {
   assert.equal(subfieldCircularSha256(Buffer.from("abc")), "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad");
 });
 
-test("reviewed current build and original proof enter production context; substituted proof rejects", {skip: !process.env.AAA_CIRCULAR_CURRENT_CONTEXT}, async () => {
+test("recorded current build and original proof enter phase context; substituted inputs reject", {skip: !process.env.AAA_CIRCULAR_CURRENT_CONTEXT}, async () => {
   const root = process.cwd();
   const base = path.join(root, ".local-data/braid-analysis/subfield-circular-root-pilot-20260827-v1");
+  assert.ok(process.env.AAA_SUBFIELD_CIRCULAR_BUILD_RECEIPT, "current-context controls require an explicitly selected fresh build receipt");
+  const buildReceipt = path.resolve(process.env.AAA_SUBFIELD_CIRCULAR_BUILD_RECEIPT);
   const options = {
     repoRoot: root,
     historyManifest: path.join(base, "current-data-path-20260908/history-manifest.json"),
     conformance: path.join(base, "current-data-path-20260908/conformance.json"),
     conformanceSha256: subfieldCircularSha256(readFileSync(path.join(base, "current-data-path-20260908/conformance.json"))),
-    buildReceipt: path.join(base, "current-v3-build-20260908-execution-review/preparation.json"),
-    buildReceiptSha256: "c80526d097c81627186cbbfcea7e0005d9d73288e331f4535f07982cc2bef944",
+    buildReceipt,
+    buildReceiptSha256: subfieldCircularSha256(readFileSync(buildReceipt)),
   };
   const directory = mkdtempSync(path.join(tmpdir(), "circular-current-context-"));
   try {
@@ -27,6 +29,19 @@ test("reviewed current build and original proof enter production context; substi
     assert.equal(context.manifest.members.length, 6);
     assert.equal(context.speedBounds.length, 6);
     context.recheck();
+    for (const [name, mutate, expected] of [
+      ["source", value => { value.sourcesBefore[0].sha256 = "0".repeat(64); value.sourcesAfter[0].sha256 = "0".repeat(64); }, /build file changed/],
+      ["capability", value => { value.toolsBefore[0].sha256 = "0".repeat(64); value.toolsAfter[0].sha256 = "0".repeat(64); }, /capabilities differ/],
+      ["stage", value => { value.stages[0].processGroupClosed = false; }, /build stage did not close successfully/],
+    ]) {
+      const value = JSON.parse(readFileSync(buildReceipt));
+      mutate(value);
+      const bytes = Buffer.from(JSON.stringify(value));
+      const filename = path.join(directory, `${name}-build.json`);
+      writeFileSync(filename, bytes);
+      await assert.rejects(prepareSubfieldCircularPhaseLedgerContext({...options, buildReceipt: filename,
+        buildReceiptSha256: subfieldCircularSha256(bytes)}), expected);
+    }
     const proof = JSON.parse(readFileSync(options.conformance));
     proof.execution.sourceBindings.pop();
     const bytes = Buffer.from(JSON.stringify(proof));

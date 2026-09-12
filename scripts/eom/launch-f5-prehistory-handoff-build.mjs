@@ -15,7 +15,7 @@ const PINS = Object.freeze({
   [ENTRY]: "9cf07590c1733db90eb5c0b407a4bae6fac8af6adc0785bd41c9f5a5d0b5b111",
   "scripts/eom/prepare-subfield-circular-root.mjs": "31224420d48181f8834e0a6290f7dd2957fbb0e4072e3f6aa2062d76a8cd6e43",
   "scripts/eom/prepare-f5-enclosed-root.mjs": "3431be1ca2f17474775572358baa88eae8de3ce93403d58e4b1fa36d9e367d50",
-  [OUTER]: "e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920",
+  [OUTER]: "71974054ddce7fc29b8464b9a7a63f8fbb04ee5b425dc997df4d40b2804341aa",
 });
 const absolute = value => path.resolve(ROOT, value);
 const sha = value => createHash("sha256").update(value).digest("hex");

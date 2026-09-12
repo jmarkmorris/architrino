@@ -1,5 +1,6 @@
 """Synthetic transport controls; these do not establish scientific acceptance."""
 import copy
+import hashlib
 import importlib.util
 from pathlib import Path
 from types import SimpleNamespace
@@ -7,6 +8,20 @@ import unittest
 from unittest.mock import Mock, patch
 
 ROOT = Path(__file__).resolve().parents[1]
+def current_execution_plan(plan):
+    """Copy the retained example into a current synthetic control, without changing its provenance."""
+    plan=copy.deepcopy(plan)
+    keys=('consumer','controls','rangeVerifier','producer','producerControls','verifier','verifierControls','executionBridge')
+    rows=[plan[k] for k in keys if k in plan]
+    rows += plan['operationalBindings'] + plan.get('subjectSourceBindings',[])
+    for b in rows:
+        if b['path'].startswith(('scripts/','tests/')):
+            raw=(ROOT/b['path']).read_bytes()
+            b.update(sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw))
+    return plan
+
+
+
 
 
 def load(name, relative):
@@ -45,8 +60,8 @@ def plan_fixture():
         binding('scripts/eom/launch-f6c-emission-refinement-pilot.mjs'),
         binding('tests/f6c-emission-refinement-pilot.test.js'),
         binding('tests/f6c-emission-refinement-pilot-process.test.js'),
-        binding('scripts/eom/launch-prescribed-response-pilot.mjs', '72b181165cafe21f3237dca7638343a9d31ea4ee48f709d9b43761666d6e7ec5'),
-        binding('scripts/eom/launch-subfield-circular-root-pilot.mjs', 'e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920'),
+        binding('scripts/eom/launch-prescribed-response-pilot.mjs', '05cd35574276841795077ea28a2b6d6e47534379184f7164a9dafe473e156a7f'),
+        binding('scripts/eom/launch-subfield-circular-root-pilot.mjs', '71974054ddce7fc29b8464b9a7a63f8fbb04ee5b425dc997df4d40b2804341aa'),
         binding('/bin/ps'), binding('/usr/bin/memory_pressure', 'ba1ce108f7f91e55bdcb7f5dd267c39484eb51bc6b8135814678c0f8c045a6da'),
         binding('/synthetic/node')]
     return p
@@ -173,7 +188,7 @@ class PublicationLifecycle(unittest.TestCase):
         import json
         import tempfile
         plan_path = ROOT/'reference/priorities/development-process-review/evidence/emission-current-migration/emission-launch.v2.json'
-        plan = json.loads(plan_path.read_bytes())
+        plan = current_execution_plan(json.loads(plan_path.read_bytes()))
         own = Path(__file__).resolve()
         for b in plan['operationalBindings']:
             if ROOT/b['path'] == own:

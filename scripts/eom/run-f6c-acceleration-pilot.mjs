@@ -27,7 +27,7 @@ export const CHECKER='scripts/eom/verify-f6c-continuous-reception-acceleration.p
 export const CHECKER_TESTS='tests/test_f6c_continuous_reception_acceleration.py';
 // Separately authored checker and controls, independently accepted before this
 // operational generation. No subject or mathematical reference is altered.
-export const CHECKER_SHA='6e3467a017c3477fb1b2baddd10e985687ed6112aeb5bc84c2fc92a9453cda83';
+export const CHECKER_SHA='a0c546124828b5879a2e163b0f965d37b90c251d327301eaa72e031261824e53';
 export const CHECKER_TESTS_SHA='13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed';
 export const LANE='.local-data/braid-analysis/f6c-continuous-reception-acceleration-20260827';
 export const SHARED_LOCK_LANE='.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827';
@@ -64,12 +64,12 @@ export const FIXED=Object.freeze([
   ['rootTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md','db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc'],
   ['reconstructionTheorem','reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md','710279f5c348a81fd36d58c6ca704730b3fa70da729ca30b9c92ae4e1cc6734b'],
 ].map(Object.freeze));
-export const PINS=Object.freeze({[BRIDGE]:'d452c03041a636ec182469ae8ed5e1c6ebe8902d2aae751aa7cfbde4fbb507fc',...Object.fromEntries(FIXED.map(([,p,h])=>[p,h])),
-  [CONSUMER]:'2ae92b41314643ec1dfcd33a8b197ba8301898c278bc26cdae7ea4c120824ea8',
+export const PINS=Object.freeze({[BRIDGE]:'02b1b58eed0fda3cba96df90117a03095297fd9e38bfaf95a81788e3d28549ac',...Object.fromEntries(FIXED.map(([,p,h])=>[p,h])),
+  [CONSUMER]:'d9c5c1ad4332df56f72ac9dc2d569fc5576bc5b4434886221685030e3e620106',
   [CONSUMER_TESTS]:'45f40e2c6580fa09a614a471e7375615c8d54e3fc295a68dbdb8ad2167b7690b',
   [DECLARATION]:'3ef8fb9020bae71833b1e06a119672b49a4beb5395f697dcb3d037d088e7891e',
-  [OUTER]:'e25de9683772ac3efde61050ae054f2f27ad921c2af03c29fc984cabc2aa3920',
-  [HELPERS]:'72b181165cafe21f3237dca7638343a9d31ea4ee48f709d9b43761666d6e7ec5',
+  [OUTER]:'71974054ddce7fc29b8464b9a7a63f8fbb04ee5b425dc997df4d40b2804341aa',
+  [HELPERS]:'05cd35574276841795077ea28a2b6d6e47534379184f7164a9dafe473e156a7f',
   [CHECKER]:CHECKER_SHA,[CHECKER_TESTS]:CHECKER_TESTS_SHA,
 });
 export const check=(ok,message)=>{if(!ok)throw new Error(message);};

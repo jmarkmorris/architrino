@@ -3026,3 +3026,39 @@ The authorized repair pass implemented D1–D4 and E1–E2, dispositioned O1–O
 ### CRW-005 Delay Dynamics Energy — bounded repair closeout — 2026-09-11
 
 The authorized repair pass implemented DDE-1–DDE-4 and EDE-1–EDE-2 in the canonical chapter and evidence report. Action-boundary, work, flux, acceleration, power, and energy residuals are separated; signs, weighting, domains, and member sums are corrected; and ODE-1–ODE-4 remain open obligations for independent energy construction, root completeness, exchange accounting, regulator limits, and physical recovery. Strict content validation, `git diff --check`, in-memory KaTeX checks, and independent elementary weighting/flux/member-sum/leakage witnesses passed. Generated equation links and registry freshness remain deferred.
+
+### CRW-005 Informational Ambiguity — bounded repair closeout — 2026-09-11
+
+The authorized repair pass implemented IA-1–IA-7. The chapter now distinguishes signed net acceleration from scalar diagnostics, constrains stationary surrogate histories, preserves the complete history ledger, and qualifies reconstruction and information claims. OIA-1–OIA-3 remain open; repository-wide broken-link and equation-registry drift reported by the owner remains outside this edit scope.
+
+### CRW-005 Numerical Recipe and Stability — bounded repair closeout — 2026-09-11
+
+The authorized repair pass implemented NR-1–NR-8. Continuous causal-root evolution is separated from impulses; root coverage, interpolation error, stopping tolerances, regularization, and population/stability claim boundaries are explicit. ONR-1–ONR-4 remain open; the chapter supplies no evolved-EOM, regulator-limit, stability, or conservation closure.
+
+### CRW-005 Radial Attraction — bounded repair closeout — 2026-09-11
+
+The authorized repair pass implemented RA-1–RA-6. The prescribed-source boundary, retained-history domain, complete root-sum requirement, positive-separation radial reduction, quadrature, and claim-grade limits are explicit. Full-history equality, realization, singular continuation, physical energy, and stability remain open.
+
+### CRW-005 Receiver Velocity and Work — bounded repair closeout — 2026-09-11
+
+The authorized repair pass implemented RVW-1–RVW-5 and ERVW-1. The branch derivative, turning-direction terms, per-hit versus total work, optional kinetic chart, and signed fixed-transmitter comparison are now explicit. ORVW-1–ORVW-3 remain open for independent energy, root continuation, evolved realization, stability, and physical recovery.
+
+### CRW-005 Like-Polarity Symmetric Repulsion — bounded repair closeout — 2026-09-11
+
+The authorized repair pass implemented R-1–R-6 and E-1. The chapter now records preparation history, root and weight definitions, self-hit boundaries, and conditional symmetry. O-1–O-4 remain open for existence/continuation, stability and collision avoidance, conservation, and physical realization.
+
+### CRW-005 Self-Energy and Regularization — bounded repair closeout — 2026-09-11
+
+The authorized repair pass implemented SE-1–SE-6. Continuous emission, sharp roots, endpoint domains, Gaussian and core regularization, work normalization, and candidate self-energy are separated. O-1–O-5 remain open for coincident continuation, regulator removal, history/population limits, conservation/stability, and physical energy or mass recovery.
+
+### CRW-005 Self-interaction switch — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented SIS-1–SIS-3. The chapter separates kinematic roots from regular acceleration admission, derives positive separation from strict delay, and defines outward repulsion relative to the earlier emission position. SIS-O1–SIS-O3 remain open for singular continuation, complete dynamical realization, and stable scales or extrema.
+
+### CRW-005 Superposition and locality — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented SL-1–SL-4. Scalar superposition, nearby dominance, population assumptions, and far-field truncation are now bounded by compatible charts, explicit weights, retained-history conditions, and omitted-contribution estimates. Global scalar extension, physical cancellation or screening, complete-history accuracy, and conservation remain open.
+
+### CRW-005 Units and Constants — bounded repair closeout — 2026-09-12
+
+The authorized repair pass implemented UC-1–UC-7. Dimensional conversion, coupling scaling, surface width, self-hit thresholds, lookback coverage, root conditioning, and acceleration-direction claims are explicitly scoped. OUC-1–OUC-4 remain open for assembly existence/stability, regulator limits, root completeness, and physical conserved or particle-calibration maps.

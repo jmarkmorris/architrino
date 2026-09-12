@@ -21,8 +21,8 @@ const PROOF = "scripts/eom/verify-subfield-circular-history.mjs";
 const PINS = Object.freeze({
   [HELPER]: "15a844adc1731a6ea47f0636f86d9e0d7196d6b15dd963006a278c129cc328f1",
   [BRIDGE]: "00cd8290a9929e0e099c91aeff03c52cf06ec5d9cad329ffad00092c61815e02",
-  [WATCH]: "4380a302ec39f8307415a7f4340c1ef0f3bb4766c378a853133f89b45c34a3a9",
-  [LEDGER]: "72935e3439b27cc27f2efcc1db5393cf0c8ce1eb0d2e9dc777755d4263d685b1",
+  [WATCH]: "3431be1ca2f17474775572358baa88eae8de3ce93403d58e4b1fa36d9e367d50",
+  [LEDGER]: "6dabe54a991ccd7a8c1ca5da41139c0669e62f521d17fff4c9a0c52b51b2dda9",
   [LEDGER_CLI]: "2b3eb236b561c1901e6dfc58603f97f1104fc045e79d2d7a10d8879da02fd60a",
   [PROOF]: "b2fc83aa828ac9f175d7c3ae7bf43b66fcda54a702de6f2f80812852aebd5f38",
 });

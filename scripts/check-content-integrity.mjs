@@ -31,15 +31,18 @@ function sweepNotRequested(env = process.env) {
   return env[SWEEP_OPT_IN.variable] !== SWEEP_OPT_IN.value;
 }
 
-const CHECKS = [
+// The default gate protects the reader-facing build, declared deployment and
+// security contracts, and the focused contract tests that exercise them. The
+// maintenance checks below remain available, but their routine freshness or
+// broad binding failures should not block every content change. This is a
+// check-surface decision, not an evidence-retention decision: the scripts,
+// fixtures, historical records, and scientific acceptance checks remain
+// addressable by their owners.
+const REQUIRED_CHECKS = [
   {
     name: "Prepare ignored runtime assets from canonical sources",
     args: ["scripts/prepare-runtime-assets.mjs", "--write"],
     halts: true,
-  },
-  {
-    name: "Verify Borg registry and record byte identities",
-    args: ["scripts/borg/verify-assembly-record-byte-identity.mjs", "--check"],
   },
   {
     name: "Validate content indexes and references",
@@ -88,26 +91,6 @@ const CHECKS = [
   {
     name: "Validate corpus equation links, source context, and symbol registry",
     args: ["scripts/build-equation-mapping-corpus.mjs", "--check"],
-  },
-  {
-    name: "Audit title/source filename sync",
-    args: ["scripts/audit-title-filename-sync.mjs"],
-  },
-  {
-    name: "Validate generated agent startup orientation",
-    args: ["scripts/build-agent-startup-orientation.mjs", "--check"],
-  },
-  {
-    name: "Validate generated Claude pre-read floor",
-    args: ["scripts/build-claude-bootstrap-floor.mjs", "--check"],
-  },
-  {
-    name: "Validate generated textbook reading copies",
-    args: ["scripts/build-textbook-md-pdf.mjs", "--check"],
-  },
-  {
-    name: "Validate large machine-artifact retention",
-    args: ["scripts/validate-machine-artifact-retention.mjs"],
   },
   {
     name: "Test generated runtime storage and deployment contracts",
@@ -162,10 +145,6 @@ const CHECKS = [
     args: ["--test", "tests/content-integrity-reporting.test.js"],
   },
   {
-    name: "Check supported launch profiles' current repository bindings",
-    args: ["--test", "tests/current-launch-bindings.test.js"],
-  },
-  {
     name: "Test reader-facing publication boundary",
     args: ["--test", "tests/reader-facing-publication-boundary.test.js"],
   },
@@ -177,6 +156,29 @@ const CHECKS = [
     skipReason: `opt-in; set ${SWEEP_OPT_IN.variable}=${SWEEP_OPT_IN.value} to run it`,
   },
 ];
+
+// Opt-in maintenance checks retain useful local diagnostics without making
+// every PR wait on mutable generated copies, broad current-source bindings,
+// or naming/policy freshness. They are intentionally not part of the default
+// publication receipt contract.
+const MAINTENANCE_CHECKS = [
+  {
+    name: "Verify Borg registry and record byte identities",
+    args: ["scripts/borg/verify-assembly-record-byte-identity.mjs", "--check"],
+  },
+  { name: "Audit title/source filename sync", args: ["scripts/audit-title-filename-sync.mjs"] },
+  { name: "Validate generated agent startup orientation", args: ["scripts/build-agent-startup-orientation.mjs", "--check"] },
+  { name: "Validate generated Claude pre-read floor", args: ["scripts/build-claude-bootstrap-floor.mjs", "--check"] },
+  { name: "Validate generated textbook reading copies", args: ["scripts/build-textbook-md-pdf.mjs", "--check"] },
+  { name: "Validate large machine-artifact retention", args: ["scripts/validate-machine-artifact-retention.mjs"] },
+  { name: "Check supported launch profiles' current repository bindings", args: ["--test", "tests/current-launch-bindings.test.js"] },
+];
+
+export function selectedChecks(env = process.env) {
+  return env.AAA_CONTENT_MAINTENANCE === "run"
+    ? [...REQUIRED_CHECKS, ...MAINTENANCE_CHECKS]
+    : REQUIRED_CHECKS;
+}
 
 function formatDuration(ms) {
   const seconds = ms / 1000;
@@ -198,7 +200,7 @@ function childEnvironment(env = process.env) {
   return child;
 }
 
-export function runChecks({ checks = CHECKS, execute = spawnSync, log = console.log, error = console.error } = {}) {
+export function runChecks({ checks = selectedChecks(), execute = spawnSync, log = console.log, error = console.error } = {}) {
   const suiteStartedAt = performance.now();
   const failures = [];
   const reportingFailures = [];

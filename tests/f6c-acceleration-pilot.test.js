@@ -28,7 +28,7 @@ function planFixture(){return {historicalInputs:E.HISTORICAL.map(([role,original
 test('all scientific implementation/control pins remain the separately accepted source generation',()=>{
   for(const p of [E.CONSUMER,E.CONSUMER_TESTS,E.BRIDGE,E.CHECKER,E.CHECKER_TESTS,E.HELPERS,E.OUTER,...E.FIXED.filter(([,p])=>!p.startsWith('.local-data')).map(([,p])=>p)])
     assert.equal(hash(readFileSync(p)),E.PINS[p],p);
-  assert.equal(E.FIXED.length,16);assert.equal(E.CHECKER_SHA,'6e3467a017c3477fb1b2baddd10e985687ed6112aeb5bc84c2fc92a9453cda83');
+  assert.equal(E.FIXED.length,16);assert.equal(E.CHECKER_SHA,'a0c546124828b5879a2e163b0f965d37b90c251d327301eaa72e031261824e53');
 });
 test('closed plan has no invented runtime/default fields and exact operational closure',()=>{
   const plan=planFixture();

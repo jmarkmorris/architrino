@@ -107,6 +107,4 @@ No rows.
 
 Completed task detail is not retained in this queue. Search [work-log.md](work-log.md) by task identifier for the closure record.
 
-<a id="ops-024--post-campaign-binding-corruption-sweep"></a>
-
 OPS-024: [completed local evidence-only reconciliation and I5 custody disposition](work-log.md#2026-09-11--ops-024-closed-after-i5-custody-disposition). The [recovery queue](../development-process-review/work-queue.md) retains blocked inputs and deferred verification.

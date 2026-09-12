@@ -53,8 +53,6 @@ Contributors are encouraged to seek review from other human and AI collaborators
 
 Posts of up to around one page of text are welcome. Markdown is preferred. Clear markdown makes threads easier to read, easier to quote, and easier to convert into more formal work items when appropriate. A discussion may lead to an issue when it identifies a concrete, actionable problem or proposal. Community responses can inform prioritization; support alone does not establish correctness. A concise markdown account gives collaborators a shared basis for analysis, synthesis, and recommendations.
 
-<a id="ai-assisted-participation"></a>
-
 ## Collaborative Review
 
 Collaborative review includes fresh assessments across different AI models and vendors, frequent cross-review, and adversarial examination of entire arguments. Adversarial review means actively looking for ways an argument could fail: inconsistent assumptions, missing derivations, counterexamples, unsupported inferences, or evidence that does not establish the stated conclusion. Reviewers document those vulnerabilities and propose calculations, experiments, or source checks that can resolve them.

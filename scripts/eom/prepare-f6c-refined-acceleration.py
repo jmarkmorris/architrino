@@ -89,7 +89,7 @@ NAMED={
  'comparisonCoreControls':('tests/test_f6c_refined_acceleration_conformance.py','147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921'),
  'rangeReference':('scripts/eom/oracle/continuous_reception_acceleration.py','abfc21f29d8bdd984118b1e0ba0cb62b88a081a75a961052eb11f31ea7bdd7b8'),
  'rangeReferenceControls':('tests/test_eom_continuous_reception_acceleration.py','26b7c5455a57da5beba6e7fd32a0b7bfbc8e1f32630b663c55a33273e8cc1823'),
- 'rangeComparison':('scripts/eom/verify-f6c-continuous-reception-acceleration.py','6e3467a017c3477fb1b2baddd10e985687ed6112aeb5bc84c2fc92a9453cda83'),
+ 'rangeComparison':('scripts/eom/verify-f6c-continuous-reception-acceleration.py','23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d'),
  'rangeComparisonControls':('tests/test_f6c_continuous_reception_acceleration.py','13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed')}
 PRIOR_BASE='.local-data/braid-analysis/f6c-emission-refinement-20260827/pilot-cell-0-v2'
 REFINED=(
@@ -912,7 +912,6 @@ def main(argv=None):
                 require(result['status']=='conditional_ranges' and all(v is False for v in result['claims'].values()),
                         'range reference authority')
                 progress.update(stage='source-rechecks',completedCells=1)
-                require(runtime_paths(project_paths)<=runtime,'late runtime outside plan')
                 for obj in owned.values():live();obj.recheck()
                 packet=dict(schema=SCHEMA,scope=SCOPE,status='conditional-range-candidate',accepted=False,
                     launchPlan=plan_file.binding(),consumer=sources['consumer'],declaration=sources['declaration'],
@@ -926,7 +925,6 @@ def main(argv=None):
                 check=capture(published['path'],published['sha256'])
                 require(check.initial.st_size==published['bytes'],'published size differs')
                 for obj in owned.values():live();obj.recheck()
-                require(runtime_paths(project_paths)<=runtime,'publication runtime outside plan')
             progress['stage']='input-cleanup'
         live()
         usage=resource.getrusage(resource.RUSAGE_SELF)

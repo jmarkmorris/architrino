@@ -54,7 +54,7 @@ IDS = ('0+', '0-', '1+', '1-', '2+', '2-', '3+', '3-')
 NAMED = {
  'declaration': (PREFIX+'2026-08-27-f6c-parent-emission-refinement-reference.md','c9f0924cd24745bd10e2b51ee5b60a09c0c0576b5dec3bc14f647c9c7ee6fc47'),
  'producer': (SELF,None), 'producerControls': (CONTROLS,None),
- 'proposalReference': ('scripts/eom/f6c_parent_emission_refinement.py','d2653fd0dc74c7515ee7eccdd59c0f487903a481c6294cabce43e58b633c1406'),
+ 'proposalReference': ('scripts/eom/f6c_parent_emission_refinement.py','67fa74c149769d0533ef09a5add96da30a35cf603979bc206bcba059217e4e57'),
  'proposalReferenceControls': ('tests/test_f6c_parent_emission_refinement.py','f1650b5e73a06ecd7ed05bff10ba97949b42aa5330e84fb3514c2f868eff0fc2'),
  'verifier': ('scripts/eom/verify-f6c-parent-emission-refinement.py',None),
  'verifierControls': ('tests/test_f6c_parent_emission_refinement_verification.py',None),
@@ -211,8 +211,11 @@ def validate_plan(plan, own_sha, root, transport):
     owner=binding(plan['acceptanceOwner'],root);require(owner['path']==str(root/OWNER),'acceptance-owner path')
     # No automatic acceptance of the current owner's bytes; only the plan SHA.
     subjects=[binding(plan[k],root) for k in NAMED]+[binding(plan['dependencies'][k],root) for k in DEPENDENCIES]
-    runtime=[{'path':str(Path(v['path']).resolve())} for v in plan['runtimeBindings'] if type(v) is dict and isinstance(v.get('path'),str)]
-    require(len(runtime)==len(plan['runtimeBindings']),'runtime capability path records')
+    require(type(plan['runtimeBindings']) is list and len(plan['runtimeBindings'])<=256,'bounded runtime capabilities')
+    require(all(type(v) is dict and set(v)=={'path'} and type(v['path']) is str and Path(v['path']).is_absolute()
+                and str(Path(v['path']))==v['path'] and '..' not in Path(v['path']).parts for v in plan['runtimeBindings']),
+            'normalized absolute runtime capability paths only')
+    runtime=[dict(v) for v in plan['runtimeBindings']]
     require(len({v['path'] for v in runtime})==len(runtime),'duplicate runtime capability')
     ops=binding_list(plan['operationalBindings'],root)
     new=subjects+runtime+ops

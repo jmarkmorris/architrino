@@ -30,7 +30,9 @@ test('immutable exact resource limits and inert stage plan',t=>{
   assert.deepEqual([C.LIMITS.inclusiveMilliseconds,C.LIMITS.aggregateRSSBytes,C.LIMITS.rssPollMilliseconds,C.LIMITS.maximumRSSGapMilliseconds,C.LIMITS.scientificBytes,C.LIMITS.combinedLogBytes,C.LIMITS.serialWorkers],
     [1800000,2147483648,250,1000,67108864,16777216,1]);
   assert.ok(C.validatePlan(plan,root).length>0);
-  for(const mutate of [p=>p.limits={},p=>p.stages[0].runtimeBindings=[],p=>p.stages.push(p.stages[0]),p=>p.stages[0].id='../escape',p=>p.stages[0].args=[1],p=>p.stages[0].args=['--operation-deadline-ns','1'],p=>p.outputDirectories=[p.operationDirectory],p=>p.outputDirectories=[root],p=>p.sources=[],p=>p.stages[0].entry.bytes=1048577]){
+  const capabilitiesOnly=structuredClone(plan);capabilitiesOnly.sources=[];capabilitiesOnly.stages[0].runtimeBindings=[];
+  assert.ok(C.validatePlan(capabilitiesOnly,root).some(b=>b.path===plan.hookModule.path),'authored hooks remain bound without host-runtime hashes');
+  for(const mutate of [p=>p.limits={},p=>p.stages[0].runtimeBindings=[{}],p=>p.stages.push(p.stages[0]),p=>p.stages[0].id='../escape',p=>p.stages[0].args=[1],p=>p.stages[0].args=['--operation-deadline-ns','1'],p=>p.outputDirectories=[p.operationDirectory],p=>p.outputDirectories=[root],p=>p.sources=null,p=>p.stages[0].entry.bytes=1048577]){
     const p=structuredClone(plan);mutate(p);assert.throws(()=>C.validatePlan(p,root));
   }
 });

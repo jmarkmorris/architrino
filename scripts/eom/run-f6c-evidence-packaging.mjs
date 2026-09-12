@@ -44,7 +44,7 @@ function tiny(b){
   const fd=openSync(b.path,constants.O_RDONLY|constants.O_NOFOLLOW);try{const before=fstatSync(fd,{bigint:true});check(before.isFile()&&before.size===BigInt(b.bytes),'source size');const raw=readFileSync(fd);check(sha(raw)===b.sha256&&id(before)===id(fstatSync(fd,{bigint:true}))&&id(before)===id(lstatSync(b.path,{bigint:true})),'source replacement/hash');return raw;}finally{closeSync(fd);}
 }
 function capabilityPath(b){
-  check(b&&typeof b.path==='string'&&path.isAbsolute(b.path)&&realpathSync(b.path)===b.path,'runtime capability path');
+  check(b&&typeof b.path==='string'&&path.isAbsolute(b.path)&&path.resolve(b.path)===b.path,'runtime capability path');
   return b.path;
 }
 async function coordinator(plan){

@@ -1,10 +1,6 @@
 # Git-backed knowledge architecture
 
-<a id="1-developing-and-protecting-the-knowledge-network"></a>
-
 This guide owns the explanation and accepted architecture for knowledge integrity. Option B has an authorized bounded report-only Node integration for the moving-single-root chain; it does not replace existing A checks. The [campaign checklist](../../priorities/development-process-review/processes-git-codex-claude.md#3-rollout-and-integration-plan) tracks execution; the [operating guide](git-github-operating-guide.md) covers daily collaboration. Existing validation and retention owners remain authoritative. Section labels are retained for continuity.
-
-<a id="11-motivation-what-problem-are-we-trying-to-solve"></a>
 
 ## Motivation: what problem are we trying to solve?
 
@@ -19,8 +15,6 @@ The same dependency problem extends into calculations, software, and collaborati
 Ordinary development records are by-products of work. Superseded drafts, intermediate outputs, and routine execution records do not acquire lasting scientific value merely because they exist, and their continued usefulness is not a deliverable we must maintain. Additional preservation effort needs a purpose: supporting a current dependency or claim, retaining useful reasoning, meeting a recovery need, or satisfying explicit [retention requirements](#15-retention-what-to-keep-for-how-long-and-how-to-remove-it). Those requirements also determine when material can move to archival storage or be removed. We do not need to keep every abandoned calculation runnable, repair old records solely for completeness, or duplicate ordinary Git history. A record without an identified purpose creates no new maintenance obligation; decisions to remove existing material remain subject to its retention policy.
 
 These purposes determine how we evaluate the approaches in this guide: protection of current correctness and useful reasoning, safe cooperation, evidence that publication matches the checked candidate, and proportionate maintenance. Historical recovery is valuable where it supports those purposes. Greater archival capability alone does not make an approach better for this project.
-
-<a id="111-risks-and-what-we-need-to-check"></a>
 
 ### Risks and what we need to check
 
@@ -39,8 +33,6 @@ The risks below follow from revising an interconnected body of reasoning while s
 
 These risks span the support for current theory and calculations, the execution and collaboration needed to publish them safely, and the cost of the protection itself. For each risk, first establish whether an existing review or test provides adequate protection before adding another mechanism.
 
-<a id="112-why-the-checks-themselves-need-scrutiny"></a>
-
 ### Why the checks themselves need scrutiny
 
 A check can create false confidence when its result is interpreted more broadly than its evidence allows. A content fingerprint, or hash, is a value calculated from a file's bytes. Matching a theorem document's fingerprint provides strong practical evidence that those bytes match the expected version. It does not establish that the theorem is true, that its assumptions apply to a calculation, or that the calculation implements it correctly. Conversely, a fingerprint mismatch after a punctuation correction does not establish a mathematical error.
@@ -50,8 +42,6 @@ Circular checking creates a different problem. If a program supplies both an ans
 A useful check has a clearly stated scope: what it examines, why its expected result is justified, which failure it can expose, which inputs and environment it covered, and what remains outside its reach. A new checker must first demonstrate its behavior on a known case before its findings are used. A claim of mathematical correctness additionally needs independent justification. The required evidence depends on the conclusion: a byte-identity comparison does not need an independent mathematical reference, while a matching fingerprint cannot supply one.
 
 For each proposed check, ask: “What failure would this catch, what would a pass allow us to conclude, and what evidence supports that conclusion?” Adding a hash, test, receipt, or archive cannot resolve uncertainty when those answers are missing. Sections 1.2 and 2.2 develop the desired capabilities, and the later comparison examines ways to provide them. Its scores remain provisional until the relevant risks and required protection are settled.
-
-<a id="12-proposed-integrity-objectives-to-discuss"></a>
 
 ## Proposed integrity objectives to discuss
 
@@ -74,8 +64,6 @@ The motivation identifies what we want to protect. The following objectives tran
 | Keep records directly inspectable and portable | Can the operator or a successor read, review, and transfer selected records without a running service or specialist query knowledge? What documentation is needed to understand them? |
 
 These objectives require both information and action. Versioned records can identify dependencies and prior states; review must determine their meaning, tests must execute, and participants must follow the coordination procedure. Section 1.3 compares the information-management approaches with those supporting practices made explicit. No database, pin, or receipt alone fulfills the entire list.
-
-<a id="13-integrity-approaches-and-provisional-comparison"></a>
 
 ## Integrity approaches and provisional comparison
 
@@ -100,6 +88,8 @@ The alternatives below explain the decision rationale. B is accepted as a future
 ## A. Current file checks and validation receipts
 
 **A. Our current approach: file-level provenance checks and validation receipts.** This is a descriptive name for the existing combination, not an established product or a claim that our implementation is an industry standard. Individual authored files may have recorded fingerprints and expected versions; retained sources preserve historical evidence; validation receipts associate selected checks with a recorded repository state. The [source recovery analysis](../../priorities/development-process-review/analysis/source-recovery-and-binding-repair.md) and current owner records distinguish authored/scientific source identity from mutable execution capabilities. The authoritative external reference for the underlying provenance principle is [W3C PROV Overview](https://www.w3.org/TR/prov-overview/), which describes recording entities, activities, and responsibility. W3C does not endorse our pin chains, prescribe their granularity, or certify this implementation.
+
+The default Content Integrity aggregate is deliberately a small high-value surface: reader-facing content/link and generated-site checks, accepted deployment/security/runtime contracts, focused contract tests, and PR/reporting conformance. Routine generated-copy freshness, broad current-source binding checks, naming freshness, and machine-artifact retention are retained as opt-in maintenance checks (`AAA_CONTENT_MAINTENANCE=run`) rather than publication blockers. This narrows routine checking; it does not retire the underlying evidence, scientific acceptance boundaries, normal unit/integration tests, historical replay obligations with live consumers, Git review, or exact frozen-input hashes. Option B remains bounded report-only work and does not alter Option A's default gate.
 
 **Is our implementation homegrown?** The inspected mechanisms are repository-specific code built from standard primitives: Python's hashing and test facilities implement the selected input comparisons, while the local JavaScript receipt runner defines its own state capture and acceptance logic. Direct reading of the oracle and test imports and the receipt runner, plus an attribution search in those files and the recovery analysis, found no named upstream provenance framework or reference implementation for this combination. This supports describing the inspected arrangement as custom; it does not establish that no author drew inspiration from an external design. An upstream attribution or design record would change that narrower conclusion. The PROV link in this guide is explanatory background, not evidence of the implementation's origin.
 
@@ -189,8 +179,6 @@ Source, reproducible ignored outputs, compact evidence, archives, and Git object
 
 **Supporting tools rather than competing network databases.** Reviewed Git changes and selected evidence archives remain useful in every arrangement. A release names a deliberately published version; a manifest inventories retained material without containing that material itself. GitHub documents [review and status-check controls](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches) and [release archiving with Zenodo](https://docs.github.com/en/repositories/archiving-a-github-repository/referencing-and-citing-content). These help review and retain selected states; they do not supply the conceptual relationship model. Full evidence packages still require deliberate source, environment, command, and output capture. The documented Zenodo integration is for public repositories; private material needs suitable storage.
 
-
-<a id="b-json-ld-records-in-git-with-python-and-rdflib"></a>
 
 ## B. JSON-LD records in Git with standard graph libraries
 
@@ -291,8 +279,6 @@ The trial must independently test the invented arithmetic, current and earlier d
 
 **Initial review findings:** the separate Option B review task reran the selftests, historical/current queries, source retrieval, and four arithmetic cases successfully. Its additional probes found that queries bypass freshness validation, receipt hashes cover normalized record/context representations rather than exact file bytes, and the arithmetic check does not verify the recorded Result text. These are prototype limitations, not production guarantees. The subsequent repair report records nine passing tests: queries now validate freshness before returning, receipts bind exact file and checker bytes, and the selected recorded result is checked against repeated addition. Block digests remain explicitly separate from whole-file digests. All trials remain confined to fictitious files.
 
-<a id="b5-provenance-vocabulary-and-w3c-prov"></a>
-
 ### Prototype-informed comparison with A
 
 **Operator evaluation priority:** reducing review time is not a goal or an adoption requirement. Evaluate B by protection of reasoning and evidence, visibility of dependencies and changes, trustworthy historical retrieval, and the quality of review information. Maintenance and runtime observations may describe tradeoffs, but absence of a speed improvement is not a reason to reject B. The remaining production questions concern trusted baseline selection, review authority, and preservation of required protections.
@@ -384,11 +370,7 @@ The practical attraction is automatic record history and structured historical q
 The records should answer concrete questions: “What depends on this equation now?”, “What depended on its selected earlier version?”, “Which supporting assumption changed?”, “Which checks actually covered this candidate?”, and “Can we retrieve the earlier reasoning we chose to keep?” A source edit must not silently leave the network falsely current. C needs a way to detect disagreement, expose it, and require the relevant update or review before acceptance. C does not automatically recognize conceptual dependencies or mathematical equivalence.
 
 
-<a id="14-abc--comparison-and-scoring"></a>
-
 ## A/B/C — Comparison and scoring
-
-<a id="141-a-versus-c--file-history-and-database-history"></a>
 
 ### A versus C — File history and database history
 
@@ -400,8 +382,6 @@ The records should answer concrete questions: “What depends on this equation n
 | How do we find what depended on an earlier equation? | Inspect the selected earlier source and distributed records, using scripts where available. | Query explicitly modeled relationships at a coherent selected revision. The equation's row history alone does not identify its dependents. |
 | What establishes correctness? | Independent reasoning and relevant tests; hashes establish identity within their scope. | The same independent reasoning and tests. Automatic row history establishes neither mathematical truth nor successful validation. |
 | What additional work is required? | Maintain the existing files, bindings, check selection, and publication process. | Design the model, service, source association, review workflow, historical relationship checks, backups, and retention. |
-
-<a id="142-abc--objectives-and-comparative-scores"></a>
 
 ### A/B/C — Objectives and comparative scores
 
@@ -432,8 +412,6 @@ Shared limitations remain visible. None of these storage architectures alone est
 
 **Accessibility is part of the architecture.** File-based records can be opened in an ordinary editor, reviewed as Git diffs, and copied without operating a database service. This direct visibility helps the operator and future collaborators inspect what is recorded. It does not make a complicated schema or a distributed chain of hashes self-explanatory. A dedicated database can provide readable views and exports, but access otherwise depends on a working service, appropriate permissions, suitable tools, and knowledge of the model or queries. That dependence can make records practically opaque even when the database contains them correctly. C would need a documented inspection interface and portable exports of selected records, with source revision and completeness made clear. Exports would be derived views, not a second independently editable authority.
 
-<a id="143-development-cost-and-ongoing-maintenance--separate-assessment"></a>
-
 ### Development cost and ongoing maintenance — separate assessment
 
 **Compare total maintenance, not just new infrastructure.** A already requires work to author and maintain scripts, expected hashes, dependency bindings, failure explanations, and repairs. A database might replace some custom history and query machinery while adding service operation and integration. B likewise adds a schema and query tools while potentially reducing scattered bindings. Independent scientific tests remain necessary in all three. The trial must measure work eliminated, retained, and introduced for the same capabilities, including inspection and recovery when the usual tools are unavailable. No development or maintenance cost is included in the capability total. Those costs remain unmeasured; compare them separately when planning the migration and deciding its implementation scope.
@@ -443,8 +421,6 @@ Shared limitations remain visible. None of these storage architectures alone est
 For B’s first implementation checkpoint, use one bounded example: one equation, an assumption, a derivation, a dependent calculation, and a result still used. Demonstrate current and historical dependency queries; preserve a selected earlier insight; change punctuation, then an equation; expose a source change made without its relationship update; run the relevant independent check at its declared checkpoint; retrieve prior selected contents; and reject publication with a stale source/network association. Also simulate conflicting record edits and test retrieval after the proposed retention action in a disposable fixture. Missing relationships, lost selected reasoning, stale metadata accepted as current, or more maintenance than predicted would overturn a favorable score. Measure effort and retrieval performance before making a cost or speed claim.
 
 See the [campaign plan](../../priorities/development-process-review/processes-git-codex-claude.md#36-migration-to-b--accepted-deferred) for implementation status and completion checks.
-
-<a id="15-retention-what-to-keep-for-how-long-and-how-to-remove-it"></a>
 
 ## Retention: what to keep, for how long, and how to remove it
 

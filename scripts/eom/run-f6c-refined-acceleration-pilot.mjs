@@ -90,7 +90,7 @@ export const PINS=Object.freeze({...Object.fromEntries([...FIXED,...REFINED,...P
  [DECLARATION]:'a9d871a35e6e9f00e96ba07182798cb87f546eabe0664e7f170b67c820bb43fc',
  [NAMED.comparisonCore]:'7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e',
  [NAMED.comparisonCoreControls]:'147800b0ddfc9b3bf4f5889058e6df9073b70cf90798b2ad9c536289bf9a9921',
- [NAMED.rangeComparison]:'6e3467a017c3477fb1b2baddd10e985687ed6112aeb5bc84c2fc92a9453cda83',
+ [NAMED.rangeComparison]:'23a9d66b829b9397e582bf7b6bbdba7a3fd3f59546a47ccb9d80e17431ddf95d',
  [NAMED.rangeComparisonControls]:'13c425db38d9770f245217edb9ad5053998998fe51b7608e3457fe37c4e0d6ed',
  [OUTER]:'35f00bb0b97a045447f3053ed2705bddceaa62d1ebdd522e9f6eb44943215826',
  [HELPERS]:'f178c5d393ca741a0e82aa9865fa796d5901f1751be954183735db1f4a3f6a31',

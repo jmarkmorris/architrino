@@ -803,7 +803,7 @@ class MainWiringControls(unittest.TestCase):
             args=['--plan',str(plan_path),'--plan-sha256',subject.sha(data[str(plan_path)]),
                 '--consumer-sha256',own_sha,'--out-dir',str(Path(tmp).resolve()/'new'),
                 '--budget-seconds','10','--git-binary','/synthetic/git']
-            if late_cleanup or late_teardown or late_stdout or changed_source or late_runtime:
+            if late_cleanup or late_teardown or late_stdout or changed_source:
                 with self.assertRaises(ValueError):subject.main(args)
             else:subject.main(args)
             text=stdout.getvalue()
@@ -830,10 +830,12 @@ class MainWiringControls(unittest.TestCase):
         self.assertIn('completion',events);self.assertTrue(publications[0].rejected)
         self.assertFalse(json.loads(text)['accepted'])
 
-    def test_slow_stdout_and_late_runtime_never_leave_admissible_candidate(self):
-        for option in ('late_stdout','late_runtime'):
-            _,_,publications,_=self.run_main(**{option:True})
-            self.assertTrue(publications[0].rejected)
+    def test_slow_stdout_retracts_candidate_but_host_import_changes_are_not_source_changes(self):
+        _,_,publications,_=self.run_main(late_stdout=True)
+        self.assertTrue(publications[0].rejected)
+        _,_,publications,text=self.run_main(late_runtime=True)
+        self.assertFalse(publications[0].rejected)
+        self.assertFalse(json.loads(text)['accepted'])
 
     def test_executing_source_mismatch_stops_before_math(self):
         events,captures,publications,text=self.run_main(changed_source=True)

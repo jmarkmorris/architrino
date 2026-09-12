@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1640
+      "sections": 1642
     }
   },
   "tocRoot": {
@@ -1708,10 +1708,26 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Why Nearby Wakes Dominate",
+                    "title": "Local Reception and Delayed Geometry",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
-                    "markdownSection": "Why Nearby Wakes Dominate",
-                    "sectionKey": "why nearby wakes dominate",
+                    "markdownSection": "Local Reception and Delayed Geometry",
+                    "sectionKey": "local reception and delayed geometry",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Conditions for Nearby Wake Dominance",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
+                    "markdownSection": "Conditions for Nearby Wake Dominance",
+                    "sectionKey": "conditions for nearby wake dominance",
+                    "headingLevel": 2
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Controlling Omitted Wakes",
+                    "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/superposition-and-locality.md",
+                    "markdownSection": "Controlling Omitted Wakes",
+                    "sectionKey": "controlling omitted wakes",
                     "headingLevel": 2
                   }
                 ]

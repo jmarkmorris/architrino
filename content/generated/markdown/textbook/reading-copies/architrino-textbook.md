@@ -5601,8 +5601,6 @@ between regular intervals.
 
 This delay-map theorem pack supplies a local root-geometry reference: regular charts with no boundary crossings preserve signed degree. Interior branch creation or annihilation requires a singular root; the ordinary fold law applies only with the stated nonzero second derivative and transverse unfolding. For example, $F(u;\lambda)=u^3-\lambda u$ changes from one to three simple roots across $\lambda=0$, where $F_{uu}=0$. This is a higher degeneracy, not an ordinary fold, although the signed degree remains one.
 
-<a id="signed-causal-root-complex"></a>
-
 ###### Signed Causal-Root Grading
 
 For a receiver-transmitter pair $(i,j)$ on a regular retained interval, split the simple active roots by Jacobian sign. Take their formal real spans, with one basis vector per retained root:
@@ -7847,8 +7845,6 @@ $$
 [View →](../../../../../equation-mapping.html#corpus-equation-cf9cd42b9c09c4f1)
 
 Therefore $D_r=D_t=c_f(1+\beta_f\sin\xi)$ and $W_{12}^{\mathrm{acc}}=(1+\beta_f\sin\xi)^{-1}$ on this uniform circular branch. Because $\sigma_{12}=-1$ for opposite polarities, the canonical branch acceleration is $-\kappa|q_1q_2|\hat{\mathbf{r}}_{12}/[r_{12}^2(1+\beta_f\sin\xi)]$, and projecting onto $\mathbf{e}_r(T)$ and $\mathbf{e}_\theta(T)$ yields the stated components. Since $\xi\in(0,\pi/2)$, every denominator is positive and $\sin\xi>0$, proving the sign claims. $\square$
-
-<a id="corollary-tangential-positivity-and-circular-instability"></a>
 
 ###### Corollary (Tangential positivity and circular nonexistence)
 
@@ -13874,87 +13870,135 @@ Feynman, Leighton, and Sands, *The Feynman Lectures on Physics*, volume II (1964
 
 #### Self-Interaction Switch
 
-An [architrino](../../../../markdown/aaa/foundations/architrino.md), the substrate's massless polarity carrier, can intersect an expanding causal wake surface that it emitted earlier in its own history. Self-hit occurs when the same-transmitter causal-root set is nonempty, $\mathcal{C}_{aa}(T_r)\ne\varnothing$. Super-field-speed history is a necessary warning condition for simple nontrivial roots, but it is not sufficient by itself; the calculation must solve the same-transmitter root equation, and curvature, branch geometry, and the transversality floor determine whether the worldline actually intersects its own causal wake. An admitted self-hit contribution additionally carries a retained transmitter-side acceleration weight $W^{\mathrm{acc}}$. Only such an admitted same-transmitter hit accelerates outward and can contribute to the smallest sustainable size or fastest natural rhythm of a stable structure. On the uniform-circular chart its radial projection is always outward, so it can oppose collapse but cannot supply centripetal support; stability belongs to the complete signed branch ledger.
+An [architrino](../../../../markdown/aaa/foundations/architrino.md) is a pointlike carrier of positive or negative polarity with no physical mass property. Its causal wake is a continuous family of spherical surfaces, each expanding from the position where it was emitted. A self-hit occurs geometrically when an earlier surface reaches the same architrino. The self-interaction switch denotes whether such roots contribute to the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#self-hit-regime), which sums their acceleration contributions. It is a test of retained history and branch conditions, not an additional primitive switch controlled by current speed.
 
 ##### Conditions and Effects
 
-- Root multiplicity and self-roots:
-  - The simulation should open the self-hit channel only when it finds same-transmitter roots
-    $$
-    \mathcal{C}_{aa}(T_r)=\{\,T_t<T_r:\|\mathbf X_a(T_r)-\mathbf X_a(T_t)\|=c_f(T_r-T_t)\,\}
-    $$
+###### Geometric Roots and the Speed Condition
 
-    [View →](../../../../../equation-mapping.html#corpus-equation-5c21f41edba4512c)
+Let $\mathbf X_a(T)$ be architrino $a$'s path in the Euclidean void, the fixed three-dimensional space, parametrized by absolute time $T$, the common time parameter. Write $T_t$ for emission time, $T_r$ for reception time, and $c_f>0$ for the fixed wake speed. The same-transmitter root set is
 
-    A speed excursion above $c_f$ flags a candidate interval; it is not an acceptance test without root existence, a nonzero Jacobian/transversality margin, and a retained transmitter-side acceleration weight.
-  - Coincident $r=0$ contact is not an active same-transmitter hit. At $\Delta=0$ the convention $H(0)=0$ blocks instantaneous self-acceleration, and for a coincident delayed candidate the unit line of action $\hat{\mathbf{r}}$ is undefined. The active channel begins with a nonzero-delay same-transmitter root that supplies direction, transversality, and the transmitter-side acceleration weight.
+$$
+\mathcal{C}_{aa}(T_r)=\{\,T_t<T_r:\|\mathbf X_a(T_r)-\mathbf X_a(T_t)\|=c_f(T_r-T_t)\,\}
+$$
 
-- Repulsive character:
-  - For like-on-like (self) interaction, $\sigma_{q_a q_a}=+1$ ensures the self-contribution points outward along $+\hat{\mathbf{r}}$, opposing further collapse.
+[View →](../../../../../equation-mapping.html#corpus-equation-5c21f41edba4512c)
 
-- Barrier and scale selection:
-  - In binaries and multi-binary assemblies, delayed attraction competes with self-repulsion. On a closed branch chart, the outward self-hit barrier can participate in setting a minimal sustainable radius $d_0$, but the fastest natural frequency $2\pi/P_0$, where $P_0$ is the candidate natural period, additionally requires tangential and return-map closure.
+The equality says that the distance from the emission position equals the wake's expansion distance. A numerical search restricts this set to its declared retained history; an empty search result does not exclude roots in omitted history. Multiple roots are distinct emission times at the same reception event and must be accounted for separately.
+
+For a continuously differentiable path, a simple positive-delay self-root requires speed greater than $c_f$ somewhere between emission and reception. A root is simple when changing emission time crosses the root condition with nonzero derivative. The reason for the speed restriction is that chord length cannot exceed path length. If speed never exceeds $c_f$ on that interval, the root equality forces chord length, path length, and $c_f(T_r-T_t)$ to be equal. This requires straight motion at exactly $c_f$, giving a nonisolated family of roots with zero transmitter derivative. It is not an ordinary simple branch. The [delay-geometry derivation](../../../../markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md#field-speed-and-super-field-speed-multiplicity) gives the full argument.
+
+Exceeding $c_f$ is insufficient: in normalized wake-speed units $c_f=1$, the prescribed path $\mathbf X_a(T)=(-2T,0,0)$ has separation $2\Delta$ at delay $\Delta=T_r-T_t>0$, so it never satisfies the required separation $\Delta$. Conversely, [straight variable-speed history](../../../../markdown/aaa/dynamics/master-equation.md#self-hit-condition) can have simple self-roots; curvature is unnecessary, and the current receiver speed need not exceed $c_f$.
+
+###### Regular Acceleration Contributions
+
+At positive separation define $\mathbf r=\mathbf X_a(T_r)-\mathbf X_a(T_t)$, $r=\|\mathbf r\|$, and $\hat{\mathbf r}=\mathbf r/r$. With reception fixed, the root function is $F(T_t;T_r)=r-c_f(T_r-T_t)$. Its transmitter derivative is $D_t=\partial_{T_t}F=c_f-\hat{\mathbf r}\cdot\mathbf V_a(T_t)$, where $\mathbf V_a=d\mathbf X_a/dT$. A simple root has $D_t\ne0$. A positive transversality floor bounds $|D_t|$ away from zero on the retained branch; it controls use of the acceleration formula, not whether a geometric intersection exists.
+
+The [canonical per-hit law](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form) gives, for a regular self-root,
+
+$$
+\mathbf A_{a\leftarrow a}(T_r;T_t)
+=\frac{\kappa q_a^2}{r^2}W^{\mathrm{acc}}\hat{\mathbf r},
+\qquad W^{\mathrm{acc}}=\frac{c_f}{|D_t|}
+$$
+
+Here $q_a$ is the fixed nonzero polarity and $\kappa>0$ is the acceleration coupling, with $\kappa q_a^2$ having acceleration-times-area units. The dimensionless weight $W^{\mathrm{acc}}$ comes from resolving emission history at a simple root. Receiver velocity affects which history is encountered as time advances; it supplies no additional instantaneous acceleration multiplier.
+
+A regular branch record retains positive separation and delay margins, controlled transmitter derivatives and weights, all active roots, and exclusions or bounds for omitted roots and history. A singular root with $D_t=0$ is an unresolved event requiring the applicable continuation or regularization treatment; it is not evidence that the self-interaction contribution vanishes. Finding isolated roots or evaluating this formula alone does not certify an EOM solver trajectory.
+
+###### Coincidence and Singular Events
+
+At an exact sharp root, $r=c_f\Delta$ with $c_f>0$ and $\Delta>0$ implies $r>0$. Thus there is no coincident positive-delay root. The convention $H(0)=0$, where $H$ selects positive delay, records exclusion of the instantaneous diagonal $T_t=T_r$. It does not bound acceleration as a root approaches that endpoint or provide a finite transition through its birth. Finite-width wake evaluation and spatial regularization require their own domain and limit controls, as explained in [Self-Energy and Regularization](../../../../markdown/aaa/validation/simulations/action-energy/self-energy.md#strict-delay-and-the-self-endpoint).
+
+###### Repulsive Character and Scale Selection
+
+The self-interaction sign is $\sigma_{aa}=\operatorname{sign}(q_a^2)=+1$, so every regular contribution points away from the earlier emission position along $+\hat{\mathbf r}$. That direction need not point away from a chosen assembly center. An assembly is an organized collection of architrinos, and its size response depends on the projection of all contributing accelerations onto its declared geometry.
+
+For a prescribed circle of fixed center and radius $R>0$, let $\theta$ be the angular separation between the emission and reception positions and $\mathbf e_r$ the outward unit radius at reception. Then $r=2R|\sin(\theta/2)|$ and $\hat{\mathbf r}\cdot\mathbf e_r=R(1-\cos\theta)/r=|\sin(\theta/2)|>0$ at every noncoincident root. This derived projection is outward and cannot supply the inward acceleration required to maintain the circle. The [uniform-circular analysis](../../../../markdown/aaa/dynamics/master-equation.md#super-field-speed-single-architrino-uniform-circular-self-hit) is a geometric diagnostic; self-consistent motion requires the complete partner and self contributions.
+
+In a binary or multi-binary candidate, self-repulsion can oppose inward partner contributions on that circular geometry. A proposed minimum sustainable orbital radius $d_0$, measured from a declared center, still requires full acceleration balance and persistence under the delayed dynamics. A candidate period $P_0$ is the absolute-time duration of a repeat of the relevant complete history; its angular frequency is $2\pi/P_0$, while its cycle frequency is $1/P_0$. Establishing stability requires control of perturbations about an actual solution, including how retained history returns after a cycle. Calling a radius minimal or a frequency fastest further requires comparison across a specified family of admissible solutions. No such extremum or stable structure follows from the switch or the outward circular projection alone.
+
+Claim grade: derived for the speed restriction, coincidence exclusion, and directional projections under their stated hypotheses. A simple self-root with no super-field-speed interval, a positive-delay sharp root at zero separation, or an inward self projection on the stated fixed-center circle would refute the corresponding result. Scale selection and stable-assembly realization remain open proof obligations.
 
 #### Superposition and Locality
 
-Potential [wake](../../../../markdown/aaa/foundations/architrino.md) contributions—the expanding disturbances emitted by architrinos—from all sources superpose linearly. The net potential at any point is the sum of the individual contributions:
+An [architrino](../../../../markdown/aaa/foundations/architrino.md) is a primitive point transceiver with fixed polarity and no primitive mass. It emits a causal wake: expanding surfaces centered on its earlier positions. For fixed transmitter histories, the wake contributions add, and the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form) postulates the vector sum of the acceleration contributions at each receiver event. This addition does not make the coupled dynamics linear: changing one trajectory changes the causal roots and weights subsequently seen by the others.
+
+A scalar potential requires a matching construction. On one regular receiver domain, fix the histories and a finite, complete set of admitted roots. If each transmitter's contribution has a differentiable scalar representative whose negative receiver-position gradient equals its acceleration contribution, the net scalar is
 $$
 \Phi_{\text{net}}=\sum_i\Phi_i
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7b385746e404ec84)
 
-The total acceleration on an architrino at any instant is the vector sum of the contributions from every intersecting causal wake surface. Operationally, every architrino is continuously immersed in the superposed wakes of all others and, when the same-transmitter root condition permits, its own. Calculating the path-history integral requires isolating each causal emission event, evaluating the transmitter-side $W^{\mathrm{acc}}/r^2$ acceleration kernel at that emission, and then summing under a declared finite active horizon, screening rule, cancellation argument, or summation prescription.
+Here $i$ labels the retained transmitters, $\Phi_i$ includes all their admitted roots for the same receiver, and $\Phi_{\text{net}}$ is their summed receiver-local scalar representative. All terms use the same receiver position, reception time, history, and boundary convention. Linearity of differentiation proves the corresponding finite gradient identity. The [moving-simple-root construction](../../../../markdown/aaa/dynamics/master-equation.md#superposition-and-local-wake-geometry) supplies such representatives on regular charts; it does not establish a scalar at every point, an infinite-source limit, or a conserved energy. A raw inverse-square wake density is not that scalar potential: even for a stationary transmitter its gradient has inverse-cube scaling.
 
-The simple rule is to add every causal wake contribution that actually reaches the receiver without assuming that inverse-square decay makes an infinite universe automatically finite. A local simulation must say how far-field wakes are cut off, screened, canceled, summarized, or subtracted.
+##### Local Reception and Delayed Geometry
 
-##### Why Nearby Wakes Dominate
+Local reception means that an acceleration is evaluated where a wake reaches the receiver. It remains dependent on earlier transmitter positions. Write $\mathbf X_r(T_r)$ for the receiver position at reception time $T_r$ and $\mathbf X_t(T_t)$ for a transmitter position at emission time $T_t$, in the [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md), the fixed three-dimensional space, and [absolute time](../../../../markdown/aaa/foundations/absolute-time.md), the common time coordinate. A causal root satisfies $r=\|\mathbf X_r(T_r)-\mathbf X_t(T_t)\|=c_f(T_r-T_t)$ with $T_t<T_r$, where $c_f>0$ is the wake speed. Thus $r$ measures delayed separation, not the distance between the two current positions.
 
-Linear addition happens at the causal-surface level. Each source contributes a distribution supported on its causal wake surfaces, the total wake measure is a sum of those measures, and the acceleration law is linear in the summed contributions.
+At a simple root, the transmitter-time derivative $D_t=c_f-\hat{\mathbf r}\cdot\mathbf V_t(T_t)$ is nonzero. Here $\hat{\mathbf r}$ points from the emission position to the receiver and $\mathbf V_t=d\mathbf X_t/dT$ is transmitter velocity. The dimensionless weight $W^{\mathrm{acc}}=c_f/|D_t|$ accounts for how transmitter motion changes the spacing of arriving wake surfaces. The per-hit acceleration magnitude is $\kappa|q_rq_t|W^{\mathrm{acc}}/r^2$, where $q_r,q_t$ are polarity amplitudes and $\kappa>0$ is the coupling constant; like polarities select the outward direction and unlike polarities the inward direction. Receiver velocity supplies no additional instantaneous multiplier.
 
-Locality comes from $1/r^2$ only after convergence control is declared. The surface density on each causal wake surface scales as $1/r^2$, so nearby coherent hits contribute disproportionately compared to distant ones. In an infinite three-dimensional source population this does not by itself guarantee convergence, because the number of sources in a radial layer grows like $r^2\,dr$. Random phases, angular cancellation, screening, finite active horizons, or explicit mean-field/principal-value subtraction must be part of the branch prescription.
+The regular sum requires a complete admitted root set, positive separation, and a controlled nonzero transmitter derivative, as specified in [Causal Set and Delay Geometry](../../../../markdown/aaa/validation/simulations/action-energy/causal-set-and-delay-geometry.md). Self-hits obey the same conditions, with transmitter and receiver belonging to the same architrino. The zero-delay endpoint is excluded; a singular root with $D_t=0$ requires its own event or regularization treatment. A simple root can persist over a reception interval, so summing hits does not imply isolated impulses or inertial motion between root changes.
 
-The practical consequence is narrow: simulations can prioritize nearby sources and recent roots only after declaring the far-field treatment. The declaration may be cutoff error, multipole cancellation, screened background, sampled mean field, principal-value subtraction, or another explicit summation prescription.
+##### Conditions for Nearby Wake Dominance
+
+Inverse-square dilution favors smaller delayed separations only when the coupling and transmitter weights are comparable. A lower bound $|D_t|\ge d_t>0$, where $d_t$ is a declared speed floor, bounds $W^{\mathrm{acc}}\le c_f/d_t$. Without such control, a farther hit can be stronger. For equal coupling magnitudes in units with $c_f=1$, a root with $r=1,D_t=1$ has geometric weight $W^{\mathrm{acc}}/r^2=1$, whereas a root with $r=10,D_t=0.001$ has weight $10$. These are compatible prescribed-history rows: at $T_r=0$ and receiver position zero, the one-dimensional transmitter paths $X_n(s)=-1$ and $X_f(s)=-0.01+0.999s$ for past emission time $s<0$ have the unique roots $s=-1$ and $s=-10$, respectively. This derived comparison does not assert that those prescribed paths solve the coupled dynamics.
+
+Population growth also matters. In a continuum counting example with constant transmitter number density $n$, one stationary-transmitter root per source, and fixed coupling magnitude $C=\kappa|q_rq_t|$, a spherical layer of thickness $dr$ contains $4\pi n r^2\,dr$ sources. Multiplying by the per-hit magnitude $C/r^2$ gives total absolute contribution $4\pi nC\,dr$. Integrating that constant over arbitrarily large radii diverges. Exact angular cancellation can make a vector sum smaller, but the source count and inverse-square kernel alone prove neither cancellation nor absolute convergence. This example describes prescribed source geometry, not a derived population or equilibrium.
+
+##### Controlling Omitted Wakes
+
+A finite calculation must specify how omitted transmitters and older emissions are treated and bound their contribution on its stated domain. At a causal root, an age cutoff $T_r-T_t\le h$ is the delayed-distance cutoff $r\le c_fh$, where $h>0$ is the retained history depth. Neither cutoff is a cutoff in the transmitter's current distance. A finite history window therefore does not establish that older roots are absent or negligible.
+
+For an absolutely summable omitted root set $\mathcal O$, the triangle inequality gives the derived bound $\|\delta\mathbf A\|\le\sum_{b\in\mathcal O}\kappa|q_rq_{t(b)}|W_b^{\mathrm{acc}}/r_b^2$, where $\delta\mathbf A$ is the omitted acceleration, $b$ labels a root, and $t(b)$ its transmitter. Requiring this bound to lie below a stated acceleration tolerance controls truncation at that receiver event. A finite bound does not alone make the tail small; trajectory-error and stability claims require additional evolution estimates.
+
+Angular cancellation, a derived large-distance expansion, or a specified statistical population can support other error estimates when their assumptions and residuals are established. A principal-value prescription, meaning a limit with a declared symmetric cutoff, must be shown to exist; it need not give an order-independent sum. Screening or subtraction of an ambient mean requires a separate physical or boundary justification. Naming one of these treatments does not prove that it approximates the full history law. Event-local reception, spatial dominance, global summability, and an observer-level signal-speed bound are distinct claims; only the first follows directly from the stated wake support.
 
 #### Units and Constants
 
-The action-energy simulations measure speeds in normalized units with $c_f=1$, the speed of a [wake](../../../../markdown/aaa/foundations/architrino.md), the expanding disturbance emitted by an architrino. They use $\kappa>0$ to set the scale of every per-hit acceleration, $\eta>0$ to thicken ideal causal wake surfaces for regularized calculus, and $\epsilon>0$ as the polarity unit. Each acceleration contribution lies along the line from the emission point to the receiver and has received strength shaped by the transmitter-side weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; like polarities accelerate apart and unlike polarities accelerate together.
+The action-energy simulations use normalized wake-speed units with $c_f=1$. An [architrino](../../../../markdown/aaa/foundations/architrino.md) is a point transceiver with fixed polarity that continuously emits an expanding wake from each past position. A causal root selects an emission whose wake reaches the receiver at the chosen reception time. The [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) assigns an acceleration contribution to each admitted root. The coupling $\kappa>0$ sets its scale, $\epsilon>0$ is the polarity-unit magnitude, and $\eta>0$ is a computational surface-width regulator when a mollified model is used. These conventions do not assign primitive mass or a physical pulse thickness to an architrino or its wake.
 
 ##### Core Symbols
 
 - $c_f=1$: wake speed in normalized units.
-- $\kappa>0$: universal coupling constant.
-- $\eta>0$: causal wake-surface thickness.
+- $\kappa>0$: universal acceleration coupling.
+- $\eta>0$: distance width used to smooth a causal wake surface.
 - $\epsilon>0$: polarity-unit magnitude; Electrino $q=-\epsilon$, Positrino $q=+\epsilon$.
 - $\sigma_{q q'}=\mathrm{sign}(q\,q')\in\{+1,-1\}$.
 - $r=\|\mathbf X_{o'}(T_r)-\mathbf X_o(T_t)\|$, with $\hat{\mathbf{r}}=(\mathbf X_{o'}(T_r)-\mathbf X_o(T_t))/r$.
 
+Here $o$ labels the transmitter, $o'$ the receiver, $T_t$ the emission time, and $T_r$ the reception time. Position is $\mathbf X_o(T)$ and velocity is $\mathbf V_o=d\mathbf X_o/dT$ in the Euclidean void and absolute time. An admitted sharp root satisfies $T_t<T_r$ and $r=c_f(T_r-T_t)>0$; the coincident-time endpoint is excluded. The sign $\sigma_{q q'}$ is positive for like polarities and negative for unlike polarities.
+
+Writing $\mathrm L$, $\mathrm T$, and $\mathrm Q$ for length, time, and polarity dimensions, respectively, the acceleration law gives $[c_f]=\mathrm L\mathrm T^{-1}$, $[\eta]=\mathrm L$, $[\epsilon]=\mathrm Q$, and $[\kappa]=\mathrm L^3\mathrm T^{-2}\mathrm Q^{-2}$. Indeed, $W^{\mathrm{acc}}$ is dimensionless and $[\kappa\epsilon^2/r^2]=\mathrm L\mathrm T^{-2}$. These are dimensional deductions from the acceleration law, not a force or mass convention.
+
 ##### Dynamical Geometry
 
 - Wake-speed units ($c_f=1$):
-  - Choosing $L_0,T_0$ with $c_f=L_0/T_0=1$ fixes a conversion between spatial and temporal scales so that all speeds are dimensionless ratios to the wake speed. Kinematics still lives on absolute time × Euclidean space; no spacetime substrate is introduced.
-  - Consequence: every velocity appears as a pure number $\|\mathbf V\|$; the threshold $\|\mathbf V\|=c_f$ becomes $\|\mathbf V\|=1$. Rescaling $L_0$ and $T_0$ together leaves all dimensionless predictions invariant.
+  - Choose a length unit $L_0>0$ and time unit $T_0=L_0/c_f$. Then $\widetilde{\mathbf X}=\mathbf X/L_0$, $\widetilde T=T/T_0$, and $\widetilde{\mathbf V}=\mathbf V T_0/L_0$ are dimensionless, and the numerical wake speed is $\widetilde c_f=c_fT_0/L_0=1$. All numerical examples use this convention. Kinematics still uses absolute time, the universal time parameter, and the Euclidean void, the fixed three-dimensional spatial background.
+  - A change of units preserves predictions only when every dimensional input and output is converted consistently. With the polarity unit held fixed, replacing $(L_0,T_0)$ by $(aL_0,aT_0)$ with $a>0$ divides the numerical values of $r$, $T_r-T_t$, $\eta$, and $\kappa$ by $a$, while leaving numerical velocities unchanged. Ratios such as $\eta/r$ and $g_\kappa$ below are invariant when their reference scales describe the same geometry; holding the other numerical inputs fixed would change the problem.
 
 - Coupling constant ($\kappa>0$):
-  - $\kappa$ sets the overall scale of per-hit acceleration. In the canonical law, $ \mathbf A_{o'\leftarrow o} = \kappa\,\sigma_{q_o q_{o'}}\,\dfrac{|q_o q_{o'}|}{r^2}W_{o'\leftarrow o}^{\mathrm{acc}}\,\hat{\mathbf{r}}, $ larger $\kappa$ uniformly strengthens every interaction.
-  - Scaling insight: if you scale $\kappa\mapsto \alpha\kappa$ while keeping $(\epsilon,\eta)$ fixed, accelerations scale by $\alpha$. Characteristic assembly scales such as the minimal binary radius $d_0$ and period $P_0$ shift accordingly through the dynamical balance that defines them.
+  - On an admitted simple root, meaning $D_t\ne0$, the canonical contribution is $\mathbf A_{o'\leftarrow o}=\kappa\,\sigma_{q_o q_{o'}}\,\dfrac{|q_o q_{o'}|}{r^2}W_{o'\leftarrow o}^{\mathrm{acc}}\,\hat{\mathbf r}$. Here $D_t=c_f-\mathbf V_o(T_t)\cdot\hat{\mathbf r}$ measures how rapidly the causal distance gap changes with emission time, and $W^{\mathrm{acc}}=c_f/|D_t|$. At $D_t=0$ this sharp-root formula is unavailable; a singular-event or regularized treatment is required.
+  - Replacing $\kappa$ by $\alpha\kappa$, with $\alpha>0$, multiplies the evaluated acceleration by $\alpha$ on the same prescribed histories, polarities, and regulator prescription. Evolved histories can change their separations, root counts, and weights, so this pointwise identity does not determine an assembly's radius, period, or stability.
 
 - Regularization width ($\eta>0$):
-  - $\eta$ is the width applied to each causal wake surface to mollify the surface delta $\delta(r-\Delta)$. It converts singular surface support into brief, smooth acceleration contributions so pointwise quantities such as gradients are defined. The evolution remains a delayed-history problem; an ordinary instantaneous-state ODE solver is insufficient unless the retained history and root reconstruction are supplied explicitly.
-  - Geometric guidance: choose $\eta$ small relative to local geometric scales (e.g., the receiver's instantaneous curvature radius along its path and the local receiver-transmitter separation) so the regularized dynamics approximate the ideal path-history picture while remaining numerically stable.
+  - For $\Delta T=T_r-T_t$, replace the distance-gap delta $\delta(r-c_f\Delta T)$ inside the transmitter-time history integral by a smooth kernel $\delta_\eta(r-c_f\Delta T)$ normalized by $\int_{\mathbb R}\delta_\eta(u)\,du=1$. Its width $\eta$ has dimensions of length. In normalized units the gap is $r-\Delta T$. Continuous emission already gives continuous acceleration on regular sharp-root branches; surface mollification does not define a physical pulse train. It also does not remove the $1/r^2$ singularity near coincidence. Smoothness requires a controlled history domain and either positive separation throughout the contributing support or a separately declared core regulator, as explained in [Numerical Recipe and Stability](../../../../markdown/aaa/validation/simulations/action-energy/numerical-recipe-and-stability.md).
+  - Choose $\eta$ small relative to the resolved geometric scales, then resolve its support in both reception time and emission-time history. Locally the traversal scales are $\eta/|D_r|$ and $\eta/|D_t|$, respectively, where the derivatives are nonzero; $D_r=c_f-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf r}$ measures reception-time crossing. Zero derivatives require higher-order local analysis. Small width alone proves neither numerical stability nor convergence. The evolution remains a delayed-history problem requiring retained histories, controlled interpolation, and the declared causal and memory boundaries.
 
 - Polarity-unit magnitude ($\epsilon>0$):
-  - $\epsilon$ is the fundamental polarity scale of an architrino (Electrino $q=-\epsilon$, Positrino $q=+\epsilon$). The observer-level calibration target $|e|=6\epsilon$ makes quark electric-charge labels integer multiples of $\epsilon$; it is not an input to the substrate dynamics. The owning conversion convention is in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md#2-charge-reconstruction).
-  - Per-wavefront amplitude and emission cadence are constant at the transmitter. The received acceleration magnitude is modulated by the transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$, where $D_t$ records transmitter-side root transversality and $D_r$ records receiver-side playback geometry.
+  - $\epsilon$ is the fundamental polarity scale of an architrino (Electrino $q=-\epsilon$, Positrino $q=+\epsilon$). The observer-level calibration target $|e|=6\epsilon$, where $|e|$ is the elementary electric-charge magnitude, is the normalization convention $Z_e=1$ in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md#2-charge-reconstruction). It supplies charge labels for comparisons with particle measurements; it neither identifies an assembly as a particle nor inserts the measured charge into substrate dynamics.
+  - Emission is continuous with constant transmitter-time density. The sharp-root acceleration weight is $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$; receiver-side geometry controls signed root playback through $D_r/D_t$ and does not supply an additional arriving-strength factor.
 
 - Sign of interaction ($\sigma_{q q'}$):
-  - $\sigma_{q q'}=\mathrm{sign}(q\,q')$ selects attraction vs repulsion while keeping the acceleration strictly collinear with $\hat{\mathbf{r}}$. Like-on-like ($\sigma$=+1) points along +$\hat{\mathbf{r}}$ (repulsion); unlike ($\sigma$=-1) points along -$\hat{\mathbf{r}}$ (attraction).
+  - $\sigma_{q q'}=\mathrm{sign}(q\,q')$ selects the direction along the delayed emission-to-receiver line. Like polarities ($\sigma=+1$) accelerate along $+\hat{\mathbf r}$, and unlike polarities ($\sigma=-1$) along $-\hat{\mathbf r}$. These directions concern the past emission point; they do not by themselves determine whether the present receiver-transmitter separation increases or decreases.
 
 - Line of action ($r$, $\hat{\mathbf{r}}$, $D_t$, $D_r$, $W^{\mathrm{acc}}$):
-  - $r=\|\mathbf X_{o'}(T_r)-\mathbf X_o(T_t)\|$ is the separation between the receiver at reception time $T_r$ and the transmitter at emission time $T_t$. $\hat{\mathbf{r}}$ is the corresponding unit vector. The transmitter-side factor is $D_t=c_f-\mathbf V_o(T_t)\cdot\hat{\mathbf{r}}$, the receiver-side factor is $D_r=c_f-\mathbf V_{o'}(T_r)\cdot\hat{\mathbf{r}}$, and the active branch strength is $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$. All per-hit acceleration contributions are directed along this line; no transverse or right-hand-rule terms appear.
+  - $r=\|\mathbf X_{o'}(T_r)-\mathbf X_o(T_t)\|$ is the delayed separation and $\hat{\mathbf r}$ its unit direction. Both $D_t$ and $D_r$ have speed dimensions, whereas $W^{\mathrm{acc}}$ and the playback derivative $dT_t/dT_r=D_r/D_t$ are dimensionless. Each sharp per-hit acceleration lies along this line; the total is the vector sum over all admitted transmitter roots, including positive-delay self roots.
 
 - Combined role in assembly scales:
-  - The trio $(\kappa,\epsilon,\eta)$, together with the $1/r^2$ law, determines emergent scales such as the smallest sustainable orbit $d_0$ and fastest natural frequency $2\pi/P_0$. Intuitively, stronger coupling (larger $\kappa\epsilon^2$) and sharper wake surfaces (smaller $\eta$) favor tighter, faster structures until self-interaction and delay balance inward trends.
+  - The bare coupling defines the length $R_*=\kappa\epsilon^2/c_f^2$ and time $T_*=R_*/c_f$, as derived in [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md#layer-i-two-body-scale-closure). These are units, not proofs of a smallest sustainable orbit or fastest frequency. Such extrema require an admitted solution family, acceleration balance, and stability evidence; [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md) owns those conditional assembly claims.
+  - A derived similarity of the bare sharp law makes the limitation concrete. At fixed $c_f$ and $\epsilon$, if $\mathbf X_i(T)$ is a solution for $\kappa$, then $\mathbf X_i^{(\alpha)}(T)=\alpha\mathbf X_i(T/\alpha)$ is a solution for $\alpha\kappa$ on the correspondingly scaled history domain. Velocities and $W^{\mathrm{acc}}$ are unchanged, while separations and delays multiply by $\alpha$; both sides of the acceleration law therefore divide by $\alpha$. If the solution is periodic, its radius and period scale by $\alpha$. A finite-width similarity also requires $\eta\mapsto\alpha\eta$, the same normalized kernel shape, and scaling every other length, time, core, and boundary parameter. This does not establish existence or stability of any candidate, and varying $\kappa$ at fixed $\eta$ changes the regulator ratio.
 
 - Dimensionless branch-scan controls:
   - Simulation sweeps should report dimensionless controls rather than only raw choices of $(\kappa,\epsilon,\eta,L_0,T_0)$. Choose a reference length $L_\star$ and the corresponding reference time $T_\star=L_\star/c_f$; in field-speed units, $c_f=1$ and $T_\star=L_\star$.
@@ -13965,14 +14009,14 @@ The action-energy simulations measure speeds in normalized units with $c_f=1$, t
 
     [View →](../../../../../equation-mapping.html#corpus-equation-0a0bc5d65e8e1afd)
 
-    and, for circular binary scans, the existing speed factor
+    and, for a circular path of radius $R>0$ and angular speed $\omega>0$, the speed factor
     $$
     s=\frac{R\omega}{c_f}
     $$
 
     [View →](../../../../../equation-mapping.html#corpus-equation-dac301d02838fb90)
 
-    A branch scan must state whether the sampled histories remain below, cross, or remain above the self-hit onset $\beta_f=1$.
+    State whether the retained histories remain below, cross, or remain above wake speed. Speed alone is not a self-hit switch: at $c_f=1$, the straight history $\mathbf X(T)=2T\mathbf e_x$, with $\mathbf e_x$ a fixed unit direction, has self-gap $2\Delta T-\Delta T=\Delta T>0$ for every $\Delta T>0$ and hence no self root. Simple positive-delay self roots require super-wake-speed motion somewhere in the intervening history, but that condition is not sufficient. For a complete uniform circular history, $s=1$ is the limiting zero-delay onset and nontrivial self roots occur for $s>1$; a finite retained window must still contain them.
   - **Delay/window ratio:** use
     $$
     \Theta_{\Delta T}=\frac{\Delta T_{\max}}{T_{\mathrm{win}}}
@@ -13980,7 +14024,7 @@ The action-energy simulations measure speeds in normalized units with $c_f=1$, t
 
     [View →](../../../../../equation-mapping.html#corpus-equation-22dec982b4dd6f58)
 
-    where $\Delta T_{\max}$ is the longest active causal lookback time and $T_{\mathrm{win}}$ is the averaging, diagnostic, or return-map window. The stored history horizon $h$ must satisfy $h\ge\Delta T_{\max}$ on the scanned branch chart.
+    where $\Delta T_{\max}$ bounds the admitted causal lookback times throughout the reported scan and $T_{\mathrm{win}}>0$ is the averaging, diagnostic, or return-map window. Use $\Delta T_{\max}=0$ for a certified empty root set. The stored history horizon $H_{\mathrm{hist}}$ must satisfy $H_{\mathrm{hist}}\ge\Delta T_{\max}$, with support and interpolation margins for a finite-width calculation. A maximum computed only from found roots cannot exclude older or missed roots: certify the search domain and its boundaries, or explicitly declare a finite-memory model or bounded omitted contribution.
   - **Regularization thickness:** use
     $$
     \hat{\eta}=\frac{\eta}{L_\star}
@@ -13988,7 +14032,7 @@ The action-energy simulations measure speeds in normalized units with $c_f=1$, t
 
     [View →](../../../../../equation-mapping.html#corpus-equation-1f5196ad240d203b)
 
-    with local checks such as $\eta/r_{\min}$ against the smallest resolved separation. A scan is numerically meaningful only when branch counts and averaged observables stabilize as $\hat{\eta}$ is reduced while the causal wakes remain resolved.
+    with local checks such as $\eta/r_{\min}$, where $r_{\min}>0$ is a separation floor on the contributing support. First refine numerical resolution at fixed regulators and history prescription. Then compare matched root identities and observables on the same window as $\hat\eta$ is reduced, with kernel shape, truncation, and any core prescription stated. A resolved finite-$\eta$ result remains evidence about that model even without a sharp-limit claim. Count agreement or two nearby widths alone does not establish convergence, and a genuine root transition requires its own event treatment.
   - **Coupling scale:** compare the per-hit acceleration scale with the reference acceleration $L_\star/T_\star^2$:
     $$
     g_\kappa
@@ -14000,7 +14044,7 @@ The action-energy simulations measure speeds in normalized units with $c_f=1$, t
 
     [View →](../../../../../equation-mapping.html#corpus-equation-bdfce55a112e1b3c)
 
-    In field-speed units this reduces to $g_\kappa=\kappa\epsilon^2/L_\star$.
+    In normalized wake-speed units this reduces to $g_\kappa=\kappa\epsilon^2/L_\star$. Equivalently $g_\kappa=R_*/L_\star$; choosing $L_\star=R_*$ makes it one. It measures coupling relative to the chosen length, not an additional bare two-body dimensionless constant. Initial-history geometry, boundaries, and regulator ratios remain separately specified.
   - **Branch/root tolerances:** for the causal-root residual
     $$
     g_{ij}(\Delta T,\phi)
@@ -14010,7 +14054,8 @@ The action-energy simulations measure speeds in normalized units with $c_f=1$, t
 
     [View →](../../../../../equation-mapping.html#corpus-equation-328277424a05be28)
 
-    accept a root only when $|g_{ij}|/L_\star\le\varepsilon_{\mathrm{root}}$, keep distinct roots separated by $|\Delta T_a-\Delta T_b|/T_\star>\varepsilon_{\mathrm{sep}}$, and treat $|J|\le\varepsilon_J$ as a branch-birth or caustic zone rather than an ordinary stable branch.
+    Here $i$ labels the receiver, $j$ the transmitter, and $\phi_k(u)=\mathbf X_k(T_r+u)$ is the position history of either object $k=i,j$ relative to reception time, for $-H_{\mathrm{hist}}\le u\le0$ and $0<\Delta T\le H_{\mathrm{hist}}$. Define the dimensionless derivative $J=\partial(g_{ij}/L_\star)/\partial(\Delta T/T_\star)=-D_t/c_f$. The tolerances $\varepsilon_{\mathrm{root}},\varepsilon_{\mathrm{sep}},\varepsilon_J>0$ are dimensionless. A candidate must satisfy $|g_{ij}|/L_\star\le\varepsilon_{\mathrm{root}}$; acceptance also requires an isolated root and controlled interpolation and evaluation error. If $|J|\ge j_{\min}>0$ throughout an isolating interval, with derivative uncertainty included in the bound, and the normalized gap error is at most $\varepsilon_g$, the mean-value theorem bounds normalized root-time error by $(\varepsilon_{\mathrm{root}}+\varepsilon_g)/j_{\min}$.
+    Distinct roots closer than $\varepsilon_{\mathrm{sep}}$ in normalized delay are unresolved at that resolution; refine their isolation or report the ambiguity without merging or discarding them. A threshold failure $|J|\le\varepsilon_J$ is a conditioning warning, not proof that $J=0$ or that a root pair is born. An interior fold requires a root with $J=0$ and the appropriate nonzero second derivative and unfolding derivative. Roots can also enter or leave the retained history through a boundary with $J\ne0$. Root regularity supplies no dynamical stability verdict.
   - A branch-scan report should therefore include at least
     $$
     (\beta_{\max}\ \text{or}\ s,\ \Theta_{\Delta T},\ \hat{\eta},\ g_\kappa,\ \varepsilon_{\mathrm{root}},\ \varepsilon_{\mathrm{sep}},\ \varepsilon_J)
@@ -14018,7 +14063,7 @@ The action-energy simulations measure speeds in normalized units with $c_f=1$, t
 
     [View →](../../../../../equation-mapping.html#corpus-equation-aaa8556681b2a511)
 
-    together with the active causal-root ledger. This prevents a change in units, regularization, or root finder tolerance from masquerading as a new physical branch.
+    Here $\beta_{\max}$ is a bound over the declared retained histories and scan window; a sampled maximum must be labeled as such. Include the active causal-root ledger, initial-history functions, memory and support boundaries, regulator shape and any core scale, resolution settings, and error bounds. These records make unit changes and numerical changes distinguishable from candidate branch changes. Physical assembly, conservation, stability, solver-certification, and particle-calibration claims require their own evidence beyond this unit convention.
 
 #### Well-Posedness and Regularization
 
@@ -16491,8 +16536,6 @@ $$
 [View →](../../../../../equation-mapping.html#corpus-equation-3549cb7a383b91c5)
 
 is the chapter's speed ratio. Physical root counts are constant between true birth/death or retained-boundary events. Changes of reduced-angle representation at $s=\pi/2$ or $s=m\pi$ do not create roots. Higher interior births have $J=0$; the principal self birth is instead an excluded coincident endpoint.
-
-<a id="root-ledger-as-a-one-parameter-morse-complex"></a>
 
 ###### Root Counts and Signed Degree
 

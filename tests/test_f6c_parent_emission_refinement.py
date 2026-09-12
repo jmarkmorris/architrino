@@ -38,14 +38,17 @@ PINS = {
 
 
 def load(name, path):
-    spec = importlib.util.spec_from_file_location(name, path)
+    from importlib.machinery import SourceFileLoader
+    spec = importlib.util.spec_from_file_location(name, path, loader=SourceFileLoader(name,str(path)))
     module = importlib.util.module_from_spec(spec); sys.modules[name] = module
     spec.loader.exec_module(module)
     return module
 
 
 def pinned(name):
-    path, digest = PINS[name]; raw = (ROOT/path).read_bytes()
+    path, digest = PINS[name]
+    if name == 'oldSubject': path = 'reference/priorities/braid-program/evidence/source-replay/scripts__eom__prepare-f6c-emission-refinement.py.source'
+    raw = (ROOT/path).read_bytes()
     assert hashlib.sha256(raw).hexdigest() == digest
     return ROOT/path, raw, digest
 

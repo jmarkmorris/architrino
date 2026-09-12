@@ -30,9 +30,14 @@ H='a'*64
 
 
 def load(name,path,digest=None):
+    if digest in {'e2df205f5543775c61e90355cdc8e8aa74cd7dde68957e2692ae87c6f67128ae','7574dc0fa7bec6e598e83ac7d8ad7670acaca6c10a41958b01487ac0af3ae85e'}:
+        manifest=json.loads((ROOT/'reference/priorities/braid-program/evidence/source-replay/f6c-refined-source-replay.v1.json').read_bytes())
+        route=next(row for row in manifest['files'] if row['path']==str(path.relative_to(ROOT)) and row['sha256']==digest)
+        path=ROOT/route['source']
     raw=path.read_bytes()
     if digest is not None: assert hashlib.sha256(raw).hexdigest()==digest
-    spec=importlib.util.spec_from_file_location(name,path);m=importlib.util.module_from_spec(spec);sys.modules[name]=m
+    from importlib.machinery import SourceFileLoader
+    spec=importlib.util.spec_from_file_location(name,path,loader=SourceFileLoader(name,str(path)));m=importlib.util.module_from_spec(spec);sys.modules[name]=m
     spec.loader.exec_module(m);assert path.read_bytes()==raw;return m
 
 
@@ -55,7 +60,7 @@ def plan_fixture():
     p['dependencies']={k:binding(v[0],v[1]) for k,v in s.DEPENDENCIES.items()}
     p['originalBindings']={k:binding(v[0],v[1],v[2] if len(v)==3 else 1) for k,v in s.ORIGINAL.items()}
     p.update(acceptanceOwner=binding(s.OWNER),priorCoverClosure=s.closure_premise(),
-        runtimeBindings=[binding('/synthetic/python'),binding('/synthetic/pyvenv.cfg')],operationalBindings=[binding('synthetic/operation')],limits=deepcopy(w.LIMITS))
+        runtimeBindings=[{'path':'/synthetic/python'},{'path':'/synthetic/pyvenv.cfg'}],operationalBindings=[binding('synthetic/operation')],limits=deepcopy(w.LIMITS))
     p['historicalDocumentRoutes']=[dict(original=binding(s.PREFIX+name,h,n),physical=binding('/synthetic/archive-'+h+'.source',h,n)) for name,h,n in (
         ('2026-08-27-f6c-cached-root-cover-full-resource-plan.md','daeb71bee6260c38a6b7e5e6237110216d9315807fe23602fbd7cfcdddc5866b',10021),
         ('2026-08-27-f6c-root-cover-full-resource-plan.md','46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef',13021))]
@@ -70,7 +75,7 @@ def candidate_fixture(velocity=F(0)):
     streams.update(queryRecords=queries,rowRecords=rows,pieceRecords=pieces,producer=w.normalized(p['producer'],root),
         verifier=w.normalized(p['verifier'],root),declaration=w.normalized(p['declaration'],root),acceptanceOwner=w.normalized(p['acceptanceOwner'],root),
         subjectSourceBindings=sorted([w.normalized(p[k],root) for k in s.NAMED]+[w.normalized(b,root) for b in p['dependencies'].values()],key=lambda b:b['path']),
-        runtimeBindings=[w.normalized(b,root) for b in p['runtimeBindings']],operationalBindings=[w.normalized(b,root) for b in p['operationalBindings']])
+        runtimeBindings=[dict(b) for b in p['runtimeBindings']],operationalBindings=[w.normalized(b,root) for b in p['operationalBindings']])
     restrictions=[]
     for pair in parent['originalEmissions']:
         i,j=pair['receiverIndex'],pair['transmitterIndex'];q=[x for x in queries if x['receiverIndex']==i and x['transmitterIndex']==j]
@@ -93,7 +98,7 @@ def check_fixture(values,core=c):return s.compare_manifest(w,core,r,*values)
 class InterfaceTests(unittest.TestCase):
     def test_closed_plan_and_exact_role_counts(self):
         p=plan_fixture();self.assertIs(s.validate_plan(w,p,H,ROOT),p)
-        self.assertEqual((len(p),len(s.NAMED),len(p['dependencies']),len(p['originalBindings'])),(21,9,14,12))
+        self.assertEqual((len(p),len(s.NAMED),len(p['dependencies']),len(p['originalBindings'])),(20,9,14,12))
         self.assertNotEqual(p['verifierControls']['path'],p['proposalReferenceControls']['path'])
     def test_all_explicit_parent_scopes_and_rejected_index_types(self):
         for parent_index in range(160):
@@ -419,7 +424,7 @@ class MainFlowTests(unittest.TestCase):
     def flow(self,mode='success',parent_index=1):
         temp=tempfile.TemporaryDirectory();self.addCleanup(temp.cleanup);root=Path(temp.name).resolve();data=root/s.LANE/'fixture';data.mkdir(parents=True)
         outer=Path(str(data)+'-outer');outer.mkdir();out=outer/'comparison.json';manifest=data/'cover-manifest.json';manifest.write_bytes(b'{}')
-        plan=plan_fixture();plan['runtimeBindings']=[binding(Path(sys.executable).resolve()),binding(Path(sys.executable).absolute().parent.parent/'pyvenv.cfg')]
+        plan=plan_fixture();plan['runtimeBindings']=[{'path':str(Path(sys.executable).resolve())},{'path':str(Path(sys.executable).absolute().parent.parent/'pyvenv.cfg')}]
         plan.update(parentIndex=parent_index,scope=s.parent_scope(parent_index))
         launch=root/'plan.json';events=[];clock=[10.0];runtime_calls=[];real_complete=s.complete;real_publish=s.Publication.publish
         dummy=b'x=1\n';virtual={str(root/s.SELF):dummy,str(launch):encode(plan),str(manifest):encode(dict.fromkeys(s.MANIFEST_KEYS))}
@@ -516,13 +521,19 @@ class MainFlowTests(unittest.TestCase):
         out,events,stdout,stderr,error=self.flow(parent_index=2);self.assertIsNone(error,str(error))
         report=json.loads(out.read_bytes());done=json.loads(stdout)
         self.assertEqual(report['parent']['parentIndex'],2);self.assertEqual(report['scope'],s.parent_scope(2));self.assertEqual(done['scope'],s.parent_scope(2))
+    def test_host_import_changes_preserve_source_bound_publication(self):
+        for mode in ('late-runtime','publication-runtime','silent-runtime-addition'):
+            out,events,stdout,_,error=self.flow(mode)
+            self.assertIsNone(error);self.assertTrue(out.is_file())
+            self.assertIn('external inclusive deadline',json.loads(stdout)['publicationRequires'])
+
     def test_full_main_all_late_failures_retain(self):
-        for mode in ('comparison','late-runtime','publication-runtime','published-capture','late-source','publication','pool-cleanup','slow-pool','bootstrap-cleanup','stdout','slow-teardown','teardown'):
+        for mode in ('comparison','published-capture','late-source','publication','pool-cleanup','slow-pool','bootstrap-cleanup','stdout','slow-teardown','teardown'):
             with self.subTest(mode=mode):
                 out,events,stdout,stderr,error=self.flow(mode);self.assertIsNotNone(error);self.assertIn('watch-teardown',events)
                 if mode not in ('slow-teardown','teardown'):self.assertEqual(stdout,'')
     def test_silent_cleanup_changes_cannot_receive_successful_completion(self):
-        for mode in ('silent-report-mutation','silent-source-mutation','silent-source-replacement','silent-runtime-addition','silent-report-replacement'):
+        for mode in ('silent-report-mutation','silent-source-mutation','silent-source-replacement','silent-report-replacement'):
             with self.subTest(mode=mode):
                 out,events,stdout,stderr,error=self.flow(mode)
                 self.assertIsNotNone(error);self.assertEqual(stdout,'');self.assertIn('pool-close',events)

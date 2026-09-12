@@ -1054,7 +1054,7 @@ class CaptureTests(unittest.TestCase):
             with self.assertRaises(ValueError):subject._owner_declaration(raw.replace(old,new))
 
     def test_entry_pins_literal_source_only(self):
-        raw=(ROOT/'scripts/eom/run-f6c-cached-root-cover-full.mjs').read_bytes()
+        raw=(ROOT/'reference/priorities/development-process-review/evidence/source-recovery/original-full-entry.mjs.source').read_bytes()
         pins=subject._entry_pins(raw)
         self.assertEqual(pins['scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py'],dict((r,h)for r,_,h in subject.SOURCES)['rootComparison'])
 

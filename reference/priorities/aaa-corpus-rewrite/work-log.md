@@ -48,6 +48,42 @@ Implemented and validated the bounded repair pass. The chapter now states the sy
 
 Implemented and validated the bounded repair pass. The chapter now separates action-boundary, work, flux, acceleration, power, and energy residuals; corrects signs, weighting, domains, and member sums; and retains independent energy construction, root completeness, exchange accounting, regulator limits, stability, and physical recovery as open obligations.
 
+### 2026-09-11 — Informational Ambiguity IA-1–IA-7 bounded repair
+
+Implemented and validated all seven bounded repairs. The chapter now distinguishes the signed net acceleration from scalar diagnostics, constrains stationary surrogates to the fixed primitive magnitude and causal record, preserves the complete history ledger, and qualifies reconstruction and information claims. OIA-1–OIA-3 remain explicit open obligations.
+
+### 2026-09-11 — Numerical Recipe and Stability NR-1–NR-8 bounded repair
+
+Implemented and validated all eight bounded repairs. The chapter now separates continuous causal-root evolution from impulses, specifies root coverage and error-aware stopping, distinguishes sharp and finite-width evaluations, and keeps invariant, stability, regulator, and conservation claims conditional. ONR-1–ONR-4 remain open.
+
+### 2026-09-11 — Radial Attraction RA-1–RA-6 bounded repair
+
+Implemented and validated all six bounded repairs. The chapter now declares the prescribed-source and retained-history domains, distinguishes a single contribution from total acceleration, supplies the reduced first integral and quadrature, and keeps collision, energy, stability, and physical-realization claims open.
+
+### 2026-09-11 — Receiver Velocity and Work RVW-1–RVW-5 and ERVW-1 bounded repair
+
+Implemented and validated all six bounded repairs. The chapter now distinguishes fixed projections from turning-line derivatives, derives the causal-branch delay change, separates one-hit work from total kinetic change, and states the optional kinetic chart without claiming primitive energy closure. ORVW-1–ORVW-3 remain open.
+
+### 2026-09-11 — Like-Polarity Symmetric Repulsion R-1–R-6 and E-1 bounded repair
+
+Implemented and validated all seven bounded repairs. The chapter now supplies preparation history, exact root and weight definitions, self-hit boundaries, and a conditional symmetry derivation while retaining existence, continuation, stability, conservation, and physical-realization obligations O-1–O-4.
+
+### 2026-09-11 — Self-Energy and Regularization SE-1–SE-6 bounded repair
+
+Implemented and validated all six bounded repairs. The chapter now separates continuous emission from individual surfaces, strict-delay exclusion from endpoint regularity, Gaussian smoothing from spatial-core regularization, and self-work from stored energy. O-1–O-5 remain open scientific obligations.
+
+### 2026-09-12 — Self-interaction switch SIS-1–SIS-3 bounded repair
+
+Implemented and validated all three bounded repairs. The chapter now separates geometric root existence from regular acceleration admission, derives positive separation from strict delay, and defines repulsion relative to the emission position. SIS-O1–SIS-O3 remain open for singular continuation, complete dynamical realization, and stable-scale or extremum claims.
+
+### 2026-09-12 — Superposition and locality SL-1–SL-4 bounded repair
+
+Implemented and validated all four bounded repairs. The chapter now limits scalar superposition to compatible regular charts, supplies population and weight assumptions, and requires explicit omitted-contribution bounds for locality or truncation claims. Global scalar extension, physical screening, complete-history accuracy, and conservation remain open.
+
+### 2026-09-12 — Units and Constants UC-1–UC-7 bounded repair
+
+Implemented and validated all seven bounded repairs. The chapter now defines dimensional quantities and conversion conditions, limits coupling-scaling claims, separates smoothing from coincidence regularization and convergence, and qualifies self-hit, history-coverage, root-conditioning, direction, and assembly claims. OUC-1–OUC-4 remain open.
+
 ### 2026-09-10 — Causal Action Functional CAF-1–CAF-12
 
 Accepted, implemented, and validated all 12 findings. The work queue records the equations, counterexamples, preserved claim limits, and receipt.
