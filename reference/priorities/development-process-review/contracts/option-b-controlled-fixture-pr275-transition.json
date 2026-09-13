@@ -1,0 +1,13 @@
+{
+  "schema": "reviewed-current-source-transition/v1",
+  "predecessorSha256": "cfa322817bfb14967ec0740be60d58dfe49ecbad5b1700462a404c840374234a",
+  "reviewReference": "reference/priorities/development-process-review/analysis/pr275-live-test-reconciliation.md",
+  "profiles": [
+    {
+      "name": "controlled-fixture-records",
+      "manifestPath": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-sources.jsonld",
+      "sha256": "51a0af26c29326acd3b29a822a35c295c1e8faa1e43e6af4fc0314f524a77018",
+      "changes": []
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
-  "acceptedBaseline": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-accepted-b.json",
-  "acceptedBaselineSha256": "b20b41513ff1bc3ae7e09bfb43fd0e5a83b95d7adfacfac8d7aeecdbbb108b5c",
-  "transition": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-transition.json",
-  "transitionSha256": "fe4b199a9b944ae4fcbde480288c403160025d30638345b8ff6cf8cef5a29811"
+  "acceptedBaseline": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-pr275-accepted-b.json",
+  "acceptedBaselineSha256": "cfa322817bfb14967ec0740be60d58dfe49ecbad5b1700462a404c840374234a",
+  "transition": "reference/priorities/development-process-review/contracts/option-b-controlled-fixture-pr275-transition.json",
+  "transitionSha256": "1d8f234fad1ae838695dde80493290a80ce45458e1e4ad6432b10235da9c9cef"
 }
