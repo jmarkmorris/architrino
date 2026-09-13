@@ -1,0 +1,19 @@
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Foundational impact...
+[pr-validation] running Content Integrity...
+[pr-validation] running Animator runtime wiring...
+[pr-validation] running Option B two-chain trial (report-only)...
+[pr-validation] REPORT-ONLY pass: Option B two-chain trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+✔ publication validation refuses partially staged files before running checks (114.4585ms)
+✔ independent equality consumer accepts coherent indexed and working inputs (416.180375ms)
+✔ publication accepts matching executable and symlink index entries (288.169666ms)
+✔ publication preserves supported ignored runtime output during validation (266.0785ms)
+✔ validation children remove all eight inherited repository-scoped Git variables (226.471ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1402.304917

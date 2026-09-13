@@ -1,0 +1,105 @@
+{
+  "schema": "option-b-retained-test-graph-transfer/v1",
+  "originCommit": "c7a00b8116b24f6d70d081c24a503e0aba3366f4",
+  "authority": "operator-directed-graph-integration-of-unchanged-expectations",
+  "claimBoundary": "Payload bytes and original roles/values unchanged. Consumer modifications replace only direct JSON imports with admitted calls; every other source byte and assertion remains exact. No scientific renewal or operational refresh authority.",
+  "consumers": [
+    "tests/mermaid-markdown-runtime.test.js",
+    "tests/orthogonal-plane-weave-balance.test.js",
+    "tests/f5-independent-interpolation-enclosure.test.js",
+    "tests/coincident-midpoint-common-frequency-outer-radius-band-expansion.test.js",
+    "tests/coincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js",
+    "tests/coincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js",
+    "tests/coincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js",
+    "tests/coincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js",
+    "tests/coincident-axis-three-binary-streaming-reductions.test.js",
+    "tests/f6c-parent-refinement-batch-preparation.test.js",
+    "tests/borg-assembly-view-session.test.js",
+    "tests/f5-phase-varying-campaign-spec.test.js",
+    "tests/f6c-parent-emission-refinement-pilot.test.js"
+  ],
+  "originalBindings": [
+    {
+      "path": "tests/fixtures/option-b-retained-test-identities.json",
+      "sha256": "b2b073c666eefabe0fc8b229b502b999bde1ab9fb1cfae7a7e3e5156def719f0",
+      "incomingDigestHits": [
+        "./reference/priorities/development-process-review/evidence/option-b-remaining-binding-dispositions.md"
+      ]
+    },
+    {
+      "path": "tests/mermaid-markdown-runtime.test.js",
+      "sha256": "d6b02d26a9f362a447235ef601fab904741b3c3c382096a7353c95207aefe3f1",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/orthogonal-plane-weave-balance.test.js",
+      "sha256": "626f87aeb3245b3bcb409da46eb8bfc0535b64eba6df6c3363dedd42446b37f1",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/f5-independent-interpolation-enclosure.test.js",
+      "sha256": "782403c01acb17d4828bec4cba993ef1541c72efb33ab23971cdadda3c6bc228",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/coincident-midpoint-common-frequency-outer-radius-band-expansion.test.js",
+      "sha256": "020d45e0f8763d70f3bcfbd55cad017762a01140641383fd29add0fa6b735881",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/coincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js",
+      "sha256": "6d439d4bfeb4c3ddb7a4082085a3a314d6b212e19f5b68e3d8a0208fa1e6d4a4",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/coincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js",
+      "sha256": "04e1e6d5a5a3c6e6b752de3c15dd63c6270d05763995a0afad37a83252b01867",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/coincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js",
+      "sha256": "7cf99107cb4c80245da0fdf8c541e61e279d00531b240c702fbc78503861d04c",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/coincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js",
+      "sha256": "d63619d0e9778e751a59a16eda8c9bba1869a743b3a6761f8a4feeb78bfd85b6",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/coincident-axis-three-binary-streaming-reductions.test.js",
+      "sha256": "679649a238ac8ada8bfb8db2078be57ff92c141d8e0d04907c3a3327d75b2fea",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/f6c-parent-refinement-batch-preparation.test.js",
+      "sha256": "7589eff64e466b556e9e75ade39bb2a16506f7e9c90064351c48c572813279dd",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/borg-assembly-view-session.test.js",
+      "sha256": "a84e97c0d9c2f55a391fd0e9cd26ec038981af3379aefe6bfb05e1e2efa8dbab",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/f5-phase-varying-campaign-spec.test.js",
+      "sha256": "1e09683d3529ae1ca3c0e091f0850b2adb2380fd3d2d57abe70875eefa340c29",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/f6c-parent-emission-refinement-pilot.test.js",
+      "sha256": "795e14611dbd2f4339f5c4c018e53e9d0db722c588ecfae3fa52b1db609ffe4c",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "scripts/check-content-integrity.mjs",
+      "sha256": "26a514e4553630d9f170b506f0d577d380d03b93e647a11ee52b3ac388ba8680",
+      "incomingDigestHits": []
+    },
+    {
+      "path": "tests/content-integrity-reporting.test.js",
+      "sha256": "bc6238dd31e8982f9bb948bc7e756fbc3c703d768497594e5a4239ac515d23f7",
+      "incomingDigestHits": []
+    }
+  ]
+}

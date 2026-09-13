@@ -2395,7 +2395,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-de59930e803903fd)
 
-The Master EOM is a **second-order ODE** in $\mathbf X_i$, or equivalently a **first-order system** in $\mathsf Z_i$:
+The Master EOM is a **second-order history-dependent equation** in $\mathbf X_i$, or equivalently a **first-order delayed system** in $\mathsf Z_i$. The instantaneous vector alone is not the full evolution state; the acceleration also requires the admitted transmitter histories:
 
 $$
 \frac{d\mathsf Z_i}{dT} = \begin{pmatrix} \mathbf V_i(T) \\ \mathbf A_i(T) \end{pmatrix}

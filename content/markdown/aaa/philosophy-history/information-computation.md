@@ -12,7 +12,7 @@ The chapter's core discipline is carrier before code. Information can measure di
 
 This page is indexed by subjects rather than by biography. Related people-centered material remains in [major-thinkers.md](major-thinkers.md).
 
-The [architrino](../foundations/architrino.md) position begins from massless polarity carriers and their causal dynamics as primary; information and computation are derived descriptions of organized states, constraints, and update structure.
+The [architrino](../foundations/architrino.md) position begins from polarity carriers with no intrinsic mass property and their causal dynamics as primary; information and computation are derived descriptions of organized states, constraints, and update structure.
 
 At the software-modeling edge of that claim, it also interfaces with [Simulation, Modeling, and Computability Limits](#simulation-modeling-and-computability-limits).
 
@@ -30,7 +30,7 @@ This subject matters because it looks, at first glance, like a route out of olde
 
 The historical pressure behind informational ontology came from several directions at once. Statistical mechanics showed that thermodynamic order could be recast in terms of state counting. Communication theory then formalized information as a measure of distinguishability and channel capacity. Quantum theory added a further incentive by making state preparation, entanglement, and measurement outcomes seem deeply tied to limits on knowledge, encoding, and transfer. The core question therefore became: if so much of modern physics can be formulated in terms of state spaces, correlations, and informational bounds, should information itself be treated as the true substrate?
 
-The central claim was attractive because it seemed to solve multiple problems at once. It weakened crude material pictures, handled nonclassical correlations elegantly, and opened a common language across physics and computation. Major thinkers and programs in this area include Claude Shannon in the formal theory of communication, John Archibald Wheeler in "it from bit," black-hole information discourse, quantum-information programs, and broader relational or structural-realist trends. Each contributed to the intuition that information is not only something observers extract from the world, but something the world fundamentally is.
+The central claim was attractive because it seemed to solve multiple problems at once. It weakened crude material pictures, handled nonclassical correlations elegantly, and opened a common language across physics and computation. Major thinkers and programs in this area include Claude Shannon in the formal theory of communication, John Archibald Wheeler in "it from bit," black-hole information discourse, quantum-information programs, and broader relational or structural-realist trends. These contributions supplied tools and motivations for later ontological interpretations; contribution to communication mathematics does not itself imply endorsement of informational ontology.
 
 ### Core Commitments
 
@@ -38,9 +38,9 @@ The primary ontological commitment of informational ontology is that distinction
 
 What this subject gets right is substantial. Physics really does depend on distinguishable configuration, channel limitation, compression, correlation, and entropy accounting. Many observables are inseparable from informational structure because measurement itself compares alternatives. The language of information also disciplines loose metaphysical talk by forcing questions such as: information of what, encoded where, recoverable by which interaction, and degraded under which dynamics? These are genuine strengths, not rhetorical ones.
 
-The strongest technical version of that strength is the coding-theorem reading of Shannon entropy. Once a source distribution, coding alphabet, and decoding rule are declared, entropy gives the lower bound on average code length, and cross-entropy measures the cost of using the wrong predictive model. That is why next-symbol prediction, text compression, and modern cross-entropy training objectives are mathematically connected. The result is a powerful effective-language and model-assessment tool, not evidence that symbols or compression are the substrate of the world.
+The strongest technical version of that strength is the coding-theorem reading of [Shannon entropy](https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf). For a normalized discrete source and error-free uniquely decodable codes over an alphabet of size $D\ge2$, entropy in base $D$ bounds average length in code symbols. Finite prefix codes generally have integer-length overhead; appropriate block coding approaches the entropy rate under stated source assumptions. Cross-entropy is ideal expected log loss under a declared model, not automatically the exact length of a finite prefix code. With model support containing the source support, its excess over entropy is relative entropy. That is why next-symbol prediction, text compression, and modern cross-entropy training objectives are mathematically connected. The result is a powerful effective-language and model-assessment tool, not evidence that symbols or compression are the substrate of the world.
 
-Quantum-information entropy sharpens the same distinction. A reduced density matrix, von Neumann entropy, or entanglement entropy becomes meaningful only after a factorization, access region, and complement have been declared. The fact that a subsystem can look mixed while the complete comparison state remains closed is a strong access-limit diagnostic. It is not by itself evidence that information has outranked the physical carrier, path history, apparatus record, or medium response.
+Quantum-information entropy sharpens the same distinction. Von Neumann entropy requires a normalized state and a finite-entropy or regulated domain. Reduced-state and entanglement entropy additionally require a subsystem algebra or admissible factorization/access region; gauge constraints can complicate that split. A pure joint state can have a mixed reduced state, but a closed joint system need not be pure. Reduced entropy measures entanglement for a pure bipartite state; for a mixed joint state it need not be entanglement alone. It is not by itself evidence that information has outranked the physical carrier, path history, apparatus record, or medium response.
 
 The strongest modern information-first pressure comes from quantum-reconstruction and it-from-qubit programs, not from the bare slogan that reality is made of bits. Reconstruction programs ask how much of quantum theory follows from operational constraints on preparation, composition, distinguishability, purification, and reversible transformation. It-from-qubit programs add the stronger suggestion that geometry, connectivity, or gravitational behavior may be reconstructed from entanglement and quantum error-correcting structure. These results matter because they can show that a large part of the observer-level formalism follows from compact information-theoretic axioms.
 
@@ -64,9 +64,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4decc92d0d110ef4)
 
-where $\mathcal{O}_{\mathrm{sub}}$ is a unique substrate ontology. Likewise, an entanglement-to-geometry map can be a required effective reconstruction without making qubits ontologically prior to the physical system whose partitions, interactions, and records define the entanglement. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is therefore constructive: derive the operational axioms and entanglement structure from assembly dynamics and apparatus access, or fail against the same reconstruction constraints.
+where $\mathcal{O}_{\mathrm{sub}}$ is a unique substrate ontology. Likewise, an entanglement-to-geometry map can be a conditional effective reconstruction without making qubits ontologically prior to the physical system whose partitions, interactions, and records define the entanglement. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is therefore constructive: derive the operational axioms and entanglement structure from assembly dynamics and apparatus access, or fail against the same reconstruction constraints.
 
-Black-hole entropy and Ryu-Takayanagi-type relations make this pressure quantitative. An area-scaled entropy and a boundary-entanglement quantity that reconstructs a bulk extremal area are nontrivial effective constraints on any deeper account of horizons, partitions, and accessible records. They do not establish that spacetime is literally made of information. For $\mathbb{A}\mathbb{A}\mathbb{A}$ they are high-value consistency targets: a successful Noether sea and assembly account must explain why the observer-level entropy and geometry obey those relations in their validated domains without importing boundary qubits, an anti-de Sitter bulk, or an information substrate as primitives.
+Black-hole entropy and holographic entanglement relations supply distinct comparison pressures. The [Ryu–Takayanagi proposal](https://arxiv.org/abs/hep-th/0603001) relates boundary entanglement to a bulk minimal area in its static semiclassical AdS/CFT setting; dynamical extremal surfaces, quantum corrections and gauge/regulator choices need their own formulations. It is not an experimentally established universal formula for arbitrary spacetime or every quantum system. Such relations constrain a candidate claiming their holographic domain, but do not become mandatory substrate premises or prove that spacetime consists of information. The horizon-entropy recovery burden must likewise state its physical regime independently.
 
 ### Internal Tensions
 
@@ -90,7 +90,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-63d748be045676e8)
 
-and a stated residual $R_{\mathrm{fail}}$ that could reject that map. In observational-equivalence language, if distinct candidate substrate states $S$ and $S'$ remain indistinguishable under the encoding chain,
+and a stated residual $R_{\mathrm{fail}}$ that could reject that map. In observational-equivalence language, distinct candidate substrate states $S$ and $S'$ may remain indistinguishable under the encoding chain:
 
 $$
 \|E(S)-E(S')\|\le\varepsilon
@@ -98,7 +98,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3f3e4a8982a48238)
 
-then the available information has not selected one ontology. The prediction may be useful, but it has not become the substance of the world.
+with $E$ a declared common observable encoding and a norm and tolerance in matching units on the tested records. A single pair of indistinguishable states does not establish equivalence of whole theories; selection fails only to the extent that the admitted competing predictions remain indistinguishable on the accessible domain. The prediction may be useful, but it has not become the substance of the world.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -130,7 +130,7 @@ The durable insight is that state discrimination, memory reset, and error suppre
 
 The primary commitment of this subject, in its careful form, is implementation dependence. A logical operation is a label on a class of physical processes, not a process by itself. The relevant physical question is what work, heat, boundary exchange, and fluctuation suppression are required for a specific device to complete the operation with a declared probability of success.
 
-For a declared operation step $s$, let $\Omega_s$ be the accessible pre-operation state region, let $\Omega_s^{\mathrm{ok}}$ be the subset whose trajectories complete the intended operation inside the record window, and let $\mu_{\Theta_s}$ be the same physical measure used by the apparatus, boundary, and thermodynamic ledger. The completion probability is then
+For a declared operation step $s$, let $\Omega_s$ be the accessible pre-operation state region, let $\Omega_s^{\mathrm{ok}}$ be the subset whose trajectories complete the intended operation inside the record window, and let $\mu_{\Theta_s}$ be the same physical measure used by the apparatus, boundary, and thermodynamic ledger. Assume measurable sets with $0<\mu_{\Theta_s}(\Omega_s)<\infty$ and $\Omega_s^{\mathrm{ok}}\subseteq\Omega_s$. The completion probability is then
 
 $$
 p_s =
@@ -140,37 +140,34 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e1a03ae69579a437)
 
-A physical lower-bound claim must be stated against that record, for example as a device-level entropy accounting condition
+This subset probability alone gives no thermodynamic lower bound. As a distinct effective comparison, take a finite-dimensional target and reservoir initially uncorrelated, an initially Gibbs reservoir at temperature $T_R>0$ with fixed Hamiltonian, and joint unitary evolution. Include all non-reservoir apparatus degrees of freedom in the target, or justify their cyclic restoration and correlation accounting. Writing $Q_{\mathrm{env},s}$ for energy deposited in the reservoir and $S$ for physical von Neumann entropy with the factor $k_B$, the [Landauer comparison](https://arxiv.org/html/1306.4352v3) is
 
 $$
-\Delta S_{\mathrm{env},s}
-+
-\Delta S_{\mathrm{target},s}
-+
-\Delta S_{\mathrm{boundary},s}
+\frac{Q_{\mathrm{env},s}}{T_R}
 \ge
-k_B\log(1/p_s)-\epsilon_s
+S_{\mathrm{target},s}^{\mathrm{in}}-S_{\mathrm{target},s}^{\mathrm{out}}
+= -\Delta S_{\mathrm{target},s}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3da45544db415a12)
 
-The symbols do not define a new law. They express the burden: the same record that defines success must also supply the entropy, work, heat, and boundary terms used to claim a cost.
+This inequality follows from nonnegative final mutual information and reservoir relative entropy under those assumptions; it is an effective quantum-statistical result to be recovered, not a substrate law. An initially unbiased bit approaching a definite state in the ideal erasure limit has entropy decrease approaching $k_B\ln2$, giving the familiar reservoir-heat limit. Exact pure reset need not be attainable with a finite full-rank thermal reservoir. In an ideal reversible large-reservoir limit, target entropy decrease cancels the reservoir entropy gain and total entropy production can approach zero. For a finite reservoir $Q_{\mathrm{env},s}/T_R$ is not generally its actual entropy change. Failure outcomes must be included in the final ensemble; success-only postselection does not license discarding their costs. The probability $p_s$ enters a cost claim only through an additional physical relation between preparation, success/failure and the resulting states.
 
 ### Internal Tensions
 
-What this subject gets right is that reliable symbolic update has physical cost. The cost may appear as heat dumped to an environment, work needed to confine a state, apparatus dissipation, error-correction overhead, or boundary exchange. In all cases, the cost belongs to the physical channel by which the distinction is maintained and changed.
+What this subject gets right is that reliable symbolic update requires a physical resource account; it does not imply strictly positive dissipation for every step. The cost may appear as heat dumped to an environment, work needed to confine a state, apparatus dissipation, error-correction overhead, or boundary exchange. In all cases, the cost belongs to the physical channel by which the distinction is maintained and changed.
 
 What it gets wrong or overstates, when careless, is the inference from logical irreversibility to a universal device-independent cost. The Shannon expression for uncertainty over symbols is not automatically a Clausius, Boltzmann, Gibbs, or device entropy. A Maxwell-demon analysis that counts the target molecule while idealizing away the partition, actuator, sensor, memory, and suppressed fluctuations has not closed the thermodynamic ledger. It has selected one part of the physical record and treated the rest as free.
 
-The demon case has a useful two-way split. If the device never resets, it consumes a low-entropy blank-memory record and turns that record into a pressure, temperature, or sorting resource. No law has been escaped; one resource has been converted into another. If the device must operate cyclically, then the memory, actuator, partition, target system, and environment must all return to the same physical record. In classical comparison language, a cyclic many-to-one sorting map would shrink phase-space volume; in quantum comparison language, it would compress a broad Hilbert-space subspace into a smaller one under isolated evolution. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the same mistake is a split-record error: the target record is narrowed while the memory and boundary costs are silently excluded.
+The demon case has a useful two-way split. If the device never resets, it consumes a low-entropy blank-memory record and turns that record into a pressure, temperature, or sorting resource. No law has been escaped; one resource has been converted into another. If the device must operate cyclically, the device's reusable working degrees of freedom must return to their specified states and correlations. The target, work store and reservoirs may change; those changes are the output and resource account, not a requirement that the entire environment reset for free. In classical comparison language, a cyclic many-to-one sorting map would shrink phase-space volume; in quantum comparison language, it would compress a broad Hilbert-space subspace into a smaller one under isolated evolution. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the same mistake is a split-record error: the target record is narrowed while the memory and boundary costs are silently excluded.
 
-Bennett's result prevents the opposite overstatement. A reversible logical circuit may approach arbitrarily low dissipation only in an idealized slow, isolated, and error-controlled limit; that does not make a finite-time physical computer costless. Clocking, barrier control, error suppression, readout, and eventual reuse remain device-level ledger terms. Landauer identifies the pressure associated with many-to-one logical reset, Szilard exposes the thermodynamic value of a recorded distinction, and Bennett shows why neither result licenses a universal cost for every logical step.
+Bennett's result prevents the opposite overstatement. A reversible logical circuit may approach arbitrarily low dissipation under a suitable idealized reversible implementation, often approached quasistatically with controlled errors; that does not make a finite-time physical computer costless. Clocking, barrier control, error suppression, readout, and eventual reuse remain device-level ledger terms. Landauer identifies the pressure associated with many-to-one logical reset, Szilard exposes the thermodynamic value of a recorded distinction, and Bennett shows why neither result licenses a universal cost for every logical step.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **aligned as a constraint and corrective as ontology**. The framework should preserve the thermodynamic pressure: records, measurement, memory reset, and computation require physical work and entropy accounting. It should not promote bit logic, Shannon entropy, or computational description into substrate ontology.
 
-The native test is same-record closure. If a computation or measurement story uses one ensemble for logical-state probabilities, a second ensemble for heat, and a third apparatus story for completion reliability, it has hidden a split record. The valid target is one physical record that tracks the implemented state distinction, the basin in which the operation completes, apparatus fluctuations, boundary exchange, and heat/work accounting together.
+The native test is same-record closure. If a computation or measurement story uses unrelated ensembles for logical-state probabilities, heat and completion reliability without a declared common preparation and pushforward maps, it has hidden a split record. Different observable distributions obtained from that one preparation need not be identical. The valid target is one physical record that tracks the implemented state distinction, the basin in which the operation completes, apparatus fluctuations, boundary exchange, and heat/work accounting together.
 
 ### What Survives
 
@@ -206,7 +203,7 @@ A second tension concerns semantic inflation. Once every lawful process is calle
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **partially aligned but mislocated when made fundamental**. $\mathbb{A}\mathbb{A}\mathbb{A}$ is committed to explicit dynamics, finite update structure, and nontrivial path-history dependence. In that sense it is friendly to computational description. One can expect simulations, discrete approximations, and rule-based coarse-grainings to be central tools in its development. But the theory does not identify the world with computation. It identifies the world with physically real entities whose interactions can often be computed. A simulation may store path histories or evaluate wake intersections from source trajectories; that computational representation should not be confused with a space-filling grid ontology.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **partially aligned but mislocated when made fundamental**. $\mathbb{A}\mathbb{A}\mathbb{A}$ is committed to explicit delayed dynamics and nontrivial path-history dependence; a finite exact update representation is not established. In that sense it is friendly to computational description. One can expect simulations, discrete approximations, and rule-based coarse-grainings to be central tools in its development. But the theory does not identify the world with computation. It identifies the world with physically real entities whose interactions can often be computed. A simulation may store path histories or evaluate wake intersections from source trajectories; that computational representation should not be confused with a space-filling grid ontology.
 
 The strongest overlap with assembly-theory language is state-dependent transition. A durable assembly is not merely a label in a catalogue of possible states. Its current retained path history, shielding, Noether sea context, and internal branch variables change which later transitions are admissible. A reduced transition map can be written schematically as
 $$
@@ -219,7 +216,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e6f87b468bf6ec1f)
 
-where $\mathcal{H}_{W}(S_t)$ is the retained path-history window and $c$ is the surrounding assembly or environmental context. This is computable in principle, but its meaning is physical: the assembly's realized structure constrains the future basin geometry. That is why life-like and agency-like discussions should not reduce persistence to an information count alone.
+where $\mathcal{H}_{W}(S_t)$ is the retained path-history window and $c$ is the surrounding assembly or environmental context. This notation is a conditional reduced evolution target, not a proof of computability or state sufficiency. It requires compatible admitted histories, existence/uniqueness on the window and controlled omitted-memory error; executable approximation additionally requires an effective representation, root algorithm and error bounds. Its intended meaning is physical: the assembly's realized structure constrains the future basin geometry. That is why life-like and agency-like discussions should not reduce persistence to an information count alone.
 
 Its transition relevance is high because computational ontology keeps attention on update law rather than on static formal summary. That is useful during a replacement period, especially when one is trying to derive effective continuum behavior from lower-level organization. Still, the transition use is conditional. Computation should guide model construction, not terminate ontological analysis. The critical distinction is between a process that is computable and a process whose essence is exhausted by being called computation.
 
@@ -233,7 +230,7 @@ The long-term relevance of this subject is as a **modeling language and methodol
 
 ### Overview
 
-**Subject:** Digital Physics and Discrete Substrate Programs. **Short Name:** Digital Physics. The core question is whether continuum mathematics is only an approximation to a more basic discrete microstructure. The central claim is that smooth fields, metrics, and differential equations may be emergent closures over finite units, graph relations, local update rules, or combinatorial histories. This makes the subject especially relevant to $\mathbb{A}\mathbb{A}\mathbb{A}$ because it opposes the reflex that continuity must be fundamental.
+**Subject:** Digital Physics and Discrete Substrate Programs. **Short Name:** Digital Physics. The core question is whether continuum mathematics is only an approximation to a more basic discrete microstructure. The central claim is that smooth fields, metrics, and differential equations may be emergent closures over finite units, graph relations, local update rules, or combinatorial histories. This makes the subject especially relevant to $\mathbb{A}\mathbb{A}\mathbb{A}$ as a comparison with its own placement of continuous Euclidean space and absolute time alongside individually identified architrinos. Discrete entities or records do not imply discrete coordinates or time.
 
 The phrase covers several different projects that should not be collapsed. Some programs are openly digital and treat reality as bit-like. Others are combinatorial, graph-based, or causally discrete without insisting on literal digitization. Some are serious physical research programs with careful mathematical constraints. Others are speculative metaphors. The common theme is resistance to continuum fundamentalism, not agreement on what replaces it.
 
@@ -253,11 +250,11 @@ What this subject gets right is decisive. It keeps open the possibility that fin
 
 The main overstatement arises when discreteness is too quickly equated with digitality. A discrete substrate need not behave like a register of symbolic bits, and it need not inherit the semantic baggage of computer architecture. Likewise, a graph is not yet a physical ontology unless one can say what its nodes and links are, how delayed influence propagates through them, and why effective symmetries arise. The subject therefore risks replacing one abstraction with another if its combinatorial objects are left physically underinterpreted.
 
-The same caution applies to deterministic cellular-automaton programs. A reversible local update rule can be a useful comparison model because it forces the theory to state a microstate, an update law, and a recovery burden. It does not follow that the physical substrate is a literal grid, a register, or an integer-only state table. To become physics rather than representation, such a model must identify the entities being updated, the Noether sea through which influence propagates, the conservation ledgers it preserves, and the route by which quantum statistics, Standard Model parameters, GR-like behavior, and strong-field thermodynamics are recovered.
+The same caution applies to deterministic cellular-automaton programs. A reversible local update rule can be a useful comparison model because it forces the theory to state a microstate, an update law, and a recovery burden. It does not follow that the physical substrate is a literal grid, a register, or an integer-only state table. To become physics rather than representation, such a model must identify the entities being updated, its own physical propagation mechanism or causal update structure, the conservation ledgers it preserves, and the route by which quantum statistics, Standard Model parameters, GR-like behavior, and strong-field thermodynamics are recovered.
 
-This is the right place to absorb 't Hooft's strongest discrete-substrate pressure. The claim that real-number continua may be effective rather than fundamental is a useful warning against treating differential form as ontology. The excess is the further inference that only integer cellular-automaton states can be physical. $\mathbb{A}\mathbb{A}\mathbb{A}$ can accept continuum suspicion while choosing a different substrate: architrinos in a Euclidean void, causal wakes at finite speed, and Noether sea organization whose observer-level summaries may be continuous even when assembly records are discrete.
+This is the right place to absorb 't Hooft's strongest discrete-substrate pressure. The claim that real-number continua may be effective rather than fundamental is a useful warning against treating differential form as ontology. The excess is the further inference that only integer cellular-automaton states can be physical. $\mathbb{A}\mathbb{A}\mathbb{A}$ can accept continuum suspicion while choosing a different substrate: architrinos in a Euclidean void, causal wakes at finite speed, and Noether sea organization. Its spatial coordinates and absolute time are already continuous primitives; finite labels or assembly counts do not make their dynamics digital.
 
-A discrete or digital comparison program earns transition relevance only if its recovery residuals close as a vector, not one observable at a time:
+A discrete or digital program claiming a full replacement must meet its relevant recovery obligations together. Bounded programs can have methodological value before supplying that replacement. A schematic simultaneous diagnostic is:
 
 $$
 \mathcal{R}_{\mathrm{disc}}
@@ -274,7 +271,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-16511f1a0035dc31)
 
-Here the terms represent Born-rule statistics, Standard Model parameter and scattering recovery, relativistic/gravitational benchmarks, black-hole thermodynamic or information constraints, and no-signaling behavior. This residual is not a new gate; it states why continuum criticism alone is insufficient. The proposed substrate must recover the mature effective stack.
+Here the terms represent Born-rule statistics, Standard Model parameter and scattering recovery, relativistic/gravitational benchmarks, black-hole thermodynamic or information constraints, and no-signaling behavior. Each retained term must be a nonnegative defect divided by its own positive acceptance scale in matching units, giving a dimensionless ratio, with a stated domain, uncertainty, shared model/calibration and independent benchmark. Missing rows remain untested, not zero. Black-hole and information rows require declared theoretical or observational scope; optional holographic identities cannot be inserted as universally established data. A maximum at most one passes only those specified comparisons, not full theory recovery.
 
 The audit applies to $\mathbb{A}\mathbb{A}\mathbb{A}$ itself without exemption:
 
@@ -292,19 +289,19 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-22eea2c35a2f52da)
 
-If any normalized row exceeds its declared tolerance, the fact that the substrate uses finite entities, finite causal speed, or discrete assembly records supplies no compensating evidence. The discrete critique succeeds only when the same proposed ontology closes the effective stack more tightly than the continuum description it aims to replace.
+If any normalized row exceeds its declared tolerance, the fact that the substrate uses finite entities, finite causal speed, or discrete assembly records supplies no compensating evidence. A full replacement claim needs independent recovery evidence; finite rows do not establish a theorem over all regimes.
 
 Another tension concerns empirical recovery. Many discrete programs excel at conceptual resistance to the continuum, but fewer provide a compelling, fully worked derivation of the observed low-energy world. What they get wrong or overstate is sometimes not the discrete hypothesis itself, but the ease with which metric behavior, quantum statistics, relativistic invariance, and cosmological structure are supposed to descend from a chosen microscopic scaffold. Discreteness is a direction of repair, not a completed ontology.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **partially aligned**. These programs are among the closest neighboring spaces because they reject continuum finality and demand a derivation of large-scale closure from lower-level structure. That is a major point of agreement. The divergence lies in the fact that $\mathbb{A}\mathbb{A}\mathbb{A}$ is narrower and more physical in what it asks next: what entities exist, what delayed interactions couple them, what assemblies they form, and how the effective layers are generated from that organization.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **partially aligned**. These programs are among the closest neighboring spaces because they question inherited continuum-field finality and demand large-scale recovery from lower-level structure, although the present theory retains a continuous spatial and temporal substrate. That is a major point of agreement. The divergence lies in the fact that $\mathbb{A}\mathbb{A}\mathbb{A}$ is narrower and more physical in what it asks next: what entities exist, what delayed interactions couple them, what assemblies they form, and how the effective layers are generated from that organization.
 
 Their transition relevance is very high. During theory transition, digital and discrete substrate programs provide comparative pressure, mathematical techniques, and cautionary examples. They remind the field that smooth success need not imply smooth fundamentality. At the same time, they are only partial guides, because many remain underdetermined at the level of concrete ontology. $\mathbb{A}\mathbb{A}\mathbb{A}$ can learn from them without inheriting their more abstract identifications of structure with substance.
 
 ### What Survives
 
-The long-term relevance of this subject is as a **source of ontological pressure and constructive method**. What survives is the refusal to accept continuum excess as automatically real, along with the demand that smooth theories be recovered from lower-level finite organization when possible. Also surviving are specific mathematical tools for discrete causal structure and emergent geometry. What should not survive is the premature equation of physical discreteness with literal digital symbolism. The durable lesson is that the continuum must earn its place as an effective closure, not be granted it as a primitive article of faith.
+The long-term relevance of this subject is as a **source of ontological pressure and constructive method**. What survives is the refusal to accept continuum excess as automatically real, along with the demand that smooth theories be recovered from lower-level finite organization when possible. Also surviving are specific mathematical tools for discrete causal structure and emergent geometry. What should not survive is the premature equation of physical discreteness with literal digital symbolism. The durable lesson is that any proposed continuous or discrete structure needs a declared ontological role and evidence for the effective behavior claimed from it.
 
 ---
 

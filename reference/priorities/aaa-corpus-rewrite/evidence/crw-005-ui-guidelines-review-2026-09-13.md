@@ -1,0 +1,12 @@
+# CRW-005 UI Guidelines review — 2026-09-13
+
+Full 164-line coordinator review of [UI Guidelines](../../../../content/markdown/aaa/archie/ui-guidelines.md). Two internal/dependent-policy inconsistencies repaired without changing their controlling policies or runtime.
+
+- **UI-01, medium, repaired:** the color row permitted blue/cyan interface accents while explicitly deferring palette ownership to Branding and Marketing. That owner's Palette Discipline prohibits cyan and other non-palette ordinary interface states. The row now follows its named authority and retains red/blue polarity and path/wake meanings. This closes the document propagation item BM-01 from the [Branding receipt](crw-005-branding-and-marketing-review-2026-09-13.md); it does not certify application recoloring.
+- **UI-02, medium, repaired:** the heading-scale row told contributors to hide the first heading unconditionally, contradicting the dedicated duplicate-title policy earlier in the same guide. It now repeats the same condition: suppress only when chrome already displays the title. The existing implementation-drift row remains: `style.css` lines 795–797 still hides the first heading unconditionally. No runtime change is part of this disposition.
+
+The full source and relevant Branding palette paragraphs were read. Scoped status was empty before editing. Final source SHA-256 by `shasum -a 256`: `f97d7fb6e759077d8f37e9f587d54b6ab6f9143297eb5d3fb23ab0b260219025`. Scoped `git diff --check HEAD` passed. All headings and guide link targets are preserved.
+
+Direct comparison with `ui-tokens.css` lines 2–8 confirms the seven named typography values. The panel-local action and layout descriptions agree with the inspected DOM and handlers recorded in the [Navigation receipt](crw-005-navigation-and-controls-review-2026-09-13.md). The remaining preference rows are normative; their mismatch column explicitly disclaims exhaustive audit. No full accessibility, browser, breakpoint, contrast, migration or app-conformance claim follows. The unchanged mismatch entries remain recorded obligations, not errors silently declared resolved.
+
+The falsifier for either correction is a changed controlling palette or title policy. This pass resolves duplicated guidance, leaves implementation work with its runtime owners, and neither chooses blank preferences nor adds new policy. Joined content validation is recorded separately.

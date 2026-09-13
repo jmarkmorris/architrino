@@ -1,0 +1,117 @@
+commit d5266579343e9395b3e2aaea9dc9a992cb0f8637
+Author:     J Mark Morris <architrino@gmail.com>
+AuthorDate: Sun Sep 6 14:45:37 2026 -0400
+Commit:     J Mark Morris <architrino@gmail.com>
+CommitDate: Sun Sep 6 14:45:37 2026 -0400
+
+    Update EOM root pilot references and Python environment guidance
+
+diff --git a/scripts/eom/prepare-f6c-refined-acceleration.py b/scripts/eom/prepare-f6c-refined-acceleration.py
+index e4def8841..4ac446474 100644
+--- a/scripts/eom/prepare-f6c-refined-acceleration.py
++++ b/scripts/eom/prepare-f6c-refined-acceleration.py
+@@ -118,10 +118,10 @@ LANE='.local-data/braid-analysis/f6c-refined-acceleration-20260827'
+ OPERATIONS=('scripts/eom/run-f6c-refined-acceleration-pilot.mjs',
+  'scripts/eom/launch-f6c-refined-acceleration-pilot.mjs',
+  'tests/f6c-refined-acceleration-pilot.test.js','tests/f6c-refined-acceleration-pilot-process.test.js',
+- 'scripts/eom/launch-prescribed-response-pilot.mjs','scripts/eom/launch-abc-enclosed-root-pilot.mjs',
++ 'scripts/eom/launch-prescribed-response-pilot.mjs','scripts/eom/launch-subfield-circular-root-pilot.mjs',
+  '/bin/ps','/usr/bin/memory_pressure')
+ OP_PINS={'scripts/eom/launch-prescribed-response-pilot.mjs':'a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9',
+- 'scripts/eom/launch-abc-enclosed-root-pilot.mjs':'5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa',
++ 'scripts/eom/launch-subfield-circular-root-pilot.mjs':'cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48',
+  '/usr/bin/memory_pressure':'a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56'}
+ PLAN_KEYS=('schema','scope',*NAMED,'runtimeBindings','operationalBindings','limits','priorRefinementClosure')
+ CANDIDATE_KEYS=tuple('schema scope status accepted launchPlan consumer declaration verifier sourceBindings ancestryBindings refinementBindings runtimeBindings operationalBindings priorRefinementClosure projection ranges census claims publicationRequires'.split())
+@@ -714,7 +714,7 @@ def authenticate_observations(admission,logs):
+     samples=records(logs['resourceLog'],955,role='resourceLog')
+     hosts=[x for x in launcher if x.get('kind')=='host-resource']
+     beats=[x for x in launcher if x.get('kind')=='f6c-emission-refinement-pilot-heartbeat']
+-    gates=[x for x in launcher if x.get('schema')=='braid-program/abc-pilot-outer-heartbeat.v1']
++    gates=[x for x in launcher if x.get('schema')=='braid-program/subfield-circular-pilot-outer-heartbeat.v1']
+     require((len(hosts),len(beats),len(gates))==(20,15,14),'prior log census')
+     def number(value):
+         require(type(value) in (int,Decimal),'exact metadata number')
+diff --git a/scripts/eom/run-f6c-refined-acceleration-pilot.mjs b/scripts/eom/run-f6c-refined-acceleration-pilot.mjs
+index 5af79a10f..25318d87c 100644
+--- a/scripts/eom/run-f6c-refined-acceleration-pilot.mjs
++++ b/scripts/eom/run-f6c-refined-acceleration-pilot.mjs
+@@ -16,7 +16,7 @@ export const LAUNCHER='scripts/eom/launch-f6c-refined-acceleration-pilot.mjs';
+ export const TESTS='tests/f6c-refined-acceleration-pilot.test.js';
+ export const PROCESS_TESTS='tests/f6c-refined-acceleration-pilot-process.test.js';
+ export const HELPERS='scripts/eom/launch-prescribed-response-pilot.mjs';
+-export const OUTER='scripts/eom/launch-abc-enclosed-root-pilot.mjs';
++export const OUTER='scripts/eom/launch-subfield-circular-root-pilot.mjs';
+ export const CONSUMER='scripts/eom/prepare-f6c-refined-acceleration.py';
+ export const CONSUMER_TESTS='tests/test_f6c_refined_acceleration_preparation.py';
+ export const DECLARATION='reference/priorities/braid-program/evidence/2026-08-27-f6c-refined-cover-acceleration-projection.md';
+@@ -92,7 +92,7 @@ export const PINS=Object.freeze({...Object.fromEntries([...FIXED,...REFINED,...P
+  [NAMED.comparisonCoreControls]:'3fb6eabd03a56b982f2601f11b535c60208f03df519e41ea29d4ba018a0e531e',
+  [NAMED.rangeComparison]:'cc26f5a45d0e09a472e3066d0d62ae8192492a7c3e0ab18a3658781a0274b299',
+  [NAMED.rangeComparisonControls]:'be741dccccd90c349849b19dc15df1acd4ea5752ec6f8a9e98e7ae14013c52c6',
+- [OUTER]:'5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa',
++ [OUTER]:'cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48',
+  [HELPERS]:'a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9',
+  [CHECKER]:CHECKER_SHA,[CHECKER_TESTS]:CHECKER_TESTS_SHA,
+  '/usr/bin/memory_pressure':'a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56'});
+diff --git a/tests/f6c-cached-root-cover-pilot-launcher.test.js b/tests/f6c-cached-root-cover-pilot-launcher.test.js
+index df55f202d..239958a54 100644
+--- a/tests/f6c-cached-root-cover-pilot-launcher.test.js
++++ b/tests/f6c-cached-root-cover-pilot-launcher.test.js
+@@ -10,7 +10,7 @@ import { PassThrough, Writable } from "node:stream";
+ import { execFileSync } from "node:child_process";
+ import * as R from "../scripts/eom/run-f6c-cached-root-cover-pilot.mjs";
+ import * as L from "../scripts/eom/launch-f6c-cached-root-cover-pilot.mjs";
+-import { currentOwnedGroup, descendantRecords } from "../scripts/eom/launch-abc-enclosed-root-pilot.mjs";
++import { currentOwnedGroup, descendantRecords } from "../scripts/eom/launch-subfield-circular-root-pilot.mjs";
+ const root=process.cwd(),digest=x=>createHash("sha256").update(x).digest("hex");
+ const temp=()=>mkdtempSync(path.join(tmpdir(),"f6c-pilot-control-"));
+ const binding=(p,h="1".repeat(64))=>({path:p,sha256:h,bytes:1});
+@@ -303,7 +303,7 @@ const CACHED_HASH_REPLACEMENTS=[
+ ];
+ const CACHED_EXTRA_PINS="  \"tests/test_eom_continuous_reception_roots_cached.py\": \"a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md\": \"765e6663cdd60323f84b9e1af52ba1399345322eb747727f2a0898b4dd0fd079\",\n  \"scripts/eom/oracle/continuous_reception_roots.py\": \"f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c\",\n  \"scripts/eom/verify-f6c-continuous-reception-root-cover.py\": \"2d25103e0fb6ab584485b7954465afe0fa5de556b3a7e111c56d20156b7011fd\",\n  \"tests/test_f6c_continuous_reception_root_cover.py\": \"5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md\": \"798858e87058b5a1a2d478c89edad3154a2e4993f3c14cab089b4aabf3434ee3\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md\": \"46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef\",\n";
+ const CACHED_EXPECTED_PINS={
+-  "scripts/eom/launch-abc-enclosed-root-pilot.mjs": "5aa154b1579909cc63f01d81023e2e1412c2a0bb277663d9e1cd118999795baa",
++  "scripts/eom/launch-subfield-circular-root-pilot.mjs": "cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48",
+   "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py": "af53f5af2f9dd7eda4869af2a7533f869f4e3866003c90bf9a8487b2e5636386",
+   "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py": "19c57e9b638b0beb866c86b061b2325f9567add2a85608f0c42ef1f7612d9132",
+   "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md": "36b72681c116cedf1803cc89ead8b48a7d9604bae7f9bffd7b0f95b33c3bb9b4",
+diff --git a/tests/f6c-cached-root-cover-pilot-process.test.js b/tests/f6c-cached-root-cover-pilot-process.test.js
+index 731e59b26..4b69ac2a5 100644
+--- a/tests/f6c-cached-root-cover-pilot-process.test.js
++++ b/tests/f6c-cached-root-cover-pilot-process.test.js
+@@ -10,7 +10,7 @@ import { tmpdir } from "node:os";
+ import path from "node:path";
+ import { pathToFileURL } from "node:url";
+ const root=process.cwd(),digest=b=>createHash("sha256").update(b).digest("hex");
+-const outer=readFileSync("scripts/eom/launch-abc-enclosed-root-pilot.mjs");
++const outer=readFileSync("scripts/eom/launch-subfield-circular-root-pilot.mjs");
+ const self=readFileSync("scripts/eom/launch-f6c-cached-root-cover-pilot.mjs");
+ const entryPath="scripts/eom/run-f6c-cached-root-cover-pilot.mjs";
+ const lane=".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827";
+diff --git a/tests/f6c-root-cover-pilot-process.test.js b/tests/f6c-root-cover-pilot-process.test.js
+index f3a8a5069..771e07bad 100644
+--- a/tests/f6c-root-cover-pilot-process.test.js
++++ b/tests/f6c-root-cover-pilot-process.test.js
+@@ -10,7 +10,7 @@ import { tmpdir } from "node:os";
+ import path from "node:path";
+ import { pathToFileURL } from "node:url";
+ const root=process.cwd(),digest=b=>createHash("sha256").update(b).digest("hex");
+-const outer=readFileSync("scripts/eom/launch-abc-enclosed-root-pilot.mjs");
++const outer=readFileSync("scripts/eom/launch-subfield-circular-root-pilot.mjs");
+ const self=readFileSync("scripts/eom/launch-f6c-root-cover-pilot.mjs");
+ const entryPath="scripts/eom/run-f6c-root-cover-pilot.mjs";
+ const lane=".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827";
+diff --git a/tests/f6c-root-cover-pilot.test.js b/tests/f6c-root-cover-pilot.test.js
+index 64e69d2c0..dc7684353 100644
+--- a/tests/f6c-root-cover-pilot.test.js
++++ b/tests/f6c-root-cover-pilot.test.js
+@@ -10,7 +10,7 @@ import { PassThrough, Writable } from "node:stream";
+ import { execFileSync } from "node:child_process";
+ import * as R from "../scripts/eom/run-f6c-root-cover-pilot.mjs";
+ import * as L from "../scripts/eom/launch-f6c-root-cover-pilot.mjs";
+-import { currentOwnedGroup, descendantRecords } from "../scripts/eom/launch-abc-enclosed-root-pilot.mjs";
++import { currentOwnedGroup, descendantRecords } from "../scripts/eom/launch-subfield-circular-root-pilot.mjs";
+ const root=process.cwd(),digest=x=>createHash("sha256").update(x).digest("hex");
+ const temp=()=>mkdtempSync(path.join(tmpdir(),"f6c-pilot-control-"));
+ const binding=(p,h="1".repeat(64))=>({path:p,sha256:h,bytes:1});

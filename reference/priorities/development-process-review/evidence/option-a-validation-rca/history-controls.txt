@@ -1,0 +1,1 @@
+PASS before target: abc known SHA-256; unique fullEntry extraction; absent/duplicate rejection; exact substitution and duplicate refusal; byte-sensitive LF/CRLF and BOM controls; frozen-pair positive and abbreviated negative.

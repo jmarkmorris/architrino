@@ -2397,7 +2397,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-de59930e803903fd)
 
-The Master EOM is a **second-order ODE** in $\mathbf X_i$, or equivalently a **first-order system** in $\mathsf Z_i$:
+The Master EOM is a **second-order history-dependent equation** in $\mathbf X_i$, or equivalently a **first-order delayed system** in $\mathsf Z_i$. The instantaneous vector alone is not the full evolution state; the acceleration also requires the admitted transmitter histories:
 
 $$
 \frac{d\mathsf Z_i}{dT} = \begin{pmatrix} \mathbf V_i(T) \\ \mathbf A_i(T) \end{pmatrix}
@@ -9503,7 +9503,7 @@ Writing $\mathrm L$, $\mathrm T$, and $\mathrm Q$ for length, time, and polarity
 
 ### Well-Posedness and Regularization
 
-The ideal model supplies instantaneous acceleration events on [causal wake surfaces](../../../../markdown/aaa/foundations/architrino.md), the expanding disturbances emitted by architrinos. The regularized simulation replaces each sharp causal-surface delta by a narrow mollifier, turning an event into a brief smooth contribution that a delayed-history solver can integrate while preserving total emission $q$. Large-system and zero-width claims still require their own convergence evidence; a finite calculation does not establish them.
+The ideal model sums delayed acceleration contributions from [causal wake surfaces](../../../../markdown/aaa/foundations/architrino.md), the expanding disturbances emitted by architrinos. Continuous emission and a sharp surface delta do not by themselves make velocity discontinuous. An auxiliary finite-width model replaces the delta by a mollifier; its normalization, origin treatment, history functional, and convergence must be specified together. We work in normalized wake-speed units with $c_f=1$ in the following replacement; symbolic $c_f$ is retained where dimensional conversions matter.
 $$
 \delta(r-\Delta)\longrightarrow
 \frac{1}{\sqrt{2\pi}\,\eta}
@@ -9515,16 +9515,16 @@ $$
 #### Impulses Versus Smooth Acceleration
 
 - Measure-driven dynamics:
-  - With exact surface deltas, dynamics are impulsive: velocities are functions of bounded variation with jump discontinuities at hit times.
+  - For continuous emission, integrating the sharp delta over emission time gives the ordinary simple-root acceleration sum with weight $c_f/|D_t|$ on a regular chart. Locally integrable acceleration gives absolutely continuous velocity, with no jumps. A measure-driven description allows jumps only where the reception-time acceleration measure actually has atoms; discrete emission pulses or a separately specified singular transition may require that description. A surface delta in emission coordinates alone does not establish such atoms.
 
 - Mollified causal wake surfaces:
-  - Replacing $\delta(\cdot)$ by a narrow Gaussian of width $\eta > 0$ spreads each causal surface’s intersection into a short, smooth acceleration contribution. This can yield classical $C^1$ trajectories on an admitted history chart, but the solver must still retain and reconstruct the delayed path segment.
+  - A Gaussian of width $\eta>0$ has noncompact tails. It smooths the radial delta, but does not regularize the inverse-square origin singularity or prove regularity of a state-dependent history functional. Classical trajectories require the history-domain and local existence hypotheses below, including distance or core control over the entire integrated support.
 
 - Choosing $\eta$:
-  - Select $\eta$ small relative to local geometric scales (path curvature radius, inter-source spacing) to approximate the event-driven picture while maintaining numerical stability.
+  - Select $\eta$ small relative to local geometric scales (path curvature radius, inter-source spacing) as part of a declared regularization and discretization study. Small width alone neither proves approximation of the sharp law nor maintains numerical stability.
 
 - Distributional wake-surface normalization:
-  - Treat $\delta(r-c_f\Delta)$ and $\delta_\eta(r-c_f\Delta)$ as distributions, so the invariant statement is an integrated statement against a test function, not the sampled height of the spike. For $\Delta=T-T_t$ and $r=\|\mathbf X-\mathbf X_0\|$,
+  - Treat $\delta(r-c_f\Delta)$ and $\delta_\eta(r-c_f\Delta)$ as distributions, so the invariant statement is an integrated statement against a test function, not the sampled height of the spike. For a fixed positive emission age $\Delta=T-T_t>0$, $r=\|\mathbf X-\mathbf X_0\|$, and a bounded continuous test function $f$,
     $$
     \rho_\eta(T,\mathbf X)=
     \frac{q}{4\pi r^2}\,\delta_\eta(r-c_f\Delta)\,H(\Delta)
@@ -9565,7 +9565,7 @@ $$
 
     [View →](../../../../../equation-mapping.html#corpus-equation-ca1da5e9188e06a9)
 
-    This catches missing $4\pi r^2$ factors, lost radial Jacobians, and mollifiers that do not preserve total emission.
+    Here $\varepsilon_q>0$ has polarity units. Comparing a numerical spatial integral with the independently evaluated radial Gaussian integral tests the spatial Jacobian and truncation accounting. Agreement of two sides built from the same incorrectly normalized mollifier would not test its normalization. At finite width the full spatial integral is $qH(\Delta)$ times the Gaussian probability on $r>0$, strictly between zero and one for positive age. Thus exact finite-width total emission is not preserved by this formula; the stated sharp limit is. The residual and the separate total-emission limit test have different obligations.
 
 - Curvilinear-coordinate hygiene:
   - Operator checks in spherical or cylindrical charts must use the Euclidean metric scale factors, not Cartesian component formulas applied to curvilinear components. For spherical coordinates $(r,\theta,\varphi)$ centered on the emission point,
@@ -9576,7 +9576,7 @@ $$
 
     [View →](../../../../../equation-mapping.html#corpus-equation-2514fe601e4fff90)
 
-    and a radial diagnostic channel $F_r(r)\hat{\mathbf{r}}$ obeys
+    and, away from $r=0$, a differentiable radial diagnostic channel $F_r(r)\hat{\mathbf{r}}$ obeys
     $$
     \nabla\!\cdot\!\big(F_r(r)\hat{\mathbf{r}}\big)=
     \frac{1}{r^2}\frac{\partial}{\partial r}\!\left(r^2F_r(r)\right)
@@ -9584,7 +9584,7 @@ $$
 
     [View →](../../../../../equation-mapping.html#corpus-equation-7fbc1f7932406b41)
 
-    For a radial scalar $f(r)$,
+    For a twice-differentiable radial scalar $f(r)$ away from the origin,
     $$
     \Delta f=
     \frac{1}{r^2}\frac{\partial}{\partial r}\!\left(r^2\frac{\partial f}{\partial r}\right)
@@ -9592,7 +9592,7 @@ $$
 
     [View →](../../../../../equation-mapping.html#corpus-equation-8efcb9a9ee802fdc)
 
-    The invalid shortcut $\nabla\!\cdot(F_r\hat{\mathbf{r}})=\partial_rF_r$ breaks the conservation normalization of causal wake surfaces.
+    The invalid shortcut $\nabla\!\cdot(F_r\hat{\mathbf{r}})=\partial_rF_r$ omits geometric terms. Origin distributions require separate flux accounting: for example, the inverse-square radial field has zero divergence off the origin but nonzero flux through an enclosing sphere.
 
 - Finite-limit discipline:
   - Treat finite architrino count, finite memory depth, finite step size, finite domain/window, and finite $\eta > 0$ as the first proof or simulation regime.
@@ -9601,7 +9601,7 @@ $$
 
 - State-dependent branch-transition discipline:
   - State-dependent delay systems can lose classical branch continuation at transition points where a delayed argument crosses a branch boundary, a causal-root count changes, or a derivative-sensitive row enters a fold-layer. A finite-$\eta$ run must therefore record how the regularized trajectory crosses each such window rather than treating the crossing as ordinary time-step noise.
-  - For every declared transition window $I_*=[t_*-\Delta_*,t_*+\Delta_*]$, emit
+  - For every declared transition window $I_*=[T_*-\Delta_*,T_*+\Delta_*]$, emit
     $$
     \mathcal{T}_{\eta,*}
     =
@@ -9624,12 +9624,13 @@ $$
     E_{\mathrm{trans}}(Y;\eta,\eta/2;I_*)
     =
     \frac{\|R(Y_{\eta/2}|_{I_*})-Y_{\eta}|_{I_*}\|_{L^2(I_*,\{x_k\})}}
-    {\|R(Y_{\eta/2}|_{I_*})\|_{L^2(I_*,\{x_k\})}+\varepsilon_0}
+    {\|R(Y_{\eta/2}|_{I_*})\|_{L^2(I_*,\{x_k\})}+\varepsilon_Y}
     $$
 
     [View →](../../../../../equation-mapping.html#corpus-equation-d9635afe98d7ad56)
 
-  - The transition passes only if
+    Here $R$ is the declared restriction to a common observation grid $\{x_k\}$ with fixed positive quadrature weights on retained coordinates (or an explicit quotient that removes zero-weight coordinates); it must preserve the meaning and units of $Y$. The positive floor $\varepsilon_Y$ has the units of the displayed norm. This is an adjacent-refinement diagnostic, not a convergence theorem.
+  - The finite pairwise transition check passes only if
     $$
     \mathsf{status}_{\eta,*}=\mathsf{status}_{\eta/2,*},
     \qquad
@@ -9641,7 +9642,7 @@ $$
 
     and every root-ledger row in $I_*$ keeps transmitter identity, branch class, and status metadata under the same matching rule used by $\Delta_{\eta,\mathrm{root}}$.
   - If the branch status flips under $\eta$ refinement, route the run to $\mathsf{branch\_root\_instability}$. If the status is stable but the promoted transition observables fail the tolerance, route it to $\mathsf{regulator\_dependence}$. If the transition record is missing, route it to $\mathsf{artifact\_incomplete}$.
-  - For nonsmooth windows, the transition record must include jump-location rows
+  - For windows with actual propagated jumps in a declared state or derivative order, the transition record must include jump-location rows
     $$
     \mathcal{D}_{\mathrm{jump}}
     =
@@ -9650,17 +9651,17 @@ $$
     R_{\mathrm{jump},a}
     =
     \frac{|t_{0,\ell_a}(\xi_a)-\xi_{\pi(a)}|}
-    {\max(\Delta T,\Delta h,\eta/c_f,\varepsilon_0)}
+    {\max(\Delta T,\Delta h,\eta/c_f,\varepsilon_T)}
     $$
 
     [View →](../../../../../equation-mapping.html#corpus-equation-96f13f070ee4acb8)
 
-    Unstable jump identity routes to $\mathsf{branch\_root\_instability}$; unresolved jump or interpolation convergence routes to $\mathsf{mesh\_nonconvergence}$.
+    Here $\xi_a$ is a reception-time discontinuity location, $k_a$ its derivative order, $\ell_a$ its delayed branch, $t_{0,\ell_a}$ the branch emission-time map, and $\xi_{\pi(a)}$ its matched earlier discontinuity. The reception-time step $\Delta T$, history-time spacing $\Delta h$, and positive time floor $\varepsilon_T$ use the same absolute-time units. Such rows are conditional on actual jumps; they are not inferred from a sharp wake alone. Unstable jump identity routes to $\mathsf{branch\_root\_instability}$; unresolved jump or interpolation convergence routes to $\mathsf{mesh\_nonconvergence}$.
 
 - Fold-layer status is only a transition classification. A stable fold-layer row may preserve branch identity through $\eta$ refinement, but it does not prove branch-equation balance. When the run claims a corrected one-period carrier, the acceleration-balance residual for that period must also pass before the result can proceed to monodromy, $\Delta_{\mathbf{k}}$, or $\eta$-ladder persistence.
 
 - Energetic consistency:
-  - A fixed-transmitter benchmark may verify $\Delta E_k=-\Delta U$ with $U=q'\Phi_\eta$ on resolved intervals. A moving-transmitter, self-hit, or open-boundary branch must instead close the history-aware energy, wake, and boundary terms defined in [Delay Dynamics and Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md). Convergence of interval integrals as $\eta\to0$ is a separate claim governed by the continuation package below; it is not implied by choosing a Gaussian mollifier.
+  - A fixed-transmitter benchmark with a verified time-independent scalar representative and compatible kinetic bookkeeping may verify $\Delta E_k=-\Delta U$ with $U=q'\Phi_\eta$ on resolved intervals. A moving-transmitter, self-hit, or open-boundary branch must instead close the history-aware energy, wake, and boundary terms defined in [Delay Dynamics and Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md). Convergence of interval integrals as $\eta\to0$ is a separate claim governed by the continuation package below; it is not implied by choosing a Gaussian mollifier.
 
 #### Formal $\eta > 0$ Continuation Package
 
@@ -9668,20 +9669,20 @@ The regularization package for a promoted run family is
 $$
 \mathsf{Reg}_\eta
 =
-(\delta_\eta,\mathcal{A}_\eta,\mathsf{WP}_\eta,\mathsf{NR}_\eta,\mathsf{Cont}_\eta,\partial\mathcal{A}_\eta)
+(\delta_\eta,\mathcal{A}_\eta,\mathsf{WP}_\eta,\mathsf{NR}_\eta,\mathsf{Cont}_\eta,\mathcal{F}_\eta)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7c09d5b583113615)
 
-where $\delta_\eta$ is the mollified causal-wake kernel, $\mathcal{A}_\eta$ is the admissible history set, $\mathsf{WP}_\eta$ is the existence-uniqueness statement, $\mathsf{NR}_\eta$ is the no-runaway bound, $\mathsf{Cont}_\eta$ is the continuation criterion, and $\partial\mathcal{A}_\eta$ is the failure boundary.
+where $\delta_\eta$ is the mollified causal-wake kernel, $\mathcal{A}_\eta$ is the monitored trajectory class, $\mathsf{WP}_\eta$ is the existence-uniqueness statement, $\mathsf{NR}_\eta$ is the no-runaway bound, $\mathsf{Cont}_\eta$ is the continuation criterion, and $\mathcal{F}_\eta$ is a list of monitored exit conditions.
 
-On a finite interval $[0,T]$, the admissible history set is
+On a finite interval $[0,T]$, define a monitored class of candidate solution histories, not an initial-data existence domain. All extrema below range over $0\le U\le T$ and the indicated active branches; $V,d,\nu>0$ and the integer cap $B$ are declared bounds:
 $$
 \mathcal{A}_\eta(T;V,d,\nu,B)
 =
 \left\{
-S_{\eta,U}:
-\sup_{U\le T}\|\mathbf V(U)\|\le V,\quad
+S_\eta|_{[-h,T]}:
+\sup_{0\le U\le T}\|\mathbf V(U)\|\le V,\quad
 \inf r_{ij,\ell}(U)\ge d,\quad
 \inf|\partial_\Delta g_{ij,\ell}(U)|\ge \nu,\quad
 \sup B_{ij}^{\mathrm{active}}(U)\le B
@@ -9690,7 +9691,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ac37c7d7f2469014)
 
-Existence and uniqueness mean that every declared initial history $S_{\eta,0}\in\mathcal{A}_\eta(T;V,d,\nu,B)$ generates a unique $S_\eta(U)$ on $[0,T]$ in the declared history class, and that the emitted root ledger is generated by that solution rather than by a post-hoc branch choice.
+Here $S_\eta$ denotes the candidate trajectory with its retained past, and $S_{\eta,U}$ denotes its history segment on $[U-h,U]$. Initial data must instead be specified on a past interval $[-h,0]$, with boundary data (including declared older-history treatment or a controlled tail truncation) and a fixed finite-width functional $\mathcal G_\eta$ declared independently of the unknown future. Let $\mathcal H_\eta$ be its admissible compatible-history domain, open relative to the chosen solution manifold. A joined differentiable solution requires the past endpoint derivative to equal $\mathcal G_\eta(S_{\eta,0})$. An applicable local existence-and-uniqueness theorem must verify functional differentiability or local Lipschitz and extension hypotheses in the chosen history space, including the entire finite-width integration support and memory endpoints. It then gives a unique solution for some positive local duration, not automatically for a preassigned $T$. Membership of the resulting trajectory in $\mathcal A_\eta(T;V,d,\nu,B)$ is a subsequent bound to prove. The root ledger must be generated from the solution rather than selected after it. These are conditional theorem obligations, not a verified well-posedness result for an unspecified mollifier.
 
 The no-runaway condition requires a validated energy construction, not time-translation symmetry alone. On the same branch chart and isolated window, the packet must identify one accepted construction route from [Delay Dynamics Energy](../../../../markdown/aaa/validation/simulations/action-energy/delay-dynamics-energy.md), retain the corresponding boundary convention, establish the lower bound
 $$
@@ -9720,20 +9721,22 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6cec12a538a7fe68)
 
-on the isolated run window. Preserved time-translation symmetry is a required input to an action-boundary construction, but it is not by itself a conservation or no-runaway certificate.
+at the displayed endpoint on the isolated run window. To bound every constituent speed throughout that window, require the same estimate on every prefix $[0,U]$, a uniform bound on those prefix residuals, and coercivity $K_\mu(U)\ge(\mu_*/2)\sum_i\|\mathbf V_i(U)\|^2$ with a fixed $\mu_*>0$. Then each speed is bounded by the square root of twice the kinetic upper bound divided by $\mu_*$. The weights are bookkeeping coefficients, not intrinsic architrino masses. A group-motion proxy or weights tending to zero do not control internal speeds. Uniform regulator or population limits additionally require uniform bounds and a uniform coercivity floor. Preserved time-translation symmetry is a required input to an action-boundary construction, but it is not by itself a conservation or no-runaway certificate.
 
-The continuation criterion is
+A sufficient continuation condition, conditional on the applicable local theorem, is
 $$
-S_\eta([0,T])\subset\mathcal{A}_\eta(T;V,d,\nu,B)
+\lim_{U\uparrow T}S_{\eta,U}=S_{\eta,T}\in\mathcal H_\eta
 \quad\Longrightarrow\quad
-\text{the run may be extended past }T
+\text{the solution extends to }[0,T+\delta]\text{ for some }\delta>0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e9cd9e0c392ca38e)
 
-using the same local well-posedness constants after refreshing the history segment at $T$. The failure boundary is
+where the limit is in the theorem's history norm and the refreshed history satisfies its compatibility and boundary-input conditions. A usable uniform extension argument must provide a neighborhood with controlled local existence constants, functional regularity, history norms, full-support distance or core bounds, memory endpoints, and active and inactive root control. The four closed numerical bounds above alone do not establish such a neighborhood or history limit.
+
+The following are monitored threshold or asymptotic loss conditions, not the topological boundary of the history domain:
 $$
-\partial\mathcal{A}_\eta
+\mathcal{F}_\eta
 =
 \{\|\mathbf V\|=V\}
 \cup
@@ -9748,9 +9751,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7e4921be8ddf74cc)
 
-Crossing any component of $\partial\mathcal{A}_\eta$ changes the promotion status to $\mathsf{eta\_continuation\_failure}$ unless a stricter replacement bound is proved in the same artifact packet.
+Reaching a declared threshold triggers review of the continuation certificate; equality at a conservative bound, especially the integer root cap, is not itself a singularity. Failure to supply a valid continuation domain or replacement bound changes the promotion status to $\mathsf{eta\_continuation\_failure}$. The divergence entry describes an asymptotic sequence, not a finite boundary point. Compatibility or functional regularity can fail without any listed equality, so this list is not exhaustive.
 
-For the finite-$\eta$ pathology theorem target in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#finite-regulator-pathology-quarantine-theorem-target), a promoted run family must report the same boundary components as observables, not only as solver diagnostics. Divergent self-energy is routed through the $d$ or $\epsilon_c$ row, runaway behavior through the $E_{\text{wake}}^{(\eta)}$ lower-bound row, pre-acceleration through the retained-history and endpoint-convention row, and caustic blow-up through the $\nu$ and transition-status rows. The minimum residual packet is:
+For the finite-$\eta$ pathology theorem target in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#finite-regulator-pathology-quarantine-theorem-target), a promoted run family must report these monitored conditions and the additional history-domain conditions as observables, not only as solver diagnostics. Divergent self-energy is routed through the $d$ or $\epsilon_c$ row, runaway behavior through the $E_{\text{wake}}^{(\eta)}$ lower-bound row, pre-acceleration through the retained-history and endpoint-convention row, and caustic blow-up through the $\nu$ and transition-status rows. The minimum residual packet is:
 
 - root residual and root-transport residual for every retained row,
 - active transmitter-side Jacobian floor, transmitter-side acceleration-weight floor or certified interval, and inactive-root gap,
@@ -9761,16 +9764,20 @@ For the finite-$\eta$ pathology theorem target in [Master Equation](../../../../
 
 If any row is missing, the artifact status is $\mathsf{artifact\_incomplete}$. If a row is present but fails under refinement, the status is the corresponding continuation, regulator-dependence, or branch-root instability failure already defined above.
 
-The $\eta\to0^+$ claim boundary is
+Adjacent-width residuals tending to zero are not a convergence criterion. For example, on a dyadic width ladder the bounded scalar sequence $Y_n=\sin(\log(n+1))$ has adjacent differences tending to zero but no limit; an unchanged root ledger does not repair this failure. After mapping every refinement into one fixed complete observation space with a norm and a fixed positive observable scale $s_Y$, require the Cauchy condition
 $$
-\limsup_{\eta\to0^+}E_\eta(Y;\eta,\eta/2)=0,
+\lim_{\epsilon\downarrow0}\sup_{0<\eta,\eta'<\epsilon}
+\frac{\|Y_\eta-Y_{\eta'}\|}{s_Y}=0,
 \qquad
-\limsup_{\eta\to0^+}\Delta_{\eta,\mathrm{root}}=0
+\lim_{\epsilon\downarrow0}\sup_{0<\eta,\eta'<\epsilon}
+ d_{\mathcal L}(\mathcal L_\eta,\mathcal L_{\eta'})=0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-45dc377fe66781af)
 
-for every promoted observable and active branch ledger. Otherwise the result remains finite-$\eta$ evidence only.
+Here $d_{\mathcal L}$ is a declared metric on a common complete ledger space, with fixed transmitter identities, matching rules, units, and observation window. The observation norm must separate the promoted records; finite sample agreement proves convergence only of those sampled records, not of an unobserved continuum field. Restriction and interpolation maps must be stable and mutually consistent. Summable absolute adjacent increments are a sufficient alternative along one ladder; adjacent relative increments merely vanishing are not. A ladder result alone needs control between ladder points before it proves the full regulator limit displayed above. Numerical mesh, history, and boundary errors must be controlled independently of width.
+
+Completeness gives a limit of the represented observables and ledgers; it does not show that the limit is an admissible sharp-law solution. That requires passing the governing equation and its boundary conditions to the limit, controlling singular roots and any lost history, and proving the limiting ledger remains in the claimed domain. Otherwise the result remains finite-$\eta$ evidence or convergence of specified diagnostics only.
 
 ## Entropy
 

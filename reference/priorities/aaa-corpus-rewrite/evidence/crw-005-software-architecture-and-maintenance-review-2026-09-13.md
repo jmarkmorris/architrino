@@ -1,0 +1,9 @@
+# CRW-005 Software Architecture and Maintenance review — 2026-09-13
+
+Full 267-line coordinator review of [Software Architecture and Maintenance](../../../../content/markdown/aaa/archie/software-architecture-and-maintenance.md). **SAM-01, medium, repaired:** the architecture map incorrectly classified the entire graph directory as generated. The corrected entry names the generated graph and table of contents and identifies the authored runtime routing configuration separately.
+
+Direct inspection of `scripts/build-scene-graph.mjs` lines 12–15, 775–810 and 1260–1281 establishes the distinction: it reads `content/graph/runtime_routes.json` as configuration and writes the graph, table of contents and generated Markdown outputs. The current routing file was read in full. The table of contents is generated; it was not mistakenly reclassified as authored input simply because another exporter reads it. This is a local ownership correction, not a new architectural policy.
+
+Scoped status was empty before editing. Final source SHA-256 by `shasum -a 256`: `ea348af0d70801ff968034520079d98bac651ca30db129b1fc710e173e204659`. Scoped `git diff --check HEAD` passed. The one source diff is the architecture-map entry; headings, the existing local guide link, maintenance policies and examples are unchanged.
+
+The remaining prose states contributor expectations rather than claiming that every implementation already meets them. Its EOM production rule matches AGENTS; its explicit regeneration authority restriction controls the later generated-file refresh description. Historical evidence, unrelated work and user-data safeguards remain. No cleanup, deletion, code change, generator write, performance test, or repository-wide architecture certification was performed. A builder change assigning these files different responsibilities would reopen SAM-01. Joined validation is recorded in the campaign log.

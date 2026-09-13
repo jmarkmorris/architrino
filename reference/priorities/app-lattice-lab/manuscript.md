@@ -238,6 +238,53 @@ This test alone does not exclude crossing polyhedra whose vertices all remain ou
 
 An unused ambient lattice site is a separate accounting issue. A tiling can have extra ambient sites inside its cells even though no vertex of another selected cell enters them. Such sites must remain disclosed. If every occupied site must be a selected polyhedron vertex, the stronger requirement is that the ambient inventory equal the union of cell vertices. The primary examples below either satisfy this stronger requirement or explicitly identify their unused sites.
 
+#### 8.1.1. Why there are five Platonic solids
+
+The names tetrahedron, octahedron, dodecahedron, and icosahedron count faces, whereas a vertex-population model counts occupied corners. An octahedron therefore has eight faces but six possible occupied vertices. The relation between these counts follows from one geometric argument for the entire Platonic class.
+
+Assume a closed convex polyhedron whose faces are congruent regular polygons and whose vertices all meet the same number of faces. A regular polygon has equal sides and equal interior angles. Faces are the actual planar facets of the convex body, with no artificial subdivisions or flat extra vertices. Let $v$ be the number of vertices, $E$ the number of edges, $F$ the number of faces, $p\geq3$ the sides per face, and $q\geq3$ the faces meeting at each vertex. Exactly $q$ edges also meet at that vertex. Identical faces alone do not impose this common vertex arrangement: a hexagonal bipyramid has six triangular faces meeting at each tip and four at each equatorial vertex.
+
+The first restriction comes from forming a convex corner. Dividing a regular $p$-gon into $p-2$ triangles gives its total interior angle $(p-2)\pi$, so each face contributes angle $\alpha=(p-2)\pi/p$ at a vertex. The $q$ incident face angles must leave a positive angular deficit, meaning the amount missing from a full turn. If they filled the turn exactly, they would not form a positively curved convex corner. Thus
+
+$$
+\delta=2\pi-q\alpha
+=2\pi-q\frac{(p-2)\pi}{p}>0,
+\qquad
+\frac1p+\frac1q>\frac12.
+$$
+
+Here $\delta$ is the angular deficit at each vertex. Since $p$ and $q$ are integers at least three, the inequality permits only five pairs. If both were at least four, the reciprocal sum would be at most $1/2$. One must therefore be three, and substituting three forces the other to be less than six. The complete candidate list is $(3,3)$, $(3,4)$, $(4,3)$, $(3,5)$, and $(5,3)$. Each is realized by one of the five Platonic solids in the table below; the angular argument excludes all additional pairs under the stated assumptions.
+
+The second restriction counts edges consistently across the closed surface. Counting through vertices counts each edge twice, once at each endpoint. Counting through faces also counts it twice, once from each adjacent face. Consequently
+
+$$
+qv=2E=pF.
+$$
+
+Convexity makes the surface topologically a sphere, so Euler's relation is $v-E+F=2$. One way to see the count is to project the edge graph onto a plane, with one face becoming the exterior region. Remove edges on cycles until a spanning tree remains. Each removal reduces both the edge count and the face-region count by one, preserving $v-E+F$. The final tree has $v-1$ edges and one exterior region, giving two. Substituting the two edge counts therefore yields
+
+$$
+v\left(1-\frac q2+\frac qp\right)=2,
+\qquad
+v=\frac{4p}{2p+2q-pq},
+\qquad
+F=\frac{4q}{2p+2q-pq}=\frac qp\,v.
+$$
+
+These are one set of formulas for all five solids. The denominator is positive by the convex-corner inequality. The same argument has a geometric interpretation: substituting $\delta$ above gives $v\delta=4\pi$. The complete surface has a fixed total angular deficit, distributed equally across its vertices. Changing the face shape or the number of faces at each corner changes that deficit and therefore changes the allowed vertex count.
+
+| Solid | Sides per face $p$ | Faces per vertex $q$ | Vertices $v$ | Edges $E$ | Faces $F$ | Equal vertex populations |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Tetrahedron | 3 | 3 | 4 | 6 | 4 | 2 / 2 |
+| Octahedron | 3 | 4 | 6 | 12 | 8 | 3 / 3 |
+| Cube | 4 | 3 | 8 | 12 | 6 | 4 / 4 |
+| Icosahedron | 3 | 5 | 12 | 30 | 20 | 6 / 6 |
+| Dodecahedron | 5 | 3 | 20 | 30 | 12 | 10 / 10 |
+
+Within this class, the vertex count identifies the face count because the five permitted pairs give five distinct values of $v$. For six vertices, the unique permitted pair is $(p,q)=(3,4)$, so $F=(4/3)6=8$. Without the prerequisites, the classification does not apply; specifying only a vertex count or identical faces does not restore it.
+
+Exchanging $p$ and $q$ exchanges $v$ and $F$ while preserving $E$. This is the counting signature of duality: joining face centers across adjacent faces constructs the dual Platonic solid. Cube and octahedron are duals, dodecahedron and icosahedron are duals, and the tetrahedron is its own dual. Every resulting vertex count is even, permitting the equal electrino/positrino assignments examined in §8.4. The derivation is geometric; it supplies no conclusion about how the polarities arrange themselves or whether a given assignment has zero acceleration.
+
 ### 8.2. What crystallographic symmetry does and does not forbid
 
 The crystallographic restriction concerns rotations preserving an entire periodic lattice, not every finite motif repeated within it. A motif can possess fivefold symmetry even when its translation pattern does not. This distinction is stated in Wondratschek's [IUCr treatment of crystallographic symmetry](https://www.iucr.org/what-we-do/education/pamphlets/matrices-mappings-and-crystallographic-symmetry). Consequently regular dodecahedra and icosahedra are not excluded from periodic packings; periodic packing constructions are also studied directly by [Torquato and Jiao](https://arxiv.org/abs/0909.0940).

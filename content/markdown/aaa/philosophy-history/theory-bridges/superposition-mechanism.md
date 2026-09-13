@@ -8,79 +8,81 @@ The core distinction is effective envelope versus substrate state. A Hilbert-spa
 
 ### Traditional Quantum Mechanical View
 
-In standard quantum mechanics, a physical system can exist simultaneously in multiple mutually exclusive states. This is mathematically formalized by the superposition principle, where the state vector $|\psi\rangle$ is a linear combination of orthogonal basis states $|n\rangle$:
+In standard quantum mechanics, a pure state can be a coherent linear combination of mutually orthogonal alternatives for a specified measurement basis. This is one state, not a classical mixture of simultaneously realized outcomes. For an orthonormal basis $|n\rangle$, the expansion is
 $$
 |\psi\rangle = \sum_n c_n |n\rangle
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-532f618d9a79c292)
 
-The coefficients $c_n$ are complex probability amplitudes. In ordinary non-relativistic, fixed-particle-number quantum mechanics, the system evolves deterministically according to the linear Schrödinger equation until a measurement occurs. Upon measurement, the orthodox (Copenhagen) interpretation posits a discontinuous "collapse" of the wavefunction, where the system instantaneously projects into a single basis state $|k\rangle$ with probability $P_k = |c_k|^2$ (the Born rule). 
+The coefficients $c_n$ are complex probability amplitudes, with $\sum_n|c_n|^2=1$ for a normalized state; an infinite expansion converges in Hilbert norm. Isolated-system evolution is unitary under a specified self-adjoint Hamiltonian. For an ideal rank-one projective measurement in this basis, conditioning on outcome $k$ gives the state $|k\rangle$ with probability $P_k = |c_k|^2$ (the Born rule). Degenerate or generalized measurements require their projectors or instrument maps. The formal state update does not by itself specify a physical propagation time.
 
-Traditional superposition treats the indeterminacy as fundamental and ontological: prior to measurement, the particle possesses no definite state or trajectory.
+Interpretations differ about ontology and trajectories. The shared formal requirement is phase-sensitive interference and the calibrated outcome statistics, not one interpretation of what exists before measurement.
 
 ### Architrino Assembly Architecture ($\mathbb{A}\mathbb{A}\mathbb{A}$) Mechanism
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, superposition is an epistemic (operational) description of an underlying deterministic, multistable dynamical system. At the fundamental level, every architrino possesses a definite position and velocity in the Euclidean void at all absolute times. There is no ontological smearing. 
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, superposition is proposed as an epistemic (operational) description of an underlying deterministic, multistable dynamical system. The substrate ontology assigns each architrino a definite position and velocity in the Euclidean void along an admitted absolute-time trajectory; global existence of every proposed history is a separate mathematical question. There is no ontological smearing.
 
-Linear causal-wake addition is one substrate ingredient for quantum superposition recovery: the total potential experienced by any receiver is the exact, unmediated linear sum of all receiver-side inverse-square causal wake-surface intersections at its current location. Recovering Hilbert-space superposition still requires an effective chart, basin measure, coherence condition, and record-channel closure.
+Linear causal-wake addition is one substrate ingredient for quantum superposition recovery: the [Master Equation](../../dynamics/master-equation.md) sums signed delayed acceleration contributions at the receiver, each with its causal-root geometry and transmitter-side weight on an admissible branch chart. These are acceleration contributions, not an inverse-square scalar potential. Linearity of source addition at fixed histories does not make the history-dependent trajectory dynamics linear. Recovering Hilbert-space superposition still requires an effective chart, basin measure, coherence condition, and record-channel closure.
 
 This statement is substrate-level and should not be confused with the effective claim that a quantum state has formed a superposition in some Hilbert basis. Basis-dependent superposition language is admissible only after a preparation, apparatus kernel, retained coarse-graining, and record window have been declared. A change of Hilbert representation may move the apparent state-vector branch structure without changing the underlying assembly, causal-wake, or record-channel content.
 
-When a Noether braid assembly is described as being in a "superposition," it is physically occupying a metastable region of its configuration space—typically a boundary zone near a separatrix between resonance bands, or hovering near the symmetry-breaking velocity threshold ($v = c_f$). The assembly is continuously driven by the high-dimensional, deterministic flux of the local Noether sea.
+A proposed realization places the coupled assembly and apparatus in a metastable region of reduced configuration space, possibly near a driven response threshold or a candidate velocity row ($v = c_f$), under the local Noether sea influence. Neither metastability nor symmetry breaking follows from this speed equality alone. The relevant stable states, threshold geometry, and coherent response must be derived for the retained history and environment; a general quantum superposition need not be a near-threshold state.
 
-Because a Physical Observer lacks access to the complete microstate and the exact path-history phases of the surrounding causal-wake and Noether sea environment, the system exhibits informational ambiguity. The assembly's exact trajectory is definite, but its eventual resolution into a stable basin is operationally unpredictable. The quantum state $|\psi\rangle$ is therefore a coarse-grained statistical envelope tracking this deterministic uncertainty.
+Limited observer access can leave several admissible histories with different predicted records. That ambiguity does not alone establish unpredictability, an attractor, or a quantum state: ordinary classical mixtures also hide microstates. The proposed coarse-grained state $|\psi\rangle$ must additionally recover complex phase, interference, and the same calibrated measurement probabilities.
 
 ### The Phenomenological Mapping
 
-The correspondence between the quantum formalism and architrino micro-dynamics is defined as follows:
+The following correspondence is a candidate physical interpretation, not a completed derivation:
 
 *   **The Wavefunction ($|\psi\rangle$)**: A coarse-grained, effective representation of the local superposed causal-wake structure and the corresponding informational ambiguity of the receiver's phase state.
-*   **Basis States ($|n\rangle$)**: Distinct, dynamically stable attractor basins of the Noether braid assembly. For example, these correspond to integer-indexed resonance bands or specific locked-phase geometries of one or more indexed binaries.
-*   **Linear Combination**: The direct physical consequence of the superposition of expanding causal wake surfaces. Distinct sources contribute additive radial accelerations without mutual interference.
-*   **Probability Amplitudes ($c_n$)**: A measure of the geometric basin of attraction (the fractional phase-space volume) leading to outcome $n$, mapped over the operational uncertainty bracket of the system's microstate.
-*   **Wavefunction Collapse**: The deterministic crossing of a phase-space separatrix triggered by an interaction (measurement). The measurement apparatus (itself an assembly) injects a targeted potential gradient that breaks the metastability, forcing the assembly into one specific attractor and leaving a permanent macroscopic record in the surrounding Noether sea.
-*   **Decoherence**: The rapid, irreversible entanglement of the assembly's phase with the unmeasured degrees of freedom in the Noether sea, effectively locking the system into its new basin and eliminating the metastable phase relationships.
+*   **Basis States ($|n\rangle$)**: Effective basis vectors fixed by the measurement context. Particular outcome records may be represented by stable basins of the coupled target-apparatus-environment dynamics if those basins are established; an arbitrary rotated Hilbert basis need not identify additional physical attractors.
+*   **Linear Combination**: An effective linear amplitude law to be recovered from the nonlinear retained dynamics. Additive causal acceleration contributions are one ingredient, but do not establish Hilbert linearity or quantum interference.
+*   **Probability Amplitudes ($c_n$)**: Complex coefficients whose squared magnitudes must match outcome-basin probabilities under a physically selected preparation measure. Basin measures are real and nonnegative; neither unweighted volume nor those probabilities alone determine relative phases.
+*   **Wavefunction Collapse**: A proposed driven threshold crossing followed by amplification and a readable, persistent record in the coupled apparatus and environment. An invariant basin boundary of one well-posed autonomous flow cannot be crossed by that same flow; “separatrix” here denotes a reduced response threshold or a boundary moved by driving. Contact or crossing alone is not a completed record, and persistence requires a declared finite interval.
+*   **Decoherence**: Loss of the selected reduced coherence observable through coupling to unretained degrees of freedom. The proposed medium mechanism must reproduce that effective loss; it is not automatically rapid, irreversible, or selection of one outcome. Coherence can remain in the combined state, and recoherence may be possible outside the retained window.
 
 ### Observables and Falsifiability
 
-Treating superposition as a dynamically maintained metastability rather than a fundamental ontological blur imposes strict, testable constraints on the system.
+A specified metastability model must reproduce coherent quantum records and its own dynamical timing predictions:
 
-*   **Claim**: Superposition represents a metastable dynamical state subject to local causal wake interactions, and "collapse" is a continuous, finite-time threshold crossing.
-*   **Prediction**: The state transition (collapse) time is finite and bounded by the local field speed $c_f$, the physical extent of the interacting assemblies, and the local density of the Noether sea.
-*   **Failure Mode**: Observation of strictly instantaneous state updates across space-like separated macroscopic distances—without mediation by previously correlated local hidden variables in the shared path history—falsifies the mechanism.
-*   **Closure Boundary**: This chapter supplies the separatrix and finite-threshold interface. Born weights require the basin-measure and transfer-operator closure developed in the quantum ontology chapters.
+*   **Claim**: A metastable threshold mechanism is proposed for specified preparations and apparatuses, with continuous retained dynamics and finite trigger and record times to be established.
+*   **Prediction**: A derived apparatus model should give a trigger-time or record-time distribution in one calibrated clock. Wake propagation at $c_f$ can supply a lower causal delay for a newly required interaction; it does not supply an upper relaxation time or guarantee that the threshold is reached. Coupling, initial margins, geometry, and medium state also enter.
+*   **Failure Mode**: An independently measured upper bound on the same apparatus transition time below its derived positive lower bound rejects that timing model, with resolution and clock conversion included. A formal conditional state update or Bell correlation is not a direct measurement of instantaneous propagation. Shared past records alone do not evade Bell factorization; the selected provisional coordination route and its unresolved finite-speed obstruction remain with [Ontology](../../foundations/ontology.md#bell-nonlocality-placement) and [Quantum Operator Mapping](./quantum-operator-mapping.md#entanglement-via-path-history-potentials).
+*   **Closure Boundary**: This chapter specifies a candidate threshold interface; it does not prove a crossing or a quantum superposition mechanism. Born weights require the basin-measure and transfer-operator closure developed in the quantum ontology chapters.
 
 ### Closure Interface: Finite-Time Separatrix Law
 
-In the integrated quantum closure program, this chapter contributes the threshold-time component.
+The threshold-time interface below separates first contact, a proposed pre-record diagnostic, and completed record formation.
 
-Let $\Sigma(X)=0$ define the separatrix in reduced state coordinates $X$. For trajectory $X_t$, define first-passage collapse time
+Let $\Sigma(X)=0$ define a smooth response threshold in sufficient reduced coordinates $X$, including required apparatus, retained history, and environment data or a justified fixed dependence on them. The clock $t$ is the calibrated effective record time, related to absolute time by a positive-rate clock map. Choose its preparation origin as $t_0=0$ for the first formula. For a continuous admissible trajectory $X_t$, define the elapsed first-contact time
 $$
 \tau_c=\inf\{t>0:\Sigma(X_t)=0\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-72f990d4e0d44671)
 
-For a declared apparatus kernel $\mathcal{K}_A$, coarse-graining $\mathcal{Q}$, access region $W$, and competing basin family $\{B_i(t)\}$, the pre-record branch interval can be bounded by the first time at which multiple alternatives are recordable in the retained description:
+The infimum of an empty set is $+\infty$. This contact diagnostic can include tangency or return to the prepared boundary; it is a trigger time only with a specified crossing direction or sign-change condition and a nonzero initial threshold margin. Completed measurement additionally requires amplification, readable persistence, and the event-account conditions of [Measurement Ontology](../../quantum/measurement-ontology.md#what-makes-an-interaction-a-record).
+
+For a declared apparatus kernel $\mathcal{K}_A$, coarse-graining $\mathcal{Q}$, access region $W$, and independently recordable competing basin family $\{B_i(t)\}$, a candidate pre-record diagnostic is the elapsed time below. Set $t_W=t_0+T_W$ for the terminal record-clock instant; the restart residual requires $t_0<t<t_W$. Its first qualifying time does not by itself bound a physical superposition interval:
 $$
 \tau_{\mathrm{split}}
 =
-\inf\{t>t_0:\exists i\ne j,
+\inf\{\Delta t>0:\ t=t_0+\Delta t<t_W,\ \exists i\ne j,
 N_{\mathcal{Q},W}(B_i(t))\ge 1,
 N_{\mathcal{Q},W}(B_j(t))\ge 1,
-\Delta_{\mathrm{div}}(t_0,t,T;\mathcal{Q},W)>\varepsilon_{\mathrm{div}}\}
+\Delta_{\mathrm{div}}(t_0,t,t_W;\mathcal{Q},W)>\varepsilon_{\mathrm{div}}\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-92f993a995edd85f)
 
-Here $N_{\mathcal{Q},W}$ is the recordable basin count defined in [Wavefunction Ontology](../../quantum/wavefunction-ontology.md#lower-bound-on-recordable-basin-measure), and $\Delta_{\mathrm{div}}$ is the restartability residual used in [Measurement Ontology](../../quantum/measurement-ontology.md#what-makes-an-interaction-a-record). This is not a consciousness criterion. It is a guardrail against treating an arbitrary basis expansion as a physical branch event.
+Here $N_{\mathcal{Q},W}$ is the dimensionless calibrated basin-measure ratio defined in [Wavefunction Ontology](../../quantum/wavefunction-ontology.md#lower-bound-on-recordable-basin-measure), and $\Delta_{\mathrm{div}}$ is the restartability residual used in [Measurement Ontology](../../quantum/measurement-ontology.md#what-makes-an-interaction-a-record). The ratio need not be an integer, and exceeding one is not sufficient recordability: the calibrated measure-to-distinguishability relation and actual record channels must be supplied. Failure of a specified restart protocol can occur in a classical hidden-state model without interference. Thus the diagnostic requires independent phase-sensitive evidence before it is interpreted as quantum superposition. If no qualifying time occurs, $\tau_{\mathrm{split}}=+\infty$ for this diagnostic, not proof that no superposition exists.
 
-Closure requirements:
-- $\tau_c$ is finite in measurement-strength regimes that produce records,
+Closure requirements for the claimed threshold realization (an already stable record or eigenstate preparation need not undergo a fresh target threshold crossing):
+- the direction-qualified trigger and subsequent completed-record times are finite in the claimed measurement regime; first contact $\tau_c$ alone is insufficient,
 - the distribution of $\tau_c$ is consistent with the same coarse-grained model that yields the outcome weights $P_n$,
 - any claimed branch formation names $\mathcal{K}_A$, $\mathcal{Q}$, $W$, and the record window,
-- no instantaneous-update limit appears once finite $c_f$ and interaction extent are enforced.
+- any positive timing bound follows from explicit causal and dynamical assumptions; a discontinuous coarse readout or conditional state update is not confused with a discontinuous substrate trajectory.
 
 Primary synthesis location: [Pilot-Wave Character](./pilot-wave-character.md).
 

@@ -34,7 +34,7 @@ The lower stage contains two observer-level readouts:
 - Electric Field: the transverse electric-field readout reconstructed from the branch-weighted causal hits at the current Virtual Observer coordinate.
 - Polarization: the reference-frequency component fitted from the actual branch-sum field over the slowest enabled layer's common period, with the current field vector, analyzer axis, and optional raw common-period points.
 
-The plot covers three full reference-channel cycles. The white now line moves left to right, and the app leaves only a short forward gap ahead of that line blank so the waveform stays visible when time wraps around. For the app’s ideal plane-wave comparison moving along $+\hat{\mathbf x}$, $\mathbf B$ is reconstructed with the selected signal speed as $\mathbf B=(1/c_{\mathrm{sig}})\hat{\mathbf x}\times\mathbf E$, so it is not plotted as a separate graph.
+The default plot covers three full reference-channel cycles; the selected window can span one through twelve. The white now line moves left to right, and the app leaves only a short forward gap ahead of that line blank so the waveform stays visible when time wraps around. For the app’s ideal plane-wave comparison moving along $+\hat{\mathbf x}$, $\mathbf B$ is reconstructed with the selected signal speed as $\mathbf B=(1/c_{\mathrm{sig}})\hat{\mathbf x}\times\mathbf E$, so it is not plotted as a separate graph.
 
 ## Basic Controls
 
@@ -42,13 +42,13 @@ Use the pause/play button to stop or resume the animation. The Space bar also to
 
 Use the Preset menu to load a named exploratory candidate. Loading a preset resets the animation time and replaces the current controls with the preset values.
 
-Use Reset preset to return to the last loaded preset after making local edits. Use Reset time to restart time at the beginning of the three-cycle plot. Use Reset all to restore the default balanced pair.
+Use Reset preset to return to the last loaded preset after making local edits. Use Reset time to restart time at the beginning of the selected plot window. Use Reset all to restore the default balanced pair.
 
 Use Paths on/off to show or hide orbit paths and path-history trails.
 
 Use Slow/Fast to scale animation time without changing the configured binary frequencies. The default Slow/Fast setting is calibrated to make the default binary 1/2/3 orbit rates visible at `0.8`, `0.4`, and `0.2` cycles per real second.
 
-Use Cycle reference to choose which indexed layer defines one plotted cycle, and Plotted cycles to choose a run length from `1` through `12` reference cycles. The polarization fit still uses the slowest enabled layer's common period so changing the plot window does not reintroduce slower-layer leakage into the reference-frequency fit.
+Use Cycle reference to choose which indexed layer defines one plotted cycle, and Plotted cycles to choose a run length from `1` through `12` reference cycles. The fit requests the slowest enabled layer's common period but caps it at the plotted run duration. A shorter selected window can therefore reintroduce slower-layer leakage into the reference-frequency fit.
 
 Each of the six binaries has an enabled checkbox. When a binary is unchecked, it is removed from the braid display and its two architrinos are removed from the Virtual Observer E field sum.
 
@@ -81,7 +81,7 @@ The search should flag a configuration as interesting when it has one or more of
 - Strong cancellation: many active binaries but a small net transverse field at the Virtual Observer.
 - Sharp transitions: small changes in phase, $\Delta x$, Virtual Observer position, or radius produce a large change in the fitted polarization.
 - Robust patterns: the same behavior survives small nudges to the settings instead of depending on one exact slider position.
-- Absolute-history agreement or divergence: the absolute-history comparison either preserves the co-moving behavior, which is a stability clue, or changes it strongly, which is a useful stress clue.
+- Absolute-history agreement or divergence: the absolute-history comparison either preserves the co-moving behavior, which is a prescribed-model consistency clue rather than evidence of dynamical stability, or changes it strongly, which is a useful stress clue.
 - Causal-root structure: low missed-transmitter count, healthy Jacobian values together with a bounded transmitter-side acceleration weight $W^{\mathrm{acc}}=c_{\mathrm{sig}}/|D_t|$, signed root playback $D_r/D_t$, repeatable phase-at-hit families, or organized same-transmitter and partner-hit roots.
 - Simple explanations: fewer active binaries, integer frequency ratios, simple phase offsets, or clean leading/trailing symmetry are preferred when the diagnostic quality is similar.
 - Diversity: the results list should avoid many tiny variations of the same pattern and keep representative examples from different pattern families.
@@ -120,11 +120,11 @@ When `Local c mode` is `Lorentz factor`, the `Signal c/c_f` and `Photon speed c_
 
 `Absolute transmitter history` makes the Electric Field plot use the moving-apparatus diagnostic. In that mode, each architrino transmitter history and the Virtual Observer history translate along $+\hat{\mathbf x}$ at $c_\gamma$, and the shared solver helper solves the moving circular transmitter against the moving Virtual Observer. This remains a diagnostic layer for the moving-apparatus calculation; the co-moving mode remains useful for comparison.
 
-The plotted E curve is recalculated by solving the causal-root equation from every active architrino transmitter history to the Virtual Observer point. Each retained root contributes a radial Master-EOM-style hit weighted by $W^{\mathrm{acc}}/R^2$, where $R$ is the transmitter-to-observer distance at the root and $W^{\mathrm{acc}}=c_{\mathrm{sig}}/\lvert D_t\rvert$ is computed from the same retained root record. The app then reconstructs the displayed $E_y$ and $E_z$ components from the transverse part of the summed receiver acceleration.
+The plotted E curve is recalculated by solving the causal-root equation from every active architrino transmitter history to the Virtual Observer point. Each retained root contributes a radial Master-EOM-style hit weighted by $W^{\mathrm{acc}}/R_{\mathrm{display}}^2$, where $R$ is the transmitter-to-observer distance at the root and $W^{\mathrm{acc}}=c_{\mathrm{sig}}/\lvert D_t\rvert$ is computed from the same retained root record. The app then reconstructs the displayed $E_y$ and $E_z$ components from the transverse part of the summed receiver acceleration.
 
 The $\mathbf E$ graph auto-scales its vertical span from the maximum visible $|E_y|$ or $|E_z|$ sample, so the curve stays readable without changing the diagnostic field values. The displayed field comes directly from retained roots and the radial inverse-square causal-hit form rather than from a separate near/far mixing slider.
 
-The app's diagnostic calculation can be written explicitly. The Virtual Observer coordinate is
+The app uses normalized wake-speed units with $c_f=1$. The following coordinates and times are prescribed diagnostic variables: $t$ is reception time and $\tau$ emission time in the selected history chart, not derived proper clock time. The co-moving Virtual Observer coordinate is
 
 $$
 \mathbf X_{\mathrm{VO}}
@@ -164,7 +164,7 @@ Here $\sigma_s=+1$ for the trailing counter-clockwise braid and $\sigma_s=-1$ fo
 
 In absolute-history mode, the same circular transmitter history carries the translated center term $c_\gamma\tau\hat{\mathbf x}$, and the Virtual Observer history includes $c_\gamma t\hat{\mathbf x}$. This makes the root solve ask whether a transmitter history point moving with the photon channel can causally reach the moving Virtual Observer. Retained roots also carry transmitter phase-at-hit metadata so later diagnostics can ask whether stable phase families are emerging.
 
-For each active source row $i=(s,\ell,q)$, the retained source times solve
+The next root and direction formulas use co-moving coordinates. For absolute-history mode, replace every $\mathbf X_{\mathrm{VO}}$ in them by its position at reception time, $\mathbf X_{\mathrm{VO}}+c_\gamma t\hat{\mathbf x}$, and every source position by its translated emission-time position; use the corresponding total velocities in both derivative factors. For each active source row $i=(s,\ell,q)$, the retained source times solve
 
 $$
 F_i(t;\tau)
@@ -220,12 +220,12 @@ g\sum_i\sum_k
 q_i
 \frac{c_{\mathrm{sig}}}{|D_{t,i,k}|}
 \frac{\mathbf n_{i,k}}
-{R_{i,k}^2}
+{R_{\mathrm{display},i,k}^2}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5ccf1efa247710d8)
 
-by taking
+where $R_{\mathrm{display},i,k}=\max(R_{i,k},0.08)$ in app length units and $g$ denotes the declared display gain, not a recovered electromagnetic coupling. The transverse reconstruction is obtained by taking
 
 $$
 \mathbf E_{\perp}(t)
@@ -239,11 +239,11 @@ $$
 
 This is a Virtual Observer diagnostic. It uses Master-EOM-style causal hits to inspect a candidate branch, but it does not prove that the displayed state is a physical photon.
 
-Both calculation modes use the same display regularization, $R_{\mathrm{display}}=\max(R,0.08)$ in app-coordinate units, in the inverse-square denominator. The direction vector remains normalized from the unregularized displacement, so the floor limits only the near-source magnitude. This is a numerical display safeguard, not a derived short-distance law.
+Both calculation modes use the same display regularization, $R_{\mathrm{display}}=\max(R,0.08)$ in app-coordinate units, in the inverse-square denominator. For nonzero resolved displacements the direction remains normalized from the unregularized displacement, so the distance floor limits the near-source magnitude. The helper uses a fixed positive longitudinal direction when the displacement norm is at or below its numerical threshold; that fallback does not resolve a physical coincident hit. This is a numerical display safeguard, not a derived short-distance law.
 
 ## Derived Polarization
 
-The app treats polarization basis, linear angle, phase lag, ellipticity, and intensity as observer-level diagnostic outcomes rather than transmitter-side controls. The formula panel fits the reference-frequency component of the actual branch-sum $E_y(t)$ and $E_z(t)$ over the slowest enabled layer's common period, extracts the fitted amplitudes and relative phase lag, and classifies the result as weak, linear, circular, or elliptical. This common window prevents slower enabled layers from leaking into the reference-frequency coefficients merely because the fit stopped after one shorter cycle. The polarization inset draws the fitted oscillating component centered on the $E_y/E_z$ origin, so a constant observer bias does not shift the ellipse or line.
+The app treats polarization basis, linear angle, phase lag, ellipticity, and intensity as observer-level diagnostic outcomes rather than transmitter-side controls. The formula panel fits the reference-frequency component of the actual branch-sum $E_y(t)$ and $E_z(t)$ over the slowest enabled layer's common period, extracts the fitted amplitudes and relative phase lag, and classifies the result as weak, linear, circular, or elliptical. When the full common period is available, the powers-of-two source frequencies admit an integer-period window. Shorter plot windows are capped, and finite sampling, solver error, or departures from exact periodicity can still affect the fit; a common-window choice alone does not prove absence of leakage. The polarization inset draws the fitted oscillating component centered on the $E_y/E_z$ origin, so a constant observer bias does not shift the ellipse or line.
 
 Show raw polarization points is on by default. It draws the sampled common-period branch-sum points behind the fitted curve. If the points sit close to the fitted curve, the fit is visually clean. If they spread away from it, the polarization label should be treated with more caution.
 
@@ -284,13 +284,13 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d228c113519bdd05)
 
-The common-period energy fraction is
+The sampled-window energy fraction uses the ratio of sums below, with $j$ indexing sampled fields and $\mathbf E_j$ their transverse vectors. The positive numerical safeguard $\varepsilon=10^{-9}$ has the corresponding squared display-field units; it is applied to the summed denominator here, whereas the instantaneous fraction above adds it to a single squared norm. The runtime clamps the sampled ratio to the unit interval:
 
 $$
 \bar\mu_{\mathrm{analyzer}}
 =
-\frac{\left\langle|\hat{\mathbf a}\cdot\mathbf E|^2\right\rangle}
-{\left\langle|\mathbf E|^2\right\rangle+\varepsilon}
+\frac{\sum_j|\hat{\mathbf a}\cdot\mathbf E_j|^2}
+{\max\!\left(\varepsilon,\sum_j|\mathbf E_j|^2\right)}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-aee3d3488a713162)

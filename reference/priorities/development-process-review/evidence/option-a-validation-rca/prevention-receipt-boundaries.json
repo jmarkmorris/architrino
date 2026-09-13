@@ -1,0 +1,42 @@
+{
+  "instrument": ".tmp/option-a-prevention-review/receipt-boundaries.mjs",
+  "scope": "Actual receipt API with an independently stated synthetic two-file consumer; no full publication gate or scientific work.",
+  "controls": [
+    "Known coherent index and working files: actual consumer passes and receipt verifies.",
+    "Known partial staging rejects before the consumer runs.",
+    "Clean-environment Git child resolves its own fixture Git directory."
+  ],
+  "observations": [
+    {
+      "boundary": "Stable unstaged dependency",
+      "receiptValid": true,
+      "workingConsumer": "pass",
+      "stagedRequirement": "new",
+      "stagedDependency": "old",
+      "indexConsumerWouldReject": true,
+      "meaning": "Receipt identity covers the working overlay; partial-path rejection alone does not establish index-only consumer equivalence. This is not a full gate pass."
+    },
+    {
+      "boundary": "Inherited Git environment",
+      "strippedVariables": [
+        "GIT_DIR",
+        "GIT_WORK_TREE",
+        "GIT_INDEX_FILE",
+        "GIT_PREFIX",
+        "GIT_COMMON_DIR",
+        "GIT_OBJECT_DIRECTORY",
+        "GIT_ALTERNATE_OBJECT_DIRECTORIES",
+        "GIT_NAMESPACE"
+      ],
+      "childCommandsChecked": [
+        "scripts/prepare-runtime-assets.mjs",
+        "scripts/check-foundational-impact.mjs",
+        "scripts/check-content-integrity.mjs",
+        "scripts/check-animator-runtime-wiring.mjs",
+        "scripts/equation-mapping/check-moving-single-root-map.mjs"
+      ],
+      "sentinelConfigUnchanged": true,
+      "meaning": "Actual runner spawn environment removes the eight variables; each real Git child selects its isolated fixture. Validator workloads were replaced by the diagnostic child."
+    }
+  ]
+}

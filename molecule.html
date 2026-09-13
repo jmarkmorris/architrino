@@ -302,9 +302,15 @@
       }
 
       .molecule-session-hint {
+        margin: 0;
         color: rgba(255, 255, 255, 0.72);
         font-size: 11px;
-        line-height: 1.25;
+        line-height: 1.4;
+      }
+
+      .molecule-session-hint code {
+        font-size: inherit;
+        white-space: nowrap;
       }
 
       .molecule-session-status.is-error {
@@ -541,7 +547,7 @@
             />
             <button class="molecule-session-add" type="submit">Add</button>
           </form>
-          <div id="molecule-formula-hint" class="molecule-session-hint">Examples: H2O, so2, NaCl, C2.H10.O7 · use O, not 0. If the formula is not built in, pressing Add sends only the formula to PubChem; the optional name stays in this browser. Shared links load locally without contacting PubChem.</div>
+          <p id="molecule-formula-hint" class="molecule-session-hint">e.g., <code>H2O</code>, <code>so2</code>, <code>NaCl</code>, or <code>C2.H10.O7</code>. Watch for the letter <code>O</code> and the digit <code>0</code>.</p>
           <div id="molecule-session-status" class="molecule-session-status" aria-live="polite"></div>
           <div id="molecule-session-list" class="molecule-session-list"></div>
         </section>

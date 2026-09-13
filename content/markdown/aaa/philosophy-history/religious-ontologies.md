@@ -19,7 +19,7 @@ Religious cosmologies address three core questions:
 2. **Cosmogony (How did it begin?):** What is the origin story of the universe or cosmos? Where did it come from?
 3. **Eschatology (How does it end?):** What is the ultimate fate of the cosmos and its inhabitants? How does it end?
 
-Unlike scientific theories, religious cosmologies typically embed metaphysical and moral frameworks: the cosmos has purpose, agency (divine or otherwise), and often a teleological arc.
+Religious cosmologies often connect accounts of the world with ethics, ritual, liberation, or divine agency. These connections vary by school; a universal cosmic purpose or a single final end is not a premise shared by all the traditions below.
 
 ---
 
@@ -27,7 +27,7 @@ Chapter organization note:
 
 This chapter uses a two-axis structure: first by civilizational family (`##`), then by individual tradition or focused philosophical program (`###`). Within each tradition, analysis is layered by ontology, cosmogony, and eschatology. Focused argument or school sections state their narrower scope explicitly rather than being presented as complete religions.
 
-Relation labels use one criterion throughout. A tradition is in **foundational contradiction** with $\mathbb{A}\mathbb{A}\mathbb{A}$ when it makes a personal creator, revealed command, immaterial soul, salvific purpose, or moral end-state part of fundamental cosmic ontology. A **partial analogy** or **aligned analogy** concerns structural resemblance only, such as creatorless process, cyclic time, atomism, or impersonal order. Comparative insight is reported separately and never weakens a foundational contradiction or upgrades an analogy into physical evidence.
+Relation labels distinguish two independent questions. **Structural analogy** identifies a resemblance in a selected account, such as persistent constituents, cyclic histories, or impersonal order. **Foundational incompatibility** identifies a conflict between a specified doctrine and the project's proposed complete physical ontology, when that doctrine adds irreducible creator dependence, souls, or moral and salvific governance. The labels may apply together, including within creatorless traditions. A physical model's omission of a theological premise is not, by itself, a logical or empirical refutation of that premise; incompatibility here is conditional on the competing claims to ontological completeness. These comparisons neither rank religions by scientific merit nor supply evidence for the physical substrate.
 
 
 ## Abrahamic Traditions
@@ -46,15 +46,15 @@ The central comparative point is that Judaism joins ontology to covenantal histo
 
 #### Cosmogony
 
-Jewish cosmogony is classically creation by divine will rather than by impersonal process. The Genesis narrative presents an ordered creation culminating in Sabbath, not only a sequence of events but a claim that the cosmos is intelligible, good, and ritually meaningful. Time structure is therefore fundamentally linear. The world begins, history unfolds, and divine-human relation is carried forward through generations.
+Jewish cosmogony is classically creation by divine will rather than by impersonal process. The Genesis narrative presents an ordered creation culminating in Sabbath, not only a sequence of events but a claim that the cosmos is intelligible, good, and ritually meaningful. The Genesis narrative gives a directional creation-and-history framework; this does not exhaust Jewish treatments of time. The world begins, history unfolds, and divine-human relation is carried forward through generations.
 
-Internal variants matter. Some readings emphasize creation *ex nihilo* in a strong metaphysical sense. Others, especially mystical readings, use language such as *Tzimtzum* to describe a divine self-contraction or making-room by which finite existence becomes possible. These variants shift the imaginative picture, but not the main comparative point: the cosmos is not self-originating.
+Internal variants matter. Some readings emphasize creation *ex nihilo* in a strong metaphysical sense. Others, especially mystical readings, use language such as *Tzimtzum* to describe a divine self-contraction or making-room by which finite existence becomes possible. These variants change the metaphysical account, not simply its imagery. [Maimonides, Guide for the Perplexed II.25](https://sacred-texts.com/jud/gfp/gfp112.htm), explicitly considers creation and eternity as philosophical questions while defending creation. Divine dependence and a first temporal moment should therefore be distinguished.
 
 #### Eschatology
 
 Jewish eschatology is less uniformly systematized than later Christian or Islamic eschatology, but it remains strongly historical. The end-state is not usually total metaphysical cancellation of creation. It is renewal, vindication, restoration, resurrection, or entry into the world to come. The Messianic Age functions as transformation of history rather than simply escape from it. Some streams stress national restoration and peace; others stress resurrection and deeper cosmic repair. Kabbalistic traditions add themes of repair, return, and restoration of fractured order.
 
-This internal spread is important. Judaism cannot be reduced to one neat end-of-the-world script. Even so, it remains a linear historical religion in which the future is meaningful because creation is morally ordered and unfinished.
+This internal spread is important. Judaism cannot be reduced to one neat end-of-the-world script. The historical and restorative framework remains useful for comparison, without assigning every Jewish school an identical cosmic timeline.
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -80,19 +80,19 @@ Internal variants concern how sharply matter and spirit are distinguished, how g
 
 #### Cosmogony
 
-Christianity generally inherits creation from nothing while often reframing it through the Logos and through doctrines of ongoing divine sustenance. Time structure is linear and redemptive. Creation begins; history falls into disorder through sin; redemption unfolds; consummation lies ahead. This gives Christian cosmology a stronger narrative arc than many other traditions. Time is not simply sequence. It is salvation history.
+Christianity generally inherits creation from nothing while often reframing it through the Logos and through doctrines of ongoing divine sustenance. Time structure is linear and redemptive. Creation begins; history falls into disorder through sin; redemption unfolds; consummation lies ahead. This gives the accounts considered here an explicitly redemptive narrative arc. Time is not simply sequence. It is salvation history.
 
 Theological variants matter. Augustine and later thinkers sometimes stress that the six days of Genesis should not be read simply as a material chronology. Scholastic thought introduces the idea of continuous creation or continuous dependence, according to which the world persists only because divine action sustains it. These nuances complicate the picture, but they do not alter the basic creator-created asymmetry.
 
 #### Eschatology
 
-Christian eschatology is one of the most developed in world religion. It includes resurrection of the dead, final judgment, and a transformed creation often described as a new heaven and new earth. The end-state is neither endless repetition nor dissolution into an impersonal absolute. It is fulfillment, restoration, judgment, and transformed continuity. History therefore has a strong telos.
+Classical Christian eschatology gives extensive attention to final fulfillment. It includes resurrection of the dead, final judgment, and a transformed creation often described as a new heaven and new earth. The end-state is neither endless repetition nor dissolution into an impersonal absolute. It is fulfillment, restoration, judgment, and transformed continuity. History therefore has a strong telos.
 
-Major internal variants concern the millennium, purgation, the intermediate state, the relation between present and future kingdom, and the interpretive style applied to apocalyptic texts. But all major branches remain recognizably linear and teleological. The cosmos is headed somewhere by divine intention.
+Major internal variants concern the millennium, purgation, the intermediate state, the relation between present and future kingdom, and the interpretive style applied to apocalyptic texts. The Catholic, Orthodox, and Protestant frameworks named here generally retain directional fulfillment, while differing over its interpretation. The cosmos is headed somewhere by divine intention.
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **foundational contradiction with comparative insight**. Christianity posits a personal creator, redemptive purpose, and final judgment built into the structure of reality. $\mathbb{A}\mathbb{A}\mathbb{A}$ posits none of those. It may recover lawful order and temporal irreversibility, but not creator dependence or salvific teleology. Christianity remains a strong contrast case for clarifying what a claim of physical ontological sufficiency excludes.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **foundational contradiction with comparative insight**. Christianity posits a personal creator, redemptive purpose, and final judgment built into the structure of reality. $\mathbb{A}\mathbb{A}\mathbb{A}$ posits none of those. Its physical equations do not include creator dependence or salvific teleology. Their absence is a modeling commitment; it does not constitute an empirical disproof of Christian metaphysics. Christianity remains a strong contrast case for clarifying what a claim of physical ontological sufficiency excludes.
 
 #### What Survives for Comparison
 
@@ -104,7 +104,7 @@ What still works as comparative insight is Christianity's integration of metaphy
 
 #### Overview
 
-**Tradition:** Islam. **Family:** Abrahamic. **Sources / Canonical Anchors:** the Qur'an, Hadith, classical theology, jurisprudential traditions, philosophical theology, and mystical interpretation. Islam shares the Abrahamic creator framework while intensifying divine unity, command, and accountability through the doctrine of *tawhid*.
+**Tradition:** Islam. **Family:** Abrahamic. **Sources / Canonical Anchors:** the Qur'an, Hadith, classical theology, jurisprudential traditions, philosophical theology, and mystical interpretation. Islam shares the Abrahamic creator framework with a distinctive emphasis on divine unity, command, and accountability through the doctrine of *tawhid*.
 
 #### Ontology
 
@@ -114,7 +114,7 @@ Internal variants matter, especially between more philosophical, theological, an
 
 #### Cosmogony
 
-Islamic cosmogony speaks of divine creation in ordered stages or epochs by command. The world begins because God wills it to begin. Time structure is therefore linear, even when the Qur'an's "days" are not read as ordinary human days. The origin story emphasizes sovereignty, order, and intelligibility under divine command rather than impersonal unfolding.
+Qur'anic creation language describes divine ordering and command; many kalam accounts interpret creation as a temporal beginning. Islamic philosophical traditions also debate an eternally dependent world. [Averroes, Decisive Treatise §§18–21](https://iberian-connections.yale.edu/wp-content/uploads/2019/08/Averroes-DecisiveTreatise.pdf), distinguishes the world's causal dependence from the temporal categories applied to ordinary generated things. A personal creator and a first moment in time are therefore distinct claims, not interchangeable summaries of all Islamic cosmology.
 
 Because Islamic thought often joins cosmology to revelation and law, origin is not merely a speculative topic. It is a sign of dependence and a warrant for accountability. The world is not an autonomous mechanism in the strong metaphysical sense.
 
@@ -122,15 +122,15 @@ Because Islamic thought often joins cosmology to revelation and law, origin is n
 
 Islamic eschatology is robustly linear and judicial. Resurrection, judgment, paradise, and hell are central. Cosmic dissolution and reconstitution form part of the end-state picture. The end is therefore not just the exhaustion of cosmic process but the public completion of moral reckoning. Internal variants exist around signs of the end, apocalyptic figures, intercession, and interpretive detail, yet the large pattern is stable.
 
-In comparative terms, Islam is one of the clearest examples of a cosmology in which ontology and morality are structurally inseparable. The world's end is not accidental; it is judicial and revelatory.
+In the scriptural and theological accounts considered here, ontology and moral accountability are closely connected. The world's end is not accidental; it is judicial and revelatory.
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **foundational contradiction with comparative insight**. Islam posits a created world under divine decree and final judgment. $\mathbb{A}\mathbb{A}\mathbb{A}$ posits a lawful substrate world without creator-command, preserved divine decree, or cosmic courtroom. Islam remains a strong contrastive frame for distinguishing physical law from revealed command and cosmic regularity from providential governance.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **foundational contradiction with comparative insight**. Islam posits a created world under divine decree and final judgment. $\mathbb{A}\mathbb{A}\mathbb{A}$ posits a lawful substrate world without creator-command, divine decree, or a final moral judgment as physical primitives. Islam remains a strong contrastive frame for distinguishing physical law from revealed command and cosmic regularity from providential governance.
 
 #### What Survives for Comparison
 
-What still works as comparative insight is the clarity with which Islam joins unity, order, origin, and eschatological accountability. It also provides a comparatively direct example of linear creator cosmology without Trinitarian complexity. What is easily overstated is doctrinal homogeneity; Islamic philosophy, theology, and mysticism contain meaningful variation. Long-term relevance here is as historical and conceptual contrast for any non-theistic scientific ontology.
+What still works as comparative insight is the clarity with which Islam joins unity, order, origin, and eschatological accountability. It also provides a comparatively direct example of linear creator cosmology with a different account of divine unity from Trinitarian Christianity. What is easily overstated is doctrinal homogeneity; Islamic philosophy, theology, and mysticism contain meaningful variation. Long-term relevance here is as historical and conceptual contrast for any non-theistic scientific ontology.
 
 ---
 
@@ -160,11 +160,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b5fe76699d24b7cb)
 
-The inference is only as strong as its premises and scope. The first premise extrapolates a causal rule from events within an existing world to the existence of the whole world. The second requires a defensible meaning of "begins" and independent warrant that the physical order has such a boundary. Neither premise may be imported from an observer-level singular chart as though the chart were automatically substrate history.
+The inference is only as strong as its premises and scope. If the first premise is defended by examples of events within an existing world, extending that evidence to the existence of the whole world requires a separate argument. Other defenses of the premise likewise need their own stated warrant. The second requires a defensible meaning of "begins" and independent warrant that the physical order has such a boundary. Neither premise may be imported from an observer-level singular chart as though the chart were automatically substrate history.
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation is **foundational contradiction when the conclusion is a transcendent personal creator**, and **methodological comparison** at the level of premise discipline. $\mathbb{A}\mathbb{A}\mathbb{A}$ uses [absolute time](../foundations/absolute-time.md), one universal temporal order independent of observer clocks, and a continuing physical substrate, so it does not infer creation from a finite observer reconstruction or from an effective scale-factor boundary. A beginning claim must instead identify a first substrate state, the law that makes it first, and the failure of every admissible prior continuation.
+The relation is **foundational contradiction when the conclusion is a transcendent personal creator**, and **methodological comparison** at the level of premise discipline. $\mathbb{A}\mathbb{A}\mathbb{A}$ uses [absolute time](../foundations/absolute-time.md), one universal temporal order independent of observer clocks, and a continuing physical substrate, so it does not infer creation from a finite observer reconstruction or from an effective scale-factor boundary. A first-state claim must identify the admitted time domain and why earlier continuation is excluded. Absolute ordering alone does not prove either a finite or an infinite past, and the displayed inference does not establish that its cause is personal, unique, or transcendent.
 
 #### What Survives for Comparison
 
@@ -190,7 +190,7 @@ The cosmological picture is commonly cyclic: atomic combinations dissolve and la
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation is **partial analogy with major dynamical contrast**. Persistent constituents and composite bodies resemble the distinction between architrinos and assemblies. The analogy ends there. Vaisheshika categories do not supply the Master Equation, causal-delay interaction, polarity, Noether sea response, or the quantitative recovery of observer-level physics. Its atom types and inherence relations cannot be imported as substrate premises.
+The relation is **partial structural analogy with foundational and dynamical contrasts**. Persistent constituents and composite bodies resemble the distinction between architrinos and assemblies. The analogy ends there. Vaisheshika categories do not supply the Master Equation, causal-delay interaction, polarity, Noether sea response, or the quantitative recovery of observer-level physics. Its atom types, selves, and inherence relations cannot be imported as substrate premises. An irreducible self or divine ordering would also conflict with the project’s proposed complete physical ontology, despite the atomist resemblance.
 
 #### What Survives for Comparison
 
@@ -206,7 +206,7 @@ Vaisheshika is historically valuable because it shows that constituent persisten
 
 #### Ontology
 
-Hindu ontology is internally plural. In nondual Vedanta, Brahman is the ultimate absolute, while the world of multiplicity is dependent, derivative, or veiled through Maya. In other schools, the distinction between ultimate and phenomenal reality is handled differently, and dualist or qualified nondual systems preserve real differences between God, souls, and world. Creator status is therefore mixed. In devotional and Puranic contexts, creation may be associated with divine agency; in deeper metaphysical readings, the ultimate is less a personal creator than an all-encompassing absolute.
+Hindu ontology is internally plural. In nondual Vedanta, Brahman is the ultimate absolute, while the world of multiplicity is dependent, derivative, or veiled through Maya. In other schools, the distinction between ultimate and phenomenal reality is handled differently, and dualist or qualified nondual systems preserve real differences between God, souls, and world. Creator status is therefore mixed. In devotional and Puranic contexts, creation may be associated with divine agency; in some nondual metaphysical readings, the ultimate is less a personal creator than an all-encompassing absolute.
 
 For comparative purposes, Hinduism is especially complex. It is neither simply creator-theism nor simply impersonal process metaphysics; it contains both modes within one broad civilizational tradition.
 
@@ -224,7 +224,7 @@ Internal variants are decisive here. A devotional school, a nondual metaphysical
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **partial analogy**. The strongest overlap lies in resistance to one-time creator cosmology and in openness to cyclic or recurrent large-scale structure. The strongest divergence lies in ultimate ontology. Hindu traditions frequently ground reality in consciousness, absolute being, or sacred metaphysical principles, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ grounds reality in physical substrate and causal law. Transition relevance is moderate. Hindu cosmology offers conceptual bridges for thinking beyond one-time creation, but not a substitute for physical mechanism.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **partial structural analogy with school-dependent foundational contrasts**. The strongest overlap lies in resistance to one-time creator cosmology and in openness to cyclic or recurrent large-scale structure. The strongest divergence lies in ultimate ontology. Hindu traditions frequently ground reality in consciousness, absolute being, or sacred metaphysical principles, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ grounds reality in physical substrate and causal law. Hindu cosmology offers conceptual bridges for thinking beyond one-time creation, but not a substitute for physical mechanism.
 
 #### What Survives for Comparison
 
@@ -244,11 +244,11 @@ Jain ontology distinguishes living souls, *jiva*, from nonliving categories, *aj
 
 #### Cosmogony
 
-The universe is uncreated and undergoes recurring ascending and descending temporal arcs. Cosmic order is therefore cyclic without requiring periodic creation from nothing. This is a stronger creatorless realism than Buddhist dependent-origination accounts because it preserves enduring souls and a structured nonliving inventory.
+The cosmos is uncreated in the Jain account. Its ascending and descending age cycles should not be described as periodic creation or dissolution of the entire universe. [Tattvartha Sutra 3.27 and its commentary](https://www.wisdomlib.org/jainism/book/tattvartha-sutra-with-commentary/d/doc1084698.html) locate the relevant rise and decline in human conditions in the Bharata and Airavata regions. Persistent souls and a structured nonliving inventory distinguish this account from Buddhist dependent-arising accounts; this is a categorical contrast, not a ranking of realism.
 
 #### Eschatology
 
-There is no final universal termination. Individual liberation occurs when karmic bondage is exhausted, while the cosmos continues through its cycles. Digambara and Svetambara traditions differ on important doctrinal and historical details, but both preserve the broad separation between an uncreated cosmos and individual release.
+There is no final universal termination. Individual liberation occurs when karmic bondage is exhausted, while the uncreated cosmos continues and the region-specific cycles proceed. Digambara and Svetambara traditions differ on important doctrinal and historical details, but both preserve the broad separation between an uncreated cosmos and individual release.
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
@@ -268,13 +268,13 @@ Jainism broadens the chapter's creatorless cases beyond process-only ontology. I
 
 #### Ontology
 
-Classical Buddhist ontology denies permanent self and rejects a creator as fundamental explanatory need. Creator status is therefore absent in standard formulations. Reality is described through conditioned arising, impermanence, and in many schools some version of emptiness or lack of inherent self-subsistence. What exists is not nothing, but whatever exists does so dependently and without eternal substantial essence.
+Classical Buddhist ontology denies permanent self and rejects a creator as fundamental explanatory need. Creator status is therefore absent in standard formulations. Reality is described through conditioned arising, impermanence, and in many schools some version of emptiness or lack of inherent self-subsistence. This is not a claim that nothing exists. It also must not erase the distinction between conditioned phenomena and nirvana: [Udana 8.3](https://accesstoinsight.org/tipitaka/kn/ud/ud.8.03.than.html) describes an unconditioned liberation. Schools differ over how to analyze this distinction and emptiness; neither makes nirvana a creator or an architrino-like substance.
 
 This makes Buddhism one of the sharpest contrasts both to Abrahamic creator metaphysics and to substance-heavy naturalisms. Internal variants matter strongly, however. Abhidharma traditions speak in fine-grained event ontologies, while Mahayana traditions often deepen analysis through emptiness and relationality in ways that resist simplistic metaphysical labeling.
 
 #### Cosmogony
 
-Buddhist cosmogony is generally beginningless rather than creator-originating. Time structure is cyclic, but the cycle is not the celebration of eternal recurrence for its own sake. It is the repeated continuity of conditioned becoming under ignorance and craving. The question of first beginning is often treated as spiritually unhelpful or metaphysically misguided. What matters is the structure of dependent origination in the present process.
+Buddhist accounts commonly describe samsara as without a discoverable beginning rather than as originating through a creator. This does not by itself amount to a demonstrated cosmological theorem about an infinite physical past. Time structure is cyclic, but the cycle is not the celebration of eternal recurrence for its own sake. It is the repeated continuity of conditioned becoming under ignorance and craving. The question of first beginning is often treated as spiritually unhelpful or metaphysically misguided. What matters is the structure of dependent origination in the present process.
 
 Buddhism therefore sustains cosmological discourse while refusing the ordinary demand for a first cause. That refusal is not mere skepticism; it is tied to a deeper diagnosis of which questions bear on liberation.
 
@@ -282,11 +282,11 @@ Buddhism therefore sustains cosmological discourse while refusing the ordinary d
 
 Buddhist eschatology centers on liberation rather than cosmic finale. The world-process does not necessarily terminate for all beings at once. Instead, the decisive possibility is Nirvana: cessation of the conditions that perpetuate suffering and rebirth. Cosmic cycles may continue, but liberation alters one’s relation to them. Some Mahayana visions broaden the horizon through universal salvation motifs or endless compassionate delay by bodhisattvas, yet even these do not collapse into final universal judgment.
 
-This means Buddhism distinguishes individual existential release from total cosmic completion more sharply than the Abrahamic traditions do.
+The distinction between liberation and cosmic completion is central to this comparison; it does not rank traditions by the sharpness of their concepts.
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **partial analogy with major contrast**. The analogy lies in non-creator cosmology, process sensitivity, and refusal to treat ordinary appearances as final ontology. The contrast lies in substance. Buddhism tends to weaken or deny enduring substance and ultimate selfhood, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ posits persistent entities and lawful physical substrate. Transition relevance is moderate to high as a conceptual bridge away from creator dependence and toward process-based thinking, but low if one tries to turn Buddhist emptiness into scientific ontology directly.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **partial analogy with major contrast**. The analogy lies in non-creator cosmology, process sensitivity, and refusal to treat ordinary appearances as final ontology. The contrast lies in substance. Buddhism tends to weaken or deny enduring substance and ultimate selfhood, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ posits persistent entities and lawful physical substrate. Those themes support a structural comparison, while karma, rebirth, and liberation require their own doctrinal analysis and are not physical premises. There is no quantitative scale of transition relevance here.
 
 #### What Survives for Comparison
 
@@ -300,13 +300,13 @@ What still works as comparative insight is Buddhism's severe discipline about im
 
 #### Overview
 
-**Tradition:** Daoism. **Family:** East Asian. **Sources / Canonical Anchors:** the *Dao De Jing*, *Zhuangzi*, later religious Daoist texts, cosmological speculation, and alchemical traditions. Daoism matters here because it provides one of the clearest non-creator cosmologies built around impersonal generative order, polarity, and transformation.
+**Tradition:** Daoism. **Family:** East Asian. **Sources / Canonical Anchors:** the *Dao De Jing*, *Zhuangzi*, later religious Daoist texts, cosmological speculation, and alchemical traditions. The Daoist comparison here begins with generative order, polarity, and transformation in the early philosophical texts, while keeping later religious developments distinct.
 
 #### Ontology
 
-Daoist ontology is centered on the Dao as impersonal source or generative principle rather than on a personal creator. Creator status is therefore best classified as none in the personal sense and impersonal-source in the broader comparative sense. The Dao is not normally a supreme agent who chooses to create. It is the ineffable pattern or way from which ordered differentiation unfolds. Qi, Yin-Yang polarity, and natural transformation provide the language of manifestation.
+In the early philosophical texts emphasized here, the Dao is described as an impersonal source or generative principle rather than a personal creator. This does not summarize every religious Daoist account of deities or cosmic agency. Creator status is therefore best classified as none in the personal sense and impersonal-source in the broader comparative sense. The Dao is not normally a supreme agent who chooses to create. It is the ineffable pattern or way from which ordered differentiation unfolds. Qi, Yin-Yang polarity, and natural transformation provide the language of manifestation.
 
-This ontological style is process-heavy and anti-rigid. Reality is not built from static substances alone, but from patterned transformation, relation, and balance. Daoism therefore often appears unusually close to naturalistic cosmology even though its language is not scientific in the modern sense.
+This ontological style is process-heavy and anti-rigid. Reality is not built from static substances alone, but from patterned transformation, relation, and balance. This supports a limited comparison with process descriptions, while its concepts and aims remain distinct from those of a physical theory.
 
 #### Cosmogony
 
@@ -316,17 +316,15 @@ Because Daoism emphasizes naturalness, its cosmogony is less concerned with a si
 
 #### Eschatology
 
-Daoism generally lacks a final universal apocalypse. Its eschatological orientation is better described as return, balance, longevity, or harmony with process rather than terminal judgment. End-state accounts are therefore local or existential rather than absolute and final. Religious Daoist traditions introduce additional complexity through immortality practices, celestial bureaucracies, and internal alchemical transformation, but even these do not usually produce a single linear end of history.
-
-Accordingly, Daoism is one of the least apocalyptic and least judgment-centered cosmologies in this chapter. Change is permanent, and harmony consists in attunement rather than rescue from history.
+The early-text themes emphasized here concern return, transformation, and attunement; they do not supply a single final-judgment narrative. Religious Daoist traditions cannot be reduced to that selection. For example, the [Taishang Ganying Pian](https://www.sacred-texts.com/tao/sbe40/sbe4018.htm) describes spirits recording conduct and assigning consequences. Moral governance, longevity, salvation, and cosmic renewal therefore need to be distinguished by text and lineage rather than excluded from Daoism as a whole.
 
 #### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **aligned analogy** at the level of broad cosmological style and **contrast** at the level of ontology. The alignment lies in impersonal dynamics, anti-apocalyptic temporality, and emphasis on process rather than creator-command. The contrast lies in explanatory form: Daoism speaks in metaphysical and symbolic language, whereas $\mathbb{A}\mathbb{A}\mathbb{A}$ aims at explicit physical substrate and causal derivation. Transition relevance is high because Daoism gives conceptual room for a world that is lawful, dynamic, and non-teleological without being meaningless.
+The relation is **partial structural analogy with text-dependent foundational contrasts**. The early-text analogy concerns generative order and transformation without a personal creator-command. It does not make Daoist cosmology a physical model or establish the absence of moral or salvific cosmology in religious Daoism. Where divine agencies or moral retribution are irreducible constituents of an account, the same ontological-completeness distinction used for other traditions applies.
 
 #### What Survives for Comparison
 
-What still works as comparative insight is Daoism's disciplined naturalism, its sensitivity to polarity and balance, and its refusal to force reality into rigid creator-created dualism. What is easily overstated is the temptation to equate Dao directly with scientific field, medium, or law. That flattening would misread both traditions. Long-term relevance here is as one of the strongest historical analogues for impersonal, process-centered cosmology, while remaining clearly distinct from a scientific substrate theory.
+What remains useful in the selected Daoist texts is their attention to patterned transformation, their sensitivity to polarity and balance, and their refusal to force reality into rigid creator-created dualism. What is easily overstated is the temptation to equate Dao directly with scientific field, medium, or law. That flattening would misread both traditions. Long-term relevance here is as a historical comparison for impersonal, process-centered cosmology, while remaining clearly distinct from a scientific substrate theory.
 
 ---
 
@@ -336,15 +334,15 @@ What still works as comparative insight is Daoism's disciplined naturalism, its 
 
 | Tradition or program | Fundamental ontology | Origin structure | End-state structure | Time structure | Creator status |
 |---|---|---|---|---|---|
-| Judaism | Personal God, created world, covenantal order | Creation by divine will; philosophical and mystical variants | Restoration, resurrection, or world to come | Linear | Personal creator |
+| Judaism | Personal God, created world, covenantal order | Creation by divine will; philosophical and mystical variants | Restoration, resurrection, or world to come | Directional historical narrative; philosophical and mystical variants | Personal creator |
 | Christianity | Trinitarian God, created matter and spirit | Creation through divine agency and Logos | Judgment, resurrection, transformed creation | Linear and redemptive | Personal creator |
-| Islam | Divine unity, created world, accountable creatures | Creation by divine command | Resurrection, judgment, paradise and hell | Linear and judicial | Personal creator |
+| Islam | Divine unity, dependent world, accountable creatures | Divine creation; temporal-origin and eternal-dependence debates | Resurrection, judgment, paradise and hell | Directional eschatology; philosophical variants | Personal creator |
 | Kalam argument | Causally dependent or temporally begun universe | First-cause inference from declared premises | Not fixed by the argument alone | Usually finite-past | Transcendent cause in theological forms |
 | Vaisheshika | Persistent atoms plus categorical substances and relations | Cyclic combination and dissolution | Continued cycles; school-dependent soteriology | Cyclic | Mixed across interpretations |
 | Hinduism | Brahman, selves, matter, or dual principles depending on school | Cyclic manifestation and dissolution | Continuing cycles with possible individual liberation | Cyclic or mixed | Personal, impersonal, or mixed |
-| Jainism | Persistent souls and nonliving categories in an uncreated cosmos | Beginningless recurring cosmic arcs | Continued cosmos with individual liberation | Cyclic | No creator |
-| Buddhism | Conditioned events, dependent origination, no permanent self | Beginningless conditioned process | Continued cycles with possible liberation | Cyclic | No creator |
-| Daoism | Dao, *qi*, polarity, and transformation | Continuous impersonal unfolding | Return, balance, or continued transformation | Rhythmic or cyclic | No personal creator |
+| Jainism | Persistent souls and nonliving categories in an uncreated cosmos | No cosmic creation; regional ascending/descending ages | Continued cosmos with individual liberation | Region-specific age cycles | No creator |
+| Buddhism | Conditioned phenomena, no permanent self; school-dependent accounts of the unconditioned | Samsara without a discoverable beginning | Cycles and liberation distinguished | Cyclic cosmological accounts | No creator |
+| Daoism | Dao, *qi*, polarity; religious accounts also include deities | Generative unfolding in selected early texts | Return/transformation; religious accounts vary | Rhythmic/cyclic themes; lineage-dependent | Impersonal Dao in early-text comparison |
 
 ### Creator, Cause, and Self-Grounding Process
 
@@ -370,4 +368,4 @@ Judgment, renewal, liberation, harmony, and continued cycling answer different e
 
 ### Comparative Verdict
 
-The chapter's comparisons are now evidence-ordered: the tradition studies come first, and the synthesis follows them. Personal-creator and salvific ontologies are in foundational contradiction with $\mathbb{A}\mathbb{A}\mathbb{A}$ while retaining comparative value. Creatorless, cyclic, atomist, or process-centered traditions supply partial structural analogies, never physical premises. The durable lesson is methodological: origin, order, persistence, and end-state claims must keep their theological, philosophical, symbolic, and physical authorities distinct.
+These comparisons distinguish structural resemblance from incompatibility between specified claims to complete ontology. Creator dependence, irreducible souls, and salvific or moral governance can conflict with the project's physical-ontology commitment wherever they occur; creatorless or cyclic language does not remove that distinction. Neither an analogy nor the absence of a theological term from a physical model proves or disproves a religion. Origin, order, persistence, and end-state claims must keep their theological, philosophical, symbolic, and physical warrants distinct.

@@ -3,7 +3,8 @@ import test from "node:test";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
-import identities from "./fixtures/option-b-retained-test-identities.json" with { type: "json" };
+import { retainedTestIdentities } from './support/option-b-retained-test-identities.mjs';
+const identities = retainedTestIdentities("tests/mermaid-markdown-runtime.test.js");
 import {
   createMermaidMarkdownRuntime,
   isMermaidSvgSafe,

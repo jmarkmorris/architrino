@@ -1,0 +1,117 @@
+commit f285eb4f460fd8b3d84815520168546c882844f2
+Author:     J Mark Morris <architrino@gmail.com>
+AuthorDate: Sun Sep 6 14:05:12 2026 -0400
+Commit:     J Mark Morris <architrino@gmail.com>
+CommitDate: Sun Sep 6 14:05:12 2026 -0400
+
+    Harden Git hook environment isolation
+
+diff --git a/.githooks/pre-commit b/.githooks/pre-commit
+index 10c4f0c9f..5b07cd58e 100755
+--- a/.githooks/pre-commit
++++ b/.githooks/pre-commit
+@@ -1,6 +1,12 @@
+ #!/usr/bin/env bash
+ set -euo pipefail
+ 
++# Git exports GIT_DIR and GIT_WORK_TREE to hooks when it was invoked with
++# --git-dir/--work-tree or with GIT_DIR set. Any `git init` or `git config` run
++# in another directory by the checks below would then act on THIS repository
++# (measured 2026-09-06: test fixtures rewrote user.name and core.hooksPath).
++unset GIT_DIR GIT_WORK_TREE
++
+ current_branch="$(git symbolic-ref --quiet --short HEAD || true)"
+ if [[ "${ALLOW_MAIN_COMMIT:-}" != "1" && "$current_branch" == "main" ]]; then
+   echo "[pre-commit] direct commits on 'main' are blocked."
+diff --git a/.githooks/pre-push b/.githooks/pre-push
+index eb8df25a5..ddbd382d5 100755
+--- a/.githooks/pre-push
++++ b/.githooks/pre-push
+@@ -1,6 +1,12 @@
+ #!/usr/bin/env bash
+ set -euo pipefail
+ 
++# Git exports GIT_DIR and GIT_WORK_TREE to hooks when it was invoked with
++# --git-dir/--work-tree or with GIT_DIR set. Any `git init` or `git config` run
++# in another directory by the checks below would then act on THIS repository
++# (measured 2026-09-06: test fixtures rewrote user.name and core.hooksPath).
++unset GIT_DIR GIT_WORK_TREE
++
+ origin_main_oid="$(git rev-parse --verify refs/remotes/origin/main 2>/dev/null || true)"
+ policy_output=""
+ if policy_output="$(
+diff --git a/scripts/check-content-integrity.mjs b/scripts/check-content-integrity.mjs
+index 2983eac98..7bbcce67e 100644
+--- a/scripts/check-content-integrity.mjs
++++ b/scripts/check-content-integrity.mjs
+@@ -165,13 +165,23 @@ const suiteStartedAt = performance.now();
+ const failures = [];
+ const reportingFailures = [];
+ 
++// Environment for child checks. Git exports GIT_DIR, GIT_WORK_TREE, and
++// GIT_INDEX_FILE to hooks; a child that runs `git init` or `git config` in a
++// temporary directory would otherwise act on this repository.
++const REPO_SCOPED_GIT_VARIABLES = ["GIT_DIR", "GIT_WORK_TREE", "GIT_INDEX_FILE", "GIT_PREFIX", "GIT_COMMON_DIR", "GIT_OBJECT_DIRECTORY", "GIT_ALTERNATE_OBJECT_DIRECTORIES", "GIT_NAMESPACE"];
++function childEnvironment(env = process.env) {
++  const child = { ...env };
++  for (const name of REPO_SCOPED_GIT_VARIABLES) delete child[name];
++  return child;
++}
++
+ for (const [index, check] of CHECKS.entries()) {
+   const label = `${index + 1}/${CHECKS.length} ${check.name}`;
+   console.log(`[content-integrity] ${label}`);
+   const checkStartedAt = performance.now();
+   const result = spawnSync(process.execPath, check.args, {
+     cwd: ROOT_DIR,
+-    env: process.env,
++    env: childEnvironment(),
+     stdio: "inherit",
+   });
+   const duration = formatDuration(performance.now() - checkStartedAt);
+diff --git a/scripts/pr-validation-receipt.mjs b/scripts/pr-validation-receipt.mjs
+index 6e9c3f388..8df1c254d 100644
+--- a/scripts/pr-validation-receipt.mjs
++++ b/scripts/pr-validation-receipt.mjs
+@@ -42,6 +42,16 @@ function sha256(parts) {
+   return hash.digest("hex");
+ }
+ 
++// Environment for child checks. Git exports GIT_DIR, GIT_WORK_TREE, and
++// GIT_INDEX_FILE to hooks; a child that runs `git init` or `git config` in a
++// temporary directory would otherwise act on this repository.
++const REPO_SCOPED_GIT_VARIABLES = ["GIT_DIR", "GIT_WORK_TREE", "GIT_INDEX_FILE", "GIT_PREFIX", "GIT_COMMON_DIR", "GIT_OBJECT_DIRECTORY", "GIT_ALTERNATE_OBJECT_DIRECTORIES", "GIT_NAMESPACE"];
++function childEnvironment(env = process.env) {
++  const child = { ...env };
++  for (const name of REPO_SCOPED_GIT_VARIABLES) delete child[name];
++  return child;
++}
++
+ function runGit(args, { cwd, encoding = "utf8" }) {
+   const result = spawnSync("git", args, {
+     cwd,
+@@ -253,7 +263,7 @@ export function runValidationCommands({
+     console.log(`[pr-validation] running ${command.name}...`);
+     const result = spawnSync(process.execPath, command.args, {
+       cwd,
+-      env: process.env,
++      env: childEnvironment(),
+       stdio: "inherit",
+     });
+     if (result.error) {
+diff --git a/tests/pr-validation-receipt.test.js b/tests/pr-validation-receipt.test.js
+index 3f1b38d81..810492310 100644
+--- a/tests/pr-validation-receipt.test.js
++++ b/tests/pr-validation-receipt.test.js
+@@ -13,8 +13,10 @@ import {
+   writeValidationReceipt,
+ } from "../scripts/pr-validation-receipt.mjs";
+ 
++// Strip repository-scoped Git variables so a fixture never acts on the real checkout when this test runs inside a hook.
++const GIT_FIXTURE_ENV = Object.fromEntries(Object.entries(process.env).filter(([name]) => !/^GIT_(DIR|WORK_TREE|INDEX_FILE|PREFIX|COMMON_DIR|OBJECT_DIRECTORY|ALTERNATE_OBJECT_DIRECTORIES|NAMESPACE)$/u.test(name)));
+ function git(cwd, ...args) {
+-  return execFileSync("git", args, { cwd, encoding: "utf8" }).trim();
++  return execFileSync("git", args, { cwd, encoding: "utf8", env: GIT_FIXTURE_ENV }).trim();
+ }
+ 
+ function createRepository(t) {

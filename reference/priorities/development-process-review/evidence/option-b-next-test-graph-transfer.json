@@ -1,0 +1,68 @@
+{
+  "schema": "option-b-next-test-graph-transfer/v1",
+  "originCommit": "c7a00b8116b24f6d70d081c24a503e0aba3366f4",
+  "authority": "operator-directed-graph-integration-of-unchanged-expectations",
+  "claimBoundary": "No expectation, scientific input or consumer source changes; original shape/role validator remains exact. New graph admission adds selection, identity and dependency rejection.",
+  "originalBindings": [
+    {
+      "path": "tests/support/option-b-next-test-identities.mjs",
+      "sha256": "c8060fdaeb1de2fde26ff909bcb09d25b17565d918e2ae9712789e5fcd104a03",
+      "incomingExactDigest": []
+    },
+    {
+      "path": "tests/fixtures/option-b-next-test-identities.json",
+      "sha256": "8cf15a8b478152e5e4a4f67b719e3d41cf16660fad3b679379e8da3363e44b13",
+      "incomingExactDigest": []
+    },
+    {
+      "path": "tests/option-b-next-test-identities.test.mjs",
+      "sha256": "9f1c501a10130b1a9b5da8e9760df639636644dfbc29ac41e604d0585619082e",
+      "incomingExactDigest": []
+    },
+    {
+      "path": "tests/f6c-acceleration-pilot.test.js",
+      "sha256": "87d305f8ed342b9f1ac58ecd82d81441a7f64fdb0bc74809059c3dde3b4cde63",
+      "incomingExactDigest": []
+    },
+    {
+      "path": "tests/f6c-evidence-packaging.test.js",
+      "sha256": "f3bfc7f0edf552cb34e0b29737e41e5d5f2d87d59f89b7e0db65e1ee4a5048e8",
+      "incomingExactDigest": []
+    },
+    {
+      "path": "tests/f6c-bounded-operation-closure.test.js",
+      "sha256": "24917e11d527b7bce22599b8b1dd4bdb0c79366501a730a8933e03751a5bbf35",
+      "incomingExactDigest": []
+    },
+    {
+      "path": "tests/f6c-streamed-leaf-diagnostic.test.js",
+      "sha256": "7ce8beece1546bd303fd4f3ae5f808917a9aa39e40b3ca39e7cf99b9569539a9",
+      "incomingExactDigest": []
+    },
+    {
+      "path": "tests/option-b-circular-admission.test.mjs",
+      "sha256": "89e28bab6139e4a75a7086e1d39d3605ec2722748e8865f7bdf3e0ff4dd0b9de",
+      "incomingExactDigest": []
+    },
+    {
+      "path": "tests/option-b-f6c-coordinator-process.test.mjs",
+      "sha256": "ead94071d18ecf19683d21648876a9684c854799c9c8302ef440172b2ffea86d",
+      "incomingExactDigest": []
+    },
+    {
+      "path": "tests/option-b-f6c-family-admission.test.mjs",
+      "sha256": "aa9d37d5d9054338d9574bb7f15d5b68a415569c2faa18bd4bf8d3ba6feea58e",
+      "incomingExactDigest": []
+    },
+    {
+      "path": "tests/option-b-f6c-streamed-preparation.test.mjs",
+      "sha256": "7de69de681c69584d7834f948f1dc5a0fc5ac56e810b94ebc728955b7fbc33bd",
+      "incomingExactDigest": []
+    },
+    {
+      "path": "tests/subfield-circular-root-pilot.test.js",
+      "sha256": "3039092eb332b5732d5c95975fe0e80650f082a0f303010c8626b20832fd349e",
+      "incomingExactDigest": []
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Foundational impact...
+[pr-validation] running Content Integrity...
+[pr-validation] running Animator runtime wiring...
+[pr-validation] running Option B two-chain trial (report-only)...
+[pr-validation] REPORT-ONLY error: Option B two-chain trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Foundational impact...
+[pr-validation] running Content Integrity...
+[pr-validation] running Animator runtime wiring...
+[pr-validation] running Option B two-chain trial (report-only)...
+[pr-validation] REPORT-ONLY error: Option B two-chain trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Foundational impact...
+[pr-validation] running Content Integrity...
+[pr-validation] running Animator runtime wiring...
+[pr-validation] running Option B two-chain trial (report-only)...
+[pr-validation] REPORT-ONLY pass: Option B two-chain trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+✔ validation receipt verifies only the exact staged and overlay state (306.916167ms)
+✔ publication validation refuses partially staged files before running checks (102.265333ms)
+✔ a matching snapshot cannot authorize an untested staged version (154.745042ms)
+✔ validation receipt invalidates when the comparison base moves (147.32675ms)
+✔ validation receipt does not cross branch identity (152.90425ms)
+✔ validation receipt rejects schema and contract mismatch (157.848166ms)
+✔ validation runner writes only when repository state stays fixed (409.33825ms)
+✔ validation state comparison names the first mismatched field (0.832042ms)
+✔ report-only B errors stay visible and do not change the required A command policy (1.3365ms)
+✔ publication receipt preserves B error explicitly alongside successful required checks (296.932041ms)
+✔ a zero-exit B invocation with no new report cannot reuse an old success (1.170833ms)
+✔ independent equality consumer accepts coherent indexed and working inputs (445.501375ms)
+✔ publication rejects a stable unstaged dependency supporting a staged requirement (271.34825ms)
+✔ publication rejects a dependency supplied only by a non-ignored untracked file (226.024042ms)
+✔ publication rejects non-ignored untracked files without changing their contents (165.11275ms)
+✔ publication rejects an indexed dependency missing from working files (198.968041ms)
+✔ publication rejects a staged-deleted ignored dependency still on disk (293.911958ms)
+✔ publication rejects an ignored deleted dependency restored after the deletion commit (533.112625ms)
+✔ publication accepts an indexed file-to-directory replacement before and after commit (379.541417ms)
+✔ publication accepts an indexed directory-to-file replacement before and after commit (427.096333ms)
+✔ publication accepts an indexed directory-to-symlink replacement (443.390583ms)
+✔ publication rejects hidden changes made by validation before writing a receipt (222.707208ms)
+✔ publication removes a written receipt when its final check finds hidden changes (304.212417ms)
+✔ the previous partial-staging contract cannot authorize the stronger receipt (189.807958ms)
+✔ publication rejects unmerged index entries (228.0155ms)
+✔ publication rejects unsupported gitlink index entries (259.365333ms)
+✔ publication rejects dependency changes hidden by --assume-unchanged (302.936917ms)
+✔ publication rejects dependency changes hidden by --skip-worktree (295.013875ms)
+✔ publication compares indexed raw bytes despite a configured clean filter (261.126833ms)
+✔ publication rejects executable mode drift when Git ignores file modes (232.3155ms)
+✔ publication accepts matching executable and symlink index entries (357.202959ms)
+✔ publication rejects a regular source replaced by a same-content symlink (199.319125ms)
+✔ publication rejects symlink target drift and a staged-deleted dangling symlink (336.582916ms)
+✔ publication preserves supported ignored runtime output during validation (313.696541ms)
+✔ validation children remove all eight inherited repository-scoped Git variables (230.440209ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8940.794667

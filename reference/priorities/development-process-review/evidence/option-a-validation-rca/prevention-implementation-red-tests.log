@@ -1,0 +1,253 @@
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Foundational impact...
+[pr-validation] running Content Integrity...
+[pr-validation] running Animator runtime wiring...
+[pr-validation] running Option B two-chain trial (report-only)...
+[pr-validation] REPORT-ONLY error: Option B two-chain trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Foundational impact...
+[pr-validation] running Content Integrity...
+[pr-validation] running Animator runtime wiring...
+[pr-validation] running Option B two-chain trial (report-only)...
+[pr-validation] REPORT-ONLY error: Option B two-chain trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+[pr-validation] running Prepare ignored runtime assets...
+[pr-validation] running Foundational impact...
+[pr-validation] running Content Integrity...
+[pr-validation] running Animator runtime wiring...
+[pr-validation] running Option B two-chain trial (report-only)...
+[pr-validation] REPORT-ONLY pass: Option B two-chain trial (report-only); .local-data/option-b-trial/report.json. Existing required checks retain authority.
+✔ validation receipt verifies only the exact staged and overlay state (315.215541ms)
+✔ publication validation refuses partially staged files before running checks (123.650125ms)
+✔ a matching snapshot cannot authorize an untested staged version (200.125667ms)
+✔ validation receipt invalidates when the comparison base moves (174.601084ms)
+✔ validation receipt does not cross branch identity (195.109083ms)
+✔ validation receipt rejects schema and contract mismatch (178.413ms)
+✔ validation runner writes only when repository state stays fixed (363.947625ms)
+✔ validation state comparison names the first mismatched field (0.776666ms)
+✔ report-only B errors stay visible and do not change the required A command policy (2.300083ms)
+✔ publication receipt preserves B error explicitly alongside successful required checks (290.990875ms)
+✔ a zero-exit B invocation with no new report cannot reuse an old success (1.408792ms)
+✔ independent equality consumer accepts coherent indexed and working inputs (448.34225ms)
+✖ publication rejects a stable unstaged dependency supporting a staged requirement (410.2505ms)
+✖ publication rejects a dependency supplied only by a non-ignored untracked file (375.865833ms)
+✖ publication rejects non-ignored untracked files without changing their contents (239.407334ms)
+✖ publication rejects an indexed dependency missing from working files (265.196458ms)
+✖ publication rejects a staged-deleted ignored dependency still on disk (423.62525ms)
+✖ publication rejects dependency changes hidden by --assume-unchanged (415.364416ms)
+✖ publication rejects dependency changes hidden by --skip-worktree (485.459583ms)
+✖ publication compares indexed raw bytes despite a configured clean filter (399.742375ms)
+✖ publication rejects executable mode drift when Git ignores file modes (300.62125ms)
+✔ publication accepts matching executable and symlink index entries (396.986083ms)
+✖ publication rejects a regular source replaced by a same-content symlink (285.189ms)
+✖ publication rejects symlink target drift and a staged-deleted dangling symlink (300.131375ms)
+✔ publication preserves supported ignored runtime output during validation (295.75125ms)
+✔ validation children remove all eight inherited repository-scoped Git variables (276.733167ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 15
+ℹ fail 11
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7279.165208
+
+✖ failing tests:
+
+test at tests/pr-validation-receipt.test.js:297:1
+✖ publication rejects a stable unstaged dependency supporting a staged requirement (410.2505ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at assertCandidateRejected (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:269:10)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:305:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/pr-validation-receipt.test.js:309:1
+✖ publication rejects a dependency supplied only by a non-ignored untracked file (375.865833ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at assertCandidateRejected (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:269:10)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:316:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/pr-validation-receipt.test.js:320:1
+✖ publication rejects non-ignored untracked files without changing their contents (239.407334ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at assertCandidateRejected (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:269:10)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:323:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/pr-validation-receipt.test.js:328:1
+✖ publication rejects an indexed dependency missing from working files (265.196458ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at assertCandidateRejected (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:269:10)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:332:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/pr-validation-receipt.test.js:336:1
+✖ publication rejects a staged-deleted ignored dependency still on disk (423.62525ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at assertCandidateRejected (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:269:10)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:343:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/pr-validation-receipt.test.js:348:3
+✖ publication rejects dependency changes hidden by --assume-unchanged (415.364416ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at assertCandidateRejected (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:269:10)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:356:5)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/pr-validation-receipt.test.js:348:3
+✖ publication rejects dependency changes hidden by --skip-worktree (485.459583ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at assertCandidateRejected (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:269:10)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:356:5)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/pr-validation-receipt.test.js:361:1
+✖ publication compares indexed raw bytes despite a configured clean filter (399.742375ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at assertCandidateRejected (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:269:10)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:371:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/pr-validation-receipt.test.js:374:1
+✖ publication rejects executable mode drift when Git ignores file modes (300.62125ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at assertCandidateRejected (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:269:10)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:379:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/pr-validation-receipt.test.js:394:1
+✖ publication rejects a regular source replaced by a same-content symlink (285.189ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at assertCandidateRejected (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:269:10)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:401:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/pr-validation-receipt.test.js:405:1
+✖ publication rejects symlink target drift and a staged-deleted dangling symlink (300.131375ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at assertCandidateRejected (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:269:10)
+      at TestContext.<anonymous> (file:///Users/markmorris/vibe/architrino/tests/pr-validation-receipt.test.js:412:3)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'throws',
+    diff: 'simple'
+  }

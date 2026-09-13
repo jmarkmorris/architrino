@@ -2,6 +2,8 @@
 
 This chapter is the canonical bookkeeping page for the symbols that control closure across the $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus. Its purpose is not to re-derive every quantity. Its purpose is to keep the roles of primitive postulates, geometric closure targets, constitutive coefficients, state variables, and observer-level benchmarks from collapsing into one another.
 
+An architrino is a polarity-bearing point transceiver whose emitted causal wake reaches other events after a propagation delay. An assembly is a candidate organized set of architrino histories; the Noether sea is the ambient assembly population whose collective response is intended to produce effective clock, ruler, and signal behavior. A constitutive map relates that population's state to those responses. The ledger distinguishes definitions and conditional maps from quantities actually derived from retained dynamics.
+
 The central bookkeeping rule is simple: not every symbol that appears in an equation is a free parameter. Some symbols are fixed substrate inputs, some are assembly-dependent outputs, some are constitutive functions of the Noether sea, and some are measured benchmarks that the theory is supposed to recover.
 
 ## Purpose
@@ -37,14 +39,14 @@ Use the following classes consistently.
 
 ### Field-speed notation
 
-The corpus uses both $v$ and $c_f$ for field speed in different chapters. This ledger treats
+The canonical symbol for wake speed is
 $$
 c_f
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fd14eacc9dd4bd4a)
 
-as the canonical symbol for the physical wake speed. Numerical instantiations use $c_f=1$; a generic velocity symbol must not replace it.
+Numerical instantiations use $c_f=1$; a generic velocity symbol such as $v$ denotes a separately defined motion and must not replace it.
 
 ### Parameter versus field
 
@@ -91,7 +93,7 @@ Local loop indices such as $w_a$ are allowed only where their scope is explicit 
 
 ### CODATA Benchmark Contract
 
-The NIST/CODATA constants tables should be used as a benchmark contract, not as an extra ontology layer. The 2022 CODATA adjustment separates three different kinds of entries:
+The [NIST/CODATA 2022 constants table](https://physics.nist.gov/cuu/Constants/Table/allascii.txt) supplies observer-level benchmarks. Its entries have three different roles here:
 
 - exact SI-defining constants, whose numerical values are fixed by unit convention;
 - adjusted measured constants, whose quoted standard uncertainties are experimental and theoretical benchmark widths;
@@ -111,6 +113,8 @@ $$
 [View →](../../../../equation-mapping.html#corpus-equation-513d15a756279280)
 
 where $u(X)$ is the quoted standard uncertainty. If $X$ is exact by SI definition, the residual is not a measurement residual. The closure test is instead whether the same substrate-to-observer unit map recovers the exact convention while also passing the adjusted measured rows that depend on it.
+
+The displayed $Z_X$ measures discrepancy in units of the benchmark uncertainty; it is a statistical significance only when prediction uncertainty and shared calibration covariance are negligible or explicitly included. For a difference of prediction and benchmark estimates, its variance is the sum of their variances minus twice their covariance. Joint tests must retain correlations between adjusted constants and avoid counting conversions or duplicate forms as independent evidence. A row used to calibrate the unit map cannot also serve as an independent test of that calibration. The fractional residual $\rho_X$ requires a nonzero benchmark, and the uncertainty-normalized residual requires $u(X_{\mathrm{CODATA}})>0$.
 
 The uncertainty convention is also fixed. A standard uncertainty $u(y)$ is an estimated standard deviation for the result $y$, and the relative standard uncertainty is
 $$
@@ -145,20 +149,20 @@ Useful 2022 CODATA rows for the closure stack are:
 | $m_P$ | $2.176434\times10^{-8}\,\mathrm{kg}$ | $2.4\times10^{-13}\,\mathrm{kg}$ | Derived Planck-unit comparison dominated by $G$ uncertainty; not an extra fitted mass. |
 | $t_P$ | $5.391247\times10^{-44}\,\mathrm{s}$ | $6.0\times10^{-49}\,\mathrm{s}$ | Derived Planck-time comparison dominated by $G$ uncertainty; use only after the alignment map declares its SI conversion. |
 
-The most important mining consequence is procedural: exact rows such as $h$, $e$, $k_B$, and $c$ are not easier physical targets because their listed uncertainty is zero. They are exact in SI because the units are defined through them. The physical pressure comes from the adjusted and dimensionless rows, especially $\alpha$, $m_p/m_e$, $R_\infty$, particle mass-energy equivalents, and $G$.
+Exact rows such as $h$, $e$, $k_B$, and $c$ are exact in SI because the units are defined through them. Physical tests come from adjusted and dimensionless rows, especially $\alpha$, $m_p/m_e$, $R_\infty$, particle mass-energy equivalents, and $G$, after the common unit map and its calibration inputs have been declared. The symbol $u$ in the atomic-mass row denotes the atomic mass constant, distinct from the uncertainty function $u(y)$.
 
 ### LHC scalar benchmark contract
 
-The LHC scalar rows are observer-level benchmark rows, not CODATA constants and not substrate inputs. The ATLAS 2012 discovery row fixes one date-stamped scalar-boson benchmark for the Higgs-sector residual used by [Particle Masses](../assemblies/particle-masses.md) and [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md). It tests whether one shared native scalar or mass-map record can recover the observed mass, production-and-branching normalization, channel pattern, and absence of broad additional scalar signals.
+The LHC scalar rows are observer-level benchmark rows, not CODATA constants and not substrate inputs. The [ATLAS 2012 discovery report](https://arxiv.org/abs/1207.7214v2) supplies the date-stamped neutral-boson benchmark for the Higgs-sector comparison used by [Particle Masses](../assemblies/particle-masses.md) and [Electroweak Bosons](../assemblies/bosons/electroweak-bosons.md). Its compatibility with a scalar hypothesis is a comparison target, not a spin-zero determination from these rows alone. Recovery must address mass, production-and-branching normalization, channel response, and the source's model-dependent exclusion limits.
 
 | Entry | ATLAS 2012 benchmark | Ledger role |
 | --- | ---: | --- |
 | $M_H^{\mathrm{ATLAS\,2012}}$ | $126.0\,\mathrm{GeV}$ with $0.4\,\mathrm{GeV}$ statistical and $0.4\,\mathrm{GeV}$ systematic uncertainty | Date-stamped scalar-mass benchmark; not a native scalar-mode identification. |
 | $\hat{\mu}_H^{\mathrm{ATLAS\,2012}}$ | $1.4\pm0.3$ | Production-and-branching normalization benchmark near $126\,\mathrm{GeV}$. |
 | local discovery significance | $5.9\sigma$ | Discovery-strength record; not an independent residual term unless a likelihood reconstruction declares one. |
-| high-resolution channels | $ZZ^{(*)}\to4\ell$, $\gamma\gamma$, $WW^{(*)}\to\ell\nu\ell\nu$ | Channel-pattern benchmark for spin-compatible, detector-facing scalar recovery. |
+| principal channels | $ZZ^{(*)}\to4\ell$, $\gamma\gamma$, $WW^{(*)}\to\ell\nu\ell\nu$ | The first two reconstruct invariant mass with high resolution; the neutrinos make the listed $WW$ channel a lower-resolution comparison. This is not the full combined channel inventory. |
 
-For the ATLAS 2012 row, the scalar validation ledger uses
+For the ATLAS 2012 row, an approximate scalar comparison combines the quoted statistical and systematic mass widths in quadrature, assuming independent contributions:
 $$
 M_H^{\mathrm{ledger}}=126.0\,\mathrm{GeV},
 \qquad
@@ -182,7 +186,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-797be6d4c83539ce)
 
-The corresponding validation contribution is
+The following expression is a schematic discrepancy score, not a reconstructed ATLAS likelihood:
 $$
 \mathcal{R}_{H,\mathrm{ATLAS\,2012}}(\theta)
 =
@@ -207,7 +211,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4e92a4c55241055e)
 
-Here $M_H^{\mathrm{breath}}(\theta)$ is the predicted scalar or breathing-mode mass from the same branch record, $\mu_H^{\mathrm{eff}}(\theta)$ is the observer-level production-and-branching normalization, and $Z_c$ records the declared channel significance or likelihood contribution. This row does not identify the Higgs with a named native mode, does not update to a current world-average mass, and must not be used as a branch-search, shielding, or mass-map input. Higgs-sector closure requires the residual to close after the branch, shielding, channel, and detector-provenance records have been fixed independently.
+Here $\theta$ is the declared common parameter record, $M_H^{\mathrm{breath}}(\theta)$ is a candidate scalar-mode mass, and $\mu_H^{\mathrm{eff}}(\theta)$ is its predicted production-and-branching normalization relative to the source's Standard Model reference. The superscript does not identify a realized breathing mode. A channel statistic $Z_c$, its width $\sigma_{Z_c}$, and the exclusion contribution $\mathcal{R}_{\mathrm{excluded\,scalar}}$ require an explicit likelihood and detector model before evaluation. Discovery significance is not a Gaussian measurement with an automatically assigned error bar. Combined strength and channel statistics reuse events and correlated nuisance parameters; adding their squares does not create independent evidence. Quantitative acceptance requires a joint likelihood or a justified covariance treatment without double counting, including prediction uncertainty and the source's exclusion assumptions.
+
+The date-stamped row remains a recovery target after branch, energy, exposure, and detector records are fixed independently. It is not a branch-search, shielding, or mass-map input, and no current world-average substitution is made here.
 
 ### Naturalness and sensitivity
 
@@ -219,9 +225,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3d0c9994146c3809)
 
-as the default sensitivity diagnostic.
+as a local inverse-sensitivity diagnostic.
 
-Here $\Delta p/p$ is the fractional perturbation of a parameter or closure output, and $\Delta \mathrm{obs}/\mathrm{obs}$ is the resulting fractional perturbation of the observable being tested. Values $\mathrm{FTQ}(p)>10$ should be treated as fine-tuning pressure unless a discrete topology, symmetry, attractor basin, or measured benchmark explains the sensitivity.
+Here $\Delta p/p$ is a declared fractional perturbation and $\Delta \mathrm{obs}/\mathrm{obs}$ is the resulting fractional observable change, with the other independent inputs held fixed. The quotient requires nonzero reference values and nonzero observable change. Its magnitude is the reciprocal of the fractional response: $|\mathrm{FTQ}(p)|<0.1$ means more than tenfold sensitivity, whereas $|\mathrm{FTQ}(p)|>10$ means weak response. These thresholds are heuristic diagnostics, not physical acceptance criteria or proof of fine tuning. For example, a 1% input change producing a 20% output change gives an inverse sensitivity of 0.05. A discrete branch label needs an admissible branch comparison rather than a continuous derivative; a derived output can be perturbed only through admissible underlying inputs. Zero or unresolved response must be reported separately.
 
 Status:
 
@@ -231,11 +237,11 @@ Status:
 
 ### Regulator versus physical pulse
 
-The wake-width regulator $\eta$ is a computational and analytic regularization, not a claim that causal wakes are fundamentally pulsed. It smooths causal wake surfaces so integrals and simulations can be evaluated with finite resolution. As $\eta\to0$, the intended limit is the continuous path-history law, with each discrete time step in a simulation approximating the contribution from a narrow causal wake surface rather than replacing the underlying continuous emission.
+The wake-width regulator $\eta$ is a computational and analytic regularization, not a claim that causal wakes are fundamentally pulsed. It smooths causal wake surfaces for finite-resolution evaluation. The limit $\eta\to0$ must be established on the declared history domain; it is not guaranteed at a tangent causal root or a coincident position. Wake-surface smoothing alone does not regularize the spatial inverse-square singularity. Numerical time steps approximate continuous path-history interaction and do not define physical emission pulses.
 
 ### Layer-I two-body scale closure
 
-The exact bare two-body kernel has no independent dimensionless tuning constant after the regulator is removed or treated as a numerical convention. The dimensional substrate triplet
+The displayed bare two-body kernel has no remaining dimensionless coupling built solely from the following positive dimensional substrate triplet, once a regulator-independent limit has been justified:
 $$
 (c_f,\kappa,\epsilon)
 $$
@@ -286,7 +292,7 @@ $$
 
 up to the separately declared regulator ratio $\eta/R_*$ when a mollified surrogate is being used.
 
-Consequently, every dimensionless output of the isolated bare two-body problem is a pure branch-geometry result: root multiplicities, branch-birth thresholds, maximum-curvature speed ratios, residual signs, and any certified radius in units of $R_*$. This does not certify that a stable maximum-curvature binary exists. It says that if a certified two-body branch produces such a number, that number is computed by the root ledger and stability problem rather than fitted by changing a Layer-I dimensionless constant.
+This removes a dimensionless coupling from the kernel, not the dimensionless initial-history data. Root multiplicities, branch thresholds, curvature, and residuals can still depend on the retained histories, polarity assignment, boundary conditions, and selected branch. For a fixed branch problem those quantities must be computed from the delayed dynamics; rescaling the dimensional triplet cannot independently tune them. A declared geometric chart alone neither selects a unique history nor certifies a stable maximum-curvature binary.
 
 ## Layer I: Substrate and Kernel Parameters
 
@@ -298,7 +304,7 @@ These symbols belong to the delayed microscopic law itself.
 | K2 | $\epsilon$ | Fundamental parameter | Primitive | potential polarity-unit magnitude, with observer-level electric charge reconstructed from it | [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md), [../assemblies/gauge-structure-emergence.md](../assemblies/gauge-structure-emergence.md) |
 | K3 | $\kappa$ | Fundamental parameter or normalization-sensitive coupling | Open as primitive/normalization split; universal in the substrate acceleration law | coupling multiplying $\sigma_{ij}\lvert q_iq_j\rvert W_{ij}^{\mathrm{acc}}/r_{ij}^2$ in the per-hit acceleration law; because a single architrino has no primitive inertial mass, this is not an $F=ma$ coefficient; with $c_f$ and $\epsilon$ it sets the two-body scale $R_*=\kappa\epsilon^2/c_f^2$ rather than a Layer-I dimensionless fit constant; dimensional row $[\kappa]=\mathrm{L}^3\,\mathrm{T}^{-2}\,\mathrm{Q}^{-2}$ | [../dynamics/master-equation.md](../dynamics/master-equation.md), [architrino-si-base-units.md](./architrino-si-base-units.md), [../foundations/architrino.md](../foundations/architrino.md) |
 | K4 | $\eta$ | Regulator / convention | Open but non-ontological | mollifier width used to regularize causal wake surfaces for smooth dynamics and numerics | [simulations/action-energy/well-posedness-and-regularization.md](./simulations/action-energy/well-posedness-and-regularization.md), [../dynamics/master-equation.md](../dynamics/master-equation.md) |
-| K5 | $Z_e$ | Regulator / convention | Convention, default $Z_e=1$ | coarse-graining / normalization factor in the substrate-to-observer charge map | [../assemblies/gauge-structure-emergence.md](../assemblies/gauge-structure-emergence.md), [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md) |
+| K5 | $Z_e$ | Regulator / convention | Convention, default $Z_e=1$ | charge-map normalization at the observer interface; not an additional microscopic acceleration-law parameter | [../assemblies/gauge-structure-emergence.md](../assemblies/gauge-structure-emergence.md), [../assemblies/fermions/quantum-number-mapping.md](../assemblies/fermions/quantum-number-mapping.md) |
 
 ## Layer II: Assembly-Geometry Closure Targets
 
@@ -307,12 +313,12 @@ These quantities belong to Noether braid architecture, shielding, branch structu
 | ID | Symbol | Class | Status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
 | G0 | $A_0$ | Geometric closure target | Open | calibration-free neutral rest-branch Noether braid reference attractor used to derive the first mass-map outputs before particle benchmarks enter | [Particle Masses](../assemblies/particle-masses.md), [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation), [Energy](../dynamics/energy.md) |
-| G0a | $\mathcal{P}_{A_0}$ | Geometric closure target | Open; compact finite-coordinate no-go recorded, branch-chart revision required before Tier 1 continuation | certificate packet tying the finite closure graph $\mathcal{G}_{A_0}$, active root ledger, quotient Floquet gap $\Delta_{\mathbf{k}}$, shielding extraction, and $\mathcal{M}_{\text{sea}}^{ab}$ response probe into one promotion sequence | [simulations/a0-branch-certificate-protocol.md](./simulations/a0-branch-certificate-protocol.md), [simulations/a0-tier0-result-interpretation.md](./simulations/a0-tier0-result-interpretation.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
+| G0a | $\mathcal{P}_{A_0}$ | Geometric closure target | Open; proposed certificate, not an established attractor | candidate-specific record relating geometry, causal roots, stability, shielding, and medium response; any negative result applies only to its tested chart and assumptions | [simulations/a0-branch-certificate-protocol.md](./simulations/a0-branch-certificate-protocol.md), [simulations/a0-tier0-result-interpretation.md](./simulations/a0-tier0-result-interpretation.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
 | G1 | $R_1,R_2,R_3$ | Geometric closure target | Open | characteristic radii of the indexed coincident-midpoint orthogonal-axis braid binary rows | [Noether Braid](../noether-braid/noether-braid.md), [Braid Envelope Geometry](../noether-braid/braid-envelope-geometry.md), [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation) |
 | G2 | $\omega_1,\omega_2,\omega_3$ | Geometric closure target | Open | characteristic frequencies of the indexed coincident-midpoint orthogonal-axis braid binaries | [Coincident-Midpoint Orthogonal-Axis Braid Dynamics](../noether-braid/zero-axial-offset-three-binary-dynamics-and-interpretation.md#zero-axial-offset-three-binary-dynamics-and-interpretation), [Particle Masses](../assemblies/particle-masses.md) |
 | G3 | $R_{\text{align}}$ | Geometric closure target | Open, conjectural | assembly-level alignment radius in the terminal orthogonal-axis three-binary map | [Mapping the Planck Scale to Coincident-Midpoint Orthogonal-Axis Geometry](../philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md) |
 | G4 | $\mathcal{A}_{\text{align}}^{\text{cycle}}, I_{\text{align}}$ | Geometric closure target | Open, conjectural | closed-cycle action and radian-normalized rotational-action increment of the aligned terminal mode | [Mapping the Planck Scale to Coincident-Midpoint Orthogonal-Axis Geometry](../philosophy-history/theory-bridges/mapping-planck-scale-to-coincident-midpoint-orthogonal-axis-geometry.md) |
-| G5 | $\zeta(A)$ | Geometric closure target | Open | shielding or leakage factor of assembly $A$, defined by far-field suppression relative to naive constituent exposure | [../dynamics/energy.md](../dynamics/energy.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
+| G5 | $\zeta(A)$ | Geometric closure target | Open | probe-facing exposure fraction used by the mass map, after separating sea-coupled and unresolved channels; distinct from raw far-field suppression | [../dynamics/energy.md](../dynamics/energy.md), [../assemblies/particle-masses.md](../assemblies/particle-masses.md) |
 | G6 | $\alpha$ | Geometric closure target | Open | axial-frame misalignment angle used in the weak-mixing / quark-geometry program | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md) |
 | G7 | $\phi_c$ | Geometric closure target | Open | color-sector azimuth selecting the exceptional axial-frame orientation | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md) |
 
@@ -320,13 +326,15 @@ These quantities belong to Noether braid architecture, shielding, branch structu
 
 These symbols control the handoff from the Euclidean substrate plus Noether sea to effective metric language.
 
+Here a field marked derived is defined from an admitted state or response map. That status does not establish the underlying population, constitutive law, or numerical field. The substrate-to-observer coordinate map and common clock, ruler, and signal calibration remain required.
+
 | ID | Symbol | Class | Status | Meaning | Primary home |
 | --- | --- | --- | --- | --- | --- |
 | C1 | $\rho_{\text{NS},0}$ | Constitutive closure target | Open | reference Noether braid density used to normalize the Noether sea | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
 | C2 | $n(\mathbf X,T)$ | State variable / field | Derived field | normalized Noether braid density, $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
-| C3 | $\Omega(x_{\mathrm{eff}}^i),\xi(x_{\mathrm{eff}}^i)$ | Constitutive closure target | Open | clock-channel and ruler-channel response functions in the effective metric subclass | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/lorentz-kinematics.md](../spacetime/lorentz-kinematics.md) |
+| C3 | $\Omega(x_{\mathrm{eff}}^i),\xi(x_{\mathrm{eff}}^i)$ | Constitutive closure target | Open | conformal response and Noether braid envelope shape ratio in the stated metric subclass; their product supplies the clock-rate factor only after the geometry-to-clock map is fixed | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/lorentz-kinematics.md](../spacetime/lorentz-kinematics.md) |
 | C4 | $\Phi_{\text{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ | State variable / field | Derived field | constitutive effective potential defined from the clock channel | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/proper-time-and-time-dilation.md](../spacetime/proper-time-and-time-dilation.md) |
-| C5 | $c_{\text{eff}}(\mathbf X,T)$ | State variable / field | Derived field | Noether sea dressed assembly-channel propagation speed used for clock/ruler closure and effective-metric comparisons, with $c_{\text{eff}}\to c_f$ in weak homogeneous conditions; separate from photon-channel speed $c_\gamma$ unless Gate A closes that identification | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
+| C5 | $c_{\text{eff}}(\mathbf X,T)$ | State variable / field | Conditional response field | dressed assembly-channel speed used for clock/ruler and effective-metric comparisons; equality with the wake speed or photon-channel speed $c_\gamma$ requires separate recovery evidence | [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
 | C5a | $\chi_{\text{sea}}(\mathbf X,T)$ | Derived response field | Derived from $c_{\text{eff}}$ | Noether sea delay factor, $\chi_{\text{sea}}=c_f/c_{\text{eff}}$; replaces optical refractive-index notation in Noether sea propagation maps | [../spacetime/noether-sea.md](../spacetime/noether-sea.md), [../spacetime/emergent-metric.md](../spacetime/emergent-metric.md), [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
 | C6 | $\gamma_{\mathrm{PPN}}$ | Constitutive closure target with observable meaning | Open | first-order refraction / space-curvature coefficient in the weak-field map | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
 | C7 | $C_2$ or $\beta_{\mathrm{PPN}}$ | Constitutive closure target with observable meaning | Open | second-order clock-channel nonlinearity entering the $g_{00}$ expansion | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
@@ -346,7 +354,7 @@ These quantities are where closure is tested. They are not substrate inputs.
 | O5 | $\theta_W^{\text{bare}}$ and $\theta_W$ | Geometric target / observable benchmark | Open | bare geometric weak-mixing increment and the measured electroweak mixing angle it must eventually inform | [../assemblies/fermions/weak-mixing-angle.md](../assemblies/fermions/weak-mixing-angle.md), [../assemblies/gauge-structure-emergence.md](../assemblies/gauge-structure-emergence.md) |
 | O6 | $(\alpha_1,\alpha_2,\alpha_3)$ | Observable benchmark | Open | standard PPN preferred-frame coefficients derived from $(\Xi_1,\Xi_2,\Xi_3)$ | [../spacetime/ppn-parameters.md](../spacetime/ppn-parameters.md) |
 | O7 | $Z_X^{E\to R}$, $Y_{X,E\to R}$, and $H_{\mathrm{eff},X}$ | Observer-level derived output | Open | total signed photon-frequency transfer, path-history exchange contribution, and inferred redshift-transfer slope for a declared source/receiver record; not primitive expansion parameters | [../cosmology/expansion-mechanism.md](../cosmology/expansion-mechanism.md), [simulations/redshift-budget-toy-model.md](./simulations/redshift-budget-toy-model.md), [reaction-cosmology-provenance-ledger.md](reaction-cosmology-provenance-ledger.md) |
-| O8 | $M_H^{\mathrm{ledger}}$, $\mu_H^{\mathrm{ledger}}$, and $Z_c^{\mathrm{ATLAS\,2012}}$ | Observable benchmark | ATLAS 2012 row recorded; Higgs-sector closure open | date-stamped scalar-boson mass, production-and-branching normalization, and high-resolution channel ledger used to test Higgs-sector recovery; not branch-search or mass-map input | [../assemblies/particle-masses.md](../assemblies/particle-masses.md), [../assemblies/bosons/electroweak-bosons.md](../assemblies/bosons/electroweak-bosons.md) |
+| O8 | $M_H^{\mathrm{ledger}}$, $\mu_H^{\mathrm{ledger}}$, and $Z_c^{\mathrm{ATLAS\,2012}}$ | Observable benchmark | ATLAS 2012 row recorded; Higgs-sector closure open | date-stamped neutral-boson mass, production-and-branching normalization, and channel comparison for Higgs-sector recovery; not branch-search or mass-map input | [../assemblies/particle-masses.md](../assemblies/particle-masses.md), [../assemblies/bosons/electroweak-bosons.md](../assemblies/bosons/electroweak-bosons.md) |
 
 ## Canonical Relations
 
@@ -354,7 +362,7 @@ The ledger above is only useful if the interfaces between layers stay explicit. 
 
 ### 1. Microscopic delayed dynamics
 
-The regularized exact law uses the kernel-side set
+The regularized representation of the microscopic law uses the kernel-side set
 $$
 (c_f,\epsilon,\kappa,\eta)
 $$
@@ -369,12 +377,12 @@ $$
 \kappa\,\sigma_{ab}|q_aq_b|
 \int_{-\infty}^{T}\!dT_t\;
 \frac{\hat{\mathbf R}_{ab}(T;T_t)}{R_{ab}(T;T_t)^2}\,
-\delta_\eta\!\big(R_{ab}(T;T_t)-c_f(T-T_t)\big)
+c_f\,\delta_\eta\!\big(R_{ab}(T;T_t)-c_f(T-T_t)\big)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-996e953dc8ddbd9e)
 
-This is the substrate-side parameter core. Any exact or numerical closure that changes these symbols chapter by chapter is not a closed theory.
+Here $a$ is the receiver, $b$ the transmitter, $\mathbf R_{ab}=\mathbf X_a(T)-\mathbf X_b(T_t)$ the delayed separation, and $\sigma_{ab}=\operatorname{sign}(q_aq_b)$ the polarity sign. The mollifier $\delta_\eta$ is normalized in its length argument and has inverse-length units. The factor $c_f$ gives a dimensionless transmitter-time weight: at a simple causal root the integral collapses to $c_f/|c_f-\hat{\mathbf R}_{ab}\cdot\mathbf V_b(T_t)|$, as in the [Master Equation](../dynamics/master-equation.md). Removing that factor while retaining the stated dimensions of $\kappa$ breaks both units and root normalization. The expression requires admitted histories, positive noncoincident separations, exclusion of instantaneous self-interaction, and controlled convergence of the history integral and regulator limit. A finite history window requires its boundary and omitted-tail treatment to be declared.
 
 ### 2. Charge reconstruction
 
@@ -392,7 +400,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fbc107b8e0be0ee6)
 
-This relation is important because it shows that the elementary charge magnitude is not presently a primitive input in the architrino ontology. It is a recovered observer-level benchmark.
+The elementary charge magnitude is an observer-level recovery target. This bookkeeping equality fixes a normalization; it does not demonstrate its dynamical recovery.
 
 Here $Z_e$ is dimensionless. The coupling $\kappa$ and wake speed $c_f$ do not enter this equality: with the dimensional row for $\kappa$ above, a factor $\sqrt{\kappa c_f}$ would not have charge-conversion units. The equation is therefore an observer bookkeeping normalization, not a second primitive definition of $\epsilon$ and not a dynamical derivation of electric charge. A deeper derivation must explain why the six-site assembly ledger selects $Z_e=1$ without inserting the measured value of $|e|$ into the branch calculation.
 
@@ -414,7 +422,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-01d5073d69f34580)
 
-Here $\xi$ is the Noether braid envelope shape ratio, while $\Omega\xi$ is the clock-rate factor used by this exponential metric subclass after the geometry-to-clock map is fixed. The prefactor $c_0^2$ belongs to the observer-sector potential calibration; in the weak homogeneous branch, $c_f$ and $c_0$ differ only by $O(\epsilon_{\mathrm{LV}}c_0)$.
+Here $\xi$ is the Noether braid envelope shape ratio, while the positive product $\Omega\xi$ is the clock-rate factor in this static exponential metric subclass after the geometry-to-clock map is fixed. The speed $c_0=c_{\text{eff}}(\infty)$ sets the asymptotic observer calibration, with the reference clock factor normalized to one. A small difference between $c_f$ and $c_0$ is a recovery condition to establish, not a consequence of homogeneity alone.
 
 This is the cleanest statement of the Noether sea-to-metric handoff:
 $$
@@ -427,30 +435,35 @@ $$
 
 ### 4. Weak-field PPN extraction
 
-The observable weak-field coefficients are read from the constitutive map through
+The parameterized post-Newtonian (PPN) coefficients describe possible observer-level departures from general relativity in weak gravity. On the stationary, isotropic, zero-shift signal branch of [PPN Parameters](../spacetime/ppn-parameters.md), the normalized delay map is
 $$
-\chi_{\text{sea}}(\mathbf X,T)
+\bar{\chi}_{\text{sea}}(\mathbf x_{\mathrm{eff}})
 \equiv
-\frac{c_f}{c_{\text{eff}}(\mathbf X,T)}
+\frac{c_0}{c_{\text{eff}}(\mathbf x_{\mathrm{eff}})}
+=\frac{c_0}{c_f}\chi_{\text{sea}}(\mathbf x_{\mathrm{eff}})
 =
-1-(1+\gamma_{\mathrm{PPN}})\frac{\Phi_N(x_{\mathrm{eff}}^i)}{c_f^2}
-+\mathcal{O}\!\left(\frac{\Phi_N^2}{c_f^4}\right)
+1-(1+\gamma_{\mathrm{PPN}})\frac{\Phi_N(\mathbf x_{\mathrm{eff}})}{c_0^2}
++\mathcal{O}\!\left(\frac{\Phi_N^2}{c_0^4}\right)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b18b7ff2a38aea93)
 
-and
+Here $\mathbf x_{\mathrm{eff}}$ denotes the effective spatial chart, $\Phi_N$ is the negative Newtonian comparison potential, and the substrate fields are projected into that chart by the declared common response map. The normalized factor tends to one at infinity without assuming $c_0=c_f$.
+
+For the static isolated-source subclass in which the other PPN potentials vanish or already have their general-relativistic coefficients,
 $$
 \beta_{\mathrm{PPN}}=\frac{1+2C_2}{2}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1d4f4c3826849997)
 
+Here $C_2$ means $C_2^{(U)}$, the quadratic coefficient of the static clock-rate expansion in $U/c_0^2$ with $U=-\Phi_N$. Squaring the clock rate gives the coefficient $1+2C_2$ of $U^2/c_0^4$ in $-g_{00}$. A coefficient extracted in the constitutive potential $-\Phi_{\text{eff}}$ cannot be substituted without the second-order potential conversion.
+
 Preferred-frame leakage is encoded by
 $$
-\alpha_1=\Xi_1,\qquad
+\alpha_1=\Xi_1+2\Xi_2,\qquad
 \alpha_2=\Xi_2,\qquad
-\alpha_3=\Xi_1-\Xi_2-\Xi_3
+\alpha_3=\Xi_1+\Xi_2-\Xi_3
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-130d0ee5eb8ed77b)
@@ -464,11 +477,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a89e0bc1240ed7ec)
 
-The coefficient $\Xi_4$ is not constrained by this three-parameter map. Full zero-leakage closure additionally requires either the independent condition $\Xi_4=0$ or a separately declared observable that extracts $\Xi_4$.
+In the same standard PPN gauge and preferred-frame velocity convention, matching the remaining matter-current term requires $\Xi_4=2\alpha_3-\alpha_1=\Xi_1-2\Xi_3$. An independently extracted $\Xi_4$ that violates this relation rejects the reduced dictionary. Thus zero leakage requires the fourth coefficient to vanish as well; observing or defining it without satisfying the consistency relation does not close the map. The other PPN potential coefficients remain separate recovery requirements.
 
 ### 5. Mass map
 
-The assembly-side inertial map is
+The assembly-side scalar hypothesis for the probe-facing internal-energy contribution is
 $$
 m_{\text{inertial}}(A)
 \approx
@@ -477,13 +490,13 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-ba82b34369d50270)
 
-with $\alpha_{\mathrm{m}}$ fixed once by a reference assembly rather than re-fit separately for each particle.
+with a positive dimensionless $\alpha_{\mathrm{m}}$ fixed once by a reference assembly in a declared weak homogeneous regime. Its universality is a prediction to test on other assemblies.
 
-This relation means that $m_{\text{inertial}}(A)$ is not a primitive parameter. It is an output of shielding, internal energy, and medium response.
+Here $E_{\text{internal}}(A)$ is a candidate physical energy account with a declared reference, history boundary, and energy-unit conversion. The fraction $\zeta(A)$ is the probe-facing exposure after separating sea-coupled and unresolved contributions, as defined by [Particle Masses](../assemblies/particle-masses.md); raw far-field suppression alone does not supply it. These distinctions prevent counting the same energy twice. Mass remains an assembly-level recovery target until energy, exposure, and medium response have been derived.
 
 Notation note: $\alpha_{\mathrm{m}}$ denotes the mass-map normalization; bare $\alpha$ remains reserved for the measured fine-structure benchmark or for a locally declared weak-mixing branch angle, while $\alpha_i$ denotes PPN preferred-frame coefficients.
 
-In a resolved Noether sea environment, this scalar relation is the homogeneous isotropic limit of the tensor response
+For small group velocity relative to the local sea flow, the corresponding tensor response ansatz is
 $$
 p_{\text{int}}^a
 \approx
@@ -497,18 +510,18 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7bf6d5e1a3792c98)
 
-Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. The tensor $\mathcal{M}_{\text{sea}}^{ab}$ is not a particle-specific fit parameter. It is a constitutive closure target for the Noether sea response map.
+Here $h^{ab}$ is the inverse Euclidean spatial metric, $p_{\text{int}}^a$ the proposed internal-source momentum contribution, and $V_{\text{cm},b}$ the assembly response-center velocity relative to local sea flow; the notation does not assign masses to primitive architrinos. The tensor $\mathcal{M}_{\text{sea}}^{ab}$ has inverse-speed-squared units and is an unresolved constitutive response, with the displayed scalar reduction restricted to the homogeneous isotropic limit.
 
-The first closure gate for this relation is the reference attractor $A_0$. It must report geometry, winding, root-ledger, stability, internal-energy, shielding, medium-response, and mass-facing outputs before any observed particle mass or charged-lepton ratio is used as a benchmark. The mass-facing output is the calibration-free combination
+The first requirement is a retained assembly under the delayed dynamics. The symbol $A_0$ names one proposed neutral reference, not an established attractor or the unique admissible geometry. Using that candidate requires geometry, winding, causal-root, stability, internal-energy, exposure, and medium-response evidence before particle-mass benchmarks enter. Its proposed mass-facing dimensionless output is
 $$
 \frac{\zeta(A_0)E_{\text{internal}}(A_0)}{E_0}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fe1b1bb03918ffaa)
 
-together with the unresolved constants and response-map assumptions needed to turn that dimensionless coefficient into an observer-level mass prediction.
+together with the unresolved constants and response-map assumptions needed for an observer-level prediction. Here $E_0>0$ is a declared energy normalization from the same independent unit map; it cannot be chosen from the mass being predicted. Forming a dimensionless quotient alone does not establish calibration independence.
 
-The compact finite-coordinate no-go blocks further interpretation inside $\mathcal{P}_{A_0}$; it is neither an additional free parameter nor a benchmark input. Tier 1 continuation can count as progress toward the mass-facing output above only after a branch-chart revision has been declared in advance.
+A negative result for a compact coordinate chart excludes only that chart under its tested assumptions. The linked certificate and interpretation chapters specify candidate tests without establishing an evolved attractor. Any revised chart must declare its assumptions and held-out tests before fitting; coordinate consistency alone supplies no retained history or mass output.
 
 ### 6. Planck-alignment map
 
@@ -534,9 +547,11 @@ $$
 
 These are not yet closed derivations. They are the alignment-side targets connecting geometric closure to $(h,G)$.
 
+The circumference identification also has an unresolved numerical normalization. Using the observer definitions $\ell_P^2=\hbar G/c^3$ and $h=2\pi\hbar$, the displayed hypotheses imply $G_{\text{eff}}/G\approx(c_f/c)^3/(8\pi^3)$. Even after speed matching, this ratio is not one. The formula is retained as a conjectural dimensional estimate; deriving the missing geometric factor or revising the alignment identification is required before it predicts the measured gravitational coupling. The observer definitions serve only as comparison constraints.
+
 ### 7. Weak-mixing branch structure
 
-The weak-mixing geometry note uses
+The weak-mixing geometry note uses the following guessed branch-increment hypothesis. Here $\theta_W^{\text{bare}}$ names the candidate geometric increment $\theta_{\mathrm{inc}}$ of that chapter, distinct from its measured electroweak mixing angle; the value in degrees selects the smallest positive representative in the first quadrant:
 $$
 \sin^2\theta_W^{\text{bare}}=\frac14,
 \qquad
@@ -552,7 +567,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d3abedfdd180d1fe)
 
-This means the quark-sector use of $\alpha$ is a geometric branch label tied to a candidate bare electroweak increment, not yet a finished derivation of the measured weak angle.
+Here $n$ is a discrete branch index local to this equation, not the Noether sea density field, and $\alpha_n$ labels an axial-frame orientation, not the fine-structure benchmark. Neither the increment nor this discrete sequence establishes a retained branch, an energy minimum, or electroweak dressing. Their relation to the measured angle requires the same assembly's neutral-current and charged-current response.
 
 ## What Is Not Yet Closed
 
@@ -560,9 +575,9 @@ The corpus supports the following conservative closure assessment.
 
 ### Closed enough to treat as canonical
 
-- $c_f$ is treated consistently as the substrate wake speed, with $c_f=1$ in numerical instantiations.
-- $\epsilon$ is treated consistently as the potential polarity-unit magnitude.
-- The exact bare two-body kernel admits the canonical nondimensionalization by $R_*=\kappa\epsilon^2/c_f^2$ and $T_*=R_*/c_f$, so branch thresholds and residual equations are parameter-free once a branch chart is declared.
+- $c_f$ denotes the substrate wake speed, with $c_f=1$ in numerical instantiations.
+- $\epsilon$ denotes the potential polarity-unit magnitude.
+- The displayed bare two-body kernel admits the nondimensionalization by $R_*=\kappa\epsilon^2/c_f^2$ and $T_*=R_*/c_f$; dimensionless histories and branch data remain inputs to each well-posed problem.
 - $\rho_{\text{NS},0}$ is the reference density symbol for the Noether sea.
 - $\Phi_{\text{eff}}=c_0^2\ln(\Omega\xi)$ is the canonical clock-channel potential definition for the exponential metric subclass, with $\xi$ retained as a geometry-first Noether braid shape ratio and $c_0$ marking observer-sector calibration.
 
@@ -581,13 +596,13 @@ The corpus supports the following conservative closure assessment.
 
 ## Immediate Parameter-Closure Priorities
 
-The shortest path to a better closure score is:
+The unresolved derivations follow the dependencies between the layers:
 
 1. Fix the observer-level status of $\kappa$ once, with an explicit statement of what part is physical coupling, what part is absorbed normalization, and how the two-body scale $R_*=\kappa\epsilon^2/c_f^2$ enters the unit map.
 2. Derive or numerically extract a reusable constitutive parameterization for $(\Omega,\xi)$, then hold it fixed across redshift, Shapiro delay, lensing, and preferred-frame tests.
-3. Resolve the $A_0$ branch-chart revision and accepted branch packet, then replace symbolic shielding language with an operational $\zeta(A)$ extraction protocol and a reusable $\mathcal{M}_{\text{sea}}^{ab}$ response map that can be applied to electron, quark, and neutrino assemblies without redefinition.
+3. Establish a retained assembly before extracting probe-facing $\zeta(A)$ and a reusable $\mathcal{M}_{\text{sea}}^{ab}$ response map; $A_0$ is one candidate, and applying that map across particle sectors requires separate response evidence.
 4. Decide whether the Planck-alignment map yields $(h,G)$ as true outputs or only as analogy-level scaling relations.
-5. Reduce the weak-mixing angle program from discrete branch suggestion to an actual minimization problem for $E_{\text{eff}}(\alpha,\phi_c)$.
+5. Derive the weak-mixing branch selection from delayed dynamics and the observer coupling map. A minimization problem for $E_{\text{eff}}(\alpha,\phi_c)$ is a possible effective description only after that energy function and its relation to the dynamics are established.
 
 ## Falsification Gate
 
@@ -606,6 +621,13 @@ $$
 [View →](../../../../equation-mapping.html#corpus-equation-889bfc545ab9c36b)
 
 where $\mathcal{P}_{\text{shared}}$ is the common substrate-plus-constitutive set that survives particle, spacetime, and quantum-side tests simultaneously.
+
+This condition is a necessary compatibility target for the declared tests, not proof of universal validity or parameter identifiability. State dependence predicted by one fixed constitutive law is legitimate; independent per-observable retuning after seeing residuals is not. An unevaluated comparison leaves compatibility unresolved, whereas an excluded shared set rejects the tested model and domain.
+
+## Sources
+
+- NIST, *CODATA Recommended Values of the Fundamental Physical Constants: 2022*, [complete table](https://physics.nist.gov/cuu/Constants/Table/allascii.txt). Source of the dated values and quoted standard uncertainties; these are observer benchmarks, not substrate premises.
+- ATLAS Collaboration, *Observation of a New Particle in the Search for the Standard Model Higgs Boson with the ATLAS Detector at the LHC* (2012), [arXiv:1207.7214v2](https://arxiv.org/abs/1207.7214v2), DOI: 10.1016/j.physletb.2012.08.020. The discovery record supplies the dated mass and strength rows; §§7–9 explain the channel combination, correlations, and different mass resolutions.
 
 ## Related Chapters
 

@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 FIXTURE_SPEC = importlib.util.spec_from_file_location("f6c_export_fixture_records", ROOT / "tests/option_b_fixture_records.py")
 fixture_records = importlib.util.module_from_spec(FIXTURE_SPEC)
 FIXTURE_SPEC.loader.exec_module(fixture_records)
-ABC_SHA = fixture_records.known_sha256(ROOT)
+ABC_SHA = fixture_records.known_sha256(ROOT, "tests/test_f6c_retained_history_export.py")
 SCRIPT = ROOT / "scripts/eom/export-f6c-retained-history.py"
 SPEC = importlib.util.spec_from_file_location("f6c_data_export", SCRIPT)
 exporter = importlib.util.module_from_spec(SPEC)

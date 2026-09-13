@@ -4,6 +4,8 @@ import importlib.util
 import json
 from pathlib import Path
 import tempfile
+import subprocess
+from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
@@ -38,8 +40,8 @@ class FixtureRecords(unittest.TestCase):
     def test_00_hand_authored_field_selection_and_immutable_capture(self):
         self.write(self.known_path, self.known)
         self.write(self.prior_path, self.prior)
-        known = reader.known_sha256(self.root)
-        prior = reader.acceleration_prior(self.root)
+        known = reader.capture_known_sha256(self.known_path.read_text())
+        prior = reader.capture_acceleration_prior(self.prior_path.read_text())
         self.assertEqual(known, "a" * 64)
         self.assertEqual(prior, ("b" * 64, "c" * 64, "d" * 64))
         self.assertIs(type(prior), tuple)
@@ -48,45 +50,37 @@ class FixtureRecords(unittest.TestCase):
         self.assertEqual(known, "a" * 64)
 
     def test_missing_malformed_and_duplicate_records_reject(self):
-        for path, load in ((self.known_path, reader.known_sha256), (self.prior_path, reader.acceleration_prior)):
+        for path, load in ((self.known_path, reader.capture_known_sha256), (self.prior_path, reader.capture_acceleration_prior)):
             with self.subTest(path=path), self.assertRaises(FileNotFoundError):
-                load(self.root)
+                load(path.read_text())
             for raw in ('[]', 'null', '{', '{"schema":"first","schema":"second"}',
                         '{"nested":{"duplicate":1,"duplicate":2}}'):
                 path.write_text(raw, encoding="utf-8")
                 with self.subTest(raw=raw), self.assertRaises(ValueError):
-                    load(self.root)
+                    load(path.read_text())
 
     def test_wrong_schema_algorithm_role_encoding_and_census_reject(self):
         for path, original, load, encoding, values in (
-                (self.known_path, self.known, reader.known_sha256, "outputEncoding", "sha256"),
-                (self.prior_path, self.prior, reader.acceleration_prior, "encoding", "hashes")):
+                (self.known_path, self.known, reader.capture_known_sha256, "outputEncoding", "sha256"),
+                (self.prior_path, self.prior, reader.capture_acceleration_prior, "encoding", "hashes")):
             for field, value in (("schema", "unknown"), ("algorithm", "SHA-1"), ("role", "current-approval"),
                                  (encoding, "base64"), (values, {}), (values, []), (values, None)):
                 record = copy.deepcopy(original)
                 record[field] = value
                 self.write(path, record)
                 with self.subTest(field=field), self.assertRaises(ValueError):
-                    load(self.root)
+                    load(path.read_text())
             for bad in (None, True, 0, "", "a" * 63, "a" * 65, "A" * 64, "g" * 64, "a" * 64 + "\n"):
                 record = copy.deepcopy(original)
                 record[values][next(iter(record[values]))] = bad
                 self.write(path, record)
                 with self.subTest(value=bad), self.assertRaises(ValueError):
-                    load(self.root)
+                    load(path.read_text())
 
-    def test_actual_consumers_reject_malformed_data_before_subject_loading(self):
-        original_read = Path.read_text
+    def test_actual_consumers_reject_malformed_admitted_output_before_subject_loading(self):
         original_spec = importlib.util.spec_from_file_location
         malformed = copy.deepcopy(self.known)
         malformed["sha256"]["abc"] = "invalid"
-        fixture_path = ROOT / "scripts/equation-mapping/fixtures/known-hash-answers.json"
-
-        def read(path, *args, **kwargs):
-            if path == fixture_path:
-                return json.dumps(malformed)
-            return original_read(path, *args, **kwargs)
-
         def no_subject(name, location, *args, **kwargs):
             if Path(location).is_relative_to(ROOT / "scripts/eom"):
                 raise AssertionError("Scientific subject loaded before fixture validation")
@@ -96,7 +90,7 @@ class FixtureRecords(unittest.TestCase):
                          "test_f6c_acceleration_execution.py"):
             target = original_spec("malformed_fixture_consumer", ROOT / "tests" / filename)
             module = importlib.util.module_from_spec(target)
-            with self.subTest(consumer=filename), patch.object(Path, "read_text", read), \
+            with self.subTest(consumer=filename), patch.object(subprocess, "run", return_value=SimpleNamespace(returncode=0, stdout=json.dumps(malformed))), \
                     patch.object(importlib.util, "spec_from_file_location", no_subject), \
                     self.assertRaisesRegex(ValueError, "Malformed fixture digest"):
                 target.loader.exec_module(module)

@@ -1,38 +1,40 @@
 # BBN Constraints
 
-This chapter states how big-bang nucleosynthesis constraints are to be read inside a fixed-void ontology. Its purpose is not to rewrite nuclear reaction physics, but to reinterpret where and when the relevant thermal histories occur and how those histories are projected into the standard BBN observable language.
+Big-bang nucleosynthesis (BBN) is the standard calculation of light-nucleus production along an early hot-universe cooling history. This chapter asks what a local production mechanism must reproduce in the Architrino Assembly Architecture, $\mathbb{A}\mathbb{A}\mathbb{A}$. The [Euclidean void](../foundations/euclidean-void.md) is its fixed spatial container; [absolute time](../foundations/absolute-time.md), denoted by $T$, orders the motion of its contents. A [Noether braid](../noether-braid/noether-braid.md) is a neutral assembly scaffold of coupled architrino paths, and the [Noether sea](../spacetime/noether-sea.md) is the ambient population of neutral assembly candidates.
+
+The recurring supermassive-black-hole source scenario developed here has claim grade guessed: it is a candidate interpretation, with no derived local reactor or abundance calculation supplied in this chapter. Nuclear reaction rates, thermal distributions, and relativistic expansion formulas enter as observer-level comparisons or recovery targets. They are not premises of the [Master Equation](../dynamics/master-equation.md), which determines architrino acceleration from delayed path-history interactions. A computed source population that misses the joint abundance and transport constraints below would falsify that population's proposed BBN mapping.
 
 ## Standard vs. $\mathbb{A}\mathbb{A}\mathbb{A}$ BBN
 
 ### Standard Big Bang Nucleosynthesis
 
-- **When:** 10 seconds to 20 minutes after $t=0$ (cosmic singularity).
+- **When:** Weak neutron–proton conversion freezes out around an observer-comparison age of one second; light-nucleus production follows during the first minutes. This calculation does not require extrapolating the thermal history to a singularity.
 - **Where:** Everywhere in the observable universe; a homogeneous, isotropic thermal bath.
 - **Why:** Expansion cooling drives the universe through nuclear-reaction freeze-out.
-- **Background:** Finite age, singular-origin boundary, homogeneous early thermal history.
+- **Background:** A specified, approximately homogeneous hot early history. Its measured abundance tests concern that history, not a physical description of an initial singularity.
 
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ Reinterpretation
 
-- **When:** No universal "beginning"; nucleosynthesis occurs locally and repeatedly in absolute time $T$ within the eternal Euclidean void.
-- **Where:** In high-density, high-temperature zones surrounding supermassive black hole (SMBH) cores and their release channels; see [Black Holes](../spacetime/black-holes.md).
-- **Why:** Noether braids near SMBHs reach densities and temperatures sufficient for nuclear reactions; subsequent outward transport and cooling mimics expansion-driven freeze-out, using the same fixed-void expansion interface developed in [Expansion Mechanism](./expansion-mechanism.md).
-- **Background:** Eternal void; no singularity; "BBN" is a recurring local process, not a singular cosmic event.
+- **When:** The proposed source history repeats locally in absolute time $T$. An eternal background alone does not imply recurring nucleosynthesis.
+- **Where:** Candidate reaction zones surround supermassive black hole (SMBH) cores and their release channels; see [Black Holes](../spacetime/black-holes.md) for the unresolved interior and release interpretation.
+- **Why:** The proposed sequence is compression, outward transport, and cooling through reaction thresholds. It must supply the temperature, composition, density, and duration needed for freeze-out, using the fixed-void comparison in [Expansion Mechanism](./expansion-mechanism.md).
+- **Background:** Eternal void; the recurring local production scenario is an additional dynamical hypothesis.
 
 ### What Remains Unchanged
 
-- The nuclear reaction network itself (same cross-sections, same branching ratios).
-- The yield hierarchy (H, D, $^4$He, trace Li) and sensitivity to neutron-to-proton ratio.
-- The effective thermal history experienced by participating assemblies.
+- Measured reaction cross-sections and branching ratios remain comparison inputs in their validated energy and medium regimes; their assembly-level recovery is a separate obligation.
+- The observed light-element hierarchy and neutron-to-proton sensitivity remain constraints on the computed yields.
+- The model must compute an effective thermal history compatible with those constraints. Equality to the standard history is neither automatic nor required at every instant.
 
 ### What Changes
 
-- **Cosmology:** From singular, universal expansion to local, repeating cycles near SMBHs.
-- **Light-element origin:** From primordial relics of $t=0$ to ongoing nucleation products ejected from SMBH environments.
-- **Observational interpretation:** "Primordial" abundances reflect equilibrium distributions from continuous recycling, not a one-time cosmic event.
+- **Cosmology:** The candidate interpretation substitutes local source histories for the standard early hot phase.
+- **Light-element origin:** It tests SMBH-associated production and ejection against the inferred pre-stellar abundance baseline.
+- **Observational interpretation:** The proposed abundances are non-equilibrium reaction yields after transport and mixing. Continuous recycling does not by itself establish an equilibrium distribution.
 
 ### Local-Reactor Cosmology Positioning
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ shares non-one-time-origin logic with steady-state/cyclical families, but it is more constrained: light-element claims are accepted only when SMBH-local transport-and-freeze-out mappings satisfy the same yield closure standards used in standard BBN comparisons.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ shares recurring-source motifs with steady-state and cyclical families. That resemblance supplies no abundance prediction. A proposed local reactor must account jointly for the light-element data, source-population variation, and later transport.
 
 ## Element Context
 
@@ -48,22 +50,22 @@ Lithium is therefore not a separate ontology; it is highlighted only because it 
 
 ## The SMBH Nucleation Environment
 
-Within the $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation, what standard cosmology calls "the first minutes of the universe" corresponds to local physical conditions near SMBH cores:
+The proposed SMBH interpretation seeks local histories with the required reaction exposures. The following sequence describes that hypothesis, rather than an established equivalence to the first minutes of standard cosmology:
 
 1. **Assembly Compression Zone (SMBH Interior/Near-Horizon):**
 
-Noether braids compress toward maximum-curvature states. Proton/neutron assemblies (nucleon Noether braids; see [Nucleon Structure](../nuclear-atomic/nucleon-structure.md)) are driven into close proximity by intense Noether sea density gradients. At the observer-level benchmark $T_{\mathrm{temp}}\sim10^9\,\mathrm{K}$, the relevant baryon density is
+The candidate mechanism invokes compression of assemblies by Noether sea response. Proton and neutron targets are composite nucleon assemblies, not individual Noether braids; see [Nucleon Structure](../nuclear-atomic/nucleon-structure.md). Their survival, reaction rates, and escape from the proposed source region require a dynamical account. For a blackbody photon bath at the observer-level benchmark temperature $T_{\mathrm{temp}}\sim10^9\,\mathrm{K}$, the baryon mass density is
 $$
 \rho_b=\eta_{b\gamma}n_\gamma m_b\sim2\times10^{-5}\,\mathrm{g/cm^3}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-30e1c5c21c995879)
 
-for $\eta_{b\gamma}\sim6\times10^{-10}$. This is not the total radiation mass-equivalent density. A local-reactor branch must declare which density enters each reaction row and reproduce the coupled temperature-density history rather than matching one nominal point. Interpretive saturation claim: compression approaches medium-defined ceilings $T_{\max}$ and $\rho_{\max}$, so nucleosynthesis conditions are set primarily by Noether sea saturation rather than scaling linearly with SMBH mass.
+Here $\eta_{b\gamma}=n_b/n_\gamma\sim6\times10^{-10}$ is the baryon-to-photon number ratio, $n_\gamma$ is photon number density, and $m_b$ is the mean observer-level mass per baryon. This is baryonic mass density, not total radiation mass-equivalent density or a mass assigned to individual architrinos. The numerical value assumes a Planck photon distribution; it does not establish that an SMBH environment supplies one. Medium-set temperature and density ceilings $T_{\max}$ and $\rho_{\max}$ remain proposed constitutive properties, with no mass-independent saturation result derived here.
 
 2. **Outward Release and Cooling:**
 
-Material released from near-horizon regions undergoes rapid outward dilution and cooling. Effective cooling rate $dT_{\mathrm{temp}}/dt_{\mathrm{eff}}$ must match the freeze-out timing required for standard BBN yields; showing that the transport-limited cooling window actually delivers $\tau_{\mathrm{cool}}\approx1\,\mathrm{s}$ is the timing closure target stated in the goals below. This is not metric expansion of space; it is bulk flow of assemblies through the Euclidean void, with effective expansion represented as density dilution. Interpretive timing claim: the effective expansion rate is not free-form outflow kinematics; it is constrained by assembly transport limits tied to field-speed scale $c_f$, release-channel selection, and near-core stability times, so the cooling window can align with weak freeze-out timing.
+An outward-moving population dilutes when its occupied volume increases; its temperature also depends on work, heating, radiation, and composition. Write $t_{\mathrm{eff}}$ for an effective observer clock along a specified fluid element, and supply its map from $T$ before comparing rates. The cooling duration $t_{\mathrm{cool}}=|d\ln T_{\mathrm{temp}}/dt_{\mathrm{eff}}|^{-1}$ must be compared with the relevant reaction times throughout the history. A one-second weak-freeze-out scale does not describe the entire nuclear-production interval. The primitive wake speed $c_f$ supplies no duration without a length and transport law; constituent architrino speeds need not be bounded by $c_f$. New numerical realizations use normalized wake-speed units with $c_f=1$, while quoted temperatures, masses, and seconds here retain their observer-benchmark units.
 
 3. **Observable Output:**
 
@@ -71,21 +73,24 @@ Ejected material, now cooled and stabilized, carries light-element abundances se
 
 ### Key Difference from Standard BBN
 
-- **Standard:** One homogeneous early-universe thermal history; all light elements formed in the same cosmic epoch.
-- **$\mathbb{A}\mathbb{A}\mathbb{A}$:** Many local nucleation sites; observed abundances reflect averaged outputs from SMBH environments plus later stellar processing.
+- **Standard:** One approximately homogeneous early thermal history supplies the primordial light-element component; later stellar processing alters it.
+- **$\mathbb{A}\mathbb{A}\mathbb{A}$:** The candidate interpretation combines local-source yields with transport, mixing, and subsequent processing. Those operations must preserve the observed isotope constraints.
 
 ## Network-Level Description
 
+At the effective comparison level, let $n_i$ be the local number density of nuclear species $i$ in a fluid element of volume $V$. For a well-mixed element, species counting gives
+
 $$
-\frac{dn_i}{dt_{\mathrm{eff}}} = \sum_{j,k}\langle\sigma v_{\mathrm{rel}}\rangle_{jk\to i}n_jn_k
-- \sum_l\langle\sigma v_{\mathrm{rel}}\rangle_{il}n_in_l
+\frac{dn_i}{dt_{\mathrm{eff}}}
++n_i\frac{d\ln V}{dt_{\mathrm{eff}}}
+=\sum_r \nu_{ir}\mathcal R_r+S_i
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4ccff45d27ba9dd3)
 
-The reaction bookkeeping is unchanged; the $\mathbb{A}\mathbb{A}\mathbb{A}$ shift is the background interpretation that sets temperature, density, and freeze-out timing.
+Here $r$ indexes distinct directed reactions, $\nu_{ir}$ is the number of nuclei of species $i$ produced minus consumed per event, $\mathcal R_r$ is the event rate per volume, and $S_i$ is net exchange with other elements or external sources per volume and time. This follows by differentiating the population $n_iV$. For a two-body reaction $j+k$, $\mathcal R_r=n_jn_k\langle\sigma v_{\mathrm{rel}}\rangle_r/(1+\delta_{jk})$, with $\delta_{jk}=1$ for identical reactants and zero otherwise. The thermal average uses the declared relative-velocity distribution. One-body weak conversion and photodissociation enter through their own rates, including the relevant photon and lepton spectra. Reverse reactions have separate directed entries. Without reactions or exchange, the equation conserves $n_iV$ while the density falls as $V^{-1}$.
 
-For a local-reactor, recycling, or compact-object comparison branch, the network also needs a source-channel energy partition. Let $s$ label source channels and let $E_s^\theta$ be the energy carried into the declared BBN window by baryons, photons, neutrino-sector excitations, compact-object release, or Noether sea work terms. The branch supplies an acceptable thermal record only if
+For a local-reactor comparison, let $\theta$ identify one source and transport history and let $s$ label mutually exclusive incoming energy contributions. Let $E_s^\theta$ count each boundary transfer once, by carrier and provenance. Compact-object release labels a source of baryons, photons, or other carriers, not an extra energy contribution added to those same carriers. Noether sea work enters only when it is disjoint from the counted transfers. Define the incoming energy and thermal-state summary by
 $$
 E_{\mathrm{in}}^\theta
 =
@@ -103,7 +108,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-adff5f84f61e3323)
 
-is propagated through the same source window that produces the yields. A source story that changes the photon loading, neutron fraction, entropy per baryon, or relativistic-species count independently of the light-element network has not supplied a BBN mechanism; it has assigned separate fit parameters to the outputs.
+Here $E_{\mathrm{in}}^\theta$ is total incoming energy; the four entries in $\boldsymbol{\eta}_{\mathrm{BBN}}^\theta$ are baryon-to-photon ratio, effective non-photon radiation loading, neutron-to-proton ratio, and photon entropy density $s_\gamma^\theta$ per baryon. The first equality defines a partition, not an energy-conservation theorem. Stored energy changes, outgoing transfers, reaction energy, and work must also enter a finite-window balance. The thermal summary and its time dependence must follow from the same source history that supplies the yields.
 
 The multi-channel reading is useful only when it is made provenance-explicit. High-energy compact-object release, supernova-like processing, jet channels, quasar or blazar environments, and ordinary stellar processing may all be source leads for later abundance history, but none of them replaces the BBN comparison surface unless it enters a declared source-window record
 $$
@@ -111,22 +116,22 @@ $$
 =
 \left(
 \mathcal{W}_s,
-T_s(t),
-\rho_s(t),
-n_{b,s}(t),
-n_{\gamma,s}(t),
-n_{\nu,s}(t),
+T_{\mathrm{temp},s}(t_{\mathrm{eff}}),
+\rho_s(t_{\mathrm{eff}}),
+n_{b,s}(t_{\mathrm{eff}}),
+n_{\gamma,s}(t_{\mathrm{eff}}),
+n_{\nu,s}(t_{\mathrm{eff}}),
 \mathcal{E}_{i,s}
-\right)_s.
+\right)_s
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c047808244f4a655)
 
-The yields are then acceptable only if D/H, $Y_p$, lithium, $\eta_{b\gamma}$, and $N_{\text{eff}}$ are all computed from the same channel-weighted record. A branch that treats one source family as an explanation for helium, another as an explanation for lithium, and a third as a photon-loading fix without a shared source-window ledger has not improved on the one-time-origin story; it has split the provenance.
+Here $\mathcal W_s$ specifies each channel's time interval and material domain, $\rho_s$ its declared mass or energy density, $n_{b,s},n_{\gamma,s},n_{\nu,s}$ its baryon, photon, and neutrino number densities, and $\mathcal E_{i,s}$ its reaction exposure, defined below. Spectra, transport weights, and volume histories complete this summary when rates depend on them. D/H is the deuterium-to-hydrogen number ratio, and $Y_p=4n_{{}^4\mathrm{He}}/n_b$ is the baryon fraction in helium-4, approximating its mass fraction up to binding-energy and nucleon-mass corrections. Mixing combines species counts with their transported material weights before forming ratios; an unweighted mean of local ratios is generally different.
 
-The standard freeze-out scalings should remain explicit because they are the hard targets for any SMBH-local or transport-cooling replacement. In a radiation-dominated comparison packet,
+The following standard comparisons describe a radiation-dominated, spatially flat Friedmann–Lemaître–Robertson–Walker (FLRW) history, with negligible curvature and dark energy and approximately constant relativistic energy loading. They are not local outflow laws. In that comparison,
 $$
-t
+t_{\mathrm{eff}}
 \approx
 \frac{2.4\ \mathrm{s}}{\sqrt{g_*}}
 \left(\frac{1\ \mathrm{MeV}}{k_BT_{\mathrm{temp}}}\right)^2
@@ -134,7 +139,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-7a76b30502e7a057)
 
-where $g_*$ is the effective relativistic-species loading. The neutron-to-proton ratio follows the equilibrium estimate
+where $g_*$ counts relativistic energy degrees of freedom, weighted by statistics and species temperatures relative to $T_{\mathrm{temp}}$, and $k_B$ is Boltzmann's constant. The time origin is the standard radiation-era extrapolation; it is not a preferred origin of $T$. Changes during electron–positron annihilation require the temperature and entropy evolution to be followed explicitly. For dilute, nonrelativistic nucleons in weak chemical equilibrium with negligible lepton chemical potentials, the leading neutron-to-proton estimate is
 $$
 \frac{n_n}{n_p}
 \approx
@@ -143,18 +148,18 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9a894c0b2375e38e)
 
-until weak reactions fall out of equilibrium. Deuterium survival is delayed by the high photon loading; a schematic bottleneck condition is
+Here $\Delta m=m_n-m_p$ is the neutron–proton mass difference and $c_0$ is the observer-sector speed calibration, distinct from the primitive wake speed. Deuterium formation illustrates a different equilibrium. In a dilute nonrelativistic Maxwell–Boltzmann gas, $p+n\leftrightarrow D+\gamma$ with photon chemical potential zero gives
 $$
 \frac{n_D}{n_p}
-\sim
-\eta
-\left(\frac{k_BT_{\mathrm{temp}}}{m_p c_0^2}\right)^{3/2}
+\simeq
+\frac{3}{4}n_n
+\left(\frac{2\pi\hbar^2}{\mu_{np}k_BT_{\mathrm{temp}}}\right)^{3/2}
 \exp\!\left(\frac{E_D}{k_BT_{\mathrm{temp}}}\right)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-5d124b91adcd4eb2)
 
-with $E_D$ the deuterium binding energy and $\eta$ the baryon-to-photon ledger variable. These equations are observer-level benchmarks for the thermal record. A native local-reactor branch may reinterpret where the history occurs, but it must reproduce the same freeze-out, deuterium-bottleneck, $Y_p$, D/H, lithium, $\eta$, and $N_{\text{eff}}$ residuals without fitting them in separate source zones.
+Here $E_D$ is deuterium binding energy, $\hbar$ is the reduced Planck constant, and $\mu_{np}=m_nm_p/(m_n+m_p)$ is the reduced nucleon mass; the small binding-mass correction is neglected. The spin-degeneracy ratio is $3/(2\cdot2)=3/4$. Substitution of $n_a=g_a(m_ak_BT_{\mathrm{temp}}/2\pi\hbar^2)^{3/2}\exp[(\mu_a^{\mathrm{chem}}-m_ac_0^2)/(k_BT_{\mathrm{temp}})]$ and $\mu_D^{\mathrm{chem}}=\mu_n^{\mathrm{chem}}+\mu_p^{\mathrm{chem}}$ yields this relation, where $g_a$ and $\mu_a^{\mathrm{chem}}$ are the spin degeneracy and chemical potential of species $a$. Writing $n_n=X_n\eta_{b\gamma}n_\gamma$ exposes the required neutron fraction $X_n=n_n/n_b$; photon loading alone cannot determine deuterium. This equilibrium estimate does not predict the surviving D yield after reactions fall out of equilibrium.
 
 ### Weak-Rate and Relativistic-Species Gate
 
@@ -177,25 +182,26 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e624672373de783c)
 
-The freeze-out comparison is controlled by when these rates fall below the effective BBN clock,
+The quantities $\lambda_{n\to p}^\theta$ and $\lambda_{p\to n}^\theta$ are rates per neutron and per proton, respectively. Before nuclear binding becomes important, the neutron fraction obeys $dX_n/dt_{\mathrm{eff}}=-\lambda_{n\to p}^\theta X_n+\lambda_{p\to n}^\theta(1-X_n)$. At fixed bath conditions its equilibrium value is $X_n^{\mathrm{eq}}=\lambda_{p\to n}^\theta/(\lambda_{n\to p}^\theta+\lambda_{p\to n}^\theta)$, and perturbations relax at the sum of the rates. An order-of-magnitude freeze-out comparison is therefore
 $$
-\lambda_{n\to p}^{\theta}(T_{\mathrm{temp}})
-\sim
-\lambda_{p\to n}^{\theta}(T_{\mathrm{temp}})
+\lambda_{n\to p}^{\theta}
++\lambda_{p\to n}^{\theta}
 \sim
 H_{\mathrm{eff,BBN}}^\theta(T_{\mathrm{temp}})
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a34b812929f48825)
 
-where $H_{\mathrm{eff,BBN}}^\theta$ is the observer-level cooling and dilution rate inferred from the local transport record, not expansion of the Euclidean void. Any extra relativistic component changes the same clock through
+Here $H_{\mathrm{eff,BBN}}^\theta=|d\ln T_{\mathrm{temp}}/dt_{\mathrm{eff}}|$ is the local thermal-change rate during monotonic cooling. The weak rates also depend on lepton spectra and chemical potentials, not only temperature. Detailed balance equates $\lambda_{n\to p}^\theta n_n^\theta$ and $\lambda_{p\to n}^\theta n_p^\theta$, not the two per-particle rates. Tracking $X_n$ through a changing bath is required beyond this timescale estimate.
+
+In the standard radiation-dominated FLRW comparison, extra relativistic energy changes the expansion rate according to
 $$
-H_{\mathrm{eff,BBN}}^\theta
+H_{\mathrm{FLRW}}
 \propto
 \left(
 \rho_\gamma^\theta
 +\rho_{e^\pm}^\theta
-+\rho_{\nu_\alpha}^\theta
++\sum_{\alpha=e,\mu,\tau}\rho_{\nu_\alpha}^\theta
 +\rho_{\nu_s}^\theta
 +\cdots
 \right)^{1/2}
@@ -203,42 +209,47 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8821f40ec36ed562)
 
-so the relativistic-species residual must be tracked as
+All densities in this comparison are energy densities; $\rho_{\nu_\alpha}$ includes each active neutrino flavor and its antiparticle, and $\rho_{\nu_s}$ denotes a specified additional sterile sector, if present. The proportionality follows from the Friedmann equation with fixed gravitational coupling. A local outflow must derive its own energy-to-cooling response; replacing the symbol $H$ does not establish the square-root law.
+
+After electron–positron annihilation, while the neutrino-like components being counted remain relativistic, define the observer-comparison radiation loading by
 $$
 N_{\text{eff}}^\theta
 \equiv
 \frac{\rho_{\mathrm{rel}}^\theta-\rho_\gamma^\theta}
-{\rho_{\nu,1}^\theta}
+{\frac{7}{8}\left(\frac{4}{11}\right)^{4/3}\rho_\gamma^\theta}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-e9237a193c1a0868)
 
-The equilibrium neutron-to-proton comparison then reads
+Here $\rho_{\mathrm{rel}}^\theta$ includes photons and the declared non-photon relativistic components at the same comparison epoch. The denominator is a fixed single-species reference at the photon temperature, not the actual energy of one source-dependent neutrino species. During electron–positron annihilation, use the evolving spectra and total energy density explicitly; the late-time normalization is not an instantaneous count of all particles in the bath.
+
+For weak equilibrium at a common temperature, the leading nonrelativistic neutron-to-proton comparison is
 $$
 \frac{n_n^\theta}{n_p^\theta}
 \approx
 \exp\!\left(
 -\frac{\Delta m_{np}c_0^2}{k_BT_{\mathrm{temp}}}
++\xi_e^\theta
 -\xi_{\nu_e}^\theta
 \right)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fb9e55095714519e)
 
-where $\xi_{\nu_e}^\theta$ is retained only when the branch declares a neutrino-sector asymmetry. A viable branch must therefore recover the same $n_n/n_p$, $Y_p$, D/H, lithium, $\eta$, and $N_{\text{eff}}$ surfaces from one local source-window record. A sterile or hidden relativistic sector that improves one isotope while shifting the weak-rate clock, neutrino asymmetry, or photon loading independently fails this gate.
+Here $\Delta m_{np}=\Delta m$, $\xi_e^\theta=\mu_e^{\mathrm{chem}}/(k_BT_{\mathrm{temp}})$, and $\xi_{\nu_e}^\theta=\mu_{\nu_e}^{\mathrm{chem}}/(k_BT_{\mathrm{temp}})$ are electron and electron-neutrino degeneracy parameters. The sign follows from $\mu_n^{\mathrm{chem}}+\mu_{\nu_e}^{\mathrm{chem}}=\mu_p^{\mathrm{chem}}+\mu_e^{\mathrm{chem}}$. The electron term is negligible only in an appropriately nondegenerate bath; a dense compact-object environment cannot discard it without checking. For nonthermal spectra or unequal temperatures, compute the forward and reverse weak rates rather than substituting this equilibrium formula.
 
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ SMBH-Local Nucleation Chain
 
-The BBN story is one continuous mechanism:
+The proposed BBN mapping has four dependent steps:
 
 1. The Noether sea evolves in absolute time $T$ within a fixed Euclidean container.
-2. This Noether sea evolution defines an effective expansion/cooling history and therefore an emergent $H_{\mathrm{eff}}(t_{\mathrm{eff}})$ at observer level, matching the bookkeeping used in [Expansion Mechanism](./expansion-mechanism.md).
+2. A derived transport and clock map must turn that history into effective density and temperature histories, following the comparison framework in [Expansion Mechanism](./expansion-mechanism.md).
 3. The resulting thermal history sets reaction-rate competition and freeze-out ordering in the standard network.
-4. The coupled light-element yields (H, D, He, trace Li) are outputs of this same Noether sea and assembly dynamics and must remain compatible with the observer-level chronology in [CMB](./CMB.md).
+4. The resulting light-element yields (H, D, He, trace Li) must remain compatible with the observer-level chronology and cosmic microwave background (CMB) constraints in [CMB](./CMB.md). Listing the steps does not derive the missing transport or reaction maps.
 
 ## Lithium Within the Full Light-Element Story
 
-Lithium is not a separate patch. It is part of the same primordial transport-and-freeze-out mechanism:
+The proposed lithium explanation belongs to the same transport and freeze-out hypothesis:
 
 - deformation-wave transport can redistribute neutrons between denser and more diffuse zones during the BBN window,
 - this reweights local reaction paths in the same network equations,
@@ -251,25 +262,25 @@ This differential-yield claim is conjecture pending the transport-weighted react
 ### Why Standard BBN Fits So Well
 
 - If the SMBH-local mapping is correct, its nucleosynthetic output must establish a baseline light-element abundance.
-- Subsequent stellar evolution and mixing would homogenize these abundances across cosmic scales; this is a declared gate — the claim requires a mixing timescale shorter than the observation epoch and is checked against galactic metallicity-gradient data.
-- The effective "primordial" abundances reflect equilibrated distributions from SMBH recycling, not a singular cosmic event.
+- Transport and mixing must produce the required abundance distribution before the selected gas or stars are observed. Galactic metallicity gradients alone do not measure mixing over all source separations. Stellar processing also destroys deuterium, so it cannot be invoked as passive homogenization of every light isotope.
+- The standard fit tests a jointly calculated thermal history. A recycling interpretation must demonstrate its own pre-stellar baseline and subsequent processing; final yields are not equilibrium functions of a single source temperature.
 
 ### Potential Distinguishing Signatures
 
 - **Spatial Inhomogeneities:** If BBN is SMBH-local, early structures might show abundance gradients correlated with SMBH proximity.
-- **Time Evolution:** In an eternal universe, light-element ratios could vary with cosmic epoch if SMBH nucleation efficiency evolves (contrast with Big Bang's fixed primordial values).
-- **Lithium Tension as Signal:** The $^7$Li discrepancy can be interpreted as a transport signature: hotter inner release tracks preferentially deplete $^7$Be/$^7$Li while cooler outer channels preserve D, yielding an integrated low-Li/high-D pattern.
+- **Time Evolution:** Source evolution can change the predicted pre-stellar abundance baseline. Both frameworks also allow later chemical evolution, which must be modeled before attributing an observed trend to recurring production.
+- **Lithium Tension as Signal:** Preferential mass-7 destruction in hotter channels, with D survival in cooler channels, is a proposed discriminator. The integrated direction and magnitude require a reaction and transport calculation and a stellar lithium-depletion model.
 
 ### Status
 
-- Homogeneity of observed abundances (low dispersion across cosmic volume) constrains how much local variation the SMBH process can tolerate.
+- The observed abundance distribution in specified gas and stellar samples constrains the model after measurement errors, sample selection, and later processing are included. It does not directly measure every reactor across cosmic volume.
 - This is a quantitative mapping objective: demonstrate that SMBH environments can produce sufficiently uniform outputs to match observations.
 
 ## Model-Family Discriminator Checklist
 
 - Preserve deuterium survival through the bottleneck window without recirculation overburn.
-- Preserve narrow helium clustering (for example near $Y_p\approx0.245$ with low dispersion).
-- Preserve effective photon loading in the reaction window (BBN-compatible $\eta$ behavior).
+- Reproduce the inferred helium abundance and the sample distribution, with uncertainties and processing specified.
+- Preserve effective photon loading in the reaction window (BBN-compatible $\eta_{b\gamma}$ behavior).
 - Preserve matter-asymmetry provenance: the baryon-to-photon ratio must be carried by the same reaction ledger used for photon loading, not inserted as an independent initial condition.
 - Preserve effective neutrino-sector closure near three-species behavior (observer-level $N_{\text{eff}}$ compatibility).
 - Avoid per-source ad hoc retuning that breaks universality across SMBH populations.
@@ -279,7 +290,7 @@ This differential-yield claim is conjecture pending the transport-weighted react
 
 Pre-BBN comparison branches are accepted only through their effect on the light-element and relativistic-species record. The BBN side of the gate does not import the external branch ontology; it asks whether the same thermal, photon-loading, neutrino, and Noether sea state used by the local-reactor mapping can absorb the branch without damaging the successful yield constraints.
 
-For a candidate branch $X$, define the BBN residual
+For a candidate branch $X$, define the BBN residual below. Each $\epsilon$ is a positive, predeclared tolerance incorporating the specified observational, theoretical, and processing uncertainties. The subscript $\mathrm{obs}$ denotes the selected abundance or cosmological inference with its model assumptions; it is not a direct observation of an SMBH source. Here $\eta_X=\eta_{b\gamma,X}$, and in this residual $\Delta N_{\text{eff}}^X=N_{\text{eff}}^X-N_{\text{eff,obs}}$. A comparison with the standard theoretical value must be labeled separately.
 $$
 \mathcal{R}_{\mathrm{BBN},X}
 =
@@ -294,11 +305,11 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-2d553828c3fbd6c4)
 
-The branch may remain in the comparison ledger only when $\mathcal{R}_{\mathrm{BBN},X}\le1$ using the same provenance and Noether sea record carried into [CMB](./CMB.md), [Structure Formation](./structure-formation.md), and [Gravitational Waves](../spacetime/gravitational-waves.md). A component that repairs one BBN channel while spoiling deuterium survival, helium clustering, or $N_{\text{eff}}$ compatibility is a failed comparison branch, not a new explanatory resource.
+The condition $\mathcal{R}_{\mathrm{BBN},X}\le1$ means that the branch passes the declared componentwise bounds. It is not a joint confidence level: correlated abundances and shared CMB inferences require a covariance or joint likelihood treatment. The same provenance and Noether sea record must carry into [CMB](./CMB.md), [Structure Formation](./structure-formation.md), and [Gravitational Waves](../spacetime/gravitational-waves.md). Failed and unevaluated branches remain distinguishable from passing branches. In particular, primordial mass-7 production cannot be compared directly with stellar surface lithium without an explicit processing model.
 
-The $\eta_X$ term is the BBN-facing projection of the matter-asymmetry ledger in [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md#matter-asymmetry-provenance). It should be computed from transported baryon, antibaryon, and photon event records over the declared source window, not assigned independently after the yields are fit.
+The $\eta_X$ term is the BBN-facing projection of the matter-asymmetry ledger in [Reaction-Cosmology Provenance Ledger](../validation/reaction-cosmology-provenance-ledger.md#matter-asymmetry-provenance). It should be computed from transported baryon, antibaryon, and photon event records over the declared source window, not assigned independently after the yields are fit. The usual network assumes negligible surviving antibaryon abundance, so its baryon density approximates net baryon density. A branch with appreciable antimatter must track separate populations and annihilation before comparing those ratios.
 
-The branch must also carry a nucleosynthesis exposure record, because light-element abundances are not an equilibrium imprint of one temperature-density point. They are the arrested output of a coupled reaction network along a cooling history. For each source channel $s$, define
+Light-element abundances depend on the full reaction history. For a neutron-induced reaction on species $i$ in channel $s$, define the dimensionless exposure below. Here $\tau$ is local physical-clock time, and every density and rate uses that same clock; a calculation in $t_{\mathrm{eff}}$ or $T$ must include the corresponding clock-map Jacobian.
 $$
 \mathcal{E}_{i,s}^X
 =
@@ -310,46 +321,48 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-fda82c84820ce47f)
 
-and require the yield vector to be computed as $\mathbf{Y}_{\mathrm{BBN}}^X=\mathbf{Y}[\{T_{\mathrm{temp}},\rho,n_b,n_\gamma,n_n,\mathcal{E}_{i,s}^X\}]$ over the same source-window record used for $\eta_X$ and $N_{\text{eff}}$. The corresponding exposure closure term is
+The limits $\tau_{\mathrm{on},s}$ and $\tau_{\mathrm{off},s}$ specify the exposure window; $n_n$ is neutron number density and $\langle\sigma v_{\mathrm{rel}}\rangle_{i,n}$ is the selected neutron-reaction rate coefficient. The product has inverse-time units. This diagnostic covers neutron-induced reactions only. Charged-particle reactions, photodissociation, weak conversion, injection, and inter-channel exchange remain in the full yield calculation. The exposure alone does not determine the yield.
+
+For comparison with a specified reference thermal history, define
 $$
 \mathcal{R}_{\mathrm{exp},X}
 =
 \max_i
-\frac{|\mathcal{E}_{i,\mathrm{eff}}^X-\mathcal{E}_{i,\mathrm{BBN}}^{\mathrm{obs}}|}{\epsilon_{\mathcal{E}_i}}
+\frac{|\mathcal{E}_{i,\mathrm{eff}}^X-\mathcal{E}_{i,\mathrm{BBN}}^{\mathrm{ref}}|}{\epsilon_{\mathcal{E}_i}}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-15cf2016b6de39e6)
 
-where $\mathcal{E}_{i,\mathrm{eff}}^X$ is the channel-weighted exposure reaching the BBN comparison surface. A SMBH-local or fixed-void replacement branch fails this gate if it matches final D/H, $Y_p$, or lithium while its integrated exposure requires a different density-temperature timing record than the one used for photon loading, weak freeze-out, and the CMB handoff.
+Here $\mathcal{E}_{i,\mathrm{eff}}^X$ is a mean with declared transported-material weights, $\mathcal{E}_{i,\mathrm{BBN}}^{\mathrm{ref}}$ comes from the named reference network and thermal history, and $\epsilon_{\mathcal E_i}>0$ is a diagnostic tolerance. Exposure is not directly observed, and distinct histories can reproduce the same final abundances. Matching this diagnostic is required only for a branch that claims that particular history equivalence. Even then, nonlinear yields must be evaluated along each channel before mixing. For pure removal, survival is $\exp(-\mathcal E)$, so averaging $\mathcal E$ and then exponentiating generally differs from averaging the surviving populations.
 
 Compact-object comparison branches add a sharper injection test. If the branch contains a small-mass tail with late release near the BBN window, record the injected spectrum as
 $$
-\mathcal{I}_X(E,t)
+\mathcal{I}_X(E,t_{\mathrm{eff}})
 =
-\int \psi_X(M,t)\,
-\Gamma_{\mathrm{release}}^X(E,t;M)\,dM
+\int \psi_X(M,t_{\mathrm{eff}})\,
+\Gamma_{\mathrm{release}}^X(E,t_{\mathrm{eff}};M)\,dM
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1a3c5a58a4df14ab)
 
-where $\psi_X(M,t)$ is the branch mass function and $\Gamma_{\mathrm{release}}^X$ is the Hawking-like or native release channel being compared. The yield shifts $\Delta\mathbf{Y}_{\mathrm{BBN}}^X$ must be computed from $\mathcal{I}_X$ and the same thermal, photon-loading, neutrino, and Noether sea state used elsewhere in the BBN gate. A branch that uses late energetic injection to repair one isotope while changing $\eta_X$, $N_{\text{eff}}$, or the CMB handoff independently is a failed comparison branch, not a promoted source mechanism.
+Here $M$ is observer-level object mass, $\psi_X=dN/(dV\,dM)$ is the number of source objects per physical volume and mass, and $\Gamma_{\mathrm{release}}^X=dN_{\mathrm{inj}}/(dt_{\mathrm{eff}}\,dE)$ is the per-object injected-particle spectrum for a declared species. Thus $\mathcal I_X$ has units of number per volume, time, and energy; multiplying by $E$ gives its energy-weighted spectrum. Mass limits, species, frame, and clock are part of the specification. Hawking emission is an external comparison, while an Architrino release law needs its own derivation. Compute yield shifts and all accompanying photon, neutrino, and baryon changes from this same injection history.
 
-If the compact branch evaporates, releases, or otherwise injects energy before or during the BBN window, the sharper residual is
+If a compact branch injects energy before or during the BBN window, the following quantity measures departure from a named baseline. It is a small-perturbation diagnostic, not an observational goodness-of-fit statistic:
 $$
 \mathcal{R}_{\mathrm{evap},X}
 =
 \max\left(
 \frac{\|\Delta\mathbf{Y}_{\mathrm{BBN}}^X\|_{C_Y^{-1}}}{\epsilon_Y},
-\frac{|\Delta N_{\text{eff}}^X|}{\epsilon_N},
+\frac{|\delta_{\mathrm{inj}}N_{\text{eff}}^X|}{\epsilon_N},
 \frac{|\Delta\eta_X|}{\epsilon_\eta},
-\frac{\|\Delta f_\gamma^X(E,t)\|}{\epsilon_\gamma},
-\frac{\|\Delta f_\nu^X(E,t)\|}{\epsilon_\nu}
+\frac{\|\Delta f_\gamma^X(E,t_{\mathrm{eff}})\|}{\epsilon_\gamma},
+\frac{\|\Delta f_\nu^X(E,t_{\mathrm{eff}})\|}{\epsilon_\nu}
 \right)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1cc2859b3073bde0)
 
-Here $\Delta f_\gamma^X$ and $\Delta f_\nu^X$ are photon- and neutrino-sector spectral distortions induced by the release history. This term keeps primordial-compact-object comparisons as constraints on a shared thermal history rather than a license to import compact objects as an explanatory ontology.
+Changes in this diagnostic mean injection history minus the named no-injection baseline. In particular, $\delta_{\mathrm{inj}}N_{\text{eff}}^X$ denotes the injection-induced change, whereas $\Delta N_{\text{eff}}^X$ above is the difference from the selected observation. Define $\|\mathbf z\|_{C_Y^{-1}}=(\mathbf z^{\mathsf T}C_Y^{-1}\mathbf z)^{1/2}$ using a specified positive-definite covariance $C_Y$ over the selected yields. The spectral functions $f_\gamma,f_\nu$, their energy and time domains, integration measure, norm, and positive tolerances must be fixed before evaluating the diagnostic. A large shift can improve an initially poor fit; observational compatibility must be tested with the full final predictions, not merely with the magnitude of their change.
 
 ## Observable-Mapping Goals (Interpretation-Scoped)
 
@@ -357,62 +370,62 @@ These goals are for mapping $\mathbb{A}\mathbb{A}\mathbb{A}$ dynamics to measure
 
 ### 1. Homogeneity Goal: "Universal Ejection Attractor"
 
-Standard BBN effectively behaves like a calibrated standard reactor: one parameter, $\eta$ (baryon-to-photon ratio), predicts light-element abundances across the sky. SMBH-local models should recover similar universality.
+With measured nuclear and weak inputs and a specified standard expansion and neutrino history, $\eta_{b\gamma}$ is the principal free cosmological input to standard BBN. A local-source model must explain its abundance distribution with comparably explicit inputs. The observed mean and the intrinsic variation between sources are different statistical quantities.
 
-- **Variance consideration:** SMBHs span mass ($10^6$ to $10^{10}\,M_\odot$), spin, and accretion-state diversity. If $T_{\mathrm{temp}}(t)$ and $\rho(t)$ inherit this variance directly, predicted yields, especially $Y_p$, should broaden.
-- **Observable target:** Keep consistency with tight helium clustering near $Y_p\approx0.245\pm0.003$.
-- **Deuterium target:** The [one-percent quasar-absorption determination](https://arxiv.org/abs/1710.11129) reports $(D/H)_P=(2.527\pm0.030)\times10^{-5}$ from seven high-precision systems. This is an observer-level abundance benchmark and a particularly tight limit on inter-reactor yield dispersion; it does not identify the production mechanism.
-- **Goal:** Derive a **Universal Ejection Attractor** where near-horizon architrino compression saturates to medium-set conditions (Noether braid saturation), with universal ceilings $T_{\max}$ and $\rho_{\max}$ and mass-insensitive $\rho_{\mathrm{crit}}$ and $v_{\mathrm{eject}}$.
-- **Observable implication:** If this saturation holds, $^4$He yield is intrinsic to Noether sea state convergence and remains weakly dependent on SMBH mass class.
+- **Variance consideration:** A source model must specify its SMBH mass, spin, accretion state, and population weights. Variations in $T_{\mathrm{temp}}(t_{\mathrm{eff}})$ and $\rho(t_{\mathrm{eff}})$ need not translate linearly into yield variation; calculate that dependence.
+- **Observable target:** The PDG 2025 review gives an inferred primordial helium benchmark $Y_p=0.245\pm0.003$. Its combined observational uncertainty is not a direct bound on the dispersion of reactor yields.
+- **Deuterium target:** Cooke, Pettini, and Steidel's [one-percent quasar-absorption determination](https://arxiv.org/abs/1710.11129) reports $(D/H)_P=(2.527\pm0.030)\times10^{-5}$ from seven systems. This is a dated abundance benchmark. Its uncertainty on the combined mean is not an upper bound on intrinsic source dispersion; that requires the individual measurements, errors, and a source-population model.
+- **Goal:** Derive the proposed **Universal Ejection Attractor**, meaning a source state approached by a declared family of initial histories, with temperature and density ceilings $T_{\max},\rho_{\max}$ and source-mass-insensitive release density $\rho_{\mathrm{crit}}$ and ejected-assembly group speed $v_{\mathrm{eject}}$. Existence, attraction, and accessibility of this state remain open.
+- **Observable implication:** Mass-independent temperature and density ceilings alone do not ensure mass-independent yields. Neutron fraction, residence time, spectra, and transport weights must also become insensitive to the source population before abundance universality follows.
 
 ### 2. Freeze-Out Timing Goal: Weak-Rate vs Outflow Timescale
 
-In Standard BBN, neutron freeze-out is set by $\Gamma_{\mathrm{weak}} \sim H$. In SMBH-local mappings, $H$ is replaced by effective outflow dilution/velocity-gradient scales (for example $\nabla\cdot\mathbf{v}$).
+In the standard comparison, weak relaxation competes with the rate at which the bath changes. For an effective fluid element, define $H_V=\tfrac13d\ln V/dt_{\mathrm{eff}}$. In a locally Euclidean effective spatial chart with a shared clock and fluid velocity $\mathbf u_{\mathrm{eff}}$, $3H_V=\nabla_{\mathbf x_{\mathrm{eff}}}\cdot\mathbf u_{\mathrm{eff}}$. The cooling rate equals $H_V$ only under an additional thermal law, such as adiabatic radiation cooling with constant entropy degrees of freedom. A general effective metric requires its own volume measure.
 
-- **Goal:** Show the ejection/cooling timescale naturally lands near the weak freeze-out scale, $\tau_{\mathrm{cool}}\approx 1\,\mathrm{s}$.
-- **Sensitivity checks:** Too slow drives $n\to p$ weak conversion toward H-dominated yields; too fast preserves high $n/p$ and overproduces helium (for example $Y_p>0.5$).
-- **Physical closure target:** Parameterize the effective expansion clock as an assembly-limited rate (bounded by transport scales set by $c_f$, local stability times, and release-channel geometry) rather than unconstrained outflow phenomenology.
+- **Goal:** Derive the temperature-dependent transport and cooling durations and test their competition with weak rates near the standard one-second benchmark and with later nuclear rates.
+- **Sensitivity checks:** Under the same initial composition and efficient later helium assembly, earlier weak freeze-out tends to retain more neutrons. This tendency does not alone establish a yield bound. If nearly all available neutrons enter helium-4, counting gives $Y_p\simeq2r/(1+r)$ for $r=n_n/n_p\le1$ at nuclear assembly; hence $Y_p>0.5$ requires $r>1/3$. Nuclear arrest or subsequent processing can invalidate that approximation.
+- **Physical closure target:** Derive an effective transport rate from declared lengths, assembly motion, thermal response, and the map from $T$ to $t_{\mathrm{eff}}$. A wake-speed scale by itself neither fixes a one-second duration nor certifies an outflow.
 
 ### 3. Deuterium Survival Goal: Monotonic Quench Window
 
-Deuterium survives only if the flow exits the bottleneck window quickly after formation (around $T_{\mathrm{temp}}\approx0.1\,\mathrm{MeV}$), rather than recirculating and re-burning.
+Near the standard comparison scale $k_BT_{\mathrm{temp}}\approx0.1\,\mathrm{MeV}$, deuterium production begins to compete successfully with photodissociation. Its later survival depends on the integrated production and destruction rates, density, and residence time.
 
-- **Goal:** Require laminar, monotonic cooling through the D-formation window, followed by rapid quench.
+- **Goal:** Compute the surviving D fraction. Laminar monotonic cooling is one candidate history, not a necessary condition; an adequately dilute or weakly reactive non-monotonic history can also preserve D.
 - **Mapping task:** Relate release-channel transport properties, including turbulence or shear diagnostics where relevant, and cooling curves to the D-survival window.
 
 ### 4. Photon-Bath Goal: Reproduce Effective $\eta^{-1}\sim10^9$
 
-The BBN reaction sequence requires a high photon-to-baryon environment so D is not stabilized too early, consistent with effective $\eta\approx6\times10^{-10}$.
+In the standard benchmark, the small ratio $\eta_{b\gamma}\approx6\times10^{-10}$ delays deuterium survival. The reciprocal ratio in this heading means $\eta_{b\gamma}^{-1}$. Both photon number and the spectrum above nuclear photodissociation thresholds matter.
 
-- **Goal:** Identify a photon-dominated reaction zone with $\rho_\gamma\gg\rho_b$ in the relevant nucleation channel.
+- **Goal:** Recover the required photon number and spectrum as well as the photon energy density. Compare photon energy density $\rho_\gamma$ with baryon rest-energy density $\rho_b c_0^2$, not directly with the baryon mass density $\rho_b$.
 - **Interpretive option:** Distinct shear layers, diffuse outflow regions, or pair/synchrotron-bright release channels can be tested as photon-bath suppliers, rather than matter-heavy disk zones.
 - **Source-model objective:** Show how recycling-zone photon production (for example pair annihilation, bremsstrahlung, and synchrotron cascades) can maintain BBN-compatible photon loading during the D bottleneck window.
-- **Thermalization-depth check:** Treat photon loading as an ensemble closure target. The relevant source zone should satisfy a channel-recorded depth condition $\mathcal{D}_{\mathrm{th}}^{\mathrm{BBN}}(\nu)\gtrsim 1$ across the photon energies that control deuterium photodissociation and nuclear freeze-out timing, while preserving the same Noether sea state variables used for density dilution, cooling, and neutrino-sector handoff.
-- **Matter-asymmetry check:** The same source-zone record must yield $\eta_B^{\mathrm{ledger}}$ compatible with $\eta_{\mathrm{obs}}$ after baryon, antibaryon, and photon transport to the BBN comparison surface.
-- **Consistency check:** If this condition is unmet, D forms too early and is over-processed.
+- **Thermalization-depth check:** Define $\mathcal D_{\mathrm{th}}^{\mathrm{BBN}}(\nu)$ as the integrated effective thermalizing rate over a specified path or residence time for photon frequency $\nu$. An order-unity depth is a screening diagnostic, not proof of a Planck spectrum to abundance-level precision. Thermalization requires energy redistribution and photon-number-changing processes with sufficient exposure before escape; a scattering depth alone is insufficient.
+- **Matter-asymmetry check:** The same source-zone record must yield a net baryon-to-photon ratio $\eta_B^{\mathrm{ledger}}$ compatible with the selected $\eta_{\mathrm{obs}}$ after baryon, antibaryon, and photon transport to the BBN comparison surface.
+- **Consistency check:** Compute the rate response to the actual photon spectrum. A deficient thermal tail can advance D survival; a nonthermal high-energy tail can destroy it. Failure of one photon-loading condition has no universal sign for the final D residual.
 
 ### 5. Lithium Goal: Promote to a Distinguishing Prediction
 
 Lithium is treated here as a primary discriminator, not only a trace channel.
 
 - **Goal:** Quantify whether core-sheath inhomogeneity can suppress $^7$Be/$^7$Li while preserving high D, producing the observed low-Li/high-D direction.
-- **Primary distinguishing prediction:** In SMBH-local reactor mappings, spatial inhomogeneity is a productive mechanism (not a nuisance), and lithium depletion emerges from transport-weighted integration across heterogeneous flow channels.
+- **Candidate distinguishing prediction:** Evaluate mass-7 production and destruction along each flow channel before mixing, and compare the result with a declared stellar-processing model. Preferential lithium reduction while retaining D is a hypothesis until this calculation supplies its magnitude and parameter range.
 - **Interpretive contrast:** Standard BBN uses near-homogeneous initial conditions, while the $\mathbb{A}\mathbb{A}\mathbb{A}$ local-reactor mapping can use controlled inhomogeneity as an explanatory lever.
 
 ### 6. Equation-of-State Goal: Specify Noether Braid Compression EoS
 
-The model needs an explicit compression-zone equation of state (for example local $P(\rho)$ or effective $w$ behavior) to close dynamics.
+An equation of state relates pressure to the local thermal and composition state. A one-variable relation $P(\rho)$ is sufficient only for a declared barotropic approximation; a general reactor needs temperature, composition, energy transport, and source terms as well. If using an effective ratio $w=P/u$, $u$ is total energy density.
 
-- **Goal:** Determine whether Noether braid matter stiffens near horizon compression (high effective sound speed), and whether that stiffness is sufficient to drive rapid radial expansion.
+- **Goal:** Derive the pressure response and its relevant derivatives. A large sound speed measures response to perturbations; outward acceleration and cooling still require the pressure gradients, confining response, geometry, and boundary conditions.
 - **Mapping task:** Connect the EoS choice directly to freeze-out timing, D quench, and final yield sensitivity.
 
 ### 7. Neutrino-Counting Goal: Recover Effective $N_{\text{eff}}$
 
-Cosmological data are consistent with an effective relativistic-species count near $N_{\text{eff}}\approx3.04$, so SMBH-local mappings need a neutrino history compatible with that target.
+The Standard Model calculation by Bennett and collaborators gives $N_{\text{eff}}^{\mathrm{SM}}=3.0440\pm0.0002$, an energy-density benchmark rather than a cosmological measurement or a literal flavor count. A local-source model must compare its prediction with the selected observational likelihood as well as this theoretical reference.
 
-- **Goal:** Show that neutrino production in the relevant nucleation zone is close enough to thermalized flavor populations to recover effective three-species behavior at observer level.
+- **Goal:** Compute the neutrino energy spectra relative to the photon bath, flavor populations, and their weak-reaction effects. Three populated flavors alone do not fix $N_{\text{eff}}$.
 - **Opacity-to-decoupling mapping:** Model a dense phase where neutrinos are initially trapped (interaction-opaque core conditions), followed by release at a defined decoupling temperature window.
-- **Consistency check:** Free-streaming onset and energy partition should map to BBN/CMB-inferred $N_{\text{eff}}$ without introducing extra relativistic degrees of freedom.
+- **Consistency check:** Test free streaming, energy partition, and spectral evolution against BBN and CMB constraints together. Any additional relativistic sector must fit those constraints in the same source history; its presence is not excluded merely by being additional.
 
 ### 8. Early-Enrichment Timing Goal: "Old Stars" Consistency
 
@@ -420,21 +433,21 @@ Observed low-metallicity gas and very old stars with BBN-like light-element patt
 
 - **Cycle mapping objective:** Establish an early sequence SMBH nucleation $\to$ release-channel ejection $\to$ ambient gas enrichment $\to$ subsequent star formation.
 - **Timescale objective:** Show that transport and mixing can populate star-forming reservoirs with BBN-like yields early enough to match old-star abundance constraints.
-- **Formation-context option:** Evaluate whether early structure formation with primordial or very-early SMBH populations can supply the required enrichment baseline.
+- **Formation-context option:** Specify source formation and prior cycles in absolute time, then map them to the stellar-age and redshift observations. Calling a source population early does not supply the chronology or avoid a circular reliance on the enriched matter it is meant to produce.
 
 ## Philosophical and Explanatory Consequences
 
 ### What the Eternal-Universe Interpretation Gains
 
-- **No singularity:** Avoids the conceptual paradox of $t=0$ and "something from nothing."
-- **No fine-tuning of initial conditions:** Abundances would emerge, if the universal ejection attractor of Goal 1 is derived, from dynamical equilibration in SMBH environments, not from finely-tuned cosmic initial states.
-- **Mechanistic clarity:** Replaces abstract "expansion cooling" with explicit outward transport of assemblies through fixed Euclidean space.
+- **No required origin:** The eternal background has no privileged initial instant. That ontological choice does not establish finite-density continuation through a collapsing assembly.
+- **Initial-condition question:** Even a derived attractor needs an accessible basin, sufficient relaxation time, and a viable source population. Avoidance of finely selected initial or boundary conditions remains a separate claim.
+- **Mechanism to derive:** Outward transport through fixed space is an explicit candidate. Its constitutive explanation and observed yields must be demonstrated before assigning it an explanatory advantage over standard expansion cooling.
 
 ### What It Seeks to Explain
 
-- **Homogeneity:** Why do spatially separated SMBH nucleation sites produce nearly identical light-element ratios?
-- **Timing consistency:** Why does the effective freeze-out sequence (D $\to$ $^3$He $\to$ $^4$He) occur so uniformly?
-- **Neutrino sector:** How does local SMBH nucleation produce the observed $N_{\text{eff}} \approx 3$ signature?
+- **Homogeneity:** A source-population calculation must reproduce the observed distribution of light-element ratios.
+- **Timing consistency:** Weak conversion, deuterium survival, and competing light-nucleus reaction paths must produce compatible yields across that population.
+- **Neutrino sector:** The photon-relative energy spectra and their transport must satisfy the selected $N_{\text{eff}}$ inference.
 
 
 
@@ -442,9 +455,11 @@ Observed low-metallicity gas and very old stars with BBN-like light-element patt
 
 | Aspect | Standard BBN | $\mathbb{A}\mathbb{A}\mathbb{A}$ BBN |
 |---|---|---|
-| Universe age | Finite ($t\sim13.8$ Gyr) | Eternal (no beginning) |
-| BBN location | Everywhere | Near SMBH cores |
-| BBN frequency | Once (first 20 min) | Recurring (wherever SMBHs form) |
-| Expansion driver | Metric expansion | Outward transport of assemblies |
-| Light-element origin | Primordial relics | SMBH nucleation products |
+| Universe age | Finite hot-phase chronology; total age requires a cosmological fit | Eternal background postulate |
+| BBN location | Approximately homogeneous early thermal bath | Candidate zones near SMBH cores |
+| BBN frequency | Early hot phase | Recurring production hypothesis |
+| Expansion driver | Metric expansion | Proposed outward transport of assemblies |
+| Light-element origin | Early thermal yields, subsequently processed | SMBH production target, with transport and later processing |
 | Homogeneity explanation | Initial conditions | Dynamical equilibration (goal, underived) |
+
+Source notes: B. D. Fields, P. Molaro, and S. Sarkar, [“Big Bang Nucleosynthesis,” PDG 2025 review](https://pdg.lbl.gov/2025/reviews/rpp2025-rev-bbang-nucleosynthesis.pdf), §§24.2–24.3, supplies the standard chronology, helium benchmark, and distinction between primordial yields and later stellar processing. R. Cooke, M. Pettini, and C. C. Steidel, “One Percent Determination of the Primordial Deuterium Abundance” (2018), arXiv:1710.11129, supplies the dated seven-system measurement quoted above. J. J. Bennett et al., [“Towards a precision calculation of $N_{\mathrm{eff}}$ in the Standard Model II”](https://arxiv.org/abs/2012.02726) (2021), arXiv:2012.02726, equation (1), defines the late-time radiation normalization and reports its theoretical benchmark. These are observer-level references, not evidence for SMBH-local production.

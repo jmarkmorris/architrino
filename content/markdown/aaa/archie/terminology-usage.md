@@ -1,6 +1,6 @@
 # Terminology Usage
 
-This document preserves durable terminology guidance for $\mathbb{A}\mathbb{A}\mathbb{A}$ textbook-facing writing: canonical usage patterns, level distinctions, sentence-level examples, and the rationale for choices that protect the ontology from inherited-language blur. Stable terminology guidance lives here rather than in transitional working notes.
+This document preserves durable terminology guidance for $\mathbb{A}\mathbb{A}\mathbb{A}$ textbook-facing writing: canonical usage patterns, level distinctions, sentence-level examples, and the rationale for choices that protect the ontology from inherited-language blur. Stable terminology guidance lives here rather than in transitional working notes. Sentence examples illustrate terminology; they establish no physical mechanism by themselves. A chapter using an effective clock, metric, reaction, or interference example must retain its actual derivation domain and claim grade.
 
 Words are part of the theory machinery here. A good term tells the reader whether the sentence is naming substrate ontology, assembly behavior, effective recovery, historical source language, or standard comparison language. A loose term can move a claim across levels without anyone noticing.
 
@@ -87,7 +87,7 @@ Sentence guidance:
 
 Related ratified terms from the conservation and information program:
 
-- `geometric reach`: the set of receivers whose causal wake surfaces from a given transmitter history have had time to arrive at; contact in this sense is universal within the reach set and diluted with distance, never cut off.
+- `geometric reach`: the geometric reach of emitted causal surfaces from a declared transmitter history, with no additional distance cutoff in the primitive inverse-square law. Being inside the corresponding causal region does not establish an active intersection, nonzero total response, or an unshielded effective channel.
 - `active roots`: the causal roots currently contributing legal hits with nonvanishing branch strength at a receiver event. A pair can be inside geometric reach yet have no active roots. Mechanism ownership stays with the Master Equation chapter.
 - The four-tier taxonomy of conserved quantities, `counting invariants`, `record invariant`, `symmetry ledger entries`, and `conditional topological invariants`, is the canonical classification; see [Information and the Wake](../philosophy-history/information-and-the-wake.md) for the survey and the dynamics chapters for mechanisms.
 
@@ -152,7 +152,7 @@ The important reframing here is that `charge` is not being denied; it is being r
 
 | When you mean... | Canonical term | Transformation rule |
 | --- | --- | --- |
-| the deformation-stable orientation of an indexed three-dimensional Noether braid frame | `pro-Noether braid orientation` / `anti-Noether braid orientation`; compactly `pro/anti orientation` | derive the sign from the indexed path or angular-momentum-frame record; $C$ leaves the orientation unchanged because it relabels polarity at fixed worldlines, while $P$ reverses the orientation |
+| the deformation-stable orientation of an indexed three-dimensional Noether braid frame | `pro-Noether braid orientation` / `anti-Noether braid orientation`; compactly `pro/anti orientation` | derive the sign from a nondegenerate indexed polar frame in the path record; $C$ leaves it unchanged at fixed worldlines and $P$ reverses it. A frame of three angular-momentum axial vectors is parity-even and cannot substitute for this orientation |
 | the same worldlines with every architrino polarity reversed | `polarity-conjugate braid`, `polarity-conjugate branch`, or $C(\mathfrak B)$ | $C$ exchanges the two polarity assignments; $P$ does not perform this exchange |
 | a particle branch and its antiparticle branch | `matter branch` and `polarity-conjugate antimatter branch` when the matter assignment is established | the whole retained branch record and the charged-sector polarity inventory must transform together |
 | the two products of a pair-production channel under the named hypothesis below | `pro-anti fermion pair` (hypothesis-attached shorthand) | polarity-conjugate and orientation-opposite — a $CP$-image pair under the [orientation-antimatter correspondence hypothesis](#orientation-antimatter-correspondence-hypothesis) |
@@ -170,7 +170,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-d1eb63e6aa052ed1)
 
-denote the polarity-weighted handedness when the polarity dipole $\mathbf p$ is nonzero. Define the polarity-assignment sign on that chart by
+denote the polarity-weighted handedness when $\mathbf p\cdot\mathbf S\ne0$, with $\mathbf p$ the polarity dipole and $\mathbf S$ the declared $C$-even axial spin/angular-momentum quantity. The dipole is polar and $C$-odd, unlike ordinary momentum; a nonzero dipole alone does not exclude a zero scalar product. Define the polarity-assignment sign on that chart by
 
 $$
 c_{\mathrm{pol}}
@@ -182,17 +182,17 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-3923ecd52c10f674)
 
-Then $C$ leaves $o_{\mathrm{PA}}$ fixed and reverses $c_{\mathrm{pol}}$; $P$ reverses $o_{\mathrm{PA}}$ and leaves $c_{\mathrm{pol}}$ fixed; both reverse $\chi_{\mathrm{pol}}$; and $CP$ preserves $\chi_{\mathrm{pol}}$. This factorization is definition-level symmetry bookkeeping on a chart where both signs exist. It is not a retained-branch theorem, and it does not manufacture either sign when the underlying orientation or dipole is absent.
+Then $C$ leaves $o_{\mathrm{PA}}$ fixed and reverses $c_{\mathrm{pol}}$; $P$ reverses $o_{\mathrm{PA}}$ and leaves $c_{\mathrm{pol}}$ fixed; both reverse $\chi_{\mathrm{pol}}$; and $CP$ preserves $\chi_{\mathrm{pol}}$. This factorization is definition-level symmetry bookkeeping on a chart where both signs exist. It is not a retained-branch theorem, and it does not manufacture either sign when the underlying orientation is degenerate or the dipole–spin scalar product vanishes.
 
-At the planar limit, precession order ceases and $o_{\mathrm{PA}}$ is not assigned. Use the relational notation $\mathfrak B$ and $C(\mathfrak B)$ instead. Opposite circulation signs, effective-charge entries, and other photon-pair ledgers must be derived for those two member records; they must not be smuggled in by naming the pair `pro/anti`.
+At a planar limit where the declared three-dimensional polar-frame determinant vanishes, $o_{\mathrm{PA}}$ is not assigned. Use the relational notation $\mathfrak B$ and $C(\mathfrak B)$ instead. Opposite circulation signs, effective-charge entries, and other photon-pair ledgers must be derived for those two member records; they must not be smuggled in by naming the pair `pro/anti`.
 
 ### Orientation-Antimatter Correspondence Hypothesis
 
 One named working hypothesis connects the two labels. The `orientation-antimatter correspondence hypothesis` holds that matter fermion branches carry the pro-Noether braid orientation, antimatter branches carry the anti-Noether braid orientation, and pair production draws its two products from complementary pro/anti oriented carriers in the Noether sea — the explicitly typed two-braid source architecture of [Spontaneous Assembly and Pair Production](#spontaneous-assembly-and-pair-production). Under this hypothesis the two products of pair production are polarity-conjugate **and** orientation-opposite: $CP$-images of one another rather than bare $C$-images.
 
-The two halves of that statement carry different grades. The polarity-conjugate half is the benchmarked half: the observer-level pair-production record — conjugate charge entries, equal masses, conserved lepton number — constrains exactly the $C$-image charged-sector ledgers. Standard physics carries no counterpart of $o_{\mathrm{PA}}$, so the orientation half is hypothesis, not recovery.
+The two halves of that statement carry different grades. The polarity-conjugate half is the benchmarked half: the observer-level pair-production record — conjugate charge entries, equal masses, conserved lepton number — constrains the conjugate effective charged-sector labels. Those observations do not establish that the complete microscopic products are exact $C$-images, or that every pair-production channel conserves each separately named particle number. Standard physics carries no counterpart of $o_{\mathrm{PA}}$, so the orientation half is hypothesis, not recovery.
 
-The hypothesis is discriminable. The $C$-image and $CP$-image relations differ in the handedness ledger — $C$ reverses $\chi_{\mathrm{pol}}$ while $CP$ preserves it — so the produced pair's relative polarity-weighted handedness, compared against weak-sector handedness benchmarks, is the discriminating observable. The discriminator lives on three-dimensional fermion products: $\chi_{\mathrm{pol}}$ degenerates in the planar limit, so photon-side records cannot decide it.
+The hypothesis proposes a discriminator. The $C$-image and $CP$-image relations differ in the handedness ledger — $C$ reverses $\chi_{\mathrm{pol}}$ while $CP$ preserves it — so the produced pair's relative polarity-weighted handedness, compared against weak-sector handedness benchmarks, is a candidate discriminating observable only after its preparation, effective readout and relation to weak-sector data are derived. The discriminator lives on three-dimensional fermion products: $\chi_{\mathrm{pol}}$ is undefined as a two-valued sign when the planar member has an in-plane dipole and perpendicular spin, so those photon-side records cannot decide it.
 
 Usage license: pair-production prose may use `pro-anti fermion pair` as shorthand for this hypothesis-attached relation. At first use in a document, name or link this hypothesis so the underived half stays visible. Claim level: named hypothesis with a stated discriminator; not a retained-branch result.
 
@@ -204,7 +204,7 @@ Use `group velocity` for translation of a complete assembly, and `group speed` f
 | --- | --- | --- | --- |
 | the instantaneous position an architrino occupies in an assembly configuration | `site` | every architrino is a transceiver, so its site can transmit and receive; compounds inherit this (`six-site`, `single-site self-hit`, `polar site`) | "The coincident-axis three-binary braid record has six sites on its prescribed common-axis paths." |
 | the point an arriving causal wake was born | `transmitter site at emission time $T_t$` | the delayed formalism evaluates the transmitter at the causal root's emission time, not at reception time | "The line of action runs from the transmitter site at $T_t$ to the receiver site at $T_r$." |
-| uniform, unaccelerated translation of an assembly relative to the declared frame | `constant group velocity`, `constant group speed` $u$ when only magnitude is used | Constant group velocity means both magnitude and direction are fixed; constant group speed alone does not exclude a change of direction. Uniform rotation plus constant group velocity along its axis is a screw motion. | "For uniform translation at group speed $u$ the branch cadence is $\omega_0\sqrt{1-u^2/c_f^2}$." |
+| uniform, unaccelerated translation of an assembly relative to the declared frame | `constant group velocity`, `constant group speed` $u$ when only magnitude is used | Constant group velocity means both magnitude and direction are fixed; constant group speed alone does not exclude a change of direction. Uniform rotation plus constant group velocity along its axis is a screw motion. | "On a declared sub-channel-speed branch with the clock/scale relation recovered, the cadence follows its channel-qualified time-dilation law." |
 
 Group velocity may vary with time; name acceleration when it matters. A mean group velocity retains its declared averaging interval. The declared translation center, geometric center, center of mass, and response center are not automatically interchangeable. Preserve the local center definition and any unclosed center-of-response comparison. Likewise, group velocity relative to the Euclidean void and group velocity relative to local Noether sea flow are distinct frame-dependent quantities.
 
@@ -232,7 +232,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-f2154af5114cf473)
 
-with exact root playback
+with exact root playback on a differentiable simple-root branch with $D_t\ne0$
 
 $$
 \frac{dT_t}{dT_r}=\frac{D_r}{D_t}.
@@ -310,7 +310,7 @@ Each inherited alternative carries conceptual drag. `Vacuum` invites empty-space
 
 ## Noether Braid Usage
 
-Use `Noether braid` as the canonical reader-facing term for a neutral braided assembly scaffold. The base, orthogonal-axis three-binary, and coincident-axis three-binary inventories contain six architrinos in three neutral binaries; two-component circular configurations contains twelve architrinos in six neutral binaries. The term names the retained top-level branch and its causal-return ledger before an exact family member or coordinate record has been certified.
+Use `Noether braid` as the canonical reader-facing term for a neutral braided assembly scaffold. The base, orthogonal-axis three-binary, and coincident-axis three-binary inventories contain six architrinos in three neutral binaries; two-component circular configurations contain twelve architrinos in six neutral binaries. The term names the top-level assembly class and its causal-return ledger; candidate or retained status must be stated separately before an exact family member or coordinate record is certified.
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
@@ -471,9 +471,9 @@ This distinction prevents a common scale-collapse in exposition. In fermion pros
 
 Use `spontaneous assembly` when the prose needs to name an auxiliary assembly that appears through a causal channel without being one of the explicitly supplied boundary assemblies.
 
-This term is important because $\mathbb{A}\mathbb{A}\mathbb{A}$ should not borrow the Standard Model habit of making such events sound either magical or ontologically empty. A spontaneous assembly is still an ordinary assembly. `Spontaneous` names how it enters the channel at the level of the description: the assembly was not listed as an explicit incoming boundary assembly, but it still appears through a causal local process.
+This term distinguishes the proposed assembly mechanism from the standard effective description; standard quantum production calculations do not require magical or uncaused emergence. A spontaneous assembly is still an ordinary assembly. `Spontaneous` names how it enters the channel at the level of the description: the assembly was not listed as an explicit incoming boundary assembly, but it still appears through a causal local process.
 
-This wording is especially useful in pair-production prose. Standard quantum language often says that a strong field or unstable vacuum can produce a particle-antiparticle pair "spontaneously." In $\mathbb{A}\mathbb{A}\mathbb{A}$, that should be recast as spontaneous assembly production from a causal local source architecture rather than as uncaused emergence from nothing.
+This wording is especially useful in pair-production prose. Standard quantum language often says that a strong field or unstable vacuum can produce a particle-antiparticle pair "spontaneously." In $\mathbb{A}\mathbb{A}\mathbb{A}$, the proposed counterpart is spontaneous assembly production from a causal local source architecture. The standard calculation and the proposed constituent realization carry different explanatory commitments.
 
 Represent the local source architecture as an explicitly declared assembly of two complete Noether-braid records. For a two-braid assembly, use the typed relation record
 
@@ -497,7 +497,7 @@ where $\mathcal L_{\mathrm{pair}}$ identifies the common assembly ledger; $R_C$ 
 
 Do not use `Noether Pair` as a canonical ontology term because the name does not say which of these relations is intended. Use `assembly of two Noether braids` when only multiplicity is known, `pro/anti-orientation Noether-braid composite` when $R_o$ alone is the defining relation, and `a braid and its polarity-conjugate braid` when $R_C$ is the defining relation. Use a two-component circular identifier only for one shared twelve-worldline top-level record satisfying the applicable two-component circular configuration; do not infer two-component circular configurations from two separate six-worldline records. Likewise, do not call the assembly a photon unless the photon-specific planarity, polarity-conjugation, circulation, propagation, helicity, and binding conditions are all declared.
 
-For spontaneous pro-anti fermion pair production, the source record declares both the polarity-conjugate and opposite-orientation relations. The `pro-anti` label invokes the [orientation-antimatter correspondence hypothesis](#orientation-antimatter-correspondence-hypothesis): $R_C$ is the benchmarked half, while opposite $R_o$ values inherited from complementary sea carriers are the hypothesis half. When the local energy and bookkeeping conditions are right, this typed two-braid source can furnish the spontaneous assemblies needed for the channel. The event may look spontaneous at observer level because no incoming particle directly triggers it, but the ontology remains causal: the local two-braid state, ambient medium conditions, and energy transfer open the channel.
+For spontaneous pro-anti fermion pair production, the source record declares both the polarity-conjugate and opposite-orientation relations. The `pro-anti` label invokes the [orientation-antimatter correspondence hypothesis](#orientation-antimatter-correspondence-hypothesis): effective charged-sector constraints supply benchmarks for $R_C$, while opposite $R_o$ values inherited from complementary sea carriers are the hypothesis half. The typed two-braid source is a candidate for furnishing the spontaneous assemblies needed for the channel. Energy and inventory bookkeeping alone are insufficient; the channel requires an admitted dynamical path and the observed effective reaction record. The event may look spontaneous at observer level because no incoming particle directly triggers it, but the ontology remains causal: the proposed local two-braid state, ambient medium conditions, and energy transfer must jointly realize the channel.
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |

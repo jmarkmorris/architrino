@@ -22,6 +22,8 @@ The main claim of this page is simple: if $\mathbb{A}\mathbb{A}\mathbb{A}$ is to
 
 The reader should treat method as part of the physics discipline, not as decoration around it. A substrate theory can fail by making wrong predictions, but it can also fail by moving between ontology, model fitting, inference, and analogy without saying which role each claim is playing.
 
+The school summaries below are selective philosophical interpretations; the assessments state this project’s commitments rather than a consensus verdict on those traditions or evidence that its substrate has been established.
+
 The current methodological profile of $\mathbb{A}\mathbb{A}\mathbb{A}$ can be summarized as follows:
 
 - **Ontological realism** about substrate entities and causal dynamics.
@@ -50,7 +52,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-957383f52e801bb1)
 
-Here the four entries separate empirical inputs, branch outputs, model controls, and after-the-fact repairs. A replacement theory earns explanatory compression only by moving quantities from $P_{\mathrm{emp}}$ or $P_{\mathrm{ctrl}}$ into $P_{\mathrm{branch}}$ without increasing $P_{\mathrm{retune}}$.
+Here the four entries separate empirical inputs, branch outputs, model controls, and after-the-fact repairs. Moving quantities from $P_{\mathrm{emp}}$ or $P_{\mathrm{ctrl}}$ into $P_{\mathrm{branch}}$ without increasing $P_{\mathrm{retune}}$ is one route to explanatory compression. The derivation must also reduce independent assumptions rather than hide the same freedom in an unconstrained branch record; this four-role inventory is not a complete complexity measure.
 
 A related constructor-set audit is required whenever inherited theories are recast. Observations and successful formal constraints are retained as evidence and benchmark pressure, while the ontology attached to them must be re-earned. The following audit asks which primitive substrate, branch record, and observer-export map can recover the data with the fewest independent assumptions.
 $$
@@ -173,17 +175,17 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this lesson is useful. Substrate talk must 
 
 ### Internal Tensions
 
-What verificationism gets wrong or overstates is its criterion of legitimacy. Many of the most powerful scientific entities were initially unobservable except through mediated inference. If one forbids deep theory from positing hidden structure until it is directly tied to observation language, one blocks precisely the kind of explanation that successful science repeatedly requires. The doctrine therefore confuses the need for evidential discipline with the idea that direct verifiability exhausts meaning.
+A strict requirement of conclusive verification can exclude meaningful scientific hypotheses, but this should not be conflated with a ban on unobservable entities. In [Testability and Meaning](https://www.phil.cmu.edu/projects/carnap/editorial/latex_pdf/1936-10a.pdf), §§1–3, Carnap explicitly replaces final verification with confirmation and distinguishes confirmability from an available testing procedure. The critique here concerns overly restrictive criteria of meaning, not a uniform Vienna Circle demand for direct observation of every theoretical entity.
 
 Its deeper limitation is historical. Once science became more theory-laden, observation itself could no longer be treated as a neutral language free of conceptual structure. The observational base was never as pure as the strongest versions of verificationism hoped.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **useful but limited**. It is useful because it polices vagueness, forces contact with evidence, and attacks lazy metaphysics. It is limited because $\mathbb{A}\mathbb{A}\mathbb{A}$ must posit hidden substrate organization and judge it by explanatory reach, reduction, and risky consequence, not by direct observability alone. Its transition relevance is moderate: valuable as a guardrail, harmful as a governing constitution.
+The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **useful but limited**. It is useful because it polices vagueness, forces contact with evidence, and attacks lazy metaphysics. Its limits concern whether an empiricist criterion of meaning adequately captures the project’s realist commitments; merely positing hidden structure does not place a theory outside every logical-empiricist account of confirmation. Its transition relevance is moderate: valuable as a guardrail, harmful as a governing constitution.
 
 ### What Survives
 
-The long-term relevance of this subject is mainly as a **caution and historical lesson**, with one permanent methodological residue: theory claims must remain operationally answerable to possible evidence. What should not survive is the stronger doctrine that only the directly verifiable is meaningful. A mature substrate theory needs realism under discipline, not meaning under quarantine.
+The long-term relevance of this subject is mainly as a **caution and historical lesson**, with one permanent methodological residue: theory claims must remain operationally answerable to possible evidence. The chapter rejects conclusive verification as a universal meaning test while retaining the distinction between that strong requirement and indirect empirical confirmation. A mature substrate theory needs realism under discipline, not meaning under quarantine.
 
 ---
 
@@ -331,7 +333,7 @@ The historical pressure behind this subject comes from the mismatch between text
 
 This subject is synthetic rather than attached to one canonical school. It draws on Popperian demands for risk, Kuhnian attention to anomaly accumulation and paradigm strain, Lakatosian analysis of progressive versus degenerating programs, and contemporary foundational criticism in physics. What none of these frameworks fully supplies on its own is an explicit protocol for crisis detection and corrective action in a technically successful but architecturally stalled discipline.
 
-Francis Bacon supplies an older doorway into the same problem. His warning was not that logic is useless, but that logic can become too efficient when its starting notions have been abstracted too quickly from experience. Once a research community accepts the wrong primitive abstraction, later reasoning may become rigorous inside the wrong frame. Under crisis conditions, the methodological question is therefore not only whether the calculations are valid. It is whether the abstractions on which the calculations operate have been promoted to ontology before their scope has been earned.
+[Francis Bacon’s *Novum Organum*, Book I, aphorism XIV](https://www.gutenberg.org/files/45988/45988-h/45988-h.htm) supplies an older doorway into the same problem. His warning was not that logic is useless, but that logic can become too efficient when its starting notions have been abstracted too quickly from experience. Once a research community accepts the wrong primitive abstraction, later reasoning may become rigorous inside the wrong frame. Under crisis conditions, the methodological question is therefore not only whether the calculations are valid. It is whether the abstractions on which the calculations operate have been promoted to ontology before their scope has been earned.
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is the Baconian form of the classical-to-quantum rollback: field, particle, quantum state, metric, and cosmological background can remain mathematically powerful while still being overhasty abstractions at the substrate level.
 
@@ -379,7 +381,7 @@ The crosswalk is diagnostic, not accusatory. One crisis axis may bear several in
 
 The same crisis layer should audit false priors directly. A false prior is not merely a wrong numerical guess; it is a starting abstraction that silently defines the permitted architecture. If a community assumes too early that observed particle charge is primitive charge, that measured photon speed is the primitive wake speed, or that an effective metric is substrate geometry, then later mathematics may become rigorous while the theory space has already been narrowed. A crisis-capable method must therefore include primitive-abstraction review: identify the inherited assumptions that decide the search space before any parameter fit begins.
 
-Prediction status also needs a tiered evidence language. A genuinely novel prediction that survives later measurement has the strongest theory-choice value. A postdiction of an already known but unexplained observation is still valuable when it reduces independent assumptions or supplies a mechanism the older framework lacked. A superior reinterpretation is weaker but important when it preserves all measured records while relocating ontology more economically. A reconfirmation of a fact already built into the source theory is the weakest unless it follows from a new derivation with fewer primitives. This taxonomy keeps $\mathbb{A}\mathbb{A}\mathbb{A}$ from treating all successes as equal while preserving the legitimate value of recovery and reinterpretation.
+Prediction status also needs a tiered evidence language. An independently tested novel prediction can have strong theory-choice value when its alternatives, uncertainty and selection procedure are specified; novelty alone does not determine evidential strength. A postdiction of an already known but unexplained observation is still valuable when it reduces independent assumptions or supplies a mechanism the older framework lacked. A superior reinterpretation is weaker but important when it preserves all measured records while relocating ontology more economically. Replaying a fact built into the tested construction is not independent confirmation of that construction. Recovery from a new derivation with fewer independent assumptions has a different evidential role. This taxonomy keeps $\mathbb{A}\mathbb{A}\mathbb{A}$ from treating all successes as equal while preserving the legitimate value of recovery and reinterpretation.
 
 Contemporary cosmology and high-energy theory sharpen this metric pattern. When precision records remain compressible while the surrounding ontology proliferates auxiliary sectors, selection narratives, or high-dimensional completions without narrowing new observables, the crisis signal is not that the data are invalid. The signal is that patch density and theory proliferation have begun to outrun explanatory integration. The appropriate response is to preserve the measured data product and effective formal machinery while reopening the ontological reading attached to them.
 
@@ -398,9 +400,9 @@ The ontological-stack audit can be stated compactly:
 
 Historical rollback is therefore not a task deferred to later historians. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it is an active reconstruction method: return to the branch points where data, formalism, and ontology were fused; preserve the measured records and successful mathematics; remove the premature ontological promotion; and ask what substrate construction would generate the same effective success. Later historical work can refine the genealogy, but the rollback itself belongs to the present theory-building program.
 
-This also suggests a useful taxonomy of inherited error. A research tradition may inherit errors in experiment, in theory, or in narrative. Experimental errors are often corrected comparatively quickly because apparatus error and reproducibility pressure expose them. Theoretical errors can also be overturned once calculation fails or contradictions sharpen. Narrative errors are more durable. They concern the explanatory story attached to data and formalism, and they can survive for long periods because the equations continue to work while the ontology remains mislocated. Under those conditions, the narrative error seeds further theoretical and inferential commitments, making later correction more difficult.
+This also suggests a useful taxonomy of inherited error. A research tradition may inherit errors in experiment, in theory, or in narrative. Experimental errors are often corrected comparatively quickly because apparatus error and reproducibility pressure expose them. Theoretical errors can also be overturned once calculation fails or contradictions sharpen. The proposed historical hypothesis is that narrative errors may be more durable. They concern the explanatory story attached to data and formalism, and they can survive for long periods because the equations continue to work while the ontology remains mislocated. Under those conditions, the narrative error seeds further theoretical and inferential commitments, making later correction more difficult.
 
-The asymmetry of correction times matters. Experimental mistakes are often exposed on the scale of years or decades. Theoretical mistakes may persist longer, but they still tend to become visible once formal contradiction or predictive failure accumulates. Narrative mistakes can persist for much longer because they are protected by the continuing utility of the formalism. A discipline can therefore remain empirically competent while carrying explanatory commitments that are historically hard to dislodge.
+This proposed asymmetry of correction times is a historical hypothesis, not a measured ranking of error classes. Experimental, theoretical and interpretive mistakes can each persist; any comparison of their durations requires named cases, a correction criterion and a common observation window. Continuing utility of a formalism can help an attached interpretation persist without establishing that interpretation. A discipline can therefore remain empirically competent while carrying explanatory commitments that are historically hard to dislodge.
 
 Mathematical development can then entrench the inherited narrative without making the narrative true. This is not a criticism of mathematical precision. It is a warning about layer assignment. Once an interpretation has been fused to a successful formalism, later mathematics may organize training, notation, funding, standards of competence, and research taste around that fusion. The resulting structure can become a barrier to rollback even when the mathematics itself remains one of the achievements that a deeper architecture must preserve.
 
@@ -410,7 +412,7 @@ The compact rollback map is:
 
 | Historical closure assumption | What the failed model actually tested | $\mathbb{A}\mathbb{A}\mathbb{A}$ reopening |
 |:---|:---|:---|
-| The observed electron and proton charges are primitive source charges. | A model in which the measured particle charge is already the constituent charge. | Observer-level charge may be an assembly-level polarity inventory; the potential polarity-unit magnitude is $\epsilon=|e|/6$. |
+| The observed electron and proton charges are primitive source charges. | A model in which the measured particle charge is already the constituent charge. | Observer-level charge may be an assembly-level polarity inventory; the proposed observer-level calibration is $\epsilon=|e|/6$, conditional on the charge-reconstruction map described in [Parameter Ledger](../validation/parameter-ledger.md). |
 | The moving point source emits through the measured light channel. | A propagation model that identifies primitive wake speed with photon transport speed. | Primitive causal wakes propagate at $c_f$; measured light speed is a recovered photon-channel behavior after assembly and Noether sea response. |
 | The light-channel limit is a universal constituent speed limit. | A model that forbids constituent regimes crossing the primitive wake threshold. | Observer-level light speed remains an effective signal limit, while assembly branches are classified by their relation to $c_f$. |
 | A failed classical electron model falsifies point-source ontology as such. | One narrow field-source implementation with fixed charge, propagation, and speed-limit assumptions. | The live family is delayed multi-source assembly dynamics, where particles are retained causal-return structures rather than primitive charged dots. |
@@ -442,9 +444,9 @@ Here $D$ is the data product, $A_{\mathrm{inst}}$ records apparatus and selectio
 
 The data product in this record is always a finite observation record. In practice $D$ should be read as $D_{W,\epsilon}$: measurements gathered over a declared observation window $W$ with an uncertainty or tolerance vector $\epsilon$. Densities, exact symmetries, zero-mass claims, continuum fields, and limiting parameters enter the review only after the finite record has been passed through $A_{\mathrm{inst}}$, $K_{\mathrm{cal}}$, and $M_{\mathrm{eff}}$. This prevents an exact effective variable from being mistaken for the raw observable that originally constrained it.
 
-Probability assignments require the same kind of material warrant. A probability measure used in theory choice, measurement closure, or validation is admissible only after the relevant sampling process, invariant measure, apparatus channel, or empirical pipeline has been stated. Indifference over labels is not enough. If two different measures are used for prediction, thermodynamic cost, and ontological interpretation, then the inference record has split and the promoted interpretation has not yet earned closure.
+Probability assignments require the same kind of material warrant. A probability measure used in theory choice, measurement closure, or validation is admissible only after the relevant sampling process, invariant measure, apparatus channel, or empirical pipeline has been stated. Indifference over labels is not enough. Different projections or conditioning operations can legitimately induce different measures from one declared underlying record. What must be excluded is incompatible or independently retuned measures presented as one derivation; prediction, thermodynamic cost and ontological interpretation require explicit maps between their sample spaces and conditioning assumptions.
 
-A staged discovery review can use the same record before an interpretation is treated as settled. Let $\theta$ denote the candidate claim and let $R_i(\theta)$ be the retained residual tests extracted from $R_{\mathrm{fail}}$, with tolerances $\epsilon_i$ fixed before the announcement standard is applied. The following criterion records maturity.
+A staged discovery review can use the same record before an interpretation is treated as settled. Let $\theta$ denote the candidate claim and let $R_i(\theta)$ be the retained residual tests extracted from $R_{\mathrm{fail}}$, with tolerances $\epsilon_i$ fixed before the announcement standard is applied. For a finite nonempty set of defined residuals with positive tolerances in matching units, the following display defines operational maturity relative to those declared tests. It does not establish general scientific maturity or the completeness of the tests. Unavailable required residuals leave this status unevaluated rather than passing; correlated errors and simultaneous coverage require a separate statistical model.
 
 $$
 \operatorname{mature}(\theta)=1
@@ -507,7 +509,7 @@ It must also supply a nonempty residual pattern $R_{\mathrm{fail}}$ that could r
 
 This includes AI-like discovery systems. They may be valuable for reference recovery, algebraic compression, pattern search, and large correlation scans, but they do not become ontology authorities by reproducing the dominant interpretation at scale. Under crisis governance, an AI-assisted result earns only the status its mechanism map and residual record earn.
 
-The same discipline applies to theory-guided quantities. Let $D_{W,\epsilon}$ be the finite data product over window $W$ with tolerance vector $\epsilon$, and let $\widehat D_\theta$ be the data predicted by candidate record $\theta$. The following expression supplies the ordinary observational-fit criterion.
+The same discipline applies to theory-guided quantities. Let $D_{W,\epsilon}$ be the finite data product over window $W$ with tolerance vector $\epsilon$, and let $\widehat D_\theta$ be the data predicted by candidate record $\theta$. For a finite nonempty list of comparable data and predictions with positive, finite tolerances in matching units, the following expression supplies a rectangular observational-fit criterion. It is not automatically a significance level or joint confidence region; those require the error distribution, correlations, prediction uncertainty and selection procedure.
 
 $$
 \Delta_{\mathrm{obs}}(\theta)
@@ -519,7 +521,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-964cbd249bf4f265)
 
-For any ontological component $o\in O_{\mathrm{ont}}$ promoted by $\theta$, fit alone is not enough. The following guard requires observable leverage or derivational necessity under the same apparatus and calibration record.
+For any ontological component $o\in O_{\mathrm{ont}}$ promoted by $\theta$, fit alone is not enough. The following local guard is restricted to a differentiable continuous coordinate $o$ on a regular sensitivity chart, with the other independent coordinates, apparatus and calibration fixed. It tests first-order observable leverage or derivational necessity within the declared representation, not global identifiability. Necessity in one representation does not establish necessity across observationally equivalent formulations.
 
 $$
 \operatorname{promote}(o;\theta)=1
@@ -535,7 +537,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a4f47a305062c1ae)
 
-If neither condition holds, the component may remain a comparison device, coordinate choice, or calculational convenience, but it has not earned ontology. This rule preserves the empirical-adequacy warning without adopting blanket anti-realism: hidden structure can be promoted, but only when it changes the recoverable record or is indispensable to deriving the effective machinery being retained.
+Outside that regular first-order chart, use finite changes between admissible records: a discrete component has no such derivative, and a prediction proportional to $o^2$ has zero derivative at $o=0$ despite observable dependence. Even nonzero sensitivity can be degenerate with nuisance coordinates and is not sufficient for ontological identification. If neither observable dependence nor independently justified derivational necessity is established, the component remains unpromoted; the displayed local screen cannot decide the singular or discrete cases. This rule preserves the empirical-adequacy warning without adopting blanket anti-realism: hidden structure can be promoted, but only when it changes the recoverable record or is indispensable to deriving the effective machinery being retained.
 
 ### Internal Tensions
 
@@ -671,7 +673,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-352727ce26aa10d2)
 
-The following equation gives the reduced lower-level flow constrained to $K_c$.
+The following display is a conditional constrained-dynamics specification, not a construction of a reduced flow. It applies only if the admitted histories remain in $K_c$ under the declared dynamics and boundary context.
 
 $$
 \frac{dX}{dT}=F_L(X_T),\qquad X(T)\in K_c
@@ -679,9 +681,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a770a07a3259f402)
 
-Here $F_L$ represents the lower-level causal-wake dynamics, and $X_T$ denotes the path-history segment needed by the delayed equation. The context $c$ changes the admissible region of state space, not the ontological inventory.
+Here $X(T)$ is the complete history state at time $T$, and $X_T$ denotes its retained path-history data. The display is schematic: $F_L$ must include the history-shift evolution and the causal-wake endpoint update on a compatible domain, rather than identify a point acceleration with a history-space generator. The context $c$ changes the admissible region of state space, not the ontological inventory. Invariance must be proved, including compatibility of initial histories and boundary data. For smooth instantaneous constraints at fixed context, tangency of the velocity to the constraint set is necessary; a changing context also contributes its time derivative. An equality constraint alone cannot supply that property or the surrounding system’s dynamics. Local existence, uniqueness and continuation require the compatible-history assumptions in [Master Equation](../dynamics/master-equation.md); this display does not establish a global flow.
 
-For basin-level emergence, let $B_k$ be the basin of attraction for a higher-level assembly branch $k$, and let $\mu_c$ be a normalized measure on $K_c$. The following expression gives the resulting branch weight.
+For basin-level emergence, let $B_k$ be the basin of attraction for a higher-level assembly branch $k$, and let $\mu_c$ be a normalized, independently justified preparation or sampling measure on the measurable history domain $K_c$. The following expression gives the resulting branch weight.
 
 $$
 P_c(k)=\mu_c(B_k\cap K_c)
@@ -689,7 +691,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1f69e1e5ec4421e5)
 
-This expression records how the context shifts the branch weight. Higher-level causal language is therefore acceptable only when it means constraint, boundary condition, basin reshaping, or effective closure on lower-level dynamics. It is not acceptable if it implies that the higher-level description has become a new primitive outside the reduction stack.
+This expression defines a basin weight under that measure, not a derivation of the measure or of a realized attraction basin. To interpret the weights as an exhaustive outcome distribution, a finite or countable family of admitted basins must be measurable, disjoint up to measure zero and cover $K_c$ up to measure zero; otherwise unresolved or nonconvergent histories retain residual probability. Conditioning on a zero-measure constraint requires a separately specified induced measure rather than division by its zero ambient probability. Higher-level causal language is therefore acceptable only when it means constraint, boundary condition, basin reshaping, or effective closure on lower-level dynamics. It is not acceptable if it implies that the higher-level description has become a new primitive outside the reduction stack.
 
 ### Internal Tensions
 
@@ -801,7 +803,7 @@ What this subject gets right is that evidence moves through layers: observation,
 
 The subject also gets right that theory choice cannot be reduced to one virtue. Simplicity, coherence, fertility, and mechanistic depth matter, but each can mislead when isolated. The demand is therefore for articulated tradeoffs rather than hidden preference.
 
-[Bayesian confirmation](https://plato.stanford.edu/entries/epistemology-bayesian/) supplies one disciplined language for those tradeoffs. Let $Q_i$ and $Q_j$ be two complete hypothesis packages, let $D_{\mathrm{new}}$ be evidence not used to construct or calibrate either package, and let $\mathcal C$ state the shared background conditions. Posterior odds then satisfy
+[Bayesian confirmation](https://plato.stanford.edu/entries/epistemology-bayesian/) supplies one disciplined language for those tradeoffs. Let $Q_i$ and $Q_j$ be two complete hypothesis packages, let $D_{\mathrm{new}}$ be evidence not used to construct or calibrate either package, and let $\mathcal C$ state the shared background conditions. For positive denominator prior and likelihood, and well-defined marginal likelihoods integrating any nuisance parameters under each declared package, posterior odds then satisfy
 
 $$
 \frac{P(Q_i\mid D_{\mathrm{new}},\mathcal C)}
@@ -818,7 +820,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-c9e90841f9ac4fa6)
 
-The Bayes factor $K_{ij}$ measures how differently the two packages expose themselves to the new record; the prior-odds factor states what was believed before that record was opened. If both packages assign the same likelihood to the evidence, then $K_{ij}=1$ and the evidence does not discriminate between them, however impressive the shared fit may be. If the data were used to choose the mechanism, parameters, projection, or likelihood family, they are calibration evidence rather than an independent confirmation record.
+Bayes’ identity itself does not require new evidence; withholding the record supplies the independent-test discipline imposed here. The Bayes factor $K_{ij}$ measures how differently the two packages expose themselves to the new record; the prior-odds factor states what was believed before that record was opened. If both packages assign the same likelihood to the evidence, then $K_{ij}=1$ and the evidence does not discriminate between them, however impressive the shared fit may be. If the data were used to choose the mechanism, parameters, projection, or likelihood family, they are calibration evidence rather than an independent confirmation record.
 
 This use of probability is epistemic and observer-facing. It organizes uncertainty over declared hypothesis packages and record channels; it does not make probability a substrate substance, a causal agent, or proof of primitive randomness. A deterministic complete-state account may still induce a likelihood over controlled preparation variation, inaccessible path history, apparatus response, and finite observer records. Conversely, fitting a probability distribution at the observer level does not establish that the underlying dynamics is deterministic.
 
@@ -841,7 +843,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-1c53e5ca405b3d2d)
 
-Here $\mathcal{N}$ is the numerical implementation and $\mathcal{K}$ the calibration record. A discrepancy falsifies the packet as tested. Assigning it to one component requires an independent intervention, cross-benchmark comparison, or analytic reference that holds the other components fixed. Without that separation, blaming an auxiliary assumption or rescuing the central law are equally underdetermined moves.
+Here $\mathcal{N}$ is the numerical implementation and $\mathcal{K}$ the calibration record. A discrepancy that exceeds the declared acceptance rule after its uncertainty and numerical validity checks rejects the packet as tested; a nonzero residual alone does not. Assigning it to one component requires an independent intervention, cross-benchmark comparison, or analytic reference that holds the other components fixed. Without that separation, blaming an auxiliary assumption or rescuing the central law are equally underdetermined moves.
 
 ### Internal Tensions
 
@@ -871,7 +873,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this issue matters because cosmology is not
 
 The historical pressure comes from the collision between standard cosmological clocks and far-future astrophysical projections. The core question is why observers appear so early relative to objects that may persist for trillions of years or longer. The problem it is trying to solve is not the age measurement itself, but the hidden probability claim that enters when the present epoch is treated as ordinary, surprising, selected, or irrelevant.
 
-The pressure is strongest when stated as a scale ratio. On the Lambda-CDM age scale, every presently observed long-lived object is younger than the roughly fourteen-billion-year current cosmic age, and many old examples are only on the order of ten billion years. Some of the same object classes are projected to persist beyond ten thousand billion years, with white-dwarf/black-dwarf cooling and black-hole evaporation estimates reaching still larger horizons. The skeptical point is therefore not only "some objects live longer than the universe has existed." It is that the observed portion of the object's allowed persistence curve can be only about one part in a thousand, or less.
+The pressure is strongest when stated as a scale ratio. On the Lambda-CDM age scale, every presently observed long-lived object is younger than the roughly fourteen-billion-year current cosmic age, and many old examples are only on the order of ten billion years. Some low-mass stellar lifetimes approach ten thousand billion years in the conditional far-future calculations of [Adams and Laughlin (1997)](https://arxiv.org/abs/astro-ph/9701131), while remnant cooling and black-hole evaporation extend the modeled horizon further. These are extrapolations under their stated stellar, particle and gravitational assumptions, not observed lifetimes. The skeptical point is therefore not only "some objects live longer than the universe has existed." It is that the observed portion of the object's allowed persistence curve can be only about one part in a thousand, or less.
 
 Major thinkers and schools include anthropic reasoning, observer-selection arguments, physical eschatology, and far-future astrophysics. Their common concern is how to reason about observers without pretending that an observer is a random sample from all matter, all future time, or all possible histories.
 
@@ -889,7 +891,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ the relevant sampling object is not bare pe
 
 What temporal-typicality reasoning gets wrong or overstates, when handled loosely, is the temptation to turn astonishment into disproof. The fact that a projected future is long does not invalidate a measured age. It also does not prove that standard cosmology is hubristic merely because the present epoch looks early against a far-future persistence horizon.
 
-The opposite failure is to dismiss the asymmetry as philosophically irrelevant. A factor-of-1000 gap between presently inferred object ages and projected object lifetimes is not a small aesthetic discomfort. It is a stress test on the observer-selection story and on the age-clock inference chain. If cosmology invokes typicality, anthropic selection, multiverse selection, or observational privilege, the sampling measure is part of the argument. A theory cannot appeal to observer selection when convenient and then leave the observer class undefined when the temporal placement becomes uncomfortable.
+The opposite failure is to dismiss the asymmetry as philosophically irrelevant. A factor-of-1000 gap between presently inferred object ages and projected object lifetimes is not a small aesthetic discomfort. It challenges an observer-selection story only if that story actually assigns typicality over a relevant epoch distribution; the ratio alone supplies neither such a distribution nor a defect in an age-clock inference. If cosmology invokes typicality, anthropic selection, multiverse selection, or observational privilege, the sampling measure is part of the argument. A theory cannot appeal to observer selection when convenient and then leave the observer class undefined when the temporal placement becomes uncomfortable.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 

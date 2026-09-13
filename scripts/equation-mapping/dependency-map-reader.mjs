@@ -3,7 +3,8 @@ import { isDeepStrictEqual } from 'node:util';
 import jsonld from 'jsonld';
 import { Store, Parser, DataFactory } from 'n3';
 import { QueryEngine } from '@comunica/query-sparql-rdfjs';
-import knownHashAnswers from './fixtures/known-hash-answers.json' with { type: 'json' };
+import { knownHashAnswers as admittedKnownHashAnswers } from './controlled-fixture-records.mjs';
+const knownHashAnswers = admittedKnownHashAnswers("scripts/equation-mapping/dependency-map-reader.mjs");
 
 export const NS = 'https://example.invalid/option-b-corrected/';
 export const CONTEXT = { '@vocab': NS, kind: { '@type': '@vocab' }, fromObject: { '@type': '@id' }, toObject: { '@type': '@id' } };

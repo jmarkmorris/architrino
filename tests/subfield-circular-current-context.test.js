@@ -1,4 +1,5 @@
-import knownHashes from '../scripts/equation-mapping/fixtures/known-hash-answers.json' with { type: 'json' };
+import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';
+const knownHashes = admittedKnownHashAnswers("tests/subfield-circular-current-context.test.js");
 const ABC_SHA = knownHashes.sha256.abc;
 import assert from "node:assert/strict";
 import {mkdtempSync, readFileSync, rmSync, writeFileSync} from "node:fs";

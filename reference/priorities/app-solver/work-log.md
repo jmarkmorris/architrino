@@ -1,5 +1,11 @@
 # EOM Work Log
 
+## 2026-09-13 — Reviewed delayed-state wording snapshot refresh
+
+The operator authorized reconciliation of the Master Equation source binding during publication. `git diff HEAD -- content/markdown/aaa/dynamics/master-equation.md` shows one explanatory sentence changed from an ODE description to a history-dependent equation and delayed-state description; no equation, kernel, root condition or machine field changes. Review against every section of the v1 binding confirms that transmitter-side acceleration, signed playback, finite-width treatment, singular-event gates, independent controls and non-claims remain intact. The new wording agrees with its retained-transmitter-history obligation. Following the binding's source-owner procedure, only its snapshot value changes from `99257f523c551d778a7d577ca965fe5d6f23f6963aa4f873f5b4b360b8f6090a` to `5fb10f08ab8b9af12f315878c949df05b07573703a133cd84ca70c0252a36ecc`, measured by `shasum -a 256`. This is source synchronization, not new solver or scientific acceptance. Required Borg and publication validation follows; a changed source diff or failed check invalidates the corresponding readiness claim.
+
+`node --test tests/borg-*.test.js` passed all 271 tests with zero failures, skips or cancellations; the publication-run log is retained at `.local-data/pr-validation/grail-binding-borg.log`. This measures the named JavaScript regression scope, not fresh C++ execution or scientific promotion.
+
 ## 2026-09-10 — Technical manuscript outline and expansion task
 
 The operator selected a brief [manuscript outline](manuscript.md) for the current campaign and requested a queue item for later development, especially when GPU acceleration begins. Added eight chapter outlines and [EOM-015](work-queue.md#eom-015--eom-solver-manuscript-development) with source reconciliation, independent review and GPU evidence requirements. EOM-007 remains the immediate task; the deferred GPU and scale tasks retain their execution status. This is documentation planning and changes no numerical or scientific acceptance.

@@ -48,7 +48,7 @@ A useful audit begins with edges rather than merely naming theory islands. The f
 
 These islands have real and powerful connections. The unresolved point is narrower: a reliable forward bridge can coexist with a non-unique reverse reconstruction, and an intermediate bridge can succeed without reaching a common microscopic account.
 
-Fermi's beta theory is the cleanest first example. At energies far below the $W$-boson scale, the four-fermion coefficient $G_F$ compresses the mediator structure into one low-energy parameter. At tree level in the electroweak theory,
+Fermi's beta theory is the cleanest first example. At energies far below the $W$-boson scale, the four-fermion coefficient $G_F$ compresses the mediator structure into one low-energy parameter. At tree level in the electroweak theory, using its standard natural-unit convention $\hbar=c=1$,
 
 $$
 \frac{G_F}{\sqrt{2}}=\frac{g^2}{8M_W^2}
@@ -103,7 +103,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-db1aa95de946f160)
 
-where $\mathcal{D}_i$ and $\mathcal{D}_j$ are the source and target state domains, $M_{j\leftarrow i}$ is the bridge map, $\mathcal{R}_{ij}$ is its validity regime, $\epsilon_{ij}$ is its declared error or residual bound, $\mathcal{I}_{ij}$ is the information preserved, $\mathcal{L}_{ij}$ is the information discarded or left unresolved, and $\mathcal{F}_{ij}$ is an independently checkable failure condition.
+where $\mathcal{D}_i$ and $\mathcal{D}_j$ are the source and target state domains, $M_{j\leftarrow i}:\mathcal D_i\to\mathcal D_j$ is the bridge map on its declared validity domain, $\mathcal{R}_{ij}$ is its validity regime, $\epsilon_{ij}$ is its declared error or residual bound, $\mathcal{I}_{ij}$ is the information preserved, $\mathcal{L}_{ij}$ is the information discarded or left unresolved, and $\mathcal{F}_{ij}$ is an independently checkable failure condition.
 
 A line between two theories is not enough. The bridge must state what is translated, where the translation works, how accurately it works, what survives, what disappears, and what result would show that the bridge has failed.
 
@@ -120,9 +120,9 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-b41ebfc1333e648f)
 
-Here $d_j$ is a declared distance or residual measure in the target record space. Plainly: an effective record may exclude many possible fine histories without identifying one. Forward prediction and reverse reconstruction are separate achievements.
+Here $d_j$ is a declared nonnegative distance or residual measure in the target space, and $\epsilon_{ij}\geq0$ has matching units; the source states in the fiber are restricted to $\mathcal R_{ij}$. An effective record may exclude many possible fine histories without identifying one. Forward prediction and reverse reconstruction are separate achievements.
 
-Graph connectivity is not full unification. A common-source theory requires one physical history space $\mathcal H$ and independently specified projections $P_i:\mathcal H\to\mathcal O_i$ into the observer-level record space of every required domain. On an overlap regime, the bridge must commute with those projections within tolerance:
+Graph connectivity is not full unification. A common-source theory requires one physical history space $\mathcal H$ and independently specified projections $P_i:\mathcal H\to\mathcal O_i$ into the observer-level record space of every required domain. For this comparison, take each $\mathcal O_i$ to be a declared subset of $\mathcal D_i$ on which the bridge acts, with the target residual defined on the compared outputs. If records do not supply the bridge’s required state variables, an additional state-reconstruction map and its uncertainty must be specified before this test is meaningful. On an overlap regime, the bridge must commute with those projections within tolerance:
 
 $$
 \Delta_{ij}(H)
@@ -137,7 +137,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-9a8a84e6187eb564)
 
-For three nested descriptions, direct and staged reduction must also agree within a declared composition tolerance:
+For three nested descriptions with compatible map domains, the proposed common-source construction must also make direct and staged reduction agree within a declared composition tolerance:
 
 $$
 M_{k\leftarrow j}\circ M_{j\leftarrow i}
@@ -149,23 +149,23 @@ $$
 
 One history should be readable in several scientific languages. Translating its fine description into a coarse description should agree with reading the coarse record directly from the same history, and an intermediate route should not silently change the answer.
 
-Scale change adds a constituent-continuity obligation. Let $C_{\ell_2\leftarrow\ell_1}$ be a declared coarse-graining map, let $H$ be a retained physical history on a window $W$, let $\Pi_I$ extract constituent identity and provenance, and let $\Phi_I(\partial W)$ record actual constituent flow through the window boundary. The candidate minimum condition is
+Scale change adds a constituent-continuity obligation. Let $C_{\ell_2\leftarrow\ell_1}$ map fine to coarse history descriptions on the same fixed window $W$, and let $H_{\ell_1}$ denote the fine description. Let $\Pi_I^{(\ell)}$ extract the constituent identity and provenance record retained at resolution $\ell$. Exact composition is an ideal target for consistently nested reductions, not a property of arbitrary coarse-graining maps. Physical evolution has a separate balance: for a fixed spatial region $V$ over $[T_1,T_2]$, let $N_I(T)$ be its additive constituent count and $\Phi_I(\partial V;T_1,T_2)$ the net outward count crossing its boundary. With no creation or destruction of the counted constituents, the proposed requirements are
 
 $$
+\begin{aligned}
 C_{\ell_3\leftarrow\ell_2}\circ C_{\ell_2\leftarrow\ell_1}
-=
-C_{\ell_3\leftarrow\ell_1},
-\qquad
-\Pi_I\!\left(C_{\ell_2\leftarrow\ell_1}H\right)
-=
-\Pi_I(H)-\Phi_I(\partial W)
+&=C_{\ell_3\leftarrow\ell_1},\\
+\Pi_I^{(\ell_2)}\!\left(C_{\ell_2\leftarrow\ell_1}H_{\ell_1}\right)
+&=\Pi_I^{(\ell_1)}(H_{\ell_1}),\\
+N_I(T_2)&=N_I(T_1)-\Phi_I(\partial V;T_1,T_2).
+\end{aligned}
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-8b30dc678926f3e6)
 
-Changing resolution in two steps must agree with changing it directly. Coarse-graining may discard descriptive detail, but it may not create a different constituent inventory merely because the language changed; any actual gain or loss must be accounted for at the physical boundary.
+The first two equalities compare descriptions of the same history and window; they require the declared protected record to survive reduction. A coarse record that omits constituent provenance cannot satisfy that requirement without an accompanying retained record. Approximate reductions require explicit residual bounds in place of exact equality. The third equality compares different times and follows by counting entries and exits; it does not subtract boundary flux merely because resolution changed. A source term would be needed if the counted entities could be created or destroyed.
 
-> **Claim grade: guessed.** These composition and inventory equations are a candidate minimum closure target, not an achieved result. **Falsifier:** a declared common-history and coarse-graining construction for which direct and staged projection disagree beyond tolerance, or for which the inventory mismatch cannot be accounted for by the boundary-flow record.
+> **Claim grade: guessed.** A common-history construction with these composition and protected-record properties is a candidate closure target, not an achieved result. **Falsifier:** direct and staged reduction disagree beyond the declared tolerance, the same-window protected record changes with resolution, or the time-dependent additive count fails the separately specified boundary balance.
 
 The exact, zero-tolerance scale specialization of the general compatibility fiber is
 
@@ -177,7 +177,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-4514a1f4aead3177)
 
-Here $o$ is the observed effective record, and $\mathcal F_\ell(o)$ is not a competing inverse notation; it is the $\epsilon=0$ scale case of the general fiber $\mathfrak F_{i\mid y}^{(\epsilon)}$. A protected cross-scale quantity $I_a$ must factor through the effective record:
+Here $o$ is the observed effective record, and $\mathcal F_\ell(o)$ is not a competing inverse notation; it is the $\epsilon=0$ scale case of the general fiber $\mathfrak F_{i\mid y}^{(\epsilon)}$ when the source domain is $\mathcal H$, the map is $P_\ell$, and the residual separates distinct records. A pseudometric instead identifies all records at zero distance. A protected cross-scale quantity $I_a$ must factor through the effective record:
 
 $$
 I_a(H)=\overline I_{a,\ell}\!\left(P_\ell(H)\right)
@@ -199,7 +199,7 @@ Most microscopic distinctions disappear when physics zooms out, but some leave n
 
 ## Gauge Agreement Versus Gauge Origin
 
-Gauge covariance provides a particularly clear distinction between descriptive agreement and physical origin. Gauge-equivalent representatives describe one observer-level state, while curvature, holonomy, charge compatibility, anomaly cancellation, and reaction records carry invariant content. The historical change from Weyl's failed length calibration to successful phase calibration is developed in [Weyl's Gauge: Calibration Survived Its Object](historical-context-and-missed-opportunities.md#weyls-gauge-calibration-survived-its-object).
+Gauge covariance provides a particularly clear distinction between descriptive agreement and physical origin. Gauge-equivalent representatives describe one observer-level state within the declared gauge redundancy and boundary conditions. Non-Abelian curvature transforms covariantly, and based-loop holonomy transforms by conjugation; suitable contractions, traces or conjugacy classes carry gauge-invariant content. Charge compatibility, anomaly cancellation and reaction records impose further physical constraints. The historical change from Weyl's failed length calibration to successful phase calibration is developed in [Weyl's Gauge: Calibration Survived Its Object](historical-context-and-missed-opportunities.md#weyls-gauge-calibration-survived-its-object).
 
 Gauge theory rigorously prevents arbitrary local bookkeeping from changing a prediction. It does not by that achievement alone derive why nature supplies this gauge group, these representations, these couplings, this topology, or one physical history behind every admissible representative. The mechanism burden belongs to [Gauge Structure Emergence](../assemblies/gauge-structure-emergence.md#gauge-covariance-recovery-target), while [Gauge Symmetries](../assemblies/gauge-symmetries.md#gauge-redundancy-and-anomaly-ledger) owns the formal Standard Model recovery gates.
 
@@ -209,7 +209,7 @@ Mathematical consistency among descriptions is indispensable. A unified substrat
 
 Scale segregation was not an oversight. Renormalization-group flow and effective field theory explain why long-distance observables often become insensitive to short-distance detail. Wilson's [account of many length scales](https://www.nobelprize.org/uploads/2018/06/wilson-lecture-2.pdf) made the relation between microscopic fluctuation and macroscopic law explicit. The [Appelquist-Carazzone decoupling theorem](https://doi.org/10.1103/PhysRevD.11.2856) established, within its stated renormalizable-theory conditions, that heavy fields decouple from low-momentum behavior apart from renormalization effects and suppressed corrections. These methods are major mathematical and predictive achievements.
 
-The scale structure can be pictured as a board whose vertical coordinate is logarithmic resolution, such as $\log\mu$ or $\log\ell^{-1}$. The ladders are controlled relations carrying selected quantities between neighboring landings: renormalization-group flow, matching equations, decoupling results, asymptotic expansions, and coarse-graining maps. The chutes are thresholds and reorganizations at which the active variables or useful carriers change: symmetry breaking, confinement, collective-mode formation, phase transitions, and changes in constitutive regime.
+The scale structure can be pictured as a board whose vertical coordinate is logarithmic resolution, such as $\log(\mu/\mu_0)$ or $\log(\ell_0/\ell)$, with fixed reference scales $\mu_0$ and $\ell_0$. The ladders are controlled relations carrying selected quantities between neighboring landings: renormalization-group flow, matching equations, decoupling results, asymptotic expansions, and coarse-graining maps. The chutes are thresholds and reorganizations at which the active variables or useful carriers change: symmetry breaking, confinement, collective-mode formation, phase transitions, and changes in constitutive regime.
 
 Zooming does not move the physical event. It changes which distinctions an observer-level description can resolve. A photon emitted in a small region is not automatically a probe of every smaller structure there; its wavelength and wavepacket determine the interaction's available resolution. Multiple fine histories may therefore project to one coarse record even while protected quantities continue to constrain the possible histories.
 
@@ -267,7 +267,7 @@ The narrower criticism survives these concessions: a connected network of succes
 
 ## Relation to $\mathbb{A}\mathbb{A}\mathbb{A}$
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ accepts the stronger unification burden. General relativity, quantum theory, the Standard Model, thermodynamics, and cosmological observation models enter as effective recovery targets rather than substrate premises. One [architrino](../foundations/architrino.md) inventory—the substrate's massless carriers with two polarity signs—delayed path-history dynamics, assembly organization, and Noether sea record must project into those domains without privately changing ontology at each landing.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ accepts the stronger unification burden. General relativity, quantum theory, the Standard Model, thermodynamics, and cosmological observation models enter as effective recovery targets rather than substrate premises. One [architrino](../foundations/architrino.md) inventory—the substrate's carriers without intrinsic mass and with two polarity signs—delayed path-history dynamics, assembly organization, and Noether sea record must project into those domains without privately changing ontology at each landing.
 
 That commitment is not evidence that the recovery has been achieved. It increases the proof burden. A successful account must derive the projections, bridge maps, protected invariants, parameter relations, and residual bounds while retaining the predictive economy that makes effective theories useful. Renaming a field as an assembly, a metric as a sea response, or a quantum state as hidden history does not satisfy the requirement.
 

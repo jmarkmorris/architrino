@@ -47,7 +47,7 @@ The Archie branch also includes reader-facing reference documents that explain t
 
 The webapp also includes non-document surfaces where interaction is primary.
 
-The authored application scene rooted at `content/scenes/archie/applications.json` is the source of truth. It presents the current tools together in this deliberate reader-facing sequence: Animator; It’s Greek to Me!; Molecule Visualization; Periodic Table; Hyde Periodic Table; Atom; Standard Model; Causal Delay Feedback; Borg; Wake Topography; Lorentz Geometry; Lattice Lab; Photon and Polarization Visualization; and Equation Mapping. Borg starts and inspects EOM runs, while Animator authors visual scenes and replays accepted recorded EOM output.
+The authored application scene rooted at `content/scenes/archie/applications.json` is the source of truth. It presents the current tools together in this deliberate reader-facing sequence: Animator; It’s Greek to Me!; Molecule Visualization; Periodic Table; Hyde Periodic Table; Atom; Standard Model; Causal Delay Feedback; Borg; Wake Topography; Lorentz Geometry; Lattice Lab; Photon and Polarization Visualization; and Equation Mapping. Borg can start EOM runs when connected to the local EOM service; its browser interface inspects runs and replays recorded output. Animator authors visual scenes and replays accepted recorded EOM output.
 
 These include display-only lessons, diagnostic workbenches, content-navigation surfaces, and application-specific runtimes. Inclusion in the index is not an evidence or proof grade.
 
@@ -126,4 +126,4 @@ Those functions belong to adjacent Archie documents with narrower purposes.
 
 ## Contact
 
-For a reproducible public webapp problem, use the [privacy-safe feedback page](../../../../feedback.html). It creates a visible browser, device, and public-manifest summary locally before opening the public GitHub issue form. For other project contact, use [architrino@gmail.com](mailto:architrino@gmail.com).
+For a reproducible public webapp problem, use the [privacy-safe feedback page](../../../../feedback.html). It creates a visible browser, device, and public-manifest summary locally. Review and copy the summary, then open the public GitHub issue form to include it if useful. For other project contact, use [architrino@gmail.com](mailto:architrino@gmail.com).

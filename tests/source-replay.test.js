@@ -4,7 +4,8 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { materializeSourceReplay, SOURCE_REPLAY_SCHEMA } from "../scripts/dev/materialize-source-replay.mjs";
-import knownHashes from "../scripts/equation-mapping/fixtures/known-hash-answers.json" with { type: "json" };
+import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';
+const knownHashes = admittedKnownHashAnswers("tests/source-replay.test.js");
 
 const ABC_SHA = knownHashes.sha256.abc;
 assert.match(ABC_SHA, /^[a-f0-9]{64}$/u);

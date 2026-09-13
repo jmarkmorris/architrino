@@ -1,3 +1,4 @@
+import { knownHashAnswers as admittedKnownHashAnswers } from '../scripts/equation-mapping/controlled-fixture-records.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
@@ -8,7 +9,7 @@ import { CONTEXT, NS, sha256, validate } from '../scripts/equation-mapping/curre
 import { inspectCurrentSources, changesBetween } from '../scripts/equation-mapping/current-source-transition.mjs';
 
 const raw = x => Buffer.from(JSON.stringify(x));
-const knownHashes = JSON.parse(fs.readFileSync(new URL('../scripts/equation-mapping/fixtures/known-hash-answers.json', import.meta.url)));
+const knownHashes = admittedKnownHashAnswers("tests/option-b-current-source-transition.test.mjs");
 function fixture(t) {
   const root = fs.realpathSync(fs.mkdtempSync(path.join(os.tmpdir(), 'b-transition-')));
   t.after(() => fs.rmSync(root, { recursive: true, force: true }));

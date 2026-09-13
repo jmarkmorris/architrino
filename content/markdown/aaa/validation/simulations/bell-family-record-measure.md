@@ -1,10 +1,10 @@
 # Bell-Family Record-Measure Harness
 
-This protocol gives the Bell-family residuals in [No-Go Theorems](../no-go-theorems.md) their first executable scaffold. It is not a closure proof. It is a probability-table harness that checks whether a proposed record table preserves the standard benchmark shape before any claim is made about deriving that table from [architrino dynamics](../../foundations/architrino.md), where two polarity classes interact through delayed line-of-action acceleration, pair provenance, detector kernels, and finite-time basin measures.
+This protocol gives the Bell-family residuals in [No-Go Theorems](../no-go-theorems.md) an executable scaffold. It is not a closure proof. It is a probability-table harness: it takes a proposed table of outcome probabilities for a Bell-type experiment and checks whether that table keeps the standard benchmark shape, before any claim is made that the table follows from [architrino](../../foundations/architrino.md) dynamics, in which the two polarities of architrino, electrino and positrino, accelerate one another along the line of action through delayed causal wakes. The objects a derivation would have to supply to this harness are pair provenance, apparatus kernels, and a finite-window record-basin measure; each is defined below where the harness first consumes it.
 
-The simple point is that one Bell number is not enough. A candidate table may look good on a CHSH average while failing no-signaling, GHZ parity, Hardy structure, or measurement-independence accounting. This harness keeps those checks in one place before the deeper dynamics are allowed to claim success.
+The immediate target is discipline, and the reason is that one Bell number is not enough. A candidate table may match a single CHSH average while failing GHZ parity, Hardy zero and positive-event structure, no-signaling, or measurement-independence accounting. The harness therefore evaluates CHSH, GHZ, Hardy, no-signaling, measurement-independence, and observed-factorization residuals in one packet, so that the deeper dynamics cannot claim success on one number.
 
-The immediate target is discipline. A model that fits one Bell average can still fail GHZ parity, Hardy zero/positive-event structure, no-signaling, or measurement independence. The harness therefore evaluates CHSH, GHZ, Hardy, no-signaling, measurement-independence, and observed factorization residuals in one packet.
+Several terms below are owned by other chapters and are used here only as the labels of declared inputs. A Bell-type experiment sends two or more assemblies from one source to separated apparatus wings; each wing chooses a setting and records a binary outcome, and the harness works only with the resulting table of outcome probabilities per setting context. Bell's theorem, developed in [Bell's Theorem](../../philosophy-history/theory-bridges/bell-theorem.md), shows that any model in which each wing's outcome law depends only on its own setting and a shared complete hidden state (Bell factorizability), with settings statistically independent of that state (measurement independence), obeys the CHSH bound $|S|\le 2$ defined below; quantum theory reaches $2\sqrt{2}$, the Tsirelson bound, and loophole-free experiments exceed $2$. Such a model is called Bell-local, and a table it produces is said to be product-screened by the shared state, because conditioning on that state factors the table into a product of one local response per wing. No-signaling is the observer-level requirement that each wing's outcome statistics do not change when a far wing's setting changes. GHZ and Hardy are strengthened Bell tests that replace an inequality average by perfect-correlation signs and by zero-probability events respectively. On the $\mathbb{A}\mathbb{A}\mathbb{A}$ side, where $\mathbb{A}\mathbb{A}\mathbb{A}$ abbreviates Architrino Assembly Architecture, a [record](../../quantum/measurement-ontology.md#what-makes-an-interaction-a-record) is a durable apparatus outcome produced by the same delayed dynamics that moves every architrino; pair provenance is the retained shared history of the two assemblies from their common source; an apparatus kernel is the declared physical coupling between a wing's apparatus and its target; a record basin is the set of admissible retained histories that resolve to one outcome; and the [finite-window basin measure](../../quantum/measurement-ontology.md#transfer-operator-measure-contract) $\mu_{*,T_W}$ over a record window $T_W$ assigns those basins their weights. A candidate record $\theta$, in the sense of the [shared closure record](../failure-criteria.md#shared-closure-record), is the bundle of declared substrate histories and response maps from which a table $P_\theta$ is predicted.
 
 ## Runtime Artifact
 
@@ -35,7 +35,8 @@ The script emits JSON with one row per scenario:
 | `metadata.source` | whether the run used built-in scenarios or a candidate JSON fixture |
 | `metadata.candidate_path` | candidate fixture path when `metadata.source` is `candidate` |
 | `id` | stable scenario identifier |
-| `classification` | `benchmark` or `negative_control` |
+| `description` | one-sentence statement of what the scenario exercises |
+| `classification` | `benchmark` or `negative_control` for built-in scenarios; a candidate fixture may declare its own or defaults to `candidate` |
 | `source_protocol` | declared source construction for candidate fixtures, when supplied |
 | `source_record_count` | number of retained source records in a candidate fixture |
 | `metrics.chsh` | CHSH expectations, $S$, local-bound excess, and Tsirelson excess |
@@ -45,13 +46,14 @@ The script emits JSON with one row per scenario:
 | `metrics.measurement_independence` | total-variation drift of declared provenance labels across settings |
 | `metrics.observed_factorization` | total-variation distance between the observed joint table and the product of its observed marginals |
 | `metrics.product_screening` | total-variation distance between the emitted table and a declared Bell-local product-screening reconstruction |
-| `gates` | pass/fail records for the residuals that apply to the scenario |
-| `witness_tags` | non-failure tags such as `bell.chsh_local_bound_violated` |
-| `failure_codes` | stable failure codes such as `bell.signal_transfer` |
+| `metrics.complete_record_parity` | for tables that carry a deterministic local response per retained record, the weight $\Delta_{\mathrm{par}}$ of records whose four CHSH context products multiply to $-1$; a deterministic local response always has parity $+1$, so nonzero weight marks records that no local deterministic response can realize; `null` when no record-level data is supplied |
+| `gates` | pass/fail records for the residuals that apply to the scenario: `no_signaling`, `measurement_independence`, `tsirelson` for CHSH tables, `ghz`, `hardy_margin`, and `product_screening_escape` and `complete_record_parity` for record-bearing tables |
+| `witness_tags` | non-failure tags such as `bell.chsh_local_bound_violated`, `bell.ghz_products_matched`, `bell.hardy_positive_margin`, and `bell.superquantum` |
+| `failure_codes` | stable failure codes: `bell.signal_transfer`, `bell.measurement_independence_blur`, `bell.tsirelson_open`, `bell.ghz_parity_open`, `bell.hardy_margin_open`, `bell.product_screening_collapse`, and `bell.complete_record_parity_obstruction` |
 
 ## Residual Object
 
-For a two-party CHSH table with binary outcomes $a,b\in\{-1,+1\}$, the harness computes
+For a two-party CHSH table with setting $x$ on the first wing, setting $y$ on the second, and binary outcomes $a,b\in\{-1,+1\}$, the harness computes the correlation
 
 $$
 E(x,y)=\sum_{a,b=\pm1}ab\,P(a,b|x,y)
@@ -59,7 +61,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-71254ad87038302b)
 
-and the convention
+which is the expectation of the outcome product in the context $(x,y)$, and the CHSH combination over the two calibrated settings $A_0,A_1$ of the first wing and $B_0,B_1$ of the second,
 
 $$
 S=E(A_0,B_0)-E(A_0,B_1)+E(A_1,B_0)+E(A_1,B_1)
@@ -67,7 +69,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2146fac9d103d6dd)
 
-The gate reports both the local-bound excess
+where $E(A_i,B_j)$ abbreviates $E(x{=}A_i,y{=}B_j)$. Every deterministic assignment of the four local outcomes gives $|S|=2$ exactly: writing $a_i$ and $b_j$ for the outcomes fixed under settings $A_i$ and $B_j$, $S=a_0(b_0-b_1)+a_1(b_0+b_1)$, and one of the two brackets vanishes while the other is $\pm2$; a Bell-local table is a mixture of such assignments, so it obeys $|S|\le2$. The singlet table at the built-in settings gives $|S|=2\sqrt{2}$. The gate reports both the local-bound excess
 
 $$
 \Delta_{\mathrm{CHSH}}
@@ -87,7 +89,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-787cfba82c912754)
 
-For GHZ, the script uses the context signs in [Bell's Theorem](../../philosophy-history/theory-bridges/bell-theorem.md#bell-family-strengthenings-ghz-and-hardy):
+where $[x]_+\equiv\max(x,0)$ is the positive part, so each excess is zero exactly when the corresponding bound holds.
+
+For GHZ, a three-wing test in which each wing measures one of two binary settings $X$ and $Y$, the script uses the context set and the sign product fixed in [Bell's Theorem](../../philosophy-history/theory-bridges/bell-theorem.md#bell-family-strengthenings-ghz-and-hardy):
 
 $$
 \mathcal{C}_{\mathrm{GHZ}}=\{XXX,XYY,YXY,YYX\},
@@ -97,7 +101,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5a08dfcbc8537c99)
 
-and computes
+Here $\chi_C\in\{-1,+1\}$ is the perfectly correlated product of the three outcomes in context $C$. Bell's Theorem fixes only the product of the four signs. The built-in benchmark fixes the individual signs as $\chi_{XXX}=-1$ and $\chi_{XYY}=\chi_{YXY}=\chi_{YYX}=+1$, the perfect-correlation signs of the three-party GHZ state formed with a relative minus sign between its two product components; a candidate fixture that carries GHZ contexts declares its own four signs with the same product. With $E(C)$ the product expectation of the three outcomes in context $C$, the script computes
 
 $$
 \Delta_{\mathrm{GHZ}}
@@ -109,6 +113,8 @@ $$
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c2658ae1bc60a210)
+
+The residual vanishes exactly when every context reproduces its perfect correlation. A context-independent deterministic local value table has context products whose four-fold product is $+1$, because each wing's $X$ value and $Y$ value each appear twice, so at least one context has $\chi_C E(C)=-1$ and the residual is $2$.
 
 For Hardy, it consumes the setting and context convention owned by [No-Go Theorems](../no-go-theorems.md#applicability-map): $U_i$ and $D_i$ are the two calibrated binary settings on wing $i$, and the four terms below come from four distinct setting pairs. It computes the positive margin
 
@@ -128,7 +134,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e7d367805a1941b2)
 
-No-signaling is evaluated as the maximum one-party marginal drift between contexts that keep that party's setting fixed:
+where each probability is read from its own setting context, $(D_1,D_2)$, $(U_1,U_2)$, $(D_1,U_2)$, or $(U_1,D_2)$, with outcomes $0$ and $1$. Under Bell factorizability every local value assignment with $D_1=D_2=1$ either has $U_1=U_2=1$ or falls into one of the two mixed events, so the first probability never exceeds the sum of the other three and the margin is zero for every Bell-local table; a positive margin certifies a departure from that class without any inequality average.
+
+No-signaling is evaluated for each wing $i$ as the maximum drift of that wing's outcome marginal between contexts that keep its own setting fixed. Write $\mathbf{s}=(s_1,\dots,s_n)$ for the settings of the $n$ wings, $\mathbf{s}_{-i}$ for the settings of every wing other than $i$, and $r_i$ for wing $i$'s outcome:
 
 $$
 \Delta_{\mathrm{NS}}^{i}
@@ -144,7 +152,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-054fa35178229131)
 
-Measurement-independence leakage is represented by a declared provenance label distribution in each context:
+The reported residual is $\Delta_{\mathrm{NS}}=\max_i\Delta_{\mathrm{NS}}^{i}$. Each term sums the absolute differences of two marginals, which is twice their total-variation distance; this is the definition [Bell's Theorem](../../philosophy-history/theory-bridges/bell-theorem.md#bell-closure-diagnostics) writes for two wings as $\Delta_{\mathrm{NS}}^{A}$ and $\Delta_{\mathrm{NS}}^{B}$, and the residual [No-Go Theorems](../no-go-theorems.md#applicability-map) consumes.
+
+Measurement-independence leakage is represented by a declared provenance-label distribution $\rho_{\mathrm{prov}}(\Pi|\mathbf{s})$ in each context, where $\Pi$ labels the retained source record, the pair provenance, and $D_{\mathrm{TV}}$ is the total-variation distance, half the sum of absolute probability differences:
 
 $$
 \Delta_{\mathrm{MI}}
@@ -158,9 +168,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f884ee6c0c0f4ee6)
 
-where $\mathbf{s}_0$ is the packet baseline. A real closure packet should replace this toy provenance distribution with the pair-provenance ledger described below.
+where $\mathbf{s}_0$ is the packet baseline, the first context in the scenario that carries a provenance distribution. The residual vanishes exactly when the label distribution is the same in every context, which is also the zero condition of the unconditional form $\sup_{\mathbf{s}}D_{\mathrm{TV}}(\rho(\lambda|\mathbf{s}),\rho(\lambda))$ used in Bell's Theorem; when either form is nonzero, each is at most twice the other by the triangle inequality, so a tolerance stated in one convention transfers to the other with at most a factor of two. A real closure packet should replace this toy provenance distribution with the pair-provenance ledger described below.
 
-For generated pair-provenance cases, the harness also checks whether the emitted table is exactly reconstructed by a Bell-local product-screening form:
+For generated pair-provenance cases, the harness also checks whether the emitted table is exactly reconstructed by a Bell-local product-screening form. Here $\mathbf{r}=(r_1,\dots,r_n)$ is the outcome vector, $K_i(r_i|s_i,\Pi)$ is wing $i$'s local apparatus kernel, the probability of outcome $r_i$ given only that wing's own setting and the shared record $\Pi$, and $P_\theta(\mathbf{r}|\mathbf{s})$ is the candidate table:
 
 $$
 \Delta_{\mathrm{screen}}
@@ -230,6 +240,8 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-974c75a4bc0c2af8)
 
+Here $\mathbf{1}[\cdot]$ is the indicator of the bracketed condition and $\operatorname{sgn}$ the sign, so each kernel is deterministic: wing $A$ answers $+1$ when its setting angle lies within a quarter turn of the record's axis $\phi_k$, and wing $B$ answers the same question against the opposite axis $\phi_k+\pi$. The built-in instantiation uses $N=720$ midpoint angles $\phi_k=(k-\tfrac12)\,2\pi/N$, the settings $A_0=0$, $A_1=\pi/2$, $B_0=\pi/4$, and $B_1=3\pi/4$, and the convention $\operatorname{sgn}0=+1$; on this grid no setting makes the cosine vanish, so the convention is never invoked. Counting grid points with equal and with opposite signs gives $E(A_i,B_j)=-1+2|A_i-B_j|/\pi$ for separations up to $\pi$, so each of the four expectations has magnitude $\tfrac12$ and $|S|=2$ exactly; the harness reports that value to within floating-point summation error.
+
 This is a useful negative control because it has explicit pair provenance, explicit local kernels, clean no-signaling, and clean measurement independence, but it still reaches only the classical-axis correlation. The product-screening residual is zero by construction, so the `product_screening_escape` gate must fail with `bell.product_screening_collapse`.
 
 The candidate-reader path makes that obstruction inspectable from a declared source-record fixture rather than only from built-in tables. The fixture `scripts/quantum/product-screened-axis-candidate.json` supplies eight explicit source records, local deterministic response tables, normalized source weights, and four CHSH contexts. It is not a positive Bell candidate. It is a compact negative control showing that explicit provenance can still reduce to Bell-local product screening unless the completed record law supplies a stronger joint record-basin measure.
@@ -249,7 +261,7 @@ The candidate-reader path makes that obstruction inspectable from a declared sou
 | `hardy_no_signaling_margin` | benchmark | Hardy margin is positive while no-signaling passes |
 | `hardy_local_forbidden_event` | negative control | the positive Hardy event is cancelled by a forbidden event and no-signaling also fails |
 
-These scenarios are deliberately small. The goal is to catch wiring errors, sign errors, and invalid escape routes before a larger Master-Equation packet consumes the residuals.
+These scenarios are deliberately small. The singlet and GHZ benchmark tables are the state-vector predictions at the built-in settings. The Hardy benchmark is a hand-written no-signaling table that carries the Hardy pattern with positive term $0.09$; it is not the prediction of a particular quantum state of the pair, so it checks the margin arithmetic rather than agreement with quantum theory. The goal is to catch wiring errors, sign errors, and invalid escape routes before a larger Master Equation packet consumes the residuals.
 
 ## Proof Scaffold Boundary
 
@@ -266,7 +278,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7c60ad066ae4fbef)
 
-is still a Bell-local product form when $d\rho_{\mathrm{prov}}(\Pi)$ is independent of the settings and $\Pi$ is a complete common-past screen. Such a model cannot pass CHSH, GHZ, and Hardy as a family. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ closure must therefore derive a stronger object:
+is still a Bell-local product form when $d\rho_{\mathrm{prov}}(\Pi)$ is independent of the settings and $\Pi$ is a complete common-past screen. Such a model fails each Bell-family benchmark separately: it cannot exceed the CHSH local bound, cannot reproduce the four GHZ perfect-correlation signs, and cannot produce a positive Hardy margin, because in each case the product form is a mixture of deterministic local value assignments and the enumeration of those assignments closes the bound. A successful $\mathbb{A}\mathbb{A}\mathbb{A}$ closure must therefore derive a stronger object:
 
 $$
 P_\theta(\mathbf{r}|\mathbf{s})
@@ -279,7 +291,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a64d345d5c74e75e)
 
-where $B_{\mathbf{r}}^{\mathbf{s}}$ is the record-basin subset for the declared preparation, pair or multiplet provenance, local apparatus kernels, coarse-graining, and record window. This is the same measurement discipline used in [Measurement Ontology](../../quantum/measurement-ontology.md#born-rule-interface), but lifted from single-assembly basin weights to a Bell-family joint record measure.
+where $B_{\mathbf{r}}^{\mathbf{s}}$ is the record-basin subset that resolves to the outcome vector $\mathbf{r}$ under the setting vector $\mathbf{s}$ for the declared preparation, pair or multiplet provenance, local apparatus kernels, coarse-graining, and record window, and the superscript $(n)$ marks the measure on the joint retained record of the $n$ wings, two for a pair and three for a GHZ triplet. This is the same measurement discipline used in [Measurement Ontology](../../quantum/measurement-ontology.md#born-rule-interface), but lifted from single-assembly basin weights to a Bell-family joint record measure.
+
+The hypothesis this object must fail is fixed by the owners this harness serves, and the harness gates follow from it. [Ontology](../../foundations/ontology.md#bell-nonlocality-placement) selects, provisionally until the Bell derivation closes, the substrate-nonseparability route: measurement independence and observer-level no-signaling are retained, and Bell factorizability, the product form above, is the replaced hypothesis. [No-Go Theorems](../no-go-theorems.md#applicability-map) records the same route: the nonfactorizable joint response is carried by a live $c_f$-mediated coordination channel between the two apparatus couplings, gated by pair provenance and operating outside the effective photon cone, which requires the causal-wake speed $c_f$ to exceed the calibrated low-energy photon speed $c_0$. That is why $\Delta_{\mathrm{MI}}$ and $\Delta_{\mathrm{NS}}$ are gates rather than adjustable residuals, and why $\Delta_{\mathrm{screen}}=0$ is a failure. The route carries an obstruction this harness cannot test: Bancal and collaborators showed that a model reproducing the quantum correlations through hidden influences of any finite speed above the light speed permits controllable faster-than-light signaling in suitable arrangements of more than two parties, under their stated causal and no-signaling assumptions. The no-signaling residual here is evaluated only on the declared two- or three-wing tables, so a candidate packet must separately state which hypothesis of that theorem its coordination channel fails and supply the multipartite probability law on which observer no-signaling is then re-evaluated.
 
 The native proof packet must supply:
 
@@ -287,7 +301,8 @@ The native proof packet must supply:
 2. local apparatus kernels derived from the Stern-Gerlach-like or photon-analyzer channel;
 3. one finite-window measure $\mu_{*,T_W}^{(n)}$ on the retained joint record manifold;
 4. a compression audit showing why the completed record law does not reduce to Bell-local product screening;
-5. no-signaling and measurement-independence residuals evaluated on the same packet.
+5. no-signaling and measurement-independence residuals evaluated on the same packet;
+6. a premise audit against the finite-speed signaling obstruction: the hypothesis of that theorem the coordination channel fails, and the multipartite probability law on which observer no-signaling is re-evaluated.
 
 The single-assembly Stern-Gerlach response in [Angular Momentum and Spin](../../philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response) is a prerequisite, not the Bell proof itself. Bell-family closure starts only after the pair-provenance measure and the joint record basins are explicit.
 
@@ -298,8 +313,12 @@ Passing this harness means only that the residual calculations and negative cont
 A future closure packet becomes promotable only if:
 
 1. the probability tables are generated from declared substrate variables rather than written by hand;
-2. $\Delta_{\mathrm{MI}}$ and $\Delta_{\mathrm{NS}}$ remain within tolerance;
+2. $\Delta_{\mathrm{MI}}$ and $\Delta_{\mathrm{NS}}$ remain within tolerance, because measurement independence and observer no-signaling are accepted rather than replaced;
 3. CHSH, GHZ, and Hardy benchmarks are evaluated together;
 4. the same $\mu_{*,T_W}^{(n)}$ also agrees with the record and repeated-frequency discipline in [Quantum Operator Mapping](../../philosophy-history/theory-bridges/quantum-operator-mapping.md#statistical-measure-and-the-born-rule-emergence);
-5. the product-screening audit does not collapse the completed hidden-variable record into $\int_{\Pi}\prod_iK_i\,d\rho_{\mathrm{prov}}$;
-6. failure cases are reported when the model reduces to classical-axis response, separable pair measure, product-screened pair provenance, context-independent GHZ values, forbidden Hardy events, setting-dependent provenance, or signaling marginals.
+5. the product-screening audit does not collapse the completed substrate record, which plays the role of Bell's complete hidden state $\lambda$, into $\int_{\Pi}\prod_iK_i\,d\rho_{\mathrm{prov}}$;
+6. failure cases are reported when the model reduces to classical-axis response, separable pair measure, product-screened pair provenance, context-independent GHZ values, forbidden Hardy events, setting-dependent provenance, or signaling marginals, or when its coordination channel's multipartite predictions permit signaling.
+
+## Sources
+
+The finite-speed obstruction named in the proof scaffold boundary is J.-D. Bancal, S. Pironio, A. Acín, Y.-C. Liang, V. Scarani, and N. Gisin, *Quantum non-locality based on finite-speed causal influences leads to superluminal signalling*, Nature Physics 8, 867–870 (2012), [DOI 10.1038/nphys2460](https://doi.org/10.1038/nphys2460). It is the same source the Bell entry of [No-Go Theorems](../no-go-theorems.md#sources) cites, and it enters this chapter only as an observer-level constraint on the selected route, never as a premise of an $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation. The CHSH local bound and the Tsirelson bound used by the gates are standard results whose statements belong to [Bell's Theorem](../../philosophy-history/theory-bridges/bell-theorem.md); this chapter verifies the local bound by the enumeration stated beside the CHSH combination and uses the Tsirelson value as a benchmark constant.

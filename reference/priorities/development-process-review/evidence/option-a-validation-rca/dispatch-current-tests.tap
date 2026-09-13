@@ -1,0 +1,18 @@
+✔ independent published abc SHA-256 vector (0.884833ms)
+✔ hash syntax rejects terminal newlines without normalizing input (0.263792ms)
+✔ machine baseline, UTF-8 byte counts, and callback preserve exact message (1.61425ms)
+✔ empty, short, long, nonhex, uppercase, wrong type and wrong valid-length hashes fail before send (1.382125ms)
+✔ source changes, removals, and packet mutations cannot invoke sender (1.158917ms)
+✔ invalid paths, duplicate inputs and ambiguous source fields fail (1.729458ms)
+✔ local payload byte boundary and malformed Unicode (2.113708ms)
+✔ a later source mismatch blocks the complete dispatch (0.982917ms)
+✔ receipt comparison locates deletion, insertion, substitution and UTF-8 differences (0.8435ms)
+✔ CLI retains exclusive packet, verifies, rejects mismatch, and compares raw received bytes (357.647667ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 449.195042

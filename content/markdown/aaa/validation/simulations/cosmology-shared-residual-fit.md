@@ -2,7 +2,7 @@
 
 This protocol turns the shared calibration gate in [Dark Energy](../../cosmology/dark-energy.md#inference-dependency-and-calibration-gates) into a first machine-checkable validation scaffold. Its purpose is narrow: test whether supernova, BAO, CMB, weak-lensing, redshift-space-distortion, BBN, and pre-BBN comparison packets can consume one shared Noether sea state record without silently replacing the state per observable family.
 
-A cosmology fit can cheat without looking like a cheat. It can use one hidden state for supernovae, another for BAO, another for the CMB, and another for growth, while reporting one attractive summary. This protocol exists to stop that split: one shared Noether sea state record must feed the observable families that claim to belong to the same cosmology.
+The Noether sea is the ambient population of Noether braid assemblies. One declared state and its physical evolution must supply every claimed observable, with fixed projection laws and independently calibrated nuisance variables. Supernovae (SN), baryon acoustic oscillations (BAO), cosmic microwave background (CMB), weak lensing (WL), redshift-space distortions (RSD), and big-bang nucleosynthesis (BBN) are observer-level comparison families. Agreement of a few supplied projection coordinates is a necessary compatibility check, not proof that they came from one state.
 
 This is not a cosmological parameter fit and not an empirical claim. The first runtime artifact is a mock packet that fixes the object shape, residual accounting, projection-penalty semantics, gates, and failure codes that a real survey-facing packet must later populate.
 
@@ -46,7 +46,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-76a8d0efa5baae69)
 
-where $K_X$ is the set of shared comparison coordinates reported by family $X$, and $w_a$ is a declared dimensionless weight. The packet-level residual is
+where $K_X$ contains only shared physical quantities mapped into the same dimensionless coordinates, reference calibration and epoch. The maps must be declared before subtraction; equal key names alone do not establish comparable quantities, and distinct observables need not be numerically equal. Require $w_a\ge0$, with positive weights for every claimed tested coordinate. The following packet-level residual is the block-diagonal covariance specialization used by the runtime:
 
 $$
 \mathcal{R}_{\mathrm{shared}}
@@ -61,9 +61,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-39d5df0b3b399238)
 
-A low value of the first term alone is insufficient. The second term is the split-ontology guard: it rejects a fit that keeps each observable close to its benchmark only by assigning mutually incompatible projections of $\theta_{\mathrm{sea}}$.
+For empirical work, stack the retained residuals and use $\mathbf r^T C_{\mathrm{joint}}^{-1}\mathbf r$ with the full positive-definite covariance on that subspace, as in the Dark Energy owner. The displayed block sum requires vanishing cross-family covariance or a justified approximation; shared catalogues, calibrations and model parameters can invalidate it. The projection penalty can reveal a declared coordinate mismatch but cannot authenticate state provenance or constrain unreported directions. A zero penalty from projections constructed to agree is an internal identity, not independent evidence.
 
-For empirical packets, $\mathcal{R}_X$ is a chi-square statistic only when $C_X$ is the declared covariance of the retained residual vector and its inverse is well defined on that retained subspace. Let $N_X$ be the rank of that covariance after masks and projections, and let $p_X$ be the number of parameters actually estimated from family $X$. The packet must report
+A covariance-weighted quadratic is not automatically chi-square distributed. Exact chi-square calibration requires centered Gaussian residuals with known covariance and the stated linear fit/projection assumptions; nonlinear, estimated-covariance or non-Gaussian models require their own sampling calibration. For example, a residual equal to either $-1$ or $1$ with equal probabilities has covariance one, but its quadratic is always one. Let $N_X$ be the retained covariance rank and $p_X$ the identifiable fitted model rank for a separately justified family-level linear Gaussian analysis. Under those assumptions the packet may report
 $$
 \nu_X^{\mathrm{dof}}=N_X-p_X
 $$
@@ -81,9 +81,9 @@ $$
 
 The raw $\mathcal{R}_X$ remains the additive packet term; $\overline{\mathcal{R}}_X$ is a scale diagnostic and must not replace a likelihood without a declared statistical derivation.
 
-The nuisance record $\nu_X$ must state, before fitting, whether each nuisance quantity is fixed, profiled, or marginalized and how that choice changes $p_X$ and the effective covariance. The projection weights $w_a$, the penalty coefficient $\lambda$, and all residual and overlap thresholds are likewise frozen before fitting. They may be changed only in a separately identified sensitivity run, never retuned after seeing the shared-state result.
+For a joint fit, subtract the identifiable rank of the joint whitened design from the joint retained dimension; allocating a shared parameter separately to each family generally gives incorrect degrees of freedom. Profiled or marginalized nonlinear nuisance models and penalty terms do not automatically preserve the simple chi-square law. The nuisance record $\nu_X$ must state, before fitting, whether each nuisance quantity is fixed, profiled, or marginalized and how that choice changes $p_X$ and the effective covariance. The projection weights $w_a$, the penalty coefficient $\lambda$, and all residual and overlap thresholds are likewise frozen before fitting. They may be changed only in a separately identified sensitivity run, never retuned after seeing the shared-state result.
 
-The first empirical packet should keep the leading standard comparison objects visible inside the residual vectors:
+Residual coordinates must be consistent with their covariance. A raw difference uses its raw covariance; a component divided by its standard deviation uses the resulting correlation matrix; a fully whitened residual uses identity covariance. Applying the original inverse covariance again double-weights uncertainty. In the examples below, every positive denominator and whitening matrix belongs to the declared retained data representation, not an additional weight to apply later. Parameter-dependent covariance also requires the appropriate likelihood normalization. The first empirical packet should keep the leading standard comparison objects visible inside the residual vectors:
 $$
 r_{\mathrm{SN/BAO}}
 \supset
@@ -119,7 +119,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-106f9c9e30cd0bd7)
 
-and $r_{\mathrm{BBN}}$ should retain D/H, $Y_p$, lithium, $\eta$, and $\Delta N_{\text{eff}}$ rows. These are data-product coordinates, not ontology claims. They make the shared packet check luminosity distance, BAO rulers, blackbody preservation, CMB lensing, growth, and BBN yield recovery before any Noether sea state interpretation is promoted.
+Here $d_L$ is luminosity distance, $D_M$ transverse comoving distance, $H$ the comparison expansion rate, and $r_d$ the calibrated acoustic ruler. The CMB spectra and growth coordinates are effective data-product summaries with their published model dependencies. Correlated derived summaries must not be counted twice as independent measurements. Where independently supported by the packet, $r_{\mathrm{BBN}}$ may retain D/H, $Y_p$, lithium, $\eta$, and $\Delta N_{\text{eff}}$ rows. These are data-product coordinates, not ontology claims. They make the shared packet check luminosity distance, BAO rulers, blackbody preservation, CMB lensing, growth, and BBN yield recovery before any Noether sea state interpretation is promoted.
 
 Redshift-facing packets must expose the signed photon-frequency transfer row rather than treating redshift as a primitive expansion coordinate. For a line or photon family $X$, retain
 $$
@@ -134,7 +134,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-161938fb0ad62752)
 
-where $Z_X$ is the total logarithmic redshift budget, $Y_{X,\mathrm{path}}$ is the signed path-history exchange contribution, and $Y_{X,\mathrm{cal}}^{\mathrm{obs}}$ is any declared calibration row such as a Sunyaev-Zeldovich or kinematic-Sunyaev-Zeldovich frequency-shift packet. This row does not add a separate cosmology gate. It prevents a shared-state fit from hiding path-frequency exchange inside $H(z)$, distance modulus, or CMB temperature calibration.
+where $Z_X$ is the total logarithmic redshift budget, $Y_{X,\mathrm{path}}$ is the signed path-history exchange contribution, and $Y_{X,\mathrm{cal}}^{\mathrm{obs}}$ is any declared calibration row such as a Sunyaev-Zeldovich or kinematic-Sunyaev-Zeldovich frequency-shift packet. A thermal Sunyaev-Zeldovich distortion is generally a frequency-resolved spectral redistribution, not a single signed line-frequency shift; such a row needs the corresponding transfer operator and covariance. This row does not add a separate cosmology gate. It prevents a shared-state fit from hiding path-frequency exchange inside $H(z)$, distance modulus, or CMB temperature calibration.
 
 The source-mined empirical packet should retain the following benchmark families without turning them into separate gates:
 
@@ -179,7 +179,7 @@ The acoustic-ruler coherence check is evaluated inside this BAO family rather th
 $$
 \ell_{pb}
 \equiv
-\ln r_{d,pb}^{\mathrm{fit}},
+\ln\frac{r_{d,pb}^{\mathrm{fit}}}{r_{d,0}},
 \qquad
 \bar{\ell}_d
 =
@@ -192,7 +192,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-bef1a332fe8468b8)
 
-where $\mathbf C_\ell$ includes cross-patch covariance and survey-window coupling. The dispersion row is
+with a fixed positive reference length $r_{d,0}$ and positive fitted rulers. This log normalization leaves dispersion invariant under a common reference change. Require a symmetric positive-definite covariance on the retained patch space; the weighted mean estimates a common log ruler under that model. Here $\mathbf C_\ell$ includes cross-patch covariance and survey-window coupling. The dispersion row is
 
 $$
 \mathcal R_{\mathrm{BAO,disp}}
@@ -252,7 +252,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-dfc36d70b2a4fd7e)
 
-The overlap key `CMB_lensing` must appear in both CMB and growth-facing projections whenever lensing is used. Otherwise a packet can accidentally fit CMB spectra with one projection and weak-lensing or clustering with another, which is exactly the split-ontology failure this protocol is meant to catch.
+The separately whitened blocks displayed above still retain cross-block correlations unless joint whitening or conditional likelihoods remove them; derived acoustic-scale and ladder summaries require covariance with their parent data. The overlap key `CMB_lensing` must appear in both CMB and growth-facing projections whenever lensing is used. Otherwise a packet can accidentally fit CMB spectra with one projection and weak-lensing or clustering with another, which is exactly the split-ontology failure this protocol is meant to catch.
 
 Dark-sector comparison packets should also retain the linear/nonlinear split exposed by scalar-fluid and MOND-like hybrid models:
 
@@ -272,7 +272,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-14d79998fa0ff35c)
 
-Here $w_{\mathrm{lin}}$ and $c_{s,\mathrm{lin}}^2$ are comparison coordinates for CDM-like linear loading, while $v_c(r)$, $\Delta_{\mathrm{BTFR}}$, $\mathrm{RAR}$, $a_\star(E)$, and $f_\star(E)$ are nonlinear acceleration-response coordinates. A dimensionless BTFR residual can be recorded as
+The dark-sector rows below are optional comparison templates, not a requirement to manufacture observational estimates for unmeasured quantities. Every superscript `obs` needs a specified estimator, calibration, uncertainty and covariance; otherwise retain that quantity as a model diagnostic outside the data likelihood. Here $w_{\mathrm{lin}}$ and $c_{s,\mathrm{lin}}^2$ are comparison coordinates for CDM-like linear loading, while $v_c(r)$, $\Delta_{\mathrm{BTFR}}$, $\mathrm{RAR}$, $a_\star(E)$, and $f_\star(E)$ are nonlinear acceleration-response coordinates. A dimensionless BTFR residual can be recorded as
 
 $$
 \Delta_{\mathrm{BTFR}}^\theta
@@ -315,7 +315,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ea14d73a0e7bd124)
 
-This row is a success marker under the existing shared-state gate, not a new standalone gate. It records whether the same Noether sea state packet can recover cluster gas temperature, SZ pressure, lensing potential, dynamical potential, and Bullet-like lensing/galaxy/gas peak separation without changing the acceleration law between observables.
+The $\gamma_{\mathrm{PPN}}=1$ term is a conditional GR-matching comparison, not a measured universal cluster law. Extending a solar-system PPN coefficient to a galaxy or cluster requires a justified weak-field metric and scale/regime map. Lensing and dynamical potentials also depend on source geometry, gas equilibrium, nonthermal pressure and calibration; those uncertainties cannot be replaced by an equality assumption. This row is a comparison under the existing shared-state gate, not a new standalone gate. It records whether the same Noether sea state packet can recover cluster gas temperature, SZ pressure, lensing potential, dynamical potential, and Bullet-like lensing/galaxy/gas peak separation without changing the acceleration law between observables.
 
 Merger-facing rows may be attached to the same cluster or dark-sector observable family when the packet claims regime-dependent behavior:
 
@@ -332,7 +332,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-df474580a5d4640c)
 
-The ratio $v_{\mathrm{inf}}/c_s$ distinguishes low-dissipation pass-through encounters from high-dissipation encounters in comparison templates that provide $c_s$. The coordinate $\mathcal{I}_{\mathrm{int}}$ is a declared shell or interference-morphology statistic for high-relative-speed mergers, and $N_{\mathrm{vort}}(R)$ is included only when the comparison template predicts vortex-like substructure measurable through lensing over projected radius $R$. Cold-atom or other laboratory analogue simulations can supply provenance for these dimensionless template variables, but visual analogy is not a substitute for astronomical residual rows under the shared-state packet.
+The ratio $v_{\mathrm{inf}}/c_s$, with positive $c_s$, labels the declared comparison regime; it alone does not determine dissipation or merger outcome. The coordinate $\mathcal{I}_{\mathrm{int}}$ is a declared shell or interference-morphology statistic for high-relative-speed mergers, and $N_{\mathrm{vort}}(R)$ is included only when the comparison template predicts vortex-like substructure measurable through lensing over projected radius $R$. Cold-atom or other laboratory analogue simulations can supply provenance for these dimensionless template variables, but visual analogy is not a substitute for astronomical residual rows under the shared-state packet.
 
 ## Packet Schema
 
@@ -370,7 +370,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3f446f1eb1b133d1)
 
-The projection keys should include the ordinary shared cosmology coordinates plus branch-facing coordinates such as `Delta_N_eff`, `lambda_fs`, and `Omega_GW`. The packet passes this subgate only when the ordinary residual $\mathcal{R}_{\mathrm{PREBBN}}$ is small and the projection penalty shows that the same $\theta_{\mathrm{sea}}$ is being consumed by BBN, CMB, growth, and gravitational-wave comparisons.
+The norm and upper-limit ratios in this vector are nonnegative diagnostics, not signed Gaussian residuals. Their squared sum has no default chi-square interpretation; duplicated BBN/CMB/growth data and gravitational-wave upper limits require a joint or conditional likelihood and matched frequency support. The projection keys should include the ordinary shared cosmology coordinates plus branch-facing coordinates such as `Delta_N_eff`, `lambda_fs`, and `Omega_GW`. The packet passes this subgate only when the ordinary residual $\mathcal{R}_{\mathrm{PREBBN}}$ is small and the mapped projection coordinates are compatible and independent provenance establishes that the same $\theta_{\mathrm{sea}}$ is being consumed by BBN, CMB, growth, and gravitational-wave comparisons.
 
 ## Frame-Split Measurement Recipe
 
@@ -392,7 +392,7 @@ The context $\nu_i$ must distinguish observational provenance from physical resi
 
 The preprocessing rules are:
 
-- CMB: $\mathbf{y}_{\mathrm{CMB}}=\mathbf{D}_{\mathrm{CMB}}$ and $\mathbf{m}_{\mathrm{CMB}}$ is the same dipole vector in the declared coordinate convention.
+- CMB: $\mathbf{y}_{\mathrm{CMB}}=\mathbf{D}_{\mathrm{CMB}}$. Setting $\mathbf m_{\mathrm{CMB}}$ to that same measured vector defines a conditioning reference with identically zero residual, not an independent validation row. An independent prediction may instead be tested with its joint uncertainty.
 - Matter dipoles: for catalogue $X$, $\mathbf{y}_{\mathrm{MD},X}=\mathbf{D}_X$ and
   $$
   \mathbf{m}_{\mathrm{MD},X}
@@ -404,7 +404,7 @@ The preprocessing rules are:
 
   [View →](../../../../../equation-mapping.html#corpus-equation-5f4ee677a09b9410)
 
-  where $K_X$ is the catalogue kinematic amplification factor and $\mathbf{F}_X$ is the allowed non-kinematic directional residual from the shared frame state and survey context.
+  where $K_X$ includes the declared amplitude normalization and units as well as the catalogue kinematic amplification factor and $\mathbf{F}_X$ is the allowed non-kinematic directional residual from the shared frame state and survey context.
 - Supernovae: $\mathbf{y}_{\mathrm{SN}}(z_b)$ is the fitted distance-modulus dipole in redshift bin $z_b$, after standardization and host-environment bookkeeping; $\mathbf{m}_{\mathrm{SN}}(z_b)$ is the corresponding shared-frame prediction.
 - BAO: $\mathbf{y}_{\mathrm{BAO}}(z_b)$ is the anisotropic BAO-scale dipole or lowest retained directional harmonic in bin $z_b$; $\mathbf{m}_{\mathrm{BAO}}(z_b)$ is the shared-frame prediction in the same basis.
 - Local $H_0$: $\mathbf{y}_{H_0}(z_b)$ is the directional local-ladder or low-redshift inferred-$H$ scatter vector; $\mathbf{m}_{H_0}(z_b)$ is the shared-frame prediction after the same peculiar-velocity and environment cuts.
@@ -422,7 +422,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b281f805db01a924)
 
-The frame-projection penalty is
+The displayed sum assumes block-diagonal residual covariance. A common measured CMB reference induces cross-row covariance, so empirical frame tests need joint covariance or a properly conditioned likelihood. An angle requires two nonzero vectors in the same coordinate basis and units; a null angle from a zero vector is missing direction information, not a direction pass. The frame-projection penalty is
 
 $$
 \mathcal{P}_{\mathrm{frame}}
@@ -508,7 +508,9 @@ and emits a JSON result with this shape:
 | `failure_code` | `observable-coverage-open`, `residual-total-open`, `projection-penalty-open`, `projection-overlap-open`, `shared-residual-open`, or null |
 | `frame_split` | optional directional frame-consistency result with vector rows, projection penalties, gates, and `cosmology.frame_split` witness status |
 
-The mock packet is deliberately small enough to inspect by hand. A real packet should replace the dimensionless residual entries with survey-derived residual vectors and covariance matrices, but it should keep the same gate shape unless this protocol is explicitly revised.
+The runtime never reads `theta_sea` or generates projections from it; all residuals, expected frame vectors and projection values are supplied independently. It checks diagonal covariance positivity but does not check full-matrix symmetry or positive definiteness. A full matrix overrides the identity default only when no diagonal covariance is supplied. Negative finite projection weights are accepted, empty residual vectors are accepted, and explicitly empty required-family and observable lists can pass vacuously. Missing thresholds default to infinity; schema, physical provenance, joint covariance and fit degrees of freedom are not evaluated. Frame coverage checks presence rather than unique family occurrence, and zero vectors skip the angle test. The process exits zero even for rejected packets, so consumers must inspect `failure_code`.
+
+The mock packet is deliberately small enough to inspect by hand. A real packet should replace the dimensionless residual entries with survey-derived residual vectors and covariance matrices, and must extend the runtime where joint covariance, authenticated state projections and statistical calibration require it.
 
 ## Acceptance Boundary
 
@@ -524,4 +526,4 @@ A real shared-state packet becomes promotable only if:
 6. any included `frame_split` packet passes coverage, residual, projection, angle, and shared-score gates;
 7. the same $\theta_{\mathrm{sea}}$ also remains compatible with the cosmology sector predicate in [Failure Criteria](../failure-criteria.md#sector-acceptance-sets).
 
-Failure is informative. If the ordinary residual passes but the projection penalty fails, the candidate has fit the data products while splitting the Noether sea state record. If the projection penalty passes but an observable residual fails, the shared state is coherent but not yet accurate. If coverage fails, the packet is not a cosmology closure artifact.
+Failure is informative. If the ordinary residual passes but the projection penalty fails, the supplied common coordinates disagree; provenance and coordinate-map review determine whether that represents a state split. If the projection penalty passes but an observable residual fails, the reported coordinates agree but the declared prediction misses that residual tolerance; agreement alone does not establish physical coherence. If coverage fails, the packet is not a cosmology closure artifact.

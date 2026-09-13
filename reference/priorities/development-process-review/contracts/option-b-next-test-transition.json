@@ -1,0 +1,13 @@
+{
+  "schema": "reviewed-current-source-transition/v1",
+  "predecessorSha256": "1427fbb4c44f30c0c75c5630e92eca9093f016323dcbe5b917d7e433e83870c2",
+  "reviewReference": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#node-test-identity-graph-integration",
+  "profiles": [
+    {
+      "name": "next-test-identities",
+      "manifestPath": "reference/priorities/development-process-review/contracts/option-b-next-test-sources.jsonld",
+      "sha256": "2fcdd5e2e03f3fd12a51b40997ad71ecb4450be69fbbf8afc08cce72ad8ac05d",
+      "changes": []
+    }
+  ]
+}

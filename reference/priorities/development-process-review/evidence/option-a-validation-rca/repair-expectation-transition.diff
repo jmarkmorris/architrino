@@ -1,0 +1,83 @@
+commit baa3e732343db99d0b16dbb920fd9839ad09c942
+Author:     J Mark Morris <architrino@gmail.com>
+AuthorDate: Sun Sep 6 14:57:01 2026 -0400
+Commit:     J Mark Morris <architrino@gmail.com>
+CommitDate: Sun Sep 6 14:57:01 2026 -0400
+
+    Refresh Python environment policy and EOM pins
+
+diff --git a/scripts/eom/prepare-f6c-parent-emission-refinement.py b/scripts/eom/prepare-f6c-parent-emission-refinement.py
+index 7ac6550b5..7780b9ce3 100644
+--- a/scripts/eom/prepare-f6c-parent-emission-refinement.py
++++ b/scripts/eom/prepare-f6c-parent-emission-refinement.py
+@@ -62,7 +62,7 @@ NAMED = {
+  'comparisonReferenceControls': ('tests/test_f6c_parent_emission_refinement_conformance.py','18c21d6e84d0d6ae7e3b4ea35861a75b38d362d8aad1e0cc14715cea167a5a04'),
+ }
+ DEPENDENCIES = {
+- 'transport': ('scripts/eom/verify-f6c-refined-acceleration.py','3f49831a2e63d2526125c1585c1250330079fa423986ec1b36901bb3cecde6ae'),
++ 'transport': ('scripts/eom/verify-f6c-refined-acceleration.py','b5ac487c1004976c346bce9dfe451ae82def1087c79102c5e4894ea69eac11e2'),
+  'transportControls': ('tests/test_f6c_refined_acceleration.py','4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a'),
+  'scientificDecoder': ('scripts/eom/oracle/f6c_refined_acceleration_conformance.py','63db48f604d0b1abdf61f0efcb3894feac9d30a25af26a4d96f01bda6522e2a2'),
+  'scientificDecoderControls': ('tests/test_f6c_refined_acceleration_conformance.py','3fb6eabd03a56b982f2601f11b535c60208f03df519e41ea29d4ba018a0e531e'),
+@@ -92,7 +92,7 @@ ORIGINAL = {
+  'export': ('.local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json','f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1'),
+  'reconstruction': ('.local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json','7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43'),
+  'guards': ('.local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json','86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880'),
+- 'fullEntry': ('scripts/eom/run-f6c-cached-root-cover-full.mjs','1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b'),
++ 'fullEntry': ('scripts/eom/run-f6c-cached-root-cover-full.mjs','373930ca36ca50067b0df37a48ed96cd34527d912af2f6696d6c4d4992a99bb0'),
+  **FULL,
+ }
+ PLAN_KEYS = ('schema','scope','parentIndex',*NAMED,'dependencies','originalBindings','acceptanceOwner',
+diff --git a/scripts/eom/prepare-f6c-refined-acceleration.py b/scripts/eom/prepare-f6c-refined-acceleration.py
+index 4ac446474..52dd217bd 100644
+--- a/scripts/eom/prepare-f6c-refined-acceleration.py
++++ b/scripts/eom/prepare-f6c-refined-acceleration.py
+@@ -83,7 +83,7 @@ CORE='scripts/eom/oracle/f6c_refined_acceleration_conformance.py'
+ CORE_SHA='63db48f604d0b1abdf61f0efcb3894feac9d30a25af26a4d96f01bda6522e2a2'
+ NAMED={
+  'consumer':(SELF,None),'consumerControls':(CONTROLS,None),
+- 'verifier':('scripts/eom/verify-f6c-refined-acceleration.py','3f49831a2e63d2526125c1585c1250330079fa423986ec1b36901bb3cecde6ae'),'verifierControls':('tests/test_f6c_refined_acceleration.py','4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a'),
++ 'verifier':('scripts/eom/verify-f6c-refined-acceleration.py','b5ac487c1004976c346bce9dfe451ae82def1087c79102c5e4894ea69eac11e2'),'verifierControls':('tests/test_f6c_refined_acceleration.py','4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a'),
+  'declaration':(DECLARATION,DECLARATION_SHA),
+  'comparisonCore':(CORE,CORE_SHA),
+  'comparisonCoreControls':('tests/test_f6c_refined_acceleration_conformance.py','3fb6eabd03a56b982f2601f11b535c60208f03df519e41ea29d4ba018a0e531e'),
+@@ -120,7 +120,7 @@ OPERATIONS=('scripts/eom/run-f6c-refined-acceleration-pilot.mjs',
+  'tests/f6c-refined-acceleration-pilot.test.js','tests/f6c-refined-acceleration-pilot-process.test.js',
+  'scripts/eom/launch-prescribed-response-pilot.mjs','scripts/eom/launch-subfield-circular-root-pilot.mjs',
+  '/bin/ps','/usr/bin/memory_pressure')
+-OP_PINS={'scripts/eom/launch-prescribed-response-pilot.mjs':'a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9',
++OP_PINS={'scripts/eom/launch-prescribed-response-pilot.mjs':'9eb1afb84a175b143020610c153f9fef6dabb50efce9f956991feca3fbc0d5c2',
+  'scripts/eom/launch-subfield-circular-root-pilot.mjs':'cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48',
+  '/usr/bin/memory_pressure':'a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56'}
+ PLAN_KEYS=('schema','scope',*NAMED,'runtimeBindings','operationalBindings','limits','priorRefinementClosure')
+diff --git a/scripts/eom/run-f6c-refined-acceleration-pilot.mjs b/scripts/eom/run-f6c-refined-acceleration-pilot.mjs
+index 25318d87c..fb9b690d7 100644
+--- a/scripts/eom/run-f6c-refined-acceleration-pilot.mjs
++++ b/scripts/eom/run-f6c-refined-acceleration-pilot.mjs
+@@ -24,7 +24,7 @@ export const CHECKER='scripts/eom/verify-f6c-refined-acceleration.py';
+ export const CHECKER_TESTS='tests/test_f6c_refined_acceleration.py';
+ // Separately authored checker and controls, independently accepted before this
+ // operational generation. No subject or mathematical reference is altered.
+-export const CHECKER_SHA='3f49831a2e63d2526125c1585c1250330079fa423986ec1b36901bb3cecde6ae';
++export const CHECKER_SHA='b5ac487c1004976c346bce9dfe451ae82def1087c79102c5e4894ea69eac11e2';
+ export const CHECKER_TESTS_SHA='4d8bc9e7eaf1166a7c8e42133d3a3e8812c3f228c1fb13c9215994338972f72a';
+ export const LANE='.local-data/braid-analysis/f6c-refined-acceleration-20260827';
+ export const SHARED_LOCK_LANE='.local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827';
+@@ -85,7 +85,7 @@ export const PRIOR_OPERATIONS=Object.freeze([
+  ['resourceLog',refinedBase+'-outer/resource-observations.ndjson','e8af4c71f7cd0278b8df5c831738bd5d3f0f4cfd872ebf887a6cbd3396dc4313',471433]
+ ].map(Object.freeze));
+ export const PINS=Object.freeze({...Object.fromEntries([...FIXED,...REFINED,...PRIOR_OPERATIONS].map(([,p,h])=>[p,h])),
+- [CONSUMER]:'fdd07944609ebf8a2651999626edb607a4c8b136d906a59e638aa8c43351f6c0',
++ [CONSUMER]:'738c716f95c419d49c14ffd533ba3bde4b6bfe666521f363db15c6212a52842c',
+  [CONSUMER_TESTS]:'33e90600fccf602a63bcdda14dffa143e2b869e6557365958c5b9951a268c922',
+  [DECLARATION]:'c491ada9b781d7aedf20a9f49b0a2dca92f4f5985660c1de56b83686976aab9d',
+  [NAMED.comparisonCore]:'63db48f604d0b1abdf61f0efcb3894feac9d30a25af26a4d96f01bda6522e2a2',
+@@ -93,7 +93,7 @@ export const PINS=Object.freeze({...Object.fromEntries([...FIXED,...REFINED,...P
+  [NAMED.rangeComparison]:'cc26f5a45d0e09a472e3066d0d62ae8192492a7c3e0ab18a3658781a0274b299',
+  [NAMED.rangeComparisonControls]:'be741dccccd90c349849b19dc15df1acd4ea5752ec6f8a9e98e7ae14013c52c6',
+  [OUTER]:'cd5b892440cba141f6aeac72fbef07f7febdc8fe28b18e813cf0d73be0633a48',
+- [HELPERS]:'a327d1ed9d3d6a4017f41ecc4d67eafc5d03abfe4ac60a0844c2624ced8be1f9',
++ [HELPERS]:'9eb1afb84a175b143020610c153f9fef6dabb50efce9f956991feca3fbc0d5c2',
+  [CHECKER]:CHECKER_SHA,[CHECKER_TESTS]:CHECKER_TESTS_SHA,
+  '/usr/bin/memory_pressure':'a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56'});
+ export const PRIOR_CLOSURE=Object.freeze({authority:'externally-reviewed-caller-observation',ownerSha256:PINS[DECLARATION],admissionSha256:REFINED.find(([k])=>k==='admission')[2],matchingFreshCompletionObserved:true,exitCode:0,elapsedSeconds:'238.116677375',processesClosed:true,independentAuditAccepted:true});

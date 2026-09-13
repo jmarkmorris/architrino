@@ -1,3 +1,5 @@
+import { f6cTestIdentities } from './support/option-b-f6c-test-identities.mjs';
+const F6C_IDENTITIES = f6cTestIdentities('tests/f6c-cached-root-cover-full.test.js', 25);
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
@@ -316,13 +318,13 @@ test("full machine plan refuses pilot scope and prior resource plan without rela
     p=>p.schema="braid-program/f6c-cached-root-cover-pilot-launch.v1",
     p=>p.scope="pilot-cell-0",p=>p.comparisonContract.scope="pilot-cell-0",
     p=>p.resourcePlan.path="reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md",
-    p=>p.resourcePlan.sha256="1a6327933b0060905aec97022e87c243b54f353af8c7aec83712967b285b010d",
+    p=>p.resourcePlan.sha256=F6C_IDENTITIES[0],
   ]){const p=plan();patch(p);assert.throws(()=>R.validatePlan(p,root,"1".repeat(64),"1".repeat(64)));}
   assert.equal(R.LIMIT_MS,1800000);assert.equal(R.LOG_LIMIT,16*1024**2);assert.equal(R.FILE_LIMIT,64*1024**2);
   assert.equal(R.SOURCE_BINDINGS["reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md"],
-    "1a6327933b0060905aec97022e87c243b54f353af8c7aec83712967b285b010d");
-  assert.equal(R.SOURCE_BINDINGS[R.CONSUMER],"d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841");
-  assert.equal(R.SOURCE_BINDINGS[R.COMPARISON],"3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7");
+    F6C_IDENTITIES[1]);
+  assert.equal(R.SOURCE_BINDINGS[R.CONSUMER],F6C_IDENTITIES[2]);
+  assert.equal(R.SOURCE_BINDINGS[R.COMPARISON],F6C_IDENTITIES[3]);
 });
 
 const FULL_COMMON_REPLACEMENTS=[
@@ -421,8 +423,8 @@ const FULL_ENTRY_REPLACEMENTS=[
     "\"completed full admission required\""
   ],
   [
-    "[RESOURCE_PLAN]: \"1a6327933b0060905aec97022e87c243b54f353af8c7aec83712967b285b010d\"",
-    "[RESOURCE_PLAN]: \"8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378\""
+    F6C_IDENTITIES[4],
+    F6C_IDENTITIES[5]
   ]
 ];
 const FULL_LAUNCHER_REPLACEMENTS=[
@@ -552,63 +554,63 @@ const FULL_TEST_REPLACEMENTS=[
 const FULL_EXTRA_PINS=[
   [
     "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md",
-    "1a6327933b0060905aec97022e87c243b54f353af8c7aec83712967b285b010d"
+    F6C_IDENTITIES[6]
   ],
   [
     ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/rows.ndjson",
-    "786785b2597bcdf024e350ba89c129fb32115afed693169a6db3137c6bdca383"
+    F6C_IDENTITIES[7]
   ],
   [
     ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/pieces.ndjson",
-    "2c064a5956e7684868cbda7aa7e312ac609e07760bf67f1cf121c934d6d4c411"
+    F6C_IDENTITIES[8]
   ],
   [
     ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/cover-manifest.json",
-    "19fae257f7f36d858fa60d9031125b3f29dbb8780e944802699aab5292275f4c"
+    F6C_IDENTITIES[9]
   ],
   [
     ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/comparison.json",
-    "6bf2b50ef4f0b46f43ae77a9881f82a2f9d504d5df757bc0ad215deb8eac36c6"
+    F6C_IDENTITIES[10]
   ],
   [
     ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/pilot-admission.json",
-    "1a814c90279eed456546b2c4959a8504657213ffc2d25c063060831814e930ee"
+    F6C_IDENTITIES[11]
   ],
   [
     ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/launcher-stderr.log",
-    "627a923d57d0c5b7c7472d526040a8c097616ce8dab314ac8540188c24aedbee"
+    F6C_IDENTITIES[12]
   ],
   [
     ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/resource-observations.ndjson",
-    "b51612a9a1689f54d54f89e416f390b2a36fec45e5859772f8755e6634ccf3dd"
+    F6C_IDENTITIES[13]
   ],
   [
     "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json",
-    "5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86"
+    F6C_IDENTITIES[14]
   ]
 ];
-const FULL_EXTRA_PIN_LINES="  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md\": \"1a6327933b0060905aec97022e87c243b54f353af8c7aec83712967b285b010d\",\n  \".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/rows.ndjson\": \"786785b2597bcdf024e350ba89c129fb32115afed693169a6db3137c6bdca383\",\n  \".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/pieces.ndjson\": \"2c064a5956e7684868cbda7aa7e312ac609e07760bf67f1cf121c934d6d4c411\",\n  \".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/subject/cover-manifest.json\": \"19fae257f7f36d858fa60d9031125b3f29dbb8780e944802699aab5292275f4c\",\n  \".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/comparison.json\": \"6bf2b50ef4f0b46f43ae77a9881f82a2f9d504d5df757bc0ad215deb8eac36c6\",\n  \".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/pilot-admission.json\": \"1a814c90279eed456546b2c4959a8504657213ffc2d25c063060831814e930ee\",\n  \".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/launcher-stderr.log\": \"627a923d57d0c5b7c7472d526040a8c097616ce8dab314ac8540188c24aedbee\",\n  \".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/pilot-cell-0-cached-v1/resource-observations.ndjson\": \"b51612a9a1689f54d54f89e416f390b2a36fec45e5859772f8755e6634ccf3dd\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-pilot-launch.v1.json\": \"5f5afcced38878828d65e0c5482f1764092f6449c2cba36ac6b99a1bbf9f9f86\",\n";
+const FULL_EXTRA_PIN_LINES=F6C_IDENTITIES[15];
 const retarget=(s,pairs)=>{for(const[a,b]of pairs)s=s.replaceAll(a,b);return s;};
 const frozen=(p,h)=>{const raw=readFileSync(p);assert.equal(digest(raw),h,p);return raw.toString("utf8");};
 test("full composition differs from frozen pilot only by declared addresses scope census and resource bindings",()=>{
-  const entry=frozen("reference/priorities/development-process-review/evidence/root-cover-migration/run-f6c-cached-root-cover-pilot.mjs.e03e8ae0f17c.source","e03e8ae0f17c04aa2e15361078f5f258d0c4bee887b4aaf7257f52c09a745cef");
+  const entry=frozen("reference/priorities/development-process-review/evidence/root-cover-migration/run-f6c-cached-root-cover-pilot.mjs.e03e8ae0f17c.source",F6C_IDENTITIES[16]);
   let expected=retarget(retarget(entry,FULL_COMMON_REPLACEMENTS),FULL_ENTRY_REPLACEMENTS);
   expected=expected.replace('});\nexport const check',FULL_EXTRA_PIN_LINES+'});\nexport const check');
-  assert.equal(frozen("reference/priorities/development-process-review/evidence/full-root-cover-migration/run-f6c-cached-root-cover-full.mjs.20c8d44ee55f.source","20c8d44ee55fe77de2e6fb5f394739fe71c806562542c22632789d59dd0734b7"),expected);
-  const launcher=frozen("reference/priorities/development-process-review/evidence/root-cover-migration/launch-f6c-cached-root-cover-pilot.mjs.cd7722428105.source","cd772242810517aa65d7a8d720e322890002435df28fea002be0253ed2cf8d2f");
-  assert.equal(frozen("reference/priorities/development-process-review/evidence/full-root-cover-migration/launch-f6c-cached-root-cover-full.mjs.d2e1966c83fc.source","d2e1966c83fcbf0667678c4c2d948b28e5f2f52c55a491e9e0c3fd81ffd27123"),retarget(retarget(launcher,FULL_COMMON_REPLACEMENTS),FULL_LAUNCHER_REPLACEMENTS));
+  assert.equal(frozen("reference/priorities/development-process-review/evidence/full-root-cover-migration/run-f6c-cached-root-cover-full.mjs.20c8d44ee55f.source",F6C_IDENTITIES[17]),expected);
+  const launcher=frozen("reference/priorities/development-process-review/evidence/root-cover-migration/launch-f6c-cached-root-cover-pilot.mjs.cd7722428105.source",F6C_IDENTITIES[18]);
+  assert.equal(frozen("reference/priorities/development-process-review/evidence/full-root-cover-migration/launch-f6c-cached-root-cover-full.mjs.d2e1966c83fc.source",F6C_IDENTITIES[19]),retarget(retarget(launcher,FULL_COMMON_REPLACEMENTS),FULL_LAUNCHER_REPLACEMENTS));
 });
 test("all32 original operational obligations survive full scope retargeting unchanged",()=>{
-  const prior=frozen("reference/priorities/development-process-review/evidence/root-cover-migration/f6c-cached-root-cover-pilot-launcher.test.js.7075322e83ad.source","7075322e83ad4dce350ace413be572f8a32b0512c3cea3696a16c89cffa94400").split("\n// Cached successor binding controls;")[0];
+  const prior=frozen("reference/priorities/development-process-review/evidence/root-cover-migration/f6c-cached-root-cover-pilot-launcher.test.js.7075322e83ad.source",F6C_IDENTITIES[20]).split("\n// Cached successor binding controls;")[0];
   assert.equal(prior.match(/^test\(/gmu)?.length,26);
-  const actual=frozen("reference/priorities/development-process-review/evidence/full-root-cover-migration/f6c-cached-root-cover-full.test.js.09ce766c3965.source","09ce766c39654afe12381060eefda95b018df0c130e12361a583186b6d8199b3").split("\n// Full-scope binding/census controls;")[0];
+  const actual=frozen("reference/priorities/development-process-review/evidence/full-root-cover-migration/f6c-cached-root-cover-full.test.js.09ce766c3965.source",F6C_IDENTITIES[21]).split("\n// Full-scope binding/census controls;")[0];
   assert.equal(actual,retarget(prior,FULL_TEST_REPLACEMENTS));
   const baseline=JSON.parse(readFileSync("reference/priorities/development-process-review/contracts/option-b-cached-root-cover-baseline.json"));
   const process=execFileSync("git",["show",`${baseline.commit}:tests/f6c-cached-root-cover-pilot-process.test.js`],{encoding:"utf8"});
-  assert.equal(digest(process),"433452397ac00c2deaa6a9300b84510f553943c491fd49c965a7573a691b0cf7");
+  assert.equal(digest(process),F6C_IDENTITIES[22]);
   assert.equal(process.match(/^test\(/gmu)?.length,6);
   const fullProcess=execFileSync("git",["show",`${baseline.commit}:tests/f6c-cached-root-cover-full-process.test.js`],{encoding:"utf8"});
-  assert.equal(digest(fullProcess),"fb00c3446cdc90c804202017a3f789bca8d3841d8bcf93eaeae230651007ac8c");
+  assert.equal(digest(fullProcess),F6C_IDENTITIES[23]);
   assert.equal(fullProcess,retarget(process,FULL_COMMON_REPLACEMENTS));
 });
 test("measured full resource rule and every frozen pilot input are mandatory source bindings",()=>{
@@ -616,7 +618,7 @@ test("measured full resource rule and every frozen pilot input are mandatory sou
   currentPlan.operationalBindings=currentPlan.operationalBindings.map(b=>[R.ENTRY,R.LAUNCHER].includes(b.path)?binding(b.path,digest(readFileSync(b.path))):b);
   const bindings=new Map(R.planBindings(currentPlan,root).map(b=>[b.path,b.sha256]));
   for(const[p,h]of FULL_EXTRA_PINS){assert.equal(R.SOURCE_BINDINGS[p],h);assert.equal(bindings.get(path.resolve(root,p)),h);}
-  assert.equal(R.SOURCE_BINDINGS[R.RESOURCE_PLAN],"8263f700a35af04b07690c81c17e0d1078eadb1fb32550cc60226b6efa0f6378");
+  assert.equal(R.SOURCE_BINDINGS[R.RESOURCE_PLAN],F6C_IDENTITIES[24]);
   const resource=frozen(R.RESOURCE_PLAN,R.SOURCE_BINDINGS[R.RESOURCE_PLAN]);
   assert.ok(resource.includes("160\\times 8.534247625=1365.47962"));
   // Exact integer arithmetic verifies the frozen planning numbers, not actual timing.

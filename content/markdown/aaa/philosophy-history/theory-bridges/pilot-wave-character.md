@@ -12,7 +12,7 @@ So this bridge should be read as a recovery test. If causal wakes can play the g
 
 ### Core Postulates
 
-The de Broglie–Bohm (dBB) formulation of quantum mechanics (de Broglie 1927, Bohm 1952) retains definite particle trajectories while reproducing the full statistical content of standard quantum mechanics. It rests on two pillars:
+The de Broglie–Bohm (dBB) formulation of quantum mechanics (de Broglie 1927, Bohm 1952) retains definite particle trajectories while reproducing the measurement statistics of non-relativistic quantum mechanics in quantum equilibrium, with the apparatus included in the dynamics. It rests on two pillars:
 
 **1. The Guidance Equation.** A system of $N$ particles with positions $\mathbf{Q} = (\mathbf{q}_1, \dots, \mathbf{q}_N) \in \mathbb{R}^{3N}$ is guided by the wavefunction $\psi(\mathbf{Q}, t)$. The velocity of the $k$-th particle is:
 
@@ -22,7 +22,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-57793e28e87f1fb1)
 
-where $\nabla_k$ is the gradient with respect to $\mathbf{q}_k$. The particle follows a deterministic trajectory through configuration space, steered at every instant by the phase gradient of $\psi$.
+This standard comparison formula applies to a scalar, spinless wavefunction without a magnetic vector potential, away from nodes where $\psi=0$; $m_k$ is an effective particle mass, not an architrino property. With electromagnetic minimal coupling the phase velocity becomes $(\nabla_k S-e_k\mathbf A_k)/m_k$, and spinor guidance requires the appropriate probability current divided by $\psi^\dagger\psi$. Here $\nabla_k$ is the gradient with respect to $\mathbf{q}_k$. The particle follows a deterministic trajectory through configuration space, steered at every instant by the phase gradient of $\psi$.
 
 **2. The Wave Equation.** In its ordinary non-relativistic, fixed-particle-number form, the wavefunction $\psi$ evolves according to the standard Schrödinger equation:
 
@@ -52,11 +52,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7db6d5edda894e17)
 
-$Q$ depends on the global shape of $R$ (the amplitude of $\psi$), not on its local value. This is the source of nonlocality in dBB: the quantum potential couples all particles instantaneously through configuration space, enabling entanglement correlations and interference.
+$Q$ depends on the curvature-to-amplitude ratios of $R$ at the configuration, and is unchanged by a nonzero constant rescaling of $R$. For entangled states its dependence generally fails to separate into independent single-particle terms; product states supply the contrasting separable case. Interference and nonlocal configuration dependence are encoded already in the guiding wave and current; introducing $Q$ is a rewriting of that dynamics.
 
 ### Statistical Content and the Born Rule
 
-If the initial particle distribution is $|\psi_{\mathrm{std}}(\mathbf{Q}, t_{\mathrm{std},0})|^2$ (the **quantum equilibrium hypothesis**), the guidance equation preserves this distribution for all future times ($|\psi_{\mathrm{std}}|^2$-equivariance). All statistical predictions of standard QM—including the Born rule—follow as theorems, not axioms, once equilibrium is assumed.
+If the initial particle distribution is $|\psi_{\mathrm{std}}(\mathbf{Q}, t_{\mathrm{std},0})|^2$ (the **quantum equilibrium hypothesis**), the guidance equation preserves this distribution for all future times ($|\psi_{\mathrm{std}}|^2$-equivariance). For the declared non-relativistic model, equilibrium together with apparatus dynamics yields the usual measurement statistics. Equivariance transports a generally time-dependent density; it neither proves an arbitrary initial ensemble is in equilibrium nor requires a stationary density.
 
 The lesson for $\mathbb{A}\mathbb{A}\mathbb{A}$ is structural rather than ontological. The useful part of the Bohmian comparison is not the separate pilot wave; it is the contract among a deterministic flow, an invariant or transported measure, and the observer-level record statistics. Let $\Phi_{T-T_0}$ denote the retained deterministic causal-wake flow on a resolved state space $\Gamma_{\eta,h}$ with mollifier scale $\eta$ and retained path-history depth $h$. If $\mu_0$ is the preparation measure, then
 $$
@@ -67,7 +67,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-af9c062e11e6ca84)
 
-is the only admissible source of outcome weights in the corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ channel. For an extracted effective wavefunction $\psi_{\mathrm{eff}}$ and a declared completed-record partition $\{B_k^\theta(T)\}$ of $\Gamma_{\eta,h}$, after any record filter $\mathbf{1}_{\mathrm{rec}}(k;\theta)$ has been applied, the Born comparison is therefore the residual
+gives outcome weights once the preparation measure and the existence of the admitted flow have been justified in the corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ channel. For an extracted effective wavefunction $\psi_{\mathrm{eff}}$ and a declared completed-record partition $\{B_k^\theta(T)\}$ of $\Gamma_{\eta,h}$, with matching effective record regions $\Omega_k^\theta(T)$, the Born comparison is therefore the residual
 $$
 \Delta_{\mathrm{Born}}^\theta(T)
 =
@@ -84,7 +84,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-10e76bd310d8b3bd)
 
-The closure target is $\Delta_{\mathrm{Born}}^\theta(T)\le1$ over the declared record window, with the same $\mu_T$ also generating the apparatus frequencies and thermodynamic summaries. This is the causal-wake analogue of equivariance: Born weights must be preserved or approached by the native deterministic state and basin map, not inserted as an observer-side probability rule.
+The measures on both sides must be normalized on the same event space. Include incomplete or rejected records as an outcome, or condition both sides on the same selection event of nonzero probability; deleting rejected records alone changes normalization. Each tolerance is strictly positive and declared independently of the observed mismatch. The closure target is $\Delta_{\mathrm{Born}}^\theta(T)\le1$ over the declared record window, with the same $\mu_T$ also generating the apparatus frequencies and thermodynamic summaries. This is the causal-wake analogue of equivariance: Born weights must be preserved or approached by the native deterministic state and basin map, not inserted as an observer-side probability rule.
 
 The stronger equivariance target compares currents, not only endpoint weights. If $\mathcal{P}_\theta:\Gamma_{\eta,h}\to\Omega_\theta$ is the effective configuration projection and $\rho_\theta(q,T)$ is the pushed-forward density, the record current induced by the deterministic flow should satisfy
 $$
@@ -107,16 +107,16 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ef6e384f4ba22ad6)
 
-Here $\mathrm{BL}^*$ is the dual bounded-Lipschitz, or flat, norm used for finite signed measure residuals in [Wavefunction Ontology](../../quantum/wavefunction-ontology.md#density-current-closure-target). This is the piece of the Bohmian lesson that can be promoted without adopting particle positions plus a separate configuration-space wave as ontology: the native flow must carry a measure and current whose compression behaves like the quantum continuity law.
+Initial density agreement, compatible boundary flux, and a well-posed effective transport law are also required: equal currents and zero continuity residual alone leave a time-independent density offset unconstrained. A time-dependent projection must include its own motion in the induced current. Here $\mathrm{BL}^*$ is the dual bounded-Lipschitz, or flat, norm used for finite signed measure residuals in [Wavefunction Ontology](../../quantum/wavefunction-ontology.md#density-current-closure-target). This is the piece of the Bohmian lesson that can be promoted without adopting particle positions plus a separate configuration-space wave as ontology: the native flow must carry a measure and current whose compression behaves like the quantum continuity law.
 
 ### Ontological Inventory
 
-dBB theory has **two ontological categories**:
+A field-ontological reading of dBB distinguishes two kinds of object:
 
 1. **Particles**: point-like objects with definite positions $\mathbf{Q}(t)$ in 3D space.
 2. **The pilot wave $\psi$**: a real field on $3N$-dimensional configuration space that guides particles but is not itself composed of particles.
 
-The ontological status of $\psi$ is debated: is it a physical field (Valentini), a law of nature (Dürr, Goldstein, Zanghì), or an effective description of deeper structure? This two-category structure is the principal conceptual cost of the theory.
+The ontological status of $\psi$ is debated: is it a physical field (Valentini), a law of nature (Dürr, Goldstein, Zanghì), or an effective description of deeper structure? The two-category objection applies to the field reading; a nomological reading treats the universal wavefunction as part of the law rather than a second material substance.
 
 The comparison boundary is therefore precise. De Broglie--Bohm theory is useful because it keeps deterministic trajectories, a transported measure, and measurement back-action on the table. It is not a finished $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism because its guiding wave lives on configuration space and its quantum potential is not implemented by causal-root, apparatus, and Noether sea records. The native replacement must recover the helpful trajectory and measure structure while replacing the configuration-space ontology with physical assemblies, causal wakes, pair provenance, and apparatus records.
 
@@ -130,7 +130,7 @@ In plainer language, Bohmian mechanics proves that determinism and quantum stati
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework collapses the two ontological categories of dBB into one. There are only architrinos—point transmitter/receivers of polarized potential in a Euclidean void with absolute time. The "pilot wave" is not a separate entity; it is the **superposed causal wake** generated by the architrinos themselves and experienced by every architrino at every instant.
 
-Each architrino continuously emits expanding causal wake surfaces at wake speed $c_f$. At any absolute time $t$, the total potential wake contribution at the location of architrino $i$ is the linear superposition of all wake surfaces from all other architrinos (and from its own past emissions, in the self-hit regime) that intersect its position at time $t$:
+Each architrino continuously emits expanding causal wake surfaces at wake speed $c_f$. At any absolute time $T$, the total acceleration contribution at the location of architrino $i$ is the linear superposition of all wake surfaces from all other architrinos (and from its own past emissions, in the self-hit regime) that intersect its position at time $T$. In the following inherited notation $t=T$, $t_0$ is an emission time, and $\mathbf a_i=d^2\mathbf X_i/dT^2$:
 
 $$
 \mathbf{a}_i(t)
@@ -143,7 +143,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-0498e676da1d56d1)
 
-This is the Master Equation. The causal wake is not postulated alongside the particles; it is **generated by** the particles and **acts back on** them. The guidance is therefore **self-consistent**: architrinos create the wake that steers them, and their motion updates the wake that will steer them in the future.
+This is the Master Equation on admitted noncoincident causal roots, with convergence or controlled truncation of the sum required. The acceleration weight is $W^{\mathrm{acc}}=c_f/|D_t|$, where $D_t=c_f-\mathbf V_j(t_0)\cdot\hat{\mathbf r}_{ij}$; singular roots require the separately defined continuation policy. The causal wake is not postulated alongside the particles; it is **generated by** the particles and **acts back on** them. The guidance is therefore **self-consistent**: architrinos create the wake that steers them, and their motion updates the wake that will steer them in the future.
 
 ### The Experienced-Wake Perspective
 
@@ -151,11 +151,11 @@ From the perspective of any single architrino, the dynamics reduce to a causal r
 
 1. The architrino moves through a landscape of potential gradients from all other sources (the superposed wake).
 2. Each gradient arrives after a causal delay set by the wake speed $c_f$.
-3. These delayed gradients are the only forces that accelerate it.
+3. These causal-wake hits supply its acceleration contributions.
 4. Its accumulated motion (velocity, trajectory) is the integrated record of past interactions with the wake.
-5. Its own emissions contribute to the wake that will later guide other architrinos—and, if it has ever exceeded $c_f$ and curved, itself.
+5. Its own emissions contribute to the wake that will later guide other architrinos—and, when its path has an admissible noncoincident self-root, itself. Exceeding $c_f$ at some earlier time is necessary for a self-hit over that interval, but speed and curvature alone do not certify an intersection.
 
-Stability and structure emerge when this response loop becomes periodic: the architrino locks into a repeating pattern within the wake it co-creates. Assemblies (binaries, Noether braids, atoms) are precisely such self-consistent locked modes.
+Periodic response loops are candidate assembly modes. A return of the complete relevant history must be established before a perturbation analysis can decide stability; periodicity alone is not a stability theorem.
 
 This is the single-ontology guidance picture behind the pilot-wave comparison: the guiding structure is the causal wake, and the guided entities are the architrinos that generate it. There is no separate $\psi$ on configuration space.
 
@@ -163,31 +163,31 @@ This is the single-ontology guidance picture behind the pilot-wave comparison: t
 
 The structural correspondence between the dBB pilot wave and the $\mathbb{A}\mathbb{A}\mathbb{A}$ causal wake is systematic:
 
-**Phase gradient → velocity field.** In dBB, $\dot{\mathbf{q}}_k = \nabla_k S / m_k$: the particle velocity is set by the phase gradient of $\psi$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the acceleration of an architrino is set by the vector sum of line-of-action forces from intersecting wake surfaces, with magnitudes weighted by the transmitter-side acceleration weight $W^{\mathrm{acc}}$ of the active branches (the source Jacobians enter only as the transversality and root-density data that make each causal root legal). For a coarse-grained assembly moving slowly through a quasi-homogeneous Noether sea, the net wake gradient produces an effective velocity field for the assembly's center of mass that can be identified with $\nabla S / m$ in the appropriate continuum limit.
+**Phase gradient → velocity field.** In dBB, $\dot{\mathbf{q}}_k = \nabla_k S / m_k$: the particle velocity is set by the phase gradient of $\psi$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the acceleration of an architrino is set by the vector sum of line-of-action acceleration contributions from intersecting wake surfaces, with magnitudes weighted by the transmitter-side acceleration weight $W^{\mathrm{acc}}$ of the active branches (the transmitter Jacobian also sets $W^{\mathrm{acc}}=c_f/|D_t|$). For a coarse-grained assembly moving slowly through a quasi-homogeneous Noether sea, the recovery target is an effective assembly velocity field identifiable with $\nabla S/m$ in the scalar, zero-vector-potential limit. An acceleration law does not by itself fix that first-order guidance field or select its initial velocities.
 
-**Amplitude → density and basin structure.** In dBB, $R^2 = |\psi|^2$ gives the probability density (in equilibrium). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the local intensity of the superposed wake determines the density of stable attractor basins and the fractional phase-space volume leading to each basin. Regions of high wake amplitude correspond to regions where assemblies are more likely to be found, not because they are "spread out" but because the deterministic dynamics funnel trajectories toward those regions.
+**Amplitude → density and basin structure.** In dBB, $R^2 = |\psi|^2$ gives the probability density (in equilibrium). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the proposed correspondence requires a derived map from wake histories to an effective density and a justified preparation measure on outcome basins. Large wake amplitude alone establishes neither basin volume nor probability; coordinate volume on a history space is not a canonical measure.
 
-**Quantum potential → self-hit and medium feedback.** The dBB quantum potential $Q$ depends on the global shape of $R$ and produces nonlocal, context-dependent forces absent in classical mechanics. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the analogous role is played jointly by:
+**Quantum potential → self-hit and medium feedback.** The dBB quantum potential $Q$ depends on the global shape of $R$ and produces nonlocal, context-dependent forces absent in classical mechanics. In $\mathbb{A}\mathbb{A}\mathbb{A}$, the analogous role is proposed jointly for:
 
-- **Self-hit dynamics**: an architrino's interaction with its own past emissions, producing non-Markovian forces that depend on path history and trajectory curvature.
-- **Noether sea feedback**: the local Noether sea responds to and modulates the propagation of causal wakes, introducing effective potential gradients that depend on the global density and stress of the Noether sea.
+- **Self-hit dynamics**: an architrino's interaction with its own past emissions, producing non-Markovian acceleration contributions that depend on path history and trajectory curvature.
+- **Noether sea feedback**: the local Noether sea responds to causal wakes and changes the effective assembly response, introducing effective potential gradients that depend on the global density and stress of the Noether sea.
 
-Together, these are the candidate trajectory-shaping resources that could recover the qualitative role of $Q$: context dependence, path-history dependence, and forces irreducible to classical pairwise potentials.
+Together, these are the candidate trajectory-shaping resources that could recover the qualitative role of $Q$: context dependence, path-history dependence, and assembly responses not reducible to instantaneous pair potentials.
 
 ### Non-Markovian Memory: Beyond Standard Pilot-Wave Theory
 
-A structural feature of $\mathbb{A}\mathbb{A}\mathbb{A}$ guidance that has no counterpart in standard dBB is **non-Markovian memory** from the self-hit regime. In dBB, the guidance equation is Markovian given $\psi$: the velocity at time $t$ depends on $\psi(\mathbf{Q}, t)$ and the current position $\mathbf{Q}(t)$, with no explicit dependence on the particle's past trajectory.
+A structural feature of the position-and-velocity description in $\mathbb{A}\mathbb{A}\mathbb{A}$ is **non-Markovian memory** from admitted path histories. In dBB, the guidance equation is Markovian given $\psi$: the velocity at time $t$ depends on $\psi(\mathbf{Q}, t)$ and the current position $\mathbf{Q}(t)$, with no explicit dependence on the particle's past trajectory.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the acceleration at time $t$ depends on the **full past worldline** of each architrino, because:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the acceleration at time $t$ depends on the **causally relevant past worldline** of each architrino, because:
 
-1. The causal set $\mathcal{C}_{ij}(t)$ (the emission times whose wake surfaces currently intersect the receiver) depends on where source $j$ was at all past times, not merely on its current position.
-2. Self-hit contributions ($j = i$) depend on whether the architrino ever exceeded $c_f$ and curved, introducing persistent memory of velocity-regime transitions that occurred arbitrarily far in the past.
+1. The causal set $\mathcal{C}_{ij}(t)$ (the emission times whose wake surfaces currently intersect the receiver) requires the source history over the causally relevant emission intervals, not merely its current position. A finite retained history needs an error bound for omitted roots.
+2. Self-hit contributions ($j = i$) depend on the actual self-root geometry. A past speed transition does not guarantee a present root or arbitrarily persistent memory.
 
-This path-history dependence enriches the guidance dynamics beyond the Markovian structure of dBB. It provides a natural mechanism for:
+Including the required history in the state restores a first-order evolution description when the delay problem is well posed. Eliminating environment variables can also produce memory in effective Bohmian descriptions. The causal-wake history supplies candidate resources for:
 
 - **Hysteresis**: an assembly's response to a perturbation depends on which attractor it previously occupied.
 - **Discrete-mode target**: the self-hit root ledger supplies countable branch sectors that may participate in phase-locked configurations. Self-hit is an outward barrier on the circular chart, not a stability proof; deriving discrete stable modes and any resulting energy-level spacing requires the complete signed ledger and return-map certificate.
-- **Measurement back-action**: the apparatus wake permanently alters the target assembly's self-hit geometry, making the measurement interaction irreversible at the micro-dynamic level.
+- **Measurement back-action**: apparatus coupling changes the subsequent path history. Stable records and effective irreversibility require a persistence and accessibility argument; delay dependence alone does not prove microscopic irreversibility.
 
 ---
 
@@ -199,9 +199,9 @@ In dBB, interference arises because the pilot wave $\psi$ passes through all ava
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, the comparison is structurally suggestive, but the mechanism must be derived from causal-wake dynamics rather than borrowed from dBB:
 
-- A translating Noether braid assembly emits causal wake surfaces continuously. When the assembly approaches a double slit, its wake, propagating at $c_f$ through the Noether sea, passes through both openings.
-- Behind the barrier, the wake contributions from the two slits superpose linearly (the Master Equation is linear in sources). The resulting potential landscape has a modulated spatial structure: regions of constructive reinforcement alternate with regions of cancellation.
-- The assembly, guided by the total wake gradient at its location, is steered toward high-intensity regions. Over many identically prepared trials, the closure target is to recover the standard interference pattern.
+- The constituent architrinos of a translating Noether braid emit causal wake surfaces continuously. The candidate explanation requires their wakes and the material response of the barrier to remain sensitive to both apertures.
+- For fixed histories the receiver acceleration adds individual hits. The histories, causal roots, and weights depend on the evolving configuration, so this additive rule is not linear evolution or a proof of quantum superposition. The effective interference pattern must be extracted from the coupled barrier and assembly response.
+- The resulting assembly motion and preparation measure determine detection frequencies; no general rule drives assemblies toward high wake intensity. Over many identically prepared trials, the closure target is to recover the standard interference pattern.
 
 The candidate comparison is that the assembly passes through one slit while the causal wake remains sensitive to both apertures. This is the pilot-wave-style comparison, but the $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is to derive the effect without a separate ontological wave.
 
@@ -209,7 +209,7 @@ The candidate comparison is that the assembly passes through one slit while the 
 
 In dBB, a particle can traverse a classically forbidden barrier because the pilot wave penetrates the barrier (with exponentially decaying amplitude), and the guidance equation can steer particles through the evanescent tail.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the corresponding mechanism involves the Noether sea and the assembly's interaction with the Noether sea:
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the candidate mechanism involves the assembly and Noether sea response; attenuation and traversal probabilities remain to be derived:
 
 - The "barrier" is a region of high effective potential created by surrounding assemblies or medium configurations.
 - The assembly's causal wake extends into and through the barrier region, attenuated by the Noether sea response (analogous to evanescent coupling).
@@ -220,11 +220,9 @@ Weak-measurement trajectory reconstructions sharpen this comparison without sett
 
 ### Quantization of Energy Levels
 
-In dBB, energy quantization follows from the requirement that $\psi$ be single-valued and normalizable, which selects discrete eigenvalues.
+In dBB, bound-state energy eigenvalues come from the effective Hamiltonian and its self-adjoint domain. Normalizable wave packets can also have continuous spectral support; single-valuedness and normalizability alone do not imply a discrete spectrum.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, quantization arises from a different but equally rigorous mechanism: **phase-locking of the self-consistent response loop**. An assembly in a confining potential (e.g., an electron Noether braid bound to an atomic nucleus) must satisfy a closure condition: the wake it generates, after propagating through the surrounding Noether sea and reflecting off the confining potential, must return to the assembly with the correct phase to sustain its current orbital frequency. Only a discrete set of orbital configurations satisfies this condition—the resonance bands indexed by integer $f$ (see [Superposition Mechanism](./superposition-mechanism.md)). Transitions between bands occur when the action transfer per cycle crosses the $h$-scale threshold.
-
-This is the wake-based analog of the Bohr-Sommerfeld quantization condition, derived from the self-consistency of the causal response loop rather than imposed as a boundary condition on an abstract wave.
+The proposed causal-wake mechanism is **phase-locking of the self-consistent response loop**. Deriving isolated, stable assembly modes requires the complete delayed interaction and its boundary conditions; integer labels alone do not establish their existence, stability, action scale, or energy spectrum. [Superposition Mechanism](./superposition-mechanism.md) develops this candidate route. The comparison with Bohr–Sommerfeld quantization supplies a semiclassical target rather than an already derived substrate law.
 
 De Broglie's 1924 phase-harmony argument sharpens this into a single action-optics closure target for $\mathbb{A}\mathbb{A}\mathbb{A}$. The useful content is not a second pilot-wave ontology; it is the requirement that the assembly's internal periodicity, the phase carried by the associated causal wake, and the dynamically possible path remain locked. For a retained assembly center $\mathbf X(T)$, effective action $S_{\mathrm{eff}}$, internal phase $\theta_{\mathrm{int}}(T)$, and wake phase $\theta_{\mathrm{wake}}(\mathbf X,T)=S_{\mathrm{eff}}(\mathbf X,T)/\hbar_{\mathrm{eff}}$, the phase-guidance residual may be stated as
 $$
@@ -242,11 +240,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-488077d6577c4e91)
 
-with $k(T),n\in\mathbb{Z}$, $p_i^{\mathrm{eff}}=\partial S_{\mathrm{eff}}/\partial X^i$, and $\gamma$ the closed retained orbit. The first term is phase harmony between the internal periodicity and the causal-wake phase along the realized path. The second term is the group-velocity recovery condition: the envelope of the effective wake packet must move with the assembly, not merely share its phase. The third term is the loop condition linking Fermat-style ray selection to Maupertuis action closure. Thus geometrical optics, dynamics, and stable quantization are one recovery burden: rays of the extracted wake phase must coincide with dynamically admissible causal-wake paths, and closed stable modes must return with integer action phase.
+with strictly positive independently declared tolerances, $k(T),n\in\mathbb{Z}$, $p_i^{\mathrm{eff}}=\partial S_{\mathrm{eff}}/\partial X^i$, and $\gamma$ the closed retained orbit. The first term is phase harmony between the internal periodicity and the causal-wake phase along the realized path. The second term is the group-velocity recovery condition: the envelope of the effective wake packet must move with the assembly, not merely share its phase. The third term is the loop condition linking Fermat-style ray selection to Maupertuis action closure. A globally single-valued smooth $S_{\mathrm{eff}}$ would give zero circulation of its gradient. Nonzero winding therefore requires local phase charts around nodes or excluded regions. The integer action rule shown is a restricted phase-return target; general semiclassical quantization can contain turning-point (Maslov) and geometric-phase shifts, so it is not a universal exact spectrum rule. Thus geometrical optics, dynamics, and stable quantization are linked recovery burdens: rays of the extracted wake phase must coincide with dynamically admissible causal-wake paths, and closed stable modes must obey the phase-return rule appropriate to the derived effective domain.
 
 ### Boundary Conditions and Spectral Quantization
 
-Standard bound-state quantization is not produced by integers alone. It is produced by normalizability, self-adjointness, and boundary matching. In one-dimensional comparison problems, finite jumps in $V(x)$ require
+Standard bound-state quantization is not produced by integers alone. It is produced by normalizability, self-adjointness, and boundary matching. In one-dimensional comparison problems, finite jumps in $V(x)$ with constant mass and no singular interface interaction require
 $$
 [\psi]_{x=a}=0,
 \qquad
@@ -255,7 +253,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d16cefed3e542233)
 
-while an attractive point potential carries the derivative jump
+while $V(x)=-V_0\delta(x)$ with $V_0>0$ carries the derivative jump
 $$
 [\psi']_{0}
 =
@@ -271,23 +269,23 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7ca71892a7c96b43)
 
-for ordinary regular states. Equivalently, the radial Hamiltonian must make the boundary form vanish,
+for ordinary regular states. In particular, the radial Hamiltonian must make the boundary form vanish,
 $$
 \mathcal{B}_0[R,S]
 =
 \lim_{r\to0}
 r^2
 \left(
-S\frac{dR}{dr}
+S^*\frac{dR}{dr}
 -
-\frac{dS}{dr}R
+\frac{dS^*}{dr}R
 \right)
 =0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-054fed8d5a114870)
 
-for all admissible radial functions $R$ and $S$ in the effective domain.
+for all admissible complex radial functions $R$ and $S$. The conjugation comes from the Hilbert-space inner product. The condition at infinity must also be satisfied; zero boundary form is necessary for symmetry, while self-adjointness additionally requires the correct maximal domain. Singular point interactions can admit other origin domains.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ analogue is not a literal wavefunction wall. It is a branch-domain condition on the assembly return map and causal-wake history. A candidate mode $\Gamma_n$ with return time $P_{\mathrm{cyc},n}$ must satisfy
 $$
@@ -304,7 +302,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-348205a53994dd70)
 
-Here $\mathcal{P}_{P_{\mathrm{cyc},n}}$ is the retained assembly return map, $\Delta\varphi_n$ is the closed-cycle phase return, $q_n\in\mathbb{Z}$ is the winding count, $\Delta I_n$ is the action returned through the mode, and $\mathcal{B}_0^{\mathrm{eff}}$ is the effective self-adjoint boundary residual after the coarse-grained chart has been extracted. This is the boundary-condition bridge: standard eigenvalue discreteness is recovered only when a native causal-wake mode also closes its return, phase, action, and effective-domain tests.
+Here $\mathcal{P}_{P_{\mathrm{cyc},n}}$ is the retained assembly return map, $\Delta\varphi_n$ is the closed-cycle phase return, $q_n\in\mathbb{Z}$ is the winding count, $\Delta I_n$ is the action returned through the mode, and $\mathcal{B}_0^{\mathrm{eff}}$ is the effective self-adjoint boundary residual after the coarse-grained chart has been extracted. These dimensionless residuals require positive tolerances with the units of each numerator. Passing them is necessary for this proposed mode comparison but does not prove isolated eigenvalues, completeness, or stability.
 
 Central potentials add a second comparison target. Standard quantum mechanics uses
 $$
@@ -317,7 +315,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4c4103727d462c7d)
 
-for a central potential, allowing states to be labeled by $n,l,m$. The hydrogen benchmark is
+for a central potential, allowing states to be labeled by $n,l,m$. For the non-relativistic spinless Coulomb problem, before fine structure and spin multiplicity, the hydrogen benchmark is
 $$
 E_n^{\mathrm{QM}}=-\frac{\mathrm{Ry}}{n^2},
 \qquad
@@ -346,7 +344,7 @@ $$
 
 with fine-structure and Lamb-type splittings treated as later, smaller correction targets. The degeneracy test is important because ordinary central symmetry gives only the $2l+1$ angular degeneracy; hydrogen's $n^2$ pattern is a stronger Coulomb benchmark that a phase-locking story must reproduce rather than merely invoke.
 
-Scattering supplies the continuum counterpart of the same spectral test. In one dimension, a localized potential has an $S$-matrix built from reflection and transmission amplitudes, and probability conservation requires unitarity. In three-dimensional central scattering, the corresponding partial-wave benchmark is
+Scattering supplies the continuum counterpart of the same spectral test. In one dimension, a localized potential has an $S$-matrix built from reflection and transmission amplitudes, and probability conservation requires unitarity. For elastic, single-channel, spinless scattering by a real short-range central potential at positive real wave number $k$, the corresponding partial-wave benchmark is
 $$
 S_l(k)=e^{2i\delta_l(k)},
 \qquad
@@ -386,9 +384,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-04d56f092601e6c6)
 
-This residual is a conservation and asymptotic-domain test. It does not require the substrate to contain an abstract incoming plane wave; it requires the retained causal-wake packet to reproduce the same outgoing flux ledger after the detector and access region have been declared.
+The wave-number set must be nonempty, tolerances positive, and the angular-channel truncation controlled. The quantities must be extracted independently of the identities being checked; deriving every cross-section from the same phase shifts only checks algebra. This residual is a conservation and asymptotic-domain test. It does not require the substrate to contain an abstract incoming plane wave; it requires the retained causal-wake packet to reproduce the same outgoing flux ledger after the detector and access region have been declared.
 
-The analytic structure of the $S$-matrix is a separate benchmark. Bound states appear as poles on the positive imaginary momentum axis, while resonances appear as lower-half-plane poles with
+The analytic structure of the $S$-matrix is a separate benchmark. For the declared short-range problem, bound-state poles lie on the positive imaginary momentum axis; resonances require analytic continuation to the appropriate unphysical sheet. An isolated elastic resonance has
 $$
 E=E_0-\frac{i\Gamma}{2},
 \qquad
@@ -398,7 +396,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7d3f42a8d69299b1)
 
-Near such a pole the partial cross-section has the Breit-Wigner form
+For negligible or separately removed background phase $\theta(E)$ and a slowly varying isolated width, the partial cross-section has the Breit-Wigner form
 $$
 \sigma_l(E)
 \approx
@@ -410,7 +408,7 @@ $$
 
 The native recovery target is to derive $E_0$ and $\Gamma$ from a metastable assembly basin and its escape channel. A resonance width fitted directly to a spectral peak without a path-history escape ledger is a phenomenological match, not a completed causal-wake explanation.
 
-The Lippmann-Schwinger equation provides a controlled perturbative comparison for weak effective potentials:
+The Lippmann-Schwinger equation is an exact outgoing-state identity when the resolvent and scattering state exist; iterating it provides a perturbative comparison where the Born expansion is controlled:
 $$
 |\psi\rangle
 =
@@ -421,11 +419,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3a77c3dd086c3131)
 
-At first Born order the scattering amplitude is proportional to the Fourier transform of the effective potential. This gives a direct failure test for any proposed $V_{\mathrm{eff}}$: short-distance structure at scale $L$ should enter only through momentum transfers $q\sim 1/L$, and long-range Coulomb-like channels require a separate asymptotic phase treatment rather than the compact-support Born packet.
+At first Born order the scattering amplitude is proportional to the Fourier transform of the effective potential. This gives a direct failure test for any proposed $V_{\mathrm{eff}}$: wave-number transfer $q\sim 1/L$ resolves structure at scale $L$, but that structure also contributes at small $q$ through integrated moments of the potential, and long-range Coulomb-like channels require a separate asymptotic phase treatment rather than the compact-support Born packet.
 
 ### Pointlike Idealizations and Running Couplings
 
-Pointlike effective potentials are useful only when their cutoff dependence is controlled. The two-dimensional attractive delta-potential comparison is the warning case. With dimensionless coupling $\tilde g=mg/\hbar^2$ and UV cutoff $\Lambda$, the bound-state energy scale can be written as
+Pointlike effective potentials are useful only when their cutoff dependence is controlled. The two-dimensional attractive delta-potential comparison is the warning case. For $V=-g\delta^{(2)}(\mathbf x)$ with $g>0$, dimensionless coupling $\tilde g=mg/\hbar^2$, and a sharp wave-number cutoff $\Lambda$, define the reduced positive binding energy $E_B=m|E_{\mathrm{phys}}|/\hbar^2$, with units of inverse length squared. The regulated comparison gives
 $$
 E_B(\Lambda,\tilde g)
 =
@@ -443,7 +441,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5bf9efcd39c42a6b)
 
-A pointlike comparison model is acceptable only if cutoff changes are compensated by the declared effective coupling:
+Holding one binding energy fixed defines a renormalization condition. The following residual checks that condition, not regulator independence of all scattering observables:
 $$
 \mathcal{R}_{\mathrm{run}}(\Lambda_1,\Lambda_2)
 =
@@ -469,13 +467,13 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a caution about singular idealizati
 | de Broglie–Bohm Concept | $\mathbb{A}\mathbb{A}\mathbb{A}$ Micro-Dynamics |
 |:---|:---|
 | **Pilot wave $\psi$ on $\mathbb{R}^{3N}$** | Superposed causal wake in physical $\mathbb{R}^3$, generated by all architrinos and experienced by each at its location. No separate ontological entity; wake is produced by and acts on the same architrinos. |
-| **Guidance equation** $\dot{\mathbf{q}}_k = (\hbar/m_k)\operatorname{Im}(\nabla_k\psi/\psi)$ | Master Equation: acceleration is the vector sum of all receiver-side inverse-square causal wake-surface intersections. In the coarse-grained, slow-assembly limit, the net wake gradient produces an effective velocity field identifiable with $\nabla S/m$. |
-| **Quantum potential** $Q = -(\hbar^2/2m)(\nabla^2 R/R)$ | Jointly: self-hit non-Markovian feedback (path-history-dependent forces from own past emissions) plus Noether sea response (context-dependent effective potential from the surrounding Noether sea). |
+| **Guidance equation** $\dot{\mathbf{q}}_k = (\hbar/m_k)\operatorname{Im}(\nabla_k\psi/\psi)$ | Master Equation: acceleration is the vector sum of all receiver-side inverse-square causal wake-surface intersections. Recovery of the effective velocity field $\nabla S/m$ remains a scalar, zero-vector-potential comparison target. |
+| **Quantum potential** $Q = -(\hbar^2/2m)(\nabla^2 R/R)$ | Jointly: self-hit non-Markovian feedback (path-history-dependent acceleration contributions from own past emissions) plus Noether sea response (context-dependent effective potential from the surrounding Noether sea). |
 | **Quantum equilibrium** $\rho = |\psi|^2$ | Emergent statistical distribution over attractor basin volumes, mapped from unresolved Noether sea boundary and path-history structure. The Born rule is a **target derivation**, not an axiom; it belongs to the statistics gate below. |
-| **Configuration-space nonlocality** | Non-separable hidden-variable geometry from shared creation events (see [Entanglement and Nonlocality](./entanglement-nonlocality.md)). Correlations are carried in the joint internal configuration, not mediated by a field on $\mathbb{R}^{3N}$. |
+| **Configuration-space nonlocality** | The provisional [Ontology route](../../foundations/ontology.md#bell-nonlocality-placement) requires live $c_f$-mediated coupled apparatus response gated by pair provenance, with $c_f>c_0$, retained measurement independence, and observer no-signalling. Shared provenance alone is Bell-local when it screens the wings into local response laws. The multipartite finite-speed obstruction remains open; see [Entanglement and Nonlocality](./entanglement-nonlocality.md). |
 | **Wave passes through both slits** | Candidate causal-wake comparison: the wake remains sensitive to both slits while the assembly follows one path. Guidance through the modulated wake landscape must recover the interference pattern. |
-| **Markovian guidance** (given $\psi$) | Non-Markovian guidance: acceleration depends on full past worldline via causal sets $\mathcal{C}_{ij}(t)$ and self-hit history. Richer dynamics; hysteresis and discrete mode-locking absent in standard dBB. |
-| **Two ontological categories** (particles + wave) | **One ontological category**: architrinos generate and are guided by their own causal wake. Ontological economy is maximal. |
+| **Markovian guidance** (given $\psi$) | Non-Markovian guidance: acceleration depends on the admitted past worldline via causal sets $\mathcal{C}_{ij}(t)$ and self-hit history. History-dependent effective response; memory alone does not establish mode locking or distinguish every environment-reduced dBB model. |
+| **Two ontological categories** (particles + wave) | **One ontological category**: architrinos generate and are guided by their own causal wake. This is the proposed reduction relative to a field-ontological reading of dBB. |
 
 ---
 
@@ -483,13 +481,13 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a caution about singular idealizati
 
 ### Advantages Over Standard dBB
 
-**Ontological economy.** dBB requires particles *plus* a pilot wave $\psi$ on $\mathbb{R}^{3N}$—a high-dimensional, physically obscure entity. $\mathbb{A}\mathbb{A}\mathbb{A}$ requires only architrinos in $\mathbb{R}^3$. The causal wake is a derived object, not a primitive.
+**Ontological economy.** The field reading of dBB takes particles and a configuration-space guiding wave as distinct objects; its nomological reading assigns the wave a law-like role. $\mathbb{A}\mathbb{A}\mathbb{A}$ requires only architrinos in $\mathbb{R}^3$. The causal wake is a derived object, not a primitive.
 
-**Physical 3D space.** The dBB pilot wave lives on $3N$-dimensional configuration space, raising the question of whether configuration space is physically real. In $\mathbb{A}\mathbb{A}\mathbb{A}$, all dynamics unfold in physical 3D Euclidean space with absolute time. The effective high-dimensional correlations arise from shared creation histories and conservation constraints, not from a literal high-dimensional field.
+**Physical 3D space.** The dBB pilot wave lives on $3N$-dimensional configuration space, raising the question of whether configuration space is physically real. In $\mathbb{A}\mathbb{A}\mathbb{A}$, all dynamics unfold in physical 3D Euclidean space with absolute time. Recovering the effective correlations requires more than shared creation history and conservation: Bell violation also requires the coupled apparatus response specified above.
 
 **Natural non-Markovian structure.** dBB guidance is memoryless given $\psi$. $\mathbb{A}\mathbb{A}\mathbb{A}$ guidance inherently includes memory (self-hit, path history), providing richer dynamical resources for quantization, measurement back-action, and decoherence without additional postulates.
 
-**Unified guidance and interaction.** In dBB, the pilot wave guides but does not absorb energy from particles (it obeys the Schrödinger equation independently). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the causal wake is dynamically coupled to the architrinos: emissions deplete the emitter's kinetic budget, and receptions accelerate the receiver. Guidance and energy exchange are aspects of the same interaction law.
+**Unified guidance and interaction.** In dBB, the pilot wave guides but does not absorb energy from particles (it obeys the Schrödinger equation independently). In $\mathbb{A}\mathbb{A}\mathbb{A}$, the causal wake is dynamically coupled to the architrinos: receptions accelerate the receiver, while emissions extend the causal path history. Emission is not an independently postulated fuel loss; [Energy](../../dynamics/energy.md) requires the full action and boundary account before assigning conserved energy exchange.
 
 ### Open Costs and Challenges
 
@@ -497,11 +495,11 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a caution about singular idealizati
 
 **Effective $\psi$ recovery.** The claim that the coarse-grained wake reproduces $\psi$ in the continuum limit requires explicit construction: define the coarse-graining scale, derive the effective wave equation, and show that it reduces to the Schrödinger equation in the non-relativistic, weak-field limit. This derivation is incomplete.
 
-**Computational tractability.** The full Master Equation with path-history dependence and self-hit is a coupled system of state-dependent delay differential equations for $\sim 10^{80}$ architrinos. Practical calculations require controlled coarse-graining at multiple scales. The hierarchy of effective theories (architrino → binary → Noether braid → assembly → continuum field) must be established with quantitative error bounds at each level.
+**Computational tractability.** The full Master Equation with path-history dependence and self-hit is a coupled system of state-dependent delay differential equations over the modeled architrino population. Practical calculations require controlled coarse-graining at multiple scales. The hierarchy of effective theories (architrino → binary → Noether braid → assembly → continuum field) must be established with quantitative error bounds at each level.
 
-**Relativistic extension.** dBB has well-known difficulties with relativistic generalization (preferred foliation, particle creation/annihilation). $\mathbb{A}\mathbb{A}\mathbb{A}$'s absolute-time substrate handles the preferred foliation naturally but must demonstrate that emergent Lorentz invariance holds to the required precision ($< 10^{-17}$) and that particle creation/annihilation (assembly formation/dissolution) is correctly described.
+**Relativistic extension.** dBB has well-known difficulties with relativistic generalization (preferred foliation, particle creation/annihilation). $\mathbb{A}\mathbb{A}\mathbb{A}$'s absolute-time substrate handles the preferred foliation naturally but must demonstrate that emergent Lorentz invariance matches the channel-specific precision of clock, resonator, and propagation tests and that particle creation/annihilation (assembly formation/dissolution) is correctly described.
 
-The comparison warning is that a preferred foliation is not disqualifying by itself; empirical failure appears only if the foliation leaks into observer-level signal statistics, clock/ruler behavior, or creation-channel rates. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure burden is therefore twofold: derive the effective Lorentz map tightly enough that preferred-frame leakage stays below the precision bound, and show that assembly association/dissociation induces the same record statistics that QFT encodes as particle creation and annihilation.
+The comparison warning is that a preferred foliation is not disqualifying by itself; empirical failure appears only if the foliation leaks into observer-level signal statistics, clock/ruler behavior, or creation-channel rates. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure burden is therefore twofold: derive the effective Lorentz map tightly enough that preferred-frame leakage stays below the relevant observable-specific bounds, and show that assembly association/dissociation induces the same record statistics that QFT encodes as particle creation and annihilation.
 
 ---
 
@@ -512,21 +510,21 @@ The comparison warning is that a preferred foliation is not disqualifying by its
 **Assumptions:**
 - Architrinos are the sole fundamental entities; no separate pilot wave is postulated.
 - The superposed wake at each location is the linear sum of all intersecting causal wake surfaces.
-- Self-hit and Noether sea feedback jointly play the role of the quantum potential.
-- Quantization arises from phase-locking of the causal response loop.
-- The Born rule is emergent from attractor basin statistics (to be derived).
+- Self-hit and Noether sea feedback are proposed resources for the effective quantum-potential role.
+- Phase-locking is the proposed route to discrete assembly modes; spectral and stability recovery remain required.
+- The Born rule is a derivation target for transported preparation measures on record basins.
 
 **Closure targets and candidate predictions:**
 - Recover standard quantum interference, diffraction, and tunneling phenomena after deriving the effective wave equation.
 - Match observed energy spectra, including the Rydberg constant and hydrogen fine structure, when the phase-locking conditions are solved for atomic-scale assemblies.
-- Derive decoherence timescales with environmental dependence through local Noether sea density, a sensitivity absent in bare dBB and potentially testable in precision interferometry.
+- Derive decoherence timescales with environmental dependence through local Noether sea density, with a quantitative distinction from ordinary environment-induced decoherence, which is already represented in dBB through the joint wavefunction.
 - Predict controlled deviations from standard Schrödinger evolution in extreme regimes, such as near Planck-core objects or high Noether sea density gradients, after the Noether sea nonlinearity and self-hit threshold terms are quantified.
 
 **Failure Modes:**
 - If the coarse-grained wake does not reduce to the Schrödinger equation in the non-relativistic, weak-field limit, the framework fails to reproduce standard quantum mechanics at the effective level.
 - If the Born rule cannot be derived from the Master Equation dynamics and Noether sea statistics—even after accounting for chaotic mixing and attractor basin geometry—the statistical foundations are incomplete and the theory lacks predictive power for individual experiments.
-- If the phase-locking quantization condition yields energy levels that deviate from observed atomic spectra by more than the theory's estimated systematic uncertainty, the specific self-consistent loop mechanism is falsified.
-- If emergent Lorentz invariance fails at tested precision ($> 10^{-17}$ anisotropy in assembly dynamics), the substrate ontology is experimentally excluded regardless of the guidance structure.
+- If the phase-locking quantization condition yields energy levels that deviate from observed atomic spectra outside the declared combined theoretical and experimental uncertainty, the specific self-consistent loop mechanism is falsified.
+- If a derived observable prediction violates an applicable Lorentz-symmetry test after its measurement and model uncertainties are included, that realization is excluded; a universal dimensionless anisotropy bound on all assembly dynamics is not supplied here.
 
 ## Closure Program Integration (quantum chain)
 
@@ -534,7 +532,7 @@ This chapter is the primary synthesis for quantum closure in $\mathbb{A}\mathbb{
 
 Three linked gates:
 1. **Envelope gate (effective wave equation):** derive the coarse-grained evolution law from the master-delay dynamics and recover Schrödinger form in the non-relativistic weak-field limit.
-2. **Statistics gate (Born):** derive basin-measure probabilities as an invariant measure of the coarse-grained dynamics.
+2. **Statistics gate (Born):** justify preparation measures and derive their transport into record probabilities, matching Born equivariance; an invariant measure is needed only for a separately claimed stationary regime.
 3. **Threshold gate (collapse/decoherence):** model finite-time separatrix crossing and record-making irreversibility.
 
 Keep this chain separate from the spin-statistics / exchange ledger in [Fermi-Dirac and Bose-Einstein Statistics](../../quantum/fermi-dirac-and-bose-einstein-statistics.md). The Born ledger asks how branch weights become $|\psi|^2$ probabilities once an effective state space exists; the spin-statistics ledger asks why the effective state space is fermionic or bosonic.
@@ -556,12 +554,18 @@ $$
 [View →](../../../../../equation-mapping.html#corpus-equation-b0ed4344ffc2ea70)
 
 $$
-P_n=\mu_*(B_n)\stackrel{?}{=}\int_{B_n}|\psi_n|^2\,d\Gamma
+P_n(T)=\mu_T(B_n(T))\stackrel{?}{=}\int_{\Omega_n(T)}|\psi_{\mathrm{eff}}(q,T)|^2\,dq
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-16e0517b72a68bc5)
+
+Here $B_n(T)$ is a substrate record event and $\Omega_n(T)$ its effective configuration-space counterpart under the declared projection. One normalized state supplies all outcome weights; separately normalizing each outcome branch would erase the probabilities being compared. The kinetic distribution shown above generally needs a controlled history closure, and writing an amplitude and phase does not itself derive Schrödinger evolution.
 
 Detailed interface chapters:
 - ontology/statistics side: [Wavefunction Ontology](../../quantum/wavefunction-ontology.md)
 - metastability/separatrix side: [Superposition Mechanism](./superposition-mechanism.md)
 - dynamical substrate side: [Master Equation](../../dynamics/master-equation.md), [Effective Lagrangian](../../dynamics/effective-lagrangian.md)
+
+## Source Notes
+
+Dürr, Goldstein, and Zanghì, [*Quantum Equilibrium and the Origin of Absolute Uncertainty*](https://arxiv.org/abs/quant-ph/0308039), *Journal of Statistical Physics* **67**, 843–907 (1992), develop equilibrium, equivariance, and subsystem statistics; these supply the comparison standard, not a substrate derivation. Bancal and collaborators, [*Quantum non-locality based on finite-speed causal influences leads to superluminal signalling*](https://arxiv.org/abs/1110.3795), *Nature Physics* **8**, 867 (2012), supply the conditional multipartite obstruction to the finite-speed route.

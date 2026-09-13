@@ -106,7 +106,7 @@ $T$ identifies an instant, whereas $P$ gives the duration of one cycle. A cycle 
 
   [View →](../../../../equation-mapping.html#corpus-equation-e61e9dc6efd80eb9)
 
-- Space is Euclidean with metric
+- Space is Euclidean; in a fixed orthonormal Cartesian chart its metric is
 
   $$
   h_{ij} = \delta_{ij}\quad\text{on each slice }\Sigma_T
@@ -117,9 +117,9 @@ $T$ identifies an instant, whereas $P$ gives the duration of one cycle. A cycle 
   Notation: We use $h_{ij}$ exclusively for the spatial metric; do not use $g_{ij}$.
 
   Here $\delta_{ij}$ is the Kronecker delta (identity). It defines the Euclidean dot product and norm: $\mathbf U\!\cdot\!\mathbf V = h_{ij}U^i V^j$ and $\|\mathbf V\|^2 = h_{ij}V^i V^j$. Raising/lowering is trivial with $h^{ij}=\delta^{ij}$. In Cartesian frames, $\Gamma^{i}{}_{jk}=0$, so covariant derivatives equal partial derivatives and geodesics are straight; curvature vanishes identically. In curvilinear coordinates (e.g., spherical), $h_{ij}$ takes the flat-space form $\mathrm{diag}(1, r^2, r^2\sin^2\theta)$, still representing the same flat geometry.
-- There is no 4D non-degenerate metric; we do not mix time and space into a single line element.
+- No 4D non-degenerate metric is postulated in the native ontology; effective comparison metrics belong to the separately declared observer layer.
 - Worldlines:
-  - $\mathbf X: I \subset \mathbb{R} \to \mathbb{R}^3,\ T \mapsto \mathbf X(T)$, absolutely continuous; $\mathbf V = d\mathbf X/dT$, $\mathbf A = d\mathbf V/dT$.
+  - $\mathbf X: I \subset \mathbb{R} \to \mathbb{R}^3,\ T \mapsto \mathbf X(T)$, with $\mathbf V = d\mathbf X/dT$ and $\mathbf A = d\mathbf V/dT$ on the declared regularity domain. Absolute continuity of $\mathbf X$ supplies velocity almost everywhere, but not acceleration: require locally absolutely continuous $\mathbf V$ for an almost-everywhere acceleration, or stronger differentiability for pointwise formulas. Singular events require their own integrated continuation.
 
 Objects occupy points in three-dimensional space at successive instants; speeds and distances are measured separately from time.
 
@@ -164,7 +164,7 @@ A receiver is accelerated now only if a past causal wake surface has had exactly
 
   [View →](../../../../equation-mapping.html#corpus-equation-83e434800a542d5b)
 
-- Expanding causal wake surface at speed $c_f$:
+- Expanding causal wake surface at speed $c_f$, for $\Delta>0$. These expressions describe a normalized shell distribution, not by themselves an energy density or the acceleration kernel:
   $$
   \rho(T,\mathbf X) = \frac{q}{4\pi r^2}\,\delta(r - c_f\,\Delta)\,H(\Delta),\quad r=\|\mathbf X-\mathbf X_{\mathrm{em}}\|,\ \Delta=T-T_t
   $$
@@ -177,6 +177,8 @@ A receiver is accelerated now only if a past causal wake surface has had exactly
 
   [View →](../../../../equation-mapping.html#corpus-equation-89d585b137da7a8d)
 
+  Here $\delta_{S_a}$ denotes the unnormalized surface delta: integration against a test function gives its surface-area integral over the sphere of radius $a>0$. With this convention it equals $\delta(r-a)$ as a spatial distribution; both displayed shell forms have total integral $q$.
+
 - Regularization:
   $$
   \delta(r - c_f\,\Delta)\ \to\ \delta_\eta(r - c_f\,\Delta) \;=\; \frac{1}{\sqrt{2\pi}\,\eta}\,\exp\!\Big(\!-\frac{(r - c_f\,\Delta)^2}{2\,\eta^2}\Big)
@@ -184,9 +186,9 @@ A receiver is accelerated now only if a past causal wake surface has had exactly
 
   [View →](../../../../equation-mapping.html#corpus-equation-19de06f3e97e6332)
 
-  - Use $\eta > 0$ when differentiability is required; take $\eta\to 0$ limits in the weak/integrated sense.
+  - This Gaussian smooths the radial delta on the full real line. Substitution in the shell formula does not smooth its $1/r^2$ singularity at the origin. For finite width, its spatial integral is $q$ times the Gaussian mass on $r>0$, a factor strictly between zero and one multiplying the signed $q$; exact finite-width normalization and origin regularity need a separately declared prescription. On domains bounded away from the origin, use $\eta>0$ for differentiable kernels and take $\eta\to0$ limits in the weak/integrated sense with controlled bounds.
 
-Each emission is represented by a zero-thickness causal wake surface. When differentiability is required, regularization gives that surface a small width so calculus remains well defined.
+Each emission is represented by a zero-thickness causal wake surface. A small radial width alone does not settle origin singularities, convergence, or existence of dynamics.
 
 ---
 
@@ -235,7 +237,7 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-0db3f36e9d32f5a9)
 
-The transmitter-side factor $D_t$ controls root transversality and wake-front compression or dilation from transmitter motion. The receiver-side factor $D_r$ controls how the moving receiver cuts through the same emitted wake sequence. The exact signed root-playback derivative is $dT_t/dT_r=D_r/D_t$. The transmitter-side acceleration weight is $W^{\mathrm{acc}}=c_f/|D_t|$; it is not the magnitude of root playback.
+The transmitter-side factor $D_t$ controls root transversality and wake-front compression or dilation from transmitter motion. The receiver-side factor $D_r$ controls how the moving receiver cuts through the same emitted wake sequence. On differentiable simple-root branches with $r>0$ and $D_t\ne0$, the exact signed root-playback derivative is $dT_t/dT_r=D_r/D_t$. The transmitter-side acceleration weight is $W^{\mathrm{acc}}=c_f/|D_t|$; it is not the magnitude of root playback.
 
 Total acceleration:
 $$
@@ -244,14 +246,14 @@ $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-a00f53b4a1a53e1d)
 
-DDE view: let native state $\mathsf Z = (\mathbf X, \mathbf V)$. With $\eta>0$ regularization, the dynamics admit a causal functional form
+DDE view: let native state $\mathsf Z = (\mathbf X, \mathbf V)$. On a declared regular simple-root chart, a schematic root-sampled causal functional form is
 $$
 \frac{d \mathsf Z}{dT} = F\big(\mathsf Z(T), \{\mathsf Z_j(T - \Delta_j)\}_j, T\big)
 $$
 
 [View →](../../../../equation-mapping.html#corpus-equation-738999c80e2c8ef1)
 
-with $\Delta_j$ determined implicitly by $\|\mathbf X(T)-\mathbf X_j(T-\Delta_j)\| = c_f\,\Delta_j$, and per-hit contributions summed over all roots. In the $\eta\to 0$ limit interpret in the weak sense.
+with $\Delta_j$ determined implicitly by $\|\mathbf X(T)-\mathbf X_j(T-\Delta_j)\| = c_f\,\Delta_j$, where the index $j$ in this schematic notation includes transmitter and root labels. Per-hit contributions are summed over all admitted roots, with convergence required for an infinite sum. A finite-width wake regularization generally samples a history integral near the roots rather than only these exact root values. Existence, uniqueness, and a weak zero-width limit require additional compatible-history, distance, transversality, and convergence hypotheses; see the [Master Equation](../dynamics/master-equation.md).
 
 Notes:
 - Emission cadence and per-wavefront amplitude are constant at the transmitter; the received acceleration magnitude is modulated by the transmitter-side acceleration weight $W^{\mathrm{acc}}=c_f/\lvert D_t\rvert$.
@@ -269,7 +271,7 @@ Receiver velocity decomposition (instantaneous):
 
   [View →](../../../../equation-mapping.html#corpus-equation-6936fdc66791a896)
 
-- Because $\mathbf A_{r\leftarrow t}\parallel\hat{\mathbf r}_t$, a single hit updates only the radial component:
+- For the contribution of one hit, freeze the projection axis at its direction at the evaluation event. In that fixed instantaneous frame, the hit contributes only to the radial derivative:
   $$
   \frac{d}{dT_r}\mathbf V_{r,\perp}=0,
   \qquad
@@ -280,11 +282,13 @@ Receiver velocity decomposition (instantaneous):
 
 - Local trend: inward motion ($V_{r,\parallel}<0$) tends to strengthen subsequent per-hit contributions via the $1/r^2$ factor; outward motion ($V_{r,\parallel}>0$) tends to weaken them, all else equal.
 
-A hit changes only the receiver's velocity component along the transmitter-receiver line at that instant; its transverse velocity is unchanged.
+These derivative rows describe only the selected hit in the frozen frame. If the projection follows the changing line of action, differentiating $V_{r,\parallel}=\mathbf V_r\cdot\hat{\mathbf r}_t$ adds $\mathbf V_r\cdot d\hat{\mathbf r}_t/dT_r$; the transverse-vector derivative also contains basis-motion terms. Other simultaneous hits contribute separately.
 
 ---
 
 ## Energetics
+
+The following are conditional scalar bookkeeping relations on a declared assembly comparison chart, not consequences of smoothing alone. As [Energy](../dynamics/energy.md#potential-energy-and-causal-wake-potential) explains, the scalar representative must reproduce the selected acceleration account on its regular branch domain.
 
 - Potential (mollified):
   - $\Phi_\eta$ is defined using $\delta_\eta$ causal surfaces; at a point:
@@ -295,21 +299,21 @@ A hit changes only the receiver's velocity component along the transmitter-recei
     [View →](../../../../equation-mapping.html#corpus-equation-1b6e8a47dea58f29)
 
 - Potential-gradient bookkeeping relation:
-  - Holds pointwise for $\Phi_\eta$; the force symbol is optional assembly-level bookkeeping, and as $\eta \to 0$, interpret it in the weak sense over resolved intervals:
+  - Requires a verified scalar representative $\Phi_\eta$ and its receiver-coordinate gradient at fixed source history; the force symbol is optional assembly-level bookkeeping. A weak limit over resolved intervals needs its own convergence control:
     $$
     \mathbf{F} = -\nabla U_{\text{pot}}
     $$
 
     [View →](../../../../equation-mapping.html#corpus-equation-5014f350e3600243)
 
-- Work–energy:
+- Work–energy, for a time-independent scalar potential and a kinetic bookkeeping function whose change equals the work of the stated force:
   $$
   \Delta E_k \;=\; \int \mathbf{F}\cdot d\mathbf X \;=\; -\,\Delta U_{\text{pot}}
   $$
 
   [View →](../../../../equation-mapping.html#corpus-equation-12fd04f32ba7f1d5)
 
-With regularized causal wake surfaces, the optional assembly-level force-bookkeeping variable is minus the potential gradient. The primitive substrate statement remains the per-hit acceleration law, and the zero-thickness limit is interpreted after integration over small time windows.
+For a time-dependent scalar potential, the chain rule instead gives work equal to $-\Delta U_{\text{pot}}+\int\partial_T U_{\text{pot}}\,dT$ along the path. Source-history changes and remaining accounts must be included before claiming total energy conservation. The primitive substrate statement remains the per-hit acceleration law. Neither a scalar-gradient identity nor a finite-width regularization alone establishes a conserved full-system energy.
 
 ---
 

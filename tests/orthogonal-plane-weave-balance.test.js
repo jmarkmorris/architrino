@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-import identities from "./fixtures/option-b-retained-test-identities.json" with { type: "json" };
+import { retainedTestIdentities } from './support/option-b-retained-test-identities.mjs';
+const identities = retainedTestIdentities("tests/orthogonal-plane-weave-balance.test.js");
 
 const WEAVE_SHA = identities.orthogonalWeave.modelRevisionSha256;
 assert.match(WEAVE_SHA, /^[a-f0-9]{64}$/u);
