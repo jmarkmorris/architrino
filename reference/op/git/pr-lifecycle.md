@@ -367,13 +367,17 @@ git push origin <branch>
 
 [Standard PR Process](#standard-pr-process) steps 3 through 6 own the publish-integrity gate, the mergeability gate, the existing-PR check, and the create, draft, and ready commands. Follow those steps rather than a second copy of them here.
 
-Decide the PR title and body before running those steps. The title should be a clear reviewable statement rather than `gh pr create --fill` autofill, and the body should explain:
+Decide the PR title and body before running those steps. The title should be a clear reviewable statement rather than `gh pr create --fill` autofill. The body must be organized and detailed: it is a durable review document, not a compressed chat completion message. Use descriptive headings and encourage bulleted or numbered lists wherever they make scope, reasoning, changes, and evidence easier to review. Chat brevity preferences do not justify shortening the PR write-up or omitting material workstreams.
 
-- what changed,
-- why it changed,
-- the user or developer impact,
-- the root cause when the branch fixes a bug,
-- and the checks used to validate it.
+Organize the body around the following subjects, combining sections only when the candidate is genuinely small:
+
+- **Summary and purpose:** explain the overall objective, why the work was needed, and its user, reader, or developer impact.
+- **Changes by workstream:** give each materially distinct workstream its own subsection or clearly labeled list. Describe the substantive changes, relevant components or documents, and how the changes fit together. Cover the full branch-tip diff, including earlier commits on the branch, not only the latest commit or the publication runner's own edits.
+- **Reasoning and important decisions:** explain bug causes and fixes where applicable, architectural or workflow choices, and consequential tradeoffs. For theory and corpus changes, preserve claim grades, assumptions, and unresolved obligations rather than implying that publication validation proves scientific acceptance.
+- **Validation:** identify the actual commands or check suites, what they cover, and their results. Distinguish local from GitHub checks, required from report-only results, and passed from skipped or unexecuted coverage. Update pending results as the lifecycle progresses so the published write-up does not lag the candidate's verified state.
+- **Limitations and follow-up:** identify remaining risks, deliberate exclusions, deferred work, and any migration or deployment considerations that matter to review. Link supporting evidence or owner documents where useful, without making links substitute for an intelligible explanation in the PR itself.
+
+Scale detail to the substance of the changes, not to an arbitrary word count. A small mechanical change may need a short body; a combined corpus, application, test, and workflow branch requires a correspondingly substantial account. Before publication and again before merge, compare the write-up with the complete candidate diff and final validation evidence, fill any coverage gaps, and refresh the rendered preview whenever the write-up changes.
 
 ### 8. End the session in a scoped clean state
 

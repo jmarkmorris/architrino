@@ -1,0 +1,324 @@
+{
+  "measuredAt": "2026-09-13T02:32:47.004Z",
+  "scope": "Read-only Git byte comparisons; no historical code executed.",
+  "initialDocuments": [
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md",
+      "expected": "46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef",
+      "blob": "2166adcfc0b4fb82057341337e751a2a8b5f8c72",
+      "committedBytes": 13003,
+      "committedSha256": "320650a33b47664119fd92f2cdd25097cc5ddd91584d418cce034b86a97315a5",
+      "matchesCommitted": false,
+      "recoveredBytes": 13021,
+      "recoveredSha256": "46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef",
+      "matchesRecovered": true,
+      "originalOccurrences": [
+        "0fb575921:scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py:58:    (\"priorResourceReturn\", \"reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md\", \"46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef\"),",
+        "0fb575921:scripts/eom/run-f6c-cached-root-cover-full.mjs:43:  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md\": \"46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef\",",
+        "0fb575921:scripts/eom/run-f6c-cached-root-cover-pilot.mjs:43:  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md\": \"46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef\",",
+        "0fb575921:scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py:61:    (\"priorResourceReturn\", \"reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md\", \"46a827d13a5e8f7a068e73e642f74d679ebf18e0b2e8f42ab53aab4de26598ef\"),"
+      ]
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md",
+      "expected": "c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853",
+      "blob": "b3b8889e946f45ad6a7acd9ad136a7d9ec143128",
+      "committedBytes": 16957,
+      "committedSha256": "b5c83d289df774726ae498e416e73269895dce2cf8b032dee1b0e2aad22f0965",
+      "matchesCommitted": false,
+      "recoveredBytes": 16985,
+      "recoveredSha256": "c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853",
+      "matchesRecovered": true,
+      "originalOccurrences": [
+        "0fb575921:scripts/eom/prepare-f6c-continuous-reception-acceleration.py:53:    ('memberPredeclaration', 'reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md', 'c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'),",
+        "0fb575921:scripts/eom/prepare-f6c-emission-refinement.py:62:    ('memberPredeclaration', 'reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md', 'c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'),",
+        "0fb575921:scripts/eom/prepare-f6c-refined-acceleration.py:52:    ('memberPredeclaration', 'reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md', 'c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'),",
+        "0fb575921:scripts/eom/run-f6c-acceleration-pilot.mjs:60:  ['memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'],",
+        "0fb575921:scripts/eom/run-f6c-emission-refinement-pilot.mjs:58:  ['memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'],",
+        "0fb575921:scripts/eom/run-f6c-refined-acceleration-pilot.mjs:61:  ['memberPredeclaration','reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md','c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'],",
+        "0fb575921:scripts/eom/verify-f6c-continuous-reception-acceleration.py:54:    ('memberPredeclaration', 'reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md', 'c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'),",
+        "0fb575921:scripts/eom/verify-f6c-emission-refinement.py:58:    ('memberPredeclaration', 'reference/priorities/braid-program/evidence/2026-08-26-f6c-normalized-member-acceleration-predeclaration.md', 'c67de8cce1370eed779b560c269d5ca0a7505bdb175d39cff1276b75a7e69853'),"
+      ]
+    }
+  ],
+  "docHistory": [
+    {
+      "rev": "0fb575921",
+      "commit": "0fb575921783188ce528a45c671090e9ecc00464 2026-08-27T20:24:53-04:00 2026-08-27T20:24:53-04:00",
+      "expected": "f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",
+      "actual": "f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",
+      "bytes": 28340,
+      "matches": true,
+      "testSha256": "473cba3b039027879eeea6987515261faaadcf0833f3e4d2864fc610f5b7a144"
+    },
+    {
+      "rev": "897fe1aa7",
+      "commit": "897fe1aa79be7ae1e77144d52ef396d209645323 2026-09-01T22:14:15-04:00 2026-09-01T22:14:15-04:00",
+      "expected": "f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",
+      "actual": "838f1a33523bdcdb25abd1e2760ccd0f49c6f5ee2a3e9c4672ad5c34a62e15ac",
+      "bytes": 28660,
+      "matches": false,
+      "testSha256": "473cba3b039027879eeea6987515261faaadcf0833f3e4d2864fc610f5b7a144"
+    },
+    {
+      "rev": "51ee4b84f^",
+      "commit": "fa65598714c840fb8a29b46c24a8d290f3bdf70f 2026-09-05T20:47:13-04:00 2026-09-05T20:47:13-04:00",
+      "expected": "f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",
+      "actual": "838f1a33523bdcdb25abd1e2760ccd0f49c6f5ee2a3e9c4672ad5c34a62e15ac",
+      "bytes": 28660,
+      "matches": false,
+      "testSha256": "473cba3b039027879eeea6987515261faaadcf0833f3e4d2864fc610f5b7a144"
+    },
+    {
+      "rev": "51ee4b84f",
+      "commit": "51ee4b84fc7563398df65a1ec293b4223dc39105 2026-09-05T21:43:24-04:00 2026-09-05T21:43:24-04:00",
+      "expected": "f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",
+      "actual": "db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc",
+      "bytes": 28669,
+      "matches": false,
+      "testSha256": "473cba3b039027879eeea6987515261faaadcf0833f3e4d2864fc610f5b7a144"
+    },
+    {
+      "rev": "a7609931e",
+      "commit": "a7609931e12e08bddc50d70bbc5ab29582191d88 2026-09-06T16:14:19-04:00 2026-09-06T16:14:19-04:00",
+      "expected": "f20e4bdaaff8b6f0012fdc6135b15d568a817832fb55d5c42f80d8421a117f68",
+      "actual": "db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc",
+      "bytes": 28669,
+      "matches": false,
+      "testSha256": "473cba3b039027879eeea6987515261faaadcf0833f3e4d2864fc610f5b7a144"
+    },
+    {
+      "rev": "295a24ce2",
+      "commit": "295a24ce27c272580a5c9fa857b69cb4d6e94927 2026-09-06T16:54:10-04:00 2026-09-06T16:54:10-04:00",
+      "expected": "db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc",
+      "actual": "db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc",
+      "bytes": 28669,
+      "matches": true,
+      "testSha256": "81de0ebc74a6e2e2a6c66e96cd3a7856806b7e41f775e3e2f184caf5bd1158ac"
+    }
+  ],
+  "intermediateCase": {
+    "parentSha256": "ccd1ef330fe8317dcb6d5838aab1406f1064efe7350984f9c36439e8ac09895e",
+    "intermediateSha256": "738c716f95c419d49c14ffd533ba3bde4b6bfe666521f363db15c6212a52842c",
+    "committedSha256": "6c40890728e39e2c36121cc5a921a86678e6a963bdc806d3e013f8faab50072a",
+    "expected": "738c716f95c419d49c14ffd533ba3bde4b6bfe666521f363db15c6212a52842c",
+    "intermediateMatches": true,
+    "committedMatches": false,
+    "parentExpected": "fdd07944609ebf8a2651999626edb607a4c8b136d906a59e638aa8c43351f6c0"
+  },
+  "earlierPreparation": [
+    {
+      "rev": "d52665793^",
+      "actual": "fdd07944609ebf8a2651999626edb607a4c8b136d906a59e638aa8c43351f6c0",
+      "expected": "fdd07944609ebf8a2651999626edb607a4c8b136d906a59e638aa8c43351f6c0"
+    },
+    {
+      "rev": "d52665793",
+      "actual": "ccd1ef330fe8317dcb6d5838aab1406f1064efe7350984f9c36439e8ac09895e",
+      "expected": "fdd07944609ebf8a2651999626edb607a4c8b136d906a59e638aa8c43351f6c0"
+    }
+  ],
+  "testComposition": [
+    {
+      "path": "tests/f6c-root-cover-pilot.test.js",
+      "expected": "3855c2d1211c0834d93e1e4b94b3c3ce55301ca05caf306e8e8554441544f0fd",
+      "rev": "0fb575921",
+      "consumer": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+      "actual": "3855c2d1211c0834d93e1e4b94b3c3ce55301ca05caf306e8e8554441544f0fd",
+      "matches": true
+    },
+    {
+      "path": "tests/f6c-root-cover-pilot-process.test.js",
+      "expected": "e210e69057908a3d036eb2055fa74323ca594fea6a02d7b75eb2276a8e88dcfc",
+      "rev": "0fb575921",
+      "consumer": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+      "actual": "e210e69057908a3d036eb2055fa74323ca594fea6a02d7b75eb2276a8e88dcfc",
+      "matches": true
+    },
+    {
+      "path": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+      "expected": "ad50f3dcb230e3a5181c5ac205f55b29584689eb8a434a7adbd01cd23dc856d9",
+      "rev": "0fb575921",
+      "consumer": "tests/f6c-cached-root-cover-full.test.js",
+      "actual": "ad50f3dcb230e3a5181c5ac205f55b29584689eb8a434a7adbd01cd23dc856d9",
+      "matches": true
+    },
+    {
+      "path": "tests/f6c-cached-root-cover-pilot-process.test.js",
+      "expected": "f0055410c58fbfce291c235a0cd03339a742923619fa1bc6063fe294fb1c5411",
+      "rev": "0fb575921",
+      "consumer": "tests/f6c-cached-root-cover-full.test.js",
+      "actual": "f0055410c58fbfce291c235a0cd03339a742923619fa1bc6063fe294fb1c5411",
+      "matches": true
+    },
+    {
+      "path": "tests/f6c-root-cover-pilot.test.js",
+      "expected": "3855c2d1211c0834d93e1e4b94b3c3ce55301ca05caf306e8e8554441544f0fd",
+      "rev": "897fe1aa7",
+      "consumer": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+      "actual": "3855c2d1211c0834d93e1e4b94b3c3ce55301ca05caf306e8e8554441544f0fd",
+      "matches": true
+    },
+    {
+      "path": "tests/f6c-root-cover-pilot-process.test.js",
+      "expected": "e210e69057908a3d036eb2055fa74323ca594fea6a02d7b75eb2276a8e88dcfc",
+      "rev": "897fe1aa7",
+      "consumer": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+      "actual": "e210e69057908a3d036eb2055fa74323ca594fea6a02d7b75eb2276a8e88dcfc",
+      "matches": true
+    },
+    {
+      "path": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+      "expected": "ad50f3dcb230e3a5181c5ac205f55b29584689eb8a434a7adbd01cd23dc856d9",
+      "rev": "897fe1aa7",
+      "consumer": "tests/f6c-cached-root-cover-full.test.js",
+      "actual": "ad50f3dcb230e3a5181c5ac205f55b29584689eb8a434a7adbd01cd23dc856d9",
+      "matches": true
+    },
+    {
+      "path": "tests/f6c-cached-root-cover-pilot-process.test.js",
+      "expected": "f0055410c58fbfce291c235a0cd03339a742923619fa1bc6063fe294fb1c5411",
+      "rev": "897fe1aa7",
+      "consumer": "tests/f6c-cached-root-cover-full.test.js",
+      "actual": "f0055410c58fbfce291c235a0cd03339a742923619fa1bc6063fe294fb1c5411",
+      "matches": true
+    },
+    {
+      "path": "tests/f6c-root-cover-pilot.test.js",
+      "expected": "3855c2d1211c0834d93e1e4b94b3c3ce55301ca05caf306e8e8554441544f0fd",
+      "rev": "d52665793^",
+      "consumer": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+      "actual": "3855c2d1211c0834d93e1e4b94b3c3ce55301ca05caf306e8e8554441544f0fd",
+      "matches": true
+    },
+    {
+      "path": "tests/f6c-root-cover-pilot-process.test.js",
+      "expected": "e210e69057908a3d036eb2055fa74323ca594fea6a02d7b75eb2276a8e88dcfc",
+      "rev": "d52665793^",
+      "consumer": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+      "actual": "e210e69057908a3d036eb2055fa74323ca594fea6a02d7b75eb2276a8e88dcfc",
+      "matches": true
+    },
+    {
+      "path": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+      "expected": "ad50f3dcb230e3a5181c5ac205f55b29584689eb8a434a7adbd01cd23dc856d9",
+      "rev": "d52665793^",
+      "consumer": "tests/f6c-cached-root-cover-full.test.js",
+      "actual": "ad50f3dcb230e3a5181c5ac205f55b29584689eb8a434a7adbd01cd23dc856d9",
+      "matches": true
+    },
+    {
+      "path": "tests/f6c-cached-root-cover-pilot-process.test.js",
+      "expected": "f0055410c58fbfce291c235a0cd03339a742923619fa1bc6063fe294fb1c5411",
+      "rev": "d52665793^",
+      "consumer": "tests/f6c-cached-root-cover-full.test.js",
+      "actual": "f0055410c58fbfce291c235a0cd03339a742923619fa1bc6063fe294fb1c5411",
+      "matches": true
+    },
+    {
+      "path": "tests/f6c-root-cover-pilot.test.js",
+      "expected": "3855c2d1211c0834d93e1e4b94b3c3ce55301ca05caf306e8e8554441544f0fd",
+      "rev": "d52665793",
+      "consumer": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+      "actual": "a4122c03d8aa0d1cd506df63b6f7074674f2a1a7b79d631052c89b0000df6541",
+      "matches": false
+    },
+    {
+      "path": "tests/f6c-root-cover-pilot-process.test.js",
+      "expected": "e210e69057908a3d036eb2055fa74323ca594fea6a02d7b75eb2276a8e88dcfc",
+      "rev": "d52665793",
+      "consumer": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+      "actual": "cc0cac9ea3059239463e36f09f9d289146b6be92443daeda0136a16b6ecf6629",
+      "matches": false
+    },
+    {
+      "path": "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+      "expected": "ad50f3dcb230e3a5181c5ac205f55b29584689eb8a434a7adbd01cd23dc856d9",
+      "rev": "d52665793",
+      "consumer": "tests/f6c-cached-root-cover-full.test.js",
+      "actual": "c2ac5b634a394da8f9157d9a07ec84260f0fecd379ea12607fb8c2ba088248f3",
+      "matches": false
+    },
+    {
+      "path": "tests/f6c-cached-root-cover-pilot-process.test.js",
+      "expected": "f0055410c58fbfce291c235a0cd03339a742923619fa1bc6063fe294fb1c5411",
+      "rev": "d52665793",
+      "consumer": "tests/f6c-cached-root-cover-full.test.js",
+      "actual": "72a68ac029d0ef269daa4c1508ee122a4548953e1238d237c7de5518556ea736",
+      "matches": false
+    }
+  ],
+  "receipt": {
+    "path": ".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827/full-cached-v1/full-admission.json",
+    "sha256": "8fe8f0f9651fd8de15467a69f0534f08bbe19e0e3fdb64a86c6422be857eb77f",
+    "bytes": 332567,
+    "entry": {
+      "path": "/Users/markmorris/vibe/architrino/scripts/eom/run-f6c-cached-root-cover-full.mjs",
+      "sha256": "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b",
+      "bytes": 27166
+    },
+    "recoveredBlobSha256": "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b"
+  },
+  "historical": [
+    {
+      "rev": "0fb575921",
+      "commit": "0fb575921783188ce528a45c671090e9ecc00464 2026-08-27T20:24:53-04:00 2026-08-27T20:24:53-04:00",
+      "expected": "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b",
+      "currentEntrySha256": "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b"
+    },
+    {
+      "rev": "897fe1aa7",
+      "commit": "897fe1aa79be7ae1e77144d52ef396d209645323 2026-09-01T22:14:15-04:00 2026-09-01T22:14:15-04:00",
+      "expected": "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b",
+      "currentEntrySha256": "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b"
+    },
+    {
+      "rev": "00710092e",
+      "commit": "00710092e165486f072c9dfe6cd8af4e8e99d343 2026-09-02T18:31:25-04:00 2026-09-02T18:31:25-04:00",
+      "expected": "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b",
+      "currentEntrySha256": "1398a005510480d073d3882c7b9508b1cd2f91f0d7bb7ae5757b4893ed73352b"
+    },
+    {
+      "rev": "baa3e7323",
+      "commit": "baa3e732343db99d0b16dbb920fd9839ad09c942 2026-09-06T14:57:01-04:00 2026-09-06T14:57:01-04:00",
+      "expected": "373930ca36ca50067b0df37a48ed96cd34527d912af2f6696d6c4d4992a99bb0",
+      "currentEntrySha256": "373930ca36ca50067b0df37a48ed96cd34527d912af2f6696d6c4d4992a99bb0"
+    },
+    {
+      "rev": "730940e16^",
+      "commit": "a7609931e12e08bddc50d70bbc5ab29582191d88 2026-09-06T16:14:19-04:00 2026-09-06T16:14:19-04:00",
+      "expected": "373930ca36ca50067b0df37a48ed96cd34527d912af2f6696d6c4d4992a99bb0",
+      "currentEntrySha256": "373930ca36ca50067b0df37a48ed96cd34527d912af2f6696d6c4d4992a99bb0"
+    },
+    {
+      "rev": "295a24ce2",
+      "commit": "295a24ce27c272580a5c9fa857b69cb4d6e94927 2026-09-06T16:54:10-04:00 2026-09-06T16:54:10-04:00",
+      "expected": "6dbf89315553b027335e3ca29094514e4ef663dadb2c98a8ad0f51fcf922de21",
+      "currentEntrySha256": "6dbf89315553b027335e3ca29094514e4ef663dadb2c98a8ad0f51fcf922de21"
+    },
+    {
+      "rev": "590ddc942",
+      "commit": "590ddc942b3427f1b0f2b5caeaf0205a292c6146 2026-09-06T17:15:26-04:00 2026-09-06T17:15:26-04:00",
+      "expected": "e9381a6564087c681bbf8a1ae12ca257aa3d2314ab6ca14ab91897bdc8630a9d",
+      "currentEntrySha256": "e9381a6564087c681bbf8a1ae12ca257aa3d2314ab6ca14ab91897bdc8630a9d"
+    },
+    {
+      "rev": "582efe4bf",
+      "commit": "582efe4bff7e89db05dfa50d41f0e5e421bae3a5 2026-09-06T17:57:27-04:00 2026-09-06T17:57:27-04:00",
+      "expected": "d46ca542216c3554b2cbf4475a18149ac78f6d0c9ccd35897e1280b7632d7ea0",
+      "currentEntrySha256": "d46ca542216c3554b2cbf4475a18149ac78f6d0c9ccd35897e1280b7632d7ea0"
+    },
+    {
+      "rev": "959247191",
+      "commit": "959247191a8758086459177bb1c3ce23cb2cc365 2026-09-06T18:01:32-04:00 2026-09-06T18:01:32-04:00",
+      "expected": "9e71ac129b9f62a5c6302ddadf2fdfcb8525b0342bb81a9d7c827cf9553ee792",
+      "currentEntrySha256": "9e71ac129b9f62a5c6302ddadf2fdfcb8525b0342bb81a9d7c827cf9553ee792"
+    },
+    {
+      "rev": "36d34a262",
+      "commit": "36d34a26244cedd5fe103c9f836090bd2438b9ad 2026-09-06T19:22:48-04:00 2026-09-06T19:22:48-04:00",
+      "expected": "9e71ac129b9f62a5c6302ddadf2fdfcb8525b0342bb81a9d7c827cf9553ee792",
+      "currentEntrySha256": "9e71ac129b9f62a5c6302ddadf2fdfcb8525b0342bb81a9d7c827cf9553ee792"
+    }
+  ]
+}

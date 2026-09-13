@@ -6,11 +6,6 @@ This file is the authoritative priority-ordered document board for the 199-file 
 
 | Status | Priority | Document | State | Finding IDs or next action |
 | --- | ---: | --- | --- | --- |
-| ○ | 63 | [BBN Constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md) | Unread backlog document | Not yet reviewed |
-| ○ | 64 | [CMB in $\mathbb{A}\mathbb{A}\mathbb{A}$ Cosmology](../../../content/markdown/aaa/cosmology/CMB.md) | Unread backlog document | Not yet reviewed |
-| ○ | 65 | [Dark Matter in $\mathbb{A}\mathbb{A}\mathbb{A}$](../../../content/markdown/aaa/cosmology/dark-matter.md) | Unread backlog document | Not yet reviewed |
-| ○ | 66 | [Dark Energy in the Architrino Assembly Architecture](../../../content/markdown/aaa/cosmology/dark-energy.md) | Unread backlog document | Not yet reviewed |
-| ○ | 67 | [Structure Formation](../../../content/markdown/aaa/cosmology/structure-formation.md) | Unread backlog document | Not yet reviewed |
 | ○ | 68 | [Hubble and $S_8$ Tensions](../../../content/markdown/aaa/cosmology/hubble-s8-tensions.md) | Unread backlog document | Not yet reviewed |
 | ○ | 69 | [Validation Protocols](../../../content/markdown/aaa/validation/validation-protocols.md) | Unread backlog document | Not yet reviewed |
 | ○ | 70 | [$\mathbb{A}\mathbb{A}\mathbb{A}$ and SI Base Units: Deep Intersection Analysis](../../../content/markdown/aaa/validation/architrino-si-base-units.md) | Unread backlog document | Not yet reviewed |
@@ -114,7 +109,7 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ○ | 168 | [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) | Unread backlog document | Not yet reviewed |
 | ○ | 18 | [Well-posedness and regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | Unread backlog document; action-energy directory held until the end | Not yet reviewed |
 
-**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 107 unopened documents. The next action is the first ○ row in the recorded phase order, BBN Constraints; the remaining action-energy file is intentionally last.
+**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 102 unopened documents. The next action is the first ○ row in the recorded phase order, Hubble and $S_8$ Tensions; the remaining action-energy file is intentionally last.
 
 ## Completed audit appendix
 
@@ -212,5 +207,10 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ● | 90 | [Cosmology Reconstruction](../../../content/markdown/aaa/cosmology/cosmology-reconstruction.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-cosmology-reconstruction-review-2026-09-12.md) | CR-01–CR-14 |
 | ● | 91 | [Expansion Mechanism](../../../content/markdown/aaa/cosmology/expansion-mechanism.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-expansion-mechanism-review-2026-09-12.md) | EXP-01–EXP-20 |
 | ● | 92 | [Inflation Model](../../../content/markdown/aaa/cosmology/inflation-model.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-inflation-model-review-2026-09-12.md) | IM-01–IM-15 |
+| ● | 93 | [BBN Constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-bbn-constraints-review-2026-09-12.md) | BBN-01–BBN-20 |
+| ● | 94 | [CMB in $\mathbb{A}\mathbb{A}\mathbb{A}$ Cosmology](../../../content/markdown/aaa/cosmology/CMB.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-cmb-review-2026-09-12.md) | CMB-01–CMB-22 |
+| ● | 95 | [Dark Matter in $\mathbb{A}\mathbb{A}\mathbb{A}$](../../../content/markdown/aaa/cosmology/dark-matter.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-dark-matter-review-2026-09-12.md) | DM-01–DM-24 |
+| ● | 96 | [Dark Energy in the Architrino Assembly Architecture](../../../content/markdown/aaa/cosmology/dark-energy.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-dark-energy-review-2026-09-12.md) | DE-01–DE-22 |
+| ● | 97 | [Structure Formation](../../../content/markdown/aaa/cosmology/structure-formation.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-structure-formation-review-2026-09-12.md) | SF-01–SF-22 |
 
-Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 92 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 107 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.
+Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 97 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 102 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.

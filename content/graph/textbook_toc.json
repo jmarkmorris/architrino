@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1664
+      "sections": 1665
     }
   },
   "tocRoot": {
@@ -8457,6 +8457,14 @@
                 "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
                 "markdownSection": "Summary",
                 "sectionKey": "summary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Source Notes",
+                "markdownPath": "content/markdown/aaa/cosmology/dark-energy.md",
+                "markdownSection": "Source Notes",
+                "sectionKey": "source notes",
                 "headingLevel": 2
               }
             ]

@@ -1,0 +1,212 @@
+{
+  "instrument": "inspect-dispatch.mjs dispatch",
+  "measuredAt": "2026-09-13T02:09:52.372Z",
+  "timezone": "Original event timestamps UTC; operator local EDT is UTC minus 4 hours.",
+  "findings": [
+    {
+      "priority": 58,
+      "path": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+      "measured": "ed39ca4982dd4b1b872f427481471489bdf6716b7affea2ed4aa85005b4d4965",
+      "authored": "ed39ca4982dd4b1b872f427481471489bdf6716b7affea2ed4aa85005b4d4965",
+      "receivedHash": "ed39ca4982dd4b1b872f427481471489bdf6716b7affea2ed4aa85005b4d4965",
+      "hashSyntaxValid": true,
+      "measuredEqualsAuthored": true,
+      "historicalGitSha256": "ed39ca4982dd4b1b872f427481471489bdf6716b7affea2ed4aa85005b4d4965",
+      "historicalGitBytes": 31282,
+      "sourceMatchesMeasurement": true,
+      "constructedBytes": 2706,
+      "outgoingBytes": 2706,
+      "incomingBytes": 2706,
+      "constructedSha256": "1dfa6c443969f2f155450606376aa43304c6049f68586d0f499a7b6469584be9",
+      "outgoingSha256": "1dfa6c443969f2f155450606376aa43304c6049f68586d0f499a7b6469584be9",
+      "incomingSha256": "1dfa6c443969f2f155450606376aa43304c6049f68586d0f499a7b6469584be9",
+      "completeValuesEqual": true,
+      "measurement": {
+        "log": "rollout-2026-09-12T08-22-35-01a09591-cbca-75c3-883b-5f8bd1f9efeb.jsonl",
+        "line": 3687,
+        "time": "2026-09-13T00:24:23.622Z"
+      },
+      "construction": {
+        "log": "rollout-2026-09-12T08-22-35-01a09591-cbca-75c3-883b-5f8bd1f9efeb.jsonl",
+        "line": 3692,
+        "time": "2026-09-13T00:24:45.170Z"
+      },
+      "outgoing": {
+        "log": "rollout-2026-09-12T08-22-35-01a09591-cbca-75c3-883b-5f8bd1f9efeb.jsonl",
+        "line": 3694,
+        "time": "2026-09-13T00:24:45.272Z",
+        "callId": "exec-65ff982d-429d-4551-9c18-80d50bda30f3"
+      },
+      "incoming": {
+        "log": "rollout-2026-09-12T20-24-45-01a09826-f593-79e3-84d7-78582ff9ba4e.jsonl",
+        "line": 73,
+        "time": "2026-09-13T00:24:47.235Z",
+        "receiverId": "01a09826-f593-79e3-84d7-78582ff9ba4e"
+      }
+    },
+    {
+      "priority": 59,
+      "path": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+      "measured": "05d9c20b3bffb3031a6880bd1850a13fa03bbf2188288567afa2c70f26abb76d",
+      "authored": "05d9c20b3bffb3031a6880bd1850a13fa03bbf2188288567afa2c70f26abb76",
+      "receivedHash": "05d9c20b3bffb3031a6880bd1850a13fa03bbf2188288567afa2c70f26abb76",
+      "hashSyntaxValid": false,
+      "measuredEqualsAuthored": false,
+      "historicalGitSha256": "05d9c20b3bffb3031a6880bd1850a13fa03bbf2188288567afa2c70f26abb76d",
+      "historicalGitBytes": 40823,
+      "sourceMatchesMeasurement": true,
+      "constructedBytes": 2601,
+      "outgoingBytes": 2601,
+      "incomingBytes": 2601,
+      "constructedSha256": "bb5958eb74dcf4f9193520e3829f6f9a5f9d088549077a316722e7f1ef62f4f0",
+      "outgoingSha256": "bb5958eb74dcf4f9193520e3829f6f9a5f9d088549077a316722e7f1ef62f4f0",
+      "incomingSha256": "bb5958eb74dcf4f9193520e3829f6f9a5f9d088549077a316722e7f1ef62f4f0",
+      "completeValuesEqual": true,
+      "measurement": {
+        "log": "rollout-2026-09-12T08-22-35-01a09591-cbca-75c3-883b-5f8bd1f9efeb.jsonl",
+        "line": 3687,
+        "time": "2026-09-13T00:24:23.622Z"
+      },
+      "construction": {
+        "log": "rollout-2026-09-12T08-22-35-01a09591-cbca-75c3-883b-5f8bd1f9efeb.jsonl",
+        "line": 3692,
+        "time": "2026-09-13T00:24:45.170Z"
+      },
+      "outgoing": {
+        "log": "rollout-2026-09-12T08-22-35-01a09591-cbca-75c3-883b-5f8bd1f9efeb.jsonl",
+        "line": 3695,
+        "time": "2026-09-13T00:24:45.456Z",
+        "callId": "exec-a4926c31-cb6f-4d03-9f14-f4afe2e54e11"
+      },
+      "incoming": {
+        "log": "rollout-2026-09-12T20-24-45-01a09826-f603-7410-9302-d674b501170f.jsonl",
+        "line": 73,
+        "time": "2026-09-13T00:24:47.394Z",
+        "receiverId": "01a09826-f603-7410-9302-d674b501170f"
+      }
+    },
+    {
+      "priority": 60,
+      "path": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+      "measured": "f49a5c8eb86bd1824c6e7918c2a0a99d6f1e667d8be5d6b2b39cfe55cc87dc74",
+      "authored": "f49a5c8eb86bd1824c6e7918c2a0a99d6f1e667d8be5d6b2b39cfe55cc87dc74",
+      "receivedHash": "f49a5c8eb86bd1824c6e7918c2a0a99d6f1e667d8be5d6b2b39cfe55cc87dc74",
+      "hashSyntaxValid": true,
+      "measuredEqualsAuthored": true,
+      "historicalGitSha256": "f49a5c8eb86bd1824c6e7918c2a0a99d6f1e667d8be5d6b2b39cfe55cc87dc74",
+      "historicalGitBytes": 24910,
+      "sourceMatchesMeasurement": true,
+      "constructedBytes": 2632,
+      "outgoingBytes": 2632,
+      "incomingBytes": 2632,
+      "constructedSha256": "620cd21e7a7493fb5899c231422942192551e8e388c01152dd27c9f5a0d5440b",
+      "outgoingSha256": "620cd21e7a7493fb5899c231422942192551e8e388c01152dd27c9f5a0d5440b",
+      "incomingSha256": "620cd21e7a7493fb5899c231422942192551e8e388c01152dd27c9f5a0d5440b",
+      "completeValuesEqual": true,
+      "measurement": {
+        "log": "rollout-2026-09-12T08-22-35-01a09591-cbca-75c3-883b-5f8bd1f9efeb.jsonl",
+        "line": 3687,
+        "time": "2026-09-13T00:24:23.622Z"
+      },
+      "construction": {
+        "log": "rollout-2026-09-12T08-22-35-01a09591-cbca-75c3-883b-5f8bd1f9efeb.jsonl",
+        "line": 3692,
+        "time": "2026-09-13T00:24:45.170Z"
+      },
+      "outgoing": {
+        "log": "rollout-2026-09-12T08-22-35-01a09591-cbca-75c3-883b-5f8bd1f9efeb.jsonl",
+        "line": 3698,
+        "time": "2026-09-13T00:24:47.059Z",
+        "callId": "exec-944b25bd-925b-4857-9cba-21c277da3289"
+      },
+      "incoming": {
+        "log": "rollout-2026-09-12T20-24-46-01a09826-fb01-7130-9a5e-f9e44316ebcd.jsonl",
+        "line": 73,
+        "time": "2026-09-13T00:24:48.820Z",
+        "receiverId": "01a09826-fb01-7130-9a5e-f9e44316ebcd"
+      }
+    },
+    {
+      "priority": 61,
+      "path": "content/markdown/aaa/cosmology/expansion-mechanism.md",
+      "measured": "518f9a139f1844c7ccae0f262c3062323ec10f3fc8ff6765d8150dbe50faaf05",
+      "authored": "518f9a139f1844c7ccae0f262c3062323ec10f3fc8ff6765d8150dbe50faaf05",
+      "receivedHash": "518f9a139f1844c7ccae0f262c3062323ec10f3fc8ff6765d8150dbe50faaf05",
+      "hashSyntaxValid": true,
+      "measuredEqualsAuthored": true,
+      "historicalGitSha256": "518f9a139f1844c7ccae0f262c3062323ec10f3fc8ff6765d8150dbe50faaf05",
+      "historicalGitBytes": 79922,
+      "sourceMatchesMeasurement": true,
+      "constructedBytes": 2607,
+      "outgoingBytes": 2607,
+      "incomingBytes": 2607,
+      "constructedSha256": "7ce400401278b3370fb9ab3f8daf9a6c1f72ac982acf73fe92ee0ac186a23db7",
+      "outgoingSha256": "7ce400401278b3370fb9ab3f8daf9a6c1f72ac982acf73fe92ee0ac186a23db7",
+      "incomingSha256": "7ce400401278b3370fb9ab3f8daf9a6c1f72ac982acf73fe92ee0ac186a23db7",
+      "completeValuesEqual": true,
+      "measurement": {
+        "log": "rollout-2026-09-12T08-22-35-01a09591-cbca-75c3-883b-5f8bd1f9efeb.jsonl",
+        "line": 3687,
+        "time": "2026-09-13T00:24:23.622Z"
+      },
+      "construction": {
+        "log": "rollout-2026-09-12T08-22-35-01a09591-cbca-75c3-883b-5f8bd1f9efeb.jsonl",
+        "line": 3692,
+        "time": "2026-09-13T00:24:45.170Z"
+      },
+      "outgoing": {
+        "log": "rollout-2026-09-12T08-22-35-01a09591-cbca-75c3-883b-5f8bd1f9efeb.jsonl",
+        "line": 3697,
+        "time": "2026-09-13T00:24:46.351Z",
+        "callId": "exec-e081a395-b7c0-4a83-8513-875ee32fbc9e"
+      },
+      "incoming": {
+        "log": "rollout-2026-09-12T20-24-45-01a09826-f81e-7250-9ebe-3ee23ee38718.jsonl",
+        "line": 73,
+        "time": "2026-09-13T00:24:48.655Z",
+        "receiverId": "01a09826-f81e-7250-9ebe-3ee23ee38718"
+      }
+    },
+    {
+      "priority": 62,
+      "path": "content/markdown/aaa/cosmology/inflation-model.md",
+      "measured": "f51f88d7fd739cc4c8359b5bb01a039bdd5adef0a5bc4fc64591063a455cc0af",
+      "authored": "f51f88d7fd739cc4c8359b5bb01a039bdd5adef0a5bc4fc64591063a455cc0af",
+      "receivedHash": "f51f88d7fd739cc4c8359b5bb01a039bdd5adef0a5bc4fc64591063a455cc0af",
+      "hashSyntaxValid": true,
+      "measuredEqualsAuthored": true,
+      "historicalGitSha256": "f51f88d7fd739cc4c8359b5bb01a039bdd5adef0a5bc4fc64591063a455cc0af",
+      "historicalGitBytes": 18864,
+      "sourceMatchesMeasurement": true,
+      "constructedBytes": 2587,
+      "outgoingBytes": 2587,
+      "incomingBytes": 2587,
+      "constructedSha256": "534501cc894a4b4b94867e4da7424ef5fcab0b4bb7e1913ce20dc921ad85b658",
+      "outgoingSha256": "534501cc894a4b4b94867e4da7424ef5fcab0b4bb7e1913ce20dc921ad85b658",
+      "incomingSha256": "534501cc894a4b4b94867e4da7424ef5fcab0b4bb7e1913ce20dc921ad85b658",
+      "completeValuesEqual": true,
+      "measurement": {
+        "log": "rollout-2026-09-12T08-22-35-01a09591-cbca-75c3-883b-5f8bd1f9efeb.jsonl",
+        "line": 3687,
+        "time": "2026-09-13T00:24:23.622Z"
+      },
+      "construction": {
+        "log": "rollout-2026-09-12T08-22-35-01a09591-cbca-75c3-883b-5f8bd1f9efeb.jsonl",
+        "line": 3692,
+        "time": "2026-09-13T00:24:45.170Z"
+      },
+      "outgoing": {
+        "log": "rollout-2026-09-12T08-22-35-01a09591-cbca-75c3-883b-5f8bd1f9efeb.jsonl",
+        "line": 3696,
+        "time": "2026-09-13T00:24:45.777Z",
+        "callId": "exec-e121f26c-a8b6-4b8d-9a48-8bfc4ccec37c"
+      },
+      "incoming": {
+        "log": "rollout-2026-09-12T20-24-45-01a09826-f701-7670-b244-f17f8258e3db.jsonl",
+        "line": 73,
+        "time": "2026-09-13T00:24:47.394Z",
+        "receiverId": "01a09826-f701-7670-b244-f17f8258e3db"
+      }
+    }
+  ]
+}

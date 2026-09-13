@@ -33,6 +33,7 @@ test("all remaining Option B admission and finite-disposition controls are requi
   assert.ok(admission && !admission.reporting && !admission.skipWhen);
   assert.ok(admission.args.includes("tests/option-b-root-cover-admission.test.mjs"));
   assert.ok(admission.args.includes("tests/option-b-next-test-identities.test.mjs"));
+  assert.ok(admission.args.includes("tests/option-b-f6c-test-identities.test.mjs"));
   assert.equal(selectedChecks({ AAA_CONTENT_MAINTENANCE: "run" }).some(row=>row.args.includes("tests/current-launch-bindings.test.js")),false);
   for (const file of ["tests/option-b-f5-admission.test.mjs", "tests/option-b-f5-evolution-admission.test.mjs", "tests/option-b-f5-budget-transition.test.mjs", "tests/option-b-circular-admission.test.mjs", "tests/option-b-current-source-transition.test.mjs", "tests/option-b-disposition-coverage.test.mjs"]) assert.ok(admission.args.includes(file), file);
   assert.equal(admission.args.includes("tests/option-b-operational-successor.test.mjs"), false);
@@ -58,6 +59,14 @@ function scenario(checks, results) {
   assert.equal(results.length, 0, "expected check was not executed");
   return { report, output: output.join("\n"), invoked };
 }
+test("agent dispatch evidence regression is mandatory locally and on GitHub", () => {
+  for (const profile of ['local', 'github']) {
+    const gate = selectedChecks({}, profile).find(c => c.name === 'Test agent dispatch validation and handoff evidence');
+    assert.ok(gate && !gate.reporting && !gate.skipWhen);
+    assert.deepEqual(gate.args, ['--test', 'tests/agent-dispatch.test.mjs', 'tests/agent-dispatch-session.test.mjs']);
+    assert.equal(scenario([gate], [{ status: 1 }]).report.exitCode, 1);
+  }
+});
 const check = (name, extra = {}) => ({ name, args: [name], ...extra });
 
 test("passing required checks do not imply that skipped coverage ran", () => {

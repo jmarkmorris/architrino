@@ -1,3 +1,5 @@
+import { f6cTestIdentities, selectedLaunchBindings } from './support/option-b-f6c-test-identities.mjs';
+const F6C_IDENTITIES = f6cTestIdentities('tests/f6c-cached-root-cover-pilot-launcher.test.js', 50);
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
@@ -279,57 +281,57 @@ const CACHED_PATH_REPLACEMENTS=[
 ];
 const CACHED_HASH_REPLACEMENTS=[
   [
-    "9da7863fe51777de48ee44e0d9dab73cb9844039768b6742310ead3d60702d82",
-    "d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841"
+    F6C_IDENTITIES[0],
+    F6C_IDENTITIES[1]
   ],
   [
-    "1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36",
-    "3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7"
+    F6C_IDENTITIES[2],
+    F6C_IDENTITIES[3]
   ],
   [
-    "68a940c40b2e3b463555b95858031f96796e2ac94963a86b3a9ae6fd74dc3742",
-    "5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2"
+    F6C_IDENTITIES[4],
+    F6C_IDENTITIES[5]
   ],
   [
-    "5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5",
-    "09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3"
+    F6C_IDENTITIES[6],
+    F6C_IDENTITIES[7]
   ],
   [
-    "f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c",
-    "daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf"
+    F6C_IDENTITIES[8],
+    F6C_IDENTITIES[9]
   ],
   [
-    "3b20e5d7bce4b57dfd41c0d1efcc34f9242dcd41a02b35676f45ba0984499578",
-    "520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba"
+    F6C_IDENTITIES[10],
+    F6C_IDENTITIES[11]
   ]
 ];
-const CACHED_EXTRA_PINS="  \"tests/test_eom_continuous_reception_roots_cached.py\": \"a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md\": \"3b20e5d7bce4b57dfd41c0d1efcc34f9242dcd41a02b35676f45ba0984499578\",\n  \"scripts/eom/oracle/continuous_reception_roots.py\": \"f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c\",\n  \"scripts/eom/verify-f6c-continuous-reception-root-cover.py\": \"1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36\",\n  \"tests/test_f6c_continuous_reception_root_cover.py\": \"5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md\": \"a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d\",\n  \"reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md\": \"2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40\",\n";
+const CACHED_EXTRA_PINS=F6C_IDENTITIES[12];
 const CACHED_EXPECTED_PINS={
-  "scripts/eom/launch-subfield-circular-root-pilot.mjs": "71974054ddce7fc29b8464b9a7a63f8fbb04ee5b425dc997df4d40b2804341aa",
-  "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py": "d627e84acc2004f2dbe786a19f384a825371e1026f41a8c2103e2d32235a6841",
-  "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py": "3221c44ed626f0902cc1c6e4d439fc87669bc6fa9ec1397d111b2d1fc69bbfc7",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md": "1a6327933b0060905aec97022e87c243b54f353af8c7aec83712967b285b010d",
-  "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py": "5877243db56d30c431bb41dc3a190fd981284cb096ad4f1ee9906bf725bc96a2",
-  "tests/test_f6c_cached_continuous_reception_root_cover.py": "09b5c51b2e43727b98adfffde6a080e8e9c92f1ffa7280d8f819d830c8f7e2a3",
-  "scripts/eom/oracle/continuous_reception_roots_cached.py": "daa4cc227cb8685de673fc400d817a19666b4fc7323e6c3a56f475a463b23acf",
-  "scripts/eom/oracle/certified_history.py": "ca916b4bc979629a5e25c1490da07fd78a26b4e75cfba5677f35fbab658a29e7",
-  "scripts/eom/oracle/decimal_interval.py": "fffc17270e149e6213315c1c82b518caa739657eb649822fd1955b8a2820e38a",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md": "520bd9fd40a9e73a1decb8bdbdd3b262f51478ed5bc61103f86b92f5079de2ba",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md": "db38185a68210cc8567b0b9f054c6deb5d32509f858cefb5701511a4e23ef2bc",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md": "710279f5c348a81fd36d58c6ca704730b3fa70da729ca30b9c92ae4e1cc6734b",
-  "tests/test_eom_continuous_reception_roots.py": "81de0ebc74a6e2e2a6c66e96cd3a7856806b7e41f775e3e2f184caf5bd1158ac",
-  "scripts/eom/verify-f6c-accepted-frame-reconstruction.py": "0c5ae3b5e7161cbed60de71670d17d5437a41b7ce4109843dbf3cdd20b9e3965",
-  "scripts/eom/verify-f6c-retained-history-guards.py": "b8480f3652fd7254bdfe998bbe0f6d092500c6451d692c1ab225d3405295897d",
-  ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json": "f479bb88a6425e9e98e00288f2524f33d5a3c0f4c2a14139dbaae4f468c46db1",
-  ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json": "7c30aae03d43f7720b79288a19a9c9f9a7c0ab6b7b16ac9a948828ca80b92b43",
-  ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json": "86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880",
-  "tests/test_eom_continuous_reception_roots_cached.py": "a5ac7c8b26c5d0a193f20305f4bdbad93939756780bdaefd9cbf569f42a487eb",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md": "3b20e5d7bce4b57dfd41c0d1efcc34f9242dcd41a02b35676f45ba0984499578",
-  "scripts/eom/oracle/continuous_reception_roots.py": "f38657eedb585f6066bf233cef05508ef4d4336146dbf1e44501dfa9b669e04c",
-  "scripts/eom/verify-f6c-continuous-reception-root-cover.py": "1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36",
-  "tests/test_f6c_continuous_reception_root_cover.py": "5f501e0b8cf60030d214fc9637e1292faa93a615c396e787ef77fc7b261991c5",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md": "a5d9ee0b77f436f5d8cf3b3f1895e94438d220543ee87c117996a704994dc34d",
-  "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md": "2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40"
+  "scripts/eom/launch-subfield-circular-root-pilot.mjs": F6C_IDENTITIES[13],
+  "scripts/eom/prepare-f6c-cached-continuous-reception-root-cover.py": F6C_IDENTITIES[14],
+  "scripts/eom/verify-f6c-cached-continuous-reception-root-cover.py": F6C_IDENTITIES[15],
+  "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-pilot-resource-plan.md": F6C_IDENTITIES[16],
+  "tests/test_f6c_cached_continuous_reception_root_cover_preparation.py": F6C_IDENTITIES[17],
+  "tests/test_f6c_cached_continuous_reception_root_cover.py": F6C_IDENTITIES[18],
+  "scripts/eom/oracle/continuous_reception_roots_cached.py": F6C_IDENTITIES[19],
+  "scripts/eom/oracle/certified_history.py": F6C_IDENTITIES[20],
+  "scripts/eom/oracle/decimal_interval.py": F6C_IDENTITIES[21],
+  "reference/priorities/braid-program/evidence/2026-08-27-f6c-cached-root-cover-predeclaration.md": F6C_IDENTITIES[22],
+  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-enclosure-contract.md": F6C_IDENTITIES[23],
+  "reference/priorities/braid-program/evidence/2026-08-27-f6c-accepted-frame-history-reconstruction.md": F6C_IDENTITIES[24],
+  "tests/test_eom_continuous_reception_roots.py": F6C_IDENTITIES[25],
+  "scripts/eom/verify-f6c-accepted-frame-reconstruction.py": F6C_IDENTITIES[26],
+  "scripts/eom/verify-f6c-retained-history-guards.py": F6C_IDENTITIES[27],
+  ".local-data/braid-analysis/f6c-history-export-20260827.jUhLLg/retained-history.json": F6C_IDENTITIES[28],
+  ".local-data/braid-analysis/f6c-accepted-frame-reconstruction-20260827.5o7jK3/reconstruction.json": F6C_IDENTITIES[29],
+  ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json": F6C_IDENTITIES[30],
+  "tests/test_eom_continuous_reception_roots_cached.py": F6C_IDENTITIES[31],
+  "reference/priorities/braid-program/evidence/2026-08-27-f6c-continuous-reception-root-cover-predeclaration.md": F6C_IDENTITIES[32],
+  "scripts/eom/oracle/continuous_reception_roots.py": F6C_IDENTITIES[33],
+  "scripts/eom/verify-f6c-continuous-reception-root-cover.py": F6C_IDENTITIES[34],
+  "tests/test_f6c_continuous_reception_root_cover.py": F6C_IDENTITIES[35],
+  "reference/priorities/braid-program/evidence/2026-08-27-f6c-call-local-state-cache-equivalence.md": F6C_IDENTITIES[36],
+  "reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md": F6C_IDENTITIES[37]
 };
 const CACHED_REGEX_REPLACEMENT=["/reduce-prescribed-acceleration-response\\.py|(?:run|launch)-f6c-root-cover-pilot\\.mjs|prepare-f6c-continuous-reception-root-cover\\.py/u","/reduce-prescribed-acceleration-response\\.py|(?:run|launch)-f6c(?:-cached)?-root-cover-pilot\\.mjs|prepare-f6c(?:-cached)?-continuous-reception-root-cover\\.py/u"];
 const replacePaths=source=>{for(const[a,b]of CACHED_PATH_REPLACEMENTS)source=source.split(a).join(b);return source;};
@@ -338,32 +340,36 @@ const replacePaths=source=>{for(const[a,b]of CACHED_PATH_REPLACEMENTS)source=sou
 const constructionBaseline=JSON.parse(readFileSync("reference/priorities/development-process-review/contracts/option-b-root-cover-baseline.json"));
 const frozen=(p,h)=>{const bytes=execFileSync("git",["show",`${constructionBaseline.commit}:${p}`]);assert.equal(digest(bytes),h,p);return bytes.toString("utf8");};
 test("cached composition retains its exact historical pre-B construction delta",()=>{
-  const oldEntry=frozen("scripts/eom/run-f6c-root-cover-pilot.mjs","4c9e2ea18c78b86db36ce18160ee1f852d04fab0aa33fe9e672e6851c280f71a");
+  const oldEntry=frozen("scripts/eom/run-f6c-root-cover-pilot.mjs",F6C_IDENTITIES[38]);
   let expected=replacePaths(oldEntry);
   for(const[a,b]of CACHED_HASH_REPLACEMENTS){assert.equal(expected.split(a).length,2);expected=expected.replace(a,b);}
-  const marker='  ".local-data/braid-analysis/f6c-retained-history-guards-20260827.hdrqLF/guards.json": "86d7fa14ac64ee20930094ff1a59880fe4e1ef5c81758f5d8baf2c6777ee4880",\n';
+  const marker=F6C_IDENTITIES[39];
   assert.equal(expected.split(marker).length,2);expected=expected.replace(marker,marker+CACHED_EXTRA_PINS);
-  assert.equal(frozen(R.ENTRY,"74d7be0a7d23b703f63de4939b5a133b991b4ea40f8ccbd3f919d7b0080ac30a"),expected);
-  const oldLauncher=frozen("scripts/eom/launch-f6c-root-cover-pilot.mjs","22e855b8d084ab3c1dd44e64554c24bede56fc4def9843e16a15ac62dca829a9");
+  assert.equal(frozen(R.ENTRY,F6C_IDENTITIES[40]),expected);
+  const oldLauncher=frozen("scripts/eom/launch-f6c-root-cover-pilot.mjs",F6C_IDENTITIES[41]);
   expected=replacePaths(oldLauncher);
   const[a,b]=CACHED_REGEX_REPLACEMENT;assert.equal(expected.split(a).length,2);expected=expected.replace(a,b);
-  assert.equal(frozen(R.LAUNCHER,"9c7ef17b46dbdd7f4ae75283f59610f5a85ac4fdc23456af03fb6b7144a6fcfa"),expected);
-  assert.deepEqual(R.SOURCE_BINDINGS,CACHED_EXPECTED_PINS);
+  assert.equal(frozen(R.LAUNCHER,F6C_IDENTITIES[42]),expected);
+  // The historical table is checked against its original source generation.
+  const historicalEntry=frozen(R.ENTRY,F6C_IDENTITIES[40]);
+  for(const [p,h] of Object.entries(CACHED_EXPECTED_PINS))
+    assert.ok(historicalEntry.includes(JSON.stringify(h)),p);
+  assert.deepEqual(R.SOURCE_BINDINGS,selectedLaunchBindings('cached-root-cover'));
 });
 test("historical 32 entry/launcher/process obligations retain exact retargeting",()=>{
-  const unit=frozen("tests/f6c-root-cover-pilot.test.js","00e9c947ef8082e596bca7c1bb8d4c61fd9029cbf136ee9d7910b765ca3cec9d");
-  const proc=frozen("tests/f6c-root-cover-pilot-process.test.js","159244ee6d45bc92463ff5e27ac60d416114820b187a6ab767983ec01e228c6b");
+  const unit=frozen("tests/f6c-root-cover-pilot.test.js",F6C_IDENTITIES[43]);
+  const proc=frozen("tests/f6c-root-cover-pilot-process.test.js",F6C_IDENTITIES[44]);
   assert.equal((unit.match(/^test\(/gmu)??[]).length,26);
   assert.equal((proc.match(/^test\(/gmu)??[]).length,6);
-  const actual=frozen("tests/f6c-cached-root-cover-pilot-launcher.test.js","86336174713bea95164a0fbda3e40352c8bbb5dad9859c9e9b210ebcf2035bf0");
+  const actual=frozen("tests/f6c-cached-root-cover-pilot-launcher.test.js",F6C_IDENTITIES[45]);
   assert.equal(actual.slice(0,actual.indexOf("\n// Cached successor binding controls;")),replacePaths(unit));
-  assert.equal(frozen("tests/f6c-cached-root-cover-pilot-process.test.js","433452397ac00c2deaa6a9300b84510f553943c491fd49c965a7573a691b0cf7"),replacePaths(proc));
+  assert.equal(frozen("tests/f6c-cached-root-cover-pilot-process.test.js",F6C_IDENTITIES[46]),replacePaths(proc));
 });
 test("old or mixed launch bindings cannot select the cached composition",()=>{
   for(const mutate of [
     p=>p.schema="braid-program/f6c-root-cover-pilot-launch.v2",
-    p=>p.comparisonContract.declarationSha256="3b20e5d7bce4b57dfd41c0d1efcc34f9242dcd41a02b35676f45ba0984499578",
-    p=>p.comparisonContract.verifierSha256="1e121cb46ae4ebb7a50e17f00db7b6ecf063e1e2e465fea590e4eba93ee17f36",
+    p=>p.comparisonContract.declarationSha256=F6C_IDENTITIES[47],
+    p=>p.comparisonContract.verifierSha256=F6C_IDENTITIES[48],
     p=>p.comparisonContract.subjectSourceBindings[0].path="scripts/eom/prepare-f6c-continuous-reception-root-cover.py",
     p=>p.comparisonContract.subjectSourceBindings[1].path="scripts/eom/oracle/continuous_reception_roots.py",
     p=>p.controlBindings[0].path="tests/test_f6c_continuous_reception_root_cover_preparation.py",
@@ -378,7 +384,7 @@ test("all20 comparison fixed bindings occur in actual preflight closure, includi
   currentPlan.operationalBindings=currentPlan.operationalBindings.map(b=>[R.ENTRY,R.LAUNCHER].includes(b.path)?binding(b.path,digest(readFileSync(b.path))):b);
   const bindings=new Map(R.planBindings(currentPlan,root).map(b=>[b.path,b.sha256]));
   for(const[role,p,hash]of fixed){assert.equal(R.SOURCE_BINDINGS[p],hash,role);assert.equal(bindings.get(path.resolve(root,p)),hash,role);}
-  assert.equal(R.SOURCE_BINDINGS["reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md"],"2883081c639b1dc1a833a5c7a2f76ec79fbb3c7756718110a2e8db593b827a40");
+  assert.equal(R.SOURCE_BINDINGS["reference/priorities/braid-program/evidence/2026-08-27-f6c-root-cover-full-resource-plan.md"],F6C_IDENTITIES[49]);
 });
 test("cached and baseline pilot addresses share exclusion and the unchanged lock lane",()=>{
   assert.equal(R.LANE,".local-data/braid-analysis/f6c-continuous-reception-root-cover-20260827");

@@ -1,0 +1,6 @@
+PASS before targets: literal links; fragment stripping; fenced exclusion including a different nested marker; remote exclusion; unclosed fence rejection; known existing and missing files.
+PASS before targets: Git --no-index --check clean-new-file status 1 with empty output; deliberate trailing-whitespace negative reports error.
+PASS reference/priorities/development-process-review/analysis/option-a-validation-root-cause-analysis.md: 18 existing local targets; closed fences, LF and final newline. Fragments and remote URLs not checked.
+PASS reference/priorities/development-process-review/evidence/option-a-validation-rca/README.md: 16 existing local targets; closed fences, LF and final newline. Fragments and remote URLs not checked.
+PASS reference/priorities/development-process-review/evidence/option-a-validation-rca/document-coverage.md: 95 existing local targets; closed fences, LF and final newline. Fragments and remote URLs not checked.
+PASS whitespace: 12 report/evidence files by git diff --no-index --check; historical .diff data and this running output excluded.

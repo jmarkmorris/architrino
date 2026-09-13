@@ -4,7 +4,7 @@
 
 **Current aim:** develop the [integrated manuscript](manuscript.md) while resolving the actual two-particle population release conditions and the existing quintic candidate's regulator question. Changed history classes and physical laws remain proposals.
 
-**Dispatched now:** no scientific worker. The second-shell mathematical review and capture/manuscript fidelity checks are complete. The accepted extension retains $0<G/\ell\le16$, reaches $79\ell/128$ with 32 nonconstant environmental histories, and excludes every received postrelease emission. The distance-two shell and first reception of generated futures remain separate possible assignments.
+**Dispatched now:** no scientific worker. Mathematical reconstruction and capture/manuscript fidelity checks are complete. The [accepted extension](analysis/smooth-two-particle-distance-two-independent-adjudication.md) reaches $113\ell/128$ with 76 nonconstant environmental histories and every received emission before release. First reception of generated futures remains a distinct, unassigned question.
 
 ## Work to do
 
@@ -30,7 +30,7 @@ The [quintic independent review](analysis/quintic-mirror-boundary-independent-ad
 
 ## Results that constrain the next step
 
-- **The fixed two-target disturbance has an independently accepted EOM response through its second receiving shell.** For $0<G/\ell\le16$, the [second-shell adjudication](analysis/smooth-two-particle-second-shell-independent-adjudication.md) accepts continuation to $79\ell/128$, exactly 32 nonconstant environmental histories, original class/root preservation and no received postrelease emissions. This bounded result is separate from the blocked arbitrary-population formulation.
+- **The fixed two-target disturbance has an independently accepted EOM response through complete distance-two reception and overlapping distance-$\sqrt5$ entries.** For $0<G/\ell\le16$, the [distance-two adjudication](analysis/smooth-two-particle-distance-two-independent-adjudication.md) accepts continuation to $113\ell/128$, exactly 76 nonconstant environmental histories, original class/root preservation and no received postrelease emissions. Completing the unfinished pulses and receiving EOM-generated environmental emissions require further estimates; neither is assigned. This bounded result is separate from the blocked arbitrary-population formulation.
 - **Different-label contact is possible** in the accepted finite four-particle construction; that does not establish self-root birth. [Contact review](analysis/mec-008-independent-adjudication.md).
 - **The stationary two-particle EOM reaches a root-free field-speed endpoint at positive separation.** Its established continuation obstruction remains unchanged. [Mirror result](analysis/mirror-close-approach-causal-root-boundary.md).
 - **A positive self-delay floor is independently accepted under explicit regularity, cone, velocity and opposing-remainder hypotheses.** Its finite-event extension is accepted conditionally and does not resolve the zero-delay mirror boundary. [Accepted delay-floor review](analysis/mec-008-self-delay-independent-adjudication.md).

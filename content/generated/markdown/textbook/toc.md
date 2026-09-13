@@ -1034,6 +1034,7 @@ Chapter links open scenes. Section links open the corresponding markdown section
     - **Ch 9.8.10** [Regime Map](../../../markdown/aaa/cosmology/dark-energy.md?section=Regime+Map)
     - **Ch 9.8.11** [Expansion-Module Interface](../../../markdown/aaa/cosmology/dark-energy.md?section=Expansion-Module+Interface)
     - **Ch 9.8.12** [Summary](../../../markdown/aaa/cosmology/dark-energy.md?section=Summary)
+    - **Ch 9.8.13** [Source Notes](../../../markdown/aaa/cosmology/dark-energy.md?section=Source+Notes)
   - **Ch 9.9** [Structure Formation](../../../scenes/cosmology/structure_formation.json)
     - **Ch 9.9.1** [Scope and Physical Picture](../../../markdown/aaa/cosmology/structure-formation.md?section=Scope+and+Physical+Picture)
     - **Ch 9.9.2** [Effective Perturbation Theory](../../../markdown/aaa/cosmology/structure-formation.md?section=Effective+Perturbation+Theory)

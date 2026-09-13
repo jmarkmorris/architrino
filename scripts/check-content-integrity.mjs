@@ -84,7 +84,7 @@ const REQUIRED_CHECKS = [
   },
   {
     name: "Test Option B current-source admission and dependency controls",
-    args: ["--test", "--test-concurrency=1", "tests/current-source-manifest.test.mjs", "tests/option-b-next-test-identities.test.mjs", "tests/option-b-root-cover-admission.test.mjs", "tests/option-b-f6c-coordinator-admission.test.mjs", "tests/option-b-f6c-paired-admission.test.mjs", "tests/option-b-f6c-family-admission.test.mjs", "tests/f6c-bounded-operation-current-closure.test.js", "tests/option-b-current-source-transition.test.mjs", "tests/option-b-f5-admission.test.mjs", "tests/option-b-f5-evolution-admission.test.mjs", "tests/option-b-f5-budget-transition.test.mjs", "tests/option-b-circular-admission.test.mjs", "tests/option-b-disposition-coverage.test.mjs"],
+    args: ["--test", "--test-concurrency=1", "tests/current-source-manifest.test.mjs", "tests/option-b-next-test-identities.test.mjs", "tests/option-b-f6c-test-identities.test.mjs", "tests/option-b-root-cover-admission.test.mjs", "tests/option-b-f6c-coordinator-admission.test.mjs", "tests/option-b-f6c-paired-admission.test.mjs", "tests/option-b-f6c-family-admission.test.mjs", "tests/f6c-bounded-operation-current-closure.test.js", "tests/option-b-current-source-transition.test.mjs", "tests/option-b-f5-admission.test.mjs", "tests/option-b-f5-evolution-admission.test.mjs", "tests/option-b-f5-budget-transition.test.mjs", "tests/option-b-circular-admission.test.mjs", "tests/option-b-disposition-coverage.test.mjs"],
   },
   {
     name: "Verify Option B profiles against the accepted B checkpoint and reviewed transition",
@@ -165,6 +165,10 @@ const REQUIRED_CHECKS = [
   {
     name: "Test required, diagnostic, skipped and unexecuted gate reporting",
     args: ["--test", "tests/content-integrity-reporting.test.js"],
+  },
+  {
+    name: "Test agent dispatch validation and handoff evidence",
+    args: ["--test", "tests/agent-dispatch.test.mjs", "tests/agent-dispatch-session.test.mjs"],
   },
   {
     name: "Test reader-facing publication boundary",

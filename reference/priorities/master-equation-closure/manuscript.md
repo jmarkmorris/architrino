@@ -133,7 +133,7 @@ Population and perturbation are separate assumptions. An isolated pair receives 
 | Four-particle contact, Section 3.2 | Two environmental labels evolve with the targets; the complete histories preserve reflection with polarity reversal | Environmental contributions are present, but the targets retain equal transverse displacements. Exact contact does not require an empty environment. |
 | One-target transverse change, Section 3.7 | One supplied history breaks that reflection symmetry; all four futures still obey the equation | The stated change turns contact into a derived miss over the stated interval. It models a changed past, not an imposed future disturbance. |
 | Stationary infinite lattice, Section 6.1 | Infinitely many sources; exact stationary histories and the declared grouping give zero total acceleration at each anchor | Equilibrium is a cancellation result. It is not evidence that the environment is absent or remains balanced after a disturbance. |
-| Two modified lattice histories, Sections 6.4–6.7 and 6.9 | A disturbance is supplied on two fixed labels; every future, including the environment, is evolved | In the smooth example, delayed reception gives a stationary waiting interval followed by a nonstationary response. Conclusions depend on the reception interval and coupling range. |
+| Two modified lattice histories, Sections 6.4–6.7 and 6.9–6.10 | A disturbance is supplied on two fixed labels; every future, including the environment, is evolved | In the smooth example, delayed reception gives a stationary waiting interval followed by a nonstationary response. Conclusions depend on the reception interval and coupling range. |
 | Coordinated distant-history changes, Sections 6.2 and 6.8 | Changes are prescribed across an infinite set, or a growing finite set, of source pasts | The resulting summation or continuity obstruction is not proved to arise by evolving a local disturbance. |
 
 The environmental effect on an encounter is determined by its contribution to relative acceleration. Let $\mathbf E_i$ and $\mathbf E_j$ be the complete acceleration sums from labels outside the target pair, whenever those sums exist under the declared prescription. For $\mathbf d=\mathbf X_i-\mathbf X_j$, $\mathbf w=\dot{\mathbf d}$ and $\mathbf h=\mathbf d\times\mathbf w$, the environmental term in the derived identity $\dot{\mathbf h}=\mathbf d\times\ddot{\mathbf d}$ is
@@ -601,7 +601,7 @@ At $\theta_0$, the class permits acceleration magnitude at most $J\theta_0=1$, w
 
 | Coupling ratio | Derived conclusion for the unchanged smooth input |
 | --- | --- |
-| $0<g\leq16$ | Full first-pulse reception through $T=5\ell/16$, extended through the second receiving shell to $79\ell/128$ in Section 6.9, with the original class preserved |
+| $0<g\leq16$ | Full first-pulse reception through $T=5\ell/16$, extended through the second receiving shell to $79\ell/128$ in Section 6.9 and through distance two with overlapping distance-$\sqrt5$ entries to $113\ell/128$ in Section 6.10; the original class is preserved |
 | $16<g<2^{48}$ | A positive local response exists, but full-pulse continuation versus original-class loss remains unclassified |
 | $g\geq2^{48}$ | No original-class continuation through $T_*+2^{-16}\ell$, before pulse completion |
 
@@ -691,7 +691,78 @@ $$
 
 This last bound identifies the receiver equations with the full EOM throughout the extended interval. The environmental futures evolve in response to the supplied old disturbance; their newly generated emissions have not yet arrived. The complete acceleration and jerk remain below the original class ceilings, and the stronger displacement bound retains the density and separation conditions. Uniqueness is established among classical continuations sharing this complete past and staying within displacement $b\ell$ and speed $1/4$; singular or unrestricted alternatives are outside that assertion.
 
-The next distance-two shell begins at anchor time $5/8$. Reaching its full pulse requires another receiving-set and motion estimate. The targets remain separated by $\ell$ on the interval proved here. This concrete environmental response establishes neither contact nor exclusion in general populations, and it does not imply that the original history class is invariant for arbitrary perturbations.
+The next distance-two shell begins at anchor time $5/8$. Section 6.10 supplies the receiving-set and motion estimates through its full pulse and the overlapping next-shell entries. The targets remain separated by $\ell$ on the interval proved here. This concrete environmental response establishes neither contact nor exclusion in general populations, and it does not imply that the original history class is invariant for arbitrary perturbations.
+
+### 6.10. Distance-two reception and the overlapping next shell
+
+The distance-two pulse cannot be treated as an isolated reception interval. Its anchor support ends at $t=7/8$, while the distance-$\sqrt5$ pulse starts at $t=\sqrt5-11/8<7/8$. The same smooth two-target input therefore requires both sets of receivers when continued through the distance-two exit.
+
+Keep the dimensionless coupling $0<g=G/\ell\le16$, displacement ball $b=1/1024$, input amplitude $\varepsilon=2^{-16}$ and input speed bound $\nu=1/8192$ from Section 6.9. Set the new horizon to $H=113/128$. Every active finite source correction has anchor distance at least $\sqrt2$, so its actual range and the segment used to subtract the stationary row exceed $\sqrt2-b-\varepsilon>7/5$. For the inverse-square vector kernel $\mathbf K(\mathbf R)=\mathbf R/\|\mathbf R\|^3$, this gives
+
+$$
+\|\mathbf Q\|\le
+\frac{2\varepsilon(5/7)^3+\nu(5/7)^2}{1-\nu},
+\qquad
+\|\mathbf S\|+\sum_j\|\mathbf Q_{i-j}\|<\frac1{6400}.
+$$
+
+The stationary contribution $\mathbf S$ retains its cubic bound, and there are at most two source corrections per receiver even when additional shells arrive. Their polarity factors remain $(-1)^{\|i-j\|^2}$: positive at distance two and negative at distance $\sqrt5$. Integrating the acceleration bound from release yields
+
+$$
+\|\mathbf y_i(t)\|\le\frac{gt^2}{12800},\qquad
+\|\mathbf y_i'(t)\|\le\frac{gt}{6400},\qquad
+\|\mathbf y_i''(t)\|<\frac g{6400}.
+$$
+
+At $g=16$ and $t=H$, the displacement bound is $12769/13107200<1/1024$, and the speed bound is $113/51200<1/400$. The strict displacement inequality excludes the first exit from the ball. Positive ranges and transmitter denominators keep the receiver equations smooth there, giving continuation through $H$. The differentiated-root estimate still bounds dimensionless jerk by $5g\le80$. No source history, admitted class ceiling or coupling range is changed to obtain this extension.
+
+Actual reception endpoints use the moving receiver. For anchor separation $d=\|i-j\|$, the entry and exit solve
+
+$$
+t_{ij}^{\rm entry}+11/8=\|i-j+\mathbf y_i(t_{ij}^{\rm entry})\|,
+\qquad
+t_{ij}^{\rm exit}+9/8=\|i-j+\mathbf y_i(t_{ij}^{\rm exit})\|.
+$$
+
+The residuals increase at least at rate $399/400$, so each endpoint on the constructed interval is unique and differs from its anchor value by at most $b$. The strict inequalities
+
+$$
+7/8+b<H<\sqrt6-11/8-b,
+\qquad
+\sqrt5-11/8+b<7/8-b,
+\qquad H<\sqrt5-9/8-b
+$$
+
+place every distance-two exit before the horizon, exclude every distance-$\sqrt6$ entry, and ensure that all distance-$\sqrt5$ entries precede all distance-two exits while their own exits remain later than $H$. The unfinished pulse is included in the equation; its future exit is not assigned an unproved trajectory value.
+
+The affected labels lie at squared distance $2$, $3$, $4$ or $5$ from one of the two target anchors. Those shells contain 12, 8, 6 and 24 labels per source. Across both sources there are 100 entered ordered source-receiver pairs, of which 52 have completed their pulses and 48 have not. A label belongs to both source sets only when its squared distances $(m,n)$ are one of $(2,3),(3,2),(2,5),(5,2),(4,5),(5,4)$, each with four solutions. This follows from $i_1=(m-n+1)/2$ and $i_2^2+i_3^2=m-i_1^2$. Thus there are 24 double receivers and 76 distinct environmental receivers. Twelve new labels first receive at distance two, and another 32 first receive at distance $\sqrt5$.
+
+An explicit onset calculation establishes that all 44 new labels move. Until their first future reception they remain at their anchors. Write $\mathbf k=i-j$, $d=\|\mathbf k\|$, $\theta=t-(d-11/8)>0$ and $\sigma=(-1)^{d^2}$ relative to the first arriving source. The unchanged pulse satisfies $p(u)=-u^4+O(u^5)$ and $p'(u)=-4u^3+O(u^4)$ near its support start. For $k_3\ne0$, the transmitter denominator gives the first response
+
+$$
+\mathbf y_i(d-11/8+\theta)
+=-\frac{\sigma g\mathbf k k_3}{5d^4}\theta^5+O_g(\theta^6).
+$$
+
+For $k_3=0$, this fifth-order coefficient vanishes. Motion instead begins through the displacement term in the acceleration kernel: $D\mathbf K(\mathbf k)\mathbf e=\mathbf e/d^3$, while the transmitter-denominator correction starts only at seventh order. Consequently
+
+$$
+\mathbf y_i(d-11/8+\theta)
+=\frac{\sigma g\mathbf e}{30d^3}\theta^6+O_g(\theta^7).
+$$
+
+Both formulas follow by integrating the leading acceleration twice; the local receiver Lipschitz estimate puts feedback at higher order. Among the new labels, 28 have a nonzero fifth-order coefficient and 16 have a nonzero sixth-order coefficient. Every coefficient is nonzero for $g>0$. Together with the earlier 32 histories and the stationary complement, these formulas establish exactly 76 nonconstant environmental histories on $[0,H]$. Both targets stay at their anchors.
+
+The complete past and future displacement remains below $\ell/1024$ and speed below $1/400$. Every cross range is therefore at least $511\ell/512$, each complete cross channel has exactly one positive-delay root, and the positive-delay self channels are empty. The original root tubes and complement gaps are preserved by the residual slope floor $399/400$. At every received cross root,
+
+$$
+s=T-r\le\left(\frac{113}{128}-\frac{511}{512}\right)\ell
+=-\frac{59\ell}{512}<0.
+$$
+
+The receiver equations are thus the full EOM on this interval. Environmental futures are evolved, while the absence of received emissions from those futures is a consequence of the delay geometry. Until those emissions arrive, the finite system is a product of independent receiver equations driven by the same supplied past. The original acceleration, jerk, density, separation and smoothness conditions remain satisfied. Uniqueness retains the same bounded comparison scope: the identical complete past and fixed block sum, future displacement at most $b\ell$ and speed at most $1/4$.
+
+The targets remain separated by $\ell$. Later distance-$\sqrt5$ exits and reception of generated environmental emissions require further continuation estimates. The latter changes the mathematical problem because source futures must enter the acceleration, requiring a coupled-history argument. This example establishes an evolving environmental response to a specified local disturbance; it does not establish contact behavior or class invariance for arbitrary populated histories.
 
 ## 7. Wake transport, action, and conserved accounts
 
@@ -870,7 +941,7 @@ These downstream questions retain their dependencies. A root chart supplies neit
 
 The investigations separate properties that are easily conflated. A finite coordinate-contact construction establishes reachability within one forward-history class. The stationary pair's earlier self-boundary obstruction establishes failure of the unchanged regular continuation on a different input. A quintic candidate supplies a unique short mirror continuation only after modifying the boundary rule. A proposed speed cap and event completion can supply finite passage while leaving multiple future branches. Their histories, event types and equations differ.
 
-Infinite-population summation adds a distinct requirement. Exact stationary cancellation and finite modifications are viable under a selected reference, while independently coordinated complete histories can destroy convergence and continuity. A sufficient restricted history class addresses that functional problem. Separately, the fixed smooth two-source control has a self-consistent evolving population through its first two receiving shells in the proved coupling range. Neither result establishes a general invariant population class or later evolution after newly generated emissions arrive.
+Infinite-population summation adds a distinct requirement. Exact stationary cancellation and finite modifications are viable under a selected reference, while independently coordinated complete histories can destroy convergence and continuity. A sufficient restricted history class addresses that functional problem. Separately, the fixed smooth two-source control has a self-consistent evolving population through complete distance-two reception and overlapping distance-$\sqrt5$ entries, with 76 nonconstant environmental histories in the proved coupling range. Neither result establishes a general invariant population class or later evolution after newly generated emissions arrive.
 
 The surviving local scalar gradient, the rejected complete action, and the account obstructions likewise have different scopes. They narrow proposed constructions without selecting a conserved completion or excluding every possible one. Assembly root geometry and return diagnostics provide necessary information, while exact EOM existence, stability, and observer-level response remain additional burdens.
 

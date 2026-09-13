@@ -1,0 +1,13 @@
+{
+  "schema": "reviewed-current-source-transition/v1",
+  "predecessorSha256": "368637ed6dc49ed0f6d1567fb1d9e382ec37e49b906d31d62fb80d23eda54cfa",
+  "reviewReference": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#f6c-test-expectation-transfer",
+  "profiles": [
+    {
+      "name": "f6c-cached-test-identities",
+      "manifestPath": "reference/priorities/development-process-review/contracts/option-b-f6c-test-sources.jsonld",
+      "sha256": "d82b64cf7e28a16396497df8c85559e2a19e57d6e951391df51ecc60bef913d0",
+      "changes": []
+    }
+  ]
+}

@@ -3294,39 +3294,41 @@ Daniel Baumann, *TASI Lectures on Inflation* (2009; arXiv:0907.5424v2), §§6.1�
 
 ## BBN Constraints
 
-This chapter states how big-bang nucleosynthesis constraints are to be read inside a fixed-void ontology. Its purpose is not to rewrite nuclear reaction physics, but to reinterpret where and when the relevant thermal histories occur and how those histories are projected into the standard BBN observable language.
+Big-bang nucleosynthesis (BBN) is the standard calculation of light-nucleus production along an early hot-universe cooling history. This chapter asks what a local production mechanism must reproduce in the Architrino Assembly Architecture, $\mathbb{A}\mathbb{A}\mathbb{A}$. The [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md) is its fixed spatial container; [absolute time](../../../../markdown/aaa/foundations/absolute-time.md), denoted by $T$, orders the motion of its contents. A [Noether braid](../../../../markdown/aaa/noether-braid/noether-braid.md) is a neutral assembly scaffold of coupled architrino paths, and the [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the ambient population of neutral assembly candidates.
+
+The recurring supermassive-black-hole source scenario developed here has claim grade guessed: it is a candidate interpretation, with no derived local reactor or abundance calculation supplied in this chapter. Nuclear reaction rates, thermal distributions, and relativistic expansion formulas enter as observer-level comparisons or recovery targets. They are not premises of the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md), which determines architrino acceleration from delayed path-history interactions. A computed source population that misses the joint abundance and transport constraints below would falsify that population's proposed BBN mapping.
 
 ### Standard vs. $\mathbb{A}\mathbb{A}\mathbb{A}$ BBN
 
 #### Standard Big Bang Nucleosynthesis
 
-- **When:** 10 seconds to 20 minutes after $t=0$ (cosmic singularity).
+- **When:** Weak neutron–proton conversion freezes out around an observer-comparison age of one second; light-nucleus production follows during the first minutes. This calculation does not require extrapolating the thermal history to a singularity.
 - **Where:** Everywhere in the observable universe; a homogeneous, isotropic thermal bath.
 - **Why:** Expansion cooling drives the universe through nuclear-reaction freeze-out.
-- **Background:** Finite age, singular-origin boundary, homogeneous early thermal history.
+- **Background:** A specified, approximately homogeneous hot early history. Its measured abundance tests concern that history, not a physical description of an initial singularity.
 
 #### $\mathbb{A}\mathbb{A}\mathbb{A}$ Reinterpretation
 
-- **When:** No universal "beginning"; nucleosynthesis occurs locally and repeatedly in absolute time $T$ within the eternal Euclidean void.
-- **Where:** In high-density, high-temperature zones surrounding supermassive black hole (SMBH) cores and their release channels; see [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md).
-- **Why:** Noether braids near SMBHs reach densities and temperatures sufficient for nuclear reactions; subsequent outward transport and cooling mimics expansion-driven freeze-out, using the same fixed-void expansion interface developed in [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md).
-- **Background:** Eternal void; no singularity; "BBN" is a recurring local process, not a singular cosmic event.
+- **When:** The proposed source history repeats locally in absolute time $T$. An eternal background alone does not imply recurring nucleosynthesis.
+- **Where:** Candidate reaction zones surround supermassive black hole (SMBH) cores and their release channels; see [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md) for the unresolved interior and release interpretation.
+- **Why:** The proposed sequence is compression, outward transport, and cooling through reaction thresholds. It must supply the temperature, composition, density, and duration needed for freeze-out, using the fixed-void comparison in [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md).
+- **Background:** Eternal void; the recurring local production scenario is an additional dynamical hypothesis.
 
 #### What Remains Unchanged
 
-- The nuclear reaction network itself (same cross-sections, same branching ratios).
-- The yield hierarchy (H, D, $^4$He, trace Li) and sensitivity to neutron-to-proton ratio.
-- The effective thermal history experienced by participating assemblies.
+- Measured reaction cross-sections and branching ratios remain comparison inputs in their validated energy and medium regimes; their assembly-level recovery is a separate obligation.
+- The observed light-element hierarchy and neutron-to-proton sensitivity remain constraints on the computed yields.
+- The model must compute an effective thermal history compatible with those constraints. Equality to the standard history is neither automatic nor required at every instant.
 
 #### What Changes
 
-- **Cosmology:** From singular, universal expansion to local, repeating cycles near SMBHs.
-- **Light-element origin:** From primordial relics of $t=0$ to ongoing nucleation products ejected from SMBH environments.
-- **Observational interpretation:** "Primordial" abundances reflect equilibrium distributions from continuous recycling, not a one-time cosmic event.
+- **Cosmology:** The candidate interpretation substitutes local source histories for the standard early hot phase.
+- **Light-element origin:** It tests SMBH-associated production and ejection against the inferred pre-stellar abundance baseline.
+- **Observational interpretation:** The proposed abundances are non-equilibrium reaction yields after transport and mixing. Continuous recycling does not by itself establish an equilibrium distribution.
 
 #### Local-Reactor Cosmology Positioning
 
-$\mathbb{A}\mathbb{A}\mathbb{A}$ shares non-one-time-origin logic with steady-state/cyclical families, but it is more constrained: light-element claims are accepted only when SMBH-local transport-and-freeze-out mappings satisfy the same yield closure standards used in standard BBN comparisons.
+$\mathbb{A}\mathbb{A}\mathbb{A}$ shares recurring-source motifs with steady-state and cyclical families. That resemblance supplies no abundance prediction. A proposed local reactor must account jointly for the light-element data, source-population variation, and later transport.
 
 ### Element Context
 
@@ -3342,22 +3344,22 @@ Lithium is therefore not a separate ontology; it is highlighted only because it 
 
 ### The SMBH Nucleation Environment
 
-Within the $\mathbb{A}\mathbb{A}\mathbb{A}$ reinterpretation, what standard cosmology calls "the first minutes of the universe" corresponds to local physical conditions near SMBH cores:
+The proposed SMBH interpretation seeks local histories with the required reaction exposures. The following sequence describes that hypothesis, rather than an established equivalence to the first minutes of standard cosmology:
 
 1. **Assembly Compression Zone (SMBH Interior/Near-Horizon):**
 
-Noether braids compress toward maximum-curvature states. Proton/neutron assemblies (nucleon Noether braids; see [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md)) are driven into close proximity by intense Noether sea density gradients. At the observer-level benchmark $T_{\mathrm{temp}}\sim10^9\,\mathrm{K}$, the relevant baryon density is
+The candidate mechanism invokes compression of assemblies by Noether sea response. Proton and neutron targets are composite nucleon assemblies, not individual Noether braids; see [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md). Their survival, reaction rates, and escape from the proposed source region require a dynamical account. For a blackbody photon bath at the observer-level benchmark temperature $T_{\mathrm{temp}}\sim10^9\,\mathrm{K}$, the baryon mass density is
 $$
 \rho_b=\eta_{b\gamma}n_\gamma m_b\sim2\times10^{-5}\,\mathrm{g/cm^3}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-30e1c5c21c995879)
 
-for $\eta_{b\gamma}\sim6\times10^{-10}$. This is not the total radiation mass-equivalent density. A local-reactor branch must declare which density enters each reaction row and reproduce the coupled temperature-density history rather than matching one nominal point. Interpretive saturation claim: compression approaches medium-defined ceilings $T_{\max}$ and $\rho_{\max}$, so nucleosynthesis conditions are set primarily by Noether sea saturation rather than scaling linearly with SMBH mass.
+Here $\eta_{b\gamma}=n_b/n_\gamma\sim6\times10^{-10}$ is the baryon-to-photon number ratio, $n_\gamma$ is photon number density, and $m_b$ is the mean observer-level mass per baryon. This is baryonic mass density, not total radiation mass-equivalent density or a mass assigned to individual architrinos. The numerical value assumes a Planck photon distribution; it does not establish that an SMBH environment supplies one. Medium-set temperature and density ceilings $T_{\max}$ and $\rho_{\max}$ remain proposed constitutive properties, with no mass-independent saturation result derived here.
 
 2. **Outward Release and Cooling:**
 
-Material released from near-horizon regions undergoes rapid outward dilution and cooling. Effective cooling rate $dT_{\mathrm{temp}}/dt_{\mathrm{eff}}$ must match the freeze-out timing required for standard BBN yields; showing that the transport-limited cooling window actually delivers $\tau_{\mathrm{cool}}\approx1\,\mathrm{s}$ is the timing closure target stated in the goals below. This is not metric expansion of space; it is bulk flow of assemblies through the Euclidean void, with effective expansion represented as density dilution. Interpretive timing claim: the effective expansion rate is not free-form outflow kinematics; it is constrained by assembly transport limits tied to field-speed scale $c_f$, release-channel selection, and near-core stability times, so the cooling window can align with weak freeze-out timing.
+An outward-moving population dilutes when its occupied volume increases; its temperature also depends on work, heating, radiation, and composition. Write $t_{\mathrm{eff}}$ for an effective observer clock along a specified fluid element, and supply its map from $T$ before comparing rates. The cooling duration $t_{\mathrm{cool}}=|d\ln T_{\mathrm{temp}}/dt_{\mathrm{eff}}|^{-1}$ must be compared with the relevant reaction times throughout the history. A one-second weak-freeze-out scale does not describe the entire nuclear-production interval. The primitive wake speed $c_f$ supplies no duration without a length and transport law; constituent architrino speeds need not be bounded by $c_f$. New numerical realizations use normalized wake-speed units with $c_f=1$, while quoted temperatures, masses, and seconds here retain their observer-benchmark units.
 
 3. **Observable Output:**
 
@@ -3365,21 +3367,24 @@ Ejected material, now cooled and stabilized, carries light-element abundances se
 
 #### Key Difference from Standard BBN
 
-- **Standard:** One homogeneous early-universe thermal history; all light elements formed in the same cosmic epoch.
-- **$\mathbb{A}\mathbb{A}\mathbb{A}$:** Many local nucleation sites; observed abundances reflect averaged outputs from SMBH environments plus later stellar processing.
+- **Standard:** One approximately homogeneous early thermal history supplies the primordial light-element component; later stellar processing alters it.
+- **$\mathbb{A}\mathbb{A}\mathbb{A}$:** The candidate interpretation combines local-source yields with transport, mixing, and subsequent processing. Those operations must preserve the observed isotope constraints.
 
 ### Network-Level Description
 
+At the effective comparison level, let $n_i$ be the local number density of nuclear species $i$ in a fluid element of volume $V$. For a well-mixed element, species counting gives
+
 $$
-\frac{dn_i}{dt_{\mathrm{eff}}} = \sum_{j,k}\langle\sigma v_{\mathrm{rel}}\rangle_{jk\to i}n_jn_k
-- \sum_l\langle\sigma v_{\mathrm{rel}}\rangle_{il}n_in_l
+\frac{dn_i}{dt_{\mathrm{eff}}}
++n_i\frac{d\ln V}{dt_{\mathrm{eff}}}
+=\sum_r \nu_{ir}\mathcal R_r+S_i
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4ccff45d27ba9dd3)
 
-The reaction bookkeeping is unchanged; the $\mathbb{A}\mathbb{A}\mathbb{A}$ shift is the background interpretation that sets temperature, density, and freeze-out timing.
+Here $r$ indexes distinct directed reactions, $\nu_{ir}$ is the number of nuclei of species $i$ produced minus consumed per event, $\mathcal R_r$ is the event rate per volume, and $S_i$ is net exchange with other elements or external sources per volume and time. This follows by differentiating the population $n_iV$. For a two-body reaction $j+k$, $\mathcal R_r=n_jn_k\langle\sigma v_{\mathrm{rel}}\rangle_r/(1+\delta_{jk})$, with $\delta_{jk}=1$ for identical reactants and zero otherwise. The thermal average uses the declared relative-velocity distribution. One-body weak conversion and photodissociation enter through their own rates, including the relevant photon and lepton spectra. Reverse reactions have separate directed entries. Without reactions or exchange, the equation conserves $n_iV$ while the density falls as $V^{-1}$.
 
-For a local-reactor, recycling, or compact-object comparison branch, the network also needs a source-channel energy partition. Let $s$ label source channels and let $E_s^\theta$ be the energy carried into the declared BBN window by baryons, photons, neutrino-sector excitations, compact-object release, or Noether sea work terms. The branch supplies an acceptable thermal record only if
+For a local-reactor comparison, let $\theta$ identify one source and transport history and let $s$ label mutually exclusive incoming energy contributions. Let $E_s^\theta$ count each boundary transfer once, by carrier and provenance. Compact-object release labels a source of baryons, photons, or other carriers, not an extra energy contribution added to those same carriers. Noether sea work enters only when it is disjoint from the counted transfers. Define the incoming energy and thermal-state summary by
 $$
 E_{\mathrm{in}}^\theta
 =
@@ -3397,7 +3402,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-adff5f84f61e3323)
 
-is propagated through the same source window that produces the yields. A source story that changes the photon loading, neutron fraction, entropy per baryon, or relativistic-species count independently of the light-element network has not supplied a BBN mechanism; it has assigned separate fit parameters to the outputs.
+Here $E_{\mathrm{in}}^\theta$ is total incoming energy; the four entries in $\boldsymbol{\eta}_{\mathrm{BBN}}^\theta$ are baryon-to-photon ratio, effective non-photon radiation loading, neutron-to-proton ratio, and photon entropy density $s_\gamma^\theta$ per baryon. The first equality defines a partition, not an energy-conservation theorem. Stored energy changes, outgoing transfers, reaction energy, and work must also enter a finite-window balance. The thermal summary and its time dependence must follow from the same source history that supplies the yields.
 
 The multi-channel reading is useful only when it is made provenance-explicit. High-energy compact-object release, supernova-like processing, jet channels, quasar or blazar environments, and ordinary stellar processing may all be source leads for later abundance history, but none of them replaces the BBN comparison surface unless it enters a declared source-window record
 $$
@@ -3405,22 +3410,22 @@ $$
 =
 \left(
 \mathcal{W}_s,
-T_s(t),
-\rho_s(t),
-n_{b,s}(t),
-n_{\gamma,s}(t),
-n_{\nu,s}(t),
+T_{\mathrm{temp},s}(t_{\mathrm{eff}}),
+\rho_s(t_{\mathrm{eff}}),
+n_{b,s}(t_{\mathrm{eff}}),
+n_{\gamma,s}(t_{\mathrm{eff}}),
+n_{\nu,s}(t_{\mathrm{eff}}),
 \mathcal{E}_{i,s}
-\right)_s.
+\right)_s
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c047808244f4a655)
 
-The yields are then acceptable only if D/H, $Y_p$, lithium, $\eta_{b\gamma}$, and $N_{\text{eff}}$ are all computed from the same channel-weighted record. A branch that treats one source family as an explanation for helium, another as an explanation for lithium, and a third as a photon-loading fix without a shared source-window ledger has not improved on the one-time-origin story; it has split the provenance.
+Here $\mathcal W_s$ specifies each channel's time interval and material domain, $\rho_s$ its declared mass or energy density, $n_{b,s},n_{\gamma,s},n_{\nu,s}$ its baryon, photon, and neutrino number densities, and $\mathcal E_{i,s}$ its reaction exposure, defined below. Spectra, transport weights, and volume histories complete this summary when rates depend on them. D/H is the deuterium-to-hydrogen number ratio, and $Y_p=4n_{{}^4\mathrm{He}}/n_b$ is the baryon fraction in helium-4, approximating its mass fraction up to binding-energy and nucleon-mass corrections. Mixing combines species counts with their transported material weights before forming ratios; an unweighted mean of local ratios is generally different.
 
-The standard freeze-out scalings should remain explicit because they are the hard targets for any SMBH-local or transport-cooling replacement. In a radiation-dominated comparison packet,
+The following standard comparisons describe a radiation-dominated, spatially flat Friedmann–Lemaître–Robertson–Walker (FLRW) history, with negligible curvature and dark energy and approximately constant relativistic energy loading. They are not local outflow laws. In that comparison,
 $$
-t
+t_{\mathrm{eff}}
 \approx
 \frac{2.4\ \mathrm{s}}{\sqrt{g_*}}
 \left(\frac{1\ \mathrm{MeV}}{k_BT_{\mathrm{temp}}}\right)^2
@@ -3428,7 +3433,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7a76b30502e7a057)
 
-where $g_*$ is the effective relativistic-species loading. The neutron-to-proton ratio follows the equilibrium estimate
+where $g_*$ counts relativistic energy degrees of freedom, weighted by statistics and species temperatures relative to $T_{\mathrm{temp}}$, and $k_B$ is Boltzmann's constant. The time origin is the standard radiation-era extrapolation; it is not a preferred origin of $T$. Changes during electron–positron annihilation require the temperature and entropy evolution to be followed explicitly. For dilute, nonrelativistic nucleons in weak chemical equilibrium with negligible lepton chemical potentials, the leading neutron-to-proton estimate is
 $$
 \frac{n_n}{n_p}
 \approx
@@ -3437,18 +3442,18 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9a894c0b2375e38e)
 
-until weak reactions fall out of equilibrium. Deuterium survival is delayed by the high photon loading; a schematic bottleneck condition is
+Here $\Delta m=m_n-m_p$ is the neutron–proton mass difference and $c_0$ is the observer-sector speed calibration, distinct from the primitive wake speed. Deuterium formation illustrates a different equilibrium. In a dilute nonrelativistic Maxwell–Boltzmann gas, $p+n\leftrightarrow D+\gamma$ with photon chemical potential zero gives
 $$
 \frac{n_D}{n_p}
-\sim
-\eta
-\left(\frac{k_BT_{\mathrm{temp}}}{m_p c_0^2}\right)^{3/2}
+\simeq
+\frac{3}{4}n_n
+\left(\frac{2\pi\hbar^2}{\mu_{np}k_BT_{\mathrm{temp}}}\right)^{3/2}
 \exp\!\left(\frac{E_D}{k_BT_{\mathrm{temp}}}\right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5d124b91adcd4eb2)
 
-with $E_D$ the deuterium binding energy and $\eta$ the baryon-to-photon ledger variable. These equations are observer-level benchmarks for the thermal record. A native local-reactor branch may reinterpret where the history occurs, but it must reproduce the same freeze-out, deuterium-bottleneck, $Y_p$, D/H, lithium, $\eta$, and $N_{\text{eff}}$ residuals without fitting them in separate source zones.
+Here $E_D$ is deuterium binding energy, $\hbar$ is the reduced Planck constant, and $\mu_{np}=m_nm_p/(m_n+m_p)$ is the reduced nucleon mass; the small binding-mass correction is neglected. The spin-degeneracy ratio is $3/(2\cdot2)=3/4$. Substitution of $n_a=g_a(m_ak_BT_{\mathrm{temp}}/2\pi\hbar^2)^{3/2}\exp[(\mu_a^{\mathrm{chem}}-m_ac_0^2)/(k_BT_{\mathrm{temp}})]$ and $\mu_D^{\mathrm{chem}}=\mu_n^{\mathrm{chem}}+\mu_p^{\mathrm{chem}}$ yields this relation, where $g_a$ and $\mu_a^{\mathrm{chem}}$ are the spin degeneracy and chemical potential of species $a$. Writing $n_n=X_n\eta_{b\gamma}n_\gamma$ exposes the required neutron fraction $X_n=n_n/n_b$; photon loading alone cannot determine deuterium. This equilibrium estimate does not predict the surviving D yield after reactions fall out of equilibrium.
 
 #### Weak-Rate and Relativistic-Species Gate
 
@@ -3471,25 +3476,26 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e624672373de783c)
 
-The freeze-out comparison is controlled by when these rates fall below the effective BBN clock,
+The quantities $\lambda_{n\to p}^\theta$ and $\lambda_{p\to n}^\theta$ are rates per neutron and per proton, respectively. Before nuclear binding becomes important, the neutron fraction obeys $dX_n/dt_{\mathrm{eff}}=-\lambda_{n\to p}^\theta X_n+\lambda_{p\to n}^\theta(1-X_n)$. At fixed bath conditions its equilibrium value is $X_n^{\mathrm{eq}}=\lambda_{p\to n}^\theta/(\lambda_{n\to p}^\theta+\lambda_{p\to n}^\theta)$, and perturbations relax at the sum of the rates. An order-of-magnitude freeze-out comparison is therefore
 $$
-\lambda_{n\to p}^{\theta}(T_{\mathrm{temp}})
-\sim
-\lambda_{p\to n}^{\theta}(T_{\mathrm{temp}})
+\lambda_{n\to p}^{\theta}
++\lambda_{p\to n}^{\theta}
 \sim
 H_{\mathrm{eff,BBN}}^\theta(T_{\mathrm{temp}})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a34b812929f48825)
 
-where $H_{\mathrm{eff,BBN}}^\theta$ is the observer-level cooling and dilution rate inferred from the local transport record, not expansion of the Euclidean void. Any extra relativistic component changes the same clock through
+Here $H_{\mathrm{eff,BBN}}^\theta=|d\ln T_{\mathrm{temp}}/dt_{\mathrm{eff}}|$ is the local thermal-change rate during monotonic cooling. The weak rates also depend on lepton spectra and chemical potentials, not only temperature. Detailed balance equates $\lambda_{n\to p}^\theta n_n^\theta$ and $\lambda_{p\to n}^\theta n_p^\theta$, not the two per-particle rates. Tracking $X_n$ through a changing bath is required beyond this timescale estimate.
+
+In the standard radiation-dominated FLRW comparison, extra relativistic energy changes the expansion rate according to
 $$
-H_{\mathrm{eff,BBN}}^\theta
+H_{\mathrm{FLRW}}
 \propto
 \left(
 \rho_\gamma^\theta
 +\rho_{e^\pm}^\theta
-+\rho_{\nu_\alpha}^\theta
++\sum_{\alpha=e,\mu,\tau}\rho_{\nu_\alpha}^\theta
 +\rho_{\nu_s}^\theta
 +\cdots
 \right)^{1/2}
@@ -3497,42 +3503,47 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8821f40ec36ed562)
 
-so the relativistic-species residual must be tracked as
+All densities in this comparison are energy densities; $\rho_{\nu_\alpha}$ includes each active neutrino flavor and its antiparticle, and $\rho_{\nu_s}$ denotes a specified additional sterile sector, if present. The proportionality follows from the Friedmann equation with fixed gravitational coupling. A local outflow must derive its own energy-to-cooling response; replacing the symbol $H$ does not establish the square-root law.
+
+After electron–positron annihilation, while the neutrino-like components being counted remain relativistic, define the observer-comparison radiation loading by
 $$
 N_{\text{eff}}^\theta
 \equiv
 \frac{\rho_{\mathrm{rel}}^\theta-\rho_\gamma^\theta}
-{\rho_{\nu,1}^\theta}
+{\frac{7}{8}\left(\frac{4}{11}\right)^{4/3}\rho_\gamma^\theta}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e9237a193c1a0868)
 
-The equilibrium neutron-to-proton comparison then reads
+Here $\rho_{\mathrm{rel}}^\theta$ includes photons and the declared non-photon relativistic components at the same comparison epoch. The denominator is a fixed single-species reference at the photon temperature, not the actual energy of one source-dependent neutrino species. During electron–positron annihilation, use the evolving spectra and total energy density explicitly; the late-time normalization is not an instantaneous count of all particles in the bath.
+
+For weak equilibrium at a common temperature, the leading nonrelativistic neutron-to-proton comparison is
 $$
 \frac{n_n^\theta}{n_p^\theta}
 \approx
 \exp\!\left(
 -\frac{\Delta m_{np}c_0^2}{k_BT_{\mathrm{temp}}}
++\xi_e^\theta
 -\xi_{\nu_e}^\theta
 \right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fb9e55095714519e)
 
-where $\xi_{\nu_e}^\theta$ is retained only when the branch declares a neutrino-sector asymmetry. A viable branch must therefore recover the same $n_n/n_p$, $Y_p$, D/H, lithium, $\eta$, and $N_{\text{eff}}$ surfaces from one local source-window record. A sterile or hidden relativistic sector that improves one isotope while shifting the weak-rate clock, neutrino asymmetry, or photon loading independently fails this gate.
+Here $\Delta m_{np}=\Delta m$, $\xi_e^\theta=\mu_e^{\mathrm{chem}}/(k_BT_{\mathrm{temp}})$, and $\xi_{\nu_e}^\theta=\mu_{\nu_e}^{\mathrm{chem}}/(k_BT_{\mathrm{temp}})$ are electron and electron-neutrino degeneracy parameters. The sign follows from $\mu_n^{\mathrm{chem}}+\mu_{\nu_e}^{\mathrm{chem}}=\mu_p^{\mathrm{chem}}+\mu_e^{\mathrm{chem}}$. The electron term is negligible only in an appropriately nondegenerate bath; a dense compact-object environment cannot discard it without checking. For nonthermal spectra or unequal temperatures, compute the forward and reverse weak rates rather than substituting this equilibrium formula.
 
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ SMBH-Local Nucleation Chain
 
-The BBN story is one continuous mechanism:
+The proposed BBN mapping has four dependent steps:
 
 1. The Noether sea evolves in absolute time $T$ within a fixed Euclidean container.
-2. This Noether sea evolution defines an effective expansion/cooling history and therefore an emergent $H_{\mathrm{eff}}(t_{\mathrm{eff}})$ at observer level, matching the bookkeeping used in [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md).
+2. A derived transport and clock map must turn that history into effective density and temperature histories, following the comparison framework in [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md).
 3. The resulting thermal history sets reaction-rate competition and freeze-out ordering in the standard network.
-4. The coupled light-element yields (H, D, He, trace Li) are outputs of this same Noether sea and assembly dynamics and must remain compatible with the observer-level chronology in [CMB](../../../../markdown/aaa/cosmology/CMB.md).
+4. The resulting light-element yields (H, D, He, trace Li) must remain compatible with the observer-level chronology and cosmic microwave background (CMB) constraints in [CMB](../../../../markdown/aaa/cosmology/CMB.md). Listing the steps does not derive the missing transport or reaction maps.
 
 ### Lithium Within the Full Light-Element Story
 
-Lithium is not a separate patch. It is part of the same primordial transport-and-freeze-out mechanism:
+The proposed lithium explanation belongs to the same transport and freeze-out hypothesis:
 
 - deformation-wave transport can redistribute neutrons between denser and more diffuse zones during the BBN window,
 - this reweights local reaction paths in the same network equations,
@@ -3545,25 +3556,25 @@ This differential-yield claim is conjecture pending the transport-weighted react
 #### Why Standard BBN Fits So Well
 
 - If the SMBH-local mapping is correct, its nucleosynthetic output must establish a baseline light-element abundance.
-- Subsequent stellar evolution and mixing would homogenize these abundances across cosmic scales; this is a declared gate — the claim requires a mixing timescale shorter than the observation epoch and is checked against galactic metallicity-gradient data.
-- The effective "primordial" abundances reflect equilibrated distributions from SMBH recycling, not a singular cosmic event.
+- Transport and mixing must produce the required abundance distribution before the selected gas or stars are observed. Galactic metallicity gradients alone do not measure mixing over all source separations. Stellar processing also destroys deuterium, so it cannot be invoked as passive homogenization of every light isotope.
+- The standard fit tests a jointly calculated thermal history. A recycling interpretation must demonstrate its own pre-stellar baseline and subsequent processing; final yields are not equilibrium functions of a single source temperature.
 
 #### Potential Distinguishing Signatures
 
 - **Spatial Inhomogeneities:** If BBN is SMBH-local, early structures might show abundance gradients correlated with SMBH proximity.
-- **Time Evolution:** In an eternal universe, light-element ratios could vary with cosmic epoch if SMBH nucleation efficiency evolves (contrast with Big Bang's fixed primordial values).
-- **Lithium Tension as Signal:** The $^7$Li discrepancy can be interpreted as a transport signature: hotter inner release tracks preferentially deplete $^7$Be/$^7$Li while cooler outer channels preserve D, yielding an integrated low-Li/high-D pattern.
+- **Time Evolution:** Source evolution can change the predicted pre-stellar abundance baseline. Both frameworks also allow later chemical evolution, which must be modeled before attributing an observed trend to recurring production.
+- **Lithium Tension as Signal:** Preferential mass-7 destruction in hotter channels, with D survival in cooler channels, is a proposed discriminator. The integrated direction and magnitude require a reaction and transport calculation and a stellar lithium-depletion model.
 
 #### Status
 
-- Homogeneity of observed abundances (low dispersion across cosmic volume) constrains how much local variation the SMBH process can tolerate.
+- The observed abundance distribution in specified gas and stellar samples constrains the model after measurement errors, sample selection, and later processing are included. It does not directly measure every reactor across cosmic volume.
 - This is a quantitative mapping objective: demonstrate that SMBH environments can produce sufficiently uniform outputs to match observations.
 
 ### Model-Family Discriminator Checklist
 
 - Preserve deuterium survival through the bottleneck window without recirculation overburn.
-- Preserve narrow helium clustering (for example near $Y_p\approx0.245$ with low dispersion).
-- Preserve effective photon loading in the reaction window (BBN-compatible $\eta$ behavior).
+- Reproduce the inferred helium abundance and the sample distribution, with uncertainties and processing specified.
+- Preserve effective photon loading in the reaction window (BBN-compatible $\eta_{b\gamma}$ behavior).
 - Preserve matter-asymmetry provenance: the baryon-to-photon ratio must be carried by the same reaction ledger used for photon loading, not inserted as an independent initial condition.
 - Preserve effective neutrino-sector closure near three-species behavior (observer-level $N_{\text{eff}}$ compatibility).
 - Avoid per-source ad hoc retuning that breaks universality across SMBH populations.
@@ -3573,7 +3584,7 @@ This differential-yield claim is conjecture pending the transport-weighted react
 
 Pre-BBN comparison branches are accepted only through their effect on the light-element and relativistic-species record. The BBN side of the gate does not import the external branch ontology; it asks whether the same thermal, photon-loading, neutrino, and Noether sea state used by the local-reactor mapping can absorb the branch without damaging the successful yield constraints.
 
-For a candidate branch $X$, define the BBN residual
+For a candidate branch $X$, define the BBN residual below. Each $\epsilon$ is a positive, predeclared tolerance incorporating the specified observational, theoretical, and processing uncertainties. The subscript $\mathrm{obs}$ denotes the selected abundance or cosmological inference with its model assumptions; it is not a direct observation of an SMBH source. Here $\eta_X=\eta_{b\gamma,X}$, and in this residual $\Delta N_{\text{eff}}^X=N_{\text{eff}}^X-N_{\text{eff,obs}}$. A comparison with the standard theoretical value must be labeled separately.
 $$
 \mathcal{R}_{\mathrm{BBN},X}
 =
@@ -3588,11 +3599,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2d553828c3fbd6c4)
 
-The branch may remain in the comparison ledger only when $\mathcal{R}_{\mathrm{BBN},X}\le1$ using the same provenance and Noether sea record carried into [CMB](../../../../markdown/aaa/cosmology/CMB.md), [Structure Formation](../../../../markdown/aaa/cosmology/structure-formation.md), and [Gravitational Waves](../../../../markdown/aaa/spacetime/gravitational-waves.md). A component that repairs one BBN channel while spoiling deuterium survival, helium clustering, or $N_{\text{eff}}$ compatibility is a failed comparison branch, not a new explanatory resource.
+The condition $\mathcal{R}_{\mathrm{BBN},X}\le1$ means that the branch passes the declared componentwise bounds. It is not a joint confidence level: correlated abundances and shared CMB inferences require a covariance or joint likelihood treatment. The same provenance and Noether sea record must carry into [CMB](../../../../markdown/aaa/cosmology/CMB.md), [Structure Formation](../../../../markdown/aaa/cosmology/structure-formation.md), and [Gravitational Waves](../../../../markdown/aaa/spacetime/gravitational-waves.md). Failed and unevaluated branches remain distinguishable from passing branches. In particular, primordial mass-7 production cannot be compared directly with stellar surface lithium without an explicit processing model.
 
-The $\eta_X$ term is the BBN-facing projection of the matter-asymmetry ledger in [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md#matter-asymmetry-provenance). It should be computed from transported baryon, antibaryon, and photon event records over the declared source window, not assigned independently after the yields are fit.
+The $\eta_X$ term is the BBN-facing projection of the matter-asymmetry ledger in [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md#matter-asymmetry-provenance). It should be computed from transported baryon, antibaryon, and photon event records over the declared source window, not assigned independently after the yields are fit. The usual network assumes negligible surviving antibaryon abundance, so its baryon density approximates net baryon density. A branch with appreciable antimatter must track separate populations and annihilation before comparing those ratios.
 
-The branch must also carry a nucleosynthesis exposure record, because light-element abundances are not an equilibrium imprint of one temperature-density point. They are the arrested output of a coupled reaction network along a cooling history. For each source channel $s$, define
+Light-element abundances depend on the full reaction history. For a neutron-induced reaction on species $i$ in channel $s$, define the dimensionless exposure below. Here $\tau$ is local physical-clock time, and every density and rate uses that same clock; a calculation in $t_{\mathrm{eff}}$ or $T$ must include the corresponding clock-map Jacobian.
 $$
 \mathcal{E}_{i,s}^X
 =
@@ -3604,46 +3615,48 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fda82c84820ce47f)
 
-and require the yield vector to be computed as $\mathbf{Y}_{\mathrm{BBN}}^X=\mathbf{Y}[\{T_{\mathrm{temp}},\rho,n_b,n_\gamma,n_n,\mathcal{E}_{i,s}^X\}]$ over the same source-window record used for $\eta_X$ and $N_{\text{eff}}$. The corresponding exposure closure term is
+The limits $\tau_{\mathrm{on},s}$ and $\tau_{\mathrm{off},s}$ specify the exposure window; $n_n$ is neutron number density and $\langle\sigma v_{\mathrm{rel}}\rangle_{i,n}$ is the selected neutron-reaction rate coefficient. The product has inverse-time units. This diagnostic covers neutron-induced reactions only. Charged-particle reactions, photodissociation, weak conversion, injection, and inter-channel exchange remain in the full yield calculation. The exposure alone does not determine the yield.
+
+For comparison with a specified reference thermal history, define
 $$
 \mathcal{R}_{\mathrm{exp},X}
 =
 \max_i
-\frac{|\mathcal{E}_{i,\mathrm{eff}}^X-\mathcal{E}_{i,\mathrm{BBN}}^{\mathrm{obs}}|}{\epsilon_{\mathcal{E}_i}}
+\frac{|\mathcal{E}_{i,\mathrm{eff}}^X-\mathcal{E}_{i,\mathrm{BBN}}^{\mathrm{ref}}|}{\epsilon_{\mathcal{E}_i}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-15cf2016b6de39e6)
 
-where $\mathcal{E}_{i,\mathrm{eff}}^X$ is the channel-weighted exposure reaching the BBN comparison surface. A SMBH-local or fixed-void replacement branch fails this gate if it matches final D/H, $Y_p$, or lithium while its integrated exposure requires a different density-temperature timing record than the one used for photon loading, weak freeze-out, and the CMB handoff.
+Here $\mathcal{E}_{i,\mathrm{eff}}^X$ is a mean with declared transported-material weights, $\mathcal{E}_{i,\mathrm{BBN}}^{\mathrm{ref}}$ comes from the named reference network and thermal history, and $\epsilon_{\mathcal E_i}>0$ is a diagnostic tolerance. Exposure is not directly observed, and distinct histories can reproduce the same final abundances. Matching this diagnostic is required only for a branch that claims that particular history equivalence. Even then, nonlinear yields must be evaluated along each channel before mixing. For pure removal, survival is $\exp(-\mathcal E)$, so averaging $\mathcal E$ and then exponentiating generally differs from averaging the surviving populations.
 
 Compact-object comparison branches add a sharper injection test. If the branch contains a small-mass tail with late release near the BBN window, record the injected spectrum as
 $$
-\mathcal{I}_X(E,t)
+\mathcal{I}_X(E,t_{\mathrm{eff}})
 =
-\int \psi_X(M,t)\,
-\Gamma_{\mathrm{release}}^X(E,t;M)\,dM
+\int \psi_X(M,t_{\mathrm{eff}})\,
+\Gamma_{\mathrm{release}}^X(E,t_{\mathrm{eff}};M)\,dM
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1a3c5a58a4df14ab)
 
-where $\psi_X(M,t)$ is the branch mass function and $\Gamma_{\mathrm{release}}^X$ is the Hawking-like or native release channel being compared. The yield shifts $\Delta\mathbf{Y}_{\mathrm{BBN}}^X$ must be computed from $\mathcal{I}_X$ and the same thermal, photon-loading, neutrino, and Noether sea state used elsewhere in the BBN gate. A branch that uses late energetic injection to repair one isotope while changing $\eta_X$, $N_{\text{eff}}$, or the CMB handoff independently is a failed comparison branch, not a promoted source mechanism.
+Here $M$ is observer-level object mass, $\psi_X=dN/(dV\,dM)$ is the number of source objects per physical volume and mass, and $\Gamma_{\mathrm{release}}^X=dN_{\mathrm{inj}}/(dt_{\mathrm{eff}}\,dE)$ is the per-object injected-particle spectrum for a declared species. Thus $\mathcal I_X$ has units of number per volume, time, and energy; multiplying by $E$ gives its energy-weighted spectrum. Mass limits, species, frame, and clock are part of the specification. Hawking emission is an external comparison, while an Architrino release law needs its own derivation. Compute yield shifts and all accompanying photon, neutrino, and baryon changes from this same injection history.
 
-If the compact branch evaporates, releases, or otherwise injects energy before or during the BBN window, the sharper residual is
+If a compact branch injects energy before or during the BBN window, the following quantity measures departure from a named baseline. It is a small-perturbation diagnostic, not an observational goodness-of-fit statistic:
 $$
 \mathcal{R}_{\mathrm{evap},X}
 =
 \max\left(
 \frac{\|\Delta\mathbf{Y}_{\mathrm{BBN}}^X\|_{C_Y^{-1}}}{\epsilon_Y},
-\frac{|\Delta N_{\text{eff}}^X|}{\epsilon_N},
+\frac{|\delta_{\mathrm{inj}}N_{\text{eff}}^X|}{\epsilon_N},
 \frac{|\Delta\eta_X|}{\epsilon_\eta},
-\frac{\|\Delta f_\gamma^X(E,t)\|}{\epsilon_\gamma},
-\frac{\|\Delta f_\nu^X(E,t)\|}{\epsilon_\nu}
+\frac{\|\Delta f_\gamma^X(E,t_{\mathrm{eff}})\|}{\epsilon_\gamma},
+\frac{\|\Delta f_\nu^X(E,t_{\mathrm{eff}})\|}{\epsilon_\nu}
 \right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1cc2859b3073bde0)
 
-Here $\Delta f_\gamma^X$ and $\Delta f_\nu^X$ are photon- and neutrino-sector spectral distortions induced by the release history. This term keeps primordial-compact-object comparisons as constraints on a shared thermal history rather than a license to import compact objects as an explanatory ontology.
+Changes in this diagnostic mean injection history minus the named no-injection baseline. In particular, $\delta_{\mathrm{inj}}N_{\text{eff}}^X$ denotes the injection-induced change, whereas $\Delta N_{\text{eff}}^X$ above is the difference from the selected observation. Define $\|\mathbf z\|_{C_Y^{-1}}=(\mathbf z^{\mathsf T}C_Y^{-1}\mathbf z)^{1/2}$ using a specified positive-definite covariance $C_Y$ over the selected yields. The spectral functions $f_\gamma,f_\nu$, their energy and time domains, integration measure, norm, and positive tolerances must be fixed before evaluating the diagnostic. A large shift can improve an initially poor fit; observational compatibility must be tested with the full final predictions, not merely with the magnitude of their change.
 
 ### Observable-Mapping Goals (Interpretation-Scoped)
 
@@ -3651,62 +3664,62 @@ These goals are for mapping $\mathbb{A}\mathbb{A}\mathbb{A}$ dynamics to measure
 
 #### 1. Homogeneity Goal: "Universal Ejection Attractor"
 
-Standard BBN effectively behaves like a calibrated standard reactor: one parameter, $\eta$ (baryon-to-photon ratio), predicts light-element abundances across the sky. SMBH-local models should recover similar universality.
+With measured nuclear and weak inputs and a specified standard expansion and neutrino history, $\eta_{b\gamma}$ is the principal free cosmological input to standard BBN. A local-source model must explain its abundance distribution with comparably explicit inputs. The observed mean and the intrinsic variation between sources are different statistical quantities.
 
-- **Variance consideration:** SMBHs span mass ($10^6$ to $10^{10}\,M_\odot$), spin, and accretion-state diversity. If $T_{\mathrm{temp}}(t)$ and $\rho(t)$ inherit this variance directly, predicted yields, especially $Y_p$, should broaden.
-- **Observable target:** Keep consistency with tight helium clustering near $Y_p\approx0.245\pm0.003$.
-- **Deuterium target:** The [one-percent quasar-absorption determination](https://arxiv.org/abs/1710.11129) reports $(D/H)_P=(2.527\pm0.030)\times10^{-5}$ from seven high-precision systems. This is an observer-level abundance benchmark and a particularly tight limit on inter-reactor yield dispersion; it does not identify the production mechanism.
-- **Goal:** Derive a **Universal Ejection Attractor** where near-horizon architrino compression saturates to medium-set conditions (Noether braid saturation), with universal ceilings $T_{\max}$ and $\rho_{\max}$ and mass-insensitive $\rho_{\mathrm{crit}}$ and $v_{\mathrm{eject}}$.
-- **Observable implication:** If this saturation holds, $^4$He yield is intrinsic to Noether sea state convergence and remains weakly dependent on SMBH mass class.
+- **Variance consideration:** A source model must specify its SMBH mass, spin, accretion state, and population weights. Variations in $T_{\mathrm{temp}}(t_{\mathrm{eff}})$ and $\rho(t_{\mathrm{eff}})$ need not translate linearly into yield variation; calculate that dependence.
+- **Observable target:** The PDG 2025 review gives an inferred primordial helium benchmark $Y_p=0.245\pm0.003$. Its combined observational uncertainty is not a direct bound on the dispersion of reactor yields.
+- **Deuterium target:** Cooke, Pettini, and Steidel's [one-percent quasar-absorption determination](https://arxiv.org/abs/1710.11129) reports $(D/H)_P=(2.527\pm0.030)\times10^{-5}$ from seven systems. This is a dated abundance benchmark. Its uncertainty on the combined mean is not an upper bound on intrinsic source dispersion; that requires the individual measurements, errors, and a source-population model.
+- **Goal:** Derive the proposed **Universal Ejection Attractor**, meaning a source state approached by a declared family of initial histories, with temperature and density ceilings $T_{\max},\rho_{\max}$ and source-mass-insensitive release density $\rho_{\mathrm{crit}}$ and ejected-assembly group speed $v_{\mathrm{eject}}$. Existence, attraction, and accessibility of this state remain open.
+- **Observable implication:** Mass-independent temperature and density ceilings alone do not ensure mass-independent yields. Neutron fraction, residence time, spectra, and transport weights must also become insensitive to the source population before abundance universality follows.
 
 #### 2. Freeze-Out Timing Goal: Weak-Rate vs Outflow Timescale
 
-In Standard BBN, neutron freeze-out is set by $\Gamma_{\mathrm{weak}} \sim H$. In SMBH-local mappings, $H$ is replaced by effective outflow dilution/velocity-gradient scales (for example $\nabla\cdot\mathbf{v}$).
+In the standard comparison, weak relaxation competes with the rate at which the bath changes. For an effective fluid element, define $H_V=\tfrac13d\ln V/dt_{\mathrm{eff}}$. In a locally Euclidean effective spatial chart with a shared clock and fluid velocity $\mathbf u_{\mathrm{eff}}$, $3H_V=\nabla_{\mathbf x_{\mathrm{eff}}}\cdot\mathbf u_{\mathrm{eff}}$. The cooling rate equals $H_V$ only under an additional thermal law, such as adiabatic radiation cooling with constant entropy degrees of freedom. A general effective metric requires its own volume measure.
 
-- **Goal:** Show the ejection/cooling timescale naturally lands near the weak freeze-out scale, $\tau_{\mathrm{cool}}\approx 1\,\mathrm{s}$.
-- **Sensitivity checks:** Too slow drives $n\to p$ weak conversion toward H-dominated yields; too fast preserves high $n/p$ and overproduces helium (for example $Y_p>0.5$).
-- **Physical closure target:** Parameterize the effective expansion clock as an assembly-limited rate (bounded by transport scales set by $c_f$, local stability times, and release-channel geometry) rather than unconstrained outflow phenomenology.
+- **Goal:** Derive the temperature-dependent transport and cooling durations and test their competition with weak rates near the standard one-second benchmark and with later nuclear rates.
+- **Sensitivity checks:** Under the same initial composition and efficient later helium assembly, earlier weak freeze-out tends to retain more neutrons. This tendency does not alone establish a yield bound. If nearly all available neutrons enter helium-4, counting gives $Y_p\simeq2r/(1+r)$ for $r=n_n/n_p\le1$ at nuclear assembly; hence $Y_p>0.5$ requires $r>1/3$. Nuclear arrest or subsequent processing can invalidate that approximation.
+- **Physical closure target:** Derive an effective transport rate from declared lengths, assembly motion, thermal response, and the map from $T$ to $t_{\mathrm{eff}}$. A wake-speed scale by itself neither fixes a one-second duration nor certifies an outflow.
 
 #### 3. Deuterium Survival Goal: Monotonic Quench Window
 
-Deuterium survives only if the flow exits the bottleneck window quickly after formation (around $T_{\mathrm{temp}}\approx0.1\,\mathrm{MeV}$), rather than recirculating and re-burning.
+Near the standard comparison scale $k_BT_{\mathrm{temp}}\approx0.1\,\mathrm{MeV}$, deuterium production begins to compete successfully with photodissociation. Its later survival depends on the integrated production and destruction rates, density, and residence time.
 
-- **Goal:** Require laminar, monotonic cooling through the D-formation window, followed by rapid quench.
+- **Goal:** Compute the surviving D fraction. Laminar monotonic cooling is one candidate history, not a necessary condition; an adequately dilute or weakly reactive non-monotonic history can also preserve D.
 - **Mapping task:** Relate release-channel transport properties, including turbulence or shear diagnostics where relevant, and cooling curves to the D-survival window.
 
 #### 4. Photon-Bath Goal: Reproduce Effective $\eta^{-1}\sim10^9$
 
-The BBN reaction sequence requires a high photon-to-baryon environment so D is not stabilized too early, consistent with effective $\eta\approx6\times10^{-10}$.
+In the standard benchmark, the small ratio $\eta_{b\gamma}\approx6\times10^{-10}$ delays deuterium survival. The reciprocal ratio in this heading means $\eta_{b\gamma}^{-1}$. Both photon number and the spectrum above nuclear photodissociation thresholds matter.
 
-- **Goal:** Identify a photon-dominated reaction zone with $\rho_\gamma\gg\rho_b$ in the relevant nucleation channel.
+- **Goal:** Recover the required photon number and spectrum as well as the photon energy density. Compare photon energy density $\rho_\gamma$ with baryon rest-energy density $\rho_b c_0^2$, not directly with the baryon mass density $\rho_b$.
 - **Interpretive option:** Distinct shear layers, diffuse outflow regions, or pair/synchrotron-bright release channels can be tested as photon-bath suppliers, rather than matter-heavy disk zones.
 - **Source-model objective:** Show how recycling-zone photon production (for example pair annihilation, bremsstrahlung, and synchrotron cascades) can maintain BBN-compatible photon loading during the D bottleneck window.
-- **Thermalization-depth check:** Treat photon loading as an ensemble closure target. The relevant source zone should satisfy a channel-recorded depth condition $\mathcal{D}_{\mathrm{th}}^{\mathrm{BBN}}(\nu)\gtrsim 1$ across the photon energies that control deuterium photodissociation and nuclear freeze-out timing, while preserving the same Noether sea state variables used for density dilution, cooling, and neutrino-sector handoff.
-- **Matter-asymmetry check:** The same source-zone record must yield $\eta_B^{\mathrm{ledger}}$ compatible with $\eta_{\mathrm{obs}}$ after baryon, antibaryon, and photon transport to the BBN comparison surface.
-- **Consistency check:** If this condition is unmet, D forms too early and is over-processed.
+- **Thermalization-depth check:** Define $\mathcal D_{\mathrm{th}}^{\mathrm{BBN}}(\nu)$ as the integrated effective thermalizing rate over a specified path or residence time for photon frequency $\nu$. An order-unity depth is a screening diagnostic, not proof of a Planck spectrum to abundance-level precision. Thermalization requires energy redistribution and photon-number-changing processes with sufficient exposure before escape; a scattering depth alone is insufficient.
+- **Matter-asymmetry check:** The same source-zone record must yield a net baryon-to-photon ratio $\eta_B^{\mathrm{ledger}}$ compatible with the selected $\eta_{\mathrm{obs}}$ after baryon, antibaryon, and photon transport to the BBN comparison surface.
+- **Consistency check:** Compute the rate response to the actual photon spectrum. A deficient thermal tail can advance D survival; a nonthermal high-energy tail can destroy it. Failure of one photon-loading condition has no universal sign for the final D residual.
 
 #### 5. Lithium Goal: Promote to a Distinguishing Prediction
 
 Lithium is treated here as a primary discriminator, not only a trace channel.
 
 - **Goal:** Quantify whether core-sheath inhomogeneity can suppress $^7$Be/$^7$Li while preserving high D, producing the observed low-Li/high-D direction.
-- **Primary distinguishing prediction:** In SMBH-local reactor mappings, spatial inhomogeneity is a productive mechanism (not a nuisance), and lithium depletion emerges from transport-weighted integration across heterogeneous flow channels.
+- **Candidate distinguishing prediction:** Evaluate mass-7 production and destruction along each flow channel before mixing, and compare the result with a declared stellar-processing model. Preferential lithium reduction while retaining D is a hypothesis until this calculation supplies its magnitude and parameter range.
 - **Interpretive contrast:** Standard BBN uses near-homogeneous initial conditions, while the $\mathbb{A}\mathbb{A}\mathbb{A}$ local-reactor mapping can use controlled inhomogeneity as an explanatory lever.
 
 #### 6. Equation-of-State Goal: Specify Noether Braid Compression EoS
 
-The model needs an explicit compression-zone equation of state (for example local $P(\rho)$ or effective $w$ behavior) to close dynamics.
+An equation of state relates pressure to the local thermal and composition state. A one-variable relation $P(\rho)$ is sufficient only for a declared barotropic approximation; a general reactor needs temperature, composition, energy transport, and source terms as well. If using an effective ratio $w=P/u$, $u$ is total energy density.
 
-- **Goal:** Determine whether Noether braid matter stiffens near horizon compression (high effective sound speed), and whether that stiffness is sufficient to drive rapid radial expansion.
+- **Goal:** Derive the pressure response and its relevant derivatives. A large sound speed measures response to perturbations; outward acceleration and cooling still require the pressure gradients, confining response, geometry, and boundary conditions.
 - **Mapping task:** Connect the EoS choice directly to freeze-out timing, D quench, and final yield sensitivity.
 
 #### 7. Neutrino-Counting Goal: Recover Effective $N_{\text{eff}}$
 
-Cosmological data are consistent with an effective relativistic-species count near $N_{\text{eff}}\approx3.04$, so SMBH-local mappings need a neutrino history compatible with that target.
+The Standard Model calculation by Bennett and collaborators gives $N_{\text{eff}}^{\mathrm{SM}}=3.0440\pm0.0002$, an energy-density benchmark rather than a cosmological measurement or a literal flavor count. A local-source model must compare its prediction with the selected observational likelihood as well as this theoretical reference.
 
-- **Goal:** Show that neutrino production in the relevant nucleation zone is close enough to thermalized flavor populations to recover effective three-species behavior at observer level.
+- **Goal:** Compute the neutrino energy spectra relative to the photon bath, flavor populations, and their weak-reaction effects. Three populated flavors alone do not fix $N_{\text{eff}}$.
 - **Opacity-to-decoupling mapping:** Model a dense phase where neutrinos are initially trapped (interaction-opaque core conditions), followed by release at a defined decoupling temperature window.
-- **Consistency check:** Free-streaming onset and energy partition should map to BBN/CMB-inferred $N_{\text{eff}}$ without introducing extra relativistic degrees of freedom.
+- **Consistency check:** Test free streaming, energy partition, and spectral evolution against BBN and CMB constraints together. Any additional relativistic sector must fit those constraints in the same source history; its presence is not excluded merely by being additional.
 
 #### 8. Early-Enrichment Timing Goal: "Old Stars" Consistency
 
@@ -3714,40 +3727,44 @@ Observed low-metallicity gas and very old stars with BBN-like light-element patt
 
 - **Cycle mapping objective:** Establish an early sequence SMBH nucleation $\to$ release-channel ejection $\to$ ambient gas enrichment $\to$ subsequent star formation.
 - **Timescale objective:** Show that transport and mixing can populate star-forming reservoirs with BBN-like yields early enough to match old-star abundance constraints.
-- **Formation-context option:** Evaluate whether early structure formation with primordial or very-early SMBH populations can supply the required enrichment baseline.
+- **Formation-context option:** Specify source formation and prior cycles in absolute time, then map them to the stellar-age and redshift observations. Calling a source population early does not supply the chronology or avoid a circular reliance on the enriched matter it is meant to produce.
 
 ### Philosophical and Explanatory Consequences
 
 #### What the Eternal-Universe Interpretation Gains
 
-- **No singularity:** Avoids the conceptual paradox of $t=0$ and "something from nothing."
-- **No fine-tuning of initial conditions:** Abundances would emerge, if the universal ejection attractor of Goal 1 is derived, from dynamical equilibration in SMBH environments, not from finely-tuned cosmic initial states.
-- **Mechanistic clarity:** Replaces abstract "expansion cooling" with explicit outward transport of assemblies through fixed Euclidean space.
+- **No required origin:** The eternal background has no privileged initial instant. That ontological choice does not establish finite-density continuation through a collapsing assembly.
+- **Initial-condition question:** Even a derived attractor needs an accessible basin, sufficient relaxation time, and a viable source population. Avoidance of finely selected initial or boundary conditions remains a separate claim.
+- **Mechanism to derive:** Outward transport through fixed space is an explicit candidate. Its constitutive explanation and observed yields must be demonstrated before assigning it an explanatory advantage over standard expansion cooling.
 
 #### What It Seeks to Explain
 
-- **Homogeneity:** Why do spatially separated SMBH nucleation sites produce nearly identical light-element ratios?
-- **Timing consistency:** Why does the effective freeze-out sequence (D $\to$ $^3$He $\to$ $^4$He) occur so uniformly?
-- **Neutrino sector:** How does local SMBH nucleation produce the observed $N_{\text{eff}} \approx 3$ signature?
+- **Homogeneity:** A source-population calculation must reproduce the observed distribution of light-element ratios.
+- **Timing consistency:** Weak conversion, deuterium survival, and competing light-nucleus reaction paths must produce compatible yields across that population.
+- **Neutrino sector:** The photon-relative energy spectra and their transport must satisfy the selected $N_{\text{eff}}$ inference.
 
 ### Summary Table
 
 | Aspect | Standard BBN | $\mathbb{A}\mathbb{A}\mathbb{A}$ BBN |
 |---|---|---|
-| Universe age | Finite ($t\sim13.8$ Gyr) | Eternal (no beginning) |
-| BBN location | Everywhere | Near SMBH cores |
-| BBN frequency | Once (first 20 min) | Recurring (wherever SMBHs form) |
-| Expansion driver | Metric expansion | Outward transport of assemblies |
-| Light-element origin | Primordial relics | SMBH nucleation products |
+| Universe age | Finite hot-phase chronology; total age requires a cosmological fit | Eternal background postulate |
+| BBN location | Approximately homogeneous early thermal bath | Candidate zones near SMBH cores |
+| BBN frequency | Early hot phase | Recurring production hypothesis |
+| Expansion driver | Metric expansion | Proposed outward transport of assemblies |
+| Light-element origin | Early thermal yields, subsequently processed | SMBH production target, with transport and later processing |
 | Homogeneity explanation | Initial conditions | Dynamical equilibration (goal, underived) |
+
+Source notes: B. D. Fields, P. Molaro, and S. Sarkar, [“Big Bang Nucleosynthesis,” PDG 2025 review](https://pdg.lbl.gov/2025/reviews/rpp2025-rev-bbang-nucleosynthesis.pdf), §§24.2–24.3, supplies the standard chronology, helium benchmark, and distinction between primordial yields and later stellar processing. R. Cooke, M. Pettini, and C. C. Steidel, “One Percent Determination of the Primordial Deuterium Abundance” (2018), arXiv:1710.11129, supplies the dated seven-system measurement quoted above. J. J. Bennett et al., [“Towards a precision calculation of $N_{\mathrm{eff}}$ in the Standard Model II”](https://arxiv.org/abs/2012.02726) (2021), arXiv:2012.02726, equation (1), defines the late-time radiation normalization and reports its theoretical benchmark. These are observer-level references, not evidence for SMBH-local production.
 
 ## CMB
 
-This document combines the CMB origin timeline and prediction layer in one place, with parallel interpretation language for standard $\Lambda\mathrm{CDM}$ and $\mathbb{A}\mathbb{A}\mathbb{A}$. It sits on top of [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md) and shares interfaces with [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md), [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md), and [Dark Matter](../../../../markdown/aaa/cosmology/dark-matter.md).
+The cosmic microwave background (CMB) is the nearly thermal microwave radiation observed across the sky. Its spectrum, small temperature variations, and polarization constrain any account of its sources and transport. This chapter compares the standard hot-universe history associated with $\Lambda\mathrm{CDM}$, the cosmological-constant and cold-dark-matter model, with the proposed recycling interpretation in Architrino Assembly Architecture, $\mathbb{A}\mathbb{A}\mathbb{A}$. It builds on [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md) and connects to [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md), [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md), and [Dark Matter](../../../../markdown/aaa/cosmology/dark-matter.md).
 
 ### Core Idea
 
 The CMB timeline is presented as an effective observer-level chronology map that is interpreted through one fixed-void, evolving-Noether sea ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$.
+
+The [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md) is the fixed spatial background; [absolute time](../../../../markdown/aaa/foundations/absolute-time.md), denoted by $T$, orders substrate events. [Architrinos](../../../../markdown/aaa/foundations/architrino.md) are polarity-bearing point entities whose past motion determines the causal wakes contributing to present acceleration. A Noether braid is a proposed neutral coupled assembly of their worldlines, and the [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the ambient assembly population. Its constitutive response, photon carriers, and cosmological release mechanisms require derivation from those histories. Here TT denotes temperature autocorrelation, EE the autocorrelation of the parity-even polarization component, and TE their signed cross-correlation; BB denotes the parity-odd polarization autocorrelation. Baryon acoustic oscillations (BAO) are a related distance-scale comparison in the matter distribution.
 
 ### Framing Guardrails
 
@@ -3759,9 +3776,9 @@ The CMB timeline is presented as an effective observer-level chronology map that
 
 ### Chronology Mapping Note
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ chronology is conceptually adjacent to cyclical and recycling cosmology families, but its mechanism is explicitly an SMBH-local source architecture in a fixed-void ontology.
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ chronology explores a source architecture local to supermassive black holes (SMBHs). Its relationship to cyclical and recycling cosmologies is conceptual; a fixed Euclidean void and unbounded absolute time do not establish an eternal galaxy population, a steady-state distribution, or a recurrent release mechanism.
 
-The symbol $t_{\mathrm{eff}}=0$ anchors each declared local release or reaction record when an effective epoch window is applied; it is not the origin of absolute time. The stitched observer chronology aligns stages recovered from many such local records.
+The symbol $t_{\mathrm{eff}}=0$ anchors a declared local release or reaction record in an effective observer chart; it is not the origin of absolute time. The epoch windows below are approximate standard-comparison labels, including speculative high-energy extensions. They are not measured durations of SMBH release events. Aligning many local histories with one observed chronology requires a derived clock map, source population, and correlated transport history. All assembly identifications and release sequences in this timeline are hypotheses unless a separate derivation is identified; the numerical epoch labels cannot supply those derivations.
 
 ### CMB Dipole and Matter-Dipole Gate
 
@@ -3777,9 +3794,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fcf045812f79ccd4)
 
-where $\mathbf{D}_{X}$ is the measured source-count dipole, $\mathbf{D}_{\mathrm{CMB}}$ is the CMB dipole vector, and $K_X(\alpha_X,x_X)$ is the catalogue-dependent kinematic amplification factor built from spectral index $\alpha_X$ and number-count slope $x_X$.
+where $\mathbf{D}_{X}$ is the dimensionless fractional source-count dipole and $\mathbf{D}_{\mathrm{CMB}}$ is the dimensionless temperature dipole divided by the CMB monopole temperature. Thus the subtraction compares like units. The catalogue-dependent kinematic factor $K_X(\alpha_X,x_X)$ uses the declared spectral-index and number-count-slope conventions; it is not a universal conversion from a temperature in kelvin to source counts.
 
-In the standard homogeneous and isotropic limit, $\Delta_{\mathrm{dip}}^{X}$ should be consistent with survey masks, source evolution, and statistical noise. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology map, a persistent residual is not immediately promoted to a new ontology. It becomes a validation target:
+In a statistically homogeneous and isotropic comparison, $\Delta_{\mathrm{dip}}^{X}$ must be assessed against the joint distribution of local structure, source clustering, survey selection, evolution, and measurement noise. A finite catalogue can have a structure dipole without violating statistical isotropy. A proposed decomposition in the $\mathbb{A}\mathbb{A}\mathbb{A}$ comparison is
 
 $$
 \mathbf{D}_{X}
@@ -3793,7 +3810,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cc962422ae239a51)
 
-where $\mathbf{D}_{\mathrm{kin}}$ is ordinary observer motion, $\mathbf{D}_{\mathrm{sea}}$ is the contribution from Noether sea flow, density, delay, and clock-rate gradients, and $\mathbf{D}_{\mathrm{mask/source}}$ records survey selection and source-population effects. Closure requires the same Noether sea term to remain compatible with CMB anisotropy, quasar and radio-source dipoles, supernova directionality, BAO measurements, and local $H$ scatter.
+where $\mathbf{D}_{\mathrm{kin}}$ is the catalogue-projected motion contribution, $\mathbf{D}_{\mathrm{sea}}$ is a hypothesized contribution from Noether sea flow, density, delay, and clock-rate gradients, and $\mathbf{D}_{\mathrm{mask/source}}$ includes survey selection and intrinsic source clustering. These contributions are catalogue dependent and need not be statistically independent. Assigning the residual to the sea by subtraction is not a measurement of that mechanism. Its independently specified response must remain compatible with CMB anisotropy, source dipoles, supernova directionality, BAO, and local expansion-rate inference.
 
 This gate does not replace the TT/TE/EE or blackbody requirements. It adds a frame-consistency test: the effective CMB frame used for background inference must be the same frame, or a derived projection of the same Noether sea state, used by the matter and distance-ladder modules.
 
@@ -3809,7 +3826,7 @@ The same discipline applies to the all-sky Planck products themselves. A Planck 
 
 The comparison packet must record the reduction path before the residual is interpreted: sky mask, component-separation or foreground model, beam and transfer-function handling, monopole/dipole treatment, baseline subtraction, look-elsewhere domain, and any simulation ensemble used to assign significance. Without that provenance, a localized feature can be a foreground, mask, beam, or null-statistics artifact while appearing as a cosmological signal.
 
-Let $M_P(\hat{\mathbf{n}})$ and $M_W(\hat{\mathbf{n}})$ denote foreground-cleaned Planck and WMAP residual maps after a common mask and baseline $\Lambda\mathrm{CDM}$ subtraction, with the above provenance fields fixed before template search. For an angular template $T_{\theta,\hat{\mathbf{n}}}$ centered at sky direction $\hat{\mathbf{n}}$ with scale $\theta$, define the cross-map support statistic
+Let $M_P(\hat{\mathbf{n}})$ and $M_W(\hat{\mathbf{n}})$ denote foreground-cleaned Planck and WMAP residual maps with a common mask and compatible beam treatment. A statistical $\Lambda\mathrm{CDM}$ model does not specify the particular sky realization to subtract; any fitted baseline must be defined and refitted in the null simulations. For an angular template $T_{\theta,\hat{\mathbf{n}}}$ centered at direction $\hat{\mathbf{n}}$ with angular scale $\theta$, define the cross-map support statistic
 $$
 S_{PW}(\hat{\mathbf{n}},\theta)
 =
@@ -3819,7 +3836,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3b930c43ccb882b1)
 
-For a proposed set of $N$ localized features, the comparison pressure is the null probability
+Here $\langle M,T\rangle_{C^{-1}}=M^{\mathsf T}C^{-1}T$ on the retained pixels, with covariance $C$ including the modeled sky and instrument contributions. The positive normalization $\sigma(\theta)$ is the null standard deviation of that filtered quantity, with position dependence retained when the mask requires it. The two maps observe the same sky: independent instruments do not make their filtered sky signals independent. A positive product also counts two negative template amplitudes, so a hot-feature-only search must impose its sign restriction explicitly. For a proposed set of $N$ localized features, use the null probability
 $$
 p_N
 =
@@ -3834,74 +3851,82 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5c821724536ea090)
 
-This statistic is a validation target, not a permission to import an external cosmology. If such a residual remains significant after foreground, mask, and look-elsewhere accounting, a viable $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology must either reproduce it from the same Noether sea state used for TT/TE/EE, blackbody behavior, lensing, BAO, and structure growth, or show why it is a foreground, systematic, or null-fluctuation artifact. A fit that explains localized features by changing the cosmology state independently from the acoustic peaks or lensing record fails the shared-state requirement.
+The probability is over joint simulated maps containing a shared cosmological sky and the declared noise, foreground, and calibration correlations. The search domain fixes admissible scales, signs, separation or overlap of features, and any scan over $N$; otherwise the same location can be counted repeatedly or the trials penalty understated. $S_{\mathrm{obs}}$ is the result of the identical search on the observed pair. Significance would establish a discrepancy under that null, not the identity of a source mechanism. A candidate explanation must predict the feature population jointly with TT/TE/EE, blackbody behavior, lensing, BAO, and growth, without changing its source history between observables.
 
 Epoch labels in the mapped chronology below are effective reaction-stage names. They translate standard cosmology milestones into local release, association, thermalization, and transport regimes; they are not literal universal eras imposed on the fixed Euclidean void.
 
 ### Pre-Cosmological Steady State ($\mathbb{A}\mathbb{A}\mathbb{A}$-Only)
+
 - Scope: $\mathbb{A}\mathbb{A}\mathbb{A}$-only steady-state background; $\Lambda\mathrm{CDM}$ does not define a pre-Big-Bang era.
-- Persistent galaxies and SMBHs exist in a long-lived recycling regime.
+- The candidate history assumes persistent galaxies and SMBHs in a long-lived recycling regime.
 - This steady-state reservoir is later mapped onto the Big Bang timeline for physical observers.
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Outside the model; $\Lambda\mathrm{CDM}$ does not define a pre-Big-Bang state.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation:** The universe is a fixed Euclidean container populated by the Noether sea. Galaxies and SMBHs have existed indefinitely in a steady-state, recycling regime. SMBHs act as strong-field recycling sites whose horizon interfaces can return processed content to the surrounding Noether sea through several release channels. Those channels may include visible outflows, diffuse radiative release, and initially dark-sector photon-channel candidates. The released content then traverses the evolving Noether sea and can be thermally reprocessed by repeated interactions with assemblies. This steady-state backdrop is the source reservoir that later maps onto the Big Bang timeline for physical observers.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation:** The proposed source reservoir is a statistically sustained population of galaxies and SMBH recycling sites in the Noether sea. Visible outflows, diffuse radiation, and initially dark photon-channel candidates are possible release classes within this hypothesis. A population balance must establish replenishment and persistence; an indefinitely extended time coordinate alone establishes neither. Thermal reprocessing and the mapping to observer chronology remain separate dynamical requirements.
 
 ### Planck Epoch (0 to $\sim 10^{-43}$ s)
+
 - Time window: 0 to $\sim 10^{-43}$ s.
 - Regime: peak effective densities/energies; quantum-gravity behavior dominates.
-- Force status: gravity is distinct; other interactions are effectively unified.
+- Interaction status: neither quantum gravity nor high-energy unification is established by this epoch label.
 
-**$\Lambda\mathrm{CDM}$ interpretation:** Spacetime is in a quantum-gravity regime; ordinary field theory breaks down. The Planck scale sets the limiting energy density and length scale for known physics.
+**$\Lambda\mathrm{CDM}$ interpretation:** The Planck scale marks where a quantum-gravity description is expected to become necessary. It is not an experimentally established maximum density or minimum length, and baseline $\Lambda\mathrm{CDM}$ does not supply a quantum-gravity theory or a settled interaction sequence at that scale.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Planck Epoch: Peak Density of Energetic Architrinos):** The Noether sea reaches peak effective density in a local recycling event. Architrinos dominate the dynamics, and the Noether braid network is maximally compressed. At the event-horizon limit, the only stable assemblies are hypothesized to be neutral Noether braids: high-energy, stealthy pairs or quad clusters that couple with a strong-like force. The photon-channel assemblies are modeled as coaxial contra-rotating polarity-conjugate planar pairs moving at the local effective photon speed. Noether braid assemblies populate the Noether sea, so the effective gravity channel is active while the Euclidean void remains fixed. Noether braids are neutral, so there is no emergent electric force yet beyond internal binding. Axial architrinos are absent, so no weak force. A strong-like binding exists inside Noether braid couplings, but it is not externally observable until quark assemblies appear. This is the regime where self-hit effects are strongest and where a candidate maximum-curvature branch may approach its inner barrier. A universal MCB cap remains conditional on a retained stable branch and is not supplied by self-hit alone.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Planck Epoch: Peak Density of Energetic Architrinos):** The candidate local history explores dense neutral assemblies and strong causal-wake interactions. A base Noether braid contains six architrinos in three neutral binaries; it is not a two- or four-architrino cluster. The proposed photon carrier is a twelve-worldline coaxial contra-rotating polarity-conjugate planar pair. Neither inventory establishes persistence, dominance, or exclusive survival near a horizon. Net neutrality alone does not eliminate multipole or medium-mediated response, and absence of an axial layer does not derive a complete interaction hierarchy. The [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) determines self-hit contributions from earlier same-transmitter causal roots; density or instantaneous speed alone does not determine their strength. A maximal-curvature binary (MCB) cap and any effective gravity, weak, or strong channel remain recovery targets tied to a retained assembly history.
 
 ### Grand Unification Epoch ($\sim 10^{-43}$ to $10^{-36}$ s)
+
 - Time window: $\sim 10^{-43}$ to $10^{-36}$ s.
 - Regime: high-energy unification with symmetry breaking beginning.
-- Force status: strong interaction separates from the electroweak sector across this window.
+- Interaction status: a proposed high-energy unification sequence; its transition scale is model dependent.
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Gauge interactions may be unified; symmetry breaking sets the stage for later phase transitions.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Grand Unification Epoch: Binaries Dominate):** Stable binary assemblies become the dominant carriers of energy and interaction. The Noether sea organizes around binary formation, suppressing free-architrino behavior and defining the first durable interaction channels. Strong-like binding remains internal to these neutral Noether braids and is still not externally observable without quark-scale axial patterns.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Grand Unification Epoch: Binaries Dominate):** Binary formation is the proposed precursor to more complex assemblies. Demonstrating its dominance requires formation and persistence rates from the delayed dynamics and a population balance. A binary is not itself a three-binary Noether braid, and neither label derives strong-interaction phenomenology.
 
 ### Inflationary Epoch ($\sim 10^{-36}$ to $10^{-32}$ s)
+
 - Time window: $\sim 10^{-36}$ to $10^{-32}$ s.
 - Regime: rapid effective expansion/relaxation smooths the large-scale Noether sea state and its effective geometry.
 - Perturbations: primordial fluctuations are seeded for later structure.
 
-**$\Lambda\mathrm{CDM}$ interpretation:** A scalar field drives exponential expansion, smoothing curvature and seeding primordial perturbations.
+**$\Lambda\mathrm{CDM}$ interpretation:** An inflationary extension proposes accelerated expansion, often modeled by a scalar field, to account for smoothness and perturbations. The source field and the quoted epoch window are model dependent, not consequences of the late-time $\Lambda\mathrm{CDM}$ parameterization alone.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Inflationary Epoch: Noether Braid Transition):** $\mathbb{A}\mathbb{A}\mathbb{A}$ treats inflation-like behavior as sourced in SMBH-core interior dynamics. The self-hit regime of inner assemblies drives rapid effective expansion/relaxation of the surrounding Noether sea. Near the Planck-alignment boundary, terminal lock and release behavior organizes the transition from maximal-curvature dynamics into a broader, more uniform ambient state. In the mapped chronology, Noether braid behavior enters a coherent regime that later supports emergent metric summaries without invoking literal expansion of the void.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Inflationary Epoch: Noether Braid Transition):** SMBH-core release and subsequent Noether sea relaxation are the proposed source of inflation-like behavior. Self-hit occupancy, terminal alignment, energy transfer, smoothing, and perturbation production must each follow from one source and medium history. Their occurrence and the required spatial correlations are not supplied by a planar geometry or by relabeling an inflationary epoch; see [Inflation Model](../../../../markdown/aaa/cosmology/inflation-model.md).
 
 ### Electroweak Epoch ($\sim 10^{-12}$ s)
+
 - Time window: $\sim 10^{-12}$ s.
 - Regime: electroweak symmetry breaking; particle masses emerge.
 - Force status: electromagnetic and weak forces split; four forces become distinct thereafter.
 
-**$\Lambda\mathrm{CDM}$ interpretation:** Electroweak symmetry breaks; particle masses emerge via the Higgs mechanism.
+**$\Lambda\mathrm{CDM}$ interpretation:** In the Standard Model thermal comparison, electroweak symmetry breaking supplies the Higgs contributions to elementary-particle masses. It does not account for all forms of mass; hadronic mass also depends on strong-interaction dynamics.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Electroweak Epoch: Axial Architrinos Associate with Noether braids):** Axial architrinos associate with Noether braids, setting the effective inertial response and distinguishing stable interaction channels. This is the point where electromagnetic and weak interactions become externally observable: charged assemblies appear and weak-scale coupling becomes meaningful through axial topology. This association process defines the emergent analog of particle masses and electroweak differentiation; compare [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Electroweak Epoch: Axial Architrinos Associate with Noether braids):** Association of an axial layer, six additional architrinos organized around a candidate braid, is the proposed assembly mechanism. Its formation, retention, inertial response, and electromagnetic and weak response require dynamical derivation. Topology and polarity counts alone do not identify a massive particle or an interaction onset; compare [Electroweak Bosons: Photons, W/Z, and Higgs](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md).
 
 ### Quark Epoch ($\sim 10^{-12}$ to $10^{-6}$ s)
+
 - Time window: $\sim 10^{-12}$ to $10^{-6}$ s.
 - Regime: quark-gluon plasma dominates the energy density.
 - Force status: strong interaction active; confinement has not yet occurred.
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Quarks and gluons form a hot plasma; confinement has not yet occurred.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Quark Epoch: Emerging/Surviving Quarks Couple Vortices):** Quark-like assemblies are hypothesized to survive as Noether-braid-based configurations with axial structure. The responsible braid member and its retention mechanism are not established. Their coupling is proposed to involve vortex-like wake structures, with confinement treated as a topology-and-dynamics recovery target rather than a fundamental gauge field. This is the mapped stage where the strong interaction becomes externally visible through quark–quark coupling and confinement dynamics.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Quark Epoch: Emerging/Surviving Quarks Couple Vortices):** Quark-like assemblies are proposed as Noether-braid-based configurations with axial structure. The responsible branch, retention mechanism, and coupling are unestablished. Vortex-like wake patterns are a mechanism hypothesis; confinement and the observable strong interaction require the full dynamical and response calculation.
 
 ### Hadron Epoch ($\sim 10^{-6}$ s to $\sim 1$ s)
+
 - Time window: $\sim 10^{-6}$ s to $\sim 1$ s.
 - Regime: quark confinement produces hadrons.
 - Matter: baryonic matter becomes the dominant composite sector.
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Quarks confine into hadrons (protons and neutrons), and hadronic matter becomes the dominant form of baryonic energy.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Hadron Epoch: Assemblies with Coupled Quarks Emerge):** Multi-braid assemblies are hypothesized to stabilize, associating quark-like structures into hadron analogs; the stabilization mechanism is not established. The Noether sea supports composite assemblies with persistent internal phase structure, setting the stage for nuclear binding.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Hadron Epoch: Assemblies with Coupled Quarks Emerge):** Multi-braid association is the proposed route to hadron analogs. It requires a demonstrated stabilization mechanism and a phase and response history supporting the proposed composites before nuclear binding can be inferred.
 
 ### Lepton Epoch (incl. neutrino decoupling) ($\sim 1$ to $\sim 10$ s)
+
 - Time window: $\sim 1$ to $\sim 10$ s.
 - Regime: leptons and anti-leptons are abundant.
 - Outcome: pair annihilation reduces lepton density and heats radiation.
@@ -3909,75 +3934,81 @@ Epoch labels in the mapped chronology below are effective reaction-stage names. 
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Electron-positron pairs are abundant; annihilation and cooling reshape the radiation bath. **$\Lambda\mathrm{CDM}$ (neutrino decoupling):** Weak interaction rates drop below the expansion rate; neutrinos free-stream.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Lepton Epoch: Noether braids with six $\epsilon$ axial architrinos form):** Stable lepton analogs are hypothesized to form from Noether braids carrying six bound axial architrinos, with net observer-level $|e|$ from six $\epsilon=|e|/6$ units; the formation pathway is not established. Lepton-like assemblies populate the Noether sea and mediate charge-neutralization channels. **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Neutrino Decoupling: Noether braids with Neutral Axial Layers):** Nearly neutral Noether braid assemblies lose strong coupling to the dominant plasma-like background and begin to free-stream as weakly interacting modes. In this framing, neutrino-sector free-streaming and sea coupling are part of the same parameter story that later appears as effective $N_{\text{eff}}$ language; compare [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Lepton Epoch: Noether braids with six $\epsilon$ axial architrinos form):** A same-polarity six-site axial inventory gives observer-level charge magnitude $6\epsilon=|e|$; a mixed-polarity inventory does not generally do so. This count does not establish a stable lepton branch or its formation pathway. **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Neutrino Decoupling: Noether braids with Neutral Axial Layers):** Neutral candidate assemblies must reproduce the measured weak response and free-streaming history. Neutrality alone gives no decoupling rate. The resulting radiation loading must agree with the same effective $N_{\text{eff}}$ comparison; see [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md).
 
 ### Photon Epoch ($\sim 10$ s to $\sim 3.8\times10^5$ years)
+
 - Time window: $\sim 10$ s to $\sim 3.8\times10^5$ years.
 - Regime: ionized plasma with tight photon-matter coupling.
 - Outcome: acoustic oscillations develop in the coupled medium.
 
 **$\Lambda\mathrm{CDM}$ interpretation:** The photon-baryon fluid is optically thick; acoustic oscillations develop and imprint the future CMB power spectrum.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Photon Epoch: Nuclear Assembly Plasma):** A dense plasma of nuclear assemblies and photon assemblies modeled as coaxial contra-rotating polarity-conjugate planar pairs fills the Noether sea. Repeated scattering and wake interactions thermalize the radiation field. Acoustic-like standing modes are hypothesized to arise from coupled oscillations of assemblies and coaxial contra-rotating polarity-conjugate planar-pair excitations, seeding the eventual CMB peak structure; this seeding is not established.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Photon Epoch: Nuclear Assembly Plasma):** The candidate history contains matter assemblies and proposed planar-pair photon carriers coupled through the Noether sea. A derived collision and response operator must establish thermalization and coherent acoustic-like modes. Repeated scattering by itself establishes neither a Planck spectrum nor the phase relations of the CMB peaks.
 
 ### Big Bang Nucleosynthesis ($\sim 3$ to $\sim 20$ minutes)
+
 - Time window: $\sim 3$ to $\sim 20$ minutes.
 - Regime: light nuclei form as temperatures fall.
 - Outcome: primordial abundances of D, He, and trace Li are set.
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Protons and neutrons bind into deuterium, helium, and trace lithium; abundances are set by expansion rate and reaction networks.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (BBN: Protons (15:21) and Neutrons (18:18) Associate):** Specific multi-braid assemblies corresponding to proton (15:21) and neutron (18:18) configurations associate into light nuclear assemblies. Reaction rates are controlled by assembly topology and wake-coupling cross sections in the Noether sea; this is the same light-element window developed in [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md).
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (BBN: Protons (15:21) and Neutrons (18:18) Associate):** The proposed proton and neutron inventories count negative and positive polarity sites, respectively: $15\epsilon_-+21\epsilon_+$ gives effective charge $+e$, and $18\epsilon_-+18\epsilon_+$ is neutral when $\epsilon=|e|/6$. This arithmetic does not establish the particle branches, nuclear binding, reaction cross sections, or abundance evolution. Those are the linked recovery targets in [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md).
 
 ### Acoustic Peak Seeding (pre-recombination)
+
 - Time window: late photon epoch prior to recombination.
 - Regime: standing-wave modes imprint a harmonic ladder.
 - Outcome: peak positions/amplitudes encode medium properties and coupling.
 
-**$\Lambda\mathrm{CDM}$ interpretation:** Acoustic oscillations in the photon-baryon fluid generate the familiar harmonic peaks. Peak positions are set by the sound horizon at recombination; relative heights encode baryon loading and radiation driving.
+**$\Lambda\mathrm{CDM}$ interpretation:** Acoustic oscillations in the photon-baryon fluid generate the peak sequence. Angular positions depend on the ratio of the sound horizon to angular-diameter distance and on phase shifts; relative heights depend on baryon loading and radiation driving. A sound horizon alone does not determine angular peak positions.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Indexed Braid Energy Rows):** A retained three-binary braid may supply three branch-derived energy scales $E_1,E_2,E_3$ that act as mode seeds. Coupling through the Noether sea may generate a harmonic ladder from those seeds, analogous to standing acoustic modes in a cavity. The effective “sound horizon” scale is set by the Noether sea coupling length, the delay response $\chi_{\text{sea}}$, and the duration of the high-optical-depth phase, while the odd/even peak pattern tests how baryon-like assemblies load the oscillations relative to coaxial contra-rotating polarity-conjugate planar-pair modes. The existence and values of three such seeds are recovery targets, not consequences of radius ordering.
 
 ### Recombination ($\sim 3.8\times10^5$ years)
+
 - Time window: $\sim 3.8\times10^5$ years.
 - Regime: electrons associate with nuclei; scattering drops sharply.
 - Outcome: photons decouple (last scattering) and free-stream.
 
 **$\Lambda\mathrm{CDM}$ interpretation:** Electrons combine with nuclei; photons decouple, producing the CMB. The last-scattering surface is established.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Recombination: Coaxial Contra-Rotating Photon Assemblies Decouple):** Electron-like assemblies lock into neutral coaxial configurations with nuclei, dramatically reducing scattering cross sections. Photon assemblies modeled as coaxial contra-rotating polarity-conjugate planar pairs decouple and free-stream. This defines the $\mathbb{A}\mathbb{A}\mathbb{A}$ analog of last scattering, with the CMB spectrum reflecting the thermalized Noether sea state at decoupling.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Recombination: Coaxial Contra-Rotating Photon Assemblies Decouple):** Association of electron-like and nuclear assemblies must yield the neutral matter states and opacity history required for photon decoupling. A coaxial attachment geometry or a reduced scattering cross section cannot be inferred from neutrality alone. The candidate photon carriers must then preserve the previously established thermal spectrum through the measured last-scattering window.
 
 ### Dark Ages ($\sim 3.8\times10^5$ years to first light)
+
 - Time window: $\sim 3.8\times10^5$ years to first light.
 - Regime: neutral medium with no luminous sources.
 - Outcome: structure grows under gravity/medium dynamics.
 
 **$\Lambda\mathrm{CDM}$ interpretation:** The universe is neutral and dark; structure grows under gravity until the first luminous objects form.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Dark Ages: Coaxial Contra-Rotating Photon Assemblies Free-Stream):** The decoupled photon assemblies, modeled as coaxial contra-rotating polarity-conjugate planar pairs, propagate through the evolving Noether sea. The radiation field retains its thermal shape while redshifting due to medium evolution and path-integrated clock-rate comparison between emission and observation environments. Small anisotropies reflect assembly-density fluctuations rather than a single primordial event.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Dark Ages: Coaxial Contra-Rotating Photon Assemblies Free-Stream):** The proposed photon carriers propagate through the evolving Noether sea after decoupling. Spectral preservation under frequency transfer and endpoint-clock comparison is a transport requirement, not a derived consequence of their geometry. The anisotropies require the projected source, velocity, gravitational-comparison, and scattering contributions from that same history; density fluctuations alone do not specify them.
 
 This retention claim is a transparent-transport invariant, not a claim of continued ordinary thermalization. After decoupling, the path map must rescale photon-channel frequency and inferred temperature together while preserving the transported bundle's occupation-shape function and transverse phase coherence. A post-decoupling mechanism that repeatedly absorbs, re-emits, scatters, or randomly kicks the photon packets may relax a spectrum in special circumstances, but it will generically erase image sharpness, anisotropy, polarization, or the near-Planck spectral shape unless those side effects are explicitly bounded.
 
 #### Entropy Split in the CMB Record
 
-The CMB record carries two different entropy lessons that must not be collapsed into one. Its near-blackbody spectrum and uniform temperature show that the radiation sector reached a high-entropy thermal record under the photon/matter coarse-graining. The same smoothness is low entropy under the gravitational and horizon-interface coarse-graining because later clumping, potential-energy release, structure formation, and black-hole records open vastly larger compatible histories. A valid $\mathbb{A}\mathbb{A}\mathbb{A}$ CMB branch must therefore keep radiation thermalization, gravitational smoothness, Noether sea state, and horizon-interface entropy as separate projections of one shared source-and-transport record.
+Radiation thermality and gravitational smoothness concern different coarse-grainings, meaning different choices of resolved variables and compatible microscopic histories. A Planck distribution is a maximum-entropy comparison only for a declared photon ensemble with fixed mean energy and accessible number-changing processes. Its observed shape constrains, but does not uniquely reconstruct, the thermalization history. A gravitational-entropy interpretation additionally needs an admissible history measure and a definition of its gravitational and horizon variables; smoothness alone gives no numerical entropy. These distinctions follow the [entropy and temperature definitions](../../../../markdown/aaa/dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable).
 
 ### SMBH Release Channels
+
 - Scope: interpretive bridge between $\mathbb{A}\mathbb{A}\mathbb{A}$ steady-state recycling and the effective Big Bang chronology map.
-- Claim: the Big Bang corresponds to the collective surfaces of SMBHs, not a singular origin.
-- Outcome: outward release from SMBH recycling sites maps onto the observed CMB after thermalization and redshift.
+- Hypothesis: collective SMBH release supplies a history comparable with the observed hot-universe record.
+- Recovery target: release, thermalization, and subsequent transport jointly produce the observed CMB.
 
-**$\Lambda\mathrm{CDM}$ interpretation:** The Big Bang is a global origin of spacetime, setting the initial conditions for all subsequent evolution.
+**$\Lambda\mathrm{CDM}$ interpretation:** The hot Big Bang describes an early hot, dense phase and its subsequent evolution. A past singularity in an idealized classical extrapolation is not an established account of the ultimate origin of spacetime.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation:** The Big Bang timeline is reinterpreted as the effective history of a large-scale recycling event sourced by SMBH environments. Dark-sector photon-like modes, recycled dark-sector assemblies, and other outbound excitations from SMBH horizon interfaces can propagate through the Noether sea, thermalize, and redshift into the observed CMB directly or after further conversion into visible channels. Jets and surface outflows remain plausible observer-level manifestations of this release, but they are not the only allowed morphology. Branch-derived energy rows of retained braid assemblies are candidate mode seeds for acoustic peaks, with coupling in the medium generating the harmonic ladder observed today. The CMB source interpretation is therefore a closure target for steady-state recycling dynamics in a fixed Euclidean void, not a singular origin event nor literal metric stretching of the container.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation:** SMBH recycling is a candidate source for a reconstructed hot-universe history. Its release classes include proposed dark assemblies, photon-like excitations, and visible outflows. Formation, escape, conversion, thermalization, and redshift each require a physical calculation. Internal braid energy scales are possible inputs to a coupled response, but three binary labels do not derive a cosmological harmonic ladder, coherent phases, or its angular scale. A successful common history must predict those observables together with the spectrum and source population.
 
 CMB photons must remain source-and-path records. A proposed background bath has to carry release provenance, thermalization depth, coherent photon-channel transport, redshift handoff, and observer-frame reconstruction in one ledger. Treating the CMB as only a painted last-scattering sphere loses the source term; treating it as only local recycled emission loses the transfer and acoustic constraints.
 
 #### Horizon-Interface Photon Release Candidate
 
-The strong-field version of this source story should keep a specific candidate channel visible. A photon-channel packet is a coaxial contra-rotating polarity-conjugate planar pair, while the black-hole horizon interface is the regime where an orthogonal-axis three-binary branch is hypothesized to approach its flat endpoint $\lambda_A=1$ with branch-derived speed rows near $c_f$. The shared planar geometry makes the horizon a natural candidate site for photon-channel or photon-channel-adjacent release, not merely a place where already-formed photons suffer an exterior gravitational redshift.
+The strong-field candidate links the proposed planar photon carrier to a proposed terminal-alignment region near a black hole. Here $\lambda_A=1$ denotes the flat endpoint of the orthogonal-axis three-binary alignment chart. Geometry alone does not establish a horizon, a retained endpoint, threshold constituent speeds, or an escaping photon. Those require complete histories and response calculations; planar resemblance supplies a research hypothesis only.
 
-The same signed row can contain both sides of the process. Interior or interface segments may blueshift photon-channel packets, raising their receiver-facing phase cadence and energy relative to local exterior standards. Outward transport through the surrounding Noether sea may then redshift, thermalize, scatter, or convert those packets before they become visible to ordinary observers. The existence of such high-energy interior photon records is therefore a plausible branch of the CMB source program, but it is not a shortcut around the CMB constraints.
+The signed frequency ledger can describe both boosts and depletions along an admitted path. Actual exchange and comparisons between different clocks must be separated before interpreting either as an energy gain or loss. Outward propagation, scattering, thermalization, and conversion remain candidate processes until the release and transport history is supplied.
 
 For a horizon-sourced contribution to the CMB bath, the source packet should be recorded schematically as
 $$
@@ -3994,17 +4025,17 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cd45449201b499ca)
 
-where $\mathcal{B}_{H}$ is the horizon-interface label ensemble, $Y_{\gamma,H}$ is the signed strong-field photon-frequency exchange row, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{H\gamma}$ is the energy, momentum, angular-momentum, provenance, and medium-update ledger for the released channel, $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}$ is the thermalization depth, and $\mathcal{P}_{E\to R}$ is the path-history propagation factor. This packet is admissible only if it feeds the same blackbody, anisotropy, polarization, damping, lensing, redshift, and BBN handoff records already required by the CMB module.
+Here $\mathcal{B}_{H}$ is the candidate horizon-interface ensemble, $Y_{\gamma,H}$ the signed strong-field frequency-exchange entry, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{H\gamma}$ the energy, momentum, angular-momentum, and medium-update ledger, $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}$ the thermalization depth, and $\mathcal{P}_{E\to R}$ the propagation factor from emission to reception. The notation records required information; it does not establish its existence. The same release history must supply the blackbody, anisotropy, polarization, damping, lensing, redshift, and BBN comparisons.
 
-The candidate is strong because it links several otherwise separate clues: black-hole recycling, horizon-interface planar lock, photon-channel ontology, signed redshift/blueshift transport, and CMB thermalization. Its failure mode is equally clear. If the horizon contribution can explain only an energy scale while spoiling the near-blackbody spectrum, erasing TT/TE/EE information, overproducing spectral distortions, or requiring a different Noether sea state from the one used for redshift and growth, then it is not a valid CMB source branch.
+The candidate connects recycling, proposed planar alignment, photon-carrier geometry, signed frequency transfer, and thermalization. These are dependent hypotheses, not independent supporting observations. A source solution must first exhibit admissible release dynamics, then satisfy the blackbody, TT/TE/EE, distortion, redshift, and growth constraints. Agreement with an energy scale alone cannot establish a CMB source branch.
 
 #### QSSC Contrast (Conceptual)
 
-| Axis | QSSC-like families | $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation |
+| Axis | Quasi-steady-state cosmology (QSSC) comparisons | $\mathbb{A}\mathbb{A}\mathbb{A}$ candidate |
 |---|---|---|
 | Similarity | Distributed/recycling source logic over long history | Distributed/recycling source logic over long history |
-| Core difference | Phenomenological source and transport descriptions | Noether sea medium microphysics with explicit module interfaces |
-| Closure standard | General background consistency goals | Hard closure targets: blackbody precision, $\Delta T/T$, and TT/TE/EE/damping coherence |
+| Mechanism comparison | Must identify a particular source and transport model before evaluating it | Seeks a derivation from architrino histories and Noether sea response |
+| Common observational standard | Blackbody precision, temperature anisotropy, and TT/TE/EE/damping coherence | The same constraints; a microscopic proposal does not relax or automatically satisfy them |
 
 ### Distributed-Emission Channels
 
@@ -4019,15 +4050,17 @@ These channels are treated as parts of one shared thermalization and decoupling 
 
 Jet-transport scales in the Mpc class are treated as one member of this channel family, with cumulative contribution determined by source population statistics, release-channel selection, and medium thermalization depth.
 
-Isotropy in this branch is attributed to long-time averaging over many source populations following the same microphysical rules, not to one-time primordial causal contact. This attribution is checked against the operative gates already declared for this branch: the matter-dipole residual $\Delta_{\mathrm{dip}}^{X}$ of the [CMB Dipole and Matter-Dipole Gate](#cmb-dipole-and-matter-dipole-gate) and the homogeneity residual $\mathcal{R}_{\mathrm{hom}}$ defined in [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md#inference-dependency-ledger).
+Long-time source averaging is a proposed route to isotropy. Identical microscopic laws do not guarantee an isotropic source distribution, sufficient independent samples, or small residual fluctuations in a finite observation. This proposal must predict its directional and frequency-dependent correlations, including the matter-dipole residual $\Delta_{\mathrm{dip}}^{X}$ of the [CMB Dipole and Matter-Dipole Gate](#cmb-dipole-and-matter-dipole-gate) and the homogeneity residual $\mathcal{R}_{\mathrm{hom}}$ in [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md#inference-dependency-ledger). Superposing blackbodies of different transported temperatures does not generally produce a blackbody.
 
 #### Effective Thermal Spectrum of the Noether Sea
 
-The framework does not yet identify an ontological root definition of temperature, so it should not simply equate the enormous internal energy of individual Noether braids with an ordinary thermodynamic temperature. A more disciplined distinction is required between three quantities: the internal energy scale of the braids, the local effective emissive temperature of the Noether sea if it behaves as a blackbody source, and the observer-side temperature inferred from the photon bath after emission, transport, thermalization, and redshift. On that reading, the observed $2.7255\,\mathrm{K}$ background (COBE/FIRAS calibration) is the temperature of the ambient microwave radiation field measured by present observers, not automatically the intrinsic temperature of the Noether sea as an emitter. The stronger claim to test is that sufficiently homogeneous regions of the Sea can generate and maintain a near-blackbody photon population whose measured spectrum tracks that emissive state after medium transport. Departures from the baseline blackbody should then encode local Noether sea state: increasing Noether braid density, anisotropy, or internal excitation near dense matter would tend to distort the spectrum away from the homogeneous limit, while the strongest deviations should arise near black-hole recycling zones, where alignment, compression, and release-channel mixing can harden, bias, or only partially re-thermalize the emitted radiation before subsequent relaxation in the surrounding Noether sea.
+Temperature is an ensemble variable under the [entropy definition](../../../../markdown/aaa/dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable), not the internal energy of one braid. Distinguish a braid's internal energy, a source's effective emissive temperature when thermal equilibrium is justified, and the temperature inferred after photon transport. Fixsen's 2009 analysis, [The Temperature of the Cosmic Microwave Background](https://arxiv.org/abs/0911.1955), reports a combined determination $2.72548\pm0.00057\,\mathrm{K}$; its separate FIRAS recalibration using WMAP gives $2.7260\pm0.0013\,\mathrm{K}$. These are observer-side radiation measurements, not measurements of an intrinsic Noether sea temperature.
+
+A homogeneous source produces a Planck spectrum only with suitable mode statistics, energy exchange, and photon-number equilibration. Density, anisotropy, or excitation changes need not produce a particular spectral distortion: an equilibrated source can remain thermal at a different temperature, whereas mixing unequally redshifted thermal sources can distort the spectrum. Predicting the sign, magnitude, and location of any deviation requires a source and transport calculation; a black-hole environment alone fixes none of them.
 
 #### Discovery-Scale Thermal Record
 
-The 1965 Dicke-Peebles-Roll-Wilkinson and Penzias-Wilson letters are useful here as a paired constraint, not as permission to import one origin story. The theoretical side emphasized that a sufficiently hot phase with $T\gtrsim 10^{10}\,\mathrm{K}$ would drive pair production, photon exchange, and neutrino-sector equilibration rapidly enough to create a thermal radiation bath, and that subsequent homogeneous redshift would preserve the blackbody form while lowering the inferred temperature. The observational side reported an unexplained zenith antenna-temperature excess near $3.5\,\mathrm{K}$ at $4080\,\mathrm{Mc/s}$ after accounting for atmosphere, ohmic loss, back-lobe response, calibration, polarization, isotropy, and seasonal variation.
+The 1965 letters separate a thermal-history argument from an instrument result. Dicke, Peebles, Roll, and Wilkinson's [Cosmic Black-Body Radiation](https://articles.adsabs.harvard.edu/pdf/1965ApJ...142..414D), pp. 415–416, argued that a sufficiently hot phase with $T_{\mathrm{temp}}\gtrsim10^{10}\,\mathrm{K}$ permits rapid photon equilibration and, given the stated reaction processes, neutrino equilibration. Penzias and Wilson's [A Measurement of Excess Antenna Temperature at 4080 Mc/s](https://articles.adsabs.harvard.edu/pdf/1965ApJ...142..419P), pp. 419–420, reported a residual $3.5\pm1.0\,\mathrm{K}$ after instrument and atmosphere accounting. That single-frequency excess did not itself establish a blackbody spectrum; the companion theoretical letter explicitly requested further spectral measurements. These are historical effective-physics comparisons, not substrate laws.
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the durable lesson is the constraint packet. A CMB branch must not merely point to a distributed source population; it must carry a joint thermal and measurement record
 $$
@@ -4046,9 +4079,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-39683ab2f74c5d17)
 
-where $T_{\mathrm{src}}$ is the effective source or last-thermalization temperature, $\eta_{\gamma b}$ is the photon-to-baryon loading ledger, $N_{\mathrm{eff}}$ and $Y_p$ carry the neutrino and helium-facing constraints, $\mathcal{P}_{\mathrm{instr}}$ records the antenna, atmosphere, calibration, foreground, polarization, and seasonal checks, and $\mathbf{D}_{\mathrm{frame}}$ is the residual frame vector used in the dipole gate above. A distributed or recycling interpretation is admissible only when the same $\Theta_{\mathrm{CMB}}$ supports the spectrum, isotropy, BBN handoff, and frame correction. Fitting the microwave temperature while assigning the helium abundance, neutrino history, foreground subtraction, or dipole correction to separate records would reproduce a number while failing the CMB constraint.
+where $T_{\mathrm{src}}$ is source or last-thermalization temperature, $\eta_{\gamma b}=n_\gamma/n_b$ is the photon-to-baryon number ratio, $N_{\mathrm{eff}}$ parameterizes the effective relativistic radiation content, and $Y_p$ is the helium mass fraction. The conventional BBN ratio is the reciprocal, $\eta=n_b/n_\gamma$; the epoch and any intervening photon production must be retained when converting between them. $\mathcal{P}_{\mathrm{instr}}$ records the measurement corrections, and $\mathbf{D}_{\mathrm{frame}}$ is the residual frame vector. A candidate must support the spectrum, isotropy, BBN handoff, and frame correction with one physical history, while retaining the distinct measurement likelihoods and nuisance parameters of the different instruments.
 
-The same record must close the photon energy inventory, not only the fitted temperature. For a declared source-and-thermalization branch $\theta$, let $u_\gamma^\theta(t_{\mathrm{eff}})$ be the effective photon energy density that reaches the CMB comparison surface, $B_{\mathrm{therm}}^\theta$ the energy transferred through thermalizing channels, $B_{\mathrm{loss}}^\theta$ the energy irreversibly routed into non-photon reservoirs, and $\mathcal{F}_\gamma^\theta$ the boundary flux through the selected comparison window. The CMB energy-budget residual can be written schematically as
+The energy inventory requires a control region, time interval, and common energy convention. Let $u_\gamma^\theta$ be photon energy density in that region, $\Delta U_{\mathrm{src}}^\theta$ the positive net energy supplied by sources, $B_{\mathrm{therm}}^\theta=\Delta U_\gamma^\theta$ the net change of stored photon energy after internal redistribution, and $B_{\mathrm{loss}}^\theta$ the net transfer to non-photon reservoirs, positive when they gain energy. Define $\mathcal F_\gamma^\theta$ as the signed outward photon energy flux through the control boundary, including any boundary motion. In this inventory, $B_{\mathrm{therm}}^\theta$ is not cumulative energy processed through scattering: that would count repeatedly transferred energy more than once. A conditional energy-budget residual is
 $$
 \mathcal{R}_{\gamma,\mathrm{CMB}}^\theta
 =
@@ -4075,9 +4108,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f1fecc4aa9a229d6)
 
-This residual is the CMB-facing form of source provenance. A branch that recovers a blackbody curve by adding an untracked photon bath, or by hiding excess source energy in an undeclared non-photon reservoir, has not supplied the shared record required by the CMB gate.
+Here $u_{\gamma,\mathrm{Planck}}(T_0)$ is the frequency integral of the calibrated Planck energy density at present temperature $T_0$ in the same volume convention. The positive tolerances $\epsilon_u$ and $\epsilon_E$ have units of energy density and energy, respectively. All transfers are counted once, and other participating boundary or storage terms must be added explicitly. The residual tests a declared effective balance; it does not derive a conserved energy functional from the Master Equation.
 
-Post-free-streaming redshift adds the same constraint on the transport side. Once source, recoil, remnant, and boundary rows are separated, a redshifted photon bundle must close its energy deficit into the Noether sea path update,
+For a transparent-path model that attributes physical photon energy transfer solely to the Noether sea, the conditional balance is
 
 $$
 \Delta E_{\gamma}
@@ -4087,13 +4120,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-259699baa36eff16)
 
-This is the CMB-facing projection of the bounded-region continuity law, with boundary flux, source rows, recoil, and remnant exchange separated before the transparent-path term is evaluated. It need not assume a convergent universe-wide scalar energy in order to falsify a transport branch locally. Without that local closure, a CMB branch that preserves the Planck curve only by hiding the redshift energy in an untracked bath has failed the fixed-void energy ledger.
+Both terms are changes in one energy convention, with positive sign for a gain. The equality requires a justified bounded-region energy law and removal or inclusion of source, recoil, remnant, stored-history, and boundary terms. A difference between endpoint-clock frequency readings alone does not establish a deposited energy: the emission and reception readings must first be mapped to the common convention. A fixed void does not by itself derive this balance. Defining the sea term as the negative photon term makes a tautology; testing the model requires an independently evaluated medium update.
 
 #### Historical Equality and Temperature Benchmark
 
-The 1948 Alpher-Herman correction to Gamow is useful here as historical pressure, not as a present-parameter source. Their calculation corrected an early matter-density estimate, found that the naive matter-radiation-density intersection moved to an implausibly late time if the curvature term were neglected, and then restored that curvature term in the effective expanding-universe equation. In the corrected record, the matter/radiation intersection, a Jeans-style condensation mass and radius, a gas temperature at condensation, and a present radiation temperature of order $5\,\mathrm{K}$ were tied into one computation.
+Alpher and Herman's [Evolution of the Universe](https://doi.org/10.1038/162774b0), Nature 162, 774–775 (1948), corrected Gamow's matter-density calculation and emphasized that omitting the effective curvature term misplaced matter-radiation equality. This is historical motivation for checking linked thermal and growth inferences, not a present-parameter source or evidence for an Architrino source mechanism.
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson is not the historical numerical value $5\,\mathrm{K}$, since the observer-side CMB temperature comparison uses the modern calibrated value stated above. The retained benchmark is the shared-record pressure: a CMB branch should not fit present radiation temperature separately from matter-radiation equality, growth onset, and the effective curvature/expansion projection. In the fixed-void interpretation, the curvature term is read as an observer-level effective-metric projection, not as curvature of the Euclidean void.
+The relevant requirement is that present radiation temperature, matter-radiation equality, growth, and the effective curvature and expansion projection follow from one specified history. Equality is a crossing of matter and radiation energy densities, not a universal onset time for all structure growth. The curvature term belongs to the observer reconstruction, not the Euclidean void.
 
 A compact residual for this pressure is
 $$
@@ -4128,6 +4161,8 @@ $$
 
 Here $T_0^\theta$ is the present observer-side radiation temperature, while $z_{\mathrm{eq}}^\theta$ and $k_{\mathrm{eq}}^\theta$ are the matter-radiation equality redshift and scale in observer variables. The term $H_{\mathrm{eff}}^\theta$ is the effective expansion or relaxation projection, and $\Omega_{K,\mathrm{eff}}^\theta$ is the effective curvature projection of the same Noether sea record. The positive-scale terms $M_{\mathrm{grow}}^\theta$ and $R_{\mathrm{grow}}^\theta$ are declared condensation/growth-scale comparisons supplied by the structure-formation packet rather than imported 1948 values. A successful CMB record must make this residual small without changing $\theta$ between the blackbody, equality, effective expansion, curvature, and growth projections.
 
+The superscript $\mathrm{obs}$ here denotes model-conditioned estimates, not direct readings of equality or curvature. Correlated quantities require a joint covariance and a common inference model; transplanting their best fits from another cosmology is only a comparison diagnostic. Each logarithmic difference means the logarithm of a ratio in common units, with both scales strictly positive. The weights are fixed nonnegative comparison choices. Unspecified data, covariances, or reference growth scales leave this score unevaluated.
+
 #### Thermalization-Depth and Planck-Recovery Target
 
 The blackbody claim should be carried as a theorem target, not as a source-story assertion. A distributed-emission interpretation must show that source channels, transport, and decoupling collectively supply enough mode exchange before free streaming. A compact diagnostic is the path-integrated thermalization depth
@@ -4141,16 +4176,16 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e559ff59eea9704b)
 
-where $\tau_{\mathrm{th}}^{-1}$ is the effective rate for the already-recorded capture/release, Compton-like redistribution, pair-channel, and medium-exchange processes. The target is $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}\gg1$ before decoupling for spectral relaxation, followed by sufficiently weak post-decoupling coupling to preserve anisotropy, polarization, and damping information rather than erase it.
+Here $\tau_{\mathrm{th}}$ denotes a relaxation duration in effective time, distinguished by its subscript from the physical-clock readout used below. Its inverse is a derived relaxation rate for the relevant collision operator, not an arbitrary sum of interaction counts. Frequent photon-number-conserving scattering can approach kinetic equilibrium with nonzero chemical potential; recovery of a Planck spectrum additionally requires sufficiently rapid photon production and absorption, detailed balance, and control of the slow relaxation modes across the observed band. Large depth in one process alone is insufficient. After decoupling the corresponding transport must preserve anisotropy and polarization within measured limits.
 
-The same theorem target has a line-of-sight version for steady-state or distributed-source branches. An effective microwave photosphere is not a new ontological origin surface; it is the comparison locus where the declared photon-channel transport becomes optically thin enough that photons stop being repeatedly thermalized along a given direction. For observer position $\mathbf X_{\mathrm{obs}}$, sky direction $\hat{\mathbf n}$, Euclidean path length $\ell$, and path-history time $T_\ell$ supplied by the same transport record, define
+The same theorem target has a line-of-sight version for steady-state or distributed-source branches. An effective microwave photosphere is not a new ontological origin surface; it is a possible escape surface associated with the declared opacity. Whether the radiation previously thermalized is a separate collision-history question. For observer position $\mathbf X_{\mathrm{obs}}$, sky direction $\hat{\mathbf n}$, Euclidean path length $\ell$, and path-history time $T_\ell$ supplied by the same transport record, define
 
 $$
 \tau_{\mathrm{mw}}^\theta(\nu,\hat{\mathbf{n}},D)
 =
 \int_0^D
 \chi_{\mathrm{op}}^\theta
-\left(\nu,\mathbf X_{\mathrm{obs}}+\ell\hat{\mathbf n},T_\ell\right)
+\left(\nu_\ell^\theta,\mathbf X_{\mathrm{obs}}+\ell\hat{\mathbf n},T_\ell\right)
 \,d\ell,
 \qquad
 D_{\mathrm{eff}}^\theta(\nu,\hat{\mathbf{n}})
@@ -4160,7 +4195,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-810538e241564243)
 
-Here $\chi_{\mathrm{op}}^\theta$ is the proposed microwave-band opacity, not the Noether sea delay factor $\chi_{\text{sea}}$. The CMB-pixel question is therefore a derived closure target. For angular beam or pixel width $\Delta\alpha$ in radians, use the transverse comparison scale
+Here $\chi_{\mathrm{op}}^\theta\ge0$ is opacity per unit Euclidean path length, $\nu$ is the observed frequency, and $\nu_\ell^\theta$ is its local frequency along the same path history. Opacity is distinct from the Noether sea delay factor $\chi_{\text{sea}}$. The displayed straight path is an unlensed comparison; a deflected ray requires its actual trajectory and path element. Set $D_{\mathrm{eff}}^\theta=+\infty$ if the optical-depth threshold is never reached. Extinction depth one locates a possible escape surface, but scattering opacity alone does not demonstrate thermalization or a narrow last-scattering distribution. In the straight-path, small-angle geometric limit, a beam width $\Delta\alpha$ in radians gives
 $$
 L_{\perp}^{\theta}(\nu,\hat{\mathbf{n}},\Delta\alpha)
 \simeq
@@ -4169,7 +4204,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-11d9312a2348d80b)
 
-This scale is meaningful only after the branch computes $D_{\mathrm{eff}}^\theta$ from its source, transport, and thermalization record. If no finite $D_{\mathrm{eff}}^\theta$ exists, or if it varies too strongly with frequency or sky direction, the distributed-source interpretation has not supplied a stable CMB comparison surface.
+This is a Euclidean transverse scale; converting it to a physical-observer ruler scale requires the angular-distance and lensing map. A source extended in depth requires its full visibility distribution. Failure to obtain a finite surface rejects this photosphere subclass, not every possible optically thin distributed-source model; such an alternative must calculate its emissivity-weighted line-of-sight spectrum and correlations directly.
 
 Thermalization mechanisms that use this opacity or distributed absorbers must also pass a side-effect test. Let $\mathcal{A}_{\ell}^{\theta}$, $\mathcal{P}_{\ell}^{\theta}$, and $\mathcal{D}_{\mathrm{FIR}}^\theta$ denote the induced changes in temperature anisotropy, polarization, and far-infrared/submillimeter background intensity. The side-effect residual is
 $$
@@ -4186,7 +4221,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1065f140442c611a)
 
-A thermalizing component is admissible only if it helps make $\mathcal{D}_{\mathrm{th}}^{\mathrm{CMB}}\gg1$ before the free-streaming record is fixed while keeping $\mathcal{R}_{\mathrm{op}}^\theta\le1$ afterward. This is the native exclusion of absorber stories that smooth the spectrum by erasing the anisotropy and polarization record they must also preserve.
+A thermalizing component must supply the requisite pre-decoupling relaxation while keeping the subsequent observable changes within their limits. Each norm, frequency window, and positive tolerance has a specified unit; in particular $\epsilon_\chi$ has the units of the opacity derivative. Frequency dependence of opacity is a mechanism diagnostic, not a direct measured distortion. The score requires propagation to intensity and polarization and calibration against the relevant data before it can reject a physical absorber model.
 
 In the weak homogeneous photon-channel limit, the observer-level recovery target is the Planck spectral form
 
@@ -4199,40 +4234,40 @@ $$
 
 [View →](../../../../../equation-mapping.html#planck-blackbody-occupancy)
 
-This formula is an effective comparison object. It becomes available only after Gate A supplies the photon energy-frequency and mode-counting interface, Gate B supplies the two transverse photon modes and polarization handoff, and Gate C drives the photon chemical potential to zero through detailed balance. The redshift handoff must then preserve spectral shape by mapping photon frequencies and inferred temperature through the same Noether sea state and clock-rate comparison variables used elsewhere in this document.
+This effective comparison gives energy per volume per frequency. Here $h$ and $k_B$ are the observer-level Planck and Boltzmann constants, $\nu$ is frequency, $T_{\text{ens}}$ is ensemble temperature, and $c_\gamma$ is a constant photon-channel speed in the isotropic nondispersive comparison. A dispersive channel requires its actual mode density. The [photon recovery conditions](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) separately require energy-frequency and propagation relations (Gate A), two transverse polarization modes (Gate B), and number-changing thermal equilibration (Gate C). Merely naming these conditions does not establish them. Specific intensity is $B_\nu=c_\gamma u_\nu^{\mathrm{eff}}/(4\pi)$ in this isotropic limit; it is not the same quantity as spectral energy density.
 
-Equivalently, the transparent transport operator must commute with global frequency scaling on the blackbody family:
+On the blackbody family, transparent transport must satisfy the following mapping property:
 
 $$
-\mathcal{T}_{\lambda}\mathcal{B}_{T}
+\mathcal{T}_{\lambda}\mathcal{B}_{T_{\mathrm{temp}}}
 =
-\mathcal{B}_{T/\lambda}
+\mathcal{B}_{T_{\mathrm{temp}}/\lambda}
 +O(\epsilon_{\mathrm{spec}})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d846fa25c465ce88)
 
-where $\mathcal{B}_{T}$ denotes the observer-level Planck spectrum at temperature $T$ and $\lambda=1+z$ for the declared path after endpoint and launch terms are separated. This condition is stronger than fitting a final temperature. It says the transport has preserved the occupation-number shape rather than re-thermalizing an arbitrary distorted spectrum by coincidence.
+Here $\mathcal B_{T_{\mathrm{temp}}}$ is the calibrated Planck specific-intensity spectrum at temperature $T_{\mathrm{temp}}$, and $\lambda=1+z>0$ is the declared path's frequency-scale ratio. The error is bounded in a stated spectral norm. For the same nondispersive endpoint calibration, the Planck formula gives $B_\nu(T_{\mathrm{temp}}/\lambda)=\lambda^{-3}B_{\lambda\nu}(T_{\mathrm{temp}})$. Thus frequency remapping alone is insufficient: the amplitude, occupation measure, and ray-bundle transport must agree as well. This identity is a recovery condition on the complete transport operator, not a derived constitutive law or a general commutation theorem. An inferred density scaling does not imply expansion of the Euclidean void.
 
 The same transparent-transport branch must also carry no undeclared transverse photon-momentum transfer. After declared lensing, beam, aperture, and detector terms are removed, the image-preserving condition is $\Delta\mathbf{k}_{\perp}=O(\epsilon_{\mathrm{img}})$, with any remaining transverse phase residual kept inside the polarization and anisotropy tolerances.
 
 The spectrum gate should be stated as a calibrated comparison, not as an assumption that the theoretical Planck curve has been directly observed without apparatus structure. For frequency channels $\nu_i$, measured intensities $I_i$, foreground model $F_i(\psi)$, and calibration covariance $C_{ij}$, define
 $$
-\mathcal{R}_{\mathrm{spec}}(\theta,T,\psi)
+\mathcal{R}_{\mathrm{spec}}(\theta,T_{\mathrm{temp}},\psi)
 =
 \sum_{i,j}
 \left[
-I_i-F_i(\psi)-B_{\nu_i}(T;\theta)
+I_i-F_i(\psi)-B_{\nu_i}(T_{\mathrm{temp}};\theta)
 \right]
 C^{-1}_{ij}
 \left[
-I_j-F_j(\psi)-B_{\nu_j}(T;\theta)
+I_j-F_j(\psi)-B_{\nu_j}(T_{\mathrm{temp}};\theta)
 \right]
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-7d35f666919edf64)
 
-where $B_\nu(T;\theta)$ is the photon-channel blackbody comparison spectrum projected through the same medium record $\theta$. A distributed or recycling source story must make $\mathcal{R}_{\mathrm{spec}}$ small without using a foreground, calibration, or post-decoupling transport residual to erase the acoustic and polarization information.
+Here $B_{\nu_i}(T_{\mathrm{temp}};\theta)$ denotes the predicted intensity integrated over channel $i$'s measured bandpass, not simply its value at a nominal central frequency. $C$ is the positive-definite total covariance on the retained data subspace, including instrument noise and declared calibration uncertainties; $\psi$ contains foreground nuisance parameters constrained by the same measurement model. A temperature fit alone tests only the monopole spectrum and cannot establish the source mechanism or the angular transfer history.
 
 In the homogeneous comparison limit, the redshift handoff must preserve the Planck form by scaling frequency and temperature together:
 $$
@@ -4262,28 +4297,28 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c78e3506e83a37f1)
 
-where $\mu$ and $y$ are the chemical-potential and Compton-distortion parameters of the observer-level spectrum fit. The [COBE/FIRAS full-data analysis](https://arxiv.org/abs/astro-ph/9605054) gives the observer-level 95% bounds $|\mu|<9\times10^{-5}$ and $|y|<1.5\times10^{-5}$. Translating either bound into a generic energy-injection fraction requires a declared thermalization epoch and spectrum; it is not a universal $10^{-4}$ energy-budget shortcut. A path-history redshift proposal passes only if it preserves the near-thermal spectrum, image sharpness, and packet time-dilation behavior in the same transport record.
+Here $\mu$ is the dimensionless chemical-potential distortion parameter and $y$ is the Compton-distortion parameter. Fixsen et al., [The Cosmic Microwave Background Spectrum from the Full COBE/FIRAS Data Set](https://arxiv.org/abs/astro-ph/9605054) (1996), report 95% limits $|\mu|<9\times10^{-5}$ and $|y|<1.5\times10^{-5}$. These limits are not the standard deviations $\sigma_\mu,\sigma_y$ in the schematic score. If the parameters and $\mathcal R_{\mathrm{spec}}$ come from the same data, adding them double-counts information unless a joint likelihood or independent residual decomposition is used. The score is therefore a diagnostic, not a calibrated significance. An energy-injection inference additionally depends on the epoch and spectrum; no universal injection fraction follows from either limit.
 
-The last-scattering benchmark should also retain the rate condition that makes the surface sharp. In standard comparison language decoupling occurs when the scattering rate falls through the effective expansion or relaxation rate,
+The usual comparison of scattering and evolution rates is a rough decoupling diagnostic, not a determination of the surface width:
 $$
 \Gamma_T
 =
-n_e\sigma_T c_\gamma(\mathbf X_{\mathrm{dec}},T_{\mathrm{dec}})
+n_e\sigma_T c_\gamma(\mathbf X_{\mathrm{dec}},T_{\mathrm{event,dec}})
 \approx
 H_{\mathrm{eff}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-34084353b5f94348)
 
-where $c_\gamma(\mathbf X_{\mathrm{dec}},T_{\mathrm{dec}})$ is the dressed photon-channel speed in the decoupling environment and reduces to $c_0$ only in the weak homogeneous calibration limit. With recombination delayed by the high photon-to-baryon loading encoded in the same $\eta$ ledger used by BBN, the native CMB record has to recover a thin enough last-scattering window, not only a plausible source story.
+Here $n_e$ is the free-electron number density, $\sigma_T$ is the Thomson cross section at effective comparison grade, and $T_{\mathrm{event,dec}}$ is absolute event time, distinct from decoupling temperature $T_{\mathrm{dec}}$. The speed and the rate $\Gamma_T$ must be converted to the same effective length and time convention as $n_e$, $\sigma_T$, and $H_{\mathrm{eff}}$. Last-scattering width follows from the visibility density $g(t_{\mathrm{eff}})=\Gamma_T(t_{\mathrm{eff}})\exp[-\tau_{\mathrm{sc}}(t_{\mathrm{eff}})]$, where $\tau_{\mathrm{sc}}(t_{\mathrm{eff}})=\int_{t_{\mathrm{eff}}}^{t_{\mathrm{eff,obs}}}\Gamma_T(s)\,ds$. Its shape requires the complete ionization and transport history; $\Gamma_T\approx H_{\mathrm{eff}}$ at one instant cannot supply it.
 
-The same ionization and transfer history must continue through reionization. It has to recover the integrated optical depth $\tau$, the low-$\ell$ $EE$ polarization enhancement, and the quasar Gunn-Peterson and Lyman-$\alpha$ absorption record without changing the source or photon-transport branch per observable.
+The same ionization and transfer history must continue through reionization, the later ionization of neutral matter. It has to recover the integrated scattering optical depth $\tau_{\mathrm{reion}}$, the low-$\ell$ EE polarization signal, and the quasar Gunn-Peterson and Lyman-$\alpha$ absorption record without changing the physical history per observable.
 
 For a shared history $\theta$, retain the reionization residual
 $$
 \mathcal R_{\mathrm{reion}}(\theta)
 =
-\frac{|\tau^\theta-\tau^{\mathrm{obs}}|^2}{\sigma_\tau^2}
+\frac{|\tau_{\mathrm{reion}}^\theta-\tau_{\mathrm{reion}}^{\mathrm{obs}}|^2}{\sigma_{\tau,\mathrm{reion}}^2}
 +
 \left\|
 \mathbf C_{EE,\mathrm{low}\text{-}\ell}^{-1/2}
@@ -4299,7 +4334,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e6c4f45ccd2d03d9)
 
-The final term projects the same ionization record into Gunn-Peterson trough and Lyman-$\alpha$ forest observables. The numerical tolerances belong to the declared CMB and quasar data products, not to a separately tuned source model.
+Here $\tau_{\mathrm{reion}}$ is dimensionless optical depth and $\sigma_{\tau,\mathrm{reion}}$ its stated uncertainty. $\mathbf C_{EE,\mathrm{low}\text{-}\ell}$ is the covariance of the retained low-multipole EE data vector; it must be nonsingular on that subspace. The final term projects the same ionization history into quasar absorption observables. Optical-depth estimates extracted from these EE measurements are correlated summaries, so their separate squared residual is a diagnostic only, not an independent likelihood factor.
 
 ### Consistency Anchors
 
@@ -4321,13 +4356,16 @@ In the modular cosmology map, this page provides:
 
 #### Effective Comparison Object
 
+An angular spectrum measures correlations of sky-pattern coefficients. For temperature or E-mode polarization, define the ensemble comparison
+
 $$
-C_\ell = \langle |a_{\ell m}|^2 \rangle
+C_\ell^{XY} = \langle a_{\ell m}^{X}(a_{\ell m}^{Y})^* \rangle,
+\qquad X,Y\in\{\mathrm{T},\mathrm{E}\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1ced8de62fcc162b)
 
-The formal observables remain standard; in practice this includes TT/TE/EE spectra (with damping-tail and lensing behavior), with $C_\ell$ as compact notation.
+Here $a_{\ell m}^X$ is the spherical-harmonic coefficient of the declared temperature or E-mode map, $\ell$ labels angular scale, $m$ the azimuthal component, and the star denotes complex conjugation. Statistical isotropy makes the ensemble covariance independent of $m$ and diagonal between distinct $(\ell,m)$ modes. For $X=Y$ this reduces to the nonnegative auto-spectrum; TE can have either sign. A finite masked sky supplies an estimator with beam, noise, mask, and covariance corrections, not the ensemble average itself. [Scott and Smoot, Cosmic Microwave Background (2025), §§29.3 and 29.7.1](https://pdg.lbl.gov/2025/reviews/rpp2025-rev-cosmic-microwave-background.pdf), summarize this observer-level comparison.
 
 #### Scalar and Tensor Closure Target
 
@@ -4349,7 +4387,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-02cdf455709d3747)
 
-Here $A_{\mathrm{s}}^{\theta}$ is the scalar amplitude, $n_{\mathrm{s}}^{\theta}$ the scalar tilt, $\alpha_{\mathrm{s}}^{\theta}$ an optional running term, and $r^{\theta}$ the tensor-to-scalar comparison ratio. The tensor condition is a bound,
+Here $k>0$ is an effective wavenumber, $k_*>0$ the fixed pivot, $A_{\mathrm{s}}^{\theta}>0$ the scalar amplitude, $n_{\mathrm{s}}^{\theta}$ the scalar tilt, $\alpha_{\mathrm{s}}^{\theta}=dn_{\mathrm{s}}^{\theta}/d\ln k$ its running at the pivot, and $r^{\theta}\ge0$ the tensor-to-scalar power ratio. The formula truncates the logarithmic power expansion and is valid only over its declared wavenumber range. A distributed active source need not reduce to one initial curvature spectrum; its unequal-time source correlations and transfer functions must then be calculated directly. The tensor condition is a bound,
 $$
 r^{\theta}(k_*) \le r_{\max}
 $$
@@ -4358,17 +4396,18 @@ $$
 
 with $r_{\max}$ supplied by the current observational analysis being used for the comparison. This keeps tensor non-detection as a pressure on source models without turning any particular inflationary or anti-inflationary interpretation into corpus doctrine.
 
-The tensor row should not collapse all early sources into a single inflation signal. Split the tensor-to-scalar comparison into vacuum-like and causal-source components,
+For a common scalar normalization at the same pivot, splitting the tensor amplitude into vacuum-like and causal-source components gives
 $$
 r_{\mathrm{tot}}^\theta(k_*)
 =
 r_{\mathrm{vac}}^\theta(k_*)
 +r_{\mathrm{causal}}^\theta(k_*)
++r_{\mathrm{cross}}^\theta(k_*)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f0a1292ed287e3c9)
 
-where $r_{\mathrm{vac}}^\theta$ is the vacuum-like tensor contribution and $r_{\mathrm{causal}}^\theta$ is any tensor power sourced by phase-transition-like, defect-like, strong-release, recycling, or other causal-source processes. Finite-range or medium-compliance gravity comparisons enter this same tensor gate. They do not add a massive-graviton ontology; they add the requirement that the same Noether sea record which weakens the large-scale response also predicts the tensor and B-mode data products. A compact comparison residual is
+Here $r_{\mathrm{vac}}^\theta$ and $r_{\mathrm{causal}}^\theta$ are the individual nonnegative powers divided by scalar power, while $r_{\mathrm{cross}}^\theta$ is twice the real cross-power divided by that same scalar power. It vanishes only for uncorrelated sources and obeys $|r_{\mathrm{cross}}^\theta|\le2\sqrt{r_{\mathrm{vac}}^\theta r_{\mathrm{causal}}^\theta}$. The causal component includes any proposed phase-transition, defect, or recycling contribution. Their time dependence and propagation must be carried into the predicted BB spectrum. Finite-range or medium-response comparisons require the same history to supply both the gravitational-wave and CMB transfer predictions. A schematic comparison score is
 $$
 \mathcal{R}_{\mathrm{T,split}}(\theta)
 =
@@ -4390,7 +4429,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6b0e1c1deff18955)
 
-where $\mathcal{L}_{\mathrm{BB}}$ is the declared B-mode comparison window, $r_{\mathrm{vac},\max}$ and $r_{\mathrm{causal},\max}$ are supplied by the data product or simulation protocol, and $\mathcal{R}_{\mathrm{GW,low}}$ is the low-frequency dispersion forecast from [Gravitational Waves](../../../../markdown/aaa/spacetime/gravitational-waves.md#linear-wave-equation). This keeps the CMB tensor bound, causal-source tensor bound, and gravitational-wave dispersion gate tied to one comparison record rather than allowing a finite-range branch to fit them separately.
+Here $\mathcal{L}_{\mathrm{BB}}$ is the declared B-mode window. Component limits $r_{\mathrm{vac},\max}$ and $r_{\mathrm{causal},\max}$ require a joint analysis with the matching source templates and cross-correlation assumptions; a limit on one uncorrelated template cannot be assigned separately to arbitrary correlated components. The BB prediction includes their complete transfer, lensing, and declared foreground treatment. $\mathcal{R}_{\mathrm{GW,low}}$ is the low-frequency comparison from [Gravitational Waves](../../../../markdown/aaa/spacetime/gravitational-waves.md#linear-wave-equation). Its inclusion is diagnostic unless observations and tolerances are supplied; an unevaluated forecast is not evidence of agreement.
 
 A compact residual for CMB closure is
 $$
@@ -4408,7 +4447,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3e8962abbbd2edb1)
 
-The closure target is one medium-and-assembly model with bounded $\mathcal{R}_{\mathrm{CMB}}$, not a separate fit for each observable family.
+This is a schematic discrepancy score, not an independent-data likelihood. TT, TE, and EE estimates have cross-covariances, and their inferred $A_{\mathrm{s}}$ and $n_{\mathrm{s}}$ usually summarize the same data. Adding those summaries as independent measurements would double-count information. A calibrated comparison uses the released joint likelihood or a validated full covariance, with the same nuisance and transfer model; the displayed diagonal score is usable only with its approximation explicitly justified. An upper bound on $r$ also depends on the pivot, template, and confidence convention.
 
 The same scalar sector must also recover the acoustic phase record rather than only the broadband amplitude and tilt. A compact phase residual can be written as
 $$
@@ -4424,25 +4463,25 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-34ce9001ef644684)
 
-where $\ell_{p,X}$ denotes the location of the $p$th acoustic feature in spectrum $X$. This residual keeps acoustic ringing as an observational phase-coherence requirement. It does not select a particular origin story for why those phases are coherent.
+Here $\ell_{p,X}$ denotes the position of a preselected peak, trough, or zero crossing in spectrum $X$, with the same extraction rule for prediction and data. The feature index $p$ and its matching must be fixed before fitting. These positions correlate with the spectra above; the score tests phase structure but is not additional independent data. Missing or ambiguous features must be treated explicitly, not omitted to lower the score.
 
-The vector sector supplies a separate absence gate. For an effective pre-decoupling velocity field $\mathbf{u}_{\theta}^{\mathrm{eff}}$ and vorticity $\boldsymbol{\omega}_{\theta}^{\mathrm{eff}}\equiv\nabla\times\mathbf{u}_{\theta}^{\mathrm{eff}}$, use
+A vector-sector diagnostic compares vorticity with scalar density gradients on one effective decoupling slice $\Sigma_{\mathrm{dec}}$. Let $\mathbf{u}_{\theta}^{\mathrm{eff}}$ be the effective velocity, $\boldsymbol{\omega}_{\theta}^{\mathrm{eff}}=\nabla_{\mathrm{eff}}\times\mathbf{u}_{\theta}^{\mathrm{eff}}$ its vorticity, and $c_{\mathrm{ref}}>0$ a fixed reference speed in the same effective units. Use
 $$
 \mathcal{R}_{V}(\theta)
 =
 \frac{
 \int_{\Sigma_{\mathrm{dec}}}
-\left\|\boldsymbol{\omega}_{\theta}^{\mathrm{eff}}\right\|^2\,dV_{\mathrm{eff}}
+\left\|\boldsymbol{\omega}_{\theta}^{\mathrm{eff}}/c_{\mathrm{ref}}\right\|^2\,dV_{\mathrm{eff}}
 }{
 \int_{\Sigma_{\mathrm{dec}}}
-\left\|\nabla\delta_{\gamma}^{\theta}\right\|^2\,dV_{\mathrm{eff}}
+\left\|\nabla_{\mathrm{eff}}\delta_{\gamma}^{\theta}\right\|^2\,dV_{\mathrm{eff}}
 +\epsilon_V
 }
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ddf9fcdcab75c536)
 
-Here $\delta_{\gamma}^{\theta}$ is the photon-channel density contrast in the observer-level reconstruction. The numerator tests effective vector/vorticity content; the denominator normalizes it against the scalar contrast being recovered. A successful CMB history must keep this residual small in the same state record that fits TT/TE/EE.
+Here $\delta_\gamma^\theta$ is dimensionless photon density contrast. Each integral has units of length, and the fixed positive floor $\epsilon_V$ has the same units, making the ratio dimensionless. State the slice, smoothing scale, volume, reference speed, and floor before comparison; a vanishing scalar denominator does not identify an observational vector bound. A small vorticity ratio is only a diagnostic of this velocity field. Vector metric or stress sources and their polarization transfer require separate calculation before comparison with CMB limits.
 
 The CMB-lensing sector adds a late-time integrated-mass reconstruction gate. In standard comparison language, lensing remaps the primary CMB by an effective lensing potential $\phi$ and yields a lensing-potential spectrum $C_{L}^{\phi\phi}$. For a candidate history $\theta$, use
 $$
@@ -4460,7 +4499,7 @@ $$
 
 This is a data-product constraint, not a dark-sector ontology by itself. The same Noether sea and assembly history that fits the primary TT/TE/EE spectra must also project to the lensing potential consumed by the growth and dark-matter modules.
 
-The same gate should include the smoothness pressure usually hidden inside origin-story language. Conformal-cosmology comparisons are useful here only because they isolate a real burden: the effective early record must have a very small free gravitational-mode contribution compared with the complicated strong-field behavior expected near generic collapse. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not import conformal continuation as ontology. It preserves the observable requirement by asking the CMB-producing Noether sea history to suppress effective Weyl-like curvature in the decoupling comparison layer.
+Smoothness also admits a conditional diagnostic on a reconstructed effective metric. The Weyl tensor measures the tidal part of curvature; the Ricci tensor supplies the complementary contraction. Their relative magnitude is not itself a CMB observable or an entropy measure. Relating it to temperature and polarization requires the same perturbation and transfer model, so a particular conformal-cosmology interpretation is not an additional required premise.
 
 For an effective metric reconstruction $g_{\theta}^{\text{eff}}$ associated with a candidate history $\theta$, one useful comparison residual is
 $$
@@ -4478,7 +4517,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-278e52f291555db1)
 
-This is not a statement that the Euclidean void is curved. It is an observer-level diagnostic on the effective reconstruction used to compare with CMB data. A stronger closure criterion is therefore
+The norms are positive sums of squared tensor components in a declared observer-adapted orthonormal frame, not Lorentzian contractions, which need not be positive and can vanish for nonzero tensors. Use one effective slice, volume, and smoothing prescription for both integrals; $\epsilon_R>0$ has units of inverse length because squared curvature integrated over three-volume has those units. The ratio depends on the chosen observer and floor, especially when Ricci curvature is small. It is a conditional effective-geometry diagnostic and states nothing about curvature of the Euclidean void. The following weighted score combines selected comparisons:
 $$
 \mathcal{R}_{\mathrm{CMB}}(\theta)
 +
@@ -4499,7 +4538,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-26206ee0894c78a1)
 
-with $\lambda_{\mathrm{T,eq,grow}}$, $\lambda_{\mathrm{phase}}$, $\lambda_V$, $\lambda_{\mathrm{lens}}$, $\lambda_{\mathrm{smooth}}$, $\lambda_{\mathrm{T,split}}$, and $\varepsilon_{\mathrm{CMB}}$ declared by the data release or simulation protocol. Passing this test would mean that the same Noether sea and assembly history recovers TT/TE/EE, blackbody behavior, radiation-temperature/equality/growth consistency, scalar/tensor bounds, causal-source tensor limits, acoustic phase coherence, vector-mode suppression, CMB-lensing reconstruction, the low effective gravitational free-mode budget, and any declared finite-range comparison branch without changing ontology between modules.
+The nonnegative weights and threshold $\varepsilon_{\mathrm{CMB}}$ are fixed comparison choices, with correlations handled as described above; data releases do not automatically supply this composite score. Zero weights omit conditions, and an uncomputed residual cannot count as zero. Passing the inequality establishes at most agreement for its evaluated, calibrated terms. It does not include the spectral-distortion, opacity, energy, reionization, dipole, or localized-feature comparisons and therefore cannot certify those conditions or complete CMB recovery. Their applicable constraints must also be satisfied by the same history. Vorticity and curvature ratios remain diagnostics until their observational projections are justified. No value of this score alone establishes a persistent source branch, photon realization, or microscopic theory closure.
 
 #### Forward Prediction Map
 
@@ -4507,14 +4546,14 @@ Use one continuous causal map:
 
 Noether sea state evolution $\rightarrow$ pre-decoupling coupled modes $\rightarrow$ decoupling transfer history $\rightarrow$ observed TT/TE/EE structure.
 
-Interpretation and microphysical origin are re-grounded in assembly dynamics while retaining the same observer-level prediction objects.
+Each arrow requires a derived response and transfer map; the sequence names the required connection but does not supply it.
 
 #### Conceptual Mapping
 
-- Peak spacing reflects effective horizon/coupling scales of the Noether sea.
-- Odd/even contrast reflects baryon-like loading relative to photon assemblies.
-- High-$\ell$ damping reflects decoupling-era diffusion/opacity analogs.
-- Polarization structure reflects phase relations in coupled oscillations.
+- Peak spacing tests the ratio of the effective sound-propagation scale to the angular-distance scale, together with phase shifts.
+- Odd/even contrast constrains baryon-like loading and radiation driving within the coupled response.
+- High-$\ell$ damping constrains diffusion and the finite width of the scattering history.
+- Polarization tests the angular quadrupole of radiation at scattering and its correlations with temperature, not merely the existence of oscillations.
 
 #### Source-Interpretation Neutrality
 
@@ -4522,7 +4561,7 @@ Whether the background is read through a primarily primordial-origin interpretat
 
 So source narrative is an interpretation layer, not a change in the prediction target: TT/TE/EE structure, damping behavior, and blackbody character remain part of one coherent readout.
 
-The useful decomposition is therefore row-based rather than slogan-based. A candidate CMB history must specify
+The physical source and transfer mechanisms can differ between these interpretations even though the observed targets are common. A candidate CMB history must specify
 $$
 \Theta_{\mathrm{CMB,src}}
 =
@@ -4536,7 +4575,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-acfe5f51c56ce43a)
 
-where $\mathcal{S}_{\gamma}$ is the photon-channel source and release record, $\mathcal{D}_{\mathrm{th}}$ is the thermalization-depth record, $\mathcal{T}_{\gamma}$ is the coherent photon-channel transport record, and $\mathcal{P}_{\mathrm{TT/TE/EE}}$ is the transfer record for temperature and polarization spectra. A distributed-source or recycling interpretation is admissible only if these four rows are restrictions of one Noether sea and source-history record. It is not enough to fit the monopole with one story and then import acoustic peaks, damping, lensing, or polarization from a different state record.
+Here $\mathcal{S}_{\gamma}$ is the source and release record, $\mathcal{D}_{\mathrm{th}}$ the thermalization-depth record, $\mathcal{T}_{\gamma}$ the photon transport record, and $\mathcal{P}_{\mathrm{TT/TE/EE}}$ the temperature and polarization transfer record. These four components must derive from one Noether sea and source history. Sharing their names or fitting the monopole does not supply the acoustic, damping, lensing, or polarization predictions.
 
 #### Redshift and Clock Link
 
@@ -4548,13 +4587,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ebd38b0f4c21bd08)
 
-So CMB temperature/redshift summaries remain usable while their mechanism is grounded in assembly-medium dynamics.
+Here $\tau$ is a physical-clock readout, $t_{\mathrm{eff}}$ the observer-chart time, $\mathbf V$ the native assembly group velocity, $\rho_{\text{NS}}$ the Noether braid density, $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ its normalized value, $\chi_{\text{sea}}$ the delay factor, and $\Phi_{\text{eff}}$ an effective potential. $F$ is an underived response function, not a freely adjustable independent prediction. Clock geometry must specify the clock assembly and retained history. The endpoint clock map and path-dependent phase transport together determine frequency comparison; the clock formula alone does not determine cosmological redshift or temperature scaling.
 
 #### Sunyaev-Zeldovich Path-History Calibration
 
 Sunyaev-Zeldovich measurements provide a direct reminder that CMB photon frequency is a path-history record. In standard comparison language, the thermal effect shifts CMB photon frequencies through inverse-Compton exchange with hot cluster electrons, while the kinematic effect records the bulk motion of the intervening electron population. In $\mathbb{A}\mathbb{A}\mathbb{A}$ these are not new ontology. They are calibration cases showing that a photon packet can carry signed frequency transfer from the intervening medium after decoupling.
 
-For a line of sight $\gamma$ through an intervening region $W$, the CMB module should retain a signed path row
+For a photon path $\gamma$ through an intervening region $W$, define the signed frequency-transfer ledger
 
 $$
 Y_{\gamma}^{\mathrm{post}}
@@ -4569,7 +4608,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f2968b018d636df8)
 
-where negative increments are frequency boosts and positive increments are frequency depletions relative to the local comparison clock. The corresponding exchange residual is
+Here $j$ indexes physical exchange events, and $\nu_{\gamma,j}^{-}$ and $\nu_{\gamma,j}^{+}$ are the frequencies immediately before and after the event measured in the same local frame and clock convention. Negative increments are boosts and positive increments are depletions. Transport and clock conversions between events are separate terms; this sum alone is not the total endpoint redshift. The corresponding conditional exchange residual is
 
 $$
 \mathcal{R}_{\mathrm{SZ}\text{-}\mathrm{ex}}
@@ -4587,11 +4626,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cea08cd76f9ba137)
 
-This row is a calibration and provenance requirement, not a claim that all cosmological redshift is SZ scattering. A CMB history must still preserve the near-blackbody spectrum, anisotropy, polarization, damping, and lensing records. The SZ lesson is narrower and important: any use of CMB temperature, redshift, or kSZ velocity data must keep photon frequency transfer tied to the same Noether sea, electron-population, and path-history record rather than treating frequency as a pure expansion clock.
+All energy changes use the same local frame and are positive for gains. The medium, recoil, and remnant terms are disjoint: electron recoil must not be counted again as a medium gain. The positive $\epsilon_{E,j}$ is an energy tolerance. This is a test of an explicitly justified local exchange law, not its microscopic derivation. Thermal and kinematic Sunyaev-Zeldovich (SZ) effects are ensemble scattering observables; predicting them requires the electron distribution, optical depth, angular redistribution, and spectrum, not just a sum over one packet. These comparisons constrain proposed transport without identifying all cosmological redshift with scattering.
 
 #### Dark-Sector and Growth Link
 
-- Neutral-assembly loading and medium response both contribute to how pre-decoupling oscillations map into late-time inferred matter amplitudes.
+- Proposed neutral-assembly loading and medium response must be propagated through the same pre-decoupling oscillation and late-time growth calculation before assigning them inferred matter amplitudes.
 - This keeps CMB interpretation consistent with the shared $H_0$/$S_8$ narrative rather than splitting background and growth into separate ontologies.
 
 #### Parameter Bridges
@@ -4605,21 +4644,23 @@ This chapter maps the standard dark-matter phenomenology onto substrate candidat
 
 The argument defines what counts as dark in this ontology, compares candidate substrates, states the hybrid working baseline, and connects each candidate to cosmological growth and observational tests.
 
+An architrino is a polarity-bearing point entity whose emitted causal wake propagates at speed $c_f$ through the fixed Euclidean void; absolute time $T$ orders its path. A Noether braid is a proposed neutral assembly of such paths, and the Noether sea is the ambient population of coupled braids. The dark-sector mechanisms in this chapter have claim grade: guessed at the physical-identification level. Their equations define effective comparisons and conditional recovery requirements; they do not exhibit a retained dark-matter assembly or a derived gravitational constitutive law. A proposed realization is falsified by failure of its retained dynamics or by disagreement with a declared observable under the same fixed calibration.
+
 ### Scope and Purpose
 
 Standard $\Lambda\mathrm{CDM}$ cosmology attributes roughly one quarter of the present energy budget to cold dark matter (CDM), with a representative comparison value $\Omega_c\approx0.26$. This pressureless, non-baryonic component clusters gravitationally but couples negligibly to electromagnetic radiation. These observer-level properties are the recovery target; they do not identify the $\mathbb{A}\mathbb{A}\mathbb{A}$ substrate that supplies them.
 
-Throughout, "dark matter" refers to the set of phenomena conventionally attributed to CDM: flat galaxy rotation curves, cluster lensing offsets, the third acoustic peak of the CMB, large-scale structure growth, and BBN-consistent $\Omega_b$. The task is to explain this phenomenology within one ontology—Euclidean void, absolute time, architrinos, and Noether braid assemblies—without importing new fundamental fields or ad hoc modifications to gravity.
+Throughout, "dark matter" refers to the set of phenomena conventionally attributed to CDM: flat galaxy rotation curves, cluster lensing offsets, the third acoustic peak of the cosmic microwave background (CMB), large-scale structure growth, and a baryon density $\Omega_b$ consistent with Big Bang nucleosynthesis (BBN). The task is to explain this phenomenology within one ontology—Euclidean void, absolute time, architrinos, and Noether braid assemblies—without importing new fundamental fields or ad hoc modifications to gravity.
 
 The dark-matter density entry is an observationally constrained bookkeeping requirement before it is a substrate identification. Lensing, growth, CMB matter loading, cluster offsets, and baryon-fraction constraints require an effective gravitating component beyond ordinary baryons, but the component ledger does not by itself decide whether the native carrier is neutral assemblies, Noether sea response, or a hybrid branch.
 
-The historical route through spiral-galaxy rotation curves should not make those curves look like the whole evidence base. A branch that explains flat rotation curves has only solved one nonlinear galaxy-scale residual. It must still recover CMB acoustic matter loading, CMB lensing, BAO and large-scale-structure transfer shape, cluster offsets, and BBN baryon accounting from the same Noether sea and neutral-assembly record. This is why a MOND-like or medium-response success at galaxy scale cannot by itself remove the dark-sector burden.
+The historical route through spiral-galaxy rotation curves should not make those curves look like the whole evidence base. A branch that explains flat rotation curves has only solved one nonlinear galaxy-scale residual. It must still recover CMB acoustic matter loading, CMB lensing, baryon acoustic oscillations (BAO) and large-scale-structure transfer shape, cluster offsets, and BBN baryon accounting from the same Noether sea and neutral-assembly record. This is why a modified Newtonian dynamics (MOND) comparison or medium-response success at galaxy scale cannot by itself remove the dark-sector burden.
 
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Foundations
 
 #### The Noether Sea as Gravitational Medium
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Noether sea is a dense coupled population of neutral Noether braid assemblies occupying the fixed Euclidean void. A three-binary member contains three indexed electrino-positrino binaries with net charge zero. Any sub-field-speed, field-speed, or super-field-speed role belongs to a measured branch row and is not assigned by the binary index or radius. Gravity is not a fundamental force but an emergent medium-response effect: local variations in Noether braid density $\rho_{\text{NS}}(\mathbf X,T)$ and normalized density $n(\mathbf X,T)$ alter the Noether sea delay factor $\chi_{\text{sea}}(\mathbf X,T)$ and the transmission of delayed causal flux, producing observer-level geodesic deviation and an effective metric $g_{\mu\nu}^{\text{eff}}$ experienced by assemblies.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$, the Noether sea is a dense coupled population of neutral Noether braid assemblies occupying the fixed Euclidean void. A three-binary member contains three indexed electrino-positrino binaries with net polarity zero. Any sub-field-speed, field-speed, or super-field-speed role must be derived from the indexed path record. The gravity-recovery hypothesis connects the braid number density $\rho_{\text{NS}}(\mathbf X,T)$ and its normalized value $n=\rho_{\text{NS}}/\rho_{\text{NS},0}$ to the delay factor $\chi_{\text{sea}}=c_f/c_{\mathrm{eff}}$, where $c_{\mathrm{eff}}$ is the dressed observer-channel speed. The required outputs are relative acceleration of nearby freely moving assemblies and an effective metric $g_{\mu\nu}^{\text{eff}}$. Number density, clock response, lensing and gravitating mass density are distinct quantities; their connecting constitutive maps remain to be derived.
 
 The working hypothesis is that matter assemblies and larger matter-rich systems modify the local Noether sea state. The current braid taxonomy does not assign one member to protons, atoms, and stars generally. A successful account must derive how the applicable assembly structures alter $\rho_{\text{NS}}$ and $\chi_{\text{sea}}$, recover the weak-field Newtonian potential $\Phi_N$, and relate the effective gravitational constant $G$ to Noether sea compliance—how readily the Noether sea responds to embedded matter (see [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md)).
 
@@ -4627,14 +4668,14 @@ The working hypothesis is that matter assemblies and larger matter-rich systems 
 
 A dark-matter candidate in $\mathbb{A}\mathbb{A}\mathbb{A}$ is characterized by two conditions:
 
-- **Gravitational coupling:** The candidate must compress the Noether sea (contribute to effective $\rho_{\text{NS}}$ and $n$ gradients) and therefore deflect light and accelerate baryonic matter.
-- **Electromagnetic transparency:** The candidate must couple negligibly to photon assemblies modeled as coaxial contra-rotating polarity-conjugate planar pairs so that it neither emits, absorbs, nor scatters electromagnetic radiation at detectable levels.
+- **Gravitational coupling:** The candidate must produce the observed light deflection and baryonic acceleration through a derived Noether sea response. Compression is a proposed mechanism, not by itself a sufficient lensing or acceleration law.
+- **Electromagnetic transparency:** Its photon emission, absorption and scattering rates must satisfy the relevant observational limits. The coaxial contra-rotating polarity-conjugate planar pair is the proposed photon construction; its retained dynamics and its coupling to the candidate are separate recovery requirements.
 
-Two substrate-level mechanisms can satisfy these conditions, either separately or together.
+The following two candidate mechanisms organize the search for a realization satisfying these conditions.
 
 #### Strong-Lensing Inference Guardrail
 
-Strong gravitational lensing is a high-value dark-sector constraint, but it is an inverse problem rather than a direct image of dark matter. In the standard thin-lens comparison language, source-plane and image-plane positions satisfy
+Strong gravitational lensing is a high-value dark-sector constraint, but it is an inverse problem rather than a direct image of dark matter. Use a single thin lens, one source-redshift plane and dimensionless angular coordinates on a locally Cartesian two-dimensional observer sky. Spatial indices in this subsection run over its two directions, and $\gamma_{ij}^{\mathrm{eff}}=\delta_{ij}$ is constant. The comparison lens equations in this chart are
 
 $$
 x_{\mathrm{src,eff}}^i
@@ -4643,12 +4684,12 @@ x_{\mathrm{img,eff}}^i
 -
 \nabla_{\mathrm{eff}}^i\psi_{\mathrm{lens,eff}}(x_{\mathrm{img,eff}}^i),
 \qquad
-\Delta_{\mathrm{eff}}\psi_{\mathrm{lens,eff}}(x_{\mathrm{img,eff}}^i)=2\kappa_{\mathrm{eff}}(x_{\mathrm{img,eff}}^i)
+\nabla_{\mathrm{eff}}^2\psi_{\mathrm{lens,eff}}(x_{\mathrm{img,eff}}^i)=2\kappa_{\mathrm{eff}}(x_{\mathrm{img,eff}}^i)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-bb4748ea70db7178)
 
-where $\psi$ is the observer-level lensing potential and $\kappa$ is the convergence, i.e. the surface mass density in critical-density units. The layer-explicit observer-chart version is
+Here $\psi_{\mathrm{lens,eff}}$ is the dimensionless lensing potential and $\kappa_{\mathrm{eff}}$ is lensing convergence. Its identification with surface mass density divided by critical surface density is the standard gravity comparison, not an independent mass measurement. Writing the same coordinates as $y_{\mathrm{eff}}^i$ and $x_{\mathrm{eff}}^i$, and the same potential as $\psi_{\mathrm{eff}}$, gives
 $$
 y_{\mathrm{eff}}^i
 =
@@ -4679,7 +4720,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1b01d9ecd90a6110)
 
-where $g_1$ and $g_2$ are reduced-shear components. For two resolved images $i$ and $j$ of the same background source, the image-to-image transformation has the local form
+Here $g_1$ and $g_2$ are the shear components divided by $1-\kappa_{\mathrm{eff}}$; this factorization requires $1-\kappa_{\mathrm{eff}}\ne0$. At that singular denominator use the unfactored Jacobian. With image labels $i,j$ distinct from coordinate indices, the local map from displacement in image $i$ to displacement in image $j$ is
 
 $$
 T_{ij}
@@ -4689,12 +4730,12 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8a60f05eff5c2364)
 
-This transformation constrains local reduced shear and relative convergence near the observed images. It does not by itself determine a unique global mass map in regions not sampled by the light bundles. For a candidate medium-and-assembly record $\theta$, let $\psi_\theta$ define the projected observer-level lensing potential, let $A_\theta(x_{\mathrm{eff}}^i)$ be its local Jacobian, and let
+This expression follows from $A_i\,d\mathbf x_i=A_j\,d\mathbf x_j$ and requires an invertible $A_j$. Multiple resolved image features can constrain combinations of local reduced shear and convergence ratios; a single pair does not generally identify every component separately. For a candidate medium-and-assembly record $\theta$, let $\psi_\theta$ define its projected lensing potential and $A_\theta$ its Jacobian, with the same invertibility requirement in
 
 $$
 T_{ij}^{\theta}
 =
-A_\theta(x_{\mathrm{eff},j}^i)^{-1}A_\theta(x_{\mathrm{eff},i}^i)
+A_\theta(x_{\mathrm{eff},j}^k)^{-1}A_\theta(x_{\mathrm{eff},i}^k)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-257d9007e4b4dc6f)
@@ -4705,23 +4746,23 @@ $$
 \mathcal{R}_{\mathrm{local\ lens}}(\theta)
 =
 \sum_{(i,j)}
-\left(T_{ij}^{\mathrm{obs}}-T_{ij}^{\theta}\right)^T
+\operatorname{vec}\!\left(T_{ij}^{\mathrm{obs}}-T_{ij}^{\theta}\right)^T
 C_{ij}^{-1}
-\left(T_{ij}^{\mathrm{obs}}-T_{ij}^{\theta}\right)
+\operatorname{vec}\!\left(T_{ij}^{\mathrm{obs}}-T_{ij}^{\theta}\right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-8c7e4dfcdf0ca5ba)
 
-where $C_{ij}$ is the covariance model for the measured image-to-image transformation. This residual tests what the multiple-image data constrain before a global mass profile is imposed.
+Here $\operatorname{vec}$ stacks the four entries of a two-by-two transformation into a fixed-order vector, and $C_{ij}$ is its positive-definite four-by-four covariance. The quadratic form is a nonnegative scalar. The displayed sum assumes independent image-pair errors; pairs sharing features generally require a stacked vector and joint covariance with off-diagonal blocks. This residual tests local image data, not a unique global mass profile.
 
-The remaining global map should be labeled by how much of its convergence field is supported near the observed images. If the image centers are $x_{\mathrm{eff},i}^i$ with declared support widths $\sigma_i$, define
+A geometric proximity diagnostic can label how much of a chosen convergence map lies near the observed images. With image centers $\mathbf x_{\mathrm{eff},\ell}$ and prescribed positive widths $\sigma_\ell$, define
 
 $$
-w_{\mathrm{img}}(x_{\mathrm{eff}}^i)
+w_{\mathrm{img}}(\mathbf x_{\mathrm{eff}})
 =
-\max_i
+\max_\ell
 \exp\!\left(
--\frac{\|x_{\mathrm{eff}}^i-x_{\mathrm{eff},i}^i\|^2}{2\sigma_i^2}
+-\frac{\|\mathbf x_{\mathrm{eff}}-\mathbf x_{\mathrm{eff},\ell}\|^2}{2\sigma_\ell^2}
 \right)
 $$
 
@@ -4743,7 +4784,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-31703d666bcf8f81)
 
-These are not new dark-sector variables. They are inference-discipline diagnostics: $M_{\mathrm{supported}}$ records the part of the projected map close to the local lensing constraints, while $M_{\mathrm{extrapolated}}$ records the model-projected part that must be justified by priors, weak-lensing data, gas dynamics, galaxy kinematics, CMB lensing, or the shared Noether sea state record.
+The names $M_{\mathrm{supported}}$ and $M_{\mathrm{extrapolated}}$ denote weighted convergence integrals, not independently measured masses or fractions of statistically identified matter. For a dimensionless angular chart, conversion to comparison mass requires the angular-unit factor, squared angular-diameter distance and critical surface density. Geometric proximity does not break the mass-sheet degeneracy: $\kappa\mapsto\lambda\kappa+1-\lambda$ and $A\mapsto\lambda A$ leave every $T_{ij}$ unchanged while changing both integrals. Their sum equals $\int_\Omega\kappa_\theta\,d^2x_{\mathrm{eff}}$; neither summand is a data-uniqueness certificate.
 
 Cluster-scale dark-matter maps therefore require an explicit inference ledger: which features are forced by local image transformations, which depend on feature matching, and which enter through lens-model priors such as light-traces-mass assumptions, thin-lens geometry, profile smoothness, line-of-sight compression, or interpolation across data-poor regions.
 
@@ -4784,7 +4825,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-40ca8425a88434d6)
 
-Here $D_{\mathrm{cl}}^{\mathrm{obs}}$ is the retained cluster-offset data packet and $C_{\mathrm{cl}}$ records the covariance of the lensing, gas, and tracer reconstruction. The residual should be evaluated across an ensemble of merging clusters, not treated as a one-image proof. A pure medium-response branch fails this gate only when
+Here $D_{\mathrm{cl}}^{\mathrm{obs}}$ is the cluster data packet and $C_{\mathrm{cl}}$ its covariance. The additional terms measure lens-prior, gas-model and shared-history consistency. Every residual in this chapter requires specified dimensionless discrepancies, uncertainty scales, nonnegative weights and an admissible model domain before evaluation. Reusing a dataset in two terms requires its joint covariance to avoid counting it twice. An ensemble-wide rejection of the declared pure-medium family requires a certified bound
 
 $$
 \inf_{\theta_{\mathrm{sea}}:\rho_A=0}
@@ -4795,11 +4836,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-374348bc1b94e3ef)
 
-with the same lensing priors, gas model, and shared Noether sea state record used to test the neutral-assembly or hybrid branch. Passing the gate does not by itself prove a collisionless neutral-assembly interpretation; it shows that the candidate branch has recovered the cluster-offset observable without changing the inference stack per system.
+over its full admissible domain, with threshold $\varepsilon_{\mathrm{cl}}$ fixed before fitting and the same nuisance-model allowances used for competing candidates. A failed local search does not bound this infimum. An exhibited admissible record below threshold passes this observable comparison only; an unattained infimum below threshold is not such a witness. Physical impossibility or instability can independently exclude a realization.
 
 #### Local Missing-Baryon Benchmark
 
-The local missing-baryon relation is a useful dark-sector benchmark because it compares two retained data products without deciding the substrate in advance: the observed condensed baryonic mass
+The local missing-baryon relation compares an inferred baryonic mass, including the gas component selected by the sample, with an inferred halo mass. Write
 
 $$
 M_b = M_\star + M_g
@@ -4807,7 +4848,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ae2442843c21bdcb)
 
-and the enclosed dynamical mass $M_{200}$ inferred from kinematics or weak gravitational lensing. Let
+where $M_\star$ is stellar mass and $M_g$ includes the measured gas, including hot intracluster gas in cluster samples. The halo mass $M_{200}$ is the mass within a radius whose mean density is 200 times the comparison critical density; kinematic or lensing estimation requires a profile and aperture convention. Let
 
 $$
 m_b^{\mathrm{obs}}(M_b)
@@ -4817,7 +4858,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f9374e2e40ca2379)
 
-record the observed baryonic mass fraction. A [2026 baryonic mass-halo mass compilation](https://arxiv.org/abs/2603.06479), assembled from kinematic and weak-lensing mass estimates across dwarfs through rich clusters, reports the empirical summary
+record the inferred baryonic mass fraction. McGaugh, Li and Schombert's *The Baryonic Mass–Halo Mass Relation of Extragalactic Systems* (2026), a [kinematic and weak-lensing compilation](https://arxiv.org/abs/2603.06479), gives the following fitted summary in equation (12):
 
 $$
 m_b^{\mathrm{obs}}(M_b)
@@ -4832,7 +4873,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a2cd930574f737f2)
 
-Rich clusters approach the cosmic baryon fraction, while lower-mass systems fall below it with a smooth mass dependence. The compilation establishes an empirical fit across its heterogeneous inference instruments; it does not establish the mechanism behind the missing condensed baryons. For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a reason to import either a MOND ontology or a $\Lambda\mathrm{CDM}$ halo ontology. It is a cross-scale recovery target for the same neutral-assembly and Noether sea record: the branch must recover the galaxy baryonic Tully-Fisher relation, the mass-dependent baryon fraction, and the cluster lensing/gas behavior without changing calibration per regime.
+This expression retains the source's mass-space equation (12) as a reported empirical ansatz. Its velocity-space equation (11) is not algebraically equivalent as printed: substituting $M_b/M_0=(V_f/V_0)^4$ into $\tanh(V_f/V_0)$ gives $\tanh[(M_b/M_0)^{1/4}]$, not $[\tanh(M_b/M_0)]^{1/4}$. These forms must not be interchanged without clarifying the intended fit.
+
+Rich clusters approach the cosmic baryon fraction, while lower-mass systems fall below it with a smooth mass dependence in this compilation. Its inferred normalization depends on the halo-mass and gas-profile assumptions; it does not establish the mechanism behind the unaccounted baryon fraction. For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a reason to import either a MOND ontology or a $\Lambda\mathrm{CDM}$ halo ontology. It is a cross-scale recovery target for the same neutral-assembly and Noether sea record: the branch must recover the galaxy baryonic Tully-Fisher relation, the mass-dependent baryon fraction, and the cluster lensing/gas behavior without changing calibration per regime.
 
 For a candidate shared record, define the local missing-baryon residual as
 
@@ -4889,17 +4932,17 @@ Here $C_{\mathrm{DM/DE}}$ is the covariance or weighting model for the joint dar
 
 #### Candidate A — Neutral Assembly Populations
 
-**Definition.** Neutral Noether braid assemblies that lack exposed charged polar sites in their axial layers. The minimal examples are:
+**Definition.** Candidate neutral assemblies whose derived photon-coupling rates satisfy the dark-sector limits. Net neutrality, absence of an axial layer and cancellation of an oscillating dipole are distinct structural possibilities; none alone establishes optical transparency. The candidate classes are:
 
-- **Neutrino-class assemblies:** pro-orientation Noether braids with balanced axial layers ($3\epsilon_+ + 3\epsilon_-$). These are the SM neutrinos themselves (see [Neutrinos](../../../../markdown/aaa/assemblies/fermions/neutrinos.md)); their masses ($\sum m_\nu < 0.12$ eV from the Planck 2018 + BAO inference chain) are too small to account for the full $\Omega_{\mathrm{DM}}$, but they contribute to the hot dark-matter fraction and to $N_{\mathrm{eff}}$.
+- **Neutrino-class assemblies:** the proposed [neutrino construction](../../../../markdown/aaa/assemblies/fermions/neutrinos.md) has an unexhibited retained branch, so neither a balanced inventory ($3\epsilon_+ + 3\epsilon_-$) nor a pro/anti orientation identifies it with a measured neutrino. Standard thermally produced neutrinos are a separate comparison: the [Planck 2018 plus BAO bound](https://arxiv.org/abs/1807.06209) $\sum m_\nu<0.12$ eV assumes its stated cosmology and thermal history. Their abundance and free streaming, not mass alone, prevent that comparison population from supplying all CDM; relativistic neutrinos contribute to $N_{\mathrm{eff}}$, the effective relativistic-species count.
 
 - **Heavier neutral assemblies (hypothetical):** Noether braids carrying axial patterns that are globally neutral and whose internal dynamics suppress electromagnetic coupling below detection thresholds. In $\mathbb{A}\mathbb{A}\mathbb{A}$ these would be assemblies whose axial layers cancel in both net charge and oscillating dipole moment, analogous to the neutrino's balanced axial layer but realized on a heavier Noether braid. The mass scale is set by internal binding energy, shielding, and medium-dressed response to the Noether sea.
 
 - **Primordial Noether braid defects:** dense, self-gravitating clusters of maximally contracted Noether braids produced in the high-energy epoch, analogous to primordial black holes in standard cosmology but with internal maximum-curvature structure replacing singular interiors. Their mass spectrum depends on formation-epoch dynamics. The analogy is a benchmark, not an identification: a native defect branch would have to inherit the compact-object mass-function, BBN/CMB/growth, local-ephemeris, high-energy-flux, and null-result checks without importing primordial-black-hole ontology.
 
-**Behavior.** These assemblies are pressureless at late times (kinetic energy $\ll$ rest energy), cluster gravitationally, and are collisionless on galactic scales because their interaction cross-section with baryonic and electromagnetic assemblies is negligible (no exposed charge → no long-range dipole coupling). Conditional on the abundance and stability closures below, they would inherit the canonical CDM clustering phenomenology: hierarchical structure formation, flat rotation curves from halo profiles, and the matter-loading signature in the CMB. That inheritance is an inference by analogy with the CDM machinery, not an achieved recovery.
+**Behavior required for a CDM-like realization.** The population must have small velocity dispersion and pressure, sufficiently weak scattering with baryons and with itself, and suitable abundance and initial perturbations. The effective collision rate $n_A\langle\sigma v_{\mathrm{rel}}\rangle$ must be small over the relevant dynamical time, where $n_A$ is assembly number density. Neutrality removes the electric monopole; it does not remove multipoles, polarizability or self-interaction. These requirements, together with a recovered gravitational response, are needed before hierarchical growth, halo rotation curves or CMB loading can be inferred.
 
-In a cluster-merger interpretation, neutral assemblies remain collisionless while baryonic gas assemblies decelerate electromagnetically, yielding natural separation between gravitating and X-ray-bright components.
+In the collisionless cluster-merger comparison, a component with small transport optical depth crosses the encounter while gas loses directed motion through collisions and shocks. Applying this mechanism to neutral assemblies requires their interaction rates and gravitational lensing response to be derived.
 
 Compact neutral candidates also have a local-detection gate. For a candidate branch with representative mass $M_A$, local fraction $f_A$, and relative speed distribution centered at $\langle v_{\mathrm{rel}}\rangle$, the expected flyby rate inside impact parameter $b_{\max}$ is estimated by
 $$
@@ -4912,7 +4955,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9c752dd8f9966fd0)
 
-A nearby passage gives the order-of-magnitude impulse
+The rate assumes a locally homogeneous, effectively single-mass population, straight trajectories and negligible gravitational focusing. For a broad mass or velocity distribution, integrate the number density times the cross-section and relative speed. In a weak Newtonian encounter, integrating the transverse acceleration of a straight point-mass flyby gives
 $$
 \Delta v_{\mathrm{test}}
 \simeq
@@ -4921,7 +4964,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-00db7bd49d0b2570)
 
-before detailed $N$-body and relativistic corrections. The retained observable is the ephemeris residual, not the compact-object interpretation: a candidate detection must produce a trajectory-consistent perturbation above the ranging error floor, fail ordinary visible-object and catalogued-asteroid explanations under the same covariance model, and carry any high-energy co-signature through the same branch record.
+Here $b$ is the impact parameter and $GM_A/(b v_{\mathrm{rel}}^2)\ll1$ controls small deflection. The encounter must be short compared with the target's orbital period, and the point-mass exterior must apply. This is an individual test-body impulse; a measured ephemeris residual requires the differential response of the observed bodies and the fitted reference trajectory. Detectability therefore needs a trajectory and covariance analysis, including visible-object explanations and any branch-predicted high-energy signal.
 
 A compact dark-candidate branch also admits a track-search comparison. For a candidate compact fraction $f_X$, mass $M_X$, local dark-sector density $\rho_{\mathrm{DM}}$, and relative-speed distribution with mean $\langle v_{\mathrm{rel}}\rangle$, the flux estimate is
 $$
@@ -4937,7 +4980,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-38f668495f2a6a81)
 
-Here $A_{\mathrm{scan}}$ is the scanned cross-section, $T_{\mathrm{age}}$ is the exposure time of the material, $P_{\mathrm{surv}}$ is the survival probability of the track under thermal, geological, and mechanical erasure, and $P_{\mathrm{det}}$ is the detection efficiency after morphology cuts. The residual is not simply a count mismatch:
+Here $A_{\mathrm{scan}}$ is the projected effective area averaged over the incident angular distribution, $T_{\mathrm{age}}$ is the material's exposure duration, and $P_{\mathrm{surv}}$ and $P_{\mathrm{det}}$ are conditional track-survival and detection probabilities. The factorization assumes stationary flux and suitably averaged efficiencies. A planar one-sided area in an isotropic flux, for example, has projected acceptance equal to one quarter of its geometric area for the convention $\Phi_X=n_X\langle v_{\mathrm{rel}}\rangle$. General exposures require integration over direction, speed and time. A schematic score is
 $$
 \mathcal{R}_{\mathrm{track}}
 =
@@ -4950,13 +4993,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-fb10fb66f506875f)
 
-The morphology term requires the candidate track to match the predicted energy-deposition and damage profile for the branch, while $\mathcal{R}_{\mathrm{ordinary}}$ penalizes fits explained by ordinary radiation, defects, inclusions, machining damage, or impact history. A null search becomes a constraint on $f_X(M_X)$ only after the survival and detection functions are declared; a positive search becomes a compact-object claim only after the same branch also passes the BBN, CMB, ephemeris, and high-energy co-signature tests.
+The morphology term compares predicted and measured damage profiles, while $\mathcal{R}_{\mathrm{ordinary}}$ tests ordinary backgrounds such as radiation, inclusions and impact damage. The positive scale $\epsilon_N$ defines a diagnostic discrepancy, not a count likelihood. Sparse or null counts require a calibrated count model, such as a Poisson likelihood with background and efficiency uncertainty. A null search constrains $f_X(M_X)$ only with these assumptions; an unexplained positive count alone does not identify a compact object.
 
 #### Candidate B — Noether Sea Medium Response
 
 **Definition.** Non-linear elastic or dispersive response of the Noether sea itself under low-acceleration or low-density-gradient conditions. In regions where the effective gravitational acceleration falls below a characteristic scale $a_0^{\mathrm{MOND}}$, the Noether sea's compliance (inverse stiffness) may change, altering the effective force law. This local notation keeps the galactic acceleration threshold distinct from the rest-attractor length scale $a_0$ used in Lorentz-kinematics chapters.
 
-**Mechanism sketch.** Each retained Noether braid in the Noether sea may have a minimum restoring-response threshold set by its least stiff exposed branch mode. Below the corresponding acceleration scale, the Noether sea may deform more easily per unit stress, increasing the effective gravitational response as acceleration decreases. This is structurally analogous to MOND ($\mu(a/a_0^{\mathrm{MOND}})\,a = a_N$) but must be derived from assembly elasticity rather than postulated. In the canonical Master EOM, part of this response can be understood as a constitutive shift in how the Noether sea organizes received delayed flux under low-strain conditions: the same transmitter population can produce a different received effective acceleration when branch geometry and local receiver crossing state change. The transition function $\mu$ would then emerge from the measured exposed-mode response curve as a function of the local strain rate $\nabla\Phi / a_0^{\mathrm{MOND}}$.
+**Mechanism sketch.** A candidate medium has a restoring-response law only after its reference state and admissible perturbations are established. A nonlinear response could then connect its deformation to a MOND comparison law $\mu(a/a_0^{\mathrm{MOND}})\,a=a_N$, where $a$ and $a_N$ are effective acceleration magnitudes. The ratio $\|\nabla_{\mathrm{eff}}\Phi_{\mathrm{eff}}\|/a_0^{\mathrm{MOND}}$ is a dimensionless acceleration ratio, not a strain rate. Deriving $\mu$ requires a constitutive reduction of the delayed dynamics. In the Master Equation the instantaneous weight is $c_f/|D_t|$, with $D_t=c_f-\mathbf V_t\cdot\hat{\mathbf r}_t$ set by transmitter emission history. Receiver velocity changes root playback and subsequent geometry, not that arriving multiplier.
 
 **Characteristic scale.** The MOND acceleration $a_0^{\mathrm{MOND}} \approx 1.2 \times 10^{-10}\;\mathrm{m\,s}^{-2}$ is suggestively close to horizon-scale accelerations such as $c_0 H_0/(2\pi)$ and, in some entropic-gravity comparisons, $c_0 H_0/6$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, those coefficients are comparison pressure rather than imported doctrine. The native question is whether the same Noether sea response law that supplies the effective Hubble history also yields the galaxy-scale transition acceleration.
 
@@ -4967,7 +5010,7 @@ A compact cross-scale target is
 $$
 a_0^{\mathrm{MOND}}
 \stackrel{?}{=}
-\alpha_H\,c_0\,H_{\mathrm{eff}}^\theta(t_{\mathrm{obs}}),
+\alpha_H\,c_0\,H_{\mathrm{eff}}^\theta(t_{\mathrm{eff,obs}}),
 \qquad
 \alpha_H \in \left\{\frac{1}{6},\frac{1}{2\pi}\right\}
 \quad\text{as comparison coefficients.}
@@ -4985,7 +5028,7 @@ $$
 \frac{
 a_0^{\mathrm{MOND}}
 }{
-\alpha_H c_0 H_{\mathrm{eff}}^\theta(t_{\mathrm{obs}})
+\alpha_H c_0 H_{\mathrm{eff}}^\theta(t_{\mathrm{eff,obs}})
 }
 \right|
 +
@@ -4996,34 +5039,37 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a54df89975fb43e0)
 
-Here $\mathrm{RAR}^{\theta}$ is the radial-acceleration relation predicted by the coupled neutral-assembly plus medium-response model, $\mathrm{RAR}^{\mathrm{obs}}$ is the observed relation, and $\mathcal{R}_{\mathrm{shared}}$ is the cosmology shared residual in [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md#inference-dependency-and-calibration-gates). If no value of $\alpha_H$ follows from the Noether sea response law while preserving CMB loading, cluster offsets, BAO, supernova, growth, and lensing constraints, the horizon-scale coincidence remains a heuristic rather than a derived result.
+Here $\mathrm{RAR}$ compares observed radial acceleration with that inferred from baryons, $c_0$ is the observer light-speed calibration, and $t_{\mathrm{eff,obs}}$ is the effective observation time. The logarithm requires positive $a_0^{\mathrm{MOND}}$, $\alpha_H$, $c_0$ and $H_{\mathrm{eff}}^\theta$. The shared residual is defined in [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md#inference-dependency-and-calibration-gates). A numerical coincidence with either quoted coefficient does not derive it or restrict a native calculation to those two possibilities; the coefficient and its allowed variation must follow from the same response law that passes the other observables.
 
 **Limitations.** A pure medium-response account faces well-documented difficulties:
+
 - Reproducing cluster-scale lensing/gas centroid separation without a collisionless component.
 - Matching acoustic-peak matter loading in pre-decoupling dynamics.
 - Producing the correct large-scale transfer-function shape in $P(k)$.
-- Preserving the large-scale inverse-square force profile inferred from kSZ halo-pair velocities. The retained halo-pair benchmark fits $g(r)\propto r^{-n}$ with $n=2.1\pm0.3$ on $30$--$230\,\mathrm{Mpc}$ scales—a kSZ pairwise-velocity constraint, the exemplary measured row presented as the ACT/SDSS kSZ pairwise-velocity entry in [Structure Formation](../../../../markdown/aaa/cosmology/structure-formation.md#cmb-lensing-and-acoustic-peaks)—so a pure MOND-like branch with an unscreened $n\simeq1$ profile on that window is not viable without a native screening or regime-separation mechanism.
+- Preserving the acceleration-profile constraint from the kinematic Sunyaev-Zeldovich (kSZ) effect, the CMB temperature shift from scattering by moving electrons. The [ACT/SDSS analysis](https://arxiv.org/abs/2604.14327) infers $g(r)\propto r^{-n_{\mathrm{kSZ}}}$ with $n_{\mathrm{kSZ}}=2.1\pm0.3$ on $30$--$230\,\mathrm{Mpc}$ scales under its halo, velocity and gas-optical-depth model. This is the comparison discussed in [Structure Formation](../../../../markdown/aaa/cosmology/structure-formation.md#cmb-lensing-and-acoustic-peaks); it disfavors the unscreened inverse-distance case in that tested model, not every possible medium response.
 
 These difficulties motivate retaining Candidate A as the primary dark-matter substrate, with Candidate B contributing corrections.
 
 #### Candidate C — Hybrid (Working Baseline)
 
-**Definition.** Neutral assemblies carry the dominant non-baryonic gravitating mass ($\Omega_{\mathrm{DM}}\sim0.26$), while Noether sea response provides scale-dependent corrections that modify effective profiles in low-acceleration environments.
+**Definition.** The hybrid hypothesis assigns the dominant non-baryonic gravitating contribution to neutral assemblies, with the present-day comparison $\Omega_{\mathrm{DM}}\sim0.26$, and assigns additional low-acceleration response to the Noether sea.
 
 **Rationale.** This hybrid is the working baseline because:
 
-- Neutral assemblies handle the heavy lifting: CMB matter loading, large-scale power spectrum, cluster-merger offset behavior, and BBN consistency ($\Omega_b$ remains small).
-- Medium response is hypothesized to address observed tensions at galaxy scale—the diversity of rotation-curve shapes, the radial-acceleration relation (RAR) tightness, and possible deviations from pure NFW profiles—without introducing additional free parameters per galaxy, subject to the $\mathcal{R}_{a_\star f}$ gate below.
-- The two contributions arise from the same ontological substrate (Noether braid assemblies in Euclidean void with absolute time) and are coupled: neutral assemblies compress the Sea, which in turn responds non-linearly, feeding back on the effective potential.
-- If residual discrepancies concentrate in regions of strong Noether sea contraction or steepening contraction gradient, especially toward galactic centers and SMBH environments, that pattern would be naturally suggestive of medium-response contributions rather than of an entirely separate particulate sector.
+- Neutral assemblies are assigned the CMB loading, large-scale power, cluster-merger and baryon-accounting requirements.
+- Medium response is hypothesized to address observed tensions at galaxy scale—the diversity of rotation-curve shapes, the radial-acceleration relation (RAR) tightness, and possible deviations from pure Navarro–Frenk–White (NFW) halo profiles—without introducing additional free parameters per galaxy, subject to the $\mathcal{R}_{a_\star f}$ gate below.
+- Both contributions must be derived from one assembly population and its ambient Noether sea response. Population bookkeeping must distinguish a freely clustering assembly from an ambient carrier, and any response already included in the assembly mass must not be counted again as independent medium mass.
+- If residual discrepancies concentrate in regions of strong Noether sea contraction or steepening contraction gradient, especially toward galactic centers and supermassive black hole (SMBH) environments, that pattern would motivate testing medium-response contributions alongside particulate explanations; it would not distinguish them by itself.
 
 #### Why Hybrid Is Required (Closure Summary)
 
+“Required” here names the chosen working architecture, not a theorem excluding every pure-assembly or pure-medium model. The entries below describe intended capabilities and failure risks, not completed recoveries.
+
 | Construction | Main strength | Main failure risk |
 |:---|:---|:---|
-| Pure neutral-assembly | Handles CMB loading, BAO/$P(k)$ shape, and cluster collisionless behavior | Can underperform on low-acceleration galaxy phenomenology without added response channels |
-| Pure medium-response | Captures MOND-like galaxy-scale behavior naturally | Struggles with Bullet-Cluster offsets and full CMB matter-loading closure |
-| Hybrid baseline | Combines cosmology-scale closure with galaxy-scale flexibility | Requires constitutive calibration discipline to avoid over-parameterized tuning |
+| Pure neutral-assembly | Targets CMB loading, BAO/$P(k)$ shape and collisionless cluster behavior | Requires galaxy-scale tests including baryonic feedback |
+| Pure medium-response | Targets MOND-like galaxy-scale behavior | Must also recover cluster offsets and CMB loading |
+| Hybrid baseline | Combines both sets of requirements | Extra adjustable response functions can erase predictive restrictions |
 
 The hybrid baseline is therefore a scaffold, not a closed prediction. It inherits the [prediction-narrowness and initial-basin burden](../../../../markdown/aaa/cosmology/cosmology-ontology.md#prediction-narrowness-and-initial-basin-burden). Its declared record must include
 $$
@@ -5040,9 +5086,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1decb6afec2b0178)
 
-with every environment projection derived from one constitutive and assembly history. It earns predictive standing only if the allowed set $\mathcal O_\epsilon(\theta_{\mathrm{hyb}})$ is narrow relative to the nearby comparison family. If $a_\star$, $f$, screening, or $\mu$ can be changed independently by galaxy, cluster, CMB, lensing, and growth channel, Candidate C has widened the fit space rather than closed the dark sector.
+Here $a_\star^\theta(E)$ and $f^\theta(E)$ are the transition scale and enhancement defined below, $S_{\mathrm{loc}}$ is a screening response to local invariants $\mathcal I_{\mathrm{loc}}$, and $\mu(a,k)$ is a separately defined cosmological response function of effective scale factor and wavenumber, not the MOND function of acceleration ratio. The prediction set $\mathcal O_\epsilon$ must contain the observed packet and exclude nearby alternatives under a fixed measure and uncertainty rule. Narrowness must hold for the union over all allowed parameter and history choices; an empty set or a narrow set recentered freely for each observation has no predictive standing. Environment projections can differ physically; their shared constraint is one law and history with common calibration, not numerical equality of unlike environments.
 
-**Coupled equations (schematic).** Let $\rho_A(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ denote the observer-level neutral-assembly density and $\rho_{\text{NS}}(\mathbf X,T)$ the native Noether braid density. In the Newtonian limit, the effective Poisson equation becomes:
+**Coupled equations (schematic).** Let $\rho_A(x_{\mathrm{eff}}^i,t_{\mathrm{eff}})$ and $\rho_b$ denote effective mass densities, while $\rho_{\text{NS}}(\mathbf X,T)$ remains native braid number density. In a local Cartesian, weak-field observer chart, a possible nonlinear Poisson comparison is
 
 $$
 (\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^i}\partial_{x_{\mathrm{eff}}^j}\Phi_{\mathrm{eff}} = 4\pi G_{\mathrm{eff}}((\gamma_{\mathrm{eff}}^{-1})^{ij}\partial_{x_{\mathrm{eff}}^j}\Phi_{\mathrm{eff}},\rho_{\text{NS}},n)\,\bigl(\rho_b + \rho_A + \delta\rho_{\text{NS}}^{(\mathrm{pert})}\bigr)
@@ -5050,9 +5096,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-168be3c219b73152)
 
-where $\rho_b$ is baryonic density, $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ is the perturbative Sea response above its cosmological mean, and $G_{\mathrm{eff}}$ carries the Noether sea response modification. This linearization is conditional on the homogeneous quiescent Noether sea being an equilibrium of the constitutive dynamics — an open closure item of the [Noether sea program](../../../../markdown/aaa/spacetime/noether-sea.md). In the high-acceleration limit ($|\nabla\Phi| \gg a_0^{\mathrm{MOND}}$), $G_{\mathrm{eff}} \to G_N$ and $\delta\rho_{\text{NS}}^{(\mathrm{pert})} \to 0$; in a positive-response low-acceleration branch, the effective coupling is enhanced above $G_N$ because the Noether sea is more compliant, and $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ may contribute an effective "phantom" density that mimics additional dark matter.
+Here $\gamma_{ij}^{\mathrm{eff}}=\delta_{ij}$ is constant; a general curved chart would require the metric divergence operator, not just a contracted partial Hessian. The symbol $\delta\rho_{\text{NS}}^{(\mathrm{pert})}$ denotes an effective mass-density response obtained through a separate projection, not a fluctuation of braid number density added directly to mass density. The native arguments $\rho_{\text{NS}},n$ in $G_{\mathrm{eff}}$ are evaluated at the event mapped to this observer chart. A closure must specify which response is in $G_{\mathrm{eff}}$ and which is in the additional density to prevent double counting. The equation is nonlinear when its coupling depends on the gradient; linear perturbation theory additionally needs a valid evolving background solution, or an equilibrium for a stationary response calculation, as discussed in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md). The limits $G_{\mathrm{eff}}\to G_N$ and $\delta\rho_{\text{NS}}^{(\mathrm{pert})}\to0$ are recovery conditions, not consequences of naming a high-acceleration regime.
 
-This coupled system must be solved self-consistently. The neutral-assembly component $\rho_A$ satisfies collisionless Boltzmann transport in the potential $\Phi_{\mathrm{eff}}$; the Noether sea response enters through constitutive relations derived from Noether braid elasticity in the Noether sea.
+This system requires a transport law and a constitutive law. Collisionless Boltzmann transport is an effective comparison only after negligible collisions, suitable phase-space variables and the acceleration map are established. The single displayed Poisson ansatz does not supply those equations or a lensing law.
 
 #### Scalar-Fluid and MOND-Extension Comparison Gate
 
@@ -5072,7 +5118,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a98eadec7919d4bd)
 
-where $a_N$ is the baryonic Newtonian benchmark acceleration, $a_\star$ is the environment-dependent low-acceleration transition scale, and $f$ is the ultra-low-acceleration inverse-square enhancement. For the $\mathbb{A}\mathbb{A}\mathbb{A}$ hybrid branch these are not new constants. They are observer-level summaries of a shared Noether sea state:
+Here $a_N\ge0$ is the baryonic Newtonian acceleration magnitude, $a_\star>0$ the transition scale, and $f>1$ the inverse-square enhancement. A broad middle regime requires $f\gg1$; at $f=1$ its interval collapses. The expressions are asymptotic limits, not values assigned in the omitted crossover intervals. Their extrapolations agree at $a_N=a_\star$ and $a_N=a_\star/f^2$, but a smooth interpolation still needs a law. This is the comparison structure of [Khoury, *An Alternative to Particle Dark Matter* (2014)](https://arxiv.org/abs/1409.0012). For the hybrid hypothesis, the transition and enhancement must be outputs of a shared Noether sea state:
 
 $$
 a_\star^\theta(E)=
@@ -5096,7 +5142,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-35f14dc32227b019)
 
-with $E$ denoting an environment class such as spiral galaxies, pressure-supported dwarfs, clusters, or diffuse absorbers. $\mathcal{H}_{\mathrm{src/rel}}$ records compact-source, feedback, release, and capture history, while $\mathcal{T}_{\mathrm{path}}$ records transport loading that changes the local Noether sea state. The environment label is therefore not a private fit bucket: a viable branch must reproduce the galaxy radial-acceleration relation in the middle regime while allowing clusters to fall in the ultra-low-acceleration regime without assigning a separate medium record to each class.
+with $E$ denoting an environment class such as spiral galaxies, pressure-supported dwarfs, clusters, or diffuse absorbers, and $\rho_{\mathrm{bar}}=\rho_b$. $\Pi_E$ projects the shared state into that environment, $\mathcal M_{\mathrm{sea}}^{ab}$ is its effective response tensor, and $\mathcal I_{\mathrm{loc}}^\theta$ denotes declared local state invariants. $A_\star$ and $F_\star$ are the still-undetermined constitutive maps, not adjustable constants for each object. $\mathcal{H}_{\mathrm{src/rel}}$ records compact-source, feedback, release, and capture history, while $\mathcal{T}_{\mathrm{path}}$ records transport loading that changes the local Noether sea state. The environment label is therefore not a private fit bucket: a viable branch must reproduce the galaxy radial-acceleration relation in the middle regime while allowing clusters to fall in the ultra-low-acceleration regime without assigning a separate medium record to each class.
 
 A compact residual is
 
@@ -5142,7 +5188,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-408eaf834a699b39)
 
-Here $E$ is an observer-level environment class, such as spiral galaxies, pressure-supported dwarfs, clusters, or the cosmological background. The temperature ratio and fractions are comparison coordinates only. A native branch must instead derive their effective values from $\Pi_E\theta_{\mathrm{sea}}$, $\rho_A$, $\rho_{\text{NS}}(\mathbf X,T)$, $n(\mathbf X,T)$, and $\chi_{\text{sea}}(\mathbf X,T)$:
+Here $T_{\mathrm{cmp}}\ge0$ and $T_{c,\mathrm{cmp}}>0$ are comparison temperature and condensation temperature. The $3/2$ law is an ideal homogeneous three-dimensional Bose-gas condensate-fraction benchmark, not a general interacting-superfluid law. Its complement is the noncondensed fraction; it is not generally the hydrodynamic normal-fluid fraction, which measures response to motion. The retained label $\zeta_{\mathrm{norm}}^{\mathrm{cmp}}$ denotes this complement only. [Berezhiani and Khoury, *Theory of Dark Matter Superfluidity* (2015)](https://arxiv.org/abs/1507.01019) motivates the environment comparison. A native calculation must supply the relevant response rather than equate these fractions by name:
 
 $$
 \zeta_{\mathrm{cond}}^{\mathrm{cmp}}(E)
@@ -5178,7 +5224,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#rar-btfr-galaxy-response)
 
-A compact version of the closure residual is
+The second relation follows in the deep-MOND circular-orbit comparison outside a localized baryonic mass: $a_N=G_NM_b/r^2$ and $a_{\mathrm{obs}}=v_c^2/r$ imply $v_c^4=G_NM_ba_0^{\mathrm{MOND}}$. It is not a pointwise law for every galaxy geometry or every acceleration regime. A compact comparison residual is
 
 $$
 \begin{aligned}
@@ -5210,14 +5256,14 @@ The Khoury comparison reinforces the phase-environment split without importing l
 
 Ferreira-Franzmann-Khoury-Brandenberger unified-superfluid dark-sector models add a sharper comparison target: late-time acceleration can be driven by the same dark substance if that substance has two distinguishable states whose relative phase is coupled by a Josephson/Rabi interaction. In this chapter that is comparison language, not substrate ontology. The Noether sea is not identified with a literal superfluid, and the phase variables are not introduced as new $\mathbb{A}\mathbb{A}\mathbb{A}$ constituents. What survives is a one-record discipline: the same dark-sector state must carry CDM-like loading, state conversion, late-time acceleration, and the growth history.
 
-Introduce comparison coordinates for two dark-sector populations,
+For the two-state comparison, use effective observer time $t_{\mathrm{eff}}$ and dots for its derivatives. The source uses natural units; in the displayed comparison formulas take $\hbar=c_0=1$, while primitive numerical wake units retain $c_f=1$. These conventions do not identify the channels physically. Let $\eta_i^{\mathrm{cmp}}$ be nonnegative population fractions and $\varphi_i^{\mathrm{cmp}}$ phase coordinates with fixed dimensionless normalization $f_J>0$. Then
 
 $$
 \eta_1^{\mathrm{cmp}}+\eta_2^{\mathrm{cmp}}=1,
 \qquad
-\varphi_{\mathrm{rel}}^{\mathrm{cmp}}(t)
+\varphi_{\mathrm{rel}}^{\mathrm{cmp}}(t_{\mathrm{eff}})
 =
-\varphi_2^{\mathrm{cmp}}-\varphi_1^{\mathrm{cmp}}+\Delta E\,t
+\varphi_2^{\mathrm{cmp}}-\varphi_1^{\mathrm{cmp}}+f_J\Delta E\,t_{\mathrm{eff}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5e5a400bce3431bb)
@@ -5225,17 +5271,17 @@ $$
 and the source-side phase-coupling potential
 
 $$
-V_J^{\mathrm{cmp}}(t)
+V_J^{\mathrm{cmp}}(t_{\mathrm{eff}})
 =
 M_J^4
 \cos^2\!\left(
-\frac{\varphi_{\mathrm{rel}}^{\mathrm{cmp}}(t)}{2f_J}
+\frac{\varphi_{\mathrm{rel}}^{\mathrm{cmp}}(t_{\mathrm{eff}})}{2f_J}
 \right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f2d7ec44948f9738)
 
-The native branch must derive these comparison coordinates from a medium-and-assembly projection, not fit them independently:
+Here $V_J^{\mathrm{cmp}}$ is an energy density and $M_J$ its fourth-root energy scale. The dimensionless phase is $\varphi_{\mathrm{rel}}^{\mathrm{cmp}}/f_J$; restoring units replaces $\Delta E\,t_{\mathrm{eff}}$ by $\Delta E\,t_{\mathrm{eff}}/\hbar$. This is a rescaling of equation (1) in [Ferreira, Franzmann, Khoury and Brandenberger, *Unified Superfluid Dark Sector* (2019)](https://arxiv.org/abs/1810.09474). The factor $f_J$ fixes a coordinate convention, not an independently tunable physical interaction. A native realization would require a projection of the form
 
 $$
 \left(
@@ -5258,7 +5304,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3e7dbbb0f47af501)
 
-The conversion discipline can be recorded in source-term form,
+Let $N_i\ge0$ denote number densities per effective physical volume, $\eta_i^{\mathrm{cmp}}=N_i/(N_1+N_2)$ for a positive total, and $H_{\mathrm{eff}}^\theta=\dot a/a$. A homogeneous two-species number balance with conversion rate density $Q_J^\theta$ is
 
 $$
 \dot N_1+3H_{\mathrm{eff}}^\theta N_1
@@ -5269,37 +5315,35 @@ $$
 =
 Q_J^\theta,
 \qquad
-Q_J^\theta
-\sim
-\Delta E\,\partial_{\varphi_{\mathrm{rel}}}V_J^{\mathrm{cmp}}
+\frac{d}{dt_{\mathrm{eff}}}\left[a^3(N_1+N_2)\right]=0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b4a107dac071b917)
 
-so that the total dark-sector count $N_1+N_2$ is conserved while the relative population can evolve. The comparison background equation then becomes
+Adding the equations derives conservation of $a^3(N_1+N_2)$, the count in a fixed comoving volume; the physical density $N_1+N_2$ dilutes as $a^{-3}$. A rate proportional to $\Delta E\,\partial_{\varphi_{\mathrm{rel}}}V_J$ has energy-transfer dimensions in the stated phase convention, not number-density-per-time dimensions. The actual conversion law requires an action and phase normalization; it is left unspecified here. Number balance alone does not imply a Friedmann equation. For a spatially flat GR comparison with total pressure approximately $-V_J^{\mathrm{cmp}}$, the background benchmark is
 
 $$
 2\dot H_{\mathrm{eff}}^\theta
 +3\left(H_{\mathrm{eff}}^\theta\right)^2
 \simeq
-\frac{V_J^{\mathrm{cmp}}(t)}{M_{\mathrm{Pl}}^2}
+\frac{V_J^{\mathrm{cmp}}(t_{\mathrm{eff}})}{M_{\mathrm{Pl}}^2}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2ec3e848387bf574)
 
-as a source-side benchmark for late-time acceleration without adding an independent dark-energy fluid. A native $\mathbb{A}\mathbb{A}\mathbb{A}$ branch may pass this benchmark only if the right-hand side is reconstructed from $\theta_{\mathrm{sea}}$ and $\rho_A$ through $\mathcal{J}_{\mathrm{dark}}$.
+Here $M_{\mathrm{Pl}}$ is the reduced Planck mass of the comparison, $M_{\mathrm{Pl}}^{-2}=8\pi G_N$ in these units. Recovering the displayed relation requires the clock, stress and gravity maps as well as the potential projection $\mathcal J_{\mathrm{dark}}$; a fitted right-hand side alone is insufficient.
 
 The same source also supplies a perturbation-discipline lesson. Unified dark-sector models often fail when the component that imitates dark energy develops too large an adiabatic sound speed and corrupts the matter power spectrum. The comparison therefore imposes the linear pressurelessness condition
 
 $$
-c_{s,\mathrm{lin}}^{2,\theta}(a,k)
+0\le c_{s,\mathrm{lin}}^{2,\theta}(a,k)
 \ll
 1
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5cdbb3e773980a9a)
 
-over the CMB and large-scale-structure regime, while allowing nonlinear galaxy-scale medium response to depart from pressureless CDM. Growth must be tested with both the growth factor $D(z)$ and the growth rate
+Here $c_{s,\mathrm{lin}}^{2,\theta}$ is the effective squared sound speed in units of $c_0^2$. Nonnegativity excludes a gradient instability in this fluid comparison, but pressurelessness on a comoving mode $k$ requires the stronger condition $c_{s,\mathrm{lin}}^{2,\theta}c_0^2k^2/a^2\ll4\pi G_{\mathrm{eff}}\bar\rho_m$, or the appropriate comparison with the actual growth terms. A small speed alone does not control arbitrarily short wavelengths. Growth must be tested with both its factor $D$ and logarithmic rate. On a chart satisfying $a(t_{\mathrm{eff,obs}})=1$ and $1+z=1/a$,
 
 $$
 f_{\mathrm{grow}}(z)
@@ -5325,8 +5369,11 @@ $$
 \\
 &+
 d_Q\!\left(
-\dot N_1+3H_{\mathrm{eff}}^\theta N_1+Q_J^\theta,
+\begin{pmatrix}
+\dot N_1+3H_{\mathrm{eff}}^\theta N_1+Q_J^\theta\\
 \dot N_2+3H_{\mathrm{eff}}^\theta N_2-Q_J^\theta
+\end{pmatrix},
+\mathbf 0
 \right)
 \\
 &+
@@ -5342,46 +5389,46 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d329f9fd39d06fa8)
 
-This residual is the safe promoted signal from the two-state dark-sector comparison. It tests whether one shared Noether sea state and neutral-assembly record can supply effective acceleration, conserve the total dark-sector count while allowing internal conversion, keep the linear sound speed low, and reproduce growth observations without assigning separate medium histories to dark matter and dark energy.
+Here $d_Q$ measures both balance errors against zero; comparing the two errors with each other would miss an equal nonzero violation. The term $d_c$ must be a one-sided upper-bound violation, with a separate rejection for negative squared sound speed, rather than a distance rewarding saturation of $c_{s,\max}^2$. Each term uses declared normalization and covariance. This is a proposed test of one shared history, conserved comoving count, pressure support and growth, with no evaluation asserted. Outside the chart $1+z=1/a$, the redshift expression for $f_{\mathrm{grow}}$ above requires the actual redshift-to-scale-factor Jacobian.
 
 The source's observational signatures are retained as comparison hooks rather than canonized predictions. Substructure-lensing features associated with vortices, merger behavior controlled by an infall-speed versus sound-speed threshold, mixed cluster lensing peaks, and MOND-free globular clusters are useful only if the native branch supplies corresponding Noether sea or neutral-assembly variables. Without that native map, those signatures remain model-specific to the superfluid-DM comparison.
 
 ### Regime Map
 
-The hybrid baseline yields a unified regime architecture:
+The hybrid hypothesis assigns the following comparison roles. These are conditional targets, not measured dominance boundaries:
 
 | Environment | Dominant mechanism | Effective description |
 |:---|:---|:---|
-| CMB / $z > 100$ | Neutral assemblies | CDM-like: pressureless, collisionless |
-| BAO / $10 < z < 100$ | Neutral assemblies + linear medium | CDM + small corrections |
-| Cluster scales / $z \sim 0$ | Neutral assemblies (collisionless) | NFW-like profiles; Bullet Cluster offset |
-| Galaxy outer regions / low $a$ | Hybrid: assemblies + medium response | RAR tightness; rotation-curve diversity |
-| Dwarf galaxies / ultra-low $a$ | Medium response dominant | Possible core-vs-cusp modification |
+| CMB acoustic formation near recombination | Neutral-assembly loading | Pressure and collision rates small enough for the CMB comparison |
+| BAO formation before baryon drag ends; later transport of its imprint | Assemblies, baryonic gas and medium response | A common acoustic ruler and matter transfer function |
+| Cluster scales | Candidate collisionless neutral component | Navarro–Frenk–White (NFW) halo-profile comparison and merger lensing offsets |
+| Galaxy outer regions / low acceleration | Candidate assembly and medium contributions | RAR and rotation-curve diversity |
+| Dwarf galaxies / low acceleration | Relative contributions to be derived | Tests of shallow central cores versus steep density cusps |
 
-The boundaries between regimes are set by the ratio $|\nabla\Phi|/a_0^{\mathrm{MOND}}$ and the local Noether sea density gradient. These are continuous transitions within one ontology, not patched models.
+The acceleration ratio and density gradient are candidate response coordinates. Temperature, velocity dispersion, external environment and history can also matter. Their transition law and relative contributions are uncomputed; a redshift interval alone does not define a CMB or BAO mechanism.
 
 ### SMBH Recycling and Dark-Sector Flow
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$ cosmology, supermassive black holes (SMBHs) are recycling furnaces: baryonic and dark-sector assemblies fall in, pass through a high-energy strong-field regime with branch-derived super-field-speed rows, and may later re-emerge through several release channels in altered assembly configurations. Jets and radiative outflows remain plausible observer-level manifestations, but they are not the only allowed release morphology. This cycle has implications for the dark sector:
+The supermassive-black-hole (SMBH) recycling hypothesis proposes that accreted assemblies undergo reconfiguration and later contribute to release channels. Establishing internal super-field-speed trajectories, retained assemblies and escape channels requires their actual dynamics; observed jets do not identify those internal paths. The conditional dark-sector consequences are:
 
 - **Neutral-assembly processing:** If neutral assemblies accrete onto SMBHs, they contribute to the energy budget available for outward release. Re-emitted content may include photons (coaxial contra-rotating polarity-conjugate planar-pair modes), neutrinos, recycled neutral assemblies, or initially dark-sector modes that later convert into visible channels.
-- **Dark-sector mass evolution:** Unlike pure $\Lambda\mathrm{CDM}$ where dark matter is strictly conserved and collisionless, $\mathbb{A}\mathbb{A}\mathbb{A}$ permits slow conversion between dark and visible sectors through SMBH processing. This conversion rate must be small enough to preserve $\Omega_{\mathrm{DM}}$ to within Planck-era constraints over cosmological timescales, which places an upper bound on the SMBH dark-matter accretion efficiency.
+- **Dark-sector mass evolution:** Stable pressureless CDM has conserved comoving rest mass in its homogeneous comparison, not a constant $\Omega_{\mathrm{DM}}$ at every epoch. A proposed SMBH conversion channel must evolve abundance, released energy, growth and photon observables together. A present density constraint alone sets no accretion-efficiency bound without the SMBH population, capture history and branching rates.
 - **Observable signature (speculative):** If SMBH recycling converts neutral assemblies into electromagnetic-channel products at non-negligible rates, this could produce a correlation between SMBH mass and local dark-matter deficit. This is a mapping target for simulation, not an asserted observational deviation.
 
 ### Candidate Assembly Properties
 
 #### Mass Scale
 
-The neutral-assembly mass is not a free parameter to be fitted post hoc; it must emerge from the assembly's internal energy ledger, shielding factor, and medium-dressed response to the Noether sea. This is an inertial and gravitational response map, not ordinary dissipative drag. Candidate mass ranges, mapped to observational constraints:
+The neutral-assembly mass must ultimately be derived from its internal history, shielding and medium response. Mass values in a phenomenological comparison are provisional coordinates, not such a derivation. Warm, hot and cold describe the velocity distribution and free-streaming length relative to structure scales, so they cannot be assigned from mass alone. In customary particle-comparison notation, eV, keV, GeV and TeV here denote rest-energy scales $mc_0^2$:
 
-- $m \sim$ eV: warm dark matter; suppresses small-scale structure.
-- $m \sim$ keV–GeV: canonical cold dark matter window.
-- $m \sim$ GeV–TeV: WIMP-like comparison window, not a neutralino identification.
-- $m \gg$ TeV: superheavy; must be produced non-thermally (e.g., gravitational production or SMBH-related formation in early epochs).
+- eV scale: a thermal relic is typically hot; a different production history or collective state needs its own transport calculation.
+- keV scale: often used for warm-relic comparisons; a sufficiently cold nonthermal distribution changes that classification.
+- GeV–TeV scale: common weakly interacting massive particle (WIMP) benchmarks, with cold behavior conditional on production and subsequent velocities.
+- Far above the TeV scale: thermal versus nonthermal production depends on the available temperature, equilibration and reaction history; mass alone does not mandate one route.
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ framework does not predict a unique mass; deriving the mass spectrum from first-principles Noether braid binding energies and formation rates is a high-priority simulation target.
+This chapter derives no unique mass or mass spectrum. A calculation requires retained assemblies and their inertial and gravitational response, followed by formation and population evolution.
 
-A superheavy neutral-lepton comparison branch is useful only as a benchmark, not as imported ontology. In that comparison, a sterile or right-handed singlet near $m_{\nu_R}\sim4.8\times10^8\;\mathrm{GeV}$ (a type-I seesaw comparison benchmark) behaves as cold, collisionless dark matter if it is stable, decoupled from visible channels, and produced with the observed abundance. The corresponding $\mathbb{A}\mathbb{A}\mathbb{A}$ acceptance record would have to close
+A superheavy neutral-lepton comparison branch is useful only as a benchmark, not as imported ontology. A type-I seesaw construction, which relates light-neutrino masses to a heavy neutral state and a coupling matrix, does not uniquely fix the heavy mass without those couplings. The value $m_{\nu_R}c_0^2\sim4.8\times10^8\;\mathrm{GeV}$ is retained as an illustrative hypothesis, with claim grade: guessed for that choice. Its source-specific parameter derivation is not supplied here. A candidate must independently meet lifetime, abundance, free-streaming and interaction constraints through
 $$
 \mathcal{B}_{\nu_R\mathrm{DM}}
 =
@@ -5412,11 +5459,11 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b5ba8639ea024dd6)
 
-Failure of any row keeps the branch external to the working dark-matter ontology. Passing these rows would still not identify the branch with the current neutral-assembly baseline unless the same internal-energy, shielding, and Noether sea response map derives its mass and coupling suppression.
+Here $\tau_{\nu_R}$ is the effective-clock lifetime, $t_0$ the comparison population age, $h$ the dimensionless Hubble normalization, $\lambda_{\mathrm{fs}}$ the free-streaming distance and $\lambda_{\mathrm{LSS}}$ a declared tested structure scale. The visible-channel cross-section limit $\sigma_{\max}$ depends on mass and channel, and $\mathcal B_{\mathrm{BBN/CMB}}$ denotes the allowed relativistic-loading interval from nucleosynthesis and CMB inference. These are necessary comparison conditions; passing them does not identify a retained neutral assembly or fix the omitted interaction and production history.
 
 #### Source-Limited WIMP/Neutralino Comparison Benchmark
 
-A WIMP or neutralino comparison is useful here only as detector-facing benchmark language. The Jungman--Kamionkowski--Griest arXiv record used for this comparison exposes the abstract, metadata, table of contents, and source note, but not the full review text; it therefore supplies constraint categories rather than detailed supersymmetric model claims. In this chapter, a neutralino-like benchmark does not identify a native assembly with a superpartner and does not make supersymmetry part of Noether braid ontology.
+A WIMP or neutralino comparison is useful here only as detector-facing benchmark language. This comparison uses the abstract-level constraint categories in the Jungman–Kamionkowski–Griest review; detailed supersymmetric model predictions are not imported. In this chapter, a neutralino-like benchmark does not identify a native assembly with a superpartner and does not make supersymmetry part of Noether braid ontology.
 
 For any neutral-assembly branch $A$, record the comparison vector
 
@@ -5438,57 +5485,59 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6b471422bf5d3c24)
 
-The entries track assembly mass, relic abundance, annihilation rate, scalar and axial scattering channels for direct detection, neutrino rates from solar or terrestrial capture, and indirect antiproton, positron, and gamma-ray fluxes. The native branch may pass this benchmark only if one medium-and-assembly record predicts or bounds all entries while satisfying direct-detection, indirect-detection, collider, CMB/BBN, structure-growth, and other relevant null-result constraints. Matching $\Omega_A h^2$ alone is not dark-matter closure; the same branch must also keep scattering and annihilation channels below excluded levels or declare a detectable channel.
+The entries track assembly mass, relic abundance, the velocity-averaged annihilation coefficient $\langle\sigma v\rangle_A$, scalar and axial scattering cross-sections, capture-associated neutrino rates and indirect fluxes. A per-particle annihilation rate additionally requires the partner density. The source-limited categories above follow [Jungman, Kamionkowski and Griest, *Supersymmetric Dark Matter* (1996)](https://arxiv.org/abs/hep-ph/9506380); they do not identify a superpartner. One medium-and-assembly record must predict these observables consistently. A proposed detectable channel must fit an observed signal or remain below existing exclusions; merely declaring it does not pass a null-result constraint.
 
 #### Interaction Cross-Sections
 
-Neutral assemblies interact with each other and with baryonic matter only through:
+The interaction inventory must include every channel permitted by the retained histories, including effective weak-channel response if a candidate has it. Two contributions requiring calculation are:
 
-- **Gravitational coupling** (Noether sea compression): always present; sets halo profiles.
-- **Residual short-range coupling:** If the neutral assembly has any non-zero higher-multipole moment (e.g., a quadrupole from internal binary precession), there is a short-range van-der-Waals-like interaction scaling as $r^{-7}$ or steeper. The self-interaction sector can then carry nontrivial velocity dependence.
+- **Gravitational response:** the same medium-and-assembly map must recover both motion and lensing; neutrality alone proves neither.
+- **Residual multipole and induced response:** the radial power depends on multipole order, orientation, time dependence and the observable being named. For example, in an explicitly electrostatic comparison two permanent quadrupoles have generic interaction energy proportional to $r^{-5}$ and force magnitude proportional to $r^{-6}$; an induced-dipole energy proportional to $r^{-6}$ gives a force proportional to $r^{-7}$. These comparison powers are not primitive wake laws. Native coupling and velocity-dependent self-scattering must be calculated from the candidate's delayed histories.
 
 #### Stability
 
-The neutral-assembly candidate must be cosmologically stable: lifetime $\tau \gg t_0 \approx 13.8$ Gyr. In $\mathbb{A}\mathbb{A}\mathbb{A}$, this stability is a requirement inherited as a closure target from the same attractor program that must stabilize the proton: the candidate needs a demonstrated deep attractor basin in Noether braid configuration space, with all dissociation channels either violating charge/polarity conservation or requiring energy input exceeding the cosmological temperature. No retained-branch derivation of such a basin exists yet for any free assembly, so this row is a stated burden, not a result.
+For a dominant long-lived component, the effective-clock lifetime must exceed the population age; $t_0\approx13.8$ Gyr is a standard-cosmology comparison age, not the age of absolute time. Survival requires the integrated effective loss rate $\int\Gamma_{\mathrm{loss}}\,dt_{\mathrm{eff}}\ll1$ over the declared history. A threshold energy is compared with $k_BT_{\mathrm{temp}}$, not with temperature itself, and a threshold above the mean thermal energy does not eliminate energetic tails or cumulative loss. A protected charge or a stable branch can help, but neither a deep attractor basin nor a barrier claim substitutes for actual dynamics and environmental lifetime bounds. This chapter supplies no retained neutral-assembly stability result.
 
 ### Cosmology Integration
 
 #### Pre-Decoupling ($z \gtrsim 1100$)
 
-Neutral assemblies contribute to the total matter density:
+For a two-component comparison neglecting other nonrelativistic species, let each $\Omega_i$ be its mass density divided by the critical density at the stated effective epoch. Then
 
 $$
-\Omega_m = \Omega_b + \Omega_A, \quad \Omega_A \approx 0.26
+\Omega_m(a) = \Omega_b(a) + \Omega_A(a), \quad \Omega_A(a=1) \approx 0.26
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ec21297dfc477d64)
 
-Their gravitational effect on photon-baryon oscillations produces the characteristic signature in the [CMB](../../../../markdown/aaa/cosmology/CMB.md) power spectrum: baryon loading enhances the odd (compression) peaks and suppresses the even (rarefaction) peaks, while the neutral-assembly matter loading sets the third-peak height and the overall peak-height ratios through $\Omega_A/\Omega_b$.
+The value $0.26$ is the present-day benchmark, not a pre-decoupling density fraction. Other nonrelativistic contributions, including massive neutrinos when relevant, must be added explicitly. In the [CMB](../../../../markdown/aaa/cosmology/CMB.md) comparison, baryonic inertia changes compression and rarefaction peaks, while non-baryonic matter affects gravitational potentials and equality. The full peak spectrum also depends on the primordial spectrum, expansion, radiation and recombination; the third peak is not determined by $\Omega_A/\Omega_b$ alone. Recovering that spectrum from neutral assemblies remains a coupled transport and gravity problem.
 
 #### Post-Decoupling Growth
 
-Matter perturbations grow as $\delta \propto a$ in the matter-dominated era. The $\mathbb{A}\mathbb{A}\mathbb{A}$ growth equation in the Newtonian limit reads:
+For small pressureless perturbations on subhorizon scales in a Newtonian cosmological comparison, with negligible species conversion and a common gravitational response, a candidate growth equation is
 
 $$
-\ddot{\delta}_A + 2H\dot{\delta}_A = 4\pi G_{\mathrm{eff}}\,\rho_m\,\delta_m
+\ddot{\delta}_A + 2H_{\mathrm{eff}}\dot{\delta}_A = 4\pi G_{\mathrm{eff}}\,\bar\rho_m\,\delta_m
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-12fde09db30a8c5f)
 
-where $\rho_m = \rho_b + \rho_A$ and $G_{\mathrm{eff}}$ may carry scale-dependent corrections from Noether sea response. This linearization is conditional on the homogeneous quiescent Noether sea being an equilibrium of the constitutive dynamics — an open closure item of the [Noether sea program](../../../../markdown/aaa/spacetime/noether-sea.md). In the high-acceleration (linear) regime, $G_{\mathrm{eff}} \to G_N$ and standard CDM growth is recovered. Deviations from $\Lambda\mathrm{CDM}$ growth appear only when $|\nabla\Phi|/a_0^{\mathrm{MOND}} \lesssim 1$, which on cosmological scales ($k < 0.01\;h\,\mathrm{Mpc}^{-1}$) may be relevant at low redshift and could contribute to resolving the $S_8$ tension.
+Dots denote $d/dt_{\mathrm{eff}}$, $H_{\mathrm{eff}}=\dot a/a$, and $\bar\rho_m=\bar\rho_b+\bar\rho_A$ is the homogeneous mean mass density. The contrast $\delta_m$ satisfies $\bar\rho_m\delta_m=\bar\rho_b\delta_b+\bar\rho_A\delta_A$. If $G_{\mathrm{eff}}$ depends on wavenumber, this is a mode-by-mode Fourier comparison. The background must solve the underlying evolution before perturbations are linearized, and the Noether sea response must close against [its constitutive obligations](../../../../markdown/aaa/spacetime/noether-sea.md). Small perturbation amplitude is not synonymous with high gravitational acceleration.
 
-The species label on the left and total-matter label on the right are intentional: each neutral-assembly contrast $\delta_A$ responds to the total matter source $\rho_m\delta_m$. In a one-fluid comparison limit, set $\delta_A=\delta_m$.
+The growing solution $\delta\propto a$ follows in the pressureless Einstein–de Sitter comparison, where $a\propto t_{\mathrm{eff}}^{2/3}$ and $4\pi G_N\bar\rho_m=2/(3t_{\mathrm{eff}}^2)$; direct substitution verifies the exponent. Radiation, conversion, pressure, a changed expansion history or a changed coupling can alter growth. The chapter derives neither a unique scale for departures nor a sign for their effect.
+
+The species label on the left and total-matter label on the right are intentional: each neutral-assembly contrast $\delta_A$ responds to the total matter source $\bar\rho_m\delta_m$. In a one-fluid comparison limit, set $\delta_A=\delta_m$.
 
 #### BAO and Matter Power Spectrum
 
-The matter power spectrum $P(k)$ encodes the transfer function through matter-radiation equality and the BAO wiggles imprinted at decoupling. The neutral-assembly contribution sets the shape of $P(k)$ on scales $k > k_{\mathrm{eq}}$, where $k_{\mathrm{eq}} \propto \Omega_m h^2$.
+The matter power spectrum $P(k)$ measures variance by comoving wavenumber. Its shape depends on the initial spectrum and transfer through matter-radiation equality; baryon acoustic oscillations (BAO) retain the gas sound-wave imprint established before baryon drag ends. The comparison scaling $k_{\mathrm{eq}}\propto\Omega_{m,0}h^2$ assumes fixed radiation content and expresses $k_{\mathrm{eq}}$ in inverse-length units, rather than in $h$-scaled units. A neutral-assembly model must calculate the full transfer history; its density alone does not fix the spectrum.
 
 #### $H_0$ and $S_8$ Tensions
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ hybrid baseline offers two potential handles on current cosmological tensions:
+Comparisons of early- and late-time inference motivate two questions. Here $H_0$ is the present effective expansion rate, and $S_8=\sigma_8\sqrt{\Omega_{m,0}/0.3}$ combines matter density with the fluctuation amplitude $\sigma_8$ on the conventional smoothing scale. The following are hypotheses to test against specified datasets, not demonstrated resolutions:
 
 - **$H_0$ tension:** If neutral-assembly properties (e.g., a non-zero but small self-interaction or a late-time dissociation channel) modify distance-ladder or sound-horizon inference differently from pure CDM, the inferred $H_0$ can shift through one mechanism family.
-- **$S_8$ tension:** Scale-dependent medium response can suppress late-time growth at $k \sim 0.1$–$1\;h\,\mathrm{Mpc}^{-1}$, lowering $\sigma_8$ relative to early-time inference while leaving pre-decoupling structure largely unchanged.
+- **$S_8$ comparison:** A derived medium response must determine whether growth is enhanced or suppressed and at which scales. Reduced late-time power cannot be inferred from scale dependence alone, and preserving early-time fits must be tested with the same history.
 
 ### Growth-Module Interface
 
@@ -5499,34 +5548,36 @@ In the modular cosmology architecture, this chapter connects to other modules th
 - **Input from [expansion-mechanism.md](../../../../markdown/aaa/cosmology/expansion-mechanism.md):** $H(z)$ and $\Omega_m(z)$ for growth-equation integration.
 - **Input from [BBN-constraints.md](../../../../markdown/aaa/cosmology/BBN-constraints.md):** $N_{\mathrm{eff}}$ bound constraining allowed neutral-assembly species at MeV temperatures.
 
-All interfaces use the same absolute-time / Euclidean-space substrate and the same Noether sea state variables, ensuring ontological consistency across modules. The cosmology-level framing for those shared interfaces lives in [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md).
+These interfaces must be projections of one absolute-time and Euclidean-void history. A shared variable name alone does not establish consistency: clock, density, channel and redshift maps must agree on the overlapping domain. The framing for those requirements is [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md).
 
 ### Summary
 
-Dark-matter phenomenology in $\mathbb{A}\mathbb{A}\mathbb{A}$ is attributed to a hybrid of two mechanisms arising from the same Noether braid substrate:
+The working dark-sector hypothesis combines two proposed mechanisms within the same assembly ontology:
 
-- **Neutral assemblies** (Candidate A): electromagnetically transparent Noether braid configurations that cluster gravitationally, reproducing CDM-like behavior at cluster and cosmological scales.
-- **Noether sea response** (Candidate B): non-linear elastic corrections to effective gravity at low accelerations, providing scale-dependent modifications relevant to galaxy-scale phenomenology.
+- **Neutral assemblies** (Candidate A): candidate populations required to derive suppressed visible interactions, long-lived gravitational clustering and CDM-like cosmological behavior.
+- **Noether sea response** (Candidate B): candidate constitutive corrections required to account for galaxy-scale behavior consistently with lensing and growth.
 
-The working baseline is the hybrid (Candidate C), with neutral assemblies carrying the dominant mass fraction and medium response supplying corrections. Deriving the neutral-assembly mass spectrum, interaction cross-sections, and medium constitutive relations from the master equation is the critical open program.
+The hybrid baseline (Candidate C) assigns those roles without establishing either realization. Retained assembly dynamics, mass response, interaction rates, abundance and the shared medium law remain open. The comparison equations constrain what a successful account must recover; they do not supply the missing physical branch.
 
 ## Dark Energy
 
-This chapter treats dark energy as a Noether sea state problem inside the Noether sea rather than as literal expansion of the Euclidean void. Its job is to map the standard late-time acceleration data onto substrate evolution, effective equation-of-state language, and possible large-scale energy-partition mechanisms within $\mathbb{A}\mathbb{A}\mathbb{A}$.
+Dark energy names the effective component used to explain late-time accelerated expansion in standard cosmological fits. This chapter examines a candidate interpretation within $\mathbb{A}\mathbb{A}\mathbb{A}$: the [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md), an ambient population of neutral architrino assemblies, changes its collective state inside the fixed [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md). The void is the spatial container; the evolving medium is its content.
 
 The argument connects the fixed-void ontology and medium-level interpretation of accelerated expansion to effective Friedmann variables, redshift, black-hole recycling hypotheses, and the shared interface for cosmological closure.
 
 ### Scope and Purpose
 
-Standard $\Lambda\mathrm{CDM}$ cosmology attributes roughly 68% of the present energy budget to dark energy—a component with equation-of-state parameter $w \approx -1$ that drives late-time accelerated expansion. The simplest realization is a cosmological constant $\Lambda$, which enters Einstein's field equations as a geometric term equivalent to a constant vacuum energy density $\rho_\Lambda = \Lambda c^2 / (8\pi G) \approx 5.96 \times 10^{-27}\;\mathrm{kg\,m^{-3}}$ (Planck 2018 release values).
+The spatially flat base-$\Lambda\mathrm{CDM}$ fit in Planck 2018 attributes approximately 68% of the present energy budget to dark energy. This is a model-conditioned inference, not a direct inventory of a substance. Its simplest realization is a cosmological constant $\Lambda$, equivalent in the standard metric equations to constant mass-equivalent density $\rho_\Lambda=\Lambda c_0^2/(8\pi G)$. Here $c_0$ is the fixed observer-channel speed calibration and $G$ is the gravitational constant of the comparison theory.
+
+Throughout this chapter, cosmological $\rho$ variables denote mass-equivalent density, $u$ denotes energy per volume, and $p$ denotes pressure, also energy per volume. Thus $u=\rho c_0^2$ and $w=p/(\rho c_0^2)$. The exception $\rho_{\mathrm{NS}}$ is the canonical Noether braid number density per Euclidean volume; $n=\rho_{\mathrm{NS}}/\rho_{\mathrm{NS},0}$ is its dimensionless normalization. Converting a native energy inventory into observer density additionally requires a clock, volume, and energy-calibration map. Absolute time is $T$; effective cosmology time is $t_{\mathrm{eff}}$. They are related by a declared monotone clock map, not identified by notation.
 
 The central mapping claim is that late-time acceleration is not expansion of the Euclidean void itself—which is fixed, non-dynamical, and does not stretch—but a macroscopic readout of the evolving internal state of the Noether sea. The substrate-level mechanism and effective equation of state remain to be derived. Black holes are one possible mediator of the large-scale energy-partition history, not a replacement for the Noether sea ontology itself.
 
-The density-parameter success of the dark-energy entry is not by itself a substrate derivation. It means that late-time distance, CMB, growth, and curvature comparisons require a large effective component in the observer-level inventory. In this chapter the entry is therefore treated as observationally constrained but physically unresolved until the same Noether sea record supplies $\rho_{\mathrm{DE,eff}}$, $w_{\mathrm{eff}}$, and the shared residual behavior without changing projection maps between pipelines.
+The density-parameter fit does not supply a substrate derivation. Within the declared standard comparison, distance, cosmic microwave background (CMB), structure growth, and curvature information constrain a large effective component. Its Noether sea interpretation remains a hypothesis until one constitutive record supplies the effective density, pressure, and multi-probe behavior through maps fixed independently of the fitted outcome.
 
 #### Historical Comparison Discipline
 
-The history of the cosmological constant is useful because it shows how one symbol has carried several different jobs. In the late nineteenth-century Newtonian setting, a constant was used as a long-range modification of gravitation. In Einstein's 1917 model, $\Lambda$ was introduced to support a static matter-filled universe, then weakened when the static assumption and the model's stability failed. Later uses were again problem-driven: age estimates, galaxy-formation timing, quasar redshift distributions, steady-state matter creation, inflationary false-vacuum comparison, and finally the modern $\Lambda\mathrm{CDM}$ concordance fit.
+The history of the cosmological constant shows how one symbol has carried different jobs. O'Raifeartaigh and colleagues' historical review traces static Newtonian and relativistic cosmologies, the displacement of the static interpretation by expansion evidence, later age and galaxy-formation problems, and the modern $\Lambda\mathrm{CDM}$ fit. These uses do not establish one common material interpretation.
 
 The safe $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson is not that these historical roles reveal one ontology. The lesson is that a successful constant-like fit can be a mathematical regularizer, a static-model support term, an integration constant, a vacuum-energy comparison, an inflationary effective term, or a late-time observer parameter. This chapter therefore treats $\Lambda$ and dark energy as comparison language until a Noether sea constitutive derivation supplies the same value, time dependence, and residual behavior from the same Noether sea state record.
 
@@ -5546,14 +5597,14 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-650d0335c8d1eccc)
 
-where $\rho_m$ is the mean matter density in the static comparison, $R$ is the closed-universe radius used by that model, and $\kappa_E$ is the standard Einstein gravitational constant used in the comparison equations. Those equations are not a native $\mathbb{A}\mathbb{A}\mathbb{A}$ derivation of dark energy. They are a branch-support relation: $\Lambda$ was doing the job of holding a matter-filled static solution in place. Once the static assumption was weakened by redshift-distance evidence and by the instability of the static branch, the same symbol no longer had the same warrant.
+Here $\rho_m$ is dust mass density, $R$ is the closed-universe curvature radius, the dot is $d/dt_{\mathrm{eff}}$, and $\kappa_E=8\pi G/c_0^2$ is the density-form coupling. It differs from the stress-tensor coupling $8\pi G/c_0^4$ below. The relation follows from the static dust conditions $\Lambda c_0^2=4\pi G\rho_m$ and $c_0^2/R^2=4\pi G\rho_m$. It supports a particular comparison solution, not a native derivation of dark energy or a stability verdict.
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, this becomes a provenance constraint on any constant-like term. A fitted value may be retained as comparison language only after its branch role is named:
 
 $$
 \mathcal{B}_{\Lambda}
 \in
-\{\mathrm{static\ support},\mathrm{branch\ constant},\mathrm{vacuum\ comparison},\mathrm{late\text{-}time\ fit},\mathrm{Noether\text{-}Sea\ output}\}
+\{\mathrm{static\ support},\mathrm{branch\ constant},\mathrm{vacuum\ comparison},\mathrm{late\text{-}time\ fit},\mathrm{Noether\ sea\ output}\}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4d7efd9e9f73c12b)
@@ -5579,7 +5630,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-80716be6de715a5f)
 
-Thus the geometric-$\Lambda$ and vacuum-stress readings are the same comparison model written with the term on different sides of the equation. That equivalence should be preserved in the inherited effective theory. It should not be promoted into the stronger claim that the Euclidean void itself carries energy.
+This standard comparison uses $c=c_0$, a metric of signature $(-,+,+,+)$, and its Einstein tensor $G_{\mu\nu}$ and matter stress tensor $T_{\mu\nu}$. Moving the $\Lambda$ term across the equality gives the displayed vacuum stress exactly. The geometric-$\Lambda$ and vacuum-stress readings are therefore the same comparison model; this algebra does not assign energy to the Euclidean void.
 
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Foundations
 
@@ -5589,7 +5640,7 @@ The Euclidean void $\mathbb{R}^3$ with metric $h_{ij} = \delta_{ij}$ is static, 
 
 #### The Noether Sea Carries the Dynamics
 
-The Noether sea is the constitutive substrate from which effective spacetime behavior is reconstructed: a dense coupled population of neutral pro/anti Noether braids. Each Noether braid has internal energy stored across three indexed binaries whose field-speed regimes must be derived from its retained record. The collective state of the Noether sea—its local Noether braid density $\rho_{\text{NS}}(\mathbf X,T)$, normalized density $n(\mathbf X,T)$, internal energy spectrum, delay response $\chi_{\text{sea}}(\mathbf X,T)$, and anisotropy—defines the effective metric experienced by all embedded assemblies.
+The Noether sea is emergent physical content in the substrate, a coupled population of neutral Noether braids. A braid is a proposed organized assembly of architrinos, the point entities whose delayed wake interactions supply the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). The three-binary model below uses six architrinos arranged in three neutral pairs. Its realized population, energy accounting, and metric response require derivation. The state record collects number density $\rho_{\text{NS}}(\mathbf X,T)$, normalized density $n$, internal excitation spectrum, delay factor $\chi_{\text{sea}}=c_f/c_{\mathrm{eff}}$, and anisotropy. Here $c_f$ is primitive wake speed and $c_{\mathrm{eff}}$ is a candidate dressed assembly-channel speed.
 
 Late-time cosmological acceleration, in this picture, is a statement about how the aggregate properties of the Noether sea evolve on Hubble timescales, not about the container expanding.
 
@@ -5597,13 +5648,13 @@ Late-time cosmological acceleration, in this picture, is a statement about how t
 
 #### Baseline Energy of the Noether Sea
 
-In the candidate three-support-row case, each Noether braid in the Noether sea carries hypothesized internal binding energy distributed across its three persistent indices. This constitutive model does not identify a taxonomy member:
+The candidate three-binary model assigns internal energy to three persistently indexed pairs. The following assignments are hypotheses about a particular source record, not consequences of the indices or established equilibria:
 
-- **binary 1** ($v > c_f$, self-hit regime): highest energy density, tightest orbit, contributes to the gravitational charge and inertial mass of the assembly.
-- **binary 2** ($v = c_f$): defines the effective causal speed; carries intermediate energy.
-- **binary 3** ($v < c_f$): lowest energy density, largest radius; couples most directly to cosmological-scale dynamics through expansion/contraction modes.
+- **binary 1:** proposed high-frequency internal sector with constituent speed above $c_f$. A same-transmitter causal root must actually exist before any self-hit contribution is assigned; speed alone is insufficient.
+- **binary 2:** proposed sector near the field-speed threshold. Neither its speed nor its index determines the dressed observer-channel speed or an intermediate energy.
+- **binary 3:** proposed slowly responding tensile sector below $c_f$. Its radius, energy, response time, and exposure to the medium must be extracted from the same branch record; index 3 implies none of these orderings.
 
-The baseline energy density of the Noether sea is
+With a finite mean energy assigned under a declared assembly-energy convention, the baseline energy density is
 
 $$
 u_{\mathrm{sea}} = \rho_{\text{NS}}\,\langle E_{\mathrm{braid}} \rangle
@@ -5611,37 +5662,37 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-775738f0ce5865ce)
 
-where $\rho_{\text{NS}}$ is the canonical Noether braid density field and $\langle E_{\mathrm{braid}} \rangle$ is the mean energy per Noether braid. This quantity sets the scale of the effective dark-energy density:
+Here $\langle E_{\mathrm{braid}}\rangle$ is the population mean energy per braid. The product is number density times energy per object; it is a bookkeeping identity once those quantities are defined. A schematic observer projection is
 
 $$
-\rho_{\mathrm{DE,eff}} \sim u_{\mathrm{sea}}\,f(\text{binary-3 state})
+\rho_{\mathrm{DE,eff}} \sim \frac{u_{\mathrm{sea}}}{c_0^2}\,f(\text{binary-3 state})
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5f501885f73e7d29)
 
-where $f$ encodes what fraction of the baseline energy acts as an effective negative pressure on cosmological scales.
+The dimensionless factor $f$ summarizes the proposed energy exposure and native-to-observer volume/calibration conversion. It is not a derived fraction, and assigning a density this way does not determine its pressure.
 
 #### Why Negative Pressure?
 
-In standard thermodynamics, a system with equation of state $w = p/\rho < -1/3$ drives acceleration of the scale factor. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the candidate Noether sea pressure law would read out effective negative pressure through the following mechanism:
+In the homogeneous, isotropic general-relativistic comparison with constant $G$ and $c_0$, the acceleration equation is $\ddot a/a=-(4\pi G/3)\sum_i(\rho_i+3p_i/c_0^2)$. The dots use $t_{\mathrm{eff}}$. Acceleration requires the total sum to be negative; $w<-1/3$ for one subdominant component is insufficient. This is a gravity comparison, not a consequence of thermodynamics alone. The proposed Noether sea mechanism seeks an effective negative pressure through tensile stress.
 
-**binary-3 tension.** Each Noether braid's binary 3 is a bound oscillator in the $v < c_f$ regime. The binary 3 has a natural equilibrium radius set by the balance between partner attraction and coupling to the Noether sea. When the retained Noether sea state places binary-3 radii above the same-window equilibrium branch, the slowly varying binary-3 tension sector stores elastic energy and produces a restoring stress. The effective negative pressure appears only after that tensile stress is projected into the observer-level cosmology row.
+**Binary-3 tension.** The candidate model requires a bound, sub-field-speed binary-3 configuration with a separately established equilibrium radius in the surrounding medium. An outward displacement from that radius gives a restoring response only if the branch's constitutive law supplies one. A local inward response does not determine the population stress: orientation averaging, energy-volume dependence, and coupling to neighboring braids must produce a negative isotropic pressure in the observer projection.
 
-A uniform effective medium under projected tension has the thermodynamic signature $p < 0$. If the magnitude of the projected tension exceeds $\rho c^2/3$, the effective equation of state satisfies $w < -1/3$, which drives acceleration in the observer-level comparison.
+A uniform effective medium under isotropic projected tension has $p<0$. For a positive-density component, $|p|>\rho c_0^2/3$ gives $w<-1/3$; it drives total acceleration only when its contribution overcomes the matter and radiation terms.
 
-**Self-consistency requirement.** The tension must be nearly constant in time (slowly varying) to produce $w \approx -1$ rather than a rapidly oscillating or decaying equation of state. This requires that the binary-3 relaxation timescale is comparable to or longer than the Hubble time:
+**Self-consistency requirement.** The comparison $w\approx-1$ requires $p\approx-\rho c_0^2$, not merely slowly varying tension. For an unforced model in which tension relaxes on a single timescale, persistence over a Hubble time motivates
 
 $$
-\tau_{\mathrm{relax}}^{\mathrm{outer}} \gtrsim H_0^{-1} \approx 1.4 \times 10^{10}\;\mathrm{yr}
+\tau_{\mathrm{relax}}^{(3)} \gtrsim H_0^{-1}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d4f27359eb56f641)
 
-This sets a strong dynamical condition on binary-3 relaxation.
+Both durations must be measured in the same effective clock. This is a condition on that unforced relaxation model, not a necessary or sufficient condition for $w=-1$: driven steady stress can persist with rapid microscopic relaxation, and slow positive pressure does not cause acceleration.
 
 #### Quasi-Equilibrium and Release Channels
 
-The phrase "stretched beyond equilibrium" should be read as a local Noether sea state claim, not as a claim that the Euclidean void is stretched. For a representative Noether braid, let $R_3(t)$ be the binary-3 radius in the declared source record and let $R_{\mathrm{eq}}[\theta_{\mathrm{sea}}]$ be the radius selected by the surrounding Noether sea state record. A useful first strain variable is
+The phrase "stretched beyond equilibrium" refers to an assembly's radius. Let $R_3(T)$ be its binary-3 radius and let $R_{\mathrm{eq}}[\theta_{\mathrm{sea}}]>0$ be an independently established equilibrium radius for the same medium state $\theta_{\mathrm{sea}}$. A useful first strain variable is
 
 $$
 \epsilon_O
@@ -5655,7 +5706,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-12a905179b778a6d)
 
-This strain is not enough by itself to define pressure. The binary-3 sector must also say whether stored energy has an available release channel. If neighbouring Noether braids share the same diffused or slowly relaxing state, the local energy current can be nearly zero even when $\epsilon_O$ is nonzero. The medium is then in a quasi-equilibrium: not necessarily at the lowest available branch energy, but at a no-current balance point because no neighbouring state or boundary channel is able to accept the energy on the relevant timescale.
+The dimensionless strain $\epsilon_O$ does not define pressure. A constitutive model must also specify the stored energy and available release channels. Neighboring braids in similar states can have little net exchange despite nonzero strain, but zero net current alone establishes neither equilibrium nor stability; balanced opposing transfers can also produce it.
 
 The dark-energy pressure target is therefore a two-part constitutive statement. First, the retained Noether sea record must define stored strain energy in the binary-3 sector. Second, it must define the release or transfer rate that turns that stored energy into medium relaxation:
 
@@ -5672,14 +5723,14 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a9fcf66bbe23bfc8)
 
-Here $\mathcal A_{\downarrow}$ denotes the availability of lower-energy or accepting channels, and $\mathcal S_O$ denotes incoming source or neighbour loading. When $\mathcal A_{\downarrow}$ is small, stored binary-3 stress can persist and read out as slowly varying negative pressure. When an accepting channel opens, the same ledger can release energy into neighbouring Noether sea states or outward transport. A cascading relaxation claim is admissible only if the event ledger shows where that energy goes and the same $\theta_{\mathrm{sea}}$ still passes the redshift, CMB, lensing, growth, and calibration gates.
+Here $u_{O,\mathrm{rel}}$ is the candidate stored energy density of the selected sector, the dot denotes its local material derivative in absolute time, $\mathcal R_3$ is its energy-release rate per volume, $\mathcal A_{\downarrow}$ describes accepting channels, and $\mathcal S_O$ is incoming energy loading. This schematic balance assumes any spatial transport and volume work are included explicitly in those rates. A long-lived strain is a candidate source of negative pressure only after its stress projection is derived. Any cascade must identify the receiving energy channels and preserve the same medium-state predictions for redshift, cosmic microwave background (CMB), lensing, and structure growth.
 
 #### Medium Relaxation and the Expansion History
 
-The evolution of $\rho_{\mathrm{DE,eff}}(t)$ is governed by the collective relaxation of the Noether sea state. Schematically:
+The candidate history relates $\rho_{\mathrm{DE,eff}}(t_{\mathrm{eff}})$ to collective relaxation. Its epoch assignments below are hypotheses to be tested, not outcomes derived from the Master Equation:
 
 - At early times ($z \gg 1$), the Noether sea is dense and hot; binaries 3 are contracted, and the effective dark-energy contribution is subdominant relative to matter and radiation energy densities.
-- As the Noether sea cools and dilutes through structure formation and radiation escape, binaries 3 relax toward larger radii. The associated tension becomes dynamically significant when $\rho_{\mathrm{DE,eff}} \sim \rho_m$, which occurs at $z \sim 0.3$–$0.7$ (the onset of acceleration — an imported comparison anchor the relaxation law must hit, not a timescale the mechanism derives).
+- The proposed cooling and redistribution history allows binary-3 radii to relax toward larger values. In a dust-plus-constant-$\Lambda$ comparison, density equality occurs at $\rho_m=\rho_\Lambda$, whereas acceleration begins earlier, at $\rho_m=2\rho_\Lambda$. For $\Omega_{m,0}=0.315$ and $\Omega_{\Lambda,0}=0.685$, the algebra gives $z_{\mathrm{eq}}\approx0.296$ and $z_{\mathrm{acc}}\approx0.632$. These are benchmark outputs of the comparison assumptions, not timescales derived by the relaxation mechanism.
 - At late times ($z \to 0$), the Noether sea approaches a quasi-equilibrium state with slowly evolving tension, producing an approximately constant $\rho_{\mathrm{DE,eff}}$ and $w \approx -1$.
 
 This narrative must be made quantitative through a constitutive relation linking the Noether sea state variables to an effective pressure. The minimal parameterization is:
@@ -5716,7 +5767,7 @@ $$
 
 Here $\hat{\mathbf{n}}$ is the line of sight, $\mathcal{E}$ denotes source and host environment, $A_\mu\hat{\mathbf{d}}_\mu$ is a possible dipolar component, $\delta\mu_{\mathrm{cal}}$ records standardization and population-evolution corrections, $\delta\mu_{\mathrm{sea}}$ records Noether sea state contributions, and $\epsilon_\mu$ is the remaining noise term. A Noether sea acceleration or relaxation claim is promotable only after the dipole, calibration, and environment terms are either bounded below the claimed effect or derived from the same medium variables used elsewhere.
 
-The Type Ia progenitor-age dispute is a concrete example of this rule. One branch of the literature treats host or progenitor age as an unremoved redshift-dependent luminosity correction large enough to alter the inferred acceleration history; rebuttals argue that standard host-mass corrections and better host-to-progenitor age mapping already absorb or bound that effect. The $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson does not depend on choosing a winner in that dispute. The lesson is that a claimed acceleration-to-deceleration flip remains a source-calibration and population-evolution result until the residual survives after mass, dust, metallicity, progenitor age, selection, endpoint, and path-history terms are separated in one shared Noether sea record.
+Supernova host age and progenitor age are distinct calibration variables. Wiseman and colleagues (2026) test a proposed age-driven change in acceleration inference and report that host-mass corrections and the distinction between host and progenitor age remove or greatly reduce its supporting effects. This source identifies a concrete contested calibration claim; the present chapter does not independently adjudicate the datasets. A Noether sea explanation must retain mass, dust, metallicity, age, selection, endpoint, and transport uncertainties in the same comparison.
 
 The isotropic acceleration term is therefore a residual inference, not the first variable to name. A useful comparison packet should expose
 $$
@@ -5767,7 +5818,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-603de6098feee058)
 
-with $Z_{\mathrm{path},X}$ allowed to be positive or negative only when the corresponding energy and medium-state exchange rows close. The dark-energy residual must not treat all leftover frequency shift as expansion after suppressing endpoint, source, launch, or SZ-like path terms. It must show that the same $\theta_{\mathrm{sea}}$ supplies the redshift-transfer curvature, blackbody preservation, supernova flux factors, BAO ruler projection, and growth response.
+Here $Z_X=\ln(1+z_X)$, and each signed component is the logarithm of its corresponding multiplicative frequency ratio, with positive sign for a redshift. Ordinary redshifts do not add: two factors of $1.1$ give $1+z=1.21$, not $1.20$. A thermal Sunyaev-Zeldovich distortion redistributes a spectrum and need not admit a single line-frequency ratio; that comparison requires a frequency-resolved transfer operator. For a coherent line, either sign of $Z_{\mathrm{path},X}$ still requires a declared energy exchange. The same medium record must predict redshift, spectral shape, supernova flux, the baryon acoustic oscillation (BAO) ruler, and growth.
 
 The release-explicit benchmark is now concrete. The [full six-year Dark Energy Survey joint analysis](https://arxiv.org/abs/2605.27221) combines Type Ia supernovae, BAO, weak lensing, galaxy clustering, and galaxy-galaxy lensing in a $w_0$-$w_a$ comparison model. It reports a $2.2\sigma$ departure from a constant-$\Lambda$ fit for the DES-only combination, $2.3\sigma$ after adding DESI DR2 BAO, and $3.0\sigma$ after adding primary CMB information. The [DESI DR2 BAO analysis](https://arxiv.org/abs/2503.14738) separately reports that its BAO distances are well described by flat $\Lambda\mathrm{CDM}$, while the preference for the $w_0$-$w_a$ extension changes with the CMB and supernova combination. These are observer-level likelihood comparisons under a declared parameterization. They do not directly measure a dark-energy substance, establish that dark energy decreases, or select a Noether sea mechanism.
 
@@ -5788,23 +5839,22 @@ For a candidate Noether sea state parameter record $\theta_{\mathrm{sea}}$, defi
 $$
 \mathcal{R}_{\mathrm{shared}}(\theta_{\mathrm{sea}})
 =
-\sum_{X\in\mathcal{X}_{\mathrm{cos}}}
-r_X(\theta_{\mathrm{sea}},\nu_X)^{T}
-C_X^{-1}
-r_X(\theta_{\mathrm{sea}},\nu_X)
+\mathbf r(\theta_{\mathrm{sea}},\boldsymbol\nu)^T
+C_{\mathrm{joint}}^{-1}
+\mathbf r(\theta_{\mathrm{sea}},\boldsymbol\nu)
 \;+\;
 \lambda
 \sum_{X<Y}
 \left\|
-\Pi_X\theta_{\mathrm{sea}}
+ B_X\Pi_X\theta_{\mathrm{sea}}
 -
-\Pi_Y\theta_{\mathrm{sea}}
+ B_Y\Pi_Y\theta_{\mathrm{sea}}
 \right\|^2
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-d45375d6521cb67f)
 
-Here $r_X$ is the residual vector for observable family $X$, $\nu_X$ records nuisance and calibration variables, $C_X$ is the covariance model, and $\Pi_X$ projects the shared Noether sea state record into the variables consumed by that observable family. A dark-energy interpretation is promotable only if both the ordinary residuals and the cross-projection penalty can be controlled without replacing $\theta_{\mathrm{sea}}$ separately for each pipeline. The first mock validation artifact for this gate is [Cosmology Shared Residual Fit Protocol](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md).
+Here $\mathbf r$ stacks the observable residuals, $\boldsymbol\nu$ collects nuisance parameters, and $C_{\mathrm{joint}}$ is their full positive-definite covariance on the retained data subspace. Independent blocks reduce the quadratic form to $\sum_X r_X^T C_X^{-1}r_X$; that reduction requires an independence justification. Each $\Pi_X$ supplies the variables consumed by probe $X$. Only shared physical quantities may be compared: the declared maps $B_X$ convert those quantities to the same dimensionless coordinates before subtraction. The nonnegative dimensionless weight $\lambda$ is fixed in advance. Distinct predicted observables, such as distance and growth, are not required to be equal. A penalty built from one state by construction checks internal consistency, not independent evidence. [Cosmology Shared Residual Fit Protocol](../../../../markdown/aaa/validation/simulations/cosmology-shared-residual-fit.md) is a mock comparison, not a measured validation of the Noether sea law.
 
 #### Fitted, Integration, Vacuum, and Native Readings of $\Lambda$
 
@@ -5813,24 +5863,36 @@ The historical record requires a four-way separation. First, a fitted cosmologic
 $$
 \Lambda_{\mathrm{fit}}
 =
-\operatorname*{arg\,min}_{\Lambda,\nu_X}
-\sum_{X\in\{\mathrm{SN},\mathrm{BAO},\mathrm{CMB},\mathrm{growth}\}}
-r_X(\Lambda,\nu_X)^T C_X^{-1}r_X(\Lambda,\nu_X)
+\operatorname*{arg\,min}_{\Lambda}
+\left[
+\min_{\boldsymbol\nu}
+\mathbf r(\Lambda,\boldsymbol\nu)^T C_{\mathrm{joint}}^{-1}
+\mathbf r(\Lambda,\boldsymbol\nu)
+\right]
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f0a38e4631e89d81)
 
-Second, an integration-constant reading treats $\Lambda$ as a branch constant fixed by the effective solution class rather than as a local material density. In comparison language this means
+The inner minimization profiles the nuisance variables; the outer minimizer is a value or set of values of $\Lambda$, not the full joint parameter tuple. This Gaussian fixed-covariance expression needs the full likelihood when the covariance depends on parameters or the data are non-Gaussian.
+
+Second, an integration-constant reading treats $\Lambda$ as a constant of an effective solution class. For constant $G$ and $c_0$, the metric field equation, its contracted Bianchi identity, and conserved matter stress jointly give
 
 $$
-\nabla_\mu T^{\mu\nu}_{\mathrm{eff}}=0
+\left\{
+\begin{aligned}
+G^{\mu\nu}_{\mathrm{eff}}+\Lambda_{\mathrm{int}}g^{\mu\nu}_{\mathrm{eff}}
+&=\frac{8\pi G}{c_0^4}T^{\mu\nu}_{\mathrm{eff}}\\
+\nabla_\mu G^{\mu\nu}_{\mathrm{eff}}&=0\\
+\nabla_\mu T^{\mu\nu}_{\mathrm{eff}}&=0
+\end{aligned}
+\right.
 \quad\Longrightarrow\quad
-\Lambda_{\mathrm{int}}=\text{constant on the chosen effective branch}
+\partial_\mu\Lambda_{\mathrm{int}}=0
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3d475681b2dfb841)
 
-but it does not explain why that branch constant has the observed value.
+Metric compatibility makes the divergence of $\Lambda_{\mathrm{int}}g^{\mu\nu}_{\mathrm{eff}}$ equal to the gradient of $\Lambda_{\mathrm{int}}$, so it is constant on each connected domain under these assumptions. Matter conservation alone supplies no such conclusion. Calling this an integration constant additionally requires an effective formulation whose integration introduces it; neither the divergence identity nor that interpretation fixes its observed value.
 
 Third, a vacuum-energy estimate belongs to continuum QFT comparison. If $\rho_{\mathrm{vac}}^{\mathrm{QFT}}$ is a mass-equivalent density estimate from zero-point, electroweak, QCD, and other effective field contributions, then the standard comparison map is
 
@@ -5917,36 +5979,36 @@ with all $\Delta_X$ controlled by the same covariance and nuisance records used 
 
 Thermodynamic readings of the cosmological constant are useful only at the effective geometry level. In standard metric language, $\Lambda$ multiplies a four-volume term in the gravitational action. In $\mathbb{A}\mathbb{A}\mathbb{A}$, that observation should not be imported as a fundamental spacetime-volume ontology. The native question is whether a shared Noether sea state record can make the observer-level $\Lambda_{\mathrm{eff}}$ act like a conjugate variable to an effective four-volume summary while preserving the same residual gates used above.
 
-For a candidate Noether sea state record $\theta_{\mathrm{sea}}$, let $V_4^{\mathrm{eff}}[\theta_{\mathrm{sea}}]$ denote the effective observer-level four-volume reconstructed over a stated comparison domain, and let $Q_a[\theta_{\mathrm{sea}}]$ denote the conserved or provenance quantities held fixed during the comparison. A minimal thermodynamic closure functional is
+For a candidate state $\theta_{\mathrm{sea}}$, let $V_4^{\mathrm{eff}}$ be the observer-level four-volume over a declared domain, measured with $x_{\mathrm{eff}}^0=c_0t_{\mathrm{eff}}$ so it has units of length to the fourth power. Let $S_{\mathrm{sea}}$ be a dimensionless statistical entropy whose ensemble and coarse-graining are specified, and let $Q_a$ be constraints held fixed. An entropy-constrained comparison functional is
 
 $$
 \mathcal{P}_{\Lambda}
-\bigl(\theta_{\mathrm{sea}};\Lambda_{\mathrm{eff}},\{\mu_a\}\bigr)
+\bigl(\theta_{\mathrm{sea}};\zeta_4,\{\mu_a\}\bigr)
 =
 S_{\mathrm{sea}}[\theta_{\mathrm{sea}}]
 -
-\Lambda_{\mathrm{eff}}\,V_4^{\mathrm{eff}}[\theta_{\mathrm{sea}}]
+\zeta_4\,V_4^{\mathrm{eff}}[\theta_{\mathrm{sea}}]
 -
 \sum_a \mu_a Q_a[\theta_{\mathrm{sea}}]
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a4d41fa045dee968)
 
-The closure target is stationarity of this functional under allowed Noether sea variations,
+The multiplier $\zeta_4$ has units of inverse fourth power of length, and each $\mu_aQ_a$ is dimensionless. It cannot be identified with $\Lambda_{\mathrm{eff}}$, which has units of inverse length squared. When an entropy extremum exists and its optimized value $S_{\mathrm{sea}}^\ast(V_4^{\mathrm{eff}},Q_a)$ is differentiable, its conjugacy relation is
 
 $$
 \frac{\delta \mathcal{P}_{\Lambda}}{\delta \theta_{\mathrm{sea}}}=0,
 \qquad
-\Lambda_{\mathrm{eff}}
+\zeta_4
 =
 \left.
-\frac{\partial S_{\mathrm{sea}}}{\partial V_4^{\mathrm{eff}}}
+\frac{\partial S_{\mathrm{sea}}^\ast}{\partial V_4^{\mathrm{eff}}}
 \right|_{Q_a}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-734890a3102149fd)
 
-with $\Lambda_{\mathrm{eff}}>0$ only if the same $\theta_{\mathrm{sea}}$ also passes $\mathcal{R}_{\mathrm{shared}}$. This makes small positive $\Lambda_{\mathrm{eff}}$ a constrained output of Noether sea state entropy and conserved-record selection, not a license to fit an isolated constant after the fact. If the stationary point requires changing $\theta_{\mathrm{sea}}$ separately for SN, BAO, CMB, WL, RSD, or BBN, the thermodynamic reading fails as a closure and remains only a comparison analogy.
+Stationarity is necessary for an interior extremum; it does not establish a maximum or a stable physical state. A separate dimensionally defined constitutive map from $\zeta_4$ and the constrained state to $\Lambda_{\mathrm{eff}}$ is still required. Neither the sign nor smallness of $\Lambda_{\mathrm{eff}}$ follows from this functional. Weak lensing (WL), redshift-space distortions (RSD), and big-bang nucleosynthesis (BBN), alongside the other probes, constrain a proposed map but do not derive the entropy or the map.
 
 #### Cosmological-Constant and Creation-Source Discipline
 
@@ -6017,7 +6079,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-eafd116dfe490285)
 
-The closure condition is $\mathcal{R}_{\mathrm{role}}\to 0$ without changing $\theta_{\mathrm{sea}}$ between the distance, age, growth, and source ledgers. A negative sign in an effective fluid may be retained only as a sign in the comparison stress tensor; it does not license negative masses as native assemblies. A phase-transition or vacuum-energy comparison may constrain $\dot{\Lambda}_{\mathrm{eff}}$ or the shielding law; it does not make $\Lambda_{\mathrm{eff}}(t_{\mathrm{eff}})$ fundamental. A Hubble-age repair may motivate a branch constant; it does not supply $\mathcal{S}_{m,\mathrm{eff}}$. This protects the Noether sea derivation from smuggling negative masses, matter creation, or variable $\Lambda$ into $\mathbb{A}\mathbb{A}\mathbb{A}$ as doctrine.
+The norm here means a weighted norm: divide each component difference by a separately declared positive tolerance in its own units before combining them. Mass density, pressure, mass-density rate, and $\dot\Lambda_{\mathrm{eff}}$ cannot be added as unscaled numbers. The source and constant-rate entries use $t_{\mathrm{eff}}$. Agreement must use the same state for the distance, age, growth, and source accounts. A negative sign in an effective stress tensor does not establish native negative mass, and a fitted branch constant does not supply a matter-production channel.
 
 The same translation applies to "negative energy" language. In the native ledger, the sign belongs to an effective stress projection or transfer term:
 $$
@@ -6030,13 +6092,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-c4078a7ea47a6abe)
 
-not to a new negative-energy assembly. A dark-energy branch may expose shielded energy with a negative-pressure readout, or route energy between matter, radiation, black-hole recycling, and Noether sea tension sectors, but the event ledger must still close with positive native inventories and declared transfer signs.
+These signs describe an effective pressure, a signed energy transfer, or a projection of the declared sea account $\mathcal L_{\mathrm{sea}}$. Negative pressure is not negative energy density. A proposed transfer must specify its energy reference and all receiving and boundary terms; positivity and conservation of a native energy functional require their own derivations.
 
 ### Effective Friedmann Framework
 
 #### Background Equations
 
-In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the Friedmann equations are not fundamental but remain comparison-layer summaries targeted for recovery from one retained record: the effective large-scale description of the evolving Noether sea in the homogeneous, isotropic limit. The effective Hubble rate is:
+The Friedmann equations are observer-level recovery targets. For a spatially flat homogeneous, isotropic comparison with constant $G_{\mathrm{eff}}$ and $c_0$, define $H=H_{\mathrm{eff}}=\dot a/a$ in effective time. The background equation is
 
 $$
 H^2(z) = \frac{8\pi G_{\mathrm{eff}}}{3}\bigl[\rho_r(z) + \rho_m(z) + \rho_{\mathrm{DE,eff}}(z)\bigr]
@@ -6044,7 +6106,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9790ce7ac7cd0254)
 
-where $\rho_r$, $\rho_m$, and $\rho_{\mathrm{DE,eff}}$ are the effective energy densities of radiation-mode assemblies, matter assemblies (baryonic + neutral dark assemblies), and the Noether sea baseline/tension term respectively. In the standard limit, $G_{\mathrm{eff}} \to G_N$ and $\rho_{\mathrm{DE,eff}} \to \rho_\Lambda = \text{const}$, recovering $\Lambda\mathrm{CDM}$.
+The three densities are mass-equivalent observer densities of radiation, matter, and the candidate dark-energy contribution. Spatial curvature would add $-kc_0^2/a^2$ with a declared curvature normalization. Recovering the standard background also requires the matter and radiation evolution laws, constant gravitational coupling, and the same observer map; replacing only the dark-energy density by a constant does not establish full $\Lambda\mathrm{CDM}$ recovery.
 
 If the dark-energy term dominates and remains effectively constant, then the comparison equation gives nearly constant $H$. The corresponding homogeneous observer variable has the exponential form
 
@@ -6066,14 +6128,14 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-62bf4728333bdaae)
 
-where $w_{\mathrm{eff}} = p_{\mathrm{sea}}/\rho_{\mathrm{DE,eff}}$ and $\mathcal{S}_{\mathrm{relax}}$ is a source term encoding energy exchange between the dark-energy sector and other components during medium relaxation. In the $\Lambda\mathrm{CDM}$ limit, $w_{\mathrm{eff}} = -1$ and $\mathcal{S}_{\mathrm{relax}} = 0$.
+Here $p_{\mathrm{sea}}$ means the observer-projected pressure of this sector, $w_{\mathrm{eff}}=p_{\mathrm{sea}}/(\rho_{\mathrm{DE,eff}}c_0^2)$, and $\mathcal S_{\mathrm{relax}}$ has units of mass-equivalent density per effective time. Energy-transfer rates must be divided by $c_0^2$ and converted to the same time and volume before entering it. Transfers among included components cancel in the summed source account; any external exchange remains explicit. A constant density implies $w_{\mathrm{eff}}=-1$ only on the source-free expanding branch. With a source, constant density instead requires $\mathcal S_{\mathrm{relax}}=3H_{\mathrm{eff}}(1+w_{\mathrm{eff}})\rho_{\mathrm{DE,eff}}$.
 
 #### Equation of State: Effective Descriptor
 
 The equation-of-state parameter
 
 $$
-w = \frac{p}{\rho}
+w = \frac{p}{\rho c_0^2}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b976c25fbf98ae4b)
@@ -6086,7 +6148,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-558db0f2184488c8)
 
-with $a = 1/(1+z)$ the effective scale factor (defined operationally through the redshift of photon-mode assemblies).
+Here $a(t_{\mathrm{eff,obs}})=1$ is the normalized effective scale factor. The relation $a=1/(1+z)$ applies to the corrected cosmological redshift in the metric propagation comparison. Defining a redshift label this way alone does not establish the temporal expansion rate or the distance and packet-duration laws.
 
 For a constant fitted $w$ with no explicit source term, the standard continuity equation gives
 
@@ -6111,7 +6173,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-cf9e527cd4ca3cf7)
 
-In a Noether sea state model, the same fitted trend can absorb at least three distinct effects: the native pressure ratio $w_{\mathrm{source}}(a)$, an actual source or transfer term $\mathcal{S}_{\mathrm{relax}}$, and drift in the observer-level map from Noether sea variables to effective dark-energy density. If
+In a Noether sea model, the fitted trend can absorb the projected physical pressure ratio $w_{\mathrm{source}}=p_{\mathrm{sea}}/(\rho_{\mathrm{DE,eff}}c_0^2)$, an actual source $\mathcal S_{\mathrm{relax}}$, and observer-map drift. On this same comparison branch $w_{\mathrm{source}}=w_{\mathrm{eff}}$ in the sourced continuity equation; it is not a primitive pressure law. If
 $$
 \rho_{\mathrm{DE,fit}}(a)
 =
@@ -6120,7 +6182,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-b7c2ae39395a1ef3)
 
-with $\Pi_{\mathrm{DE}}$ denoting the declared projection from the shared medium record into the fitted dark-energy density, then the accounting identity is
+with positive differentiable dimensionless $\Pi_{\mathrm{DE}}$ and positive $\rho_{\mathrm{DE,eff}}$, differentiation using $d\ln a/dt_{\mathrm{eff}}=H\ne0$ gives
 $$
 1+w_{\mathrm{obs}}(a)
 =
@@ -6140,11 +6202,11 @@ This split prevents a time-varying $w(a)$ preference from being promoted too qui
 
 Standard quantum-gravity discussions often use de Sitter space as the clean comparison model for a universe with asymptotically constant positive dark energy. In holographic language, the speculative target is a boundary or statistical description associated with the far future. In this chapter, that comparison should remain effective rather than ontological: $a_{\mathrm{eff}}(t_{\mathrm{eff}})$, $H_{\mathrm{eff}}(t_{\mathrm{eff}})$, and $w(a_{\mathrm{eff}})$ are observer-level summaries of Noether sea evolution, not fundamental variables of the Euclidean void.
 
-The strongest lesson from modern string and holographic debates is that de Sitter comparison cannot be treated as a minor variant of the anti-de Sitter case. Anti-de Sitter control relies on a spatial boundary where a conformal theory can be placed; the de Sitter-like late universe instead gives observers horizon-limited access inside an evolving Noether sea state. The local target is therefore an observer-horizon accounting rule, not a literal boundary CFT.
+Anti-de Sitter and de Sitter geometries have different causal boundaries. In the standard conformal description, the anti-de Sitter boundary is timelike, whereas future infinity in de Sitter is spacelike and individual observers have cosmological horizons. A boundary conformal field theory (CFT) is a comparison proposal, not a Noether sea constituent. The relevant local question is which records remain accessible to an observer.
 
 Horizon-limited access also means that a de Sitter-like fit inside one observer's accessible region does not by itself select the global continuation of the universe. The data product to preserve is the horizon-accessible expansion, curvature, entropy, and SN/BAO/CMB/growth record. A global asymptotic state remains an effective reconstruction unless the same Noether sea record removes the ambiguity described in [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md#global-reconstruction-promotion-gate).
 
-Time-varying dark energy would weaken the usefulness of exact de Sitter comparison because the far-future state would not be a fixed de Sitter limit unless the variation eventually stops. The local closure target is therefore not a literal dS/CFT correspondence. It is a Noether sea state law that tells when the observer-level fit approaches $w_{\mathrm{eff}} \approx -1$, when it departs from that value, and how those departures remain compatible with redshift, clock-rate, BAO, CMB, and structure-growth benchmarks.
+Time-varying dark energy need not preclude an asymptotic de Sitter limit: the effective Hubble rate can tend to a positive constant without becoming exactly constant at any finite time. Nor does $w\to-1$ alone establish that limit; source terms and the limiting density matter. The target here is a Noether sea state law that predicts the limiting Hubble history and its departures while remaining compatible with redshift, clock rates, BAO, CMB, and structure growth.
 
 A useful way to keep that comparison disciplined is to make the observer-horizon residual explicit. For a shared Noether sea record $\theta_{\mathrm{sea}}$ and a Physical Observer $O$, define a schematic de Sitter comparison residual
 $$
@@ -6159,9 +6221,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a622a70c8174e152)
 
-The distances here are comparison metrics fixed by the data product being tested, not new ontological variables. The residual passes only when the same $\theta_{\mathrm{sea}}$ accounts for the effective Hubble history, equation-of-state fit, curvature bound, horizon-access entropy, and SN/BAO/CMB/growth records. This keeps de Sitter language as an observer-level benchmark rather than a boundary theory imported into the Euclidean void.
+Each $d$ is a dimensionless discrepancy normalized by a declared scale or uncertainty. $H$ measures the effective expansion rate, $\Omega_k$ the effective curvature parameter, $S_{\mathrm{hor}}^{(O)}$ a proposed entropy associated with the records accessible to observer $O$, and $\mathcal B$ the multi-probe predictions. An entropy benchmark is a theoretical comparison until an actual instrument and observable are supplied. Correlated data must use a joint statistical treatment; this schematic sum is not itself a likelihood or a measured validation.
 
-A fitted value $w_{\mathrm{eff}} < -1$ requires special care. In standard perfect-fluid language, persistent phantom behavior threatens the energy-condition and causality assumptions that also protect ordinary horizon and wormhole results. In this framework, such a fit is admissible only if it is an effective transfer signature, for example energy being routed between matter, radiation, black-hole recycling channels, and the slowly varying binary-3 tension sector. It should not be read as permission for acausal propagation or unaccounted energy creation.
+A fitted value below $-1$ requires separating the fit from physical pressure. A positive-density perfect fluid with physical $w<-1$ has $\rho c_0^2+p<0$, violating the standard null energy condition; this algebra alone proves neither superluminal propagation nor acausality. A fitted $w_{\mathrm{obs}}<-1$ can also arise from source loading or projection drift in the accounting identity above. The responsible Noether sea mechanism and its causal energy-transfer account remain to be derived.
 
 The practical inference rule is stronger than a verbal caution. A $w_{\mathrm{eff}} < -1$ preference must be rechecked against the theory space allowed in the fit: scalar-tensor drift in $G_{\mathrm{eff}}$, environment-dependent coupling, source-history loading, and changes in the projection from $\theta_{\mathrm{sea}}$ to the fitted density can all make a restricted comparison model report phantom-like behavior. The promoted object is therefore the shared SN/BAO/CMB/lensing/growth data product and its covariance record, not the phantom label itself.
 
@@ -6177,24 +6239,24 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-08541699b20151cd)
 
-which for $\Lambda_{\mathrm{UV}} = M_{\mathrm{Pl}}c$ exceeds the observed $\rho_\Lambda$ by $\sim 120$ orders of magnitude. This is the cosmological-constant problem.
+Here $\Lambda_{\mathrm{UV}}$ is an energy cutoff, $\hbar$ is the reduced Planck constant, and $c=c_0$ in the comparison calibration. A Planck-energy cutoff is $\Lambda_{\mathrm{UV}}=M_{\mathrm{Pl}}c_0^2$, not the momentum scale $M_{\mathrm{Pl}}c_0$. Integrating a relativistic mode energy $c_0p$ against the three-dimensional momentum measure gives energy density proportional to $c_0p_{\max}^4/\hbar^3$; dividing by $c_0^2$ and substituting $p_{\max}=\Lambda_{\mathrm{UV}}/c_0$ gives the displayed mass density. Its precise coefficient and physical significance depend on field content and renormalization. The familiar approximately 120-order hierarchy is a cutoff comparison, not a measurement of a bare vacuum reservoir.
 
 The comparison should be stated carefully. A single harmonic oscillator's zero-point term is an additive energy offset relative to a chosen classical normalization, and an ordinary nongravitating quantum field theory can renormalize the vacuum-energy constant. The crisis appears when gravity and cosmology ask what constant actually couples to the large-scale curvature channel. The problem is therefore not that the continuum mode sum literally proves an infinite energy in empty space; it is that natural changes in the effective vacuum constant appear vastly larger than the observed cosmological term.
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the problem is reframed as an ontology mismatch:
 
-- QFT zero-point energies are not physical observables of the Euclidean void (which carries no energy). They are artifacts of the continuum-field approximation applied to a substrate that is fundamentally discrete (point architrinos) and finite (a definite number of Noether braid assemblies per unit volume).
+- QFT vacuum terms belong to an effective-field description and do not measure energy of the Euclidean void. Discrete point constituents and finite number density alone impose no minimum separation, finite mode-energy bound, or ultraviolet cutoff. The gravitational response to effective vacuum terms remains a recovery problem even after changing ontology.
 - In the candidate source record used here, binaries 1 and 2 are hypothesized to store large local energy densities (self-hit regime, $v > c_f$ and $v = c_f$), but this energy would be locked into high-frequency orbital modes rather than exported as a cosmological constant. Only the slowly varying, large-scale stress provisionally assigned to binary 3 contributes to $\rho_{\mathrm{DE,eff}}$ in this candidate map. None of these roles is a meaning of the persistent indices.
 - The observed smallness of $\rho_\Lambda$ relative to naïve QFT estimates would then reflect most internal Noether braid energy being dynamically inert on Hubble timescales — shielded by the source record indexed-support hierarchy rather than canceled by fine-tuning. This shielding is the candidate mechanism whose derivation is the coupling-selection theorem target below, not an established fact.
 
 #### Coupling-Selection Target
 
-The shielding statement is a theorem target. Let $\rho_{\mathrm{locked}}^{\mathrm{inner+middle}}$ denote the internal energy density stored in high-frequency inner and middle Noether sea modes, and let $\rho_{\mathrm{metric}}^{\mathrm{inner+middle}}$ denote the part of that energy exposed to the observer-level metric channel. A viable closure must show
+The shielding statement is a theorem target. Let $\rho_{\mathrm{locked}}^{\mathrm{inner+middle}}>0$ denote the mass-equivalent inventory provisionally assigned to the two high-frequency sectors, and let $\rho_{\mathrm{metric}}^{\mathrm{inner+middle}}$ be their homogeneous cosmological projection. The superscript labels are local sector names; no radius order follows from them. To suppress that contribution one needs
 
 $$
 \epsilon_{\mathrm{shield}}
 =
-\frac{\rho_{\mathrm{metric}}^{\mathrm{inner+middle}}}
+\frac{\left|\rho_{\mathrm{metric}}^{\mathrm{inner+middle}}\right|}
 {\rho_{\mathrm{locked}}^{\mathrm{inner+middle}}}
 \ll 1
 $$
@@ -6215,13 +6277,13 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-80f837df59398b62)
 
-This separates two claims that are often conflated. The first claim is a shielding claim: large internal energies do not automatically enter the effective cosmological constant. The second is an exposure claim: binary-3 stress, transport history, and validated recycling channels can still contribute to the effective dark-energy sector. Both must be derived from one Noether sea response law; otherwise the proposal merely moves the cosmological-constant fine-tuning into an unaccounted coupling rule.
+Fractional suppression alone is insufficient. If the remainder has a uniform bound $C\epsilon_{\mathrm{shield}}\rho_{\mathrm{locked}}^{\mathrm{inner+middle}}$, it must be smaller than the independently specified cosmological density tolerance. An enormous locked inventory can leave an unacceptable residual even when $\epsilon_{\mathrm{shield}}\ll1$. The slow stress and transport contributions must also be derived from the same response law. Defining a small projection by hand explains neither its magnitude nor its stability under changes of state.
 
 #### Comparison to Sequestering and Degravitation Proposals
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism is structurally similar to vacuum-energy sequestering proposals (Kaloper & Padilla 2014) in which high-energy modes are dynamically decoupled from the gravitational sector. The key difference is that $\mathbb{A}\mathbb{A}\mathbb{A}$ proposes a concrete physical mechanism for the decoupling — indexed-support shielding, still pending its coupling-selection theorem — rather than imposing it through a global constraint or modified variational principle.
+Kaloper and Padilla's 2014 vacuum-energy sequestering framework modifies the gravitational formulation to remove protected matter-sector vacuum contributions. The comparison is limited to selective gravitational coupling. The Noether sea shielding proposal remains a hypothesis without a derived suppression law; identifying internal sectors does not yet provide a mechanism with the demonstrated cancellation properties of that separate comparison model.
 
-Finite-range gravity and massive-gravity programs are useful here only as comparison frameworks. Their durable lesson is not that the Noether sea should contain a massive graviton, but that any large-scale weakening of gravity must pass a local-recovery gate: solar-system, binary-pulsar, lensing, and gravitational-wave regimes must remain GR-like while a cosmological-scale response is allowed to differ. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, that burden belongs to the same Noether sea constitutive map that sets $G_{\text{eff}}$, $\chi_{\text{sea}}$, clock-rate response, and growth history. A degravitation-like dark-energy channel is admissible only if the shielding residual is suppressed at the effective cosmological scale without weakening the already validated weak-field and gravitational-wave channels.
+Finite-range and massive-gravity theories provide comparisons for scale-dependent response. Any Noether sea proposal must preserve the tested observer-level weak-field, lensing, pulsar, and gravitational-wave constraints while accounting for the homogeneous cosmological contribution. Those empirical constraints are recovery targets here; this chapter does not establish that the Noether sea has already recovered them.
 
 ### Redshift as Clock Comparison
 
@@ -6229,11 +6291,11 @@ Finite-range gravity and massive-gravity programs are useful here only as compar
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, cosmological redshift is not caused by the stretching of space (the void does not stretch). It is read through endpoint clock-cadence comparison, source-branch state, launch geometry, and path-history propagation through the Noether sea:
 
-- A photon-mode assembly emitted at effective cosmic time $\tau_{c,e}$, corresponding to substrate time $t_e$ in the exact record, carries a frequency set by the Noether braid oscillation rates of the source assembly at that epoch.
-- At the reception epoch $\tau_{c,o}$, corresponding to substrate time $t_o$, the observer's local clock rate is set by the current Noether sea state.
-- If the Noether sea state has evolved between $t_e$ and $t_o$—specifically, if binary-3 radii have increased and internal frequencies have decreased—then the received frequency can be lower than the emitted frequency after endpoint cadence, launch, source-branch, and path-history factors are separated. This is the operational content of $1 + z = \nu_e/\nu_o$.
+- At absolute emission time $T_e$, a source clock has rate $\Gamma_e=d\tau_e/dT$. If its calibrated line frequency per clock time is $\nu_{\mathrm{ref},e}$, its phase cadence per absolute time is $\Gamma_e\nu_{\mathrm{ref},e}$.
+- At reception time $T_o$, a receiver clock has rate $\Gamma_o=d\tau_o/dT$. If the net phase-transport factor is $\mathcal T_\gamma>0$, the observed frequency is $\nu_o=\mathcal T_\gamma(\Gamma_e/\Gamma_o)\nu_{\mathrm{ref},e}$.
+- With reception reference line $\nu_{\mathrm{ref},o}$, operational redshift is $1+z=\nu_{\mathrm{ref},o}/\nu_o$. A slowing receiver clock alone increases its measured frequency per clock time. Redshift therefore does not follow from growing binary-3 radii or decreasing local cadence without the signed source, endpoint, launch, and path factors.
 
-The redshift-distance relation $z(d_L)$ encodes the entire history of Noether sea state evolution along the photon's path. In the effective Friedmann description, this is captured by:
+The luminosity distance $d_L$ is defined by observed bolometric flux $F=L/(4\pi d_L^2)$ for calibrated luminosity $L$. It constrains a projection of source and path history, not a unique complete history. In the spatially flat metric comparison with constant $c_0$, conserved photon number, and the usual frequency and arrival-rate factors,
 
 $$
 d_L(z) = (1+z)\int_0^z \frac{c_0\,dz'}{H(z')}
@@ -6241,7 +6303,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-48423898e2e6f65b)
 
-where $c_0$ is the asymptotic observer-channel speed used in the effective comparison layer. This serves as the effective expansion-history map used by observers.
+Here $H(z)$ is the temporal expansion rate in that comparison chart. The formula requires the metric distance law and its flux-transfer assumptions. A Noether sea redshift fit alone does not establish them; curvature, attenuation, or different packet-duration transfer requires its own distance map.
 
 The native handoff to [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md) is more constrained than a raw $z(d_L)$ fit. The dark-energy sector supplies a candidate Noether sea state history that must reproduce the corrected propagation residual $Z_{\mathrm{prop},X}$ after endpoint cadence, source-branch state, and launch geometry have been removed. Its effective $H(z)$ curve is therefore a comparison summary of the same Noether sea state, not an independent expansion of the Euclidean void.
 
@@ -6273,13 +6335,13 @@ $$
 \left(
 \ln\chi_\gamma,\,
 \ln n,\,
-\ln R_{\text{braid}}
+\ln(R_{\text{braid}}/R_{\text{braid},0})
 \right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-a1c6cb61b1bec984)
 
-The matrix $\mathbf{J}_{\mathrm{DE}}$ is a constitutive derivative of the Noether sea response law, not a new dark-energy fluid. The residual term $\partial_{t_{\mathrm{eff}}}\boldsymbol{\theta}_{\gamma,\mathrm{local}}$ records local environment, source-neighborhood, and calibration effects that must be separated before attributing a redshift-transfer slope to the dark-energy sector.
+Here $\chi_\gamma=c_0/c_\gamma$ is the photon delay factor, $n$ is normalized braid density, and $R_{\text{braid},0}>0$ is a fixed reference for the positive braid scale. All logarithms have dimensionless arguments. The matrix $\mathbf J_{\mathrm{DE}}$ is a proposed linear response from the four dark-energy rates into these three logarithmic rates. Its entries require independent constitutive extraction. Local environment and omitted response remain in the explicit local term. Converting native rates requires the same clock map, for example $d/dt_{\mathrm{eff}}=(dT/dt_{\mathrm{eff}})d/dT$ along the declared history.
 
 Inserted into the propagation functional, the dark-energy contribution has the schematic form
 
@@ -6301,7 +6363,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-92c6c406b9ee0e5c)
 
-This is a derivation target. It says that $\rho_{\mathrm{DE,eff}}$, $w_{\mathrm{eff}}$, and recycling source terms become observable in redshift only by changing the Noether sea delay, density, or braid-scale state sampled by the photon path. If the same $\mathbf{J}_{\mathrm{DE}}$ cannot also support CMB, BAO, supernova, and growth projections, then the dark-energy handoff has not closed.
+This is a proposed first-order temporal contribution to the propagation slope per path length. The sensitivities $a_\chi^X$, $a_n^X$, and $a_R^X$ are dimensionless logarithmic response coefficients for line family $X$. The displayed conversion assumes $c_\gamma=ds/dt_{\mathrm{eff}}>0$ in the same path coordinate $s$; it is not an automatic identification with the native speed $d\ell/dT$. Spatial gradients, endpoint terms, and other response contributions require their own terms. The same independently determined coefficients must support the other observable projections.
 
 #### First-Order Coefficient Packet
 
@@ -6327,7 +6389,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-905347cb5964d6d4)
 
-Each entry has dimensions of inverse time. The matrix $\mathbf{J}_{\mathrm{DE}}$ is therefore dimensionless in the minimal first-order closure, because it maps rate variables in $\mathbf{q}_{\mathrm{DE}}$ to the rate vector $\partial_{t_{\mathrm{eff}}}\boldsymbol{\theta}_\gamma$. For a clean line family $X$, define the transport-facing coefficient row
+Each entry has dimensions of inverse effective time. Logarithmic density derivatives mean derivatives of $\ln(\rho_{\mathrm{DE,eff}}/\rho_\ast)$ for a fixed positive density reference $\rho_\ast$. The matrix $\mathbf{J}_{\mathrm{DE}}$ is dimensionless in this first-order model, since it maps four rates into three logarithmic rates. For a clean line family $X$, define the transport-facing coefficient row
 
 $$
 \boldsymbol{\lambda}_X^T
@@ -6367,7 +6429,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4260e0209af74890)
 
-where $H_{\mathrm{eff}}$ is the redshift-transfer slope inferred from the same propagation record, not expansion of the Euclidean void. Combining this identity with $H_{\mathrm{eff},X}^{\mathrm{DE}}=c_0\alpha_{\mathrm{prop},X}^{\mathrm{DE}}$ gives the first closed coefficient equation:
+This identity uses $\mathcal S_{\mathrm{relax}}=\mathcal S_{\mathrm{sea}}+\mathcal S_{\mathrm{BH}}$ in the same effective density, time, and volume units. Its $H_{\mathrm{eff}}=\dot a/a$ is the total temporal comparison rate. Define the dark-energy propagation contribution by $H_{\mathrm{eff},X}^{\mathrm{DE}}=c_0\alpha_{\mathrm{prop},X}^{\mathrm{DE}}$. Joining a spatial propagation slope to the temporal rate requires an additional mapping assumption; under that assumption write $H_{\mathrm{eff}}=H_{\mathrm{eff},X}^{\mathrm{DE}}+H_{\mathrm{rest},X}$, retaining all other contributions in $H_{\mathrm{rest},X}$. Substitution gives
 
 $$
 H_{\mathrm{eff},X}^{\mathrm{DE}}
@@ -6378,6 +6440,7 @@ H_{\mathrm{eff},X}^{\mathrm{DE}}
 \lambda_w^X\,\partial_{t_{\mathrm{eff}}} w_{\mathrm{eff}}
 +(\lambda_\rho^X+\lambda_{\mathrm{sea}}^X)\frac{\mathcal{S}_{\mathrm{sea}}}{\rho_{\mathrm{DE,eff}}}
 +(\lambda_\rho^X+\lambda_{\mathrm{BH}}^X)\frac{\mathcal{S}_{\mathrm{BH}}}{\rho_{\mathrm{DE,eff}}}
+-3\lambda_\rho^X(1+w_{\mathrm{eff}})H_{\mathrm{rest},X}
 \right]
 }{
 1+3\frac{c_0}{c_\gamma}\lambda_\rho^X(1+w_{\mathrm{eff}})
@@ -6386,7 +6449,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-60312e97ff43b7fa)
 
-This equation is not yet a measured value of $H_0$. It is the first coefficient closure target for interpreting a Hubble-like slope inside $\mathbb{A}\mathbb{A}\mathbb{A}$: the slope comes from a Noether sea relaxation rate, a line-family transport row, and source terms, with no stretching of the Euclidean void.
+This is an algebraic identity under the declared response and rate-joining assumptions, not a measured value of $H_0$. Division requires the denominator to be nonzero. If it vanishes, a nonzero numerator gives no solution, while zero numerator leaves the rate undetermined by this equation. The case $H_{\mathrm{rest},X}=0$ is a further restriction. In particular, exact constant $w_{\mathrm{eff}}=-1$, constant density, and zero sources give $\mathbf q_{\mathrm{DE}}=0$ and hence zero contribution from this rate-only response, even though a standard positive-$\Lambda$ Friedmann branch has nonzero $H$. Additional state or transport dependence is needed to recover that benchmark.
 
 The coefficient packet has four immediate checks:
 
@@ -6397,7 +6460,7 @@ The coefficient packet has four immediate checks:
 
 #### Equilibrium Current and Effective Expansion
 
-The equilibrium version of the dark-energy hypothesis refines what the source terms mean. A Noether braid with cadence $\nu_N$ carries the local energy scale
+The equilibrium hypothesis introduces a population distribution. The relation
 
 $$
 E_N=h\nu_N
@@ -6405,7 +6468,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-46b09a7aa4f69791)
 
-Individual Noether braids may change branch through $h$-scale ledger steps. Each accepted step forces a branchwise retuning of cadence and scale variables, not a simple rise in thermodynamic temperature, but a large population can still coarse-grain into a smooth medium response. For the dark-energy module, the relevant object is not a single transition. It is a distribution $f_N(\nu,\mathbf X,T)$ and its cadence-space current:
+is an assembly-energy calibration target: $h$ is the effective action scale and $\nu_N$ an ordinary cadence, not an assumed primitive quantization law. An energy change on this candidate map is $\Delta E_N=h\Delta\nu_N$; $h$ alone has units of action and is not an energy step. The [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md) population convention defines $f_N(\nu,\mathbf X,T)$ as number per Euclidean volume per positive cadence, with $\int_0^\infty f_N\,d\nu=\rho_{\mathrm{NS}}$. In a restricted population model with only black-hole membership loading, cadence current $J_\nu$, and the declared redistribution terms, write
 
 $$
 \partial_T f_N
@@ -6419,7 +6482,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-410a6d093995be9b)
 
-This packet gives a more microscopic reading of $\mathcal{S}_{\mathrm{sea}}$ and $\mathcal{S}_{\mathrm{BH}}$. The term $R_{\mathrm{eq}}[f_N]$ is local neighbor equilibration in the Noether sea, $S_{\mathrm{BH}}$ is loading from strong-field recycling regions, and $S_{\mathrm{GW}}$ is the bounded perturbation from gravitational-wave disturbances. The projection into the redshift handoff should be a constitutive map
+The spatial factorization assumes a cadence-independent mean velocity $\mathbf u_{\mathrm{sea}}$; otherwise a cadence-resolved spatial flux is needed. The terms $S_{\mathrm{GW}}$ and $R_{\mathrm{eq}}$ redistribute existing braids and satisfy $\int S_{\mathrm{GW}}\,d\nu=\int R_{\mathrm{eq}}\,d\nu=0$ in this restricted model. Transitions already included in $J_\nu$ cannot also enter $R_{\mathrm{eq}}$. Cadence-boundary flux contributes $-[J_\nu]_0^\infty$ to the integrated number balance; other formation, dissociation, or membership changes need explicit sources.
+
+Cadence sources are not yet cosmological energy sources. Under the conditional constant-$h$ map, the first energy moment obeys $\partial_Tu_N+\nabla_{\mathbf X}\cdot(\mathbf u_{\mathrm{sea}}u_N)=h\int_0^\infty J_\nu\,d\nu-h[\nu J_\nu]_0^\infty+h\int_0^\infty\nu(S_{\mathrm{BH}}+S_{\mathrm{GW}}-R_{\mathrm{eq}})\,d\nu$, where $u_N=h\int_0^\infty\nu f_N\,d\nu$. This follows by integration by parts with convergent moments and declared boundary terms. Only after projection to effective volume and time and division by $c_0^2$ can a moment contribute to $\mathcal S_{\mathrm{sea}}$ or $\mathcal S_{\mathrm{BH}}$ without double counting. The redshift response remains a constitutive target:
 
 $$
 \partial_{t_{\mathrm{eff}}}\boldsymbol{\theta}_\gamma
@@ -6430,25 +6495,22 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1dee7c4fec4e2815)
 
-This strengthens the expansion claim and limits it at the same time. If $J_\nu$ vanishes in the homogeneous coarse-grained limit, or if the source and equilibration terms cancel with no signed large-scale current, the equilibrium hypothesis does not generate a dark-energy-like redshift-transfer slope. If a signed current remains, it may contribute to $H_{\mathrm{eff},X}^{\mathrm{DE}}$ only through the same $\boldsymbol{\theta}_\gamma$ variables already used for redshift, CMB, BAO, lensing, and growth. It is therefore a candidate mechanism for the effective expansion history, not a separate expansion of the Euclidean void and not a standalone photon-energy loss channel.
+Vanishing $J_\nu$ alone does not make the population stationary: sources or spatial transport can still change $f_N$. Conversely, nonzero cadence current can project to zero optical response. The temporal dark-energy contribution vanishes when the projected variables are stationary and the remaining local contribution vanishes. These are statements about the full response map, not about one kinetic term. No equilibrium, expansion history, or energy-conservation theorem follows from the schematic population equation by itself.
 
 #### Tired-Light Exclusion
 
-This mechanism is distinct from classical tired-light proposals. In tired light, photons lose energy through scattering or absorption, producing:
-- Image blurring (not observed),
-- Time-dilation violations (SN survey light-curve-stretch analyses, Goldhaber/Blondin-class, confirm $\Delta t \propto (1+z)$),
-- Modified surface-brightness relations (Tolman test, of the Lubin–Sandage-class surface-brightness test).
+Generic scattering-loss redshift models must confront image sharpness, spectral shape, transient duration, and surface brightness. The relevant recovery benchmarks are a frequency shift and packet-duration stretch with the same factor $1+z$, and bolometric surface brightness proportional to $(1+z)^{-4}$ under the metric distance, photon-number, and source-evolution assumptions.
 
-The $\mathbb{A}\mathbb{A}\mathbb{A}$ mechanism does not involve untracked photon energy loss in transit. The photon assembly propagates through the Noether sea without degradation in the weak-field, low-density limit; any path-history factor changes the phase-cadence relation later sampled by the receiver rather than acting as generic scattering loss. This reproduces the standard $(1+z)$ time-dilation signature and is consistent with Tolman surface-brightness tests.
+A phase-cadence change alone proves none of these properties. The Noether sea model must independently derive propagation of the image and packet envelope as well as the phase, then compare them with the same observations. Its packet, medium, source, receiver, and boundary energy account remains separate. This chapter supplies no such optical validation and does not infer absence of energy exchange from a frequency fit.
 
 ### SMBH Recycling and Energy Flow
 
-Supermassive black holes process matter and radiation through their high-energy interiors. In the $\mathbb{A}\mathbb{A}\mathbb{A}$ picture, this recycling has implications for the dark-energy sector:
+Supermassive black holes (SMBHs) are strong-field comparison objects. Accretion and external outflows do not by themselves establish transfer out of an interior. The proposed $\mathbb{A}\mathbb{A}\mathbb{A}$ recycling channel requires a specified causal release path and has the following possible cosmological consequences:
 
 - **Energy input to the Noether sea.** Jets and radiative outflows from SMBHs are a candidate channel for injecting energy into the surrounding medium, locally exciting binary-3 modes and increasing the Noether sea internal temperature. On galactic and cluster scales, this injection would be a source of heating that counteracts the hypothesized natural cosmological cooling of the medium.
 - **Feedback on $w_{\mathrm{eff}}$.** If SMBH energy injection is correlated with structure formation, the effective dark-energy equation of state can carry weak environmental dependence.
 - **Backreaction rather than isolation.** The relevant cosmological question is not whether a black hole is an isolated object with a fixed bookkeeping mass, but whether the recycling zone and the ambient Noether sea remain coupled strongly enough for the surrounding Noether sea state to alter what the object contributes at late times.
-- **No perpetual motion.** The recycling process does not create energy; it redistributes it. The total energy budget (matter + radiation + medium baseline) is conserved in absolute time. What changes is the partition between locked internal modes and the slowly varying binary-3 tension sector.
+- **Energy accounting.** A redistribution model must identify donor, receiving, internal, and boundary terms in a common energy convention. Conservation in absolute time is a property to derive for that full account; it is not established by labeling the source as recycling.
 
 The canonical strong-field and recycling picture is developed in [../spacetime/black-holes.md](../../../../markdown/aaa/spacetime/black-holes.md). This chapter keeps only the cosmological consequence: whether black-hole processing contributes a measurable source term to the late-time expansion history.
 
@@ -6456,7 +6518,7 @@ The canonical strong-field and recycling picture is developed in [../spacetime/b
 
 #### What the External Claim Is
 
-A recent observational claim, now part of the comparison landscape for this topic, is that dormant supermassive black holes in old elliptical galaxies may grow more strongly with cosmic time than standard accretion and merger channels predict. In that interpretation, the relevant question is not merely whether black holes grow, but whether the growth tracks the cosmological background in a way that suggests direct coupling to the large-scale Noether sea state.
+Farrah and colleagues (2023) report a cosmological-coupling interpretation of black-hole mass evolution in elliptical galaxies. This is a population inference contingent on host selection, mass calibration, and modeled accretion and mergers. Its potential relevance here is a residual growth trend correlated with cosmological epoch; it does not identify a Noether sea mechanism.
 
 The usual phenomenological parameterization writes the black-hole mass as
 
@@ -6490,9 +6552,9 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6e54254a60526cd9)
 
-Thus $K\approx3$ is the special case in which the population contribution looks approximately constant at the effective level. This is not a native proof of dark energy. It is a compact recovery target: a Noether sea source history that claims an SMBH-correlated channel must explain why the inferred population behaves near this scaling, or why the observational reconstruction only appears to do so.
+Thus $K\approx3$ gives a constant inferred population density under the assumed dilution law. The quantity $w_{\mathrm{BH,eff}}=-K/3$ is a source-free equivalent inferred from that scaling, not a determination of physical pressure. A pressureless population with source $\mathcal S_{\mathrm{BH,pop}}=KH\rho_{\mathrm{BH,coup}}$ has exactly the same density evolution. Establishing an acceleration-producing stress therefore requires the transfer and stress account in addition to population mass growth.
 
-The DESI DR2 matter-conversion comparison sharpens the source-history side of the same target. In that model, the dark-energy source term is tied to the cosmic star-formation-rate density rather than treated as a free homogeneous function. Its useful local role is to make $\mathcal{S}_{\mathrm{BH}}$ testable against the BAO/CMB expansion fit, BBN-facing baryon accounting, local-distance-ladder covariance, and summed-neutrino-mass constraints. The same comparison also carries caveats: supernova additions, CMB lensing, perturbation treatment, and the chosen star-formation history can change the inference. Those caveats keep the packet as comparison pressure rather than a promoted mechanism.
+Ahlen and colleagues' 2025 matter-conversion analysis combines DESI DR2 with CMB data in a model whose dark-energy production follows star-formation-rate density. It compares expansion, baryon abundance, local distance calibration, and neutrino-mass inference. This is a specific alternative-model analysis using DESI data, distinct from the DESI Collaboration's standard DR2 BAO analysis cited above. Its inferred parameters depend on the adopted source history and cosmological model; they do not validate the Noether sea source term.
 
 #### How $\mathbb{A}\mathbb{A}\mathbb{A}$ Would Read Such a Signal
 
@@ -6500,8 +6562,8 @@ From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, a positive coupling of 
 
 That yields a disciplined three-layer reading:
 
-- At the **substrate level**, the Noether sea remains the carrier of the cosmological dynamics.
-- At the **strong-field constitutive level**, SMBHs act as high-gradient recycling sites that can shift energy between locked internal modes and outward-propagating medium excitations.
+- At the **substrate level**, architrino histories evolve in absolute time through the Euclidean void under the delayed acceleration law.
+- At the **strong-field constitutive level**, the model assigns SMBHs a candidate role in shifting energy between internal assembly modes and outward medium excitations.
 - At the **effective cosmology level**, any residual population-wide black-hole coupling appears only as a contribution to $\rho_{\mathrm{DE,eff}}(z)$ or to the source term $\mathcal{S}_{\mathrm{relax}}$ in the expansion history.
 
 In that reading, the black-hole channel is neither the whole dark-energy story nor a dispensable side note. It is a candidate transport mechanism inside a medium-relaxation cosmology.
@@ -6513,14 +6575,14 @@ The conservative way to encode this possibility is to split the effective dark-e
 $$
 \rho_{\mathrm{DE,eff}}(z)
 =
-u_{\mathrm{sea,relax}}(z)
+\frac{u_{\mathrm{sea,relax}}(z)}{c_0^2}
 +
 \rho_{\mathrm{BH,coup}}(z)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-3024de13e0b2dc99)
 
-The first term is the default Noether sea relaxation channel developed above. The second term is reserved for any statistically supported black-hole population effect that cannot be re-expressed as ordinary heating, accretion history, merger history, or selection bias.
+Here $u_{\mathrm{sea,relax}}$ is energy per effective observer volume after the medium projection, so division by $c_0^2$ gives mass-equivalent density. The second term is a distinct projected contribution from the proposed black-hole channel. It must not also be counted in $\rho_m$ or in the baseline medium inventory. The decomposition requires a common volume, clock, and energy convention and a physical stress assignment; a residual population-growth fit alone supplies neither.
 
 At the same level of description, the source term may be decomposed as
 
@@ -6536,7 +6598,7 @@ $$
 
 where $\mathcal{S}_{\mathrm{BH}}$ captures the net transfer from SMBH recycling zones into the slowly varying binary-3 tension sector. The sign and magnitude of $\mathcal{S}_{\mathrm{BH}}$ are empirical questions, not inputs fixed by ontology alone.
 
-This decomposition also clarifies why an effective phantom crossing does not by itself force acausal physics in the local framework. If the dark-energy-like sector is being fed by transfer from another component, then $w_{\mathrm{eff}} < -1$ can appear at the level of the fit while the underlying substrate dynamics remain causal and energy-accounted.
+This decomposition allows a fitted $w_{\mathrm{obs}}<-1$ through source loading even when the projected physical pressure has $w_{\mathrm{source}}\ge-1$. It does not itself prove a causal transport mechanism or a closed energy account.
 
 #### Population History Matters
 
@@ -6574,17 +6636,17 @@ Until those conditions are met, cosmological coupling should be treated as a can
 
 | Epoch | Noether sea state | Effective dark-energy component $w_{\mathrm{eff}}$ | Dominant mechanism |
 |:---|:---|:---|:---|
-| Radiation era ($z > 3400$) | Hot, dense; binaries 3 contracted | Not fixed by the subdominant limit | Radiation pressure dominates |
-| Matter era ($3400 > z > 0.7$) | Cooling; binaries 3 relaxing | Model-dependent; must evolve toward $-1$ on the retained branch | Matter density dominates; tension grows |
-| Acceleration onset ($z \sim 0.7$) | $\rho_{\mathrm{DE,eff}} \sim \rho_m$ | $w_{\mathrm{eff}} \approx -1$ | Tension becomes dynamically significant; SMBH channel may become non-negligible |
-| Present ($z = 0$) | Quasi-equilibrium tension | $w_{\mathrm{eff}} \approx -1$ with possible mild drift | Acceleration established; coupling tests become survey-limited |
-| Far future ($z \to -1$) | Full relaxation | $w_{\mathrm{eff}} \to -1$ or evolves | Depends on relaxation endpoint |
+| Radiation-dominated comparison | Proposed hot, dense population | Not fixed by subdominance | Radiation controls the comparison background |
+| Matter-dominated comparison | Proposed cooling and radius response | Constitutive law undetermined | Matter controls the comparison background |
+| Acceleration onset, dust plus constant $\Lambda$ | Candidate tension must supply the required stress | $w_{\mathrm{eff}}=-1$ for this benchmark | $\rho_m=2\rho_\Lambda$; its redshift is model dependent |
+| Present ($z=0$) | Candidate slowly evolving stress | Near $-1$ in the constant-$\Lambda$ comparison | Multi-probe inference constrains the effective model |
+| Far future, if $a\to\infty$ | Relaxation endpoint undetermined | Neither $w\to-1$ nor nonzero limiting density is derived | Depends on the full source and constitutive evolution |
 
-The acceleration onset redshift $z \sim 0.7$ is treated as the characteristic crossover of this relaxation model — an imported comparison anchor the relaxation law must hit, not a timescale the mechanism derives — with timescale set by assembly-scale physics (binary-3 binding energy and Noether sea coupling).
+The Noether sea column is a candidate history. Density equality and acceleration onset are different comparison events, as calculated above. Neither the epoch nor the required microscopic timescale follows from the proposed binary-3 assignment.
 
 ### Expansion-Module Interface
 
-In the modular cosmology architecture, this chapter provides:
+The following interfaces specify the quantities a successful constitutive model must supply. They are dependencies and recovery targets, not computed outputs:
 
 - **Output to [expansion-mechanism.md](../../../../markdown/aaa/cosmology/expansion-mechanism.md):** medium-relaxation variables that feed the corrected redshift-transfer curve, plus the comparison $H(z)$ derived from the effective Friedmann equation with $\rho_{\mathrm{DE,eff}}(z)$ and $w_{\mathrm{eff}}(z)$.
 - **Output to [CMB.md](../../../../markdown/aaa/cosmology/CMB.md):** late-time ISW contribution and distance to last scattering.
@@ -6593,10 +6655,10 @@ In the modular cosmology architecture, this chapter provides:
 - **Input from [dark-matter.md](../../../../markdown/aaa/cosmology/dark-matter.md):** $\Omega_m(z)$ and $G_{\mathrm{eff}}(a,k)$ for consistent Friedmann integration.
 - **Input from [BBN-constraints.md](../../../../markdown/aaa/cosmology/BBN-constraints.md):** early-universe constraints ensuring $\rho_{\mathrm{DE,eff}}(z_{\mathrm{BBN}})$ is negligible relative to radiation density.
 - **Frame and calibration checks:** supernova directionality, standardization drift, BAO anisotropy, CMB/matter dipole consistency, and local bulk-flow residuals.
-- **Ontic variables passed:** $\rho_{\text{NS}}(z)$, $n(z)$, $\chi_{\text{sea}}(z)$, $\langle R_3 \rangle(z)$, $\tau_{\mathrm{relax}}^{(3)}$, $\mathcal{S}_{\mathrm{sea}}(z)$, $\mathcal{S}_{\mathrm{BH}}(z)$.
+- **Medium variables and effective source summaries required:** $\rho_{\text{NS}}(z)$, $n(z)$, $\chi_{\text{sea}}(z)$, $\langle R_3 \rangle(z)$, $\tau_{\mathrm{relax}}^{(3)}$, $\mathcal{S}_{\mathrm{sea}}(z)$, $\mathcal{S}_{\mathrm{BH}}(z)$. The redshift-indexed quantities require the same mapping from the absolute-time record; they are not primitive ontic coordinates.
 - **Effective outputs returned:** $w_{\mathrm{eff}}(z)$, $u_{\mathrm{sea,relax}}(z)$, $\rho_{\mathrm{BH,coup}}(z)$, $\rho_{\mathrm{DE,eff}}(z)$, $H(z)$.
 
-All interfaces use the same absolute-time / Euclidean-void substrate and Noether sea state variables, ensuring ontological consistency with other cosmology modules.
+All interfaces require the same absolute-time and Euclidean-volume record, together with explicit observer-clock and volume projections. Shared variable names alone do not ensure consistent predictions. In particular, a scale-dependent coupling inferred from perturbation growth is not automatically the background coupling in the Friedmann equation; the model must specify that relation.
 
 ### Summary
 
@@ -6605,15 +6667,26 @@ Late-time accelerated expansion, conventionally attributed to dark energy or a c
 - The Noether sea carries a baseline energy density set by the binding and oscillation energies of its constituent Noether braids.
 - The binary-3 sector of these Noether braids is the candidate carrier for a slowly varying tensile-stress row whose observer-level projection can read out as effective negative pressure.
 - Supermassive black holes may supply a secondary transport channel that feeds or modulates that tension sector, but only if the inferred population-level coupling survives ordinary astrophysical explanations.
-- When this projected pressure satisfies $w < -1/3$, the effective expansion history shows acceleration.
-- The cosmological-constant hierarchy problem is reframed: high-energy internal modes are dynamically shielded from the tension sector by the source record indexed-support architecture, so the natural scale of $\rho_{\mathrm{DE,eff}}$ is set by binary-3 physics, not by summing all zero-point modes.
+- Acceleration in the standard comparison requires $\sum_i(\rho_i+3p_i/c_0^2)<0$, including matter and radiation; a subdominant negative-pressure component is insufficient.
+- The shielding hypothesis seeks a small absolute cosmological projection of a larger internal inventory. Its magnitude, stability, and compatibility with other gravitational channels remain unproved.
 - Any acceleration claim must pass frame and calibration gates: direction-dependent supernova residuals, BAO anisotropy, CMB/matter dipole consistency, and host-environment evolution must be either negligible or produced by the same Noether sea response law.
 
-The parameters $w$ and $\Lambda$ remain useful effective descriptors of expansion history, while the mechanistic content resides in the Noether sea constitutive relation, binary-3 dynamics, and any validated SMBH recycling channel. Deriving that constitutive relation from the master equation is the critical open program.
+The parameters $w$ and $\Lambda$ remain effective descriptors. The Noether sea interpretation is a candidate mechanism whose pressure law, energy account, optical response, and population history must be derived together from the Master Equation. The identities and comparison constraints developed here do not establish that physical mechanism.
+
+### Source Notes
+
+- Planck Collaboration, [*Planck 2018 results. VI. Cosmological parameters*](https://arxiv.org/abs/1807.06209), 2020, arXiv:1807.06209, abstract: the base-model inference $\Omega_{m,0}=0.315$ supplies the approximate 68% dark-energy comparison and the illustrative density-equality calculation.
+- C. O'Raifeartaigh, M. O'Keeffe, W. Nahm, and S. Mitton, [*One Hundred Years of the Cosmological Constant: from “Superfluous Stunt” to Dark Energy*](https://arxiv.org/abs/1711.06890), 2017 preprint, arXiv:1711.06890: historical context for the changing roles of $\Lambda$.
+- DES Collaboration, T. M. C. Abbott and colleagues, *Constraints on Dynamical Dark Energy from Multiple Probes in the Full Dark Energy Survey*, 2026, arXiv:2605.27221, abstract; and DESI Collaboration, M. Abdul-Karim and colleagues, *DESI DR2 Results II: Measurements of Baryon Acoustic Oscillations and Cosmological Constraints*, 2025, arXiv:2503.14738, abstract: the release-specific likelihood comparisons linked in the inference section.
+- P. Wiseman and colleagues, [*Still Accelerating: Type Ia supernova cosmology is robust to host galaxy age evolution*](https://arxiv.org/abs/2601.13785), 2026, arXiv:2601.13785, abstract: the stated calibration rebuttal, rather than independent adjudication of the observational dispute here.
+- N. Kaloper and A. Padilla, [*Vacuum Energy Sequestering: The Framework and Its Cosmological Consequences*](https://arxiv.org/abs/1406.0711), 2014, arXiv:1406.0711, abstract: a separate theoretical mechanism for selective vacuum-energy coupling.
+- A. Strominger, [*The dS/CFT Correspondence*](https://arxiv.org/abs/hep-th/0106113), 2001, section 1 and Appendix A: the distinction between global de Sitter geometry, its asymptotic boundary, and an observer's accessible region.
+- D. Farrah and colleagues, [*Observational evidence for cosmological coupling of black holes and its implications for an astrophysical source of dark energy*](https://arxiv.org/abs/2302.07878), 2023, arXiv:2302.07878, abstract: the black-hole population coupling proposal.
+- S. Ahlen and colleagues, [*Positive neutrino masses with DESI DR2 via matter conversion to dark energy*](https://arxiv.org/abs/2504.20338), 2025, arXiv:2504.20338, abstract: the star-formation-linked matter-conversion comparison.
 
 ## Structure Formation
 
-This chapter translates standard structure-formation language into medium-and-assembly evolution inside a fixed Euclidean void. It explains how overdensity growth, effective expansion variables, and dark-sector clustering fit together when the Noether sea replaces metric expansion as the underlying ontology. The growth-side foundations are [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md), [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md), and [Dark Matter](../../../../markdown/aaa/cosmology/dark-matter.md).
+This chapter translates structure-formation language into medium and assembly evolution inside a fixed Euclidean void. An overdensity is a region whose matter density exceeds the spatial mean; its growth connects the early distribution of matter to galaxies and clusters. The chapter develops observer-level comparison equations and a conditional medium-response model. Their coefficients and their connection to architrino dynamics remain to be derived. The growth-side foundations are [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md), [Expansion Mechanism](../../../../markdown/aaa/cosmology/expansion-mechanism.md), and [Dark Matter](../../../../markdown/aaa/cosmology/dark-matter.md).
 
 ### Scope and Physical Picture
 
@@ -6621,9 +6694,9 @@ Structure formation describes how the nearly homogeneous early universe develope
 
 The standard term **cosmological void** should be read as a low-galaxy-density region, not as ontological emptiness. Such regions still contain the Noether sea, photon and neutrino transport, sparse hydrogen, and possible rare reaction channels seeded by high-energy photons or other local sources.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$ the same phenomenology is reinterpreted as **Noether sea and assembly co-evolution inside a fixed Euclidean void with absolute time**. The Noether sea — the dense coupled population of complementary pro/anti oriented Noether braids — is the dynamical medium whose response replaces the expanding-spacetime substrate of the standard account. Matter assemblies, baryonic composites plus any weakly coupled neutral assemblies serving the dark-matter role, are embedded in and coupled to the Noether sea. Growth of overdensities is governed by how the Noether sea transmits effective gravitational influence, how matter assemblies cluster under that influence, and how the Noether sea's own internal energy budget (playing the role of dark energy) modulates the expansion-equivalent dynamics.
+In Architrino Assembly Architecture, $\mathbb{A}\mathbb{A}\mathbb{A}$, the same phenomenology is assigned to **Noether sea and assembly co-evolution inside a fixed Euclidean void with absolute time**. The [Euclidean void](../../../../markdown/aaa/foundations/euclidean-void.md) is the fixed spatial container, and [absolute time](../../../../markdown/aaa/foundations/absolute-time.md) orders events universally. An [architrino](../../../../markdown/aaa/foundations/architrino.md) is a point entity with polarity whose emitted causal wakes record its earlier motion. A Noether braid is a neutral assembly of coupled architrino paths; the [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) is the ambient population of such assemblies. Selection of complementary pro/anti orientations is a population hypothesis, distinct from polarity conjugation. Baryonic composites and candidate neutral dark-sector assemblies interact with this medium. Recovering gravitational growth and a dark-energy-like observer history from that interaction requires an assembly population, its constitutive response, and a map to observer clocks and rulers; the equations below do not establish those physical inputs.
 
-Cosmic-web filaments are therefore not only matter-density features. A two-source region between massive structures should also be tested as a Noether sea overlap channel: two external mass concentrations can impose competing medium gradients whose shared path-history response lowers the effective transport or growth residual along the inter-source axis. In observer language this can appear as a filamentary bridge, lensing excess, or velocity-alignment residual. The claim is admissible only if the same Noether sea state also supports the surrounding void, cluster, lensing, and growth rows.
+An additional filamentary contribution from Noether sea response is a hypothesis. Two mass concentrations supply a useful test geometry, but overlapping influences alone do not imply axial accumulation, extra lensing, or a reduced growth residual. A candidate mechanism must predict the sign and size of those effects from the same medium history that describes surrounding low-density regions and clusters.
 
 No metric expansion of space occurs. The Euclidean void is static. What changes is the **internal state of the Noether sea**: assembly radii, oscillation frequencies, local number density, the Noether sea delay factor $\chi_{\text{sea}}$, and the resulting medium-dressed inertial response. All standard cosmological observables—power spectra, correlation functions, lensing maps—are recast as probes of this Noether sea and assembly history at different scales and epochs.
 
@@ -6635,16 +6708,16 @@ No metric expansion of space occurs. The Euclidean void is static. What changes 
 
 Define a spatially averaged Noether sea state at absolute time $T$:
 
-- $u_{\text{sea}}(T)$: mean energy density of the Noether sea, distinct from the Noether braid number/mass-density proxy $\rho_{\text{NS}}(\mathbf X,T)$,
-- $\rho_m(T)$: mean energy density of matter assemblies (baryonic + neutral/dark),
-- $\bar{\rho}_{\text{NS}}(T)$: mean Noether braid density in physical units,
+- $u_{\text{sea}}(T)$: mean energy density of the Noether sea,
+- $\rho_m(T)$: mean assembly mass density in a declared effective mass assignment (baryonic + neutral/dark); individual architrinos have no mass,
+- $\bar{\rho}_{\text{NS}}(T)$: mean Noether braid number density, distinct from both energy density and assembly mass density,
 - $\bar{R}_{\text{braid}}(T)$: declared mean binary-radius statistic for Noether braid assemblies in the Noether sea.
 
-An effective Hubble-like parameter $H_{\mathrm{eff}}(t_{\mathrm{eff}})$ is defined operationally through the rate of change of the Noether sea's bulk properties as read by observer clocks. Specifically, if one defines an effective scale variable $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ via the photon redshift relation (the ratio of photon assembly frequencies at emission and reception), then $H_{\mathrm{eff}}=d\ln a_{\mathrm{eff}}/dt_{\mathrm{eff}}$ summarizes how inter-assembly separations evolve as the Noether sea relaxes and dissipates energy. This $H_{\mathrm{eff}}$ is not the expansion rate of space but a bookkeeping variable for the Noether sea's thermodynamic and mechanical evolution.
+An effective scale variable $a_{\mathrm{eff}}(t_{\mathrm{eff}})$ and rate $H_{\mathrm{eff}}=d\ln a_{\mathrm{eff}}/dt_{\mathrm{eff}}$ summarize a homogeneous observer reconstruction. The time $t_{\mathrm{eff}}$ is an observer coordinate, distinct from absolute time $T$. A redshift history admits $1+z=a_{\mathrm{eff,obs}}/a_{\mathrm{eff,emit}}$ only when emission, path transfer, and receiver-clock effects factor into that common epoch function. This factorization does not identify $a_{\mathrm{eff}}$ with inter-assembly separations or determine a density dilution law. Those maps require separate derivations from the same medium history. Below, $x_{\mathrm{eff}}^i$ are comoving coordinates of the comparison chart, $k$ is their Fourier wavenumber, and $a\equiv a_{\mathrm{eff}}$, $H\equiv H_{\mathrm{eff}}$ are compact aliases only in explicitly effective equations. Projecting densities from native volume into this chart also requires a declared volume map. Use $c_0$ for a fixed observer speed calibration and energy-to-mass conversion; it is not identified with primitive wake speed $c_f$. Every new numerical instantiation uses normalized wake-speed units $c_f=1$.
 
 #### Density Contrast and the Growth Equation
 
-Let $\delta_{\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}}) = (\rho_m(x_{\mathrm{eff}}^i,t_{\mathrm{eff}}) - \bar{\rho}_m(t_{\mathrm{eff}}))/\bar{\rho}_m(t_{\mathrm{eff}})$ be the observer-level matter density contrast. In the linear regime ($|\delta_{\mathrm{eff}}| \ll 1$), perturbations in the matter field obey an effective second-order equation that can be written in the familiar standard comparison form:
+Let $\delta_{\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}}) = (\rho_m(x_{\mathrm{eff}}^i,t_{\mathrm{eff}}) - \bar{\rho}_m(t_{\mathrm{eff}}))/\bar{\rho}_m(t_{\mathrm{eff}})$ be the observer-level matter density contrast. The following pressureless, subhorizon linear comparison equation acts separately on each Fourier amplitude $\delta_{\mathrm{eff}}(k,t_{\mathrm{eff}})$. A $k$-dependent coupling cannot multiply a real-space contrast pointwise. In the standard comparison form, dots denote derivatives with respect to $t_{\mathrm{std}}$:
 
 $$
 \ddot{\delta}_{\mathrm{std}} + 2H_{\mathrm{std}}(t_{\mathrm{std}})\,\dot{\delta}_{\mathrm{std}} - 4\pi G_{\text{eff,std}}(t_{\mathrm{std}}, k)\,\bar{\rho}_{m,\mathrm{std}}(t_{\mathrm{std}})\,\delta_{\mathrm{std}} = 0
@@ -6652,7 +6725,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2700ac5bdc03bb3c)
 
-The layer-explicit $\mathbb{A}\mathbb{A}\mathbb{A}$ translation is
+The layer-explicit recovery target is
 $$
 \frac{d^2\delta_{\mathrm{eff}}}{dt_{\mathrm{eff}}^2}
 +2H_{\mathrm{eff}}(t_{\mathrm{eff}})\frac{d\delta_{\mathrm{eff}}}{dt_{\mathrm{eff}}}
@@ -6664,29 +6737,29 @@ $$
 
 Each symbol carries a specific medium-level meaning:
 
-- **$H_{\mathrm{eff}}(t_{\mathrm{eff}})$**: the effective damping term arising from Noether sea bulk evolution. As Noether braids in the Noether sea relax energetically (their declared binary-radius statistic increasing while frequencies decrease), inter-assembly separations grow, diluting the gravitational transmitter-emission density. This acts as a friction-like term on the growth of perturbations, matching the role of the Hubble-like damping term in standard cosmology without identifying ordinary dissipative drag as the mass mechanism.
+- **$H_{\mathrm{eff}}(t_{\mathrm{eff}})$**: the background comparison rate. The coefficient $2H_{\mathrm{eff}}$ follows when pressureless continuity and Euler equations hold in a common comoving chart with conserved matter and the stated Poisson response. Medium relaxation or increasing braid radii alone does not derive this coefficient. Source exchange, drag, pressure, and time-dependent mass assignments can change the perturbation equation.
 
-- **$G_{\text{eff}}(t_{\mathrm{eff}}, k)$**: the effective gravitational coupling, set by how efficiently a local matter overdensity perturbs the surrounding Noether sea and how that perturbation propagates to attract more matter. In $\mathbb{A}\mathbb{A}\mathbb{A}$, $G_{\text{eff}}$ depends on:
-  - the local Noether braid density $\bar{\rho}_{\text{NS}}(T)$, which sets Noether sea stiffness,
-- the declared binary-radius statistic $\bar{R}_{\text{braid}}(T)$, which parameterizes the compliance of Noether sea assemblies to deformation,
+- **$G_{\text{eff}}(t_{\mathrm{eff}}, k)$**: the effective gravitational coupling to be extracted from the response to a matter overdensity. Candidate constitutive inputs include:
+  - the Noether braid density $\bar{\rho}_{\text{NS}}(T)$ and its relation to Noether sea stiffness,
+  - the declared binary-radius statistic $\bar{R}_{\text{braid}}(T)$ and its relation to assembly compliance,
   - potentially the wavenumber $k$, if the Noether sea response becomes scale-dependent at wavelengths comparable to internal assembly scales or at the transition between linear and self-hit regimes. The weak-field constitutive map behind this is the same one organized in [Emergent Metric](../../../../markdown/aaa/spacetime/emergent-metric.md).
 
 - **$\bar{\rho}_m(t_{\mathrm{eff}})$**: the observer-level mean matter density, including baryonic assemblies and any weakly coupled neutral assemblies (the dark-matter sector; see interface with [dark-matter.md](../../../../markdown/aaa/cosmology/dark-matter.md)).
 
-**Mechanism for the growth term.** A local matter overdensity increases the density of architrino assemblies in that region. The additional delayed causal flux emitted by these assemblies modifies the local Noether sea delay factor $\chi_{\text{sea}}$, slowing signal propagation and deepening the effective potential well. At substrate level this is not set by inverse-square dilution alone: transmitter motion compresses or dilates the emitted wake sequence through $D_t$ and therefore changes the acceleration weight $c_f/|D_t|$. Receiver motion changes root playback and subsequent paths, but it does not multiply the acceleration delivered by a wake that has already arrived. Surrounding matter assemblies respond to the resulting medium-scale acceleration gradient and move inward. This positive feedback loop is gravitational instability recast as medium-response dynamics.
+**Mechanism for the growth term.** The proposed feedback is that an overdensity changes Noether sea response, creating an effective acceleration that attracts further matter. Its sign is a constitutive question, not a consequence of adding neutral assemblies. At substrate level, wakes are emitted by the constituent architrinos. The [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) sums causal-root accelerations with transmitter weight $c_f/|D_t|$, where $D_t=c_f-\mathbf V_t\cdot\hat{\mathbf r}_t$, $\mathbf V_t$ is emission velocity, and $\hat{\mathbf r}_t$ points from emission to reception. Receiver motion changes root playback and subsequent paths, but does not multiply this arriving acceleration. Recovering an attractive bulk potential and a clock/signal response from that sum remains necessary before assigning the growth term to the Noether sea.
 
-**Where the equation is valid.** This growth equation holds in the regime where:
+**Where the equation is valid.** Applying this comparison to a physical medium requires all of the following:
 - perturbations are small ($|\delta| \ll 1$),
 - the wavelength of perturbations is much larger than the Noether braid scale,
 - the Noether sea response is quasi-static (perturbation timescale $\gg$ internal Noether braid oscillation period),
-- no internal velocity component of the matter assemblies approaches $c_f$ (the self-hit regime is not triggered by the perturbation dynamics themselves),
-- the homogeneous quiescent Noether sea about which the perturbation is taken is an equilibrium of the constitutive dynamics — an open closure item of the [Noether sea program](../../../../markdown/aaa/spacetime/noether-sea.md) that this equation inherits rather than establishes.
+- the coarse perturbation preserves the admitted constituent causal-root domain; internal speed alone neither certifies nor excludes self-hit, which requires a same-transmitter causal root,
+- a self-consistent homogeneous background history and the required pressureless continuity, Euler, and Poisson limits; any use of a frozen quiescent equilibrium additionally requires its acceleration balance and response stability. The [Noether sea](../../../../markdown/aaa/spacetime/noether-sea.md) chapter does not supply those physical conditions for this ansatz.
 
-**What breaks outside that regime.** At $|\delta| \sim 1$ (turnaround and collapse), the linear equation fails and must be replaced by the full nonlinear medium response—analogous to N-body or hydrodynamic treatment in standard cosmology. At very small scales, the finite size of Noether braid assemblies and the discreteness of the Noether sea introduce a physical cutoff; the continuum growth equation is not valid below the mean inter-assembly spacing. At extremely high densities (approaching conditions near a maximum-curvature object), the self-hit regime is entered, Jacobian anisotropies become large, and the effective $G$ itself changes qualitatively.
+**What breaks outside that regime.** At $|\delta|\sim1$ nonlinear terms become important; this criterion is not itself a turnaround or collapse certificate. A continuum treatment also loses justification near the assembly size or mean spacing. That is a limit of the approximation, not a derived cutoff in physical power. Dense regions require explicit causal-root and constitutive checks; density alone proves neither self-hit onset nor a qualitative change in $G_{\mathrm{eff}}$.
 
 #### The Growth Factor
 
-Define the linear growth factor $D(t_{\mathrm{eff}})$ as the growing-mode solution of the perturbation equation, normalized so that $\delta_{\mathrm{eff}}(x_{\mathrm{eff}}^i,t_{\mathrm{eff}}) = D(t_{\mathrm{eff}})\,\delta_0(x_{\mathrm{eff}}^i)$ in the linear regime. In standard cosmology:
+Define $D(k,t_{\mathrm{eff}})$ by $\delta_{\mathrm{eff}}(k,t_{\mathrm{eff}})=D(k,t_{\mathrm{eff}})\delta_{\mathrm{eff}}(k,t_{\mathrm{eff},0})$, with $D(k,t_{\mathrm{eff},0})=1$ and the growing-mode initial derivative specified. A common real-space factor $D(t_{\mathrm{eff}})$ exists only when growth is scale independent. In the pressureless general-relativistic comparison with conserved matter, constant $G_N$, curvature and a cosmological constant, and negligible radiation, the growing solution has the integral form below. Here $a$ and $H$ carry the effective-chart meaning already declared:
 
 $$
 D(a) \propto H(a) \int_0^a \frac{da'}{[a' H(a')]^3}
@@ -6694,25 +6767,25 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6654c50f206f6ee3)
 
-Within $\mathbb{A}\mathbb{A}\mathbb{A}$ the same integral structure holds in the observer chart, with $H_{\mathrm{eff}}(a_{\mathrm{eff}})$ and $G_{\text{eff}}$ determined by the Noether sea equation of state. The growth rate $f(a_{\mathrm{eff}}) = d\ln D / d\ln a_{\mathrm{eff}}$ is a direct observable (via redshift-space distortions) and provides a clean test:
+This integral follows by reduction of order only when $H$ itself solves the homogeneous growth equation: for $D=Hv$, one obtains $\dot v\propto a^{-2}H^{-2}$ and then $v\propto\int da/(a^3H^3)$. A general Noether sea equation of state or variable $G_{\mathrm{eff}}$ does not preserve that premise. In those cases solve the mode equation with its actual coefficients. The growth rate $f(k,a)=d\ln D(k,a)/d\ln a$ is inferred from galaxy redshift-space distortions, which require a velocity, bias, distance, and selection model and commonly constrain $f\sigma_8$ rather than $f$ alone:
 
-- If $G_{\text{eff}}$ is constant and the Noether sea equation of state matches $\Lambda$CDM, then $f(a) \approx \Omega_m(a)^{0.55}$ as in GR.
-- If $G_{\text{eff}}$ carries scale dependence from medium compliance, $f$ acquires a $k$-dependent correction that is absent in standard gravity and can be tested against galaxy survey data.
+- In the matching general-relativistic matter-plus-cosmological-constant background, with $G_{\mathrm{eff}}=G_N$ and the same conserved matter inventory, $f(a)\approx\Omega_m(a)^{0.55}$ is an approximation. Here $\Omega_m=8\pi G_N\bar\rho_m/(3H^2)$; equality of an equation of state alone does not fix this background.
+- Scale-dependent $G_{\mathrm{eff}}$ generally produces scale-dependent growth. Neutrino streaming and pressure can also produce scale dependence within standard gravity, so that feature alone does not identify a medium modification.
 
 The comparison should also preserve the standard linear-regime milestones. During matter domination, the growing mode satisfies $D(a)\propto a$ in the GR/CDM limit, while the decaying mode falls as $a^{-3/2}$. During radiation domination, subhorizon matter growth is strongly slowed, so the transfer function retains an equality-scale break. A compact benchmark is
 $$
 P(k,z)
 =
-P_{\mathrm{seed}}(k)\,T^2(k)\,D^2(z),
+P_{\mathrm{seed}}(k)\,\mathcal T^2(k)\,D^2(z),
 \qquad
-T(k)\sim1\ \text{for }k\ll k_{\mathrm{eq}},
+\mathcal T(k)\to1\ \text{for }k\ll k_{\mathrm{eq}},
 \qquad
-T(k)\sim k^{-2}\ \text{for }k\gg k_{\mathrm{eq}}
+\mathcal T(k)\propto\frac{\ln(k/k_{\mathrm{eq}})}{(k/k_{\mathrm{eq}})^2}\ \text{for }k\gg k_{\mathrm{eq}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-61c91d955cd3ead3)
 
-up to the declared baryon acoustic, neutrino/free-streaming, and nonlinear corrections. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not an import of metric expansion ontology. It is the observer-level shape test that the same Noether sea state history must pass while computing $G_{\text{eff}}(a,k)$, CMB lensing, $f\sigma_8$, and high-redshift halo statistics.
+Here $P$ is the matter-contrast power spectrum, $P_{\mathrm{seed}}$ is the seed spectrum in the corresponding matter normalization, $\mathcal T$ is the dimensionless transfer function, and $k_{\mathrm{eq}}$ is the equality wavenumber. The large-$k$ form is the cold-matter asymptotic envelope; baryon acoustic oscillations, neutrino streaming, and nonlinear evolution require their own transfer treatment. The factorization uses scale-independent subsequent growth; otherwise replace $D(z)$ by $D(k,z)$ or use a full time-dependent transfer function. This is an observer-level recovery target, not a derivation from the fixed Euclidean void.
 
 #### Component Transfer and Free-Streaming Interface
 
@@ -6730,7 +6803,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9c7129902b2d41dd)
 
-where $\delta_x$ is the density contrast, $\theta_x$ is the velocity-divergence variable, $\sigma_x$ is the anisotropic-stress variable, and $\delta p_x$ is the pressure perturbation. A transfer-function branch is then a map
+Here the superscript $\theta$ labels a candidate cosmological history and is not a velocity divergence. The component variables are density contrast $\delta_x$, velocity divergence $\theta_x$, anisotropic stress $\sigma_x$, and pressure perturbation $\delta p_x$, all in one declared effective gauge and normalization. A transfer matrix $\mathsf T_x^\theta$ maps the initial perturbation vector to that component. For a single stochastic seed, the density transfer amplitudes $T_x^\theta$ give
 $$
 \mathbf{y}_x^\theta(k,z)
 =
@@ -6739,18 +6812,18 @@ $$
 \qquad
 P_{xy}^\theta(k,z)
 =
-T_x^\theta(k,z)T_y^\theta(k,z)P_{\mathrm{seed}}^\theta(k)
+T_x^\theta(k,z)T_y^{\theta *}(k,z)P_{\mathrm{seed}}^\theta(k)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-2b281c6178c9dc12)
 
-with the same $\theta_{\mathrm{sea}}$ used for CMB lensing, BAO, BBN, and low-redshift growth. In an adiabatic comparison packet the initial component contrasts must satisfy
+The star denotes complex conjugation; it may be omitted only for real transfer amplitudes. With multiple correlated initial modes, the covariance is $\mathsf T_x\mathbf C_{\mathrm{init}}\mathsf T_y^\dagger$, not a product of two scalar transfers. The sea history $\theta_{\mathrm{sea}}$ is shared with cosmic microwave background (CMB) lensing, baryon acoustic oscillations (BAO), big-bang nucleosynthesis (BBN), and late growth. For noninteracting components with $\dot{\bar\rho}_x=-3H(\bar\rho_x+\bar p_x/c_0^2)$, adiabatic initial conditions are a common local time shift and imply
 $$
 \frac{\delta\rho_x^\theta}
-{\bar\rho_x^\theta+\bar p_x^\theta}
+{\bar\rho_x^\theta+\bar p_x^\theta/c_0^2}
 =
 \frac{\delta\rho_y^\theta}
-{\bar\rho_y^\theta+\bar p_y^\theta},
+{\bar\rho_y^\theta+\bar p_y^\theta/c_0^2},
 \qquad
 \delta_b^\theta
 =
@@ -6763,15 +6836,15 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4de833ac52f80e51)
 
-unless the branch explicitly declares an isocurvature source and carries it through the CMB, BBN, and matter-power residuals.
+Here all $\rho_x$ are mass-equivalent densities; the second chain applies initially to pressureless baryons and dark matter and relativistic neutrinos and photons, where $p/(\rho c_0^2)=1/3$. These are initial conditions, not equalities preserved through horizon entry or neutrino mass transitions. If components exchange energy or matter, adiabaticity must instead be formulated with their actual background derivatives, $\delta\rho_x/\dot{\bar\rho}_x=\delta\rho_y/\dot{\bar\rho}_y$ where those derivatives are nonzero. An isocurvature mode, a relative perturbation not generated by that common time shift, must be propagated through the joint observables.
 
-Neutrino and warm-dark-sector signals sharpen the small-scale transfer test. For ordinary massive neutrinos,
+Neutrino and warm-dark-sector signals sharpen the small-scale transfer test. For standard thermally populated relic neutrinos that are nonrelativistic today, a useful comparison is
 $$
 f_\nu^\theta
 \equiv
 \frac{\Omega_\nu^\theta}{\Omega_m^\theta}
 \approx
-\frac{\Sigma m_\nu^\theta}
+\frac{\Sigma m_\nu^\theta c_0^2}
 {94\,\mathrm{eV}\,\Omega_m^\theta h_\theta^2},
 \qquad
 \frac{\Delta P_\delta^\theta}{P_\delta^\theta}
@@ -6781,37 +6854,33 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-5870b21b4b669e6d)
 
-below the free-streaming scale. For a sterile-neutrino or warm neutral-assembly comparison branch, retain the production-history dependence explicitly:
+The rounded $94\,\mathrm{eV}$ coefficient assumes the standard relic number density; $h_\theta$ is the dimensionless Hubble normalization and $f_\nu$ the neutrino matter fraction. The $-8f_\nu$ rule is an approximate small-fraction, late-time linear power suppression on wavelengths well below the free-streaming length, relative to a specified matched massless-neutrino comparison. It is not a general nonlinear or arbitrary-production result; the assumptions and limits are developed by [Lesgourgues and Pastor](https://arxiv.org/abs/astro-ph/0603494). For a warm neutral-assembly population produced at $t_{\mathrm{eff,prod}}^\theta$, retain the propagation history explicitly:
 $$
 \lambda_{\mathrm{FS}}^\theta
 =
-\int_0^{t_{\mathrm{eff,eq}}^\theta}
-\frac{v^\theta(t_{\mathrm{eff}})}{a_\theta(t_{\mathrm{eff}})}\,dt_{\mathrm{eff}}
-\approx
-1.2\,\mathrm{Mpc}
-\left(\frac{1\,\mathrm{keV}}{m_s^\theta}\right)
-\left(\frac{\langle p/T\rangle_\theta}{3.15}\right)
+\int_{t_{\mathrm{eff,prod}}^\theta}^{t_{\mathrm{eff,eq}}^\theta}
+\frac{\langle v^\theta(t_{\mathrm{eff}})\rangle}{a_\theta(t_{\mathrm{eff}})}\,dt_{\mathrm{eff}}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f26dcb882346e448)
 
-The key variable is not mass alone but the momentum distribution inherited from the production channel. A branch that changes $\langle p/T\rangle_\theta$, $f_\nu^\theta$, or $\lambda_{\mathrm{FS}}^\theta$ independently of its BBN and CMB records has split the shared cosmology state.
+This is a comoving mean travel length up to matter-radiation equality, with the mean physical speed taken over the produced momentum distribution. Continuous production requires an additional average over production times. Mass alone does not fix the integral: the scale history, distribution, and endpoints matter. A universal $1.2\,\mathrm{Mpc}$ prefactor cannot be assigned without those inputs. Temperature is $T_{\mathrm{temp}}$; a dimensionless momentum-to-temperature ratio is $pc_0/(k_B T_{\mathrm{temp}})$. The abundance and travel length must follow the same production history used for BBN and CMB comparisons.
 
 Cosmological neutrino-mass bounds also depend on the late matter-source accounting used by the expansion fit. A DESI-era matter-conversion comparison can relax or shift $\Sigma m_\nu$ constraints because converting part of the late matter budget into an effective dark-energy component changes the nonrelativistic matter inventory sampled by BAO, CMB, and growth. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the lesson is not that the neutrino branch has changed ontology. The lesson is that any bound on $\Sigma m_\nu^\theta$ must be read together with the same late-time source term, baryon-accounting record, and Noether sea transport history used for expansion and structure formation.
 
 #### Linear and Nonlinear Dark-Sector Split
 
-Hybrid dark-sector comparisons make one useful mathematical demand explicit: the linear growth record and the nonlinear rotation-curve record must be separated before they are recombined. A nearly pressureless fluid, scalar, or neutral-assembly population can reproduce the expansion history, acoustic peak loading, and linear matter power spectrum if its effective equation of state and sound speed are small,
+Hybrid dark-sector comparisons distinguish linear growth from nonlinear rotation curves. A candidate cold component needs small pressure and a sound speed small enough that pressure does not compete with gravitational growth on the tested scales. Small equation of state $w_{\mathrm{lin}}=p/(\rho c_0^2)$ and small sound-speed ratio are necessary cold-limit diagnostics,
 
 $$
 |w_{\mathrm{lin}}|\ll1,
 \qquad
-c_{s,\mathrm{lin}}^2\ll1
+c_{s,\mathrm{lin}}^2/c_0^2\ll1
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-bf6fe768596d32b3)
 
-That success does not by itself solve the nonlinear missing-mass problem in galaxies or clusters. Conversely, a MOND-like or medium-compliance law can fit low-acceleration rotation curves without automatically recovering the CMB peak structure or the linear transfer function. The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure requirement is therefore a shared-record split:
+but they do not establish the correct abundance, initial spectrum, interaction rate, or acoustic loading. In particular, a finite $c_s$ can matter at sufficiently large $k$: compare $c_s^2 k^2/a^2$ with $4\pi G\bar\rho_m$. A modified Newtonian dynamics (MOND) comparison changes the low-acceleration relation inferred from galaxy motion; success there does not establish the CMB transfer function. Both projections must be supplied by one history:
 
 $$
 \theta_{\mathrm{sea}}
@@ -6842,7 +6911,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-e048e84e03be5bc6)
 
-The last term is the important one. It prevents the model from behaving like CDM in the linear packet and like a separate modified-gravity theory in the nonlinear packet unless both projections come from the same Noether sea state and neutral-assembly state. This also protects the $S_8$ discussion: late-time growth suppression may be allowed, but it must not erase the linear-regime matter loading that fixes the CMB and equality-scale transfer function.
+Here $\Pi_{\mathrm{lin}}$ and $\Pi_{\mathrm{nl}}$ project one history into the two calculations. The residuals and the discrepancy $d_{\mathrm{shared}}$ must be dimensionless with stated covariance or tolerance normalization; $\lambda_{\mathrm{split}}\ge0$ is a declared weight. A finite penalty discourages inconsistent independently fitted states but cannot prohibit them. Shared physical quantities must actually agree, with $d_{\mathrm{shared}}=0$ in an exact formulation or within a predeclared numerical tolerance. Correlated observations also require joint covariance rather than double counting. These are consistency conditions; no fitted residual is reported here.
 
 #### Cluster Assembly and Intracluster-Light Accounting
 
@@ -6862,15 +6931,15 @@ Baryons (protons, neutrons, and their composites) are Noether braid assemblies w
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ admits multiple dark-matter scenarios (detailed in [dark-matter.md](../../../../markdown/aaa/cosmology/dark-matter.md)). For structure formation the relevant properties are:
 
-- **Coupling to the Noether sea**: dark-matter assemblies must couple gravitationally (through the Noether sea) but not electromagnetically (no net charge, minimal dipole coupling). Neutral Noether braid configurations with balanced axial layers (analogous to neutrino-like assemblies but more massive and stable) satisfy this requirement.
-- **Thermal history**: if produced thermally in the early medium, their relic abundance and free-streaming length determine the small-scale cutoff of the matter power spectrum. Cold (non-relativistic at decoupling) neutral assemblies reproduce CDM-like behavior; warm candidates (lighter, with residual thermal velocity) suppress small-scale power.
+- **Coupling to the Noether sea**: a candidate must supply the required gravitational response while satisfying bounds on electromagnetic interactions. Net neutrality alone does not bound dipole, polarizability, or scattering channels; a balanced axial inventory does not establish a stable dark-matter branch.
+- **Thermal history**: abundance, momentum distribution, production history, and interaction rates determine clustering. CDM-like behavior requires sufficiently short free streaming on the tested scales; being nonrelativistic at one epoch is not sufficient. Warm populations can suppress small-scale power, but mass alone does not determine their velocities.
 - **Self-interaction**: if neutral assemblies interact among themselves through residual short-range forces (e.g., van der Waals-like wake overlap at close range), this modifies halo profiles at small scales—a potential handle on the core-cusp and too-big-to-fail problems.
 
-The effective growth equation accommodates both CDM-like and self-interacting scenarios through the form of $G_{\text{eff}}(t_{\mathrm{eff}},k)$ and any additional pressure or viscosity terms.
+Pressure, viscosity, and collision terms must be supplied explicitly when relevant. A replacement of $G_{\mathrm{eff}}$ alone does not describe scattering, heat transport, or nonlinear halo evolution.
 
 #### Medium Energy (Dark-Energy Role)
 
-The baseline energy density of the Noether sea ($u_{\text{sea}}$) is the candidate carrier for an effective cosmological-constant or dark-energy role. Its contribution enters the effective Hubble-like term $H_{\mathrm{eff}}(t_{\mathrm{eff}})$ only after the same Noether sea constitutive record supplies the pressure and coupling rows. If the projected equation of state satisfies $w_{\text{sea}} \approx -1$, with the slowly varying indexed-binary tension sector reading out as effective negative pressure, the observer-level expansion history accelerates. Any evolution of $w_{\text{sea}}(T)$ from slow Noether sea thermodynamic relaxation would produce a dynamical dark-energy signature testable against supernova and BAO data.
+The Noether sea energy density $u_{\mathrm{sea}}$ is a candidate carrier for a dark-energy-like observer response. Its projected pressure and coupling must come from the same history. An equation of state $w_{\mathrm{sea}}=p_{\mathrm{sea}}/u_{\mathrm{sea}}\approx-1$ is not alone an acceleration criterion: even in the general-relativistic comparison, acceleration requires sufficiently negative total energy-plus-three-pressure after all components are included. Here acceleration means $d^2a_{\mathrm{eff}}/dt_{\mathrm{eff}}^2>0$ and requires the actual scale and clock map. Its recovery from medium evolution remains open.
 
 ---
 
@@ -6881,13 +6950,13 @@ Structure formation in this framework is a single coupled medium-and-assembly hi
 #### Galaxy Rotation Curves
 
 Flat rotation curves require either a dark-matter halo or a modified gravitational response at low accelerations. In the Noether sea picture:
-- A halo of weakly coupled neutral assemblies is expected, by analogy with CDM N-body results, to reproduce standard NFW-like profiles.
-- Alternatively, if $G_{\text{eff}}$ develops scale dependence at galactic scales (from nonlinear medium response at low density gradients), MOND-like behavior emerges without particle dark matter.
-- The Bullet Cluster and similar offset systems provide a high-pressure inference gate rather than a one-image ontological proof. If an ensemble of cluster-offset reconstructions robustly requires lensing mass separated from the baryonic gas under the same lensing priors, gas dynamics, and shared Noether sea state record, then pure medium-modification scenarios fail and a collisionless neutral-assembly component is required.
+- A neutral-assembly halo must produce its density profile through formation and evolution; neutrality alone does not imply the Navarro–Frenk–White profile familiar from collisionless dark-matter simulations.
+- Scale dependence in $G_{\mathrm{eff}}$ alone does not derive MOND-like acceleration scaling or flat rotation curves. The specific spatial response and baryonic source distribution must reproduce the measured relation.
+- The Bullet Cluster and related systems compare gas, galaxies, and reconstructed lensing mass. An offset rejects a specified medium-only model only when that model cannot reproduce the full observations with its declared response and history. It does not exclude every possible medium theory or independently identify a neutral architrino assembly. The light-deflection map must be tested separately from matter acceleration.
 
 #### Local Missing-Baryon Benchmark
 
-The local missing-baryon benchmark in [Dark Matter](../../../../markdown/aaa/cosmology/dark-matter.md#local-missing-baryon-benchmark) is also a structure-formation observable. It ties the condensed baryonic mass $M_b=M_\star+M_g$, the flat-equivalent velocity $V_f$, the inferred enclosed dynamical mass $M_{200}$, and the missing baryon ledger
+The local missing-baryon benchmark in [Dark Matter](../../../../markdown/aaa/cosmology/dark-matter.md#local-missing-baryon-benchmark) connects condensed stellar and gas mass $M_b=M_\star+M_g$, flat-equivalent velocity $V_f$, and the inferred halo mass $M_{200}$. Specify whether the enclosing mean density is 200 times the critical or mean matter density, and use that convention throughout. With $f_b$ the adopted cosmic baryon fraction, the deficit relative to that reference is
 
 $$
 M_X = f_bM_{200} - M_b
@@ -6895,7 +6964,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-1bd44cf36c3eac2f)
 
-into one low-redshift readout. The important signal is not only that $m_b=M_b/M_{200}$ falls below $f_b$ in lower-mass systems. It is that the trend is smooth, low-scatter, and weakly dependent on whether the observed baryons are stars or gas.
+The quantity $M_X$ is a bookkeeping deficit, not a detected component or an automatically positive mass. Uncertainties in $f_b$, the halo convention, and the dynamical inference propagate into it. Tests of a smooth, low-scatter trend in $m_b=M_b/M_{200}$ require the actual sample, selection, and covariance, including the distinction between stellar and gas-dominated systems.
 
 For the growth module, the retained data packet is
 
@@ -6911,29 +6980,29 @@ where $E$ labels the environment class and $\Sigma_{\mathrm{gas/lens}}$ records 
 
 #### Cluster Mass Profiles
 
-Clusters probe the intermediate regime ($\sim 1$–$10$ Mpc) where both thermal gas (X-ray) and gravitational lensing provide independent mass estimates. Consistency between hydrostatic and lensing masses constrains any scale dependence in $G_{\text{eff}}$ at cluster scales.
+Clusters probe the intermediate regime ($\sim1$–$10$ Mpc). X-ray gas profiles and lensing supply distinct instruments, but inferred masses depend on hydrostatic support, nonthermal pressure, geometry, calibration, and the gravity model. Their agreement tests a joint matter-motion and light-deflection model; it is not automatically an independent measurement of the same $G_{\mathrm{eff}}$.
 
 #### Cosmic Shear and $S_8$
 
-Weak gravitational lensing measures the integrated matter power spectrum weighted by the lensing kernel. The $S_8 = \sigma_8 \sqrt{\Omega_m / 0.3}$ parameter family directly constrains the amplitude of linear growth at low redshift. In the Noether sea picture:
-- $\sigma_8$ is the rms matter fluctuation at $8\,h^{-1}$ Mpc, computed from the growth factor $D(t)$ and the primordial spectrum.
-- Consistency between CMB-inferred $S_8$ (high-$z$ prediction evolved to $z=0$) and direct low-$z$ lensing measurement is a stringent test. Current data suggest mild tension ($S_8^{\text{CMB}} > S_8^{\text{lensing}}$ at $\sim 2$–$3\sigma$); the benchmark residual-contract table in [Hubble/S8 Tensions](../../../../markdown/aaa/cosmology/hubble-s8-tensions.md) names the contributing instruments (Planck vs DES-Y3/KiDS-class).
-- If $G_{\text{eff}}$ weakens at late times relative to its early-universe value, the predicted $S_8$ at low $z$ drops, potentially resolving the tension. This is a conditional candidate, not yet a prediction: as the scale-dependence section below records, the stable compression branch derives $|\mu|$ shrinking rather than the negative $\mu$ this resolution requires, so the required sign is an explicit closure burden before any $S_8$ claim can be made.
+Weak lensing measures correlated image distortions. Inferring matter power requires a distance kernel, a map from matter to the lensing potential, and foreground and intrinsic-alignment modeling. The combination $S_8=\sigma_8\sqrt{\Omega_m/0.3}$ summarizes an amplitude degeneracy in particular survey fits:
+- $\sigma_8$ is the rms linear matter contrast smoothed with a spherical top-hat of comoving radius $8h^{-1}\,\mathrm{Mpc}$. It depends on the initial spectrum, transfer, and $D(k,t_{\mathrm{eff}})$; $h$ is the observer Hubble normalization.
+- CMB predictions evolved to low redshift and late-time shear inferences must use compatible models. The [Hubble/S8 Tensions](../../../../markdown/aaa/cosmology/hubble-s8-tensions.md) benchmark table specifies historical Planck, DES-Y3, and KiDS-class comparisons; their significance is dataset- and model-dependent, not a timeless $2$–$3\sigma$ fact.
+- Weaker late-time coupling can reduce growth relative to a matched model with stronger coupling. Whether it lowers inferred $S_8$ enough depends on the full background, source, and lensing history. The sign result below concerns a specified static susceptibility and does not itself predict $S_8$.
 
 #### CMB Lensing and Acoustic Peaks
 
-The CMB power spectrum encodes the primordial perturbation spectrum processed through the photon–baryon–medium system before decoupling. The acoustic peak positions fix the sound horizon at recombination; the peak heights constrain the matter-to-radiation ratio and the baryon-to-dark-matter ratio. CMB lensing (the smoothing of peaks at high $\ell$) probes the integrated matter distribution between the last-scattering surface and the observer.
+The CMB power spectrum constrains initial perturbations processed through the photon–baryon system. Peak positions constrain the angular acoustic scale, a ratio of the sound horizon to the corresponding distance, rather than the absolute sound horizon alone. Heights also depend on matter, radiation, initial perturbations, and recombination. Lensing smooths peaks and produces higher-order correlations; predicting it requires the light-deflection potential along the path, not matter power alone when the gravitational response is modified.
 
 The growth module provides:
-- the matter power spectrum $P(k, z)$ that determines the lensing potential $C_\ell^{\phi\phi}$,
-- the growth history $D(z)$ that sets the amplitude of the lensing signal,
-- any anomalous scale dependence in $G_{\text{eff}}$ that would shift the lensing amplitude relative to the $\Lambda$CDM prediction (interface with [CMB.md](../../../../markdown/aaa/cosmology/CMB.md)).
+- the matter power spectrum $P(k,z)$ and the response and distance kernels needed to predict $C_\ell^{\phi\phi}$,
+- the growth history $D(k,z)$, with $k$ omitted only when growth is scale independent,
+- the matter-acceleration and light-deflection responses that determine departures from a matched $\Lambda$CDM prediction (interface with [CMB.md](../../../../markdown/aaa/cosmology/CMB.md)).
 
 This is an inference interface, not a direct ontology map. ACT/Planck-style CMB-lensing reconstructions first supply a lensing data product, compactly represented by $C_L^{\phi\phi}$. A valid medium-and-assembly growth model must then produce the same $C_L^{\phi\phi}$ from the same matter power spectrum, growth history, neutral-assembly loading, and Noether sea response variables used for galaxy clustering and low-redshift weak lensing. If the CMB-lensing fit requires one growth record while late-time shear or cluster offsets require another, the structure-formation branch has split the shared cosmology state rather than closed it.
 
-The kinematic Sunyaev-Zeldovich effect adds an acceleration-profile test to the same growth family. The retained observable is not a visual picture of dark matter, but the mean pairwise velocity of massive halos inferred from small CMB temperature shifts produced when CMB photons scatter from moving cluster electrons. The [ACT/SDSS halo-pair analysis](https://arxiv.org/abs/2604.14327) combines ACT microwave maps with an SDSS halo catalogue and reports a fitted large-scale halo acceleration $g(r)\propto r^{-n}$ with $n_{\mathrm{kSZ}}^{\mathrm{obs}}=2.1\pm0.3$ on $30$--$230\,\mathrm{Mpc}$ scales. This establishes an observer-level profile comparison on that catalogue and scale window; it does not independently identify a substrate acceleration law.
+The kinematic Sunyaev-Zeldovich effect probes halo motion through CMB temperature shifts from scattering by moving electrons. The [ACT/SDSS halo-pair analysis](https://arxiv.org/abs/2604.14327) fits an effective radial acceleration kernel $g(r)\propto r^{-n}$ using microwave maps and a galaxy catalogue, obtaining $n_{\mathrm{kSZ}}^{\mathrm{obs}}=2.1\pm0.3$ over physical separations $30$–$230\,\mathrm{Mpc}$. The kernel must be integrated against spatial correlations and projected into the pairwise kSZ estimator; it is not identical to the mean pairwise acceleration or a direct substrate-law measurement.
 
-For a candidate medium-and-assembly history $\theta$, define the projected halo-pair acceleration profile over that separation window by
+For a candidate history $\theta$, parameterize the effective interaction kernel to be passed through that forward model by
 $$
 g_\theta(r)\big|_{W_{\mathrm{kSZ}}}
 \propto
@@ -6944,7 +7013,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-4c5aaaf80578ac1f)
 
-The structure-formation residual is then
+For the same estimator, fitted exponent, scale convention, and nuisance treatment, a Gaussian summary diagnostic is
 $$
 \mathcal{R}_{\mathrm{kSZ}\text{-}force}(\theta)
 =
@@ -6961,7 +7030,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-45ff932993554856)
 
-This residual protects the level distinction. A Noether sea response may still modify galaxy-scale low-acceleration behavior, but it cannot become a free large-scale modified-gravity law. On the ACT/SDSS halo-pair window the same $\theta_{\mathrm{sea}}$ must recover an approximately inverse-square effective pull while preserving CMB lensing, weak lensing, redshift-space distortions, and the matter power spectrum.
+The $0.3$ uncertainty belongs to the published exponent fit; the Gaussian expression is not the full data likelihood. The physical-separation window and the correlation, optical-depth, and background assumptions of [Gallardo et al. (2026)](https://arxiv.org/html/2604.14327v1) must be carried into a comparison. The residual subscript labels an observer-level effective acceleration comparison. A finite shared-state penalty does not enforce exact history consistency. The same model must also predict CMB lensing, weak lensing, redshift-space distortions, and matter power.
 
 The Lyman-$\alpha$ forest supplies a small-scale transfer gate on the same branch. Let $P_F^\theta(k,z)$ be the transmitted-flux power spectrum projected from the matter, thermal, ionization, and photon-transfer record. Then
 $$
@@ -6978,7 +7047,7 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-ef499dbcee5e6c46)
 
-This is an observer-level recovery target, not a direct matter-power measurement. A branch fails if it fits the CMB optical depth with one ionization history while changing the thermal or small-scale growth record for the forest.
+Here $\mathbf C_{F,z}$ is the positive-definite covariance of the flux-power bins at redshift $z$. The sum assumes independent redshift blocks; correlated blocks require the full covariance. This is a flux-data recovery target, not a direct matter-power measurement. The thermal, ionization, and growth history must remain consistent with that used for the CMB optical depth.
 
 Pre-BBN comparison branches enter structure formation only through the transfer record they leave behind. For any branch $X$ retained by [Inflation Model](../../../../markdown/aaa/cosmology/inflation-model.md#pre-bbn-comparison-gate) and [BBN Constraints](../../../../markdown/aaa/cosmology/BBN-constraints.md#pre-bbn-handoff-gate), the growth-side observable is
 $$
@@ -6996,8 +7065,8 @@ This quantity must be evaluated with the same $\theta_{\mathrm{sea}}$ used for B
 #### High-Redshift Structure
 
 Reports of massive, mature galaxies at $z > 10$ (from JWST and successors) test whether the growth history permits sufficient structure formation by early times. In the Noether sea framework:
-- If $G_{\text{eff}}$ was larger at early times (medium more compliant when hotter/denser), early structure formation is enhanced relative to standard $\Lambda$CDM—potentially explaining surprisingly massive high-$z$ systems without exotic physics.
-- Conversely, if $G_{\text{eff}}$ was constant, the same tension present in standard cosmology persists and must be addressed through astrophysical channels (early star formation efficiency, AGN feedback).
+- A larger effective coupling can enhance growth with background and initial conditions held fixed; a hotter or denser medium alone does not fix the coupling's sign or magnitude.
+- Constant $G_{\mathrm{eff}}$ does not force the same high-redshift abundance as standard cosmology. Background history, initial power, baryonic processes, selection, and mass inference also matter. A discrepancy must be established for a specified dataset and model before invoking an altered growth law.
 
 High-redshift quasars add the compact-source side of the same test. A massive quasar at large inferred redshift is not only a point on a distance curve; it is a joint record of seed inventory, feeding history, radiative efficiency, obscuration and selection, line-of-sight transfer, and the redshift extraction itself. A useful comparison object is
 $$
@@ -7027,11 +7096,11 @@ $$
 
 Here the first term tests whether the shared source history can grow the compact object, while the second tests whether the same source-to-receiver and selection records support the reported redshift. A branch fails this row if quasar growth is repaired by changing the age, redshift-transfer, or Noether sea state independently of the growth, CMB, lensing, and source-history records.
 
-Little-red-dot spectra add the obscured-accretion side of the same early-growth test. In a system such as GLIMPSE-17775, the compact red source is not interpreted from brightness alone: lensing reconstruction, deep JWST spectroscopy, line-profile modeling, host decomposition, gas density, optical depth, fluorescence, absorption, and X-ray or radio suppression all help determine whether the object is a rapidly accreting black hole hidden inside a dense gas envelope. If electron scattering and radiative transfer set much of the broad-line profile, then the inferred black-hole mass and Eddington ratio are coupled to gas-state modeling rather than to virial motion alone. The structure-formation branch must therefore explain the compact source, its host contribution, and its line-formation environment with one source-history record instead of treating little red dots as either overmassive galaxies or ordinary exposed quasars.
+Little red dots are compact sources with red optical spectra. In [GLIMPSE-17775, studied by Kokorev et al. (2025)](https://arxiv.org/abs/2511.07515), JWST spectroscopy supports a dense-gas interpretation through line wings, absorption, and fluorescence. If electron scattering contributes to broad lines, a black-hole mass estimate based on orbital line broadening depends on the gas model. The structure-formation comparison must therefore connect the compact source, host light, and line-formation environment through one source history.
 
-QSO1 supplies the complementary host-ordering constraint. Its direct dynamical mass estimate (ALMA dynamical-mass class) places a massive compact source in a very low-mass, low-metallicity host at $z=7.04$. The structure-formation problem is therefore not only whether early galaxies can feed central black holes quickly enough. It is whether one source-history model can produce compact central mass, delayed or weak host buildup, near-pristine gas, and later galaxy assembly without switching seed assumptions between the dynamical, chemical, and photometric records. Direct-collapse, heavy-seed, super-Eddington, and primordial-black-hole scenarios remain comparison routes until the same record also closes the host and enrichment constraints.
+Abell 2744-QSO1 supplies a complementary host constraint. [Juodžbalis et al. (2026)](https://www.nature.com/articles/s41586-026-10579-4) use gravitational lensing and JWST/NIRSpec integral-field spectroscopy of narrow hydrogen emission to infer a central point mass and limit stellar mass at $z=7.04$. This is a dynamical inference conditioned on lensing, inclination, and gas-motion models. Its small inferred host contribution, together with the separately inferred low metallicity, constrains compact-object and host assembly histories; it does not uniquely determine their temporal order or the seed mechanism. Direct-collapse, heavy-seed, super-Eddington, and primordial-black-hole scenarios remain comparison routes.
 
-Lensed inactive black holes supply the host-galaxy complement to the bright-quasar row. A system such as MRG-M0138 at $z\simeq1.95$ (JWST relic-galaxy class) is selected through a foreground lens, reconstructed through stellar kinematics, and interpreted together with a quiescent host whose star formation has already been suppressed. That packet tests whether black-hole growth, feedback or release history, stellar-mass buildup, and lensing reconstruction can be held in one source-history record. If an early massive black hole is explained only while the host quenching, stellar velocity dispersion, and lens model are treated as independent bookkeeping, the structure-formation branch has not supplied a shared growth history.
+For [MRG-M0138, studied by Newman et al.](https://arxiv.org/abs/2503.17478), JWST integral-field spectroscopy resolves stellar kinematics in a lensed quiescent galaxy at $z\simeq1.95$. The inferred inactive black-hole mass depends on the foreground lens and stellar dynamical model. The comparison connects black-hole growth, stellar buildup, and suppressed star formation; it does not independently identify the process that quenched the host.
 
 #### Top-Down vs Bottom-Up Discriminator
 
@@ -7039,11 +7108,11 @@ The framework should be evaluated on whether early-time growth behaves predomina
 
 #### Largest Structures
 
-The existence of very large coherent structures (giant arcs, walls, and voids at $\gtrsim 200$ Mpc scales) tests the homogeneity assumption and the age of the universe. In a framework where the Euclidean void is eternal and the Noether sea history may differ from the standard $13.8$ Gyr narrative:
-- Effectively unbounded-age scenarios (if the Noether sea has recycled through earlier phases) could accommodate structures requiring longer formation times.
+Reports of connected structures on scales $\gtrsim200\,\mathrm{Mpc}$ test a specified clustering model only after accounting for selection, the structure-finding algorithm, and the number of possible searches. A statistically homogeneous distribution can contain large connected structures. Eternal background time does not establish an old, dynamically connected material population:
+- A long material history must specify initial correlations, causal evolution, and population persistence before extra formation time can explain a structure.
 - Finite-age scenarios must demonstrate that the observed structures are statistically compatible with the growth rate permitted by $D(z)$ and $P(k)$.
 
-This is an active test with model-discriminating power, not merely a fitting exercise. A structure-formation run should report the scale-neutral homogeneity residual $\mathcal{R}_{\mathrm{hom}}(\theta_{\mathrm{sea}};L,t)$ defined in [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md#inference-dependency-ledger) alongside $P(k,z)$, $D(z)$, lensing summaries, and high-redshift halo statistics. If the matter power spectrum fits but dimensionless pair-separation distributions differ by direction, environment, or source family beyond tolerance, the run has not supplied a single large-scale medium history.
+The scale-neutral homogeneity residual $\mathcal R_{\mathrm{hom}}$ in [Cosmology Ontology](../../../../markdown/aaa/cosmology/cosmology-ontology.md#inference-dependency-ledger) compares declared dimensionless statistics with survey-matched predictions. It belongs alongside $P(k,z)$, $D(k,z)$, lensing, and halo statistics. Differences between environments or source populations can be physical; a model fails when its predicted differences disagree with observations beyond the declared covariance and selection tolerance, not merely when the populations differ.
 
 #### Source-History Inversion
 
@@ -7077,15 +7146,15 @@ A key distinguishing feature of the Noether sea-based framework is that $G_{\tex
 
 #### Physical Origin
 
-The effective gravitational coupling is set by how efficiently a local overdensity deforms the surrounding Noether sea. At different scales, different medium-response mechanisms dominate:
+The effective gravitational coupling must be extracted from a specified medium history. The following regimes organize candidate mechanisms; their scale labels are comparison windows, not measured transitions or established response laws. The symbol $\bar R_{\mathrm{braid}}$ is the declared braid-radius statistic; the mean spacing also limits continuum validity.
 
-| Scale regime | Dominant medium response | Expected $G_{\text{eff}}$ behavior |
+| Scale regime | Candidate medium description | Response to establish |
 |:---|:---|:---|
-| $\lambda \gg \bar{R}_{\text{core}}$, low $\rho$ | Linear elastic (acoustic) | Approximately constant; matches $G_N$ |
+| $\lambda \gg \bar R_{\mathrm{braid}}$ and mean spacing | Linear elastic comparison | Whether $G_N$ is recovered in the weak-field limit |
 | $\lambda \sim 1$–$10$ Mpc, moderate $\rho$ | Weakly nonlinear compliance | Small corrections; cluster-scale tests |
 | $\lambda \lesssim$ kpc, low acceleration | Nonlinear stiffening or softening | Possible MOND-like behavior |
-| $\lambda \sim \bar{R}_{\text{core}}$ | Discrete medium effects | Continuum description breaks down |
-| High $\rho$ (near Planck cores) | Self-hit regime | $G_{\text{eff}}$ changes qualitatively |
+| $\lambda$ near braid size or mean spacing | Discrete population description | Domain where continuum error becomes significant |
+| High density | Full constituent path history | Causal-root occupancy and any effective response change |
 
 #### Parameterization
 
@@ -7101,30 +7170,30 @@ where $\mu(a, k)$ is a dimensionless modification function.
 
 #### Linear Constitutive Derivation of $\mu(a,k)$
 
-To make the map explicit, linearize the Noether sea response around a homogeneous background — carrying the same open equilibrium predicate declared in the growth-equation validity list above — with displacement field $\mathbf{u}$ and scalar compression mode
+The following is a conditional continuum calculation, not a linearization of an established physical Noether sea equilibrium. Applying it to the sea requires a realized background with acceleration balance and validated coefficients. Freeze the background over a local response window, use the effective comoving coordinates already declared, and let $\mathbf u$ be a physical displacement. Its fractional volume change is
 $$
-\theta \equiv \nabla\cdot\mathbf{u}
+\vartheta_L \equiv a^{-1}\nabla_{\mathbf x_{\mathrm{eff}}}\cdot\mathbf u
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-14c64e3d2934eb29)
 
-Use isotropic linear constitutive response (elastic + Kelvin-Voigt damping):
+Negative $\vartheta_L$ means compression. Define strain $u_{ij}=(\partial_{x_{\mathrm{eff}}^i}u_j+\partial_{x_{\mathrm{eff}}^j}u_i)/(2a)$, whose trace is $\vartheta_L$. This symbol is distinct from history label $\theta$ and component velocity divergence $\theta_x$. A Kelvin-Voigt comparison combines stress proportional to strain with stress proportional to strain rate:
 $$
 \delta \sigma_{ij}
 =
-K(a)\,\delta_{ij}\,\theta
-+2S(a)\!\left(u_{ij}-\frac{1}{3}\delta_{ij}\theta\right)
-+\zeta_{\text{bulk}}(a)\,\delta_{ij}\,\dot{\theta}
-+2\eta(a)\!\left(\dot{u}_{ij}-\frac{1}{3}\delta_{ij}\dot{\theta}\right)
+K(a)\,\delta_{ij}\,\vartheta_L
++2S(a)\!\left(u_{ij}-\frac{1}{3}\delta_{ij}\vartheta_L\right)
++\zeta_{\text{bulk}}(a)\,\delta_{ij}\,\dot{\vartheta}_L
++2\eta_{\mathrm{vis}}(a)\!\left(\dot{u}_{ij}-\frac{1}{3}\delta_{ij}\dot{\vartheta}_L\right)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-500a4a13cf59a017)
 
-with bulk modulus $K$, shear modulus $S$, and viscosities $(\zeta_{\text{bulk}},\eta)$. The subscript prevents confusion with the shielding factor $\zeta(A)$ used in assembly-mass closure.
+Here $\delta\sigma_{ij}$ is stress perturbation, $K$ and $S$ are bulk and shear moduli with pressure units, and $\zeta_{\mathrm{bulk}}$ and $\eta_{\mathrm{vis}}$ are viscosities with pressure-times-time units. Dots use $t_{\mathrm{eff}}$. Subscripts distinguish these coefficients from shielding $\zeta(A)$ and causal-wake regularizer $\eta$. Passive elastic and viscous comparisons require positive elastic moduli and nonnegative viscosities; those signs do not establish stability of the coupled gravitational system.
 
-For scalar/longitudinal modes in Fourier space, the linear response equation is
+Stress alone does not determine the scalar response. Additionally assume a longitudinal source coupling $g_m$, a restoring coefficient denoted $m_L^2$, and an overdamped equation with negligible inertia. At fixed background and spatial Fourier wavenumber $k$, the assumed response is
 $$
-\left[M_L(a)k^2 + m_L^2(a) - i\omega\,\Gamma_L(a)\,k^2\right]\theta(a,k,\omega)
+\left[M_L(a)k^2/a^2 + m_L^2(a) - i\omega\,\Gamma_L(a)k^2/a^2\right]\vartheta_L(a,k,\omega)
 =
 g_m(a)\,\delta\rho_m(a,k,\omega)
 $$
@@ -7135,20 +7204,20 @@ where
 $$
 M_L(a)\equiv K(a)+\frac{4}{3}S(a),
 \qquad
-\Gamma_L(a)\equiv \zeta_{\text{bulk}}(a)+\frac{4}{3}\eta(a)
+\Gamma_L(a)\equiv \zeta_{\text{bulk}}(a)+\frac{4}{3}\eta_{\mathrm{vis}}(a)
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-6624ca6af422330f)
 
-and $m_L(a)$ is the finite-range restoring scale (equivalently $k_\ast(a)^2=m_L^2/M_L$).
+The physical wavenumber is $k/a$, so the factors $a^{-2}$ are required. The symbol $m_L^2$ has units of pressure per squared length, not particle mass squared, and $g_m\delta\rho_m$ has those same units. The source, finite-range restoration, and neglect of inertia are extra assumptions beyond the stress law. A mechanical completion with inertia requires its kinetic response and additional initial data.
 
-Use the Fourier convention $e^{-i\omega t_{\mathrm{eff}}}$. For a stable static response, $M_Lk^2+m_L^2>0$. Under the displacement convention above, an overdensity $\delta\rho_m>0$ produces compression when $\theta<0$, so the positive-response branch requires $g_m<0$. Then $\delta u_{\mathrm{sea}}=-\bar u_{\mathrm{sea}}\theta>0$ and $\mu_{\mathrm{sea}}>0$, enhancing $G_{\mathrm{eff}}$. Increasing $M_L$ or $m_L$ reduces the response magnitude but cannot reverse its sign.
+Use $e^{-i\omega t_{\mathrm{eff}}}$ for temporal Fourier modes. Define $A_L=M_Lk^2/a^2+m_L^2>0$ and $B_L=\Gamma_Lk^2/a^2\ge0$. The response equation is $B_L\dot\vartheta_L+A_L\vartheta_L=g_m\delta\rho_m$ with frozen coefficients. For $B_L>0$, its unforced mode is $\exp(-A_Lt_{\mathrm{eff}}/B_L)$; for $B_L=0$ it is an algebraic constraint. This proves a relaxation property of the assumed scalar equation only. An overdensity produces static compression when $g_m<0$. Increasing the positive restoring terms reduces the response magnitude without changing its sign.
 
-The induced sea-energy-density perturbation is
+For a minimal additional ansatz, suppose each displaced material element retains fixed carried energy over this response window. Linearizing its volume Jacobian gives $\delta u_{\mathrm{sea}}=-\bar u_{\mathrm{sea}}\vartheta_L$. This assumption is not general sea thermodynamics: an adiabatic fluid with pressure has $\delta u=-(\bar u+\bar p)\vartheta_L$, and source exchange adds further terms. Define the dimensionless susceptibility using mass-equivalent energy density:
 $$
-\delta u_{\text{sea}}(a,k,\omega)
+\delta u_{\text{sea}}(a,k,\omega)/c_0^2
 =
--\bar{u}_{\text{sea}}(a)\,\theta(a,k,\omega)
+-\frac{\bar{u}_{\text{sea}}(a)}{c_0^2}\,\vartheta_L(a,k,\omega)
 =
 \mu_{\text{sea}}(a,k,\omega)\,\delta\rho_m(a,k,\omega)
 $$
@@ -7159,22 +7228,22 @@ with susceptibility
 $$
 \mu_{\text{sea}}(a,k,\omega)
 =
--\frac{\bar{u}_{\text{sea}}(a)\,g_m(a)}
-{M_L(a)k^2+m_L^2(a)-i\omega\,\Gamma_L(a)k^2}
+-\frac{\bar{u}_{\text{sea}}(a)\,g_m(a)/c_0^2}
+{M_L(a)k^2/a^2+m_L^2(a)-i\omega\,\Gamma_L(a)k^2/a^2}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f75dcf676aa58c1d)
 
-Insert this into the linear Poisson source:
+Finally assume that this mass-equivalent perturbation sources the same effective potential as matter with unit relative coupling and negligible additional pressure or anisotropic-stress source. This is an observer-level Poisson closure to recover, not a consequence of the substrate acceleration law:
 $$
--k^2\Phi(a,k)=4\pi G_N a^2\bigl[\delta\rho_m+\delta u_{\text{sea}}\bigr]
+-k^2\Phi_{\mathrm{eff}}(a,k)=4\pi G_N a^2\bigl[\delta\rho_m+\delta u_{\text{sea}}/c_0^2\bigr]
 =
 4\pi G_N a^2\bigl[1+\mu_{\text{sea}}(a,k,\omega)\bigr]\delta\rho_m
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-db5c7368c777da5e)
 
-Therefore
+The potential $\Phi_{\mathrm{eff}}$ has squared-speed units. Under these additional assumptions,
 $$
 G_{\text{eff}}(a,k,\omega)=G_N\bigl[1+\mu_{\text{sea}}(a,k,\omega)\bigr],
 \qquad
@@ -7183,22 +7252,22 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f2d3519b7d633fc7)
 
-For growth calculations use the quasi-static branch $\omega\simeq H(a)f(a)$ and the real part:
+A growing mode is not sinusoidal. Locally write $\delta\rho_m\propto e^{s_\rho t_{\mathrm{eff}}}$, so $\omega=i s_\rho$ and the denominator is $A_L+s_\rho B_L$. The source rate is $s_\rho=d\ln|\delta\rho_m|/dt_{\mathrm{eff}}=Hf+\dot{\bar\rho}_m/\bar\rho_m$, which becomes $H(f-3)$ for conserved pressureless matter; $Hf$ alone is the contrast growth rate. When coefficients vary slowly over the response time and the homogeneous transient is negligible, the local particular response is
 $$
-\mu(a,k)
+\mu_{\mathrm{grow}}(a,k;s_\rho)
 =
--\frac{\bar{\rho}_{\text{sea}}(a)\,g_m(a)\,\bigl[M_L(a)k^2+m_L^2(a)\bigr]}
-{\bigl[M_L(a)k^2+m_L^2(a)\bigr]^2+\bigl[H(a)f(a)\Gamma_L(a)k^2\bigr]^2}
+-\frac{\bar u_{\mathrm{sea}}(a)g_m(a)/c_0^2}
+{M_L(a)k^2/a^2+m_L^2(a)+s_\rho\Gamma_L(a)k^2/a^2}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-002befecb3fc00bd)
 
-In the strictly quasi-static limit ($Hf\,\Gamma_Lk^2\ll M_Lk^2+m_L^2$), this reduces to the closed Yukawa-like form
+This expression requires a nonzero denominator and the stated local exponential approximation; if source evolution competes with relaxation, solve the time-dependent response with its history. Taking the real part at real $\omega=Hf$ computes an in-phase oscillatory response and does not solve the growth problem. In the strictly quasi-static limit $|s_\rho|B_L\ll A_L$, with background variations also slow compared with $B_L/A_L$, the response reduces to
 $$
 \mu(a,k)
 \approx
--\frac{\bar{\rho}_{\text{sea}}(a)\,g_m(a)}
-{m_L^2(a)+M_L(a)k^2}
+-\frac{\bar u_{\mathrm{sea}}(a)\,g_m(a)/c_0^2}
+{m_L^2(a)+M_L(a)k^2/a^2}
 =
 \frac{\mu_0(a)}{1+\bigl(k/k_\ast(a)\bigr)^2}
 $$
@@ -7206,14 +7275,14 @@ $$
 [View →](../../../../../equation-mapping.html#corpus-equation-3dc324e5bcd8ddaf)
 
 $$
-\mu_0(a)\equiv-\frac{\bar{\rho}_{\text{sea}}(a)\,g_m(a)}{m_L^2(a)},
+\mu_0(a)\equiv-\frac{\bar u_{\mathrm{sea}}(a)\,g_m(a)}{c_0^2m_L^2(a)},
 \qquad
-k_\ast(a)^2\equiv\frac{m_L^2(a)}{M_L(a)}
+k_\ast(a)^2\equiv\frac{a^2m_L^2(a)}{M_L(a)}
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-9eafb824ea09421e)
 
-Setting $g_m=0$ (or equivalently $\mu=0$) recovers standard GR growth. Current data constrain $|\mu| \lesssim 0.1$ (Planck modified-gravity + DES/KiDS-class weak-lensing constraints) on the scales probed by galaxy surveys and CMB lensing.
+The finite-range parameterization requires $m_L^2>0$ and $M_L>0$; otherwise retain the preceding denominator without dividing by $m_L^2$. Setting $g_m=0$ removes this driven correction when independent sea transients are absent. General-relativistic growth is recovered only if the background, matter inventory, initial conditions, and other perturbation equations also match. There is no universal observational bound $|\mu|\lesssim0.1$ for an arbitrary function of scale and epoch: a bound requires a parameterization, survey likelihood, priors, and a specification of how both matter acceleration and light deflection respond.
 
 A finite-range or screening comparison adds one useful local-recovery gate without importing massive-gravity ontology. If a local constitutive invariant $\mathcal{I}_{\mathrm{loc}}$ suppresses the response in dense or strongly tested regimes, write
 $$
@@ -7226,16 +7295,16 @@ $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-059cf9517a79ca91)
 
-For every validated solar-system, binary-pulsar, lensing, and gravitational-wave record $r$, the recovery requirement is
+For a record $r$ whose observable has been mapped to this scalar response, let $\epsilon_r$ be its dimensionless tolerance. A necessary scalar condition is
 $$
 \left|\mu(a_r,k_r)S_{\mathrm{loc}}(\mathcal{I}_r)\right|<\epsilon_r
 $$
 
 [View →](../../../../../equation-mapping.html#corpus-equation-f7d6c88b62143c87)
 
-Cosmological deviations are viable only when the same coefficient record also fits BAO, CMB lensing, supernova distances, and $f\sigma_8$ growth without retuning $S_{\mathrm{loc}}$ by observational channel.
+This inequality alone does not certify solar-system, binary-pulsar, lensing, or gravitational-wave recovery. Those observations can depend on additional metric potentials, radiative modes, and time-dependent response. Cosmological deviations must satisfy their actual observables as well as BAO, CMB lensing, supernova distances, and $f\sigma_8$, using one coefficient record without channel-specific retuning.
 
-Late-time growth suppression requires $\mu<0$ on the relevant scales. With the conventions and stable denominator above, that sign requires $g_m>0$, which is opposite to the positive-density compression branch, or an additional constitutive term that changes sign with scale or epoch. Cooling or increased stiffness alone reduces $|\mu|$; it does not produce negative $\mu$. Deriving the required sign change from one stable Noether sea constitutive law is therefore an explicit closure burden for any proposed $S_8$ explanation.
+For the same $G_N$, background, matter inventory, and initial conditions, suppressing the instantaneous gravitational source below its general-relativistic value requires $\mu<0$. In the static fixed-carried-energy ansatz with $\bar u_{\mathrm{sea}}>0$, that sign requires $g_m>0$, opposite to the compression branch, or another response contribution. Cooling and stiffness changes alone do not establish it. A lower final $S_8$ can also arise through the initial spectrum, expansion history, free streaming, or suppression relative to an earlier enhanced coupling; it does not universally require $\mu<0$. Any proposed explanation must compute the full shared growth and lensing history. None of these algebraic comparisons certifies a physical Noether sea branch.
 
 ---
 
@@ -7243,14 +7312,15 @@ Late-time growth suppression requires $\mu<0$ on the relevant scales. With the c
 
 In the modular cosmology architecture, this document provides:
 
-**Ontic inputs** (from medium dynamics and assembly physics):
-- Noether sea equation of state $w_{\text{sea}}(t)$ and energy density $u_{\text{sea}}(t)$,
-- neutral-assembly (dark-matter) density $\rho_{\text{dm}}(t)$ and interaction cross-section,
-- effective gravitational coupling $G_{\text{eff}}(t, k)$ from medium compliance,
-- primordial perturbation spectrum $P_0(k)$ (from the initial Noether sea state or an inflation-equivalent process).
+**Physical history and required projections**:
+- native medium and constituent histories in $T,\mathbf X$,
+- projected Noether sea equation of state $w_{\mathrm{sea}}(t_{\mathrm{eff}})$ and energy density $u_{\mathrm{sea}}(t_{\mathrm{eff}})$,
+- projected neutral-assembly density $\rho_{\mathrm{dm}}(t_{\mathrm{eff}})$ and interaction rates,
+- effective gravitational response $G_{\mathrm{eff}}(t_{\mathrm{eff}},k)$ and the light-deflection response,
+- initial perturbation spectrum $P_0(k)$ and component transfer data. These statistical and constitutive summaries are outputs to derive or explicit comparison inputs, not primitive ontology.
 
 **Effective outputs** (to observational modules):
-- linear growth factor $D(z)$ and growth rate $f(z)$,
+- linear growth factor $D(k,z)$ and growth rate $f(k,z)$, with $k$ omitted only in a scale-independent limit,
 - matter power spectrum $P(k, z)$,
 - $\sigma_8(z)$ and $S_8(z)$ for comparison with survey data,
 - lensing convergence power spectrum $C_\ell^{\kappa\kappa}$ for CMB and cosmic-shear analyses.
@@ -7265,7 +7335,7 @@ In the modular cosmology architecture, this document provides:
 
 ### Synthesis
 
-Structure formation is modeled here as Noether sea response gravitational instability in a fixed Euclidean void, with $H$, $G_{\text{eff}}$, and matter content determined by internal dynamics of architrino assemblies. The practical program is to derive the constitutive coefficients $\{K,S,\zeta_{\text{bulk}},\eta,m_L,g_m\}(a)$, close $\mu(a,k)$ from Noether sea response equations, and propagate the resulting growth history through the coupled cosmology modules.
+Structure formation supplies a coupled recovery problem for matter clustering, medium response, and observer inference in a fixed Euclidean void. The chapter derives a susceptibility only within an explicitly assumed continuum model, distinguishes its oscillatory and evolving-source responses, and states the additional source, density, and chart maps needed to use it. Deriving those maps and the coefficients $\{K,S,\zeta_{\mathrm{bulk}},\eta_{\mathrm{vis}},m_L,g_m\}(a)$ from realized architrino histories remains open. A successful account must then recover the joint growth, lensing, abundance, and source-history observations without treating the assumed model as evidence for its own physical realization.
 
 ## Hubble and S8 Tensions
 

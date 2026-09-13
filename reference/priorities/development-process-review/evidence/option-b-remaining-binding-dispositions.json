@@ -28,280 +28,331 @@
     "disposition": "Independently accepted bounded v2 structural extension; role and mathematical acceptance remain separately scoped",
     "checkerSha256": "6d07a96ce73859e17b53b4eaaf39c5bbecea6ace4a91ae3995d2eb9247e1e826",
     "controlsSha256": "67c3b94b78f6e643f379dbcea014536f676c18b706695eb80ae95727f22dff99",
-    "knownControls": {"pass": 7, "fail": 0, "durationMs": 92.705417},
-    "targetResult": {"discoveryFiles": 157, "liveCandidateFiles": 155, "dispositionRows": 197, "retiredRows": 1},
+    "knownControls": {
+      "pass": 7,
+      "fail": 0,
+      "durationMs": 92.705417
+    },
+    "targetResult": {
+      "discoveryFiles": 157,
+      "liveCandidateFiles": 155,
+      "dispositionRows": 197,
+      "retiredRows": 1
+    },
     "combinedRun": "352df42b-6156-428c-b5c9-21d226e1b597",
-    "combinedResult": {"pass": 67, "fail": 0, "skipped": 0, "cancelled": 0, "elapsedWallSeconds": 8.597, "processGroupClosed": true}
+    "combinedResult": {
+      "pass": 67,
+      "fail": 0,
+      "skipped": 0,
+      "cancelled": 0,
+      "elapsedWallSeconds": 8.597,
+      "processGroupClosed": true
+    }
   },
   "additionalOwners": [
-{
-  "path": "src/apps/borg/data/certified-budget-identities.v1.json",
-  "disposition": "retained",
-  "owner": "Borg authored certified-budget identity data",
-  "reason": "Coordinated Borg budget/F5 identity transfer preserving original expectations and historical applicability.",
-  "roles": [
     {
-      "binding": "Original two allocation hashes with exact canonical allocation applicability",
-      "targets": [
-        "src/apps/borg/BorgCertifiedBudgets.js",
-        "scripts/eom/f5-current-source-admission.mjs"
-      ],
-      "meaning": "Scientific-contract data transport only; no renewed declaration or numerical acceptance",
-      "selection": "Original retained module and unchanged budget ledger",
-      "consumer": "Generator and built-in budget preset selector",
-      "independentCheck": "Original public-preset equality, unchanged Node crypto and ledger controls"
-    }
-  ]
-},
-{
-  "path": "content/generated/borg/certified-budget-identities.v1.js",
-  "disposition": "retained",
-  "owner": "Borg generated budget projection",
-  "reason": "Coordinated Borg budget/F5 identity transfer preserving original expectations and historical applicability.",
-  "roles": [
+      "path": "src/apps/borg/data/certified-budget-identities.v1.json",
+      "disposition": "retained",
+      "owner": "Borg authored certified-budget identity data",
+      "reason": "Coordinated Borg budget/F5 identity transfer preserving original expectations and historical applicability.",
+      "roles": [
+        {
+          "binding": "Original two allocation hashes with exact canonical allocation applicability",
+          "targets": [
+            "src/apps/borg/BorgCertifiedBudgets.js",
+            "scripts/eom/f5-current-source-admission.mjs"
+          ],
+          "meaning": "Scientific-contract data transport only; no renewed declaration or numerical acceptance",
+          "selection": "Original retained module and unchanged budget ledger",
+          "consumer": "Generator and built-in budget preset selector",
+          "independentCheck": "Original public-preset equality, unchanged Node crypto and ledger controls"
+        }
+      ]
+    },
     {
-      "binding": "Ignored deterministic plain ESM data, not independently authored expectations",
-      "targets": [
-        "src/apps/borg/BorgCertifiedBudgets.js",
-        "scripts/eom/f5-current-source-admission.mjs"
-      ],
-      "meaning": "Scientific-contract data transport only; no renewed declaration or numerical acceptance",
-      "selection": "Explicit runtime family and authored JSON",
-      "consumer": "Synchronous Borg budget module and captured F5 loader",
-      "independentCheck": "Generator freshness, captured data equality and isolated published-module checks"
-    }
-  ]
-},
-{
-  "path": "src/apps/borg/BorgCertifiedBudgetIdentityContract.js",
-  "disposition": "retained",
-  "owner": "Borg budget identity contract",
-  "reason": "Coordinated Borg budget/F5 identity transfer preserving original expectations and historical applicability.",
-  "roles": [
+      "path": "content/generated/borg/certified-budget-identities.v1.js",
+      "disposition": "retained",
+      "owner": "Borg generated budget projection",
+      "reason": "Coordinated Borg budget/F5 identity transfer preserving original expectations and historical applicability.",
+      "roles": [
+        {
+          "binding": "Ignored deterministic plain ESM data, not independently authored expectations",
+          "targets": [
+            "src/apps/borg/BorgCertifiedBudgets.js",
+            "scripts/eom/f5-current-source-admission.mjs"
+          ],
+          "meaning": "Scientific-contract data transport only; no renewed declaration or numerical acceptance",
+          "selection": "Explicit runtime family and authored JSON",
+          "consumer": "Synchronous Borg budget module and captured F5 loader",
+          "independentCheck": "Generator freshness, captured data equality and isolated published-module checks"
+        }
+      ]
+    },
     {
-      "binding": "Hash-free strict decoding, canonical applicability and built-in identity selection",
-      "targets": [
-        "src/apps/borg/BorgCertifiedBudgets.js",
-        "scripts/eom/f5-current-source-admission.mjs"
-      ],
-      "meaning": "Scientific-contract data transport only; no renewed declaration or numerical acceptance",
-      "selection": "Reviewed exact-value transport, not scientific reacceptance",
-      "consumer": "Budget module, generator and captured F5 admission",
-      "independentCheck": "Known malformed/duplicate/applicability controls and original API equality"
-    }
-  ]
-},
-{
-  "path": "scripts/borg/build-certified-budget-identities.mjs",
-  "disposition": "retained",
-  "owner": "Borg budget projection generator",
-  "reason": "Coordinated Borg budget/F5 identity transfer preserving original expectations and historical applicability.",
-  "roles": [
+      "path": "src/apps/borg/BorgCertifiedBudgetIdentityContract.js",
+      "disposition": "retained",
+      "owner": "Borg budget identity contract",
+      "reason": "Coordinated Borg budget/F5 identity transfer preserving original expectations and historical applicability.",
+      "roles": [
+        {
+          "binding": "Hash-free strict decoding, canonical applicability and built-in identity selection",
+          "targets": [
+            "src/apps/borg/BorgCertifiedBudgets.js",
+            "scripts/eom/f5-current-source-admission.mjs"
+          ],
+          "meaning": "Scientific-contract data transport only; no renewed declaration or numerical acceptance",
+          "selection": "Reviewed exact-value transport, not scientific reacceptance",
+          "consumer": "Budget module, generator and captured F5 admission",
+          "independentCheck": "Known malformed/duplicate/applicability controls and original API equality"
+        }
+      ]
+    },
     {
-      "binding": "Deterministic serialization of authored expectations; no expected-value calculation",
-      "targets": [
-        "src/apps/borg/BorgCertifiedBudgets.js",
-        "scripts/eom/f5-current-source-admission.mjs"
-      ],
-      "meaning": "Scientific-contract data transport only; no renewed declaration or numerical acceptance",
-      "selection": "Explicit canonical data path and ignored runtime output",
-      "consumer": "Runtime asset preparation and F5 selected source inventory",
-      "independentCheck": "Missing/stale/substitution controls and source-only reconstruction"
-    }
-  ]
-},
-{
-  "path": "tests/borg-certified-budget-identities.test.js",
-  "disposition": "retained",
-  "owner": "Borg budget transfer controls",
-  "reason": "Coordinated Borg budget/F5 identity transfer preserving original expectations and historical applicability.",
-  "roles": [
+      "path": "scripts/borg/build-certified-budget-identities.mjs",
+      "disposition": "retained",
+      "owner": "Borg budget projection generator",
+      "reason": "Coordinated Borg budget/F5 identity transfer preserving original expectations and historical applicability.",
+      "roles": [
+        {
+          "binding": "Deterministic serialization of authored expectations; no expected-value calculation",
+          "targets": [
+            "src/apps/borg/BorgCertifiedBudgets.js",
+            "scripts/eom/f5-current-source-admission.mjs"
+          ],
+          "meaning": "Scientific-contract data transport only; no renewed declaration or numerical acceptance",
+          "selection": "Explicit canonical data path and ignored runtime output",
+          "consumer": "Runtime asset preparation and F5 selected source inventory",
+          "independentCheck": "Missing/stale/substitution controls and source-only reconstruction"
+        }
+      ]
+    },
     {
-      "binding": "Known input transport, applicability, generation and API controls",
-      "targets": [
-        "src/apps/borg/BorgCertifiedBudgets.js",
-        "scripts/eom/f5-current-source-admission.mjs"
-      ],
-      "meaning": "Scientific-contract data transport only; no renewed declaration or numerical acceptance",
-      "selection": "Hand-authored positive and rejection cases; original retained expectations",
-      "consumer": "Required runtime-contract gate",
-      "independentCheck": "Unchanged independent crypto/ledger controls and separate read-only review"
-    }
-  ]
-},
-  {
-    "path": "src/apps/borg/data/assembly-record-catalog.v2.json",
-    "disposition": "retained",
-    "owner": "Borg authored catalogue data",
-    "reason": "The ordered exact navigation identities and labels move unchanged out of the executable catalogue.",
-    "roles": [
-      {
-        "binding": "Exact model-revision identities, assembly IDs, labels and record routes",
-        "targets": [
-          "src/apps/borg/BorgAssemblyRecordCatalog.js"
-        ],
-        "meaning": "Navigation data and operational packaging only; original scientific identities and applicability remain unchanged",
-        "selection": "Original pre-transfer catalogue entries, preserved in order",
-        "consumer": "scripts/borg/build-assembly-record-catalog.mjs and canonical-data taxonomy inspection",
-        "independentCheck": "Known-case-checked original entry comparison, unchanged record-byte identity checks and taxonomy controls"
-      }
-    ]
-  },
-  {
-    "path": "content/generated/borg/assembly-record-catalog.v2.js",
-    "disposition": "retained",
-    "owner": "Borg generated runtime projection",
-    "reason": "Ignored deterministic data-only module prepared from the authored JSON; never a second authored expected-value source.",
-    "roles": [
-      {
-        "binding": "Browser-compatible serialized catalogue data",
-        "targets": [
-          "src/apps/borg/BorgAssemblyRecordCatalog.js"
-        ],
-        "meaning": "Navigation data and operational packaging only; original scientific identities and applicability remain unchanged",
-        "selection": "Explicit runtime family and canonical JSON; no independent value refresh",
-        "consumer": "src/apps/borg/BorgAssemblyRecordCatalog.js and static deployment",
-        "independentCheck": "Generator check, source-only reconstruction and published-module exact equality/immutability"
-      }
-    ]
-  },
-  {
-    "path": "src/apps/borg/BorgAssemblyRecordCatalogContract.js",
-    "disposition": "retained",
-    "owner": "Borg catalogue contract",
-    "reason": "Hash-free validation and immutable construction shared by generator and synchronous runtime wrapper.",
-    "roles": [
-      {
-        "binding": "Schema, identity-pair, duplicate, field and route checks",
-        "targets": [
-          "src/apps/borg/BorgAssemblyRecordCatalog.js"
-        ],
-        "meaning": "Navigation data and operational packaging only; original scientific identities and applicability remain unchanged",
-        "selection": "The existing catalogue construction contract plus explicit external-data decoding",
-        "consumer": "Borg catalogue wrapper, generator and taxonomy checker",
-        "independentCheck": "Hand-authored positive and malformed-data controls, original public API regression"
-      }
-    ]
-  },
-  {
-    "path": "scripts/borg/build-assembly-record-catalog.mjs",
-    "disposition": "retained",
-    "owner": "Borg runtime catalogue generation",
-    "reason": "Deterministically generates only the ignored ESM data projection from authored JSON.",
-    "roles": [
-      {
-        "binding": "Canonical source capture and deterministic output freshness",
-        "targets": [
-          "src/apps/borg/BorgAssemblyRecordCatalog.js"
-        ],
-        "meaning": "Navigation data and operational packaging only; original scientific identities and applicability remain unchanged",
-        "selection": "Explicit source/output paths and write/check modes",
-        "consumer": "scripts/prepare-runtime-assets.mjs, Pages builds and benchmark fingerprint inventory",
-        "independentCheck": "Known rendering cases, missing/stale/invalid source rejection, idempotence and source-only build"
-      }
-    ]
-  },
-  {
-    "path": "tests/borg-assembly-record-catalog-generator.test.js",
-    "disposition": "retained",
-    "owner": "Borg catalogue generation controls",
-    "reason": "Protects data transport, strict validation and fresh-checkout bootstrap without a scientific acceptance claim.",
-    "roles": [
-      {
-        "binding": "Known synthetic data, output freshness and path rejection cases",
-        "targets": [
-          "src/apps/borg/BorgAssemblyRecordCatalog.js"
-        ],
-        "meaning": "Navigation data and operational packaging only; original scientific identities and applicability remain unchanged",
-        "selection": "Hand-authored parser/rendering controls before actual catalogue use",
-        "consumer": "Required generated-runtime contract test step",
-        "independentCheck": "Positive and negative test results plus independent source review"
-      }
-    ]
-  },
+      "path": "tests/borg-certified-budget-identities.test.js",
+      "disposition": "retained",
+      "owner": "Borg budget transfer controls",
+      "reason": "Coordinated Borg budget/F5 identity transfer preserving original expectations and historical applicability.",
+      "roles": [
+        {
+          "binding": "Known input transport, applicability, generation and API controls",
+          "targets": [
+            "src/apps/borg/BorgCertifiedBudgets.js",
+            "scripts/eom/f5-current-source-admission.mjs"
+          ],
+          "meaning": "Scientific-contract data transport only; no renewed declaration or numerical acceptance",
+          "selection": "Hand-authored positive and rejection cases; original retained expectations",
+          "consumer": "Required runtime-contract gate",
+          "independentCheck": "Unchanged independent crypto/ledger controls and separate read-only review"
+        }
+      ]
+    },
+    {
+      "path": "src/apps/borg/data/assembly-record-catalog.v2.json",
+      "disposition": "retained",
+      "owner": "Borg authored catalogue data",
+      "reason": "The ordered exact navigation identities and labels move unchanged out of the executable catalogue.",
+      "roles": [
+        {
+          "binding": "Exact model-revision identities, assembly IDs, labels and record routes",
+          "targets": [
+            "src/apps/borg/BorgAssemblyRecordCatalog.js"
+          ],
+          "meaning": "Navigation data and operational packaging only; original scientific identities and applicability remain unchanged",
+          "selection": "Original pre-transfer catalogue entries, preserved in order",
+          "consumer": "scripts/borg/build-assembly-record-catalog.mjs and canonical-data taxonomy inspection",
+          "independentCheck": "Known-case-checked original entry comparison, unchanged record-byte identity checks and taxonomy controls"
+        }
+      ]
+    },
+    {
+      "path": "content/generated/borg/assembly-record-catalog.v2.js",
+      "disposition": "retained",
+      "owner": "Borg generated runtime projection",
+      "reason": "Ignored deterministic data-only module prepared from the authored JSON; never a second authored expected-value source.",
+      "roles": [
+        {
+          "binding": "Browser-compatible serialized catalogue data",
+          "targets": [
+            "src/apps/borg/BorgAssemblyRecordCatalog.js"
+          ],
+          "meaning": "Navigation data and operational packaging only; original scientific identities and applicability remain unchanged",
+          "selection": "Explicit runtime family and canonical JSON; no independent value refresh",
+          "consumer": "src/apps/borg/BorgAssemblyRecordCatalog.js and static deployment",
+          "independentCheck": "Generator check, source-only reconstruction and published-module exact equality/immutability"
+        }
+      ]
+    },
+    {
+      "path": "src/apps/borg/BorgAssemblyRecordCatalogContract.js",
+      "disposition": "retained",
+      "owner": "Borg catalogue contract",
+      "reason": "Hash-free validation and immutable construction shared by generator and synchronous runtime wrapper.",
+      "roles": [
+        {
+          "binding": "Schema, identity-pair, duplicate, field and route checks",
+          "targets": [
+            "src/apps/borg/BorgAssemblyRecordCatalog.js"
+          ],
+          "meaning": "Navigation data and operational packaging only; original scientific identities and applicability remain unchanged",
+          "selection": "The existing catalogue construction contract plus explicit external-data decoding",
+          "consumer": "Borg catalogue wrapper, generator and taxonomy checker",
+          "independentCheck": "Hand-authored positive and malformed-data controls, original public API regression"
+        }
+      ]
+    },
+    {
+      "path": "scripts/borg/build-assembly-record-catalog.mjs",
+      "disposition": "retained",
+      "owner": "Borg runtime catalogue generation",
+      "reason": "Deterministically generates only the ignored ESM data projection from authored JSON.",
+      "roles": [
+        {
+          "binding": "Canonical source capture and deterministic output freshness",
+          "targets": [
+            "src/apps/borg/BorgAssemblyRecordCatalog.js"
+          ],
+          "meaning": "Navigation data and operational packaging only; original scientific identities and applicability remain unchanged",
+          "selection": "Explicit source/output paths and write/check modes",
+          "consumer": "scripts/prepare-runtime-assets.mjs, Pages builds and benchmark fingerprint inventory",
+          "independentCheck": "Known rendering cases, missing/stale/invalid source rejection, idempotence and source-only build"
+        }
+      ]
+    },
+    {
+      "path": "tests/borg-assembly-record-catalog-generator.test.js",
+      "disposition": "retained",
+      "owner": "Borg catalogue generation controls",
+      "reason": "Protects data transport, strict validation and fresh-checkout bootstrap without a scientific acceptance claim.",
+      "roles": [
+        {
+          "binding": "Known synthetic data, output freshness and path rejection cases",
+          "targets": [
+            "src/apps/borg/BorgAssemblyRecordCatalog.js"
+          ],
+          "meaning": "Navigation data and operational packaging only; original scientific identities and applicability remain unchanged",
+          "selection": "Hand-authored parser/rendering controls before actual catalogue use",
+          "consumer": "Required generated-runtime contract test step",
+          "independentCheck": "Positive and negative test results plus independent source review"
+        }
+      ]
+    },
     {
       "path": "tests/fixtures/option-b-python-transport-identities.json",
       "disposition": "retained",
       "owner": "Option B Python transport test records",
       "reason": "The original acceleration prior-authentication positive and negative identities move unchanged into explicit fixture data; no producer or reference is repinned.",
-      "roles": [{
-        "binding": "Original verifier and declaration identities plus rejected current-verifier identity",
-        "targets": ["tests/test_f6c_acceleration_execution.py"],
-        "meaning": "Fixed historical-prior acceptance and rejection controls, not a new scientific prior",
-        "selection": "Exact source literals at the record's originCommit, loaded through the test-only fixture reader",
-        "consumer": "tests/option_b_fixture_records.py and the acceleration transport tests",
-        "independentCheck": "Original Git-literal comparison, malformed-record controls and unchanged scientific authentication predicates"
-      }]
+      "roles": [
+        {
+          "binding": "Original verifier and declaration identities plus rejected current-verifier identity",
+          "targets": [
+            "tests/test_f6c_acceleration_execution.py"
+          ],
+          "meaning": "Fixed historical-prior acceptance and rejection controls, not a new scientific prior",
+          "selection": "Exact source literals at the record's originCommit, loaded through the test-only fixture reader",
+          "consumer": "tests/option_b_fixture_records.py and the acceleration transport tests",
+          "independentCheck": "Original Git-literal comparison, malformed-record controls and unchanged scientific authentication predicates"
+        }
+      ]
     },
     {
       "path": "tests/option_b_fixture_records.py",
       "disposition": "retained",
       "owner": "Option B Python test fixture loading",
       "reason": "One test-only reader rejects duplicate or malformed authored expectation records and returns captured immutable values; it is not production admission.",
-      "roles": [{
-        "binding": "Known SHA fixture and fixed prior-identity JSON dependencies",
-        "targets": ["tests/test_f5_current_handoff.py", "tests/test_f6c_retained_history_export.py", "tests/test_f6c_acceleration_execution.py"],
-        "meaning": "Test data decoding with schema, algorithm, encoding, role, census and digest validation",
-        "selection": "Explicit fixture paths; no inferred subject digest or default expected value",
-        "consumer": "The three named Python transport test modules",
-        "independentCheck": "tests/test_option_b_fixture_records.py known field-selection and rejection controls before target use"
-      }]
+      "roles": [
+        {
+          "binding": "Known SHA fixture and fixed prior-identity JSON dependencies",
+          "targets": [
+            "tests/test_f5_current_handoff.py",
+            "tests/test_f6c_retained_history_export.py",
+            "tests/test_f6c_acceleration_execution.py"
+          ],
+          "meaning": "Test data decoding with schema, algorithm, encoding, role, census and digest validation",
+          "selection": "Explicit fixture paths; no inferred subject digest or default expected value",
+          "consumer": "The three named Python transport test modules",
+          "independentCheck": "tests/test_option_b_fixture_records.py known field-selection and rejection controls before target use"
+        }
+      ]
     },
     {
       "path": "tests/test_option_b_fixture_records.py",
       "disposition": "retained",
       "owner": "Option B Python fixture-reader controls",
       "reason": "Hand-authored record cases preserve malformed and missing expectation rejection separately from scientific instruments.",
-      "roles": [{
-        "binding": "Synthetic record shapes and exact selected token order",
-        "targets": ["tests/option_b_fixture_records.py"],
-        "meaning": "Known parsing and immutable-capture controls; synthetic tokens are not hash preimages or scientific evidence",
-        "selection": "Hand-authored positive and negative cases",
-        "consumer": "Shared-venv unittest discovery",
-        "independentCheck": "Explicit expected strings and tuple order, malformed schema/role/encoding/digest/duplicate rejection"
-      }]
+      "roles": [
+        {
+          "binding": "Synthetic record shapes and exact selected token order",
+          "targets": [
+            "tests/option_b_fixture_records.py"
+          ],
+          "meaning": "Known parsing and immutable-capture controls; synthetic tokens are not hash preimages or scientific evidence",
+          "selection": "Hand-authored positive and negative cases",
+          "consumer": "Shared-venv unittest discovery",
+          "independentCheck": "Explicit expected strings and tuple order, malformed schema/role/encoding/digest/duplicate rejection"
+        }
+      ]
     },
     {
       "path": "tests/fixtures/option-b-next-test-identities.json",
       "disposition": "retained",
       "owner": "Option B Node test identity records",
       "reason": "Twenty-four original Node test literals move unchanged into role-labeled data with exact original consumer source identities.",
-      "roles": [{
-        "binding": "Known-answer, historical fixture, fixed scientific/control/contract and embedded-bridge test expectations",
-        "targets": ["tests/f6c-acceleration-pilot.test.js", "tests/f6c-evidence-packaging.test.js", "tests/f6c-bounded-operation-closure.test.js", "tests/f6c-streamed-leaf-diagnostic.test.js", "tests/option-b-circular-admission.test.mjs", "tests/option-b-f6c-coordinator-process.test.mjs", "tests/option-b-f6c-family-admission.test.mjs", "tests/option-b-f6c-streamed-preparation.test.mjs", "tests/subfield-circular-root-pilot.test.js"],
-        "meaning": "Exact test expectations, not approval of the selected scientific source or current launch",
-        "selection": "Named consumer and exact count from authored data; original values and originCommit retained",
-        "consumer": "tests/support/option-b-next-test-identities.mjs and the nine named tests",
-        "independentCheck": "Known parser controls, exact original-source reconstruction and affected-consumer tests"
-      }]
+      "roles": [
+        {
+          "binding": "Known-answer, historical fixture, fixed scientific/control/contract and embedded-bridge test expectations",
+          "targets": [
+            "tests/f6c-acceleration-pilot.test.js",
+            "tests/f6c-evidence-packaging.test.js",
+            "tests/f6c-bounded-operation-closure.test.js",
+            "tests/f6c-streamed-leaf-diagnostic.test.js",
+            "tests/option-b-circular-admission.test.mjs",
+            "tests/option-b-f6c-coordinator-process.test.mjs",
+            "tests/option-b-f6c-family-admission.test.mjs",
+            "tests/option-b-f6c-streamed-preparation.test.mjs",
+            "tests/subfield-circular-root-pilot.test.js"
+          ],
+          "meaning": "Exact test expectations, not approval of the selected scientific source or current launch",
+          "selection": "Named consumer and exact count from authored data; original values and originCommit retained",
+          "consumer": "tests/support/option-b-next-test-identities.mjs and the nine named tests",
+          "independentCheck": "Known parser controls, exact original-source reconstruction and affected-consumer tests"
+        }
+      ]
     },
     {
       "path": "tests/support/option-b-next-test-identities.mjs",
       "disposition": "retained",
       "owner": "Option B Node test fixture loading",
       "reason": "Captures fixture bytes and returns frozen primitive expectations with closed record and consumer-count checks.",
-      "roles": [{
-        "binding": "Authored next-test identities record and unchanged JSON decoder",
-        "targets": ["tests/fixtures/option-b-next-test-identities.json"],
-        "meaning": "Test-only exact field selection; no source digest calculation or numerical launch",
-        "selection": "Explicit fixture path and consumer/count arguments",
-        "consumer": "Nine migrated Node test modules declared in the data record",
-        "independentCheck": "tests/option-b-next-test-identities.test.mjs"
-      }]
+      "roles": [
+        {
+          "binding": "Authored next-test identities record and unchanged JSON decoder",
+          "targets": [
+            "tests/fixtures/option-b-next-test-identities.json"
+          ],
+          "meaning": "Test-only exact field selection; no source digest calculation or numerical launch",
+          "selection": "Explicit fixture path and consumer/count arguments",
+          "consumer": "Nine migrated Node test modules declared in the data record",
+          "independentCheck": "tests/option-b-next-test-identities.test.mjs"
+        }
+      ]
     },
     {
       "path": "tests/option-b-next-test-identities.test.mjs",
       "disposition": "retained",
       "owner": "Option B Node fixture-reader controls",
       "reason": "Known field-selection and malformed actual-consumer cases verify the new data boundary without importing scientific subjects as an oracle.",
-      "roles": [{
-        "binding": "Hand-authored closed-record cases and isolated closure-consumer fixture",
-        "targets": ["tests/support/option-b-next-test-identities.mjs", "tests/f6c-bounded-operation-closure.test.js"],
-        "meaning": "Exact immutable capture and rejection before consumer controls, not scientific proof",
-        "selection": "Synthetic shape controls and actual externally selected fixture",
-        "consumer": "Node test runner",
-        "independentCheck": "Manually stated known values plus actual consumer success before malformed-file rejection"
-      }]
+      "roles": [
+        {
+          "binding": "Hand-authored closed-record cases and isolated closure-consumer fixture",
+          "targets": [
+            "tests/support/option-b-next-test-identities.mjs",
+            "tests/f6c-bounded-operation-closure.test.js"
+          ],
+          "meaning": "Exact immutable capture and rejection before consumer controls, not scientific proof",
+          "selection": "Synthetic shape controls and actual externally selected fixture",
+          "consumer": "Node test runner",
+          "independentCheck": "Manually stated known values plus actual consumer success before malformed-file rejection"
+        }
+      ]
     },
     {
       "path": "scripts/equation-mapping/current-source-transition.mjs",
@@ -470,28 +521,62 @@
       "disposition": "retained",
       "owner": "Option B external known-answer records",
       "reason": "Known SHA-256 expectations move unchanged from executable test sources into independently selected fixture data; source files still execute the known-answer assertion before target use.",
-      "roles": [{
-        "binding": "SHA-256 abc published known answer; explicit UTF-8 input and lowercase hexadecimal output",
-        "targets": ["tests/current-source-manifest.test.mjs", "tests/source-replay.test.js", "tests/f5-current-handoff.test.js", "tests/f5-original-input-tree.test.js", "tests/f5-current-build-admission.test.js", "tests/subfield-circular-current-prior.test.js", "tests/subfield-circular-current-context.test.js", "scripts/equation-mapping/dependency-map-reader.mjs", "tests/option-b-current-source-transition.test.mjs", "tests/option-b-mathematical-acceptance.test.mjs", "tests/test_f5_current_handoff.py", "tests/test_f6c_retained_history_export.py", "tests/test_f6c_acceleration_execution.py", "tests/option_b_fixture_records.py", "tests/analytical-campaign-pipeline-benchmark.test.js"],
-        "meaning": "Independent hash implementation known-answer control, not a current-source approval",
-        "selection": "Canonical external B fixture; exact original literal retained from the recorded source generation",
-        "consumer": "Explicit JavaScript JSON imports and the Python test-only fixture reader",
-        "independentCheck": "Published SHA test vector and one-time exact-literal comparison with the retained Git source; known-answer failures remain test failures"
-      }]
+      "roles": [
+        {
+          "binding": "SHA-256 abc published known answer; explicit UTF-8 input and lowercase hexadecimal output",
+          "targets": [
+            "tests/current-source-manifest.test.mjs",
+            "tests/source-replay.test.js",
+            "tests/f5-current-handoff.test.js",
+            "tests/f5-original-input-tree.test.js",
+            "tests/f5-current-build-admission.test.js",
+            "tests/subfield-circular-current-prior.test.js",
+            "tests/subfield-circular-current-context.test.js",
+            "scripts/equation-mapping/dependency-map-reader.mjs",
+            "tests/option-b-current-source-transition.test.mjs",
+            "tests/option-b-mathematical-acceptance.test.mjs",
+            "tests/test_f5_current_handoff.py",
+            "tests/test_f6c_retained_history_export.py",
+            "tests/test_f6c_acceleration_execution.py",
+            "tests/option_b_fixture_records.py",
+            "tests/analytical-campaign-pipeline-benchmark.test.js"
+          ],
+          "meaning": "Independent hash implementation known-answer control, not a current-source approval",
+          "selection": "Canonical external B fixture; exact original literal retained from the recorded source generation",
+          "consumer": "Explicit JavaScript JSON imports and the Python test-only fixture reader",
+          "independentCheck": "Published SHA test vector and one-time exact-literal comparison with the retained Git source; known-answer failures remain test failures"
+        }
+      ]
     },
     {
       "path": "tests/fixtures/option-b-retained-test-identities.json",
       "disposition": "retained",
       "owner": "Option B external test-identity records",
       "reason": "Vendor integrity, fixed prescribed-seed, historical source/output and synthetic fixture identities leave executable test sources while retaining the original expected values and assertions. Each consumer's roles and fixed values are explicit in the external record. The F5 interpolation caller additionally selects the unchanged previously accepted B original-input-tree map; this transport selection does not refresh its instrument or scientific expectations.",
-      "roles": [{
-        "binding": "Mermaid runtime/license SHA-256 and package SHA-512 integrity; prescribed seed, source/output and synthetic fixture expectations",
-        "targets": ["tests/mermaid-markdown-runtime.test.js", "tests/orthogonal-plane-weave-balance.test.js", "tests/coincident-midpoint-common-frequency-outer-radius-band-expansion.test.js", "tests/coincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js", "tests/coincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js", "tests/coincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js", "tests/coincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js", "tests/coincident-axis-three-binary-streaming-reductions.test.js", "tests/f6c-parent-refinement-batch-preparation.test.js", "tests/borg-assembly-view-session.test.js", "tests/f5-phase-varying-campaign-spec.test.js", "tests/f5-independent-interpolation-enclosure.test.js", "tests/f6c-parent-emission-refinement-pilot.test.js"],
-        "meaning": "Fixed dependency-security, retained historical source/output and fixture identity expectations; numerical or behavioral assertions remain separate",
-        "selection": "Canonical external B fixture, algorithm and consumer named per record",
-        "consumer": "Explicit JSON imports with primitive capture or frozen selected values and malformed-value rejection",
-        "independentCheck": "One-time original literal comparison; actual vendor assets/package and independently selected assembly spec are still checked"
-      }]
+      "roles": [
+        {
+          "binding": "Mermaid runtime/license SHA-256 and package SHA-512 integrity; prescribed seed, source/output and synthetic fixture expectations",
+          "targets": [
+            "tests/mermaid-markdown-runtime.test.js",
+            "tests/orthogonal-plane-weave-balance.test.js",
+            "tests/coincident-midpoint-common-frequency-outer-radius-band-expansion.test.js",
+            "tests/coincident-midpoint-common-frequency-outer-radius-second-band-expansion.test.js",
+            "tests/coincident-midpoint-common-frequency-prescribed-structural-root-ledger.test.js",
+            "tests/coincident-midpoint-common-frequency-outer-radius-history-policy-extension.test.js",
+            "tests/coincident-midpoint-common-frequency-minimum-delayed-action-provider.test.js",
+            "tests/coincident-axis-three-binary-streaming-reductions.test.js",
+            "tests/f6c-parent-refinement-batch-preparation.test.js",
+            "tests/borg-assembly-view-session.test.js",
+            "tests/f5-phase-varying-campaign-spec.test.js",
+            "tests/f5-independent-interpolation-enclosure.test.js",
+            "tests/f6c-parent-emission-refinement-pilot.test.js"
+          ],
+          "meaning": "Fixed dependency-security, retained historical source/output and fixture identity expectations; numerical or behavioral assertions remain separate",
+          "selection": "Canonical external B fixture, algorithm and consumer named per record",
+          "consumer": "Explicit JSON imports with primitive capture or frozen selected values and malformed-value rejection",
+          "independentCheck": "One-time original literal comparison; actual vendor assets/package and independently selected assembly spec are still checked"
+        }
+      ]
     },
     {
       "path": "tests/current-launch-bindings.test.js",
@@ -501,7 +586,10 @@
       "roles": [
         {
           "binding": "Exact original five-profile set and current entry interface",
-          "targets": ["scripts/equation-mapping/check-current-source-maps.mjs", "tests/option-b-root-cover-admission.test.mjs"],
+          "targets": [
+            "scripts/equation-mapping/check-current-source-maps.mjs",
+            "tests/option-b-root-cover-admission.test.mjs"
+          ],
           "meaning": "Detect an omitted original profile, a restored operational PINS export, or absent B initialization.",
           "selection": "Required successor test; original standalone source remains in Git history at 859f2b07cb17889ca2c239d82fd61455c2ba903c.",
           "consumer": "scripts/check-content-integrity.mjs required admission selection",
@@ -512,7 +600,9 @@
         "authority": "operator-approved",
         "decision": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#authorized-retirement-cleanup-and-full-b-direction",
         "outcome": "replaced",
-        "replacements": ["tests/option-b-root-cover-admission.test.mjs"],
+        "replacements": [
+          "tests/option-b-root-cover-admission.test.mjs"
+        ],
         "verification": "Required suite preserves the exact five names, invokes initializeSourceBindings and rejects PINS exports; the maintenance invocation is removed."
       }
     },
@@ -1195,7 +1285,9 @@
         "authority": "operator-approved",
         "decision": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#b-to-b-continuation",
         "outcome": "replaced",
-        "replacements": ["tests/option-b-current-source-transition.test.mjs"],
+        "replacements": [
+          "tests/option-b-current-source-transition.test.mjs"
+        ],
         "verification": "Required generic controls preserve known SHA, predecessor/successor identity, scope, role, reader, source/check coverage and changed-source rejection, and additionally reject revision reuse, altered external selection and same-byte source replacement."
       },
       "roles": [
@@ -1316,6 +1408,158 @@
             "scripts/eom/f5-current-source-admission.mjs",
             "scripts/equation-mapping/current-source-manifest.mjs"
           ]
+        }
+      ]
+    },
+    {
+      "path": "tests/support/option-b-f6c-test-identities.mjs",
+      "disposition": "retained",
+      "owner": "OptionB-Redux F6c test expectation transfer",
+      "reason": "Preserves historical construction, resource-plan, retained-result and comparison obligations through explicitly selected B graph; no scientific refresh authority. Initial mechanical transfer validation is recorded separately from independent semantic review.",
+      "roles": [
+        {
+          "binding": "F6c selected test expectation graph and exact original string payload",
+          "targets": [
+            "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+            "tests/f6c-cached-root-cover-full.test.js"
+          ],
+          "meaning": "Original historical and fixed comparison string expectations; current launch comparison uses existing five-profile B selection.",
+          "selection": "contracts/option-b-f6c-test-selection.json selects exact accepted checkpoint and zero-change transition; no operational refresh eligibility.",
+          "consumer": "tests/support/option-b-f6c-test-identities.mjs and required tests/option-b-f6c-test-identities.test.mjs",
+          "independentCheck": "Exact original Git source reconstruction and retained original string evaluation; existing operational and scientific/reference checks remain unchanged. See analysis/option-b-repository-reconciliation.md#f6c-test-expectation-transfer."
+        }
+      ]
+    },
+    {
+      "path": "tests/fixtures/option-b-f6c-test-identities.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux F6c test expectation transfer",
+      "reason": "Preserves historical construction, resource-plan, retained-result and comparison obligations through explicitly selected B graph; no scientific refresh authority. Initial mechanical transfer validation is recorded separately from independent semantic review.",
+      "roles": [
+        {
+          "binding": "F6c selected test expectation graph and exact original string payload",
+          "targets": [
+            "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+            "tests/f6c-cached-root-cover-full.test.js"
+          ],
+          "meaning": "Original historical and fixed comparison string expectations; current launch comparison uses existing five-profile B selection.",
+          "selection": "contracts/option-b-f6c-test-selection.json selects exact accepted checkpoint and zero-change transition; no operational refresh eligibility.",
+          "consumer": "tests/support/option-b-f6c-test-identities.mjs and required tests/option-b-f6c-test-identities.test.mjs",
+          "independentCheck": "Exact original Git source reconstruction and retained original string evaluation; existing operational and scientific/reference checks remain unchanged. See analysis/option-b-repository-reconciliation.md#f6c-test-expectation-transfer."
+        }
+      ]
+    },
+    {
+      "path": "tests/option-b-f6c-test-identities.test.mjs",
+      "disposition": "retained",
+      "owner": "OptionB-Redux F6c test expectation transfer",
+      "reason": "Preserves historical construction, resource-plan, retained-result and comparison obligations through explicitly selected B graph; no scientific refresh authority. Initial mechanical transfer validation is recorded separately from independent semantic review.",
+      "roles": [
+        {
+          "binding": "F6c selected test expectation graph and exact original string payload",
+          "targets": [
+            "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+            "tests/f6c-cached-root-cover-full.test.js"
+          ],
+          "meaning": "Original historical and fixed comparison string expectations; current launch comparison uses existing five-profile B selection.",
+          "selection": "contracts/option-b-f6c-test-selection.json selects exact accepted checkpoint and zero-change transition; no operational refresh eligibility.",
+          "consumer": "tests/support/option-b-f6c-test-identities.mjs and required tests/option-b-f6c-test-identities.test.mjs",
+          "independentCheck": "Exact original Git source reconstruction and retained original string evaluation; existing operational and scientific/reference checks remain unchanged. See analysis/option-b-repository-reconciliation.md#f6c-test-expectation-transfer."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-f6c-test-sources.jsonld",
+      "disposition": "retained",
+      "owner": "OptionB-Redux F6c test expectation transfer",
+      "reason": "Preserves historical construction, resource-plan, retained-result and comparison obligations through explicitly selected B graph; no scientific refresh authority. Initial mechanical transfer validation is recorded separately from independent semantic review.",
+      "roles": [
+        {
+          "binding": "F6c selected test expectation graph and exact original string payload",
+          "targets": [
+            "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+            "tests/f6c-cached-root-cover-full.test.js"
+          ],
+          "meaning": "Original historical and fixed comparison string expectations; current launch comparison uses existing five-profile B selection.",
+          "selection": "contracts/option-b-f6c-test-selection.json selects exact accepted checkpoint and zero-change transition; no operational refresh eligibility.",
+          "consumer": "tests/support/option-b-f6c-test-identities.mjs and required tests/option-b-f6c-test-identities.test.mjs",
+          "independentCheck": "Exact original Git source reconstruction and retained original string evaluation; existing operational and scientific/reference checks remain unchanged. See analysis/option-b-repository-reconciliation.md#f6c-test-expectation-transfer."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-f6c-test-accepted-b.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux F6c test expectation transfer",
+      "reason": "Preserves historical construction, resource-plan, retained-result and comparison obligations through explicitly selected B graph; no scientific refresh authority. Initial mechanical transfer validation is recorded separately from independent semantic review.",
+      "roles": [
+        {
+          "binding": "F6c selected test expectation graph and exact original string payload",
+          "targets": [
+            "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+            "tests/f6c-cached-root-cover-full.test.js"
+          ],
+          "meaning": "Original historical and fixed comparison string expectations; current launch comparison uses existing five-profile B selection.",
+          "selection": "contracts/option-b-f6c-test-selection.json selects exact accepted checkpoint and zero-change transition; no operational refresh eligibility.",
+          "consumer": "tests/support/option-b-f6c-test-identities.mjs and required tests/option-b-f6c-test-identities.test.mjs",
+          "independentCheck": "Exact original Git source reconstruction and retained original string evaluation; existing operational and scientific/reference checks remain unchanged. See analysis/option-b-repository-reconciliation.md#f6c-test-expectation-transfer."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-f6c-test-transition.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux F6c test expectation transfer",
+      "reason": "Preserves historical construction, resource-plan, retained-result and comparison obligations through explicitly selected B graph; no scientific refresh authority. Initial mechanical transfer validation is recorded separately from independent semantic review.",
+      "roles": [
+        {
+          "binding": "F6c selected test expectation graph and exact original string payload",
+          "targets": [
+            "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+            "tests/f6c-cached-root-cover-full.test.js"
+          ],
+          "meaning": "Original historical and fixed comparison string expectations; current launch comparison uses existing five-profile B selection.",
+          "selection": "contracts/option-b-f6c-test-selection.json selects exact accepted checkpoint and zero-change transition; no operational refresh eligibility.",
+          "consumer": "tests/support/option-b-f6c-test-identities.mjs and required tests/option-b-f6c-test-identities.test.mjs",
+          "independentCheck": "Exact original Git source reconstruction and retained original string evaluation; existing operational and scientific/reference checks remain unchanged. See analysis/option-b-repository-reconciliation.md#f6c-test-expectation-transfer."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/contracts/option-b-f6c-test-selection.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux F6c test expectation transfer",
+      "reason": "Preserves historical construction, resource-plan, retained-result and comparison obligations through explicitly selected B graph; no scientific refresh authority. Initial mechanical transfer validation is recorded separately from independent semantic review.",
+      "roles": [
+        {
+          "binding": "F6c selected test expectation graph and exact original string payload",
+          "targets": [
+            "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+            "tests/f6c-cached-root-cover-full.test.js"
+          ],
+          "meaning": "Original historical and fixed comparison string expectations; current launch comparison uses existing five-profile B selection.",
+          "selection": "contracts/option-b-f6c-test-selection.json selects exact accepted checkpoint and zero-change transition; no operational refresh eligibility.",
+          "consumer": "tests/support/option-b-f6c-test-identities.mjs and required tests/option-b-f6c-test-identities.test.mjs",
+          "independentCheck": "Exact original Git source reconstruction and retained original string evaluation; existing operational and scientific/reference checks remain unchanged. See analysis/option-b-repository-reconciliation.md#f6c-test-expectation-transfer."
+        }
+      ]
+    },
+    {
+      "path": "reference/priorities/development-process-review/evidence/option-b-f6c-test-transfer.json",
+      "disposition": "retained",
+      "owner": "OptionB-Redux F6c test expectation transfer",
+      "reason": "Preserves historical construction, resource-plan, retained-result and comparison obligations through explicitly selected B graph; no scientific refresh authority. Initial mechanical transfer validation is recorded separately from independent semantic review.",
+      "roles": [
+        {
+          "binding": "F6c selected test expectation graph and exact original string payload",
+          "targets": [
+            "tests/f6c-cached-root-cover-pilot-launcher.test.js",
+            "tests/f6c-cached-root-cover-full.test.js"
+          ],
+          "meaning": "Original historical and fixed comparison string expectations; current launch comparison uses existing five-profile B selection.",
+          "selection": "contracts/option-b-f6c-test-selection.json selects exact accepted checkpoint and zero-change transition; no operational refresh eligibility.",
+          "consumer": "tests/support/option-b-f6c-test-identities.mjs and required tests/option-b-f6c-test-identities.test.mjs",
+          "independentCheck": "Exact original Git source reconstruction and retained original string evaluation; existing operational and scientific/reference checks remain unchanged. See analysis/option-b-repository-reconciliation.md#f6c-test-expectation-transfer."
         }
       ]
     }

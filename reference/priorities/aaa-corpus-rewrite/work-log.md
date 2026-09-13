@@ -4,6 +4,26 @@ This is the chronological completion log for the CRW-005 assurance campaign. The
 
 ## Completed milestones
 
+### 2026-09-12 — BBN Constraints BBN-01–BBN-20 bounded repair
+
+Implemented and validated the smallest safe repairs for 20 demonstrated findings, addressing reaction-network dilution, deuterium equilibrium, weak-rate balance, neutrino normalization, statistical comparisons, and unsupported physical claims while retaining the proposed reactor as hypothetical. The joined strict validator reported 0 errors, 0 warnings, and 30 informational notes; known-case-first checks rendered all 219 TeX expressions and resolved local destinations across both files. Preservation checks retained all 33 headings, 28 original links, and 17 equation IDs, with 11 equation bodies changed. Physical reactor existence, transport, yield, observational acceptance, lithium improvement, and downstream recovery remain open. Generated equation-registry refresh is deferred; the [bounded receipt](evidence/crw-005-bbn-constraints-review-2026-09-12.md) records the exact hash, falsifiers, and deferred command.
+
+### 2026-09-12 — CMB in $\mathbb{A}\mathbb{A}\mathbb{A}$ Cosmology CMB-01–CMB-22 bounded repair
+
+Implemented and validated the smallest safe repairs for 22 demonstrated findings, addressing thermalization, correlated power/statistics, dimensional consistency, attribution, and unsupported physical claims. The joined strict validator reported 0 errors, 0 warnings, and 30 informational notes; known-case-first algebra, KaTeX, local-link, and whitespace checks passed. Preservation checks retained all 40 headings, 35 equation identities, and 52 original links. Physical branch existence, energy/transport derivations, and calibrated CMB recovery remain open. Generated equation-registry refresh is deferred; the [bounded receipt](evidence/crw-005-cmb-review-2026-09-12.md) records the exact hash, falsifiers, and deferred command.
+
+### 2026-09-12 — Dark Matter DM-01–DM-24 bounded repair
+
+Implemented and validated the smallest safe repairs for 24 demonstrated findings, addressing lensing inference, conservation/rate errors, unsupported identifications, and cosmological scope. The joined strict validator reported 0 errors, 0 warnings, and 30 informational notes; known-case-first analytical, KaTeX, local-link, and whitespace checks passed. Preservation checks retained all 43 equation IDs, 30 headings, and 60 original links, with 14 display bodies corrected. DM-06's source-fit ambiguity, physical assembly existence/stability, constitutive response, and joint observational testing remain open. Generated equation-registry refresh is deferred; the [bounded receipt](evidence/crw-005-dark-matter-review-2026-09-12.md) records the exact hash, falsifiers, and deferred command.
+
+### 2026-09-12 — Dark Energy DE-01–DE-22 bounded repair
+
+Implemented and validated the smallest safe repairs for 22 demonstrated findings, addressing density units, coefficient algebra, clock-conversion signs, entropy dimensions, attribution, and unsupported physical conclusions. The joined strict validator reported 0 errors, 0 warnings, and 30 informational notes; known-case-first arithmetic and KaTeX checks passed. Preservation checks retained all 60 equation IDs, 40 original headings, and 73 original links. Constitutive stress/energy, cosmological pressure, transport, observable recovery, and black-hole interpretation remain open. Generated equation-registry refresh is deferred; the [bounded receipt](evidence/crw-005-dark-energy-review-2026-09-12.md) records the exact hash, falsifiers, and deferred command.
+
+### 2026-09-12 — Structure Formation SF-01–SF-22 bounded repair
+
+Implemented and validated the smallest safe repairs for 22 demonstrated findings, chiefly distinguishing evolving-density response from oscillatory response while preserving conditional claim grades. The joined strict validator reported 0 errors, 0 warnings, and 30 informational notes; known-case-first algebraic, KaTeX, local-path, and whitespace checks passed. Preservation checks retained all 34 equation IDs, 29 headings, and 54 original links. Physical sea realization, constitutive coefficients, clock/volume mappings, and joint growth/lensing recovery remain open. Generated equation-registry refresh is deferred; the [bounded receipt](evidence/crw-005-structure-formation-review-2026-09-12.md) records the exact hash, falsifiers, and deferred command.
+
 ### 2026-09-12 — Fermi-Dirac and Bose-Einstein Statistics FBS-01–FBS-15 bounded repair
 
 Implemented and validated the smallest safe repairs for 15 demonstrated findings, addressing Slater normalization, interaction-energy comparisons, per-state occupation counting, and unsupported geometry-to-statistics implications. The joined strict validator reported 0 errors, 0 warnings, and 30 informational notes; complete reread, scoped diff and whitespace checks, known-case-first KaTeX/math/local-link/arithmetic checks, and preservation checks for all 16 displayed equations and viewer identities passed. Physical recovery and scientific closure remain open. Generated equation-registry refresh is deferred; the [bounded receipt](evidence/crw-005-fermi-dirac-and-bose-einstein-statistics-review-2026-09-12.md) records the exact hash, falsifiers, and deferred command.
