@@ -2,6 +2,8 @@
 
 ## Scope and status
 
+The subsequent [Borg budget dependency transfer](option-b-repository-reconciliation.md#budget-transfer-validation) records the current build/evolution source-map successors and preserved predecessors. Its metadata, source-only packaging and 169 connected regression controls pass; the earlier compiled-build receipts below remain evidence for their recorded generations and are not relabeled as new builds. Historical scientific declarations and the generation predicate remain unchanged.
+
 ✓ Complete for the assigned F5 operational source-admission and final-generation build validation: enclosed-root and handoff builds passed with closed process groups. Main owns combined-family validation, queue integration and overall package disposition; no scientific campaign or scientific acceptance is claimed. Assignment: B-REM-2 F5 migration; immutable worker ID `01a096d7-164e-7a02-9d23-d77128c1db55` (Planck). The operator selected all remaining packages; main owns circular/shared integration and queue changes. No numerical production campaign or scientific reacceptance is authorized.
 
 The current-build route keeps its independently supplied `f5-current-build-admission.v1` and original six API subject bindings. The current handoff bridge keeps the original producer, independent reference, inspector, prefix and restriction identities. External operational selection does not replace either acceptance contract. Compiler, SDK, Python interpreter and loaded libraries remain current execution capabilities, not historical tool versions to recover.

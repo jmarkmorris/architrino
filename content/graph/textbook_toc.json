@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 184,
-      "sections": 1660
+      "sections": 1664
     }
   },
   "tocRoot": {
@@ -7505,6 +7505,14 @@
                 "markdownSection": "Closure Targets",
                 "sectionKey": "closure targets",
                 "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Sources",
+                "markdownPath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md",
+                "markdownSection": "Sources",
+                "sectionKey": "sources",
+                "headingLevel": 2
               }
             ]
           }
@@ -7628,6 +7636,14 @@
                 "markdownSection": "Time Notions (Operational)",
                 "sectionKey": "time notions operational",
                 "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Sources and Comparison Scope",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-ontology.md",
+                "markdownSection": "Sources and Comparison Scope",
+                "sectionKey": "sources and comparison scope",
+                "headingLevel": 2
               }
             ]
           },
@@ -7733,6 +7749,14 @@
                 "markdownPath": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
                 "markdownSection": "Summary",
                 "sectionKey": "summary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Sources and Comparison Scope",
+                "markdownPath": "content/markdown/aaa/cosmology/cosmology-reconstruction.md",
+                "markdownSection": "Sources and Comparison Scope",
+                "sectionKey": "sources and comparison scope",
                 "headingLevel": 2
               }
             ]
@@ -7945,6 +7969,14 @@
                 "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
                 "markdownSection": "Coherent Reading",
                 "sectionKey": "coherent reading",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Source Note",
+                "markdownPath": "content/markdown/aaa/cosmology/inflation-model.md",
+                "markdownSection": "Source Note",
+                "sectionKey": "source note",
                 "headingLevel": 2
               }
             ]

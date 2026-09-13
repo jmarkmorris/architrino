@@ -158,6 +158,12 @@ export function requiredSourcePaths(d) {
       if (match[1].startsWith('.')) addModule(resolve(dirname(path), match[1]));
   };
   for(const p of ['scripts/eom/run-f5-ordinary-evolution.mjs','scripts/eom/prepare-ordinary-evolution-request.mjs','src/apps/borg/BorgCertifiedBudgets.js','scripts/eom/f5-batch-admission.mjs'])addModule(p);
+  // Data and its reproducible projection generator are not reachable by the
+  // JavaScript import walk. Fresh declarations must bind the full contract too.
+  for(const p of ['src/apps/borg/data/certified-budget-identities.v1.json',
+    'src/apps/borg/BorgCertifiedBudgetIdentityContract.js',
+    'content/generated/borg/certified-budget-identities.v1.js',
+    'scripts/borg/build-certified-budget-identities.mjs']) paths.add(resolve(ROOT,p));
   if (d.operationalAdmission) paths.add(STAGE_GATE);
   for (const file of ['verify-f5-ordinary-evolution.py', 'check-f5-evolution-dynamics.py',
     'oracle/certified_evolution.py', 'oracle/certified_acceleration.py', 'oracle/certified_history.py', 'oracle/decimal_interval.py']) paths.add(resolve(ROOT, 'scripts/eom', file));

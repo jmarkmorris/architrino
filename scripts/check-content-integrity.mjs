@@ -84,7 +84,7 @@ const REQUIRED_CHECKS = [
   },
   {
     name: "Test Option B current-source admission and dependency controls",
-    args: ["--test", "--test-concurrency=1", "tests/current-source-manifest.test.mjs", "tests/option-b-next-test-identities.test.mjs", "tests/option-b-root-cover-admission.test.mjs", "tests/option-b-f6c-coordinator-admission.test.mjs", "tests/option-b-f6c-paired-admission.test.mjs", "tests/option-b-f6c-family-admission.test.mjs", "tests/f6c-bounded-operation-current-closure.test.js", "tests/option-b-current-source-transition.test.mjs", "tests/option-b-f5-admission.test.mjs", "tests/option-b-f5-evolution-admission.test.mjs", "tests/option-b-circular-admission.test.mjs", "tests/option-b-disposition-coverage.test.mjs"],
+    args: ["--test", "--test-concurrency=1", "tests/current-source-manifest.test.mjs", "tests/option-b-next-test-identities.test.mjs", "tests/option-b-root-cover-admission.test.mjs", "tests/option-b-f6c-coordinator-admission.test.mjs", "tests/option-b-f6c-paired-admission.test.mjs", "tests/option-b-f6c-family-admission.test.mjs", "tests/f6c-bounded-operation-current-closure.test.js", "tests/option-b-current-source-transition.test.mjs", "tests/option-b-f5-admission.test.mjs", "tests/option-b-f5-evolution-admission.test.mjs", "tests/option-b-f5-budget-transition.test.mjs", "tests/option-b-circular-admission.test.mjs", "tests/option-b-disposition-coverage.test.mjs"],
   },
   {
     name: "Verify Option B profiles against the accepted B checkpoint and reviewed transition",
@@ -116,7 +116,7 @@ const REQUIRED_CHECKS = [
   },
   {
     name: "Test generated runtime storage and deployment contracts",
-    args: ["--test", "tests/machine-artifact-retention.test.js", "tests/runtime-asset-build.test.js"],
+    args: ["--test", "--test-concurrency=1", "tests/machine-artifact-retention.test.js", "tests/runtime-asset-build.test.js", "tests/borg-assembly-record-catalog-generator.test.js", "tests/borg-assembly-record-catalog.test.js", "tests/borg-certified-budget-identities.test.js", "tests/borg-eom-migration.test.js", "tests/analytical-campaign-pipeline-benchmark.test.js", "tests/braid-taxonomy-terminology.test.js"],
   },
   {
     name: "Test private MCP secure-tunnel deployment safety",

@@ -7,9 +7,9 @@
   "f5PreparationSelection": {
     "consumer": "tests/f5-independent-interpolation-enclosure.test.js",
     "path": "reference/priorities/development-process-review/contracts/option-b-f5-operational-sources.jsonld",
-    "sha256": "9ce4c3d02598e887c234c4e3a84e96282f4636cf4715537c86285584b94cdbdf",
+    "sha256": "49401d8519c23147b6dd0926290e1be256e1fa97d00d7fe3a89d8e1e87dc2a45",
     "role": "externally selected accepted B original-input-tree transport; independent instrument and result expectations remain unchanged",
-    "acceptanceReference": "reference/priorities/development-process-review/analysis/option-b-f5-cutover.md#final-handoff-build--september-12-completion"
+    "acceptanceReference": "reference/priorities/development-process-review/analysis/option-b-repository-reconciliation.md#authorized-borg-budget-transfer-and-generated-repair"
   },
   "mermaid": {
     "consumer": "tests/mermaid-markdown-runtime.test.js",

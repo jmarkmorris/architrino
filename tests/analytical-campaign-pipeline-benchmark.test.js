@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync, unlinkSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
@@ -9,6 +9,8 @@ import { DatabaseSync } from "node:sqlite";
 
 import {
   buildFixtureInventory,
+  COMPUTE_IMPLEMENTATION_FILES,
+  computeImplementationInventory,
   resolvedVariant,
   stratifiedRawSelection,
 } from "../scripts/eom/benchmark-analytical-campaign-pipeline.mjs";
@@ -16,6 +18,41 @@ import {
 function hash(label) {
   return createHash("sha256").update(label).digest();
 }
+
+test("implementation inventory preserves catalogue data dependencies and detects changed or missing bytes", (t) => {
+  const directory = mkdtempSync(path.join(os.tmpdir(), "campaign-implementation-test-"));
+  t.after(() => rmSync(directory, { recursive: true, force: true }));
+  const dependencies = [
+    "src/apps/borg/BorgAssemblyRecordCatalogContract.js",
+    "src/apps/borg/data/assembly-record-catalog.v2.json",
+    "content/generated/borg/assembly-record-catalog.v2.js",
+    "scripts/borg/build-assembly-record-catalog.mjs",
+  ];
+  for (const name of dependencies) assert.ok(COMPUTE_IMPLEMENTATION_FILES.includes(name), name);
+  for (const name of COMPUTE_IMPLEMENTATION_FILES) {
+    const target = path.join(directory, name);
+    mkdirSync(path.dirname(target), { recursive: true });
+    writeFileSync(target, "abc");
+  }
+  // Independently published known answer, not calculated by the inventory.
+  const known = JSON.parse(readFileSync(new URL("../scripts/equation-mapping/fixtures/known-hash-answers.json", import.meta.url))).sha256.abc;
+  const baseline = computeImplementationInventory(directory);
+  assert.equal(baseline.files.length, COMPUTE_IMPLEMENTATION_FILES.length);
+  for (const row of baseline.files) {
+    assert.equal(row.sha256, known, row.path);
+    assert.equal(row.bytes, 3, row.path);
+  }
+  for (const name of dependencies) {
+    const target = path.join(directory, name);
+    writeFileSync(target, "abd"); // Same length: content changes must matter.
+    assert.notEqual(computeImplementationInventory(directory).implementationHash, baseline.implementationHash, name);
+    writeFileSync(target, "abc");
+    assert.deepEqual(computeImplementationInventory(directory), baseline);
+    unlinkSync(target);
+    assert.throws(() => computeImplementationInventory(directory), { code: "ENOENT" }, name);
+    writeFileSync(target, "abc");
+  }
+});
 
 test("stratified raw selection is deterministic and retains every stage", () => {
   const rows = [

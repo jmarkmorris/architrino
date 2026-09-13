@@ -6,11 +6,6 @@ This file is the authoritative priority-ordered document board for the 199-file 
 
 | Status | Priority | Document | State | Finding IDs or next action |
 | --- | ---: | --- | --- | --- |
-| ○ | 58 | [Fermi-Dirac and Bose-Einstein Statistics](../../../content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md) | Unread backlog document | Not yet reviewed |
-| ○ | 59 | [Cosmology Ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md) | Unread backlog document | Not yet reviewed |
-| ○ | 60 | [Cosmology Reconstruction](../../../content/markdown/aaa/cosmology/cosmology-reconstruction.md) | Unread backlog document | Not yet reviewed |
-| ○ | 61 | [Expansion Mechanism](../../../content/markdown/aaa/cosmology/expansion-mechanism.md) | Unread backlog document | Not yet reviewed |
-| ○ | 62 | [Inflation Model](../../../content/markdown/aaa/cosmology/inflation-model.md) | Unread backlog document | Not yet reviewed |
 | ○ | 63 | [BBN Constraints](../../../content/markdown/aaa/cosmology/BBN-constraints.md) | Unread backlog document | Not yet reviewed |
 | ○ | 64 | [CMB in $\mathbb{A}\mathbb{A}\mathbb{A}$ Cosmology](../../../content/markdown/aaa/cosmology/CMB.md) | Unread backlog document | Not yet reviewed |
 | ○ | 65 | [Dark Matter in $\mathbb{A}\mathbb{A}\mathbb{A}$](../../../content/markdown/aaa/cosmology/dark-matter.md) | Unread backlog document | Not yet reviewed |
@@ -119,7 +114,7 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ○ | 168 | [One Nature, Many Theories](../../../content/markdown/aaa/philosophy-history/one-nature-many-theories.md) | Unread backlog document | Not yet reviewed |
 | ○ | 18 | [Well-posedness and regularization](../../../content/markdown/aaa/validation/simulations/action-energy/well-posedness-and-regularization.md) | Unread backlog document; action-energy directory held until the end | Not yet reviewed |
 
-**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 112 unopened documents. The next action is the first ○ row in the recorded phase order, Fermi-Dirac and Bose-Einstein Statistics; the remaining action-energy file is intentionally last.
+**Active queue count:** no review-complete items awaiting adjudication or repair, no reviews in progress, and 107 unopened documents. The next action is the first ○ row in the recorded phase order, BBN Constraints; the remaining action-energy file is intentionally last.
 
 ## Completed audit appendix
 
@@ -212,5 +207,10 @@ This file is the authoritative priority-ordered document board for the 199-file 
 | ● | 85 | [Wavefunction Ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-wavefunction-ontology-review-2026-09-12.md) | WO-01–WO-19 |
 | ● | 86 | [Measurement Ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-measurement-ontology-review-2026-09-12.md) | MO-01–MO-18 |
 | ● | 87 | [Algorithmic Resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-algorithmic-resonance-review-2026-09-12.md) | AR-01–AR-13 |
+| ● | 88 | [Fermi-Dirac and Bose-Einstein Statistics](../../../content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-fermi-dirac-and-bose-einstein-statistics-review-2026-09-12.md) | FBS-01–FBS-15 |
+| ● | 89 | [Cosmology Ontology](../../../content/markdown/aaa/cosmology/cosmology-ontology.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-cosmology-ontology-review-2026-09-12.md) | CO-01–CO-17 |
+| ● | 90 | [Cosmology Reconstruction](../../../content/markdown/aaa/cosmology/cosmology-reconstruction.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-cosmology-reconstruction-review-2026-09-12.md) | CR-01–CR-14 |
+| ● | 91 | [Expansion Mechanism](../../../content/markdown/aaa/cosmology/expansion-mechanism.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-expansion-mechanism-review-2026-09-12.md) | EXP-01–EXP-20 |
+| ● | 92 | [Inflation Model](../../../content/markdown/aaa/cosmology/inflation-model.md) | Bounded repairs implemented and validated; open obligations retained; [receipt](evidence/crw-005-inflation-model-review-2026-09-12.md) | IM-01–IM-15 |
 
-Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 87 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 112 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.
+Measured inventory: 199 live Markdown files under content/markdown/aaa. Current unified disposition is 92 complete, no review-complete items awaiting adjudication or repair, no reviews in progress, and 107 unopened. The nine Foundations documents retain their separate campaign provenance and are included in this denominator. This board is workflow accounting, not theory closure.

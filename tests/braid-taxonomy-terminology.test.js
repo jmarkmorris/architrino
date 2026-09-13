@@ -2,6 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import fs from "node:fs";
+import path from "node:path";
 
 import {
   INDEPENDENT_ABC_NOTATION_EXCLUSIONS,
@@ -314,6 +316,36 @@ test("Borg reader-facing fields reject retired candidate labels in every control
     assert.ok(findings.every((finding) =>
       finding.ruleId === "retired-borg-candidate-label" && finding.excerpt.startsWith(field)));
   }
+});
+
+test("Borg taxonomy reads canonical JSON labels without requiring generated modules", (t) => {
+  const scratch = path.resolve(".tmp/option-b-borg-catalog");
+  fs.mkdirSync(scratch, { recursive: true });
+  const rootDir = fs.mkdtempSync(path.join(scratch, "taxonomy-"));
+  t.after(() => fs.rmSync(rootDir, { recursive: true, force: true }));
+  const catalogPath = "src/apps/borg/data/assembly-record-catalog.v2.json";
+  const data = { schema: "borg-assembly-record-catalog.v2", entries: [{
+    assemblyId: `asm-${"1".repeat(32)}`, modelRevisionSha256: "1".repeat(64),
+    label: "Literal known configuration", recordUrl: "content/assets/borg/records/known.json",
+  }] };
+  fs.mkdirSync(path.dirname(path.join(rootDir, catalogPath)), { recursive: true });
+  fs.mkdirSync(path.join(rootDir, "reference/priorities/braid-program/configurations"), { recursive: true });
+  fs.writeFileSync(path.join(rootDir, "src/apps/borg/BorgAssemblyViewControls.js"), "");
+  fs.writeFileSync(path.join(rootDir, "borg.html"), "");
+  const write = (text) => fs.writeFileSync(path.join(rootDir, catalogPath), text);
+  write(JSON.stringify(data));
+  assert.deepEqual(scanBorgPrescribedTaxonomyTerminology({ rootDir }).findings, []);
+  data.entries[0].label = "Extreme cap-tilt spindle candidate";
+  write(JSON.stringify(data));
+  const negative = scanBorgPrescribedTaxonomyTerminology({ rootDir });
+  assert.ok(negative.findings.length >= 2);
+  assert.ok(negative.findings.every((finding) => finding.relativePath === catalogPath));
+  write("{}");
+  assert.throws(() => scanBorgPrescribedTaxonomyTerminology({ rootDir }), /schema/);
+  write(JSON.stringify(data).replace('"schema":', '"schema":"hidden","schema":'));
+  assert.throws(() => scanBorgPrescribedTaxonomyTerminology({ rootDir }), /Duplicate/);
+  fs.unlinkSync(path.join(rootDir, catalogPath));
+  assert.throws(() => scanBorgPrescribedTaxonomyTerminology({ rootDir }), /ENOENT/);
 });
 
 test("Borg prescribed taxonomy scan ignores machine identity fields but gates visible metadata", () => {

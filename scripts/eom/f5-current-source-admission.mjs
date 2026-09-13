@@ -26,6 +26,12 @@ export const ROLES=Object.freeze({
  'tests/option-b-f5-admission.test.mjs':'current-source',
 });
 export const EVOLUTION_MAP='reference/priorities/development-process-review/contracts/option-b-f5-evolution-sources.jsonld';
+export const BUDGET_IDENTITY_SOURCES=Object.freeze([
+ 'src/apps/borg/data/certified-budget-identities.v1.json',
+ 'src/apps/borg/BorgCertifiedBudgetIdentityContract.js',
+ 'content/generated/borg/certified-budget-identities.v1.js',
+ 'scripts/borg/build-certified-budget-identities.mjs',
+]);
 export const EVOLUTION_ROLES=Object.freeze({
   "scripts/eom/f5-current-source-admission.mjs": "admission",
   "scripts/equation-mapping/current-source-manifest.mjs": "manifest-reader",
@@ -38,6 +44,7 @@ export const EVOLUTION_ROLES=Object.freeze({
   "scripts/eom/prepare-ordinary-evolution-request.mjs": "scientific-contract",
   "scripts/eom/BorgNativeEomProcessClient.mjs": "scientific-contract",
   "src/apps/borg/BorgCertifiedBudgets.js": "scientific-contract",
+  ...Object.fromEntries(BUDGET_IDENTITY_SOURCES.map(p=>[p,'scientific-contract'])),
   "src/apps/borg/BorgDisplayHostMemoryEnvelope.js": "scientific-contract",
   "src/apps/borg/BorgCausalHistoryRetention.js": "scientific-contract",
   "src/apps/borg/BorgEomWakeBoundaryProducts.js": "scientific-contract",
@@ -134,6 +141,16 @@ export async function admitF5Sources(root,expectedMapDigest,originalIdentities={
   const code="const d=JSON.parse(Buffer.from(process.argv[1],'base64'));const m=await import('data:text/javascript;base64,'+d.helper);const a=await m.admitF5Sources(d.root,d.digest,d.identities,'evolution');process.execArgv=[];process.argv=[process.execPath,d.root+'/'+d.entry,...d.args];const entry=await a.importModule(d.entry);a.recheck();await entry.main(d.args,null,a);a.recheck();";
   return ['--input-type=module','-e',code,Buffer.from(JSON.stringify(payload)).toString('base64')];
  };
+ if(profile==='evolution'){
+  // Authored expectation data and its exact projection are part of the selected
+  // scientific contract, not an operational hash-refresh allowance. Import only
+  // the captured inert renderer; never run its CLI or regenerate during admission.
+  const generator=await importModule('scripts/borg/build-certified-budget-identities.mjs');
+  demand(typeof generator.renderBorgCertifiedBudgetIdentities==='function','captured F5 budget renderer required');
+  const authored=new TextDecoder('utf-8',{fatal:true}).decode(bytes('src/apps/borg/data/certified-budget-identities.v1.json'));
+  const rendered=generator.renderBorgCertifiedBudgetIdentities(authored);
+  demand(typeof rendered==='string'&&Buffer.from(rendered).equals(bytes('content/generated/borg/certified-budget-identities.v1.js')),'F5 budget identity projection differs from captured authored data');
+ }
  recheck();
  return {requireBindings,invocation,root,sourceMap:clean(map),sources,source,bytes,recheck,importModule,identities:Object.fromEntries([...captured.values()].map(b=>[b.path,b.identity])),
   pins:Object.freeze(Object.fromEntries(rows.map(r=>[r.binding.path,r.binding.sha256])))};

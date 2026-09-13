@@ -15,6 +15,7 @@
     "tests/subfield-circular-current-context.test.js"
   ],
   "additionalConsumers": [
+    "tests/analytical-campaign-pipeline-benchmark.test.js",
     "scripts/equation-mapping/dependency-map-reader.mjs",
     "tests/option-b-current-source-transition.test.mjs",
     "tests/option-b-mathematical-acceptance.test.mjs",

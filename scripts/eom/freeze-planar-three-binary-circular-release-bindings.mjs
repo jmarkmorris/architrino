@@ -27,6 +27,12 @@ function main(args=process.argv.slice(2)){
     const wire=Buffer.from(raw.wire.utf8);check(hash(wire)===raw.wire.sha256&&wire.length===raw.wire.bytes,'prepared wire identity inconsistent');
     requests.push({rung,path,bytes:captured.bytes,sha256:captured.sha256,wireBytes:wire.length,wireSha256:hash(wire)});}
   const scientificSources=[resolve(ROOT,'scripts/eom/prepare-planar-three-binary-circular-release.mjs'),resolve(ROOT,'scripts/eom/freeze-planar-three-binary-circular-release-bindings.mjs'),resolve(ROOT,'scripts/eom/run-planar-three-binary-circular-release.mjs'),resolve(ROOT,'scripts/eom/check-planar-three-binary-circular-release.py'),resolve(ROOT,'scripts/eom/prepare-ordinary-evolution-request.mjs'),resolve(ROOT,'scripts/eom/BorgNativeEomProcessClient.mjs'),resolve(ROOT,'src/apps/borg/BorgCertifiedBudgets.js'),...sourceFiles(resolve(ROOT,'src/eom')).sort()];
+  scientificSources.push(...[
+    'src/apps/borg/data/certified-budget-identities.v1.json',
+    'src/apps/borg/BorgCertifiedBudgetIdentityContract.js',
+    'content/generated/borg/certified-budget-identities.v1.js',
+    'scripts/borg/build-certified-budget-identities.mjs',
+  ].map(path=>resolve(ROOT,path)));
   bindings.push(...scientificSources.map(path=>binding(path,'scientific-source')));
   const manifest={schema:'braid-program/b1-3-circular-release-binding-manifest.v1',executionAuthorized:false,reviewStatus:'pending',candidateId:'b1-3-circular-balanced-locus',bindings,requests,
     requiredReview:'one independent acceptance receipt binding the exact manifest SHA-256',questions4And5Started:false};

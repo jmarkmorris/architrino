@@ -1,0 +1,1085 @@
+{
+  "schema": "option-b-f5-budget-transfer/v1",
+  "purpose": "Exact reviewed family transition record; not automatically consumed operational eligibility or scientific acceptance.",
+  "operatorAuthorization": {
+    "scope": "Coordinated Borg budget identity and F5 closure migration; metadata only",
+    "source": "Main coordinator relayed operator do both"
+  },
+  "review": {
+    "reviewerThread": "01a096b8-6794-78d1-84c8-01c761a89219",
+    "status": "pending-final-exact-transfer-review",
+    "scope": "Source/dependency transfer; independent scientific acceptance remains separate"
+  },
+  "scientificExecutionAuthorized": false,
+  "historicalRenewalAuthorized": false,
+  "operationalEligibilityGranted": false,
+  "justification": "Unchanged built-in allocation/canonical applicability and expected-hash data transfer; general/custom-budget semantics preserved. Four explicit scientific-contract dependencies replace no scientific obligation. The build map changes only the shared admission helper and affected revision endpoints.",
+  "maps": [
+    {
+      "profile": "build",
+      "predecessor": {
+        "path": "reference/priorities/development-process-review/contracts/option-b-f5-operational-sources.jsonld",
+        "retainedPath": "reference/priorities/development-process-review/evidence/option-b-f5-budget-pretransition/operational-sources.jsonld",
+        "sha256": "9ce4c3d02598e887c234c4e3a84e96282f4636cf4715537c86285584b94cdbdf"
+      },
+      "successor": {
+        "path": "reference/priorities/development-process-review/contracts/option-b-f5-operational-sources.jsonld",
+        "sha256": "49401d8519c23147b6dd0926290e1be256e1fa97d00d7fe3a89d8e1e87dc2a45"
+      },
+      "changes": [
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5/check-1",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-1",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/equation-mapping/current-source-manifest.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-1",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/equation-mapping/current-source-manifest.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5/check-10",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-10",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/prepare-f5-original-input-tree.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-10",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/prepare-f5-original-input-tree.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5/check-11",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-11",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/prepare-subfield-circular-root.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-11",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/prepare-subfield-circular-root.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5/check-12",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-12",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/launch-subfield-circular-root-pilot.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-12",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/launch-subfield-circular-root-pilot.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5/check-13",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-13",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/dev/owned-compute-supervisor.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-13",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/dev/owned-compute-supervisor.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5/check-14",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-14",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/tests/option-b-f5-admission.test.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-14",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/tests/option-b-f5-admission.test.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5/check-2",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-2",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/launch-f5-prehistory-handoff-build.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-2",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/launch-f5-prehistory-handoff-build.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5/check-3",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-3",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/prepare-f5-enclosed-root-build.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-3",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/prepare-f5-enclosed-root-build.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5/check-4",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-4",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-4",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/prepare-f5-prehistory-handoff-build.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5/check-5",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-5",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/prepare-f5-enclosed-root.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-5",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/prepare-f5-enclosed-root.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5/check-6",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-6",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/run-f5-enclosed-root.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-6",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/run-f5-enclosed-root.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5/check-7",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-7",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/run-current-f5-enclosed-root.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-7",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/run-current-f5-enclosed-root.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5/check-8",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-8",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/execute-f5-prehistory-handoff.py",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-8",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/execute-f5-prehistory-handoff.py",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5/check-9",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-9",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/run-f5-current-handoff.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/check-9",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5/scripts/eom/run-f5-current-handoff.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "@type": "Source",
+            "revisionId": "b-rem-2-f5-1",
+            "role": "admission",
+            "binding": {
+              "path": "scripts/eom/f5-current-source-admission.mjs",
+              "selector": {
+                "kind": "whole"
+              },
+              "contract": "fixed-byte-selection/v1",
+              "sha256": "16a5723a6ec8528158f675145685c2c1a47e5f8f335dcd5ef0c699e732c9d335"
+            }
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5/scripts/eom/f5-current-source-admission.mjs",
+            "@type": "Source",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "role": "admission",
+            "binding": {
+              "path": "scripts/eom/f5-current-source-admission.mjs",
+              "selector": {
+                "kind": "whole"
+              },
+              "contract": "fixed-byte-selection/v1",
+              "sha256": "1c638ca2565d5f444784d931f164790c0e55cde75c7363e75ecdb05fb91bbbcb"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "profile": "evolution",
+      "predecessor": {
+        "path": "reference/priorities/development-process-review/contracts/option-b-f5-evolution-sources.jsonld",
+        "retainedPath": "reference/priorities/development-process-review/evidence/option-b-f5-budget-pretransition/evolution-sources.jsonld",
+        "sha256": "86d457ad58a8ff7930ba87abf7e6026cdb99865e21ce0f08faeb635b697e9dfd"
+      },
+      "successor": {
+        "path": "reference/priorities/development-process-review/contracts/option-b-f5-evolution-sources.jsonld",
+        "sha256": "319701b260508909938fdb423aa001c179ab760a05c2303dd72fc190b5df5ea5"
+      },
+      "changes": [
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/budget-identity-check-1",
+          "before": null,
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/budget-identity-check-1",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/src/apps/borg/data/certified-budget-identities.v1.json",
+            "toRevision": "f5-budget-identity-transfer-1",
+            "role": "exact-scientific-contract-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/budget-identity-check-2",
+          "before": null,
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/budget-identity-check-2",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/src/apps/borg/BorgCertifiedBudgetIdentityContract.js",
+            "toRevision": "f5-budget-identity-transfer-1",
+            "role": "exact-scientific-contract-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/budget-identity-check-3",
+          "before": null,
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/budget-identity-check-3",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/content/generated/borg/certified-budget-identities.v1.js",
+            "toRevision": "f5-budget-identity-transfer-1",
+            "role": "exact-scientific-contract-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/budget-identity-check-4",
+          "before": null,
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/budget-identity-check-4",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/borg/build-certified-budget-identities.mjs",
+            "toRevision": "f5-budget-identity-transfer-1",
+            "role": "exact-scientific-contract-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/check-1",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-1",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/equation-mapping/current-source-manifest.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-1",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/equation-mapping/current-source-manifest.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/check-10",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-10",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/src/apps/borg/BorgCertifiedBudgets.js",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-10",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/src/apps/borg/BorgCertifiedBudgets.js",
+            "toRevision": "f5-budget-identity-transfer-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/check-11",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-11",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/src/apps/borg/BorgDisplayHostMemoryEnvelope.js",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-11",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/src/apps/borg/BorgDisplayHostMemoryEnvelope.js",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/check-12",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-12",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/src/apps/borg/BorgCausalHistoryRetention.js",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-12",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/src/apps/borg/BorgCausalHistoryRetention.js",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/check-13",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-13",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/src/apps/borg/BorgEomWakeBoundaryProducts.js",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-13",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/src/apps/borg/BorgEomWakeBoundaryProducts.js",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/check-14",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-14",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/tests/option-b-f5-evolution-admission.test.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-14",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/tests/option-b-f5-evolution-admission.test.mjs",
+            "toRevision": "f5-budget-identity-transfer-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/check-2",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-2",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/run-f5-complete-evaluator-batch.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-2",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/run-f5-complete-evaluator-batch.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/check-3",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-3",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/run-f5-ordinary-evolution.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-3",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/run-f5-ordinary-evolution.mjs",
+            "toRevision": "f5-budget-identity-transfer-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/check-4",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-4",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-batch-admission.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-4",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-batch-admission.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/check-5",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-5",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-registered-stage-gate.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-5",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-registered-stage-gate.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/check-6",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-6",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/launch-prescribed-response-pilot.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-6",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/launch-prescribed-response-pilot.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/check-7",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-7",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/launch-subfield-circular-root-pilot.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-7",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/launch-subfield-circular-root-pilot.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/check-8",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-8",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/prepare-ordinary-evolution-request.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-8",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/prepare-ordinary-evolution-request.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/check-9",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-9",
+            "@type": "Relationship",
+            "revisionId": "b-rem-2-f5-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "b-rem-2-f5-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/BorgNativeEomProcessClient.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/check-9",
+            "@type": "Relationship",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "kind": "checks",
+            "from": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "fromRevision": "f5-budget-identity-transfer-1",
+            "to": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/BorgNativeEomProcessClient.mjs",
+            "toRevision": "b-rem-2-f5-1",
+            "role": "exact-operational-selection"
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/content/generated/borg/certified-budget-identities.v1.js",
+          "before": null,
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/content/generated/borg/certified-budget-identities.v1.js",
+            "@type": "Source",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "role": "scientific-contract",
+            "binding": {
+              "path": "content/generated/borg/certified-budget-identities.v1.js",
+              "selector": {
+                "kind": "whole"
+              },
+              "contract": "fixed-byte-selection/v1",
+              "sha256": "23e41b21984627c9723e4ca3dd494dcec1b96b1bb144d0a85f9678bf494a5047"
+            }
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/borg/build-certified-budget-identities.mjs",
+          "before": null,
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/borg/build-certified-budget-identities.mjs",
+            "@type": "Source",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "role": "scientific-contract",
+            "binding": {
+              "path": "scripts/borg/build-certified-budget-identities.mjs",
+              "selector": {
+                "kind": "whole"
+              },
+              "contract": "fixed-byte-selection/v1",
+              "sha256": "960579e82d62d3826d6677f445f1f4fbdc40d100fca2a01fbe4dec8b19144d62"
+            }
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "@type": "Source",
+            "revisionId": "b-rem-2-f5-1",
+            "role": "admission",
+            "binding": {
+              "path": "scripts/eom/f5-current-source-admission.mjs",
+              "selector": {
+                "kind": "whole"
+              },
+              "contract": "fixed-byte-selection/v1",
+              "sha256": "16a5723a6ec8528158f675145685c2c1a47e5f8f335dcd5ef0c699e732c9d335"
+            }
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/f5-current-source-admission.mjs",
+            "@type": "Source",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "role": "admission",
+            "binding": {
+              "path": "scripts/eom/f5-current-source-admission.mjs",
+              "selector": {
+                "kind": "whole"
+              },
+              "contract": "fixed-byte-selection/v1",
+              "sha256": "1c638ca2565d5f444784d931f164790c0e55cde75c7363e75ecdb05fb91bbbcb"
+            }
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/run-f5-ordinary-evolution.mjs",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/run-f5-ordinary-evolution.mjs",
+            "@type": "Source",
+            "revisionId": "b-rem-2-f5-1",
+            "role": "current-source",
+            "binding": {
+              "path": "scripts/eom/run-f5-ordinary-evolution.mjs",
+              "selector": {
+                "kind": "whole"
+              },
+              "contract": "fixed-byte-selection/v1",
+              "sha256": "c50436edce2722479d3ae785976e52984dda13b364bf7fe36318deb1c9233f49"
+            }
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/scripts/eom/run-f5-ordinary-evolution.mjs",
+            "@type": "Source",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "role": "current-source",
+            "binding": {
+              "path": "scripts/eom/run-f5-ordinary-evolution.mjs",
+              "selector": {
+                "kind": "whole"
+              },
+              "contract": "fixed-byte-selection/v1",
+              "sha256": "52b9d1e9574f945aa405f18b718aaa765cc97473e13a9bb769328ab337d07140"
+            }
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/src/apps/borg/BorgCertifiedBudgetIdentityContract.js",
+          "before": null,
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/src/apps/borg/BorgCertifiedBudgetIdentityContract.js",
+            "@type": "Source",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "role": "scientific-contract",
+            "binding": {
+              "path": "src/apps/borg/BorgCertifiedBudgetIdentityContract.js",
+              "selector": {
+                "kind": "whole"
+              },
+              "contract": "fixed-byte-selection/v1",
+              "sha256": "1ef6ced3f439a49299e1e34eb552fba60992839ab1755b7af3d3ba9067c4b3a3"
+            }
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/src/apps/borg/BorgCertifiedBudgets.js",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/src/apps/borg/BorgCertifiedBudgets.js",
+            "@type": "Source",
+            "revisionId": "b-rem-2-f5-1",
+            "role": "scientific-contract",
+            "binding": {
+              "path": "src/apps/borg/BorgCertifiedBudgets.js",
+              "selector": {
+                "kind": "whole"
+              },
+              "contract": "fixed-byte-selection/v1",
+              "sha256": "b7003c59d326cf2f2c83d82bd430638636b96c653f97b6b8ab13ccfad259044c"
+            }
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/src/apps/borg/BorgCertifiedBudgets.js",
+            "@type": "Source",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "role": "scientific-contract",
+            "binding": {
+              "path": "src/apps/borg/BorgCertifiedBudgets.js",
+              "selector": {
+                "kind": "whole"
+              },
+              "contract": "fixed-byte-selection/v1",
+              "sha256": "81800deeafbdf0bdacd0c79a49dcc9c07deab26bcc51682141b0bb1ac271bc67"
+            }
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/src/apps/borg/data/certified-budget-identities.v1.json",
+          "before": null,
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/src/apps/borg/data/certified-budget-identities.v1.json",
+            "@type": "Source",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "role": "scientific-contract",
+            "binding": {
+              "path": "src/apps/borg/data/certified-budget-identities.v1.json",
+              "selector": {
+                "kind": "whole"
+              },
+              "contract": "fixed-byte-selection/v1",
+              "sha256": "874e728e8d9bc6dd9077602f2fe724033e7e8cfbe319855441e17d1ff87b9fef"
+            }
+          }
+        },
+        {
+          "id": "https://architrino.com/knowledge/current-source/f5-evolution/tests/option-b-f5-evolution-admission.test.mjs",
+          "before": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/tests/option-b-f5-evolution-admission.test.mjs",
+            "@type": "Source",
+            "revisionId": "b-rem-2-f5-1",
+            "role": "current-source",
+            "binding": {
+              "path": "tests/option-b-f5-evolution-admission.test.mjs",
+              "selector": {
+                "kind": "whole"
+              },
+              "contract": "fixed-byte-selection/v1",
+              "sha256": "6906861de6a598988ae97d18c31d83d38a26d7a544205cdb1de72309a71e3233"
+            }
+          },
+          "after": {
+            "@id": "https://architrino.com/knowledge/current-source/f5-evolution/tests/option-b-f5-evolution-admission.test.mjs",
+            "@type": "Source",
+            "revisionId": "f5-budget-identity-transfer-1",
+            "role": "current-source",
+            "binding": {
+              "path": "tests/option-b-f5-evolution-admission.test.mjs",
+              "selector": {
+                "kind": "whole"
+              },
+              "contract": "fixed-byte-selection/v1",
+              "sha256": "8ed643afef5c2d6083b8ff48522d48c08b189348948e7d15efde31e51219147d"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "protectedBindings": [
+    {
+      "path": "scripts/eom/f5-batch-admission.mjs",
+      "role": "unchanged-historical-scientific-generation-predicate",
+      "sha256": "909a977a5c8ff868ed3f24672ddb442b676034dbc5c2e2ad52d677678bd07686"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-08-27-f5-ordinary-evolution-declaration.v1.json",
+      "role": "immutable-original-F5-declaration",
+      "sha256": "e908f1fc47acaeb0ba046818fc66a2781251492be2022cdb978e4727e0d72515"
+    },
+    {
+      "path": "reference/priorities/braid-program/evidence/2026-09-01-stella-octangula-short-eom-release.predeclaration.v1.json",
+      "role": "immutable-original-Stella-predeclaration",
+      "sha256": "fcde91f3af651d273d89fa77f96306e58f9f3b6db66b3fadd59909afab34bd35"
+    },
+    {
+      "path": "scripts/equation-mapping/current-source-manifest.mjs",
+      "role": "unchanged-captured-manifest-reader",
+      "sha256": "9097ef3fd3fb2040b48c601d81c184188e8a992aa4464694860d05d0bf76a56e"
+    }
+  ],
+  "historicalBudgetOwners": [
+    "reference/priorities/braid-program/evidence/2026-08-27-f5-ordinary-evolution-declaration.v1.json",
+    "reference/priorities/braid-program/evidence/2026-09-01-stella-octangula-short-eom-release.predeclaration.v1.json"
+  ],
+  "currentTestSelectionPredecessor": {
+    "path": "tests/fixtures/option-b-retained-test-identities.json",
+    "sha256": "5f46c844fad3b5006f21c202c78d74e16a166a1d754ca5af7f70407427ab969c",
+    "field": "f5PreparationSelection",
+    "mapSha256": "9ce4c3d02598e887c234c4e3a84e96282f4636cf4715537c86285584b94cdbdf",
+    "consumer": "tests/f5-independent-interpolation-enclosure.test.js",
+    "successorOwner": "Main updates current selection only; all independent expected values remain unchanged."
+  },
+  "circularReleaseInventory": {
+    "path": "scripts/eom/freeze-planar-three-binary-circular-release-bindings.mjs",
+    "beforeSha256": "3165d4cbd20754597e020befcf297c0b024530252e536fbcb6a6f1bdc52d1715",
+    "afterSha256": "cb62fd4835b8528ea904beb9877c924daa99d7b796fe9d6e9623830ce15abb90",
+    "addedScientificSources": [
+      "src/apps/borg/data/certified-budget-identities.v1.json",
+      "src/apps/borg/BorgCertifiedBudgetIdentityContract.js",
+      "content/generated/borg/certified-budget-identities.v1.js",
+      "scripts/borg/build-certified-budget-identities.mjs"
+    ]
+  },
+  "controls": [
+    "tests/option-b-f5-evolution-admission.test.mjs",
+    "tests/option-b-f5-budget-transition.test.mjs",
+    "tests/borg-certified-budget-identities.test.js"
+  ],
+  "historicalReplay": "Retained maps preserve exact prior expectations, not current admission. Replaying an old map requires its exact original source tree; changed current budget sources do not satisfy old scientific declarations or receipts."
+}

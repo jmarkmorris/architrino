@@ -4,6 +4,26 @@ This is the chronological completion log for the CRW-005 assurance campaign. The
 
 ## Completed milestones
 
+### 2026-09-12 — Fermi-Dirac and Bose-Einstein Statistics FBS-01–FBS-15 bounded repair
+
+Implemented and validated the smallest safe repairs for 15 demonstrated findings, addressing Slater normalization, interaction-energy comparisons, per-state occupation counting, and unsupported geometry-to-statistics implications. The joined strict validator reported 0 errors, 0 warnings, and 30 informational notes; complete reread, scoped diff and whitespace checks, known-case-first KaTeX/math/local-link/arithmetic checks, and preservation checks for all 16 displayed equations and viewer identities passed. Physical recovery and scientific closure remain open. Generated equation-registry refresh is deferred; the [bounded receipt](evidence/crw-005-fermi-dirac-and-bose-einstein-statistics-review-2026-09-12.md) records the exact hash, falsifiers, and deferred command.
+
+### 2026-09-12 — Cosmology Ontology CO-01–CO-17 bounded repair
+
+Implemented and validated the smallest safe repairs for 17 demonstrated findings, correcting duplicate dilution in the mass integral, adding emitted-frequency integration, and limiting rotation, homogeneity, prediction, and acoustic-ruler conclusions. The joined strict validator reported 0 errors, 0 warnings, and 30 informational notes; complete reread, scoped diff and whitespace checks, known-case-first KaTeX/link/preservation/arithmetic checks passed, with all 34 equation IDs, 24 headings, and 46 original links preserved. Source-repair blockers, physical branch validation, and scientific closure remain open. Generated equation-registry refresh is deferred; the [bounded receipt](evidence/crw-005-cosmology-ontology-review-2026-09-12.md) records the exact hash, falsifiers, and deferred command.
+
+### 2026-09-12 — Cosmology Reconstruction CR-01–CR-14 bounded repair
+
+Implemented and validated the smallest safe repairs for 14 demonstrated findings, distinguishing spatial redshift slopes from temporal expansion, exposing luminosity-transfer assumptions, and limiting model comparisons to their supported effective scope. The joined strict validator reported 0 errors, 0 warnings, and 30 informational notes; complete reread, scoped diff and whitespace checks, known-case-first KaTeX/local-link/whitespace/arithmetic checks passed, preserving all 18 equation identities with one notation-only correction and all 12 numerical table rows at printed precision. Physical recovery obligations remain open. Generated equation-registry refresh is deferred; the [bounded receipt](evidence/crw-005-cosmology-reconstruction-review-2026-09-12.md) records the exact hash, falsifiers, and deferred command.
+
+### 2026-09-12 — Expansion Mechanism EXP-01–EXP-20 bounded repair
+
+Implemented and validated the smallest safe repairs for 20 demonstrated findings, addressing photon-energy signs, luminosity-distance flux, redshift-budget notation, and unsupported conservation and transport inferences. The joined strict validator reported 0 errors, 0 warnings, and 30 informational notes; known-case-first KaTeX, delimiter, local-path, whitespace, and 13 arithmetic-witness checks passed, preserving 117 equation IDs, 34 headings, and 135 original links with 10 equations intentionally changed. Physical mechanism, EOM solver acceptance, and downstream closure remain open. Generated equation-registry refresh is deferred; the [bounded receipt](evidence/crw-005-expansion-mechanism-review-2026-09-12.md) records the final working hash, falsifiers, and deferred command.
+
+### 2026-09-12 — Inflation Model IM-01–IM-15 bounded repair
+
+Implemented and validated the smallest safe repairs for 15 demonstrated findings, clarifying energy accounting, tensor upper bounds, predictive restrictions, slow-roll assumptions, and clock-dependent acceleration. The joined strict validator reported 0 errors, 0 warnings, and 30 informational notes; complete reread, scoped diff and whitespace checks, known-case-first KaTeX/math/local-link/arithmetic checks passed, preserving all 17 equation identities and every original heading and link with three displayed formulas intentionally changed. Physical branch existence, EOM solver acceptance, theory closure, and downstream closure remain open. Generated equation-registry refresh is deferred; the [bounded receipt](evidence/crw-005-inflation-model-review-2026-09-12.md) records the exact hash, falsifiers, and deferred command.
+
 ### 2026-09-12 — Quantum Summary QS-01–QS-10 bounded repair
 
 Implemented and validated the smallest safe repairs for 10 demonstrated findings, clarifying phase versus basin weights, Born-measure requirements, passage times versus error rates, exchange versus occupation statistics, Bell constraints, parity, and normalized photon projections. The joined strict validator reported 0 errors, 0 warnings, and 30 informational notes; complete reread, scoped diff and whitespace checks, known-case-first math/KaTeX/local-link checks, six arithmetic witnesses, and preservation checks for the original mathematics, links, and headings passed. Physical and downstream closure remain open. Generated equation-registry refresh is deferred; the [bounded receipt](evidence/crw-005-quantum-summary-review-2026-09-12.md) records the exact hash, falsifiers, and deferred command.
